@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.core.papyrusContentOutline">
+      <contentoutline
+            class="org.eclipse.papyrus.outline.UMLNavigatorOutline"
+            priority="2">
+      </contentoutline>
+   </extension>
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+		<navigatorContent
+			id="org.eclipse.papyrus.core.modelOutline"
+			name="Model-oriented Outline"
+			priority="normal"
+			contentProvider="org.eclipse.papyrus.outline.ModelOrientedContentProvider"
+			labelProvider="org.eclipse.papyrus.outline.ModelOrientedLabelProvider"
+			icon="icons/obj16/UMLDiagramFile.gif"
+			activeByDefault="false">
+			<triggerPoints>
+				<instanceof value="org.eclipse.gmf.runtime.notation.Diagram"/>
+			</triggerPoints>
+			<possibleChildren>
+				<instanceof value="org.eclipse.emf.ecore.EObject"/>
+			</possibleChildren>
+			<actionProvider
+				id="org.eclipse.papyrus.outline.DefaultOutlineActionProvider"
+				class="org.eclipse.papyrus.outline.DefaultOutlineActionProvider"/>
+		</navigatorContent>
+		<!--navigatorContent
+			id="org.eclipse.papyrus.core.viewOutline"
+			name="View-oriented Outline"
+			priority="normal"
+			contentProvider="org.eclipse.papyrus.core.outline.ViewOrientedContentProvider"
+			labelProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorLabelProvider"
+			icon="icons/obj16/UMLDiagramFile.gif"
+			activeByDefault="false">
+			<triggerPoints>
+				<instanceof value="org.eclipse.gmf.runtime.notation.Diagram"/>
+			</triggerPoints>
+			<possibleChildren>
+				<instanceof value="org.eclipse.gmf.runtime.notation.View"/>
+			</possibleChildren>
+		</navigatorContent-->
+	</extension>
+
+	<extension point="org.eclipse.ui.views">
+		<view
+			id="org.eclipse.papyrus.outline.Overview"
+			class="org.eclipse.papyrus.outline.overview.Overview"
+			icon="icons/eview16/overview.png"
+			name="Overview"
+			restorable="true">
+		</view>
+	</extension>
+
+</plugin>
