@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<opf:PropertyFormsRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:opf="http://www.obeo.fr/dsl/properties/forms" basePackage="org.eclipse.papyrus.tabbedproperties.uml">
+  <namespaces name="figures">
+    <forms xsi:type="opf:ComposedPropertyForm" documentation="this is the form for all named Element" name="NamedElement">
+      <components xsi:type="opf:InputTextForm" documentation="this is the form to display the name" name="nameForm" label="Name"/>
+      <components xsi:type="opf:RadiosForm" documentation="this is a form to display the visibility" name="visibilityForm" label="Visibility"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ElementImport" label="Element Import Specifications" expandable="true">
+      <components xsi:type="opf:InputTextForm" documentation="Used to display the alias" name="aliasForm" label="Alias"/>
+      <components xsi:type="opf:RadiosForm" documentation="I is used to display visibility" name="visibility" label="Visibility"/>
+      <components xsi:type="opf:ReferencedElementForm" documentation="used to to display the importedElement as qualifiedName" name="importedElement" label="ImportedElement" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.TypeFilter"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="PackageImport" label="Package Import Specifications" expandable="true">
+      <components xsi:type="opf:RadiosForm" documentation="I is used to display visibility" name="visibility" label="Visibility"/>
+      <components xsi:type="opf:ReferencedElementForm" documentation="used to to display the importedPackage as qualifiedName" name="importedPackage" label="ImportedPackage" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.PackageFilter"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="Comment" label="Comment Specifications">
+      <components xsi:type="opf:CustomForm" documentation="this is a new form for the comment" name="body" label="Body" package="org.eclipse.papyrus.tabbedproperties.customform" class="CustomCommentBodyForm"/>
+      <components xsi:type="opf:ReferencedElementForm" documentation="used to display list od annotated Element" name="annotatedElement" label="AnnotatedElement" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.TypeFilter" kind="multiple"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="TypedElement" label="Typed Element Specifications">
+      <components xsi:type="opf:ReferencedElementForm" documentation="view of a typedElement" name="type" label="Type" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.TypeFilter"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="GeneralizationSet" label="GeneralizationSet Specifications" expandable="true">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:CheckBoxForm" name="isCoveringForm" label="isCovering"/>
+        <components xsi:type="opf:CheckBoxForm" name="isDisjointForm" label="isDisjoint"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="OpaqueExpression" label="Opaque Expression Specifications" expandable="true">
+      <components xsi:type="opf:CustomForm" documentation="custom form for the language" name="languageForm" label="Language" package="org.eclipse.papyrus.tabbedproperties.customform" class="StringTable"/>
+      <components xsi:type="opf:CustomForm" documentation="custom form for the body" name="bodyForm" label="Body" package="org.eclipse.papyrus.tabbedproperties.customform" class="StringTable"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="Parameter" label="Parameter Specifications" expandable="true">
+      <components xsi:type="opf:ComboForm" name="directionForm" label="direction"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="MultiplicityElement" label="Multiplicity Specifications">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:InputTextForm" documentation="use to display the multiplicity as 0..*" name="mutiplicityform" label="Multiplicity"/>
+        <components xsi:type="opf:CheckBoxForm" name="isOrderedForm" label="IsOrdered"/>
+        <components xsi:type="opf:CheckBoxForm" name="isUniqueForm" label="IsUnique"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="Property" label="Property Specifications">
+      <components xsi:type="opf:Box" name="vbox" layout="Vertical">
+        <components xsi:type="opf:RadiosForm" name="aggregationForm" label="Aggregation"/>
+        <components xsi:type="opf:Box" name="hbox">
+          <components xsi:type="opf:CheckBoxForm" name="isDerivedForm" label="IsDerived"/>
+          <components xsi:type="opf:CheckBoxForm" documentation="isDerivedUnion" name="isDerivedUnionForm" label="IsDerivedUnion"/>
+          <components xsi:type="opf:CheckBoxForm" name="isCompositeForm" label="IsComposite"/>
+        </components>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="DeploymentSpecification" label="Deployment Specifications" expandable="true">
+      <components xsi:type="opf:InputTextForm" name="deploymentLocationForm" label="deploymentLocation"/>
+      <components xsi:type="opf:InputTextForm" name="executionLocationForm" label="executionLocation"/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="Artifact" label="fileName">
+      <form xsi:type="opf:InputTextForm" name="fileNameForm" label="fileName"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="Operation" label="Operation Specifications">
+      <components xsi:type="opf:CheckBoxForm" name="isQueryForm" label="isQuery"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="BehavioralFeature" label="BehavioralFeature Specifications" expandable="true">
+      <components xsi:type="opf:CheckBoxForm" name="isAbstractForm" label="isAbstract"/>
+      <components xsi:type="opf:ComboForm" name="concurrencyForm" label="concurrency"/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="Transition" label="kind">
+      <form xsi:type="opf:ComboForm" name="kindForm" label="kind"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="Port">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:CheckBoxForm" name="isBehaviorForm" label="isBehavior"/>
+        <components xsi:type="opf:CheckBoxForm" name="isServiceForm" label="isService"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="State">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:CheckBoxForm" name="isCompositeForm" label="isComposite"/>
+        <components xsi:type="opf:CheckBoxForm" name="isOrthogonalForm" label="isOrthogonal"/>
+        <components xsi:type="opf:CheckBoxForm" name="isSimpleForm" label="isSimple"/>
+        <components xsi:type="opf:CheckBoxForm" name="isSubmachineStateForm" label="isSubmachineState"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="Pseudostate" label="kind">
+      <form xsi:type="opf:ComboForm" name="pseudoStatekindForm" label="kind"/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="Connector" label="kind">
+      <form xsi:type="opf:ComboForm" name="kindForm" label="kind"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="Image">
+      <components xsi:type="opf:InputTextForm" name="contentForm" label="content"/>
+      <components xsi:type="opf:InputTextForm" name="locationForm" label="location"/>
+      <components xsi:type="opf:InputTextForm" name="formatForm" label="format"/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="Model" label="viewpoint">
+      <form xsi:type="opf:InputTextForm" name="viewpointForm" label=""/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="Expression" label="symbol">
+      <form xsi:type="opf:InputTextForm" name="symbolForm"/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="LiteralInteger" label="value">
+      <form xsi:type="opf:InputTextForm" name="valueForm"/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="LiteralString" label="value">
+      <form xsi:type="opf:InputTextForm" name="valueForm"/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="LiteralUnlimitedNatural" label="value">
+      <form xsi:type="opf:InputTextForm" name="valueForm"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="OpaqueBehavior">
+      <components xsi:type="opf:CustomForm" documentation="custom form for the language" name="languageForm" label="Language" package="org.eclipse.papyrus.tabbedproperties.customform" class="StringTable"/>
+      <components xsi:type="opf:CustomForm" documentation="custom form for the body" name="bodyForm" label="Body" package="org.eclipse.papyrus.tabbedproperties.customform" class="StringTable"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="OpaqueAction">
+      <components xsi:type="opf:CustomForm" documentation="custom form for the language" name="languageForm" label="Language" package="org.eclipse.papyrus.tabbedproperties.customform" class="StringTable"/>
+      <components xsi:type="opf:CustomForm" documentation="custom form for the body" name="bodyForm" label="Body" package="org.eclipse.papyrus.tabbedproperties.customform" class="StringTable"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="Activity">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:CheckBoxForm" name="isReadOnlyForm" label="isReadOnly"/>
+        <components xsi:type="opf:CheckBoxForm" name="isSingleExecutionForm" label="isSingleExecution"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ActivityPartition">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:CheckBoxForm" name="isDimensionForm" label="isDimension"/>
+        <components xsi:type="opf:CheckBoxForm" name="isExternalForm" label="isExternal"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ObjectNode">
+      <components xsi:type="opf:ComboForm" name="orderingForm" label="ordering"/>
+      <components xsi:type="opf:CheckBoxForm" name="isControlTypeForm" label="isControlType"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="Message">
+      <components xsi:type="opf:ComboForm" name="messageKindForm" label="messageKind"/>
+      <components xsi:type="opf:ComboForm" name="messageSortForm" label="messageSort"/>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="CombinedFragment" label="interactionOperator">
+      <form xsi:type="opf:ComboForm" name="interactionOperatorForm"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="DestroyObjectAction">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:CheckBoxForm" name="isDestroyLinksForm" label="isDestroyLinks"/>
+        <components xsi:type="opf:CheckBoxForm" name="isDestroyOwnedObjectsForm" label="isDestroyOwnedObjects"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ObjectFlow">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:CheckBoxForm" name="isMulticastForm" label="isMultiCast"/>
+        <components xsi:type="opf:CheckBoxForm" name="isMultireceiveForm" label="isMultireceive"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ConditionalNode">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:CheckBoxForm" name="isDeterminateForm" label="isDeterminate"/>
+        <components xsi:type="opf:CheckBoxForm" name="isAssuredForm" label="isAssured"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:StandardLabeledForm" name="ExpansionRegion" label="mode">
+      <form xsi:type="opf:ComboForm" name="expansionRegionModeForm"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="AssociationForm">
+      <components xsi:type="opf:Box" name="vbox" layout="Vertical">
+        <components xsi:type="opf:CheckBoxForm" documentation="Specifies whether the association is derived from other model elements such as other associations or constraints. The default value is false" name="isDerived" label="IsDerived"/>
+        <components xsi:type="opf:ReferencedElementForm" name="memberEnd" label="MemberEnds" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.PropertyFilter" kind="multiple"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="BehavioralFeatureForm" label="Behavioral Feature Specifications" expandable="true">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" documentation="Specifies the ordered set of formal parameters owned by this BehavioralFeature" name="ownedParameter" label="OwnedParameters" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ParameterFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" documentation="References the Types representing exceptions that may be raised during an invocation of this operation." name="raisedException" label="RaisedExceptions" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.TypeFilter" kind="multiple"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="BehavioredClassifierForm" label="Behaviored Classifier Specifications" expandable="true">
+      <components xsi:type="opf:ReferencedElementForm" name="interfaceRealization" label="InterfaceRealizations" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.InterfaceRealizationFilter" kind="multiple"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" documentation="" name="ClassForm" label="Class Specifications" expandable="true">
+      <components xsi:type="opf:Box" documentation="to set vertical all subcomponents" name="hbox" label="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="property" label="Properties" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.PropertyFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="operation" label="Operations" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.OperationFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="nestedClassifier" label="NestedClassifiers" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ClassifierFilter" kind="multiple"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ClassifierForm" label="Classifier Specifications" expandable="true">
+      <components xsi:type="opf:CheckBoxForm" name="isAbstract" label="IsAbstract"/>
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="generalization" label="Generalization" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.GeneralizationFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="redefinedClassifier" label="RedefinedClassifiers" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ClassifierFilter" kind="multiple"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ConstraintForm">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" documentation="view for constraints" name="constrainedElement" label="ConstrainedElement" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.NamedElementFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="specification" label="Specification" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.NamedElementFilter"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="DataTypeForm" label="DataType Specifications" expandable="true">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="property" label="Properties" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.PropertyFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="operation" label="Operations" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.OperationFilter" kind="multiple"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="DependencyForm">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="client" label="client" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.NamedElementFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="supplier" label="Suplier" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.NamedElementFilter" kind="multiple"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ElementForm" label="">
+      <components xsi:type="opf:ReferencedElementForm" documentation="view to see all comments of an element" name="comment" label="Comment" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.CommentFilter" kind="multiple"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="EnumerationForm" label="Enumeration Literal Specifications" expandable="true">
+      <components xsi:type="opf:ReferencedElementForm" name="ownedLiteral" label="ownedLiteral" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.EnumerationLiteralFilter" kind="multiple"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ExpressionForm">
+      <components xsi:type="opf:InputTextForm" name="symbol" label="Symbol"/>
+      <components xsi:type="opf:ReferencedElementForm" name="operand" label="operand" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ValueSpecificationFilter" kind="multiple"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="FeatureForm" label="Feature Specifications">
+      <components xsi:type="opf:CheckBoxForm" name="isStatic" label="IsStatic"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="GeneralizationForm">
+      <components xsi:type="opf:CheckBoxForm" name="isSubstitutable" label="IsSubstitutable"/>
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="general" label="General" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ClassifierFilter"/>
+        <components xsi:type="opf:ReferencedElementForm" name="specific" label="Specific" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ClassifierFilter"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="InstanceSpecificationForm" label="Instance Specification Specifications" expandable="true">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="classifier" label="Classifier" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ClassifierFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="slot" label="Slot" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.SlotFilter" kind="multiple"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="InterfaceForm" label="Interface Specifications" expandable="true">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="property" label="Properties" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.PropertyFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="operation" label="Operations" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.OperationFilter" kind="multiple"/>
+        <components xsi:type="opf:ReferencedElementForm" name="nestedClassifier" label="NestedClassifiers" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ClassifierFilter" kind="multiple"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="InterfaceRealization">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="contract" label="Contract" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.InterfaceFilter"/>
+        <components xsi:type="opf:ReferencedElementForm" name="implementingClassifier" label="ImplementingClassifier" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.BehavioredClassifierFilter"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="PackageMergeForm">
+      <components xsi:type="opf:Box" name="hbox" label="">
+        <components xsi:type="opf:ReferencedElementForm" name="mergedPackage" label="MergedPackage" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.PackageFilter"/>
+        <components xsi:type="opf:ReferencedElementForm" name="receivingPackage" label="ReceivingPackage" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.PackageFilter"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="RedefinableElementForm" label="Redefinable Element Specifications">
+      <components xsi:type="opf:CheckBoxForm" name="isLeaf" label="isLeaf"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="SlotForm">
+      <components xsi:type="opf:ReferencedElementForm" name="definingFeature" label="DefiningFeature" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.StructuralFeatureFilter"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="SubstitutionForm">
+      <components xsi:type="opf:Box" name="hbox">
+        <components xsi:type="opf:ReferencedElementForm" name="contract" label="Contract" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ClassifierFilter"/>
+        <components xsi:type="opf:ReferencedElementForm" name="substitutingClassifier" label="SubstitutingClassifier" filterClass="org.eclipse.papyrus.tabbedproperties.core.filters.ClassifierFilter"/>
+      </components>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="StructuralFeatureForm" label="StructuralFeature Specifications">
+      <components xsi:type="opf:CheckBoxForm" name="isReadOnly" label="isReadOnly"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="BehaviorForm" label="Behavior Specifications">
+      <components xsi:type="opf:CheckBoxForm" name="isReentrant" label="isReentrant"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ClassifierTemplateParameterForm" label="Classifier Template Parameter Specifications" expandable="true">
+      <components xsi:type="opf:CheckBoxForm" name="allowSubstitutable" label="allowSubstitutable"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="LiteralBooleanForm" label="Literal Boolean Specifications" expandable="true">
+      <components xsi:type="opf:CheckBoxForm" name="value" label="value"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ComponentForm" label="Component Specifications">
+      <components xsi:type="opf:CheckBoxForm" documentation="An indirectly instantiated component is implemented, or realized, by a set of classes, subcomponents, or parts." name="isIndirectlyInstanciated" label="isIndirectlyInstanciated"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ContinuationForm" label="Continuation">
+      <components xsi:type="opf:CheckBoxForm" name="setting" label="setting"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ReadIsClassifiedObjectActionForm" label="ReadIsClassifiedObjectAction">
+      <components xsi:type="opf:CheckBoxForm" name="isDirect" label="isDirect"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="PinForm" label="Pin">
+      <components xsi:type="opf:CheckBoxForm" name="isControl" label="isControl"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="StructuredActivityNodeForm" label="StructuredActivityNode">
+      <components xsi:type="opf:CheckBoxForm" name="mustIsolate" label="mustIsolate"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="AddStructuralFeatureValueActionForm" label="AddStructuralFeatureValueAction">
+      <components xsi:type="opf:CheckBoxForm" name="isReplaceAll" label="isReplaceAll"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="AddVariableValueActionForm" label="AddVariableValueAction">
+      <components xsi:type="opf:CheckBoxForm" name="isReplaceAll" label="isReplaceAll"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ReclassifyObjectActionForm" label="ReclassifyObjectAction">
+      <components xsi:type="opf:CheckBoxForm" name="isReplaceAll" label="isReplaceAll"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="RemoveStructuralFeatureValueActionForm" label="RemoveStructuralFeatureValueAction">
+      <components xsi:type="opf:CheckBoxForm" name="isRemoveDuplicates" label="isRemoveDuplicates"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="RemoveVariableValueActionForm" label="RemoveVariableValueAction">
+      <components xsi:type="opf:CheckBoxForm" name="isRemoveDuplicates" label="isRemoveDuplicates"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="AcceptEventActionForm" label="AcceptEventAction">
+      <components xsi:type="opf:CheckBoxForm" name="isUnmarshall" label="isUnmarshall"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="LinkEndDestructionDataForm" label="LinkEndDestructionData">
+      <components xsi:type="opf:CheckBoxForm" name="isDestroyDuplicates" label="isDestroyDuplicates"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="LinkEndCreationDataForm" label="LinkEndCreationData">
+      <components xsi:type="opf:CheckBoxForm" name="isReplaceAll" label="isReplaceAll"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="JoinNodeForm" label="JoinNode">
+      <components xsi:type="opf:CheckBoxForm" name="isCombineDupicate" label="isCombineDupicate"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ReduceActionForm" label="ReduceAction">
+      <components xsi:type="opf:CheckBoxForm" name="isOrdered" label="isOrdered"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="CallActionForm" label="CallAction">
+      <components xsi:type="opf:CheckBoxForm" name="isSynchronous" label="isSynchronous"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ExtensionForm" label="Extension">
+      <components xsi:type="opf:CheckBoxForm" name="isRequired" label="isRequired"/>
+    </forms>
+    <forms xsi:type="opf:ComposedPropertyForm" name="ProfileApplicationForm" label="ProfileApplication">
+      <components xsi:type="opf:CheckBoxForm" name="isStrict" label="isStrict"/>
+    </forms>
+  </namespaces>
+</opf:PropertyFormsRepository>
