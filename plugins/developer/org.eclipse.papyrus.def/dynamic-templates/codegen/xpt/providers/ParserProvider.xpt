@@ -1,0 +1,252 @@
+/*
+ * Copyright (c) 2007, 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ *    Modified by Patrick Tessier (CEA)
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+«IMPORT "http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"»
+«EXTENSION xpt::providers::ParserUtils»
+«EXTENSION xpt::EMFUtils»
+
+«REM»DOCUMENTATION : PapyrusGencode«ENDREM»
+«REM» the purpose of modification is to add directly parsers to take in charge stereotype«ENDREM»
+«REM»see lines 117,157«ENDREM»
+
+«DEFINE ParserProvider FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::copyright FOR editorGen-»
+package «providersPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «parserProviderClassName» extends org.eclipse.gmf.runtime.common.core.service.AbstractProvider
+		implements org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider {
+	«EXPAND parsers-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(int visualID) {
+		switch (visualID) {
+		«EXPAND getParsers-»
+		}
+		return null;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(
+			org.eclipse.core.runtime.IAdaptable hint) {
+		String vid = (String) hint.getAdapter(String.class);
+		if (vid != null) {
+			return getParser(«EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall»(vid));
+		}
+		org.eclipse.gmf.runtime.notation.View view =
+				(org.eclipse.gmf.runtime.notation.View) hint.getAdapter(org.eclipse.gmf.runtime.notation.View.class);
+		if (view != null) {
+			return getParser(«EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall»(view));
+		}
+		return null;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
+		if (operation instanceof org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation) {
+			org.eclipse.core.runtime.IAdaptable hint =
+					((org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation) operation).getHint();
+			if («getElementTypesQualifiedClassName()».getElement(hint) == null) {
+				return false;
+			}
+			return getParser(hint) != null;
+		}
+		return false;
+	}
+	«EXPAND HintAdapterClass»
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+
+«DEFINE parsers FOR gmfgen::GenDiagram-»
+	«EXPAND parsers FOREACH topLevelNodes-»
+	«EXPAND parsers FOREACH childNodes-»
+	«EXPAND parsers FOREACH links-»
+«ENDDEFINE»
+
+«DEFINE parsers FOR gmfgen::GenNode-»
+	«EXPAND parser FOREACH labels-»
+«ENDDEFINE»
+
+«DEFINE parsers FOR gmfgen::GenChildLabelNode-»
+
+	«EXPAND parser(this) FOR labelModelFacet-»
+«ENDDEFINE»
+
+«DEFINE parsers FOR gmfgen::GenLink-»
+	«EXPAND parser FOREACH labels-»
+«ENDDEFINE»
+
+«DEFINE parser FOR gmfgen::GenLabel-»
+	«EXPAND parser(this) FOR modelFacet-»
+«ENDDEFINE»
+
+«DEFINE parser(gmfgen::GenCommonBase element) FOR gmfgen::LabelModelFacet-»
+«ENDDEFINE»
+
+«DEFINE parser(gmfgen::GenCommonBase element) FOR gmfgen::FeatureLabelModelFacet-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.gmf.runtime.common.ui.services.parser.IParser «parserFieldName(element)»;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.gmf.runtime.common.ui.services.parser.IParser «parserAccessorName(element)»() {
+		if («parserFieldName(element)» == null) {
+			«parserFieldName(element)» = «parserCreatorName(element)»();
+		}
+		return «parserFieldName(element)»;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	
+	
+	
+	
+	protected org.eclipse.gmf.runtime.common.ui.services.parser.IParser «parserCreatorName(element)»() {
+	«REM»BEGIN : PapyrusGencode«ENDREM»
+	«REM» adding test to lokkfor extendedGenNode with the name StereotypeApplication«ENDREM»
+	«IF getReferencingObjects(element).typeSelect(papyrusgmfgenextension::ExtendedGenNode).select(i | i.name=='StereotypeApplication').size()!=0»
+		«FOREACH getReferencingObjects(element).typeSelect(papyrusgmfgenextension::ExtendedGenNode) AS extendedObject»
+			//Papyrus Gen code
+		    //This code is replaced by a simple parser of apliedstereotype 
+		    IParser parser = new org.eclipse.papyrus.diagram.clazz.custom.parsers.AppliedStereotypeParser();
+			return parser;
+		«ENDFOREACH-»
+	«ELSE»
+	«REM»END : PapyrusGencode«ENDREM»
+		org.eclipse.emf.ecore.EAttribute[] features = new org.eclipse.emf.ecore.EAttribute[] {
+		«FOREACH metaFeatures AS feature-»
+			«EXPAND MetaModel::MetaFeature FOR feature»,
+		«ENDFOREACH-»
+		};
+		«IF viewMethod.literal == editMethod.literal-»
+			«EXPAND parserQualifiedClassName(viewMethod) FOR element.getDiagram()» parser =
+			new «EXPAND parserQualifiedClassName(viewMethod) FOR element.getDiagram()»(features);
+			«IF viewMethod.literal != gmfgen::LabelTextAccessMethod::NATIVE.literal-»
+				«EXPAND setReaderPatterns("parser")-»
+				«EXPAND setWriterPatterns("parser")-»
+			«ENDIF-»
+			return parser;
+		«ELSE-»
+			«EXPAND parserQualifiedClassName(viewMethod) FOR element.getDiagram()» reader =
+			new «EXPAND parserQualifiedClassName(viewMethod) FOR element.getDiagram()»(features);
+			«IF viewMethod.literal != gmfgen::LabelTextAccessMethod::NATIVE.literal-»
+				«EXPAND setReaderPatterns("reader")-»
+			«ENDIF-»
+			«EXPAND parserQualifiedClassName(editMethod) FOR element.getDiagram()» writer =
+			new «EXPAND parserQualifiedClassName(editMethod) FOR element.getDiagram()»(features);
+			«IF editMethod.literal != gmfgen::LabelTextAccessMethod::NATIVE.literal-»
+				«EXPAND setWriterPatterns("writer")-»
+			«ENDIF-»
+			return new «EXPAND xpt::parsers::CompositeParser::qualifiedClassName FOR element.getDiagram()»(reader, writer);
+		«ENDIF-»
+	«REM»BEGIN : PapyrusGencode«ENDREM»
+	«ENDIF-»
+	«REM»END : PapyrusGencode«ENDREM»
+	}
+«ENDDEFINE»
+
+«DEFINE parserQualifiedClassName(gmfgen::LabelTextAccessMethod method) FOR gmfgen::GenDiagram-»
+	«IF gmfgen::LabelTextAccessMethod::NATIVE.literal == method.literal-»
+		«EXPAND xpt::parsers::NativeParser::qualifiedClassName-»
+	«ELSEIF gmfgen::LabelTextAccessMethod::PRINTF.literal == method.literal-»
+		«EXPAND xpt::parsers::PrintfParser::qualifiedClassName-»
+	«ELSEIF gmfgen::LabelTextAccessMethod::REGEXP.literal == method.literal-»
+		«EXPAND xpt::parsers::RegexpParser::qualifiedClassName-»
+	«ELSE-»
+		«EXPAND xpt::parsers::MessageFormatParser::qualifiedClassName-»
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE setReaderPatterns(String parserVar) FOR gmfgen::FeatureLabelModelFacet-»
+	«IF isPatternSpecified(viewPattern)-»
+	«parserVar».setViewPattern("«viewPattern»");
+	«ENDIF-»
+	«IF isPatternSpecified(editorPattern)-»
+	«parserVar».setEditorPattern("«editorPattern»");
+	«ELSE-»
+		«IF isPatternSpecified(viewPattern)-»
+	«parserVar».setEditorPattern("«viewPattern»");
+		«ENDIF-»
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE setWriterPatterns(String parserVar) FOR gmfgen::FeatureLabelModelFacet-»
+	«IF isPatternSpecified(editPattern)-»
+	«parserVar».setEditPattern("«editPattern»");
+	«ELSE-»
+		«IF isPatternSpecified(viewPattern)-»
+	«parserVar».setEditPattern("«viewPattern»");
+		«ENDIF-»
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE getParsers FOR gmfgen::GenDiagram-»
+	«EXPAND getParsers FOREACH topLevelNodes-»
+	«EXPAND getParsers FOREACH childNodes-»
+	«EXPAND getParsers FOREACH links-»
+«ENDDEFINE»
+
+«DEFINE getParsers FOR gmfgen::GenNode-»
+	«EXPAND getParser FOREACH labels-»
+«ENDDEFINE»
+
+«DEFINE getParsers FOR gmfgen::GenChildLabelNode-»
+	«EXPAND getParser(this) FOR labelModelFacet-»
+«ENDDEFINE»
+
+«DEFINE getParsers FOR gmfgen::GenLink-»
+	«EXPAND getParser FOREACH labels-»
+«ENDDEFINE»
+
+«DEFINE getParser FOR gmfgen::GenLabel-»
+	«EXPAND getParser(this) FOR modelFacet-»
+«ENDDEFINE»
+
+«DEFINE getParser(gmfgen::GenCommonBase element) FOR gmfgen::LabelModelFacet-»
+«ENDDEFINE»
+
+«DEFINE getParser(gmfgen::GenCommonBase element) FOR gmfgen::FeatureLabelModelFacet-»
+	«EXPAND xpt::Common::caseVisualID FOR element» return «parserAccessorName(element)»();
+«ENDDEFINE»
+
+«DEFINE HintAdapterClass FOR gmfgen::GenDiagram-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public static class HintAdapter extends org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter {
+
+		«EXPAND xpt::Common::generatedMemberComment»
+		private final org.eclipse.gmf.runtime.emf.type.core.IElementType elementType;
+
+		«EXPAND xpt::Common::generatedMemberComment»
+		public HintAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType type,
+				org.eclipse.emf.ecore.EObject object, String parserHint) {
+			super(object, parserHint);
+			assert type != null;
+			elementType = type;
+		}
+
+		«EXPAND xpt::Common::generatedMemberComment»
+		public Object getAdapter(Class adapter) {
+			if (org.eclipse.gmf.runtime.emf.type.core.IElementType.class.equals(adapter)) {
+				return elementType;
+			}
+			return super.getAdapter(adapter);
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenDiagram-»«ENDDEFINE»

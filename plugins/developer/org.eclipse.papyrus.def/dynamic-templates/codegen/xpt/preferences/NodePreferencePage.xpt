@@ -1,0 +1,64 @@
+/*
+ * Copyright (c) 2008 Atos Origin
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thibault Landre (Atos Origin) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+«IMPORT "http://www.eclipse.org/emf/2002/GenModel"»
+«IMPORT "http://www.eclipse.org/uml2/diagram/gmfgenext/DiagramFigure/1.0"»
+
+«EXTENSION xpt::preferences::PrefsConstant»
+
+«DEFINE className FOR gmfgen::GenNode»«getUniqueIdentifier()»«getPreferencePageSuffix()»«ENDDEFINE»
+
+«DEFINE NodePreferencePage FOR gmfgen::GenNode»
+package «getDiagram().preferencesPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage {
+
+	«EXPAND xpt::Common::generatedClassComment»
+	@Override
+	protected String getBundleId() {
+		return «getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().ID;
+	}
+
+	«EXPAND xpt::Common::generatedClassComment»
+	@Override
+	protected String getFillColorPreferenceName() {
+		return «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(getUniqueIdentifier().toUpperCase())»;
+	}
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	@Override
+	protected String getFontColorPreferenceName() {
+		return «getPreferenceConstantFileName()».«getPreferenceFontColorConstant(getUniqueIdentifier().toUpperCase())»;
+	}
+
+	«EXPAND xpt::Common::generatedClassComment»
+	@Override
+	protected String getFontPreferenceName() {
+		return «getPreferenceConstantFileName()».«getPreferenceFontConstant(getUniqueIdentifier().toUpperCase())»;
+	}
+
+	«EXPAND xpt::Common::generatedClassComment»
+	@Override
+	protected String getLineColorPreferenceName() {
+		return «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(getUniqueIdentifier().toUpperCase())»;
+	}
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static void initDefaults(org.eclipse.jface.preference.IPreferenceStore store) {
+
+	}
+
+}
+«ENDDEFINE»
