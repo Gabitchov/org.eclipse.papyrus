@@ -1,7 +1,0 @@
-# Tracing options for the org.eclipse.papyrus.diagram.usecase plug-in
-
-# Common issues
-org.eclipse.papyrus.diagram.usecase/debug=false
-
-# Visual IDs
-org.eclipse.papyrus.diagram.usecase/debug/visualID=false
