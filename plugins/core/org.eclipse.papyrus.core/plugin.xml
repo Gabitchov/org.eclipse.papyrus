@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="papyrusDiagram" name="PapyrusDiagram" schema="schema/papyrusDiagram.exsd"/>
+   <extension-point id="modelListener" name="ModelListener" schema="schema/modelListener.exsd"/>
+   <extension-point id="papyrusContentOutline" name="PapyrusContentOutline" schema="schema/contentOutline.exsd"/>
+   <extension point="org.eclipse.ui.editors">
+      <editor
+         id="org.eclipse.papyrus.core.papyrusEditorOld"
+         name="Papyrus Editor Core (to be removed)"
+         icon="icons/papyrus/Papyrus.gif"
+         extensions="di2"
+         default="false"
+         class="org.eclipse.papyrus.core.editor.SashMultiDiagramEditor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.perspectives">
+	   <perspective
+	         class="org.eclipse.papyrus.core.perspective.PapyrusPerspective"
+	         icon="icons/papyrus/Papyrus.gif"
+	         id="org.eclipse.papyrus.core.perspective"
+	         name="Papyrus">
+	   </perspective>
+	</extension>
+	
+	
+</plugin>

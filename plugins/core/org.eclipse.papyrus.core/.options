@@ -1,0 +1,6 @@
+# master switch  
+org.eclipse.papyrus.core/debug=true  
+#  switch for tracing papyrus core 
+org.eclipse.papyrus.core/debug/core=true 
+#  switch for tracing papyrus extension point loading
+org.eclipse.papyrus.core/debug/extensionpoint=true
