@@ -1,0 +1,7 @@
+# Tracing options for the org.eclipse.uml2.diagram.clazz plug-in
+
+# Common issues
+org.eclipse.uml2.diagram.clazz/debug=false
+
+# Visual IDs
+org.eclipse.uml2.diagram.clazz/debug/visualID=false
