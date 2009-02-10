@@ -1,0 +1,146 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Copyright (c) of modifications Conselleria de Infraestructuras y
+ * Transporte, Generalitat de la Comunitat Valenciana. All rights reserved.
+ * Modifications are made available under the terms of the Eclipse Public
+ * License v1.0.
+ *
+ * Contributors:
+ *  Sergey Gribovsky (Borland) - initial API and implementation
+ *  Francisco Javier Cano Mu�oz (Prodevelop)
+ *  Marc Gil Sendra (Prodevelop)
+ */
+package org.eclipse.papyrus.diagram.activity.edit.commands;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.commands.helpers.ActivityPartitionActivity;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
+import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.uml2.uml.AcceptEventAction;
+import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.Event;
+import org.eclipse.uml2.uml.Trigger;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
+
+
+/**
+ * @generated
+ */
+public class AcceptEventAction2CreateCommand extends CreateElementCommand {
+
+	/**
+	 * @generated
+	 */
+	private EClass eClass = null;
+
+	/**
+	 * @generated
+	 */
+	private EObject eObject = null;
+
+	/**
+	 * @generated
+	 */
+	public AcceptEventAction2CreateCommand(CreateElementRequest req, EObject eObject) {
+		super(req);
+		this.eObject = eObject;
+		this.eClass = eObject != null ? eObject.eClass() : null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static AcceptEventAction2CreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new AcceptEventAction2CreateCommand(req, eObject);
+	}
+
+	/**
+	 * @generated
+	 */
+	public AcceptEventAction2CreateCommand(CreateElementRequest req) {
+		super(req);
+	}
+
+	/**
+	 * Modified to return as element to edit the nearest <Activity>.
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	protected EObject getElementToEdit() {
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
+		}
+		// fjcano : we have to find the nearest Activity
+		if (container instanceof ActivityPartition) {
+			return ActivityPartitionActivity.getActivityPartitionActivity((ActivityPartition) container);
+		}
+
+		return container;
+	}
+
+	/**
+	 * Modieif to return the <Activity> EClass.
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	protected EClass getEClassToEdit() {
+		return UMLPackage.eINSTANCE.getActivity();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Diagram getDiagramFromRequest() {
+		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
+			if (parameter instanceof Diagram) {
+				return (Diagram) parameter;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Modified to initialize the <AcceptEventAction> with a <Trigger>.
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	protected EObject doDefaultElementCreation() {
+		AcceptEventAction newElement = (AcceptEventAction) super.doDefaultElementCreation();
+		if (newElement != null) {
+			ElementInitializers.init_AcceptEventAction_2033(newElement);
+			Diagram diagram = getDiagramFromRequest();
+			if (diagram != null) {
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+			} else {
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
+			}
+		}
+		// fjcano : initializing the AcceotEventAction with a Trigger
+		Trigger trigger = newElement.createTrigger("Trigger");
+		Event event = (Event) UMLFactory.eINSTANCE.create(UMLPackage.eINSTANCE.getAnyReceiveEvent());
+		event.setName("Event");
+		trigger.setEvent(event);
+		((Activity) getElementToEdit()).getNearestPackage().getPackagedElements().add(event);
+
+		return newElement;
+	}
+}

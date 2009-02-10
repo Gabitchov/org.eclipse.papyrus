@@ -1,0 +1,523 @@
+options {
+  JAVA_UNICODE_ESCAPE = true;
+  STATIC=false;
+}
+
+PARSER_BEGIN(OperationParser)
+
+/*
+ * Copyright (c) 2006 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Michael Golubev (Borland) - initial API and implementation
+ */
+package org.eclipse.papyrus.diagram.common.parser.operation;
+
+import java.io.*;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.diagram.common.parser.*;
+import org.eclipse.papyrus.diagram.common.parser.lookup.LookupSuite;
+import org.eclipse.uml2.uml.*;
+
+/**
+ * JavaCC does not support any "include" construct. 
+ * This parser shares a lot of delcrations (mainly at the tokens level) 
+ * with other parsers (see PropertyParser, etc)
+ * but we do not yet know how to avoid duplication of the delarations. 
+ */
+public class OperationParser extends ExternalParserBase {
+	private OperationAdapter myOperation;
+	private ParameterAdapter myCurrentParameter;
+	
+	private static interface TypeGate {
+		public void setType(Type type);
+		public void setName(String name);
+	}
+	
+	private static interface MultiplicityGate {
+		public void setIsOrdered(boolean ordered);
+		public void setIsUnique(boolean unique);
+		public void setLower(int lower);
+		public void setUpper(int upper);
+	}
+	
+	private static class ParameterAdapter implements TypeGate, MultiplicityGate {
+		private final Parameter myParameter;
+		
+		public ParameterAdapter(){
+			myParameter = UMLFactory.eINSTANCE.createParameter();
+		}
+		
+		public Parameter getParameter(){
+			return myParameter;
+		}
+		
+		public void setType(Type type){
+			myParameter.setType(type);
+		}
+		
+		public void setName(String name){
+			myParameter.setName(name);
+		}
+
+		public void setIsOrdered(boolean value) {
+			myParameter.setIsOrdered(value);
+		}
+
+		public void setIsUnique(boolean value) {
+			myParameter.setIsUnique(value);
+		}
+
+		public void setLower(int value) {
+			myParameter.setLower(value);
+		}
+
+		public void setUpper(int value) {
+			myParameter.setUpper(value);
+		}
+	}
+	
+	private static class OperationAdapter implements TypeGate, MultiplicityGate {
+		private final Operation myOperation;
+
+		public OperationAdapter(Operation operation){
+			myOperation = operation;
+			if (myOperation.getReturnResult() == null){
+				myOperation.createReturnResult(null, null);
+			}
+		}
+		
+		public Operation getOperation(){
+			return myOperation;
+		}
+		
+		public void setType(Type type) {
+			myOperation.setType(type);
+		}
+		
+		public void setName(String name){
+			myOperation.setName(name);
+		}
+
+		public void setIsOrdered(boolean ordered) {
+			myOperation.setIsOrdered(ordered);
+		}
+		
+		public void setIsUnique(boolean value) {
+			myOperation.setIsUnique(value);
+		}
+
+		public void setLower(int value) {
+			myOperation.setLower(value);
+		}
+
+		public void setUpper(int value) {
+			myOperation.setUpper(value);
+		}
+		
+	}
+	
+    public OperationParser(){
+    	this(new StringReader(""));
+    }
+    
+    public OperationParser(LookupSuite lookup){
+    	this();
+    	setLookupSuite(lookup);
+    }
+
+	public EClass getSubjectClass(){
+		return UMLPackage.eINSTANCE.getOperation();
+	}
+	
+	public void parse(EObject target, String text) throws ExternalParserException {
+		checkContext();	
+		ReInit(new StringReader(text));
+		myOperation = new OperationAdapter((Operation)target);
+		myCurrentParameter = null;
+		Declaration();
+		myOperation = null;
+	}
+	
+	protected static int parseInt(Token t) throws ParseException {
+		if (t.kind != OperationParserConstants.INTEGER_LITERAL){
+			throw new IllegalStateException("Token: " + t + ", image: " + t.image);
+		}
+		try {
+			return Integer.parseInt(t.image); //XXX: "0005", "99999999999999999999999"
+		} catch (NumberFormatException e){
+			throw new ParseException("Not supported integer value:" + t.image);
+		}
+	}
+	
+	private MultiplicityGate getCurrentMultiplicityElement(){
+		return myCurrentParameter != null ? myCurrentParameter : (MultiplicityGate)myOperation;
+	}
+	
+	private TypeGate getCurrentTypedElement(){
+		return myCurrentParameter != null ? myCurrentParameter : (TypeGate)myOperation;
+	}
+	
+	private Operation getOperation(){
+		return myOperation.getOperation();
+	}
+	
+	private Parameter getCurrentParameter(){
+		if (myCurrentParameter == null){
+			throw new IllegalStateException("We are not in the parameter list. Check BNF");
+		}
+		return myCurrentParameter.getParameter();
+	}
+	
+	private void registerParameter() {
+		getOperation().getOwnedParameters().add(getCurrentParameter());
+		myCurrentParameter = null;
+	}
+	
+	private void startParameter() {
+		myCurrentParameter = new ParameterAdapter();
+	}
+	
+}
+
+PARSER_END(OperationParser)
+
+/* WHITE SPACE */
+
+SPECIAL_TOKEN :
+{
+  " "
+| "\t"
+}
+
+/* SEPARATORS */
+TOKEN :
+{
+	< SLASH: "/" >
+|	< COLON: ":" >
+|	< EQUALS: "=" >
+|	< LBRACKET: "[" >
+|	< RBRACKET: "]" >
+|	< LCURLY: "{" >
+|	< RCURLY: "}" >
+|	< LPAREN: "(" >
+|	< RPAREN: ")" >
+|	< COMMA: "," >
+}
+
+/* SPECIAL_MEANING */
+TOKEN :
+{
+	< PLUS: "+" >
+|	< MINUS: "-" >
+|	< NUMBER_SIGN: "#" >
+|	< TILDE: "~" >
+|	< DOT: "." >
+|	< STAR: "*" >
+}
+
+/* MODIFIERS */
+TOKEN :
+{
+	< REDEFINES: "redefines" >
+|	< ORDERED: "ordered" >
+|	< UNORDERED: "unordered" > 
+|	< UNIQUE: "unique" >
+|	< NON_UNIQUE: "nonunique" >
+}
+
+/* OPERATION SPECIFIC */
+TOKEN : 
+{
+	< QUERY: "query" >
+|	< IN: "in" >
+|	< OUT: "out" >
+|	< IN_OUT: "inout" >	
+}
+	
+/* LITERALS */
+TOKEN: 
+{
+	< INTEGER_LITERAL: ["0"-"9"] (["0"-"9"])* >
+}
+  
+TOKEN :
+{
+  < IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>)* >
+|
+  < #LETTER:
+      [
+       "\u0024",
+       "\u0041"-"\u005a",
+       "\u005f",
+       "\u0061"-"\u007a",
+       "\u00c0"-"\u00d6",
+       "\u00d8"-"\u00f6",
+       "\u00f8"-"\u00ff",
+       "\u0100"-"\u1fff",
+       "\u3040"-"\u318f",
+       "\u3300"-"\u337f",
+       "\u3400"-"\u3d2d",
+       "\u4e00"-"\u9fff",
+       "\uf900"-"\ufaff"
+      ]
+  >
+|
+  < #DIGIT:
+      [
+       "\u0030"-"\u0039",
+       "\u0660"-"\u0669",
+       "\u06f0"-"\u06f9",
+       "\u0966"-"\u096f",
+       "\u09e6"-"\u09ef",
+       "\u0a66"-"\u0a6f",
+       "\u0ae6"-"\u0aef",
+       "\u0b66"-"\u0b6f",
+       "\u0be7"-"\u0bef",
+       "\u0c66"-"\u0c6f",
+       "\u0ce6"-"\u0cef",
+       "\u0d66"-"\u0d6f",
+       "\u0e50"-"\u0e59",
+       "\u0ed0"-"\u0ed9",
+       "\u1040"-"\u1049"
+      ]
+  >
+}
+
+void Declaration() :
+{}
+{
+	(
+		[ Visibility() ]
+		Name()
+		<LPAREN>
+		[ ParametersList() ]
+		<RPAREN>
+		[ Type() ]
+		[ OperationModifiers() ]
+	) <EOF>
+}
+
+void ParametersList() :
+{}
+{
+	Parameter() 
+	( <COMMA> Parameter() )*
+}
+
+void Parameter() :
+{
+	startParameter();
+}
+{
+	(
+		[ ParameterDirection() ]
+		Name()
+		[ Type() ]
+		[ Multiplicity() ]
+		[ DefaultValue() ]
+		// XXX: what is this? [ ParamerPropertiesList() ]
+	) 
+	{
+		registerParameter();
+	}
+}
+
+void ParameterDirection() :
+{
+	ParameterDirectionKind kind;
+}
+{
+	(
+		<IN> { kind = ParameterDirectionKind.IN_LITERAL; }
+	|
+		<OUT> { kind = ParameterDirectionKind.OUT_LITERAL; }
+	|
+		<IN_OUT> { kind = ParameterDirectionKind.INOUT_LITERAL; }
+	)	
+	{
+		getCurrentParameter().setDirection(kind);
+	}
+}
+
+void Visibility() :
+{ 
+	VisibilityKind kind;
+}
+{
+	(
+		<PLUS> { kind = VisibilityKind.PUBLIC_LITERAL; }
+	|
+		<MINUS> { kind = VisibilityKind.PRIVATE_LITERAL; }
+	|
+		<NUMBER_SIGN> { kind = VisibilityKind.PROTECTED_LITERAL; }
+	|
+		<TILDE> { kind = VisibilityKind.PACKAGE_LITERAL; }
+	)
+	{
+		getOperation().setVisibility(kind);
+	}
+}
+
+void Name() :
+{
+	String name;
+}
+{
+	name = NameWithSpaces() 
+	{
+		getCurrentTypedElement().setName(name);
+	}
+}
+
+void Multiplicity() :
+{}
+{
+	MultiplicityRange() 
+	[ MultiplicityDesignator() ] 
+}
+
+void MultiplicityDesignator() :
+{ }
+{
+	<LCURLY> 
+	(
+		( MultiplicityUnique() [ MultiplicityOrdered() ] ) 
+		|
+		( MultiplicityOrdered() [ MultiplicityUnique() ] ) 
+	) 
+	<RCURLY>
+}
+
+void MultiplicityUnique() :
+{
+	MultiplicityGate multiplicity = getCurrentMultiplicityElement();
+}
+{
+		<UNIQUE> { multiplicity.setIsUnique(true); }
+	|
+		<NON_UNIQUE> { multiplicity.setIsUnique(false); }	
+}
+
+void MultiplicityOrdered() :
+{
+	MultiplicityGate multiplicity = getCurrentMultiplicityElement();
+}
+{
+		<ORDERED> { multiplicity.setIsOrdered(true); }
+	|
+		<UNORDERED> { multiplicity.setIsOrdered(false); }
+}
+
+/* XXX: ValueSpecification -- how to parse */
+void MultiplicityRange() :
+{
+	Token tLower = null;
+	Token tUpper;
+	MultiplicityGate multiplicity = getCurrentMultiplicityElement();
+}
+{
+	<LBRACKET>
+	(
+		[ LOOKAHEAD(2) tLower = <INTEGER_LITERAL> <DOT> <DOT> { multiplicity.setLower(parseInt(tLower)); } ] 
+		(
+			tUpper = <STAR> 
+			{ 
+				if (tLower == null){
+					multiplicity.setLower(0);
+				}
+				multiplicity.setUpper(LiteralUnlimitedNatural.UNLIMITED); 
+			}
+		| 
+			tUpper = <INTEGER_LITERAL> 
+			{ 
+				if (tLower == null){
+					multiplicity.setLower(parseInt(tUpper));
+				}
+				multiplicity.setUpper(parseInt(tUpper)); 
+			}
+		)
+	)
+	<RBRACKET>
+}
+
+void Type() :
+{
+	String type;
+}
+{
+	<COLON> type = NameWithSpaces() { getCurrentTypedElement().setType(lookup(Type.class, type)); }
+}
+
+String NameWithSpaces() :
+{
+	StringBuffer result = new StringBuffer();
+	Token t;
+}
+{
+	(
+		t = <IDENTIFIER> { result.append(t.image); } 
+		( t = <IDENTIFIER> { result.append(' '); result.append(t.image); } ) *
+	)
+	{
+		return result.toString();
+	}
+}
+
+void DefaultValue() :
+{
+	Token t;	
+}
+{
+	(
+		<EQUALS> ( t = <IDENTIFIER> | t = <INTEGER_LITERAL> { /* XXX: Should be Expression */ } )
+	)
+	{
+		getCurrentParameter().setDefault(t.image);
+	}
+}
+
+void SimpleTokenPropertyModifier() :
+{}
+{
+	(
+		<QUERY> { getOperation().setIsQuery(true); }
+	|
+		<ORDERED> { getOperation().setIsOrdered(true); }
+	|
+		<UNORDERED> { getOperation().setIsOrdered(false); }
+	|
+		<UNIQUE> { getOperation().setIsUnique(true); }
+	|
+		<NON_UNIQUE> { getOperation().setIsUnique(false); }
+	)
+}
+
+void ReferencingPropertyModifier() :
+{
+	String name;
+}
+{
+	<REDEFINES> name = NameWithSpaces() 
+	{ 
+		RedefinableElement redefines = lookup(RedefinableElement.class, name); 
+		if (redefines != null) {
+			getOperation().getRedefinedElements().add(redefines);
+		}
+	}
+}
+
+void OperationModifiers() :
+{}
+{
+	<LCURLY> 
+	( SimpleTokenPropertyModifier() | ReferencingPropertyModifier() )
+	( <COMMA> ( SimpleTokenPropertyModifier() | ReferencingPropertyModifier() ) ) *
+	<RCURLY>
+}
