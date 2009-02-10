@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<opc:PropertiesEditionContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:opc="http://www.obeo.fr/dsl/properties/controller" xmlns:opf="http://www.obeo.fr/dsl/properties/forms" basePackage="org.eclipse.papyrus.tabbedproperties.uml">
+  <namespaces name="structure">
+    <subNamespaces name="classes">
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A named element is an element in a model that may have a name.&#xD;&#xA;A named element supports using a string expression to specify its name. This allows names of model elements to involve template parameters. The actual name is evaluated from the string expression only when it is sensible to do so (e.g., when a template is bound)." title="NamedElement" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.0"/>
+        <definitions documentation="The name of the NamedElement.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.0/@components.0"/>
+        </definitions>
+        <definitions documentation="A name which allows the NamedElement to be identified within a hierarchy of nested Namespaces. It is constructed from the names of the containing namespaces starting at the root of the hierarchy and ending with the name of the NamedElement itself.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/visibility"/>
+          <view xsi:type="opf:RadiosForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="Comment" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.3"/>
+        <definitions documentation="to see the body of the comment as a block">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
+          <view xsi:type="opf:CustomForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.3/@components.0"/>
+        </definitions>
+        <definitions documentation="to see annotatedElement">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/annotatedElement"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.3/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An element import identifies an element in another package, and allows the element to be referenced using its name without a qualifier." title="ElementImport" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.0" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ElementImport"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.1"/>
+        <definitions documentation="Specifies the visibility of the imported PackageableElement within the importing Package. The default visibility is the same as that of the imported element. If the imported element does not have a visibility, it is possible to add visibility to the element import.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ElementImport/visibility"/>
+          <view xsi:type="opf:RadiosForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.1/@components.1"/>
+        </definitions>
+        <definitions documentation="Specifies the name that should be added to the namespace of the importing package in lieu of the name of the imported packagable element. The aliased name must not clash with any other member name in the importing package. By default, no alias is used.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ElementImport/alias"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.1/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping to display the imported element">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ElementImport/importedElement"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.1/@components.2"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A package import is a relationship that allows the use of unqualified names to refer to package members from other namespaces." title="PackageImport" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.2"/>
+        <definitions documentation="Specifies the visibility of the imported PackageableElements within the importing Namespace, i.e., whether imported elements will in turn be visible to other packages that use that importingPackage as an importedPackage. If the PackageImport is public, the imported elements will be visible outside the package, while if it is private they will not.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport/visibility"/>
+          <view xsi:type="opf:RadiosForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.2/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping to show the imported package">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport/importedPackage"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.2/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A multiplicity is a definition of an inclusive interval of non-negative integers beginning with a lower bound and ending with a (possibly infinite) upper bound. A multiplicity element embeds this information to specify the allowable cardinalities for an instantiation of this element." title="MultiplicityElement" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.0" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.8"/>
+        <definitions xsi:type="opc:MultipleMappingDefinition" documentation="Specifies the upper bound of the multiplicity interval." injector="org.eclipse.papyrus.tabbedproperties.core.bridge.MultiplicityElementBridge" extractor="org.eclipse.papyrus.tabbedproperties.core.bridge.MultiplicityElementBridge">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement/lowerValue"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.8/@components.0/@components.0"/>
+          <features xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement/lowerValue"/>
+          <features xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement/upperValue"/>
+        </definitions>
+        <definitions documentation="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement/isOrdered"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.8/@components.0/@components.1"/>
+        </definitions>
+        <definitions documentation="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique." injector="">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement/isUnique"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.8/@components.0/@components.2"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A model captures a view of a physical system. It is an abstraction of the physical system, with a certain purpose. This purpose determines what is to be included in the model and what is irrelevant. Thus the model completely describes those aspects of the physical system that are relevant to the purpose of the model, at the appropriate level of detail." title="Model" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.0" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.20"/>
+        <definitions documentation="The name of the viewpoint that is expressed by a model (This name may refer to a profile definition).">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model/viewpoint"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.20/@form"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A typed element is an element that has a type that serves as a constraint on the range of values the element can represent." title="TypedElement" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.4" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TypedElement"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.4"/>
+        <definitions documentation="Values represented by the element are constrained to be instances of the type. A typed element with no associated type may represent values of any type." extractor="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TypedElement/type"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.4/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A generalization set is a packageable element whose instances define collections of subsets of generalization relationships." title="GeneralizationSet" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralizationSet"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.5"/>
+        <definitions documentation="Indicates (via the associated Generalizations) whether or not the set of specific Classifiers are covering for a particular general classifier. When isCovering is true, every instance of a particular general Classifier is also an instance of at least one of its specific Classifiers for the GeneralizationSet. When isCovering is false, there are one or more instances of the particular general Classifier that are not instances of at least one of its specific Classifiers defined for the GeneralizationSet.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralizationSet/isCovering"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.5/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="Indicates whether or not the set of specific Classifiers in a Generalization relationship have instance in common. If isDisjoint is true, the specific Classifiers for a particular GeneralizationSet have no members in common; that is, their intersection is empty. If isDisjoint is false, the specific Classifiers in a particular GeneralizationSet have one or more members in common; that is, their intersection is not empty. For example, Person could have two Generalization relationships, each with the different specific Classifier: Manager or Staff. This would be disjoint because every instance of Person must either be a Manager or Staff. In contrast, Person could have two Generalization relationships involving two specific (and non-covering) Classifiers: Sales Person and Manager. This GeneralizationSet would not be disjoint because there are instances of Person which can be a Sales Person and a Manager.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralizationSet/isDisjoint"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.5/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.&#xD;&#xA;Provides a mechanism for precisely defining the behavior of an opaque expression. An opaque expression is defined by a behavior restricted to return one result." title="OpaqueExpression" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.6"/>
+        <definitions documentation="The text of the expression, possibly in multiple languages.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression/body"/>
+          <view xsi:type="opf:CustomForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.6/@components.1"/>
+        </definitions>
+        <definitions documentation="Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression/language"/>
+          <view xsi:type="opf:CustomForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.6/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A parameter is a specification of an argument used to pass information into or out of an invocation of a behavioral feature.&#xD;&#xA;Parameters are allowed to be treated as connectable elements.&#xD;&#xA;Parameters have support for streaming, exceptions, and parameter sets." title="Parameter" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.7"/>
+        <definitions documentation="Indicates whether a parameter is being sent into or out of a behavioral element.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter/direction"/>
+          <view xsi:type="opf:ComboForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.7/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A property is a structural feature of a classifier that characterizes instances of the classifier. A property related by ownedAttribute to a classifier (other than an association) represents an attribute and might also represent an association end. It relates an instance of the class to a value or set of values of the type of the attribute. A property related by memberEnd or its specializations to an association represents an end of the association. The type of the property is the type of the end of the association." title="Property" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.32" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.9"/>
+        <definitions documentation="If isDerived is true, the value of the attribute is derived from information elsewhere. Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property/isDerived"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.9/@components.0/@components.1/@components.0"/>
+        </definitions>
+        <definitions documentation="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property/isDerivedUnion"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.9/@components.0/@components.1/@components.1"/>
+        </definitions>
+        <definitions documentation="Specifies the kind of aggregation that applies to the Property.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property/aggregation"/>
+          <view xsi:type="opf:RadiosForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.9/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute. This is a derived value, indicating whether the aggregation of the Property is composite or not." injector="" extractor="">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property/isComposite.1"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.9/@components.0/@components.1/@components.2"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An operation is a behavioral feature of a classifier that specifies the name, type, parameters, and constraints for invoking an associated behavior. An operation may invoke both the execution of method behaviors as well as other behavioral responses. Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template." title="Operation" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.0" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.12"/>
+        <definitions documentation="Specifies whether an execution of the BehavioralFeature leaves the state of the system unchanged (isQuery=true) or whether side effects may occur (isQuery=false).">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation/isQuery"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.12/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A behavioral feature is a feature of a classifier that specifies an aspect of the behavior of its instances.&#xD;&#xA;A behavioral feature is implemented (realized) by a behavior. A behavioral feature specifies that a classifier will respond to a designated request by invoking its implementing method.&#xD;&#xA;A behavioral feature owns zero or more parameter sets." title="BehavioralFeature" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.32" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.37"/>
+        <definitions documentation="If true, then the behavioral feature does not have an implementation, and one must be supplied by a more specific element. If false, the behavioral feature must have an implementation in the classifier or one must be inherited from a more general element.">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature/ownedParameter"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.37/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="Specifies the semantics of concurrent calls to the same passive instance (i.e., an instance originating from a class with isActive being false). Active instances control access to their own behavioral features.">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature/raisedException"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.37/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An expression is a structured tree of symbols that denotes a (possibly empty) set of values when evaluated in a context.&#xD;&#xA;An expression represents a node in an expression tree, which may be non-terminal or terminal. It defines a symbol, and has a possibly empty sequence of operands which are value specifications." title="Expression" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Expression"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.46"/>
+        <definitions documentation="The symbol associated with the node in the expression tree.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Expression/symbol"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.46/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping operands">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Expression/operand"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.46/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A literal integer is a specification of an integer value." title="LiteralInteger" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralInteger"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.22"/>
+        <definitions documentation="The specified Integer value.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralInteger/value"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.22/@form"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A literal string is a specification of a string value." title="LiteralString" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralString"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.23"/>
+        <definitions documentation="The specified String value.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralString/value"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.22/@form"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A literal unlimited natural is a specification of an unlimited natural number." title="LiteralUnlimitedNatural" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralUnlimitedNatural"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.24"/>
+        <definitions documentation="The specified UnlimitedNatural value.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralUnlimitedNatural/value"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.23/@form"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An behavior with implementation-specific semantics." title="OpaqueBehavior" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueBehavior"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.25"/>
+        <definitions documentation="Specifies the behavior in one or more languages.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueBehavior/body"/>
+          <view xsi:type="opf:CustomForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.25/@components.1"/>
+        </definitions>
+        <definitions documentation="Languages the body strings use in the same order as the body strings.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueBehavior/language"/>
+          <view xsi:type="opf:CustomForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.25/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="Class is a kind of classifier whose features are attributes and operations. Attributes of a class are represented by instances of Property that are owned by the class. Some of these attributes may represent the navigable ends of binary associations." title="BehavioredClassifier" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.20" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.38"/>
+        <definitions documentation="mapping interfaceRealizations" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier/interfaceRealization"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.38/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="Class" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.32" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.39"/>
+        <definitions documentation="mapping properties attribute" injector="" extractor="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredClassifier/ownedAttribute"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.39/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping owned operation" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class/ownedOperation"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.39/@components.0/@components.1"/>
+        </definitions>
+        <definitions documentation="mapping nested Classifier">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class/nestedClassifier"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.39/@components.0/@components.2"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A classifier is a namespace whose members can include features. Classifier is an abstract metaclass" title="Classifier" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.19" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.40"/>
+        <definitions documentation="mapping is abstract" injector="" extractor="">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/isAbstract"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.40/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping Generalization" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/generalization"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.40/@components.1/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping redefined Classifier" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/redefinedClassifier"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.40/@components.1/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element." title="Constraint" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.41"/>
+        <definitions documentation="mapping constrainedElement" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/constrainedElement"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.41/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping specification" extractor="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.41/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A data type is a type whose instances are identified only by their value. A DataType may contain attributes to support the modeling of structured data types." title="DataType" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.32" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.42"/>
+        <definitions documentation="mapping properties" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/attribute"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.42/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping operation">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataType/ownedOperation"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.42/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A dependency is a relationship that signifies that a single or a set of model elements requires other model elements for their specification or implementation." title="Dependency" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.43"/>
+        <definitions documentation="mapping client">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.43/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping supplier" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/supplier"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.43/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="Element is an abstract metaclass with no superclass. It is used as the common superclass for all metaclasses in the infrastructure library. Element has a derived composition association to itself to support the general capability for elements to own other elements." title="Element" referencedTab="//@tabNamespace/@containedTabs.1">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.44"/>
+        <definitions documentation="mapping comment of an element" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedComment"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.44/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="Enumeration" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.32" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Enumeration"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.45"/>
+        <definitions documentation="mapping owned enumerationliteral">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Enumeration/ownedLiteral"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.45/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A feature declares a behavioral or structural characteristic of instances of classifiers." title="Feature" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.4" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.47"/>
+        <definitions documentation="mapping is Static" extractor="">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature/isStatic"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.47/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A generalization relates a specific classifier to a more general classifier, and is owned by the specific classifier." title="Generalization" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.48"/>
+        <definitions documentation="mapping is Substitutable">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization/isSubstitutable"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.48/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping general">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization/general"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.48/@components.1/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping Specific">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization/specific"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.48/@components.1/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An instance specification is a model element that represents an instance in a modeled system" title="InstanceSpecification" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.49"/>
+        <definitions documentation="mapping classifier">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification/classifier"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.49/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping slot">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification/slot"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.49/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="Interface" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.32" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.50"/>
+        <definitions documentation="mapping properties">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/attribute"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.50/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping operation">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface/ownedOperation"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.50/@components.0/@components.1"/>
+        </definitions>
+        <definitions documentation="mapping nested classifier">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface/nestedClassifier"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.50/@components.0/@components.2"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An InterfaceRealization is a specialized Realization relationship between a Classifier and an Interface. This relationship signifies that the realizing classifier conforms to the contract specified by the Interface." title="InterfaceRealization" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.51"/>
+        <definitions documentation="mapping Contract">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization/contract"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.51/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping implementing Classifier" injector="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization/implementingClassifier"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.51/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A package merge defines how the contents of one package are extended by the contents of another package." title="PackageMerge" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.52"/>
+        <definitions documentation="mapping package Merge">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge/mergedPackage"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.52/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping receivingPackage" extractor="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge/receivingPackage"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.52/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A redefinable element is an element that, when defined in the context of a classifier, can be redefined more specifically or differently in the context of another classifier that specializes (directly or indirectly) the context classifier." title="RedefinableElement" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.0" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableElement"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.53"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableElement/isLeaf"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.53/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A slot specifies that an entity modeled by an instance specification has a value or values for a specific structural feature." title="Slot" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Slot"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.54"/>
+        <definitions documentation="mapping defining feature">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Slot/definingFeature"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.54/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="Substitution" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Substitution"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.55"/>
+        <definitions documentation="mapping contract" injector="" extractor="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Substitution/contract"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.55/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="mapping substitutingClassifier" extractor="">
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Substitution/substitutingClassifier"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.55/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A structural feature is a typed feature of a classifier that specifies the structure of instances of the classifier.&#xD;&#xA;By specializing multiplicity element, it supports a multiplicity that specifies valid cardinalities for the collection of values associated with an instantiation of the structural feature.&#xA;" title="StructuralFeature" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeature"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.56"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeature/isReadOnly"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.56/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="Behavior is a specification of how its context classifier changes state over time. This specification may be either a definition of possible behavior execution or emergent behavior, or a selective illustration of an interesting subset of possible executions. The latter form is typically used for capturing examples, such as a trace of a particular execution.&#xD;&#xA;A behavior owns zero or more parameter sets." title="Behavior" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.57"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Behavior/isReentrant"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.57/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A classifier template parameter exposes a classifier as a formal template parameter." title="ClassifierTemplateParameter" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClassifierTemplateParameter"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.58"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClassifierTemplateParameter/allowSubstitutable"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.58/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An association describes a set of tuples whose values refer to typed instances. An instance of an association is called a link." title="Association" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.0" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.36"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association/isDerived"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.36/@components.0/@components.0"/>
+        </definitions>
+        <definitions>
+          <feature xsi:type="ecore:EReference" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association/memberEnd"/>
+          <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.36/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="LiteralBoolean" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralBoolean"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.59"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralBoolean/value"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.59/@components.0"/>
+        </definitions>
+      </controllers>
+    </subNamespaces>
+    <subNamespaces name="components">
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A component represents a modular part of a system that encapsulates its contents and whose manifestation is replaceable within its environment.&#xD;&#xA;In the namespace of a component, all model elements that are involved in or related to its definition are either owned or imported explicitly. This may include, for example, use cases and dependencies (e.g. mappings), packages, components, and artifacts." title="Component" previousSection="//@namespaces.0/@subNamespaces.0/@controllers.4" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.60"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component/isIndirectlyInstantiated"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.60/@components.0"/>
+        </definitions>
+      </controllers>
+    </subNamespaces>
+    <subNamespaces name="compositestructures">
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A port is a property of a classifier that specifies a distinct interaction point between that classifier and its environment or between the (behavior of the) classifier and its internal parts. Ports are connected to properties of the classifier by connectors through which requests can be made to invoke the behavioral features of a classifier. A Port may specify the services a classifier provides (offers) to its environment as well as the services that a classifier expects (requires) of its environment. A port has an associated protocol state machine." title="Port" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Port"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.15"/>
+        <definitions documentation="Specifies whether requests arriving at this port are sent to the classifier behavior of this classifier. Such ports are referred to as behavior port. Any invocation of a behavioral feature targeted at a behavior port will be handled by the instance of the owning classifier itself, rather than by any instances that this classifier may contain.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Port/isBehavior"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.15/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="If true indicates that this port is used to provide the published functionality of a classifier; if false, this port is used to implement the classifier but is not part of the essential externally-visible functionality of the classifier and can, therefore, be altered or deleted along with the internal implementation of the classifier and other properties that are considered part of its implementation.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Port/isService"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.15/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="Specifies a link that enables communication between two or more instances. This link may be an instance of an association, or it may represent the possibility of the instances being able to communicate because their identities are known by virtue of being passed in as parameters, held in variables or slots, or because the communicating instances are the same instance. The link may be realized by something as simple as a pointer or by something as complex as a network connection. In contrast to associations, which specify links between any instance of the associated classifiers, connectors specify links between instances playing the connected parts only.&#xD;&#xA;A delegation connector is a connector that links the external contract of a component (as specified by its ports) to the internal realization of that behavior by the component's parts. It represents the forwarding of signals (operation requests and events): a signal that arrives at a port that has a delegation connector to a part or to another port will be passed on to that target for handling.&#xD;&#xA;An assembly connector is a connector between two components that defines that one component provides the services that another component requires. An assembly connector is a connector that is defined from a required interface or port to a provided interface or port." title="Connector" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.18"/>
+        <definitions documentation="Indicates the kind of connector.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Connector/kind"/>
+          <view xsi:type="opf:ComboForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.18/@form"/>
+        </definitions>
+      </controllers>
+    </subNamespaces>
+    <subNamespaces name="deployments">
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An artifact is the specification of a physical piece of information that is used or produced by a software development process, or by deployment and operation of a system. Examples of artifacts include model files, source files, scripts, and binary executable files, a table in a database system, a development deliverable, or a word-processing document, a mail message.&#xD;&#xA;An artifact is the source of a deployment to a node." title="Artifact" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.11"/>
+        <definitions documentation="A concrete name that is used to refer to the Artifact in a physical context. Example: file system name, universal resource locator.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact/fileName"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.11/@form"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A deployment specification specifies a set of properties that determine execution parameters of a component artifact that is deployed on a node. A deployment specification can be aimed at a specific type of container. An artifact that reifies or implements deployment specification properties is a deployment descriptor." title="DeploymentSpecification" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentSpecification"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.10"/>
+        <definitions documentation="The location where an Artifact is deployed onto a Node. This is typically a 'directory' or 'memory address'.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentSpecification/deploymentLocation"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.10/@components.0"/>
+        </definitions>
+        <definitions documentation="The location where a component Artifact executes. This may be a local or remote location.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentSpecification/executionLocation"/>
+          <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.10/@components.1"/>
+        </definitions>
+      </controllers>
+    </subNamespaces>
+  </namespaces>
+  <namespaces name="behavior">
+    <subNamespaces name="actions"/>
+    <subNamespaces name="activities">
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An expansion region is a structured activity region that executes multiple times corresponding to elements of an input collection." title="ExpansionRegion" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.35"/>
+        <definitions documentation="The way in which the executions interact: parallel: all interactions are independent, iterative: the interactions occur in order of the elements, stream: a stream of values flows into a single execution&#xD;&#xA;">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion/mode"/>
+          <view xsi:type="opf:ComboForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.35/@form"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:CheckboxPropertiesController" documentation="A loop node is a structured activity node that represents a loop with setup, test, and body sections." title="LoopNode" referencedTab="//@tabNamespace/@containedTabs.0" label="LoopNode">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LoopNode"/>
+        <view xsi:type="opf:ReferencedElementForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.1/@components.2"/>
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LoopNode/isTestedFirst"/>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An object flow is an activity edge that can have objects or data passing along it.&#xD;&#xA;Object flows have support for multicast/receive, token selection from object nodes, and transformation of tokens." title="ObjectFlow" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.33"/>
+        <definitions documentation="Tells whether the objects in the flow are passed by multicasting.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow/isMulticast"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.33/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="Tells whether the objects in the flow are gathered from respondents to multicasting.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow/isMultireceive"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.33/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An activity is the specification of parameterized behavior as the coordinated sequencing of subordinate units whose individual elements are actions." title="Activity" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.27"/>
+        <definitions documentation="If true, this activity must not make any changes to variables outside the activity or to objects. (This is an assertion, not an executable property. It may be used by an execution engine to optimize model execution. If the assertion is violated by the action, then the model is ill-formed.) The default is false (an activity may make nonlocal changes).">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/isReadOnly"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.27/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="If true, all invocations of the activity are handled by the same execution.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/isSingleExecution"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.27/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An activity partition is a kind of activity group for identifying actions that have some characteristic in common." title="ActivityPartition" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.28"/>
+        <definitions documentation="Tells whether the partition groups other partitions along a dimension.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition/isDimension"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.28/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="Tells whether the partition represents an entity to which the partitioning structure does not apply.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition/isExternal"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.28/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="An object node is an abstract activity node that is part of defining object flow in an activity.&#xD;&#xA;Object nodes have support for token selection, limitation on the number of tokens, specifying the state required for tokens, and carrying control values." title="ObjectNode" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.29"/>
+        <definitions documentation="Tells whether and how the tokens in the object node are ordered for selection to traverse edges outgoing from the object node.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode/ordering"/>
+          <view xsi:type="opf:ComboForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.29/@components.0"/>
+        </definitions>
+        <definitions documentation="Tells whether the type of the object node is to be treated as control.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode/isControlType"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.29/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A destroy object action is an action that destroys objects." title="DestroyObjectAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.32"/>
+        <definitions documentation="Specifies whether links in which the object participates are destroyed along with the object.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction/isDestroyLinks"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.32/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="Specifies whether objects owned by the object are destroyed along with the object.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction/isDestroyOwnedObjects"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.32/@components.0/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="ReadIsClassifiedObjectAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadIsClassifiedObjectAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.62"/>
+        <definitions extractor="">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadIsClassifiedObjectAction/isDirect"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.62/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="Pin" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.63"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pin/isControl"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.63/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="StructuredActivityNode" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.64"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode/mustIsolate"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.64/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="AddStructuralFeatureValueAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.65"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction/isReplaceAll"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.65/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="AddVariableValueAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.66"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction/isReplaceAll"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.66/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="ReclassifyObjectAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReclassifyObjectAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.67"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReclassifyObjectAction/isReplaceAll"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.67/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="RemoveStructuralFeatureValueAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveStructuralFeatureValueAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.68"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveStructuralFeatureValueAction/isRemoveDuplicates"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.68/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="RemoveVariableValueAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveVariableValueAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.69"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveVariableValueAction/isRemoveDuplicates"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.69/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="AcceptEventAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AcceptEventAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.70"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AcceptEventAction/isUnmarshall"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.70/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="LinkEndDestructionData" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndDestructionData"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.71"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndDestructionData/isDestroyDuplicates"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.71/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="LinkEndCreationData" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndCreationData"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.72"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndCreationData/isReplaceAll"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.72/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="JoinNode" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.73"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//JoinNode/isCombineDuplicate"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.73/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="ReduceAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReduceAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.74"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReduceAction/isOrdered"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.74/@components.0"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="CallAction" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.75"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction/isSynchronous"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.75/@components.0"/>
+        </definitions>
+      </controllers>
+    </subNamespaces>
+    <subNamespaces name="commonbehaviors">
+      <controllers xsi:type="opc:CheckboxPropertiesController" documentation="A time constraint is a constraint that refers to a time interval." title="TimeConstraint" referencedTab="//@tabNamespace/@containedTabs.0" label="TimeConstraint">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeConstraint"/>
+        <view xsi:type="opf:Box" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.15/@components.0"/>
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeConstraint/firstEvent"/>
+      </controllers>
+      <controllers xsi:type="opc:CheckboxPropertiesController" documentation="A time observation is a reference to a time instant during an execution. It points out the element in the model to observe and whether the observation is when this model element is entered or when it is exited." title="TimeObservation" referencedTab="//@tabNamespace/@containedTabs.0" label="TimeObservation">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeObservation"/>
+        <view xsi:type="opf:Box" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.16/@components.0"/>
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeObservation/firstEvent"/>
+      </controllers>
+    </subNamespaces>
+    <subNamespaces name="interactions">
+      <controllers xsi:type="opc:CheckboxPropertiesController" documentation="A time event specifies a point in time. At the specified time, the event occurs.&#xD;&#xA;A time event can be defined relative to entering the current state of the executing state machine." title="TimeEvent" referencedTab="//@tabNamespace/@containedTabs.0" label="TimeEvent">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeEvent"/>
+        <view xsi:type="opf:Box" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.5/@components.0"/>
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeEvent/isRelative"/>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A combined fragment defines an expression of interaction fragments. A combined fragment is defined by an interaction operator and corresponding interaction operands. Through the use of combined fragments the user will be able to describe a number of traces in a compact and concise manner." title="CombinedFragment" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.31"/>
+        <definitions documentation="Specifies the operation which defines the semantics of this combination of InteractionFragments.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment/interactionOperator"/>
+          <view xsi:type="opf:ComboForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.31/@form"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A message defines a particular communication between lifelines of an interaction." title="Message" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.30"/>
+        <definitions documentation="The derived kind of the Message (complete, lost, found or unknown)">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message/messageKind"/>
+          <view xsi:type="opf:ComboForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.30/@components.0"/>
+        </definitions>
+        <definitions documentation="The sort of communication reflected by the Message">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message/messageSort"/>
+          <view xsi:type="opf:ComboForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.30/@components.1"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" title="Continuation" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.61"/>
+        <definitions>
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation/setting"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.61/@components.0"/>
+        </definitions>
+      </controllers>
+    </subNamespaces>
+    <subNamespaces name="statemachines">
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A state models a situation during which some (usually implicit) invariant condition holds.&#xD;&#xA;The states of protocol state machines are exposed to the users of their context classifiers. A protocol state represents an exposed stable situation of its context classifier: when an instance of the classifier is not processing any operation, users of this instance can always know its state configuration." title="State" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//State"/>
+        <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.16"/>
+        <definitions documentation="A state with isComposite=true is said to be a composite state. A composite state is a state that contains at least one region.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//State/isComposite.1"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.16/@components.0/@components.0"/>
+        </definitions>
+        <definitions documentation="A state with isOrthogonal=true is said to be an orthogonal composite state. An orthogonal composite state contains two or more regions.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//State/isOrthogonal.1"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.16/@components.0/@components.1"/>
+        </definitions>
+        <definitions documentation="A state with isSimple=true is said to be a simple state. A simple state does not have any regions and it does not refer to any submachine state machine.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//State/isSimple.1"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.16/@components.0/@components.2"/>
+        </definitions>
+        <definitions documentation="A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//State/isSubmachineState.1"/>
+          <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.16/@components.0/@components.3"/>
+        </definitions>
+      </controllers>
+      <controllers xsi:type="opc:SimplePropertiesController" documentation="A pseudostate is an abstraction that encompasses different types of transient vertices in the state machine graph." title="Pseudostate" referencedTab="//@tabNamespace/@containedTabs.0">
+        <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pseudostate"/>
+        <view xsi:type="opf:StandardLabeledForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.17"/>
+        <definitions documentation="Determines the precise type of the Pseudostate and can be one of: entryPoint, exitPoint, initial, deepHistory, shallowHistory, join, fork, junction, terminate or choice.">
+          <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pseudostate/kind"/>
+          <view xsi:type="opf:ComboForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.17/@form"/>
+        </definitions>
+      </controllers>
+    </subNamespaces>
+    <subNamespaces name="usecases"/>
+  </namespaces>
+  <namespaces name="profiles">
+    <controllers xsi:type="opc:SimplePropertiesController" documentation="Physical definition of a graphical image." title="Image" referencedTab="//@tabNamespace/@containedTabs.0">
+      <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Image"/>
+      <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.19"/>
+      <definitions documentation="This contains the serialization of the image according to the format. The value could represent a bitmap, image such as a GIF file, or drawing 'instructions' using a standard such as Scalable Vector Graphic (SVG) (which is XML based).">
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Image/content"/>
+        <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.19/@components.0"/>
+      </definitions>
+      <definitions documentation="This contains a location that can be used by a tool to locate the image as an alternative to embedding it in the stereotype.">
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Image/location"/>
+        <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.19/@components.1"/>
+      </definitions>
+      <definitions documentation="This indicates the format of the content - which is how the string content should be interpreted. The following values are reserved: SVG, GIF, PNG, JPG, WMF, EMF, BMP. In addition the prefix 'MIME: ' is also reserved. This option can be used as an alternative to express the reserved values above, for example &quot;SVG&quot; could instead be expressed as &quot;MIME: image/svg+xml&quot;.">
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Image/format"/>
+        <view xsi:type="opf:InputTextForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.19/@components.2"/>
+      </definitions>
+    </controllers>
+    <controllers xsi:type="opc:SimplePropertiesController" title="Extension" referencedTab="//@tabNamespace/@containedTabs.0">
+      <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extension"/>
+      <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.76"/>
+      <definitions>
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extension/isRequired.1"/>
+        <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.76/@components.0"/>
+      </definitions>
+    </controllers>
+    <controllers xsi:type="opc:SimplePropertiesController" title="ProfileApplication" referencedTab="//@tabNamespace/@containedTabs.0">
+      <element xsi:type="ecore:EClass" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProfileApplication"/>
+      <view xsi:type="opf:ComposedPropertyForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.77"/>
+      <definitions>
+        <feature xsi:type="ecore:EAttribute" href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProfileApplication/isStrict"/>
+        <view xsi:type="opf:CheckBoxForm" href="/org.eclipse.papyrus.tabbedproperties.uml/model/UML.forms#//@namespaces.0/@forms.77/@components.0"/>
+      </definitions>
+    </controllers>
+  </namespaces>
+  <tabNamespace documentation="describes Tabs">
+    <containedTabs name="General" id="general"/>
+    <containedTabs name="Comment" id="comment" previousTab="//@tabNamespace/@containedTabs.0"/>
+    <containedTabs name="Advanced" id="advanced" previousTab="//@tabNamespace/@containedTabs.1"/>
+  </tabNamespace>
+</opc:PropertiesEditionContext>
