@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+   <extension-point id="nestedEditor" name="NestedEditor" schema="schema/nestedEditor.exsd"/>
+   
+   <extension point="org.eclipse.core.runtime.preferences">
+      <?gmfgen generated="true"?>
+      <initializer class="org.eclipse.uml2.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.team.core.fileTypes">
+      <?gmfgen generated="true"?>
+      <fileTypes
+         type="text"
+         extension="umlclass_diagram">
+      </fileTypes>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <?gmfgen generated="true"?>
+      <parser
+         type="umlclass_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <?gmfgen generated="true"?>
+      <editor
+         id="papyrus.multidiagram.gmf.uml.MultiDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/UMLDiagramFile.gif"
+         extensions="umlclass_diagram"
+         default="true"
+         class="org.eclipse.papyrus.core.adaptor.gmf.GmfUmlMultiDiagramEditor"
+         contributorClass="org.eclipse.papyrus.core.adaptor.gmf.GmfUmlMultiDiagramActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/UMLDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="org.eclipse.uml2.diagram.clazz.part.UMLCreationWizard"
+  	     id="org.eclipse.uml2.diagram.clazz.part.UMLCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+<extension
+      point="org.eclipse.papyrus.core.papyrusDiagram">
+   <editorContext
+         contextClass="org.eclipse.papyrus.core.adaptor.gmf.GmfEditorContext"
+         id="com.cea.papyrus.gmf.editor.context">
+   </editorContext>
+   </extension>
+
+
+
+
+
+
+</plugin>

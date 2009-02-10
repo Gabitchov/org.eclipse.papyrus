@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage"
+            id="org.eclipse.papyrus.preferences.generalcategory"
+            name="Papyrus UML2">
+      </page>
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusDiagramsPreferencePage"
+            id="org.eclipse.papyrus.preferences.diagrams"
+            name="Diagrams">
+      </page>
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
+            id="org.eclipse.papyrus.preferences.rulersandgrid"
+            name="Rulers And Grid">
+      </page>
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusPrintingPreferencePage"
+            id="org.eclipse.papyrus.preferences.printing"
+            name="Printing">
+      </page>
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusPathmapsPreferencePage"
+            id="org.eclipse.papyrus.preferences.pathmaps"
+            name="Pathmaps">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage"
+            id="org.eclipse.papyrus.preferences.properties.generalcategory"
+            name="Papyrus UML2">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.core.resources.IProject">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.eclipse.papyrus.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusDiagramsPreferencePage"
+            id="org.eclipse.papyrus.preferences.properties.diagrams"
+            name="Diagrams">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.core.resources.IProject">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.eclipse.papyrus.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
+            id="org.eclipse.papyrus.preferences.properties.rulersandgrid"
+            name="Rulers And Grid">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.core.resources.IProject">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.eclipse.papyrus.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusPrintingPreferencePage"
+            id="org.eclipse.papyrus.preferences.properties.printing"
+            name="Printing">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.core.resources.IProject">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.eclipse.papyrus.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusPathmapsPreferencePage"
+            id="org.eclipse.papyrus.preferences.properties.pathmaps"
+            name="Pathmaps">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.core.resources.IProject">
+            </adapt>
+         </enabledWhen>
+      </page>
+   </extension>
+
+</plugin>
