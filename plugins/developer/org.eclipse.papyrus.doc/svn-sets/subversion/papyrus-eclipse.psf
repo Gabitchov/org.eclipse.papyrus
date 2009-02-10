@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/org.eclipse.papyrus.codegen,org.eclipse.papyrus.codegen"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.core,org.eclipse.papyrus.core"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.core.adaptor.emf,org.eclipse.papyrus.core.adaptor.emf"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.core.adaptor.gmf,org.eclipse.papyrus.core.adaptor.gmf"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.core.feature,org.eclipse.papyrus.core.feature"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/org.eclipse.papyrus.def,org.eclipse.papyrus.def"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.di,org.eclipse.papyrus.di"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.di.edit,org.eclipse.papyrus.di.edit"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.di.editor,org.eclipse.papyrus.di.editor"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.diagram.activity,org.eclipse.papyrus.diagram.activity"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.diagram.clazz,org.eclipse.papyrus.diagram.clazz"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.diagram.common,org.eclipse.papyrus.diagram.common"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.diagram.emftree,org.eclipse.papyrus.diagram.emftree"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.diagram.sequence,org.eclipse.papyrus.diagram.sequence"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.diagram.usecase,org.eclipse.papyrus.diagram.usecase"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/org.eclipse.papyrus.doc,org.eclipse.papyrus.doc"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.extensionpoints.editors,org.eclipse.papyrus.extensionpoints.editors"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/org.eclipse.papyrus.java.reverse,org.eclipse.papyrus.java.reverse"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/org.eclipse.papyrus.java.reverse.ui,org.eclipse.papyrus.java.reverse.ui"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/org.eclipse.papyrus.outline,org.eclipse.papyrus.outline"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.outline.emftree,org.eclipse.papyrus.outline.emftree"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.parsers,org.eclipse.papyrus.parsers"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.preferences,org.eclipse.papyrus.preferences"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/org.eclipse.papyrus.profile,org.eclipse.papyrus.profile"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.sasheditor,org.eclipse.papyrus.sasheditor"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.tabbedproperties.appearance,org.eclipse.papyrus.tabbedproperties.appearance"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.tabbedproperties.core,org.eclipse.papyrus.tabbedproperties.core"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.tabbedproperties.uml,org.eclipse.papyrus.tabbedproperties.uml"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.ui.toolbox,org.eclipse.papyrus.ui.toolbox"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.feature,org.eclipse.papyrus.uml.feature"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.umlutils,org.eclipse.papyrus.umlutils"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.wizards,org.eclipse.papyrus.wizards"/>
+</provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="core" name="core">
+<item elementID="=org.eclipse.papyrus.core.adaptor.gmf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.core.feature" type="4"/>
+<item elementID="=org.eclipse.papyrus.tabbedproperties.core" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.preferences" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.core" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.core.adaptor.emf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.di.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.wizards" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.extensionpoints.editors" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.di.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.di" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.sasheditor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="developer" name="developer">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.doc" type="4"/>
+<item elementID="=org.eclipse.papyrus.java.reverse.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.java.reverse" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.codegen" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.def" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="others" name="others">
+<item elementID="=org.eclipse.papyrus.outline" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.profile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="uml" name="uml">
+<item elementID="=org.eclipse.papyrus.diagram.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.diagram.usecase" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.parsers" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.tabbedproperties.uml" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.ui.toolbox" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.umlutils" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.diagram.clazz" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.diagram.emftree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.outline.emftree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.uml.feature" type="4"/>
+<item elementID="=org.eclipse.papyrus.tabbedproperties.appearance" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.diagram.activity" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.diagram.sequence" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+</psf>
