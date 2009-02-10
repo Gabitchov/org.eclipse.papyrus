@@ -95,32 +95,25 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	}
 
 	/**
-	 * Returns <tt>true</tt> if this collection contains the specified element. More formally, returns <tt>true</tt> if and only if this collection contains at least one element <tt>e</tt> such that
-	 * <tt>(o==null ? e==null : o.equals(e))</tt>.
-	 * <p>
-	 * 
+	 * Return true if the filteredCollection contains the object.
+	 * @see java.util.AbstractCollection#contains(java.lang.Object)
 	 * @param o
-	 *            object to be checked for containment in this collection.
-	 * @return <tt>true</tt> if this collection contains the specified element.
+	 * @return
+	 *
 	 */
 	@Override
 	public boolean contains(Object o) {
 		return list.contains(o);
 	}
 
+
 	/**
-	 * Removes a single instance of the specified element from this collection, if it is present (optional operation). More formally, removes an element <tt>e</tt> such that <tt>(o==null ? e==null :
-	 * o.equals(e))</tt>, if the collection contains one or more such elements. Returns <tt>true</tt> if the collection contained the specified element (or equivalently, if the collection changed as a
-	 * result of the call).
-	 * <p>
-	 * This implementation call the remove method on the underlying collection.
-	 * <p>
-	 * 
+	 * remove the object.
+	 * Throw an UnsupportedOperationException, as the FilteredCollection is ReadOnly.
+	 * @see java.util.AbstractCollection#remove(java.lang.Object)
 	 * @param o
-	 *            element to be removed from this collection, if present.
-	 * @return <tt>true</tt> if the collection contained the specified element.
-	 * @throws UnsupportedOperationException
-	 *             if the <tt>remove</tt> method is not supported by this collection.
+	 * @return
+	 *
 	 */
 	@Override
 	public boolean remove(Object o) {
