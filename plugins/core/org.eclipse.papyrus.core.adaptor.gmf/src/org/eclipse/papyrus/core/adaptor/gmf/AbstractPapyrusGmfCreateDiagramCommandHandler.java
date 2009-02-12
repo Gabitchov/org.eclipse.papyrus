@@ -81,6 +81,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/**
 	 * Create a new class diagram
+	 * @param sharedObjects
+	 * @param container The uml element to which the diagram should be attached, if possible.
 	 */
 	protected void runAsTransaction(BackboneContext sharedObjects, Element container) {
 		DiResourceSet diResourceSet = sharedObjects.getResourceSet();
@@ -89,47 +91,73 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/**
 	 * Create a new class diagram
+	 * @param sharedObjects
+	 * @param container The uml element to which the diagram should be attached, if possible.
 	 */
 	protected void runAsTransaction(final DiResourceSet diResourceSet, final Element container) {
 		final String diagramName = getDiagramName();
-		if (diagramName != null) {
-			final Resource modelResource = diResourceSet.getUMLModelResource();
-			final Resource diagramResource = diResourceSet.getNotationResource();
-			final Resource diResource = diResourceSet.getDiResource();
-			// TODO: get the appropriate value from diResourceSet
-			TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
+		if (diagramName == null) 
+			return;
 
-			AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
+		// Get the uml element to which the newly created diagram will be attached.
+		final Element umlParent = getUmlParentFromElement(container);
+		// Create the diagram
+		final Resource modelResource = diResourceSet.getUMLModelResource();
+		final Resource diagramResource = diResourceSet.getNotationResource();
+		final Resource diResource = diResourceSet.getDiResource();
+		// TODO: get the appropriate value from diResourceSet
+		TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
 
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					Element model = container;
-					if (model == null) {
-						model = getModel(modelResource);
-						attachModelToResource(model, modelResource);
-					}
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
 
-					Diagram diagram = ViewService.createDiagram(model, getDiagramNotationID(), getPreferenceHint());
-					if (diagram != null) {
-						diagram.setName(diagramName);
-						diagram.setElement(model);
-						diagramResource.getContents().add(diagram);
-					}
-
-					// Add element to di2
-					// org.eclipse.papyrus.di.Diagram diDiagram = createDi2GmfDiagram(diagram);
-					// diResource.getContents().add(diDiagram);
-					SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
-
-					return CommandResult.newOKCommandResult();
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				Element model = umlParent;
+				if (model == null) {
+					model = getModel(modelResource);
+					attachModelToResource(model, modelResource);
 				}
-			};
-			try {
-				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-				UMLDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
+
+				Diagram diagram = ViewService.createDiagram(model, getDiagramNotationID(), getPreferenceHint());
+				if (diagram != null) {
+					diagram.setName(diagramName);
+					diagram.setElement(model);
+					diagramResource.getContents().add(diagram);
+				}
+
+				// Add element to di2
+				// org.eclipse.papyrus.di.Diagram diDiagram = createDi2GmfDiagram(diagram);
+				// diResource.getContents().add(diDiagram);
+				SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
+
+				return CommandResult.newOKCommandResult();
 			}
+		};
+		try {
+			OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			UMLDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
 		}
+
+	}
+
+	/**
+	 * Get the UML parent into which the diagram can be attached.
+	 * @param container The currently selected UML element. Can be used as an hint to find the possible parent.
+	 * @return The suitable UML parent, or null.
+	 */
+	private Element getUmlParentFromElement(Element container) {
+		// TODO Auto-generated method stub
+		return getSurroundingPackage(container);
+	}
+
+	/**
+	 * Get the nearest surrounding package for the element, or null.
+	 * @param umlElement
+	 * @return the nearest surrounding package for the element, or null.
+	 */
+	private Element getSurroundingPackage(Element umlElement) {
+		return umlElement.getNearestPackage();
 	}
 
 	/**
@@ -200,7 +228,12 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		Object selected = getCurrentSelection();
 		if (selected == null)
 			return null;
-		return (NamedElement) getDefaultContext().getModelResolver().getBussinessModel(selected);
+		try {
+			return (NamedElement) getDefaultContext().getModelResolver().getBussinessModel(selected);
+		} catch (ClassCastException e) {
+			// The selected element is not a UML element.
+			return null;
+		}
 	}
 
 	/**
