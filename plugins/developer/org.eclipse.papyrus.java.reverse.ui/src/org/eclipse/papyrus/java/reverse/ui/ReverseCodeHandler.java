@@ -5,17 +5,14 @@ package org.eclipse.papyrus.java.reverse.ui;
 
 import japa.parser.ParseException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.expressions.EvaluationContext;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -24,18 +21,14 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.editor.MultiDiagramEditor;
 import org.eclipse.papyrus.java.reverse.ui.dialog.ReverseCodeDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
 
@@ -56,7 +49,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
     	
  
     	final Resource umlResource = getUmlResource();
-        String rootModelName = getRootModelName(umlResource);
+//        String rootModelName = getRootModelName(umlResource);
     	
         // Get reverse parameters from a dialog
     	Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getShell();
@@ -213,15 +206,6 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	protected BackboneContext getDefaultContext() {
 		IMultiDiagramEditor editor = getMultiDiagramEditor();
 		return (BackboneContext) editor.getDefaultContext();
-	}
-
-	/**
-	 * Get the di resource.
-	 * 
-	 * @return
-	 */
-	private Resource getDiResource() {
-		return getDefaultContext().getResourceSet().getDiResource();
 	}
 
 	/**
