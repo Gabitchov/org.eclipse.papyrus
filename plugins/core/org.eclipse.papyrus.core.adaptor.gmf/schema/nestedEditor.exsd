@@ -6,7 +6,8 @@
          <meta.schema plugin="papyrus.gmf.multipages" id="nestedEditor" name="NestedEditor"/>
       </appinfo>
       <documentation>
-         Define a nested editor descriptor. This descriptor is used to add instance of the described editor to a multi diagram editor.
+         Deprecated
+Define a nested editor descriptor. This descriptor is used to add instance of the described editor to a multi diagram editor.
       </documentation>
    </annotation>
 

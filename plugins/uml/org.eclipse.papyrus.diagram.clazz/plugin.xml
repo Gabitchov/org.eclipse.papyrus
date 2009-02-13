@@ -1273,11 +1273,6 @@
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory">
       </editorDiagram>
-      <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.clazz.CreationCommand"
-            id="org.eclipse.papyrus.diagram.clazz.creationCommand"
-            label="UML Class Diagram">
-      </creationCommand>
    </extension><extension id="ValidationContributionItemProvider" name="Validation"
       point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
       <?gmfgen generated="true"?>

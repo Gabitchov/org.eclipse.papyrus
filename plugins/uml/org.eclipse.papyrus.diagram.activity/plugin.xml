@@ -62,11 +62,6 @@
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.activity.part.ActivityDiagramEditorFactory">
       </editorDiagram>
-      <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.activity.action.CreationCommand"
-            id="org.eclipse.papyrus.diagram.activity.action.CreationCommand"
-            label="UML Activity Diagram">
-      </creationCommand>
    </extension>
    
       <extension point="org.eclipse.ui.popupMenus">

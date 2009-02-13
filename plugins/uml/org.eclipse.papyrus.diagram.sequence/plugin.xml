@@ -62,11 +62,6 @@
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.sequence.part.SequenceDiagramEditorFactory">
       </editorDiagram>
-      <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.sequence.actions.CreationCommand"
-            id="org.eclipse.papyrus.diagram.sequence.actions.CreationCommand"
-            label="UML Sequence Diagram">
-      </creationCommand>
    </extension>
 
 
