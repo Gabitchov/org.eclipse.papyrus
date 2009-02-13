@@ -22,10 +22,6 @@ import org.eclipse.ui.IEditorPart;
  */
 public class NestedEditorDescriptor {
 
-	/**
-	 * Descriptor of the button used to create a new editor.
-	 */
-	private ActionBarButtonDescriptor createButtonDescriptor;
 
 	/**
 	 * Editor factory implementation class.
@@ -123,29 +119,10 @@ public class NestedEditorDescriptor {
 	}
 
 	/**
-	 * Returns the create button Descriptor.
-	 * 
-	 * @return the createButtonDescriptor associated to this editor descriptor
-	 */
-	public ActionBarButtonDescriptor getCreateButtonDescriptor() {
-		return createButtonDescriptor;
-	}
-
-	/**
-	 * Sets the create button Descriptor.
-	 * 
-	 * @param createButtonDescriptor
-	 *            the createButtonDescriptor to set
-	 */
-	public void setCreateButtonDescriptor(ActionBarButtonDescriptor createButtonDescriptor) {
-		this.createButtonDescriptor = createButtonDescriptor;
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + " factory=" + editorFactory + "\n   create=" + createButtonDescriptor;
+		return super.toString() + " factory=" + editorFactory + "\n   ";
 	}
 }

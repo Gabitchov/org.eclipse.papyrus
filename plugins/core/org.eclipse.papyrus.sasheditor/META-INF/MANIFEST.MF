@@ -7,7 +7,6 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.sasheditor,
- org.eclipse.papyrus.sasheditor.actions,
  org.eclipse.papyrus.sasheditor.eclipsecopy,
  org.eclipse.papyrus.sasheditor.extension,
  org.eclipse.papyrus.sasheditor.gef,

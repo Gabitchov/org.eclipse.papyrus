@@ -65,34 +65,6 @@ public class ExtensionPointFactory {
 		res = new NestedEditorDescriptor();
 		res.setEditorFactoryClass(parseClass(element, "factoryClass"));
 
-		for (IConfigurationElement ele : element.getChildren()) {
-			ActionBarButtonDescriptor button = createActionBarButtonDescriptor(ele);
-			res.setCreateButtonDescriptor(button);
-		}
-		return res;
-	}
-
-	/**
-	 * Create a descriptor instance corresponding to the ConfigurationElement.
-	 * 
-	 * @param element
-	 *            the configuration element that defines the ActionBarButtonDescriptor
-	 * @return the newly ActionBarButtonDescriptor created
-	 */
-	public ActionBarButtonDescriptor createActionBarButtonDescriptor(IConfigurationElement element) throws ExtensionException {
-		ActionBarButtonDescriptor res;
-		String tagName = "createEditorButton";
-		checkTagName(element, tagName);
-
-		res = new ActionBarButtonDescriptor();
-		res.setPluginID(element.getDeclaringExtension().getNamespaceIdentifier());
-		res.setCreateEditorActionClass(parseClass(element, "action"));
-		res.setActionID(element.getAttribute("actionId"));
-		res.setCreateDiagramLabel(element.getAttribute("label"));
-		res.setCreateDiagramTooltip(element.getAttribute("tooltip"));
-
-		res.setCreateDiagramImage(element.getAttribute("image"));
-		res.setCreateDiagramDisableImage(element.getAttribute("disabledImage"));
 		return res;
 	}
 
