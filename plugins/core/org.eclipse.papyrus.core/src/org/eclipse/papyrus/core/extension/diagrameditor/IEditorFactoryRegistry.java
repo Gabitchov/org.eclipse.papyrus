@@ -35,4 +35,12 @@ public interface IEditorFactoryRegistry {
 	 */
 	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model) throws MultiDiagramException;
 
+	/**
+	 * Get the editor descriptor for the specified model.
+	 * 
+	 * @throws EditorNotFoundException
+	 *             No editor handling the model can be found.
+	 */
+	public IEditorDescriptor getEditorDescriptorFor(Object model) throws MultiDiagramException;
+
 }

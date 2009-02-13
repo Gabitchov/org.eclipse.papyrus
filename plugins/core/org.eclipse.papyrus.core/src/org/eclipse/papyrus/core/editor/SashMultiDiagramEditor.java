@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.EventObject;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -28,6 +29,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.gef.commands.CommandStackListener;
+import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
@@ -43,6 +45,8 @@ import org.eclipse.papyrus.core.extension.editorcontext.EditorContextRegistry;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.SashDiagramModelManager;
 import org.eclipse.papyrus.core.multidiagram.SashWindowModelManagerWrapper;
+import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
+import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
@@ -51,6 +55,7 @@ import org.eclipse.papyrus.sasheditor.gef.SelectionSynchronizer;
 import org.eclipse.papyrus.sasheditor.sash.ISashWindowsModelManager;
 import org.eclipse.papyrus.sasheditor.sash.SashMultiPageEditorPart;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -58,6 +63,7 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
+import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -76,6 +82,9 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  */
 public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
 
+	/** Log object */
+	Logger log = Logger.getLogger(getClass().getName());
+
 	/** Gef adapter */
 	private MultiDiagramEditorGefDelegate gefAdaptorDelegate;
 
@@ -88,6 +97,11 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	/** ContentOutline registry */
 	private ContentOutlineRegistry contentOutlineRegistry;
 
+	/** ActionBarContributor Registry. Allows to get an ActionBar by its Id.
+	 * The registry is initialized from the Eclipse extension mechanism.
+	 */
+	private ActionBarContributorRegistry actionBarContributorRegistry;
+	
 	/**
 	 * Context associated to this backbone editor.
 	 */
@@ -156,6 +170,30 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	}
 
 	/**
+	 * Get the EditorActionBarContributor that should be associated with the editor of the specified model.
+	 * @see org.eclipse.papyrus.sasheditor.sash.IMultiEditorNestedPartManager#getActionBarContributor(java.lang.Object)
+	 * @param editorModel
+	 * @return
+	 * @throws MultiDiagramException 
+	 *
+	 */
+	public EditorActionBarContributor getActionBarContributor(Object editorModel)  {
+		
+		
+		try {
+			Object contributorId = getEditorRegistry().getEditorDescriptorFor(editorModel).getActionBarContributorId();
+			return getActionBarContributorRegistry().getActionBarContributor(contributorId);
+		} catch (BackboneException e) {
+			log.warning(e.getMessage());
+//			e.printStackTrace();
+		} catch (MultiDiagramException e) {
+			log.warning(e.getMessage());
+//			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
 	 * Get the contextRegistry
 	 * 
 	 * @return
@@ -217,6 +255,41 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	 */
 	protected IEditorFactoryRegistry createEditorRegistry() {
 		return new EditorFactoryRegistry(Activator.PLUGIN_ID);
+	}
+
+	/**
+	 * Get the ActionBarContributorRegistry. Creates it if necessary.
+	 * @return
+	 */
+	public ActionBarContributorRegistry getActionBarContributorRegistry()
+	{
+		if(actionBarContributorRegistry != null)
+			return actionBarContributorRegistry;
+		
+		// Try to got it from CoreComposedActionBarContributor
+		// The ActionBarContributorRegistry is initialized by the Contributor.
+		// Get it from the contributor.
+		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
+		if(contributor instanceof CoreComposedActionBarContributor)
+		{
+			log.info(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
+			return ((CoreComposedActionBarContributor)contributor).getActionBarContributorRegistry();
+		}
+		else
+		{
+			// Create a registry.
+			log.warning(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
+			return createActionBarContributorRegistry();
+		}
+			
+	}
+	
+	/**
+	 * Create the ActionBarContributorRegistry.
+	 * @return
+	 */
+	private ActionBarContributorRegistry createActionBarContributorRegistry() {
+		return new ActionBarContributorRegistry(Activator.PLUGIN_ID);
 	}
 
 	/**
@@ -540,5 +613,6 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 			return null;
 		}
 	}
+
 
 }

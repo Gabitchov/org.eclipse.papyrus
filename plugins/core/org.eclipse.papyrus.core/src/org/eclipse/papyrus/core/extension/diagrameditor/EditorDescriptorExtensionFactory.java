@@ -40,6 +40,9 @@ public class EditorDescriptorExtensionFactory extends DescriptorExtensionFactory
 	/** constant for the attribute contextId **/
 	public final static String CONTEXTID_ATTRIBUTE = "contextId";
 
+	/** constant for the attribute contextId **/
+	public final static String ACTIONBARCONTRIBUTORID_ATTRIBUTE = "actionBarContributorId";
+
 	/**
 	 * @return the eINSTANCE
 	 */
@@ -63,6 +66,7 @@ public class EditorDescriptorExtensionFactory extends DescriptorExtensionFactory
 		res = new EditorDescriptor();
 		res.setEditorFactoryClass((Class<IEditorFactory>) parseClass(element, FACTORYCLASS_ATTRIBUTE, EDITOR_DIAGRAM_EXTENSIONPOINT));
 		res.setRequestedContextId(element.getAttribute(CONTEXTID_ATTRIBUTE));
+		res.setActionBarContributorId(element.getAttribute(ACTIONBARCONTRIBUTORID_ATTRIBUTE));
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "a nested editor ready " + res);
 		return res;
 	}

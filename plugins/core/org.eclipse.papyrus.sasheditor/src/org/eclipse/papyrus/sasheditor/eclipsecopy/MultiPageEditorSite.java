@@ -39,6 +39,7 @@ import org.eclipse.ui.internal.services.IServiceLocatorCreator;
 import org.eclipse.ui.internal.services.IWorkbenchLocationService;
 import org.eclipse.ui.internal.services.ServiceLocator;
 import org.eclipse.ui.internal.services.WorkbenchLocationService;
+import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.services.IDisposable;
 import org.eclipse.ui.services.IServiceLocator;
 import org.eclipse.ui.services.IServiceScopes;
@@ -56,6 +57,13 @@ import org.eclipse.ui.services.IServiceScopes;
  */
 public class MultiPageEditorSite implements IEditorSite, INestable {
 
+	
+	/**
+	 * The actionBarContributor associated to the site. Can be null. In this case,
+	 * use the multiEditor ActionBarContributor.
+	 */
+	protected EditorActionBarContributor actionBarContributor;
+	
 	/**
 	 * The nested editor.
 	 */
@@ -111,11 +119,12 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 * @param editor
 	 *            the nested editor
 	 */
-	public MultiPageEditorSite(IMultiPageEditorPart multiPageEditor, IEditorPart editor) {
+	public MultiPageEditorSite(IMultiPageEditorPart multiPageEditor, IEditorPart editor, EditorActionBarContributor actionBarContributor) {
 		Assert.isNotNull(multiPageEditor);
 		Assert.isNotNull(editor);
 		this.multiPageEditor = multiPageEditor;
 		this.editor = editor;
+		this.actionBarContributor = actionBarContributor;
 
 		final IServiceLocator parentServiceLocator = multiPageEditor.getSite();
 		IServiceLocatorCreator slc = (IServiceLocatorCreator) parentServiceLocator.getService(IServiceLocatorCreator.class);
@@ -188,8 +197,8 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 
 	/**
 	 * The <code>MultiPageEditorSite</code> implementation of this
-	 * <code>IEditorSite</code> method returns <code>null</code>, since nested
-	 * editors do not have their own action bar contributor.
+	 * <code>IEditorSite</code> method returns the EditorActionBarContributor associated to the site if one is defined, 
+	 * or the EditorActionBarContributor of the multiEditor.
 	 * 
 	 * @return <code>null</code>
 	 */
@@ -205,7 +214,11 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 //		}
 		
 		// Return the main ActionBarContributor, usually ComposedActionBarContributor
-		return multiPageEditor.getEditorSite().getActionBarContributor();
+		
+		if(actionBarContributor != null)
+			return actionBarContributor;
+		else
+  		    return multiPageEditor.getEditorSite().getActionBarContributor();
 //		return null;
 	}
 

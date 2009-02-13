@@ -24,6 +24,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.dnd.IDropTarget;
+import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;
 
 
@@ -263,7 +264,18 @@ public class EditorTile<T> implements ITilePart<T> {
 	 * @return the editor site
 	 */
 	protected IEditorSite createSite(IEditorPart editor) {
-		return new MultiPageEditorSite(getIMultiPageEditorPart(), editor);
+		EditorActionBarContributor contributor = createEditorActionBarContributor();
+		return new MultiPageEditorSite(getIMultiPageEditorPart(), editor, contributor);
+	}
+
+	/**
+	 * Create the EditorActionBarContributor requested by the editor.
+	 * Creation is done by delegating to the IMultiEditorNestedPartManager.
+	 * @return
+	 */
+	private EditorActionBarContributor createEditorActionBarContributor() {
+		EditorActionBarContributor contributor = getIMultiEditorNestedPartManager().getActionBarContributor(editorModel);
+		return contributor;
 	}
 
 	/**

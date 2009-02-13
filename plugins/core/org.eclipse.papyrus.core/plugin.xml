@@ -6,12 +6,13 @@
    <extension-point id="papyrusContentOutline" name="PapyrusContentOutline" schema="schema/contentOutline.exsd"/>
    <extension point="org.eclipse.ui.editors">
       <editor
-         id="org.eclipse.papyrus.core.papyrusEditorOld"
-         name="Papyrus Editor Core (to be removed)"
-         icon="icons/papyrus/Papyrus.gif"
-         extensions="di2"
-         default="false"
-         class="org.eclipse.papyrus.core.editor.SashMultiDiagramEditor">
+            class="org.eclipse.papyrus.core.editor.SashMultiDiagramEditor"
+            contributorClass="org.eclipse.papyrus.core.editor.PapyrusActionBarContributor"
+            default="false"
+            extensions="di2"
+            icon="icons/papyrus/Papyrus.gif"
+            id="org.eclipse.papyrus.core.papyrusEditor"
+            name="Papyrus Editor Core">
       </editor>
    </extension>
    <extension point="org.eclipse.ui.perspectives">

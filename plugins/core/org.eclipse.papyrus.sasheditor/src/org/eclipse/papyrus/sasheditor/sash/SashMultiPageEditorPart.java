@@ -16,6 +16,8 @@ package org.eclipse.papyrus.sasheditor.sash;
 import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorPart;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * Base class for multipage editors with sash windows. sash - fenetre a guillotine pane - carreaux
@@ -38,6 +40,35 @@ public abstract class SashMultiPageEditorPart <T> extends MultiPageEditorPart im
 	 * Control associated to this Part.
 	 */
 	protected Composite container;
+
+	/**
+	 * This listens for when the outline becomes active <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * TODO Remove.This is for debug purpose.
+	 */
+	protected IPartListener partListener = new IPartListener() {
+
+		public void partActivated(IWorkbenchPart p) {
+			System.out.println("partActivated(" + p + ")");
+		}
+
+		public void partBroughtToTop(IWorkbenchPart p) {
+			// Ignore.
+		}
+
+		public void partClosed(IWorkbenchPart p) {
+			// Ignore.
+		}
+
+		public void partDeactivated(IWorkbenchPart p) {
+			System.out.println("partDeactivated(" + p + ")");
+		}
+
+		public void partOpened(IWorkbenchPart p) {
+			// Ignore.
+		}
+	};
+
 
 	/**
 	 * Constructor.
@@ -109,6 +140,7 @@ public abstract class SashMultiPageEditorPart <T> extends MultiPageEditorPart im
 	 */
 	protected void activate() {
 		isActive = true;
+		getSite().getPage().addPartListener(partListener);
 	}
 
 	/**

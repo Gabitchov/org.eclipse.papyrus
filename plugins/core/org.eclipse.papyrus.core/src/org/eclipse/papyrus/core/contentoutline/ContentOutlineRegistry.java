@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.BadClassNameException;
+import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptorExtensionFactory;
 import org.osgi.framework.Bundle;
 
@@ -27,6 +28,7 @@ public class ContentOutlineRegistry {
 	public static final String EDITOR_EXTENSION_ID = "papyrusContentOutline";
 
 	private static String classAttributeName = "class";
+	private static String actionBarContributorIdPropertyName = "actionBarContributorId";
 
 	/** Namespace where to look for the extension points. */
 	protected String extensionPointNamespace;
@@ -71,18 +73,13 @@ public class ContentOutlineRegistry {
 	}
 
 	/**
-	 * Creates the content outline from the selected extension.
-	 * 
-	 * @throws BackboneException
-	 *             exception thrown when the outline can not be created.
+	 * Return the {@link ContentOutlineDescriptor} with the highest priority.
+	 * @return
+	 * @throws BackboneException 
+	 * @throws NotFoundException If no ContentOutline can be found in extensions
 	 */
-	private void createContentOutline() throws BackboneException {
-
-		// Reading data from plugins
-
-		// TODO:For Cedric to verify
-		// IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace,EDITOR_EXTENSION_ID);
-
+	private ContentOutlineDescriptor getContentOutlineDescriptor() throws BackboneException
+	{
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
 		ContentOutlineDescriptor found = null;
 
@@ -92,7 +89,24 @@ public class ContentOutlineRegistry {
 			if (desc.isHigher(found))
 				found = desc;
 		}
+		
+		// Instanciate the object
+		if (found == null)
+			throw new NotFoundException("No ContentOutline registered.");
+			
+			return found;
 
+	}
+	
+	/**
+	 * Creates the content outline from the selected extension.
+	 * 
+	 * @throws BackboneException
+	 *             exception thrown when the outline can not be created.
+	 */
+	private void createContentOutline() throws BackboneException {
+
+		ContentOutlineDescriptor found = getContentOutlineDescriptor();
 		// Instanciate the object
 		if (found != null) {
 			contentOutline = found.createContentOutlinePage();
@@ -101,14 +115,19 @@ public class ContentOutlineRegistry {
 
 	/**
 	 * Inner Descriptor for content outline.
+	 * This class load data from Eclipse extension mechanism
+	 * TODO Change the parent class. It is here just to have quick code.
 	 */
 	protected class ContentOutlineDescriptor extends EditorDescriptorExtensionFactory {
 
 		private int priority;
 
 		private String className;
+		
+		private String actionBarContributorID;
 
 		private IConfigurationElement element;
+		
 
 		/**
 		 * Instance is created when requested.
@@ -122,6 +141,7 @@ public class ContentOutlineRegistry {
 			String tagName = "contentoutline";
 			checkTagName(element, tagName);
 			this.className = element.getAttribute(classAttributeName);
+			this.actionBarContributorID = element.getAttribute(actionBarContributorIdPropertyName);
 			try {
 				this.priority = Integer.parseInt(element.getAttribute("priority"));
 			} catch (NumberFormatException e) {
@@ -150,6 +170,14 @@ public class ContentOutlineRegistry {
 		 */
 		private int getPriority() {
 			return priority;
+		}
+
+		
+		/**
+		 * @return the actionBarContributorID
+		 */
+		public String getActionBarContributorID() {
+			return actionBarContributorID;
 		}
 
 		/**

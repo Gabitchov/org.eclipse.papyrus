@@ -38,6 +38,7 @@ import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.editorcontext.EditorContextRegistry;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
+import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.GefMultiPageEditorPart;
@@ -50,7 +51,9 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
+import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.MultiPageEditorSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
@@ -78,6 +81,9 @@ public class MultiDiagramEditor extends GefMultiPageEditorPart implements IMulti
 
 	/** ContentOutline registry */
 	private ContentOutlineRegistry contentOutlineRegistry;
+	
+	/** ActionBarContributor Registry. Used to get an action bar for a particular editor.*/
+	private ActionBarContributorRegistry actionBarContributorRegistry;
 
 	/**
 	 * Context associated to this backbone editor.
@@ -226,10 +232,20 @@ public class MultiDiagramEditor extends GefMultiPageEditorPart implements IMulti
 		// Add a viewer
 		if (adapter == IContentOutlinePage.class) {
 			try {
-
 				IContentOutlinePage contentOutline = getContentOutlineRegistry().getContentOutline();
-				if (contentOutline != null)
-					return contentOutline;
+
+//				// Create and initialize the contentOutline
+//				ContentOutlineDescriptor outlineDescriptor = getContentOutlineRegistry().getContentOutlineDescriptor();
+//				IContentOutlinePage contentOutline = outlineDescriptor.getContentOutline();
+//				if (contentOutline != null)
+//				{
+//					EditorActionBarContributor actionBarContributor = getActionBarContributorRegistry().get(outlineDescriptor.getActionBarContributorId() );
+//					IEditorSite site = new MultiPageEditorSite();
+//					contentOutline.init(this, site);
+//
+//					return contentOutline;
+//				}
+
 			} catch (BackboneException e) {
 				throw new RuntimeException(e);
 			}
@@ -503,6 +519,11 @@ public class MultiDiagramEditor extends GefMultiPageEditorPart implements IMulti
 		// if (overviewPage != null && overviewPage instanceof GEFOverviewPage) {
 		// ((GEFOverviewPage) overviewPage).updateContents((ScalableFreeformRootEditPart) ((GraphicalEditor) getActiveEditor()).getAdapter(EditPart.class));
 		// }
+	}
+
+	public ActionBarContributorRegistry getActionBarContributorRegistry() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -146,9 +146,11 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @param container The currently selected UML element. Can be used as an hint to find the possible parent.
 	 * @return The suitable UML parent, or null.
 	 */
-	private Element getUmlParentFromElement(Element container) {
-		// TODO Auto-generated method stub
-		return getSurroundingPackage(container);
+	private Element getUmlParentFromElement(Element umlElement) {
+		if(umlElement == null)
+			return null;
+		
+		return getSurroundingPackage(umlElement);
 	}
 
 	/**

@@ -34,6 +34,7 @@ Export-Package: org.eclipse.papyrus.core,
  org.eclipse.papyrus.core.extension.editorcontext,
  org.eclipse.papyrus.core.listenerservice,
  org.eclipse.papyrus.core.multidiagram,
+ org.eclipse.papyrus.core.multidiagram.actionbarcontributor,
  org.eclipse.papyrus.core.multidiagram.commands,
  org.eclipse.papyrus.core.perspective,
  org.eclipse.papyrus.core.utils

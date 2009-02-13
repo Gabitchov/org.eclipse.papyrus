@@ -23,7 +23,7 @@ import org.eclipse.ui.IEditorPart;
  * @author Cedric Dumoulin
  * 
  */
-public class EditorDescriptor {
+public class EditorDescriptor implements IEditorDescriptor {
 
 	/**
 	 * Editor factory implementation class.
@@ -34,6 +34,13 @@ public class EditorDescriptor {
 	 * Context Id used to search the context requested by the editor.
 	 */
 	private String requestedContextId;
+	
+	/**
+	 * EditorActionBarContributor Id used to search the EditorActionBarContributor requested by the editor.
+	 */
+	private String actionBarContributorId;
+	
+	
 
 	/**
 	 * Cached factory. Initialized by first call to getXxx
@@ -48,9 +55,9 @@ public class EditorDescriptor {
 	}
 
 	/**
-	 * to obtain the requestedContextId
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorDescriptor#getRequestedContextId()
+	 * @return
 	 * 
-	 * @return the requestedContextId
 	 */
 	public String getRequestedContextId() {
 		return requestedContextId;
@@ -64,6 +71,25 @@ public class EditorDescriptor {
 	 */
 	public void setRequestedContextId(String requestedContextId) {
 		this.requestedContextId = requestedContextId;
+	}
+
+	/**
+	 * 
+	 * @param attribute
+	 */
+	public void setActionBarContributorId(String actionBarContributorId) {
+		this.actionBarContributorId = actionBarContributorId;
+		
+	}
+	
+	
+	/**
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorDescriptor#getActionBarContributorId()
+	 * @return
+	 * 
+	 */
+	public String getActionBarContributorId() {
+		return actionBarContributorId;
 	}
 
 	/**
@@ -106,14 +132,12 @@ public class EditorDescriptor {
 	}
 
 	/**
-	 * Create a new editor for the specified root object.
-	 * 
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorDescriptor#createEditorFor(org.eclipse.papyrus.core.extension.editorcontext.IEditorContext, java.lang.Object)
 	 * @param context
-	 *            the context used to init the editor
 	 * @param root
-	 *            the element to launch the editor (diagram for instance)
+	 * @return
 	 * @throws BackboneException
-	 *             Editor could not be created
+	 * 
 	 */
 	public IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException {
 		return getEditorFactory().createEditorFor(context, root);
@@ -148,4 +172,5 @@ public class EditorDescriptor {
 		}
 		return "[nestedEditor  editorFactory:" + editorFactoryClass.getName() + " requestedContextID:" + requestedContextId + "]";
 	}
+
 }

@@ -21,6 +21,7 @@
             <element ref="editorDiagram" minOccurs="1" maxOccurs="unbounded"/>
             <element ref="editorContext" minOccurs="1" maxOccurs="unbounded"/>
             <element ref="creationCommand" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="actionBarContributor" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -76,6 +77,15 @@ If specified, the context should be declared as another extension.
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="actionBarContributorId" type="string">
+            <annotation>
+               <documentation>
+                  ID of the ActionBarContributor requested by the editor.
+The ID must match a declared ActionBarContributor.
+If no ID is set, use the main ActionBarContributor (the one associated to the MultiEditor).
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -100,6 +110,34 @@ If specified, the context should be declared as another extension.
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.editor.IEditorContext"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="actionBarContributor">
+      <annotation>
+         <documentation>
+            An ActionBarContributor that can be associated to Editors or Views.
+An ActionBarContributor can be shared among several Editors or Views.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Id of the ActionBarContributor. Use to associate the ActionBarContributor to editors.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="implementingClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class implementing the ActionBarContributor.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ui.part.EditorActionBarContributor:"/>
                </appinfo>
             </annotation>
          </attribute>

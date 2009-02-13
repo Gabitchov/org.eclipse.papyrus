@@ -13,8 +13,12 @@
   *****************************************************************************/
 package org.eclipse.papyrus.core.editor;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
+import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -63,4 +67,10 @@ public interface IMultiDiagramEditor extends IEditorPart {
 	 * Get the currently active Editor. 
 	 */
 	public IEditorPart getActiveEditor();
+
+	/**
+	 * Get the ActionBarContributorRegistry.
+	 * @return
+	 */
+	public ActionBarContributorRegistry getActionBarContributorRegistry();
 }

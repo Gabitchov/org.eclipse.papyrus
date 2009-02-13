@@ -36,15 +36,6 @@
          class="org.eclipse.papyrus.core.adaptor.gmf.GmfUmlMultiDiagramEditor"
          contributorClass="org.eclipse.papyrus.core.adaptor.gmf.GmfUmlMultiDiagramActionBarContributor">
       </editor>
-      <editor
-            class="org.eclipse.papyrus.core.editor.SashMultiDiagramEditor"
-            contributorClass="org.eclipse.papyrus.core.adaptor.gmf.ComposedActionBarContributor"
-            default="true"
-            extensions="di2"
-            icon="icons/papyrus/Papyrus.gif"
-            id="org.eclipse.papyrus.core.papyrusEditor"
-            name="Papyrus Editor">
-      </editor>
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">

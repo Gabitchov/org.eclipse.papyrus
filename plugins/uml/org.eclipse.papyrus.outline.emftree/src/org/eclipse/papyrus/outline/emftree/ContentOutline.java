@@ -18,6 +18,10 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
@@ -33,13 +37,16 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.core.contentoutline.IPapyrusContentOutlinePage;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.di.presentation.DiActionBarContributor;
 import org.eclipse.papyrus.di.provider.DiItemProviderAdapterFactory;
 import org.eclipse.papyrus.outline.emftree.internal.OutlineDragAdapter;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
@@ -106,6 +113,26 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		initAdapterFactory();
 	}
 
+	/**
+	 * Init the outline. This method is used by the MultiPageEditor to initialize the Outline.
+	 * @param multiEditor
+	 * @param site
+	 * @throws BackboneException
+	 */
+	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
+		
+		// Get the EditorActionBarContributor requested by this particular EMF editor.
+		// The EditorActionBarContributor should be registered in extensions under the specified name
+		String EditorActionBarContributorId = "DiActionBarContributor";
+		EditorActionBarContributor actionBarContributor = multiEditor.getActionBarContributorRegistry().getActionBarContributor(EditorActionBarContributorId);
+		IEditorSite site = new MultiPageAdapterSite(multiEditor.getEditorSite(), actionBarContributor);
+		this.editorSite = site;
+		this.editingDomain = multiEditor.getDefaultContext().getTransactionalEditingDomain();
+		initAdapterFactory();
+
+	}
+
+
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
@@ -127,7 +154,7 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 			//
 			contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 		}
-		initDragAndDrop();
+//		initDragAndDrop();
 	}
 
 	/**
@@ -149,7 +176,12 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 	@Override
 	public void setActionBars(IActionBars actionBars) {
 		super.setActionBars(actionBars);
-		// getActionBarContributor().shareGlobalActions(this, actionBars);
+		getActionBarContributor().shareGlobalActions(this, actionBars);
+	}
+
+	private EditingDomainActionBarContributor getActionBarContributor() {
+		
+		return (EditingDomainActionBarContributor)editorSite.getActionBarContributor();
 	}
 
 	/**
@@ -165,6 +197,11 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		Menu menu = contextMenu.createContextMenu(viewer.getControl());
 		viewer.getControl().setMenu(menu);
 		getEditorSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
+
+		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
+		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 
 	}
 
@@ -200,13 +237,6 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UMLItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-
-	}
-
-	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
-		this.editorSite = multiEditor.getEditorSite();
-		this.editingDomain = multiEditor.getDefaultContext().getTransactionalEditingDomain();
-		initAdapterFactory();
 
 	}
 

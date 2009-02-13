@@ -75,6 +75,15 @@ Only one contentOutline is shown. The one with the highest priority is choosen.
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="actionBarContributorId" type="string">
+            <annotation>
+               <documentation>
+                  ID of the ActionBarContributor requested by the outline.
+The ID must match a declared ActionBarContributor.
+If no ID is set, use the main ActionBarContributor (the one associated to the MultiEditor).
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

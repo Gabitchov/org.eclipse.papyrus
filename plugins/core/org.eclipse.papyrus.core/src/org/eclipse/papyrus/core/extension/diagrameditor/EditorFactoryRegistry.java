@@ -88,6 +88,24 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	}
 
 	/**
+	 * Get the editor descriptor for the specified model.
+	 * 
+	 * @throws EditorNotFoundException
+	 *             No editor handling the model can be found.
+	 */
+	public EditorDescriptor getEditorDescriptorFor(Object model) throws MultiDiagramException {
+		for (EditorDescriptor desc : getEditorDescriptors()) {
+			if (desc.isEditorFor(model)) {
+				{
+					return desc;
+				}
+			}
+		}
+		// no editor found !
+		throw new EditorNotFoundException("No editor registered for '" + model + "'.");
+	}
+
+	/**
 	 * Get the list of editor descriptor.
 	 * 
 	 * @return the list of editor descriptor.

@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.sasheditor.eclipsecopy;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
@@ -27,6 +30,9 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  */
 public abstract class MultiPageEditorActionBarContributor extends EditorActionBarContributor implements IMultiPageEditorActionBarContributor  {
 
+	/** Log object */
+	Logger log = Logger.getLogger(getClass().getName());
+
 	/**
 	 * Creates a multi-page editor action contributor.
 	 */
@@ -34,19 +40,24 @@ public abstract class MultiPageEditorActionBarContributor extends EditorActionBa
 		super();
 	}
 
-	/*
-	 * (non-JavaDoc) Method declared on EditorActionBarContributor Registers the contributor with the multi-page editor for future editor action redirection when the active page is changed, and sets
+	/**
+	 * Method declared on EditorActionBarContributor.
+	 *  Registers the contributor with the multi-page 
+	 * editor for future editor action redirection when the active page is changed, and sets
 	 * the active page.
 	 */
 	public void setActiveEditor(IEditorPart part) {
+		
 		IEditorPart activeNestedEditor = null;
 		if (part instanceof IMultiPageEditorPart) {
 			activeNestedEditor = ((IMultiPageEditorPart) part).getActiveEditor();
+			setActivePage(activeNestedEditor);
 		}
-		setActivePage(activeNestedEditor);
+		
 	}
 
 	/**
+	 * Called by the MultiEditor whenever the active page change.
 	 * @param activeEditor
 	 */
 	public abstract void setActivePage(IEditorPart activeEditor);

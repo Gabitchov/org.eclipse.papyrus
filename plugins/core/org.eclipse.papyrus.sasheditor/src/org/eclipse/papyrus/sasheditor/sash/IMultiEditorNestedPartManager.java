@@ -19,6 +19,7 @@ import org.eclipse.papyrus.sasheditor.gef.InstantiationException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
  * A nestedPart manager managing parts of a multiEditor.
@@ -46,6 +47,14 @@ public interface IMultiEditorNestedPartManager extends IMultiPageEditorPart {
 	 */
 	public IEditorPart createPageEditor(Object model) throws MultiDiagramException, EditorNotFoundException, InstantiationException;
 
+	/**
+	 * Get the EditorActionBarContributor for the editor associated to the specified model.
+	 * @param editorModel
+	 * @return
+	 * @throws MultiDiagramException 
+	 */
+	public EditorActionBarContributor getActionBarContributor(Object editorModel);
+
     /**
      * Fires a property changed event.
      *
@@ -58,4 +67,5 @@ public interface IMultiEditorNestedPartManager extends IMultiPageEditorPart {
 	 * @return
 	 */
 	public IEditorInput getEditorInput();
+
 }

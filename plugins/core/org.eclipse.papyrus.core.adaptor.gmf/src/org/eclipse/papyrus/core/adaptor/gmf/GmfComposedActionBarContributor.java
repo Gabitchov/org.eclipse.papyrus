@@ -29,7 +29,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * @author dumoulin
  *
  */
-public class ComposedActionBarContributor extends MultiPageEditorActionBarContributor {
+public class GmfComposedActionBarContributor extends MultiPageEditorActionBarContributor {
 
 	/**
 	 * List of contributors.
@@ -51,7 +51,7 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 	/**
 	 * Constructor.
 	 */
-	public ComposedActionBarContributor() {
+	public GmfComposedActionBarContributor() {
 		// Init the contributors
 		loadContributors();
 	}
