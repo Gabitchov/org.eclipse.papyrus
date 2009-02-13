@@ -27,15 +27,6 @@
 
    <extension point="org.eclipse.ui.editors">
       <?gmfgen generated="true"?>
-      <editor
-         id="papyrus.multidiagram.gmf.uml.MultiDiagramEditorID"
-         name="%editorName"
-         icon="icons/obj16/UMLDiagramFile.gif"
-         extensions="umlclass_diagram"
-         default="true"
-         class="org.eclipse.papyrus.core.adaptor.gmf.GmfUmlMultiDiagramEditor"
-         contributorClass="org.eclipse.papyrus.core.adaptor.gmf.GmfUmlMultiDiagramActionBarContributor">
-      </editor>
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">

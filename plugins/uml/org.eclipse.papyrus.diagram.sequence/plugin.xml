@@ -12,20 +12,6 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.sequence.actions.CreateSequenceDiagramCommandHandler"
-            commandId="org.eclipse.papyrus.diagram.sequence.papyrus2.createSequenceDiagram">
-         <activeWhen>
-            <or>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.core.adaptor.gmf.gmf.uml.MultiDiagramEditorID">
-                  </equals>
-               </with>
-            </or>
-         </activeWhen>
-      </handler>
-      <handler
             class="org.eclipse.papyrus.diagram.sequence.actions.CreateGmfSequenceDiagramCommandHandler"
             commandId="org.eclipse.papyrus.diagram.sequence.papyrus2.createSequenceDiagram">
          <activeWhen>
