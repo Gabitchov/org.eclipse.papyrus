@@ -1216,15 +1216,15 @@
          point="org.eclipse.ui.commands">
       <command
             description="Create a New UML2 Class Diagram"
-            id="org.eclipse.papyrus.classdiagram.createDiagram"
+            id="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
             name="New PapyII Class Diagram( Papyrus II)">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.clazz.CreateGmfClassDiagramCommandHandler"
-            commandId="org.eclipse.papyrus.classdiagram.createDiagram">
+            class="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+            commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand">
          <activeWhen>
             <or>
                <with
@@ -1245,7 +1245,7 @@
                id="org.eclipse.papyrus.diagram.ui.menu"
                label="Papyrus II">
             <command
-                  commandId="org.eclipse.papyrus.classdiagram.createDiagram"
+                  commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
                   icon="icons/ClassDiagram.gif"
                   label="Create Class Diagram"
                   style="push"
@@ -1258,7 +1258,7 @@
          <toolbar
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
-                  commandId="org.eclipse.papyrus.classdiagram.createDiagram"
+                  commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
                   icon="icons/ClassDiagram.gif"
                   label="Create a new Class Diagram"
                   style="push"
@@ -1271,9 +1271,17 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             contextId="com.cea.papyrus.gmf.editor.context"
-            factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory">
+            factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory"
+            icon="icons/ClassDiagram.gif">
       </editorDiagram>
-   </extension><extension id="ValidationContributionItemProvider" name="Validation"
+      <creationCommand
+            creationCommandClass="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+            icon="icons/ClassDiagram.gif"
+            id="org.eclipse.papyrus.diagram.clazz.creationCommand"
+            label="UML Class Diagram">
+      </creationCommand>
+   </extension>
+   <extension id="ValidationContributionItemProvider" name="Validation"
       point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
       <?gmfgen generated="true"?>
       <contributionItemProvider

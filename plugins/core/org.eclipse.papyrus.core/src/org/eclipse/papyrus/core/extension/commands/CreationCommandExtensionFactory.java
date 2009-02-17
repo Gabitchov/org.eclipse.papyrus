@@ -11,6 +11,7 @@
 package org.eclipse.papyrus.core.extension.commands;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.extension.BadNameExtensionException;
 import org.eclipse.papyrus.core.extension.DescriptorExtensionFactory;
 import org.eclipse.papyrus.core.extension.ExtensionException;
@@ -39,6 +40,9 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 	/** constant for the attribute contextId **/
 	public final static String ID_ATTRIBUTE = "id";
 
+	/** constant for the attribute icon **/
+	public final static String ICON_ATTR = "icon";
+
 	/**
 	 * @return the eINSTANCE
 	 */
@@ -63,6 +67,10 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 		res.creationCommandClass = (Class<ICreationCommand>) parseClass(element, CREATION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
 		res.commandId = element.getAttribute(ID_ATTRIBUTE);
 		res.label = element.getAttribute(LABEL_ATTR);
+		String iconPath = element.getAttribute(ICON_ATTR);
+		if (iconPath != null) {
+			res.icon = Activator.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath);
+		}
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "a creation command ready " + res);
 
 		return res;

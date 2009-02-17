@@ -25,9 +25,12 @@ public interface IPapyrusUIConstants {
 
 	/** File extension for papyrus model files. */
 	public final String MODEL_EXTENSION = "di2";
+	
+	/**
+	 * The model explorer view identifier
+	 */
+	public final static String MODEL_EXPLORER_VIEW_ID = "org.eclipse.papyrus.navigator.modelExplorer";
 
-	/** the id of the bird view. */
-	public final String BIRDVIEW_ID = "org.eclipse.papyrus.views.thumbnail";
 
 	/** the id of the creation model wizard */
 	public final String CREATE_MODEL_ID = "org.eclipse.papyrus.wizards.createmodel";

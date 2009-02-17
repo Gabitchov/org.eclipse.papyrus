@@ -38,6 +38,11 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 	protected String extensionPointNamespace;
 
 	/**
+	 * The icon representing the command
+	 */
+	private String icon;
+
+	/**
 	 * Registered creation command descriptors.
 	 */
 	private Map<Object, CreationCommandDescriptor> creationCommandDescriptors;
@@ -66,6 +71,25 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 		} catch (Exception e) {
 			throw new NotFoundException("No creation command registered under id '" + commandId + "'.");
 		}
+	}
+
+	/**
+	 * get the command icon path
+	 * 
+	 * @return the editor icon path
+	 */
+	public String getIcon() {
+		return icon;
+	}
+
+	/**
+	 * set the command icon
+	 * 
+	 * @param icon
+	 *            the icon path
+	 */
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	/**

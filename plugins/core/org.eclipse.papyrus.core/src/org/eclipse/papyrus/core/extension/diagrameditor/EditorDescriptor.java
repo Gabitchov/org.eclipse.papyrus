@@ -10,9 +10,10 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.ui.IEditorPart;
@@ -34,13 +35,16 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 * Context Id used to search the context requested by the editor.
 	 */
 	private String requestedContextId;
-	
+
 	/**
 	 * EditorActionBarContributor Id used to search the EditorActionBarContributor requested by the editor.
 	 */
 	private String actionBarContributorId;
-	
-	
+
+	/**
+	 * The icon representing the diagram
+	 */
+	private ImageDescriptor icon;
 
 	/**
 	 * Cached factory. Initialized by first call to getXxx
@@ -79,10 +83,9 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 */
 	public void setActionBarContributorId(String actionBarContributorId) {
 		this.actionBarContributorId = actionBarContributorId;
-		
+
 	}
-	
-	
+
 	/**
 	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorDescriptor#getActionBarContributorId()
 	 * @return
@@ -90,6 +93,25 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 */
 	public String getActionBarContributorId() {
 		return actionBarContributorId;
+	}
+
+	/**
+	 * get the editor icon path
+	 * 
+	 * @return the editor icon path
+	 */
+	public ImageDescriptor getIcon() {
+		return icon;
+	}
+
+	/**
+	 * set the editor icon
+	 * 
+	 * @param icon
+	 *            the icon path
+	 */
+	public void setIcon(ImageDescriptor icon) {
+		this.icon = icon;
 	}
 
 	/**

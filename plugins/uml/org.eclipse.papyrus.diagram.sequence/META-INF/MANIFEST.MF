@@ -16,6 +16,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.diagram.sequence,
- org.eclipse.papyrus.diagram.sequence.actions,
  org.eclipse.papyrus.diagram.sequence.part
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -10,18 +10,16 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.editor;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.views.properties.IPropertySheetPage;
 
 /**
  * Interface implemented by the main multipage editor. This interface list the methods available to diagram editors. Diagram editors can relies on this interface to retrieve services from the main
@@ -64,13 +62,22 @@ public interface IMultiDiagramEditor extends IEditorPart {
 	public DiagramEditDomain getDiagramEditDomain();
 
 	/**
-	 * Get the currently active Editor. 
+	 * Get the currently active Editor.
 	 */
 	public IEditorPart getActiveEditor();
 
 	/**
 	 * Get the ActionBarContributorRegistry.
+	 * 
 	 * @return
 	 */
 	public ActionBarContributorRegistry getActionBarContributorRegistry();
+
+	/**
+	 * Get the property sheet page associated to the Editor.
+	 * 
+	 * @return the property sheet page associated to the Editor.
+	 */
+	public IPropertySheetPage getPropertySheetPage();
+
 }

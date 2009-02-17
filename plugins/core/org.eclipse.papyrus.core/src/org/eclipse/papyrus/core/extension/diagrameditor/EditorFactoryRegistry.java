@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.extension.NotFoundException;
@@ -27,6 +28,7 @@ import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -138,6 +140,26 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 		}
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorDescriptors.size() + " editorDescriptions loaded");
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getEditorIcon(Object model) {
+		for (EditorDescriptor desc : getEditorDescriptors()) {
+			if (desc.isEditorFor(model)) {
+				// if (model instanceof org.eclipse.papyrus.di.Diagram) {
+				// org.eclipse.papyrus.di.Diagram di2Diagram = (org.eclipse.papyrus.di.Diagram) model;
+				// if (!GMF_DIAGRAM.equals(di2Diagram.getType()))
+				// return false;
+				// Ok, this is a gmf diagram
+				// EObject root = ((CoreSemanticModelBridge) di2Diagram.getSemanticModel()).getElement();
+				ImageDescriptor imageDescriptor = desc.getIcon();
+				Image image = imageDescriptor.createImage();
+				return image;
+			}
+		}
+		return null;
 	}
 
 	/**

@@ -5,15 +5,15 @@
          point="org.eclipse.ui.commands">
       <command
             description="Create a new UML2 Sequence diagram"
-            id="org.eclipse.papyrus.diagram.sequence.papyrus2.createSequenceDiagram"
-            name="New MOSKitt UML2 Sequence Diagram">
+            id="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
+            name="New UML2 Sequence Diagram">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.sequence.actions.CreateGmfSequenceDiagramCommandHandler"
-            commandId="org.eclipse.papyrus.diagram.sequence.papyrus2.createSequenceDiagram">
+            class="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
+            commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand">
          <activeWhen>
             <or>
                <with
@@ -34,7 +34,7 @@
                id="org.eclipse.papyrus.diagram.ui.menu"
                label="Papyrus II">
             <command
-                  commandId="org.eclipse.papyrus.diagram.sequence.papyrus2.createSequenceDiagram"
+                  commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
                   icon="icons/SequenceDiagram.gif"
                   label="Create Sequence Diagram"
                   style="push"
@@ -47,7 +47,7 @@
          <toolbar
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
-                  commandId="org.eclipse.papyrus.diagram.sequence.papyrus2.createSequenceDiagram"
+                  commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
                   icon="icons/SequenceDiagram.gif"
                   label="Create a new Sequence Diagram"
                   style="push"
@@ -60,10 +60,16 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             contextId="com.cea.papyrus.gmf.editor.context"
-            factoryClass="org.eclipse.papyrus.diagram.sequence.part.SequenceDiagramEditorFactory">
+            factoryClass="org.eclipse.papyrus.diagram.sequence.part.SequenceDiagramEditorFactory"
+            icon="icons/SequenceDiagram.gif">
       </editorDiagram>
+      <creationCommand
+            creationCommandClass="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
+            icon="icons/SequenceDiagram.gif"
+            id="org.eclipse.papyrus.diagram.sequence.actions.CreationCommand"
+            label="UML Sequence Diagram">
+      </creationCommand>
    </extension>
-
 
 
    <extension point="org.eclipse.team.core.fileTypes">
@@ -85,11 +91,6 @@
       </parser>
 
    </extension>
-
-   
-
-
-
 	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
       <?gmfgen generated="true"?>

@@ -6,7 +6,7 @@
          point="org.eclipse.ui.commands">
       <command
             description="Create a new UseCase Diagram (Papyrus II)"
-            id="org.eclipse.papyrus.diagram.usecase.createUseCaseDiagram"
+            id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
             name="Create UseCase Diagram">
       </command>
    </extension>
@@ -14,22 +14,8 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommandHandler"
-            commandId="org.eclipse.papyrus.diagram.usecase.createUseCaseDiagram">
-         <activeWhen>
-            <or>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.core.adaptor.gmf.gmf.uml.MultiDiagramEditorID">
-                  </equals>
-               </with>
-            </or>
-         </activeWhen>
-      </handler>
-      <handler
-            class="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommandHandler"
-            commandId="org.eclipse.papyrus.diagram.usecase.createUseCaseDiagram">
+            class="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+            commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand">
          <activeWhen>
             <or>
                <with
@@ -50,7 +36,7 @@
          <toolbar
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
-                  commandId="org.eclipse.papyrus.diagram.usecase.createUseCaseDiagram"
+                  commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
                   icon="icons/UseCaseDiagram.gif"
                   label="Create a new UseCase Diagram"
                   style="push"
@@ -64,7 +50,7 @@
                id="org.eclipse.papyrus.diagram.ui.menu"
                label="Papyrus II">
             <command
-                  commandId="org.eclipse.papyrus.diagram.usecase.createUseCaseDiagram"
+                  commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
                   icon="icons/UseCaseDiagram.gif"
                   label="Create UseCase Diagram"
                   style="push"
@@ -78,10 +64,12 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             contextId="com.cea.papyrus.gmf.editor.context"
-            factoryClass="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramEditorFactory">
+            factoryClass="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramEditorFactory"
+            icon="icons/UseCaseDiagram.gif">
       </editorDiagram>
       <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.usecase.CreationCommand"
+            creationCommandClass="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+            icon="icons/UseCaseDiagram.gif"
             id="org.eclipse.papyrus.diagram.usecase.CreationCommand"
             label="UML UseCase Diagram">
       </creationCommand>

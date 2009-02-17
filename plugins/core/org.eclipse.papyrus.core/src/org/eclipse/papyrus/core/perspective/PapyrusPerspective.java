@@ -21,6 +21,8 @@ import org.eclipse.ui.IPerspectiveFactory;
 
 /**
  * Perspective for the Papyrus tool.
+ * 
+ * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class PapyrusPerspective implements IPerspectiveFactory {
 	/**
@@ -49,10 +51,9 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		
 		// Add "show views".
 		layout.addShowViewShortcut(IPageLayout.ID_RES_NAV);
+		layout.addShowViewShortcut(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID);
 		layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
-		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
-		layout.addShowViewShortcut(IPapyrusUIConstants.BIRDVIEW_ID);
-		// layout.addShowViewShortcut("org.eclipse.pde.runtime.LogView");
+		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);		
 		
 		layout.addActionSet("org.eclipse.debug.ui.launchActionSet");
 		
@@ -72,18 +73,14 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		// Editors are placed for free.
 		String editorArea = layout.getEditorArea();
 
-		// Place navigator to the left of editor area.
-		IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, (float) 0.26, editorArea);
-		left.addView(IPageLayout.ID_RES_NAV);
-
+		// Place the Model Explorer and the Resource Navigator to the left of editor area.
+		IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, (float) 0.20, editorArea);
+		left.addView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID);
+		left.addView(IPageLayout.ID_RES_NAV);		
+		
 		// place outline under the navigator
-		IFolderLayout left_middle = layout.createFolder("left_middle_under", IPageLayout.BOTTOM, (float) 0.26, "left");
-		left_middle.addView(IPageLayout.ID_OUTLINE);
-		
-		// Place birdview under the navigator
-		IFolderLayout left_bottom = layout.createFolder("left_under", IPageLayout.BOTTOM, (float) 0.70, "left_middle_under");
-		left_bottom.addView(IPapyrusUIConstants.BIRDVIEW_ID);
-		
+		IFolderLayout left_bottom = layout.createFolder("left_bottom", IPageLayout.BOTTOM, (float) 0.70, "left");
+		left_bottom.addView(IPageLayout.ID_OUTLINE);
 
 		// place properties under the editor
 		IFolderLayout bottom = layout.createFolder("under", IPageLayout.BOTTOM, (float) 0.70, editorArea);

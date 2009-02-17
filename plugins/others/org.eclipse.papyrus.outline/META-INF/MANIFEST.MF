@@ -1,21 +1,22 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Outline Plug-in
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.outline;singleton:=true
-Bundle-Version: 0.7.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.outline.Activator
-Bundle-Vendor: eclipse.org
+Bundle-Version: 0.7.0.vqualifier
+Bundle-Activator: org.eclipse.papyrus.outline.internal.Activator
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.navigator;bundle-version="3.3.100",
  org.eclipse.emf;bundle-version="2.4.0",
  org.eclipse.emf.edit;bundle-version="2.4.0",
- org.eclipse.gmf.runtime.notation;bundle-version="1.1.0",
  org.eclipse.gef;bundle-version="3.4.0",
  org.eclipse.uml2.uml.edit;bundle-version="2.2.0",
  org.eclipse.emf.transaction;bundle-version="1.2.0",
  org.eclipse.emf.edit.ui;bundle-version="2.4.0",
- org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0",
- org.eclipse.papyrus.core;bundle-version="0.7.0"
+ org.eclipse.papyrus.core;bundle-version="0.7.0",
+ org.eclipse.uml2.uml.editor;bundle-version="2.2.0",
+ org.eclipse.gmf.runtime.diagram.core;bundle-version="1.1.2",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.2"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

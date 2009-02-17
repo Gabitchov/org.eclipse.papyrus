@@ -17,8 +17,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.policies.DiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOphanConnectionViewClazzPolicy;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanNodeViewPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy;
 
 /**
@@ -50,8 +48,8 @@ public class ModelEditPart extends DiagramEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
 		// remove canonical to avoid synchronization
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new RemoveOrphanNodeViewPolicy());
-		installEditPolicy("canonicalConnection", new RemoveOphanConnectionViewClazzPolicy());
+		// installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new RemoveOrphanNodeViewPolicy());
+		// installEditPolicy("canonicalConnection", new RemoveOphanConnectionViewClazzPolicy());
 
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DiagramDragDropEditPolicy());

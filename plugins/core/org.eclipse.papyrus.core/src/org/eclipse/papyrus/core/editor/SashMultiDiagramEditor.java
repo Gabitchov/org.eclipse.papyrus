@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.core.editor;
 
@@ -19,17 +19,17 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.EventObject;
-import java.util.List;
 import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.gef.commands.CommandStackListener;
-import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.Activator;
+import org.eclipse.papyrus.core.IPapyrusUIConstants;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
@@ -60,7 +61,9 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.EditorActionBarContributor;
@@ -75,10 +78,11 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * separately. An editor should specify which context it need to run. This multi diagram editor allows to show editor side by side in one or more sash windows.
  * 
  * The real implementation for the generic type T of SashMultiPageEditorPart is actually di2.Diagram
+ * 
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * 
- * TODO : remove GMF dependency !
+ *         TODO : remove GMF dependency !
  */
 public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
 
@@ -300,13 +304,11 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	 * @return
 	 */
 	@Override
-	public Object getAdapter(@SuppressWarnings("unchecked")Class adapter) {
+	public Object getAdapter(@SuppressWarnings("unchecked") Class adapter) {
 		if (IPropertySheetPage.class == adapter) {
 			// Do not test if tabbedPropertySheetPage is null before calling new
 			// this is managed by Eclipse which only call current method when necessary
-			tabbedPropertySheetPage = new TabbedPropertySheetPage(this);
-
-			return tabbedPropertySheetPage;
+			return getPropertySheetPage();
 		}
 
 		// Add a viewer
@@ -331,11 +333,10 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 
 		// EMF requirements
 		if (IEditingDomainProvider.class == adapter) {
-			
-			return (IEditingDomainProvider)defaultContext.getTransactionalEditingDomain().getResourceSet();
+
+			return (IEditingDomainProvider) defaultContext.getTransactionalEditingDomain().getResourceSet();
 		}
 
-		
 		// GEF diagram requirements
 		if (adapter == ActionRegistry.class) {
 			return gefAdaptorDelegate.getActionRegistry();
@@ -406,6 +407,17 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		super.activate();
 		// Start listening on diagram CRUD
 		diagramNotifier.addListener(diagramChangeListener);
+
+		// Show the model Explorer View
+		try {
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+		} catch (PartInitException e) {
+			String message = "Error while  showing the Model Explorer view." + e.getMessage();
+			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
+			Activator.getDefault().getLog().log(status);
+			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
+		}
+
 	}
 
 	@Override
@@ -413,6 +425,16 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		// Stop listening on diagrams CRUD
 		diagramNotifier.removeListener(diagramChangeListener);
 		super.deactivate();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IPropertySheetPage getPropertySheetPage() {
+		if (this.tabbedPropertySheetPage == null) {
+			this.tabbedPropertySheetPage = new TabbedPropertySheetPage(this);
+		}
+		return tabbedPropertySheetPage;
 	}
 
 	/**
@@ -582,23 +604,20 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	}
 
 	/**
-	 * This method is called from a GMF diagram.
-	 * It should only be called from GMF diagram code.
-	 * Normally, the Diagram under the Mouse is a GMF Diagram.
-	 * The active Diagram can be another Diagram, not under the mouse.
-	 * This is a GMF issue.
+	 * This method is called from a GMF diagram. It should only be called from GMF diagram code. Normally, the Diagram under the Mouse is a GMF Diagram. The active Diagram can be another Diagram, not
+	 * under the mouse. This is a GMF issue.
 	 */
 	public DiagramEditPart getDiagramEditPart() {
-		
+
 		// Get the editor under the mouse
 		IEditorPart activeEditor = rootContainer.getEditorUnderMouse();
-//		IEditorPart activeEditor = getActiveEditor();
+		// IEditorPart activeEditor = getActiveEditor();
 		if (activeEditor instanceof DiagramEditor) {
 			return ((DiagramEditor) activeEditor).getDiagramEditPart();
 		} else {
-			// This case should never happen. 
-			throw new UnsupportedOperationException( "Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from " 
-					+ activeEditor.getTitle() + ", " + activeEditor );
+			// This case should never happen.
+			throw new UnsupportedOperationException("Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from " + activeEditor.getTitle() + ", "
+					+ activeEditor);
 		}
 	}
 

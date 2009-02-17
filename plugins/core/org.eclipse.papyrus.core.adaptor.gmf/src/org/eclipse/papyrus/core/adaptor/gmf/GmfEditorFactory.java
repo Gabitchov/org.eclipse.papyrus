@@ -56,12 +56,15 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		// Retrieve GMF diagram, if any.
 		if (root instanceof org.eclipse.papyrus.di.Diagram) {
 			org.eclipse.papyrus.di.Diagram di2Diagram = (org.eclipse.papyrus.di.Diagram) root;
-			if (!GMF_DIAGRAM.equals(di2Diagram.getType()))
-				return false;
-			// Ok, this is a gmf diagram
-			root = ((CoreSemanticModelBridge) di2Diagram.getSemanticModel()).getElement();
+			//FIXME set the correct type in backbone
+			//if (!GMF_DIAGRAM.equals(di2Diagram.getType()))
+			//	return false;
+ 			// Ok, this is a gmf diagram
+			if(di2Diagram.getSemanticModel() instanceof CoreSemanticModelBridge){
+				root = ((CoreSemanticModelBridge) di2Diagram.getSemanticModel()).getElement();
+			}
 		}
-
+		
 		if (root instanceof Diagram) {
 			Diagram diagram = (Diagram) root;
 			final String type = diagram.getType();

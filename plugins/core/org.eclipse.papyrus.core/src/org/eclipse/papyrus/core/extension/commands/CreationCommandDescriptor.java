@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.papyrus.core.extension.commands;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 
 /**
@@ -25,12 +26,18 @@ public class CreationCommandDescriptor {
 
 	protected String label;
 
+	protected ImageDescriptor icon;
+
 	public String getCommandId() {
 		return commandId;
 	}
 
 	public String getLabel() {
 		return label;
+	}
+
+	public ImageDescriptor getIcon() {
+		return icon;
 	}
 
 	/**
