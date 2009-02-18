@@ -1272,7 +1272,8 @@
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
-            factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory">
+            factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory"
+            icon="icons/ClassDiagram.gif">
       </editorDiagram>
       <actionBarContributor
             id="org.eclipse.papyrus.diagram.clazz.actionBarContributor"
