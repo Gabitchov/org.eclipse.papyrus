@@ -1270,19 +1270,17 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
+            actionBarContributorId="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
-            factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory"
-            icon="icons/ClassDiagram.gif">
+            factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory">
       </editorDiagram>
-      <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
-            icon="icons/ClassDiagram.gif"
-            id="org.eclipse.papyrus.diagram.clazz.creationCommand"
-            label="UML Class Diagram">
-      </creationCommand>
+      <actionBarContributor
+            id="org.eclipse.papyrus.diagram.clazz.actionBarContributor"
+            implementingClass="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor">
+      </actionBarContributor>
    </extension>
    <extension id="ValidationContributionItemProvider" name="Validation"
-      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+     point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
       <?gmfgen generated="true"?>
       <contributionItemProvider
          class="org.eclipse.papyrus.diagram.clazz.providers.UMLValidationProvider">
