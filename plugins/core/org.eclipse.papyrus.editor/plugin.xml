@@ -7,7 +7,7 @@
             contributorClass="org.eclipse.uml2.diagram.clazz.part.UMLDiagramActionBarContributor"
             default="true"
             extensions="di2"
-            icon="icons/papyrus/Papyrus.gif"
+            icon="icons/papyrus/Papyrus_16x16.gif"
             id="org.eclipse.papyrus.core.papyrusEditor"
             name="Papyrus Editor Core">
       </editor>
@@ -15,7 +15,7 @@
    <extension point="org.eclipse.ui.perspectives">
 	   <perspective
 	         class="org.eclipse.papyrus.core.perspective.PapyrusPerspective"
-	         icon="icons/papyrus/Papyrus.gif"
+	         icon="icons/papyrus/Papyrus_16x16.gif"
 	         id="org.eclipse.papyrus.core.perspective"
 	         name="Papyrus">
 	   </perspective>
@@ -25,7 +25,6 @@
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=navigate">
          <menu
-               icon="icons/papyrus/Papyrus_16x16.gif"
                id="org.eclipse.papyrus.ui.menu"
                label="Papyrus"
                tooltip="Papyrus Editor Menu">
