@@ -5,10 +5,13 @@ package org.eclipse.papyrus.core.multidiagram.actionbarcontributor;
 
 import java.util.List;
 
+import org.eclipse.gef.ui.actions.RedoRetargetAction;
+import org.eclipse.gef.ui.actions.UndoRetargetAction;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.sasheditor.eclipsecopy.ComposedActionBarContributor;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
@@ -39,7 +42,10 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		loadContributors();
 	}
 	
-
+	/**
+	 * 
+	 * @throws BackboneException
+	 */
 	private void loadContributors() throws BackboneException
 	{
 		actionBarContributorRegistry = new ActionBarContributorRegistry(Activator.PLUGIN_ID);
@@ -61,11 +67,13 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
      */
     public void dispose() {
     	
+    	System.err.println("ActionBarContributor.dispose()" + this);
     	// Dispose nested contributors.
     	for(EditorActionBarContributor contributor : contributors )
     	{
     		contributor.dispose();
     	}
+    	super.dispose();
     }
 
     /**
@@ -76,7 +84,9 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
      */
     public void init(IActionBars bars, IWorkbenchPage page) {
     	
+    	System.err.println("ActionBarContributor.init() - " + this);
         super.init(bars, page);
+    	buildActions();
         
         System.out.println(this.getClass().getSimpleName() + ".init("+ bars+ ")");
      	// init nested contributors.
@@ -88,6 +98,21 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 
     }
 
+	/**
+	 * Load default actions (undo/redo/delete)
+	 * 
+	 * @see org.eclipse.gef.ui.actions.ActionBarContributor#buildActions()
+	 */
+	protected void buildActions() {
+		getActionBars().getToolBarManager().add( new UndoRetargetAction() );
+		getActionBars().getToolBarManager().add(new RedoRetargetAction());
+	}
+
+
+    public void setActiveEditor(IEditorPart targetEditor) {
+    	System.err.println("ActionBarContributor.setActiveEditor(" + targetEditor + ") - " + this);
+    	super.setActiveEditor(targetEditor);
+    }
 
 
 }

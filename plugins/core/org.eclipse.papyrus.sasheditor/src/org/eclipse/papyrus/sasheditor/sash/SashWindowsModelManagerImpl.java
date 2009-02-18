@@ -96,12 +96,35 @@ public abstract class SashWindowsModelManagerImpl<T> implements ISashWindowsMode
 	abstract public void createFolder(Object nodeModel, int srcTabIndex, Object nodeModel2, int side);
 
 	/**
+	 * Remove the specified tab from the folder.
+	 * Also remove the tab if it is empty.
+	 * @see org.eclipse.papyrus.sasheditor.sash.ISashWindowsModelManager#removeTab(org.eclipse.papyrus.sasheditor.sash.TabFolderPart.ITabFolderModel, int)
+	 * @param srcFolder
+	 * @param srcIndex
+	 *
+	 */
+	public void removeTab(ITabFolderModel<T> srcFolder, int srcIndex) {
+		removeTab(srcFolder.getNodeModel(), srcIndex );
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.sasheditor.sash.ISashWindowsModelManager#moveTab(org.eclipse.papyrus.sasheditor.sash.TabFolderPart.ITabFolderModel, int, int)
 	 */
 	public void moveTab(ITabFolderModel<T> srcFolder, int srcIndex, int targetIndex) {
 		moveTab(srcFolder.getNodeModel(), srcIndex, targetIndex);
 
 	}
+
+	/**
+	 * Ask the model to remove the specified tab inside the same folder. No events 
+	 * should be thrown until the complete remove is perform. This method is called by 
+	 * the the SashTileContainer when the user click the close cross on a tab.. The 
+	 * SashTileContainer has not change is presentation yet. This will be done when the 
+	 * corresponding event will occur.
+	 * @param nodeModel The external model representing a folder.
+	 * @param srcIndex
+	 */
+	abstract public void removeTab(T nodeModel, int srcIndex);
 
 	/**
 	 * Ask the model to move the specified tab inside the same folder. No events should be thrown until the complete move is perform. This method is called by the the SashTileContainer when the user

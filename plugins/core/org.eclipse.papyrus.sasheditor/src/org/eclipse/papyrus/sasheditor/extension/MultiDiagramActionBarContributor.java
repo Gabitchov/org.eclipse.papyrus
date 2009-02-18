@@ -44,7 +44,7 @@ public abstract class MultiDiagramActionBarContributor extends GefMultiPagesActi
 	 * @return the EditorRegistry for nested editor descriptors.
 	 * TODO Seem to be unused. Remove ?
 	 */
-	abstract protected EditorFactoryRegistry getEditorRegistry();
+//	abstract protected EditorFactoryRegistry getEditorRegistry();
 
 	/**
 	 * Add retarget actions to the given toolbar.

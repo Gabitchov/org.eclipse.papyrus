@@ -135,6 +135,18 @@ public class SashWindowModelManagerWrapper extends SashWindowsModelManagerImpl<D
 	}
 
 	/**
+	 * Remove the specified tab from the folder.
+	 * Also remove the tab if it is empty.
+	 * @see org.eclipse.papyrus.sasheditor.sash.ISashWindowsModelManager#removeTab(org.eclipse.papyrus.sasheditor.sash.TabFolderPart.ITabFolderModel, int)
+	 * @param srcFolder
+	 * @param srcIndex
+	 *
+	 */
+	public void removeTab(Diagram srcFolder, int srcIndex) {
+		diagramModelManager.doRemoveTab((Diagram) srcFolder, srcIndex);
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.sasheditor.sash.SashWindowsModelManagerImpl#moveTab(java.lang.Object, int, int)
 	 */
 	@Override
@@ -359,4 +371,5 @@ public class SashWindowModelManagerWrapper extends SashWindowsModelManagerImpl<D
 		}
 
 	}
+
 }

@@ -26,10 +26,9 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.actions.RetargetAction;
 import org.eclipse.ui.part.EditorActionBarContributor;
-//import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 
 /**
- * This class is an attempt to merge gef ActionBarContributor and MultiPagesActionBarContributor
+ * This class is an attempt to merge gef ActionBarContributor and MultiPagesActionBarContributor.
  */
 public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorActionBarContributor {
 
@@ -189,10 +188,12 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 	 * Connect the actions registered in the globalActionKeys. Lookup actions implementation in the rootEditor registry and in the current page registry.
 	 */
 	protected void connectActions() {
+		System.out.println("scribe.connectActions()");
 		IActionBars bars = getActionBars();
 		Iterator<String> iter = globalActionKeys.iterator();
 		while (iter.hasNext()) {
 			String id = iter.next();
+			System.out.println("connect(" + id + ", " + getEditorAction(id) + ")" );
 			bars.setGlobalActionHandler(id, getEditorAction(id));
 			bars.updateActionBars();
 		}

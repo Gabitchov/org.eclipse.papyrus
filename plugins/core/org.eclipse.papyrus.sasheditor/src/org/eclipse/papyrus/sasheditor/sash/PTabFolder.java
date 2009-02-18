@@ -81,6 +81,14 @@ public class PTabFolder {
 		}
 	};
 
+	private Listener mouseUpListener = new Listener() {
+
+		public void handleEvent(Event e) {
+			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
+			System.out.println("mouseUpListener(" + globalPos + ", event=" + e + ")");
+		}
+	};
+
 //	private DragDetectListener dragDetectListener = new DragDetectListener() {
 //
 //		public void dragDetected(DragDetectEvent e) {
@@ -130,6 +138,8 @@ public class PTabFolder {
 		// inside the folder
 		parent.setLayout(new FillLayout());
 		final CTabFolder newContainer = new CTabFolder(parent, SWT.BOTTOM | SWT.FLAT | SWT.CLOSE);
+
+		// TODO Move listener init in appropriate method.
 		newContainer.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
@@ -138,10 +148,9 @@ public class PTabFolder {
 			}
 		});
 
-		// TODO Remove next
 		// Test for the close icon. Need style=SWT.CLOSE
 		// addCTabFolderListener is required :-(
-		newContainer.setUnselectedCloseVisible(true);
+		newContainer.setUnselectedCloseVisible(false);
 		newContainer.addCTabFolder2Listener(new CTabFolder2Adapter() {
 
 			@Override
@@ -178,6 +187,7 @@ public class PTabFolder {
 		// theControl.addDragDetectListener(dragDetectListener);
 		// Listen on mouse enter event.
 //		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
+		theControl.addListener(SWT.MouseUp, mouseUpListener);
 
 		if (recursive && theControl instanceof Composite) {
 			Composite composite = (Composite) theControl;
@@ -200,6 +210,7 @@ public class PTabFolder {
 		//
 		PresentationUtil.removeDragListener(theControl, dragListener);
 		// theControl.removeDragDetectListener(dragDetectListener);
+		theControl.removeListener(SWT.MouseUp, mouseUpListener);
 
 		if (recursive && theControl instanceof Composite) {
 			Composite composite = (Composite) theControl;
@@ -449,6 +460,9 @@ public class PTabFolder {
 	 *
 	 */
 	public class EventsManager {
+		/**
+		 * List of event listeners.
+		 */
 		List<IPTabFolderListener> listeners = new ArrayList<IPTabFolderListener>();
 		
 		/**

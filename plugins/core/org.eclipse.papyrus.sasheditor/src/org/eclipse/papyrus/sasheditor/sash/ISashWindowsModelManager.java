@@ -52,6 +52,15 @@ public interface ISashWindowsModelManager <T> {
 	 */
 	public ITilePart.ITilePartNodeModel<T> createTilePartModel(T model);
 
+
+	/**
+	 * Remove the specified tab from the specified folder.
+	 * Remove the folder if it is empty.
+	 * @param srcFolder
+	 * @param srcIndex
+	 */
+	public void removeTab(ITabFolderModel<T> srcFolder, int srcIndex);
+
 	/**
 	 * Ask the model to move the specified tab inside the same folder. No events should be thrown until the complete move is perform. This method is called by the the SashTileContainer when the user
 	 * have drag a tab in a correct place. The SashTileContainer has not change is presentation yet. This will be done when the corresponding event will occur.

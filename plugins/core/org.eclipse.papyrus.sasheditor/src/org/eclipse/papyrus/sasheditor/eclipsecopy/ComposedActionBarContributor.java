@@ -71,6 +71,10 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 		if(getPage()==null)
 			return;
 
+		// skip if the activeEditor doesn't change.
+		if(activeEditor == activeNestedEditor)
+			return;
+		
 		if(log.isLoggable(Level.FINE))
 		{
 			log.fine("setActivePage("+  activeEditor + " "+")" );
@@ -78,9 +82,9 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 
 		activeNestedEditor = activeEditor;
 		
-		System.out.println(this.getClass().getSimpleName() 
-				+ ".setActivePage(" + activeEditor
-				+ ") :" + activeNestedEditor.getEditorSite().getActionBarContributor() );
+//		System.out.println(this.getClass().getSimpleName() 
+//				+ ".setActivePage(" + activeEditor
+//				+ ") :" + getActiveContributor() );
 		
 		// Propagate call if possible
 		// Call setActiveEditor() on nested contributor.
@@ -144,13 +148,13 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
      *
      * @return the action bars
      */
-    public IActionBars getActionBars() {
-    	IEditorActionBarContributor activeContributor = getActiveContributor();
-    	if( activeContributor!=this && activeContributor instanceof EditorActionBarContributor)
-          return ((EditorActionBarContributor)getActiveContributor()).getActionBars();
-    	else
-    		return super.getActionBars();
-    }
+//    public IActionBars getActionBars() {
+//    	IEditorActionBarContributor activeContributor = getActiveContributor();
+//    	if( activeContributor!=this && activeContributor instanceof EditorActionBarContributor)
+//          return ((EditorActionBarContributor)getActiveContributor()).getActionBars();
+//    	else
+//    		return super.getActionBars();
+//    }
 
 
 }

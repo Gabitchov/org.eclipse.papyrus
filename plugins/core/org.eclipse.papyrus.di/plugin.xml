@@ -13,7 +13,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/papyrus/0.7.0/di" 
-       class = "org.eclipse.papyrus.di.Di2Package"
+       class = "org.eclipse.papyrus.di.DiPackage"
        genModel = "model/di2.genmodel" /> 
   </extension>
 

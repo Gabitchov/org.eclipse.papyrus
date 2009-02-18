@@ -112,6 +112,7 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 
 		public void itemClosedEvent(CTabFolderEvent event, int pageIndex) {
 			System.out.println("itemClosedEvent()");
+			parentPartContainer.getContainerModel().removeTab(model, pageIndex);
 		}
 
 		public void menuDetectEvent(CTabItem tab, MenuDetectEvent event) {

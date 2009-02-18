@@ -22,6 +22,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.core.multidiagram.commands.MoveTabFromFolderToFolderCommand;
 import org.eclipse.papyrus.core.multidiagram.commands.MoveTabInsideFolderCommand;
 import org.eclipse.papyrus.core.multidiagram.commands.MoveTabToFolderSideCommand;
+import org.eclipse.papyrus.core.multidiagram.commands.RemoveTabFromFolderCommand;
 import org.eclipse.papyrus.di.Diagram;
 
 /**
@@ -147,6 +148,18 @@ public class SashDiagramModelManager extends SashDiagramModelUtil {
 	public void doMoveTabToFolderSide(Diagram srcfolder, int srcTabIndex, Diagram targetfolder, int position) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 		RecordingCommand command = new MoveTabToFolderSideCommand(editingDomain, srcfolder, srcTabIndex, targetfolder, position);
+
+		editingDomain.getCommandStack().execute(command);
+	}
+
+	/**
+	 * Remove the specified tab from the specified folder.
+	 * @param srcFolder
+	 * @param srcIndex
+	 */
+	public void doRemoveTab(Diagram srcFolder, int srcIndex) {
+		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		RecordingCommand command = new RemoveTabFromFolderCommand(editingDomain, srcFolder, srcIndex);
 
 		editingDomain.getCommandStack().execute(command);
 	}

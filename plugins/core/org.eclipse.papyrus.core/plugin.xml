@@ -4,25 +4,6 @@
    <extension-point id="papyrusDiagram" name="PapyrusDiagram" schema="schema/papyrusDiagram.exsd"/>
    <extension-point id="modelListener" name="ModelListener" schema="schema/modelListener.exsd"/>
    <extension-point id="papyrusContentOutline" name="PapyrusContentOutline" schema="schema/contentOutline.exsd"/>
-   <extension point="org.eclipse.ui.editors">
-      <editor
-            class="org.eclipse.papyrus.core.editor.SashMultiDiagramEditor"
-            contributorClass="org.eclipse.papyrus.core.editor.PapyrusActionBarContributor"
-            default="false"
-            extensions="di2"
-            icon="icons/papyrus/Papyrus.gif"
-            id="org.eclipse.papyrus.core.papyrusEditor"
-            name="Papyrus Editor Core">
-      </editor>
-   </extension>
-   <extension point="org.eclipse.ui.perspectives">
-	   <perspective
-	         class="org.eclipse.papyrus.core.perspective.PapyrusPerspective"
-	         icon="icons/papyrus/Papyrus.gif"
-	         id="org.eclipse.papyrus.core.perspective"
-	         name="Papyrus">
-	   </perspective>
-	</extension>
 	
 	
 </plugin>
