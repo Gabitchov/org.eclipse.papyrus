@@ -12,7 +12,7 @@
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
-       uri = "null" 
+       uri = "http://www.eclipse.org/papyrus/0.7.0/di" 
        class = "org.eclipse.papyrus.di.provider.DiItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
