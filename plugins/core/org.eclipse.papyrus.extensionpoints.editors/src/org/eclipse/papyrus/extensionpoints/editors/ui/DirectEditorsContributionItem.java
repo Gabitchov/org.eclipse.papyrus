@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.SashMultiDiagramEditor;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
 import org.eclipse.swt.SWT;
@@ -146,7 +146,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 				public void widgetSelected(SelectionEvent e) {
 					// launch editor 
 					GMFEmbeddedEditorActionDelegate actionDelegate = new GMFEmbeddedEditorActionDelegate();
-					actionDelegate.setActivePart(null, ((SashMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()).getActiveEditor());
+					actionDelegate.setActivePart(null, ((CoreMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()).getActiveEditor());
 					actionDelegate.selectionChanged(null, getSelection());
 					actionDelegate.setExtensionPointConfiguration(configuration);
 					actionDelegate.run(null);

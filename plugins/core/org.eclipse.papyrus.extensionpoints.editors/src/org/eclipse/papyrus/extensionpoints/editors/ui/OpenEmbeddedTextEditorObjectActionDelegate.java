@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.papyrus.core.editor.SashMultiDiagramEditor;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
@@ -152,7 +152,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 */
 	protected EmbeddedTextEditor createEditor(Composite composite) {
 		// retrieves the source viewer configuration
-		final SashMultiDiagramEditor multiDiagramEditor = (SashMultiDiagramEditor)part.getSite().getPage().getActiveEditor();
+		final CoreMultiDiagramEditor multiDiagramEditor = (CoreMultiDiagramEditor)part.getSite().getPage().getActiveEditor();
 		TransactionalEditingDomain domain = multiDiagramEditor.getDefaultContext().getTransactionalEditingDomain();
 		DiagramCommandStack diagramCommandStack = multiDiagramEditor.getDiagramEditDomain().getDiagramCommandStack();
 		return new EmbeddedTextEditor(directEditorExtensionPoint.getDirectEditorConfiguration(), diagramCommandStack, domain );

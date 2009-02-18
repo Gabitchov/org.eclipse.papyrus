@@ -14,15 +14,16 @@
 
 package org.eclipse.papyrus.editor;
 
-import org.eclipse.papyrus.core.editor.SashMultiDiagramEditor;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 
 
 /**
  * Papyrus main MultiEditor.
  * This class add GMF adaptation dedicated to Papyrus. 
+ * TODO : move GMF dependencies into this plugin.
  * @author dumoulin
  *
  */
-public class PapyrusMultiEditor extends SashMultiDiagramEditor {
+public class PapyrusMultiDiagramEditor extends CoreMultiDiagramEditor {
 
 }

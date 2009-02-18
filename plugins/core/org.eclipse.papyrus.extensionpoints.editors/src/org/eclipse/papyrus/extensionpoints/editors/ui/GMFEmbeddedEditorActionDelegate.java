@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.SashMultiDiagramEditor;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -40,7 +40,7 @@ public class GMFEmbeddedEditorActionDelegate extends OpenEmbeddedTextEditorObjec
 	 */
 	@Override
 	protected Control getControl() {
-		return ((SashMultiDiagramEditor)part).getDiagramGraphicalViewer().getControl();
+		return ((CoreMultiDiagramEditor)part).getDiagramGraphicalViewer().getControl();
 	}
 	
 	/**

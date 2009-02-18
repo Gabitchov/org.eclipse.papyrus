@@ -4,7 +4,7 @@
    <extension point="org.eclipse.ui.editors">
       <editor
             class="org.eclipse.papyrus.core.editor.SashMultiDiagramEditor"
-            contributorClass="org.eclipse.papyrus.editor.PapyrusActionBarContributor"
+            contributorClass="org.eclipse.uml2.diagram.clazz.part.UMLDiagramActionBarContributor"
             default="true"
             extensions="di2"
             icon="icons/papyrus/Papyrus.gif"

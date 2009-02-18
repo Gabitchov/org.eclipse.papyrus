@@ -84,7 +84,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  *         TODO : remove GMF dependency !
  */
-public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
+public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
@@ -154,7 +154,7 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	/**
 	 * Constructor.
 	 */
-	public SashMultiDiagramEditor() {
+	public CoreMultiDiagramEditor() {
 		super();
 		setDiagramEditDomain(new DiagramEditDomain(this));
 	}
