@@ -3,7 +3,7 @@
 <plugin>
    <extension point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipse.papyrus.core.editor.SashMultiDiagramEditor"
+            class="org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor"
             contributorClass="org.eclipse.uml2.diagram.clazz.part.UMLDiagramActionBarContributor"
             default="true"
             extensions="di2"
