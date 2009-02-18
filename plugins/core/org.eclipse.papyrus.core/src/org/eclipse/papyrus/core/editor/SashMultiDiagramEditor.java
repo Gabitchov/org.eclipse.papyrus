@@ -409,14 +409,15 @@ public class SashMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		diagramNotifier.addListener(diagramChangeListener);
 
 		// Show the model Explorer View
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
-		} catch (PartInitException e) {
-			String message = "Error while  showing the Model Explorer view." + e.getMessage();
-			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
-			Activator.getDefault().getLog().log(status);
-			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
-		}
+		// Commented out because it send a NPE. Can't we use the eclipse extension to declare the view ?
+//		try {
+//			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+//		} catch (PartInitException e) {
+//			String message = "Error while  showing the Model Explorer view." + e.getMessage();
+//			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
+//			Activator.getDefault().getLog().log(status);
+//			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
+//		}
 
 	}
 
