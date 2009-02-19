@@ -1,0 +1,32 @@
+/*
+ *
+ *
+ */
+
+import "http://www.eclipse.org/gmf/2006/GenModel";
+import "http://www.eclipse.org/emf/2002/GenModel";
+import "http://www.eclipse.org/emf/2002/Ecore";
+import "http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension";
+
+
+String getModelSwitchQualifiedName(genmodel::GenClass gc) :
+	gc.genPackage.basePackage + "." + gc.genPackage.ecorePackage.name + "." + gc.genPackage.utilityPackageSuffix + "." + gc.genPackage.prefix + "Switch"
+;
+
+
+Set[genmodel::GenFeature] getMutatingChildrenFeatures(papyrusgmfgenextension::AlternateCanvas referencer) :
+	getMutatingNonPhantomSemanticChildren(referencer).collect(node | node.typeModelFacet.childMetaFeature).toSet()
+;
+
+List[papyrusgmfgenextension::AlternateGenNode] getMutatingSemanticChildren(papyrusgmfgenextension::AlternateCanvas referencer, genmodel::GenFeature childMetaFeature) :
+	getMutatingNonPhantomSemanticChildren(referencer).select(node | node.typeModelFacet.childMetaFeature == childMetaFeature)
+;
+
+List[papyrusgmfgenextension::AlternateGenNode] getMutatingNonPhantomSemanticChildren(papyrusgmfgenextension::AlternateCanvas referencer) :
+	getMutatingSemanticChildren(referencer).select(node | !node.genTopLevelNode.modelFacet.isPhantomElement())
+;
+
+List[papyrusgmfgenextension::AlternateGenNode] getMutatingSemanticChildren(papyrusgmfgenextension::AlternateCanvas referencer) :
+	referencer.alternateTopLevelNodes.select(node | node.genTopLevelNode.modelFacet != null)
+;
+
