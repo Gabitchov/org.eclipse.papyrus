@@ -1275,6 +1275,12 @@
             factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory"
             icon="icons/ClassDiagram.gif">
       </editorDiagram>
+      <creationCommand
+            creationCommandClass="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+            icon="icons/ClassDiagram.gif"
+            id="org.eclipse.papyrus.diagram.clazz.action.CreationCommand"
+            label="UML Class Diagram">
+      </creationCommand>      
       <actionBarContributor
             id="org.eclipse.papyrus.diagram.clazz.actionBarContributor"
             implementingClass="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor">
