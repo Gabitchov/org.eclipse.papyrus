@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentPro
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.l10n.EditorMessages;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorContext;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.swt.widgets.Composite;
@@ -38,6 +39,16 @@ public class UMLSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 
 	/** The context. */
 	private GmfEditorContext context = null;
+
+	/**
+	 * The location of diagram icon in the plug-in
+	 */
+	private static final String DIAG_IMG_PATH = "icons/SequenceDiagram.gif";
+
+	/**
+	 * The image descriptor of the diagram icon
+	 */
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UMLSequenceDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/**
 	 * Instantiates a new uML sequence diagram for multi editor.
@@ -136,6 +147,7 @@ public class UMLSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		setPartName(getDiagram().getName());
+		setTitleImage(DIAG_IMG_DESC.createImage());
 	}
 
 	/**

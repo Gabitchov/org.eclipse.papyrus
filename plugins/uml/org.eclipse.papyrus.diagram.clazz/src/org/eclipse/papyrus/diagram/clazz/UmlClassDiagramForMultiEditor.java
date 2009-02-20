@@ -28,12 +28,14 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.l10n.EditorM
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.diagram.clazz.custom.listeners.DropTargetListener;
+import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
@@ -44,12 +46,25 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * An editor to be used in multitabs editor. This editor extends the original UML Activity Diagram.
+ * An editor to be used in multitabs editor. This editor extends the original
+ * UML Activity Diagram.
  * 
  * @author dumoulin
  * 
  */
-public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor {
+public class UmlClassDiagramForMultiEditor extends
+		org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor {
+
+	/**
+	 * The image descriptor of the diagram icon
+	 */
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
+			.getBundledImageDescriptor(UmlClassDiagramForMultiEditor.DIAG_IMG_PATH);
+
+	/**
+	 * The location of diagram icon in the plug-in
+	 */
+	private static final String DIAG_IMG_PATH = "icons/ClassDiagram.gif";
 
 	/**
 	 * Parent
@@ -66,7 +81,8 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	/**
 	 * @generated NOT
 	 */
-	public UmlClassDiagramForMultiEditor(Diagram diagram, GmfEditorContext context) {
+	public UmlClassDiagramForMultiEditor(Diagram diagram,
+			GmfEditorContext context) {
 		super();
 		this.diagram = diagram;
 		this.context = context;
@@ -93,13 +109,16 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		DiagramEditDomain editDomain = (DiagramEditDomain) getDiagramEditDomain();
 
 		if (editDomain != null) {
-			editDomain.setCommandStack(context.getDiagramEditDomain().getDiagramCommandStack());
-			editDomain.setActionManager(context.getDiagramEditDomain().getActionManager());
+			editDomain.setCommandStack(context.getDiagramEditDomain()
+					.getDiagramCommandStack());
+			editDomain.setActionManager(context.getDiagramEditDomain()
+					.getActionManager());
 		}
 	}
 
 	/**
-	 * Creates and register actions with the {@link ActionRegistry} for this editor.
+	 * Creates and register actions with the {@link ActionRegistry} for this
+	 * editor.
 	 */
 	@Override
 	protected void createActions() {
@@ -141,7 +160,8 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 */
 	final protected IDocumentProvider getDocumentProvider(IEditorInput input) {
 		// System.out.println("getDocumentProvider(IEditorInput input)");
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput
+				|| input instanceof URIEditorInput) {
 			return context.getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
@@ -170,10 +190,12 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 * 
 	 */
 	@Override
-	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+	public void init(IEditorSite site, IEditorInput input)
+			throws PartInitException {
 		super.init(site, input);
 		// Set name after calling super.init()
 		setPartName(getDiagram().getName());
+		setTitleImage(DIAG_IMG_DESC.createImage());
 	}
 
 	@Override
@@ -181,25 +203,29 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new DropTargetListener(getDiagramGraphicalViewer(),
+						LocalSelectionTransfer.getTransfer()) {
 
-			@Override
-			protected Object getJavaObject(TransferData data) {
-				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-			}
+					@Override
+					protected Object getJavaObject(TransferData data) {
+						return LocalSelectionTransfer.getTransfer()
+								.nativeToJava(data);
+					}
 
-			@Override
-			protected TransactionalEditingDomain getTransactionalEditingDomain() {
-				return getEditingDomain();
-			}
-		});
+					@Override
+					protected TransactionalEditingDomain getTransactionalEditingDomain() {
+						return getEditingDomain();
+					}
+				});
 
 	}
 
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		if (getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite()
+					.getPage().getActiveEditor();
 			// If not the active editor, ignore selection changed.
 			if (this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());
@@ -223,7 +249,8 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 * @generated
 	 */
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput
+				|| input instanceof URIEditorInput) {
 			setDocumentProvider(context.getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
@@ -251,8 +278,10 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 			// and to
 			// set the diagram to the fragment.
 			// First, compute the URI
-			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(diagram));
-			System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")");
+			URIEditorInput uriInput = new URIEditorInput(EcoreUtil
+					.getURI(diagram));
+			System.err.println(this.getClass().getSimpleName() + ".setInput("
+					+ uriInput.toString() + ")");
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
 			String title = EditorMessages.Editor_error_setinput_title;
