@@ -32,6 +32,32 @@ public class CommentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	private EClass eClass = null;
+
+	/**
+	 * @generated
+	 */
+	private EObject eObject = null;
+
+	/**
+	 * @generated
+	 */
+	public CommentCreateCommand(CreateElementRequest req, EObject eObject) {
+		super(req);
+		this.eObject = eObject;
+		this.eClass = eObject != null ? eObject.eClass() : null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static CommentCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new CommentCreateCommand(req, eObject);
+	}
+
+	/**
+	 * @generated
+	 */
 	public CommentCreateCommand(CreateElementRequest req) {
 		super(req);
 	}
@@ -46,6 +72,17 @@ public class CommentCreateCommand extends CreateElementCommand {
 		owner.getOwnedComments().add(newElement);
 
 		UMLElementTypes.init_Comment_2012(newElement);
+
+		// code used in MOSKitt approach in order to manage "delete from diagram"
+		// org.eclipse.gmf.runtime.notation.Diagram diagram = es.cv.gvcase.mdt.common.util.MDTUtil.getDiagramFromRequest(getRequest());
+		// if (diagram != null) {
+		// es.cv.gvcase.mdt.common.util.MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+		// }
+		// else {
+		// es.cv.gvcase.mdt.common.util.MultiDiagramUtil.
+		// addEAnnotationReferenceToDiagram(
+		// org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin.getInstance(), newElement);
+		// }
 		return newElement;
 	}
 
@@ -53,6 +90,14 @@ public class CommentCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected EClass getEClassToEdit() {
+
+		EObject eObject = getElementToEdit();
+		if (eObject != null) {
+			return eObject.eClass();
+		}
+		if (eClass != null) {
+			return eClass;
+		}
 		return UMLPackage.eINSTANCE.getElement();
 	}
 
@@ -60,11 +105,15 @@ public class CommentCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
+
 		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
-		return container;
+		if (container != null) {
+			return container;
+		}
+		return eObject;
 	}
 
 }

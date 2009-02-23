@@ -27,6 +27,10 @@
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="&quot;RemoveOrphanView&quot;"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       <domainDiagramElement
           href="UML.genmodel#//uml/Package"/>
       <childNodes
@@ -601,14 +605,6 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanNodeViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;CANONICAL_CONNECTION&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOphanConnectionViewClazzPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
@@ -962,14 +958,6 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanNodeViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;CANONICAL_CONNECTION&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOphanConnectionViewClazzPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
@@ -1256,14 +1244,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanNodeViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;CANONICAL_CONNECTION&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOphanConnectionViewClazzPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
@@ -2452,14 +2432,6 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanNodeViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;CANONICAL_CONNECTION&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOphanConnectionViewClazzPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
@@ -2810,14 +2782,6 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanNodeViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;CANONICAL_CONNECTION&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOphanConnectionViewClazzPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
@@ -3053,14 +3017,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanNodeViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;CANONICAL_CONNECTION&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOphanConnectionViewClazzPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
@@ -4963,6 +4919,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7001"
@@ -4980,6 +4940,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getSlotCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7002"
@@ -4997,6 +4961,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7003"
@@ -5014,6 +4982,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7004"
@@ -5031,6 +5003,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7014"
@@ -5049,6 +5025,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getTemplateParameterRectangle"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7005"
@@ -5066,6 +5046,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7006"
@@ -5083,6 +5067,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7007"
@@ -5100,6 +5088,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7008"
@@ -5117,6 +5109,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7009"
@@ -5136,6 +5132,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPackageableElementFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7022"
@@ -5153,6 +5153,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getSlotCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7023"
@@ -5170,6 +5174,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7024"
@@ -5187,6 +5195,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7025"
@@ -5204,6 +5216,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7026"
@@ -5221,6 +5237,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7027"
@@ -5238,6 +5258,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7028"
@@ -5255,6 +5279,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7029"
@@ -5272,6 +5300,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7030"
@@ -5291,6 +5323,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPackageableElementFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7031"
@@ -5308,6 +5344,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getEnumerationLiteralCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7010"
@@ -5327,6 +5367,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPackageableElementFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7011"
@@ -5344,6 +5388,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7012"
@@ -5361,6 +5409,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7013"
@@ -5378,6 +5430,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7032"
@@ -5395,6 +5451,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7033"
@@ -5412,6 +5472,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7015"
@@ -5429,6 +5493,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getEnumerationLiteralCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7016"
@@ -5448,6 +5516,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPackageableElementFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7017"
@@ -5465,6 +5537,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7018"
@@ -5482,6 +5558,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7019"
@@ -5499,6 +5579,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7020"
@@ -5516,6 +5600,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7021"
@@ -5533,6 +5621,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <palette>
         <groups

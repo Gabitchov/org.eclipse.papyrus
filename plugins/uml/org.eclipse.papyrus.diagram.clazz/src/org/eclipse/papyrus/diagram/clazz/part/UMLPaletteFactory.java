@@ -266,6 +266,7 @@ public class UMLPaletteFactory {
 	private ToolEntry createDependency4CreationTool() {
 		List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
 		types.add(UMLElementTypes.Dependency_4008);
+		types.add(UMLElementTypes.Dependency_4018);
 		LinkToolEntry entry = new LinkToolEntry(Messages.Dependency4CreationTool_title, Messages.Dependency4CreationTool_desc, types);
 		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Dependency_4008));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -384,7 +385,7 @@ public class UMLPaletteFactory {
 		types.add(UMLElementTypes.Model_3024);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Model1CreationTool_title, Messages.Model1CreationTool_desc, types);
 		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Model_2005));
-		entry.setLargeIcon(entry.getSmallIcon());
+		entry.setLargeIcon(UMLDiagramEditorPlugin.findImageDescriptor("")); //$NON-NLS-1$
 		return entry;
 	}
 
@@ -529,7 +530,6 @@ public class UMLPaletteFactory {
 		paletteContainer.add(createAssociation2CreationTool());
 		paletteContainer.add(createAssociationClass3CreationTool());
 		paletteContainer.add(createDependency4CreationTool());
-		paletteContainer.add(createBranchDependencyCreationTool());
 		paletteContainer.add(createElementImport5CreationTool());
 		paletteContainer.add(createGeneralization6CreationTool());
 		paletteContainer.add(createInterfaceRealization7CreationTool());

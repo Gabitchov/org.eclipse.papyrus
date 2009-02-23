@@ -107,7 +107,7 @@
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-         id="ClassPresentation">
+         id="PapyrusUMLClassDiagramPresentation">
          <Priority name="Lowest"/>
          <ViewId id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -120,7 +120,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="ClassPresentationIDE">
+         id="PapyrusUMLClassDiagramPresentationIDE">
          <Priority name="Lowest"/>
          <ViewId id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -130,7 +130,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="ClassRender">
+            id="PapyrusUMLClassDiagramRender">
          <Priority name="Lowest"/>
          <ViewId id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -142,9 +142,9 @@
       </GlobalActionHandlerProvider>
    </extension>
 <extension point="org.eclipse.core.runtime.preferences">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
-   </extension>
+		<?gmfgen generated="true"?>
+		<initializer class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
+	</extension>
 <extension point="org.eclipse.ui.preferencePages">
 
 	<page 
@@ -378,7 +378,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -1287,7 +1287,7 @@
       </actionBarContributor>
    </extension>
    <extension id="ValidationContributionItemProvider" name="Validation"
-     point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
       <?gmfgen generated="true"?>
       <contributionItemProvider
          class="org.eclipse.papyrus.diagram.clazz.providers.UMLValidationProvider">

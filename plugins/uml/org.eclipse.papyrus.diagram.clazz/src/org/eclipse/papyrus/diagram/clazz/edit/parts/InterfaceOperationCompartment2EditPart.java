@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditP
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceOperationCompartment2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 
@@ -81,6 +82,7 @@ public class InterfaceOperationCompartment2EditPart extends ListCompartmentEditP
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new
 		// org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceOperationCompartment2CanonicalEditPolicy());
 
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 	}
 
 	/**

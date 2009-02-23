@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Association2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ClassCreateCommand;
@@ -41,6 +42,23 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
+
+		private Diagram diagram;
+
+		/**
+		 * @generated
+		 */
+		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {
+			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
+			this.diagram = currentDiagram;
+		}
+
+	}
 
 	/**
 	 * @generated
@@ -144,21 +162,11 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
-
-		/**
-		 * @generated
-		 */
-		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req) {
-			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
+		Diagram currentDiagram = null;
+		if (getHost() instanceof IGraphicalEditPart) {
+			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView().getDiagram();
 		}
-
+		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
 	}
 
 }

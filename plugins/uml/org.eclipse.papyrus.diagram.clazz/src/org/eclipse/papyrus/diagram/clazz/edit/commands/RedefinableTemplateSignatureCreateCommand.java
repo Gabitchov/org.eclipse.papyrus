@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.uml2.uml.RedefinableTemplateSignature;
 import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -25,6 +26,32 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class RedefinableTemplateSignatureCreateCommand extends CreateElementCommand {
+
+	/**
+	 * @generated
+	 */
+	private EClass eClass = null;
+
+	/**
+	 * @generated
+	 */
+	private EObject eObject = null;
+
+	/**
+	 * @generated
+	 */
+	public RedefinableTemplateSignatureCreateCommand(CreateElementRequest req, EObject eObject) {
+		super(req);
+		this.eObject = eObject;
+		this.eClass = eObject != null ? eObject.eClass() : null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static RedefinableTemplateSignatureCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new RedefinableTemplateSignatureCreateCommand(req, eObject);
+	}
 
 	/**
 	 * @generated
@@ -37,11 +64,15 @@ public class RedefinableTemplateSignatureCreateCommand extends CreateElementComm
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
+
 		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
-		return container;
+		if (container != null) {
+			return container;
+		}
+		return eObject;
 	}
 
 	/**
@@ -59,7 +90,36 @@ public class RedefinableTemplateSignatureCreateCommand extends CreateElementComm
 	 * @generated
 	 */
 	protected EClass getEClassToEdit() {
+
+		EObject eObject = getElementToEdit();
+		if (eObject != null) {
+			return eObject.eClass();
+		}
+		if (eClass != null) {
+			return eClass;
+		}
 		return UMLPackage.eINSTANCE.getTemplateableElement();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected EObject doDefaultElementCreation() {
+		RedefinableTemplateSignature newElement = (RedefinableTemplateSignature) super.doDefaultElementCreation();
+		// code used in MOSKitt approach in order to manage "delete from diagram"
+		// if (newElement != null) {
+		//	
+		// org.eclipse.gmf.runtime.notation.Diagram diagram = es.cv.gvcase.mdt.common.util.MDTUtil.getDiagramFromRequest(getRequest());
+		// if (diagram != null) {
+		// es.cv.gvcase.mdt.common.util.MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+		// }
+		// else {
+		// es.cv.gvcase.mdt.common.util.MultiDiagramUtil.
+		// addEAnnotationReferenceToDiagram(
+		// org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin.getInstance(), newElement);
+		// }
+		// }
+		return newElement;
 	}
 
 }

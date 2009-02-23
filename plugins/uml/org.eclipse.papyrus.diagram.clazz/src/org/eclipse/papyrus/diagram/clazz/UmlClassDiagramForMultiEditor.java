@@ -46,20 +46,17 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * An editor to be used in multitabs editor. This editor extends the original
- * UML Activity Diagram.
+ * An editor to be used in multitabs editor. This editor extends the original UML Activity Diagram.
  * 
  * @author dumoulin
  * 
  */
-public class UmlClassDiagramForMultiEditor extends
-		org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor {
+public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor {
 
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
-			.getBundledImageDescriptor(UmlClassDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlClassDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/**
 	 * The location of diagram icon in the plug-in
@@ -81,8 +78,7 @@ public class UmlClassDiagramForMultiEditor extends
 	/**
 	 * @generated NOT
 	 */
-	public UmlClassDiagramForMultiEditor(Diagram diagram,
-			GmfEditorContext context) {
+	public UmlClassDiagramForMultiEditor(Diagram diagram, GmfEditorContext context) {
 		super();
 		this.diagram = diagram;
 		this.context = context;
@@ -109,16 +105,13 @@ public class UmlClassDiagramForMultiEditor extends
 		DiagramEditDomain editDomain = (DiagramEditDomain) getDiagramEditDomain();
 
 		if (editDomain != null) {
-			editDomain.setCommandStack(context.getDiagramEditDomain()
-					.getDiagramCommandStack());
-			editDomain.setActionManager(context.getDiagramEditDomain()
-					.getActionManager());
+			editDomain.setCommandStack(context.getDiagramEditDomain().getDiagramCommandStack());
+			editDomain.setActionManager(context.getDiagramEditDomain().getActionManager());
 		}
 	}
 
 	/**
-	 * Creates and register actions with the {@link ActionRegistry} for this
-	 * editor.
+	 * Creates and register actions with the {@link ActionRegistry} for this editor.
 	 */
 	@Override
 	protected void createActions() {
@@ -160,8 +153,7 @@ public class UmlClassDiagramForMultiEditor extends
 	 */
 	final protected IDocumentProvider getDocumentProvider(IEditorInput input) {
 		// System.out.println("getDocumentProvider(IEditorInput input)");
-		if (input instanceof IFileEditorInput
-				|| input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			return context.getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
@@ -190,8 +182,7 @@ public class UmlClassDiagramForMultiEditor extends
 	 * 
 	 */
 	@Override
-	public void init(IEditorSite site, IEditorInput input)
-			throws PartInitException {
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		// Set name after calling super.init()
 		setPartName(getDiagram().getName());
@@ -203,29 +194,25 @@ public class UmlClassDiagramForMultiEditor extends
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer()
-								.nativeToJava(data);
-					}
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+			}
 
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 
 	}
 
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		if (getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite()
-					.getPage().getActiveEditor();
+			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite().getPage().getActiveEditor();
 			// If not the active editor, ignore selection changed.
 			if (this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());
@@ -249,8 +236,7 @@ public class UmlClassDiagramForMultiEditor extends
 	 * @generated
 	 */
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
-				|| input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			setDocumentProvider(context.getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
@@ -278,10 +264,8 @@ public class UmlClassDiagramForMultiEditor extends
 			// and to
 			// set the diagram to the fragment.
 			// First, compute the URI
-			URIEditorInput uriInput = new URIEditorInput(EcoreUtil
-					.getURI(diagram));
-			System.err.println(this.getClass().getSimpleName() + ".setInput("
-					+ uriInput.toString() + ")");
+			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(diagram));
+			System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")");
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
 			String title = EditorMessages.Editor_error_setinput_title;

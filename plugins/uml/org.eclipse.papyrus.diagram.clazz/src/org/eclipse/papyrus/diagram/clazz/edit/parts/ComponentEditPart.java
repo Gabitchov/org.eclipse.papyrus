@@ -36,8 +36,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOphanConnectionViewClazzPolicy;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanNodeViewPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ComponentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -332,8 +330,6 @@ public class ComponentEditPart extends AbstractBorderedShapeEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new RemoveOrphanNodeViewPolicy());
-		installEditPolicy("CANONICAL_CONNECTION", new RemoveOphanConnectionViewClazzPolicy()); //$NON-NLS-1$
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
