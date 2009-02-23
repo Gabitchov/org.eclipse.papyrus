@@ -58,9 +58,11 @@ protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notificatio
 
 «DEFINE specificHandleNotificationEventBody FOR papyrusgmfgenextension::PropertyRefreshHook-»
 //«this.comment»
+if (resolveSemanticElement() != null) {
 if(«this.triggeringCondition»){
 	«this.action»;
 	refreshVisuals();
+}
 }
 «ENDDEFINE»
 «REM»END: PapyrusGenCode«ENDREM»

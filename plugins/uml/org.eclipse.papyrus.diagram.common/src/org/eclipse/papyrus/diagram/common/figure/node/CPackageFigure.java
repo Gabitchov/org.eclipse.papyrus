@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.Graphics;
@@ -51,7 +51,9 @@ public class CPackageFigure extends CNamedElementFigure {
 	 */
 	public ShapeCompartmentFigure getGMFPackageableElementContainer() {
 		if (getPackageableElementContainer() != null) {
-			return (ShapeCompartmentFigure) getPackageableElementContainer().getChildren().get(0);
+			if (getPackageableElementContainer().getChildren().size() > 0) {
+				return (ShapeCompartmentFigure) getPackageableElementContainer().getChildren().get(0);
+			}
 		}
 		return null;
 	}
@@ -177,7 +179,9 @@ public class CPackageFigure extends CNamedElementFigure {
 			Rectangle container = getPackageableElementContainer().getBounds().getCopy();
 			container.height = this.getBounds().height - headerBound.height;
 
-			getGMFPackageableElementContainer().setBounds(container);
+			if (getGMFPackageableElementContainer() != null) {
+				getGMFPackageableElementContainer().setBounds(container);
+			}
 			getPackageableElementContainer().setBounds(container);
 			graphics.pushState();
 			getPackageableElementContainer().paint(graphics);
