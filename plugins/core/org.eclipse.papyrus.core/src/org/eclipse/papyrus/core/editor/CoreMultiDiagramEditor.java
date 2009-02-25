@@ -101,11 +101,11 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	/** ContentOutline registry */
 	private ContentOutlineRegistry contentOutlineRegistry;
 
-	/** ActionBarContributor Registry. Allows to get an ActionBar by its Id.
-	 * The registry is initialized from the Eclipse extension mechanism.
+	/**
+	 * ActionBarContributor Registry. Allows to get an ActionBar by its Id. The registry is initialized from the Eclipse extension mechanism.
 	 */
 	private ActionBarContributorRegistry actionBarContributorRegistry;
-	
+
 	/**
 	 * Context associated to this backbone editor.
 	 */
@@ -126,6 +126,16 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 
 	/** gef editing domain shared among all editors in this multi diagram editor */
 	private DiagramEditDomain diagramEditDomain;
+
+	/**
+	 * My editing domain provider.
+	 */
+	private IEditingDomainProvider domainProvider = new IEditingDomainProvider() {
+
+		public EditingDomain getEditingDomain() {
+			return CoreMultiDiagramEditor.this.defaultContext.getTransactionalEditingDomain();
+		}
+	};
 
 	/**
 	 * Listening on diagram changes. Only listen on diagram add/delete
@@ -175,24 +185,24 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 
 	/**
 	 * Get the EditorActionBarContributor that should be associated with the editor of the specified model.
+	 * 
 	 * @see org.eclipse.papyrus.sasheditor.sash.IMultiEditorNestedPartManager#getActionBarContributor(java.lang.Object)
 	 * @param editorModel
 	 * @return
-	 * @throws MultiDiagramException 
-	 *
+	 * @throws MultiDiagramException
+	 * 
 	 */
-	public EditorActionBarContributor getActionBarContributor(Object editorModel)  {
-		
-		
+	public EditorActionBarContributor getActionBarContributor(Object editorModel) {
+
 		try {
 			Object contributorId = getEditorRegistry().getEditorDescriptorFor(editorModel).getActionBarContributorId();
 			return getActionBarContributorRegistry().getActionBarContributor(contributorId);
 		} catch (BackboneException e) {
 			log.warning(e.getMessage());
-//			e.printStackTrace();
+			// e.printStackTrace();
 		} catch (MultiDiagramException e) {
 			log.warning(e.getMessage());
-//			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return null;
 	}
@@ -263,33 +273,31 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 
 	/**
 	 * Get the ActionBarContributorRegistry. Creates it if necessary.
+	 * 
 	 * @return
 	 */
-	public ActionBarContributorRegistry getActionBarContributorRegistry()
-	{
-		if(actionBarContributorRegistry != null)
+	public ActionBarContributorRegistry getActionBarContributorRegistry() {
+		if (actionBarContributorRegistry != null)
 			return actionBarContributorRegistry;
-		
+
 		// Try to got it from CoreComposedActionBarContributor
 		// The ActionBarContributorRegistry is initialized by the Contributor.
 		// Get it from the contributor.
 		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
-		if(contributor instanceof CoreComposedActionBarContributor)
-		{
+		if (contributor instanceof CoreComposedActionBarContributor) {
 			log.info(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
-			return ((CoreComposedActionBarContributor)contributor).getActionBarContributorRegistry();
-		}
-		else
-		{
+			return ((CoreComposedActionBarContributor) contributor).getActionBarContributorRegistry();
+		} else {
 			// Create a registry.
 			log.warning(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
 			return createActionBarContributorRegistry();
 		}
-			
+
 	}
-	
+
 	/**
 	 * Create the ActionBarContributorRegistry.
+	 * 
 	 * @return
 	 */
 	private ActionBarContributorRegistry createActionBarContributorRegistry() {
@@ -334,7 +342,8 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		// EMF requirements
 		if (IEditingDomainProvider.class == adapter) {
 
-			return (IEditingDomainProvider) defaultContext.getTransactionalEditingDomain().getResourceSet();
+			// return (IEditingDomainProvider) defaultContext.getTransactionalEditingDomain().getResourceSet();
+			return domainProvider;
 		}
 
 		// GEF diagram requirements
@@ -633,6 +642,5 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 			return null;
 		}
 	}
-
 
 }
