@@ -45,8 +45,6 @@ public class AbstractionCreateCommand extends CreateElementCommand {
 	 */
 	private final EObject source;
 
-	// test
-
 	/**
 	 * @generated
 	 */
