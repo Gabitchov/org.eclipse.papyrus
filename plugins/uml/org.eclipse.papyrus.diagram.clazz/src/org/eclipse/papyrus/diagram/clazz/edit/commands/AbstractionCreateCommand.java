@@ -38,17 +38,19 @@ public class AbstractionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	private Package container;
+
+	/**
+	 * @generated
+	 */
 	private final EObject source;
+
+	// test
 
 	/**
 	 * @generated
 	 */
 	private final EObject target;
-
-	/**
-	 * @generated
-	 */
-	private Package container;
 
 	/**
 	 * @generated
@@ -99,6 +101,16 @@ public class AbstractionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	protected ConfigureRequest createConfigureRequest() {
+		ConfigureRequest request = super.createConfigureRequest();
+		request.setParameter(CreateRelationshipRequest.SOURCE, getSource());
+		request.setParameter(CreateRelationshipRequest.TARGET, getTarget());
+		return request;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected EObject doDefaultElementCreation() {
 		Abstraction newElement = UMLFactory.eINSTANCE.createAbstraction();
 		getContainer().getPackagedElements().add(newElement);
@@ -106,13 +118,6 @@ public class AbstractionCreateCommand extends CreateElementCommand {
 		newElement.getSuppliers().add(getTarget());
 		UMLElementTypes.init_Abstraction_4006(newElement);
 		return newElement;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EClass getEClassToEdit() {
-		return UMLPackage.eINSTANCE.getPackage();
 	}
 
 	/**
@@ -128,18 +133,15 @@ public class AbstractionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected ConfigureRequest createConfigureRequest() {
-		ConfigureRequest request = super.createConfigureRequest();
-		request.setParameter(CreateRelationshipRequest.SOURCE, getSource());
-		request.setParameter(CreateRelationshipRequest.TARGET, getTarget());
-		return request;
+	public Package getContainer() {
+		return container;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void setElementToEdit(EObject element) {
-		throw new UnsupportedOperationException();
+	protected EClass getEClassToEdit() {
+		return UMLPackage.eINSTANCE.getPackage();
 	}
 
 	/**
@@ -159,7 +161,7 @@ public class AbstractionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public Package getContainer() {
-		return container;
+	protected void setElementToEdit(EObject element) {
+		throw new UnsupportedOperationException();
 	}
 }
