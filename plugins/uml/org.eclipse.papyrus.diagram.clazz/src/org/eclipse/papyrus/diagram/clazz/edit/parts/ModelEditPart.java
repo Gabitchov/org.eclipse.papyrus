@@ -163,10 +163,13 @@ public class ModelEditPart extends DiagramEditPart {
 		return super.getAdapter(adapter);
 	}
 
+	// tempory code to see with Cedric
 	public DragTracker getDragTracker(Request req) {
 		if (req instanceof SelectionRequest && ((SelectionRequest) req).getLastButtonPressed() == 3)
 			return new DeselectAllTracker(this);
+		// tempory code
 		return new PapyrusRubberbandDragTracker();
+
 	}
 
 	/**

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorPart;
@@ -22,11 +22,15 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * Base class for multipage editors with sash windows. sash - fenetre a guillotine pane - carreaux
  * 
- * This class should be subclassed, and method {@link createTilePartContainerModel()} must be implemented. 
- * This method should return a {@link ISashWindowsModelManager} instance. This instance will be used 
- * to interact with the model representing sashes, and to create editors when requested.
+ * This class should be subclassed, and method {@link createTilePartContainerModel()} must be implemented. This method should return a {@link ISashWindowsModelManager} instance. This instance will be
+ * used to interact with the model representing sashes, and to create editors when requested.
  */
-public abstract class SashMultiPageEditorPart <T> extends MultiPageEditorPart implements IMultiEditorNestedPartManager {
+public abstract class SashMultiPageEditorPart<T> extends MultiPageEditorPart implements IMultiEditorNestedPartManager {
+
+	// Cedric : Tempory code! to test
+	public TilePartContainer<T> getRootContainer() {
+		return rootContainer;
+	}
 
 	/** State of the editor */
 	private boolean isActive;
@@ -69,7 +73,6 @@ public abstract class SashMultiPageEditorPart <T> extends MultiPageEditorPart im
 		}
 	};
 
-
 	/**
 	 * Constructor.
 	 */
@@ -111,10 +114,10 @@ public abstract class SashMultiPageEditorPart <T> extends MultiPageEditorPart im
 	@Override
 	@SuppressWarnings(value = "unchecked")
 	public Object getAdapter(Class adapter) {
-		
-		if(DeveloperDebug.class.isAssignableFrom(adapter))
+
+		if (DeveloperDebug.class.isAssignableFrom(adapter))
 			return getDeveloperDebug();
-		
+
 		return super.getAdapter(adapter);
 	}
 
@@ -226,28 +229,28 @@ public abstract class SashMultiPageEditorPart <T> extends MultiPageEditorPart im
 	}
 
 	private DeveloperDebug developerDebug;
-	
+
 	/**
 	 * Get the developerDebug object.
+	 * 
 	 * @return
 	 */
 	private DeveloperDebug getDeveloperDebug() {
-	  if(developerDebug == null)
-		  developerDebug = new DeveloperDebug();
-	  return developerDebug;
+		if (developerDebug == null)
+			developerDebug = new DeveloperDebug();
+		return developerDebug;
 	}
+
 	/**
-	 * Class that can be returned with getAdapter.
-	 * It provides methods useful for debug.
-	 * Such methods allows to see the internal state of the sash system.
-	 * This class is not intended to be used in normal stuff.
-	 * This class may be not maintained in the future.
+	 * Class that can be returned with getAdapter. It provides methods useful for debug. Such methods allows to see the internal state of the sash system. This class is not intended to be used in
+	 * normal stuff. This class may be not maintained in the future.
+	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
 	public class DeveloperDebug {
-		public void showSashWindowInfo()
-		{
+
+		public void showSashWindowInfo() {
 			rootContainer.showTilesStatus();
 		}
 	}
