@@ -117,8 +117,8 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	private DiagramNotifier diagramNotifier;
 
 	/**
-     * 
-     */
+	 * 
+	 */
 	private TabbedPropertySheetPage tabbedPropertySheetPage = null;
 
 	/** Flag reflecting the editor state. The flag is set by listeners on model changes */
@@ -420,7 +420,11 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		// Show the model Explorer View
 		// TODO Use the extension mechanism ?
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+			if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
+				if (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null) {
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+				}
+			}
 		} catch (PartInitException e) {
 			String message = "Error while  showing the Model Explorer view." + e.getMessage();
 			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
