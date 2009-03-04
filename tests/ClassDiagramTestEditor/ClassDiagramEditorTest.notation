@@ -269,4 +269,439 @@
     <styles xsi:type="notation:DiagramStyle"/>
     <element href="ClassDiagramEditorTest.uml#_nFXIEAjUEd6s1Ji8suGDvw"/>
   </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="MovementResizing" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_nFXIEwjUEd6s1Ji8suGDvw"/>
+      <references href="ClassDiagramEditorTest.uml#_nFXIEgjUEd6s1Ji8suGDvw"/>
+      <references href="ClassDiagramEditorTest.uml#_rkCLcAjXEd6s1Ji8suGDvw"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_nFXIEgjUEd6s1Ji8suGDvw"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="66" y="31"/>
+    </children>
+    <children type="2002">
+      <children type="5004"/>
+      <children type="5005"/>
+      <children type="5006"/>
+      <children type="7002">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <children type="7003">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <children type="7004">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_rkCLcAjXEd6s1Ji8suGDvw"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="175" y="134" width="345" height="117"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_nFXIEAjUEd6s1Ji8suGDvw"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="CreationDeletionTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_USWtUQjaEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_USWtUQjaEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="239" y="65"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_USWtUAjaEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="ElementDropTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_USWtVAjaEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_uZbj4AjaEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_USWtVAjaEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="54" y="23"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_USWtUAjaEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="MovementResizingTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_USWtUgjaEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_uZbj4AjaEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_USWtUgjaEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="65" y="23"/>
+    </children>
+    <children type="2011">
+      <children type="5037"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_uZbj4AjaEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="126" y="158" width="179" height="38"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_USWtUAjaEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="MovementIntoContainer" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_USWtUwjaEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_USWtVQjaEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_uZbj4AjaEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_USWtUwjaEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="58" y="17"/>
+    </children>
+    <children type="2007">
+      <children type="5025"/>
+      <children type="5026"/>
+      <children type="5027"/>
+      <children type="7016">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_USWtVQjaEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="271" y="184" width="366" height="260"/>
+    </children>
+    <children type="2011">
+      <children type="5037"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_uZbj4AjaEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="76" y="145"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_USWtUAjaEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="CreationDeletionTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_eY9UcQjbEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_eY9UcQjbEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="86" y="8"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_eY9UcAjbEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="MovementResizingTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_eY9UcgjbEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_l6Rw0AjbEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_eY9UcgjbEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="98" y="19"/>
+    </children>
+    <children type="2010">
+      <children type="5034"/>
+      <children type="5035"/>
+      <children type="5036"/>
+      <children type="7020">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <children type="7021">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_l6Rw0AjbEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="159" y="199" width="335" height="89"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_eY9UcAjbEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="MovementIntoDiagramTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_eY9UcwjbEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_eY9UdQjbEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_l6Rw0AjbEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_eY9UcwjbEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="123" y="27"/>
+    </children>
+    <children type="2007">
+      <children type="5025"/>
+      <children type="5026"/>
+      <children type="5027"/>
+      <children type="7016">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_eY9UdQjbEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="102" y="293" width="404" height="148"/>
+    </children>
+    <children type="2010">
+      <children type="5034"/>
+      <children type="5035"/>
+      <children type="5036"/>
+      <children type="7020">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <children type="7021">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_l6Rw0AjbEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="67" y="145"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_eY9UcAjbEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="DropTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_eY9UdAjbEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_l6Rw0AjbEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_eY9UdAjbEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="40" y="24"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_eY9UcAjbEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="CreationDeletionTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_xrkYIQjcEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_xrkYIQjcEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="131" y="47"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_xrkYIAjcEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="MovementResizingTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_xrkYIgjcEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_xrkYIgjcEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="79" y="25"/>
+    </children>
+    <children type="2006">
+      <children type="5022"/>
+      <children type="5023"/>
+      <children type="5024"/>
+      <children type="7015">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_GtLwwAjdEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="45" y="133" width="336" height="90"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_xrkYIAjcEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="MovementIntoAContainer" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_xrkYIwjcEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_xrkYJQjcEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_GtLwwAjdEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_xrkYIwjcEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="113" y="21"/>
+    </children>
+    <children type="2007">
+      <children type="5025"/>
+      <children type="5026"/>
+      <children type="5027"/>
+      <children type="7016">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_xrkYJQjcEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="71" y="283" width="563" height="151"/>
+    </children>
+    <children type="2006">
+      <children type="5022"/>
+      <children type="5023"/>
+      <children type="5024"/>
+      <children type="7015">
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_GtLwwAjdEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="171" y="139"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_xrkYIAjcEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="DropTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_xrkYJAjcEd6ftJNsxnHJwA"/>
+      <references href="ClassDiagramEditorTest.uml#_GtLwwAjdEd6ftJNsxnHJwA"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_xrkYJAjcEd6ftJNsxnHJwA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="179" y="39"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_xrkYIAjcEd6ftJNsxnHJwA"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="CreationDeletionTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_uL595gjdEd6M04pHOkSelQ"/>
+      <references href="ClassDiagramEditorTest.uml#_uL594QjdEd6M04pHOkSelQ"/>
+    </eAnnotations>
+    <children type="2006">
+      <children type="5022"/>
+      <children type="5023"/>
+      <children type="5024"/>
+      <children type="7015">
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_GecUsAjeEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_uL595gjdEd6M04pHOkSelQ"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="101" y="172" height="159"/>
+    </children>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_uL594QjdEd6M04pHOkSelQ"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="72" y="21"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_uL594AjdEd6M04pHOkSelQ"/>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="MovementTest" measurementUnit="Pixel">
+    <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+      <references href="ClassDiagramEditorTest.uml#_uL594gjdEd6M04pHOkSelQ"/>
+    </eAnnotations>
+    <children type="2012">
+      <children type="5038"/>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_uL594gjdEd6M04pHOkSelQ"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="41" y="35"/>
+    </children>
+    <children type="2006">
+      <children type="5022"/>
+      <children type="5023"/>
+      <children type="5024"/>
+      <children type="7015">
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_XBvdAAjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_XX89kAjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_XvWJ4AjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_YC3i0AjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_YVye0AjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_YvbG0AjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_ZCo9wAjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_Za7h8AjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3017">
+          <element href="ClassDiagramEditorTest.uml#_ZwilkAjgEd6M04pHOkSelQ"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:DrawerStyle"/>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" fontHeight="8" fillColor="0" lineColor="0"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="ClassDiagramEditorTest.uml#_VvWBAAjgEd6M04pHOkSelQ"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="113" y="151" width="300" height="220"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="ClassDiagramEditorTest.uml#_uL594AjdEd6M04pHOkSelQ"/>
+  </notation:Diagram>
 </xmi:XMI>

@@ -55,4 +55,79 @@
       <element href="ClassDiagramEditorTest.notation#/10"/>
     </semanticModel>
   </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/11"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/12"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/13"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/14"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/15"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/16"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/17"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/18"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/19"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/20"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/21"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/22"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/23"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/24"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/25"/>
+    </semanticModel>
+  </contained>
 </di:Diagram>
