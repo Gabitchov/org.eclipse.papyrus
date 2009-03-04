@@ -185,7 +185,7 @@ Action:&#xD;
       <body>Name: test of move on Element&#xD;
 Goal: test the movement of an element into a container, including undo/redo.&#xD;
 Actions:&#xD;
-a1 - move the  element into the package called Container.&#xD;
+a1 - move the  element into the enumeration called Container.&#xD;
 a2 - undo and redo.</body>
     </ownedComment>
     <ownedComment xmi:id="_uL595AjdEd6M04pHOkSelQ">
@@ -209,7 +209,9 @@ Actions:&#xD;
       <ownedLiteral xmi:id="_ZCo9wAjgEd6M04pHOkSelQ" name="EnumerationLiteral6"/>
       <ownedLiteral xmi:id="_Za7h8AjgEd6M04pHOkSelQ" name="EnumerationLiteral7"/>
       <ownedLiteral xmi:id="_ZwilkAjgEd6M04pHOkSelQ" name="EnumerationLiteral8"/>
+      <ownedLiteral xmi:id="_nvRU0AjhEd6tRLTiTp-cYA" name="EnumerationLiteral0"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_tU5gkAjhEd6tRLTiTp-cYA" name="Container"/>
   </packagedElement>
   <profileApplication xmi:id="_RzX4UQisEd6_MpEAxXq7Hg">
     <eAnnotations xmi:id="_RzX4UgisEd6_MpEAxXq7Hg" source="http://www.eclipse.org/uml2/2.0.0/UML">

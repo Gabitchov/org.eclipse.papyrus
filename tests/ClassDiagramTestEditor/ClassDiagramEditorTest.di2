@@ -130,4 +130,14 @@
       <element href="ClassDiagramEditorTest.notation#/25"/>
     </semanticModel>
   </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/26"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di:Diagram" name="tab.window" type="tab.window">
+    <semanticModel xsi:type="di:CoreSemanticModelBridge">
+      <element href="ClassDiagramEditorTest.notation#/27"/>
+    </semanticModel>
+  </contained>
 </di:Diagram>
