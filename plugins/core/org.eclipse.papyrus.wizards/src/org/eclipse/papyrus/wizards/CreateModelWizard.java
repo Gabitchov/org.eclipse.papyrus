@@ -29,7 +29,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 
 /**
- * Create new model file and initialize a selected diagram. This wizard create several files : *.di2 : the DI file to store Di diagrams and references all external diagrams like GMF diagrams.
+ * Create new model file and initialize a selected diagram. This wizard create several files : *.di : the DI file to store Di diagrams and references all external diagrams like GMF diagrams.
  * *.notation : the file to store pure GMF diagrams *.uml : the standard UML file to store UML semantics elements. (Model, Package, Class,...)
  * 
  * Those files can be used with the PapyrusEditor (see plugin.xml).

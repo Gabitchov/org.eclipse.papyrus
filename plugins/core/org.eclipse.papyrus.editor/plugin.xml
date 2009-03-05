@@ -6,7 +6,7 @@
             class="org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor"
             contributorClass="org.eclipse.uml2.diagram.clazz.part.UMLDiagramActionBarContributor"
             default="true"
-            extensions="di2"
+            extensions="di"
             icon="icons/papyrus/Papyrus_16x16.gif"
             id="org.eclipse.papyrus.core.papyrusEditor"
             name="Papyrus Editor Core">

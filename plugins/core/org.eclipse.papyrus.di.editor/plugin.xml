@@ -41,7 +41,7 @@
         id = "org.eclipse.papyrus.di.presentation.Di2EditorID"
         name = "%_UI_Di2Editor_label"
         icon = "icons/full/obj16/Di2ModelFile.gif"
-        extensions = "di2"
+        extensions = "di"
         class = "org.eclipse.papyrus.di.presentation.DiEditor" 
         contributorClass="org.eclipse.papyrus.di.presentation.DiActionBarContributor" >
     </editor>

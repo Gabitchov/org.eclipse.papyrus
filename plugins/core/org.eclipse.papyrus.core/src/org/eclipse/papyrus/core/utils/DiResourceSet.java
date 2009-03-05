@@ -238,14 +238,14 @@ public class DiResourceSet {
 	 * Creates a new DiResourceSet, using default for file extensions.
 	 */
 	public DiResourceSet() {
-		this("di2", UMLResource.FILE_EXTENSION, null);
+		this("di", UMLResource.FILE_EXTENSION, null);
 	}
 
 	/**
 	 * Creates a new DiResourceSet, using default for file extensions.
 	 */
 	public DiResourceSet(AdapterFactory adapterFactory) {
-		this("di2", UMLResource.FILE_EXTENSION, adapterFactory);
+		this("di", UMLResource.FILE_EXTENSION, adapterFactory);
 	}
 
 	/**
@@ -373,8 +373,8 @@ public class DiResourceSet {
 					// skip. This is the newly created model :-)
 				}
 				if ("diagram.gmf".equals(type)) { // gmf diagram
-				// EObject realDiagram = (EObject)((CoreSemanticModelBridge)curDiagram.getSemanticModel()).getElement();
-				// SashDiagramModelUtil.openDiagram(realDiagram);
+					// EObject realDiagram = (EObject)((CoreSemanticModelBridge)curDiagram.getSemanticModel()).getElement();
+					// SashDiagramModelUtil.openDiagram(realDiagram);
 					SashDiagramModelUtil.openDiagram(diResource, curDiagram);
 					// Remove old node.
 					// diResource.getContents().remove(curDiagram);
