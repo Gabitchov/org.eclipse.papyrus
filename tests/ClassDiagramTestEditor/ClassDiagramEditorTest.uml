@@ -213,6 +213,40 @@ Actions:&#xD;
     </packagedElement>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_tU5gkAjhEd6tRLTiTp-cYA" name="Container"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_eAmaoAjiEd6tRLTiTp-cYA" name="InstanceSpecificationElementTest">
+    <ownedComment xmi:id="_pLatQAjiEd6tRLTiTp-cYA">
+      <body>Name: creation deletion test&#xD;
+Goal :The purpose is to test the creation, graphical deletion, model deletion&#xD;
+Action:&#xD;
+	a. create the element with undo redo&#xD;
+	b. delete from model with undo redo&#xD;
+	c. do a graphical deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_pLatQQjiEd6tRLTiTp-cYA">
+      <body>Name: Drop Test&#xD;
+Goal: The purpose is to test the drop of element from the model explorer&#xD;
+Actions:&#xD;
+	a. drop the element&#xD;
+	b. undo and redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_pLatQgjiEd6tRLTiTp-cYA">
+      <body>Name: movement and resizing element,&#xD;
+Goal: The purpose is to test here the resizing and the movement of the element in each direction.&#xD;
+Action:&#xD;
+	a. resize in all directions&#xD;
+	b. move the element</body>
+    </ownedComment>
+    <ownedComment xmi:id="_pLatQwjiEd6tRLTiTp-cYA">
+      <body>Name: test of move on Element&#xD;
+Goal: test the movement of an element into a container, including undo/redo.&#xD;
+Actions:&#xD;
+a1 - move the  element into the package called Container.&#xD;
+a2 - undo and redo.</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_eAmapQjiEd6tRLTiTp-cYA" name="Container"/>
+    <packagedElement xmi:type="uml:Constraint" xmi:id="_eAmapgjiEd6tRLTiTp-cYA" name="ConstraintToTest"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_q6uuwAjiEd6tRLTiTp-cYA" name="InstanceSpecificationToTest"/>
+  </packagedElement>
   <profileApplication xmi:id="_RzX4UQisEd6_MpEAxXq7Hg">
     <eAnnotations xmi:id="_RzX4UgisEd6_MpEAxXq7Hg" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
