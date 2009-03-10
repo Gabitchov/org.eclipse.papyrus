@@ -55,6 +55,20 @@ public class ModelEditPart extends DiagramEditPart {
 	 */
 	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
 
+		public boolean isEObjectNode(EObject element) {
+			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
+				return true;
+			}
+			return false;
+		}
+
+		public boolean isEObjectLink(EObject element) {
+			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
+				return true;
+			}
+			return false;
+		}
+
 		public int getEObjectSemanticHint(EObject element) {
 			if (element != null) {
 				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element);
@@ -109,20 +123,6 @@ public class ModelEditPart extends DiagramEditPart {
 				return UMLPackage.eINSTANCE.getElement_OwnedComment();
 			}
 			return null;
-		}
-
-		public boolean isEObjectLink(EObject element) {
-			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
-				return true;
-			}
-			return false;
-		}
-
-		public boolean isEObjectNode(EObject element) {
-			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
-				return true;
-			}
-			return false;
 		}
 	};
 

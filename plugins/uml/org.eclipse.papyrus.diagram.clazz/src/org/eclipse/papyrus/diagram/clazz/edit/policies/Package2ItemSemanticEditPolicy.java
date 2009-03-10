@@ -70,7 +70,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveType2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
@@ -153,7 +153,7 @@ public class Package2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					case Class4EditPart.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case PrimitiveType2EditPart.VISUAL_ID:
+					case PrimitiveTypeEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
 					case DataType2EditPart.VISUAL_ID:

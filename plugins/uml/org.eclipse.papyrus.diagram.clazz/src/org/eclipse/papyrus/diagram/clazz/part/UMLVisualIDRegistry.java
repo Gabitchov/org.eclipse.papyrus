@@ -39,11 +39,6 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static ViewInfo diagramViewInfo = null;
-
-	/**
-	 * @generated
-	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!ModelEditPart.MODEL_ID.equals(containerModelID)) {
@@ -223,13 +218,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PrimitiveTypeEditPart.VISUAL_ID:
-			if (AppliedStereotypePrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PrimitiveTypeName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PrimitiveTypeQualifiedNameEditPart.VISUAL_ID == nodeVisualID) {
+			if (PrimitiveTypeNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -416,14 +405,8 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case PrimitiveType2EditPart.VISUAL_ID:
-			if (AppliedStereotypeChildNodePrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PrimitiveTypeName4EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PrimitiveTypeQualifiedName2EditPart.VISUAL_ID == nodeVisualID) {
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			if (PrimitiveTypeNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -532,7 +515,7 @@ public class UMLVisualIDRegistry {
 			if (Class4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (PrimitiveType2EditPart.VISUAL_ID == nodeVisualID) {
+			if (PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (DataType2EditPart.VISUAL_ID == nodeVisualID) {
@@ -610,7 +593,7 @@ public class UMLVisualIDRegistry {
 			if (Class4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (PrimitiveType2EditPart.VISUAL_ID == nodeVisualID) {
+			if (PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (DataType2EditPart.VISUAL_ID == nodeVisualID) {
@@ -653,7 +636,7 @@ public class UMLVisualIDRegistry {
 			if (Class4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (PrimitiveType2EditPart.VISUAL_ID == nodeVisualID) {
+			if (PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (DataType2EditPart.VISUAL_ID == nodeVisualID) {
@@ -724,7 +707,7 @@ public class UMLVisualIDRegistry {
 			if (Class4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (PrimitiveType2EditPart.VISUAL_ID == nodeVisualID) {
+			if (PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (DataType2EditPart.VISUAL_ID == nodeVisualID) {
@@ -913,16 +896,6 @@ public class UMLVisualIDRegistry {
 			break;
 		}
 		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static ViewInfo getDiagramViewInfo() {
-		if (diagramViewInfo == null) {
-			diagramViewInfo = getPackage_1000ViewInfo();
-		}
-		return diagramViewInfo;
 	}
 
 	/**
@@ -1179,7 +1152,7 @@ public class UMLVisualIDRegistry {
 				return Class4EditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
-				return PrimitiveType2EditPart.VISUAL_ID;
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataType2EditPart.VISUAL_ID;
@@ -1257,7 +1230,7 @@ public class UMLVisualIDRegistry {
 				return Class4EditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
-				return PrimitiveType2EditPart.VISUAL_ID;
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataType2EditPart.VISUAL_ID;
@@ -1300,7 +1273,7 @@ public class UMLVisualIDRegistry {
 				return Class4EditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
-				return PrimitiveType2EditPart.VISUAL_ID;
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataType2EditPart.VISUAL_ID;
@@ -1371,7 +1344,7 @@ public class UMLVisualIDRegistry {
 				return Class4EditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
-				return PrimitiveType2EditPart.VISUAL_ID;
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataType2EditPart.VISUAL_ID;
@@ -1460,6 +1433,67 @@ public class UMLVisualIDRegistry {
 			break;
 		}
 		return -1;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static String getType(int visualID) {
+		return String.valueOf(visualID);
+	}
+
+	// test
+
+	/**
+	 * @generated
+	 */
+	public static int getVisualID(String type) {
+		try {
+			return Integer.parseInt(type);
+		} catch (NumberFormatException e) {
+			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
+				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static int getVisualID(View view) {
+		if (view instanceof Diagram) {
+			if (ModelEditPart.MODEL_ID.equals(view.getType())) {
+				return ModelEditPart.VISUAL_ID;
+			} else {
+				return -1;
+			}
+		}
+		return org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(view.getType());
+	}
+
+	/**
+	 * User can change implementation of this method to handle some specific situations not covered by default logic.
+	 * 
+	 * @generated
+	 */
+	private static boolean isDiagram(Package element) {
+		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static ViewInfo diagramViewInfo = null;
+
+	/**
+	 * @generated
+	 */
+	public static ViewInfo getDiagramViewInfo() {
+		if (diagramViewInfo == null) {
+			diagramViewInfo = getPackage_1000ViewInfo();
+		}
+		return diagramViewInfo;
 	}
 
 	/**
@@ -1894,51 +1928,5 @@ public class UMLVisualIDRegistry {
 		root.addNode(2007, viewInfo);
 
 		return root;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static String getType(int visualID) {
-		return String.valueOf(visualID);
-	}
-
-	// test
-
-	/**
-	 * @generated
-	 */
-	public static int getVisualID(String type) {
-		try {
-			return Integer.parseInt(type);
-		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
-			}
-		}
-		return -1;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static int getVisualID(View view) {
-		if (view instanceof Diagram) {
-			if (ModelEditPart.MODEL_ID.equals(view.getType())) {
-				return ModelEditPart.VISUAL_ID;
-			} else {
-				return -1;
-			}
-		}
-		return org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(view.getType());
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific situations not covered by default logic.
-	 * 
-	 * @generated
-	 */
-	private static boolean isDiagram(Package element) {
-		return true;
 	}
 }

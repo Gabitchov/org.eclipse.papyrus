@@ -548,13 +548,13 @@ public class UMLDomainModelElementTester extends PropertyTester {
 		if (eClass == UMLPackage.eINSTANCE.getNode()) {
 			return true;
 		}
+		if (eClass == UMLPackage.eINSTANCE.getCommunicationPath()) {
+			return true;
+		}
 		if (eClass == UMLPackage.eINSTANCE.getDevice()) {
 			return true;
 		}
 		if (eClass == UMLPackage.eINSTANCE.getExecutionEnvironment()) {
-			return true;
-		}
-		if (eClass == UMLPackage.eINSTANCE.getCommunicationPath()) {
 			return true;
 		}
 		if (eClass == UMLPackage.eINSTANCE.getCombinedFragment()) {

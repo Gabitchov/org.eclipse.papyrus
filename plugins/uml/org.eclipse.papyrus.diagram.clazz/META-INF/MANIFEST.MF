@@ -38,7 +38,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.0",
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
  org.eclipse.papyrus.di;bundle-version="0.7.0",
- org.eclipse.papyrus.preferences
+ org.eclipse.papyrus.preferences,
+ org.eclipse.papyrus.editor;bundle-version="0.7.0"
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin
 Bundle-Vendor: %providerName

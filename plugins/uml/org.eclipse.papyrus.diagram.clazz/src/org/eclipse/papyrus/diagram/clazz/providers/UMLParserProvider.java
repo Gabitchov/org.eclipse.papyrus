@@ -473,32 +473,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser primitiveTypeName_5031Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser primitiveTypeName_5032Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser primitiveTypeName_5057Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser primitiveTypeName_5058Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser primitiveTypeQualifiedName_5033Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser primitiveTypeQualifiedName_5059Parser;
 
 	/**
 	 * @generated
@@ -1551,18 +1531,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	protected IParser createPrimitiveTypeName_5031Parser() {
-
-		// Papyrus Gen code
-		// This code is replaced by a simple parser of apliedstereotype
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser createPrimitiveTypeName_5032Parser() {
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
@@ -1574,50 +1542,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	protected IParser createPrimitiveTypeName_5057Parser() {
-
-		// Papyrus Gen code
-		// This code is replaced by a simple parser of apliedstereotype
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser createPrimitiveTypeName_5058Parser() {
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createPrimitiveTypeQualifiedName_5033Parser() {
-
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_QualifiedName(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("({0})");
-		parser.setEditorPattern("({0})");
-		parser.setEditPattern("({0})");
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createPrimitiveTypeQualifiedName_5059Parser() {
-
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_QualifiedName(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("({0})");
-		parser.setEditorPattern("({0})");
-		parser.setEditPattern("({0})");
 		return parser;
 
 	}
@@ -2709,12 +2637,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getClassName_5029Parser();
 		case ClassQualifiedNameEditPart.VISUAL_ID:
 			return getClassQualifiedName_5030Parser();
-		case AppliedStereotypePrimitiveTypeEditPart.VISUAL_ID:
-			return getPrimitiveTypeName_5031Parser();
-		case PrimitiveTypeName2EditPart.VISUAL_ID:
+		case PrimitiveTypeNameEditPart.VISUAL_ID:
 			return getPrimitiveTypeName_5032Parser();
-		case PrimitiveTypeQualifiedNameEditPart.VISUAL_ID:
-			return getPrimitiveTypeQualifiedName_5033Parser();
 		case AppliedStereotypeDataTypeEditPart.VISUAL_ID:
 			return getDataTypeName_5034Parser();
 		case DataTypeName2EditPart.VISUAL_ID:
@@ -2797,12 +2721,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOperation_3013Parser();
 		case Class5EditPart.VISUAL_ID:
 			return getClass_3014Parser();
-		case AppliedStereotypeChildNodePrimitiveTypeEditPart.VISUAL_ID:
-			return getPrimitiveTypeName_5057Parser();
-		case PrimitiveTypeName4EditPart.VISUAL_ID:
+		case PrimitiveTypeNameEditPartCN.VISUAL_ID:
 			return getPrimitiveTypeName_5058Parser();
-		case PrimitiveTypeQualifiedName2EditPart.VISUAL_ID:
-			return getPrimitiveTypeQualifiedName_5059Parser();
 		case AppliedStereotypeChildNodeDataTypeEditPart.VISUAL_ID:
 			return getDataTypeName_5060Parser();
 		case DataTypeName4EditPart.VISUAL_ID:
@@ -2872,16 +2792,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getPrimitiveTypeName_5031Parser() {
-		if (primitiveTypeName_5031Parser == null) {
-			primitiveTypeName_5031Parser = createPrimitiveTypeName_5031Parser();
-		}
-		return primitiveTypeName_5031Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getPrimitiveTypeName_5032Parser() {
 		if (primitiveTypeName_5032Parser == null) {
 			primitiveTypeName_5032Parser = createPrimitiveTypeName_5032Parser();
@@ -2892,41 +2802,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getPrimitiveTypeName_5057Parser() {
-		if (primitiveTypeName_5057Parser == null) {
-			primitiveTypeName_5057Parser = createPrimitiveTypeName_5057Parser();
-		}
-		return primitiveTypeName_5057Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getPrimitiveTypeName_5058Parser() {
 		if (primitiveTypeName_5058Parser == null) {
 			primitiveTypeName_5058Parser = createPrimitiveTypeName_5058Parser();
 		}
 		return primitiveTypeName_5058Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getPrimitiveTypeQualifiedName_5033Parser() {
-		if (primitiveTypeQualifiedName_5033Parser == null) {
-			primitiveTypeQualifiedName_5033Parser = createPrimitiveTypeQualifiedName_5033Parser();
-		}
-		return primitiveTypeQualifiedName_5033Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getPrimitiveTypeQualifiedName_5059Parser() {
-		if (primitiveTypeQualifiedName_5059Parser == null) {
-			primitiveTypeQualifiedName_5059Parser = createPrimitiveTypeQualifiedName_5059Parser();
-		}
-		return primitiveTypeQualifiedName_5059Parser;
 	}
 
 	/**

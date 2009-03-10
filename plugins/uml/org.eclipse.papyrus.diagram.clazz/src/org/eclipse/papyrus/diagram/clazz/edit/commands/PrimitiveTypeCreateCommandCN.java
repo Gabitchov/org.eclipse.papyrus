@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.emf.ecore.EClass;
@@ -27,7 +14,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class PrimitiveType2CreateCommand extends CreateElementCommand {
+public class PrimitiveTypeCreateCommandCN extends CreateElementCommand {
 
 	/**
 	 * @generated
@@ -42,7 +29,7 @@ public class PrimitiveType2CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public PrimitiveType2CreateCommand(CreateElementRequest req, EObject eObject) {
+	public PrimitiveTypeCreateCommandCN(CreateElementRequest req, EObject eObject) {
 		super(req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -51,14 +38,14 @@ public class PrimitiveType2CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static PrimitiveType2CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new PrimitiveType2CreateCommand(req, eObject);
+	public static PrimitiveTypeCreateCommandCN create(CreateElementRequest req, EObject eObject) {
+		return new PrimitiveTypeCreateCommandCN(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public PrimitiveType2CreateCommand(CreateElementRequest req) {
+	public PrimitiveTypeCreateCommandCN(CreateElementRequest req) {
 		super(req);
 	}
 

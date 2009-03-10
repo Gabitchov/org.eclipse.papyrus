@@ -32,7 +32,7 @@
           key="&quot;RemoveOrphanView&quot;"
           editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       <domainDiagramElement
-          href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3002"
@@ -59,18 +59,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -78,7 +78,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -108,11 +108,11 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Slot"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Slot"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification/slot"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification/slot"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification/slot"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification/slot"/>
         </modelFacet>
       </childNodes>
       <childNodes
@@ -141,18 +141,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -160,7 +160,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             editPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -186,18 +186,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -205,7 +205,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -235,11 +235,11 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/RedefinableTemplateSignature"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/RedefinableTemplateSignature"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/ownedTemplateSignature"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/ownedTemplateSignature"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/ownedTemplateSignature"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/ownedTemplateSignature"/>
         </modelFacet>
       </childNodes>
       <childNodes
@@ -265,11 +265,11 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateParameter"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateParameter"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateSignature/ownedParameter"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateSignature/ownedParameter"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateSignature/parameter"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateSignature/parameter"/>
         </modelFacet>
       </childNodes>
       <childNodes
@@ -298,18 +298,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal/ownedAttribute"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal/ownedAttribute"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -317,7 +317,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -346,18 +346,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/ownedAttribute"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/ownedAttribute"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -365,7 +365,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -394,18 +394,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/ownedOperation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/ownedOperation"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/ownedOperation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/ownedOperation"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -413,7 +413,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             editPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -439,18 +439,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -458,7 +458,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -490,18 +490,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -526,7 +526,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -547,7 +547,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -571,7 +571,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -609,18 +609,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -646,7 +646,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -670,7 +670,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -692,7 +692,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -726,18 +726,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -763,7 +763,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -787,7 +787,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -809,7 +809,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -841,18 +841,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -878,7 +878,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -902,7 +902,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -924,7 +924,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -962,18 +962,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -999,7 +999,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1023,7 +1023,7 @@
               viewPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1048,7 +1048,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1081,18 +1081,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1117,7 +1117,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1139,7 +1139,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1163,7 +1163,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1194,18 +1194,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/EnumerationLiteral"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/EnumerationLiteral"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration/ownedLiteral"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration/ownedLiteral"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration/ownedLiteral"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration/ownedLiteral"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1213,7 +1213,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -1250,18 +1250,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1287,7 +1287,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1311,7 +1311,7 @@
               viewPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1336,7 +1336,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1374,18 +1374,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1411,7 +1411,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1435,7 +1435,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1457,7 +1457,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1485,25 +1485,25 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Reception"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Reception"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedReception"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedReception"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedReception"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedReception"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labelModelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -1532,18 +1532,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1551,7 +1551,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -1580,18 +1580,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1599,7 +1599,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             editPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -1625,18 +1625,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1644,17 +1644,17 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
           visualID="3026"
-          editPartClassName="PrimitiveType2EditPart"
-          itemSemanticEditPolicyClassName="PrimitiveType2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="PrimitiveType2ViewFactory"
-          canonicalEditPolicyClassName="PrimitiveType2CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="PrimitiveType2GraphicalNodeEditPolicy"
-          createCommandClassName="PrimitiveType2CreateCommand"
+          editPartClassName="PrimitiveTypeEditPartCN"
+          itemSemanticEditPolicyClassName="PrimitiveTypeItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="PrimitiveTypeViewFactoryCN"
+          canonicalEditPolicyClassName="PrimitiveTypeCanonicalEditPolicyCN"
+          graphicalNodeEditPolicyClassName="PrimitiveTypeGraphicalNodeEditPolicyCN"
+          createCommandClassName="PrimitiveTypeCreateCommandCN"
           containers="/0/@diagram/@compartments.21 /0/@diagram/@compartments.19 /0/@diagram/@compartments.10 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1662,64 +1662,32 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="PrimitiveTypeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PrimitiveTypeDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PrimitiveTypeDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CPrimitiveFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fStereotypesLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fQualifiedNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PrimitiveTypeDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fStereotypesLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fStereotypesLabel.setText(&quot;&quot;);&#xA;&#xA;fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fStereotypesLabel);&#xA;&#xA;&#xA;&#xA;fNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fNameLabel.setText(&quot;&quot;);&#xA;&#xA;fNameLabel.setFont(FNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fNameLabel);&#xA;&#xA;&#xA;&#xA;fQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fQualifiedNameLabel.setFont(FQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fQualifiedNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getStereotypesLabel() {&#xA;&#x9;&#x9;return fStereotypesLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getNameLabel() {&#xA;&#x9;&#x9;return fNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getQualifiedNameLabel() {&#xA;&#x9;&#x9;return fQualifiedNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 204, 204, 204);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 242, 242, 242);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FSTEREOTYPESLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PrimitiveTypeFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PrimitiveType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PrimitiveType"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5057"
-            editPartClassName="AppliedStereotypeChildNodePrimitiveTypeEditPart"
-            itemSemanticEditPolicyClassName="PrimitiveTypeName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="PrimitiveTypeName3ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getStereotypesLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5058"
-            editPartClassName="PrimitiveTypeName4EditPart"
-            itemSemanticEditPolicyClassName="PrimitiveTypeName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="PrimitiveTypeName4ViewFactory"
+            editPartClassName="PrimitiveTypeNameEditPartCN"
+            itemSemanticEditPolicyClassName="PrimitiveTypeNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="PrimitiveTypeNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1734,32 +1702,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5059"
-            editPartClassName="PrimitiveTypeQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="PrimitiveTypeQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="PrimitiveTypeQualifiedName2ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1793,18 +1736,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1829,7 +1772,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1851,7 +1794,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1875,7 +1818,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1905,18 +1848,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedAttribute"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedAttribute"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedAttribute"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1924,7 +1867,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             viewPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -1953,18 +1896,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedOperation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedOperation"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedOperation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedOperation"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1972,7 +1915,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             editPattern="">
           <metaFeatures
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
       </childNodes>
       <childNodes
@@ -2003,18 +1946,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.1/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2037,7 +1980,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -2069,18 +2012,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2103,7 +2046,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               viewPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -2134,11 +2077,11 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
         </modelFacet>
       </topLevelNodes>
       <topLevelNodes
@@ -2169,18 +2112,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/AssociationClass"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/AssociationClass"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2206,7 +2149,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2230,7 +2173,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2252,7 +2195,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2283,11 +2226,11 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
         </modelFacet>
       </topLevelNodes>
       <topLevelNodes
@@ -2318,18 +2261,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2354,7 +2297,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2375,7 +2318,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2399,7 +2342,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2436,18 +2379,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2473,7 +2416,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2497,7 +2440,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2519,7 +2462,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2552,18 +2495,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2589,7 +2532,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2613,7 +2556,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2635,7 +2578,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2666,18 +2609,18 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2703,7 +2646,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2727,7 +2670,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2749,7 +2692,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2786,18 +2729,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2823,7 +2766,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2847,7 +2790,7 @@
               viewPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2872,7 +2815,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2904,18 +2847,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -2940,7 +2883,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2962,7 +2905,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -2986,7 +2929,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3023,18 +2966,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -3060,7 +3003,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3084,7 +3027,7 @@
               viewPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3109,7 +3052,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3146,18 +3089,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -3183,7 +3126,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3207,7 +3150,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3229,7 +3172,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3247,64 +3190,32 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.23/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PrimitiveTypeDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PrimitiveTypeDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CPrimitiveFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fStereotypesLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fQualifiedNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PrimitiveTypeDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fStereotypesLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fStereotypesLabel.setText(&quot;&quot;);&#xA;&#xA;fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fStereotypesLabel);&#xA;&#xA;&#xA;&#xA;fNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fNameLabel.setText(&quot;&quot;);&#xA;&#xA;fNameLabel.setFont(FNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fNameLabel);&#xA;&#xA;&#xA;&#xA;fQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fQualifiedNameLabel.setFont(FQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fQualifiedNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getStereotypesLabel() {&#xA;&#x9;&#x9;return fStereotypesLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getNameLabel() {&#xA;&#x9;&#x9;return fNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getQualifiedNameLabel() {&#xA;&#x9;&#x9;return fQualifiedNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 204, 204, 204);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 242, 242, 242);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FSTEREOTYPESLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PrimitiveTypeFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PrimitiveType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PrimitiveType"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5031"
-            editPartClassName="AppliedStereotypePrimitiveTypeEditPart"
+            visualID="5032"
+            editPartClassName="PrimitiveTypeNameEditPart"
             itemSemanticEditPolicyClassName="PrimitiveTypeNameItemSemanticEditPolicy"
             notationViewFactoryClassName="PrimitiveTypeNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getStereotypesLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5032"
-            editPartClassName="PrimitiveTypeName2EditPart"
-            itemSemanticEditPolicyClassName="PrimitiveTypeName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="PrimitiveTypeName2ViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3319,32 +3230,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5033"
-            editPartClassName="PrimitiveTypeQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="PrimitiveTypeQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="PrimitiveTypeQualifiedNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3377,18 +3263,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -3413,7 +3299,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3435,7 +3321,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3459,7 +3345,7 @@
               editorPattern="({0})"
               editPattern="({0})">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3490,18 +3376,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -3524,7 +3410,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               viewPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3555,18 +3441,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.1/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -3589,7 +3475,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3636,24 +3522,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/AssociationClass"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/AssociationClass"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
         </modelFacet>
       </links>
       <links
@@ -3681,24 +3567,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
         </modelFacet>
         <labels
             visualID="6001"
@@ -3721,7 +3607,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3742,7 +3628,7 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3767,7 +3653,7 @@
               editorPattern="srcRole{0}"
               editPattern="srcRole{0}">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3792,7 +3678,7 @@
               editorPattern="srcMul{0}"
               editPattern="srcMul{0}">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3817,7 +3703,7 @@
               editorPattern="targMul{0}"
               editPattern="targMul{0}">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -3842,7 +3728,7 @@
               editorPattern="targRole{0}"
               editPattern="targRole{0}">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </links>
@@ -3871,15 +3757,15 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
         </modelFacet>
       </links>
       <links
@@ -3907,13 +3793,13 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Generalization"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Generalization"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/generalization"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/generalization"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/generalization"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/generalization"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Generalization/general"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Generalization/general"/>
         </modelFacet>
         <labels
             visualID="6007"
@@ -3936,7 +3822,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Generalization/isSubstitutable"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Generalization/isSubstitutable"/>
           </modelFacet>
         </labels>
       </links>
@@ -3965,22 +3851,22 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InterfaceRealization"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InterfaceRealization"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehavioredClassifier/interfaceRealization"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehavioredClassifier/interfaceRealization"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehavioredClassifier/interfaceRealization"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehavioredClassifier/interfaceRealization"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InterfaceRealization/contract"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InterfaceRealization/contract"/>
         </modelFacet>
         <labels
             visualID="6008"
@@ -4003,7 +3889,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -4027,7 +3913,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </links>
@@ -4056,24 +3942,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Substitution"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Substitution"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/substitution"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/substitution"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/substitution"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/substitution"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Substitution/substitutingClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Substitution/substitutingClassifier"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Substitution/contract"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Substitution/contract"/>
         </modelFacet>
         <labels
             visualID="6010"
@@ -4096,7 +3982,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -4120,7 +4006,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </links>
@@ -4149,24 +4035,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Realization"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Realization"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
         </modelFacet>
         <labels
             visualID="6012"
@@ -4189,7 +4075,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -4213,7 +4099,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </links>
@@ -4242,24 +4128,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Abstraction"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Abstraction"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
         </modelFacet>
         <labels
             visualID="6014"
@@ -4280,7 +4166,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -4305,7 +4191,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </links>
@@ -4334,24 +4220,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Usage"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Usage"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
         </modelFacet>
         <labels
             visualID="6016"
@@ -4372,7 +4258,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -4397,7 +4283,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </links>
@@ -4426,24 +4312,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
         </modelFacet>
         <labels
             visualID="6026"
@@ -4464,7 +4350,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -4489,7 +4375,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </links>
@@ -4518,24 +4404,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
         </modelFacet>
         <labels
             visualID="6028"
@@ -4556,7 +4442,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -4581,7 +4467,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </links>
@@ -4610,22 +4496,22 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/elementImport"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/elementImport"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/elementImport"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/elementImport"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.2/@expressions.0">
               <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/alias"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/alias"/>
             </initializers>
           </modelElementInitializer>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/importedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/importedElement"/>
         </modelFacet>
         <labels
             visualID="6020"
@@ -4646,7 +4532,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               editPattern="">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/alias"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/alias"/>
           </modelFacet>
         </labels>
         <labels
@@ -4671,7 +4557,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/alias"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/alias"/>
           </modelFacet>
         </labels>
       </links>
@@ -4700,13 +4586,13 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageImport"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageImport"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/packageImport"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/packageImport"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/packageImport"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/packageImport"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageImport/importedPackage"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageImport/importedPackage"/>
         </modelFacet>
         <labels
             visualID="6022"
@@ -4730,7 +4616,7 @@
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
             <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageImport/visibility"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageImport/visibility"/>
           </modelFacet>
         </labels>
       </links>
@@ -4759,15 +4645,15 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageMerge"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageMerge"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packageMerge"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packageMerge"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packageMerge"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packageMerge"/>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageMerge/receivingPackage"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageMerge/receivingPackage"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageMerge/mergedPackage"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageMerge/mergedPackage"/>
         </modelFacet>
       </links>
       <links
@@ -4795,13 +4681,13 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProfileApplication"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProfileApplication"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/profileApplication"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/profileApplication"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/profileApplication"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/profileApplication"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProfileApplication/appliedProfile"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProfileApplication/appliedProfile"/>
         </modelFacet>
       </links>
       <links
@@ -4824,7 +4710,7 @@
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
         </modelFacet>
       </links>
       <links
@@ -4847,7 +4733,7 @@
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
         </modelFacet>
       </links>
       <links
@@ -4875,15 +4761,15 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateBinding"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateBinding"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/templateBinding"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/templateBinding"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/templateBinding"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/templateBinding"/>
           <sourceMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateBinding/boundElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateBinding/boundElement"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DirectedRelationship/target"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DirectedRelationship/target"/>
         </modelFacet>
         <labels
             visualID="6023"
@@ -17822,7 +17708,7 @@
       comment=": this is the root node that contains all node to extend elements of the gmfgen">
     <extensionNodes
         comment="Label in charge to display applied stereotypes"
-        genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@childNodes.24/@labels.0 /0/@diagram/@topLevelNodes.12/@labels.0 /0/@diagram/@topLevelNodes.11/@labels.0 /0/@diagram/@topLevelNodes.9/@labels.0 /0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@topLevelNodes.7/@labels.0 /0/@diagram/@topLevelNodes.5/@labels.0 /0/@diagram/@topLevelNodes.4/@labels.0 /0/@diagram/@topLevelNodes.3/@labels.0 /0/@diagram/@topLevelNodes.1/@labels.0 /0/@diagram/@topLevelNodes.6/@labels.0 /0/@diagram/@topLevelNodes.10/@labels.0 /0/@diagram/@childNodes.23/@labels.0 /0/@diagram/@childNodes.18/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.13/@labels.0 /0/@diagram/@childNodes.12/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.10/@labels.0"
+        genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@childNodes.24/@labels.0 /0/@diagram/@topLevelNodes.12/@labels.0 /0/@diagram/@topLevelNodes.9/@labels.0 /0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@topLevelNodes.7/@labels.0 /0/@diagram/@topLevelNodes.5/@labels.0 /0/@diagram/@topLevelNodes.4/@labels.0 /0/@diagram/@topLevelNodes.3/@labels.0 /0/@diagram/@topLevelNodes.1/@labels.0 /0/@diagram/@topLevelNodes.6/@labels.0 /0/@diagram/@topLevelNodes.10/@labels.0 /0/@diagram/@childNodes.18/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.13/@labels.0 /0/@diagram/@childNodes.12/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.10/@labels.0"
         name="StereotypeApplication"/>
     <extensionNodes
         comment="thiis extension is to associate a refresh for active classes"
@@ -17839,4 +17725,5 @@
       comment="precise the locator for a template signature"
       classpath="org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator"
       genChildSideAffixedNode="/0/@diagram/@childNodes.4"/>
+  <papyrusgmfgenextension:MutatingCanvas/>
 </xmi:XMI>

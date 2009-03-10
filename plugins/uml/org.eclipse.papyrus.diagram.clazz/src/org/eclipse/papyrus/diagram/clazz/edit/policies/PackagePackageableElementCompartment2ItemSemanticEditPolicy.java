@@ -25,7 +25,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecification2Cre
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Interface2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Model2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Package2CreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.PrimitiveType2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.PrimitiveTypeCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Signal2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -91,7 +91,7 @@ public class PackagePackageableElementCompartment2ItemSemanticEditPolicy extends
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new PrimitiveType2CreateCommand(req));
+			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req));
 		}
 		if (UMLElementTypes.DataType_3027 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {

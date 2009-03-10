@@ -26,153 +26,19 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.PrimitiveTypeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.common.figure.node.CPrimitiveFigure;
-import org.eclipse.swt.SWT;
+import org.eclipse.papyrus.diagram.common.figure.node.PrimitiveTypeFigure;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
 public class PrimitiveTypeEditPart extends ShapeNodeEditPart {
-
-	/**
-	 * @generated
-	 */
-	public class PrimitiveTypeDescriptor extends CPrimitiveFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fQualifiedNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fStereotypesLabel;
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		public PrimitiveTypeDescriptor() {
-
-			this.setForegroundColor(THIS_FORE);
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fStereotypesLabel = new WrappingLabel();
-			fStereotypesLabel.setText("");
-
-			fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);
-
-			this.add(fStereotypesLabel);
-
-			fNameLabel = new WrappingLabel();
-			fNameLabel.setText("");
-
-			fNameLabel.setFont(FNAMELABEL_FONT);
-
-			this.add(fNameLabel);
-
-			fQualifiedNameLabel = new WrappingLabel();
-			fQualifiedNameLabel.setText("");
-
-			fQualifiedNameLabel.setFont(FQUALIFIEDNAMELABEL_FONT);
-
-			this.add(fQualifiedNameLabel);
-
-		}
-
-		@Override
-		public Color getGradientColor() {
-			return THIS_GRADIENT;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getNameLabel() {
-			return fNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getQualifiedNameLabel() {
-			return fQualifiedNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getStereotypesLabel() {
-			return fStereotypesLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
-
-	/**
-	 * @generated
-	 */
-	static final Font FQUALIFIEDNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.ITALIC);
-
-	/**
-	 * @generated
-	 */
-	static final Font FSTEREOTYPESLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 242, 242, 242);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 204, 204, 204);
 
 	static final Color THIS_GRADIENT = new Color(null, 204, 204, 204);
 
@@ -212,16 +78,8 @@ public class PrimitiveTypeEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypePrimitiveTypeEditPart) {
-			((AppliedStereotypePrimitiveTypeEditPart) childEditPart).setLabel(getPrimaryShape().getStereotypesLabel());
-			return true;
-		}
-		if (childEditPart instanceof PrimitiveTypeName2EditPart) {
-			((PrimitiveTypeName2EditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
-			return true;
-		}
-		if (childEditPart instanceof PrimitiveTypeQualifiedNameEditPart) {
-			((PrimitiveTypeQualifiedNameEditPart) childEditPart).setLabel(getPrimaryShape().getQualifiedNameLabel());
+		if (childEditPart instanceof PrimitiveTypeNameEditPart) {
+			((PrimitiveTypeNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -292,8 +150,7 @@ public class PrimitiveTypeEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		PrimitiveTypeDescriptor figure = new PrimitiveTypeDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new PrimitiveTypeFigure();
 	}
 
 	/**
@@ -314,17 +171,17 @@ public class PrimitiveTypeEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated not
+	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PrimitiveTypeName2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public PrimitiveTypeDescriptor getPrimaryShape() {
-		return (PrimitiveTypeDescriptor) primaryShape;
+	public PrimitiveTypeFigure getPrimaryShape() {
+		return (PrimitiveTypeFigure) primaryShape;
 	}
 
 	/**
@@ -341,13 +198,7 @@ public class PrimitiveTypeEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypePrimitiveTypeEditPart) {
-			return true;
-		}
-		if (childEditPart instanceof PrimitiveTypeName2EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof PrimitiveTypeQualifiedNameEditPart) {
+		if (childEditPart instanceof PrimitiveTypeNameEditPart) {
 			return true;
 		}
 		return false;

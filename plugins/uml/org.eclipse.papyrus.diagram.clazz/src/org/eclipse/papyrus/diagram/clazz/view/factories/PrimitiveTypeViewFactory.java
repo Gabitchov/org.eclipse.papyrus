@@ -27,11 +27,9 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePrimitiveTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeQualifiedNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.preferences.initializer.NodeViewInitializer;
@@ -74,9 +72,7 @@ public class PrimitiveTypeViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(AppliedStereotypePrimitiveTypeEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(PrimitiveTypeName2EditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(PrimitiveTypeQualifiedNameEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 	}
 
 	/**

@@ -100,7 +100,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 				case Enumeration2EditPart.VISUAL_ID:
 				case EnumerationLiteralEditPart.VISUAL_ID:
 				case ReceptionEditPart.VISUAL_ID:
-				case PrimitiveType2EditPart.VISUAL_ID:
+				case PrimitiveTypeEditPartCN.VISUAL_ID:
 				case DataType2EditPart.VISUAL_ID:
 				case Comment2EditPart.VISUAL_ID:
 				case Constraint2EditPart.VISUAL_ID:
@@ -209,9 +209,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypePrimitiveTypeEditPart.VISUAL_ID:
-				case PrimitiveTypeName2EditPart.VISUAL_ID:
-				case PrimitiveTypeQualifiedNameEditPart.VISUAL_ID:
+				case PrimitiveTypeNameEditPart.VISUAL_ID:
 					if (PrimitiveTypeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
@@ -310,10 +308,8 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodePrimitiveTypeEditPart.VISUAL_ID:
-				case PrimitiveTypeName4EditPart.VISUAL_ID:
-				case PrimitiveTypeQualifiedName2EditPart.VISUAL_ID:
-					if (PrimitiveType2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+				case PrimitiveTypeNameEditPartCN.VISUAL_ID:
+					if (PrimitiveTypeEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -503,12 +499,8 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return ClassQualifiedNameViewFactory.class;
 		case PrimitiveTypeEditPart.VISUAL_ID:
 			return PrimitiveTypeViewFactory.class;
-		case AppliedStereotypePrimitiveTypeEditPart.VISUAL_ID:
+		case PrimitiveTypeNameEditPart.VISUAL_ID:
 			return PrimitiveTypeNameViewFactory.class;
-		case PrimitiveTypeName2EditPart.VISUAL_ID:
-			return PrimitiveTypeName2ViewFactory.class;
-		case PrimitiveTypeQualifiedNameEditPart.VISUAL_ID:
-			return PrimitiveTypeQualifiedNameViewFactory.class;
 		case DataTypeEditPart.VISUAL_ID:
 			return DataTypeViewFactory.class;
 		case AppliedStereotypeDataTypeEditPart.VISUAL_ID:
@@ -619,14 +611,10 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return Operation3ViewFactory.class;
 		case Class5EditPart.VISUAL_ID:
 			return Class5ViewFactory.class;
-		case PrimitiveType2EditPart.VISUAL_ID:
-			return PrimitiveType2ViewFactory.class;
-		case AppliedStereotypeChildNodePrimitiveTypeEditPart.VISUAL_ID:
-			return PrimitiveTypeName3ViewFactory.class;
-		case PrimitiveTypeName4EditPart.VISUAL_ID:
-			return PrimitiveTypeName4ViewFactory.class;
-		case PrimitiveTypeQualifiedName2EditPart.VISUAL_ID:
-			return PrimitiveTypeQualifiedName2ViewFactory.class;
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			return PrimitiveTypeViewFactoryCN.class;
+		case PrimitiveTypeNameEditPartCN.VISUAL_ID:
+			return PrimitiveTypeNameViewFactoryCN.class;
 		case DataType2EditPart.VISUAL_ID:
 			return DataType2ViewFactory.class;
 		case AppliedStereotypeChildNodeDataTypeEditPart.VISUAL_ID:

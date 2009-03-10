@@ -72,8 +72,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageMergeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveType2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
@@ -342,7 +342,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case PrimitiveType2EditPart.VISUAL_ID: {
+		case PrimitiveTypeEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getPrimitiveType_3026ContainedLinks(view));
 			}

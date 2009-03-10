@@ -32,7 +32,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPa
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Interface2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveType2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Signal2EditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
@@ -75,7 +75,7 @@ public class ModelPackageableElementCompartment2CanonicalEditPolicy extends Cano
 		case Enumeration2EditPart.VISUAL_ID:
 		case Package2EditPart.VISUAL_ID:
 		case Class4EditPart.VISUAL_ID:
-		case PrimitiveType2EditPart.VISUAL_ID:
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
 		case DataType2EditPart.VISUAL_ID:
 		case Comment2EditPart.VISUAL_ID:
 		case Constraint2EditPart.VISUAL_ID:

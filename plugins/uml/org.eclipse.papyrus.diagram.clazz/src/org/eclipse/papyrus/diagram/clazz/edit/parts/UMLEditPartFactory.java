@@ -161,14 +161,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PrimitiveTypeEditPart.VISUAL_ID:
 				return new PrimitiveTypeEditPart(view);
 
-			case AppliedStereotypePrimitiveTypeEditPart.VISUAL_ID:
-				return new AppliedStereotypePrimitiveTypeEditPart(view);
-
-			case PrimitiveTypeName2EditPart.VISUAL_ID:
-				return new PrimitiveTypeName2EditPart(view);
-
-			case PrimitiveTypeQualifiedNameEditPart.VISUAL_ID:
-				return new PrimitiveTypeQualifiedNameEditPart(view);
+			case PrimitiveTypeNameEditPart.VISUAL_ID:
+				return new PrimitiveTypeNameEditPart(view);
 
 			case DataTypeEditPart.VISUAL_ID:
 				return new DataTypeEditPart(view);
@@ -335,17 +329,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case Class5EditPart.VISUAL_ID:
 				return new Class5EditPart(view);
 
-			case PrimitiveType2EditPart.VISUAL_ID:
-				return new PrimitiveType2EditPart(view);
+			case PrimitiveTypeEditPartCN.VISUAL_ID:
+				return new PrimitiveTypeEditPartCN(view);
 
-			case AppliedStereotypeChildNodePrimitiveTypeEditPart.VISUAL_ID:
-				return new AppliedStereotypeChildNodePrimitiveTypeEditPart(view);
-
-			case PrimitiveTypeName4EditPart.VISUAL_ID:
-				return new PrimitiveTypeName4EditPart(view);
-
-			case PrimitiveTypeQualifiedName2EditPart.VISUAL_ID:
-				return new PrimitiveTypeQualifiedName2EditPart(view);
+			case PrimitiveTypeNameEditPartCN.VISUAL_ID:
+				return new PrimitiveTypeNameEditPartCN(view);
 
 			case DataType2EditPart.VISUAL_ID:
 				return new DataType2EditPart(view);

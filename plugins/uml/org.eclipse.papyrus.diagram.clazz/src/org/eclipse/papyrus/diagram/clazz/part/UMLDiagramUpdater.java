@@ -100,8 +100,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveType2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property3EditPart;
@@ -1591,7 +1591,7 @@ public class UMLDiagramUpdater {
 			return getOperation_3013ContainedLinks(view);
 		case Class5EditPart.VISUAL_ID:
 			return getClass_3014ContainedLinks(view);
-		case PrimitiveType2EditPart.VISUAL_ID:
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026ContainedLinks(view);
 		case DataType2EditPart.VISUAL_ID:
 			return getDataType_3027ContainedLinks(view);
@@ -2853,7 +2853,7 @@ public class UMLDiagramUpdater {
 			return getOperation_3013IncomingLinks(view);
 		case Class5EditPart.VISUAL_ID:
 			return getClass_3014IncomingLinks(view);
-		case PrimitiveType2EditPart.VISUAL_ID:
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026IncomingLinks(view);
 		case DataType2EditPart.VISUAL_ID:
 			return getDataType_3027IncomingLinks(view);
@@ -3970,7 +3970,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == PrimitiveType2EditPart.VISUAL_ID) {
+			if (visualID == PrimitiveTypeEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4042,7 +4042,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == PrimitiveType2EditPart.VISUAL_ID) {
+			if (visualID == PrimitiveTypeEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4359,7 +4359,7 @@ public class UMLDiagramUpdater {
 			return getOperation_3013OutgoingLinks(view);
 		case Class5EditPart.VISUAL_ID:
 			return getClass_3014OutgoingLinks(view);
-		case PrimitiveType2EditPart.VISUAL_ID:
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026OutgoingLinks(view);
 		case DataType2EditPart.VISUAL_ID:
 			return getDataType_3027OutgoingLinks(view);
@@ -5295,7 +5295,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == PrimitiveType2EditPart.VISUAL_ID) {
+			if (visualID == PrimitiveTypeEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5367,7 +5367,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == PrimitiveType2EditPart.VISUAL_ID) {
+			if (visualID == PrimitiveTypeEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
