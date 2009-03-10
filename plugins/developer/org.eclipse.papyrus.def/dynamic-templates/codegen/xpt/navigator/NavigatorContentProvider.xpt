@@ -501,9 +501,10 @@ result.addAll(getForeignShortcuts((org.eclipse.gmf.runtime.notation.Diagram) vie
 // generation on one method
 «DEFINE caseMethodNodeNode(gmfgen::GenNavigator navigator) FOR gmfgen::GenCommonBase»
 /**
- *@generated
+ *
  *Papyrus Template
  *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
+ *@generated
 **/
 private Object[] getViewChildrenFor«this.editPartClassName»(View view, Object parentElement){
 	java.util.Collection result = new java.util.ArrayList();
@@ -516,7 +517,7 @@ private Object[] getViewChildrenFor«this.editPartClassName»(View view, Object pa
 					«IF referencesIterator.isFirstIteration() && pathsIterator.isFirstIteration() && segmentsIterator.isFirstIteration()»java.util.Collection «ENDIF-»
 					connectedViews = «EXPAND childrenMethodName(reference.referenceType, segment) FOR segment.from-»
 					(«IF segmentsIterator.isFirstIteration()»java.util.Collections.singleton(view)«ELSE»connectedViews«ENDIF-»
-					, «EXPAND xpt::editor::VisualIDRegistry::visualID FOR segment.to»);
+					, «EXPAND xpt::editor::VisualIDRegistry::typeMethodCall FOR segment.to»);
 				«ENDFOREACH-»
 				«EXPAND addNavigatorItemsPrefix FOR reference»connectedViews«EXPAND addNavigatorItemsSuffix('parentElement', reference.referenceType.value != gmfgen::GenNavigatorReferenceType::children.value) FOR reference-»
 			«ENDFOREACH-»
