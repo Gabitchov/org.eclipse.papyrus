@@ -27,6 +27,7 @@ import org.eclipse.swt.graphics.Color;
  * this is the custom figure for the package
  * 
  * @author Patrick Tessier
+ * @deprecated
  * 
  */
 public class CPackageFigure extends CNamedElementFigure {

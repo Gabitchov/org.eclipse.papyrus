@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.AbstractLayout;
@@ -30,6 +30,7 @@ import org.eclipse.swt.graphics.Color;
  * 
  * @author Patrick Tessier
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @deprecated
  */
 public class CEnumeration extends CNamedElementFigure {
 

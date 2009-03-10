@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
  * this is the custom figure to manage NamedElement
  * 
  * @author Patrick Tessier
- * 
+ * @deprecated
  */
 public class CNamedElementFigure extends CustomAbstractFigure {
 

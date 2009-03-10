@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.Graphics;
@@ -23,6 +23,7 @@ import org.eclipse.swt.graphics.Color;
  * 
  * @author Patrick Tessier
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @deprecated
  */
 public class CPrimitiveFigure extends CNamedElementFigure {
 
@@ -53,11 +54,11 @@ public class CPrimitiveFigure extends CNamedElementFigure {
 		graphics.setForegroundColor(this.getForegroundColor());
 		graphics.drawRectangle(ContainerBound);
 
-		if(shadow==null){
+		if (shadow == null) {
 			this.shadow = new RectangularShadowBorder(2, this.getForegroundColor());
 			setBorder(shadow);
 		}
-		
+
 		Rectangle elementBound = new Rectangle(getBounds().x, getBounds().y, 0, 0);
 		// display stereotypes
 		if (getElementStereotype() != null && getElementStereotype().getText().length() != 0) {
