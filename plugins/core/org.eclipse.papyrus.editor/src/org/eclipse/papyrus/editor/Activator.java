@@ -38,6 +38,12 @@ public class Activator extends AbstractUIPlugin {
 	/** Font manager. */
 	public static FontManager fontManager = new FontManager();
 
+	/** left Stereotype delimiters ('Guillemets francais'). */
+	public static String ST_LEFT = String.valueOf("\u00AB");
+
+	/** Right Stereotype delimiters ('Guillemets francais'). */
+	public static String ST_RIGHT = String.valueOf("\u00BB");
+
 	/**
 	 * The constructor
 	 */
