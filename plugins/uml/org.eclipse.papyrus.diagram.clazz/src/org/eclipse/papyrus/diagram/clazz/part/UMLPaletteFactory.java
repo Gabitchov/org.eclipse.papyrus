@@ -385,7 +385,7 @@ public class UMLPaletteFactory {
 		types.add(UMLElementTypes.Model_3024);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Model1CreationTool_title, Messages.Model1CreationTool_desc, types);
 		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Model_2005));
-		entry.setLargeIcon(UMLDiagramEditorPlugin.findImageDescriptor("")); //$NON-NLS-1$
+		entry.setLargeIcon(entry.getSmallIcon()); //$NON-NLS-1$
 		return entry;
 	}
 
