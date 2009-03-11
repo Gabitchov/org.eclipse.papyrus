@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model2EditPart;
@@ -145,7 +146,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.TemplateParameter_3016);
 			return types;
 		}
-		if (editPart instanceof InstanceSpecification2EditPart) {
+		if (editPart instanceof InstanceSpecificationEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.Slot_3001);
 			return types;

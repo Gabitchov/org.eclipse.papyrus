@@ -59,14 +59,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InstanceSpecificationEditPart.VISUAL_ID:
 				return new InstanceSpecificationEditPart(view);
 
-			case AppliedStereotypeInstanceSpecificationEditPart.VISUAL_ID:
-				return new AppliedStereotypeInstanceSpecificationEditPart(view);
-
-			case InstanceSpecificationName2EditPart.VISUAL_ID:
-				return new InstanceSpecificationName2EditPart(view);
-
-			case InstanceSpecificationQualifiedNameEditPart.VISUAL_ID:
-				return new InstanceSpecificationQualifiedNameEditPart(view);
+			case InstanceSpecificationNameEditPart.VISUAL_ID:
+				return new InstanceSpecificationNameEditPart(view);
 
 			case ComponentEditPart.VISUAL_ID:
 				return new ComponentEditPart(view);
@@ -176,17 +170,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case Class3EditPart.VISUAL_ID:
 				return new Class3EditPart(view);
 
-			case InstanceSpecification2EditPart.VISUAL_ID:
-				return new InstanceSpecification2EditPart(view);
+			case InstanceSpecificationEditPartCN.VISUAL_ID:
+				return new InstanceSpecificationEditPartCN(view);
 
-			case AppliedStereotypeChildNodeInstanceSpecificationEditPart.VISUAL_ID:
-				return new AppliedStereotypeChildNodeInstanceSpecificationEditPart(view);
-
-			case InstanceSpecificationName4EditPart.VISUAL_ID:
-				return new InstanceSpecificationName4EditPart(view);
-
-			case InstanceSpecificationQualifiedName2EditPart.VISUAL_ID:
-				return new InstanceSpecificationQualifiedName2EditPart(view);
+			case InstanceSpecificationNameEditPartCN.VISUAL_ID:
+				return new InstanceSpecificationNameEditPartCN(view);
 
 			case ComponentEditPartCN.VISUAL_ID:
 				return new ComponentEditPartCN(view);

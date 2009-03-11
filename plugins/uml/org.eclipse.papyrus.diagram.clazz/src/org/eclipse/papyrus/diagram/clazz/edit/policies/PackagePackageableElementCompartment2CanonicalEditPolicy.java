@@ -31,6 +31,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
@@ -69,7 +70,7 @@ public class PackagePackageableElementCompartment2CanonicalEditPolicy extends Ca
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
-		case InstanceSpecification2EditPart.VISUAL_ID:
+		case InstanceSpecificationEditPartCN.VISUAL_ID:
 		case ComponentEditPartCN.VISUAL_ID:
 		case SignalEditPartCN.VISUAL_ID:
 		case InterfaceEditPartCN.VISUAL_ID:

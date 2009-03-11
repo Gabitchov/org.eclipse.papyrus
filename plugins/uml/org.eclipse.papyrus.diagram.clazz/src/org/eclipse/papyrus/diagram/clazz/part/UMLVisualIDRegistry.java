@@ -64,13 +64,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InstanceSpecificationEditPart.VISUAL_ID:
-			if (AppliedStereotypeInstanceSpecificationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (InstanceSpecificationName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (InstanceSpecificationQualifiedNameEditPart.VISUAL_ID == nodeVisualID) {
+			if (InstanceSpecificationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID == nodeVisualID) {
@@ -215,14 +209,8 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case InstanceSpecification2EditPart.VISUAL_ID:
-			if (AppliedStereotypeChildNodeInstanceSpecificationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (InstanceSpecificationName4EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (InstanceSpecificationQualifiedName2EditPart.VISUAL_ID == nodeVisualID) {
+		case InstanceSpecificationEditPartCN.VISUAL_ID:
+			if (InstanceSpecificationNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID == nodeVisualID) {
@@ -413,7 +401,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
-			if (InstanceSpecification2EditPart.VISUAL_ID == nodeVisualID) {
+			if (InstanceSpecificationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (ComponentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -491,7 +479,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ModelPackageableElementCompartment2EditPart.VISUAL_ID:
-			if (InstanceSpecification2EditPart.VISUAL_ID == nodeVisualID) {
+			if (InstanceSpecificationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (ComponentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -534,7 +522,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-			if (InstanceSpecification2EditPart.VISUAL_ID == nodeVisualID) {
+			if (InstanceSpecificationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (ComponentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -605,7 +593,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
-			if (InstanceSpecification2EditPart.VISUAL_ID == nodeVisualID) {
+			if (InstanceSpecificationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (ComponentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -1050,7 +1038,7 @@ public class UMLVisualIDRegistry {
 			break;
 		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())) {
-				return InstanceSpecification2EditPart.VISUAL_ID;
+				return InstanceSpecificationEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
@@ -1128,7 +1116,7 @@ public class UMLVisualIDRegistry {
 			break;
 		case ModelPackageableElementCompartment2EditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())) {
-				return InstanceSpecification2EditPart.VISUAL_ID;
+				return InstanceSpecificationEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
@@ -1171,7 +1159,7 @@ public class UMLVisualIDRegistry {
 			break;
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())) {
-				return InstanceSpecification2EditPart.VISUAL_ID;
+				return InstanceSpecificationEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
@@ -1242,7 +1230,7 @@ public class UMLVisualIDRegistry {
 			break;
 		case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())) {
-				return InstanceSpecification2EditPart.VISUAL_ID;
+				return InstanceSpecificationEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;

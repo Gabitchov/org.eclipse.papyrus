@@ -1566,7 +1566,7 @@ public class UMLDiagramUpdater {
 			return getOperation_3007ContainedLinks(view);
 		case Class3EditPart.VISUAL_ID:
 			return getClass_3008ContainedLinks(view);
-		case InstanceSpecification2EditPart.VISUAL_ID:
+		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020ContainedLinks(view);
 		case ComponentEditPartCN.VISUAL_ID:
 			return getComponent_3021ContainedLinks(view);
@@ -2828,7 +2828,7 @@ public class UMLDiagramUpdater {
 			return getOperation_3007IncomingLinks(view);
 		case Class3EditPart.VISUAL_ID:
 			return getClass_3008IncomingLinks(view);
-		case InstanceSpecification2EditPart.VISUAL_ID:
+		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020IncomingLinks(view);
 		case ComponentEditPartCN.VISUAL_ID:
 			return getComponent_3021IncomingLinks(view);
@@ -3939,7 +3939,7 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == InstanceSpecification2EditPart.VISUAL_ID) {
+			if (visualID == InstanceSpecificationEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4011,7 +4011,7 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == InstanceSpecification2EditPart.VISUAL_ID) {
+			if (visualID == InstanceSpecificationEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4334,7 +4334,7 @@ public class UMLDiagramUpdater {
 			return getOperation_3007OutgoingLinks(view);
 		case Class3EditPart.VISUAL_ID:
 			return getClass_3008OutgoingLinks(view);
-		case InstanceSpecification2EditPart.VISUAL_ID:
+		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020OutgoingLinks(view);
 		case ComponentEditPartCN.VISUAL_ID:
 			return getComponent_3021OutgoingLinks(view);
@@ -5264,7 +5264,7 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == InstanceSpecification2EditPart.VISUAL_ID) {
+			if (visualID == InstanceSpecificationEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5336,7 +5336,7 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == InstanceSpecification2EditPart.VISUAL_ID) {
+			if (visualID == InstanceSpecificationEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}

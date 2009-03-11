@@ -65,6 +65,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
@@ -273,7 +274,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case InstanceSpecification2EditPart.VISUAL_ID: {
+		case InstanceSpecificationEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getInstanceSpecification_3020ContainedLinks(view));
 			}

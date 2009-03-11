@@ -30,6 +30,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeInstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationName2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationQualifiedNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
@@ -75,9 +76,7 @@ public class InstanceSpecificationViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(AppliedStereotypeInstanceSpecificationEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(InstanceSpecificationName2EditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(InstanceSpecificationQualifiedNameEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(InstanceSpecificationNameEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 	}
 

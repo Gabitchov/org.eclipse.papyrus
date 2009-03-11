@@ -1,20 +1,6 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -28,32 +14,23 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.InstanceSpecificationItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.InstanceSpecificationItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.common.figure.node.CEnumeration;
 import org.eclipse.papyrus.diagram.common.figure.node.InstanceSpecificationFigure;
-import org.eclipse.papyrus.diagram.common.figure.node.SignalFigure;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
-public class InstanceSpecificationEditPart extends ShapeNodeEditPart {
-
-	static final Color THIS_GRADIENT = new Color(null, 255, 180, 180);
+public class InstanceSpecificationEditPartCN extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2001;
+	public static final int VISUAL_ID = 3020;
 
 	/**
 	 * @generated
@@ -68,7 +45,7 @@ public class InstanceSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public InstanceSpecificationEditPart(View view) {
+	public InstanceSpecificationEditPartCN(View view) {
 		super(view);
 	}
 
@@ -86,14 +63,14 @@ public class InstanceSpecificationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof InstanceSpecificationNameEditPart) {
-			((InstanceSpecificationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof InstanceSpecificationNameEditPartCN) {
+			((InstanceSpecificationNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
+		if (childEditPart instanceof InstanceSpecificationSlotCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((InstanceSpecificationSlotCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((InstanceSpecificationSlotCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -105,7 +82,7 @@ public class InstanceSpecificationEditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InstanceSpecificationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InstanceSpecificationItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -126,11 +103,11 @@ public class InstanceSpecificationEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 		};
@@ -182,17 +159,17 @@ public class InstanceSpecificationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
+		if (editPart instanceof InstanceSpecificationSlotCompartment2EditPart) {
 			return getPrimaryShape().getSlotCompartmentFigure();
 		}
 		return getContentPane();
 	}
 
 	/**
-	 * @generated not
+	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InstanceSpecificationName2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InstanceSpecificationNameEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -216,13 +193,13 @@ public class InstanceSpecificationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof InstanceSpecificationNameEditPart) {
+		if (childEditPart instanceof InstanceSpecificationNameEditPartCN) {
 			return true;
 		}
-		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
+		if (childEditPart instanceof InstanceSpecificationSlotCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.remove(((InstanceSpecificationSlotCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((InstanceSpecificationSlotCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
