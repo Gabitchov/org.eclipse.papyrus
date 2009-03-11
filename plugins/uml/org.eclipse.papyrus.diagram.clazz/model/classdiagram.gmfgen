@@ -4814,7 +4814,6 @@
               xsi:type="gmfgen:ToolEntry"
               title="Model"
               description="Create a model"
-              largeIconPath=""
               genNodes="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.14"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
