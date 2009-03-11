@@ -22,6 +22,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.Constraint2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DataType2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DataTypeCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Enumeration2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.EnumerationCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecification2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InterfaceCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Model2CreateCommand;
@@ -74,7 +75,7 @@ public class ModelPackageableElementCompartmentItemSemanticEditPolicy extends UM
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new Enumeration2CreateCommand(req));
+			return getGEFWrapper(new EnumerationCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Package_3009 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {

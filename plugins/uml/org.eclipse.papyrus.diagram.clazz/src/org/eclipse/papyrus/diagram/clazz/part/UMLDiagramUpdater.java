@@ -1576,7 +1576,7 @@ public class UMLDiagramUpdater {
 			return getInterface_3023ContainedLinks(view);
 		case Model3EditPart.VISUAL_ID:
 			return getModel_3024ContainedLinks(view);
-		case Enumeration2EditPart.VISUAL_ID:
+		case EnumerationEditPartCN.VISUAL_ID:
 			return getEnumeration_3025ContainedLinks(view);
 		case EnumerationLiteralEditPart.VISUAL_ID:
 			return getEnumerationLiteral_3017ContainedLinks(view);
@@ -2838,7 +2838,7 @@ public class UMLDiagramUpdater {
 			return getInterface_3023IncomingLinks(view);
 		case Model3EditPart.VISUAL_ID:
 			return getModel_3024IncomingLinks(view);
-		case Enumeration2EditPart.VISUAL_ID:
+		case EnumerationEditPartCN.VISUAL_ID:
 			return getEnumeration_3025IncomingLinks(view);
 		case EnumerationLiteralEditPart.VISUAL_ID:
 			return getEnumerationLiteral_3017IncomingLinks(view);
@@ -3959,7 +3959,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Enumeration2EditPart.VISUAL_ID) {
+			if (visualID == EnumerationEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4031,7 +4031,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Enumeration2EditPart.VISUAL_ID) {
+			if (visualID == EnumerationEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4344,7 +4344,7 @@ public class UMLDiagramUpdater {
 			return getInterface_3023OutgoingLinks(view);
 		case Model3EditPart.VISUAL_ID:
 			return getModel_3024OutgoingLinks(view);
-		case Enumeration2EditPart.VISUAL_ID:
+		case EnumerationEditPartCN.VISUAL_ID:
 			return getEnumeration_3025OutgoingLinks(view);
 		case EnumerationLiteralEditPart.VISUAL_ID:
 			return getEnumerationLiteral_3017OutgoingLinks(view);
@@ -5284,7 +5284,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Enumeration2EditPart.VISUAL_ID) {
+			if (visualID == EnumerationEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5356,7 +5356,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Enumeration2EditPart.VISUAL_ID) {
+			if (visualID == EnumerationEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}

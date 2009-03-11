@@ -36,6 +36,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.EnumerationItemSemanticEd
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.figure.node.CEnumeration;
+import org.eclipse.papyrus.diagram.common.figure.node.EnumerationFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -45,154 +46,6 @@ import org.eclipse.swt.widgets.Display;
  * @generated
  */
 public class EnumerationEditPart extends ShapeNodeEditPart {
-
-	/**
-	 * @generated
-	 */
-	public class EnumerationDescriptor extends CEnumeration {
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fEnumerationLiteralCompartmentFigure;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fEnumerationNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fEnumerationQualifiedNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fEnumerationStereotypeLabel;
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		public EnumerationDescriptor() {
-
-			this.setForegroundColor(THIS_FORE);
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fEnumerationStereotypeLabel = new WrappingLabel();
-			fEnumerationStereotypeLabel.setText("");
-
-			fEnumerationStereotypeLabel.setFont(FENUMERATIONSTEREOTYPELABEL_FONT);
-
-			this.add(fEnumerationStereotypeLabel);
-
-			fEnumerationNameLabel = new WrappingLabel();
-			fEnumerationNameLabel.setText("");
-
-			fEnumerationNameLabel.setFont(FENUMERATIONNAMELABEL_FONT);
-
-			this.add(fEnumerationNameLabel);
-
-			fEnumerationQualifiedNameLabel = new WrappingLabel();
-			fEnumerationQualifiedNameLabel.setText("");
-
-			fEnumerationQualifiedNameLabel.setFont(FENUMERATIONQUALIFIEDNAMELABEL_FONT);
-
-			this.add(fEnumerationQualifiedNameLabel);
-
-			fEnumerationLiteralCompartmentFigure = new RectangleFigure();
-			fEnumerationLiteralCompartmentFigure.setFill(false);
-
-			this.add(fEnumerationLiteralCompartmentFigure);
-			fEnumerationLiteralCompartmentFigure.setLayoutManager(new StackLayout());
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getEnumerationLiteralCompartmentFigure() {
-			return fEnumerationLiteralCompartmentFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getEnumerationNameLabel() {
-			return fEnumerationNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getEnumerationQualifiedNameLabel() {
-			return fEnumerationQualifiedNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getEnumerationStereotypeLabel() {
-			return fEnumerationStereotypeLabel;
-		}
-
-		@Override
-		public Color getGradientColor() {
-			return THIS_GRADIENT;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FENUMERATIONNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
-
-	/**
-	 * @generated
-	 */
-	static final Font FENUMERATIONQUALIFIEDNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.ITALIC);
-
-	/**
-	 * @generated
-	 */
-	static final Font FENUMERATIONSTEREOTYPELABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 242, 242, 242);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 204, 204, 204);
 
 	static final Color THIS_GRADIENT = new Color(null, 204, 204, 204);
 
@@ -232,16 +85,8 @@ public class EnumerationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeEnumerationEditPart) {
-			((AppliedStereotypeEnumerationEditPart) childEditPart).setLabel(getPrimaryShape().getEnumerationStereotypeLabel());
-			return true;
-		}
-		if (childEditPart instanceof EnumerationName2EditPart) {
-			((EnumerationName2EditPart) childEditPart).setLabel(getPrimaryShape().getEnumerationNameLabel());
-			return true;
-		}
-		if (childEditPart instanceof EnumerationQualifiedNameEditPart) {
-			((EnumerationQualifiedNameEditPart) childEditPart).setLabel(getPrimaryShape().getEnumerationQualifiedNameLabel());
+		if (childEditPart instanceof EnumerationNameEditPart) {
+			((EnumerationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		if (childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
@@ -319,8 +164,7 @@ public class EnumerationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		EnumerationDescriptor figure = new EnumerationDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new EnumerationFigure();
 	}
 
 	/**
@@ -353,8 +197,8 @@ public class EnumerationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public EnumerationDescriptor getPrimaryShape() {
-		return (EnumerationDescriptor) primaryShape;
+	public EnumerationFigure getPrimaryShape() {
+		return (EnumerationFigure) primaryShape;
 	}
 
 	/**
@@ -371,13 +215,7 @@ public class EnumerationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeEnumerationEditPart) {
-			return true;
-		}
-		if (childEditPart instanceof EnumerationName2EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof EnumerationQualifiedNameEditPart) {
+		if (childEditPart instanceof EnumerationNameEditPart) {
 			return true;
 		}
 		if (childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {

@@ -892,13 +892,13 @@
       </childNodes>
       <childNodes
           visualID="3025"
-          editPartClassName="Enumeration2EditPart"
-          itemSemanticEditPolicyClassName="Enumeration2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Enumeration2ViewFactory"
-          canonicalEditPolicyClassName="Enumeration2CanonicalEditPolicy"
+          editPartClassName="EnumerationEditPartCN"
+          itemSemanticEditPolicyClassName="EnumerationItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="EnumerationViewFactoryCN"
+          canonicalEditPolicyClassName="EnumerationCanonicalEditPolicyCN"
           compartments="/0/@diagram/@compartments.20"
-          graphicalNodeEditPolicyClassName="Enumeration2GraphicalNodeEditPolicy"
-          createCommandClassName="Enumeration2CreateCommand"
+          graphicalNodeEditPolicyClassName="EnumerationGraphicalNodeEditPolicyCN"
+          createCommandClassName="EnumerationCreateCommandCN"
           containers="/0/@diagram/@compartments.19 /0/@diagram/@compartments.21 /0/@diagram/@compartments.10 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -906,15 +906,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="EnumerationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="EnumerationDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class EnumerationDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CEnumeration {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fEnumerationStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fEnumerationNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fEnumerationQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fEnumerationLiteralCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public EnumerationDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fEnumerationStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fEnumerationStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fEnumerationStereotypeLabel.setFont(FENUMERATIONSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fEnumerationStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fEnumerationNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fEnumerationNameLabel.setText(&quot;&quot;);&#xA;&#xA;fEnumerationNameLabel.setFont(FENUMERATIONNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fEnumerationNameLabel);&#xA;&#xA;&#xA;&#xA;fEnumerationQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fEnumerationQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fEnumerationQualifiedNameLabel.setFont(FENUMERATIONQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fEnumerationQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fEnumerationLiteralCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fEnumerationLiteralCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fEnumerationLiteralCompartmentFigure);&#xA;fEnumerationLiteralCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getEnumerationStereotypeLabel() {&#xA;&#x9;&#x9;return fEnumerationStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getEnumerationNameLabel() {&#xA;&#x9;&#x9;return fEnumerationNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getEnumerationQualifiedNameLabel() {&#xA;&#x9;&#x9;return fEnumerationQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getEnumerationLiteralCompartmentFigure() {&#xA;&#x9;&#x9;return fEnumerationLiteralCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 204, 204, 204);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 242, 242, 242);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FENUMERATIONSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FENUMERATIONNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FENUMERATIONQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.EnumerationFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -935,40 +928,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5054"
-            editPartClassName="AppliedStereotypeChildNodeEnumerationEditPart"
-            itemSemanticEditPolicyClassName="EnumerationName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="EnumerationName3ViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getEnumerationStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5055"
-            editPartClassName="EnumerationName4EditPart"
-            itemSemanticEditPolicyClassName="EnumerationName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="EnumerationName4ViewFactory"
+            editPartClassName="EnumerationNameEditPartCN"
+            itemSemanticEditPolicyClassName="EnumerationNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="EnumerationNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getEnumerationNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -978,30 +947,6 @@
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5056"
-            editPartClassName="EnumerationQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="EnumerationQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="EnumerationQualifiedName2ViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getEnumerationQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -2347,15 +2292,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.15/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="EnumerationDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class EnumerationDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CEnumeration {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fEnumerationStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fEnumerationNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fEnumerationQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fEnumerationLiteralCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public EnumerationDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fEnumerationStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fEnumerationStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fEnumerationStereotypeLabel.setFont(FENUMERATIONSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fEnumerationStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fEnumerationNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fEnumerationNameLabel.setText(&quot;&quot;);&#xA;&#xA;fEnumerationNameLabel.setFont(FENUMERATIONNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fEnumerationNameLabel);&#xA;&#xA;&#xA;&#xA;fEnumerationQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fEnumerationQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fEnumerationQualifiedNameLabel.setFont(FENUMERATIONQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fEnumerationQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fEnumerationLiteralCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fEnumerationLiteralCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fEnumerationLiteralCompartmentFigure);&#xA;fEnumerationLiteralCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getEnumerationStereotypeLabel() {&#xA;&#x9;&#x9;return fEnumerationStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getEnumerationNameLabel() {&#xA;&#x9;&#x9;return fEnumerationNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getEnumerationQualifiedNameLabel() {&#xA;&#x9;&#x9;return fEnumerationQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getEnumerationLiteralCompartmentFigure() {&#xA;&#x9;&#x9;return fEnumerationLiteralCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 204, 204, 204);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 242, 242, 242);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FENUMERATIONSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FENUMERATIONNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FENUMERATIONQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.EnumerationFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -2376,40 +2314,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5022"
-            editPartClassName="AppliedStereotypeEnumerationEditPart"
-            itemSemanticEditPolicyClassName="EnumerationNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="EnumerationNameViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getEnumerationStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5023"
-            editPartClassName="EnumerationName2EditPart"
-            itemSemanticEditPolicyClassName="EnumerationName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="EnumerationName2ViewFactory"
+            editPartClassName="EnumerationNameEditPart"
+            itemSemanticEditPolicyClassName="EnumerationNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="EnumerationNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getEnumerationNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -2419,30 +2333,6 @@
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5024"
-            editPartClassName="EnumerationQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="EnumerationQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="EnumerationQualifiedNameViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getEnumerationQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -17112,7 +17002,7 @@
       comment=": this is the root node that contains all node to extend elements of the gmfgen">
     <extensionNodes
         comment="Label in charge to display applied stereotypes"
-        genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@topLevelNodes.9/@labels.0 /0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@topLevelNodes.7/@labels.0 /0/@diagram/@topLevelNodes.3/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.10/@labels.0"
+        genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@topLevelNodes.9/@labels.0 /0/@diagram/@topLevelNodes.7/@labels.0 /0/@diagram/@topLevelNodes.3/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.10/@labels.0"
         name="StereotypeApplication"/>
     <extensionNodes
         comment="thiis extension is to associate a refresh for active classes"

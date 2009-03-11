@@ -64,6 +64,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
@@ -149,7 +150,7 @@ public class Model2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 					case Model3EditPart.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case Enumeration2EditPart.VISUAL_ID:
+					case EnumerationEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
 					case Package2EditPart.VISUAL_ID:

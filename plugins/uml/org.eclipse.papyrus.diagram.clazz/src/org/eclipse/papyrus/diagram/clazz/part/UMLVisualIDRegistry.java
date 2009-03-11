@@ -140,13 +140,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case EnumerationEditPart.VISUAL_ID:
-			if (AppliedStereotypeEnumerationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (EnumerationName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (EnumerationQualifiedNameEditPart.VISUAL_ID == nodeVisualID) {
+			if (EnumerationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID == nodeVisualID) {
@@ -297,14 +291,8 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case Enumeration2EditPart.VISUAL_ID:
-			if (AppliedStereotypeChildNodeEnumerationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (EnumerationName4EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (EnumerationQualifiedName2EditPart.VISUAL_ID == nodeVisualID) {
+		case EnumerationEditPartCN.VISUAL_ID:
+			if (EnumerationNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID == nodeVisualID) {
@@ -440,7 +428,7 @@ public class UMLVisualIDRegistry {
 			if (Model3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (Enumeration2EditPart.VISUAL_ID == nodeVisualID) {
+			if (EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (Package2EditPart.VISUAL_ID == nodeVisualID) {
@@ -518,7 +506,7 @@ public class UMLVisualIDRegistry {
 			if (Model3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (Enumeration2EditPart.VISUAL_ID == nodeVisualID) {
+			if (EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (Package2EditPart.VISUAL_ID == nodeVisualID) {
@@ -561,7 +549,7 @@ public class UMLVisualIDRegistry {
 			if (Model3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (Enumeration2EditPart.VISUAL_ID == nodeVisualID) {
+			if (EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (Package2EditPart.VISUAL_ID == nodeVisualID) {
@@ -632,7 +620,7 @@ public class UMLVisualIDRegistry {
 			if (Model3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (Enumeration2EditPart.VISUAL_ID == nodeVisualID) {
+			if (EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (Package2EditPart.VISUAL_ID == nodeVisualID) {
@@ -1077,7 +1065,7 @@ public class UMLVisualIDRegistry {
 				return Model3EditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
-				return Enumeration2EditPart.VISUAL_ID;
+				return EnumerationEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
 				return Package2EditPart.VISUAL_ID;
@@ -1155,7 +1143,7 @@ public class UMLVisualIDRegistry {
 				return Model3EditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
-				return Enumeration2EditPart.VISUAL_ID;
+				return EnumerationEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
 				return Package2EditPart.VISUAL_ID;
@@ -1198,7 +1186,7 @@ public class UMLVisualIDRegistry {
 				return Model3EditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
-				return Enumeration2EditPart.VISUAL_ID;
+				return EnumerationEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
 				return Package2EditPart.VISUAL_ID;
@@ -1269,7 +1257,7 @@ public class UMLVisualIDRegistry {
 				return Model3EditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
-				return Enumeration2EditPart.VISUAL_ID;
+				return EnumerationEditPartCN.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
 				return Package2EditPart.VISUAL_ID;

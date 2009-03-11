@@ -29,6 +29,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataType2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
@@ -73,7 +74,7 @@ public class ModelPackageableElementCompartmentCanonicalEditPolicy extends Canon
 		case SignalEditPartCN.VISUAL_ID:
 		case InterfaceEditPartCN.VISUAL_ID:
 		case Model3EditPart.VISUAL_ID:
-		case Enumeration2EditPart.VISUAL_ID:
+		case EnumerationEditPartCN.VISUAL_ID:
 		case Package2EditPart.VISUAL_ID:
 		case ClassEditPartCN.VISUAL_ID:
 		case PrimitiveTypeEditPartCN.VISUAL_ID:

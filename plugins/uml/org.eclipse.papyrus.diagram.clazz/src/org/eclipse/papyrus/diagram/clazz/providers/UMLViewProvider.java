@@ -97,7 +97,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 				case Class2EditPart.VISUAL_ID:
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 				case TemplateParameterEditPart.VISUAL_ID:
-				case Enumeration2EditPart.VISUAL_ID:
+				case EnumerationEditPartCN.VISUAL_ID:
 				case EnumerationLiteralEditPart.VISUAL_ID:
 				case ReceptionEditPart.VISUAL_ID:
 				case PrimitiveTypeEditPartCN.VISUAL_ID:
@@ -175,9 +175,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeEnumerationEditPart.VISUAL_ID:
-				case EnumerationName2EditPart.VISUAL_ID:
-				case EnumerationQualifiedNameEditPart.VISUAL_ID:
+				case EnumerationNameEditPart.VISUAL_ID:
 				case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
 					if (EnumerationEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -264,11 +262,9 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodeEnumerationEditPart.VISUAL_ID:
-				case EnumerationName4EditPart.VISUAL_ID:
-				case EnumerationQualifiedName2EditPart.VISUAL_ID:
+				case EnumerationNameEditPartCN.VISUAL_ID:
 				case EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID:
-					if (Enumeration2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (EnumerationEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -437,12 +433,8 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return ModelQualifiedNameViewFactory.class;
 		case EnumerationEditPart.VISUAL_ID:
 			return EnumerationViewFactory.class;
-		case AppliedStereotypeEnumerationEditPart.VISUAL_ID:
+		case EnumerationNameEditPart.VISUAL_ID:
 			return EnumerationNameViewFactory.class;
-		case EnumerationName2EditPart.VISUAL_ID:
-			return EnumerationName2ViewFactory.class;
-		case EnumerationQualifiedNameEditPart.VISUAL_ID:
-			return EnumerationQualifiedNameViewFactory.class;
 		case PackageEditPart.VISUAL_ID:
 			return PackageViewFactory.class;
 		case AppliedStereotypePackageEditPart.VISUAL_ID:
@@ -519,14 +511,10 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return ModelName4ViewFactory.class;
 		case ModelQualifiedName2EditPart.VISUAL_ID:
 			return ModelQualifiedName2ViewFactory.class;
-		case Enumeration2EditPart.VISUAL_ID:
-			return Enumeration2ViewFactory.class;
-		case AppliedStereotypeChildNodeEnumerationEditPart.VISUAL_ID:
-			return EnumerationName3ViewFactory.class;
-		case EnumerationName4EditPart.VISUAL_ID:
-			return EnumerationName4ViewFactory.class;
-		case EnumerationQualifiedName2EditPart.VISUAL_ID:
-			return EnumerationQualifiedName2ViewFactory.class;
+		case EnumerationEditPartCN.VISUAL_ID:
+			return EnumerationViewFactoryCN.class;
+		case EnumerationNameEditPartCN.VISUAL_ID:
+			return EnumerationNameViewFactoryCN.class;
 		case EnumerationLiteralEditPart.VISUAL_ID:
 			return EnumerationLiteralViewFactory.class;
 		case Package2EditPart.VISUAL_ID:

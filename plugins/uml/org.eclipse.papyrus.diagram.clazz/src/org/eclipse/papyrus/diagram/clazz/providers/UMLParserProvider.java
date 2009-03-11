@@ -75,6 +75,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportAliasEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationName4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationQualifiedName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationQualifiedNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationName2EditPart;
@@ -296,32 +298,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser enumerationName_5022Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser enumerationName_5023Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser enumerationName_5054Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser enumerationName_5055Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser enumerationQualifiedName_5024Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser enumerationQualifiedName_5056Parser;
 
 	/**
 	 * @generated
@@ -882,18 +864,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	protected IParser createEnumerationName_5022Parser() {
-
-		// Papyrus Gen code
-		// This code is replaced by a simple parser of apliedstereotype
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser createEnumerationName_5023Parser() {
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
@@ -905,50 +875,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	protected IParser createEnumerationName_5054Parser() {
-
-		// Papyrus Gen code
-		// This code is replaced by a simple parser of apliedstereotype
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser createEnumerationName_5055Parser() {
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createEnumerationQualifiedName_5024Parser() {
-
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_QualifiedName(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("({0})");
-		parser.setEditorPattern("({0})");
-		parser.setEditPattern("({0})");
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createEnumerationQualifiedName_5056Parser() {
-
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_QualifiedName(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("({0})");
-		parser.setEditorPattern("({0})");
-		parser.setEditPattern("({0})");
 		return parser;
 
 	}
@@ -1760,16 +1690,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getEnumerationName_5022Parser() {
-		if (enumerationName_5022Parser == null) {
-			enumerationName_5022Parser = createEnumerationName_5022Parser();
-		}
-		return enumerationName_5022Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getEnumerationName_5023Parser() {
 		if (enumerationName_5023Parser == null) {
 			enumerationName_5023Parser = createEnumerationName_5023Parser();
@@ -1780,41 +1700,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getEnumerationName_5054Parser() {
-		if (enumerationName_5054Parser == null) {
-			enumerationName_5054Parser = createEnumerationName_5054Parser();
-		}
-		return enumerationName_5054Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getEnumerationName_5055Parser() {
 		if (enumerationName_5055Parser == null) {
 			enumerationName_5055Parser = createEnumerationName_5055Parser();
 		}
 		return enumerationName_5055Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getEnumerationQualifiedName_5024Parser() {
-		if (enumerationQualifiedName_5024Parser == null) {
-			enumerationQualifiedName_5024Parser = createEnumerationQualifiedName_5024Parser();
-		}
-		return enumerationQualifiedName_5024Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getEnumerationQualifiedName_5056Parser() {
-		if (enumerationQualifiedName_5056Parser == null) {
-			enumerationQualifiedName_5056Parser = createEnumerationQualifiedName_5056Parser();
-		}
-		return enumerationQualifiedName_5056Parser;
 	}
 
 	/**
@@ -2137,12 +2027,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getModelName_5020Parser();
 		case ModelQualifiedNameEditPart.VISUAL_ID:
 			return getModelQualifiedName_5021Parser();
-		case AppliedStereotypeEnumerationEditPart.VISUAL_ID:
-			return getEnumerationName_5022Parser();
-		case EnumerationName2EditPart.VISUAL_ID:
+		case EnumerationNameEditPart.VISUAL_ID:
 			return getEnumerationName_5023Parser();
-		case EnumerationQualifiedNameEditPart.VISUAL_ID:
-			return getEnumerationQualifiedName_5024Parser();
 		case AppliedStereotypePackageEditPart.VISUAL_ID:
 			return getPackageName_5025Parser();
 		case PackageName2EditPart.VISUAL_ID:
@@ -2191,12 +2077,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getModelName_5052Parser();
 		case ModelQualifiedName2EditPart.VISUAL_ID:
 			return getModelQualifiedName_5053Parser();
-		case AppliedStereotypeChildNodeEnumerationEditPart.VISUAL_ID:
-			return getEnumerationName_5054Parser();
-		case EnumerationName4EditPart.VISUAL_ID:
+		case EnumerationNameEditPartCN.VISUAL_ID:
 			return getEnumerationName_5055Parser();
-		case EnumerationQualifiedName2EditPart.VISUAL_ID:
-			return getEnumerationQualifiedName_5056Parser();
 		case EnumerationLiteralEditPart.VISUAL_ID:
 			return getEnumerationLiteral_3017Parser();
 		case AppliedStereotypeChildNodePackageEditPart.VISUAL_ID:
