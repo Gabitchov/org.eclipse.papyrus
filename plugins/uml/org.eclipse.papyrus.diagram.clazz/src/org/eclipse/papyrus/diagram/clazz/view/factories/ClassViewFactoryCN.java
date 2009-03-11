@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.view.factories;
 
 import java.util.ArrayList;
@@ -24,19 +11,17 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeChildNodeClassEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassName4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassQualifiedName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 
 /**
  * @generated
  */
-public class Class4ViewFactory extends AbstractShapeViewFactory {
+public class ClassViewFactoryCN extends AbstractShapeViewFactory {
 
 	/**
 	 * @generated
@@ -56,7 +41,7 @@ public class Class4ViewFactory extends AbstractShapeViewFactory {
 	 */
 	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry.getType(Class4EditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry.getType(ClassEditPartCN.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
@@ -65,11 +50,10 @@ public class Class4ViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(AppliedStereotypeChildNodeClassEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ClassName4EditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ClassQualifiedName2EditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ClassNameEditPartCN.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 	}
+
 }

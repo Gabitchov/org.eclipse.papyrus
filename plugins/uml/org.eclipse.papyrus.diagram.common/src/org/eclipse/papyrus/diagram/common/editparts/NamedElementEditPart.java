@@ -67,7 +67,9 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart {
 		if (resolveSemanticElement() != null) {
 			((NodeNamedElementFigure) getPrimaryShape()).setDepth(getQualifiedNamedepth());
 			((NodeNamedElementFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement()).getQualifiedName());
-			refreshVisuals();
+			if (getParent() != null) {
+				refreshVisuals();
+			}
 		}
 	}
 }

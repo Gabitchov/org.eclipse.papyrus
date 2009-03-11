@@ -81,7 +81,6 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 		ToolbarLayout layout = new ToolbarLayout();
 		layout.setVertical(true);
 		this.contentPane.setLayoutManager(layout);
-		// this.contentPane.add(new org.eclipse.draw2d.Label(PapyrusPlugin.ST_LEFT+keyword+PapyrusPlugin.ST_RIGHT));
 		this.add(this.contentPane);
 	}
 
@@ -130,23 +129,6 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#setBounds(org.eclipse.draw2d.geometry.Rectangle)
-	 */
-	/**
-	 * Sets the bounds.
-	 * 
-	 * @param rect
-	 *            the rect
-	 */
-	@Override
-	public void setBounds(Rectangle rect) {
-		super.setBounds(rect);
-		calculateComponentBounds(rect);
-	}
-
 	/**
 	 * Helper method to calculate the size of compartements inside a EnumerationFigure. This method is subject to redefined in the subclasses.
 	 * 
@@ -157,18 +139,6 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 			int stereotypePropertiesHeight = rect.height - this.getNameHeight() - 5;
 			this.getStereotypePropertiesContent().setPreferredSize(rect.width, stereotypePropertiesHeight);
 		}
-	}
-
-	/**
-	 * 
-	 * 
-	 * @param graphics
-	 */
-	@Override
-	public void paint(Graphics graphics) {
-		super.paint(graphics);
-		drawSeparateLine(graphics);
-
 	}
 
 	/**

@@ -52,19 +52,20 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCo
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Component2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataType2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Interface2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
@@ -74,7 +75,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Signal2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -132,13 +133,13 @@ public class Package2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					case InstanceSpecification2EditPart.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case Component2EditPart.VISUAL_ID:
+					case ComponentEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case Signal2EditPart.VISUAL_ID:
+					case SignalEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case Interface2EditPart.VISUAL_ID:
+					case InterfaceEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
 					case Model3EditPart.VISUAL_ID:
@@ -150,13 +151,13 @@ public class Package2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					case Package2EditPart.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case Class4EditPart.VISUAL_ID:
+					case ClassEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
 					case PrimitiveTypeEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case DataType2EditPart.VISUAL_ID:
+					case DataTypeEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
 					case Comment2EditPart.VISUAL_ID:

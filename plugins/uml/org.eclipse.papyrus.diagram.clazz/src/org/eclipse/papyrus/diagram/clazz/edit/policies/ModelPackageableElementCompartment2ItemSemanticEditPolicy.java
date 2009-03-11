@@ -15,18 +15,19 @@ package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Class4CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ClassCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Comment2CreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Component2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ComponentCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Constraint2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DataType2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.DataTypeCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Enumeration2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecification2CreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Interface2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.InterfaceCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Model2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Package2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PrimitiveTypeCreateCommandCN;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Signal2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.SignalCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -49,19 +50,19 @@ public class ModelPackageableElementCompartment2ItemSemanticEditPolicy extends U
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new Component2CreateCommand(req));
+			return getGEFWrapper(new ComponentCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Signal_3022 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new Signal2CreateCommand(req));
+			return getGEFWrapper(new SignalCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Interface_3023 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new Interface2CreateCommand(req));
+			return getGEFWrapper(new InterfaceCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Model_3024 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
@@ -85,7 +86,7 @@ public class ModelPackageableElementCompartment2ItemSemanticEditPolicy extends U
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new Class4CreateCommand(req));
+			return getGEFWrapper(new ClassCreateCommandCN(req));
 		}
 		if (UMLElementTypes.PrimitiveType_3026 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
@@ -97,7 +98,7 @@ public class ModelPackageableElementCompartment2ItemSemanticEditPolicy extends U
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new DataType2CreateCommand(req));
+			return getGEFWrapper(new DataTypeCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Comment_3028 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {

@@ -43,16 +43,18 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Association3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Component2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataType2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
@@ -62,8 +64,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Interface2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
@@ -77,8 +79,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Signal2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
@@ -135,7 +137,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case Association2EditPart.VISUAL_ID: {
+		case AssociationNodeEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getAssociation_2015ContainedLinks(view));
 			}
@@ -279,7 +281,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case Component2EditPart.VISUAL_ID: {
+		case ComponentEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getComponent_3021ContainedLinks(view));
 			}
@@ -288,7 +290,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case Signal2EditPart.VISUAL_ID: {
+		case SignalEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getSignal_3022ContainedLinks(view));
 			}
@@ -297,7 +299,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case Interface2EditPart.VISUAL_ID: {
+		case InterfaceEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getInterface_3023ContainedLinks(view));
 			}
@@ -333,7 +335,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case Class4EditPart.VISUAL_ID: {
+		case ClassEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getClass_3010ContainedLinks(view));
 			}
@@ -351,7 +353,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case DataType2EditPart.VISUAL_ID: {
+		case DataTypeEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getDataType_3027ContainedLinks(view));
 			}
@@ -654,7 +656,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		switch (visualID) {
 		case Dependency2EditPart.VISUAL_ID:
 		case AssociationClassEditPart.VISUAL_ID:
-		case Association2EditPart.VISUAL_ID:
+		case AssociationNodeEditPart.VISUAL_ID:
 		case InstanceSpecificationEditPart.VISUAL_ID:
 		case ComponentEditPart.VISUAL_ID:
 		case SignalEditPart.VISUAL_ID:

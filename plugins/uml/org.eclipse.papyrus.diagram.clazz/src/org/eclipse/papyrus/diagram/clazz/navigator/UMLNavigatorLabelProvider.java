@@ -119,13 +119,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getAssociationClass_2013Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.AssociationClass_2013, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeAssociationClassEditPart.VISUAL_ID));
+				.getType(AssociationClassName2EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5065); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5066); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -149,13 +149,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getClass_2008Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.Class_2008, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeClassEditPart.VISUAL_ID));
+				.getType(ClassNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5028); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5029); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -198,13 +198,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getClass_3010Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.Class_3010, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeChildNodeClassEditPart.VISUAL_ID));
+				.getType(ClassNameEditPartCN.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5013); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5014); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -272,13 +272,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getComponent_2002Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.Component_2002, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeComponentEditPart.VISUAL_ID));
+				.getType(ComponentNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5004); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5005); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -289,13 +289,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getComponent_3021Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.Component_3021, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeChildNodeComponentEditPart.VISUAL_ID));
+				.getType(ComponentNameEditPartCN.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5042); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5043); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -347,13 +347,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getDataType_2010Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.DataType_2010, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeDataTypeEditPart.VISUAL_ID));
+				.getType(DataTypeNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5034); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5035); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -364,13 +364,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getDataType_3027Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.DataType_3027, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeChildNodeDataTypeEditPart.VISUAL_ID));
+				.getType(DataTypeNameEditPartCN.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5060); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5061); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -563,7 +563,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?Dependency", UMLElementTypes.Dependency_2014); //$NON-NLS-1$
 		case AssociationClassEditPart.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?AssociationClass", UMLElementTypes.AssociationClass_2013); //$NON-NLS-1$
-		case Association2EditPart.VISUAL_ID:
+		case AssociationNodeEditPart.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?Association", UMLElementTypes.Association_2015); //$NON-NLS-1$
 		case InstanceSpecificationEditPart.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?InstanceSpecification", UMLElementTypes.InstanceSpecification_2001); //$NON-NLS-1$
@@ -611,11 +611,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Class", UMLElementTypes.Class_3008); //$NON-NLS-1$
 		case InstanceSpecification2EditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?InstanceSpecification", UMLElementTypes.InstanceSpecification_3020); //$NON-NLS-1$
-		case Component2EditPart.VISUAL_ID:
+		case ComponentEditPartCN.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Component", UMLElementTypes.Component_3021); //$NON-NLS-1$
-		case Signal2EditPart.VISUAL_ID:
+		case SignalEditPartCN.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Signal", UMLElementTypes.Signal_3022); //$NON-NLS-1$
-		case Interface2EditPart.VISUAL_ID:
+		case InterfaceEditPartCN.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Interface", UMLElementTypes.Interface_3023); //$NON-NLS-1$
 		case Model3EditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Model", UMLElementTypes.Model_3024); //$NON-NLS-1$
@@ -625,7 +625,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?EnumerationLiteral", UMLElementTypes.EnumerationLiteral_3017); //$NON-NLS-1$
 		case Package2EditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Package", UMLElementTypes.Package_3009); //$NON-NLS-1$
-		case Class4EditPart.VISUAL_ID:
+		case ClassEditPartCN.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Class", UMLElementTypes.Class_3010); //$NON-NLS-1$
 		case ReceptionEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Reception", UMLElementTypes.Reception_3011); //$NON-NLS-1$
@@ -637,7 +637,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Class", UMLElementTypes.Class_3014); //$NON-NLS-1$
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?PrimitiveType", UMLElementTypes.PrimitiveType_3026); //$NON-NLS-1$
-		case DataType2EditPart.VISUAL_ID:
+		case DataTypeEditPartCN.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?DataType", UMLElementTypes.DataType_3027); //$NON-NLS-1$
 		case Property5EditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Property", UMLElementTypes.Property_3018); //$NON-NLS-1$
@@ -728,13 +728,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getInterface_2004Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.Interface_2004, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeInterfaceEditPart.VISUAL_ID));
+				.getType(InterfaceNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5010); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5011); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -745,13 +745,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getInterface_3023Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.Interface_3023, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeChildNodeInterfaceEditPart.VISUAL_ID));
+				.getType(InterfaceNameEditPartCN.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5048); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5049); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -1128,13 +1128,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getSignal_2003Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.Signal_2003, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeSignalEditPart.VISUAL_ID));
+				.getType(SignalNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5007); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5008); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -1145,13 +1145,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	private String getSignal_3022Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.Signal_3022, (view.getElement() != null ? view.getElement() : view), UMLVisualIDRegistry
-				.getType(AppliedStereotypeChildNodeSignalEditPart.VISUAL_ID));
+				.getType(SignalNameEditPartCN.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5045); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5046); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -1246,7 +1246,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getDependency_2014Text(view);
 		case AssociationClassEditPart.VISUAL_ID:
 			return getAssociationClass_2013Text(view);
-		case Association2EditPart.VISUAL_ID:
+		case AssociationNodeEditPart.VISUAL_ID:
 			return getAssociation_2015Text(view);
 		case InstanceSpecificationEditPart.VISUAL_ID:
 			return getInstanceSpecification_2001Text(view);
@@ -1294,11 +1294,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getClass_3008Text(view);
 		case InstanceSpecification2EditPart.VISUAL_ID:
 			return getInstanceSpecification_3020Text(view);
-		case Component2EditPart.VISUAL_ID:
+		case ComponentEditPartCN.VISUAL_ID:
 			return getComponent_3021Text(view);
-		case Signal2EditPart.VISUAL_ID:
+		case SignalEditPartCN.VISUAL_ID:
 			return getSignal_3022Text(view);
-		case Interface2EditPart.VISUAL_ID:
+		case InterfaceEditPartCN.VISUAL_ID:
 			return getInterface_3023Text(view);
 		case Model3EditPart.VISUAL_ID:
 			return getModel_3024Text(view);
@@ -1308,7 +1308,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getEnumerationLiteral_3017Text(view);
 		case Package2EditPart.VISUAL_ID:
 			return getPackage_3009Text(view);
-		case Class4EditPart.VISUAL_ID:
+		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010Text(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011Text(view);
@@ -1320,7 +1320,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getClass_3014Text(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026Text(view);
-		case DataType2EditPart.VISUAL_ID:
+		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027Text(view);
 		case Property5EditPart.VISUAL_ID:
 			return getProperty_3018Text(view);

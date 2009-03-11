@@ -577,14 +577,14 @@
       </childNodes>
       <childNodes
           visualID="3021"
-          editPartClassName="Component2EditPart"
-          itemSemanticEditPolicyClassName="Component2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Component2ViewFactory"
-          canonicalEditPolicyClassName="Component2CanonicalEditPolicy"
+          editPartClassName="ComponentEditPartCN"
+          itemSemanticEditPolicyClassName="ComponentItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="ComponentViewFactoryCN"
+          canonicalEditPolicyClassName="ComponentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           compartments="/0/@diagram/@compartments.12 /0/@diagram/@compartments.13 /0/@diagram/@compartments.14"
-          graphicalNodeEditPolicyClassName="Component2GraphicalNodeEditPolicy"
-          createCommandClassName="Component2CreateCommand"
+          graphicalNodeEditPolicyClassName="ComponentGraphicalNodeEditPolicyCN"
+          createCommandClassName="ComponentCreateCommandCN"
           containers="/0/@diagram/@compartments.10 /0/@diagram/@compartments.19 /0/@diagram/@compartments.21 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -592,15 +592,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@topLevelNodes.4/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ComponentFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -625,41 +618,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5042"
-            editPartClassName="AppliedStereotypeChildNodeComponentEditPart"
-            itemSemanticEditPolicyClassName="ComponentName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ComponentName3ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5043"
-            editPartClassName="ComponentName4EditPart"
-            itemSemanticEditPolicyClassName="ComponentName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ComponentName4ViewFactory"
+            editPartClassName="ComponentNameEditPartCN"
+            itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="ComponentNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -673,39 +641,17 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
-        <labels
-            visualID="5044"
-            editPartClassName="ComponentQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="ComponentQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ComponentQualifiedName2ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
-          </modelFacet>
-        </labels>
       </childNodes>
       <childNodes
           visualID="3022"
-          editPartClassName="Signal2EditPart"
-          itemSemanticEditPolicyClassName="Signal2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Signal2ViewFactory"
-          canonicalEditPolicyClassName="Signal2CanonicalEditPolicy"
+          editPartClassName="SignalEditPartCN"
+          itemSemanticEditPolicyClassName="SignalItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="SignalViewFactoryCN"
+          canonicalEditPolicyClassName="SignalCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           compartments="/0/@diagram/@compartments.15"
-          graphicalNodeEditPolicyClassName="Signal2GraphicalNodeEditPolicy"
-          createCommandClassName="Signal2CreateCommand"
+          graphicalNodeEditPolicyClassName="SignalGraphicalNodeEditPolicyCN"
+          createCommandClassName="SignalCreateCommandCN"
           containers="/0/@diagram/@compartments.10 /0/@diagram/@compartments.19 /0/@diagram/@compartments.21 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -713,15 +659,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@topLevelNodes.5/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.SignalFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -742,41 +681,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5045"
-            editPartClassName="AppliedStereotypeChildNodeSignalEditPart"
-            itemSemanticEditPolicyClassName="SignalName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="SignalName3ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5046"
-            editPartClassName="SignalName4EditPart"
-            itemSemanticEditPolicyClassName="SignalName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="SignalName4ViewFactory"
+            editPartClassName="SignalNameEditPartCN"
+            itemSemanticEditPolicyClassName="SignalNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="SignalNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -790,39 +704,17 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
-        <labels
-            visualID="5047"
-            editPartClassName="SignalQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="SignalQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="SignalQualifiedName2ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
-          </modelFacet>
-        </labels>
       </childNodes>
       <childNodes
           visualID="3023"
-          editPartClassName="Interface2EditPart"
-          itemSemanticEditPolicyClassName="Interface2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Interface2ViewFactory"
-          canonicalEditPolicyClassName="Interface2CanonicalEditPolicy"
+          editPartClassName="InterfaceEditPartCN"
+          itemSemanticEditPolicyClassName="InterfaceItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="InterfaceViewFactoryCN"
+          canonicalEditPolicyClassName="InterfaceCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           compartments="/0/@diagram/@compartments.16 /0/@diagram/@compartments.17 /0/@diagram/@compartments.18"
-          graphicalNodeEditPolicyClassName="Interface2GraphicalNodeEditPolicy"
-          createCommandClassName="Interface2CreateCommand"
+          graphicalNodeEditPolicyClassName="InterfaceGraphicalNodeEditPolicyCN"
+          createCommandClassName="InterfaceCreateCommandCN"
           containers="/0/@diagram/@compartments.10 /0/@diagram/@compartments.19 /0/@diagram/@compartments.21 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -830,15 +722,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@topLevelNodes.6/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InterfaceFigure"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
@@ -857,41 +742,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5048"
-            editPartClassName="AppliedStereotypeChildNodeInterfaceEditPart"
-            itemSemanticEditPolicyClassName="InterfaceName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="InterfaceName3ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5049"
-            editPartClassName="InterfaceName4EditPart"
-            itemSemanticEditPolicyClassName="InterfaceName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="InterfaceName4ViewFactory"
+            editPartClassName="InterfaceNameEditPartCN"
+            itemSemanticEditPolicyClassName="InterfaceNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="InterfaceNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -903,28 +763,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5050"
-            editPartClassName="InterfaceQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="InterfaceQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="InterfaceQualifiedName2ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1342,14 +1180,14 @@
       </childNodes>
       <childNodes
           visualID="3010"
-          editPartClassName="Class4EditPart"
-          itemSemanticEditPolicyClassName="Class4ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Class4ViewFactory"
-          canonicalEditPolicyClassName="Class4CanonicalEditPolicy"
+          editPartClassName="ClassEditPartCN"
+          itemSemanticEditPolicyClassName="ClassItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="ClassViewFactoryCN"
+          canonicalEditPolicyClassName="ClassCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           compartments="/0/@diagram/@compartments.22 /0/@diagram/@compartments.23 /0/@diagram/@compartments.24"
-          graphicalNodeEditPolicyClassName="Class4GraphicalNodeEditPolicy"
-          createCommandClassName="Class4CreateCommand"
+          graphicalNodeEditPolicyClassName="ClassGraphicalNodeEditPolicyCN"
+          createCommandClassName="ClassCreateCommandCN"
           containers="/0/@diagram/@compartments.21 /0/@diagram/@compartments.19 /0/@diagram/@compartments.10 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1357,15 +1195,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.3/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public ClassifierDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xD;&#xA;);&#xD;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xD;&#xA;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xD;&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xD;&#xA;&#xD;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.add(fClassifierStereotypeLabel);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xD;&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xD;&#xA;&#xD;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.add(fClassifierNameLabel);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xD;&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xD;&#xA;&#xD;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.add(fClassifierQualifiedNameLabel);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xD;&#xA;fAttributeCompartmentFigure.setFill(false);&#xD;&#xA;&#xD;&#xA;this.add(fAttributeCompartmentFigure);&#xD;&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xD;&#xA;fOperationCompartmentFigure.setFill(false);&#xD;&#xA;&#xD;&#xA;this.add(fOperationCompartmentFigure);&#xD;&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xD;&#xA;fNestedClassifierFigure.setFill(false);&#xD;&#xA;&#xD;&#xA;this.add(fNestedClassifierFigure);&#xD;&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xD;&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xD;&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xD;&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xD;&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xD;&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xD;&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -1390,41 +1221,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5013"
-            editPartClassName="AppliedStereotypeChildNodeClassEditPart"
-            itemSemanticEditPolicyClassName="ClassName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ClassName3ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5014"
-            editPartClassName="ClassName4EditPart"
-            itemSemanticEditPolicyClassName="ClassName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ClassName4ViewFactory"
+            editPartClassName="ClassNameEditPartCN"
+            itemSemanticEditPolicyClassName="ClassNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="ClassNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -1436,28 +1242,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5015"
-            editPartClassName="ClassQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="ClassQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ClassQualifiedName2ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1708,14 +1492,14 @@
       </childNodes>
       <childNodes
           visualID="3027"
-          editPartClassName="DataType2EditPart"
-          itemSemanticEditPolicyClassName="DataType2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="DataType2ViewFactory"
-          canonicalEditPolicyClassName="DataType2CanonicalEditPolicy"
+          editPartClassName="DataTypeEditPartCN"
+          itemSemanticEditPolicyClassName="DataTypeItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="DataTypeViewFactoryCN"
+          canonicalEditPolicyClassName="DataTypeCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           compartments="/0/@diagram/@compartments.25 /0/@diagram/@compartments.26"
-          graphicalNodeEditPolicyClassName="DataType2GraphicalNodeEditPolicy"
-          createCommandClassName="DataType2CreateCommand"
+          graphicalNodeEditPolicyClassName="DataTypeGraphicalNodeEditPolicyCN"
+          createCommandClassName="DataTypeCreateCommandCN"
           containers="/0/@diagram/@compartments.21 /0/@diagram/@compartments.19 /0/@diagram/@compartments.10 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1723,15 +1507,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="DataTypeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.DataTypeFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1752,40 +1529,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5060"
-            editPartClassName="AppliedStereotypeChildNodeDataTypeEditPart"
-            itemSemanticEditPolicyClassName="DataTypeName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="DataTypeName3ViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5061"
-            editPartClassName="DataTypeName4EditPart"
-            itemSemanticEditPolicyClassName="DataTypeName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="DataTypeName4ViewFactory"
+            editPartClassName="DataTypeNameEditPartCN"
+            itemSemanticEditPolicyClassName="DataTypeNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="DataTypeNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -1795,30 +1548,6 @@
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5062"
-            editPartClassName="DataTypeQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="DataTypeQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="DataTypeQualifiedName2ViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -2099,15 +1828,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="AssociationClassEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -2128,31 +1850,6 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5065"
-            editPartClassName="AppliedStereotypeAssociationClassEditPart"
-            itemSemanticEditPolicyClassName="AssociationClassNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="AssociationClassNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5066"
             editPartClassName="AssociationClassName2EditPart"
             itemSemanticEditPolicyClassName="AssociationClassName2ItemSemanticEditPolicy"
@@ -2162,7 +1859,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -2176,37 +1873,15 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
-        <labels
-            visualID="5067"
-            editPartClassName="AssociationClassQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="AssociationClassQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="AssociationClassQualifiedNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
-          </modelFacet>
-        </labels>
       </topLevelNodes>
       <topLevelNodes
           visualID="2015"
-          editPartClassName="Association2EditPart"
-          itemSemanticEditPolicyClassName="Association2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Association2ViewFactory"
+          editPartClassName="AssociationNodeEditPart"
+          itemSemanticEditPolicyClassName="AssociationNodeItemSemanticEditPolicy"
+          notationViewFactoryClassName="AssociationNodeViewFactory"
           canonicalEditPolicyClassName="AssociationCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="AssociationGraphicalNodeEditPolicy"
-          createCommandClassName="Association2CreateCommand">
+          createCommandClassName="AssociationNodeCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -2362,15 +2037,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ComponentEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ComponentFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2395,41 +2063,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5004"
-            editPartClassName="AppliedStereotypeComponentEditPart"
+            visualID="5005"
+            editPartClassName="ComponentNameEditPart"
             itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicy"
             notationViewFactoryClassName="ComponentNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5005"
-            editPartClassName="ComponentName2EditPart"
-            itemSemanticEditPolicyClassName="ComponentName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ComponentName2ViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -2441,28 +2084,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5006"
-            editPartClassName="ComponentQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="ComponentQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ComponentQualifiedNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2482,15 +2103,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="SignalEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.SignalFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -2511,41 +2125,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5007"
-            editPartClassName="AppliedStereotypeSignalEditPart"
+            visualID="5008"
+            editPartClassName="SignalNameEditPart"
             itemSemanticEditPolicyClassName="SignalNameItemSemanticEditPolicy"
             notationViewFactoryClassName="SignalNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5008"
-            editPartClassName="SignalName2EditPart"
-            itemSemanticEditPolicyClassName="SignalName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="SignalName2ViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -2557,28 +2146,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5009"
-            editPartClassName="SignalQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="SignalQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="SignalQualifiedNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2598,15 +2165,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="InterfaceEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InterfaceFigure"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
@@ -2625,41 +2185,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5010"
-            editPartClassName="AppliedStereotypeInterfaceEditPart"
+            visualID="5011"
+            editPartClassName="InterfaceNameEditPart"
             itemSemanticEditPolicyClassName="InterfaceNameItemSemanticEditPolicy"
             notationViewFactoryClassName="InterfaceNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5011"
-            editPartClassName="InterfaceName2EditPart"
-            itemSemanticEditPolicyClassName="InterfaceName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="InterfaceName2ViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -2671,28 +2206,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5012"
-            editPartClassName="InterfaceQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="InterfaceQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="InterfaceQualifiedNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3072,15 +2585,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.3/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -3105,41 +2611,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5028"
-            editPartClassName="AppliedStereotypeClassEditPart"
-            itemSemanticEditPolicyClassName="AppliedStereotypeClassItemSemanticEditPolicy"
-            notationViewFactoryClassName="AppliedStereotypeClassViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5029"
-            editPartClassName="ClassName2EditPart"
-            itemSemanticEditPolicyClassName="ClassName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ClassName2ViewFactory"
+            editPartClassName="ClassNameEditPart"
+            itemSemanticEditPolicyClassName="ClassNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="ClassNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -3151,28 +2632,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5030"
-            editPartClassName="ClassQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="ClassQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ClassQualifiedNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3250,15 +2709,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.24/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ClassifierDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ClassifierDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fAttributeCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fOperationCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierStereotypeLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fClassifierQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fNestedClassifierFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ClassifierDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fClassifierStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierStereotypeLabel);&#xA;&#xA;&#xA;&#xA;fClassifierNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierNameLabel);&#xA;&#xA;&#xA;&#xA;fClassifierQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fClassifierQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fClassifierQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fAttributeCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fAttributeCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fAttributeCompartmentFigure);&#xA;fAttributeCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fOperationCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fOperationCompartmentFigure.setFill(false);&#xA;&#xA;this.add(fOperationCompartmentFigure);&#xA;fOperationCompartmentFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fNestedClassifierFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fNestedClassifierFigure.setFill(false);&#xA;&#xA;this.add(fNestedClassifierFigure);&#xA;fNestedClassifierFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierNameLabel() {&#xA;&#x9;&#x9;return fClassifierNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getAttributeCompartmentFigure() {&#xA;&#x9;&#x9;return fAttributeCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getOperationCompartmentFigure() {&#xA;&#x9;&#x9;return fOperationCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierStereotypeLabel() {&#xA;&#x9;&#x9;return fClassifierStereotypeLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getClassifierQualifiedNameLabel() {&#xA;&#x9;&#x9;return fClassifierQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getNestedClassifierFigure() {&#xA;&#x9;&#x9;return fNestedClassifierFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 177, 207, 229);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 235, 248, 255);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERSTEREOTYPELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.DataTypeFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -3279,40 +2731,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5034"
-            editPartClassName="AppliedStereotypeDataTypeEditPart"
-            itemSemanticEditPolicyClassName="DataTypeNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="DataTypeNameViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierStereotypeLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5035"
-            editPartClassName="DataTypeName2EditPart"
-            itemSemanticEditPolicyClassName="DataTypeName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="DataTypeName2ViewFactory"
+            editPartClassName="DataTypeNameEditPart"
+            itemSemanticEditPolicyClassName="DataTypeNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="DataTypeNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -3322,30 +2750,6 @@
               xsi:type="gmfgen:FeatureLabelModelFacet">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5036"
-            editPartClassName="DataTypeQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="DataTypeQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="DataTypeQualifiedNameViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getClassifierQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -17708,7 +17112,7 @@
       comment=": this is the root node that contains all node to extend elements of the gmfgen">
     <extensionNodes
         comment="Label in charge to display applied stereotypes"
-        genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@childNodes.24/@labels.0 /0/@diagram/@topLevelNodes.12/@labels.0 /0/@diagram/@topLevelNodes.9/@labels.0 /0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@topLevelNodes.7/@labels.0 /0/@diagram/@topLevelNodes.5/@labels.0 /0/@diagram/@topLevelNodes.4/@labels.0 /0/@diagram/@topLevelNodes.3/@labels.0 /0/@diagram/@topLevelNodes.1/@labels.0 /0/@diagram/@topLevelNodes.6/@labels.0 /0/@diagram/@topLevelNodes.10/@labels.0 /0/@diagram/@childNodes.18/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.13/@labels.0 /0/@diagram/@childNodes.12/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.10/@labels.0"
+        genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@topLevelNodes.9/@labels.0 /0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@topLevelNodes.7/@labels.0 /0/@diagram/@topLevelNodes.3/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.10/@labels.0"
         name="StereotypeApplication"/>
     <extensionNodes
         comment="thiis extension is to associate a refresh for active classes"
@@ -17718,7 +17122,7 @@
           comment="set the figure active when the feature of the of a class is true"
           classpath=""
           triggeringCondition="resolveSemanticElement().equals(event.getNotifier()) &amp;&amp; (event.getFeature() instanceof org.eclipse.emf.ecore.EAttribute)&amp;&amp; ((org.eclipse.emf.ecore.EAttribute) (event.getFeature())).getName().equals(&quot;isActive&quot;)"
-          action="((CClassifierFigure) getFigure()).setActive(event.getNewBooleanValue())"/>
+          action="((ClassifierFigure) getFigure()).setActive(event.getNewBooleanValue())"/>
     </extensionNodes>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
   <papyrusgmfgenextension:SpecificLocator

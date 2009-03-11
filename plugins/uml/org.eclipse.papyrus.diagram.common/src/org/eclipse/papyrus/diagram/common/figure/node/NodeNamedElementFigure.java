@@ -28,7 +28,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.di.GraphElement;
 import org.eclipse.papyrus.editor.Activator;
 import org.eclipse.papyrus.editor.PapyrusConstant;
 import org.eclipse.swt.SWT;
@@ -160,17 +159,14 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 
 		setForegroundColor(Activator.colorManager.get(new RGB(204, 204, 204)));
 
+		// creation of the nameLabel
 		this.nameLabel = new WrappingLabel();
 		this.nameLabel.setFont(font2);
 		this.nameLabel.setOpaque(false);
+		this.nameLabel.setAlignment(PositionConstants.MIDDLE);
 		this.add(this.nameLabel);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#setBounds(org.eclipse.draw2d.geometry.Rectangle)
-	 */
 	/**
 	 * Sets the bounds.
 	 * 
@@ -180,42 +176,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	@Override
 	public void setBounds(Rectangle rect) {
 		super.setBounds(rect);
-		calculateComponentBounds(rect);
-	}
-
-	/**
-	 * Helper method to calculate the size of compartements inside a ClassifierFigure. This method is subject to redefined in the subclasses.
-	 * 
-	 * @param rect
-	 */
-	protected void calculateComponentBounds(Rectangle rect) {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
-	 */
-	/**
-	 * Paint.
-	 * 
-	 * @param graphics
-	 *            the graphics
-	 */
-	@Override
-	public void paint(Graphics graphics) {
-		super.paint(graphics);
-		drawSeparateLine(graphics);
-		getNameLabel().setAlignment(PositionConstants.MIDDLE);
-	}
-
-	/**
-	 * Helper method to draw separation lines between name and compartements inside NodeFigure. It renders also the NodeFigure of elements with specific characteristics (for example an active class).
-	 * This method is subject to be redefined in subclasses,
-	 * 
-	 * @param graphics
-	 */
-	protected void drawSeparateLine(Graphics graphics) {
 	}
 
 	/**
@@ -252,11 +212,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.stereotypePropertiesContent;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#getBackgroundColor()
-	 */
 	/**
 	 * Gets the background color.
 	 * 
@@ -267,11 +222,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.backgroundColor;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#setBackgroundColor(org.eclipse.swt.graphics.Color)
-	 */
 	/**
 	 * Sets the background color.
 	 * 
@@ -284,11 +234,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		super.setBackgroundColor(backgroundColor);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#getBorderColor()
-	 */
 	/**
 	 * Gets the border color.
 	 * 
@@ -298,11 +243,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.borderColor;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setBorderColor(org.eclipse.swt.graphics.Color)
-	 */
 	/**
 	 * Sets the border color.
 	 * 
@@ -314,11 +254,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		super.setBorder(new LineBorder(borderColor));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setIcon(org.eclipse.swt.graphics.Image)
-	 */
 	/**
 	 * Sets the icon.
 	 * 
@@ -329,11 +264,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.img = img;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#getfigureFont()
-	 */
 	/**
 	 * Getfigure font.
 	 * 
@@ -343,11 +273,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.fontString;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setfigureFont(java.lang.String)
-	 */
 	/**
 	 * Setfigure font.
 	 * 
@@ -362,11 +287,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		super.setFont(this.font);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#getFontSize()
-	 */
 	/**
 	 * Gets the font size.
 	 * 
@@ -376,11 +296,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.fontSize;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setFontSize(int)
-	 */
 	/**
 	 * Sets the font size.
 	 * 
@@ -395,11 +310,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.fontSize = fontSize;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setFontSize(int)
-	 */
 	/**
 	 * Sets the font.
 	 * 
@@ -425,11 +335,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#getForeGroundColor()
-	 */
 	/**
 	 * Gets the fore ground color.
 	 * 
@@ -439,11 +344,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.foreGroundColor;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setForeGroundColor(org.eclipse.swt.graphics.Color)
-	 */
 	/**
 	 * Sets the fore ground color.
 	 * 
@@ -456,11 +356,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#getLineStle()
-	 */
 	/**
 	 * Gets the line stle.
 	 * 
@@ -470,11 +365,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.lineStle;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setLineStle(java.lang.String)
-	 */
 	/**
 	 * Sets the line stle.
 	 * 
@@ -486,11 +376,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.lineStle = lineStle;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#getLineThickness()
-	 */
 	/**
 	 * Gets the line thickness.
 	 * 
@@ -500,11 +385,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.LineThickness;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setLineThickness(int)
-	 */
 	/**
 	 * Sets the line thickness.
 	 * 
@@ -515,11 +395,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.LineThickness = lineThickness;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
-	 */
 	/**
 	 * Paint figure.
 	 * 
@@ -541,11 +416,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#getFontColor()
-	 */
 	/**
 	 * Gets the font color.
 	 * 
@@ -555,11 +425,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return this.fontColor;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setFontColor(org.eclipse.swt.graphics.Color)
-	 */
 	/**
 	 * Sets the font color.
 	 * 
@@ -570,11 +435,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.fontColor = fontColor;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#refreshPresentation(java.lang.String, org.eclipse.uml2.uml.Element)
-	 */
 	/**
 	 * Refresh presentation.
 	 * 
@@ -583,7 +443,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 * @param selection
 	 *            the selection
 	 */
-	public void refreshPresentation(String presentation, Element selection, GraphElement ge, Image defaultImage) {
+	public void refreshPresentation(String presentation, Element selection, Image defaultImage) {
 
 		org.eclipse.swt.graphics.Image icon = Activator.getIconElement(selection);
 
@@ -622,11 +482,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#refreshStereotypes(java.lang.String, java.lang.String, boolean, boolean)
-	 */
 	/**
 	 * Refresh stereotypes.
 	 * 
@@ -658,11 +513,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setName(java.lang.String)
-	 */
 	/**
 	 * Sets the name.
 	 * 
@@ -671,21 +521,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 */
 	public void setName(String name) {
 		this.nameLabel.setText(name);
-	}
-
-	/**
-	 * This method is used to create the name label in the figure.
-	 */
-	protected void createNameLabel() {
-		FontData[] fontdata = { new FontData(this.fontString, this.fontSize, SWT.BOLD) };
-		Font font = Activator.fontManager.get(fontdata);
-		WrappingLabel label = new WrappingLabel();
-		label.setFont(font);
-		label.setForegroundColor(this.fontColor);
-		label.setOpaque(false);
-		// Add the name label to the figure after the stereotype label
-		this.add(label, getNameLabelPosition());
-		this.nameLabel = label;
 	}
 
 	/**
@@ -737,11 +572,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return position;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#getStereotypesLabel()
-	 */
 	/**
 	 * Gets the stereotypes label.
 	 * 
@@ -785,11 +615,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return 0;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setQualifiedName(java.lang.String)
-	 */
 	/**
 	 * Sets the qualified name.
 	 * 
@@ -896,11 +721,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.common.figures.IAbstractElementFigure#setStereotypes(java.lang.String)
-	 */
 	/**
 	 * Sets the stereotypes.
 	 * 

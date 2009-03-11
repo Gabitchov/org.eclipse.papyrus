@@ -85,7 +85,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 				switch (visualID) {
 				case Dependency2EditPart.VISUAL_ID:
 				case AssociationClassEditPart.VISUAL_ID:
-				case Association2EditPart.VISUAL_ID:
+				case AssociationNodeEditPart.VISUAL_ID:
 				case InstanceSpecificationEditPart.VISUAL_ID:
 				case ComponentEditPart.VISUAL_ID:
 				case SignalEditPart.VISUAL_ID:
@@ -101,7 +101,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 				case EnumerationLiteralEditPart.VISUAL_ID:
 				case ReceptionEditPart.VISUAL_ID:
 				case PrimitiveTypeEditPartCN.VISUAL_ID:
-				case DataType2EditPart.VISUAL_ID:
+				case DataTypeEditPartCN.VISUAL_ID:
 				case Comment2EditPart.VISUAL_ID:
 				case Constraint2EditPart.VISUAL_ID:
 				case EnumerationEditPart.VISUAL_ID:
@@ -116,12 +116,12 @@ public class UMLViewProvider extends AbstractViewProvider {
 				case Operation2EditPart.VISUAL_ID:
 				case Class3EditPart.VISUAL_ID:
 				case InstanceSpecification2EditPart.VISUAL_ID:
-				case Component2EditPart.VISUAL_ID:
-				case Signal2EditPart.VISUAL_ID:
-				case Interface2EditPart.VISUAL_ID:
+				case ComponentEditPartCN.VISUAL_ID:
+				case SignalEditPartCN.VISUAL_ID:
+				case InterfaceEditPartCN.VISUAL_ID:
 				case Model3EditPart.VISUAL_ID:
 				case Package2EditPart.VISUAL_ID:
-				case Class4EditPart.VISUAL_ID:
+				case ClassEditPartCN.VISUAL_ID:
 				case Property4EditPart.VISUAL_ID:
 				case Operation3EditPart.VISUAL_ID:
 				case Class5EditPart.VISUAL_ID:
@@ -131,9 +131,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
-				case AppliedStereotypeAssociationClassEditPart.VISUAL_ID:
 				case AssociationClassName2EditPart.VISUAL_ID:
-				case AssociationClassQualifiedNameEditPart.VISUAL_ID:
 				case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
 					if (AssociationClassEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -147,9 +145,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeComponentEditPart.VISUAL_ID:
-				case ComponentName2EditPart.VISUAL_ID:
-				case ComponentQualifiedNameEditPart.VISUAL_ID:
+				case ComponentNameEditPart.VISUAL_ID:
 				case ComponentAttributeCompartmentEditPart.VISUAL_ID:
 				case ComponentOperationCompartmentEditPart.VISUAL_ID:
 				case ComponentNestedClassifierCompartmentEditPart.VISUAL_ID:
@@ -157,17 +153,13 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeSignalEditPart.VISUAL_ID:
-				case SignalName2EditPart.VISUAL_ID:
-				case SignalQualifiedNameEditPart.VISUAL_ID:
+				case SignalNameEditPart.VISUAL_ID:
 				case SignalAttributeCompartmentEditPart.VISUAL_ID:
 					if (SignalEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeInterfaceEditPart.VISUAL_ID:
-				case InterfaceName2EditPart.VISUAL_ID:
-				case InterfaceQualifiedNameEditPart.VISUAL_ID:
+				case InterfaceNameEditPart.VISUAL_ID:
 				case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
 				case InterfaceOperationCompartmentEditPart.VISUAL_ID:
 				case InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID:
@@ -199,9 +191,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeClassEditPart.VISUAL_ID:
-				case ClassName2EditPart.VISUAL_ID:
-				case ClassQualifiedNameEditPart.VISUAL_ID:
+				case ClassNameEditPart.VISUAL_ID:
 				case ClassAttributeCompartment2EditPart.VISUAL_ID:
 				case ClassOperationCompartment2EditPart.VISUAL_ID:
 				case ClassNestedClassifierCompartment2EditPart.VISUAL_ID:
@@ -214,9 +204,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeDataTypeEditPart.VISUAL_ID:
-				case DataTypeName2EditPart.VISUAL_ID:
-				case DataTypeQualifiedNameEditPart.VISUAL_ID:
+				case DataTypeNameEditPart.VISUAL_ID:
 				case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
 				case DataTypeOperationCompartmentEditPart.VISUAL_ID:
 					if (DataTypeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
@@ -246,31 +234,25 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodeComponentEditPart.VISUAL_ID:
-				case ComponentName4EditPart.VISUAL_ID:
-				case ComponentQualifiedName2EditPart.VISUAL_ID:
+				case ComponentNameEditPartCN.VISUAL_ID:
 				case ComponentAttributeCompartment2EditPart.VISUAL_ID:
 				case ComponentOperationCompartment2EditPart.VISUAL_ID:
 				case ComponentNestedClassifierCompartment2EditPart.VISUAL_ID:
-					if (Component2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (ComponentEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodeSignalEditPart.VISUAL_ID:
-				case SignalName4EditPart.VISUAL_ID:
-				case SignalQualifiedName2EditPart.VISUAL_ID:
+				case SignalNameEditPartCN.VISUAL_ID:
 				case SignalAttributeCompartment2EditPart.VISUAL_ID:
-					if (Signal2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (SignalEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodeInterfaceEditPart.VISUAL_ID:
-				case InterfaceName4EditPart.VISUAL_ID:
-				case InterfaceQualifiedName2EditPart.VISUAL_ID:
+				case InterfaceNameEditPartCN.VISUAL_ID:
 				case InterfaceAttributeCompartment2EditPart.VISUAL_ID:
 				case InterfaceOperationCompartment2EditPart.VISUAL_ID:
 				case InterfaceNestedClassifierCompartment2EditPart.VISUAL_ID:
-					if (Interface2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (InterfaceEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -298,13 +280,11 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodeClassEditPart.VISUAL_ID:
-				case ClassName4EditPart.VISUAL_ID:
-				case ClassQualifiedName2EditPart.VISUAL_ID:
+				case ClassNameEditPartCN.VISUAL_ID:
 				case ClassAttributeCompartmentEditPart.VISUAL_ID:
 				case ClassOperationCompartmentEditPart.VISUAL_ID:
 				case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
-					if (Class4EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (ClassEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -313,12 +293,10 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodeDataTypeEditPart.VISUAL_ID:
-				case DataTypeName4EditPart.VISUAL_ID:
-				case DataTypeQualifiedName2EditPart.VISUAL_ID:
+				case DataTypeNameEditPartCN.VISUAL_ID:
 				case DataTypeAttributeCompartment2EditPart.VISUAL_ID:
 				case DataTypeOperationCompartment2EditPart.VISUAL_ID:
-					if (DataType2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (DataTypeEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -425,14 +403,10 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return Dependency2ViewFactory.class;
 		case AssociationClassEditPart.VISUAL_ID:
 			return AssociationClassViewFactory.class;
-		case AppliedStereotypeAssociationClassEditPart.VISUAL_ID:
-			return AssociationClassNameViewFactory.class;
 		case AssociationClassName2EditPart.VISUAL_ID:
 			return AssociationClassName2ViewFactory.class;
-		case AssociationClassQualifiedNameEditPart.VISUAL_ID:
-			return AssociationClassQualifiedNameViewFactory.class;
-		case Association2EditPart.VISUAL_ID:
-			return Association2ViewFactory.class;
+		case AssociationNodeEditPart.VISUAL_ID:
+			return AssociationNodeViewFactory.class;
 		case InstanceSpecificationEditPart.VISUAL_ID:
 			return InstanceSpecificationViewFactory.class;
 		case AppliedStereotypeInstanceSpecificationEditPart.VISUAL_ID:
@@ -443,28 +417,16 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return InstanceSpecificationQualifiedNameViewFactory.class;
 		case ComponentEditPart.VISUAL_ID:
 			return ComponentViewFactory.class;
-		case AppliedStereotypeComponentEditPart.VISUAL_ID:
+		case ComponentNameEditPart.VISUAL_ID:
 			return ComponentNameViewFactory.class;
-		case ComponentName2EditPart.VISUAL_ID:
-			return ComponentName2ViewFactory.class;
-		case ComponentQualifiedNameEditPart.VISUAL_ID:
-			return ComponentQualifiedNameViewFactory.class;
 		case SignalEditPart.VISUAL_ID:
 			return SignalViewFactory.class;
-		case AppliedStereotypeSignalEditPart.VISUAL_ID:
+		case SignalNameEditPart.VISUAL_ID:
 			return SignalNameViewFactory.class;
-		case SignalName2EditPart.VISUAL_ID:
-			return SignalName2ViewFactory.class;
-		case SignalQualifiedNameEditPart.VISUAL_ID:
-			return SignalQualifiedNameViewFactory.class;
 		case InterfaceEditPart.VISUAL_ID:
 			return InterfaceViewFactory.class;
-		case AppliedStereotypeInterfaceEditPart.VISUAL_ID:
+		case InterfaceNameEditPart.VISUAL_ID:
 			return InterfaceNameViewFactory.class;
-		case InterfaceName2EditPart.VISUAL_ID:
-			return InterfaceName2ViewFactory.class;
-		case InterfaceQualifiedNameEditPart.VISUAL_ID:
-			return InterfaceQualifiedNameViewFactory.class;
 		case Model2EditPart.VISUAL_ID:
 			return Model2ViewFactory.class;
 		case AppliedStereotypeModelEditPart.VISUAL_ID:
@@ -491,24 +453,16 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return PackageQualifiedNameViewFactory.class;
 		case ClassEditPart.VISUAL_ID:
 			return ClassViewFactory.class;
-		case AppliedStereotypeClassEditPart.VISUAL_ID:
-			return AppliedStereotypeClassViewFactory.class;
-		case ClassName2EditPart.VISUAL_ID:
-			return ClassName2ViewFactory.class;
-		case ClassQualifiedNameEditPart.VISUAL_ID:
-			return ClassQualifiedNameViewFactory.class;
+		case ClassNameEditPart.VISUAL_ID:
+			return ClassNameViewFactory.class;
 		case PrimitiveTypeEditPart.VISUAL_ID:
 			return PrimitiveTypeViewFactory.class;
 		case PrimitiveTypeNameEditPart.VISUAL_ID:
 			return PrimitiveTypeNameViewFactory.class;
 		case DataTypeEditPart.VISUAL_ID:
 			return DataTypeViewFactory.class;
-		case AppliedStereotypeDataTypeEditPart.VISUAL_ID:
+		case DataTypeNameEditPart.VISUAL_ID:
 			return DataTypeNameViewFactory.class;
-		case DataTypeName2EditPart.VISUAL_ID:
-			return DataTypeName2ViewFactory.class;
-		case DataTypeQualifiedNameEditPart.VISUAL_ID:
-			return DataTypeQualifiedNameViewFactory.class;
 		case ConstraintEditPart.VISUAL_ID:
 			return ConstraintViewFactory.class;
 		case ConstraintNameEditPart.VISUAL_ID:
@@ -545,30 +499,18 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return InstanceSpecificationName4ViewFactory.class;
 		case InstanceSpecificationQualifiedName2EditPart.VISUAL_ID:
 			return InstanceSpecificationQualifiedName2ViewFactory.class;
-		case Component2EditPart.VISUAL_ID:
-			return Component2ViewFactory.class;
-		case AppliedStereotypeChildNodeComponentEditPart.VISUAL_ID:
-			return ComponentName3ViewFactory.class;
-		case ComponentName4EditPart.VISUAL_ID:
-			return ComponentName4ViewFactory.class;
-		case ComponentQualifiedName2EditPart.VISUAL_ID:
-			return ComponentQualifiedName2ViewFactory.class;
-		case Signal2EditPart.VISUAL_ID:
-			return Signal2ViewFactory.class;
-		case AppliedStereotypeChildNodeSignalEditPart.VISUAL_ID:
-			return SignalName3ViewFactory.class;
-		case SignalName4EditPart.VISUAL_ID:
-			return SignalName4ViewFactory.class;
-		case SignalQualifiedName2EditPart.VISUAL_ID:
-			return SignalQualifiedName2ViewFactory.class;
-		case Interface2EditPart.VISUAL_ID:
-			return Interface2ViewFactory.class;
-		case AppliedStereotypeChildNodeInterfaceEditPart.VISUAL_ID:
-			return InterfaceName3ViewFactory.class;
-		case InterfaceName4EditPart.VISUAL_ID:
-			return InterfaceName4ViewFactory.class;
-		case InterfaceQualifiedName2EditPart.VISUAL_ID:
-			return InterfaceQualifiedName2ViewFactory.class;
+		case ComponentEditPartCN.VISUAL_ID:
+			return ComponentViewFactoryCN.class;
+		case ComponentNameEditPartCN.VISUAL_ID:
+			return ComponentNameViewFactoryCN.class;
+		case SignalEditPartCN.VISUAL_ID:
+			return SignalViewFactoryCN.class;
+		case SignalNameEditPartCN.VISUAL_ID:
+			return SignalNameViewFactoryCN.class;
+		case InterfaceEditPartCN.VISUAL_ID:
+			return InterfaceViewFactoryCN.class;
+		case InterfaceNameEditPartCN.VISUAL_ID:
+			return InterfaceNameViewFactoryCN.class;
 		case Model3EditPart.VISUAL_ID:
 			return Model3ViewFactory.class;
 		case AppliedStereotypeChildNodeModelEditPart.VISUAL_ID:
@@ -595,14 +537,10 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return PackageName4ViewFactory.class;
 		case PackageQualifiedName2EditPart.VISUAL_ID:
 			return PackageQualifiedName2ViewFactory.class;
-		case Class4EditPart.VISUAL_ID:
-			return Class4ViewFactory.class;
-		case AppliedStereotypeChildNodeClassEditPart.VISUAL_ID:
-			return ClassName3ViewFactory.class;
-		case ClassName4EditPart.VISUAL_ID:
-			return ClassName4ViewFactory.class;
-		case ClassQualifiedName2EditPart.VISUAL_ID:
-			return ClassQualifiedName2ViewFactory.class;
+		case ClassEditPartCN.VISUAL_ID:
+			return ClassViewFactoryCN.class;
+		case ClassNameEditPartCN.VISUAL_ID:
+			return ClassNameViewFactoryCN.class;
 		case ReceptionEditPart.VISUAL_ID:
 			return ReceptionViewFactory.class;
 		case Property4EditPart.VISUAL_ID:
@@ -615,14 +553,10 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return PrimitiveTypeViewFactoryCN.class;
 		case PrimitiveTypeNameEditPartCN.VISUAL_ID:
 			return PrimitiveTypeNameViewFactoryCN.class;
-		case DataType2EditPart.VISUAL_ID:
-			return DataType2ViewFactory.class;
-		case AppliedStereotypeChildNodeDataTypeEditPart.VISUAL_ID:
-			return DataTypeName3ViewFactory.class;
-		case DataTypeName4EditPart.VISUAL_ID:
-			return DataTypeName4ViewFactory.class;
-		case DataTypeQualifiedName2EditPart.VISUAL_ID:
-			return DataTypeQualifiedName2ViewFactory.class;
+		case DataTypeEditPartCN.VISUAL_ID:
+			return DataTypeViewFactoryCN.class;
+		case DataTypeNameEditPartCN.VISUAL_ID:
+			return DataTypeNameViewFactoryCN.class;
 		case Property5EditPart.VISUAL_ID:
 			return Property5ViewFactory.class;
 		case Operation4EditPart.VISUAL_ID:

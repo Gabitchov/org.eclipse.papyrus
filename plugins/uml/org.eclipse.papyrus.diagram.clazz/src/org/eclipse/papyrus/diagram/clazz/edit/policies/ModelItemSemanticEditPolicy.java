@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Association2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClassCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationNodeCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ComponentCreateCommand;
@@ -80,7 +81,7 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new Association2CreateCommand(req));
+			return getGEFWrapper(new AssociationNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.InstanceSpecification_2001 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Association2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Association3EditPart;
@@ -33,11 +34,11 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassAttributeCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNestedClassifierCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartment2EditPart;
@@ -45,10 +46,10 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartmentEdi
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Component2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentAttributeCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNestedClassifierCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentOperationCompartment2EditPart;
@@ -76,10 +77,10 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPa
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Interface2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceAttributeCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceNestedClassifierCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceOperationCompartment2EditPart;
@@ -112,10 +113,10 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureTemplateParameterCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Signal2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalAttributeCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
@@ -1519,7 +1520,7 @@ public class UMLDiagramUpdater {
 			return getDependency_2014ContainedLinks(view);
 		case AssociationClassEditPart.VISUAL_ID:
 			return getAssociationClass_2013ContainedLinks(view);
-		case Association2EditPart.VISUAL_ID:
+		case AssociationNodeEditPart.VISUAL_ID:
 			return getAssociation_2015ContainedLinks(view);
 		case InstanceSpecificationEditPart.VISUAL_ID:
 			return getInstanceSpecification_2001ContainedLinks(view);
@@ -1567,11 +1568,11 @@ public class UMLDiagramUpdater {
 			return getClass_3008ContainedLinks(view);
 		case InstanceSpecification2EditPart.VISUAL_ID:
 			return getInstanceSpecification_3020ContainedLinks(view);
-		case Component2EditPart.VISUAL_ID:
+		case ComponentEditPartCN.VISUAL_ID:
 			return getComponent_3021ContainedLinks(view);
-		case Signal2EditPart.VISUAL_ID:
+		case SignalEditPartCN.VISUAL_ID:
 			return getSignal_3022ContainedLinks(view);
-		case Interface2EditPart.VISUAL_ID:
+		case InterfaceEditPartCN.VISUAL_ID:
 			return getInterface_3023ContainedLinks(view);
 		case Model3EditPart.VISUAL_ID:
 			return getModel_3024ContainedLinks(view);
@@ -1581,7 +1582,7 @@ public class UMLDiagramUpdater {
 			return getEnumerationLiteral_3017ContainedLinks(view);
 		case Package2EditPart.VISUAL_ID:
 			return getPackage_3009ContainedLinks(view);
-		case Class4EditPart.VISUAL_ID:
+		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010ContainedLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011ContainedLinks(view);
@@ -1593,7 +1594,7 @@ public class UMLDiagramUpdater {
 			return getClass_3014ContainedLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026ContainedLinks(view);
-		case DataType2EditPart.VISUAL_ID:
+		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027ContainedLinks(view);
 		case Property5EditPart.VISUAL_ID:
 			return getProperty_3018ContainedLinks(view);
@@ -2781,7 +2782,7 @@ public class UMLDiagramUpdater {
 			return getDependency_2014IncomingLinks(view);
 		case AssociationClassEditPart.VISUAL_ID:
 			return getAssociationClass_2013IncomingLinks(view);
-		case Association2EditPart.VISUAL_ID:
+		case AssociationNodeEditPart.VISUAL_ID:
 			return getAssociation_2015IncomingLinks(view);
 		case InstanceSpecificationEditPart.VISUAL_ID:
 			return getInstanceSpecification_2001IncomingLinks(view);
@@ -2829,11 +2830,11 @@ public class UMLDiagramUpdater {
 			return getClass_3008IncomingLinks(view);
 		case InstanceSpecification2EditPart.VISUAL_ID:
 			return getInstanceSpecification_3020IncomingLinks(view);
-		case Component2EditPart.VISUAL_ID:
+		case ComponentEditPartCN.VISUAL_ID:
 			return getComponent_3021IncomingLinks(view);
-		case Signal2EditPart.VISUAL_ID:
+		case SignalEditPartCN.VISUAL_ID:
 			return getSignal_3022IncomingLinks(view);
-		case Interface2EditPart.VISUAL_ID:
+		case InterfaceEditPartCN.VISUAL_ID:
 			return getInterface_3023IncomingLinks(view);
 		case Model3EditPart.VISUAL_ID:
 			return getModel_3024IncomingLinks(view);
@@ -2843,7 +2844,7 @@ public class UMLDiagramUpdater {
 			return getEnumerationLiteral_3017IncomingLinks(view);
 		case Package2EditPart.VISUAL_ID:
 			return getPackage_3009IncomingLinks(view);
-		case Class4EditPart.VISUAL_ID:
+		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010IncomingLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011IncomingLinks(view);
@@ -2855,7 +2856,7 @@ public class UMLDiagramUpdater {
 			return getClass_3014IncomingLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026IncomingLinks(view);
-		case DataType2EditPart.VISUAL_ID:
+		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027IncomingLinks(view);
 		case Property5EditPart.VISUAL_ID:
 			return getProperty_3018IncomingLinks(view);
@@ -3942,15 +3943,15 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Component2EditPart.VISUAL_ID) {
+			if (visualID == ComponentEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Signal2EditPart.VISUAL_ID) {
+			if (visualID == SignalEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Interface2EditPart.VISUAL_ID) {
+			if (visualID == InterfaceEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -3966,7 +3967,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Class4EditPart.VISUAL_ID) {
+			if (visualID == ClassEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -3974,7 +3975,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == DataType2EditPart.VISUAL_ID) {
+			if (visualID == DataTypeEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4014,15 +4015,15 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Component2EditPart.VISUAL_ID) {
+			if (visualID == ComponentEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Signal2EditPart.VISUAL_ID) {
+			if (visualID == SignalEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Interface2EditPart.VISUAL_ID) {
+			if (visualID == InterfaceEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4038,7 +4039,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Class4EditPart.VISUAL_ID) {
+			if (visualID == ClassEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4046,7 +4047,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == DataType2EditPart.VISUAL_ID) {
+			if (visualID == DataTypeEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4287,7 +4288,7 @@ public class UMLDiagramUpdater {
 			return getDependency_2014OutgoingLinks(view);
 		case AssociationClassEditPart.VISUAL_ID:
 			return getAssociationClass_2013OutgoingLinks(view);
-		case Association2EditPart.VISUAL_ID:
+		case AssociationNodeEditPart.VISUAL_ID:
 			return getAssociation_2015OutgoingLinks(view);
 		case InstanceSpecificationEditPart.VISUAL_ID:
 			return getInstanceSpecification_2001OutgoingLinks(view);
@@ -4335,11 +4336,11 @@ public class UMLDiagramUpdater {
 			return getClass_3008OutgoingLinks(view);
 		case InstanceSpecification2EditPart.VISUAL_ID:
 			return getInstanceSpecification_3020OutgoingLinks(view);
-		case Component2EditPart.VISUAL_ID:
+		case ComponentEditPartCN.VISUAL_ID:
 			return getComponent_3021OutgoingLinks(view);
-		case Signal2EditPart.VISUAL_ID:
+		case SignalEditPartCN.VISUAL_ID:
 			return getSignal_3022OutgoingLinks(view);
-		case Interface2EditPart.VISUAL_ID:
+		case InterfaceEditPartCN.VISUAL_ID:
 			return getInterface_3023OutgoingLinks(view);
 		case Model3EditPart.VISUAL_ID:
 			return getModel_3024OutgoingLinks(view);
@@ -4349,7 +4350,7 @@ public class UMLDiagramUpdater {
 			return getEnumerationLiteral_3017OutgoingLinks(view);
 		case Package2EditPart.VISUAL_ID:
 			return getPackage_3009OutgoingLinks(view);
-		case Class4EditPart.VISUAL_ID:
+		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010OutgoingLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011OutgoingLinks(view);
@@ -4361,7 +4362,7 @@ public class UMLDiagramUpdater {
 			return getClass_3014OutgoingLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026OutgoingLinks(view);
-		case DataType2EditPart.VISUAL_ID:
+		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027OutgoingLinks(view);
 		case Property5EditPart.VISUAL_ID:
 			return getProperty_3018OutgoingLinks(view);
@@ -4971,7 +4972,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Association2EditPart.VISUAL_ID) {
+			if (visualID == AssociationNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5267,15 +5268,15 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Component2EditPart.VISUAL_ID) {
+			if (visualID == ComponentEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Signal2EditPart.VISUAL_ID) {
+			if (visualID == SignalEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Interface2EditPart.VISUAL_ID) {
+			if (visualID == InterfaceEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5291,7 +5292,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Class4EditPart.VISUAL_ID) {
+			if (visualID == ClassEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5299,7 +5300,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == DataType2EditPart.VISUAL_ID) {
+			if (visualID == DataTypeEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5339,15 +5340,15 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Component2EditPart.VISUAL_ID) {
+			if (visualID == ComponentEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Signal2EditPart.VISUAL_ID) {
+			if (visualID == SignalEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Interface2EditPart.VISUAL_ID) {
+			if (visualID == InterfaceEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5363,7 +5364,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Class4EditPart.VISUAL_ID) {
+			if (visualID == ClassEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5371,7 +5372,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == DataType2EditPart.VISUAL_ID) {
+			if (visualID == DataTypeEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5920,19 +5921,19 @@ public class UMLDiagramUpdater {
 			return getClass_2008SemanticChildren(view);
 		case DataTypeEditPart.VISUAL_ID:
 			return getDataType_2010SemanticChildren(view);
-		case Component2EditPart.VISUAL_ID:
+		case ComponentEditPartCN.VISUAL_ID:
 			return getComponent_3021SemanticChildren(view);
-		case Signal2EditPart.VISUAL_ID:
+		case SignalEditPartCN.VISUAL_ID:
 			return getSignal_3022SemanticChildren(view);
-		case Interface2EditPart.VISUAL_ID:
+		case InterfaceEditPartCN.VISUAL_ID:
 			return getInterface_3023SemanticChildren(view);
 		case Model3EditPart.VISUAL_ID:
 			return getModel_3024SemanticChildren(view);
 		case Package2EditPart.VISUAL_ID:
 			return getPackage_3009SemanticChildren(view);
-		case Class4EditPart.VISUAL_ID:
+		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010SemanticChildren(view);
-		case DataType2EditPart.VISUAL_ID:
+		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027SemanticChildren(view);
 		case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
 			return getAssociationClassAttributeCompartment_7034SemanticChildren(view);

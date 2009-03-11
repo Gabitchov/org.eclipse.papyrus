@@ -44,7 +44,9 @@ public abstract class UmlNodeEditPart extends org.eclipse.gmf.runtime.diagram.ui
 			if (stereotypesToDisplay() != "") {
 				((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(stereotypesToDisplay());
 			}
-			refreshVisuals();
+			if (getParent() != null) {
+				refreshVisuals();
+			}
 		}
 	}
 

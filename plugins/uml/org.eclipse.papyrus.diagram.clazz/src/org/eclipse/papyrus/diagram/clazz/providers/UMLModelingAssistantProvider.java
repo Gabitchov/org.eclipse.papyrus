@@ -31,22 +31,23 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Component2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataType2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Interface2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
@@ -57,8 +58,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Signal2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -148,7 +149,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Slot_3001);
 			return types;
 		}
-		if (editPart instanceof Component2EditPart) {
+		if (editPart instanceof ComponentEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3002);
@@ -156,13 +157,13 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Class_3004);
 			return types;
 		}
-		if (editPart instanceof Signal2EditPart) {
+		if (editPart instanceof SignalEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3005);
 			return types;
 		}
-		if (editPart instanceof Interface2EditPart) {
+		if (editPart instanceof InterfaceEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3006);
@@ -185,7 +186,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			return types;
 		}
-		if (editPart instanceof Class4EditPart) {
+		if (editPart instanceof ClassEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3012);
@@ -194,7 +195,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Class_3014);
 			return types;
 		}
-		if (editPart instanceof DataType2EditPart) {
+		if (editPart instanceof DataTypeEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3018);
@@ -343,7 +344,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.PackageMerge_4011);
 			return types;
 		}
-		if (targetEditPart instanceof Interface2EditPart) {
+		if (targetEditPart instanceof InterfaceEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.InterfaceRealization_4003);
 			return types;
@@ -421,7 +422,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			}
 			return types;
 		}
-		if (targetEditPart instanceof Interface2EditPart) {
+		if (targetEditPart instanceof InterfaceEditPartCN) {
 			List types = new ArrayList();
 			return types;
 		}

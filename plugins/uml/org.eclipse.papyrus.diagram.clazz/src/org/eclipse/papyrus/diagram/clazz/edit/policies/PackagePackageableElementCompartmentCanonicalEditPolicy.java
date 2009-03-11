@@ -22,18 +22,19 @@ import java.util.Set;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Component2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataType2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Interface2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Signal2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -68,15 +69,15 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
 		case InstanceSpecification2EditPart.VISUAL_ID:
-		case Component2EditPart.VISUAL_ID:
-		case Signal2EditPart.VISUAL_ID:
-		case Interface2EditPart.VISUAL_ID:
+		case ComponentEditPartCN.VISUAL_ID:
+		case SignalEditPartCN.VISUAL_ID:
+		case InterfaceEditPartCN.VISUAL_ID:
 		case Model3EditPart.VISUAL_ID:
 		case Enumeration2EditPart.VISUAL_ID:
 		case Package2EditPart.VISUAL_ID:
-		case Class4EditPart.VISUAL_ID:
+		case ClassEditPartCN.VISUAL_ID:
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
-		case DataType2EditPart.VISUAL_ID:
+		case DataTypeEditPartCN.VISUAL_ID:
 		case Comment2EditPart.VISUAL_ID:
 		case Constraint2EditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {

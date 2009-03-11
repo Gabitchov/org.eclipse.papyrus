@@ -44,6 +44,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -54,190 +55,6 @@ import org.eclipse.swt.widgets.Display;
  * @generated
  */
 public class ClassEditPart extends AbstractBorderedShapeEditPart {
-
-	/**
-	 * @generated
-	 */
-	public class ClassifierDescriptor extends CClassifierFigure {
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fAttributeCompartmentFigure;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fClassifierNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fClassifierQualifiedNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fClassifierStereotypeLabel;
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fNestedClassifierFigure;
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fOperationCompartmentFigure;
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		public ClassifierDescriptor() {
-
-			this.setForegroundColor(THIS_FORE);
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fClassifierStereotypeLabel = new WrappingLabel();
-			fClassifierStereotypeLabel.setText("");
-
-			fClassifierStereotypeLabel.setFont(FCLASSIFIERSTEREOTYPELABEL_FONT);
-
-			this.add(fClassifierStereotypeLabel);
-
-			fClassifierNameLabel = new WrappingLabel();
-			fClassifierNameLabel.setText("");
-
-			fClassifierNameLabel.setFont(FCLASSIFIERNAMELABEL_FONT);
-
-			this.add(fClassifierNameLabel);
-
-			fClassifierQualifiedNameLabel = new WrappingLabel();
-			fClassifierQualifiedNameLabel.setText("");
-
-			fClassifierQualifiedNameLabel.setFont(FCLASSIFIERQUALIFIEDNAMELABEL_FONT);
-
-			this.add(fClassifierQualifiedNameLabel);
-
-			fAttributeCompartmentFigure = new RectangleFigure();
-			fAttributeCompartmentFigure.setFill(false);
-
-			this.add(fAttributeCompartmentFigure);
-			fAttributeCompartmentFigure.setLayoutManager(new StackLayout());
-
-			fOperationCompartmentFigure = new RectangleFigure();
-			fOperationCompartmentFigure.setFill(false);
-
-			this.add(fOperationCompartmentFigure);
-			fOperationCompartmentFigure.setLayoutManager(new StackLayout());
-
-			fNestedClassifierFigure = new RectangleFigure();
-			fNestedClassifierFigure.setFill(false);
-
-			this.add(fNestedClassifierFigure);
-			fNestedClassifierFigure.setLayoutManager(new StackLayout());
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getAttributeCompartmentFigure() {
-			return fAttributeCompartmentFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getClassifierNameLabel() {
-			return fClassifierNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getClassifierQualifiedNameLabel() {
-			return fClassifierQualifiedNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getClassifierStereotypeLabel() {
-			return fClassifierStereotypeLabel;
-		}
-
-		@Override
-		public Color getGradientColor() {
-			return THIS_GRADIENT;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getNestedClassifierFigure() {
-			return fNestedClassifierFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getOperationCompartmentFigure() {
-			return fOperationCompartmentFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FCLASSIFIERNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
-
-	/**
-	 * @generated
-	 */
-	static final Font FCLASSIFIERQUALIFIEDNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.ITALIC);
-
-	/**
-	 * @generated
-	 */
-	static final Font FCLASSIFIERSTEREOTYPELABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 235, 248, 255);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 177, 207, 229);
 
 	static final Color THIS_GRADIENT = new Color(null, 177, 207, 229);
 
@@ -277,16 +94,8 @@ public class ClassEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeClassEditPart) {
-			((AppliedStereotypeClassEditPart) childEditPart).setLabel(getPrimaryShape().getClassifierStereotypeLabel());
-			return true;
-		}
-		if (childEditPart instanceof ClassName2EditPart) {
-			((ClassName2EditPart) childEditPart).setLabel(getPrimaryShape().getClassifierNameLabel());
-			return true;
-		}
-		if (childEditPart instanceof ClassQualifiedNameEditPart) {
-			((ClassQualifiedNameEditPart) childEditPart).setLabel(getPrimaryShape().getClassifierQualifiedNameLabel());
+		if (childEditPart instanceof ClassNameEditPart) {
+			((ClassNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		if (childEditPart instanceof ClassAttributeCompartment2EditPart) {
@@ -400,8 +209,7 @@ public class ClassEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ClassifierDescriptor figure = new ClassifierDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new ClassifierFigure();
 	}
 
 	/**
@@ -443,8 +251,8 @@ public class ClassEditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	public ClassifierDescriptor getPrimaryShape() {
-		return (ClassifierDescriptor) primaryShape;
+	public ClassifierFigure getPrimaryShape() {
+		return (ClassifierFigure) primaryShape;
 	}
 
 	/**
@@ -458,7 +266,7 @@ public class ClassEditPart extends AbstractBorderedShapeEditPart {
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
 			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
-				((CClassifierFigure) getFigure()).setActive(event.getNewBooleanValue());
+				((ClassifierFigure) getFigure()).setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}
 		}
@@ -478,13 +286,7 @@ public class ClassEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeClassEditPart) {
-			return true;
-		}
-		if (childEditPart instanceof ClassName2EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof ClassQualifiedNameEditPart) {
+		if (childEditPart instanceof ClassNameEditPart) {
 			return true;
 		}
 		if (childEditPart instanceof ClassAttributeCompartment2EditPart) {
