@@ -713,14 +713,14 @@
       </childNodes>
       <childNodes
           visualID="3024"
-          editPartClassName="Model3EditPart"
-          itemSemanticEditPolicyClassName="Model3ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Model3ViewFactory"
-          canonicalEditPolicyClassName="Model3CanonicalEditPolicy"
+          editPartClassName="ModelEditPartCN"
+          itemSemanticEditPolicyClassName="ModelItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="ModelViewFactoryCN"
+          canonicalEditPolicyClassName="ModelCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           compartments="/0/@diagram/@compartments.19"
-          graphicalNodeEditPolicyClassName="Model2GraphicalNodeEditPolicy"
-          createCommandClassName="Model2CreateCommand"
+          graphicalNodeEditPolicyClassName="ModelGraphicalNodeEditPolicyCN"
+          createCommandClassName="ModelCreateCommandCN"
           containers="/0/@diagram/@compartments.19 /0/@diagram/@compartments.21 /0/@diagram/@compartments.10 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -728,15 +728,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@topLevelNodes.7/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PackageFigureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PackageFigureDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CPackageFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fPackageNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fPackageableElementFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fPackageQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fStereotypesLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PackageFigureDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fStereotypesLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fStereotypesLabel.setText(&quot;&quot;);&#xA;&#xA;fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fStereotypesLabel);&#xA;&#xA;&#xA;&#xA;fPackageNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fPackageNameLabel.setText(&quot;&quot;);&#xA;&#xA;fPackageNameLabel.setFont(FPACKAGENAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fPackageNameLabel);&#xA;&#xA;&#xA;&#xA;fPackageQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fPackageQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fPackageQualifiedNameLabel.setFont(FPACKAGEQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fPackageQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fPackageableElementFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;this.add(fPackageableElementFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getPackageNameLabel() {&#xA;&#x9;&#x9;return fPackageNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getPackageableElementFigure() {&#xA;&#x9;&#x9;return fPackageableElementFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getPackageQualifiedNameLabel() {&#xA;&#x9;&#x9;return fPackageQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getStereotypesLabel() {&#xA;&#x9;&#x9;return fStereotypesLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 233, 164, 96);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 255, 199, 143);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FSTEREOTYPESLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FPACKAGENAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FPACKAGEQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -761,41 +754,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5051"
-            editPartClassName="AppliedStereotypeChildNodeModelEditPart"
-            itemSemanticEditPolicyClassName="ModelName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ModelName3ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getStereotypesLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5052"
-            editPartClassName="ModelName4EditPart"
-            itemSemanticEditPolicyClassName="ModelName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ModelName4ViewFactory"
+            editPartClassName="ModelNameEditPartCN"
+            itemSemanticEditPolicyClassName="ModelNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="ModelNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getPackageNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -807,31 +775,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5053"
-            editPartClassName="ModelQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="ModelQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ModelQualifiedName2ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getPackageQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -946,14 +889,14 @@
       </childNodes>
       <childNodes
           visualID="3009"
-          editPartClassName="Package2EditPart"
-          itemSemanticEditPolicyClassName="Package2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Package2ViewFactory"
-          canonicalEditPolicyClassName="Package2CanonicalEditPolicy"
+          editPartClassName="PackageEditPartCN"
+          itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicyCN"
+          notationViewFactoryClassName="PackageViewFactoryCN"
+          canonicalEditPolicyClassName="PackageCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           compartments="/0/@diagram/@compartments.21"
-          graphicalNodeEditPolicyClassName="Package2GraphicalNodeEditPolicy"
-          createCommandClassName="Package2CreateCommand"
+          graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicyCN"
+          createCommandClassName="PackageCreateCommandCN"
           containers="/0/@diagram/@compartments.21 /0/@diagram/@compartments.19 /0/@diagram/@compartments.10 /0/@diagram/@compartments.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -961,15 +904,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PackageFigureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PackageFigureDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CPackageFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fPackageNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fPackageableElementFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fPackageQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fStereotypesLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PackageFigureDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fStereotypesLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fStereotypesLabel.setText(&quot;&quot;);&#xA;&#xA;fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fStereotypesLabel);&#xA;&#xA;&#xA;&#xA;fPackageNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fPackageNameLabel.setText(&quot;&quot;);&#xA;&#xA;fPackageNameLabel.setFont(FPACKAGENAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fPackageNameLabel);&#xA;&#xA;&#xA;&#xA;fPackageQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fPackageQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fPackageQualifiedNameLabel.setFont(FPACKAGEQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fPackageQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fPackageableElementFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;this.add(fPackageableElementFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getPackageNameLabel() {&#xA;&#x9;&#x9;return fPackageNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getPackageableElementFigure() {&#xA;&#x9;&#x9;return fPackageableElementFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getPackageQualifiedNameLabel() {&#xA;&#x9;&#x9;return fPackageQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getStereotypesLabel() {&#xA;&#x9;&#x9;return fStereotypesLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 233, 164, 96);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 255, 199, 143);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FSTEREOTYPESLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FPACKAGENAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FPACKAGEQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -994,41 +930,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5016"
-            editPartClassName="AppliedStereotypeChildNodePackageEditPart"
-            itemSemanticEditPolicyClassName="PackageName3ItemSemanticEditPolicy"
-            notationViewFactoryClassName="PackageName3ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getStereotypesLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5017"
-            editPartClassName="PackageName4EditPart"
-            itemSemanticEditPolicyClassName="PackageName4ItemSemanticEditPolicy"
-            notationViewFactoryClassName="PackageName4ViewFactory"
+            editPartClassName="PackageNameEditPartCN"
+            itemSemanticEditPolicyClassName="PackageNameItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="PackageNameViewFactoryCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getPackageNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -1040,31 +951,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5018"
-            editPartClassName="PackageQualifiedName2EditPart"
-            itemSemanticEditPolicyClassName="PackageQualifiedName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="PackageQualifiedName2ViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getPackageQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -2047,29 +1933,22 @@
       </topLevelNodes>
       <topLevelNodes
           visualID="2005"
-          editPartClassName="Model2EditPart"
-          itemSemanticEditPolicyClassName="Model2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Model2ViewFactory"
-          canonicalEditPolicyClassName="Model2CanonicalEditPolicy"
+          editPartClassName="ModelEditPartTN"
+          itemSemanticEditPolicyClassName="ModelItemSemanticEditPolicyTN"
+          notationViewFactoryClassName="ModelViewFactoryTN"
+          canonicalEditPolicyClassName="ModelCanonicalEditPolicyTN"
           childNodes="/0/@diagram/@childNodes.4"
           compartments="/0/@diagram/@compartments.10"
-          graphicalNodeEditPolicyClassName="ModelGraphicalNodeEditPolicy"
-          createCommandClassName="ModelCreateCommand">
+          graphicalNodeEditPolicyClassName="ModelGraphicalNodeEditPolicyTN"
+          createCommandClassName="ModelCreateCommandTN">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ModelEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PackageFigureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PackageFigureDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CPackageFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fPackageNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fPackageableElementFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fPackageQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fStereotypesLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PackageFigureDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fStereotypesLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fStereotypesLabel.setText(&quot;&quot;);&#xA;&#xA;fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fStereotypesLabel);&#xA;&#xA;&#xA;&#xA;fPackageNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fPackageNameLabel.setText(&quot;&quot;);&#xA;&#xA;fPackageNameLabel.setFont(FPACKAGENAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fPackageNameLabel);&#xA;&#xA;&#xA;&#xA;fPackageQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fPackageQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fPackageQualifiedNameLabel.setFont(FPACKAGEQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fPackageQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fPackageableElementFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;this.add(fPackageableElementFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getPackageNameLabel() {&#xA;&#x9;&#x9;return fPackageNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getPackageableElementFigure() {&#xA;&#x9;&#x9;return fPackageableElementFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getPackageQualifiedNameLabel() {&#xA;&#x9;&#x9;return fPackageQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getStereotypesLabel() {&#xA;&#x9;&#x9;return fStereotypesLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 233, 164, 96);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 255, 199, 143);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FSTEREOTYPESLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FPACKAGENAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FPACKAGEQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2094,41 +1973,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5019"
-            editPartClassName="AppliedStereotypeModelEditPart"
-            itemSemanticEditPolicyClassName="ModelNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ModelNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getStereotypesLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
             visualID="5020"
-            editPartClassName="ModelName2EditPart"
-            itemSemanticEditPolicyClassName="ModelName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="ModelName2ViewFactory"
+            editPartClassName="ModelNameEditPartTN"
+            itemSemanticEditPolicyClassName="ModelNameItemSemanticEditPolicyTN"
+            notationViewFactoryClassName="ModelNameViewFactoryTN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getPackageNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -2140,31 +1994,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5021"
-            editPartClassName="ModelQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="ModelQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ModelQualifiedNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getPackageQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -2243,15 +2072,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PackageFigureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PackageFigureDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CPackageFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fPackageNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fPackageableElementFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fPackageQualifiedNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fStereotypesLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PackageFigureDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fStereotypesLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fStereotypesLabel.setText(&quot;&quot;);&#xA;&#xA;fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fStereotypesLabel);&#xA;&#xA;&#xA;&#xA;fPackageNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fPackageNameLabel.setText(&quot;&quot;);&#xA;&#xA;fPackageNameLabel.setFont(FPACKAGENAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fPackageNameLabel);&#xA;&#xA;&#xA;&#xA;fPackageQualifiedNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fPackageQualifiedNameLabel.setText(&quot;&quot;);&#xA;&#xA;fPackageQualifiedNameLabel.setFont(FPACKAGEQUALIFIEDNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fPackageQualifiedNameLabel);&#xA;&#xA;&#xA;&#xA;fPackageableElementFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;this.add(fPackageableElementFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getPackageNameLabel() {&#xA;&#x9;&#x9;return fPackageNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getPackageableElementFigure() {&#xA;&#x9;&#x9;return fPackageableElementFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getPackageQualifiedNameLabel() {&#xA;&#x9;&#x9;return fPackageQualifiedNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getStereotypesLabel() {&#xA;&#x9;&#x9;return fStereotypesLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 233, 164, 96);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 255, 199, 143);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FSTEREOTYPESLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FPACKAGENAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FPACKAGEQUALIFIEDNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.ITALIC);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2276,41 +2098,16 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5025"
-            editPartClassName="AppliedStereotypePackageEditPart"
+            visualID="5026"
+            editPartClassName="PackageNameEditPart"
             itemSemanticEditPolicyClassName="PackageNameItemSemanticEditPolicy"
             notationViewFactoryClassName="PackageNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getStereotypesLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5026"
-            editPartClassName="PackageName2EditPart"
-            itemSemanticEditPolicyClassName="PackageName2ItemSemanticEditPolicy"
-            notationViewFactoryClassName="PackageName2ViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getPackageNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -2322,31 +2119,6 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-        <labels
-            visualID="5027"
-            editPartClassName="PackageQualifiedNameEditPart"
-            itemSemanticEditPolicyClassName="PackageQualifiedNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="PackageQualifiedNameViewFactory"
-            readOnly="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getPackageQualifiedNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              viewPattern="({0})"
-              editorPattern="({0})"
-              editPattern="({0})">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/qualifiedName"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -16892,7 +16664,7 @@
       comment=": this is the root node that contains all node to extend elements of the gmfgen">
     <extensionNodes
         comment="Label in charge to display applied stereotypes"
-        genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@topLevelNodes.9/@labels.0 /0/@diagram/@topLevelNodes.7/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.14/@labels.0"
+        genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0"
         name="StereotypeApplication"/>
     <extensionNodes
         comment="thiis extension is to associate a refresh for active classes"

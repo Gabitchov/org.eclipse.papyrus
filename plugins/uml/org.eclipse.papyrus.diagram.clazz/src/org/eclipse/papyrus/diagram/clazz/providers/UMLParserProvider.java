@@ -27,28 +27,17 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAssociationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeChildNodeDataTypeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeChildNodeEnumerationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeChildNodeInstanceSpecificationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeChildNodeModelEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeChildNodePackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeDependency3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeDependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeElementImportEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeEnumerationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeInstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeInterfaceRealizationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeModelEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassQualifiedNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName4EditPart;
@@ -65,41 +54,27 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintNameEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeName4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeQualifiedName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportAliasEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationName4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationNameEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationQualifiedName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationQualifiedNameEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationName4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationNameEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationQualifiedName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationQualifiedNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelName4EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelQualifiedName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelQualifiedNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageName4EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageQualifiedName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageQualifiedNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
@@ -345,32 +320,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser modelName_5019Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser modelName_5020Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser modelName_5051Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser modelName_5052Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser modelQualifiedName_5021Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser modelQualifiedName_5053Parser;
 
 	/**
 	 * @generated
@@ -400,32 +355,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser packageName_5016Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser packageName_5017Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser packageName_5025Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser packageName_5026Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser packageQualifiedName_5018Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser packageQualifiedName_5027Parser;
 
 	/**
 	 * @generated
@@ -947,18 +882,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	protected IParser createModelName_5019Parser() {
-
-		// Papyrus Gen code
-		// This code is replaced by a simple parser of apliedstereotype
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser createModelName_5020Parser() {
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
@@ -970,50 +893,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	protected IParser createModelName_5051Parser() {
-
-		// Papyrus Gen code
-		// This code is replaced by a simple parser of apliedstereotype
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser createModelName_5052Parser() {
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createModelQualifiedName_5021Parser() {
-
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_QualifiedName(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("({0})");
-		parser.setEditorPattern("({0})");
-		parser.setEditPattern("({0})");
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createModelQualifiedName_5053Parser() {
-
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_QualifiedName(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("({0})");
-		parser.setEditorPattern("({0})");
-		parser.setEditPattern("({0})");
 		return parser;
 
 	}
@@ -1077,18 +960,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	protected IParser createPackageName_5016Parser() {
-
-		// Papyrus Gen code
-		// This code is replaced by a simple parser of apliedstereotype
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser createPackageName_5017Parser() {
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
@@ -1100,50 +971,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	protected IParser createPackageName_5025Parser() {
-
-		// Papyrus Gen code
-		// This code is replaced by a simple parser of apliedstereotype
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser createPackageName_5026Parser() {
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createPackageQualifiedName_5018Parser() {
-
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_QualifiedName(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("({0})");
-		parser.setEditorPattern("({0})");
-		parser.setEditPattern("({0})");
-		return parser;
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParser createPackageQualifiedName_5027Parser() {
-
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_QualifiedName(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("({0})");
-		parser.setEditorPattern("({0})");
-		parser.setEditPattern("({0})");
 		return parser;
 
 	}
@@ -1710,16 +1541,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getModelName_5019Parser() {
-		if (modelName_5019Parser == null) {
-			modelName_5019Parser = createModelName_5019Parser();
-		}
-		return modelName_5019Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getModelName_5020Parser() {
 		if (modelName_5020Parser == null) {
 			modelName_5020Parser = createModelName_5020Parser();
@@ -1730,41 +1551,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getModelName_5051Parser() {
-		if (modelName_5051Parser == null) {
-			modelName_5051Parser = createModelName_5051Parser();
-		}
-		return modelName_5051Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getModelName_5052Parser() {
 		if (modelName_5052Parser == null) {
 			modelName_5052Parser = createModelName_5052Parser();
 		}
 		return modelName_5052Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getModelQualifiedName_5021Parser() {
-		if (modelQualifiedName_5021Parser == null) {
-			modelQualifiedName_5021Parser = createModelQualifiedName_5021Parser();
-		}
-		return modelQualifiedName_5021Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getModelQualifiedName_5053Parser() {
-		if (modelQualifiedName_5053Parser == null) {
-			modelQualifiedName_5053Parser = createModelQualifiedName_5053Parser();
-		}
-		return modelQualifiedName_5053Parser;
 	}
 
 	/**
@@ -1820,16 +1611,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getPackageName_5016Parser() {
-		if (packageName_5016Parser == null) {
-			packageName_5016Parser = createPackageName_5016Parser();
-		}
-		return packageName_5016Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getPackageName_5017Parser() {
 		if (packageName_5017Parser == null) {
 			packageName_5017Parser = createPackageName_5017Parser();
@@ -1840,41 +1621,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getPackageName_5025Parser() {
-		if (packageName_5025Parser == null) {
-			packageName_5025Parser = createPackageName_5025Parser();
-		}
-		return packageName_5025Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getPackageName_5026Parser() {
 		if (packageName_5026Parser == null) {
 			packageName_5026Parser = createPackageName_5026Parser();
 		}
 		return packageName_5026Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getPackageQualifiedName_5018Parser() {
-		if (packageQualifiedName_5018Parser == null) {
-			packageQualifiedName_5018Parser = createPackageQualifiedName_5018Parser();
-		}
-		return packageQualifiedName_5018Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getPackageQualifiedName_5027Parser() {
-		if (packageQualifiedName_5027Parser == null) {
-			packageQualifiedName_5027Parser = createPackageQualifiedName_5027Parser();
-		}
-		return packageQualifiedName_5027Parser;
 	}
 
 	/**
@@ -1907,20 +1658,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getSignalName_5008Parser();
 		case InterfaceNameEditPart.VISUAL_ID:
 			return getInterfaceName_5011Parser();
-		case AppliedStereotypeModelEditPart.VISUAL_ID:
-			return getModelName_5019Parser();
-		case ModelName2EditPart.VISUAL_ID:
+		case ModelNameEditPartTN.VISUAL_ID:
 			return getModelName_5020Parser();
-		case ModelQualifiedNameEditPart.VISUAL_ID:
-			return getModelQualifiedName_5021Parser();
 		case EnumerationNameEditPart.VISUAL_ID:
 			return getEnumerationName_5023Parser();
-		case AppliedStereotypePackageEditPart.VISUAL_ID:
-			return getPackageName_5025Parser();
-		case PackageName2EditPart.VISUAL_ID:
+		case PackageNameEditPart.VISUAL_ID:
 			return getPackageName_5026Parser();
-		case PackageQualifiedNameEditPart.VISUAL_ID:
-			return getPackageQualifiedName_5027Parser();
 		case ClassNameEditPart.VISUAL_ID:
 			return getClassName_5029Parser();
 		case PrimitiveTypeNameEditPart.VISUAL_ID:
@@ -1953,22 +1696,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getSignalName_5046Parser();
 		case InterfaceNameEditPartCN.VISUAL_ID:
 			return getInterfaceName_5049Parser();
-		case AppliedStereotypeChildNodeModelEditPart.VISUAL_ID:
-			return getModelName_5051Parser();
-		case ModelName4EditPart.VISUAL_ID:
+		case ModelNameEditPartCN.VISUAL_ID:
 			return getModelName_5052Parser();
-		case ModelQualifiedName2EditPart.VISUAL_ID:
-			return getModelQualifiedName_5053Parser();
 		case EnumerationNameEditPartCN.VISUAL_ID:
 			return getEnumerationName_5055Parser();
 		case EnumerationLiteralEditPart.VISUAL_ID:
 			return getEnumerationLiteral_3017Parser();
-		case AppliedStereotypeChildNodePackageEditPart.VISUAL_ID:
-			return getPackageName_5016Parser();
-		case PackageName4EditPart.VISUAL_ID:
+		case PackageNameEditPartCN.VISUAL_ID:
 			return getPackageName_5017Parser();
-		case PackageQualifiedName2EditPart.VISUAL_ID:
-			return getPackageQualifiedName_5018Parser();
 		case ClassNameEditPartCN.VISUAL_ID:
 			return getClassName_5014Parser();
 		case ReceptionEditPart.VISUAL_ID:

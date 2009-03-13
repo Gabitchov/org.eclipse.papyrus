@@ -39,24 +39,21 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DataType2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Model2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
@@ -72,6 +69,121 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
  * @generated
  */
 public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
+
+	/**
+	 * @generated
+	 */
+	public List getRelTypesOnSource(IAdaptable source) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof PackageEditPart) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.PackageMerge_4011);
+			types.add(UMLElementTypes.ProfileApplication_4012);
+			return types;
+		}
+		if (sourceEditPart instanceof ConstraintEditPart) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+			return types;
+		}
+		if (sourceEditPart instanceof CommentEditPart) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
+			return types;
+		}
+		if (sourceEditPart instanceof PackageEditPartCN) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.PackageMerge_4011);
+			types.add(UMLElementTypes.ProfileApplication_4012);
+			return types;
+		}
+		if (sourceEditPart instanceof Comment2EditPart) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
+			return types;
+		}
+		if (sourceEditPart instanceof Constraint2EditPart) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+			return types;
+		}
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof PackageEditPart) {
+			List types = new ArrayList();
+			if (targetEditPart instanceof PackageEditPart) {
+				types.add(UMLElementTypes.PackageMerge_4011);
+			}
+			if (targetEditPart instanceof PackageEditPartCN) {
+				types.add(UMLElementTypes.PackageMerge_4011);
+			}
+			return types;
+		}
+		if (sourceEditPart instanceof ConstraintEditPart) {
+			List types = new ArrayList();
+			return types;
+		}
+		if (sourceEditPart instanceof CommentEditPart) {
+			List types = new ArrayList();
+			return types;
+		}
+		if (sourceEditPart instanceof PackageEditPartCN) {
+			List types = new ArrayList();
+			if (targetEditPart instanceof PackageEditPart) {
+				types.add(UMLElementTypes.PackageMerge_4011);
+			}
+			if (targetEditPart instanceof PackageEditPartCN) {
+				types.add(UMLElementTypes.PackageMerge_4011);
+			}
+			return types;
+		}
+		if (sourceEditPart instanceof Comment2EditPart) {
+			List types = new ArrayList();
+			return types;
+		}
+		if (sourceEditPart instanceof Constraint2EditPart) {
+			List types = new ArrayList();
+			return types;
+		}
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List getRelTypesOnTarget(IAdaptable target) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof InterfaceEditPart) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.InterfaceRealization_4003);
+			return types;
+		}
+		if (targetEditPart instanceof PackageEditPart) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.PackageImport_4010);
+			types.add(UMLElementTypes.PackageMerge_4011);
+			return types;
+		}
+		if (targetEditPart instanceof InterfaceEditPartCN) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.InterfaceRealization_4003);
+			return types;
+		}
+		if (targetEditPart instanceof PackageEditPartCN) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.PackageImport_4010);
+			types.add(UMLElementTypes.PackageMerge_4011);
+			return types;
+		}
+		return Collections.EMPTY_LIST;
+	}
 
 	/**
 	 * @generated
@@ -110,7 +222,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Class_3008);
 			return types;
 		}
-		if (editPart instanceof Model2EditPart) {
+		if (editPart instanceof ModelEditPartTN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			return types;
@@ -173,7 +285,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Class_3008);
 			return types;
 		}
-		if (editPart instanceof Model3EditPart) {
+		if (editPart instanceof ModelEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			return types;
@@ -183,7 +295,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.EnumerationLiteral_3017);
 			return types;
 		}
-		if (editPart instanceof Package2EditPart) {
+		if (editPart instanceof PackageEditPartCN) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			return types;
@@ -293,121 +405,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public List getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof PackageEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.PackageMerge_4011);
-			types.add(UMLElementTypes.ProfileApplication_4012);
-			return types;
-		}
-		if (sourceEditPart instanceof ConstraintEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
-			return types;
-		}
-		if (sourceEditPart instanceof CommentEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
-			return types;
-		}
-		if (sourceEditPart instanceof Package2EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.PackageMerge_4011);
-			types.add(UMLElementTypes.ProfileApplication_4012);
-			return types;
-		}
-		if (sourceEditPart instanceof Comment2EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
-			return types;
-		}
-		if (sourceEditPart instanceof Constraint2EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
-			return types;
-		}
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof InterfaceEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.InterfaceRealization_4003);
-			return types;
-		}
-		if (targetEditPart instanceof PackageEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.PackageImport_4010);
-			types.add(UMLElementTypes.PackageMerge_4011);
-			return types;
-		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.InterfaceRealization_4003);
-			return types;
-		}
-		if (targetEditPart instanceof Package2EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.PackageImport_4010);
-			types.add(UMLElementTypes.PackageMerge_4011);
-			return types;
-		}
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof PackageEditPart) {
-			List types = new ArrayList();
-			if (targetEditPart instanceof PackageEditPart) {
-				types.add(UMLElementTypes.PackageMerge_4011);
-			}
-			if (targetEditPart instanceof Package2EditPart) {
-				types.add(UMLElementTypes.PackageMerge_4011);
-			}
-			return types;
-		}
-		if (sourceEditPart instanceof ConstraintEditPart) {
-			List types = new ArrayList();
-			return types;
-		}
-		if (sourceEditPart instanceof CommentEditPart) {
-			List types = new ArrayList();
-			return types;
-		}
-		if (sourceEditPart instanceof Package2EditPart) {
-			List types = new ArrayList();
-			if (targetEditPart instanceof PackageEditPart) {
-				types.add(UMLElementTypes.PackageMerge_4011);
-			}
-			if (targetEditPart instanceof Package2EditPart) {
-				types.add(UMLElementTypes.PackageMerge_4011);
-			}
-			return types;
-		}
-		if (sourceEditPart instanceof Comment2EditPart) {
-			List types = new ArrayList();
-			return types;
-		}
-		if (sourceEditPart instanceof Constraint2EditPart) {
-			List types = new ArrayList();
-			return types;
-		}
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
 	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof InterfaceEditPart) {
@@ -428,7 +425,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			List types = new ArrayList();
 			return types;
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartCN) {
 			List types = new ArrayList();
 			if (relationshipType == UMLElementTypes.PackageMerge_4011) {
 				types.add(UMLElementTypes.Package_2007);
@@ -464,7 +461,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			List types = new ArrayList();
 			return types;
 		}
-		if (sourceEditPart instanceof Package2EditPart) {
+		if (sourceEditPart instanceof PackageEditPartCN) {
 			List types = new ArrayList();
 			if (relationshipType == UMLElementTypes.PackageMerge_4011) {
 				types.add(UMLElementTypes.Package_2007);
@@ -488,15 +485,27 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target, relationshipType));
+	protected boolean isApplicableElement(EObject element, Collection types) {
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
+		return types.contains(type);
 	}
 
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
+	protected EObject selectElement(EObject[] elements) {
+		Shell shell = Display.getCurrent().getActiveShell();
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
+		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		dialog.setMultipleSelection(false);
+		dialog.setElements(elements);
+		EObject selected = null;
+		if (dialog.open() == Window.OK) {
+			selected = (EObject) dialog.getFirstResult();
+		}
+		return selected;
 	}
 
 	/**
@@ -527,26 +536,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
-		return types.contains(type);
+	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
+		return selectExistingElement(target, getTypesForSource(target, relationshipType));
 	}
 
 	/**
 	 * @generated
 	 */
-	protected EObject selectElement(EObject[] elements) {
-		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
-		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
-		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
-		dialog.setMultipleSelection(false);
-		dialog.setElements(elements);
-		EObject selected = null;
-		if (dialog.open() == Window.OK) {
-			selected = (EObject) dialog.getFirstResult();
-		}
-		return selected;
+	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
+		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
 	}
 }

@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsComma
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Association2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationNodeCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ClassCreateCommand;
@@ -32,7 +31,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.EnumerationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecificationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InterfaceCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.ModelCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ModelCreateCommandTN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PackageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PrimitiveTypeCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.SignalCreateCommand;
@@ -111,7 +110,7 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new ModelCreateCommand(req));
+			return getGEFWrapper(new ModelCreateCommandTN(req));
 		}
 		if (UMLElementTypes.Enumeration_2006 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {

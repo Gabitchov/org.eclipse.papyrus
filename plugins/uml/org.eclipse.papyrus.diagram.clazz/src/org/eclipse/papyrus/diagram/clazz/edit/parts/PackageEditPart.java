@@ -42,6 +42,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.CPackageFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.PackageFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageNodeFigure;
 import org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator;
 import org.eclipse.swt.SWT;
@@ -53,147 +54,6 @@ import org.eclipse.swt.widgets.Display;
  * @generated
  */
 public class PackageEditPart extends AbstractBorderedShapeEditPart {
-
-	/**
-	 * @generated
-	 */
-	public class PackageFigureDescriptor extends CPackageFigure {
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fPackageableElementFigure;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fPackageNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fPackageQualifiedNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fStereotypesLabel;
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		public PackageFigureDescriptor() {
-
-			this.setForegroundColor(THIS_FORE);
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fStereotypesLabel = new WrappingLabel();
-			fStereotypesLabel.setText("");
-
-			fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);
-
-			this.add(fStereotypesLabel);
-
-			fPackageNameLabel = new WrappingLabel();
-			fPackageNameLabel.setText("");
-
-			fPackageNameLabel.setFont(FPACKAGENAMELABEL_FONT);
-
-			this.add(fPackageNameLabel);
-
-			fPackageQualifiedNameLabel = new WrappingLabel();
-			fPackageQualifiedNameLabel.setText("");
-
-			fPackageQualifiedNameLabel.setFont(FPACKAGEQUALIFIEDNAMELABEL_FONT);
-
-			this.add(fPackageQualifiedNameLabel);
-
-			fPackageableElementFigure = new RectangleFigure();
-
-			this.add(fPackageableElementFigure);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getPackageableElementFigure() {
-			return fPackageableElementFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getPackageNameLabel() {
-			return fPackageNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getPackageQualifiedNameLabel() {
-			return fPackageQualifiedNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getStereotypesLabel() {
-			return fStereotypesLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FPACKAGENAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
-
-	/**
-	 * @generated
-	 */
-	static final Font FPACKAGEQUALIFIEDNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.ITALIC);
-
-	/**
-	 * @generated
-	 */
-	static final Font FSTEREOTYPESLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 255, 199, 143);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 233, 164, 96);
 
 	/**
 	 * @generated
@@ -231,16 +91,8 @@ public class PackageEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypePackageEditPart) {
-			((AppliedStereotypePackageEditPart) childEditPart).setLabel(getPrimaryShape().getStereotypesLabel());
-			return true;
-		}
-		if (childEditPart instanceof PackageName2EditPart) {
-			((PackageName2EditPart) childEditPart).setLabel(getPrimaryShape().getPackageNameLabel());
-			return true;
-		}
-		if (childEditPart instanceof PackageQualifiedNameEditPart) {
-			((PackageQualifiedNameEditPart) childEditPart).setLabel(getPrimaryShape().getPackageQualifiedNameLabel());
+		if (childEditPart instanceof PackageNameEditPart) {
+			((PackageNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		if (childEditPart instanceof PackagePackageableElementCompartment2EditPart) {
@@ -342,8 +194,7 @@ public class PackageEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		PackageFigureDescriptor figure = new PackageFigureDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new PackageFigure();
 	}
 
 	/**
@@ -373,14 +224,14 @@ public class PackageEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(AppliedStereotypePackageEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PackageNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public PackageFigureDescriptor getPrimaryShape() {
-		return (PackageFigureDescriptor) primaryShape;
+	public PackageFigure getPrimaryShape() {
+		return (PackageFigure) primaryShape;
 	}
 
 	/**
@@ -397,13 +248,7 @@ public class PackageEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypePackageEditPart) {
-			return true;
-		}
-		if (childEditPart instanceof PackageName2EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof PackageQualifiedNameEditPart) {
+		if (childEditPart instanceof PackageNameEditPart) {
 			return true;
 		}
 		if (childEditPart instanceof PackagePackageableElementCompartment2EditPart) {

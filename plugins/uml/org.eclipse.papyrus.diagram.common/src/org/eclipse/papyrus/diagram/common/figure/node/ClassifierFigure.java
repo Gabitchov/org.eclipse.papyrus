@@ -21,14 +21,12 @@ import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.papyrus.editor.Activator;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.RGB;
@@ -75,7 +73,6 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 		 * {@inheritDoc}
 		 */
 		public void layout(IFigure container) {
-			System.err.println(container.getBounds() + "\n contentPane " + contentPane.getBounds());
 			List childrenList = container.getChildren();
 			for (int i = 0; i < childrenList.size(); i++) {
 				Rectangle bound = new Rectangle(((IFigure) childrenList.get(i)).getBounds());
@@ -182,19 +179,6 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	/** The method content. */
 	private RectangleFigure methodContent;
 
-	/** The invisible container is a figure that used to detect the class figure with a layout */
-	protected Figure invisibleContainer;
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 235, 248, 255);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 177, 207, 229);
-
 	/**
 	 * this the constructor of a class figure.
 	 */
@@ -204,15 +188,13 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 		this.setLayoutManager(new ClassifierLayoutManager());
 
 		this.setOpaque(true); // non-transparent figure
-		// setBorder( new LineBorder(ColorConstants.black));
-		this.setBorder(new LineBorder(this.borderColor));
 
 		// The area accepting inner figures.
 		this.createContentPane();
 
 		this.setBackgroundColor(Activator.colorManager.get(new RGB(235, 248, 255)));
 		this.setForegroundColor(Activator.colorManager.get(new RGB(177, 207, 229)));
-		this.setBorderColor(Activator.colorManager.get(new RGB(177, 207, 229)));
+		// this.setBorderColor(Activator.colorManager.get(new RGB(177, 207, 229)));
 	}
 
 	/**
@@ -248,6 +230,7 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 
 	protected void createContentPane() {
 		this.contentPane = new Figure();
+		contentPane.setOpaque(false);
 
 		this.add(this.contentPane);
 		methodContent = new RectangleFigure();
@@ -256,85 +239,10 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 		contentPane.add(propertyContent);
 		contentPane.add(methodContent);
 		contentPane.add(nestedClassContent);
+		methodContent.setFill(false);
+		propertyContent.setFill(false);
+		nestedClassContent.setFill(false);
 
-	}
-
-	public void setBackgroundColor(Color backgroundColor) {
-		super.setBackgroundColor(backgroundColor);
-		if (propertyContent != null) {
-			// propertyContent.setBorder(new LineBorder(backgroundColor));
-			// methodContent.setBorder(new LineBorder(backgroundColor));
-			// nestedClassContent.setBorder(new LineBorder(backgroundColor));
-
-		}
-	}
-
-	/**
-	 * Helper method to calculate the size of compartements inside a ClassifierFigure. This method is subject to redefined in the subclasses.
-	 * 
-	 * @param rect
-	 */
-	protected void calculateComponentBounds(Rectangle rect) {
-
-		int propertyHeight = 0;
-		System.err.println(rect + "\n contentPane " + contentPane.getBounds());
-
-		// ContainerFigure
-
-		// calculate property Content size
-		if (this.getAttributeCompartmentFigure() != null) {
-
-			for (int i = 0; i < this.getAttributeCompartmentFigure().getChildren().size(); i++) {
-				propertyHeight = propertyHeight + ((IFigure) this.getAttributeCompartmentFigure().getChildren().get(i)).getPreferredSize().height;
-			}
-			propertyHeight = propertyHeight + 2;
-			if (propertyHeight < 15) {
-				propertyHeight = 15;
-			}
-			this.getAttributeCompartmentFigure().setLocation(contentPane.getLocation());
-			this.getAttributeCompartmentFigure().setPreferredSize(30, propertyHeight);
-		}
-		// calculate the method content size by the same manner as property content size
-
-		int methodHeight = 0;
-		if (this.getOperationCompartmentFigure() != null) {
-			for (int i = 0; i < this.getOperationCompartmentFigure().getChildren().size(); i++) {
-				methodHeight += ((IFigure) this.getOperationCompartmentFigure().getChildren().get(i)).getPreferredSize().height;
-			}
-			methodHeight += 2;
-			if (methodHeight < 15) {
-				methodHeight = 15;
-			}
-			this.getOperationCompartmentFigure().setLocation(this.getAttributeCompartmentFigure().getBounds().getBottomLeft());
-			this.getOperationCompartmentFigure().setPreferredSize(30, methodHeight);
-		}
-
-		// calculate the nested class content, as the way as for methodHeight in the previous version
-		int nestedClassHeight = 0;
-
-		if (this.getStereotypePropertiesContent() != null) {
-			if (this.getNestedClassifierFigure() != null) {
-				for (int i = 0; i < this.getNestedClassifierFigure().getChildren().size(); i++) {
-					nestedClassHeight += ((IFigure) this.getNestedClassifierFigure().getChildren().get(i)).getPreferredSize().height;
-				}
-				nestedClassHeight += 2;
-				if (nestedClassHeight < 15) {
-					nestedClassHeight = 15;
-				}
-				this.getNestedClassifierFigure().setPreferredSize(30, nestedClassHeight);
-			}
-			int stereotypeHeight = rect.height - this.getNameHeight() - propertyHeight - methodHeight - nestedClassHeight;
-
-			stereotypeHeight -= 5;// in order to fit the nested class container in the mother class figure
-			this.getStereotypePropertiesContent().setPreferredSize(30, stereotypeHeight);
-		} else {
-			nestedClassHeight = rect.height - this.getNameHeight() - propertyHeight - methodHeight;
-
-			nestedClassHeight -= 5;// in order to fit the nested class container in the mother class figure
-			if (this.getNestedClassifierFigure() != null)
-				this.getNestedClassifierFigure().setLocation(this.getOperationCompartmentFigure().getBounds().getBottomLeft());
-			this.getNestedClassifierFigure().setPreferredSize(30, nestedClassHeight);
-		}
 	}
 
 	/**
@@ -358,8 +266,21 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	 */
 	@Override
 	public void paint(Graphics graphics) {
+		methodContent.setFill(false);
+		propertyContent.setFill(false);
+		nestedClassContent.setFill(false);
+
+		graphics.setForegroundColor(this.getGradientColor());
+		graphics.setBackgroundColor(this.backgroundColor);
+		if (getDisplayGradient()) {
+			graphics.fillGradient(getBounds(), true);
+		} else {
+			graphics.fillRectangle(getBounds());
+		}
+		getGMFAttributeElementContainer().setOpaque(false);
 		super.paint(graphics);
 		drawSeparateLine(graphics);
+
 	}
 
 	/**

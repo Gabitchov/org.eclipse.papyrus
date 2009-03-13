@@ -378,7 +378,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>

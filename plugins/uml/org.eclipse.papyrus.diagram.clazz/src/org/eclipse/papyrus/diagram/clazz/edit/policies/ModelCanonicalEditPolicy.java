@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Association2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Association3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
@@ -52,28 +51,25 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DataType2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Model2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPart;
@@ -184,7 +180,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case Model2EditPart.VISUAL_ID: {
+		case ModelEditPartTN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getModel_2005ContainedLinks(view));
 			}
@@ -310,7 +306,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case Model3EditPart.VISUAL_ID: {
+		case ModelEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getModel_3024ContainedLinks(view));
 			}
@@ -328,7 +324,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
-		case Package2EditPart.VISUAL_ID: {
+		case PackageEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getPackage_3009ContainedLinks(view));
 			}
@@ -663,7 +659,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		case ComponentEditPart.VISUAL_ID:
 		case SignalEditPart.VISUAL_ID:
 		case InterfaceEditPart.VISUAL_ID:
-		case Model2EditPart.VISUAL_ID:
+		case ModelEditPartTN.VISUAL_ID:
 		case EnumerationEditPart.VISUAL_ID:
 		case PackageEditPart.VISUAL_ID:
 		case ClassEditPart.VISUAL_ID:

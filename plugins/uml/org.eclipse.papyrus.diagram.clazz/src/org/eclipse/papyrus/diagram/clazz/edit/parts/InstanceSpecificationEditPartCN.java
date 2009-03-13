@@ -103,11 +103,11 @@ public class InstanceSpecificationEditPartCN extends ShapeNodeEditPart {
 				return result;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 		};

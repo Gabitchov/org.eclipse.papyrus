@@ -27,12 +27,10 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageName2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageQualifiedNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.preferences.initializer.NodeViewInitializer;
@@ -75,9 +73,7 @@ public class PackageViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(AppliedStereotypePackageEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(PackageName2EditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(PackageQualifiedNameEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(PackageNameEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(PackagePackageableElementCompartment2EditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 	}
 

@@ -19,15 +19,12 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.ClassCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Comment2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ComponentCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Constraint2CreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.DataType2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DataTypeCreateCommandCN;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Enumeration2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.EnumerationCreateCommandCN;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecification2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecificationCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InterfaceCreateCommandCN;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Model2CreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Package2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ModelCreateCommandCN;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.PackageCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PrimitiveTypeCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.SignalCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -70,7 +67,7 @@ public class ModelPackageableElementCompartment2ItemSemanticEditPolicy extends U
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new Model2CreateCommand(req));
+			return getGEFWrapper(new ModelCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Enumeration_3025 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
@@ -82,7 +79,7 @@ public class ModelPackageableElementCompartment2ItemSemanticEditPolicy extends U
 			if (req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			}
-			return getGEFWrapper(new Package2CreateCommand(req));
+			return getGEFWrapper(new PackageCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Class_3010 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {

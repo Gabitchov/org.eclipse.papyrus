@@ -90,7 +90,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 				case ComponentEditPart.VISUAL_ID:
 				case SignalEditPart.VISUAL_ID:
 				case InterfaceEditPart.VISUAL_ID:
-				case Model2EditPart.VISUAL_ID:
+				case ModelEditPartTN.VISUAL_ID:
 				case PropertyEditPart.VISUAL_ID:
 				case SlotEditPart.VISUAL_ID:
 				case OperationEditPart.VISUAL_ID:
@@ -119,8 +119,8 @@ public class UMLViewProvider extends AbstractViewProvider {
 				case ComponentEditPartCN.VISUAL_ID:
 				case SignalEditPartCN.VISUAL_ID:
 				case InterfaceEditPartCN.VISUAL_ID:
-				case Model3EditPart.VISUAL_ID:
-				case Package2EditPart.VISUAL_ID:
+				case ModelEditPartCN.VISUAL_ID:
+				case PackageEditPartCN.VISUAL_ID:
 				case ClassEditPartCN.VISUAL_ID:
 				case Property4EditPart.VISUAL_ID:
 				case Operation3EditPart.VISUAL_ID:
@@ -165,11 +165,9 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeModelEditPart.VISUAL_ID:
-				case ModelName2EditPart.VISUAL_ID:
-				case ModelQualifiedNameEditPart.VISUAL_ID:
+				case ModelNameEditPartTN.VISUAL_ID:
 				case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
-					if (Model2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (ModelEditPartTN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -179,9 +177,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypePackageEditPart.VISUAL_ID:
-				case PackageName2EditPart.VISUAL_ID:
-				case PackageQualifiedNameEditPart.VISUAL_ID:
+				case PackageNameEditPart.VISUAL_ID:
 				case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
 					if (PackageEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -250,11 +246,9 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodeModelEditPart.VISUAL_ID:
-				case ModelName4EditPart.VISUAL_ID:
-				case ModelQualifiedName2EditPart.VISUAL_ID:
+				case ModelNameEditPartCN.VISUAL_ID:
 				case ModelPackageableElementCompartment2EditPart.VISUAL_ID:
-					if (Model3EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (ModelEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -264,11 +258,9 @@ public class UMLViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
-				case AppliedStereotypeChildNodePackageEditPart.VISUAL_ID:
-				case PackageName4EditPart.VISUAL_ID:
-				case PackageQualifiedName2EditPart.VISUAL_ID:
+				case PackageNameEditPartCN.VISUAL_ID:
 				case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-					if (Package2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
+					if (PackageEditPartCN.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -415,26 +407,18 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return InterfaceViewFactory.class;
 		case InterfaceNameEditPart.VISUAL_ID:
 			return InterfaceNameViewFactory.class;
-		case Model2EditPart.VISUAL_ID:
-			return Model2ViewFactory.class;
-		case AppliedStereotypeModelEditPart.VISUAL_ID:
-			return ModelNameViewFactory.class;
-		case ModelName2EditPart.VISUAL_ID:
-			return ModelName2ViewFactory.class;
-		case ModelQualifiedNameEditPart.VISUAL_ID:
-			return ModelQualifiedNameViewFactory.class;
+		case ModelEditPartTN.VISUAL_ID:
+			return ModelViewFactoryTN.class;
+		case ModelNameEditPartTN.VISUAL_ID:
+			return ModelNameViewFactoryTN.class;
 		case EnumerationEditPart.VISUAL_ID:
 			return EnumerationViewFactory.class;
 		case EnumerationNameEditPart.VISUAL_ID:
 			return EnumerationNameViewFactory.class;
 		case PackageEditPart.VISUAL_ID:
 			return PackageViewFactory.class;
-		case AppliedStereotypePackageEditPart.VISUAL_ID:
+		case PackageNameEditPart.VISUAL_ID:
 			return PackageNameViewFactory.class;
-		case PackageName2EditPart.VISUAL_ID:
-			return PackageName2ViewFactory.class;
-		case PackageQualifiedNameEditPart.VISUAL_ID:
-			return PackageQualifiedNameViewFactory.class;
 		case ClassEditPart.VISUAL_ID:
 			return ClassViewFactory.class;
 		case ClassNameEditPart.VISUAL_ID:
@@ -491,28 +475,20 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return InterfaceViewFactoryCN.class;
 		case InterfaceNameEditPartCN.VISUAL_ID:
 			return InterfaceNameViewFactoryCN.class;
-		case Model3EditPart.VISUAL_ID:
-			return Model3ViewFactory.class;
-		case AppliedStereotypeChildNodeModelEditPart.VISUAL_ID:
-			return ModelName3ViewFactory.class;
-		case ModelName4EditPart.VISUAL_ID:
-			return ModelName4ViewFactory.class;
-		case ModelQualifiedName2EditPart.VISUAL_ID:
-			return ModelQualifiedName2ViewFactory.class;
+		case ModelEditPartCN.VISUAL_ID:
+			return ModelViewFactoryCN.class;
+		case ModelNameEditPartCN.VISUAL_ID:
+			return ModelNameViewFactoryCN.class;
 		case EnumerationEditPartCN.VISUAL_ID:
 			return EnumerationViewFactoryCN.class;
 		case EnumerationNameEditPartCN.VISUAL_ID:
 			return EnumerationNameViewFactoryCN.class;
 		case EnumerationLiteralEditPart.VISUAL_ID:
 			return EnumerationLiteralViewFactory.class;
-		case Package2EditPart.VISUAL_ID:
-			return Package2ViewFactory.class;
-		case AppliedStereotypeChildNodePackageEditPart.VISUAL_ID:
-			return PackageName3ViewFactory.class;
-		case PackageName4EditPart.VISUAL_ID:
-			return PackageName4ViewFactory.class;
-		case PackageQualifiedName2EditPart.VISUAL_ID:
-			return PackageQualifiedName2ViewFactory.class;
+		case PackageEditPartCN.VISUAL_ID:
+			return PackageViewFactoryCN.class;
+		case PackageNameEditPartCN.VISUAL_ID:
+			return PackageNameViewFactoryCN.class;
 		case ClassEditPartCN.VISUAL_ID:
 			return ClassViewFactoryCN.class;
 		case ClassNameEditPartCN.VISUAL_ID:

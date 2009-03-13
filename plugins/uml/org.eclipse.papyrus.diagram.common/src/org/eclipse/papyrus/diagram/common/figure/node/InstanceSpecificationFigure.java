@@ -20,7 +20,6 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -138,15 +137,12 @@ public class InstanceSpecificationFigure extends NodeNamedElementFigure {
 		this.setLayoutManager(new ClassifierLayoutManager());
 
 		this.setOpaque(true); // non-transparent figure
-		// setBorder( new LineBorder(ColorConstants.black));
-		this.setBorder(new LineBorder(this.borderColor));
 
 		// The area accepting inner figures.
 		this.createContentPane();
 
 		this.setBackgroundColor(Activator.colorManager.get(new RGB(235, 248, 255)));
 		this.setForegroundColor(Activator.colorManager.get(new RGB(177, 207, 229)));
-		this.setBorderColor(Activator.colorManager.get(new RGB(177, 207, 229)));
 	}
 
 	/**
@@ -198,7 +194,9 @@ public class InstanceSpecificationFigure extends NodeNamedElementFigure {
 	 */
 	@Override
 	public void paint(Graphics graphics) {
+		slotContent.setFill(false);
 		super.paint(graphics);
+
 		drawSeparateLine(graphics);
 	}
 

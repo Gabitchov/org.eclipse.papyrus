@@ -14,7 +14,6 @@ import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -56,7 +55,6 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 		this.setLayoutManager(layout);
 
 		this.setOpaque(true); // non-transparent figure
-		this.setBorder(new LineBorder(Activator.colorManager.get(new RGB(204, 204, 204))));
 		this.setBackgroundColor(Activator.colorManager.get(new RGB(242, 242, 242)));
 		// The area accepting inner figures.
 		this.createContentPane(keyword);

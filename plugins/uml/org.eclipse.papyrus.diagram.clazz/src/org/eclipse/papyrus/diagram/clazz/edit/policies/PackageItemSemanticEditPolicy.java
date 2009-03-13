@@ -58,18 +58,15 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditP
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DataType2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Enumeration2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecification2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Model3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Package2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
@@ -148,13 +145,13 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 					case InterfaceEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case Model3EditPart.VISUAL_ID:
+					case ModelEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
 					case EnumerationEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
-					case Package2EditPart.VISUAL_ID:
+					case PackageEditPartCN.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
 					case ClassEditPartCN.VISUAL_ID:

@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.papyrus.editor.Activator;
 import org.eclipse.swt.graphics.RGB;
 
@@ -40,7 +39,6 @@ public class SignalFigure extends ClassifierFigure {
 		this.createTagLabel(keyword);
 
 		this.setOpaque(true); // non-transparent figure
-		this.setBorder(new LineBorder(Activator.colorManager.get(new RGB(177, 207, 229))));
 		this.setBackgroundColor(Activator.colorManager.get(new RGB(235, 248, 255)));
 		this.setForegroundColor(Activator.colorManager.get(new RGB(177, 207, 229)));
 		// The area accepting inner figures.

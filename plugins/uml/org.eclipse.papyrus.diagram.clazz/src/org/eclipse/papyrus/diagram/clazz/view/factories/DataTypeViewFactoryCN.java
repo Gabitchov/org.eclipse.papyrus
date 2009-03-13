@@ -11,13 +11,10 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeChildNodeDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeAttributeCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeName4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeOperationCompartment2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeQualifiedName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 
 /**
