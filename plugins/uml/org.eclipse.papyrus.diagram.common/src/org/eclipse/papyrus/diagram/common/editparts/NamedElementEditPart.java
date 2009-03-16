@@ -47,7 +47,7 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart {
 
 			if (entries != null) {
 				String depthString = entries.get(PapyrusConstant.QUALIFIED_NAME_DEPTH);
-				if (!depthString.isEmpty()) {
+				if (depthString != null) {
 					Integer i = new Integer(depthString);
 					return i.intValue();
 				}
