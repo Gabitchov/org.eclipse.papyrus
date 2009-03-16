@@ -8,13 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Instance of this class allows to lookup for a Classifier.
@@ -94,8 +90,7 @@ public class ClassifierCatalog {
 	/**
 	 * @param currentCompilationUnitPackage the currentCompilationUnitPackage to set
 	 */
-	public void setCurrentCompilationUnitPackage(
-			Package currentCompilationUnitPackage) {
+	public void setCurrentCompilationUnitPackage(Package currentCompilationUnitPackage) {
 		this.currentCompilationUnitPackage = currentCompilationUnitPackage;
 	}
 

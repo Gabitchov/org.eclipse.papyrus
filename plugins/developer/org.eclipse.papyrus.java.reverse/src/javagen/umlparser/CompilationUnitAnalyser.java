@@ -746,12 +746,19 @@ public class CompilationUnitAnalyser  {
     	if(!name.equals(oper.getName()))
         	return false;
         
-     // Chack parameters
+     // Check parameters
             List<org.eclipse.uml2.uml.Parameter> umlParams = oper.getOwnedParameters();
             // Check signature
-            if(signature == null || signature.size() == 0)
+            if(signature == null )
             {
                 return true;
+            }
+            else if(umlParams == null)
+            {
+            	if(signature.size()==0)
+            		return true;
+            	else
+            		return false;
             }
             else if( /*signature!= null && */ umlParams != null )
             {
@@ -759,14 +766,15 @@ public class CompilationUnitAnalyser  {
                 for(Type signatureType : signature)
                 {
                     try {
-                        // skip return arguments in found operation
-                        while(  umlParams.get(umlParamIndex).getDirection() ==ParameterDirectionKind.RETURN_LITERAL) 
-                            umlParamIndex++;
                         // Compare type
-                        org.eclipse.uml2.uml.Parameter param = umlParams.get(umlParamIndex);
-                        Type existingType = param.getType();
+                        org.eclipse.uml2.uml.Parameter param = umlParams.get(umlParamIndex++);
+                        // skip return parameter
+                        while(param.getDirection() == ParameterDirectionKind.RETURN_LITERAL)
+                        	param = umlParams.get(umlParamIndex++);
+
                         // Check types, skip if existing type is null
-                        if(existingType != null && existingType != signatureType)
+                        Type existingType = param.getType();
+                        if(existingType != null && !(existingType.getName().equals( signatureType.getName() ) ) )
                         {
                             // umlParamIndex > umlParams.getSize()
                             return false;
@@ -776,6 +784,16 @@ public class CompilationUnitAnalyser  {
                         return false;
                      }
                 }
+                // Check if there still some type in umlParams
+                // if index is the last one: ok
+                // otherwise, check if remaining arguments are only returns.
+            	while(umlParamIndex < umlParams.size())
+            	{
+            		if(umlParams.get(umlParamIndex++).getDirection() != ParameterDirectionKind.RETURN_LITERAL )
+            		{
+            			return false;
+            		}
+            	}
                 // same
                 return true;
             }
