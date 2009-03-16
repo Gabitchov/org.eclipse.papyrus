@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javagen.umlparser.TypeAnalyser.TypeData;
 import javagen.umlparser.TypeAnalyserAndTranslator.TranslatedTypeData;
 
 import org.eclipse.emf.ecore.EClass;

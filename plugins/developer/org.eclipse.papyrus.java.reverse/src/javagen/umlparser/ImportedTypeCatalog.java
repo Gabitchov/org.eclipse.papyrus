@@ -32,11 +32,6 @@ public class ImportedTypeCatalog {
 	};
 	
 	/**
-	 * The default mappings
-	 */
-	private Map<String, String > defaultMapping;
-	
-	/**
 	 * Constructor.
 	 */
 	public ImportedTypeCatalog() {

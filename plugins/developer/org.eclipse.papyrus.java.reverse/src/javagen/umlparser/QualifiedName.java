@@ -11,6 +11,7 @@ import java.util.Collection;
  * @author dumoulin
  *
  */
+@SuppressWarnings("serial")
 public class QualifiedName extends ArrayList<String> {
 
     /**

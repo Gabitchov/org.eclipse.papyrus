@@ -3,16 +3,12 @@
  */
 package javagen.umlparser;
 
-import japa.parser.ParseException;
 import japa.parser.JavaParser;
+import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
-import japa.parser.ast.visitor.GenericVisitor;
-import japa.parser.ast.visitor.VoidVisitor;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 
 /**

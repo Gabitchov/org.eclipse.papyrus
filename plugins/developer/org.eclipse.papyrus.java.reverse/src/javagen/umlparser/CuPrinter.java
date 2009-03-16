@@ -17,7 +17,6 @@ public class CuPrinter {
 
 	  public static void main(String args[]) {
 	        CompilationUnit cu;
-	        FileInputStream in;
 	        
 	        try {
 
