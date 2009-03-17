@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.diagram.clazz.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 
@@ -25,6 +26,8 @@ public class InstanceSpecification_2001PreferencePage extends AbstractPapyrusNod
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+		PreferenceConverter.setDefault(store, IPapyrusPreferencesConstant.INSTANCESPECIFICATION_2001_PREF_FILL_COLOR, new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store, IPapyrusPreferencesConstant.INSTANCESPECIFICATION_2001_PREF_LINE_COLOR, new org.eclipse.swt.graphics.RGB(177, 207, 229));
 
 	}
 
