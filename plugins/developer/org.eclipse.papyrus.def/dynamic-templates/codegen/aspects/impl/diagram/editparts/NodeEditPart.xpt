@@ -24,8 +24,24 @@
 
 
 «DEFINE extendsListContents FOR gmfgen::GenNode-»
-«IF hasBorderItems()»org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart«ELSE»org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart«ENDIF-»
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»Add own eextension«ENDREM»
+«IF getReferencingObjects(this).typeSelect(papyrusgmfgenextension::ExtendedGenNode).select(v | v.superOwnedEditPart!=null).size()!=0»
+	«FOREACH getReferencingObjects(this).typeSelect(papyrusgmfgenextension::ExtendedGenNode).select(v | v.superOwnedEditPart!=null) AS extendedObject»
+	 		«EXPAND specifyInheritance FOR extendedObject»
+	 «ENDFOREACH-»
+«REM»END: BEGIN: PapyrusGenCode«ENDREM»
+«ELSE»
+	«IF hasBorderItems()»org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart«ELSE»org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart«ENDIF-»
+«ENDIF»
 «ENDDEFINE»
+
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»definition of the inheritance «ENDREM»
+«DEFINE specifyInheritance FOR papyrusgmfgenextension::ExtendedGenNode-»
+	«superOwnedEditPart»
+«ENDDEFINE»
+«REM»END: BEGIN: PapyrusGenCode«ENDREM»
 
 «DEFINE extendsListContents FOR gmfgen::GenChildSideAffixedNode-»
 «IF hasBorderItems()»org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart«ELSE»org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart«ENDIF-»
