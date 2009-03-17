@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ClassItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
@@ -48,7 +49,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ClassEditPart extends AbstractBorderedShapeEditPart {
+public class ClassEditPart extends NamedElementEditPart {
 
 	static final Color THIS_GRADIENT = new Color(null, 177, 207, 229);
 

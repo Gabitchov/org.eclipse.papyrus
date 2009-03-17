@@ -16660,26 +16660,33 @@
       </providers>
     </expressionProviders>
   </gmfgen:GenEditorGenerator>
-  <papyrusgmfgenextension:PapyrusExtensionRootNode
-      comment=": this is the root node that contains all node to extend elements of the gmfgen">
+  <papyrusgmfgenextension:PapyrusExtensionRootNode>
     <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenNode"
         comment="Label in charge to display applied stereotypes"
         genNode="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0"
         name="StereotypeApplication"/>
     <extensionNodes
-        comment="thiis extension is to associate a refresh for active classes"
+        xsi:type="papyrusgmfgenextension:ExtendedGenNode"
+        comment="Manage the class"
         genNode="/0/@diagram/@childNodes.18 /0/@diagram/@topLevelNodes.10"
-        name="Active class">
+        name="Extended class editpart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
       <propRefreshHook
           comment="set the figure active when the feature of the of a class is true"
-          classpath=""
           triggeringCondition="resolveSemanticElement().equals(event.getNotifier()) &amp;&amp; (event.getFeature() instanceof org.eclipse.emf.ecore.EAttribute)&amp;&amp; ((org.eclipse.emf.ecore.EAttribute) (event.getFeature())).getName().equals(&quot;isActive&quot;)"
           action="((ClassifierFigure) getFigure()).setActive(event.getNewBooleanValue())"/>
     </extensionNodes>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocator"
+        comment="precise the locator for a template signature"
+        classpath="org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator"
+        genChildSideAffixedNode="/0/@diagram/@childNodes.4"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenNode"
+        comment="adding to manange otherNamedElement"
+        genNode="/0/@diagram/@childNodes.23 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.12"
+        name="OtherNamedElementEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
-  <papyrusgmfgenextension:SpecificLocator
-      comment="precise the locator for a template signature"
-      classpath="org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator"
-      genChildSideAffixedNode="/0/@diagram/@childNodes.4"/>
-  <papyrusgmfgenextension:MutatingCanvas/>
 </xmi:XMI>

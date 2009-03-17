@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ClassItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
@@ -34,7 +35,7 @@ import org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLo
 /**
  * @generated
  */
-public class ClassEditPartCN extends AbstractBorderedShapeEditPart {
+public class ClassEditPartCN extends NamedElementEditPart {
 
 	/**
 	 * @generated
