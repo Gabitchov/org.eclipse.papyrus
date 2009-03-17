@@ -18,14 +18,9 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gef.DragTracker;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.requests.SelectionRequest;
-import org.eclipse.gef.tools.DeselectAllTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.PapyrusRubberbandDragTracker;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -54,20 +49,6 @@ public class ModelEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
-
-		public boolean isEObjectNode(EObject element) {
-			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
-				return true;
-			}
-			return false;
-		}
-
-		public boolean isEObjectLink(EObject element) {
-			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
-				return true;
-			}
-			return false;
-		}
 
 		public int getEObjectSemanticHint(EObject element) {
 			if (element != null) {
@@ -124,6 +105,20 @@ public class ModelEditPart extends DiagramEditPart {
 			}
 			return null;
 		}
+
+		public boolean isEObjectLink(EObject element) {
+			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
+				return true;
+			}
+			return false;
+		}
+
+		public boolean isEObjectNode(EObject element) {
+			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
+				return true;
+			}
+			return false;
+		}
 	};
 
 	/**
@@ -164,13 +159,13 @@ public class ModelEditPart extends DiagramEditPart {
 	}
 
 	// tempory code to see with Cedric
-	public DragTracker getDragTracker(Request req) {
-		if (req instanceof SelectionRequest && ((SelectionRequest) req).getLastButtonPressed() == 3)
-			return new DeselectAllTracker(this);
-		// tempory code
-		return new PapyrusRubberbandDragTracker();
+	// public DragTracker getDragTracker(Request req) {
+	// if (req instanceof SelectionRequest && ((SelectionRequest) req).getLastButtonPressed() == 3)
+	// return new DeselectAllTracker(this);
+	// tempory code
+	// return new PapyrusRubberbandDragTracker();
 
-	}
+	// }
 
 	/**
 	 * @generated
