@@ -22,9 +22,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPar
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
-import org.eclipse.papyrus.editor.Activator;
-import org.eclipse.papyrus.editor.PapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Color;
 
 public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
@@ -63,13 +63,13 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 	 * @return the list of stereotypes to display
 	 */
 	public String stereotypesToDisplay() {
-		EAnnotation stereotypeDisplayKind = ((View) getModel()).getEAnnotation(PapyrusConstant.STEREOTYPE_ANNOTATION);
+		EAnnotation stereotypeDisplayKind = ((View) getModel()).getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
-			String stereotypesToDisplay = entries.get(PapyrusConstant.STEREOTYPE_LIST);
-			String stereotypespresentationKind = entries.get(PapyrusConstant.STEREOTYPE_PRESENTATION_KIND);
-			if (PapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
+			String stereotypesToDisplay = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_LIST);
+			String stereotypespresentationKind = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND);
+			if (VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
 				return stereotypesToDisplay("\n", stereotypesToDisplay);
 			} else {
 				return stereotypesToDisplay(" ", stereotypesToDisplay);
@@ -88,7 +88,7 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 
 		// Get the preference from PreferenceStore
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		String sNameAppearance = store.getString(PapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
+		String sNameAppearance = store.getString(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
 
 		StringTokenizer strqualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
 		String out = "";
@@ -105,9 +105,9 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 			// Previously lowercase forced onto first letter (standard UML)
 			// stereotypesToDisplay = stereotypesToDisplay+name.substring(0, 1).toLowerCase()+name.substring(1, name.length())+","+separator;
 
-			if (sNameAppearance.equals(PapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
+			if (sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
 				out = out + name + "," + separator;
-			} else if (sNameAppearance.equals(PapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM)) {
+			} else if (sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM)) {
 				out = out + name.substring(0, 1).toLowerCase() + name.substring(1, name.length()) + "," + separator;
 			} else { // should not happen since radio button are used to set choice
 				out = out + name.substring(0, 1).toLowerCase() + name.substring(1, name.length()) + "," + separator;

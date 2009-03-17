@@ -58,12 +58,11 @@ import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-
-import org.eclipse.papyrus.diagram.common.DiagramCommonPlugin;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -620,7 +619,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 		}
@@ -636,7 +635,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	protected IDocument createDocument(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 		}
@@ -699,12 +698,12 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 					thrownExcp = (CoreException) e;
 				} else {
 					String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, 0, msg != null ? msg : "Messages.SqlmodelDocumentProvider_DiagramLoadingError", e));
+					thrownExcp = new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, msg != null ? msg : "Messages.SqlmodelDocumentProvider_DiagramLoadingError", e));
 				}
 				throw thrownExcp;
 			}
 		} else {
-			throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 		}
@@ -762,7 +761,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					DiagramCommonPlugin.getInstance().logError("Messages.SqlmodelDocumentProvider_isModifiable", ex);
+					Activator.getDefault().logError("Messages.SqlmodelDocumentProvider_isModifiable", ex);
 				}
 			}
 			return info.isReadOnly();
@@ -783,7 +782,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					DiagramCommonPlugin.getInstance().logError("Messages.SqlmodelDocumentProvider_isModifiable", ex);
+					Activator.getDefault().logError("Messages.SqlmodelDocumentProvider_isModifiable", ex);
 				}
 			}
 			return info.isModifiable();
@@ -929,7 +928,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 			CachedResourceSetInfo info = getResourceSetInfo(element);
 			if (info != null) {
 				if (!overwrite && !info.isSynchronized()) {
-					throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, IResourceStatus.OUT_OF_SYNC_LOCAL, "Messages.SqlmodelDocumentProvider_UnsynchronizedFileSaveError", null));
+					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, IResourceStatus.OUT_OF_SYNC_LOCAL, "Messages.SqlmodelDocumentProvider_UnsynchronizedFileSaveError", null));
 				}
 				info.stopResourceListening();
 				fireElementStateChanging(element);
@@ -943,7 +942,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 								nextResource.save(MDTUtil.getSaveOptions());
 							} catch (IOException e) {
 								fireElementStateChangeFailed(element);
-								throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
+								throw new CoreException(new Status(IStatus.ERROR, Activator.ID, EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 							}
 						}
 						monitor.worked(1);
@@ -967,13 +966,13 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 					newResoruceURI = ((URIEditorInput) element).getURI();
 				} else {
 					fireElementStateChangeFailed(element);
-					throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
+					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
 							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 							null));
 				}
 				if (false == document instanceof IDiagramDocument) {
 					fireElementStateChangeFailed(element);
-					throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, 0,
+					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0,
 							"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				IDiagramDocument diagramDocument = (IDiagramDocument) document;
@@ -991,10 +990,10 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 					newResource.save(MDTUtil.getSaveOptions());
 				} catch (ExecutionException e) {
 					fireElementStateChangeFailed(element);
-					throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, 0, e.getLocalizedMessage(), null));
+					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, e.getLocalizedMessage(), null));
 				} catch (IOException e) {
 					fireElementStateChangeFailed(element);
-					throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, 0, e.getLocalizedMessage(), null));
+					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, e.getLocalizedMessage(), null));
 				}
 				newResource.unload();
 			}
@@ -1011,7 +1010,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 				try {
 					file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 				} catch (CoreException ex) {
-					DiagramCommonPlugin.getInstance().logError("Messages.SqlmodelDocumentProvider_handleElementContentChanged", ex);
+					Activator.getDefault().logError("Messages.SqlmodelDocumentProvider_handleElementContentChanged", ex);
 				}
 			}
 			changedResource.unload();

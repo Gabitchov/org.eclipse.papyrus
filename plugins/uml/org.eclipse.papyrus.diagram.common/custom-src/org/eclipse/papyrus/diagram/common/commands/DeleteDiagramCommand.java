@@ -19,13 +19,12 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.part.EditingDomainRegistry;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-
-import org.eclipse.papyrus.diagram.common.DiagramCommonPlugin;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -102,8 +101,8 @@ public class DeleteDiagramCommand extends AbstractCommand {
 			try {
 				MultiDiagramUtil.openDiagram(diagramToOpen);
 			} catch (ExecutionException ex) {
-				IStatus status = new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "Can't open diagram");
-				DiagramCommonPlugin.getInstance().getLog().log(status);
+				IStatus status = new Status(IStatus.ERROR, Activator.ID, "Can't open diagram");
+				Activator.getDefault().getLog().log(status);
 			} finally {
 				EditingDomainRegistry.getInstance().setChangingCachedEditors(false);
 			}

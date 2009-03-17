@@ -53,6 +53,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.ids.MOSKittEditorIDs;
 import org.eclipse.papyrus.diagram.common.part.CachedResourcesEditorInput;
@@ -63,8 +64,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
-
-import org.eclipse.papyrus.diagram.common.DiagramCommonPlugin;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -158,8 +157,8 @@ public class MDTUtil {
 		try {
 			return ResourcesPlugin.getWorkspace().getRoot().getLocation();
 		} catch (NullPointerException ex) {
-			IStatus status = new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "Error getting workspace", ex);
-			DiagramCommonPlugin.getInstance().getLog().log(status);
+			IStatus status = new Status(IStatus.ERROR, Activator.ID, "Error getting workspace", ex);
+			Activator.getDefault().getLog().log(status);
 			return null;
 		}
 	}
@@ -401,7 +400,7 @@ public class MDTUtil {
 	}
 
 	/** The Constant LastOpenedDiagramProperty. */
-	public static final QualifiedName LastOpenedDiagramProperty = new QualifiedName(DiagramCommonPlugin.ID, "lastOpenedDiagram");
+	public static final QualifiedName LastOpenedDiagramProperty = new QualifiedName(Activator.ID, "lastOpenedDiagram");
 
 	/**
 	 * Sets the last opened diagram property.
@@ -436,8 +435,8 @@ public class MDTUtil {
 				}
 				return true;
 			} catch (CoreException ex) {
-				IStatus status = new Status(IStatus.WARNING, DiagramCommonPlugin.ID, "Error setting file property");
-				DiagramCommonPlugin.getInstance().getLog().log(status);
+				IStatus status = new Status(IStatus.WARNING, Activator.ID, "Error setting file property");
+				Activator.getDefault().getLog().log(status);
 			}
 		}
 
@@ -480,7 +479,7 @@ public class MDTUtil {
 			file.setPersistentProperty(IDE.EDITOR_KEY, editorID);
 			return;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "file not exists"));
+		throw new CoreException(new Status(IStatus.ERROR, Activator.ID, "file not exists"));
 	}
 
 	/**
@@ -501,8 +500,8 @@ public class MDTUtil {
 			try {
 				return file.getPersistentProperty(LastOpenedDiagramProperty);
 			} catch (CoreException ex) {
-				IStatus status = new Status(IStatus.WARNING, DiagramCommonPlugin.ID, "Error retieving editor property: ", ex);
-				DiagramCommonPlugin.getInstance().getLog().log(status);
+				IStatus status = new Status(IStatus.WARNING, Activator.ID, "Error retieving editor property: ", ex);
+				Activator.getDefault().getLog().log(status);
 			}
 		}
 		return null;

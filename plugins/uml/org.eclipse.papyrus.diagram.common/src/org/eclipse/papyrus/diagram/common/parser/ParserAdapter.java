@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.papyrus.diagram.common.DiagramCommonPlugin;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.parser.lookup.LookupResolver;
 import org.eclipse.papyrus.diagram.common.parser.lookup.LookupResolverImpl;
 import org.eclipse.papyrus.diagram.common.parser.lookup.LookupSuite;
@@ -99,7 +99,7 @@ public class ParserAdapter implements IParser {
 	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		EObject modelObject = (EObject) adapter.getAdapter(EObject.class);
 		if (modelObject == null) {
-			return new ParserEditStatus(DiagramCommonPlugin.ID, IParserEditStatus.UNEDITABLE, "Can not find context object");
+			return new ParserEditStatus(Activator.ID, IParserEditStatus.UNEDITABLE, "Can not find context object");
 		}
 
 		LookupSuite oldLookup = myDelegate.getLookupSuite();
@@ -115,7 +115,7 @@ public class ParserAdapter implements IParser {
 				message = "";
 			}
 			message = ourMessageFormatEscaper.getEscaped(message);
-			return new ParserEditStatus(DiagramCommonPlugin.ID, IParserEditStatus.UNEDITABLE, "Invalid input: " + message);
+			return new ParserEditStatus(Activator.ID, IParserEditStatus.UNEDITABLE, "Invalid input: " + message);
 		} finally {
 			myDelegate.setLookupSuite(oldLookup);
 		}

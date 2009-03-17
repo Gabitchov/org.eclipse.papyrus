@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
-import org.eclipse.papyrus.editor.Activator;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.graphics.RGB;
 
 /**

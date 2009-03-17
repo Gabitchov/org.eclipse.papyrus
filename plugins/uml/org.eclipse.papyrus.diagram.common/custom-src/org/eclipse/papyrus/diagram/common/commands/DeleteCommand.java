@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.diagram.common.DiagramCommonPlugin;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
@@ -172,8 +172,8 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 					try {
 						MultiDiagramUtil.openDiagram(diagramToOpen);
 					} catch (ExecutionException ex) {
-						IStatus status = new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "Cannot open diagram: " + ex.getLocalizedMessage());
-						DiagramCommonPlugin.getInstance().getLog().log(status);
+						IStatus status = new Status(IStatus.ERROR, Activator.ID, "Cannot open diagram: " + ex.getLocalizedMessage());
+						Activator.getDefault().getLog().log(status);
 						return CommandResult.newErrorCommandResult("Cannot open diagram");
 					}
 				}
@@ -219,8 +219,8 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 			try {
 				MultiDiagramUtil.openDiagram(getActiveDiagram());
 			} catch (ExecutionException ex) {
-				IStatus logStatus = new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "Cannot open diagram: " + ex.getLocalizedMessage());
-				DiagramCommonPlugin.getInstance().getLog().log(logStatus);
+				IStatus logStatus = new Status(IStatus.ERROR, Activator.ID, "Cannot open diagram: " + ex.getLocalizedMessage());
+				Activator.getDefault().getLog().log(logStatus);
 			}
 		}
 		return status;

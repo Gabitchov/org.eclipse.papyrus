@@ -28,8 +28,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.editor.Activator;
-import org.eclipse.papyrus.editor.PapyrusConstant;
+import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -537,7 +537,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		org.eclipse.swt.graphics.Image icon = Activator.getIconElement(selection);
 
 		/* if the presentation is icon or icon with text, we can set the icon */
-		if ((icon != null) && ((presentation.equals(PapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) || presentation.equals(PapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
+		if ((icon != null) && ((presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) || presentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
 			this.setIcon(icon);
 			if (iconLabel == null) {
 				createIconLabel();
@@ -590,10 +590,10 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 			return;
 		}
 
-		if (presentation.equals(PapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcon) {
+		if (presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcon) {
 			this.setStereotypes(null);
 			return;
-		} else if (presentation.equals(PapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShape) {
+		} else if (presentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShape) {
 			this.setStereotypes(null);
 			return;
 		}

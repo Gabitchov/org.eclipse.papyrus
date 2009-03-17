@@ -14,14 +14,13 @@ package org.eclipse.papyrus.diagram.common.providers;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.uml2.uml.NamedElement;
-
-import org.eclipse.papyrus.diagram.common.DiagramCommonPlugin;
 
 /**
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
 public class ValidationProvider {
 
@@ -30,12 +29,12 @@ public class ValidationProvider {
 		if (element != null) {
 			boolean unique = checkUniqueName(element);
 			if (!unique) {
-				status = new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "An element with name \"" + element.getName() + "\" already exists.");
+				status = new Status(IStatus.ERROR, Activator.ID, "An element with name \"" + element.getName() + "\" already exists.");
 			} else {
-				status = new Status(IStatus.OK, DiagramCommonPlugin.ID, "Unique name.");
+				status = new Status(IStatus.OK, Activator.ID, "Unique name.");
 			}
 		} else {
-			status = new Status(IStatus.WARNING, DiagramCommonPlugin.ID, "Element to validate is null");
+			status = new Status(IStatus.WARNING, Activator.ID, "Element to validate is null");
 		}
 		return status;
 	}

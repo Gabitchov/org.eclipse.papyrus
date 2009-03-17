@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
-import org.eclipse.papyrus.editor.PapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -41,12 +41,12 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart {
 	 * @return the depth
 	 */
 	public int getQualifiedNamedepth() {
-		EAnnotation stereotypeDisplayKind = ((View) getModel()).getEAnnotation(PapyrusConstant.QUALIFIED_NAME);
+		EAnnotation stereotypeDisplayKind = ((View) getModel()).getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			if (entries != null) {
-				String depthString = entries.get(PapyrusConstant.QUALIFIED_NAME_DEPTH);
+				String depthString = entries.get(VisualInformationPapyrusConstant.QUALIFIED_NAME_DEPTH);
 				if (depthString != null) {
 					Integer i = new Integer(depthString);
 					return i.intValue();

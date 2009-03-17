@@ -17,7 +17,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.papyrus.editor.Activator;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;

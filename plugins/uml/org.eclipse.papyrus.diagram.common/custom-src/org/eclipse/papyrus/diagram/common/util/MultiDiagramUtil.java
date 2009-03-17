@@ -50,6 +50,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.ids.MOSKittEditorIDs;
 import org.eclipse.papyrus.diagram.common.part.CachedResourcesDiagramEditor;
 import org.eclipse.papyrus.diagram.common.part.CachedResourcesEditorInput;
@@ -67,8 +68,6 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
-
-import org.eclipse.papyrus.diagram.common.DiagramCommonPlugin;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -561,7 +560,7 @@ public class MultiDiagramUtil {
 			file.setPersistentProperty(IDE.EDITOR_KEY, editorID);
 			return;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "Error setting file property"));
+		throw new CoreException(new Status(IStatus.ERROR, Activator.ID, "Error setting file property"));
 	}
 
 	/**
@@ -647,8 +646,8 @@ public class MultiDiagramUtil {
 			try {
 				openDiagram(diagramToOpen);
 			} catch (ExecutionException ex) {
-				IStatus status = new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "Can't open diagram");
-				DiagramCommonPlugin.getInstance().getLog().log(status);
+				IStatus status = new Status(IStatus.ERROR, Activator.ID, "Can't open diagram");
+				Activator.getDefault().getLog().log(status);
 				return null;
 			} finally {
 				EditingDomainRegistry.getInstance().setChangingCachedEditors(false);
@@ -694,8 +693,8 @@ public class MultiDiagramUtil {
 			try {
 				diagramResource.save(getSaveOptions());
 			} catch (IOException ex) {
-				IStatus status = new Status(IStatus.ERROR, DiagramCommonPlugin.ID, "Error saving resource");
-				DiagramCommonPlugin.getInstance().getLog().log(status);
+				IStatus status = new Status(IStatus.ERROR, Activator.ID, "Error saving resource");
+				Activator.getDefault().getLog().log(status);
 				return false;
 			}
 		}
