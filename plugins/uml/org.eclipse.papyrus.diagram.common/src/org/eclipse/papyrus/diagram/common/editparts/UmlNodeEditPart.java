@@ -18,16 +18,23 @@ import java.util.StringTokenizer;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.editor.Activator;
 import org.eclipse.papyrus.editor.PapyrusConstant;
+import org.eclipse.swt.graphics.Color;
 
-public abstract class UmlNodeEditPart extends org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart {
+public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 
 	public UmlNodeEditPart(View view) {
 		super(view);
+	}
+
+	protected NodeFigure createMainFigure() {
+		return createNodeFigure();
 	}
 
 	public abstract NodeNamedElementFigure getPrimaryShape();
@@ -107,6 +114,36 @@ public abstract class UmlNodeEditPart extends org.eclipse.gmf.runtime.diagram.ui
 			}
 		}
 		return stereotypesToDisplay;
+	}
+
+	/**
+	 * sets the back ground color of this edit part
+	 * 
+	 * @param color
+	 *            the new value of the back ground color
+	 */
+	protected void setBackgroundColor(Color color) {
+		getPrimaryShape().setBackgroundColor(color);
+	}
+
+	/**
+	 * sets the font color
+	 * 
+	 * @param color
+	 *            the new value of the font color
+	 */
+	protected void setFontColor(Color color) {
+		// NULL implementation
+	}
+
+	/**
+	 * sets the fore ground color of this edit part's figure
+	 * 
+	 * @param color
+	 *            the new value of the foregroundcolor
+	 */
+	protected void setForegroundColor(Color color) {
+		getPrimaryShape().setForegroundColor(color);
 	}
 
 }

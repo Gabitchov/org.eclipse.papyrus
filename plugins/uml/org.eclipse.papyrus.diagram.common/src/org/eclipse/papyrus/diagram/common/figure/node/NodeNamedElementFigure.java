@@ -202,6 +202,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		Font font = Activator.fontManager.get(fontdata);
 		Label label = new Label();
 		label.setFont(font);
+		label.setForegroundColor(ColorConstants.black);
 		label.setOpaque(false);
 		// Add the label to the figure, after the name
 		this.add(label, getQualifiedNameLabelPosition());
@@ -784,7 +785,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		if (this.qualifiedLabel == null) {
 			this.createQualifiedNameLabel();
 		}
-		this.qualifiedLabel.setText(getQualifiedName(qualifiedName, depth));
+		this.qualifiedLabel.setText("(" + getQualifiedName(qualifiedName, depth) + ")");
 	}
 
 	public void setShadow(boolean shadow) {
