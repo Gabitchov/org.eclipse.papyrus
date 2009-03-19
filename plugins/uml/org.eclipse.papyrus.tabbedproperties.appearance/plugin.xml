@@ -35,6 +35,13 @@
                id="org.eclipse.papyrus.tabbedproperties.appearance.ShapeColorAndFontPropertySection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
+         <propertySection
+               afterSection="org.eclipse.papyrus.tabbedproperties.appearance.ShapeColorAndFontPropertySection"
+               class="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
+               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               id="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
       </propertySections>
    </extension>
 

@@ -1,0 +1,254 @@
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.tabbedproperties.appearance;
+
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.core.editor.BackboneContext;
+import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.umlutils.ui.QualifiedNameHelper;
+import org.eclipse.papyrus.umlutils.ui.SetQualifiedNameDepthCommand;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.part.IContributedContentsView;
+import org.eclipse.ui.views.contentoutline.ContentOutline;
+import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
+
+/**
+ * The Class QualifiedNameAppearanceSection allow users to customize the display of qualified name.
+ * 
+ */
+public class QualifiedNameAppearanceSection extends AbstractPropertySection {
+
+	/**
+	 * The stereotype appearance.
+	 */
+	private CLabel qualifiedNameAppearance;
+
+	/**
+	 * The combo stereotype appearance.
+	 */
+	private CCombo comboQualifiedNameAppearance;
+
+	/**
+	 * The combo stereotype appearance listener.
+	 */
+	private SelectionListener comboQualifiedNameAppearanceListener;
+
+	private GraphicalEditPart namedElementEditPart;
+
+	private IMultiDiagramEditor editor;
+
+	private BackboneContext backbone;
+
+	private TransactionalEditingDomain editingDomain;
+
+	/**
+	 * Creates the controls.
+	 * 
+	 * @param tabbedPropertySheetPage
+	 *            the tabbed property sheet page
+	 * @param parent
+	 *            the parent
+	 */
+	@Override
+	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
+		super.createControls(parent, tabbedPropertySheetPage);
+		Composite composite = getWidgetFactory().createFlatFormComposite(parent);
+		FormData data;
+
+		qualifiedNameAppearance = getWidgetFactory().createCLabel(composite, "Qualified Name Depth:"); //$NON-NLS-1$
+		data = new FormData();
+		data.left = new FormAttachment(0, 0);
+		// data.right = new FormAttachment(comboQualifiedNameAppearance,0);
+		data.top = new FormAttachment(qualifiedNameAppearance, 1, SWT.CENTER);
+		qualifiedNameAppearance.setLayoutData(data);
+
+		comboQualifiedNameAppearance = getWidgetFactory().createCCombo(composite, SWT.BORDER);
+		comboQualifiedNameAppearance.add("Full");
+
+		data = new FormData();
+		data.left = new FormAttachment(qualifiedNameAppearance, 0);
+		data.top = new FormAttachment(0, 0);
+		comboQualifiedNameAppearance.setLayoutData(data);
+
+		comboQualifiedNameAppearanceListener = new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				if (namedElementEditPart != null) {
+					if (((View) namedElementEditPart.getModel()).getElement() != null && ((View) namedElementEditPart.getModel()).getElement() instanceof NamedElement) {
+
+						String currentQualifiedNameDepth = comboQualifiedNameAppearance.getText();
+						String currentQualifiedNameSpec;
+
+						if ("Full".equals(currentQualifiedNameDepth))
+							currentQualifiedNameSpec = "0";
+						else if ("None".equals(currentQualifiedNameDepth)) {
+							org.eclipse.papyrus.umlutils.NamedElement ne = new org.eclipse.papyrus.umlutils.NamedElement((NamedElement) ((View) namedElementEditPart.getModel()).getElement());
+							currentQualifiedNameSpec = "" + ne.getQualifiedNameMaxDepth();
+						} else
+							currentQualifiedNameSpec = currentQualifiedNameDepth.substring(1);
+
+						// createProperty value
+						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
+						// command creation
+						if (editingDomain != null) {
+							editingDomain.getCommandStack().execute(
+									new SetQualifiedNameDepthCommand(editingDomain, ((EModelElement) namedElementEditPart.getModel()), Integer.parseInt(currentQualifiedNameSpec)));
+						}
+
+						refresh();
+					}
+				}
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		};
+		comboQualifiedNameAppearance.addSelectionListener(comboQualifiedNameAppearanceListener);
+
+	}
+
+	public int getQualifiedNamedepth(View view) {
+		EAnnotation stereotypeDisplayKind = ((View) view).getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
+		if (stereotypeDisplayKind != null) {
+			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
+
+			if (entries != null) {
+				String depthString = entries.get(VisualInformationPapyrusConstant.QUALIFIED_NAME_DEPTH);
+				if (depthString != null) {
+					Integer i = new Integer(depthString);
+					return i.intValue();
+				}
+			}
+		}
+		return 0;
+	}
+
+	/*
+	 * @see org.eclipse.ui.views.properties.tabbed.view.ITabbedPropertySection#refresh()
+	 */
+	/**
+	 * Refresh.
+	 */
+	@Override
+	public void refresh() {
+		if ((!comboQualifiedNameAppearance.isDisposed())) {
+
+			comboQualifiedNameAppearance.removeSelectionListener(comboQualifiedNameAppearanceListener);
+
+			if (namedElementEditPart != null) {
+
+				if ((namedElementEditPart.getModel()) != null && ((View) (namedElementEditPart.getModel())).getElement() != null) {
+
+					org.eclipse.uml2.uml.Element element = (Element) ((View) (namedElementEditPart.getModel())).getElement();
+
+					if (element instanceof NamedElement) {
+
+						comboQualifiedNameAppearance.setEnabled(true);
+						// delete all old items
+						comboQualifiedNameAppearance.removeAll();
+
+						// calculate the max depth of qualified name
+						org.eclipse.papyrus.umlutils.NamedElement ne = new org.eclipse.papyrus.umlutils.NamedElement((NamedElement) element);
+						int depth = ne.getQualifiedNameMaxDepth();
+
+						// build new items
+						if (depth != 0) {
+							comboQualifiedNameAppearance.add("Full");
+							for (int i = 1; i < depth; i++)
+								comboQualifiedNameAppearance.add("-" + i);
+							comboQualifiedNameAppearance.add("None");
+						} else {// case of root modelElement
+							comboQualifiedNameAppearance.add("None");
+						}
+
+						int qualifiedNameDepth = QualifiedNameHelper.getQualifiedNamedepth((EModelElement) (namedElementEditPart.getModel()));
+
+						if (depth != 0) {
+							if (qualifiedNameDepth == 0)
+								comboQualifiedNameAppearance.setText("Full");
+							// The qualifiedNameDepth stored in graphNode is greater the depth of the element; in those cases
+							// we have to se the text of combo as none
+							else if (qualifiedNameDepth >= depth)
+								comboQualifiedNameAppearance.setText("None");
+							else
+								comboQualifiedNameAppearance.setText("-" + qualifiedNameDepth);
+						} else {
+							comboQualifiedNameAppearance.setText("None");
+						}
+
+					} else {
+						comboQualifiedNameAppearance.setEnabled(false);
+						comboQualifiedNameAppearance.setText("None");
+					}
+				}
+			}
+			comboQualifiedNameAppearance.addSelectionListener(comboQualifiedNameAppearanceListener);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void dispose() {
+		super.dispose();
+		if (comboQualifiedNameAppearance != null && !comboQualifiedNameAppearance.isDisposed())
+			comboQualifiedNameAppearance.removeSelectionListener(comboQualifiedNameAppearanceListener);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setInput(IWorkbenchPart part, ISelection selection) {
+		super.setInput(part, selection);
+		Object input = ((IStructuredSelection) selection).getFirstElement();
+		// look for modelManager
+		if (input instanceof GraphicalEditPart) {
+			namedElementEditPart = ((GraphicalEditPart) input);
+			// selectionChanged(selection);
+		}
+		// When the selection is computed from the outline, get the associated editor
+		if (part instanceof ContentOutline) {
+			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
+			if (contributedView != null) {
+				part = (IWorkbenchPart) contributedView.getContributingPart();
+			}
+		}
+		if (part instanceof IMultiDiagramEditor) {
+			editor = (IMultiDiagramEditor) part;
+			backbone = editor.getDefaultContext();
+			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
+		} else
+			editingDomain = null;
+	}
+
+}

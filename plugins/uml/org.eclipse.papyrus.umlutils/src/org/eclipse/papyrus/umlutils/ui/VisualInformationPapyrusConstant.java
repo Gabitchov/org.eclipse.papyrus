@@ -79,7 +79,7 @@ public interface VisualInformationPapyrusConstant {
 
 	public static String QUALIFIED_NAME = "QualifiedName";
 
-	public static Object QUALIFIED_NAME_DEPTH = "QualifiedNameDepth";
+	public static String QUALIFIED_NAME_DEPTH = "QualifiedNameDepth";
 
 	/**
 	 * The Constant P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED.

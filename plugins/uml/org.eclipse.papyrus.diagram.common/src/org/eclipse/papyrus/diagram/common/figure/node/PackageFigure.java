@@ -76,6 +76,11 @@ public class PackageFigure extends NodeNamedElementFigure implements IAbstractEl
 				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
 				if (i > 0) {
 					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
+					bound.x = getBounds().x;
+				} else {
+					bound.x = getBounds().x;
+					bound.y = getBounds().y;
+
 				}
 				((IFigure) childrenList.get(i)).setBounds(bound);
 			}

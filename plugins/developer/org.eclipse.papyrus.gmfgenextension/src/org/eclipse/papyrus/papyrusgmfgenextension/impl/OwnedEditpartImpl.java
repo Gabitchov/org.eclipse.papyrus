@@ -11,51 +11,50 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Commented Element</b></em>'.
+ * An implementation of the model object '<em><b>Owned Editpart</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CommentedElementImpl#getComment <em>Comment</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CommentedElementImpl extends EObjectImpl implements CommentedElement {
+public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart {
 	/**
-	 * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getComment()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String COMMENT_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getComment()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String comment = COMMENT_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CommentedElementImpl() {
+	protected OwnedEditpartImpl() {
 		super();
 	}
 
@@ -66,7 +65,7 @@ public class CommentedElementImpl extends EObjectImpl implements CommentedElemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PapyrusgmfgenextensionPackage.Literals.COMMENTED_ELEMENT;
+		return PapyrusgmfgenextensionPackage.Literals.OWNED_EDITPART;
 	}
 
 	/**
@@ -74,8 +73,8 @@ public class CommentedElementImpl extends EObjectImpl implements CommentedElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getComment() {
-		return comment;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -83,11 +82,11 @@ public class CommentedElementImpl extends EObjectImpl implements CommentedElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setComment(String newComment) {
-		String oldComment = comment;
-		comment = newComment;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT__COMMENT, oldComment, comment));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME, oldName, name));
 	}
 
 	/**
@@ -98,8 +97,8 @@ public class CommentedElementImpl extends EObjectImpl implements CommentedElemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT__COMMENT:
-				return getComment();
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,8 +111,8 @@ public class CommentedElementImpl extends EObjectImpl implements CommentedElemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT__COMMENT:
-				setComment((String)newValue);
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +126,8 @@ public class CommentedElementImpl extends EObjectImpl implements CommentedElemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT__COMMENT:
-				setComment(COMMENT_EDEFAULT);
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,8 +141,8 @@ public class CommentedElementImpl extends EObjectImpl implements CommentedElemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT__COMMENT:
-				return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -158,10 +157,10 @@ public class CommentedElementImpl extends EObjectImpl implements CommentedElemen
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (comment: ");
-		result.append(comment);
+		result.append(" (name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}
 
-} //CommentedElementImpl
+} //OwnedEditpartImpl

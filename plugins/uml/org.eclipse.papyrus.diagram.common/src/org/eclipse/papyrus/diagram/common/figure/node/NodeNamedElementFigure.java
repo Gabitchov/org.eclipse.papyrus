@@ -537,7 +537,8 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		org.eclipse.swt.graphics.Image icon = Activator.getIconElement(selection);
 
 		/* if the presentation is icon or icon with text, we can set the icon */
-		if ((icon != null) && ((presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) || presentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
+		if ((icon != null)
+				&& ((presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) || presentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
 			this.setIcon(icon);
 			if (iconLabel == null) {
 				createIconLabel();
@@ -773,7 +774,12 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 *            the qualified name
 	 */
 	public void setQualifiedName(String qualifiedName) {
-		if (qualifiedName == null) { // Remove label if any
+		String tmpQualifiedName = getQualifiedName(qualifiedName, depth);
+
+		// two raisons to remove label!
+		// null
+		// or the qualified name is equal to 1
+		if (qualifiedName == null || !tmpQualifiedName.contains("::")) { // Remove label if any
 			if (this.qualifiedLabel != null) {
 				this.remove(this.qualifiedLabel);
 				this.qualifiedLabel = null;
@@ -785,7 +791,14 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		if (this.qualifiedLabel == null) {
 			this.createQualifiedNameLabel();
 		}
-		this.qualifiedLabel.setText("(" + getQualifiedName(qualifiedName, depth) + ")");
+		// we have to not display name.
+
+		int i = tmpQualifiedName.lastIndexOf("::");
+		if (i != -1) {
+			tmpQualifiedName = tmpQualifiedName.substring(0, i);
+		}
+		this.qualifiedLabel.setText("(" + tmpQualifiedName.trim() + ")");
+
 	}
 
 	public void setShadow(boolean shadow) {

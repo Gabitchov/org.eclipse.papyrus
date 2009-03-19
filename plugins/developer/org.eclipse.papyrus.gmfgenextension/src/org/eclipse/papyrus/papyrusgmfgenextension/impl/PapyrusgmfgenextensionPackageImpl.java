@@ -25,6 +25,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionFactory;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
@@ -107,6 +108,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass mutatingCanvasEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ownedEditpartEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -231,6 +239,15 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 */
 	public EAttribute getExtendedGenNode_Name() {
 		return (EAttribute)extendedGenNodeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtendedGenNode_SuperOwnedEditPart() {
+		return (EAttribute)extendedGenNodeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -454,6 +471,24 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOwnedEditpart() {
+		return ownedEditpartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOwnedEditpart_Name() {
+		return (EAttribute)ownedEditpartEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PapyrusgmfgenextensionFactory getPapyrusgmfgenextensionFactory() {
 		return (PapyrusgmfgenextensionFactory)getEFactoryInstance();
 	}
@@ -483,6 +518,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		createEReference(extendedGenNodeEClass, EXTENDED_GEN_NODE__SUPER_GEN_NODES);
 		createEReference(extendedGenNodeEClass, EXTENDED_GEN_NODE__PROP_REFRESH_HOOK);
 		createEAttribute(extendedGenNodeEClass, EXTENDED_GEN_NODE__NAME);
+		createEAttribute(extendedGenNodeEClass, EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART);
 
 		commentedElementEClass = createEClass(COMMENTED_ELEMENT);
 		createEAttribute(commentedElementEClass, COMMENTED_ELEMENT__COMMENT);
@@ -516,6 +552,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		mutatingCanvasEClass = createEClass(MUTATING_CANVAS);
 		createEReference(mutatingCanvasEClass, MUTATING_CANVAS__ALTERNATE_CANVASES);
+
+		ownedEditpartEClass = createEClass(OWNED_EDITPART);
+		createEAttribute(ownedEditpartEClass, OWNED_EDITPART__NAME);
 	}
 
 	/**
@@ -560,6 +599,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		alternateGenTopLevelNodeEClass.getESuperTypes().add(this.getCommentedElement());
 		alternateGenLinkEClass.getESuperTypes().add(this.getCommentedElement());
 		mutatingCanvasEClass.getESuperTypes().add(this.getCommentedElement());
+		ownedEditpartEClass.getESuperTypes().add(this.getExternalHook());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenNodeEClass, ExtendedGenNode.class, "ExtendedGenNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -568,8 +608,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEReference(getExtendedGenNode_SuperGenNodes(), theGMFGenPackage.getGenCommonBase(), null, "superGenNodes", null, 0, -1, ExtendedGenNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getExtendedGenNode_PropRefreshHook(), this.getPropertyRefreshHook(), null, "propRefreshHook", null, 0, 1, ExtendedGenNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getExtendedGenNode_Name(), theEcorePackage.getEString(), "name", null, 0, 1, ExtendedGenNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendedGenNode_SuperOwnedEditPart(), theEcorePackage.getEString(), "superOwnedEditPart", null, 0, 1, ExtendedGenNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(commentedElementEClass, CommentedElement.class, "CommentedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(commentedElementEClass, CommentedElement.class, "CommentedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCommentedElement_Comment(), ecorePackage.getEString(), "comment", null, 1, 1, CommentedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(propertyRefreshHookEClass, PropertyRefreshHook.class, "PropertyRefreshHook", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -583,7 +624,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEReference(getSpecificLocator_GenChildSideAffixedNode(), theGMFGenPackage.getGenChildSideAffixedNode(), null, "genChildSideAffixedNode", null, 0, 1, SpecificLocator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(papyrusExtensionRootNodeEClass, PapyrusExtensionRootNode.class, "PapyrusExtensionRootNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPapyrusExtensionRootNode_ExtensionNodes(), this.getExtendedGenNode(), null, "extensionNodes", null, 0, -1, PapyrusExtensionRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusExtensionRootNode_ExtensionNodes(), this.getCommentedElement(), null, "extensionNodes", null, 0, -1, PapyrusExtensionRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(alternateCanvasEClass, AlternateCanvas.class, "AlternateCanvas", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAlternateCanvas_DomainDiagramElement(), theGenModelPackage.getGenClass(), null, "domainDiagramElement", null, 1, 1, AlternateCanvas.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -601,6 +642,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		initEClass(mutatingCanvasEClass, MutatingCanvas.class, "MutatingCanvas", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMutatingCanvas_AlternateCanvases(), this.getAlternateCanvas(), null, "alternateCanvases", null, 0, -1, MutatingCanvas.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(ownedEditpartEClass, OwnedEditpart.class, "OwnedEditpart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOwnedEditpart_Name(), theEcorePackage.getEString(), "name", null, 0, 1, OwnedEditpart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

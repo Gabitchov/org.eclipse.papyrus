@@ -61,6 +61,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE: return createExtendedGenNode();
+			case PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT: return createCommentedElement();
 			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK: return createPropertyRefreshHook();
 			case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK: return createExternalHook();
 			case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR: return createSpecificLocator();
@@ -69,6 +70,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			case PapyrusgmfgenextensionPackage.ALTERNATE_GEN_TOP_LEVEL_NODE: return createAlternateGenTopLevelNode();
 			case PapyrusgmfgenextensionPackage.ALTERNATE_GEN_LINK: return createAlternateGenLink();
 			case PapyrusgmfgenextensionPackage.MUTATING_CANVAS: return createMutatingCanvas();
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART: return createOwnedEditpart();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -82,6 +84,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public ExtendedGenNode createExtendedGenNode() {
 		ExtendedGenNodeImpl extendedGenNode = new ExtendedGenNodeImpl();
 		return extendedGenNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CommentedElement createCommentedElement() {
+		CommentedElementImpl commentedElement = new CommentedElementImpl();
+		return commentedElement;
 	}
 
 	/**
@@ -162,6 +174,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public MutatingCanvas createMutatingCanvas() {
 		MutatingCanvasImpl mutatingCanvas = new MutatingCanvasImpl();
 		return mutatingCanvas;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OwnedEditpart createOwnedEditpart() {
+		OwnedEditpartImpl ownedEditpart = new OwnedEditpartImpl();
+		return ownedEditpart;
 	}
 
 	/**

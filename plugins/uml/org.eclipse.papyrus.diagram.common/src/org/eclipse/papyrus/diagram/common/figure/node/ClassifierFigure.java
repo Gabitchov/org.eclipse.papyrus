@@ -80,6 +80,11 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 				bound.width = getBounds().width;
 				if (i > 0) {
 					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
+					bound.x = getBounds().x;
+				} else {
+					bound.x = getBounds().x;
+					bound.y = getBounds().y;
+
 				}
 				((IFigure) childrenList.get(i)).setBounds(bound);
 			}
@@ -137,7 +142,6 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 				getGMFNestedClassifierContainer().setBounds(lastRectangle);
 			}
 			contentPane.getBounds().setSize(getBounds().width, getBounds().y + getBounds().height - contentPane.getBounds().y);
-			System.err.println(container.getBounds() + "\n contentPane " + contentPane.getBounds());
 		}
 
 	}

@@ -35,6 +35,15 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	ExtendedGenNode createExtendedGenNode();
 
 	/**
+	 * Returns a new object of class '<em>Commented Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Commented Element</em>'.
+	 * @generated
+	 */
+	CommentedElement createCommentedElement();
+
+	/**
 	 * Returns a new object of class '<em>Property Refresh Hook</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,6 +114,15 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	 * @generated
 	 */
 	MutatingCanvas createMutatingCanvas();
+
+	/**
+	 * Returns a new object of class '<em>Owned Editpart</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Owned Editpart</em>'.
+	 * @generated
+	 */
+	OwnedEditpart createOwnedEditpart();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
@@ -44,7 +45,7 @@ public class PapyrusExtensionRootNodeImpl extends CommentedElementImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ExtendedGenNode> extensionNodes;
+	protected EList<CommentedElement> extensionNodes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,9 +71,9 @@ public class PapyrusExtensionRootNodeImpl extends CommentedElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ExtendedGenNode> getExtensionNodes() {
+	public EList<CommentedElement> getExtensionNodes() {
 		if (extensionNodes == null) {
-			extensionNodes = new EObjectContainmentEList<ExtendedGenNode>(ExtendedGenNode.class, this, PapyrusgmfgenextensionPackage.PAPYRUS_EXTENSION_ROOT_NODE__EXTENSION_NODES);
+			extensionNodes = new EObjectContainmentEList<CommentedElement>(CommentedElement.class, this, PapyrusgmfgenextensionPackage.PAPYRUS_EXTENSION_ROOT_NODE__EXTENSION_NODES);
 		}
 		return extensionNodes;
 	}
@@ -116,7 +117,7 @@ public class PapyrusExtensionRootNodeImpl extends CommentedElementImpl implement
 		switch (featureID) {
 			case PapyrusgmfgenextensionPackage.PAPYRUS_EXTENSION_ROOT_NODE__EXTENSION_NODES:
 				getExtensionNodes().clear();
-				getExtensionNodes().addAll((Collection<? extends ExtendedGenNode>)newValue);
+				getExtensionNodes().addAll((Collection<? extends CommentedElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

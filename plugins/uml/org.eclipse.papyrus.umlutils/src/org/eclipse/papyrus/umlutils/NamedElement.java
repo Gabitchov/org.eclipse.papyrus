@@ -197,4 +197,21 @@ public class NamedElement extends Element {
 		return vKindValue;
 	}
 
+	/**
+	 * A helper method to calculate the max depth of an element
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public int getQualifiedNameMaxDepth() {
+		int d = 0;
+		String s = uml2NamedElement.getQualifiedName();
+		int n = 0;
+		while ((n = s.indexOf("::", n)) != -1) {
+			n += 2;
+			d++;
+		}
+		return d;
+	}
+
 }

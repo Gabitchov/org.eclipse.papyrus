@@ -31,6 +31,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
  *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperGenNodes <em>Super Gen Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getPropRefreshHook <em>Prop Refresh Hook</em>}</li>
  *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,5 +149,31 @@ public interface ExtendedGenNode extends CommentedElement {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Super Owned Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Super Owned Edit Part</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Super Owned Edit Part</em>' attribute.
+	 * @see #setSuperOwnedEditPart(String)
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getExtendedGenNode_SuperOwnedEditPart()
+	 * @model
+	 * @generated
+	 */
+	String getSuperOwnedEditPart();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Super Owned Edit Part</em>' attribute.
+	 * @see #getSuperOwnedEditPart()
+	 * @generated
+	 */
+	void setSuperOwnedEditPart(String value);
 
 } // ExtendedGenNode

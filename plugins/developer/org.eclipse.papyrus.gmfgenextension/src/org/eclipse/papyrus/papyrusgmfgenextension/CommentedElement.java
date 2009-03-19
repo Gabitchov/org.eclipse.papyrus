@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getCommentedElement()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface CommentedElement extends EObject {

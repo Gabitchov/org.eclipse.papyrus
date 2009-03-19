@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
 public interface PapyrusExtensionRootNode extends CommentedElement {
 	/**
 	 * Returns the value of the '<em><b>Extension Nodes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode}.
+	 * The list contents are of type {@link org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extension Nodes</em>' containment reference list isn't clear,
@@ -39,6 +39,6 @@ public interface PapyrusExtensionRootNode extends CommentedElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ExtendedGenNode> getExtensionNodes();
+	EList<CommentedElement> getExtensionNodes();
 
 } // PapyrusExtensionRootNode

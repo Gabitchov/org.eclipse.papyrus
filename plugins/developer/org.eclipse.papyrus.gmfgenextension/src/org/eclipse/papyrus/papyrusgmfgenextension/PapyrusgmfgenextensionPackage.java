@@ -152,13 +152,22 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	int EXTENDED_GEN_NODE__NAME = COMMENTED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Super Owned Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART = COMMENTED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Extended Gen Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 5;
+	int EXTENDED_GEN_NODE_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl <em>External Hook</em>}' class.
@@ -530,6 +539,53 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl <em>Owned Editpart</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getOwnedEditpart()
+	 * @generated
+	 */
+	int OWNED_EDITPART = 10;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNED_EDITPART__COMMENT = EXTERNAL_HOOK__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNED_EDITPART__CLASSPATH = EXTERNAL_HOOK__CLASSPATH;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNED_EDITPART__NAME = EXTERNAL_HOOK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Owned Editpart</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNED_EDITPART_FEATURE_COUNT = EXTERNAL_HOOK_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode <em>Extended Gen Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -593,6 +649,17 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExtendedGenNode_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Super Owned Edit Part</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperOwnedEditPart()
+	 * @see #getExtendedGenNode()
+	 * @generated
+	 */
+	EAttribute getExtendedGenNode_SuperOwnedEditPart();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement <em>Commented Element</em>}'.
@@ -850,6 +917,27 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EReference getMutatingCanvas_AlternateCanvases();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart <em>Owned Editpart</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Owned Editpart</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart
+	 * @generated
+	 */
+	EClass getOwnedEditpart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart#getName()
+	 * @see #getOwnedEditpart()
+	 * @generated
+	 */
+	EAttribute getOwnedEditpart_Name();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -920,6 +1008,14 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENDED_GEN_NODE__NAME = eINSTANCE.getExtendedGenNode_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Super Owned Edit Part</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART = eINSTANCE.getExtendedGenNode_SuperOwnedEditPart();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CommentedElementImpl <em>Commented Element</em>}' class.
@@ -1130,6 +1226,24 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MUTATING_CANVAS__ALTERNATE_CANVASES = eINSTANCE.getMutatingCanvas_AlternateCanvases();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl <em>Owned Editpart</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getOwnedEditpart()
+		 * @generated
+		 */
+		EClass OWNED_EDITPART = eINSTANCE.getOwnedEditpart();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OWNED_EDITPART__NAME = eINSTANCE.getOwnedEditpart_Name();
 
 	}
 

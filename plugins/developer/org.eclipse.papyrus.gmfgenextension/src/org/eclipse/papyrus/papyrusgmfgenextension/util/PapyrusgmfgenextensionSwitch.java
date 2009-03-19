@@ -158,6 +158,14 @@ public class PapyrusgmfgenextensionSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART: {
+				OwnedEditpart ownedEditpart = (OwnedEditpart)theEObject;
+				T result = caseOwnedEditpart(ownedEditpart);
+				if (result == null) result = caseExternalHook(ownedEditpart);
+				if (result == null) result = caseCommentedElement(ownedEditpart);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -309,6 +317,21 @@ public class PapyrusgmfgenextensionSwitch<T> {
 	 * @generated
 	 */
 	public T caseMutatingCanvas(MutatingCanvas object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Owned Editpart</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Owned Editpart</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOwnedEditpart(OwnedEditpart object) {
 		return null;
 	}
 

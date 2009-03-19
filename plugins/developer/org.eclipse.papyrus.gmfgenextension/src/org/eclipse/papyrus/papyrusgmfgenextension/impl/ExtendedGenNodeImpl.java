@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
 
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
  *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenNodeImpl#getSuperGenNodes <em>Super Gen Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenNodeImpl#getPropRefreshHook <em>Prop Refresh Hook</em>}</li>
  *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenNodeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenNodeImpl#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,6 +115,26 @@ public class ExtendedGenNodeImpl extends CommentedElementImpl implements Extende
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSuperOwnedEditPart() <em>Super Owned Edit Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuperOwnedEditPart()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SUPER_OWNED_EDIT_PART_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSuperOwnedEditPart() <em>Super Owned Edit Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuperOwnedEditPart()
+	 * @generated
+	 * @ordered
+	 */
+	protected String superOwnedEditPart = SUPER_OWNED_EDIT_PART_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -247,6 +269,27 @@ public class ExtendedGenNodeImpl extends CommentedElementImpl implements Extende
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getSuperOwnedEditPart() {
+		return superOwnedEditPart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSuperOwnedEditPart(String newSuperOwnedEditPart) {
+		String oldSuperOwnedEditPart = superOwnedEditPart;
+		superOwnedEditPart = newSuperOwnedEditPart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART, oldSuperOwnedEditPart, superOwnedEditPart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -274,6 +317,8 @@ public class ExtendedGenNodeImpl extends CommentedElementImpl implements Extende
 				return getPropRefreshHook();
 			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__NAME:
 				return getName();
+			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART:
+				return getSuperOwnedEditPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -304,6 +349,9 @@ public class ExtendedGenNodeImpl extends CommentedElementImpl implements Extende
 			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__NAME:
 				setName((String)newValue);
 				return;
+			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART:
+				setSuperOwnedEditPart((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -331,6 +379,9 @@ public class ExtendedGenNodeImpl extends CommentedElementImpl implements Extende
 			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART:
+				setSuperOwnedEditPart(SUPER_OWNED_EDIT_PART_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -353,6 +404,8 @@ public class ExtendedGenNodeImpl extends CommentedElementImpl implements Extende
 				return propRefreshHook != null;
 			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART:
+				return SUPER_OWNED_EDIT_PART_EDEFAULT == null ? superOwnedEditPart != null : !SUPER_OWNED_EDIT_PART_EDEFAULT.equals(superOwnedEditPart);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -371,6 +424,8 @@ public class ExtendedGenNodeImpl extends CommentedElementImpl implements Extende
 		result.append(isAbstract);
 		result.append(", name: ");
 		result.append(name);
+		result.append(", superOwnedEditPart: ");
+		result.append(superOwnedEditPart);
 		result.append(')');
 		return result.toString();
 	}
