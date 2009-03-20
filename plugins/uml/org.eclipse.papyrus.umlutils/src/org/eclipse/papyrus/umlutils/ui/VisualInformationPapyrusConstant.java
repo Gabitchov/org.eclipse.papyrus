@@ -77,9 +77,17 @@ public interface VisualInformationPapyrusConstant {
 	 */
 	public static String STEREOTYPE_COMPARTMENT_LOCATION = "Compartment";
 
+	/** The QUALIFIE d_ name. */
 	public static String QUALIFIED_NAME = "QualifiedName";
 
+	/** The QUALIFIE d_ nam e_ depth. */
 	public static String QUALIFIED_NAME_DEPTH = "QualifiedNameDepth";
+
+	/** The GRADIENT. */
+	public static String GRADIENT = "Gradient";
+
+	/** The GRADIEN t_ value. */
+	public static String GRADIENT_VALUE = "GradientValue";
 
 	/**
 	 * The Constant P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED.

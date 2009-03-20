@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.umlutils.ui.GradientColorHelper;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Color;
 
@@ -45,6 +46,7 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+		getPrimaryShape().setDisplayGradient(GradientColorHelper.getGradientColorValue((View) getModel()));
 
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {

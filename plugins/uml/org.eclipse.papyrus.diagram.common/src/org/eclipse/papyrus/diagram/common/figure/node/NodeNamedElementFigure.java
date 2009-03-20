@@ -649,6 +649,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 
 	public void setDisplayGradient(boolean displayGradient) {
 		this.displayGradient = displayGradient;
+		repaint();
 	}
 
 	/**
