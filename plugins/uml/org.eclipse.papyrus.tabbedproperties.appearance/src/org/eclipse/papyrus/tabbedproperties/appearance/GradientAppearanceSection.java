@@ -38,7 +38,6 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 /**
  * The Class QualifiedNameAppearanceSection allow users to customize the display of qualified name.
- * 
  */
 public class GradientAppearanceSection extends AbstractPropertySection {
 
