@@ -43,6 +43,8 @@ import org.eclipse.uml2.uml.Element;
  */
 public class NodeNamedElementFigure extends Figure implements IAbstractElementFigure {
 
+	private Image nameLabelIcon = null;
+
 	private boolean shadow = true;
 
 	private boolean displayGradient = true;
@@ -55,11 +57,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 */
 
 	private ContainerFigure stereotypePropertiesContent;
-
-	/**
-	 * The channel.
-	 */
-	protected int channel = 28;
 
 	/**
 	 * The background color.
@@ -377,6 +374,10 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 */
 	public WrappingLabel getNameLabel() {
 		return this.nameLabel;
+	}
+
+	public Image getNameLabelIcon() {
+		return nameLabelIcon;
 	}
 
 	/**
@@ -768,6 +769,21 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.nameLabel.setText(name);
 	}
 
+	public void setNameLabelIcon(boolean displayNameLabelIcon) {
+		if (getNameLabel().getIcon() != null) {
+			nameLabelIcon = getNameLabel().getIcon();
+		}
+		if (displayNameLabelIcon) {
+			getNameLabel().setIcon(nameLabelIcon);
+		} else {
+			getNameLabel().setIcon(null);
+		}
+	}
+
+	public void setNameLabelIcon(Image nameLabelIcon) {
+		this.nameLabelIcon = nameLabelIcon;
+	}
+
 	/**
 	 * Sets the qualified name.
 	 * 
@@ -804,6 +820,11 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 
 	public void setShadow(boolean shadow) {
 		this.shadow = shadow;
+		if (shadow == true) {
+			this.setBorder(shadowborder);
+		} else {
+			this.setBorder(new LineBorder());
+		}
 	}
 
 	/**

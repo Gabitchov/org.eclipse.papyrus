@@ -89,6 +89,10 @@ public interface VisualInformationPapyrusConstant {
 	/** The GRADIEN t_ value. */
 	public static String GRADIENT_VALUE = "GradientValue";
 
+	public static String SHADOWFIGURE = "ShadowFigure";
+
+	public static String SHADOWFIGURE_VALUE = "ShadowFigure_Value";
+
 	/**
 	 * The Constant P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED.
 	 */

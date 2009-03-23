@@ -49,6 +49,13 @@
                id="org.eclipse.papyrus.tabbedproperties.appearance.GradientAppearanceSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
+         <propertySection
+               afterSection="org.eclipse.papyrus.tabbedproperties.appearance.GradientAppearanceSection"
+               class="org.eclipse.papyrus.tabbedproperties.appearance.ShadowAppearanceSection"
+               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               id="org.eclipse.papyrus.tabbedproperties.appearance.ShadowAppearanceSectio"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
       </propertySections>
    </extension>
 

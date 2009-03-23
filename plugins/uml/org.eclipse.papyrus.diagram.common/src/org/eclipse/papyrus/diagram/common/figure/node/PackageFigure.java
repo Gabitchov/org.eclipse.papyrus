@@ -161,6 +161,10 @@ public class PackageFigure extends NodeNamedElementFigure implements IAbstractEl
 		return getForegroundColor();
 	}
 
+	public void setShadow(boolean shadow) {
+
+	}
+
 	/**
 	 * 
 	 * {@inheritDoc}

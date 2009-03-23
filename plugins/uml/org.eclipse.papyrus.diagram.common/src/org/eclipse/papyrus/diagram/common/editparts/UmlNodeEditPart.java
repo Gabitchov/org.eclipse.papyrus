@@ -19,15 +19,21 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.ui.GradientColorHelper;
+import org.eclipse.papyrus.umlutils.ui.ShadowFigureHelper;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Color;
 
+/**
+ * this uml edit part can refresh shadow, applied stereotypes, gradient color
+ * 
+ */
 public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 
 	public UmlNodeEditPart(View view) {
@@ -38,6 +44,14 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 		return createNodeFigure();
 	}
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	protected NodeFigure createNodeFigure() {
+		return new BorderedNodeFigure(createMainFigure());
+	}
+
 	public abstract NodeNamedElementFigure getPrimaryShape();
 
 	/**
@@ -46,16 +60,11 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-		getPrimaryShape().setDisplayGradient(GradientColorHelper.getGradientColorValue((View) getModel()));
-
+		refreshGradient();
+		refreshShadow();
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
-			if (stereotypesToDisplay() != "") {
-				((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(stereotypesToDisplay());
-			}
-			if (getParent() != null) {
-				refreshVisuals();
-			}
+			refreshAppliedStereotypes();
 		}
 	}
 
@@ -79,6 +88,30 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart {
 			}
 		}
 		return "";
+	}
+
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshAppliedStereotypes();
+		refreshShadow();
+		refreshGradient();
+
+	}
+
+	protected void refreshShadow() {
+		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View) getModel()));
+
+	}
+
+	protected void refreshGradient() {
+		getPrimaryShape().setDisplayGradient(GradientColorHelper.getGradientColorValue((View) getModel()));
+
+	}
+
+	public void refreshAppliedStereotypes() {
+		if (stereotypesToDisplay() != "") {
+			((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(stereotypesToDisplay());
+		}
 	}
 
 	public String stereotypesToDisplay(String separator, String stereotypesToDisplay) {
