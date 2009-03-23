@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.Graphics;
@@ -34,7 +34,7 @@ public class RectangularShadowBorder extends LineBorder {
 	public RectangularShadowBorder(int borderwidth, Color color) {
 		super(color);
 		this.borderwidth = borderwidth;
-		setWidth(0);
+		setWidth(1);
 	}
 
 	/**

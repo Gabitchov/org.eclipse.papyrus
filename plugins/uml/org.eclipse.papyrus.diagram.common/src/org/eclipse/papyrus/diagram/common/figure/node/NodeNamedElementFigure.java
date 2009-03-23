@@ -149,7 +149,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.nameLabel.setOpaque(false);
 		this.nameLabel.setAlignment(PositionConstants.MIDDLE);
 		this.add(this.nameLabel);
-		shadowborder = new RectangularShadowBorder(2, getForegroundColor());
+		shadowborder = new RectangularShadowBorder(3, getForegroundColor());
 		setBorder(shadowborder);
 	}
 
