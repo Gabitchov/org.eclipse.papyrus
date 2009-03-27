@@ -11,11 +11,12 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.umlutils.ui;
+package org.eclipse.papyrus.umlutils.ui.command;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 
 // TODO: Auto-generated Javadoc
 /**

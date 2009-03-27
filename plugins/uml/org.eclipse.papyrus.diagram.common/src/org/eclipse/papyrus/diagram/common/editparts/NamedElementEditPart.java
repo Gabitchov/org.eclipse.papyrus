@@ -16,7 +16,8 @@ package org.eclipse.papyrus.diagram.common.editparts;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
-import org.eclipse.papyrus.umlutils.ui.QualifiedNameHelper;
+import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -42,11 +43,29 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart {
 
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
-			((NodeNamedElementFigure) getPrimaryShape()).setDepth(QualifiedNameHelper.getQualifiedNamedepth((View) getModel()));
-			((NodeNamedElementFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement()).getQualifiedName());
-			if (getParent() != null) {
-				refreshVisuals();
-			}
+			refreshqualifiedNameDepth();
+			refreshQualifiedName();
+			refreshIconNamedLabel();
 		}
+	}
+
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshqualifiedNameDepth();
+		refreshQualifiedName();
+		refreshIconNamedLabel();
+
+	}
+
+	private void refreshIconNamedLabel() {
+		((NodeNamedElementFigure) getPrimaryShape()).setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View) getModel()));
+	}
+
+	private void refreshQualifiedName() {
+		((NodeNamedElementFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement()).getQualifiedName());
+	}
+
+	private void refreshqualifiedNameDepth() {
+		((NodeNamedElementFigure) getPrimaryShape()).setDepth(QualifiedNameHelper.getQualifiedNamedepth((View) getModel()));
 	}
 }

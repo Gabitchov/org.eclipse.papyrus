@@ -11,52 +11,55 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.umlutils.ui;
+package org.eclipse.papyrus.umlutils.ui.helper;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.command.SetQualifiedNameDepthCommand;
 
-public class ShadowFigureHelper {
+public class QualifiedNameHelper {
 
 	/**
-	 * get the shadow figure indication true or false
+	 * get the depth to display for the qualified name from a eannotation in the view
 	 * 
 	 * @param modelElement
 	 *            the view where is attach the element
+	 * @return the depth
 	 */
-	public static boolean getShadowFigureValue(EModelElement modelElement) {
-		EAnnotation stereotypeDisplayKind = modelElement.getEAnnotation(VisualInformationPapyrusConstant.SHADOWFIGURE);
+	public static int getQualifiedNamedepth(EModelElement modelElement) {
+		EAnnotation stereotypeDisplayKind = modelElement.getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			if (entries != null) {
-				String gradientvalueString = entries.get(VisualInformationPapyrusConstant.SHADOWFIGURE_VALUE);
-				if (gradientvalueString != null) {
-					Boolean b = new Boolean(gradientvalueString);
-					return b;
+				String depthString = entries.get(VisualInformationPapyrusConstant.QUALIFIED_NAME_DEPTH);
+				if (depthString != null) {
+					Integer i = new Integer(depthString);
+					return i.intValue();
 				}
 			}
 		}
-		return false;
+		return 0;
 	}
 
 	/**
-	 * Gets the command to set the shadow figure to true are false.
+	 * Gets the sets the qualifed name depth command.
 	 * 
 	 * @param domain
 	 *            the domain
 	 * @param view
 	 *            the view
-	 * @param shadowFigureValue
-	 *            true to display the shadow on the figure
+	 * @param depth
+	 *            the depth
 	 * 
-	 * @return the command to set the gradient to true are false.
+	 * @return the sets the qualifed name depth command
 	 */
-	public static RecordingCommand getGradientColorCommand(TransactionalEditingDomain domain, EModelElement view, boolean shadowFigureValue) {
-		return new SetShadowFigureCommand(domain, view, shadowFigureValue);
+	public static RecordingCommand getSetQualifedNameDepthCommand(TransactionalEditingDomain domain, EModelElement view, int depth) {
+		return new SetQualifiedNameDepthCommand(domain, view, depth);
 	}
 
 }

@@ -21,8 +21,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.umlutils.ui.command.SetShadowFigureCommand;
-import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.umlutils.ui.command.SetNameLabelIconCommand;
+import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
@@ -39,22 +39,22 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 /**
  * The Class QualifiedNameAppearanceSection allow users to customize the display of qualified name.
  */
-public class ShadowAppearanceSection extends AbstractPropertySection {
+public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 
 	/**
 	 * The stereotype appearance.
 	 */
-	private CLabel shadowLabel;
+	private CLabel ElementIconLabel;
 
 	/**
 	 * The button Gradient appearance.
 	 */
-	private org.eclipse.swt.widgets.Button checboxShadowAppearence;
+	private org.eclipse.swt.widgets.Button checboxElementIconAppearence;
 
 	/**
 	 * The combo stereotype appearance listener.
 	 */
-	private SelectionListener cheboxShadowAppearanceListener;
+	private SelectionListener cheboxElementIconAppearanceListener;
 
 	private GraphicalEditPart editPart;
 
@@ -78,31 +78,31 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 		Composite composite = getWidgetFactory().createFlatFormComposite(parent);
 		FormData data;
 
-		shadowLabel = getWidgetFactory().createCLabel(composite, "Shadow :"); //$NON-NLS-1$
+		ElementIconLabel = getWidgetFactory().createCLabel(composite, "Element icon :"); //$NON-NLS-1$
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		shadowLabel.setLayoutData(data);
+		ElementIconLabel.setLayoutData(data);
 
-		checboxShadowAppearence = getWidgetFactory().createButton(composite, "", SWT.CHECK);
+		checboxElementIconAppearence = getWidgetFactory().createButton(composite, "", SWT.CHECK);
 
 		data = new FormData();
-		data.left = new FormAttachment(shadowLabel, 0);
-		data.top = new FormAttachment(shadowLabel, 1, SWT.CENTER);
-		checboxShadowAppearence.setLayoutData(data);
+		data.left = new FormAttachment(ElementIconLabel, 0);
+		data.top = new FormAttachment(ElementIconLabel, 1, SWT.CENTER);
+		checboxElementIconAppearence.setLayoutData(data);
 
-		cheboxShadowAppearanceListener = new SelectionListener() {
+		cheboxElementIconAppearanceListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
 				if (editPart != null) {
 					if (((View) editPart.getModel()) != null) {
 
-						Boolean isChecked = checboxShadowAppearence.getSelection();
+						Boolean isChecked = checboxElementIconAppearence.getSelection();
 
 						// createProperty value
 						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
 						// command creation
 						if (editingDomain != null) {
-							editingDomain.getCommandStack().execute(new SetShadowFigureCommand(editingDomain, ((EModelElement) editPart.getModel()), isChecked));
+							editingDomain.getCommandStack().execute(new SetNameLabelIconCommand(editingDomain, ((EModelElement) editPart.getModel()), isChecked));
 						}
 
 						refresh();
@@ -113,7 +113,7 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		};
-		checboxShadowAppearence.addSelectionListener(cheboxShadowAppearanceListener);
+		checboxElementIconAppearence.addSelectionListener(cheboxElementIconAppearanceListener);
 
 	}
 
@@ -125,21 +125,21 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 	 */
 	@Override
 	public void refresh() {
-		if ((!checboxShadowAppearence.isDisposed())) {
+		if ((!checboxElementIconAppearence.isDisposed())) {
 
-			checboxShadowAppearence.removeSelectionListener(cheboxShadowAppearanceListener);
+			checboxElementIconAppearence.removeSelectionListener(cheboxElementIconAppearanceListener);
 
 			if (editPart != null) {
 
 				if ((editPart.getModel()) != null) {
-					checboxShadowAppearence.setSelection(ShadowFigureHelper.getShadowFigureValue((EModelElement) editPart.getModel()));
+					checboxElementIconAppearence.setSelection(NameLabelIconHelper.getNameLabelIconValue((EModelElement) editPart.getModel()));
 
 				} else {
-					checboxShadowAppearence.setEnabled(false);
+					checboxElementIconAppearence.setEnabled(false);
 				}
 			}
 		}
-		checboxShadowAppearence.addSelectionListener(cheboxShadowAppearanceListener);
+		checboxElementIconAppearence.addSelectionListener(cheboxElementIconAppearanceListener);
 	}
 
 	/**
@@ -147,8 +147,8 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 	 */
 	public void dispose() {
 		super.dispose();
-		if (checboxShadowAppearence != null && !checboxShadowAppearence.isDisposed())
-			checboxShadowAppearence.removeSelectionListener(cheboxShadowAppearanceListener);
+		if (checboxElementIconAppearence != null && !checboxElementIconAppearence.isDisposed())
+			checboxElementIconAppearence.removeSelectionListener(cheboxElementIconAppearanceListener);
 	}
 
 	/**

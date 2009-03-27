@@ -11,20 +11,21 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.umlutils.ui;
+package org.eclipse.papyrus.umlutils.ui.command;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class SetQualifiedNameDepthCommand.
  */
-public class SetShadowFigureCommand extends CreateEAnnotationCommand {
+public class SetNameLabelIconCommand extends CreateEAnnotationCommand {
 
 	/** The shadowFigure. */
-	private String shadowFigure;
+	private String displayIcon;
 
 	/**
 	 * Instantiates a new sets the qualified name depth command.
@@ -36,9 +37,9 @@ public class SetShadowFigureCommand extends CreateEAnnotationCommand {
 	 * @param shadow
 	 *            the shadow
 	 */
-	public SetShadowFigureCommand(TransactionalEditingDomain domain, EModelElement object, boolean shadow) {
-		super(domain, object, VisualInformationPapyrusConstant.SHADOWFIGURE);
-		this.shadowFigure = "" + shadow;
+	public SetNameLabelIconCommand(TransactionalEditingDomain domain, EModelElement object, boolean displayIcon) {
+		super(domain, object, VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON);
+		this.displayIcon = "" + displayIcon;
 	}
 
 	/**
@@ -48,7 +49,7 @@ public class SetShadowFigureCommand extends CreateEAnnotationCommand {
 	protected void doExecute() {
 		EAnnotation shadowFigureEAnnotation = createEAnnotation();
 		replaceEannotation(shadowFigureEAnnotation, getObject());
-		replaceEntry(shadowFigureEAnnotation, VisualInformationPapyrusConstant.SHADOWFIGURE_VALUE, shadowFigure);
+		replaceEntry(shadowFigureEAnnotation, VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON_VALUE, displayIcon);
 	}
 
 }

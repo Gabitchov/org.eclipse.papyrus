@@ -93,6 +93,10 @@ public interface VisualInformationPapyrusConstant {
 
 	public static String SHADOWFIGURE_VALUE = "ShadowFigure_Value";
 
+	public static String DISPLAY_NAMELABELICON = "displayNameLabelIcon";
+
+	public static String DISPLAY_NAMELABELICON_VALUE = "displayNameLabelIcon_value";
+
 	/**
 	 * The Constant P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED.
 	 */

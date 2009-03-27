@@ -11,53 +11,54 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.umlutils.ui;
+package org.eclipse.papyrus.umlutils.ui.helper;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.command.SetNameLabelIconCommand;
 
-public class QualifiedNameHelper {
+public class NameLabelIconHelper {
 
 	/**
-	 * get the depth to display for the qualified name from a eannotation in the view
+	 * get the display name label icon indication true or false
 	 * 
 	 * @param modelElement
 	 *            the view where is attach the element
-	 * @return the depth
 	 */
-	public static int getQualifiedNamedepth(EModelElement modelElement) {
-		EAnnotation stereotypeDisplayKind = modelElement.getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
+	public static boolean getNameLabelIconValue(EModelElement modelElement) {
+		EAnnotation stereotypeDisplayKind = modelElement.getEAnnotation(VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			if (entries != null) {
-				String depthString = entries.get(VisualInformationPapyrusConstant.QUALIFIED_NAME_DEPTH);
-				if (depthString != null) {
-					Integer i = new Integer(depthString);
-					return i.intValue();
+				String gradientvalueString = entries.get(VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON_VALUE);
+				if (gradientvalueString != null) {
+					Boolean b = new Boolean(gradientvalueString);
+					return b;
 				}
 			}
 		}
-		return 0;
+		return false;
 	}
 
 	/**
-	 * Gets the sets the qualifed name depth command.
+	 * Gets the command to set the gradient to true are false.
 	 * 
 	 * @param domain
 	 *            the domain
 	 * @param view
 	 *            the view
-	 * @param depth
-	 *            the depth
+	 * @param nameLabelIconValue
+	 *            true to display the icon of the element in labelName
 	 * 
-	 * @return the sets the qualifed name depth command
+	 * @return the command to set the gradient to true are false.
 	 */
-	public static RecordingCommand getSetQualifedNameDepthCommand(TransactionalEditingDomain domain, EModelElement view, int depth) {
-		return new SetQualifiedNameDepthCommand(domain, view, depth);
+	public static RecordingCommand getNameLabelIconCommand(TransactionalEditingDomain domain, EModelElement view, boolean nameLabelIconValue) {
+		return new SetNameLabelIconCommand(domain, view, nameLabelIconValue);
 	}
 
 }
