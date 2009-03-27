@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Papyrus profile Plug-in
 Bundle-SymbolicName: com.cea.papyrus.profile;singleton:=true
 Bundle-Version: 1.11.0
-Bundle-Activator: com.cea.papyrus.profile.Activator
+Bundle-Activator: org.eclipse.papyrus.profile.Activator
 Bundle-Vendor: CEA LIST
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui.views.properties.tabbed,
@@ -22,18 +22,18 @@ Require-Bundle: org.eclipse.ui.views.properties.tabbed,
  com.cea.papyrus.extensionpoints.uml2,
  com.cea.papyrus.validation;bundle-version="1.12.0"
 Eclipse-LazyStart: true
-Export-Package: com.cea.papyrus.profile,
- com.cea.papyrus.profile.constraints,
- com.cea.papyrus.profile.definition,
- com.cea.papyrus.profile.preference,
- com.cea.papyrus.profile.tree,
- com.cea.papyrus.profile.tree.objects,
- com.cea.papyrus.profile.ui.actions,
- com.cea.papyrus.profile.ui.composites,
- com.cea.papyrus.profile.ui.dialogs,
- com.cea.papyrus.profile.ui.items,
- com.cea.papyrus.profile.ui.listeners,
- com.cea.papyrus.profile.ui.panels,
- com.cea.papyrus.profile.ui.views,
- com.cea.papyrus.profile.utils,
- com.cea.papyrus.profile.wizard
+Export-Package: org.eclipse.papyrus.profile,
+ org.eclipse.papyrus.profile.constraints,
+ org.eclipse.papyrus.profile.definition,
+ org.eclipse.papyrus.profile.preference,
+ org.eclipse.papyrus.profile.tree,
+ org.eclipse.papyrus.profile.tree.objects,
+ org.eclipse.papyrus.profile.ui.actions,
+ org.eclipse.papyrus.profile.ui.composites,
+ org.eclipse.papyrus.profile.ui.dialogs,
+ org.eclipse.papyrus.profile.ui.items,
+ org.eclipse.papyrus.profile.ui.listeners,
+ org.eclipse.papyrus.profile.ui.panels,
+ org.eclipse.papyrus.profile.ui.views,
+ org.eclipse.papyrus.profile.utils,
+ org.eclipse.papyrus.profile.wizard

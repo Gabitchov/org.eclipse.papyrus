@@ -11,7 +11,7 @@
          <constraints
                categories="com.cea.papyrus.validation.CategoryID/UMLProfile">
             <constraint
-                  class="com.cea.papyrus.profile.constraints.PropertyHasNameConstraint"
+                  class="org.eclipse.papyrus.profile.constraints.PropertyHasNameConstraint"
                   id="com.cea.papyrus.profile.constraints.PropertyHasNameConstraintID"
                   lang="Java"
                   mode="Batch"
@@ -29,7 +29,7 @@
                </target>
             </constraint>
             <constraint
-                  class="com.cea.papyrus.profile.constraints.PropertyHasUniqueNameConstraint"
+                  class="org.eclipse.papyrus.profile.constraints.PropertyHasUniqueNameConstraint"
                   id="com.cea.papyrus.profile.constraints.PropertyHasUniqueNameConstraintID"
                   lang="Java"
                   mode="Batch"
@@ -47,7 +47,7 @@
                </target>
             </constraint>
             <constraint
-                  class="com.cea.papyrus.profile.constraints.PropertyHasTypeConstraint"
+                  class="org.eclipse.papyrus.profile.constraints.PropertyHasTypeConstraint"
                   id="com.cea.papyrus.profile.constraints.PropertyHasTypeID"
                   lang="Java"
                   mode="Batch"
@@ -65,7 +65,7 @@
                </target>
             </constraint>
             <constraint
-                  class="com.cea.papyrus.profile.constraints.PropertyHasDefaultValueConstraint"
+                  class="org.eclipse.papyrus.profile.constraints.PropertyHasDefaultValueConstraint"
                   id="com.cea.papyrus.profile.constraints.PropertyHasDefaultID"
                   lang="Java"
                   mode="Batch"
@@ -83,7 +83,7 @@
                </target>
             </constraint>
             <constraint
-                  class="com.cea.papyrus.profile.constraints.PropertyMultiplicityLowerConstraint"
+                  class="org.eclipse.papyrus.profile.constraints.PropertyMultiplicityLowerConstraint"
                   id="com.cea.papyrus.profile.constraints.PropertyMultiplicityLowerConstraintID"
                   lang="Java"
                   mode="Batch"
