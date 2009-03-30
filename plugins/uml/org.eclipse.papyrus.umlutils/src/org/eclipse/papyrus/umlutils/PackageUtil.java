@@ -14,8 +14,10 @@
 package org.eclipse.papyrus.umlutils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -211,4 +213,27 @@ public class PackageUtil {
 		}
 	}
 
+	/**
+	 * 
+	 * 
+	 * @return returns all nested elements of a package (classes, packages, interfaces, data types, properties, operations) Returned elements are of type org.eclipse.uml2.uml.Element
+	 */
+	public static Set<Element> getAllNestedElements(Package thePackage) {
+		Set<org.eclipse.uml2.uml.Element> nestedElements = new HashSet<Element>();
+		Iterator<org.eclipse.uml2.uml.NamedElement> i = thePackage.getOwnedMembers().iterator();
+		org.eclipse.uml2.uml.Element currentElement;
+		while (i.hasNext()) {
+			currentElement = i.next();
+			nestedElements.add(currentElement);
+			// Package
+			if (currentElement instanceof org.eclipse.uml2.uml.Package) {
+				nestedElements.addAll((PackageUtil.getAllNestedElements((Package) currentElement)));
+			}
+			// Class
+			else if (currentElement instanceof org.eclipse.uml2.uml.Class) {
+				nestedElements.addAll(((org.eclipse.uml2.uml.Class) currentElement).getMembers());
+			}
+		}
+		return nestedElements;
+	}
 }
