@@ -10,17 +10,14 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.propertylabel;
 
-import java.io.BufferedReader;
-import java.io.StringReader;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Vector;
 
 import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.jface.text.BadLocationException;
@@ -52,42 +49,44 @@ import org.eclipse.uml2.uml.Property;
  * @see org.eclipse.jface.text.contentassist.IContentAssistProcessor
  * @see com.cea.actionlanguage.sharedresources.texteditor.IPropertyLabelKeywords
  */
-public class PropertyLabelCompletionProcessor extends
-LabelCompletionProcessor implements IContext {
+public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor implements IContext {
 
 	/**
 	 * 
 	 */
 	private Property property;
-	
+
 	/**
 	 * 
 	 */
-	private Map<String, Boolean> modifiersUsed; 
+	private Map<String, Boolean> modifiersUsed;
 
 	/**
 	 * 
 	 * 
-	 * @param property 
+	 * @param property
 	 */
 	public PropertyLabelCompletionProcessor(Property property) {
 		this.property = property;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor#computeCompletionProposals(org.eclipse.jface.text.ITextViewer, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor
+	 * #computeCompletionProposals(org.eclipse.jface.text.ITextViewer, int)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param viewer 
-	 * @param documentOffset 
+	 * @param viewer
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
 	@Override
-	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer,
-			int documentOffset) {
+	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int documentOffset) {
 		String text;
 		String prefix = "";
 		PropertyLabelLexer lexer = null;
@@ -97,7 +96,7 @@ LabelCompletionProcessor implements IContext {
 
 		try {
 			text = viewer.getDocument().get(0, documentOffset);
-			
+
 			lexer = new PropertyLabelLexer(new ANTLRStringStream(text));
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 
@@ -106,107 +105,119 @@ LabelCompletionProcessor implements IContext {
 			selectionRange = viewer.getSelectedRange().y;
 			parser.label();
 			modifiersUsed = parser.getModifiersUsed();
-			result = computeCompletions(viewer, parser.getContext(),
-					documentOffset, selectionRange);
+			result = computeCompletions(viewer, parser.getContext(), documentOffset, selectionRange);
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		} catch (RuntimeException e) {
 			// e.printStackTrace();
 			modifiersUsed = parser.getModifiersUsed();
 			prefix = getPrefix(viewer, documentOffset);
-			result = computeCompletions(viewer, parser.getContext(),
-					documentOffset, selectionRange);
+			result = computeCompletions(viewer, parser.getContext(), documentOffset, selectionRange);
 		} catch (RecognitionException e) {
 			modifiersUsed = parser.getModifiersUsed();
 			prefix = getPrefix(viewer, documentOffset);
-			result = computeCompletions(viewer, parser.getContext(),
-					documentOffset, selectionRange);
-		} 
+			result = computeCompletions(viewer, parser.getContext(), documentOffset, selectionRange);
+		}
 
 		return result.toArray(new ICompletionProposal[] {});
 	}
 
-	/* (non-Javadoc)
-	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor#computeCompletions(org.eclipse.jface.text.ITextViewer, int, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor
+	 * #computeCompletions(org.eclipse.jface.text.ITextViewer, int, int, int)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param viewer 
-	 * @param selectionRange 
-	 * @param context 
-	 * @param documentOffset 
+	 * @param viewer
+	 * @param selectionRange
+	 * @param context
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
 	@Override
-	public Collection<ICompletionProposal> computeCompletions(
-			ITextViewer viewer, int context, int documentOffset,
+	public Collection<ICompletionProposal> computeCompletions(ITextViewer viewer, int context, int documentOffset,
 			int selectionRange) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-		PropertyModifierProposal modifierProposalComputer = new PropertyModifierProposal();;
+		PropertyModifierProposal modifierProposalComputer = new PropertyModifierProposal();
+		;
 		modifierProposalComputer.setModifiersUsed(modifiersUsed);
-		
+
 		String prefix = getPrefix(viewer, documentOffset);
 		switch (context) {
 
 		// DEFAULT : visibility, isDerived or name
 		case IContext.DEFAULT:
-			v.addAll(new VisibilityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
-			v.addAll(new DerivedPropertyCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
+			v.addAll(new VisibilityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
+			v.addAll(new DerivedPropertyCompletionProposal().generateCompletionProposals(documentOffset,
+					selectionRange, prefix));
 			v.addAll(new NameCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
-			// VISIBILITY : isDerived or name
+		// VISIBILITY : isDerived or name
 		case IContext.VISIBILITY:
-			v.addAll(new DerivedPropertyCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
+			v.addAll(new DerivedPropertyCompletionProposal().generateCompletionProposals(documentOffset,
+					selectionRange, prefix));
 			v.addAll(new NameCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
-			// IS_DERIVED: name
+		// IS_DERIVED: name
 		case IContext.IS_DERIVED:
 			v.addAll(new NameCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
-			// NAME: either ':' or ":undefined"
+		// NAME: either ':' or ":undefined"
 		case IContext.NAME:
-			v.addAll(createCompletionProposalsWithDifferentName(new String[] {": ", ": <Undefined>" }, new String[] { "Property type", "Undefined property type" }, new String[] {": <Type Name>", ": <Undefined>" }, "", documentOffset));
+			v.addAll(createCompletionProposalsWithDifferentName(new String[] { ": ", ": <Undefined>" }, new String[] {
+					"PropertyUtil type", "Undefined property type" }, new String[] { ": <TypeUtil Name>", ": <Undefined>" },
+					"", documentOffset));
 			break;
 
-			// PROPERTY TYPE (after ":") model types or undefined
+		// PROPERTY TYPE (after ":") model types or undefined
 		case IContext.AFTER_COLON:
 			// create properties visible in the model
 			// specific prefix for type... ('<' possible at the beginning)
 			prefix = getPrefixForType(viewer, documentOffset);
-			// generate completion for Type
+			// generate completion for TypeUtil
 			TypeCompletionProposalComputer computer = new TypeCompletionProposalComputer();
-			computer.setElement(new org.eclipse.papyrus.umlutils.Property(property));
-			v.addAll(computer.generateCompletionProposals(documentOffset,
-					selectionRange, prefix));
+			computer.setElement(property);
+			v.addAll(computer.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
-			// MULTIPLICITY: multiplicity or default value or property modifiers
+		// MULTIPLICITY: multiplicity or default value or property modifiers
 		case IContext.PROPERTY_TYPE:
-			v.addAll(new MultiplicityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
-			v.addAll(new DefaultValueCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
-			v.addAll(new PropertyModifiersProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
+			v.addAll(new MultiplicityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
+			v.addAll(new DefaultValueCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
+			v.addAll(new PropertyModifiersProposal()
+					.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
-			// IN_MULTIPLICITY(after '['): does nothing
+		// IN_MULTIPLICITY(after '['): does nothing
 		case IContext.MULTIPLICITY:
-			v.addAll(new DefaultValueCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
-			v.addAll(new PropertyModifiersProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
+			v.addAll(new DefaultValueCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
+			v.addAll(new PropertyModifiersProposal()
+					.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
-			// : default value or property modifiers
+		// : default value or property modifiers
 		case IContext.IN_MULTIPLICITY:
 			prefix = getPrefixForMultiplicity(viewer, documentOffset);
-			v.addAll(new MultiplicityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
+			v.addAll(new MultiplicityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
 			break;
 
-			// DEFAULT_VALUE: property modifiers
+		// DEFAULT_VALUE: property modifiers
 		case IContext.DEFAULT_VALUE:
-			v.addAll(new PropertyModifiersProposal().generateCompletionProposals(documentOffset, selectionRange, prefix));
+			v.addAll(new PropertyModifiersProposal()
+					.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
 		case IContext.PROPERTY_MODIFIERS:
@@ -215,13 +226,15 @@ LabelCompletionProcessor implements IContext {
 		case IContext.PROPERTY_MODIFIER:
 			v.addAll(modifierProposalComputer.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
-			
+
 		case IContext.SUBSET_PROPERTY:
-			v.addAll(new PropertySubsetsProposal(new org.eclipse.papyrus.umlutils.Property(property)).generateCompletionProposals(documentOffset, selectionRange, prefix));
-			break; 
-			
+			v.addAll(new PropertySubsetsProposal(property).generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
+			break;
+
 		case IContext.REDEFINE_PROPERTY:
-			v.addAll(new PropertyRedefineProposal(new org.eclipse.papyrus.umlutils.Property(property)).generateCompletionProposals(documentOffset, selectionRange, prefix));
+			v.addAll(new PropertyRedefineProposal(property).generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
 			break;
 		default:
 			break;

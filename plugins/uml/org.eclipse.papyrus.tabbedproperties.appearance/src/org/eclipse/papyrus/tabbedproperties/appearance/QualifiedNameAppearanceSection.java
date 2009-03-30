@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2009 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.tabbedproperties.appearance;
@@ -23,6 +24,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.SetQualifiedNameDepthCommand;
 import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
@@ -43,7 +45,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * The Class QualifiedNameAppearanceSection allow users to customize the display of qualified name.
+ * The Class QualifiedNameAppearanceSection allow users to customize the display
+ * of qualified name.
  * 
  */
 public class QualifiedNameAppearanceSection extends AbstractPropertySection {
@@ -104,7 +107,8 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 
 			public void widgetSelected(SelectionEvent e) {
 				if (namedElementEditPart != null) {
-					if (((View) namedElementEditPart.getModel()).getElement() != null && ((View) namedElementEditPart.getModel()).getElement() instanceof NamedElement) {
+					if (((View) namedElementEditPart.getModel()).getElement() != null
+							&& ((View) namedElementEditPart.getModel()).getElement() instanceof NamedElement) {
 
 						String currentQualifiedNameDepth = comboQualifiedNameAppearance.getText();
 						String currentQualifiedNameSpec;
@@ -112,8 +116,8 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 						if ("Full".equals(currentQualifiedNameDepth))
 							currentQualifiedNameSpec = "0";
 						else if ("None".equals(currentQualifiedNameDepth)) {
-							org.eclipse.papyrus.umlutils.NamedElement ne = new org.eclipse.papyrus.umlutils.NamedElement((NamedElement) ((View) namedElementEditPart.getModel()).getElement());
-							currentQualifiedNameSpec = "" + ne.getQualifiedNameMaxDepth();
+							NamedElement ne = (NamedElement) ((View) namedElementEditPart.getModel()).getElement();
+							currentQualifiedNameSpec = "" + NamedElementUtil.getQualifiedNameMaxDepth(ne);
 						} else
 							currentQualifiedNameSpec = currentQualifiedNameDepth.substring(1);
 
@@ -122,7 +126,9 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 						// command creation
 						if (editingDomain != null) {
 							editingDomain.getCommandStack().execute(
-									new SetQualifiedNameDepthCommand(editingDomain, ((EModelElement) namedElementEditPart.getModel()), Integer.parseInt(currentQualifiedNameSpec)));
+									new SetQualifiedNameDepthCommand(editingDomain,
+											((EModelElement) namedElementEditPart.getModel()), Integer
+													.parseInt(currentQualifiedNameSpec)));
 						}
 
 						refresh();
@@ -138,7 +144,8 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	}
 
 	public int getQualifiedNamedepth(View view) {
-		EAnnotation stereotypeDisplayKind = ((View) view).getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
+		EAnnotation stereotypeDisplayKind =
+				((View) view).getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
@@ -154,7 +161,9 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	}
 
 	/*
-	 * @see org.eclipse.ui.views.properties.tabbed.view.ITabbedPropertySection#refresh()
+	 * @see
+	 * org.eclipse.ui.views.properties.tabbed.view.ITabbedPropertySection#refresh
+	 * ()
 	 */
 	/**
 	 * Refresh.
@@ -167,9 +176,11 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 
 			if (namedElementEditPart != null) {
 
-				if ((namedElementEditPart.getModel()) != null && ((View) (namedElementEditPart.getModel())).getElement() != null) {
+				if ((namedElementEditPart.getModel()) != null
+						&& ((View) (namedElementEditPart.getModel())).getElement() != null) {
 
-					org.eclipse.uml2.uml.Element element = (Element) ((View) (namedElementEditPart.getModel())).getElement();
+					org.eclipse.uml2.uml.Element element =
+							(Element) ((View) (namedElementEditPart.getModel())).getElement();
 
 					if (element instanceof NamedElement) {
 
@@ -178,8 +189,7 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 						comboQualifiedNameAppearance.removeAll();
 
 						// calculate the max depth of qualified name
-						org.eclipse.papyrus.umlutils.NamedElement ne = new org.eclipse.papyrus.umlutils.NamedElement((NamedElement) element);
-						int depth = ne.getQualifiedNameMaxDepth();
+						int depth = NamedElementUtil.getQualifiedNameMaxDepth((NamedElement) element);
 
 						// build new items
 						if (depth != 0) {
@@ -191,12 +201,15 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 							comboQualifiedNameAppearance.add("None");
 						}
 
-						int qualifiedNameDepth = QualifiedNameHelper.getQualifiedNamedepth((EModelElement) (namedElementEditPart.getModel()));
+						int qualifiedNameDepth =
+								QualifiedNameHelper.getQualifiedNamedepth((EModelElement) (namedElementEditPart
+										.getModel()));
 
 						if (depth != 0) {
 							if (qualifiedNameDepth == 0)
 								comboQualifiedNameAppearance.setText("Full");
-							// The qualifiedNameDepth stored in graphNode is greater the depth of the element; in those cases
+							// The qualifiedNameDepth stored in graphNode is
+							// greater the depth of the element; in those cases
 							// we have to se the text of combo as none
 							else if (qualifiedNameDepth >= depth)
 								comboQualifiedNameAppearance.setText("None");
@@ -236,9 +249,11 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 			namedElementEditPart = ((GraphicalEditPart) input);
 			// selectionChanged(selection);
 		}
-		// When the selection is computed from the outline, get the associated editor
+		// When the selection is computed from the outline, get the associated
+		// editor
 		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
+			IContributedContentsView contributedView =
+					((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
 			if (contributedView != null) {
 				part = (IWorkbenchPart) contributedView.getContributingPart();
 			}

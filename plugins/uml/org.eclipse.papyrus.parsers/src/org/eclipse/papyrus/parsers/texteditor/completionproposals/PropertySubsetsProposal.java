@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2009 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,9 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
+ *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.completionproposals;
 
 import java.util.Iterator;
@@ -19,9 +20,8 @@ import java.util.Vector;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.papyrus.umlutils.Property;
-
-
+import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * Completion proposal computer for multiplicity strings.
@@ -31,7 +31,7 @@ public class PropertySubsetsProposal implements ICompletionProposalComputer {
 	/**
 	 * 
 	 * 
-	 * @param property 
+	 * @param property
 	 */
 	public PropertySubsetsProposal(Property property) {
 		this.property = property;
@@ -54,43 +54,42 @@ public class PropertySubsetsProposal implements ICompletionProposalComputer {
 	/**
 	 * 
 	 * 
-	 * @param property the property to set
+	 * @param property
+	 *            the property to set
 	 */
 	public void setProperty(Property property) {
 		this.property = property;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer#generateCompletionProposals(int, int, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @seecom.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.
+	 * ICompletionProposalComputer#generateCompletionProposals(int, int,
+	 * java.lang.String)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param selectionRange 
-	 * @param prefix 
-	 * @param documentOffset 
+	 * @param selectionRange
+	 * @param prefix
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public List<ICompletionProposal> generateCompletionProposals(int documentOffset, int selectionRange, String prefix) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
 
-		Iterator<Property> it = property.getSubsettablesProperties().iterator();
+		Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property).iterator();
 		while (it.hasNext()) {
 			Property prop = it.next();
 			String name = prop.getName();
 
-			if(name.startsWith(prefix)) {
-				v.add(new CompletionProposal(
-						prop.getName(),
-						documentOffset-prefix.length(),
-						prefix.length()+selectionRange,
-						prop.getName().length(),
-						null,
-						prop.getName(),
-						null,
-						prop.getQualifiedName()
-				));
+			if (name.startsWith(prefix)) {
+				v
+						.add(new CompletionProposal(prop.getName(), documentOffset - prefix.length(), prefix.length()
+								+ selectionRange, prop.getName().length(), null, prop.getName(), null, prop
+								.getQualifiedName()));
 			}
 		}
 		return v;

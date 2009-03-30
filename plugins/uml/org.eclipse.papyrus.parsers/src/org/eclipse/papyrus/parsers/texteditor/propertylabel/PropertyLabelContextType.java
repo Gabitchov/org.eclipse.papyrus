@@ -17,7 +17,7 @@ import org.eclipse.jface.text.templates.GlobalTemplateVariables;
 import org.eclipse.jface.text.templates.TemplateContextType;
 
 /**
- * A simple context type for Property label.
+ * A simple context type for PropertyUtil label.
  */
 public class PropertyLabelContextType extends TemplateContextType {
 

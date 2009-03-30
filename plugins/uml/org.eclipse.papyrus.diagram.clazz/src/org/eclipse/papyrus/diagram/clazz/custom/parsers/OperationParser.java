@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2009 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.parsers;
@@ -20,6 +21,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
+import org.eclipse.papyrus.umlutils.OperationUtil;
 import org.eclipse.uml2.uml.Operation;
 
 /**
@@ -66,8 +68,7 @@ public class OperationParser implements IParser {
 	public String getPrintString(IAdaptable element, int flags) {
 		if (element instanceof EObjectAdapter) {
 			Operation operation = ((Operation) ((EObjectAdapter) element).getRealObject());
-			org.eclipse.papyrus.umlutils.Operation utilOperation = new org.eclipse.papyrus.umlutils.Operation(operation);
-			return utilOperation.getCustomLabel(ICustomAppearence.DEFAULT_UML_OPERATION);
+			return OperationUtil.getCustomLabel(operation, ICustomAppearence.DEFAULT_UML_OPERATION);
 		}
 		return null;
 	}

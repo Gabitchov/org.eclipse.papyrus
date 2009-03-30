@@ -7,18 +7,26 @@ options {
 @header {
 package org.eclipse.papyrus.parsers.antlr;
 
-import org.eclipse.uml2.uml.*;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Collection;
 import java.util.Map;
 import java.util.Vector;
+
+import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
+import org.eclipse.papyrus.parsers.util.IErrorReporter;
+import org.eclipse.papyrus.parsers.util.MultiplicityException;
 import org.eclipse.papyrus.parsers.util.TypeRecognitionException;
 import org.eclipse.papyrus.parsers.util.UnboundTemplateRecognitionException;
-import org.eclipse.papyrus.parsers.util.IErrorReporter;
-
-import org.eclipse.papyrus.parsers.util.MultiplicityException;
-import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
+import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.papyrus.umlutils.TemplateSignatureUtil;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.TemplateableElement;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.VisibilityKind;
 }
 
 @lexer::header {
@@ -32,7 +40,6 @@ import java.util.Map;
 import java.util.Vector;
 import org.eclipse.papyrus.parsers.util.TypeRecognitionException;
 import org.eclipse.papyrus.parsers.util.UnboundTemplateRecognitionException;
-
 
 import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
 }
@@ -74,7 +81,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
     this.isValidation = isValidation;
   }
   
-  private org.eclipse.papyrus.umlutils.Package nearestPackage;
+  private Package nearestPackage;
   
   /**
    * Modified Property 
@@ -93,7 +100,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
    */
   public void setProperty(Property property) {
     this.property = property;
-    this.nearestPackage = new org.eclipse.papyrus.umlutils.Package(property.getNearestPackage());
+    this.nearestPackage = property.getNearestPackage();
   }
       
      /** debug mode */
@@ -249,10 +256,9 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
    */
   private Property findSubsettedPropertyByName(String propertyName, Property property) throws TypeRecognitionException {
     Property subsettedProperty = null;
-    org.eclipse.papyrus.umlutils.Property utilProperty = new org.eclipse.papyrus.umlutils.Property(property);
-    Iterator<org.eclipse.papyrus.umlutils.Property> it = utilProperty.getSubsettablesProperties().iterator();
+    Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property).iterator();
     while (it.hasNext()) {
-      Property tmpProperty = it.next().getUml2Property();
+      Property tmpProperty = it.next();
       if(propertyName.equals(tmpProperty.getName())) {
         subsettedProperty = tmpProperty;
       }
@@ -409,39 +415,38 @@ type
   id=IDENTIFIER
   {
     String typeName = id.getText() ;
-    org.eclipse.papyrus.umlutils.Type utilType = nearestPackage.findTypeByName(typeName);
+    Type utilType = PackageUtil.findTypeByName(nearestPackage, typeName);
     // type = findTypeByName(typeName, property);
     // The type has not been found, but it may have been declared in the context of a template.
     if(utilType != null) {
-      if (utilType.getUml2Element() instanceof TemplateableElement) {
-        TemplateableElement template = (TemplateableElement)utilType.getUml2Element() ;
+      if (utilType instanceof TemplateableElement) {
+        TemplateableElement template = (TemplateableElement)utilType;
         if (template.isTemplate()) {
           throw new UnboundTemplateRecognitionException("Parameters of template " + typeName + " are not bound.",
               template) ;
         } else {
-          type = utilType.getUml2Type();
+          type = utilType;
         }
       }
       else {
-        type = utilType.getUml2Type();
+        type = utilType;
       }
     } else {
       // The type has not been found, but it may have been declared in the context of a template.
       if (property.getOwner() instanceof TemplateableElement) {
         TemplateableElement template = (TemplateableElement)property.getOwner() ;
         if (template.isTemplate()) {
-          org.eclipse.papyrus.umlutils.TemplateSignature signatureUtil = new org.eclipse.papyrus.umlutils.TemplateSignature(template.getOwnedTemplateSignature()) ;
-          utilType = signatureUtil.findTypeByName(typeName) ;
+          utilType = TemplateSignatureUtil.findTypeByName(template.getOwnedTemplateSignature(), typeName) ;
         }
       }
       if (utilType == null) // the type actually does not exist
         throw new TypeRecognitionException("Type "+typeName+" not found for property "+property.getName(),typeName);
-      else if (utilType.getUml2Element() instanceof TemplateableElement && ((TemplateableElement)utilType.getUml2Element()).isTemplate()) {
+      else if (utilType instanceof TemplateableElement && ((TemplateableElement)utilType).isTemplate()) {
         throw new UnboundTemplateRecognitionException("Parameters of template " + typeName + " are not bound.",
-            (TemplateableElement)utilType.getUml2Element()) ;
+            (TemplateableElement)utilType) ;
       }
       else
-        type = utilType.getUml2Type() ;
+        type = utilType;
     }
   }
   ;

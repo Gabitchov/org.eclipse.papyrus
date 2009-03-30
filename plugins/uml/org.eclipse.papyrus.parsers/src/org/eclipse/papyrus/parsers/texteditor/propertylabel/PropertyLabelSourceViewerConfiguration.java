@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.Property;
  */
 public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfiguration {
 	
-	/** edited Property */
+	/** edited PropertyUtil */
 	private Property property;
 	
 	/**
@@ -115,7 +115,7 @@ public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfigur
 	}
 	
 	/**
-	 * Returns the edited Property
+	 * Returns the edited PropertyUtil
 	 * @return the property to edit
 	 */
 	public Property getProperty() {

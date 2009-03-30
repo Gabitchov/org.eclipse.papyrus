@@ -39,12 +39,12 @@
 	<property name="tool.dir" value="${base.dir}/../ThirdParty"/>
 	<property name="generation.dir" value="org/eclipse/papyrus/parsers/antlr"/>
 	
-	<property name="eclipse.dir" value="C:/Outils/Eclipse3.4.0/eclipse"/>
-	<property name="antlr.jar" value="C:/Outils/antlr-2.7.7/antlr-2.7.7.jar:C:/Outils/antlr-2.7.7/stringtemplate.jar:d:/Download/antlr-3.0.jar"/>
-	<property name="emf_common.jar" value="${eclipse.dir}/plugins/org.eclipse.emf.codegen_2.4.0.v200806091234.jar"/>
-	<property name="emf_core.jar" value="${eclipse.dir}/plugins/org.eclipse.emf.ecore_2.4.0.v200806091234.jar"/>
+	<property name="eclipse.dir" value="D:/Outils/Dev/Papyrus-2.x-Dev/Target/eclipse-modeling-ganymede-SR1-incubation-win32/eclipse"/>
+	<property name="antlr.jar" value="D:/Outils/Dev/antlr-2.7.7/antlr-2.7.7.jar:D:/Outils/Dev/antlr-2.7.7/stringtemplate.jar:D:/Outils/Dev/antlr-3.0/antlr-3.0.jar"/>
+	<property name="emf_common.jar" value="${eclipse.dir}/plugins/org.eclipse.emf.codegen_2.4.0.v200808251517.jar"/>
+	<property name="emf_core.jar" value="${eclipse.dir}/plugins/org.eclipse.emf.ecore_2.4.1.v200808251517.jar"/>
 	<property name="uml2.jar" value="${eclipse.dir}/plugins/org.eclipse.uml2.uml_2.2.0.v200805141133.jar"/>
-	<property name="swt.jar" value="${eclipse.dir}/plugins/org.eclipse.swt.win32.win32.x86_3.4.0.v3448f.jar"/>
+	<property name="swt.jar" value="${eclipse.dir}/plugins/org.eclipse.swt.win32.win32.x86_3.4.1.v3449c.jar"/>
 	
 	
 	<property name="classpath" value=".:${bin.dir}:${antlr.jar}:${emf_common.jar}:${emf_core.jar}:${uml2.jar}:${swt.jar}"/>

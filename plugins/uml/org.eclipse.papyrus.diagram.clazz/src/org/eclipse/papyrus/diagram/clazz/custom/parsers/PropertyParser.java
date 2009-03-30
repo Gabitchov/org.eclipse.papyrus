@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2009 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.parsers;
@@ -32,10 +33,12 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.parsers.modelgenerator.PropertyGenerator;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
+import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * This the parser in charge of editing and displaying properties in Papyrus. For the edition of properties, a dialog box is opened
+ * This the parser in charge of editing and displaying properties in Papyrus.
+ * For the edition of properties, a dialog box is opened
  * 
  * @author Patrick Tessier
  */
@@ -56,17 +59,23 @@ public class PropertyParser implements IParser {
 	public String getEditString(final IAdaptable element, int flags) {
 		if (element instanceof EObjectAdapter) {
 
-			// // to understand see http://dev.eclipse.org/newslists/news.eclipse.modeling.gmf/msg08129.html
+			// // to understand see
+			// http://dev.eclipse.org/newslists/news.eclipse.modeling.gmf/msg08129.html
 			// try {
-			// LookForElement.getTransactionalEditingDomain().runExclusive(new Runnable() {
+			// LookForElement.getTransactionalEditingDomain().runExclusive(new
+			// Runnable() {
 			//
 			// public void run() {
 			// Display.getCurrent().asyncExec(new Runnable() {
 			//
 			// public void run() {
-			// final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
-			// org.eclipse.papyrus.umlutils.Property utilProperty = new org.eclipse.papyrus.umlutils.Property(property);
-			// final PropertyLabelEditorDialog dialog = new PropertyLabelEditorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), property, utilProperty
+			// final PropertyUtil property = ((PropertyUtil) ((EObjectAdapter)
+			// element).getRealObject());
+			// org.eclipse.papyrus.umlutils.PropertyUtil utilProperty = new
+			// org.eclipse.papyrus.umlutils.PropertyUtil(property);
+			// final PropertyLabelEditorDialog dialog = new
+			// PropertyLabelEditorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+			// property, utilProperty
 			// .getLabel());
 			// final int code = dialog.open();
 			//
@@ -74,8 +83,11 @@ public class PropertyParser implements IParser {
 			// SafeRunnable.run(new SafeRunnable() {
 			//
 			// public void run() {
-			// final PropertyGenerator generator = new PropertyGenerator(property);
-			// RecordingCommand rc = new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
+			// final PropertyGenerator generator = new
+			// PropertyGenerator(property);
+			// RecordingCommand rc = new
+			// RecordingCommand(LookForElement.getTransactionalEditingDomain())
+			// {
 			//
 			// protected void doExecute() {
 			// generator.parseAndModifyProperty(dialog.getValue());
@@ -93,8 +105,7 @@ public class PropertyParser implements IParser {
 			// System.err.println(e);
 			// }
 			final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
-			org.eclipse.papyrus.umlutils.Property utilProperty = new org.eclipse.papyrus.umlutils.Property(property);
-			return utilProperty.getCustomLabel(ICustomAppearence.DEFAULT_UML_PROPERTY);
+			return PropertyUtil.getCustomLabel(property, ICustomAppearence.DEFAULT_UML_PROPERTY);
 		}
 		return "";
 	}
@@ -107,27 +118,31 @@ public class PropertyParser implements IParser {
 		final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement.getTransactionalEditingDomain(), "Edit Property", (List) null) {
+		AbstractTransactionalCommand tc =
+				new AbstractTransactionalCommand(LookForElement.getTransactionalEditingDomain(), "Edit PropertyUtil",
+						(List) null) {
 
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				SafeRunnable.run(new SafeRunnable() {
+					@Override
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+							throws ExecutionException {
+						SafeRunnable.run(new SafeRunnable() {
 
-					public void run() {
-						final PropertyGenerator generator = new PropertyGenerator(property);
-						RecordingCommand rc = new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
+							public void run() {
+								final PropertyGenerator generator = new PropertyGenerator(property);
+								RecordingCommand rc =
+										new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
 
-							protected void doExecute() {
-								generator.parseAndModifyProperty(result);
+											protected void doExecute() {
+												generator.parseAndModifyProperty(result);
+											}
+										};
+								LookForElement.getTransactionalEditingDomain().getCommandStack().execute(rc);
 							}
-						};
-						LookForElement.getTransactionalEditingDomain().getCommandStack().execute(rc);
-					}
-				});
-				return CommandResult.newOKCommandResult();
+						});
+						return CommandResult.newOKCommandResult();
 
-			};
-		};
+					};
+				};
 		return tc;
 	}
 
@@ -138,8 +153,7 @@ public class PropertyParser implements IParser {
 	public String getPrintString(IAdaptable element, int flags) {
 		if (element instanceof EObjectAdapter) {
 			Property property = ((Property) ((EObjectAdapter) element).getRealObject());
-			org.eclipse.papyrus.umlutils.Property utilProperty = new org.eclipse.papyrus.umlutils.Property(property);
-			return utilProperty.getCustomLabel(ICustomAppearence.DEFAULT_UML_PROPERTY);
+			return PropertyUtil.getCustomLabel(property, ICustomAppearence.DEFAULT_UML_PROPERTY);
 		}
 		return null;
 	}

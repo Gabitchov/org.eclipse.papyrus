@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.parsers.texteditor.propertylabel;
 
@@ -18,14 +18,14 @@ import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.parsers.modelgenerator.PropertyGenerator;
+import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
-
 
 /**
  * Configuration Class for the direct edition of a UML property
  */
-public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguration  {
+public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguration {
 
 	/** configuration of the source viewer */
 	final private PropertyLabelSourceViewerConfiguration configuration;
@@ -36,7 +36,7 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 	public PropertyConfigurationForUML() {
 		configuration = new PropertyLabelSourceViewerConfiguration();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -48,9 +48,8 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 	 * {@inheritDoc}
 	 */
 	public String getTextToEdit(Object editedObject) {
-		if(editedObject instanceof Property) {
-			org.eclipse.papyrus.umlutils.Property utilProperty = new org.eclipse.papyrus.umlutils.Property((Property)editedObject);
-			return utilProperty.getLabel();
+		if (editedObject instanceof Property) {
+			return PropertyUtil.getLabel((Property) editedObject);
 		}
 		return "not a Property";
 	}
@@ -60,19 +59,20 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 	 */
 	@Override
 	public Object preEditAction(Object objectToEdit) {
-		if(objectToEdit instanceof Property) {
-			configuration.setProperty((Property)objectToEdit);
+		if (objectToEdit instanceof Property) {
+			configuration.setProperty((Property) objectToEdit);
 		}
 		return super.preEditAction(objectToEdit);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object postEditAction(Object editedObject, String text) {
-		// should undo the various creations done in the property edition (template binding, etc...)
-		if(editedObject instanceof Property) {
-			PropertyGenerator generator = new PropertyGenerator(((Property)editedObject));
+		// should undo the various creations done in the property edition
+		// (template binding, etc...)
+		if (editedObject instanceof Property) {
+			PropertyGenerator generator = new PropertyGenerator(((Property) editedObject));
 			generator.parseAndModifyProperty(text);
 		}
 		return null;
@@ -84,15 +84,15 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 	@Override
 	public IInputValidator getInputValidator() {
 		return new IInputValidator() {
-		
+
 			public String isValid(String newText) {
-				if(getObjectToEdit() instanceof Port) {
-					PropertyGenerator generator = new PropertyGenerator(((Property)getObjectToEdit()));
+				if (getObjectToEdit() instanceof Port) {
+					PropertyGenerator generator = new PropertyGenerator(((Property) getObjectToEdit()));
 					return generator.parseAndValidateProperty(newText);
 				}
 				return null;
 			}
 		};
 	}
-	
+
 }
