@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2009 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,17 +8,19 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Remi SCHNEKENBURGER (CEA LIST) Remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.umlutils;
 
-public class DataType extends NamedElement {
+import org.eclipse.uml2.uml.TypedElement;
 
-	private org.eclipse.uml2.uml.DataType uml2DataType;
+/**
+ * Utility class for <code>org.eclipse.uml2.uml.TypedElement</code><BR>
+ */
+public class TypedElementUtil {
 
-	public DataType(org.eclipse.uml2.uml.DataType uml2DataType) {
-		super(uml2DataType);
-		this.uml2DataType = uml2DataType;
+	public static String getTypeAsString(TypedElement element) {
+		return (element.getType() != null) ? element.getType().getName() : "<Undefined>";
 	}
 }

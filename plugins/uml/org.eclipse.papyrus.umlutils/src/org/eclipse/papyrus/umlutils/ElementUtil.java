@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  
+ *****************************************************************************/
 package org.eclipse.papyrus.umlutils;
 
 import java.lang.reflect.Method;
@@ -27,7 +40,8 @@ public class ElementUtil {
 		Iterator<EObject> stAppIt = elt.getStereotypeApplications().iterator();
 		while (stAppIt.hasNext() && (stereotypeApplication == null)) {
 			EObject stApp = stAppIt.next();
-			if (stApp.eClass().getEAllSuperTypes().contains(stereotypeClass) || (stApp.eClass().equals(stereotypeClass))) {
+			if (stApp.eClass().getEAllSuperTypes().contains(stereotypeClass)
+					|| (stApp.eClass().equals(stereotypeClass))) {
 				stereotypeApplication = stApp;
 			}
 		}
@@ -36,7 +50,8 @@ public class ElementUtil {
 	}
 
 	/**
-	 * Getter to select an image for a stereotyped element (based on 1st applied stereotype)
+	 * Getter to select an image for a stereotyped element (based on 1st applied
+	 * stereotype)
 	 * 
 	 * @param element
 	 *            to check
@@ -110,7 +125,8 @@ public class ElementUtil {
 			return null;
 		}
 
-		// If the getter is implemented, it is implemented by the StereotypeApplication class
+		// If the getter is implemented, it is implemented by the
+		// StereotypeApplication class
 		EObject stApp = element.getStereotypeApplication(stereotype);
 		Method getter = null;
 		try {

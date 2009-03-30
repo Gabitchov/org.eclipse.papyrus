@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2009 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi SCHNEKENBURGER (CEA LIST) Remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.umlutils;
@@ -23,17 +24,24 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
+import org.eclipse.uml2.uml.Relationship;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 
+/**
+ * Utility class for <code>org.eclipse.uml2.uml.Package</code><BR>
+ */
 public class PackageUtil {
 
 	/**
-	 * Apply a profile and every subprofiles to a package. Also import types defined in profile
+	 * Apply a profile and every subprofiles to a package. Also import types
+	 * defined in profile
 	 * 
 	 * @param profileToApply
 	 *            profile to apply on package
@@ -42,9 +50,10 @@ public class PackageUtil {
 	 * @param withSubProfiles
 	 *            true if subprofiles must be automatically imported
 	 */
-	public static boolean applyProfile(org.eclipse.uml2.uml.Package package_, org.eclipse.uml2.uml.Profile profileToApply, boolean withSubProfiles) {
+	public static boolean applyProfile(org.eclipse.uml2.uml.Package package_,
+			org.eclipse.uml2.uml.Profile profileToApply, boolean withSubProfiles) {
 
-		// ReturnÂ true if the model was modified
+		// Returns true if the model was modified
 		boolean isChanged = false;
 
 		// if profile is not defined abort treatment
@@ -52,7 +61,7 @@ public class PackageUtil {
 			return isChanged;
 		}
 
-		// if same version of profile is applied do not reapply it
+		// if same version of profile is applied do not re-apply it
 		ProfileApplication profileApplication = package_.getProfileApplication(profileToApply);
 		if (profileApplication != null) {
 
@@ -178,7 +187,8 @@ public class PackageUtil {
 	 * @param thepackage
 	 *            profile to clean
 	 * @param recursive
-	 *            boolean <code>true</code> if the clean is recursive, i.e. nested profiles must be clean
+	 *            boolean <code>true</code> if the clean is recursive, i.e.
+	 *            nested profiles must be clean
 	 */
 	public static void removeLastDefinition(Package thepackage, boolean recursive) {
 		// he wants to define
@@ -213,6 +223,71 @@ public class PackageUtil {
 		}
 	}
 
+	/**
+	 * Retrieve a type accessible in this Package, given its name.
+	 * 
+	 * @param name
+	 *            the name of the type to find
+	 * 
+	 * @return the type found or <code>null</code> if not found.
+	 */
+	public static Type findTypeByName(Package pack, String name) {
+		Type type = null;
+		boolean isFound = false;
+
+		Iterator<Type> it = PackageUtil.getAccessibleTypes(pack).iterator();
+		while (!isFound && it.hasNext()) {
+			Type t = it.next();
+			if (t.getName().equals(name)) {
+				isFound = true;
+				type = t;
+			}
+		}
+
+		return type;
+	}
+
+	/**
+	 * Get all possible types for an element owned by this package.
+	 * 
+	 * @return a list of all available Types
+	 */
+	public static Set<Type> getAccessibleTypes(Package pack) {
+		Set<Type> list = new HashSet<Type>();
+		// umlTypeList is used to detect type listed twice in the proposed list
+		// this may occurs for example with indirect import of UMLPrimitiveTypes
+		Set<String> umlTypeQNames = new HashSet<String>();
+
+		Iterator<NamedElement> it = pack.getMembers().iterator();
+		// get direct members
+		while (it.hasNext()) {
+			NamedElement element = it.next();
+			if ((element instanceof Type) && (!(element instanceof Relationship))) {
+				// Check for redundant type
+				if (!umlTypeQNames.contains(element.getQualifiedName())) {
+					umlTypeQNames.add(element.getQualifiedName());
+					list.add((Type) element);
+				}
+			}
+		}
+
+		// Recursive call on parents
+		if ((pack.getOwner() != null) && (pack.getOwner() instanceof Package)) {
+
+			Iterator<Type> itParent = PackageUtil.getAccessibleTypes(pack.getNestingPackage()).iterator();
+
+			while (itParent.hasNext()) {
+				Type currentType = itParent.next();
+
+				if (!umlTypeQNames.contains(currentType.getQualifiedName())) {
+					umlTypeQNames.add(currentType.getQualifiedName());
+					list.add(currentType);
+				}
+			}
+		}
+
+		return list;
+	}
 	/**
 	 * 
 	 * 
