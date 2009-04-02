@@ -22,7 +22,7 @@ public class BooleanValueTreeObject extends PrimitiveTypeValueTreeObject {
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public BooleanValueTreeObject(PropertyTreeObject parent, Object value) {
+	public BooleanValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 		// this.value = value;
 	}

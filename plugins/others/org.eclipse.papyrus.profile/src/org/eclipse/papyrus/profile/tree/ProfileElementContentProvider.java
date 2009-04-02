@@ -14,58 +14,62 @@ import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.ParentTreeObject;
-import org.eclipse.papyrus.profile.tree.objects.RootElementTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.TreeObject;
-
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ProfileElementContentProvider.
  */
-public class ProfileElementContentProvider 
-	implements IStructuredContentProvider, IContentProvider, ITreeContentProvider {
-	
+public class ProfileElementContentProvider implements IStructuredContentProvider, IContentProvider, ITreeContentProvider {
+
 	/**
 	 * The root.
 	 */
-	private RootElementTreeObject root;
-	
+	private StereotypedElementTreeObject root;
+
 	/**
 	 * Input changed.
 	 * 
-	 * @param newInput the new input
-	 * @param oldInput the old input
-	 * @param v the v
+	 * @param newInput
+	 *            the new input
+	 * @param oldInput
+	 *            the old input
+	 * @param v
+	 *            the v
 	 */
 	public void inputChanged(Viewer v, Object oldInput, Object newInput) {
+		System.err.println("test inputChanged");
 	}
-	
+
 	/**
 	 * Dispose.
 	 */
 	public void dispose() {
 	}
-		
+
 	/**
 	 * Gets the elements.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *            the parent
 	 * 
 	 * @return the elements
 	 */
 	public TreeObject[] getElements(Object parent) {
-		if ((root == null) && (parent instanceof RootElementTreeObject)) {
-			root = (RootElementTreeObject) parent;
+		if ((root == null) && (parent instanceof StereotypedElementTreeObject)) {
+			root = (StereotypedElementTreeObject) parent;
 			return getChildren(root);
 		}
 		return getChildren(parent);
 	}
-	
+
 	/**
 	 * Gets the parent.
 	 * 
-	 * @param child the child
+	 * @param child
+	 *            the child
 	 * 
 	 * @return the parent
 	 */
@@ -75,34 +79,36 @@ public class ProfileElementContentProvider
 		}
 		return null;
 	}
-		
+
 	/**
 	 * Gets the root tree element object.
 	 * 
 	 * @return the root tree element object
 	 */
-	public RootElementTreeObject getRootTreeElementObject() {
+	public StereotypedElementTreeObject getRootTreeElementObject() {
 		return root;
 	}
-	
+
 	/**
 	 * Gets the children.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *            the parent
 	 * 
 	 * @return the children
 	 */
-	public TreeObject [] getChildren(Object parent) {
+	public TreeObject[] getChildren(Object parent) {
 		if (parent instanceof ParentTreeObject) {
 			return ((ParentTreeObject) parent).getChildren();
 		}
 		return new TreeObject[0];
 	}
-	
+
 	/**
 	 * Checks for children.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *            the parent
 	 * 
 	 * @return true, if has children
 	 */

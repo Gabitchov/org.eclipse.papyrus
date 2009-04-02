@@ -20,17 +20,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
 import org.eclipse.papyrus.profile.ui.dialogs.PackageImportTreeSelectionDialog;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ResourceSelectionDialog;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.UMLFactory;
-
-import com.cea.papyrus.extensionpoints.uml2.utils.Util;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -41,72 +39,61 @@ public class ImportFromFile extends AbstractViewActionDelegate {
 	/**
 	 * Run.
 	 * 
-	 * @param action the action
+	 * @param action
+	 *            the action
 	 */
 	@Override
 	public void run(IAction action) {
 		// TODO Auto-generated method stub
 
-
 		// Retrieve shell instance
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
 		// Start selection dialog
-		ResourceSelectionDialog chooseLib = 
-			new ResourceSelectionDialog (
-					shell
-					, ResourcesPlugin.getWorkspace().getRoot()
-					, "Select Registered ModelLibrary");
+		ResourceSelectionDialog chooseLib = new ResourceSelectionDialog(shell, ResourcesPlugin.getWorkspace().getRoot(), "Select Registered ModelLibrary");
 
 		chooseLib.open();
 
-
 		// User selection
-		Object[] selection		= chooseLib.getResult();
+		Object[] selection = chooseLib.getResult();
 
 		if (selection == null) { // Cancel was selected
 			return;
 		}
 
-		ResourceSet resourceSet	= Util.getResourceSet(selectedElement);
+		ResourceSet resourceSet = Util.getResourceSet(selectedElement);
 		// Parse selection and add ModelLibrary files
-		for (int i = 0 ; i < selection.length ; i++) {
+		for (int i = 0; i < selection.length; i++) {
 
 			if (selection[i] instanceof IFile) {
 
-				IFile currentFile		= (IFile) selection[i];
+				IFile currentFile = (IFile) selection[i];
 
-				URI modelUri			= URI.createURI("platform:/resource"+currentFile.getFullPath());
-				Resource modelResource	= resourceSet.getResource(modelUri, true);
+				URI modelUri = URI.createURI("platform:/resource" + currentFile.getFullPath());
+				Resource modelResource = resourceSet.getResource(modelUri, true);
 
-				PackageImportTreeSelectionDialog eisd = new PackageImportTreeSelectionDialog(
-						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-						((Package)modelResource.getContents().get(0)));
+				PackageImportTreeSelectionDialog eisd = new PackageImportTreeSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), ((Package) modelResource.getContents()
+						.get(0)));
 				int ret = eisd.open();
 
-				if(ret==Window.OK){
+				if (ret == Window.OK) {
 					ArrayList result = eisd.getResult();
 					Iterator resultIter = result.iterator();
-					while(resultIter.hasNext()){
-						Element element = (Element)resultIter.next();
+					while (resultIter.hasNext()) {
+						Element element = (Element) resultIter.next();
 						PackageImport ei = UMLFactory.eINSTANCE.createPackageImport();
-						ei.setImportedPackage((Package)element);
-						((Package)selectedElement).getPackageImports().add(ei);
+						ei.setImportedPackage((Package) element);
+						((Package) selectedElement).getPackageImports().add(ei);
 					}
 				}
-				
-				
-				/*
-				Element root = (Element) modelResource.getContents().get(0);
 
-				// Import model library
-				Package libToImport = (Package) root;
-				// create import package
-				PackageImport pi = UMLFactory.eINSTANCE.createPackageImport();
-				pi.setImportedPackage(libToImport);
-				((Package) selectedElement).getPackageImports().add(pi);
-				*/
-			}						
+				/*
+				 * Element root = (Element) modelResource.getContents().get(0);
+				 * 
+				 * // Import model library Package libToImport = (Package) root; // create import package PackageImport pi = UMLFactory.eINSTANCE.createPackageImport();
+				 * pi.setImportedPackage(libToImport); ((Package) selectedElement).getPackageImports().add(pi);
+				 */
+			}
 		}
 	}
 }

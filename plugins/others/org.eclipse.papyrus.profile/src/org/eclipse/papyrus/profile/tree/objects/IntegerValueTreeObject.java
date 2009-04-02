@@ -22,7 +22,7 @@ public class IntegerValueTreeObject extends PrimitiveTypeValueTreeObject {
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public IntegerValueTreeObject(PropertyTreeObject parent, Object value) {
+	public IntegerValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 		this.value = value;
 	}

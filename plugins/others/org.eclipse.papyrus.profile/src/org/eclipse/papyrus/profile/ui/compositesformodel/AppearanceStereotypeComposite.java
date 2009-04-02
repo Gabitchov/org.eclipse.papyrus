@@ -8,7 +8,7 @@
  * Contributors:
  *     CEA List - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.profile.ui.composites;
+package org.eclipse.papyrus.profile.ui.compositesformodel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -19,9 +19,9 @@ import org.eclipse.papyrus.profile.preference.ProfilePreferenceConstants;
 import org.eclipse.papyrus.profile.tree.ProfileElementContentProvider;
 import org.eclipse.papyrus.profile.tree.ProfileElementLabelProvider;
 import org.eclipse.papyrus.profile.tree.ProfileElementTreeViewerFilter;
-import org.eclipse.papyrus.profile.tree.objects.PropertyTreeObject;
-import org.eclipse.papyrus.profile.tree.objects.RootElementTreeObject;
-import org.eclipse.papyrus.profile.ui.panels.StereotypePanel;
+import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
+import org.eclipse.papyrus.profile.ui.panels.AppliedStereotypePanel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Composite;
@@ -40,7 +40,7 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 	/**
 	 * The parent panel.
 	 */
-	private StereotypePanel parentPanel;
+	private AppliedStereotypePanel parentPanel;
 
 	// GUI related declarations
 	/**
@@ -54,7 +54,7 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 	 * @param style the style of this panel
 	 * @param parent the parent Composite for this panel
 	 */
-	public AppearanceStereotypeComposite(StereotypePanel parent) {
+	public AppearanceStereotypeComposite(AppliedStereotypePanel parent) {
 		super(parent, SWT.NONE, "Applied stereotypes", true);
 
 		parentPanel = parent;
@@ -109,7 +109,7 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 	 * 
 	 * @param element the element
 	 */
-	public void setInput(RootElementTreeObject element) {
+	public void setInput(StereotypedElementTreeObject element) {
 		treeViewer.setInput(element);
 		//boolean toto = Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STERETOYPES_TREE);
 		if(Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STEREOTYPES_TREE)) {
@@ -204,8 +204,8 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 
 			IStructuredSelection structSelection = (IStructuredSelection) event.getSelection();
 			Object selection = structSelection.getFirstElement();
-			if (selection instanceof PropertyTreeObject) {
-				parentPanel.setSelectedProperty((PropertyTreeObject) selection);
+			if (selection instanceof AppliedStereotypePropertyTreeObject) {
+				parentPanel.setSelectedProperty((AppliedStereotypePropertyTreeObject) selection);
 			} else {
 				parentPanel.setSelectedProperty(null);
 			}

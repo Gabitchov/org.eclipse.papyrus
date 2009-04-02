@@ -20,20 +20,21 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
-
 //TODO: Auto-generated Javadoc
 /**
  * The Class StereotypeTreeObject.
  */
-public class StereotypeTreeObject extends ParentTreeObject {
+public class AppliedStereotypeTreeObject extends ParentTreeObject {
 
 	/**
 	 * The Constructor.
 	 * 
-	 * @param stereotype the stereotype
-	 * @param parent the parent
+	 * @param stereotype
+	 *            the stereotype
+	 * @param parent
+	 *            the parent
 	 */
-	public StereotypeTreeObject(RootElementTreeObject parent, Element stereotype) {
+	public AppliedStereotypeTreeObject(StereotypedElementTreeObject parent, Element stereotype) {
 		super(parent, stereotype);
 	}
 
@@ -42,19 +43,18 @@ public class StereotypeTreeObject extends ParentTreeObject {
 	 */
 	@Override
 	protected void createChildren() {
-		Iterator<Property> propIt = getStereotype().getAllAttributes().iterator();		
+		Iterator<Property> propIt = getStereotype().getAllAttributes().iterator();
 		while (propIt.hasNext()) {
 			final Property currentProp = propIt.next();
 			// Select authorized properties
-			//if(currentProp.isComposite() || (currentProp.getAssociation() == null)) {
-			if(currentProp.getAssociation()!=null){
-				if(!currentProp.getName().startsWith("base_"))
-					addChild(new PropertyTreeObject(this, currentProp));
+			// if(currentProp.isComposite() || (currentProp.getAssociation() == null)) {
+			if (currentProp.getAssociation() != null) {
+				if (!currentProp.getName().startsWith("base_"))
+					addChild(new AppliedStereotypePropertyTreeObject(this, currentProp));
+			} else {
+				addChild(new AppliedStereotypePropertyTreeObject(this, currentProp));
 			}
-			else {
-				addChild(new PropertyTreeObject(this, currentProp));
-			}
-			//}
+			// }
 		}
 	}
 
@@ -75,17 +75,11 @@ public class StereotypeTreeObject extends ParentTreeObject {
 		Element element = getParent().getElement();
 		Stereotype stereotype = getStereotype();
 
-		try {			
-			element.unapplyStereotype(stereotype);
-
+		try {
 			getParent().removeChild(this);
 			// Force model change
-			Util.touchModel(element);
-		}
-		catch (IllegalArgumentException requiredEx) {
-			Message.warning(
-					(stereotype).getName()
-					+ " stereotype is required for this element");
+		} catch (IllegalArgumentException requiredEx) {
+			Message.warning((stereotype).getName() + " stereotype is required for this element");
 			requiredEx.printStackTrace();
 		}
 	}
@@ -95,9 +89,9 @@ public class StereotypeTreeObject extends ParentTreeObject {
 	 */
 	public void moveMeUp() {
 
-		RootElementTreeObject rTO = (RootElementTreeObject) getParent();
+		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) getParent();
 		Stereotype stereotype = getStereotype();
-		Element root  = rTO.getElement();
+		Element root = rTO.getElement();
 
 		EList stereotypes = new BasicEList();
 		stereotypes.addAll(root.getAppliedStereotypes());
@@ -110,10 +104,8 @@ public class StereotypeTreeObject extends ParentTreeObject {
 
 		stereotypes.move(index - 1, stereotype);
 		Util.reorderStereotypeApplications(root, stereotypes);
-		// Refresh - move tree elements						
+		// Refresh - move tree elements
 		getParent().moveChildUp(this);
-		// Force model change
-		Util.touchModel(element);
 	}
 
 	/**
@@ -121,9 +113,9 @@ public class StereotypeTreeObject extends ParentTreeObject {
 	 */
 	public void moveMeDown() {
 
-		RootElementTreeObject rTO = (RootElementTreeObject) getParent();
+		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) getParent();
 		Stereotype stereotype = getStereotype();
-		Element root  = rTO.getElement();
+		Element root = rTO.getElement();
 
 		EList stereotypes = new BasicEList();
 		stereotypes.addAll(root.getAppliedStereotypes());
@@ -136,9 +128,7 @@ public class StereotypeTreeObject extends ParentTreeObject {
 
 		stereotypes.move(index + 1, stereotype);
 		Util.reorderStereotypeApplications(root, stereotypes);
-		// Refresh - move tree elements						
+		// Refresh - move tree elements
 		getParent().moveChildDown(this);
-		// Force model change
-		Util.touchModel(element);
 	}
 }

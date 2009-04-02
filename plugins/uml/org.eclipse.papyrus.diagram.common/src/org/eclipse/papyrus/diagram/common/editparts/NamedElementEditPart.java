@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * this editpart manage the display of qualifiedName
  * 
  */
-public abstract class NamedElementEditPart extends UmlNodeEditPart {
+public abstract class NamedElementEditPart extends UmlNodeEditPart implements IUMLNamedElementEditPart {
 
 	/**
 	 * {@inheritDoc}
@@ -32,6 +32,10 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart {
 	public NamedElementEditPart(View view) {
 		super(view);
 		// TODO Auto-generated constructor stub
+	}
+
+	public NamedElement getNamedElement() {
+		return (NamedElement) getUMLElement();
 	}
 
 	/**
@@ -49,14 +53,6 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart {
 		}
 	}
 
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshqualifiedNameDepth();
-		refreshQualifiedName();
-		refreshIconNamedLabel();
-
-	}
-
 	private void refreshIconNamedLabel() {
 		((NodeNamedElementFigure) getPrimaryShape()).setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View) getModel()));
 	}
@@ -67,5 +63,13 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart {
 
 	private void refreshqualifiedNameDepth() {
 		((NodeNamedElementFigure) getPrimaryShape()).setDepth(QualifiedNameHelper.getQualifiedNamedepth((View) getModel()));
+	}
+
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshqualifiedNameDepth();
+		refreshQualifiedName();
+		refreshIconNamedLabel();
+
 	}
 }

@@ -18,7 +18,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * Action delegate default implementation for this plugin. Is is based on a 

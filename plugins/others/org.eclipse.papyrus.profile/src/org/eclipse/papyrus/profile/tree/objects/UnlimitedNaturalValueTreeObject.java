@@ -22,7 +22,7 @@ public class UnlimitedNaturalValueTreeObject extends PrimitiveTypeValueTreeObjec
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public UnlimitedNaturalValueTreeObject(PropertyTreeObject parent, Object value) {
+	public UnlimitedNaturalValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 		this.value = value;
 	}

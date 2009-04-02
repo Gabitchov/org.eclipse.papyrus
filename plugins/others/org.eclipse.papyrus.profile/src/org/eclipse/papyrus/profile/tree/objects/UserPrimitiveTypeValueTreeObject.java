@@ -22,7 +22,7 @@ public class UserPrimitiveTypeValueTreeObject extends PrimitiveTypeValueTreeObje
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public UserPrimitiveTypeValueTreeObject(PropertyTreeObject parent, Object value) {
+	public UserPrimitiveTypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 	}
 }

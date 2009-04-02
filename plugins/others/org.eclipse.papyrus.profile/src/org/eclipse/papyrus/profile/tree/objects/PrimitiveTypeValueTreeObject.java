@@ -30,7 +30,7 @@ public abstract class PrimitiveTypeValueTreeObject extends ValueTreeObject {
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	protected PrimitiveTypeValueTreeObject(PropertyTreeObject parent, Object value) {
+	protected PrimitiveTypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 	}
 		
@@ -42,7 +42,7 @@ public abstract class PrimitiveTypeValueTreeObject extends ValueTreeObject {
 	 * 
 	 * @return the primitive type value tree object
 	 */
-	public static PrimitiveTypeValueTreeObject createInstance(PropertyTreeObject parent, Object newValue) {
+	public static PrimitiveTypeValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue) {
 		
 		Property property = parent.getProperty();
 		Type type = property.getType();
@@ -72,7 +72,7 @@ public abstract class PrimitiveTypeValueTreeObject extends ValueTreeObject {
 	 */
 	@Override
 	public void editMe() {
-		PropertyTreeObject pTO = (PropertyTreeObject) getParent();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
 		Property property = pTO.getProperty();
 		Type type = property.getType();
 

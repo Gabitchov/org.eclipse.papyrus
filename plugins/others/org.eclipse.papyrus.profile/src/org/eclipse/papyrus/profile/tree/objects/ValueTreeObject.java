@@ -43,7 +43,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public ValueTreeObject(PropertyTreeObject parent, Object value) {
+	public ValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, null);
 		this.value = value;
 	}
@@ -70,9 +70,9 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 */
 	public void removeMe() {
 
-		Property property = ((PropertyTreeObject) getParent()).getProperty();
-		Stereotype stereotype = ((StereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element  element  = ((RootElementTreeObject) getParent().getParent().getParent()).element;
+		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
+		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
+		Element  element  = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
 		int lower = property.getLower();
 		int upper = property.getUpper();
 
@@ -84,7 +84,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 			return;
 		}
 
-		Object currentVal = ((PropertyTreeObject) getParent()).getValue();
+		Object currentVal = ((AppliedStereotypePropertyTreeObject) getParent()).getValue();
 		ArrayList tempValues = new ArrayList();
 
 		if (((lower == 0) && (upper == 1))) {
@@ -129,11 +129,11 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 */
 	public void moveMeUp(int index) {
 
-		Property property = ((PropertyTreeObject) getParent()).getProperty();
-		Stereotype stereotype = ((StereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element  element  = ((RootElementTreeObject) getParent().getParent().getParent()).element;
+		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
+		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
+		Element  element  = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
 
-		Object currentVal = ((PropertyTreeObject) getParent()).getValue();
+		Object currentVal = ((AppliedStereotypePropertyTreeObject) getParent()).getValue();
 		ArrayList tempValues = new ArrayList();
 
 		if (property.isMultivalued()) {
@@ -171,11 +171,11 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 */
 	public void moveMeDown(int index) {
 
-		Property property = ((PropertyTreeObject) getParent()).getProperty();
-		Stereotype stereotype = ((StereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element  element  = ((RootElementTreeObject) getParent().getParent().getParent()).element;
+		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
+		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
+		Element  element  = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
 
-		Object currentVal = ((PropertyTreeObject) getParent()).getValue();
+		Object currentVal = ((AppliedStereotypePropertyTreeObject) getParent()).getValue();
 		ArrayList tempValues = new ArrayList();
 
 		if (property.isMultivalued()) {
@@ -214,7 +214,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * 
 	 * @return the value tree object
 	 */
-	public static ValueTreeObject createInstance(PropertyTreeObject parent, Object newValue) {
+	public static ValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue) {
 		
 		Property property = parent.getProperty();
 		Type type = property.getType();
@@ -249,9 +249,9 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * @param newValue the new value
 	 */
 	protected void updateValue(Object newValue) {
-		PropertyTreeObject pTO = (PropertyTreeObject) getParent();
-		Stereotype stereotype = ((StereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element element = ((RootElementTreeObject) getParent().getParent().getParent()).getElement();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
+		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
+		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).getElement();
 		
 		Property property = pTO.getProperty();
 

@@ -22,7 +22,7 @@ public class StringValueTreeObject extends PrimitiveTypeValueTreeObject {
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public StringValueTreeObject(PropertyTreeObject parent, Object value) {
+	public StringValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 		this.value = value;
 	}

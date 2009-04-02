@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.profile.ui.panels;
 
-import org.eclipse.papyrus.profile.ui.composites.ProfileComposite;
-import org.eclipse.papyrus.profile.ui.composites.PropertyComposite;
-import org.eclipse.papyrus.profile.ui.composites.StereotypeComposite;
+import org.eclipse.papyrus.profile.ui.compositesformodel.AppliedStereotypeCompositeOnModel;
+import org.eclipse.papyrus.profile.ui.compositesformodel.ProfileCompositeOnModel;
+import org.eclipse.papyrus.profile.ui.compositesformodel.PropertyComposite;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -27,12 +27,12 @@ import org.eclipse.uml2.uml.Package;
 /**
  * The Class ProfilePanel.
  */
-public class ProfilePanel extends StereotypePanel {
+public class ProfilePanel extends AppliedStereotypePanel {
     
     /**
      * The profile composite.
      */
-    protected ProfileComposite profileComposite;
+    protected ProfileCompositeOnModel profileComposite;
     
        		
     /**
@@ -110,7 +110,7 @@ public class ProfilePanel extends StereotypePanel {
         this.setLayout(panelLayout);
         
     	// Create profile composite
-    	profileComposite = new ProfileComposite(this);
+    	profileComposite = new ProfileCompositeOnModel(this);
     	profileComposite.createContent();
             	
 		FormData data = new FormData();
@@ -124,7 +124,7 @@ public class ProfilePanel extends StereotypePanel {
 		profileComposite.setLayoutData(data);
 
 		// Create profile composite
-		stereotypeComposite = new StereotypeComposite(this);
+		stereotypeComposite = new AppliedStereotypeCompositeOnModel(this);
 		stereotypeComposite.createContent(this, factory);
 		
 		propertyComposite   = new PropertyComposite(this);

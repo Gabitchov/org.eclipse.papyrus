@@ -9,7 +9,7 @@
                namespaceUri="http://www.eclipse.org/uml2/2.1.0/UML">
          </package>
          <constraints
-               categories="com.cea.papyrus.validation.CategoryID/UMLProfile">
+               categories="org.eclipse.papyrus.validation.CategoryID/UMLProfile">
             <constraint
                   class="org.eclipse.papyrus.profile.constraints.PropertyHasNameConstraint"
                   id="com.cea.papyrus.profile.constraints.PropertyHasNameConstraintID"
@@ -102,6 +102,52 @@
             </constraint>            
          </constraints>
       </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="TreeOutlinePage"
+            labelProvider="org.eclipse.papyrus.tabbedproperties.uml.providers.UMLObjectLabelProvider">
+         <propertyCategory
+               category="org.eclipse.papyrus">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="TreeOutlinePage">
+         <propertyTab
+               afterTab="general"
+               category="org.eclipse.papyrus"
+               id="org.eclipse.papyrus.tabbedproperties.profile"
+               label="Profile">
+         </propertyTab>
+         <propertyTab
+               afterTab="comment"
+               category="org.eclipse.papyrus"
+               id="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab"
+               label="Appearance">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="TreeOutlinePage">
+         <propertySection
+               class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeKindAppearanceSection"
+               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               id="AppliedStereotypeKindAppearanceSection"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeSectionWithView"
+               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               id="AppliedStereotypeSectionWithView"
+               tab="org.eclipse.papyrus.tabbedproperties.profile">
+         </propertySection>
+      </propertySections>
    </extension>
 
 </plugin>

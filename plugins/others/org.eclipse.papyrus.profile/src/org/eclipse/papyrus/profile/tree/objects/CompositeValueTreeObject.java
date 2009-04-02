@@ -22,7 +22,7 @@ public class CompositeValueTreeObject extends ValueTreeObject {
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public CompositeValueTreeObject(PropertyTreeObject parent, Object value) {
+	public CompositeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 		this.value = value;
 	}

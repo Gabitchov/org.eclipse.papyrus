@@ -8,7 +8,7 @@
  * Contributors:
  *     CEA List - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.profile.ui.composites;
+package org.eclipse.papyrus.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,6 +32,7 @@ import org.eclipse.papyrus.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.profile.ui.dialogs.RegisteredProfileSelectionDialog;
 import org.eclipse.papyrus.profile.ui.panels.ProfilePanel;
 import org.eclipse.papyrus.profile.utils.Util;
+import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseEvent;
@@ -53,25 +54,24 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Profile;
 
-import com.cea.papyrus.umlutils.PackageUtil;
-
 //TODO: Auto-generated Javadoc
 /**
  * The Class ProfileComposite.
  */
-public class ProfileComposite extends Composite {
-    
+public class ProfileCompositeOnModel extends Composite {
+
 	public final static String TAG_PROFILE_CHANGED = " (has changed, consider re-applying profile)";
-    /**
-     * The parent panel.
-     */
-    private ProfilePanel parentPanel;
-	
-    /**
-     * The applied label.
-     */
-    private CLabel appliedLabel;
-	
+
+	/**
+	 * The parent panel.
+	 */
+	private ProfilePanel parentPanel;
+
+	/**
+	 * The applied label.
+	 */
+	private CLabel appliedLabel;
+
 	/**
 	 * The profiles.
 	 */
@@ -99,15 +99,16 @@ public class ProfileComposite extends Composite {
 
 	public Profile profiletoApply;
 
-
 	/**
 	 * The default constructor.
 	 * 
-	 * @param style the style of this panel
-	 * @param parent the parent Composite for this panel
+	 * @param style
+	 *            the style of this panel
+	 * @param parent
+	 *            the parent Composite for this panel
 	 */
-	public ProfileComposite(ProfilePanel parent) {
-		super(parent, SWT.NONE);	
+	public ProfileCompositeOnModel(ProfilePanel parent) {
+		super(parent, SWT.NONE);
 		this.setLayout(new FormLayout());
 
 		parentPanel = parent;
@@ -116,11 +117,11 @@ public class ProfileComposite extends Composite {
 	/**
 	 * 
 	 * 
-	 * @param factory 
-	 * @param parent 
+	 * @param factory
+	 * @param parent
 	 */
-	public ProfileComposite(Composite parent, TabbedPropertySheetWidgetFactory factory) {
-		super(parent, SWT.NONE);   	
+	public ProfileCompositeOnModel(Composite parent, TabbedPropertySheetWidgetFactory factory) {
+		super(parent, SWT.NONE);
 		this.setLayout(new FormLayout());
 
 		this.factory = factory;
@@ -165,22 +166,20 @@ public class ProfileComposite extends Composite {
 			Package currentPackage = (Package) getSelected();
 			EList<Profile> appliedProfiles = currentPackage.getAllAppliedProfiles();
 
-			for(int i = 0; i < appliedProfiles.size(); i++) {
+			for (int i = 0; i < appliedProfiles.size(); i++) {
 
 				Profile currentProfile = (Profile) appliedProfiles.get(i);
-				String  currentName    = currentProfile.getQualifiedName();
+				String currentName = currentProfile.getQualifiedName();
 
 				if (currentName == null) {
-					Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Warning a profile applied on "
-							+ currentPackage.getName()
-							+ " could not be found : \n\t"
-							+ currentProfile.toString()));
+					Activator.getDefault().getLog().log(
+							new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Warning a profile applied on " + currentPackage.getName() + " could not be found : \n\t" + currentProfile.toString()));
 				} else if (isDirty(currentPackage, currentProfile)) {
-					profiles.add(currentName+ TAG_PROFILE_CHANGED);
-					profiles.setData(currentName, currentProfile);					
-				}else {
+					profiles.add(currentName + TAG_PROFILE_CHANGED);
+					profiles.setData(currentName, currentProfile);
+				} else {
 					profiles.add(currentName);
-					profiles.setData(currentName, currentProfile);	
+					profiles.setData(currentName, currentProfile);
 				}
 			}
 		}
@@ -193,15 +192,15 @@ public class ProfileComposite extends Composite {
 		FormData data = new FormData();
 
 		// Label creation
-		if(parentPanel != null) {
-			appliedLabel = parentPanel.getFactory().createCLabel(this,"Applied profiles:", SWT.NONE);
+		if (parentPanel != null) {
+			appliedLabel = parentPanel.getFactory().createCLabel(this, "Applied profiles:", SWT.NONE);
 		} else {
-			appliedLabel = factory.createCLabel(this,"Applied profiles:", SWT.NONE);
+			appliedLabel = factory.createCLabel(this, "Applied profiles:", SWT.NONE);
 		}
 
 		// Label placement
 		data.left = new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
-		data.top  = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
+		data.top = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
 		appliedLabel.setLayoutData(data);
 	}
 
@@ -214,13 +213,13 @@ public class ProfileComposite extends Composite {
 		FormData data = new FormData();
 
 		// List of applied profiles
-		List profiles = new List(this, SWT.V_SCROLL | SWT.MULTI | SWT.BORDER);		
+		List profiles = new List(this, SWT.V_SCROLL | SWT.MULTI | SWT.BORDER);
 
 		// List placement
-		data.left    = new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
-		data.right   = new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
-		data.top     = new FormAttachment(addButton, ITabbedPropertyConstants.VSPACE);
-		data.bottom  = new FormAttachment(100, -ITabbedPropertyConstants.VSPACE);
+		data.left = new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
+		data.right = new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
+		data.top = new FormAttachment(addButton, ITabbedPropertyConstants.VSPACE);
+		data.bottom = new FormAttachment(100, -ITabbedPropertyConstants.VSPACE);
 		profiles.setLayoutData(data);
 
 		// List listeners
@@ -237,14 +236,13 @@ public class ProfileComposite extends Composite {
 	}
 
 	/**
-	 * Creates the button that applies new profiles
-	 * on selected package.
+	 * Creates the button that applies new profiles on selected package.
 	 */
 	private void createAddButton() {
 		FormData data = new FormData();
 
 		// Button creation
-		if(parentPanel != null)
+		if (parentPanel != null)
 			addButton = parentPanel.getFactory().createButton(this, "", SWT.PUSH);
 		else
 			addButton = factory.createButton(this, "", SWT.PUSH);
@@ -254,11 +252,12 @@ public class ProfileComposite extends Composite {
 
 		// Button placement
 		data.right = new FormAttachment(addRegisteredButton, -ITabbedPropertyConstants.HSPACE);
-		data.top   = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
+		data.top = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
 		addButton.setLayoutData(data);
 
 		// Button listeners
 		addButton.addMouseListener(addButtonListener = new MouseListener() {
+
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 
@@ -273,14 +272,13 @@ public class ProfileComposite extends Composite {
 	}
 
 	/**
-	 * Creates the button used to apply a registered (= plugin enclosed)
-	 * profile to the selected package.
+	 * Creates the button used to apply a registered (= plugin enclosed) profile to the selected package.
 	 */
 	private void createRegButton() {
 		FormData data = new FormData();
 
 		// Button creation
-		if(parentPanel!=null)
+		if (parentPanel != null)
 			addRegisteredButton = parentPanel.getFactory().createButton(this, "", SWT.PUSH);
 		else
 			addRegisteredButton = factory.createButton(this, "", SWT.PUSH);
@@ -290,33 +288,32 @@ public class ProfileComposite extends Composite {
 
 		// Button placement
 		data.right = new FormAttachment(removeButton, -ITabbedPropertyConstants.HSPACE);
-		data.top   = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
+		data.top = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
 		addRegisteredButton.setLayoutData(data);
 
 		// Button listeners
-		addRegisteredButton.addMouseListener(
-				addRegisteredButtonListener = new MouseListener() {
-					public void mouseDoubleClick(MouseEvent e) {
-					}
+		addRegisteredButton.addMouseListener(addRegisteredButtonListener = new MouseListener() {
 
-					public void mouseDown(MouseEvent e) {
-					}
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 
-					public void mouseUp(MouseEvent e) {
-						addRegButtonPressed();
-					}
-				});
+			public void mouseDown(MouseEvent e) {
+			}
+
+			public void mouseUp(MouseEvent e) {
+				addRegButtonPressed();
+			}
+		});
 	}
 
 	/**
-	 * Creates a button used to unapply a profile from
-	 * the selected package.
+	 * Creates a button used to unapply a profile from the selected package.
 	 */
 	private void createRemButton() {
 		FormData data = new FormData();
 
 		// Button creation
-		if(parentPanel!=null)
+		if (parentPanel != null)
 			removeButton = parentPanel.getFactory().createButton(this, "", SWT.PUSH);
 		else
 			removeButton = factory.createButton(this, "", SWT.PUSH);
@@ -326,11 +323,12 @@ public class ProfileComposite extends Composite {
 
 		// Button placement
 		data.right = new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
-		data.top   = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
+		data.top = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
 		removeButton.setLayoutData(data);
 
 		// Button listeners
 		removeButton.addMouseListener(removeButtonListener = new MouseListener() {
+
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 
@@ -340,27 +338,25 @@ public class ProfileComposite extends Composite {
 			public void mouseUp(MouseEvent e) {
 				remButtonPressed();
 			}
-		});		
+		});
 	}
 
 	/**
-	 * Button action :
-	 * open a selection dialog box that allow the user to choose profiles to apply.
+	 * Button action : open a selection dialog box that allow the user to choose profiles to apply.
 	 */
 	protected void addButtonPressed() {
 
 		// Create and open the dialog box
-		//ResourceSelectionDialog dialog = 
-		//	new ResourceSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), "Apply Profiles");
-		
-		ILabelProvider lp= new WorkbenchLabelProvider();
-		ITreeContentProvider cp= new WorkbenchContentProvider();
-		
+		// ResourceSelectionDialog dialog =
+		// new ResourceSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), "Apply Profiles");
+
+		ILabelProvider lp = new WorkbenchLabelProvider();
+		ITreeContentProvider cp = new WorkbenchContentProvider();
+
 		ArrayList<String> filetypes = new ArrayList<String>();
 		filetypes.add("uml");
-		
-		ElementTreeSelectionDialog dialog =
-			new ElementTreeSelectionDialog(getShell(), lp, cp);
+
+		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), lp, cp);
 		dialog.setTitle("Apply Profiles...");
 		dialog.setMessage("Choose profiles to apply");
 		dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
@@ -378,65 +374,59 @@ public class ProfileComposite extends Composite {
 		}
 
 		ArrayList<Package> importedModels = new ArrayList<Package>();
-		Package package_  = getSelected();
+		Package package_ = getSelected();
 
-		for(int i = 0; i < dialog.getResult().length; i++) {
-			IFile selectedFile     = (IFile) dialog.getResult()[i];
-			URI profileUri         = URI.createURI("platform:/resource"+selectedFile.getFullPath().toString());
+		for (int i = 0; i < dialog.getResult().length; i++) {
+			IFile selectedFile = (IFile) dialog.getResult()[i];
+			URI profileUri = URI.createURI("platform:/resource" + selectedFile.getFullPath().toString());
 
 			ResourceSet resourceSet = package_.eResource().getResourceSet();
 
-			Resource profileResource = resourceSet.getResource(profileUri,true);
+			Resource profileResource = resourceSet.getResource(profileUri, true);
 
-			
-			
-			
-			if(profileResource.getContents().get(0) instanceof Package ){
-				Package importedModel= (Package)profileResource.getContents().get(0);
+			if (profileResource.getContents().get(0) instanceof Package) {
+				Package importedModel = (Package) profileResource.getContents().get(0);
 				importedModels.add(importedModel);
 			}
-			
 
 		}
-		
-		if(importedModels.size()>0){
-			ProfileTreeSelectionDialog  profileDialog=new ProfileTreeSelectionDialog(getShell(),importedModels);
+
+		if (importedModels.size() > 0) {
+			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels);
 
 			profileDialog.open();
-			ArrayList<Profile> profilestoApply= (ArrayList<Profile>) profileDialog.getResult();
+			ArrayList<Profile> profilestoApply = (ArrayList<Profile>) profileDialog.getResult();
 
 			Message message = new Message("Profile application", "Applying profile...");
 			message.open();
-			Iterator<Profile> iterator= profilestoApply.iterator();
-			while(iterator.hasNext()){
+			Iterator<Profile> iterator = profilestoApply.iterator();
+			while (iterator.hasNext()) {
 				PackageUtil.applyProfile(package_, iterator.next(), false);
 			}
 			message.close();
 		}
-
 
 		// do a refresh to update list of applied profiles
 		refresh();
 	}
 
 	/**
-	 * Button action :
-	 * unaply the profiles selected by the user.
+	 * Button action : unaply the profiles selected by the user.
 	 */
 	protected void remButtonPressed() {
 
 		// Retrieve indices of selected profiles to unapply
-		int[] selectionIndices = profiles.getSelectionIndices();		
+		int[] selectionIndices = profiles.getSelectionIndices();
 		if ((selectionIndices == null) || (selectionIndices.length == 0)) {
 			return;
 		}
 
 		// Parse selection
-		for (int i = 0 ; i < selectionIndices.length ; i++) {
+		for (int i = 0; i < selectionIndices.length; i++) {
 
 			int currentIndex = selectionIndices[i];
 			// Remove TAG_PROFILE_CHANGED when it exists
-			String itemName  = profiles.getItem(currentIndex).replace(TAG_PROFILE_CHANGED, "");
+			String itemName = profiles.getItem(currentIndex).replace(TAG_PROFILE_CHANGED, "");
 			Profile profileToUnapply = (Profile) profiles.getData(itemName);
 
 			if (profileToUnapply == null) {
@@ -446,18 +436,18 @@ public class ProfileComposite extends Composite {
 			// Allow removal if profile is applied on current package
 			// Not if it is applied from owner package
 			EList appliedProfiles = getSelected().getAppliedProfiles();
-			if (appliedProfiles.contains(profileToUnapply)) {		
+			if (appliedProfiles.contains(profileToUnapply)) {
 
 				/**********************************************************************/
 				/** delete imported model libraries and types related to that profile */
 
 				// model libraries handling
-				EList importedPackages = ((Package)getSelected()).getPackageImports();
+				EList importedPackages = ((Package) getSelected()).getPackageImports();
 				Iterator<PackageImport> iterPI = importedPackages.iterator();
 				ArrayList importedPackagesToRemove = new ArrayList();
 				while (iterPI.hasNext()) {
 					PackageImport pi = iterPI.next();
-					if (pi.getImportedPackage().getOwner()!=null) {
+					if (pi.getImportedPackage().getOwner() != null) {
 						if (pi.getImportedPackage().getOwner().equals(profileToUnapply)) {
 							importedPackagesToRemove.add(pi);
 						}
@@ -466,13 +456,13 @@ public class ProfileComposite extends Composite {
 
 				// remove model librairies
 				// this has been done here to avoid concurrent modification of importedPackages
-				for(int j = 0 ; j < importedPackagesToRemove.size() ; j++) {
+				for (int j = 0; j < importedPackagesToRemove.size(); j++) {
 					importedPackages.remove(importedPackagesToRemove.get(j));
 				}
 			}
 			getSelected().unapplyProfile(profileToUnapply);
 			// Force model change
-			if(parentPanel!=null)
+			if (parentPanel != null)
 				Util.touchModel(getSelected());
 		}
 
@@ -481,8 +471,7 @@ public class ProfileComposite extends Composite {
 	}
 
 	/**
-	 * Button action :
-	 * open the dialog box for registered profile selection.
+	 * Button action : open the dialog box for registered profile selection.
 	 */
 	protected void addRegButtonPressed() {
 		RegisteredProfileSelectionDialog d = new RegisteredProfileSelectionDialog(getShell(), getSelected());
@@ -493,65 +482,67 @@ public class ProfileComposite extends Composite {
 			refresh();
 
 			// Force model change
-			if(parentPanel!=null)
-				Util.touchModel(getSelected());	
+			if (parentPanel != null)
+				Util.touchModel(getSelected());
 		}
 	}
 
 	/**
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
-	protected List getProfiles(){
+	protected List getProfiles() {
 		return profiles;
 	}
 
 	/**
 	 * Dispose listeners.
 	 */
-	public void disposeListeners(){
-		if(addButton!=null && !addButton.isDisposed())
+	public void disposeListeners() {
+		if (addButton != null && !addButton.isDisposed())
 			addButton.removeMouseListener(addButtonListener);
-		if(removeButton!=null && !removeButton.isDisposed())
+		if (removeButton != null && !removeButton.isDisposed())
 			removeButton.removeMouseListener(removeButtonListener);
-		if(addRegisteredButton!=null && !addRegisteredButton.isDisposed())
+		if (addRegisteredButton != null && !addRegisteredButton.isDisposed())
 			addRegisteredButton.removeMouseListener(addRegisteredButtonListener);
-		if(profiles!=null && !profiles.isDisposed())
+		if (profiles != null && !profiles.isDisposed())
 			profiles.removeSelectionListener(profilesListener);
 	}
-	
+
 	/**
-	 * Checks if the profile applied has been changed since last application
-	 * (definition does not match.
-	 * @param _package on which the profile is applied
-	 * @param _profile the applied profile
+	 * Checks if the profile applied has been changed since last application (definition does not match.
+	 * 
+	 * @param _package
+	 *            on which the profile is applied
+	 * @param _profile
+	 *            the applied profile
 	 * @return true if the profile has changed
 	 */
 	private boolean isDirty(Package _package, Profile _profile) {
 		boolean isDirty = false;
-		
+
 		// Retrieve model resourceSet
 		ResourceSet pkge_resourceSet = _package.eResource().getResourceSet();
-		
+
 		// Retrieve profile resource
 		URI prof_URI = _profile.eResource().getURI();
-		Resource modelResource = pkge_resourceSet.getResource(prof_URI,true);
-			
+		Resource modelResource = pkge_resourceSet.getResource(prof_URI, true);
+
 		if (modelResource.getContents().get(0) instanceof Profile) {
-			
+
 			// ckeck applied profile application definition vs profile definition referenced in file
 			Profile profileInFile = (Profile) (modelResource.getContents().get(0));
-			
+
 			if (_package.getProfileApplication(_profile) != null) {
 				EPackage appliedProfileDefinition = _package.getProfileApplication(_profile).getAppliedDefinition();
-				EPackage fileProfileDefinition    = null;
-				
+				EPackage fileProfileDefinition = null;
+
 				// Check profiles qualified names to ensure the correct profiles are compared
 				String appliedProfileName = _profile.getQualifiedName();
 				String fileProfileName = profileInFile.getQualifiedName();
-				if ( ! appliedProfileName.equals(fileProfileName)) {
-					
+				if (!appliedProfileName.equals(fileProfileName)) {
+
 					// The profile must be a subprofile
 					Iterator<Profile> it = PackageUtil.getSubProfiles(profileInFile).iterator();
 					while (it.hasNext()) {
@@ -562,16 +553,16 @@ public class ProfileComposite extends Composite {
 						}
 					}
 				}
-				
+
 				fileProfileDefinition = profileInFile.getDefinition();
-				
+
 				if (appliedProfileDefinition != fileProfileDefinition) {
 					isDirty = true;
 				}
 			}
-			
+
 		}
-		
+
 		return isDirty;
 	}
 }

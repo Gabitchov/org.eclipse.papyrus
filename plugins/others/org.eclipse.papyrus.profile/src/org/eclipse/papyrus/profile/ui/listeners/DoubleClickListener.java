@@ -11,7 +11,7 @@
 package org.eclipse.papyrus.profile.ui.listeners;
 
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.papyrus.profile.tree.objects.PropertyTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.ValueTreeObject;
 import org.eclipse.papyrus.profile.ui.panels.AbstractPanel;
 import org.eclipse.swt.widgets.Event;
@@ -59,8 +59,8 @@ public class DoubleClickListener implements Listener {
 	 * @param e the e
 	 */
 	public void handleEvent(Event e) {
-		if((e.widget != null) && (e.widget.getData() != null) && (e.widget.getData() instanceof PropertyTreeObject)){
-			PropertyTreeObject pto = (PropertyTreeObject)e.widget.getData();
+		if((e.widget != null) && (e.widget.getData() != null) && (e.widget.getData() instanceof AppliedStereotypePropertyTreeObject)){
+			AppliedStereotypePropertyTreeObject pto = (AppliedStereotypePropertyTreeObject)e.widget.getData();
 			if((pto.getProperty() != null) && pto.getProperty().isReadOnly())
 				return;
 		}

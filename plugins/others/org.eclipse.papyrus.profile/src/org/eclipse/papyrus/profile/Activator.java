@@ -24,14 +24,14 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * 
 	 */
-	public static final String PLUGIN_ID = "com.cea.papyrus.profile";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.profile";
 
 	// The shared instance
 	/**
 	 * 
 	 */
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor.
 	 */
@@ -41,14 +41,15 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param context 
+	 * @param context
 	 * 
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -56,14 +57,15 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param context 
+	 * @param context
 	 * 
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -78,28 +80,25 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
-	
+
 	/**
 	 * Logs an error into the plugin's log
-	 * @param string the message of the error
+	 * 
+	 * @param string
+	 *            the message of the error
 	 */
 	public static void logWarning(String string) {
-		getDefault().getLog().log(new Status(
-				IStatus.WARNING,
-				PLUGIN_ID,
-				string));
+		getDefault().getLog().log(new Status(IStatus.WARNING, PLUGIN_ID, string));
 	}
 
-	
 	/**
 	 * Logs an error into the plugin's log
-	 * @param string the message of the error
+	 * 
+	 * @param string
+	 *            the message of the error
 	 */
 	public static void logError(String string) {
-		getDefault().getLog().log(new Status(
-				IStatus.ERROR,
-				PLUGIN_ID,
-				string));
+		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, string));
 	}
 
 }

@@ -8,7 +8,7 @@
  * Contributors:
  *     CEA List - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.profile.ui.composites;
+package org.eclipse.papyrus.profile.ui.compositesformodel;
 
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.jface.viewers.TreeViewer;

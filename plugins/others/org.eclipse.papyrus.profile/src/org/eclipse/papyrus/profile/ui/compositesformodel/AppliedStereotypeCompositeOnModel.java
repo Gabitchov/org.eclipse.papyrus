@@ -1,0 +1,523 @@
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.profile.ui.compositesformodel;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.profile.Activator;
+import org.eclipse.papyrus.profile.preference.ProfilePreferenceConstants;
+import org.eclipse.papyrus.profile.tree.ProfileElementContentProvider;
+import org.eclipse.papyrus.profile.tree.ProfileElementLabelProvider;
+import org.eclipse.papyrus.profile.tree.ProfileElementTreeViewerFilter;
+import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypeTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
+import org.eclipse.papyrus.profile.ui.dialogs.ChooseSetStereotypeDialog;
+import org.eclipse.papyrus.profile.ui.panels.AppliedStereotypePanel;
+import org.eclipse.papyrus.profile.utils.Util;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
+
+// TODO: Auto-generated Javadoc
+/**
+ * This composite is used to display applied stereotype in the model. It allows applying or desapply a stereotype
+ */
+public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite implements ISelectionChangedListener {
+
+	/**
+	 * Gets the domain.
+	 * 
+	 * @return the domain
+	 */
+	public TransactionalEditingDomain getDomain() {
+		return domain;
+	}
+
+	/**
+	 * Sets the domain.
+	 * 
+	 * @param domain
+	 *            the new domain
+	 */
+	public void setDomain(TransactionalEditingDomain domain) {
+		this.domain = domain;
+	}
+
+	/** The panel that display applied stereotypes. */
+	private AppliedStereotypePanel appliedStereotypePanel;
+
+	/** The domain. */
+	private TransactionalEditingDomain domain;
+
+	/** The label. */
+	protected CLabel label;
+
+	/**
+	 * The default constructor.
+	 * 
+	 * @param parent
+	 *            the parent Composite for this panel
+	 */
+	public AppliedStereotypeCompositeOnModel(AppliedStereotypePanel parent) {
+		super(parent, SWT.NONE, "Applied stereotypes", true);
+
+		appliedStereotypePanel = parent;
+	}
+
+	/**
+	 * create a composite applied stereotype on model.
+	 * 
+	 * @param parent
+	 *            the parent composite
+	 */
+	public AppliedStereotypeCompositeOnModel(Composite parent) {
+		super(parent, SWT.NONE, "Applied stereotypes", true);
+	}
+
+	/**
+	 * apply a stereotype on current selected element.
+	 */
+	protected void addAppliedStereotype() {
+
+		// Open stereotype selection (may add or remove)
+		ChooseSetStereotypeDialog dialog = new ChooseSetStereotypeDialog(this.getShell(), getSelected());
+		int result = dialog.open();
+
+		if (result == ChooseSetStereotypeDialog.OK) {
+			// Retrieve selected element
+			Element element = getSelected();
+
+			// compare the 2 lists (present list and future list
+			EList<Stereotype> oldStereotypeList = element.getAppliedStereotypes();
+			ArrayList<Stereotype> newStereotypeList = dialog.getSelectedElements();
+
+			// Keep newStereotype order (will be used at the end of the method)
+			EList<Stereotype> newOrderList = new BasicEList<Stereotype>();
+			newOrderList.addAll(newStereotypeList);
+
+			// If the 2 lists differ, apply the new list of stereotypes
+			if (!(newStereotypeList.equals(oldStereotypeList))) {
+
+				// Parse old list :
+				// if stereotype is in the new list : it is already applied
+				// --> don't unapply it
+				// --> remove it from new list
+				Iterator<Stereotype> it = oldStereotypeList.iterator();
+				while (it.hasNext()) {
+					Stereotype currentStOld = (Stereotype) it.next();
+					if (newStereotypeList.contains(currentStOld)) {
+						newStereotypeList.remove(currentStOld);
+					} else {
+						unapplyStereotype(element, currentStOld);
+					}
+				}
+
+				// Already applied stereotype should have been removed
+				// apply others
+				Iterator<Stereotype> newApplyStereotypes = newStereotypeList.iterator();
+				while (newApplyStereotypes.hasNext()) {
+					Stereotype currentStereotype = (Stereotype) newApplyStereotypes.next();
+					applyStereotype(element, currentStereotype);
+				}
+
+				// Update Stereotype order
+				this.reorderStereotypeApplications(element, newOrderList);
+
+				// checkSelection(null);
+				selectionChanged(null);
+
+				if (appliedStereotypePanel != null) {
+					appliedStereotypePanel.refresh();
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * Button action : open a selection dialog box that allow the user to choose stereotypes to apply (or unapply).
+	 */
+	@Override
+	public void addButtonPressed() {
+		addAppliedStereotype();
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory) {
+		super.createContent(parent, factory);
+		createStereotypesTree();
+
+		return this;
+	}
+
+	/**
+	 * Creates the stereotypes tree.
+	 * 
+	 * @return the tree of applied stereotypes and properties
+	 */
+	private void createStereotypesTree() {
+		// Tree viewer shows applied stereotypes
+		treeViewer.setContentProvider(new ProfileElementContentProvider());
+		treeViewer.setLabelProvider(new ProfileElementLabelProvider());
+		treeViewer.addFilter(new ProfileElementTreeViewerFilter());
+		treeViewer.addSelectionChangedListener(this);
+	}
+
+	/**
+	 * Button action : modify display order of stereotypes (selected elements are pushed down in the list).
+	 */
+	@Override
+	public void downButtonPressed() {
+		int nbrOfSelection = getTree().getSelectionCount();
+		if (nbrOfSelection < 1) {
+			return;
+		}
+
+		TreeItem[] items = getTree().getSelection();
+		int indexLast = getTree().indexOf(items[items.length - 1]);
+		if (indexLast + 1 >= getSelected().getAppliedStereotypes().size()) {
+			// do nothing
+			return;
+		}
+
+		for (int i = 0; i < nbrOfSelection; i++) {
+			TreeItem item = items[nbrOfSelection - 1 - i];
+			if (item.getData() instanceof AppliedStereotypeTreeObject) {
+				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
+				EList stereotypes = new BasicEList();
+				stereotypes.addAll(element.getAppliedStereotypes());
+
+				int index = stereotypes.indexOf(sTO.getStereotype());
+				if ((index == -1) || (index >= stereotypes.size() - 1)) {
+					// Not found of already on top...
+					return;
+				}
+
+				stereotypes.move(index + 1, sTO.getStereotype());
+				this.reorderStereotypeApplications(element, stereotypes);
+			}
+		}
+	}
+
+	/**
+	 * Edits the item.
+	 * 
+	 * @param item
+	 *            the item
+	 */
+	@Override
+	public void editItem(TreeItem item) {
+		// do nothing
+	}
+
+	/**
+	 * Gets the selected.
+	 * 
+	 * @return Returns the selected element.
+	 */
+	public Element getSelected() {
+		return appliedStereotypePanel.getSelected();
+	}
+
+	/**
+	 * Gets the tree.
+	 * 
+	 * @return the tree
+	 */
+	public Tree getTree() {
+		return treeViewer.getTree();
+	}
+
+	/**
+	 * Checks if is in stereotype display.
+	 * 
+	 * @param st
+	 *            the sterotype
+	 * 
+	 * @return true, if checks if is in stereotype display
+	 */
+	protected Boolean isInStereotypeDisplay(Stereotype st) {
+		return false;
+	}
+
+	/**
+	 * Refresh the content of applied the applied stereotype tree.
+	 */
+	@Override
+	public void refresh() {
+		if (treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
+			treeViewer.setInput(null);
+			treeViewer.refresh();
+			if (element != null) {
+				treeViewer.setInput(new StereotypedElementTreeObject(element));
+			}
+			StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) treeViewer.getInput();
+			if (rTO == null) {
+				return;
+			}
+
+			// If the property is Multivalued show Up - Down
+			if ((rTO.getChildren() != null) && (rTO.getChildren().length > 1)) {
+				upButton.setEnabled(true);
+				downButton.setEnabled(true);
+			} else {
+				upButton.setEnabled(false);
+				downButton.setEnabled(false);
+			}
+
+			if ((rTO.getChildren() != null) && (rTO.getChildren().length == 0)) {
+				removeButton.setEnabled(false);
+			} else {
+				removeButton.setEnabled(true);
+			}
+		}
+	}
+
+	/**
+	 * Button action : unaply the stereotypes selected by the user in the stereotype tree.
+	 */
+	@Override
+	public void removeButtonPressed() {
+		unapplyStereotype();
+	}
+
+	/**
+	 * Selection changed.
+	 * 
+	 * @param event
+	 *            the event
+	 */
+	public void selectionChanged(SelectionChangedEvent event) {
+		if (appliedStereotypePanel != null) {
+			if (event == null) {
+				appliedStereotypePanel.setSelectedProperty(null);
+				return;
+			}
+
+			IStructuredSelection structSelection = (IStructuredSelection) event.getSelection();
+			Object selection = structSelection.getFirstElement();
+			if (selection instanceof AppliedStereotypePropertyTreeObject) {
+				appliedStereotypePanel.setSelectedProperty((AppliedStereotypePropertyTreeObject) selection);
+			} else {
+				appliedStereotypePanel.setSelectedProperty(null);
+			}
+
+		}
+	}
+
+	/**
+	 * Sets the input.
+	 * 
+	 * @param element
+	 *            the element
+	 */
+	public void setInput(StereotypedElementTreeObject element) {
+		treeViewer.setInput(element);
+		if (Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STEREOTYPES_TREE)) {
+			treeViewer.expandAll();
+		}
+	}
+
+	/**
+	 * unapply stereotype on current selected element.
+	 */
+	protected void unapplyStereotype() {
+		int nbrOfSelection = getTree().getSelectionCount();
+		if (nbrOfSelection == 0) {
+			return;
+		}
+
+		for (int i = 0; i < nbrOfSelection; i++) {
+			TreeItem item = getTree().getSelection()[i];
+			if (item.getData() instanceof AppliedStereotypeTreeObject) {
+				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
+				unapplyStereotype(element, sTO.getStereotype());
+				sTO.removeMe();
+			}
+		}
+		if (appliedStereotypePanel != null)
+			appliedStereotypePanel.refresh();
+		else
+			refresh();
+	}
+
+	/**
+	 * Button action : modify display order of stereotypes (selected elements are pushed up in the list).
+	 */
+	@Override
+	public void upButtonPressed() {
+		int nbrOfSelection = getTree().getSelectionCount();
+		if (nbrOfSelection < 1) {
+			return;
+		}
+
+		TreeItem[] items = getTree().getSelection();
+		int indexFirst = getTree().indexOf(items[0]);
+		if (indexFirst == 0) {
+			// do nothing
+			return;
+		}
+
+		for (int i = 0; i < nbrOfSelection; i++) {
+			TreeItem item = items[i];
+			if (item.getData() instanceof AppliedStereotypeTreeObject) {
+				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
+				EList stereotypes = new BasicEList();
+				stereotypes.addAll(element.getAppliedStereotypes());
+
+				int index = stereotypes.indexOf(sTO.getStereotype());
+				if (index < 1) {
+					return;
+				}
+
+				stereotypes.move(index - 1, sTO.getStereotype());
+				this.reorderStereotypeApplications(element, stereotypes);
+			}
+		}
+		if (appliedStereotypePanel != null)
+			appliedStereotypePanel.refresh();
+		else
+			refresh();
+	}
+
+	/**
+	 * Apply stereotype.
+	 * 
+	 * @param elt
+	 *            the elt
+	 * @param st
+	 *            the st
+	 */
+	protected void applyStereotype(final Element elt, final Stereotype st) {
+		try {
+
+			getDomain().runExclusive(new Runnable() {
+
+				public void run() {
+
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						public void run() {
+							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+
+								protected void doExecute() {
+									elt.applyStereotype(st);
+									refresh();
+								}
+							});
+						}
+					});
+				}
+			});
+
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+
+	}
+
+	/**
+	 * Unapply stereotype.
+	 * 
+	 * @param elt
+	 *            the uml element
+	 * @param st
+	 *            the stereotype to unapply
+	 */
+	protected void unapplyStereotype(final Element elt, final Stereotype st) {
+		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
+		try {
+
+			getDomain().runExclusive(new Runnable() {
+
+				public void run() {
+
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						public void run() {
+							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+
+								protected void doExecute() {
+									elt.unapplyStereotype(st);
+									refresh();
+								}
+							});
+						}
+					});
+				}
+			});
+
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+
+	}
+
+	/**
+	 * change the order of applied stereotype
+	 * 
+	 * @param element
+	 *            the UML element where stereotypes are applied
+	 * @param stereotypes
+	 *            the lis of applied stereotypes with the wanted order
+	 */
+	public void reorderStereotypeApplications(final Element element, final EList stereotypes) {
+		try {
+
+			getDomain().runExclusive(new Runnable() {
+
+				public void run() {
+
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						public void run() {
+							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+
+								protected void doExecute() {
+									Util.reorderStereotypeApplications(element, stereotypes);
+									refresh();
+								}
+							});
+						}
+					});
+				}
+			});
+
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+
+	}
+
+}

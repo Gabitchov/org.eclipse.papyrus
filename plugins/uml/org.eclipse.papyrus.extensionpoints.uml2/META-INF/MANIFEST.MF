@@ -12,3 +12,9 @@ Require-Bundle: org.eclipse.core.runtime,
  com.ibm.icu,
  org.eclipse.emf.mapping.ecore2xml
 Eclipse-LazyStart: true
+Provide-Package: org.eclipse.papyrus.extensionpoints.uml2,
+ org.eclipse.papyrus.extensionpoints.uml2.library,
+ org.eclipse.papyrus.extensionpoints.uml2.metamodel,
+ org.eclipse.papyrus.extensionpoints.uml2.profile,
+ org.eclipse.papyrus.extensionpoints.uml2.standard,
+ org.eclipse.papyrus.extensionpoints.uml2.utils

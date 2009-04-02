@@ -28,7 +28,7 @@ public class EnumerationValueTreeObject extends ValueTreeObject {
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public EnumerationValueTreeObject(PropertyTreeObject parent, Object value) {
+	public EnumerationValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 		this.value = value;
 	}
@@ -38,7 +38,7 @@ public class EnumerationValueTreeObject extends ValueTreeObject {
 	 */
 	@Override
 	public void editMe() {
-		PropertyTreeObject pTO = (PropertyTreeObject) getParent();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
 		Property property = pTO.getProperty();
 		Enumeration enumeration = (Enumeration) property.getType();
 

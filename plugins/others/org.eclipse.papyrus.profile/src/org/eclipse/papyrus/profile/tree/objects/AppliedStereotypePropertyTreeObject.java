@@ -22,13 +22,12 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class PropertyTreeObject.
  */
-public class PropertyTreeObject extends ParentTreeObject {
-	
+public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
+
 	/**
 	 * The property.
 	 */
@@ -37,10 +36,12 @@ public class PropertyTreeObject extends ParentTreeObject {
 	/**
 	 * The Constructor.
 	 * 
-	 * @param property the property
-	 * @param parent the parent
+	 * @param property
+	 *            the property
+	 * @param parent
+	 *            the parent
 	 */
-	public PropertyTreeObject(StereotypeTreeObject parent, Property property) {
+	public AppliedStereotypePropertyTreeObject(AppliedStereotypeTreeObject parent, Property property) {
 		super(parent, property);
 		this.property = property;
 	}
@@ -53,7 +54,7 @@ public class PropertyTreeObject extends ParentTreeObject {
 	public Property getProperty() {
 		return property;
 	}
-	
+
 	/**
 	 * Creates the children.
 	 */
@@ -67,7 +68,7 @@ public class PropertyTreeObject extends ParentTreeObject {
 
 		if (property.isMultivalued()) {
 			List values = (List) value;
-			Iterator it = values.iterator();		
+			Iterator it = values.iterator();
 			while (it.hasNext()) {
 				final Object currentValue = it.next();
 				ValueTreeObject vTO = createValueTreeObject(currentValue);
@@ -85,18 +86,19 @@ public class PropertyTreeObject extends ParentTreeObject {
 	 * @return the value
 	 */
 	public Object getValue() {
-		StereotypeTreeObject sTO = (StereotypeTreeObject) getParent();
-		RootElementTreeObject rTO= (RootElementTreeObject) sTO.getParent();
+		AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) getParent();
+		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) sTO.getParent();
 
 		Stereotype st = sTO.getStereotype();
-		Element elt   = rTO.getElement();
+		Element elt = rTO.getElement();
 		return elt.getValue(st, property.getName());
 	}
 
 	/**
 	 * Creates the value tree object.
 	 * 
-	 * @param value the value
+	 * @param value
+	 *            the value
 	 * 
 	 * @return the value tree object
 	 */
@@ -104,32 +106,32 @@ public class PropertyTreeObject extends ParentTreeObject {
 		Type type = property.getType();
 		// Select correct class based on its type
 		ValueTreeObject vTO = null;
-		
+
 		/** Property type is a PrimitiveType */
 		if (type instanceof PrimitiveType) {
-			vTO = PrimitiveTypeValueTreeObject.createInstance(this, value);	
-			
+			vTO = PrimitiveTypeValueTreeObject.createInstance(this, value);
+
 			/** Property type is a metaclass */
-		} else if (Util.isMetaclass(type)) {			
+		} else if (Util.isMetaclass(type)) {
 			vTO = new MetaclassValueTreeObject(this, value);
-			
+
 			/** Property type is an Enumeration */
 		} else if (type instanceof Enumeration) {
 			vTO = new EnumerationValueTreeObject(this, value);
-			
+
 			/** Property is a dataType */
 		} else if (type instanceof DataType) {
 			vTO = new DataTypeValueTreeObject(this, value);
-			
+
 			/** Property is a stereotype */
-		} else if (type instanceof Stereotype) {		
+		} else if (type instanceof Stereotype) {
 			vTO = new StereotypeValueTreeObject(this, value);
 
 			/** property is a composite class */
-		} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
+		} else if ((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
 			vTO = new CompositeValueTreeObject(this, value);
 		}
-		
+
 		return vTO;
 	}
 }

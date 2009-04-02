@@ -8,7 +8,7 @@
  * Contributors:
  *     CEA List - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.profile.ui.composites;
+package org.eclipse.papyrus.profile.ui.compositesformodel;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;

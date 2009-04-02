@@ -35,7 +35,7 @@ public class StereotypeValueTreeObject extends ValueTreeObject {
 	 * @param value the value
 	 * @param parent the parent
 	 */
-	public StereotypeValueTreeObject(PropertyTreeObject parent, Object value) {
+	public StereotypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, value);
 		this.value = value;
 	}
@@ -46,8 +46,8 @@ public class StereotypeValueTreeObject extends ValueTreeObject {
 	@Override
 	public void editMe() {
 		
-		PropertyTreeObject pTO = (PropertyTreeObject) getParent();
-		Element elt = ((RootElementTreeObject) getParent().getParent().getParent()).getElement();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
+		Element elt = ((StereotypedElementTreeObject) getParent().getParent().getParent()).getElement();
 		Property property = pTO.getProperty();
 		Type type = property.getType();
 		

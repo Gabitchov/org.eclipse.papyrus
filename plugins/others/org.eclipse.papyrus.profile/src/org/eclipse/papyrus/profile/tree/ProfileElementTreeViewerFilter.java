@@ -12,8 +12,8 @@ package org.eclipse.papyrus.profile.tree;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.profile.tree.objects.PropertyTreeObject;
-import org.eclipse.papyrus.profile.tree.objects.StereotypeTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypeTreeObject;
 
 
 // TODO: Auto-generated Javadoc
@@ -34,8 +34,8 @@ public class ProfileElementTreeViewerFilter extends ViewerFilter {
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		// TODO Auto-generated method stub
-		if ((element instanceof StereotypeTreeObject)
-				|| (element instanceof PropertyTreeObject)) {
+		if ((element instanceof AppliedStereotypeTreeObject)
+				|| (element instanceof AppliedStereotypePropertyTreeObject)) {
 			return true;
 		}
 		return false;

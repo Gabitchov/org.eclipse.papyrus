@@ -19,7 +19,7 @@ import org.eclipse.uml2.uml.Element;
  * The Class ParentTreeObject.
  */
 public abstract class ParentTreeObject extends TreeObject {
-	
+
 	/**
 	 * The children.
 	 */
@@ -28,8 +28,10 @@ public abstract class ParentTreeObject extends TreeObject {
 	/**
 	 * The Constructor.
 	 * 
-	 * @param element the element
-	 * @param parent the parent
+	 * @param element
+	 *            the element
+	 * @param parent
+	 *            the parent
 	 */
 	public ParentTreeObject(ParentTreeObject parent, Element element) {
 		super(parent, element);
@@ -38,78 +40,80 @@ public abstract class ParentTreeObject extends TreeObject {
 	/**
 	 * Adds the child.
 	 * 
-	 * @param child the child
+	 * @param child
+	 *            the child
 	 */
 	public void addChild(TreeObject child) {
 		children.add(child);
 	}
-	
+
 	/**
 	 * Removes the child.
 	 * 
-	 * @param child the child
+	 * @param child
+	 *            the child
 	 */
 	public void removeChild(TreeObject child) {
 		children.remove(child);
 	}
-	
+
 	/**
 	 * Move child up.
 	 * 
-	 * @param child the child
+	 * @param child
+	 *            the child
 	 */
 	public void moveChildUp(TreeObject child) {
 		if (children == null) {
 			return;
 		}
-		
+
 		int index = children.indexOf(child);
 		if (index < 1) {
 			// do nothing
 			return;
 		}
-		
+
 		TreeObject tmp = (TreeObject) children.get(index - 1);
 		children.set(index - 1, child);
 		children.set(index, tmp);
 	}
-	
+
 	/**
 	 * Move child down.
 	 * 
-	 * @param child the child
+	 * @param child
+	 *            the child
 	 */
 	public void moveChildDown(TreeObject child) {
 		if (children == null) {
 			return;
 		}
-		
+
 		int index = children.indexOf(child);
 		if ((index == -1) || (index >= children.size() - 1)) {
 			// do nothing
 			return;
 		}
-		
+
 		TreeObject tmp = (TreeObject) children.get(index + 1);
 		children.set(index + 1, child);
 		children.set(index, tmp);
 	}
-	
+
 	/**
 	 * Gets the children.
 	 * 
 	 * @return the children
 	 */
-	public TreeObject [] getChildren() {
-		if (children == null) {
-			children = new ArrayList();
-			createChildren();
-		}	
-		return (TreeObject []) children.toArray(new TreeObject[children.size()]);
+	public TreeObject[] getChildren() {
+		// if (children == null) {
+		children = new ArrayList();
+		createChildren();
+		// }
+		return (TreeObject[]) children.toArray(new TreeObject[children.size()]);
 	}
 
-
-	
 	/* subclasses should override this method and add the child nodes */
 	/**
 	 * Creates the children.
