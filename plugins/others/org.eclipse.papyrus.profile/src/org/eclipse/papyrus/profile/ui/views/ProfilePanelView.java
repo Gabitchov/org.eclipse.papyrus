@@ -4,7 +4,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.profile.ui.panels.AbstractPanel;
 import org.eclipse.papyrus.profile.ui.panels.DefaultPanel;
-import org.eclipse.papyrus.profile.ui.panels.ProfilePanel;
+import org.eclipse.papyrus.profile.ui.panels.AppliedProfilePanel;
 import org.eclipse.papyrus.profile.ui.panels.AppliedStereotypePanel;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IPartListener;
@@ -164,9 +164,9 @@ public class ProfilePanelView extends ViewPart implements ISelectionListener, IP
 				panel.dispose();
 
 				if (currentTarget instanceof Package) {
-					panel = new ProfilePanel(this.parent, 0);
+					panel = new AppliedProfilePanel(this.parent, 0);
 					panel.createContent();
-					((ProfilePanel) panel).setSelected((Package) currentTarget);
+					((AppliedProfilePanel) panel).setSelected((Package) currentTarget);
 				} else if (currentTarget instanceof Element) {
 					panel = new AppliedStereotypePanel(this.parent, 0);
 					panel.createContent();

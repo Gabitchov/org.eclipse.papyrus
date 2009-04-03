@@ -11,7 +11,6 @@
 package org.eclipse.papyrus.profile.ui.dialogs;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -21,7 +20,6 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.extensionpoints.uml2.profile.RegisteredProfile;
 import org.eclipse.papyrus.extensionpoints.uml2.standard.ExtensionLabelProvider;
 import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
-import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.Package;
@@ -66,7 +64,7 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 	 * 
 	 * @return
 	 */
-	public boolean run() {
+	public List<Profile> run() {
 		// /*String message= "List of profiles\n";
 		// for(int i = 0; i < regProfiles.length ; i++) {
 		// message+= "|"+regProfiles[i].name+": "+regProfiles[i].qualifiednames+"|";
@@ -88,7 +86,7 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 	 * 
 	 * @return
 	 */
-	private boolean treatSelection() {
+	private List<Profile> treatSelection() {
 
 		// User selection
 		Object[] selection = this.getResult();
@@ -97,7 +95,7 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 		ResourceSet resourceSet = Util.getResourceSet(currentPackage);
 
 		if (selection == null) { // Cancel was selected
-			return hasChanged;
+			return new ArrayList<Profile>();
 		}
 
 		// This first list (listOfProfileToApply) contain every selected profile
@@ -130,13 +128,13 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 				processMsg.open();
 				Profile profileToApply = (Profile) (modelResource.getContents().get(0));
 				processMsg.close();
-				if (PackageUtil.getSubProfiles(profileToApply).isEmpty()) {
-					// No sub-profile -> apply profile directly
-					PackageUtil.applyProfile(currentPackage, profileToApply, false);
-				} else {
+				// if (PackageUtil.getSubProfiles(profileToApply).isEmpty()) {
+				// No sub-profile -> apply profile directly
+				// PackageUtil.applyProfile(currentPackage, profileToApply, false);
+				// } else {
 
-					listOfProfileToApply.add(profileToApply);
-				}
+				listOfProfileToApply.add(profileToApply);
+				// }
 			}
 		}
 
@@ -147,14 +145,12 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 
 			// Apply selected profile if ok was selected
 			if (Dialog.OK == returnValue) {
-				ArrayList<Profile> profilestoApply = (ArrayList<Profile>) profileDialog.getResult();
-				Iterator<Profile> iterator = profilestoApply.iterator();
-				while (iterator.hasNext()) {
-					PackageUtil.applyProfile(currentPackage, iterator.next(), false);
-				}
+				return (ArrayList<Profile>) profileDialog.getResult();
+			} else {
+				new ArrayList<Profile>();
 			}
 		}
-
-		return hasChanged;
+		return new ArrayList<Profile>();
 	}
+
 }

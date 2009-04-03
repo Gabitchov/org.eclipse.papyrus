@@ -11,25 +11,15 @@
 package org.eclipse.papyrus.profile.ui.compositeforview;
 
 import org.eclipse.jface.resource.JFaceColors;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.diagram.common.editparts.IUMLEditPart;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 
 //TODO: Auto-generated Javadoc
 /**
  * The Class ProfileComposite to apply or unapply profile only on model element withou view.
  */
-public class ProfileCompositeWithView extends org.eclipse.papyrus.profile.ui.compositesformodel.ProfileCompositeOnModel {
-
-	/**
-	 * The selection.
-	 */
-	protected ISelection selection;
+public class AppliedProfileCompositeWithView extends org.eclipse.papyrus.profile.ui.compositesformodel.AppliedProfileCompositeOnModel {
 
 	/**
 	 * The Constructor.
@@ -39,84 +29,38 @@ public class ProfileCompositeWithView extends org.eclipse.papyrus.profile.ui.com
 	 * @param factory
 	 *            the factory
 	 */
-	public ProfileCompositeWithView(Composite parent, TabbedPropertySheetWidgetFactory factory) {
+	public AppliedProfileCompositeWithView(Composite parent, TabbedPropertySheetWidgetFactory factory) {
 		super(parent, factory);
 		this.setBackground(JFaceColors.getBannerBackground(parent.getDisplay()));
-	}
-
-	/**
-	 * Sets the selection.
-	 * 
-	 * @param selection
-	 *            the selection
-	 */
-	public void setSelection(ISelection selection) {
-		this.selection = selection;
-	}
-
-	/**
-	 * Gets the selected.
-	 * 
-	 * @return the selected
-	 */
-	@Override
-	public org.eclipse.uml2.uml.Package getSelected() {
-		Object input = ((IStructuredSelection) selection).getFirstElement();
-		if (input instanceof IUMLEditPart) {
-			if (((IUMLEditPart) input).getUMLElement() instanceof org.eclipse.uml2.uml.Package)
-				return ((org.eclipse.uml2.uml.Package) ((IUMLEditPart) input).getUMLElement());
-			else
-				return null;
-		} else
-			return null;
-	}
-
-	/**
-	 * Touch model.
-	 * 
-	 * @param elt
-	 *            the elt
-	 */
-	protected void touchModel(Element elt) {
-		if (elt instanceof NamedElement) {
-			((NamedElement) elt).setName(((NamedElement) elt).getName());
-		} else {
-			if (elt.getNearestPackage() != null) {
-				elt.getNearestPackage().setName(elt.getNearestPackage().getName());
-			}
-		}
 	}
 
 	/**
 	 * Adds the reg button pressed.
 	 */
 	@Override
-	protected void addRegButtonPressed() {
-		super.addRegButtonPressed();
-		touchModel(getSelected());
+	protected void registeredProfileButtonPressed() {
+		super.registeredProfileButtonPressed();
 	}
 
 	/**
 	 * Rem button pressed.
 	 */
 	@Override
-	protected void remButtonPressed() {
+	protected void unapplyProfileButtonPressed() {
 		// refreshGraphicalStereotypesdisplay((Profile) getProfiles().getData(getProfiles().getItem(getProfiles().getSelectionIndex())));
 		removeProfileDisplaying();
-		super.remButtonPressed();
+		super.unapplyProfileButtonPressed();
 		synchroniseGraphicalStereotypesdisplay();
-		touchModel(getSelected());
 	}
 
 	/**
 	 * Adds the button pressed.
 	 */
 	@Override
-	protected void addButtonPressed() {
-		super.addButtonPressed();
+	protected void applyProfileButtonPressed() {
+		super.applyProfileButtonPressed();
 		// refreshGraphicalStereotypesdisplay(super.profiletoApply);
 		synchroniseGraphicalStereotypesdisplay();
-		touchModel(getSelected());
 	}
 
 	/**

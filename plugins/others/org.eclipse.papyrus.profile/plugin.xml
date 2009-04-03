@@ -147,6 +147,12 @@
                id="AppliedStereotypeSectionWithView"
                tab="org.eclipse.papyrus.tabbedproperties.profile">
          </propertySection>
+         <propertySection
+               class="org.eclipse.papyrus.profile.ui.section.AppliedProfileSection"
+               filter="org.eclipse.papyrus.profile.filter.AppliedProfileSectionFilter"
+               id="AppliedProfileSection"
+               tab="org.eclipse.papyrus.tabbedproperties.profile">
+         </propertySection>
       </propertySections>
    </extension>
 

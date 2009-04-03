@@ -14,8 +14,8 @@ import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.ParentTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.TreeObject;
 
 // TODO: Auto-generated Javadoc
@@ -40,7 +40,6 @@ public class ProfileElementContentProvider implements IStructuredContentProvider
 	 *            the v
 	 */
 	public void inputChanged(Viewer v, Object oldInput, Object newInput) {
-		System.err.println("test inputChanged");
 	}
 
 	/**
