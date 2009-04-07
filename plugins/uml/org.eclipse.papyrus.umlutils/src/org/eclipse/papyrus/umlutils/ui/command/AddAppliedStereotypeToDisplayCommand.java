@@ -58,10 +58,13 @@ public class AddAppliedStereotypeToDisplayCommand extends CreateEAnnotationComma
 			stereoList = stereoList + ",";
 		}
 		stereoList = stereoList + stereotypeList;
-		EAnnotation appliedStereotypeEAnnotation = createEAnnotation();
-		replaceEannotation(appliedStereotypeEAnnotation, getObject());
-		replaceEntry(appliedStereotypeEAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, stereoList);
-		replaceEntry(appliedStereotypeEAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, appliedStereotypePresentationKind);
+		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST, AppliedStereotypeHelper.getStereotypesQNToDisplay(getObject()));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, stereoList);
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, appliedStereotypePresentationKind);
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(getObject()));
+		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), getObject());
+
 	}
 
 }

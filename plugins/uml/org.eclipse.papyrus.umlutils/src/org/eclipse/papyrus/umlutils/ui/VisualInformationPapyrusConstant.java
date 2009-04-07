@@ -28,6 +28,11 @@ public interface VisualInformationPapyrusConstant {
 	public static String STEREOTYPE_LIST = "StereotypeList";
 
 	/**
+	 * the list of steretype to display
+	 */
+	public static String STEREOTYPE_WITHQN_LIST = "StereotypeWithQualifiedNameList";
+
+	/**
 	 * 
 	 */
 	public static String TEXT_ICON_STEREOTYPE_PRESENTATION = "TextIconStereotype";

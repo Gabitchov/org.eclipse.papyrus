@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.umlutils.ui.command;
 
+import java.util.StringTokenizer;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -20,17 +22,12 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 
 /**
- * The Class SetAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to display
+ * The Class RemoveAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to display
  */
-public class SetAppliedStereotypeToDisplayCommand extends CreateEAnnotationCommand {
+public class RemoveAppliedStereotypePropertiesToDisplayCommand extends CreateEAnnotationCommand {
 
 	/** The qualified namedepht. */
-	private String stereotypeList;
-
-	/**
-	 * the presnetation kind of applied stereotypes
-	 */
-	private String appliedStereotypePresentationKind;
+	private String stereotypePropertiesListToRemove;
 
 	/**
 	 * Instantiates a new sets the applied stereotype to display command.
@@ -39,13 +36,12 @@ public class SetAppliedStereotypeToDisplayCommand extends CreateEAnnotationComma
 	 *            the domain
 	 * @param object
 	 *            the object
-	 * @param stereotypeList
+	 * @param stereotypePropertyList
 	 *            the stereotype list
 	 */
-	public SetAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain, EModelElement object, String stereotypeList, String appliedStereotypepresentationKind) {
+	public RemoveAppliedStereotypePropertiesToDisplayCommand(TransactionalEditingDomain domain, EModelElement object, String stereotypePropertyList) {
 		super(domain, object, VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		this.stereotypeList = stereotypeList;
-		this.appliedStereotypePresentationKind = appliedStereotypepresentationKind;
+		this.stereotypePropertiesListToRemove = stereotypePropertyList;
 	}
 
 	/**
@@ -53,13 +49,21 @@ public class SetAppliedStereotypeToDisplayCommand extends CreateEAnnotationComma
 	 */
 	@Override
 	protected void doExecute() {
+		String stereotypePropertiesList = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(this.getObject());
+
+		StringTokenizer appliedStereotypeToken = new StringTokenizer(stereotypePropertiesListToRemove, ",");
+		while (appliedStereotypeToken.hasMoreElements()) {
+			String tokenToRemove = appliedStereotypeToken.nextToken();
+			stereotypePropertiesList = stereotypePropertiesList.replaceAll("," + tokenToRemove.trim(), "");
+			stereotypePropertiesList = stereotypePropertiesList.replaceAll(tokenToRemove.trim(), "");
+		}
+
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST, AppliedStereotypeHelper.getStereotypesQNToDisplay(getObject()));
-		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, stereotypeList);
-		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, appliedStereotypePresentationKind);
-		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(getObject()));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, AppliedStereotypeHelper.getStereotypesToDisplay(getObject()));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getObject()));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, stereotypePropertiesList);
 		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), getObject());
 
 	}
-
 }

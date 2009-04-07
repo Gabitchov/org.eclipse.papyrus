@@ -19,7 +19,10 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.command.AddAppliedQNStereotypeToDisplayCommand;
+import org.eclipse.papyrus.umlutils.ui.command.AddAppliedStereotypePropertiesToDisplayCommand;
 import org.eclipse.papyrus.umlutils.ui.command.AddAppliedStereotypeToDisplayCommand;
+import org.eclipse.papyrus.umlutils.ui.command.RemoveAppliedStereotypePropertiesToDisplayCommand;
 import org.eclipse.papyrus.umlutils.ui.command.RemoveAppliedStereotypeToDisplayCommand;
 import org.eclipse.papyrus.umlutils.ui.command.SetAppliedStereotypeToDisplayCommand;
 
@@ -36,7 +39,42 @@ public class AppliedStereotypeHelper {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			String stereotypesToDisplay = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_LIST);
-			return stereotypesToDisplay;
+			if (stereotypesToDisplay != null) {
+				return stereotypesToDisplay;
+			}
+		}
+		return "";
+	}
+
+	public static String getAppliedStereotypesPropertiesToDisplay(EModelElement view) {
+		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+		if (stereotypeDisplayKind != null) {
+			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
+
+			String stereotypesToDisplay = entries.get(VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY);
+			if (stereotypesToDisplay != null) {
+				return stereotypesToDisplay;
+			}
+		}
+		return "";
+	}
+
+	/**
+	 * get lhe list of stereotype to display with the qulifiedName
+	 * 
+	 * @param view
+	 *            the view of the uml element
+	 * @return the list of applied stereotype to display withe their qualified name
+	 */
+	public static String getStereotypesQNToDisplay(EModelElement view) {
+		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+		if (stereotypeDisplayKind != null) {
+			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
+
+			String stereotypesToDisplay = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST);
+			if (stereotypesToDisplay != null) {
+				return stereotypesToDisplay;
+			}
 		}
 		return "";
 	}
@@ -50,12 +88,14 @@ public class AppliedStereotypeHelper {
 	 *         VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION,
 	 *         VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION
 	 */
-	public static String getAppliedSterotypePresentationKind(EModelElement view) {
+	public static String getAppliedStereotypePresentationKind(EModelElement view) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 			String stereotypespresentationKind = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND);
-			return stereotypespresentationKind;
+			if (stereotypespresentationKind != null) {
+				return stereotypespresentationKind;
+			}
 		}
 		return VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 	}
@@ -79,6 +119,21 @@ public class AppliedStereotypeHelper {
 	}
 
 	/**
+	 * add new applied stereotypes to display withe the qualified name
+	 * 
+	 * @param domain
+	 *            the transactionnal edit domain
+	 * @param view
+	 *            the emodel element that is the display of the uml element
+	 * @param appliedStereotypeList
+	 *            the list of stereotype with qualified name to display
+	 * @return the command to display it
+	 */
+	public static RecordingCommand getAddAppliedStereotypeToDisplayWithQNCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeList) {
+		return new AddAppliedQNStereotypeToDisplayCommand(domain, view, appliedStereotypeList);
+	}
+
+	/**
 	 * Gets the adds the applied stereotype command.
 	 * 
 	 * @param domain
@@ -97,6 +152,22 @@ public class AppliedStereotypeHelper {
 	}
 
 	/**
+	 * Gets the adds the applied stereotype propertiescommand.
+	 * 
+	 * @param domain
+	 *            the domain
+	 * @param view
+	 *            the view
+	 * @param appliedStereotypeListToAdd
+	 *            the applied stereotype properties list to add
+	 * 
+	 * @return the adds the applied stereotype command
+	 */
+	public static RecordingCommand getAddAppliedStereotypePropertiesCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeListToAdd) {
+		return new AddAppliedStereotypePropertiesToDisplayCommand(domain, view, appliedStereotypeListToAdd);
+	}
+
+	/**
 	 * Gets the removes the applied stereotype command.
 	 * 
 	 * @param domain
@@ -112,5 +183,16 @@ public class AppliedStereotypeHelper {
 	 */
 	public static RecordingCommand getRemoveAppliedStereotypeCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeListToRemove, String presentationKind) {
 		return new RemoveAppliedStereotypeToDisplayCommand(domain, view, appliedStereotypeListToRemove, presentationKind);
+	}
+
+	/**
+	 * 
+	 * @param domain
+	 * @param view
+	 * @param appliedStereotypeListToRemove
+	 * @return
+	 */
+	public static RecordingCommand getRemoveAppliedStereotypePropertiesCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeListToRemove) {
+		return new RemoveAppliedStereotypePropertiesToDisplayCommand(domain, view, appliedStereotypeListToRemove);
 	}
 }

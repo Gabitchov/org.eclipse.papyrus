@@ -56,6 +56,7 @@ public class RemoveAppliedStereotypeToDisplayCommand extends CreateEAnnotationCo
 	@Override
 	protected void doExecute() {
 		String stereoList = AppliedStereotypeHelper.getStereotypesToDisplay(this.getObject());
+
 		StringTokenizer appliedStereotypeToken = new StringTokenizer(stereotypeList, ",");
 		while (appliedStereotypeToken.hasMoreElements()) {
 			String token = appliedStereotypeToken.nextToken();
@@ -63,10 +64,20 @@ public class RemoveAppliedStereotypeToDisplayCommand extends CreateEAnnotationCo
 			stereoList = stereoList.replaceAll(token.trim(), "");
 		}
 
-		EAnnotation appliedStereotypeEAnnotation = createEAnnotation();
-		replaceEannotation(appliedStereotypeEAnnotation, getObject());
-		replaceEntry(appliedStereotypeEAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, stereoList);
-		replaceEntry(appliedStereotypeEAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, appliedStereotypePresentationKind);
-	}
+		String stereoListQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(this.getObject());
+		appliedStereotypeToken = new StringTokenizer(stereotypeList, ",");
+		while (appliedStereotypeToken.hasMoreElements()) {
+			String token = appliedStereotypeToken.nextToken();
+			stereoListQN = stereoListQN.replaceAll("," + token.trim(), "");
+			stereoListQN = stereoListQN.replaceAll(token.trim(), "");
+		}
 
+		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST, stereoListQN);
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, stereoList);
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, appliedStereotypePresentationKind);
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(getObject()));
+		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), getObject());
+
+	}
 }
