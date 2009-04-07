@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://schema.omg.org/spec/UML/2.1.1" xsi:schemaLocation="http://schema.omg.org/spec/UML/2.1.1 http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_0" name="testCase1">
+  <packagedElement xmi:type="uml:Package" xmi:id="package1" name="package1">
+    <ownedComment xmi:type="uml:Comment" xmi:id="package1-_ownedComment.0" annotatedElement="package1-Class3">
+      <body>&lt;p>&#xD;
+    Private visibility.&#xD;
+&lt;/p></body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="package1-Class1" name="Class1" isAbstract="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="package1-Class1-attribute1" name="attribute1" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/UML/2.1.1/uml.xml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="package1-Class1-attribute1-_lowerValue"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="package1-Class1-class3_1" name="class3_1" visibility="private" type="package1-Class3" association="package1-Association1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="package1-Class2" name="Class2">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="package1-Class2-attribute2" name="attribute2" visibility="protected">
+        <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/UML/2.1.1/uml.xml#Boolean"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="package1-Class2-attribute2-_defaultValue" value="true"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="package1-Class2-class3_2" name="class3_2" visibility="private" type="package1-Class3" association="package1-Association2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="package1-Class3" name="Class3" visibility="private">
+      <generalization xmi:type="uml:Generalization" xmi:id="package1-Class3-_generalization.0" general="package1-Class1" specific="package1-Class3"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="package1-Class3-_generalization.1" general="package1-Class2" specific="package1-Class3"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="package1-Class3-attribute3" name="attribute3" visibility="package">
+        <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/UML/2.1.1/uml.xml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="package1-Class3-attribute3-_upperValue" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="package1-Class3-attribute3-_lowerValue"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="package1-Class3-class1" name="class1" visibility="public" type="package1-Class1" aggregation="shared" association="package1-Association1">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="package1-Class3-class1-_upperValue" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="package1-Class3-class1-_lowerValue"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="package1-Class3-class2" name="class2" visibility="protected" type="package1-Class2" aggregation="composite" association="package1-Association2">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="package1-Class3-class2-_upperValue" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="package1-Class3-class3" name="class3" visibility="package" type="package1-Class3" association="package1-_packagedElement.3">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="package1-Class3-class3-_upperValue" value="3"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="package1-Class3-class3-_lowerValue" value="2"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="package1-_packagedElement.3" memberEnd="package1-_packagedElement.3-_ownedEnd.0 package1-Class3-class3">
+      <ownedEnd xmi:type="uml:Property" xmi:id="package1-_packagedElement.3-_ownedEnd.0" type="package1-Class3" owningAssociation="package1-_packagedElement.3" association="package1-_packagedElement.3">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="package1-_packagedElement.3-_ownedEnd.0-_lowerValue"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="package1-Association2" name="Association2" memberEnd="package1-Class3-class2 package1-Class2-class3_2"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="package1-Association1" name="Association1" memberEnd="package1-Class3-class1 package1-Class1-class3_1"/>
+  </packagedElement>
+</uml:Model>
