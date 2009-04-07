@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2009 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     CEA LIST - initial API and implementation
- *******************************************************************************/
+ *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.profile.utils;
 
 import java.util.Iterator;

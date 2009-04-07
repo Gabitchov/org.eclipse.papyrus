@@ -8,12 +8,12 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.section;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
@@ -95,39 +95,40 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		Assert.isTrue(selection instanceof IStructuredSelection);
-		Object input = ((IStructuredSelection) selection).getFirstElement();
+		if (selection instanceof IStructuredSelection) {
+			Object input = ((IStructuredSelection) selection).getFirstElement();
 
-		if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
-			appliedStereotypeComposite.setSelection(selection);
-			Element UMLElement = (Element) ((View) ((GraphicalEditPart) input).getModel()).getElement();
-			if (UMLElement != null) {
-				appliedStereotypeComposite.setElement(UMLElement);
-				appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement));
-			}
+			if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
+				appliedStereotypeComposite.setSelection(selection);
+				Element UMLElement = (Element) ((View) ((GraphicalEditPart) input).getModel()).getElement();
+				if (UMLElement != null) {
+					appliedStereotypeComposite.setElement(UMLElement);
+					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement));
+				}
 
-			diagramElement = (EModelElement) ((AbstractGraphicalEditPart) input).getModel();
-		} else {
-			// re-init the diagram element. Else, could cause a bug,
-			// when the user selects a diagram element, then a non diagram element.
-			// If display button is pressed, the "Toggle Display" button does not work correctly
-			diagramElement = null;
-		}
-		appliedStereotypeComposite.setDiagramElement(diagramElement);
-		// When the selection is computed from the outline, get the associated editor
-		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
-			if (contributedView != null) {
-				part = (IWorkbenchPart) contributedView.getContributingPart();
+				diagramElement = (EModelElement) ((AbstractGraphicalEditPart) input).getModel();
+			} else {
+				// re-init the diagram element. Else, could cause a bug,
+				// when the user selects a diagram element, then a non diagram element.
+				// If display button is pressed, the "Toggle Display" button does not work correctly
+				diagramElement = null;
 			}
+			appliedStereotypeComposite.setDiagramElement(diagramElement);
+			// When the selection is computed from the outline, get the associated editor
+			if (part instanceof ContentOutline) {
+				IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
+				if (contributedView != null) {
+					part = (IWorkbenchPart) contributedView.getContributingPart();
+				}
+			}
+			if (part instanceof IMultiDiagramEditor) {
+				IMultiDiagramEditor editor = (IMultiDiagramEditor) part;
+				BackboneContext backbone = editor.getDefaultContext();
+				editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
+				appliedStereotypeComposite.setDomain(editingDomain);
+			} else
+				editingDomain = null;
 		}
-		if (part instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor editor = (IMultiDiagramEditor) part;
-			BackboneContext backbone = editor.getDefaultContext();
-			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
-			appliedStereotypeComposite.setDomain(editingDomain);
-		} else
-			editingDomain = null;
 	}
 
 	/*

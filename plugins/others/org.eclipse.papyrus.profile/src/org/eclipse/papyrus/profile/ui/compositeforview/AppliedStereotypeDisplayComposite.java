@@ -1,16 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2006 CEA List.
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     CEA List - initial API and implementation
- *******************************************************************************/
-package org.eclipse.papyrus.profile.ui.compositesformodel;
+ *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.profile.ui.compositeforview;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -21,6 +24,7 @@ import org.eclipse.papyrus.profile.tree.ProfileElementLabelProvider;
 import org.eclipse.papyrus.profile.tree.ProfileElementTreeViewerFilter;
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
+import org.eclipse.papyrus.profile.ui.compositesformodel.AppearanceDecoratedTreeComposite;
 import org.eclipse.papyrus.profile.ui.panels.AppliedStereotypePanel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -28,13 +32,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Stereotype;
-
 
 /**
  * The Class StereotypeComposite.
  */
-public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeComposite implements ISelectionChangedListener {
+public class AppliedStereotypeDisplayComposite extends AppearanceDecoratedTreeComposite implements ISelectionChangedListener {
 
 	// the parent panel instance
 	/**
@@ -51,10 +53,12 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 	/**
 	 * The default constructor.
 	 * 
-	 * @param style the style of this panel
-	 * @param parent the parent Composite for this panel
+	 * @param style
+	 *            the style of this panel
+	 * @param parent
+	 *            the parent Composite for this panel
 	 */
-	public AppearanceStereotypeComposite(AppliedStereotypePanel parent) {
+	public AppliedStereotypeDisplayComposite(AppliedStereotypePanel parent) {
 		super(parent, SWT.NONE, "Applied stereotypes", true);
 
 		parentPanel = parent;
@@ -63,20 +67,19 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 	/**
 	 * 
 	 * 
-	 * @param parent 
+	 * @param parent
 	 */
-	public AppearanceStereotypeComposite(Composite parent) {
+	public AppliedStereotypeDisplayComposite(Composite parent) {
 		super(parent, SWT.NONE, "Applied stereotypes", true);
 	}
-
 
 	/**
 	 * 
 	 * 
-	 * @param factory 
-	 * @param parent 
+	 * @param factory
+	 * @param parent
 	 * 
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory) {
@@ -107,12 +110,13 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 	/**
 	 * Sets the input.
 	 * 
-	 * @param element the element
+	 * @param element
+	 *            the element
 	 */
 	public void setInput(StereotypedElementTreeObject element) {
 		treeViewer.setInput(element);
-		//boolean toto = Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STERETOYPES_TREE);
-		if(Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STEREOTYPES_TREE)) {
+		// boolean toto = Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STERETOYPES_TREE);
+		if (Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STEREOTYPES_TREE)) {
 			treeViewer.expandAll();
 		}
 	}
@@ -123,11 +127,10 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 	@Override
 	public void refresh() {
 
-		if(treeViewer.getTree()!= null && !(treeViewer.getTree().isDisposed())) {
+		if (treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
 			treeViewer.refresh();
 		}
 	}
-
 
 	/**
 	 * Creates the stereotypes tree.
@@ -142,61 +145,13 @@ public class AppearanceStereotypeComposite extends AppearanceDecoratedTreeCompos
 		treeViewer.addSelectionChangedListener(this);
 	}
 
-
-	/**
-	 * stereotypes display handling *.
-	 * 
-	 * @param st 
-	 */
-	protected void addStereotypeDisplay(Stereotype st) {
-		//do nothing
-	}
-
 	/**
 	 * 
 	 * 
-	 * @param appliedStereotypes 
-	 */
-	protected void buildStereotypeDisplay(EList<?> appliedStereotypes) {
-		//do nothing
-	}
-
-	/**
-	 * 
-	 * 
-	 * @param st 
-	 */
-	protected void removeStereotypeDisplay(Stereotype st){
-		//do nothing
-	}
-
-	/**
-	 * 
-	 * 
-	 * @param st 
-	 * 
-	 * @return 
-	 */
-	protected Boolean isInStereotypeDisplay(Stereotype st) {
-		return false;
-	}
-
-	/**
-	 * 
-	 * 
-	 * @param stereotype 
-	 */
-	protected void removeStereotypePropertiesDisplay(Stereotype stereotype){
-		//do nothing
-	}
-
-	/**
-	 * 
-	 * 
-	 * @param event 
+	 * @param event
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
-		if(parentPanel != null){
+		if (parentPanel != null) {
 			if (event == null) {
 				parentPanel.setSelectedProperty(null);
 				return;

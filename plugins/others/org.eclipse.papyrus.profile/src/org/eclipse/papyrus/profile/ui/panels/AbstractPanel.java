@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2006 CEA List.
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     CEA List - initial API and implementation
- *******************************************************************************/
+ *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.panels;
 
 import org.eclipse.swt.widgets.Composite;
@@ -17,7 +21,6 @@ import org.eclipse.swt.widgets.Control;
 /**
  * Abstract panel for the Accord/UML view.<br>
  * 
- * @author Remi SCHNEKENBURGER
  */
 public abstract class AbstractPanel extends Composite {
 
@@ -29,8 +32,10 @@ public abstract class AbstractPanel extends Composite {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param style the style of this composite
-	 * @param parent the parent of this composite
+	 * @param style
+	 *            the style of this composite
+	 * @param parent
+	 *            the parent of this composite
 	 */
 	public AbstractPanel(Composite parent, int style) {
 		super(parent, style);
@@ -57,11 +62,11 @@ public abstract class AbstractPanel extends Composite {
 	public void exitAction() {
 		// do nothing
 	}
-	
+
 	/**
 	 * Refresh panel.
 	 */
 	public void refresh() {
-		
+
 	}
 }

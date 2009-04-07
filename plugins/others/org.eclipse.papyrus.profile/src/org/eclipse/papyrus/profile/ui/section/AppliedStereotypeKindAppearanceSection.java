@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.section;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -189,30 +188,31 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		Assert.isTrue(selection instanceof IStructuredSelection);
-		Object input = ((IStructuredSelection) selection).getFirstElement();
+		if (selection instanceof IStructuredSelection) {
+			Object input = ((IStructuredSelection) selection).getFirstElement();
 
-		if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
-			diagramElement = (EModelElement) ((GraphicalEditPart) input).getModel();
-		} else {
-			// re-init the diagram element. Else, could cause a bug,
-			// when the user selects a diagram element, then a non diagram element.
-			// If display button is pressed, the "Toggle Display" button does not work correctly
-			diagramElement = null;
-		}
-		// When the selection is computed from the outline, get the associated editor
-		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
-			if (contributedView != null) {
-				part = (IWorkbenchPart) contributedView.getContributingPart();
+			if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
+				diagramElement = (EModelElement) ((GraphicalEditPart) input).getModel();
+			} else {
+				// re-init the diagram element. Else, could cause a bug,
+				// when the user selects a diagram element, then a non diagram element.
+				// If display button is pressed, the "Toggle Display" button does not work correctly
+				diagramElement = null;
 			}
+			// When the selection is computed from the outline, get the associated editor
+			if (part instanceof ContentOutline) {
+				IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
+				if (contributedView != null) {
+					part = (IWorkbenchPart) contributedView.getContributingPart();
+				}
+			}
+			if (part instanceof IMultiDiagramEditor) {
+				IMultiDiagramEditor editor = (IMultiDiagramEditor) part;
+				BackboneContext backbone = editor.getDefaultContext();
+				domain = editor.getDefaultContext().getTransactionalEditingDomain();
+			} else
+				domain = null;
 		}
-		if (part instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor editor = (IMultiDiagramEditor) part;
-			BackboneContext backbone = editor.getDefaultContext();
-			domain = editor.getDefaultContext().getTransactionalEditingDomain();
-		} else
-			domain = null;
 	}
 
 	/**
@@ -230,7 +230,7 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 					comboStereotypeAppearance.setEnabled(true);
 					comboStereotypeAlignement.setEnabled(true);
 
-					final String stereotypePresentation = AppliedStereotypeHelper.getAppliedSterotypePresentationKind(diagramElement);
+					final String stereotypePresentation = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
 
 					if (stereotypePresentation != null) {
 

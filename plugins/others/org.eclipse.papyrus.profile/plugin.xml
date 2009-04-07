@@ -153,6 +153,13 @@
                id="AppliedProfileSection"
                tab="org.eclipse.papyrus.tabbedproperties.profile">
          </propertySection>
+         <propertySection
+               afterSection="AppliedStereotypeKindAppearanceSection"
+               class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeDisplaySection"
+               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               id="AppliedStereotypeDisplaySection"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
       </propertySections>
    </extension>
 

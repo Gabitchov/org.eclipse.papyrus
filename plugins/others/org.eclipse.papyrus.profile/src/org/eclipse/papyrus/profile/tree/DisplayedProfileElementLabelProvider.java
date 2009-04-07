@@ -23,14 +23,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.profile.ImageManager;
 import org.eclipse.papyrus.profile.Message;
+import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.BooleanValueTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.DataTypeValueTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.EnumerationValueTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.IntegerValueTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.MetaclassValueTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.PrimitiveTypeValueTreeObject;
-import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
-import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.StereotypeValueTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.StringValueTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.UnlimitedNaturalValueTreeObject;
@@ -52,7 +52,46 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * The Class ProfileElementLabelProvider.
  */
-public class ProfileElementLabelProvider extends LabelProvider {
+public class DisplayedProfileElementLabelProvider extends LabelProvider {
+
+	public String getDisplayedStereotypeWithQN() {
+		return displayedStereotypeWithQN;
+	}
+
+	public void setDisplayedStereotypeWithQN(String displayedStereotypeWithQN) {
+		this.displayedStereotypeWithQN = displayedStereotypeWithQN;
+	}
+
+	public String getDisplayedProperty() {
+		return displayedProperty;
+	}
+
+	public void setDisplayedProperty(String displayedProperty) {
+		this.displayedProperty = displayedProperty;
+	}
+
+	public String getDisplayedStereotype() {
+		return displayedStereotype;
+	}
+
+	public void setDisplayedStereotype(String displayedStereotype) {
+		this.displayedStereotype = displayedStereotype;
+	}
+
+	/**
+	 * list of display stereotypes
+	 */
+	private String displayedStereotype = "";
+
+	/**
+	 * list of display stereotypes with qualifiedName
+	 */
+	private String displayedStereotypeWithQN = "";
+
+	/**
+	 * list of displayed properties
+	 */
+	private String displayedProperty = "";
 
 	/** The Constant TAB. */
 	// public static final String TAB = String.valueOf("\u0009");
@@ -69,9 +108,22 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	@Override
 	public Image getImage(Object object) {
 		if (object instanceof AppliedStereotypeTreeObject) {
+			String text = (((AppliedStereotypeTreeObject) object).getStereotype().getQualifiedName());
+			if (displayedStereotypeWithQN.indexOf(text) != -1) {
+				return ImageManager.DISPLAYED_STEREOTYPE_QN;
+			}
+
+			if (displayedStereotype.indexOf(text) != -1) {
+				return ImageManager.IMG_STEREOTYPEDISPLAYED;
+			}
 			return ImageManager.IMG_STEREOTYPE;
 
 		} else if (object instanceof AppliedStereotypePropertyTreeObject) {
+			Property property = ((AppliedStereotypePropertyTreeObject) object).getProperty();
+			String tmpPaht = ((AppliedStereotypePropertyTreeObject) object).getParentStereotype().getQualifiedName() + "." + property.getLabel();
+			if (displayedProperty.indexOf(tmpPaht) != -1) {
+				return ImageManager.IMG_DISPLAYEDPROPERTY;
+			}
 			return ImageManager.IMG_PROPERTY;
 
 		} else if (object instanceof BooleanValueTreeObject) {

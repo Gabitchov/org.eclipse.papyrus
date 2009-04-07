@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2008 CEA List.
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     CEA List - initial API and implementation
- *******************************************************************************/
+ *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.compositesformodel;
 
 import org.eclipse.gef.commands.CommandStack;
@@ -23,47 +27,43 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 
-
 /**
  * Base class for appearance stereotype composite
  */
 public abstract class AppearanceDecoratedTreeComposite extends Composite implements ISectionComposite {
 
 	// child composites for the table composite
-	
-//	/** main composite of this complex composite */
-//	protected Composite composite;
+
+	// /** main composite of this complex composite */
+	// protected Composite composite;
 	/**
 	 * Label above the table.
 	 */
 	protected CLabel label;
-	
+
 	/**
 	 * Table that displays a property for the current element.
 	 */
 	protected Tree tree;
-	
+
 	/**
 	 * The tree viewer.
 	 */
 	protected TreeViewer treeViewer;
-		
-	
+
 	/**
 	 * Element selected in the Papyrus modeler.
 	 */
 	protected Element element;
-	
-	
+
 	// Construction parameters for the composite
 	/**
 	 * text of the label.
 	 */
 	protected String name;
-	
+
 	/**
-	 * returns the element that is selected in Papyrus tool, for which
-	 * properties are displayed in the property section.
+	 * returns the element that is selected in Papyrus tool, for which properties are displayed in the property section.
 	 * 
 	 * @return the element
 	 */
@@ -74,25 +74,27 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 	/**
 	 * Sets the element that holds property displyed in property section.
 	 * 
-	 * @param element the element to set
+	 * @param element
+	 *            the element to set
 	 */
 	public void setElement(Element element) {
 		this.element = element;
 	}
-	
+
 	/**
 	 * Constructor.
 	 * 
-	 * @param style 
-	 * @param isStereotypeTree 
-	 * @param name text of the Label on the top left of this composite
-	 * @param parent 
+	 * @param style
+	 * @param isStereotypeTree
+	 * @param name
+	 *            text of the Label on the top left of this composite
+	 * @param parent
 	 */
 	public AppearanceDecoratedTreeComposite(Composite parent, int style, String name, boolean isStereotypeTree) {
 		super(parent, style);
 		this.name = name;
 		this.setLayout(new FormLayout());
-			
+
 		if (isStereotypeTree) {
 			treeViewer = new ProfileElementTreeViewer(this);
 		} else {
@@ -100,25 +102,28 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 			treeViewer = new PropertyValueTreeViewer(this);
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cea.papyrus.ui.composites.ISectionComposite#createContent(org.eclipse.swt.widgets.Composite, org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param factory 
-	 * @param parent 
+	 * @param factory
+	 * @param parent
 	 * 
-	 * @return 
+	 * @return
 	 */
-	public Composite createContent(Composite parent,
-			TabbedPropertySheetWidgetFactory factory) {
+	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory) {
 
 		return this;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cea.papyrus.ui.composites.ISectionComposite#refresh()
 	 */
 	/**
@@ -126,25 +131,25 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 	 */
 	public void refresh() {
 	}
-		
+
 	/**
- * Returns the CommmandStack of the current editor.
- * 
- * @return the CommmandStack of the current editor
- */
+	 * Returns the CommmandStack of the current editor.
+	 * 
+	 * @return the CommmandStack of the current editor
+	 */
 	public CommandStack getCommandStack() {
-		if(getActiveEditor()!=null) {
+		if (getActiveEditor() != null) {
 			return (CommandStack) getActiveEditor().getAdapter(CommandStack.class);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Returns the current Editor.
 	 * 
 	 * @return the current editor
 	 */
 	public IEditorPart getActiveEditor() {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor(); 
-	}	
+		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+	}
 }

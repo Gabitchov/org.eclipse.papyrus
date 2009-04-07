@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.compositeforview;
@@ -158,7 +159,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							String presentationKind = AppliedStereotypeHelper.getAppliedSterotypePresentationKind(diagramElement);
+							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
 							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getDomain(), diagramElement, st.getQualifiedName(), presentationKind);
 							getDomain().getCommandStack().execute(command);
 						}
@@ -193,7 +194,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							String presentationKind = AppliedStereotypeHelper.getAppliedSterotypePresentationKind(diagramElement);
+							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
 							RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(getDomain(), diagramElement, st.getQualifiedName(), presentationKind);
 
 							getDomain().getCommandStack().execute(command);
