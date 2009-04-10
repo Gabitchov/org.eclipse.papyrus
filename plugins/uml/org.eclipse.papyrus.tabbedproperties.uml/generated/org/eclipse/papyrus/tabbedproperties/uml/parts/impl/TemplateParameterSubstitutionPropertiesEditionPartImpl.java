@@ -1,0 +1,579 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.papyrus.tabbedproperties.uml.parts.impl;
+
+// Start of user code for imports
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
+import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.ParameterableElement;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
+
+// End of user code
+/**
+ * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ */
+public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, TemplateParameterSubstitutionPropertiesEditionPart {
+
+	private EMFListEditUtil ownedCommentEditUtil;
+	private ReferencesTable<?> ownedComment;
+	private EMFListEditUtil actualEditUtil;
+	private ReferencesTable<?> actual;
+	private EMFListEditUtil ownedActualEditUtil;
+	private ReferencesTable<?> ownedActual;
+
+
+
+
+	
+	public TemplateParameterSubstitutionPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
+		super(editionComponent);
+	}
+	
+	public Composite createFigure(final Composite parent) {
+		view = new Composite(parent, SWT.NONE);
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 3;
+		view.setLayout(layout);	
+		
+		createControls(view);
+		
+		return view;
+	}
+	
+	public void createControls(Composite view) { 
+		createPropertiesGroup(view);
+		
+		// Start of user code for additional ui definition
+		
+		// End of user code		
+	}
+
+	protected void createPropertiesGroup(Composite parent) {
+		Group propertiesGroup = new Group(parent, SWT.NONE);
+		propertiesGroup.setText(UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_PropertiesGroupLabel);
+		GridData propertiesGroupData = new GridData(GridData.FILL_HORIZONTAL);
+		propertiesGroupData.horizontalSpan = 3;
+		propertiesGroup.setLayoutData(propertiesGroupData);
+		GridLayout propertiesGroupLayout = new GridLayout();
+		propertiesGroupLayout.numColumns = 3;
+		propertiesGroup.setLayout(propertiesGroupLayout);
+		createOwnedCommentTableComposition(propertiesGroup);
+		createActualReferencesTable(propertiesGroup);
+		createOwnedActualTableComposition(propertiesGroup);
+   	}
+	/**
+	 * @param container
+	 */
+	protected void createOwnedCommentTableComposition(Composite parent) {
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
+			public void handleAdd() { addToOwnedComment();}
+			public void handleEdit(Comment element) { editOwnedComment(element); }
+			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }			
+			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
+			public void navigateTo(Comment element) { System.out.println("---> navigateTo"); }
+		});
+		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateParameterSubstitution.ownedComment, UMLViewsRepository.SWT_KIND));
+		this.ownedComment.createControls(parent);
+		GridData ownedCommentData = new GridData(GridData.FILL_HORIZONTAL);
+		ownedCommentData.horizontalSpan = 3;
+		this.ownedComment.setLayoutData(ownedCommentData);
+	}
+		
+	/**
+	 * 
+	 */
+	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
+				
+		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
+		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
+		ownedComment.refresh();
+		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		
+	}	
+	
+	/**
+	 * 
+	 */
+	private void addToOwnedComment() {
+	
+		// Start of user code addToOwnedComment() method body
+
+
+		Comment eObject = UMLFactory.eINSTANCE.createComment();
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
+		if (editionPolicy != null) {
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			if (propertiesEditionObject != null) {
+				ownedCommentEditUtil.addElement(propertiesEditionObject);
+				ownedComment.refresh();
+				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+			}
+		}
+		
+		
+		// End of user code		
+	}
+
+	/**
+	 * 
+	 */
+	private void removeFromOwnedComment(Comment element) {
+
+		// Start of user code for the removeFromOwnedComment() method body
+
+		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
+		ownedCommentEditUtil.removeElement(element);
+		ownedComment.refresh();
+		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+
+		// End of user code
+	}
+
+	/**
+	 * 
+	 */
+	private void editOwnedComment(Comment element) {
+
+		// Start of user code editOwnedComment() method body
+				 
+		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		if (editionPolicy != null) {
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			if (propertiesEditionObject != null) {
+				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
+				ownedComment.refresh();
+				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+			}
+		}
+
+		// End of user code
+	}
+	protected void createActualReferencesTable(Composite parent) {
+		this.actual = new ReferencesTable<ParameterableElement>(UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_ActualLabel, new ReferencesTableListener<ParameterableElement>() {
+			public void handleAdd() {				
+				ViewerFilter actualFilter = new EObjectFilter(UMLPackage.eINSTANCE.getParameterableElement());
+				ViewerFilter viewerFilter = new ViewerFilter() {					
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!actualEditUtil.contains((EObject)element));
+						return false;					
+					}
+				};				
+				ViewerFilter[] filters = { actualFilter, viewerFilter };		
+				TabElementTreeSelectionDialog<ParameterableElement> dialog = new TabElementTreeSelectionDialog<ParameterableElement>(resourceSet, filters,
+				"ParameterableElement", UMLPackage.eINSTANCE.getParameterableElement()) {
+					@Override
+					public void process(IStructuredSelection selection) {						
+						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject) iter.next();
+							if (!actualEditUtil.getVirtualList().contains(elem))
+								actualEditUtil.addElement(elem);
+							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.actual,
+								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));	
+						}
+						actual.refresh();											
+					}
+				};
+				dialog.open();
+			}
+			public void handleEdit(ParameterableElement element) { editActual(element); }
+			public void handleMove(ParameterableElement element, int oldIndex, int newIndex) { moveActual(element, oldIndex, newIndex); }
+			public void handleRemove(ParameterableElement element) { removeFromActual(element); }
+			public void navigateTo(ParameterableElement element) { System.out.println("---> navigateTo"); }
+		});
+		this.actual.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateParameterSubstitution.actual, UMLViewsRepository.SWT_KIND));
+		this.actual.createControls(parent);
+		GridData actualData = new GridData(GridData.FILL_HORIZONTAL);
+		actualData.horizontalSpan = 3;
+		this.actual.setLayoutData(actualData);
+		this.actual.disableMove();
+	}
+	
+	/**
+	 * 
+	 */
+	private void moveActual(ParameterableElement element, int oldIndex, int newIndex) {
+	}
+	
+	/**
+	 * 
+	 */
+	private void removeFromActual(ParameterableElement element) {
+
+		// Start of user code for the removeFromActual() method body
+
+		EObject editedElement = actualEditUtil.foundCorrespondingEObject(element);
+		actualEditUtil.removeElement(element);
+		actual.refresh();
+		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.actual, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+
+		// End of user code
+	}
+
+	/**
+	 * 
+	 */
+	private void editActual(ParameterableElement element) {
+
+		// Start of user code editActual() method body
+				 
+		EObject editedElement = actualEditUtil.foundCorrespondingEObject(element);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		if (editionPolicy != null) {
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			if (propertiesEditionObject != null) {
+				actualEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
+				actual.refresh();
+				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.actual, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+			}
+		}
+
+		// End of user code
+	}
+	/**
+	 * @param container
+	 */
+	protected void createOwnedActualTableComposition(Composite parent) {
+		this.ownedActual = new ReferencesTable<ParameterableElement>(UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_OwnedActualLabel, new ReferencesTableListener<ParameterableElement>() {			
+			public void handleAdd() { addToOwnedActual();}
+			public void handleEdit(ParameterableElement element) { editOwnedActual(element); }
+			public void handleMove(ParameterableElement element, int oldIndex, int newIndex) { moveOwnedActual(element, oldIndex, newIndex); }			
+			public void handleRemove(ParameterableElement element) { removeFromOwnedActual(element); }
+			public void navigateTo(ParameterableElement element) { System.out.println("---> navigateTo"); }
+		});
+		this.ownedActual.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateParameterSubstitution.ownedActual, UMLViewsRepository.SWT_KIND));
+		this.ownedActual.createControls(parent);
+		GridData ownedActualData = new GridData(GridData.FILL_HORIZONTAL);
+		ownedActualData.horizontalSpan = 3;
+		this.ownedActual.setLayoutData(ownedActualData);
+	}
+		
+	/**
+	 * 
+	 */
+	private void moveOwnedActual(ParameterableElement element, int oldIndex, int newIndex) {
+	}	
+	
+	/**
+	 * 
+	 */
+	private void addToOwnedActual() {
+	
+		// Start of user code addToOwnedActual() method body
+
+		
+		// End of user code		
+	}
+
+	/**
+	 * 
+	 */
+	private void removeFromOwnedActual(ParameterableElement element) {
+
+		// Start of user code for the removeFromOwnedActual() method body
+
+		EObject editedElement = ownedActualEditUtil.foundCorrespondingEObject(element);
+		ownedActualEditUtil.removeElement(element);
+		ownedActual.refresh();
+		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedActual, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+
+		// End of user code
+	}
+
+	/**
+	 * 
+	 */
+	private void editOwnedActual(ParameterableElement element) {
+
+		// Start of user code editOwnedActual() method body
+				 
+		EObject editedElement = ownedActualEditUtil.foundCorrespondingEObject(element);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		if (editionPolicy != null) {
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			if (propertiesEditionObject != null) {
+				ownedActualEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
+				ownedActual.refresh();
+				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedActual, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+			}
+		}
+
+		// End of user code
+	}
+
+	
+	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+		// Start of user code for tab synchronization
+		
+		// End of user code		
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedCommentToAdd()
+	 */
+	public List getOwnedCommentToAdd() {
+		return ownedCommentEditUtil.getElementsToAdd();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedCommentToRemove()
+	 */
+	public List getOwnedCommentToRemove() {
+		return ownedCommentEditUtil.getElementsToRemove();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedCommentToEdit()
+	 */
+	public Map getOwnedCommentToEdit() {
+		return ownedCommentEditUtil.getElementsToRefresh();
+	};
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedCommentToMove()
+	 */
+	public List getOwnedCommentToMove() {
+		return ownedCommentEditUtil.getElementsToMove();
+	};
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedCommentTable()
+	 */
+	public List getOwnedCommentTable() {
+		return ownedCommentEditUtil.getVirtualList();
+	};
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 */
+	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
+		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+			this.resourceSet = current.eResource().getResourceSet();
+		if (containingFeature != null)
+			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
+		else	
+			ownedCommentEditUtil = new EMFListEditUtil(current, feature);	
+		this.ownedComment.setInput(ownedCommentEditUtil.getVirtualList());
+	}
+
+/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateOwnedComment(EObject newValue)
+	 */
+	public void updateOwnedComment(EObject newValue) {
+		if(ownedCommentEditUtil!=null){
+			ownedCommentEditUtil.reinit(newValue);
+			ownedComment.refresh();
+		}		
+	}
+	
+	public void setMessageForOwnedComment (String msg, int msgLevel) {
+	
+	}
+	
+	public void unsetMessageForOwnedComment () {
+	
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getActualToAdd()
+	 */
+	public List getActualToAdd() {
+		return actualEditUtil.getElementsToAdd();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getActualToRemove()
+	 */
+	public List getActualToRemove() {
+		return actualEditUtil.getElementsToRemove();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initActual(EObject current, EReference containingFeature, EReference feature)
+	 */
+	public void initActual(EObject current, EReference containingFeature, EReference feature) {
+		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+			this.resourceSet = current.eResource().getResourceSet();
+		if (containingFeature != null)
+			actualEditUtil = new EMFListEditUtil(current, containingFeature, feature);
+		else	
+			actualEditUtil = new EMFListEditUtil(current, feature);	
+		this.actual.setInput(actualEditUtil.getVirtualList());
+	}
+
+/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateActual(EObject newValue)
+	 */
+	public void updateActual(EObject newValue) {
+		if(actualEditUtil!=null){
+			actualEditUtil.reinit(newValue);
+			actual.refresh();
+		}		
+	}
+	
+	public void setMessageForActual (String msg, int msgLevel) {
+	
+	}
+	
+	public void unsetMessageForActual () {
+	
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedActualToAdd()
+	 */
+	public List getOwnedActualToAdd() {
+		return ownedActualEditUtil.getElementsToAdd();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedActualToRemove()
+	 */
+	public List getOwnedActualToRemove() {
+		return ownedActualEditUtil.getElementsToRemove();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedActualToEdit()
+	 */
+	public Map getOwnedActualToEdit() {
+		return ownedActualEditUtil.getElementsToRefresh();
+	};
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedActualToMove()
+	 */
+	public List getOwnedActualToMove() {
+		return ownedActualEditUtil.getElementsToMove();
+	};
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#getOwnedActualTable()
+	 */
+	public List getOwnedActualTable() {
+		return ownedActualEditUtil.getVirtualList();
+	};
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initOwnedActual(EObject current, EReference containingFeature, EReference feature)
+	 */
+	public void initOwnedActual(EObject current, EReference containingFeature, EReference feature) {
+		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+			this.resourceSet = current.eResource().getResourceSet();
+		if (containingFeature != null)
+			ownedActualEditUtil = new EMFListEditUtil(current, containingFeature, feature);
+		else	
+			ownedActualEditUtil = new EMFListEditUtil(current, feature);	
+		this.ownedActual.setInput(ownedActualEditUtil.getVirtualList());
+	}
+
+/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateOwnedActual(EObject newValue)
+	 */
+	public void updateOwnedActual(EObject newValue) {
+		if(ownedActualEditUtil!=null){
+			ownedActualEditUtil.reinit(newValue);
+			ownedActual.refresh();
+		}		
+	}
+	
+	public void setMessageForOwnedActual (String msg, int msgLevel) {
+	
+	}
+	
+	public void unsetMessageForOwnedActual () {
+	
+	}
+
+	
+	
+
+	
+	
+
+
+
+	// Start of user code additional methods
+ 	
+	// End of user code
+}	

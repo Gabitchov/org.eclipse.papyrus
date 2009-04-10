@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -435,9 +436,17 @@ public class AppliedProfileCompositeOnModel extends Composite {
 			if (((IUMLEditPart) input).getUMLElement() instanceof org.eclipse.uml2.uml.Package)
 				return ((org.eclipse.uml2.uml.Package) ((IUMLEditPart) input).getUMLElement());
 			else
-				return null;
-		} else
-			return null;
+				return null;		
+		} else if(input instanceof DiagramEditPart){
+			DiagramEditPart diagramEditPart = (DiagramEditPart)input;
+			if(diagramEditPart.resolveSemanticElement()!=null && diagramEditPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Package){
+				return (org.eclipse.uml2.uml.Package)diagramEditPart.resolveSemanticElement();
+			}
+		} else if(input instanceof org.eclipse.uml2.uml.Package){
+			//the selection is provided by the model explorer
+			return (org.eclipse.uml2.uml.Package)input;
+		}	
+		return null;
 	}
 
 	/**

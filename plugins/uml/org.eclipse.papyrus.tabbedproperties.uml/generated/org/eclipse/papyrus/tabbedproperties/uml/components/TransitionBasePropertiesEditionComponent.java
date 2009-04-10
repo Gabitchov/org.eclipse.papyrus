@@ -1,0 +1,618 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Obeo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.papyrus.tabbedproperties.uml.components;
+
+// Start of user code for imports
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
+import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement;
+import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Transition;
+import org.eclipse.uml2.uml.TransitionKind;
+import org.eclipse.uml2.uml.Trigger;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.VisibilityKind;
+
+// End of user code
+/**
+ * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ */
+public class TransitionBasePropertiesEditionComponent extends StandardPropertiesEditionComponent {
+
+	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	
+	private String[] parts = {BASE_PART};
+	
+	/**
+	 * The EObject to edit
+	 */
+	private Transition transition;
+	
+	/**
+	 * The Base part
+	 */
+	private TransitionPropertiesEditionPart basePart;
+	
+	/**
+	 * Default constructor
+	 */
+	public TransitionBasePropertiesEditionComponent(EObject transition, String mode) {
+		if (transition instanceof Transition) {
+			this.transition = (Transition)transition;
+			if (IPropertiesEditionComponent.LIVE_MODE.equals(mode)) {
+				semanticAdapter = initializeSemanticAdapter();
+				this.transition.eAdapters().add(semanticAdapter);
+			}
+		}
+		listeners = new ArrayList();
+		this.mode = mode;
+	}
+	
+	/**
+	 * Initialize the semantic model listener for live editing mode
+	 * @return the semantic model listener
+	 */
+	private AdapterImpl initializeSemanticAdapter() {
+		return new EContentAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
+			 */
+			public void notifyChanged(Notification msg) {
+				if (msg.getFeature() != null && 
+						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
+						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+					basePart.updateOwnedComment(transition);
+				}
+				if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
+					basePart.setName((String)msg.getNewValue());
+				if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					basePart.setVisibility((Enumerator)msg.getNewValue());
+				if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature())) {
+					basePart.updateClientDependency(transition);
+				}
+				if (msg.getFeature() != null && 
+						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_ElementImport()
+						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElementImport())) {
+					basePart.updateElementImport(transition);
+				}
+				if (msg.getFeature() != null && 
+						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_PackageImport()
+						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getPackageImport())) {
+					basePart.updatePackageImport(transition);
+				}
+				if (msg.getFeature() != null && 
+						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_OwnedRule()
+						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getConstraint())) {
+					basePart.updateOwnedRule(transition);
+				}
+				if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature()) && basePart != null)
+					basePart.setIsLeaf((Boolean)msg.getNewValue());
+				if (UMLPackage.eINSTANCE.getTransition_Kind().equals(msg.getFeature()) && basePart != null)
+					basePart.setKind((Enumerator)msg.getNewValue());
+				if (msg.getFeature() != null && 
+						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getTransition_Trigger()
+						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getTrigger())) {
+					basePart.updateTrigger(transition);
+				}
+
+
+			}
+
+		};
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
+	 */
+	public java.lang.Class translatePart(String key) {
+		if (BASE_PART.equals(key))
+			return UMLViewsRepository.Transition.class;
+		return super.translatePart(key);
+	}
+	
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#partsList()
+	 */
+	public String[] partsList() {
+		return parts;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
+	 * (java.lang.String, java.lang.String)
+	 */
+	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
+		if (transition != null && BASE_PART.equals(key)) {
+			if (basePart == null) {
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
+				if (provider != null) {
+					basePart = (TransitionPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Transition.class, kind, this);
+					listeners.add(basePart);
+				}
+			}
+			return (IPropertiesEditionPart)basePart;
+		}
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent
+	 * 		#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * 						org.eclipse.emf.ecore.resource.ResourceSet)
+	 */
+	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
+		if (basePart != null && key == UMLViewsRepository.Transition.class) {
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			Transition transition = (Transition)elt;
+			basePart.initOwnedComment(transition, null, UMLPackage.eINSTANCE.getElement_OwnedComment());				
+			if (transition.getName() != null)
+				basePart.setName(transition.getName());
+				
+			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), transition.getVisibility());				
+			basePart.initClientDependency(transition, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());				
+			basePart.initElementImport(transition, null, UMLPackage.eINSTANCE.getNamespace_ElementImport());				
+			basePart.initPackageImport(transition, null, UMLPackage.eINSTANCE.getNamespace_PackageImport());				
+			basePart.initOwnedRule(transition, null, UMLPackage.eINSTANCE.getNamespace_OwnedRule());				
+			basePart.setIsLeaf(transition.isLeaf());				
+			basePart.initKind((EEnum) UMLPackage.eINSTANCE.getTransition_Kind().getEType(), transition.getKind());				
+			basePart.initTrigger(transition, null, UMLPackage.eINSTANCE.getTransition_Trigger());				
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
+	 * (org.eclipse.emf.edit.domain.EditingDomain)
+	 */
+	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
+		CompoundCommand cc = new CompoundCommand();
+		if (transition != null) {
+			List ownedCommentToAdd = basePart.getOwnedCommentToAdd();
+			for (Iterator iter = ownedCommentToAdd.iterator(); iter.hasNext();)
+				cc.append(AddCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
+			Map ownedCommentToRefresh = basePart.getOwnedCommentToEdit();
+			for (Iterator iter = ownedCommentToRefresh.keySet().iterator(); iter.hasNext();) {
+			
+				// Start of user code for ownedComment reference refreshment
+				
+				Comment nextElement = (Comment) iter.next();
+				Comment ownedComment = (Comment) ownedCommentToRefresh.get(nextElement);
+				
+				// End of user code			
+			}
+			List ownedCommentToRemove = basePart.getOwnedCommentToRemove();
+			for (Iterator iter = ownedCommentToRemove.iterator(); iter.hasNext();)
+				cc.append(DeleteCommand.create(editingDomain, iter.next()));
+			List ownedCommentToMove = basePart.getOwnedCommentToMove();
+			for (Iterator iter = ownedCommentToMove.iterator(); iter.hasNext();){
+				MoveElement moveElement = (MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
+			}
+			cc.append(SetCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
+			cc.append(SetCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
+			List clientDependencyToAdd = basePart.getClientDependencyToAdd();
+			for (Iterator iter = clientDependencyToAdd.iterator(); iter.hasNext();)
+				cc.append(AddCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
+			List clientDependencyToRemove = basePart.getClientDependencyToRemove();
+			for (Iterator iter = clientDependencyToRemove.iterator(); iter.hasNext();)
+				cc.append(RemoveCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
+			//List clientDependencyToMove = basePart.getClientDependencyToMove();
+			//for (Iterator iter = clientDependencyToMove.iterator(); iter.hasNext();){
+			//	MoveElement moveElement = (MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List elementImportToAdd = basePart.getElementImportToAdd();
+			for (Iterator iter = elementImportToAdd.iterator(); iter.hasNext();)
+				cc.append(AddCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getNamespace_ElementImport(), iter.next()));
+			Map elementImportToRefresh = basePart.getElementImportToEdit();
+			for (Iterator iter = elementImportToRefresh.keySet().iterator(); iter.hasNext();) {
+			
+				// Start of user code for elementImport reference refreshment
+				
+				ElementImport nextElement = (ElementImport) iter.next();
+				ElementImport elementImport = (ElementImport) elementImportToRefresh.get(nextElement);
+				
+				// End of user code			
+			}
+			List elementImportToRemove = basePart.getElementImportToRemove();
+			for (Iterator iter = elementImportToRemove.iterator(); iter.hasNext();)
+				cc.append(DeleteCommand.create(editingDomain, iter.next()));
+			List elementImportToMove = basePart.getElementImportToMove();
+			for (Iterator iter = elementImportToMove.iterator(); iter.hasNext();){
+				MoveElement moveElement = (MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getElementImport(), moveElement.getElement(), moveElement.getIndex()));
+			}
+			List packageImportToAdd = basePart.getPackageImportToAdd();
+			for (Iterator iter = packageImportToAdd.iterator(); iter.hasNext();)
+				cc.append(AddCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getNamespace_PackageImport(), iter.next()));
+			Map packageImportToRefresh = basePart.getPackageImportToEdit();
+			for (Iterator iter = packageImportToRefresh.keySet().iterator(); iter.hasNext();) {
+			
+				// Start of user code for packageImport reference refreshment
+				
+				PackageImport nextElement = (PackageImport) iter.next();
+				PackageImport packageImport = (PackageImport) packageImportToRefresh.get(nextElement);
+				
+				// End of user code			
+			}
+			List packageImportToRemove = basePart.getPackageImportToRemove();
+			for (Iterator iter = packageImportToRemove.iterator(); iter.hasNext();)
+				cc.append(DeleteCommand.create(editingDomain, iter.next()));
+			List packageImportToMove = basePart.getPackageImportToMove();
+			for (Iterator iter = packageImportToMove.iterator(); iter.hasNext();){
+				MoveElement moveElement = (MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getPackageImport(), moveElement.getElement(), moveElement.getIndex()));
+			}
+			List ownedRuleToAdd = basePart.getOwnedRuleToAdd();
+			for (Iterator iter = ownedRuleToAdd.iterator(); iter.hasNext();)
+				cc.append(AddCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), iter.next()));
+			Map ownedRuleToRefresh = basePart.getOwnedRuleToEdit();
+			for (Iterator iter = ownedRuleToRefresh.keySet().iterator(); iter.hasNext();) {
+			
+				// Start of user code for ownedRule reference refreshment
+				
+				Constraint nextElement = (Constraint) iter.next();
+				Constraint ownedRule = (Constraint) ownedRuleToRefresh.get(nextElement);
+				
+				// End of user code			
+			}
+			List ownedRuleToRemove = basePart.getOwnedRuleToRemove();
+			for (Iterator iter = ownedRuleToRemove.iterator(); iter.hasNext();)
+				cc.append(DeleteCommand.create(editingDomain, iter.next()));
+			List ownedRuleToMove = basePart.getOwnedRuleToMove();
+			for (Iterator iter = ownedRuleToMove.iterator(); iter.hasNext();){
+				MoveElement moveElement = (MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
+			}
+			cc.append(SetCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), basePart.getIsLeaf()));
+			cc.append(SetCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getTransition_Kind(), basePart.getKind()));
+			List triggerToAdd = basePart.getTriggerToAdd();
+			for (Iterator iter = triggerToAdd.iterator(); iter.hasNext();)
+				cc.append(AddCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getTransition_Trigger(), iter.next()));
+			Map triggerToRefresh = basePart.getTriggerToEdit();
+			for (Iterator iter = triggerToRefresh.keySet().iterator(); iter.hasNext();) {
+			
+				// Start of user code for trigger reference refreshment
+				
+				Trigger nextElement = (Trigger) iter.next();
+				Trigger trigger = (Trigger) triggerToRefresh.get(nextElement);
+				
+				// End of user code			
+			}
+			List triggerToRemove = basePart.getTriggerToRemove();
+			for (Iterator iter = triggerToRemove.iterator(); iter.hasNext();)
+				cc.append(DeleteCommand.create(editingDomain, iter.next()));
+			List triggerToMove = basePart.getTriggerToMove();
+			for (Iterator iter = triggerToMove.iterator(); iter.hasNext();){
+				MoveElement moveElement = (MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, transition, UMLPackage.eINSTANCE.getTrigger(), moveElement.getElement(), moveElement.getIndex()));
+			}
+
+
+		}
+		if (!cc.isEmpty())
+			return cc;
+		cc.append(UnexecutableCommand.INSTANCE);
+		return cc;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject
+	 * ()
+	 */
+	public EObject getPropertiesEditionObject(EObject source) {
+		if (source instanceof Transition) {
+			Transition transitionToUpdate = (Transition)source;
+			transitionToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
+			transitionToUpdate.setName(basePart.getName());
+			transitionToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());
+			transitionToUpdate.getClientDependencies().addAll(basePart.getClientDependencyToAdd());
+			transitionToUpdate.getElementImports().addAll(basePart.getElementImportToAdd());
+			transitionToUpdate.getPackageImports().addAll(basePart.getPackageImportToAdd());
+			transitionToUpdate.getOwnedRules().addAll(basePart.getOwnedRuleToAdd());
+			transitionToUpdate.setIsLeaf(new Boolean(basePart.getIsLeaf()).booleanValue());
+			transitionToUpdate.setKind((TransitionKind)basePart.getKind());
+			transitionToUpdate.getTriggers().addAll(basePart.getTriggerToAdd());
+
+
+			return transitionToUpdate;
+		}
+		else
+			return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.common.notify.Notification)
+	 */
+	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+		super.firePropertiesChanged(event);
+		if (PathedPropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(mode)) {
+			CompoundCommand command = new CompoundCommand();
+			if (UMLViewsRepository.Transition.ownedComment == event.getAffectedEditor()) {
+				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
+					Comment oldValue = (Comment)event.getOldValue();
+					Comment newValue = (Comment)event.getNewValue();
+					// Start of user code for ownedComment live update command
+					// TODO: Complete the transition update command
+					// End of user code					
+				}
+				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+					command.append(MoveCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
+			}
+			if (UMLViewsRepository.Transition.name == event.getAffectedEditor())
+				command.append(SetCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));	
+
+			if (UMLViewsRepository.Transition.visibility == event.getAffectedEditor())
+				command.append(SetCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
+
+			if (UMLViewsRepository.Transition.clientDependency == event.getAffectedEditor()) {
+				if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
+				if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+					command.append(RemoveCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
+				if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+					command.append(MoveCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
+			}
+			if (UMLViewsRepository.Transition.elementImport == event.getAffectedEditor()) {
+				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
+					ElementImport oldValue = (ElementImport)event.getOldValue();
+					ElementImport newValue = (ElementImport)event.getNewValue();
+					// Start of user code for elementImport live update command
+					// TODO: Complete the transition update command
+					// End of user code					
+				}
+				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getNamespace_ElementImport(), event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+					command.append(MoveCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getElementImport(), event.getNewValue(), event.getNewIndex()));
+			}
+			if (UMLViewsRepository.Transition.packageImport == event.getAffectedEditor()) {
+				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
+					PackageImport oldValue = (PackageImport)event.getOldValue();
+					PackageImport newValue = (PackageImport)event.getNewValue();
+					// Start of user code for packageImport live update command
+					// TODO: Complete the transition update command
+					// End of user code					
+				}
+				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getNamespace_PackageImport(), event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+					command.append(MoveCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getPackageImport(), event.getNewValue(), event.getNewIndex()));
+			}
+			if (UMLViewsRepository.Transition.ownedRule == event.getAffectedEditor()) {
+				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
+					Constraint oldValue = (Constraint)event.getOldValue();
+					Constraint newValue = (Constraint)event.getNewValue();
+					// Start of user code for ownedRule live update command
+					// TODO: Complete the transition update command
+					// End of user code					
+				}
+				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+					command.append(MoveCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getConstraint(), event.getNewValue(), event.getNewIndex()));
+			}
+			if (UMLViewsRepository.Transition.isLeaf == event.getAffectedEditor())
+				command.append(SetCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), event.getNewValue()));
+
+			if (UMLViewsRepository.Transition.kind == event.getAffectedEditor())
+				command.append(SetCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getTransition_Kind(), event.getNewValue()));
+
+			if (UMLViewsRepository.Transition.trigger == event.getAffectedEditor()) {
+				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
+					Trigger oldValue = (Trigger)event.getOldValue();
+					Trigger newValue = (Trigger)event.getNewValue();
+					// Start of user code for trigger live update command
+					// TODO: Complete the transition update command
+					// End of user code					
+				}
+				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getTransition_Trigger(), event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
+				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+					command.append(MoveCommand.create(liveEditingDomain, transition, UMLPackage.eINSTANCE.getTrigger(), event.getNewValue(), event.getNewIndex()));
+			}
+
+
+			if (command != null)
+				liveEditingDomain.getCommandStack().execute(command);
+		} else if (PathedPropertiesEditionEvent.CHANGE == event.getState()) {
+			Diagnostic diag = this.validateValue(event);
+			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
+				
+				if (UMLViewsRepository.Transition.name == event.getAffectedEditor())
+					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
+				
+				
+				
+				
+				
+				
+				
+				
+
+
+			} else {
+				
+				if (UMLViewsRepository.Transition.name == event.getAffectedEditor())
+					basePart.unsetMessageForName();
+				
+				
+				
+				
+				
+				
+				
+				
+
+
+			}
+		}
+	}	
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
+	 */
+	public boolean isRequired(String key, int kind) {
+		return key == UMLViewsRepository.Transition.isLeaf || key == UMLViewsRepository.Transition.kind;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String, int)
+	 */
+	public String getHelpContent(String key, int kind) {
+			if (key == UMLViewsRepository.Transition.ownedComment)
+				return "The Comments owned by this element."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.name)
+				return "The name of the NamedElement."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.visibility)
+				return "Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.clientDependency)
+				return "Indicates the dependencies that reference the client."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.elementImport)
+				return "References the ElementImports owned by the Namespace."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.packageImport)
+				return "References the PackageImports owned by the Namespace."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.ownedRule)
+				return "Specifies a set of Constraints owned by this Namespace."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.isLeaf)
+				return "Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.kind)
+				return "Indicates  the precise type of the transition."; //$NON-NLS-1$
+			if (key == UMLViewsRepository.Transition.trigger)
+				return "Specifies the triggers that may fire the transition."; //$NON-NLS-1$
+		return super.getHelpContent(key, kind);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
+	 */
+	public Diagnostic validateValue(PathedPropertiesEditionEvent event) {
+		String newStringValue = event.getNewValue().toString();
+		Diagnostic ret = null;
+		try {
+			if (UMLViewsRepository.Transition.name == event.getAffectedEditor()) {
+				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
+				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
+			}
+			if (UMLViewsRepository.Transition.visibility == event.getAffectedEditor()) {
+				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
+				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
+			}
+			if (UMLViewsRepository.Transition.isLeaf == event.getAffectedEditor()) {
+				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().getEAttributeType(), newStringValue);
+				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().getEAttributeType(), newValue);
+			}
+			if (UMLViewsRepository.Transition.kind == event.getAffectedEditor()) {
+				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getTransition_Kind().getEAttributeType(), newStringValue);
+				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getTransition_Kind().getEAttributeType(), newValue);
+			}
+
+		} catch (IllegalArgumentException iae) {
+			ret = BasicDiagnostic.toDiagnostic(iae);
+		}
+		return ret;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
+	 */
+	public Diagnostic validate() {
+		if (IPropertiesEditionComponent.BATCH_MODE.equals(mode)) {
+			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
+			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
+			return Diagnostician.INSTANCE.validate(copy);
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(mode))
+			return Diagnostician.INSTANCE.validate(transition);
+		else
+			return null;
+	}
+	
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
+	 */
+	public void dispose() {
+		if (semanticAdapter != null)
+			transition.eAdapters().remove(semanticAdapter);
+	}
+
+}
+

@@ -73,3 +73,4 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 
 	}
 }
+

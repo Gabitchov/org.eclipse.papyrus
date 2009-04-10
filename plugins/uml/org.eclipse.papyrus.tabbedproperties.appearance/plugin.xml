@@ -2,18 +2,6 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
-      <propertyTabs
-            contributorId="TreeOutlinePage">
-         <propertyTab
-               afterTab="comment"
-               category="org.eclipse.papyrus"
-               id="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab"
-               label="Appearance">
-         </propertyTab>
-      </propertyTabs>
-   </extension>
-   <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
             contributorId="TreeOutlinePage">

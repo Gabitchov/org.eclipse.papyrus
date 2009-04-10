@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.editor;
 
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
@@ -28,7 +29,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
  * @author dumoulin
  * 
  */
-public interface IMultiDiagramEditor extends IEditorPart {
+public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider {
 
 	/**
 	 * @return the defaultContext

@@ -125,6 +125,8 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 			if (((GraphicalEditPart) input).getModel() instanceof View) {
 				return (Element) ((View) ((GraphicalEditPart) input).getModel()).getElement();
 			}
+		}else if( input instanceof Element){
+			return (Element) input;
 		}
 		return null;
 	}

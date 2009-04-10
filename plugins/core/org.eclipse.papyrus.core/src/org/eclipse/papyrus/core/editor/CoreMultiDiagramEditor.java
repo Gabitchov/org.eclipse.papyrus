@@ -29,6 +29,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.validation.internal.service.GetBatchConstraintsOperation;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -646,5 +647,10 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 			return null;
 		}
 	}
+
+	public EditingDomain getEditingDomain() {
+		return defaultContext.getTransactionalEditingDomain();
+	}
+
 
 }

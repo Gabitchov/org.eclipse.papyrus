@@ -10,17 +10,14 @@
  *******************************************************************************/
 package org.eclipse.papyrus.navigator;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.eef.runtime.ui.notify.OpenWizardOnDoubleClick;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
@@ -39,7 +36,6 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.navigator.providers.IContentProvider;
-import org.eclipse.papyrus.navigator.providers.UMLComposedAdapterFactory;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener2;
@@ -54,13 +50,15 @@ import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.ICommonActionConstants;
 import org.eclipse.ui.navigator.INavigatorContentExtension;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
+import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 /**
  * This class define a view used to navigate in UML model and resource
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class ModelNavigator extends CommonNavigator {
+public class ModelNavigator extends CommonNavigator implements IEditingDomainProvider {
 
 	IWorkbenchPage page = null;
 
@@ -138,7 +136,6 @@ public class ModelNavigator extends CommonNavigator {
 			editingDomain.addResourceSetListener(resourceSetListener);
 		}
 		refreshViewer();
-		;
 	}
 
 	public void deactivate() {
@@ -155,7 +152,7 @@ public class ModelNavigator extends CommonNavigator {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if (adapter.equals(IPropertySheetPage.class)) {
+		if (IPropertySheetPage.class.equals(adapter)) {
 			return getPropertySheetPage();
 		}
 		return super.getAdapter(adapter);
@@ -209,7 +206,7 @@ public class ModelNavigator extends CommonNavigator {
 		});
 		page.addSelectionListener(new ISelectionListener() {
 
-			public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+			public void selectionChanged(IWorkbenchPart part, ISelection selection) {			
 				handleSelectionChangedFromDiagramEditor(part, selection);
 			}
 		});
@@ -219,20 +216,21 @@ public class ModelNavigator extends CommonNavigator {
 	private IPropertySheetPage getPropertySheetPage() {
 		final IMultiDiagramEditor multiDiagramEditor = NavigatorUtils.getMultiDiagramEditor();
 		if (multiDiagramEditor != null) {
-			BasicCommandStack commandStack = new BasicCommandStack();
-			ComposedAdapterFactory adapterFactory = UMLComposedAdapterFactory.getAdapterFactory();
-			AdapterFactoryEditingDomain adapterFactoryEditingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 			if (propertySheetPage == null) {
-				this.propertySheetPage = new ExtendedPropertySheetPage(adapterFactoryEditingDomain);
-				((ExtendedPropertySheetPage) this.propertySheetPage).setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+				// An horrible properties view
+//				BasicCommandStack commandStack = new BasicCommandStack();
+//				ComposedAdapterFactory adapterFactory = UMLComposedAdapterFactory.getAdapterFactory();
+//				AdapterFactoryEditingDomain adapterFactoryEditingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+//				this.propertySheetPage = new ExtendedPropertySheetPage(adapterFactoryEditingDomain);
+//				((ExtendedPropertySheetPage) this.propertySheetPage).setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+
+				// An 'EEF' properties view
+				if (multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
+					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor) multiDiagramEditor;						
+					this.propertySheetPage = new TabbedPropertySheetPage(contributor);
+				}
 			}
 			return propertySheetPage;
-			// TODO fix bug on org.eclipse.papyrus.tabbedproperties.core.forms.ReferencedTable
-			// if(multiDiagramEditor instanceof ITabbedPropertySheetPageContributor){
-			// ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor)multiDiagramEditor;
-			// this.propertySheetPage = new TabbedPropertySheetPage(contributor);
-			// return propertySheetPage;
-			// }
 		}
 		return null;
 	}
@@ -266,7 +264,7 @@ public class ModelNavigator extends CommonNavigator {
 		}
 	}
 
-	protected void handleSelectionChangedFromCommonViewer(SelectionChangedEvent event) {
+	protected void handleSelectionChangedFromCommonViewer(SelectionChangedEvent event) {		
 		// Handle selection from common viewer
 		if (isLinkingEnabled() && !handlingSelectionChanged) {
 			this.handlingSelectionChanged = true;
@@ -301,6 +299,10 @@ public class ModelNavigator extends CommonNavigator {
 			Object element = selection.getFirstElement();
 			if (element instanceof Diagram) {
 				handleDoubleClickOnDiagram((Diagram) element);
+			} else if (element instanceof EObject) {				
+				//Open SWT EEF Properties UI
+				//OpenWizardOnDoubleClick openWizardOnDoubleClick = new OpenWizardOnDoubleClick(this.editingDomain);
+				//openWizardOnDoubleClick.doubleClick(anEvent);
 			} else {
 				super.handleDoubleClick(anEvent);
 			}
@@ -320,6 +322,14 @@ public class ModelNavigator extends CommonNavigator {
 		// Activator.getDefault().getLog().log(new Status(IStatus.ERROR,Activator.PLUGIN_ID, "Can't open the Diagram Editor!"));
 		// }
 		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : " + diagram);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @return the EditingDomain used by the properties view
+	 */
+	public EditingDomain getEditingDomain() {		
+		return editingDomain;
 	}
 
 }

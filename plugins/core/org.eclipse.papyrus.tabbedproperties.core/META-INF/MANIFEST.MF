@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.tabbedproperties.core;singleton:=true
 Bundle-Version: 0.7.0.vqualifier
-Bundle-Activator: org.eclipse.papyrus.tabbedproperties.core.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.views.properties.tabbed,
@@ -19,16 +18,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.tabbedproperties.core,
- org.eclipse.papyrus.tabbedproperties.core.bridge,
- org.eclipse.papyrus.tabbedproperties.core.commands,
- org.eclipse.papyrus.tabbedproperties.core.dialog,
- org.eclipse.papyrus.tabbedproperties.core.filters,
- org.eclipse.papyrus.tabbedproperties.core.forms,
- org.eclipse.papyrus.tabbedproperties.core.helpers,
- org.eclipse.papyrus.tabbedproperties.core.listeners,
- org.eclipse.papyrus.tabbedproperties.core.sections,
- org.eclipse.papyrus.tabbedproperties.customform,
- org.eclipse.papyrus.tabbedproperties.uml2,
- org.eclipse.papyrus.tabbedproperties.uml2.figures
+Export-Package: org.eclipse.papyrus.tabbedproperties.core.providers
 Bundle-Vendor: %providerName
