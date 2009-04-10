@@ -26,8 +26,7 @@ Require-Bundle: org.eclipse.ui.views.properties.tabbed,
  org.eclipse.emf.transaction;bundle-version="1.2.1",
  org.eclipse.papyrus.core;bundle-version="0.7.0",
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
- org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.1.0",
- org.eclipse.papyrus.tabbedproperties.uml;bundle-version="0.7.0"
+ org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.1.0"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.papyrus.profile,
  org.eclipse.papyrus.profile.constraints,
