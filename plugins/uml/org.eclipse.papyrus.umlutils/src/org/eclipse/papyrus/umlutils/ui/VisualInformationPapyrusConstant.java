@@ -82,6 +82,11 @@ public interface VisualInformationPapyrusConstant {
 	 */
 	public static String STEREOTYPE_COMPARTMENT_LOCATION = "Compartment";
 
+	/**
+	 * properties of applied stereotypes are enclose in braces
+	 */
+	public static String STEREOTYPE_BRACE_LOCATION = "With brace";
+
 	/** The QUALIFIE d_ name. */
 	public static String QUALIFIED_NAME = "QualifiedName";
 
@@ -101,6 +106,8 @@ public interface VisualInformationPapyrusConstant {
 	public static String DISPLAY_NAMELABELICON = "displayNameLabelIcon";
 
 	public static String DISPLAY_NAMELABELICON_VALUE = "displayNameLabelIcon_value";
+
+	public static String STEREOTYPE_PROPERTY_LOCATION = "StereotypePropertyLocation";
 
 	/**
 	 * The Constant P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED.

@@ -50,7 +50,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  * when {@link TreeViewer#setSelection(ISelection)} runs the code could be changed
  */
-public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus.profile.ui.compositeforview.AppliedStereotypeDisplayComposite {
+public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus.profile.ui.compositeforview.AppliedStereotypeDisplayComposite implements IViewComposite {
 
 	DisplayedProfileElementLabelProvider displayedProfileElementLabelProvider = new DisplayedProfileElementLabelProvider();
 

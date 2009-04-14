@@ -29,26 +29,34 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class ValueTreeObject.
  */
 public abstract class ValueTreeObject extends ParentTreeObject {
-	
+
+	public AppliedStereotypePropertyTreeObject getThePropertyTreeObjectParent() {
+		return thePropertyTreeObjectParent;
+	}
+
 	/**
 	 * The value.
 	 */
 	protected Object value;
-	
+
+	protected AppliedStereotypePropertyTreeObject thePropertyTreeObjectParent;
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param value the value
-	 * @param parent the parent
+	 * @param value
+	 *            the value
+	 * @param parent
+	 *            the parent
 	 */
 	public ValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
 		super(parent, null);
+		thePropertyTreeObjectParent = parent;
 		this.value = value;
 	}
 
@@ -57,9 +65,9 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 */
 	@Override
 	protected void createChildren() {
-			
+
 	}
-	
+
 	/**
 	 * Gets the value.
 	 * 
@@ -68,7 +76,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	public Object getValue() {
 		return value;
 	}
-	
+
 	/**
 	 * Removes the me.
 	 */
@@ -76,15 +84,13 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 
 		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
 		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element  element  = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
+		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
 		int lower = property.getLower();
 		int upper = property.getUpper();
 
 		// if lower multiplicity is equal to upper multiplicity
-		if(lower == upper) {
-			Message.warning(
-					"Multiplicity of this property is"+lower+".."+upper+"\n"
-					+ "Impossible to remove a value.");
+		if (lower == upper) {
+			Message.warning("Multiplicity of this property is" + lower + ".." + upper + "\n" + "Impossible to remove a value.");
 			return;
 		}
 
@@ -95,7 +101,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 			if (currentVal != null) {
 				tempValues.add(currentVal);
 			}
-			
+
 		} else if (upper != 1) {
 			EList currentValues = (EList) currentVal;
 
@@ -113,29 +119,27 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 				element.setValue(stereotype, property.getName(), null);
 			}
 
-			// Refresh								
+			// Refresh
 			getParent().removeChild(this);
 			parent = null;
 			// Force model change
 			Util.touchModel(element);
-			
+
 		} else {
-			Message.warning (
-					"Lower multiplicity of "+property.getName()
-					+" is "+lower);
+			Message.warning("Lower multiplicity of " + property.getName() + " is " + lower);
 		}
 	}
-	
+
 	/**
 	 * Move me up.
 	 * 
-	 * @param index 
+	 * @param index
 	 */
 	public void moveMeUp(int index) {
 
 		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
 		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element  element  = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
+		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
 
 		Object currentVal = ((AppliedStereotypePropertyTreeObject) getParent()).getValue();
 		ArrayList tempValues = new ArrayList();
@@ -157,27 +161,27 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 		}
 		Object tmp = tempValues.get(index - 1);
 		tempValues.set(index - 1, value);
-		tempValues.set(index, tmp);		
+		tempValues.set(index, tmp);
 
 		// Update !!!
 		element.setValue(stereotype, property.getName(), tempValues);
 
-		// Refresh - move tree elements						
+		// Refresh - move tree elements
 		getParent().moveChildUp(this);
 		// Force model change
 		Util.touchModel(element);
 	}
-	
+
 	/**
 	 * Move me down.
 	 * 
-	 * @param index 
+	 * @param index
 	 */
 	public void moveMeDown(int index) {
 
 		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
 		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element  element  = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
+		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
 
 		Object currentVal = ((AppliedStereotypePropertyTreeObject) getParent()).getValue();
 		ArrayList tempValues = new ArrayList();
@@ -199,64 +203,67 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 		}
 		Object tmp = tempValues.get(index + 1);
 		tempValues.set(index + 1, value);
-		tempValues.set(index, tmp);		
+		tempValues.set(index, tmp);
 
 		// Update !!!
 		element.setValue(stereotype, property.getName(), tempValues);
 
-		// Refresh - move tree elements						
+		// Refresh - move tree elements
 		getParent().moveChildDown(this);
 		// Force model change
 		Util.touchModel(element);
 	}
-	
+
 	/**
 	 * Creates the instance.
 	 * 
-	 * @param newValue the new value
-	 * @param parent the parent
+	 * @param newValue
+	 *            the new value
+	 * @param parent
+	 *            the parent
 	 * 
 	 * @return the value tree object
 	 */
 	public static ValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue) {
-		
+
 		Property property = parent.getProperty();
 		Type type = property.getType();
 		ValueTreeObject newVTO = null;
-		
+
 		/** primitive type **/
 		if (type instanceof PrimitiveType) {
-			newVTO = PrimitiveTypeValueTreeObject.createInstance(parent, newValue);	
-		/** Composite **/	
-		} else if ((type instanceof org.eclipse.uml2.uml.Class)&& !(type instanceof Stereotype) && property.isComposite()) {
+			newVTO = PrimitiveTypeValueTreeObject.createInstance(parent, newValue);
+			/** Composite **/
+		} else if ((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
 			//
-		/** Enumeration **/
+			/** Enumeration **/
 		} else if (type instanceof Enumeration) {
 			newVTO = new EnumerationValueTreeObject(parent, newValue);
-		/** DataType **/	
+			/** DataType **/
 		} else if (type instanceof DataType) {
 			newVTO = new DataTypeValueTreeObject(parent, newValue);
-			/** Stereotype **/	
-		} else if(type instanceof Stereotype) {
+			/** Stereotype **/
+		} else if (type instanceof Stereotype) {
 			newVTO = new StereotypeValueTreeObject(parent, newValue);
-			/** Metaclass **/		
+			/** Metaclass **/
 		} else if (Util.isMetaclass(type)) {
 			newVTO = new MetaclassValueTreeObject(parent, newValue);
 		}
-		
+
 		return newVTO;
 	}
-	
+
 	/**
 	 * Update value.
 	 * 
-	 * @param newValue the new value
+	 * @param newValue
+	 *            the new value
 	 */
 	protected void updateValue(Object newValue) {
 		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
 		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
 		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).getElement();
-		
+
 		Property property = pTO.getProperty();
 
 		if (newValue != null) {
@@ -275,16 +282,16 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 			} else {
 				element.setValue(stereotype, property.getName(), newValue);
 			}
-			
+
 			// Update TreeObject
 			value = newValue;
 			// Force model change
 			Util.touchModel(element);
 		}
 	}
-	
+
 	/**
 	 * Edits the me.
 	 */
-	public abstract void editMe(); 
+	public abstract void editMe();
 }

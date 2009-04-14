@@ -53,10 +53,16 @@ public class AddAppliedStereotypePropertiesToDisplayCommand extends CreateEAnnot
 		}
 		stereotypePropertiesList = stereotypePropertiesList + stereotypeList;
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+		if (oldAnnotation == null) {
+			oldAnnotation = createEAnnotation();
+			attachEannotation(oldAnnotation, getObject());
+		}
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST, AppliedStereotypeHelper.getStereotypesQNToDisplay(getObject()));
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, AppliedStereotypeHelper.getStereotypesToDisplay(getObject()));
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, stereotypePropertiesList);
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getObject()));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION, AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(getObject()));
+
 		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), getObject());
 	}
 

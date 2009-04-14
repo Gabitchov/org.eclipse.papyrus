@@ -16,7 +16,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
@@ -125,18 +124,6 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 		}
 		return dim;
 
-	}
-
-	/**
-	 * Helper method to calculate the size of compartements inside a EnumerationFigure. This method is subject to redefined in the subclasses.
-	 * 
-	 * @param rect
-	 */
-	protected void calculateComponentBounds(Rectangle rect) {
-		if (this.getStereotypePropertiesContent() != null) {
-			int stereotypePropertiesHeight = rect.height - this.getNameHeight() - 5;
-			this.getStereotypePropertiesContent().setPreferredSize(rect.width, stereotypePropertiesHeight);
-		}
 	}
 
 	/**

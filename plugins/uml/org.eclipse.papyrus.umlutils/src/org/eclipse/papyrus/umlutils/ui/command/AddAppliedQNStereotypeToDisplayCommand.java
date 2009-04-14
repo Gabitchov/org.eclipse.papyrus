@@ -58,10 +58,15 @@ public class AddAppliedQNStereotypeToDisplayCommand extends CreateEAnnotationCom
 		}
 		stereoListQN = stereoListQN + stereotypeListQN;
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+		if (oldAnnotation == null) {
+			oldAnnotation = createEAnnotation();
+			attachEannotation(oldAnnotation, getObject());
+		}
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST, stereoListQN);
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, AppliedStereotypeHelper.getStereotypesToDisplay(getObject()));
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getObject()));
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(getObject()));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION, AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(getObject()));
 		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), getObject());
 
 	}

@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.compositeforview;
 
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
@@ -23,7 +24,7 @@ import org.eclipse.uml2.uml.Profile;
 /**
  * The Class ProfileComposite to apply or unapply profile only on model element withou view.
  */
-public class AppliedProfileCompositeWithView extends org.eclipse.papyrus.profile.ui.compositesformodel.AppliedProfileCompositeOnModel {
+public class AppliedProfileCompositeWithView extends org.eclipse.papyrus.profile.ui.compositesformodel.AppliedProfileCompositeOnModel implements IViewComposite {
 
 	/**
 	 * The Constructor.
@@ -209,6 +210,11 @@ public class AppliedProfileCompositeWithView extends org.eclipse.papyrus.profile
 			// }
 			// }
 		}
+
+	}
+
+	public void setDiagramElement(EModelElement diagramElement) {
+		// TODO Auto-generated method stub
 
 	}
 }

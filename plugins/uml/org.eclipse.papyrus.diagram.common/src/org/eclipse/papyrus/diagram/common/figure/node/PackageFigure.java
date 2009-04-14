@@ -119,6 +119,7 @@ public class PackageFigure extends NodeNamedElementFigure implements IAbstractEl
 		this.setBackgroundColor(Activator.colorManager.get(new RGB(255, 199, 143)));
 		this.setForegroundColor(Activator.colorManager.get(new RGB(233, 164, 96)));
 		this.setBorder(null);
+		getPackageableElementFigure().setFill(false);
 	}
 
 	/**
@@ -184,7 +185,7 @@ public class PackageFigure extends NodeNamedElementFigure implements IAbstractEl
 		}
 
 		graphics.drawRectangle(containerBound);
-		getPackageableElementFigure().setFill(false);
+
 		if (getDisplayGradient()) {
 			graphics.fillGradient(getPackageableElementFigure().getBounds(), true);
 		} else {

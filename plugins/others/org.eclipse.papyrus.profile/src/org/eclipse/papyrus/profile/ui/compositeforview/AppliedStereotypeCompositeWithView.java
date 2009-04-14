@@ -17,8 +17,6 @@ package org.eclipse.papyrus.profile.ui.compositeforview;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -34,7 +32,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * This Composite allows displaying applied stereotypes from the model, but allows also displaying it in the associated view.
  */
-public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.profile.ui.compositesformodel.AppliedStereotypeCompositeOnModel {
+public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.profile.ui.compositesformodel.AppliedStereotypeCompositeOnModel implements IViewComposite {
 
 	/**
 	 * The selection.
@@ -117,18 +115,11 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * Gets the selected.
 	 * 
 	 * @return the selected
+	 * @deprecated
 	 */
 	@Override
 	public Element getSelected() {
-		Object input = ((IStructuredSelection) selection).getFirstElement();
-		if (input instanceof GraphicalEditPart) {
-			if (((GraphicalEditPart) input).getModel() instanceof View) {
-				return (Element) ((View) ((GraphicalEditPart) input).getModel()).getElement();
-			}
-		}else if( input instanceof Element){
-			return (Element) input;
-		}
-		return null;
+		return getElement();
 	}
 
 	/**

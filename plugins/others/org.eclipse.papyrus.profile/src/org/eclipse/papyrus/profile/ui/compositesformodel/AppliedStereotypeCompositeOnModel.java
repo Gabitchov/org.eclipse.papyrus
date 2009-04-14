@@ -107,12 +107,12 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	protected void addAppliedStereotype() {
 
 		// Open stereotype selection (may add or remove)
-		ChooseSetStereotypeDialog dialog = new ChooseSetStereotypeDialog(this.getShell(), getSelected());
+		ChooseSetStereotypeDialog dialog = new ChooseSetStereotypeDialog(this.getShell(), getElement());
 		int result = dialog.open();
 
 		if (result == ChooseSetStereotypeDialog.OK) {
 			// Retrieve selected element
-			Element element = getSelected();
+			Element element = getElement();
 
 			// compare the 2 lists (present list and future list
 			EList<Stereotype> oldStereotypeList = element.getAppliedStereotypes();
@@ -206,7 +206,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 		TreeItem[] items = getTree().getSelection();
 		int indexLast = getTree().indexOf(items[items.length - 1]);
-		if (indexLast + 1 >= getSelected().getAppliedStereotypes().size()) {
+		if (indexLast + 1 >= getElement().getAppliedStereotypes().size()) {
 			// do nothing
 			return;
 		}

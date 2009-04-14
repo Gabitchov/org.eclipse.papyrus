@@ -14,7 +14,10 @@
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.StringTokenizer;
 
+import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FigureListener;
@@ -23,6 +26,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
@@ -43,21 +47,6 @@ import org.eclipse.uml2.uml.Element;
  */
 public class NodeNamedElementFigure extends Figure implements IAbstractElementFigure {
 
-	private Image nameLabelIcon = null;
-
-	private boolean shadow = true;
-
-	private boolean displayGradient = true;
-
-	/** the depht of the qualified name **/
-	private int depth = 0;
-
-	/**
-	 * Added for stereptypes properties
-	 */
-
-	private ContainerFigure stereotypePropertiesContent;
-
 	/**
 	 * The background color.
 	 */
@@ -68,35 +57,10 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 */
 	protected Color borderColor = ColorConstants.black;
 
-	/**
-	 * The fore ground color.
-	 */
-	protected Color foreGroundColor = ColorConstants.black;
+	/** the depht of the qualified name **/
+	private int depth = 0;
 
-	/**
-	 * The font color.
-	 */
-	protected Color fontColor = ColorConstants.black;
-
-	/**
-	 * The Line thickness.
-	 */
-	protected int LineThickness = 1;
-
-	/**
-	 * The font size.
-	 */
-	protected int fontSize = 10;
-
-	/**
-	 * The line style.
-	 */
-	protected String lineStle;
-
-	/**
-	 * The font string.
-	 */
-	protected String fontString = "Arial";
+	private boolean displayGradient = true;
 
 	/**
 	 * The font.
@@ -104,14 +68,24 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	protected Font font = null;
 
 	/**
-	 * The img.
+	 * The font color.
 	 */
-	protected Image img = null;
+	protected Color fontColor = ColorConstants.black;
 
 	/**
-	 * The stereotypes label.
+	 * The font size.
 	 */
-	protected Label stereotypesLabel;
+	protected int fontSize = 10;
+
+	/**
+	 * The font string.
+	 */
+	protected String fontString = "Arial";
+
+	/**
+	 * The fore ground color.
+	 */
+	protected Color foreGroundColor = ColorConstants.black;
 
 	/**
 	 * The icon label.
@@ -119,16 +93,46 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	protected Label iconLabel;
 
 	/**
+	 * The img.
+	 */
+	protected Image img = null;
+
+	/**
+	 * The line style.
+	 */
+	protected String lineStle;
+
+	/**
+	 * The Line thickness.
+	 */
+	protected int LineThickness = 1;
+
+	/**
 	 * The name label.
 	 */
 	protected WrappingLabel nameLabel;
+
+	private Image nameLabelIcon = null;
 
 	/**
 	 * The qualified label.
 	 */
 	protected Label qualifiedLabel;
 
+	private boolean shadow = true;
+
 	protected RectangularShadowBorder shadowborder;
+
+	/**
+	 * Added for stereptypes properties
+	 */
+
+	private RectangleFigure stereotypePropertiesContent;
+
+	/**
+	 * The stereotypes label.
+	 */
+	protected Label stereotypesLabel;
 
 	/**
 	 * Create a basic figure.
@@ -151,14 +155,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.add(this.nameLabel);
 		shadowborder = new RectangularShadowBorder(3, getForegroundColor());
 		setBorder(shadowborder);
-	}
-
-	/**
-	 * add the stereotypePropertiesContent in the class figure
-	 * 
-	 */
-	public void addStereotypePropertiesContainer(ContainerFigure stereotypePropertiesContent) {
-		this.stereotypePropertiesContent = stereotypePropertiesContent;
 	}
 
 	/**
@@ -199,7 +195,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		Font font = Activator.fontManager.get(fontdata);
 		Label label = new Label();
 		label.setFont(font);
-		label.setForegroundColor(ColorConstants.black);
+		label.setForegroundColor(getFontColor());
 		label.setOpaque(false);
 		// Add the label to the figure, after the name
 		this.add(label, getQualifiedNameLabelPosition());
@@ -215,9 +211,37 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		Label label = new Label();
 		label.setFont(font);
 		label.setOpaque(false);
+		label.setForegroundColor(getFontColor());
 		// Add the stereotype label to the figure at pos 0
 		this.add(label, getStereotypeLabelPosition());
 		this.stereotypesLabel = label;
+	}
+
+	protected void createStereotypePropertiesContent() {
+		stereotypePropertiesContent = new StereotypePropertiesCompartment();
+		stereotypePropertiesContent.setFill(false);
+		stereotypePropertiesContent.setLineWidth(0);
+		stereotypePropertiesContent.setBorder(null);
+		stereotypePropertiesContent.setLayoutManager(new PropertiesCompatmentLayoutManager());
+		this.add(stereotypePropertiesContent, getStereotypePropertiesCompartmentPosition());
+	}
+
+	private void fillStereotypePropertiesInCompartment(String stereotypeProperties) {
+		FontData[] fontdata = { new FontData(this.fontString, fontSize, SWT.NORMAL) };
+		Font font = Activator.fontManager.get(fontdata);
+		stereotypePropertiesContent.getChildren().clear();
+		StringTokenizer stringTokenizer = new StringTokenizer(stereotypeProperties, ";");
+		while (stringTokenizer.hasMoreElements()) {
+			String tokenStereotype = stringTokenizer.nextToken();
+			tokenStereotype = tokenStereotype.replace("#", "\n	");
+			tokenStereotype = tokenStereotype.replace("|", "\n	");
+			Label label = new Label(tokenStereotype);
+			label.setFont(font);
+			label.setForegroundColor(getFontColor());
+			label.setBorder(null);
+			stereotypePropertiesContent.add(label);
+		}
+
 	}
 
 	/**
@@ -455,11 +479,17 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return position;
 	}
 
+	protected int getStereotypePropertiesCompartmentPosition() {
+		int position = getChildren().indexOf(nameLabel);
+		position++;
+		return position;
+	}
+
 	/**
 	 * to obtain the stereotypePropertiesContent of the class figure
 	 * 
 	 */
-	public ContainerFigure getStereotypePropertiesContent() {
+	public RectangleFigure getStereotypePropertiesContent() {
 		return this.stereotypePropertiesContent;
 	}
 
@@ -827,6 +857,25 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		}
 	}
 
+	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
+		if (stereotypeProperties == null) {
+			// remove figure of stereotype properties compartment
+			if (this.stereotypePropertiesContent != null) {
+				this.remove(this.stereotypePropertiesContent);
+				this.stereotypePropertiesContent = null;
+			}
+			return;
+		}
+
+		// set stereotype properties content
+		if (stereotypePropertiesContent == null) {
+			this.createStereotypePropertiesContent();
+		}
+
+		fillStereotypePropertiesInCompartment(stereotypeProperties);
+
+	}
+
 	/**
 	 * Sets the stereotypes.
 	 * 
@@ -854,5 +903,51 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		} else {
 			this.stereotypesLabel.setText("");
 		}
+	}
+
+	private class PropertiesCompatmentLayoutManager extends AbstractLayout {
+
+		/**
+		 * 
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
+
+			int minimumWith = 0;
+			int minimumHeight = 0;
+			// display name
+			for (int i = 0; i < container.getChildren().size(); i++) {
+				minimumHeight = minimumHeight + ((IFigure) container.getChildren().get(i)).getPreferredSize().height;
+			}
+
+			return new Dimension(minimumWith, minimumHeight);
+		}
+
+		/**
+		 * 
+		 * {@inheritDoc}
+		 */
+		public void layout(IFigure container) {
+			List childrenList = container.getChildren();
+			for (int i = 0; i < container.getChildren().size(); i++) {
+				Rectangle bound = new Rectangle(((IFigure) childrenList.get(i)).getBounds());
+				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
+				if (i > 0) {
+					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
+					bound.x = getBounds().x;
+					bound.width = container.getBounds().width;
+
+				} else {
+					bound.x = container.getBounds().x;
+					bound.y = container.getBounds().y;
+					bound.width = container.getBounds().width;
+
+				}
+				((IFigure) childrenList.get(i)).setBounds(bound);
+			}
+
+		}
+
 	}
 }

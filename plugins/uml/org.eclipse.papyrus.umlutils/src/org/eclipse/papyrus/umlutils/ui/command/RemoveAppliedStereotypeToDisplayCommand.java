@@ -73,10 +73,16 @@ public class RemoveAppliedStereotypeToDisplayCommand extends CreateEAnnotationCo
 		}
 
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+		if (oldAnnotation == null) {
+			oldAnnotation = createEAnnotation();
+			attachEannotation(oldAnnotation, getObject());
+		}
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST, stereoListQN);
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, stereoList);
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, appliedStereotypePresentationKind);
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(getObject()));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION, AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(getObject()));
+
 		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), getObject());
 
 	}

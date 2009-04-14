@@ -127,7 +127,7 @@ public class CreateEAnnotationCommand extends org.eclipse.emf.transaction.Record
 	 * Replace entry.
 	 * 
 	 * @param annotation
-	 *            the annotation
+	 *            the annotation not null
 	 * @param key
 	 *            the key
 	 * @param value

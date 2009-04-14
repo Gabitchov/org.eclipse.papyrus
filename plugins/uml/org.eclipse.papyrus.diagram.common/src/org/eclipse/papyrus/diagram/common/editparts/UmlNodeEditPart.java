@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.GradientColorHelper;
@@ -69,7 +70,17 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
 			refreshAppliedStereotypes();
+			refreshAppliedStereotypesProperties();
 		}
+	}
+
+	private void refreshAppliedStereotypesProperties() {
+		if (stereotypesPropertiesToDisplay() != "") {
+			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(stereotypesPropertiesToDisplay());
+		} else {
+			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(null);
+		}
+
 	}
 
 	public void refreshAppliedStereotypes() {
@@ -92,6 +103,7 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 
 	protected void refreshVisuals() {
 		super.refreshVisuals();
+		refreshAppliedStereotypesProperties();
 		refreshAppliedStereotypes();
 		refreshShadow();
 		refreshGradient();
@@ -190,4 +202,18 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		}
 		return out;
 	}
+
+	/**
+	 * return string that contains value of properties of applied stereotype
+	 * 
+	 * @return "" or {'\u00AB'<B>StereotypeName</B>'\u00BB' {<B>propertyName</B>'='<B>propertyValue</B>','}*';'}*
+	 */
+	public String stereotypesPropertiesToDisplay() {
+		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View) getModel());
+		if (stereotypesPropertiesToDisplay.equals("")) {
+			return stereotypesPropertiesToDisplay;
+		}
+		return StereotypeUtil.getPropertiesValues(stereotypesPropertiesToDisplay, getUMLElement());
+	}
+
 }

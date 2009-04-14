@@ -14,18 +14,26 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.compositeforview;
 
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
+import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class PropertyComposite.
  */
-public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papyrus.profile.ui.compositesformodel.PropertyComposite {
+public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papyrus.profile.ui.compositesformodel.PropertyComposite implements IViewComposite {
+
+	/**
+	 * the current view
+	 */
+	protected EModelElement currentView;
 
 	/**
 	 * The stereotype composite.
@@ -49,13 +57,33 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 
 	/**
 	 * Touch model.
+	 * 
+	 * 
 	 */
 	protected void touchModel() {
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
-		Element stereotypedElement = pTO.getParent().getParent().getElement();
-		if (stereotypedElement instanceof NamedElement) {
-			((NamedElement) stereotypedElement).setName(((NamedElement) stereotypedElement).getName());
+		final AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
+		final Element stereotypedElement = pTO.getParent().getParent().getElement();
+		try {
+			getDomain().runExclusive(new Runnable() {
+
+				public void run() {
+
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						public void run() {
+							String localization = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(currentView);
+							RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(getDomain(), currentView, localization);
+
+							getDomain().getCommandStack().execute(command);
+						}
+					});
+				}
+			});
+
+		} catch (Exception e) {
+			System.err.println(e);
 		}
+
 	}
 
 	/**
@@ -64,8 +92,9 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void addButtonPressed() {
 		super.addButtonPressed();
-		stereotypeComposite.refresh();
+		// stereotypeComposite.refresh();
 		touchModel();
+		stereotypeComposite.refresh();
 	}
 
 	/**
@@ -74,8 +103,8 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void removeButtonPressed() {
 		super.removeButtonPressed();
-		stereotypeComposite.refresh();
 		touchModel();
+		stereotypeComposite.refresh();
 	}
 
 	/**
@@ -85,7 +114,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void upButtonPressed() {
 		super.upButtonPressed();
 		stereotypeComposite.refresh();
-		touchModel();
+		// touchModel();
 	}
 
 	/**
@@ -95,7 +124,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void downButtonPressed() {
 		super.downButtonPressed();
 		stereotypeComposite.refresh();
-		touchModel();
+		// touchModel();
 	}
 
 	/**
@@ -123,5 +152,10 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void disposeListeners() {
 		super.disposeListeners();
 		stereotypeComposite.disposeListeners();
+	}
+
+	public void setDiagramElement(EModelElement diagramElement) {
+		this.currentView = diagramElement;
+
 	}
 }

@@ -16,41 +16,44 @@ package org.eclipse.papyrus.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.profile.Activator;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.tree.ProfileElementContentProvider;
 import org.eclipse.papyrus.profile.tree.ProfileElementLabelProvider;
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
-import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypeTreeObject;
+import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.ValueTreeObject;
-import org.eclipse.papyrus.profile.ui.dialogs.ComboSelectionDialog;
-import org.eclipse.papyrus.profile.ui.dialogs.InputDialogEnumeration;
-import org.eclipse.papyrus.profile.ui.dialogs.InputDialogPrimitiveType;
 import org.eclipse.papyrus.profile.ui.listeners.DoubleClickListener;
 import org.eclipse.papyrus.profile.ui.panels.AppliedStereotypePanel;
-import org.eclipse.papyrus.profile.utils.Util;
+import org.eclipse.papyrus.profile.ui.section.AppliedStereotypePropertyEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Enumeration;
-import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PropertyComposite.
+ * The goal of this composite is make properties of applied stereotype editable see class AppliedStereotypeEditor
  */
 public class PropertyComposite extends DecoratedTreeComposite {
+
+	public TransactionalEditingDomain getDomain() {
+		return domain;
+	}
+
+	public void setDomain(TransactionalEditingDomain domain) {
+		this.domain = domain;
+	}
+
+	protected TransactionalEditingDomain domain;
 
 	/**
 	 * The parent panel.
@@ -167,200 +170,56 @@ public class PropertyComposite extends DecoratedTreeComposite {
 
 		// Retrieve selections
 		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
-		Property selectedProp = pTO.getProperty();
+		Property property = pTO.getProperty();
 		Stereotype selectedSt = ((AppliedStereotypeTreeObject) pTO.getParent()).getStereotype();
 		Element selectedElt = ((StereotypedElementTreeObject) pTO.getParent().getParent()).getElement();
 
-		if ((selectedProp == null) || (selectedSt == null) || (selectedElt == null)) {
+		if ((property == null) || (selectedSt == null) || (selectedElt == null)) {
 			// Nothing selected
 			return;
 		}
 
 		// Retrieve property related info
-		int lower = selectedProp.getLower();
-		int upper = selectedProp.getUpper();
-		Type type = selectedProp.getType();
+		int lower = property.getLower();
+		int upper = property.getUpper();
+		Type type = property.getType();
 		String typeName = type.getName();
 
 		// if lower multiplicity is equal to upper multiplicity : cannot add
-		if (lower == upper && selectedElt.getValue(selectedSt, selectedProp.getName()) != null) {
-			if (selectedElt.getValue(selectedSt, selectedProp.getName()) instanceof EList) {
-				if (((EList) selectedElt.getValue(selectedSt, selectedProp.getName())).size() >= upper) {
-					Message.warning("Multiplicity of this property is " + selectedProp.getLower() + ".." + selectedProp.getUpper() + "\n" + "Impossible to add a new value.");
+		if (lower == upper && selectedElt.getValue(selectedSt, property.getName()) != null) {
+			if (selectedElt.getValue(selectedSt, property.getName()) instanceof EList) {
+				if (((EList) selectedElt.getValue(selectedSt, property.getName())).size() >= upper) {
+					Message.warning("Multiplicity of this property is " + property.getLower() + ".." + property.getUpper() + "\n" + "Impossible to add a new value.");
 					return;
 				}
 			} else {
-				Message.warning("Multiplicity of this property is " + selectedProp.getLower() + ".." + selectedProp.getUpper() + "\n" + "Impossible to add a new value.");
+				Message.warning("Multiplicity of this property is " + property.getLower() + ".." + property.getUpper() + "\n" + "Impossible to add a new value.");
 				return;
 			}
 		}
 
 		// Retrieve current value
-		ArrayList tempValues = new ArrayList();
+		ArrayList currentPropertyValues = new ArrayList();
 		Object currentValue = null;
-		if (selectedElt.hasValue(selectedSt, selectedProp.getName())) {
-			currentValue = selectedElt.getValue(selectedSt, selectedProp.getName());
+		if (selectedElt.hasValue(selectedSt, property.getName())) {
+			currentValue = selectedElt.getValue(selectedSt, property.getName());
 
 			if (upper == 1) {
-				tempValues.add(currentValue);
+				currentPropertyValues.add(currentValue);
 
 			} else { // if (upper != 1) {
 				EList currentValues = (EList) currentValue;
 				for (int i = 0; i < currentValues.size(); i++) {
-					tempValues.add(currentValues.get(i));
+					currentPropertyValues.add(currentValues.get(i));
 				}
 			}
 		}
 
-		if (selectedProp.isMultivalued() || (tempValues.size() < upper)) {
-
+		if (property.isMultivalued() || (currentPropertyValues.size() < upper)) {
 			Object newValue = null;
 
-			/** primitive type **/
-			if (type instanceof PrimitiveType) {
-
-				// Create dialog box for value to add
-				InputDialogPrimitiveType valueDialog = new InputDialogPrimitiveType(this.getShell(), selectedProp, null, -1);
-				int val = valueDialog.open();
-
-				// Treat Cancel case first
-				if (val == InputDialogPrimitiveType.CANCEL) {
-					// Close dialog box
-					valueDialog.close();
-					// And quit
-					return;
-				}
-
-				// New object as string (user input)
-				String dialogValue = valueDialog.getValue();
-				// Treat dialogValue
-				newValue = Util.getValueObjectFromString(dialogValue, type);
-				valueDialog.close();
-
-			}
-			/** DataType **/
-			else if ((type instanceof DataType && !(type instanceof Enumeration))) {
-				// VSLLabelEditorDialog valueDialog = new VSLLabelEditorDialog(this.getShell(), "", 0, (DataType)type);
-				// int val = valueDialog.open();
-
-				// Treat Cancel case first
-				// if (val == InputDialogPrimitiveType.CANCEL) {
-				// Close dialog box
-				// valueDialog.close();
-				// And quit
-				return;
-				// }
-
-				// New object as string (user input)
-				// String dialogValue = valueDialog.getValue();
-				// Treat dialogValue
-				// newValue = Util.getValueObjectFromString(dialogValue, type);
-				// valueDialog.close();
-			}
-
-			/** Composite **/
-			else if ((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && selectedProp.isComposite()) {
-
-				// Profile profile = selectedSt.getProfile();
-				// Type uml2Type = profile.getOwnedType(typeName);
-				//				
-				// // Create new value
-				// newValue = profile.create((Classifier) uml2Type);
-				// ToDo
-				return;
-
-				/** Enumeration **/
-			} else if (type instanceof Enumeration) {
-
-				// Create and Open combo box
-				InputDialogEnumeration valueDialog = new InputDialogEnumeration(this.getShell(), selectedProp, null, -1);
-				int val = valueDialog.open();
-
-				if ((val == InputDialogEnumeration.OK) && (valueDialog.getSelectionIndex() != -1)) {
-					int index = valueDialog.getSelectionIndex();
-					newValue = ((Enumeration) type).getOwnedLiterals().get(index);
-				}
-				valueDialog.close();
-
-				/** Stereotype **/
-			} else if (type instanceof Stereotype) {
-				final ArrayList filteredElements = Util.getInstancesFilteredByType(selectedElt, null, (Stereotype) type);
-
-				// Prepare possible selection for dialog box
-				String[] elementsNames = Util.getStringArrayFromList(filteredElements);
-				// if no possible selection : abort
-				if (elementsNames == null) {
-					Message.warning("No element stereotyped <<" + type.getName() + ">> was found in the model.");
-					return;
-				}
-
-				// Retrieve initial value...
-				String initialValue = "";
-				if (elementsNames.length > 0) {
-					initialValue = elementsNames[0];
-				}
-
-				// Creates and open selection dialog
-				ComboSelectionDialog valueDialog = new ComboSelectionDialog(this.getShell(), "New value:", elementsNames, initialValue);
-				int val = valueDialog.open();
-				if (val == ComboSelectionDialog.OK) {
-					int index = valueDialog.indexOfSelection;
-					Element dialogSelectedElt = (Element) filteredElements.get(index);
-					newValue = dialogSelectedElt.getStereotypeApplication((Stereotype) type);
-					if (newValue == null) {
-						EList subStereotypes = dialogSelectedElt.getAppliedSubstereotypes((Stereotype) type);
-						if (!subStereotypes.isEmpty()) {
-							newValue = dialogSelectedElt.getStereotypeApplication((Stereotype) subStereotypes.get(0));
-						}
-					}
-				}
-				valueDialog.close();
-
-				/** Metaclass **/
-			} else if (Util.isMetaclass(type)) {
-
-				// Retrieve type of the metaclass
-				Class metaType = null;
-				try {
-					metaType = Class.forName("org.eclipse.uml2.uml." + typeName);
-				} catch (Exception ex) {
-					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getLocalizedMessage()));
-					ex.printStackTrace();
-					// and quit
-					return;
-				}
-
-				// Retrieve all instances applicable to this property value
-				final ArrayList filteredElements = Util.getInstancesFilteredByType(selectedElt, metaType, null);
-				// If multivalued remove already applied elements from list
-				// Removed already added elements from selection list
-				if (tempValues != null) {
-					filteredElements.removeAll(tempValues);
-				}
-
-				// Prepare possible selection for dialog box
-				String[] elementsNames = Util.getStringArrayFromList(filteredElements);
-				// if no possible selection : abort
-				if (elementsNames == null) {
-					Message.warning("No element typed <<" + type.getName() + ">> was found in the model.");
-					return;
-				}
-
-				// Retrieve initial value...
-				String initialValue = "";
-				if (elementsNames.length > 0) {
-					initialValue = elementsNames[0];
-				}
-
-				// Create and open combo
-				ComboSelectionDialog valueDialog = new ComboSelectionDialog(this.getShell(), "New value:", elementsNames, initialValue);
-				int val = valueDialog.open();
-				if (val == ComboSelectionDialog.OK) {
-					newValue = filteredElements.get(valueDialog.indexOfSelection);
-					valueDialog.close();
-				}
-			}
-
+			// get a new value for the property
+			newValue = AppliedStereotypePropertyEditor.getNewValueForProperty(this.getShell(), property, selectedElt, type, currentPropertyValues);
 			// new value entered ?
 			if (newValue == null) {
 				// Refresh && quit
@@ -370,13 +229,13 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			}
 
 			// Update property value(s)
-			if (selectedProp.isMultivalued()) {
+			if (property.isMultivalued()) {
 				// If newValue was enter, add to tempValues (future values list)
-				tempValues.add(newValue);
-				selectedElt.setValue(selectedSt, selectedProp.getName(), tempValues);
+				currentPropertyValues.add(newValue);
+				setPropertiesValue(selectedElt, selectedSt, property, currentPropertyValues);
 				// otherwise
 			} else {
-				selectedElt.setValue(selectedSt, selectedProp.getName(), newValue);
+				setPropertiesValue(selectedElt, selectedSt, property, currentPropertyValues);
 			}
 
 			// Update tree && Refresh
@@ -384,11 +243,12 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			if (parentPanel != null)
 				parentPanel.refresh();
 			// Force model change
-			if (parentPanel != null)
-				Util.touchModel(selectedElt);
+			if (parentPanel != null) {
+				// Util.touchModel(selectedElt);
+			}
 
 		} else {
-			Message.warning("Upper multiplicity of " + selectedProp.getName() + " is " + selectedProp.getUpper());
+			Message.warning("Upper multiplicity of " + property.getName() + " is " + property.getUpper());
 		}
 	}
 
@@ -405,7 +265,53 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		TreeItem[] items = getTree().getSelection();
 		for (int i = 0; i < nbrOfSelection; i++) {
 			ValueTreeObject vTO = (ValueTreeObject) items[i].getData();
-			vTO.removeMe();
+			// vTO.removeMe();
+			AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
+			Property property = pTO.getProperty();
+			Stereotype stereotype = ((AppliedStereotypeTreeObject) pTO.getParent()).getStereotype();
+			Element selectedElt = ((StereotypedElementTreeObject) pTO.getParent().getParent()).getElement();
+
+			int lower = property.getLower();
+			int upper = property.getUpper();
+
+			// if lower multiplicity is equal to upper multiplicity
+			if (lower == upper) {
+				Message.warning("Multiplicity of this property is" + lower + ".." + upper + "\n" + "Impossible to remove a value.");
+				return;
+			}
+
+			Object currentVal = pTO.getValue();
+			ArrayList tempValues = new ArrayList();
+
+			if (((lower == 0) && (upper == 1))) {
+				if (currentVal != null) {
+					tempValues.add(currentVal);
+				}
+
+			} else if (upper != 1) {
+				EList currentValues = (EList) currentVal;
+
+				for (int j = 0; j < currentValues.size(); j++) {
+					tempValues.add(currentValues.get(j));
+				}
+			}
+
+			if ((lower == 0) || (tempValues.size() > lower)) {
+				tempValues.remove(vTO.getValue());
+
+				if (property.isMultivalued()) {
+					setPropertiesValue(selectedElt, stereotype, property, tempValues);
+				} else {
+					setPropertiesValue(selectedElt, stereotype, property, null);
+				}
+
+				// Force model change
+				// Util.touchModel(element);
+
+			} else {
+				Message.warning("Lower multiplicity of " + property.getName() + " is " + lower);
+			}
+
 		}
 		if (parentPanel != null)
 			parentPanel.refresh();
@@ -499,6 +405,38 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	@Override
 	public void editItem(TreeItem item) {
 		// do nothing
+	}
+
+	protected void setPropertiesValue(final Element element, final Stereotype stereotype, final Property property, final Object newValue) {
+		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
+		try {
+
+			getDomain().runExclusive(new Runnable() {
+
+				public void run() {
+
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						public void run() {
+							RecordingCommand command = new RecordingCommand(getDomain()) {
+
+								protected void doExecute() {
+									element.setValue(stereotype, property.getName(), newValue);
+
+								}
+
+							};
+							getDomain().getCommandStack().execute(command);
+
+						}
+					});
+				}
+			});
+
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+
 	}
 
 }

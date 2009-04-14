@@ -20,17 +20,14 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 
 /**
- * The Class AddAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to display
+ * The Class SetAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to display
  */
-public class AddAppliedStereotypeToDisplayCommand extends CreateEAnnotationCommand {
-
-	/** The qualified namedepht. */
-	private String stereotypeList;
+public class SetAppliedStereotypePropertiesLocalizationCommand extends CreateEAnnotationCommand {
 
 	/**
 	 * the presnetation kind of applied stereotypes
 	 */
-	private String appliedStereotypePresentationKind;
+	private String appliedStereotypePropertiesKind;
 
 	/**
 	 * Instantiates a new sets the applied stereotype to display command.
@@ -42,10 +39,9 @@ public class AddAppliedStereotypeToDisplayCommand extends CreateEAnnotationComma
 	 * @param stereotypeList
 	 *            the stereotype list
 	 */
-	public AddAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain, EModelElement object, String stereotypeList, String appliedStereotypepresentationKind) {
+	public SetAppliedStereotypePropertiesLocalizationCommand(TransactionalEditingDomain domain, EModelElement object, String appliedStereotypePropertiesKind) {
 		super(domain, object, VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		this.stereotypeList = stereotypeList;
-		this.appliedStereotypePresentationKind = appliedStereotypepresentationKind;
+		this.appliedStereotypePropertiesKind = appliedStereotypePropertiesKind;
 	}
 
 	/**
@@ -53,22 +49,16 @@ public class AddAppliedStereotypeToDisplayCommand extends CreateEAnnotationComma
 	 */
 	@Override
 	protected void doExecute() {
-		String stereoList = AppliedStereotypeHelper.getStereotypesToDisplay(this.getObject());
-		if (!"".equals(stereoList)) {
-			stereoList = stereoList + ",";
-		}
-		stereoList = stereoList + stereotypeList;
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
 		if (oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, getObject());
 		}
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST, AppliedStereotypeHelper.getStereotypesQNToDisplay(getObject()));
-		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, stereoList);
-		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, appliedStereotypePresentationKind);
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_LIST, AppliedStereotypeHelper.getStereotypesToDisplay(getObject()));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getObject()));
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(getObject()));
-		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION, AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(getObject()));
-
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION, appliedStereotypePropertiesKind);
 		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), getObject());
 
 	}

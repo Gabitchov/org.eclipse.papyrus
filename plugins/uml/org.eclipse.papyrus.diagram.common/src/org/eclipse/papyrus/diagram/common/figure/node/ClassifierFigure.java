@@ -246,6 +246,9 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 		methodContent.setFill(false);
 		propertyContent.setFill(false);
 		nestedClassContent.setFill(false);
+		methodContent.setBorder(null);
+		propertyContent.setBorder(null);
+		nestedClassContent.setBorder(null);
 
 	}
 
@@ -270,12 +273,6 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	 */
 	@Override
 	public void paint(Graphics graphics) {
-		methodContent.setFill(false);
-		methodContent.setBorder(null);
-		propertyContent.setFill(false);
-		propertyContent.setBorder(null);
-		nestedClassContent.setFill(false);
-		nestedClassContent.setBorder(null);
 
 		graphics.setForegroundColor(this.getGradientColor());
 		graphics.setBackgroundColor(this.backgroundColor);
