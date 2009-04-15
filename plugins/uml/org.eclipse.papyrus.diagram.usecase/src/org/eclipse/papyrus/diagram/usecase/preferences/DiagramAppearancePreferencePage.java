@@ -20,7 +20,8 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 /**
  * @generated NOT
  */
-public class DiagramAppearancePreferencePage extends AbstractPapyrusNodePreferencePage {
+public class DiagramAppearancePreferencePage extends
+		AbstractPapyrusNodePreferencePage {
 
 	@Override
 	protected String getBundleId() {

@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -56,18 +57,21 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public AssociationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public AssociationCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
 		super(request);
 		this.source = source;
 		this.target = target;
 		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
+			setContainmentFeature(UMLPackage.eINSTANCE
+					.getPackage_PackagedElement());
 		}
 
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
 			if (element instanceof Package) {
 				container = (Package) element;
 				super.setElementToEdit(container);
@@ -96,15 +100,19 @@ public class AssociationCreateCommand extends CreateElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateAssociation_4004(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canCreateAssociation_4004(getContainer(), getSource(),
+						getTarget());
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	protected Diagram getDiagramFromRequest() {
-		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
+		if (getRequest().getParameters().get(
+				MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(
+					MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -122,14 +130,17 @@ public class AssociationCreateCommand extends CreateElementCommand {
 		Type sourceType = getSource();
 		Type targetType = getTarget();
 
-		Association result = targetType.createAssociation(false, AggregationKind.NONE_LITERAL, "src", 1, 1, sourceType, false, AggregationKind.NONE_LITERAL, "dst", 1, 1);
+		Association result = targetType.createAssociation(false,
+				AggregationKind.NONE_LITERAL, "src", 1, 1, sourceType, false,
+				AggregationKind.NONE_LITERAL, "dst", 1, 1);
 
 		ElementInitializers.init_Association_4004(result);
 		Diagram diagram = getDiagramFromRequest();
 		if (diagram != null) {
 			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, result);
 		} else {
-			MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), result);
+			MultiDiagramUtil.addEAnnotationReferenceToDiagram(
+					UMLDiagramEditorPlugin.getInstance(), result);
 		}
 		return result;
 	}
@@ -144,9 +155,11 @@ public class AssociationCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}

@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import org.eclipse.emf.ecore.EClass;
@@ -32,6 +32,32 @@ public class ConstraintCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	private EClass eClass = null;
+	/**
+	 * @generated
+	 */
+	private EObject eObject = null;
+
+	/**
+	 * @generated
+	 */
+	public ConstraintCreateCommand(CreateElementRequest req, EObject eObject) {
+		super(req);
+		this.eObject = eObject;
+		this.eClass = eObject != null ? eObject.eClass() : null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static ConstraintCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
+		return new ConstraintCreateCommand(req, eObject);
+	}
+
+	/**
+	 * @generated
+	 */
 	public ConstraintCreateCommand(CreateElementRequest req) {
 		super(req);
 	}
@@ -40,17 +66,30 @@ public class ConstraintCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
-		return container;
+		if (container != null) {
+			return container;
+		}
+		return eObject;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected EClass getEClassToEdit() {
+
+		EObject eObject = getElementToEdit();
+		if (eObject != null) {
+			return eObject.eClass();
+		}
+		if (eClass != null) {
+			return eClass;
+		}
 		return UMLPackage.eINSTANCE.getPackage();
 	}
 
@@ -64,6 +103,17 @@ public class ConstraintCreateCommand extends CreateElementCommand {
 		owner.getPackagedElements().add(newElement);
 
 		UMLElementTypes.init_Constraint_2008(newElement);
+
+		//code used in MOSKitt approach in order to manage "delete from diagram"
+		//org.eclipse.gmf.runtime.notation.Diagram diagram = es.cv.gvcase.mdt.common.util.MDTUtil.getDiagramFromRequest(getRequest());
+		//if (diagram != null) {
+		//	es.cv.gvcase.mdt.common.util.MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+		//}
+		//else {
+		//	es.cv.gvcase.mdt.common.util.MultiDiagramUtil.
+		//		addEAnnotationReferenceToDiagram(
+		//		org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin.getInstance(), newElement);
+		//}
 		return newElement;
 	}
 

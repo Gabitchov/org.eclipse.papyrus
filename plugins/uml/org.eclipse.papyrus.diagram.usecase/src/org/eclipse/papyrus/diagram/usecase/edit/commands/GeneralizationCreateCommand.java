@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -51,18 +51,21 @@ public class GeneralizationCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public GeneralizationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public GeneralizationCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
 		super(request);
 		this.source = source;
 		this.target = target;
 		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(UMLPackage.eINSTANCE.getClassifier_Generalization());
+			setContainmentFeature(UMLPackage.eINSTANCE
+					.getClassifier_Generalization());
 		}
 
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
 			if (element instanceof Classifier) {
 				container = (Classifier) element;
 				super.setElementToEdit(container);
@@ -91,7 +94,9 @@ public class GeneralizationCreateCommand extends CreateElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateGeneralization_4003(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canCreateGeneralization_4003(getContainer(), getSource(),
+						getTarget());
 	}
 
 	/**
@@ -115,9 +120,11 @@ public class GeneralizationCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}

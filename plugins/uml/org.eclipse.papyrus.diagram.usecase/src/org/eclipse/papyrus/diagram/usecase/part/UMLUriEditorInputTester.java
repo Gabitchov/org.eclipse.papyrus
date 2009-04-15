@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.core.expressions.PropertyTester;
@@ -24,7 +24,8 @@ public class UMLUriEditorInputTester extends PropertyTester {
 	/**
 	 * @generated
 	 */
-	public boolean test(Object receiver, String method, Object[] args, Object expectedValue) {
+	public boolean test(Object receiver, String method, Object[] args,
+			Object expectedValue) {
 		if (false == receiver instanceof URIEditorInput) {
 			return false;
 		}

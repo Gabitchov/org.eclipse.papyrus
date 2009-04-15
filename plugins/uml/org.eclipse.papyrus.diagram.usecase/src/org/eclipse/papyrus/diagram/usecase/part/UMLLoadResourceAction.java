@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
@@ -48,7 +48,8 @@ public class UMLLoadResourceAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	public void run(IAction action) {
-		LoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(myShell, mySelectedElement.getEditingDomain());
+		LoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(
+				myShell, mySelectedElement.getEditingDomain());
 		loadResourceDialog.open();
 	}
 
@@ -59,8 +60,10 @@ public class UMLLoadResourceAction implements IObjectActionDelegate {
 		mySelectedElement = null;
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.size() == 1 && structuredSelection.getFirstElement() instanceof PackageEditPart) {
-				mySelectedElement = (PackageEditPart) structuredSelection.getFirstElement();
+			if (structuredSelection.size() == 1
+					&& structuredSelection.getFirstElement() instanceof PackageEditPart) {
+				mySelectedElement = (PackageEditPart) structuredSelection
+						.getFirstElement();
 			}
 		}
 		action.setEnabled(isEnabled());

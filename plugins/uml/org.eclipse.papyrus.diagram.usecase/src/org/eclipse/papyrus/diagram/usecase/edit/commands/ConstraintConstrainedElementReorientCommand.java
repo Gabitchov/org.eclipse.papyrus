@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -28,7 +28,8 @@ import org.eclipse.uml2.uml.Element;
 /**
  * @generated
  */
-public class ConstraintConstrainedElementReorientCommand extends EditElementCommand {
+public class ConstraintConstrainedElementReorientCommand extends
+		EditElementCommand {
 
 	/**
 	 * @generated
@@ -53,7 +54,8 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	/**
 	 * @generated
 	 */
-	public ConstraintConstrainedElementReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public ConstraintConstrainedElementReorientCommand(
+			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -84,7 +86,9 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		if (!(oldEnd instanceof Element && newEnd instanceof Constraint)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistConstraintConstrainedElement_4005(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistConstraintConstrainedElement_4005(getNewSource(),
+						getOldTarget());
 	}
 
 	/**
@@ -94,15 +98,19 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistConstraintConstrainedElement_4005(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistConstraintConstrainedElement_4005(getOldSource(),
+						getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

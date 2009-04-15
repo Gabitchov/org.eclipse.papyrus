@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -88,7 +88,9 @@ public class AssociationReorientCommand extends EditElementCommand {
 		if (targetEnd == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4004(container, getNewSource(), targetEnd.getType());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistAssociation_4004(container, getNewSource(), targetEnd
+						.getType());
 	}
 
 	/**
@@ -106,15 +108,19 @@ public class AssociationReorientCommand extends EditElementCommand {
 		if (sourceEnd == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4004(container, sourceEnd.getType(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistAssociation_4004(container, sourceEnd.getType(),
+						getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -130,7 +136,8 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
 		Association association = getLink();
-		Property actualSource = AssociationEndConvention.getSourceEnd(association);
+		Property actualSource = AssociationEndConvention
+				.getSourceEnd(association);
 		actualSource.setType(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
@@ -140,7 +147,8 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		Association association = getLink();
-		Property actualTarget = AssociationEndConvention.getTargetEnd(association);
+		Property actualTarget = AssociationEndConvention
+				.getTargetEnd(association);
 		actualTarget.setType(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}

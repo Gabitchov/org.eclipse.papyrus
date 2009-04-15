@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.helpers;
 
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -61,7 +61,8 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
-	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected ICommand getCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		return null;
 	}
 

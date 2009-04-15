@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
@@ -38,8 +38,10 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 		if (editorInput.equals(input)) {
 			return true;
 		}
-		if (editorInput instanceof URIEditorInput && input instanceof URIEditorInput) {
-			return ((URIEditorInput) editorInput).getURI().equals(((URIEditorInput) input).getURI());
+		if (editorInput instanceof URIEditorInput
+				&& input instanceof URIEditorInput) {
+			return ((URIEditorInput) editorInput).getURI().equals(
+					((URIEditorInput) input).getURI());
 		}
 		return false;
 	}

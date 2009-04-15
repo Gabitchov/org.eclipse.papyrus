@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -23,7 +23,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -31,13 +32,15 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (UMLElementTypes.Actor_3005 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
+				req.setContainmentFeature(UMLPackage.eINSTANCE
+						.getPackage_PackagedElement());
 			}
 			return getGEFWrapper(new Actor3CreateCommand(req));
 		}
 		if (UMLElementTypes.UseCase_3006 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
+				req.setContainmentFeature(UMLPackage.eINSTANCE
+						.getPackage_PackagedElement());
 			}
 			return getGEFWrapper(new UseCase4CreateCommand(req));
 		}

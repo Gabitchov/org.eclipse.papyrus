@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.view.factories;
 
 import java.util.ArrayList;
@@ -48,18 +48,27 @@ public class ExtendViewFactory extends ConnectionViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry.getType(ExtendEditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry
+					.getType(ExtendEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
 		IAdaptable eObjectAdapter = null;
 		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ExtendsLink_fixedEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(
+				eObjectAdapter,
+				view,
+				UMLVisualIDRegistry
+						.getType(ExtendsLink_fixedEditPart.VISUAL_ID),
+				ViewUtil.APPEND, true, getPreferencesHint());
 	}
 
 	/**
@@ -68,23 +77,34 @@ public class ExtendViewFactory extends ConnectionViewFactory {
 	@Override
 	protected void initializeFromPreferences(View view) {
 
-		IPreferenceStore store = (IPreferenceStore) getPreferencesHint().getPreferenceStore();
+		IPreferenceStore store = (IPreferenceStore) getPreferencesHint()
+				.getPreferenceStore();
 
 		if (store == null) {
 			return;
 		}
 
-		LinkViewInitializer viewInitializer = new LinkViewInitializer(view, store);
+		LinkViewInitializer viewInitializer = new LinkViewInitializer(view,
+				store);
 		viewInitializer.initFont(IPapyrusPreferencesConstant.EXTEND_PREF_FONT);
-		viewInitializer.initFontColor(IPapyrusPreferencesConstant.EXTEND_PREF_FONT_COLOR);
-		viewInitializer.initLineColor(IPapyrusPreferencesConstant.EXTEND_PREF_LINE_COLOR);
+		viewInitializer
+				.initFontColor(IPapyrusPreferencesConstant.EXTEND_PREF_FONT_COLOR);
+		viewInitializer
+				.initLineColor(IPapyrusPreferencesConstant.EXTEND_PREF_LINE_COLOR);
 
-		viewInitializer.initAvoidObstructions(IPapyrusPreferencesConstant.EXTEND_PREF_ROUTING_OBSTRUCTION_POLICY);
-		viewInitializer.initClosestDistance(IPapyrusPreferencesConstant.EXTEND_PREF_ROUTING_DISTANCE_POLICY);
-		viewInitializer.initJumpLinkReverse(IPapyrusPreferencesConstant.EXTEND_PREF_JUMPLINK_REVERSE);
-		viewInitializer.initJumpLinkStatus(IPapyrusPreferencesConstant.EXTEND_PREF_JUMPLINK_STATUS);
-		viewInitializer.initJumpLinkType(IPapyrusPreferencesConstant.EXTEND_PREF_JUMPLINK_TYPE);
-		viewInitializer.initRouting(IPapyrusPreferencesConstant.EXTEND_PREF_ROUTING_STYLE);
-		viewInitializer.initSmoothness(IPapyrusPreferencesConstant.EXTEND_PREF_SMOOTHNESS);
+		viewInitializer
+				.initAvoidObstructions(IPapyrusPreferencesConstant.EXTEND_PREF_ROUTING_OBSTRUCTION_POLICY);
+		viewInitializer
+				.initClosestDistance(IPapyrusPreferencesConstant.EXTEND_PREF_ROUTING_DISTANCE_POLICY);
+		viewInitializer
+				.initJumpLinkReverse(IPapyrusPreferencesConstant.EXTEND_PREF_JUMPLINK_REVERSE);
+		viewInitializer
+				.initJumpLinkStatus(IPapyrusPreferencesConstant.EXTEND_PREF_JUMPLINK_STATUS);
+		viewInitializer
+				.initJumpLinkType(IPapyrusPreferencesConstant.EXTEND_PREF_JUMPLINK_TYPE);
+		viewInitializer
+				.initRouting(IPapyrusPreferencesConstant.EXTEND_PREF_ROUTING_STYLE);
+		viewInitializer
+				.initSmoothness(IPapyrusPreferencesConstant.EXTEND_PREF_SMOOTHNESS);
 	}
 }

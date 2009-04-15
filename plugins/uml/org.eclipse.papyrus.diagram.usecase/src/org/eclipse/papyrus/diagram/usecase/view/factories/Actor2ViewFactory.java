@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.view.factories;
 
 import java.util.ArrayList;
@@ -50,16 +50,23 @@ public class Actor2ViewFactory extends AbstractShapeViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry.getType(Actor2EditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry
+					.getType(Actor2EditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
-		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
+		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
+				.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
+					.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put("modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put(
+					"modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
 		IAdaptable eObjectAdapter = null;
@@ -67,7 +74,9 @@ public class Actor2ViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ActorName2EditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view,
+				UMLVisualIDRegistry.getType(ActorName2EditPart.VISUAL_ID),
+				ViewUtil.APPEND, true, getPreferencesHint());
 	}
 
 	/**
@@ -76,17 +85,23 @@ public class Actor2ViewFactory extends AbstractShapeViewFactory {
 	@Override
 	protected void initializeFromPreferences(View view) {
 
-		IPreferenceStore store = (IPreferenceStore) getPreferencesHint().getPreferenceStore();
+		IPreferenceStore store = (IPreferenceStore) getPreferencesHint()
+				.getPreferenceStore();
 
 		if (store == null) {
 			return;
 		}
 
-		NodeViewInitializer viewInitializer = new NodeViewInitializer(view, store);
-		viewInitializer.initFillColor(IPapyrusPreferencesConstant.ACTOR_2003_PREF_FILL_COLOR);
-		viewInitializer.initFont(IPapyrusPreferencesConstant.ACTOR_2003_PREF_FONT);
-		viewInitializer.initFontColor(IPapyrusPreferencesConstant.ACTOR_2003_PREF_FONT_COLOR);
-		viewInitializer.initLineColor(IPapyrusPreferencesConstant.ACTOR_2003_PREF_LINE_COLOR);
+		NodeViewInitializer viewInitializer = new NodeViewInitializer(view,
+				store);
+		viewInitializer
+				.initFillColor(IPapyrusPreferencesConstant.ACTOR_2003_PREF_FILL_COLOR);
+		viewInitializer
+				.initFont(IPapyrusPreferencesConstant.ACTOR_2003_PREF_FONT);
+		viewInitializer
+				.initFontColor(IPapyrusPreferencesConstant.ACTOR_2003_PREF_FONT_COLOR);
+		viewInitializer
+				.initLineColor(IPapyrusPreferencesConstant.ACTOR_2003_PREF_LINE_COLOR);
 
 	}
 }

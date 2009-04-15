@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.view.factories;
 
 import java.util.ArrayList;
@@ -33,10 +33,14 @@ public class IncludeLink_fixedViewFactory extends AbstractLabelViewFactory {
 	/**
 	 * @generated
 	 */
-	public View createView(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node view = (Node) super.createView(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+	public View createView(IAdaptable semanticAdapter, View containerView,
+			String semanticHint, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node view = (Node) super.createView(semanticAdapter, containerView,
+				semanticHint, index, persisted, preferencesHint);
 		Location location = (Location) view.getLayoutConstraint();
-		IMapMode mapMode = MeasurementUnitHelper.getMapMode(containerView.getDiagram().getMeasurementUnit());
+		IMapMode mapMode = MeasurementUnitHelper.getMapMode(containerView
+				.getDiagram().getMeasurementUnit());
 		location.setX(mapMode.DPtoLP(0));
 		location.setY(mapMode.DPtoLP(20));
 		return view;

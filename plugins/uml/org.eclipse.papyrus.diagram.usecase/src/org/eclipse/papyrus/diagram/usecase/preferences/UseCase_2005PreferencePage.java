@@ -13,13 +13,15 @@
 package org.eclipse.papyrus.diagram.usecase.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 
 /**
  * @generated
  */
-public class UseCase_2005PreferencePage extends AbstractPapyrusNodePreferencePage {
+public class UseCase_2005PreferencePage extends
+		AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
@@ -65,6 +67,12 @@ public class UseCase_2005PreferencePage extends AbstractPapyrusNodePreferencePag
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+		PreferenceConverter.setDefault(store,
+				IPapyrusPreferencesConstant.USECASE_2005_PREF_FILL_COLOR,
+				new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store,
+				IPapyrusPreferencesConstant.USECASE_2005_PREF_LINE_COLOR,
+				new org.eclipse.swt.graphics.RGB(177, 207, 229));
 
 	}
 

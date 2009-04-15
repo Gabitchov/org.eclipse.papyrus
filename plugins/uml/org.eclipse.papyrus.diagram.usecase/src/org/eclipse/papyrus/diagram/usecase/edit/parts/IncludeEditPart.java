@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -30,7 +30,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.policies.IncludeItemSemanticEdit
 /**
  * @generated
  */
-public class IncludeEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class IncludeEditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -49,7 +50,8 @@ public class IncludeEditPart extends ConnectionNodeEditPart implements ITreeBran
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new IncludeItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new IncludeItemSemanticEditPolicy());
 	}
 
 	/**

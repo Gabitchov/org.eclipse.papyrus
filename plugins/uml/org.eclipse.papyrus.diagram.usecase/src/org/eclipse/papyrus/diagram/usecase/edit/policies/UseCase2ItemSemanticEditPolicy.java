@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import java.util.Iterator;
@@ -51,7 +51,8 @@ import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class UseCase2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class UseCase2ItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -81,7 +82,8 @@ public class UseCase2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			Node node = (Node) it.next();
 			switch (UMLVisualIDRegistry.getVisualID(node)) {
 			case UseCaseExtensionpointsEditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+				for (Iterator cit = node.getChildren().iterator(); cit
+						.hasNext();) {
 					Node cnode = (Node) cit.next();
 					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ExtensionPoint2EditPart.VISUAL_ID:
@@ -98,31 +100,40 @@ public class UseCase2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		if (UMLElementTypes.Include_4001 == req.getElementType()) {
-			return getGEFWrapper(new IncludeCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new IncludeCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Extend_4002 == req.getElementType()) {
-			return getGEFWrapper(new ExtendCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ExtendCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Generalization_4003 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new GeneralizationCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Association_4004 == req.getElementType()) {
-			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AssociationCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4005 == req.getElementType()) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4005 == req
+				.getElementType()) {
 			return null;
 		}
 		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new DependencyCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -130,24 +141,32 @@ public class UseCase2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		if (UMLElementTypes.Include_4001 == req.getElementType()) {
-			return getGEFWrapper(new IncludeCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new IncludeCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Extend_4002 == req.getElementType()) {
-			return getGEFWrapper(new ExtendCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ExtendCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Generalization_4003 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new GeneralizationCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Association_4004 == req.getElementType()) {
-			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AssociationCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4005 == req.getElementType()) {
-			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.ConstraintConstrainedElement_4005 == req
+				.getElementType()) {
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new DependencyCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -157,7 +176,8 @@ public class UseCase2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case IncludeEditPart.VISUAL_ID:
 			return getGEFWrapper(new IncludeReorientCommand(req));
@@ -178,10 +198,12 @@ public class UseCase2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(
+					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

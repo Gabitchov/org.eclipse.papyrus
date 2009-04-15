@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.view.factories;
 
 import java.util.ArrayList;
@@ -26,7 +26,8 @@ import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 /**
  * @generated
  */
-public class ConstraintConstrainedElementViewFactory extends ConnectionViewFactory {
+public class ConstraintConstrainedElementViewFactory extends
+		ConnectionViewFactory {
 
 	/**
 	 * @generated
@@ -41,11 +42,15 @@ public class ConstraintConstrainedElementViewFactory extends ConnectionViewFacto
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry.getType(ConstraintConstrainedElementEditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry
+					.getType(ConstraintConstrainedElementEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
 	}
 }

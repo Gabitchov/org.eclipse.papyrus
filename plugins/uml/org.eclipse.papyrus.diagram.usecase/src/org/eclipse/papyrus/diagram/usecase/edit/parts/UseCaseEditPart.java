@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.Border;
@@ -83,25 +83,11 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy() {
-
-			public Command getCommand(Request request) {
-				if (understandsRequest(request)) {
-					if (request instanceof CreateViewAndElementRequest) {
-						CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-						IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-						if (type == UMLElementTypes.ExtensionPoint_3002) {
-							EditPart compartmentEditPart = getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCasePointsEditPart.VISUAL_ID));
-							return compartmentEditPart == null ? null : compartmentEditPart.getCommand(request);
-						}
-					}
-					return super.getCommand(request);
-				}
-				return null;
-			}
-		});
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCaseItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new UseCaseItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -114,7 +100,8 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -152,12 +139,13 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof UseCaseNameEditPart) {
-			((UseCaseNameEditPart) childEditPart).setLabel(getPrimaryShape().getUseCaseFigure_name());
+			((UseCaseNameEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getUseCaseFigure_name());
 			return true;
 		}
 		if (childEditPart instanceof UseCasePointsEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((UseCasePointsEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -168,10 +156,12 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
+		if (childEditPart instanceof UseCaseNameEditPart) {
+			return true;
+		}
 		if (childEditPart instanceof UseCasePointsEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((UseCasePointsEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -202,18 +192,18 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
 		if (editPart instanceof UseCasePointsEditPart) {
 			return getPrimaryShape().getUseCaseFigure_contents();
 		}
-		return super.getContentPaneFor(editPart);
+		return getContentPane();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(140), getMapMode().DPtoLP(60));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(140), getMapMode().DPtoLP(60));
 		return result;
 	}
 
@@ -263,7 +253,8 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCaseNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry
+				.getType(UseCaseNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -302,7 +293,9 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 			Rectangle r = getBounds().getCopy();
 			Point topLeft = r.getTopLeft();
 			Point bottomRight = r.getBottomRight();
-			Pattern pattern = new Pattern(Display.getCurrent(), topLeft.x, topLeft.y, bottomRight.x, bottomRight.y, this.getBackgroundColor(), this.getForegroundColor());
+			Pattern pattern = new Pattern(Display.getCurrent(), topLeft.x,
+					topLeft.y, bottomRight.x, bottomRight.y, this
+							.getBackgroundColor(), this.getForegroundColor());
 			graphics.setBackgroundPattern(pattern);
 			graphics.fillOval(r);
 			graphics.setBackgroundPattern(null);
@@ -387,6 +380,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FUSECASEFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
+	static final Font FUSECASEFIGURE_NAME_FONT = new Font(Display.getCurrent(),
+			"Arial", 10, SWT.BOLD);
 
 }

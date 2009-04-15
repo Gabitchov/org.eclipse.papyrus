@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.navigator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -32,8 +32,10 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem) adaptableObject).getView();
+				if (adaptableObject instanceof org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem
+						&& (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem) adaptableObject)
+							.getView();
 				}
 				return null;
 			}
@@ -82,7 +84,12 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem) {
-			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem) obj).getView()));
+			return EcoreUtil
+					.getURI(getView())
+					.equals(
+							EcoreUtil
+									.getURI(((org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem) obj)
+											.getView()));
 		}
 		return super.equals(obj);
 	}

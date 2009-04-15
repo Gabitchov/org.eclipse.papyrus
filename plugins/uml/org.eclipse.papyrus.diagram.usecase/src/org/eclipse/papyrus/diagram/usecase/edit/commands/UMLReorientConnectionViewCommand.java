@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import java.util.List;
@@ -26,7 +26,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class UMLReorientConnectionViewCommand extends AbstractTransactionalCommand {
+public class UMLReorientConnectionViewCommand extends
+		AbstractTransactionalCommand {
 
 	/**
 	 * @generated
@@ -36,7 +37,8 @@ public class UMLReorientConnectionViewCommand extends AbstractTransactionalComma
 	/**
 	 * @generated
 	 */
-	public UMLReorientConnectionViewCommand(TransactionalEditingDomain editingDomain, String label) {
+	public UMLReorientConnectionViewCommand(
+			TransactionalEditingDomain editingDomain, String label) {
 		super(editingDomain, label, null);
 	}
 
@@ -68,7 +70,8 @@ public class UMLReorientConnectionViewCommand extends AbstractTransactionalComma
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) {
+	protected CommandResult doExecuteWithResult(
+			IProgressMonitor progressMonitor, IAdaptable info) {
 		assert null != edgeAdaptor : "Null child in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
 		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
 		assert null != edge : "Null edge in UMLReorientConnectionViewCommand"; //$NON-NLS-1$

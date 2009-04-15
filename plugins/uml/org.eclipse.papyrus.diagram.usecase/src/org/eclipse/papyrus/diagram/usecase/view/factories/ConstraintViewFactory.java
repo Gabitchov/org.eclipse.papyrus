@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.view.factories;
 
 import java.util.ArrayList;
@@ -50,16 +50,23 @@ public class ConstraintViewFactory extends AbstractShapeViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry.getType(ConstraintEditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry
+					.getType(ConstraintEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
-		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
+		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
+				.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
+					.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put("modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put(
+					"modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
 		IAdaptable eObjectAdapter = null;
@@ -67,7 +74,9 @@ public class ConstraintViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view,
+				UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID),
+				ViewUtil.APPEND, true, getPreferencesHint());
 	}
 
 	/**
@@ -76,17 +85,23 @@ public class ConstraintViewFactory extends AbstractShapeViewFactory {
 	@Override
 	protected void initializeFromPreferences(View view) {
 
-		IPreferenceStore store = (IPreferenceStore) getPreferencesHint().getPreferenceStore();
+		IPreferenceStore store = (IPreferenceStore) getPreferencesHint()
+				.getPreferenceStore();
 
 		if (store == null) {
 			return;
 		}
 
-		NodeViewInitializer viewInitializer = new NodeViewInitializer(view, store);
-		viewInitializer.initFillColor(IPapyrusPreferencesConstant.CONSTRAINT_2008_PREF_FILL_COLOR);
-		viewInitializer.initFont(IPapyrusPreferencesConstant.CONSTRAINT_2008_PREF_FONT);
-		viewInitializer.initFontColor(IPapyrusPreferencesConstant.CONSTRAINT_2008_PREF_FONT_COLOR);
-		viewInitializer.initLineColor(IPapyrusPreferencesConstant.CONSTRAINT_2008_PREF_LINE_COLOR);
+		NodeViewInitializer viewInitializer = new NodeViewInitializer(view,
+				store);
+		viewInitializer
+				.initFillColor(IPapyrusPreferencesConstant.CONSTRAINT_2008_PREF_FILL_COLOR);
+		viewInitializer
+				.initFont(IPapyrusPreferencesConstant.CONSTRAINT_2008_PREF_FONT);
+		viewInitializer
+				.initFontColor(IPapyrusPreferencesConstant.CONSTRAINT_2008_PREF_FONT_COLOR);
+		viewInitializer
+				.initLineColor(IPapyrusPreferencesConstant.CONSTRAINT_2008_PREF_LINE_COLOR);
 
 	}
 }

@@ -40,13 +40,16 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		GeneralizationPreferencePage.initDefaults(store);
 		AssociationPreferencePage.initDefaults(store);
 		DependencyPreferencePage.initDefaults(store);
-		
+
 		//TODO: QuickFix to enable Global Properties. Global Properties should be re-enable in the Papyrus Diagram Page (and in the corresponding generators).
-		store.setDefault(IPreferenceConstants.PREF_SHOW_CONNECTION_HANDLES, true);
+		store.setDefault(IPreferenceConstants.PREF_SHOW_CONNECTION_HANDLES,
+				true);
 		store.setDefault(IPreferenceConstants.PREF_SHOW_POPUP_BARS, true);
-		store.setDefault(IPreferenceConstants.PREF_ENABLE_ANIMATED_LAYOUT, true);
-		store.setDefault(IPreferenceConstants.PREF_ENABLE_ANIMATED_ZOOM, true);	
-		store.setDefault(IPreferenceConstants.PREF_ENABLE_ANTIALIAS, true);	
+		store
+				.setDefault(IPreferenceConstants.PREF_ENABLE_ANIMATED_LAYOUT,
+						true);
+		store.setDefault(IPreferenceConstants.PREF_ENABLE_ANIMATED_ZOOM, true);
+		store.setDefault(IPreferenceConstants.PREF_ENABLE_ANTIALIAS, true);
 
 	}
 

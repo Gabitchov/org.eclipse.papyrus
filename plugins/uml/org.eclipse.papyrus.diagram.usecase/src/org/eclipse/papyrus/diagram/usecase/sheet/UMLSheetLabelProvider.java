@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.sheet;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -32,7 +32,8 @@ public class UMLSheetLabelProvider extends DecoratingLabelProvider {
 	 * @generated
 	 */
 	public UMLSheetLabelProvider() {
-		super(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), null);
+		super(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin
+				.getInstance().getItemProvidersAdapterFactory()), null);
 	}
 
 	/**

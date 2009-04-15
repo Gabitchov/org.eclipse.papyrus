@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.emf.ecore.EObject;
@@ -69,7 +69,8 @@ public class ModelElementSelectionPage extends WizardPage {
 		if (modelViewer != null) {
 			if (selectedModelElement != null) {
 				modelViewer.setInput(selectedModelElement.eResource());
-				modelViewer.setSelection(new StructuredSelection(selectedModelElement));
+				modelViewer.setSelection(new StructuredSelection(
+						selectedModelElement));
 			} else {
 				modelViewer.setInput(null);
 			}
@@ -94,23 +95,31 @@ public class ModelElementSelectionPage extends WizardPage {
 		label.setText(getSelectionTitle());
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
 
-		modelViewer = new TreeViewer(plate, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+		modelViewer = new TreeViewer(plate, SWT.SINGLE | SWT.H_SCROLL
+				| SWT.V_SCROLL | SWT.BORDER);
 		GridData layoutData = new GridData(GridData.FILL_BOTH);
 		layoutData.heightHint = 300;
 		layoutData.widthHint = 300;
 		modelViewer.getTree().setLayoutData(layoutData);
-		modelViewer.setContentProvider(new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()));
-		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()));
+		modelViewer.setContentProvider(new AdapterFactoryContentProvider(
+				UMLDiagramEditorPlugin.getInstance()
+						.getItemProvidersAdapterFactory()));
+		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(
+				UMLDiagramEditorPlugin.getInstance()
+						.getItemProvidersAdapterFactory()));
 		if (selectedModelElement != null) {
 			modelViewer.setInput(selectedModelElement.eResource());
-			modelViewer.setSelection(new StructuredSelection(selectedModelElement));
+			modelViewer.setSelection(new StructuredSelection(
+					selectedModelElement));
 		}
-		modelViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-
-			public void selectionChanged(SelectionChangedEvent event) {
-				ModelElementSelectionPage.this.updateSelection((IStructuredSelection) event.getSelection());
-			}
-		});
+		modelViewer
+				.addSelectionChangedListener(new ISelectionChangedListener() {
+					public void selectionChanged(SelectionChangedEvent event) {
+						ModelElementSelectionPage.this
+								.updateSelection((IStructuredSelection) event
+										.getSelection());
+					}
+				});
 
 		setPageComplete(validatePage());
 	}
@@ -132,10 +141,12 @@ public class ModelElementSelectionPage extends WizardPage {
 		if (selection.size() == 1) {
 			Object selectedElement = selection.getFirstElement();
 			if (selectedElement instanceof IWrapperItemProvider) {
-				selectedElement = ((IWrapperItemProvider) selectedElement).getValue();
+				selectedElement = ((IWrapperItemProvider) selectedElement)
+						.getValue();
 			}
 			if (selectedElement instanceof FeatureMap.Entry) {
-				selectedElement = ((FeatureMap.Entry) selectedElement).getValue();
+				selectedElement = ((FeatureMap.Entry) selectedElement)
+						.getValue();
 			}
 			if (selectedElement instanceof EObject) {
 				selectedModelElement = (EObject) selectedElement;
