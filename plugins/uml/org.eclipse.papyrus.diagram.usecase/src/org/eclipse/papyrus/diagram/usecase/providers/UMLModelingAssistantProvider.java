@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentUsecasesEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
@@ -95,6 +96,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Component_2006);
 			types.add(UMLElementTypes.Package_2009);
 			types.add(UMLElementTypes.Constraint_2008);
+			types.add(UMLElementTypes.Comment_2010);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -121,6 +123,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof ConstraintEditPart) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			return types;
+		}
+		if (sourceEditPart instanceof CommentEditPart) {
+			List types = new ArrayList();
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
 			return types;
 		}
 		if (sourceEditPart instanceof UseCase3EditPart) {
@@ -237,6 +244,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (sourceEditPart instanceof ConstraintEditPart) {
+			List types = new ArrayList();
+			return types;
+		}
+		if (sourceEditPart instanceof CommentEditPart) {
 			List types = new ArrayList();
 			return types;
 		}
@@ -485,6 +496,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (sourceEditPart instanceof ConstraintEditPart) {
+			List types = new ArrayList();
+			return types;
+		}
+		if (sourceEditPart instanceof CommentEditPart) {
 			List types = new ArrayList();
 			return types;
 		}

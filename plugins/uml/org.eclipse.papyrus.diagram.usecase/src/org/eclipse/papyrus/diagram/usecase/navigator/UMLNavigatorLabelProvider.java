@@ -33,6 +33,9 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
@@ -154,6 +157,9 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 		case ConstraintEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?Constraint", UMLElementTypes.Constraint_2008); //$NON-NLS-1$
+		case CommentEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?Comment", UMLElementTypes.Comment_2010); //$NON-NLS-1$
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?ExtensionPoint", UMLElementTypes.ExtensionPoint_3002); //$NON-NLS-1$
@@ -187,6 +193,9 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 		case DependencyEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://www.eclipse.org/uml2/2.1.0/UML?Dependency", UMLElementTypes.Dependency_4006); //$NON-NLS-1$
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://www.eclipse.org/uml2/2.1.0/UML?Comment?annotatedElement", UMLElementTypes.CommentAnnotatedElement_4007); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -255,6 +264,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 			return getPackage_2009Text(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_2008Text(view);
+		case CommentEditPart.VISUAL_ID:
+			return getComment_2010Text(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3002Text(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
@@ -277,6 +288,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 			return getConstraintConstrainedElement_4005Text(view);
 		case DependencyEditPart.VISUAL_ID:
 			return getDependency_4006Text(view);
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return getCommentAnnotatedElement_4007Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -437,6 +450,27 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5011); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getComment_2010Text(View view) {
+		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
+				UMLElementTypes.Comment_2010, (view.getElement() != null ? view
+						.getElement() : view), UMLVisualIDRegistry
+						.getType(CommentBodyEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5013); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -644,6 +678,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 			return ""; //$NON-NLS-1$
 		}
 
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getCommentAnnotatedElement_4007Text(View view) {
+		return ""; //$NON-NLS-1$
 	}
 
 	/**

@@ -30,6 +30,10 @@
           xsi:type="gmftool:CreationTool"
           title="Constraint"
           description="Create Constraint"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Comment"
+          description="Create Comment"/>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
@@ -68,6 +72,10 @@
           xsi:type="gmftool:CreationTool"
           title="Dependency"
           description="Create Dependency Link"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Comment link"
+          description="Create Comment Link"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

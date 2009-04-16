@@ -94,6 +94,9 @@ public class PackageEditPart extends DiagramEditPart {
 			if (UMLPackage.eINSTANCE.getConstraint().equals(class1)) {
 				return UMLPackage.eINSTANCE.getPackage_PackagedElement();
 			}
+			if (UMLPackage.eINSTANCE.getComment().equals(class1)) {
+				return UMLPackage.eINSTANCE.getElement_OwnedComment();
+			}
 			return null;
 		}
 	};

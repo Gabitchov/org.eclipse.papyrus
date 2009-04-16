@@ -100,6 +100,11 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Comment_2010 = getElementType("org.eclipse.papyrus.diagram.usecase.Comment_2010"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ExtensionPoint_3002 = getElementType("org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3002"); //$NON-NLS-1$
 
 	/**
@@ -151,6 +156,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType Dependency_4006 = getElementType("org.eclipse.papyrus.diagram.usecase.Dependency_4006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType CommentAnnotatedElement_4007 = getElementType("org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -279,6 +289,8 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Constraint_2008, UMLPackage.eINSTANCE.getConstraint());
 
+			elements.put(Comment_2010, UMLPackage.eINSTANCE.getComment());
+
 			elements.put(ExtensionPoint_3002, UMLPackage.eINSTANCE
 					.getExtensionPoint());
 
@@ -305,6 +317,9 @@ public class UMLElementTypes extends ElementInitializers {
 					UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
 			elements.put(Dependency_4006, UMLPackage.eINSTANCE.getDependency());
+
+			elements.put(CommentAnnotatedElement_4007, UMLPackage.eINSTANCE
+					.getComment_AnnotatedElement());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -330,6 +345,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Component_2006);
 			KNOWN_ELEMENT_TYPES.add(Package_2009);
 			KNOWN_ELEMENT_TYPES.add(Constraint_2008);
+			KNOWN_ELEMENT_TYPES.add(Comment_2010);
 			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3002);
 			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3003);
 			KNOWN_ELEMENT_TYPES.add(UseCase_3004);
@@ -341,6 +357,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Association_4004);
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4005);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4006);
+			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4007);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.usecase.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -450,6 +451,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateCommentAnnotatedElement_4007(
+				Comment source, Element target) {
+			if (source != null) {
+				if (source.getAnnotatedElements().contains(target)) {
+					return false;
+				}
+			}
+			return canExistCommentAnnotatedElement_4007(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistInclude_4001(UseCase container,
 				UseCase source, UseCase target) {
 
@@ -599,6 +613,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						"Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistCommentAnnotatedElement_4007(
+				Comment source, Element target) {
+
+			return true;
 		}
 	}
 

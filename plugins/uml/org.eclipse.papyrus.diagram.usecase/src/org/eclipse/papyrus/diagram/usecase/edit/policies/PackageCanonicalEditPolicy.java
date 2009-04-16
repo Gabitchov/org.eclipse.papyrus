@@ -53,6 +53,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
@@ -115,6 +116,7 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		case ComponentEditPart.VISUAL_ID:
 		case Package3EditPart.VISUAL_ID:
 		case ConstraintEditPart.VISUAL_ID:
+		case CommentEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -199,6 +201,8 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
 					.getPackage_PackagedElement());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getElement_OwnedComment());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -393,6 +397,17 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater
 						.getConstraint_2008ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case CommentEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getComment_2010ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

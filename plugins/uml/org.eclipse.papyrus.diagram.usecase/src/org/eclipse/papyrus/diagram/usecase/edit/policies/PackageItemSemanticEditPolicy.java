@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Actor2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ActorCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ComponentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Package2CreateCommand;
@@ -89,6 +90,13 @@ public class PackageItemSemanticEditPolicy extends
 						.getPackage_PackagedElement());
 			}
 			return getGEFWrapper(new ConstraintCreateCommand(req));
+		}
+		if (UMLElementTypes.Comment_2010 == req.getElementType()) {
+			if (req.getContainmentFeature() == null) {
+				req.setContainmentFeature(UMLPackage.eINSTANCE
+						.getElement_OwnedComment());
+			}
+			return getGEFWrapper(new CommentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

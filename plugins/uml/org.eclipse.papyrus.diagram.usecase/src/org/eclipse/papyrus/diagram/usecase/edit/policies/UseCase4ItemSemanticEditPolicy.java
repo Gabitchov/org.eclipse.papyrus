@@ -27,6 +27,8 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.AssociationCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.AssociationReorientCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentAnnotatedElementCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyCreateCommand;
@@ -38,6 +40,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.GeneralizationReorientC
 import org.eclipse.papyrus.diagram.usecase.edit.commands.IncludeCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.IncludeReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
@@ -131,6 +134,10 @@ public class UseCase4ItemSemanticEditPolicy extends
 			return getGEFWrapper(new DependencyCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.CommentAnnotatedElement_4007 == req
+				.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -163,6 +170,11 @@ public class UseCase4ItemSemanticEditPolicy extends
 		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req
 					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.CommentAnnotatedElement_4007 == req
+				.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -200,6 +212,8 @@ public class UseCase4ItemSemanticEditPolicy extends
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(
 					req));
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

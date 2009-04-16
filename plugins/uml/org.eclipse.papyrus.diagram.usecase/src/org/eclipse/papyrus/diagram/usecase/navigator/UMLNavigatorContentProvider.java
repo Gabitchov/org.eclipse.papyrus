@@ -34,6 +34,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentUsecasesEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
@@ -208,6 +210,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		result
 				.addAll(createNavigatorItems(connectedViews, parentElement,
 						false));
+		connectedViews = getChildrenByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(CommentEditPart.VISUAL_ID));
+		result
+				.addAll(createNavigatorItems(connectedViews, parentElement,
+						false));
 		connectedViews = getDiagramLinksByType(Collections.singleton(view),
 				UMLVisualIDRegistry.getType(IncludeEditPart.VISUAL_ID));
 		links.addChildren(createNavigatorItems(connectedViews, links, false));
@@ -227,6 +234,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		links.addChildren(createNavigatorItems(connectedViews, links, false));
 		connectedViews = getDiagramLinksByType(Collections.singleton(view),
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
+		links.addChildren(createNavigatorItems(connectedViews, links, false));
+		connectedViews = getDiagramLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
 		links.addChildren(createNavigatorItems(connectedViews, links, false));
 		if (!links.isEmpty()) {
 			result.add(links);
@@ -280,6 +291,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -335,6 +351,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -413,6 +434,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -491,6 +517,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -553,6 +584,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -609,6 +645,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -652,6 +693,50 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
+		if (!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		if (!outgoinglinks.isEmpty()) {
+			result.add(outgoinglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 *
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
+	 *@generated
+	 **/
+	private Object[] getViewChildrenForCommentEditPart(View view,
+			Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(
+				Messages.NavigatorGroupName_Comment_2010_incominglinks,
+				"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		UMLNavigatorGroup outgoinglinks = new UMLNavigatorGroup(
+				Messages.NavigatorGroupName_Comment_2010_outgoinglinks,
+				"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections
+				.singleton(view), UMLVisualIDRegistry
+				.getType(ConstraintConstrainedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
+		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+				outgoinglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -689,6 +774,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -726,6 +816,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -804,6 +899,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -859,6 +959,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -937,6 +1042,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				UMLVisualIDRegistry
+						.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews,
+				incominglinks, true));
 		if (!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
@@ -1228,6 +1338,9 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(ConstraintEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(CommentEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
 				UMLVisualIDRegistry.getType(ExtensionPointEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -1341,6 +1454,73 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
 				UMLVisualIDRegistry.getType(UseCase4EditPart.VISUAL_ID));
+		source.addChildren(createNavigatorItems(connectedViews, source, true));
+		if (!target.isEmpty()) {
+			result.add(target);
+		}
+		if (!source.isEmpty()) {
+			result.add(source);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 *
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
+	 *@generated
+	 **/
+	private Object[] getViewChildrenForCommentAnnotatedElementEditPart(
+			View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup target = new UMLNavigatorGroup(
+				Messages.NavigatorGroupName_CommentAnnotatedElement_4007_target,
+				"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		UMLNavigatorGroup source = new UMLNavigatorGroup(
+				Messages.NavigatorGroupName_CommentAnnotatedElement_4007_source,
+				"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getLinksTargetByType(Collections
+				.singleton(view), UMLVisualIDRegistry
+				.getType(ActorEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(Actor2EditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(UseCaseEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(UseCase2EditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(ComponentEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(Package3EditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(ConstraintEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(CommentEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(ExtensionPointEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(ExtensionPoint2EditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(UseCase3EditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(Actor3EditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(UseCase4EditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksSourceByType(Collections.singleton(view),
+				UMLVisualIDRegistry.getType(CommentEditPart.VISUAL_ID));
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		if (!target.isEmpty()) {
 			result.add(target);
@@ -1493,6 +1673,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		}
 
+		case CommentEditPart.VISUAL_ID: {
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCommentEditPart(view, parentElement);
+
+		}
+
 		case ExtensionPointEditPart.VISUAL_ID: {
 
 			//modification of the template to avoid mistake of 65kb.
@@ -1569,6 +1756,14 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForDependencyEditPart(view, parentElement);
+
+		}
+
+		case CommentAnnotatedElementEditPart.VISUAL_ID: {
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCommentAnnotatedElementEditPart(view,
+					parentElement);
 
 		}
 

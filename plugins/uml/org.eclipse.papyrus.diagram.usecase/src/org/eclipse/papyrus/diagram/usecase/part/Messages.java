@@ -286,42 +286,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String UseCase1CreationTool_title;
+	public static String Package1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String UseCase1CreationTool_desc;
+	public static String Package1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Actor2CreationTool_title;
+	public static String Subject2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Actor2CreationTool_desc;
+	public static String Subject2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Subject3CreationTool_title;
+	public static String Actor3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Subject3CreationTool_desc;
+	public static String Actor3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Package4CreationTool_title;
+	public static String UseCase4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Package4CreationTool_desc;
+	public static String UseCase4CreationTool_desc;
 
 	/**
 	 * @generated
@@ -332,6 +332,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String Constraint5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Comment6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Comment6CreationTool_desc;
 
 	/**
 	 * @generated
@@ -356,52 +366,62 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Extend2CreationTool_title;
+	public static String Generalization2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Extend2CreationTool_desc;
+	public static String Generalization2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Include3CreationTool_title;
+	public static String Dependency3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Include3CreationTool_desc;
+	public static String Dependency3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization4CreationTool_title;
+	public static String Include4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization4CreationTool_desc;
+	public static String Include4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstrainedElement5CreationTool_title;
+	public static String Extend5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstrainedElement5CreationTool_desc;
+	public static String Extend5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency6CreationTool_title;
+	public static String ConstrainedElement6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency6CreationTool_desc;
+	public static String ConstrainedElement6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Commentlink7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Commentlink7CreationTool_desc;
 
 	/**
 	 * @generated
@@ -516,6 +536,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Comment_2010_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Comment_2010_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ExtensionPoint_3002_incominglinks;
 
 	/**
@@ -622,6 +652,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Dependency_4006_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CommentAnnotatedElement_4007_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CommentAnnotatedElement_4007_source;
 
 	/**
 	 * @generated

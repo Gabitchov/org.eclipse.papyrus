@@ -20,6 +20,7 @@ import org.eclipse.papyrus.diagram.usecase.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ExtensionPoint;
@@ -154,6 +155,20 @@ public class ElementInitializers {
 				newInstance_0_0.getBodies().add((String) value_0_0_0);
 			}
 
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_Comment_2010(Comment instance) {
+		try {
+			Object value_0 = UMLOCLFactory.getExpression("\' \'",
+					UMLPackage.eINSTANCE.getComment()).evaluate(instance);
+			instance.setBody((String) value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError(
 					"Element initialization failed", e); //$NON-NLS-1$						

@@ -29,6 +29,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
@@ -233,6 +234,34 @@ public class UMLParserProvider extends AbstractProvider implements
 
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
 				.getNamedElement_Name(), };
+		MessageFormatParser parser = new MessageFormatParser(features);
+		return parser;
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser commentBody_5013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommentBody_5013Parser() {
+		if (commentBody_5013Parser == null) {
+			commentBody_5013Parser = createCommentBody_5013Parser();
+		}
+		return commentBody_5013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+
+	protected IParser createCommentBody_5013Parser() {
+
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getComment_Body(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
 		return parser;
 
@@ -473,6 +502,8 @@ public class UMLParserProvider extends AbstractProvider implements
 			return getPackageName_5012Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5011Parser();
+		case CommentBodyEditPart.VISUAL_ID:
+			return getCommentBody_5013Parser();
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3002Parser();
 		case ExtensionPoint2EditPart.VISUAL_ID:

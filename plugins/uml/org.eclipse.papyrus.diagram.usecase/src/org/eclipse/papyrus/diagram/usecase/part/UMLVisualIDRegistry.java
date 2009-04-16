@@ -29,6 +29,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentUsecasesEditPart;
@@ -250,6 +252,10 @@ public class UMLVisualIDRegistry {
 					domainElement.eClass())) {
 				return ConstraintEditPart.VISUAL_ID;
 			}
+			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(
+					domainElement.eClass())) {
+				return CommentEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -320,6 +326,11 @@ public class UMLVisualIDRegistry {
 			break;
 		case ConstraintEditPart.VISUAL_ID:
 			if (ConstraintNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case CommentEditPart.VISUAL_ID:
+			if (CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -397,6 +408,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (ConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (CommentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -538,6 +552,9 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(2008, ViewInfo.Node, "Constraint");
 		root.addNode(1000, viewInfo);
 
+		viewInfo = new BaseViewInfo(2010, ViewInfo.Node, "Comment");
+		root.addNode(1000, viewInfo);
+
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "Include");
 		root.addNode(1000, viewInfo);
 
@@ -570,6 +587,9 @@ public class UMLVisualIDRegistry {
 
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "ExtensionPoint");
 

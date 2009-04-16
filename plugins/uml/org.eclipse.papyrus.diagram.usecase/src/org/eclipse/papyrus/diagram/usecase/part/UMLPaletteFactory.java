@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
@@ -45,14 +46,15 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private PaletteContainer createNodes1Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(
+		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Nodes1Group_title);
 		paletteContainer.setDescription(Messages.Nodes1Group_desc);
-		paletteContainer.add(createUseCase1CreationTool());
-		paletteContainer.add(createActor2CreationTool());
-		paletteContainer.add(createSubject3CreationTool());
-		paletteContainer.add(createPackage4CreationTool());
+		paletteContainer.add(createPackage1CreationTool());
+		paletteContainer.add(createSubject2CreationTool());
+		paletteContainer.add(createActor3CreationTool());
+		paletteContainer.add(createUseCase4CreationTool());
 		paletteContainer.add(createConstraint5CreationTool());
+		paletteContainer.add(createComment6CreationTool());
 		return paletteContainer;
 	}
 
@@ -62,7 +64,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private PaletteContainer createChildren2Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(
+		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Children2Group_title);
 		paletteContainer.setDescription(Messages.Children2Group_desc);
 		paletteContainer.add(createExtensionPoint1CreationTool());
@@ -75,31 +77,30 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private PaletteContainer createLinks3Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(
+		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Links3Group_title);
 		paletteContainer.setDescription(Messages.Links3Group_desc);
 		paletteContainer.add(createAssociation1CreationTool());
-		paletteContainer.add(createExtend2CreationTool());
-		paletteContainer.add(createInclude3CreationTool());
-		paletteContainer.add(createGeneralization4CreationTool());
-		paletteContainer.add(createConstrainedElement5CreationTool());
-		paletteContainer.add(createDependency6CreationTool());
+		paletteContainer.add(createGeneralization2CreationTool());
+		paletteContainer.add(createDependency3CreationTool());
+		paletteContainer.add(createInclude4CreationTool());
+		paletteContainer.add(createExtend5CreationTool());
+		paletteContainer.add(createConstrainedElement6CreationTool());
+		paletteContainer.add(createCommentlink7CreationTool());
 		return paletteContainer;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createUseCase1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(3);
-		types.add(UMLElementTypes.UseCase_2004);
-		types.add(UMLElementTypes.UseCase_3004);
-		types.add(UMLElementTypes.UseCase_3006);
+	private ToolEntry createPackage1CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(UMLElementTypes.Package_2009);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.UseCase1CreationTool_title,
-				Messages.UseCase1CreationTool_desc, types);
+				Messages.Package1CreationTool_title,
+				Messages.Package1CreationTool_desc, types);
 		entry.setSmallIcon(UMLElementTypes
-				.getImageDescriptor(UMLElementTypes.UseCase_2004));
+				.getImageDescriptor(UMLElementTypes.Package_2009));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -107,28 +108,12 @@ public class UMLPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createActor2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
-		types.add(UMLElementTypes.Actor_2002);
-		types.add(UMLElementTypes.Actor_3005);
-		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Actor2CreationTool_title,
-				Messages.Actor2CreationTool_desc, types);
-		entry.setSmallIcon(UMLElementTypes
-				.getImageDescriptor(UMLElementTypes.Actor_2002));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createSubject3CreationTool() {
+	private ToolEntry createSubject2CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types.add(UMLElementTypes.Component_2006);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Subject3CreationTool_title,
-				Messages.Subject3CreationTool_desc, types);
+				Messages.Subject2CreationTool_title,
+				Messages.Subject2CreationTool_desc, types);
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Component_2006));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -138,14 +123,32 @@ public class UMLPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createPackage4CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(UMLElementTypes.Package_2009);
+	private ToolEntry createActor3CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
+		types.add(UMLElementTypes.Actor_2002);
+		types.add(UMLElementTypes.Actor_3005);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Package4CreationTool_title,
-				Messages.Package4CreationTool_desc, types);
+				Messages.Actor3CreationTool_title,
+				Messages.Actor3CreationTool_desc, types);
 		entry.setSmallIcon(UMLElementTypes
-				.getImageDescriptor(UMLElementTypes.Package_2009));
+				.getImageDescriptor(UMLElementTypes.Actor_2002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createUseCase4CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(3);
+		types.add(UMLElementTypes.UseCase_2004);
+		types.add(UMLElementTypes.UseCase_3004);
+		types.add(UMLElementTypes.UseCase_3006);
+		NodeToolEntry entry = new NodeToolEntry(
+				Messages.UseCase4CreationTool_title,
+				Messages.UseCase4CreationTool_desc, types);
+		entry.setSmallIcon(UMLElementTypes
+				.getImageDescriptor(UMLElementTypes.UseCase_2004));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -161,6 +164,21 @@ public class UMLPaletteFactory {
 				Messages.Constraint5CreationTool_desc, types);
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Constraint_2008));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createComment6CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(UMLElementTypes.Comment_2010);
+		NodeToolEntry entry = new NodeToolEntry(
+				Messages.Comment6CreationTool_title,
+				Messages.Comment6CreationTool_desc, types);
+		entry.setSmallIcon(UMLElementTypes
+				.getImageDescriptor(UMLElementTypes.Comment_2010));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -199,42 +217,12 @@ public class UMLPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createExtend2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(UMLElementTypes.Extend_4002);
-		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Extend2CreationTool_title,
-				Messages.Extend2CreationTool_desc, types);
-		entry.setSmallIcon(UMLElementTypes
-				.getImageDescriptor(UMLElementTypes.Extend_4002));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createInclude3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(UMLElementTypes.Include_4001);
-		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Include3CreationTool_title,
-				Messages.Include3CreationTool_desc, types);
-		entry.setSmallIcon(UMLElementTypes
-				.getImageDescriptor(UMLElementTypes.Include_4001));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createGeneralization4CreationTool() {
+	private ToolEntry createGeneralization2CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types.add(UMLElementTypes.Generalization_4003);
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Generalization4CreationTool_title,
-				Messages.Generalization4CreationTool_desc, types);
+				Messages.Generalization2CreationTool_title,
+				Messages.Generalization2CreationTool_desc, types);
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Generalization_4003));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -244,12 +232,57 @@ public class UMLPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createConstrainedElement5CreationTool() {
+	private ToolEntry createDependency3CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(UMLElementTypes.Dependency_4006);
+		LinkToolEntry entry = new LinkToolEntry(
+				Messages.Dependency3CreationTool_title,
+				Messages.Dependency3CreationTool_desc, types);
+		entry.setSmallIcon(UMLElementTypes
+				.getImageDescriptor(UMLElementTypes.Dependency_4006));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createInclude4CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(UMLElementTypes.Include_4001);
+		LinkToolEntry entry = new LinkToolEntry(
+				Messages.Include4CreationTool_title,
+				Messages.Include4CreationTool_desc, types);
+		entry.setSmallIcon(UMLElementTypes
+				.getImageDescriptor(UMLElementTypes.Include_4001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createExtend5CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(UMLElementTypes.Extend_4002);
+		LinkToolEntry entry = new LinkToolEntry(
+				Messages.Extend5CreationTool_title,
+				Messages.Extend5CreationTool_desc, types);
+		entry.setSmallIcon(UMLElementTypes
+				.getImageDescriptor(UMLElementTypes.Extend_4002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createConstrainedElement6CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.ConstrainedElement5CreationTool_title,
-				Messages.ConstrainedElement5CreationTool_desc, types);
+				Messages.ConstrainedElement6CreationTool_title,
+				Messages.ConstrainedElement6CreationTool_desc, types);
 		entry
 				.setSmallIcon(UMLElementTypes
 						.getImageDescriptor(UMLElementTypes.ConstraintConstrainedElement_4005));
@@ -260,14 +293,15 @@ public class UMLPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createDependency6CreationTool() {
+	private ToolEntry createCommentlink7CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(UMLElementTypes.Dependency_4006);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4007);
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Dependency6CreationTool_title,
-				Messages.Dependency6CreationTool_desc, types);
-		entry.setSmallIcon(UMLElementTypes
-				.getImageDescriptor(UMLElementTypes.Dependency_4006));
+				Messages.Commentlink7CreationTool_title,
+				Messages.Commentlink7CreationTool_desc, types);
+		entry
+				.setSmallIcon(UMLElementTypes
+						.getImageDescriptor(UMLElementTypes.CommentAnnotatedElement_4007));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

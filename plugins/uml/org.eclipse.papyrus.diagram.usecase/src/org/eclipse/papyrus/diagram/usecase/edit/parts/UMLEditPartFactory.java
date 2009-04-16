@@ -86,6 +86,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintNameEditPart.VISUAL_ID:
 				return new ConstraintNameEditPart(view);
 
+			case CommentEditPart.VISUAL_ID:
+				return new CommentEditPart(view);
+
+			case CommentBodyEditPart.VISUAL_ID:
+				return new CommentBodyEditPart(view);
+
 			case ExtensionPointEditPart.VISUAL_ID:
 				return new ExtensionPointEditPart(view);
 
@@ -160,6 +166,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DependencyNameEditPart.VISUAL_ID:
 				return new DependencyNameEditPart(view);
+
+			case CommentAnnotatedElementEditPart.VISUAL_ID:
+				return new CommentAnnotatedElementEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

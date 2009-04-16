@@ -458,6 +458,16 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/2.1.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Comment_2010"
+               name="%metatype.name.Comment_2010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Comment"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.CommentEditHelper">
+            <param name="semanticHint" value="2010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/2.1.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3002"
                name="%metatype.name.ExtensionPoint_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -561,6 +571,15 @@
             <param name="semanticHint" value="4006"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/2.1.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4007"
+               name="%metatype.name.CommentAnnotatedElement_4007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4007"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
@@ -581,6 +600,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Component_2006"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_2009"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_2008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Comment_2010"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3002"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3003"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_3004"/>
@@ -592,6 +612,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Association_4004"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4005"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Dependency_4006"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4007"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

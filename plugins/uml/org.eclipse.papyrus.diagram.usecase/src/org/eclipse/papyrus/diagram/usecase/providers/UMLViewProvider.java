@@ -28,6 +28,9 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentUsecasesEditPart;
@@ -69,6 +72,9 @@ import org.eclipse.papyrus.diagram.usecase.view.factories.ActorViewFactory;
 import org.eclipse.papyrus.diagram.usecase.view.factories.AssociationName2ViewFactory;
 import org.eclipse.papyrus.diagram.usecase.view.factories.AssociationNameViewFactory;
 import org.eclipse.papyrus.diagram.usecase.view.factories.AssociationViewFactory;
+import org.eclipse.papyrus.diagram.usecase.view.factories.CommentAnnotatedElementViewFactory;
+import org.eclipse.papyrus.diagram.usecase.view.factories.CommentBodyViewFactory;
+import org.eclipse.papyrus.diagram.usecase.view.factories.CommentViewFactory;
 import org.eclipse.papyrus.diagram.usecase.view.factories.ComponentNameViewFactory;
 import org.eclipse.papyrus.diagram.usecase.view.factories.ComponentUsecasesViewFactory;
 import org.eclipse.papyrus.diagram.usecase.view.factories.ComponentViewFactory;
@@ -174,6 +180,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 				case UseCaseEditPart.VISUAL_ID:
 				case ComponentEditPart.VISUAL_ID:
 				case ConstraintEditPart.VISUAL_ID:
+				case CommentEditPart.VISUAL_ID:
 				case ExtensionPointEditPart.VISUAL_ID:
 				case Actor2EditPart.VISUAL_ID:
 				case UseCase2EditPart.VISUAL_ID:
@@ -236,6 +243,13 @@ public class UMLViewProvider extends AbstractViewProvider {
 					break;
 				case ConstraintNameEditPart.VISUAL_ID:
 					if (ConstraintEditPart.VISUAL_ID != UMLVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case CommentBodyEditPart.VISUAL_ID:
+					if (CommentEditPart.VISUAL_ID != UMLVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -338,6 +352,10 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return ConstraintViewFactory.class;
 		case ConstraintNameEditPart.VISUAL_ID:
 			return ConstraintNameViewFactory.class;
+		case CommentEditPart.VISUAL_ID:
+			return CommentViewFactory.class;
+		case CommentBodyEditPart.VISUAL_ID:
+			return CommentBodyViewFactory.class;
 		case ExtensionPointEditPart.VISUAL_ID:
 			return ExtensionPointViewFactory.class;
 		case ExtensionPoint2EditPart.VISUAL_ID:
@@ -424,6 +442,8 @@ public class UMLViewProvider extends AbstractViewProvider {
 			return ConstraintConstrainedElementViewFactory.class;
 		case DependencyEditPart.VISUAL_ID:
 			return DependencyViewFactory.class;
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return CommentAnnotatedElementViewFactory.class;
 		}
 		return null;
 	}

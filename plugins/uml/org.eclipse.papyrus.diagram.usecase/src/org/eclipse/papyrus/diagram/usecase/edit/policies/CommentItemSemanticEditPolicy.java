@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,36 +10,42 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintConstrainedElementReorientCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class ExtendItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class CommentItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return getGEFWrapper(new DestroyElementCommand(req));
+		CompoundCommand cc = getDestroyEdgesCommand();
+		addDestroyShortcutsCommand(cc);
+		View view = (View) getHost().getModel();
+		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+			req.setElementToDestroy(view);
+		}
+		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
+		return cc.unwrap();
 	}
 
 	/**
@@ -61,13 +67,10 @@ public class ExtendItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 				.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req
-					.getSource(), req.getTarget()));
-		}
 		if (UMLElementTypes.CommentAnnotatedElement_4007 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -82,10 +85,6 @@ public class ExtendItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req
-					.getSource(), req.getTarget()));
-		}
 		if (UMLElementTypes.CommentAnnotatedElement_4007 == req
 				.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
@@ -95,21 +94,8 @@ public class ExtendItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain model element associated with this node.
-	 * 
-	 * @generated
-	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
-		case DependencyEditPart.VISUAL_ID:
-			return getGEFWrapper(new DependencyReorientCommand(req));
-		}
-		return super.getReorientRelationshipCommand(req);
-	}
-
-	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

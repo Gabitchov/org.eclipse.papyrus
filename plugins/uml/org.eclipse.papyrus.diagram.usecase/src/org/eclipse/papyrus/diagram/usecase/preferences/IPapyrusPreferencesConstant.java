@@ -160,6 +160,26 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
+	public static final String COMMENT_2010_PREF_FILL_COLOR = "Comment_2010.fill.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String COMMENT_2010_PREF_FONT_COLOR = "Comment_2010.font.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String COMMENT_2010_PREF_FONT = "Comment_2010.font";
+
+	/**
+	 * @generated
+	 */
+	public static final String COMMENT_2010_PREF_LINE_COLOR = "Comment_2010.line.color";
+
+	/**
+	 * @generated
+	 */
 	public static final String INCLUDE_PREF_FONT_COLOR = "Include.font.color";
 
 	/**

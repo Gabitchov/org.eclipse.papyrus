@@ -354,6 +354,39 @@
           href="classDiagram_constraints.gmfgraph#ConstraintNode"/>
     </ownedChild>
   </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedComment"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+      <domainInitializer
+          xsi:type="gmfmap:FeatureSeqInitializer">
+        <initializers
+            xsi:type="gmfmap:FeatureValueSpec">
+          <feature
+              xsi:type="ecore:EAttribute"
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
+          <value
+              body="' '"/>
+        </initializers>
+      </domainInitializer>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editPattern="">
+        <diagramLabel
+            href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
+        <features
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="usecaseDiagram.gmftool#//@palette/@tools.0/@tools.5"/>
+      <diagramNode
+          href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
+    </ownedChild>
+  </nodes>
   <links>
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
@@ -499,6 +532,17 @@
       <targetEnd
           body="not self.oclIsKindOf(uml::Interface)&#xD;&#xA;"/>
     </creationConstraints>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.6"/>
+    <diagramLink
+        href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/annotatedElement"/>
   </links>
   <diagram>
     <diagramCanvas
