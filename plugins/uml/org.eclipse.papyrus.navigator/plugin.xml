@@ -47,14 +47,20 @@
             </contentExtension>
          </includes>
       </viewerContentBinding>
+      <dragAssistant
+            class="org.eclipse.papyrus.navigator.dnd.CommonDragAdapterAssistant"
+            viewerId="org.eclipse.papyrus.navigator.dnd.dragAssistant">
+      </dragAssistant>
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
+            activeByDefault="true"
             contentProvider="org.eclipse.papyrus.navigator.providers.UMLContentProvider"
             id="org.eclipse.papyrus.navigator.providers.UMLContentProvider"
             labelProvider="org.eclipse.papyrus.navigator.providers.UMLLabelProvider"
-            name="UML Logical View">
+            name="UML Logical View"
+            priority="normal">
           <triggerPoints>
             <or>
                <adapt
@@ -135,6 +141,11 @@
                </or>
             </parentExpression>
          </commonSorter>
+         <dropAssistant
+               class="org.eclipse.papyrus.navigator.dnd.CommonDropAdapterAssistant"
+               id="org.eclipse.papyrus.navigator.dnd.dropAssistant">
+            <possibleDropTargets></possibleDropTargets>
+         </dropAssistant>
       </navigatorContent>
       <commonFilter
             activeByDefault="false"
