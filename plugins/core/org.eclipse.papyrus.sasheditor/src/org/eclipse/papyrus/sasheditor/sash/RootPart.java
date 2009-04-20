@@ -77,7 +77,7 @@ public class RootPart <T> implements ITilePart <T> {
 	/**
 	 * Return true if the TilePart is for the specified real model. Return false otherwise.
 	 * 
-	 * @param model
+	 * @param realModel
 	 * @return
 	 */
 	public boolean isTilePartFor(T realModel) {

@@ -374,7 +374,7 @@ public class SashPart <T> extends TilePart<T> {
 	/**
 	 * Return true if the TilePart is for the specified real model. Return false otherwise.
 	 * 
-	 * @param model
+	 * @param realModel
 	 * @return
 	 */
 	public boolean isTilePartFor(T realModel) {
