@@ -32,8 +32,6 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.uml2.diagram.clazz.part.UMLDocumentProvider;
-import org.eclipse.uml2.diagram.common.providers.AlternativeUMLItemProviderAdapterFactory;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.osgi.framework.BundleContext;
 
@@ -106,7 +104,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
 		List factories = new ArrayList();
-		fillItemProviderFactories(factories);
+//		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
 
@@ -125,10 +123,10 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.emf.edit.provider.ComposedAdapterFactory#getFactoryForTypes(java.util.Collection)
 	 * @generated NOT
 	 */
-	protected void fillItemProviderFactories(List factories) {
-		factories.add(new AlternativeUMLItemProviderAdapterFactory(getPreferenceStore()));
-		fillItemProviderFactoriesGen(factories);
-	}
+//	protected void fillItemProviderFactories(List factories) {
+//		factories.add(new AlternativeUMLItemProviderAdapterFactory(getPreferenceStore()));
+//		fillItemProviderFactoriesGen(factories);
+//	}
 
 	/**
 	 * @generated

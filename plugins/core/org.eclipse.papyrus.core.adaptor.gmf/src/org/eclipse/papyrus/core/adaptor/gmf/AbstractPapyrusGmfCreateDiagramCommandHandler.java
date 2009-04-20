@@ -47,8 +47,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.diagram.clazz.part.Messages;
-import org.eclipse.uml2.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -138,7 +136,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
 				e.printStackTrace();
-				UMLDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
+				Activator.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
 			}
 		}
 	}

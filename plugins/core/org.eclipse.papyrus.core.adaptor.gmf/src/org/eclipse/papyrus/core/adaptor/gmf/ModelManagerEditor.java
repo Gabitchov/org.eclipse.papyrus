@@ -56,7 +56,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.uml2.diagram.clazz.part.Messages;
 import org.osgi.framework.Bundle;
 
 /**
