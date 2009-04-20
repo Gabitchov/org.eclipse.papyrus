@@ -454,7 +454,7 @@ public class TilePartContainer <T> {
 	 * @return
 	 */
 	private EditorTile getEditorTileAt(Point mousePos) {
-		return rootPart.findPartAt(mousePos, EditorTile.class);
+		return (EditorTile)rootPart.findPartAt(mousePos, EditorTile.class);
 	}
 
 	/**
