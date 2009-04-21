@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Sample Multi-Text Editor"
+            extensions="mte"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.papyrus.example.sashwindows.fulleditor.editor.MultiTextEditorContributor"
+            class="org.eclipse.papyrus.example.sashwindows.fulleditor.editor.MultiTextEditor"
+            id="org.eclipse.example.multitext.editors.MultiTextEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Sample Wizards"
+            id="org.eclipse.example.multitext.editor">
+      </category>
+      <wizard
+            name="Multi-Text Editor file"
+            icon="icons/sample.gif"
+            category="org.eclipse.example.multitext.editor"
+            class="org.eclipse.papyrus.example.sashwindows.fulleditor.wizards.MultiTextNewWizard"
+            id="org.eclipse.example.multitext.wizards.MultiTextNewWizard">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=navigate">
+         <menu
+               id="org.eclipse.example.multitext.ui.menu"
+               label="Multi Text Editor">
+            <menu
+                  id="org.eclipse.example.multitext.ui.menu.create"
+                  label="Create Tab">
+               <command
+                     commandId="org.eclipse.example.multitext.ui.command.createTestEditor"
+                     icon="icons/TextEditor.gif"
+                     label="Create New Text Editor"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.eclipse.example.multitext.ui.command.createMsgControl"
+                     icon="icons/MsgTab.gif"
+                     label="Create Msg Tab"
+                     style="push">
+               </command>
+            </menu>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.eclipse.example.multitext.ui.toolbar">
+            <command
+                  commandId="org.eclipse.example.multitext.ui.command.createTestEditor"
+                  icon="icons/TextEditor.gif"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.example.multitext.ui.command.createMsgControl"
+                  icon="icons/MsgTab.gif"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.example.multitext.ui.command.createTestEditor"
+            name="Create New Text Editor">
+      </command>
+      <command
+            id="org.eclipse.example.multitext.ui.command.createMsgControl"
+            name="Create Msg Tab">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.example.sashwindows.fulleditor.texteditor.CreateTextEditorCommandHandler"
+            commandId="org.eclipse.example.multitext.ui.command.createTestEditor">
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.example.multitext.editors.MultiTextEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.example.sashwindows.fulleditor.msgpage.CreateMessageCommandHandler"
+            commandId="org.eclipse.example.multitext.ui.command.createMsgControl">
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.example.multitext.editors.MultiTextEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+      </handler>
+   </extension>
+
+</plugin>
