@@ -7,13 +7,18 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.sasheditor,
+ org.eclipse.papyrus.sasheditor.contentprovider,
+ org.eclipse.papyrus.sasheditor.contentprovider.simple,
  org.eclipse.papyrus.sasheditor.eclipsecopy,
+ org.eclipse.papyrus.sasheditor.editor,
  org.eclipse.papyrus.sasheditor.extension,
  org.eclipse.papyrus.sasheditor.gef,
+ org.eclipse.papyrus.sasheditor.multipage.editor,
  org.eclipse.papyrus.sasheditor.sash
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.sasheditor.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.gef
+ org.eclipse.gef,
+ org.junit
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
