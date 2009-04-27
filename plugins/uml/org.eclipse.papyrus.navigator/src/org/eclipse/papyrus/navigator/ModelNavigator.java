@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.eef.runtime.ui.notify.OpenWizardOnDoubleClick;
+//import org.eclipse.emf.eef.runtime.ui.notify.OpenWizardOnDoubleClick;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
