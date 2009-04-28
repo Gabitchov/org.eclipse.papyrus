@@ -39,14 +39,19 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
  org.eclipse.papyrus.di;bundle-version="0.7.0",
  org.eclipse.papyrus.preferences,
- org.eclipse.papyrus.editor;bundle-version="0.7.0"
+ org.eclipse.papyrus.editor;bundle-version="0.7.0",
+ org.eclipse.draw2d;visibility:=reexport,
+ org.eclipse.gmf.codegen;bundle-version="2.1.1"
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin
+Bundle-Activator: org.eclipse.papyrus.diagram.clazzBis.part.UMLClazzDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.diagram.clazz.edit.parts,
  org.eclipse.papyrus.diagram.clazz.part,
- org.eclipse.papyrus.diagram.clazz.providers
+ org.eclipse.papyrus.diagram.clazz.providers,
+ org.eclipse.papyrus.diagram.clazzBis.edit.parts,
+ org.eclipse.papyrus.diagram.clazzBis.part,
+ org.eclipse.papyrus.diagram.clazzBis.providers
 Eclipse-LazyStart: true
