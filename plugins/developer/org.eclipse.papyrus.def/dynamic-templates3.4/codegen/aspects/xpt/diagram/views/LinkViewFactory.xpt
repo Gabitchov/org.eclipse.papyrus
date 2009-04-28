@@ -1,0 +1,54 @@
+/*
+ * Copyright (c) 2008 Atos Origin
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thibault Landre (Atos Origin) - initial API and implementation
+ */
+ 
+ 
+ «IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+ 
+ «EXTENSION xpt::preferences::PrefsConstant»
+
+ «AROUND additions FOR gmfgen::GenLink»
+ «EXPAND filterInitializer(this) FOR elementType»
+ «ENDAROUND»
+ 
+ «DEFINE filterInitializer(gmfgen::GenLink link) FOR gmfgen::MetamodelType»
+ 	«EXPAND initializer FOR link»
+ «ENDDEFINE»
+ 
+ «DEFINE filterInitializer(gmfgen::GenLink link) FOR gmfgen::ElementType»
+ «ENDDEFINE»
+ 
+ «DEFINE initializer FOR gmfgen::GenLink»
+ «EXPAND xpt::Common::generatedClassComment»
+ 	@Override
+	protected void initializeFromPreferences(org.eclipse.gmf.runtime.notation.View view) {
+	
+		org.eclipse.jface.preference.IPreferenceStore store = (org.eclipse.jface.preference.IPreferenceStore) getPreferencesHint().getPreferenceStore();
+	
+		if (store == null) {
+			return;
+		}
+	
+		org.eclipse.papyrus.preferences.initializer.LinkViewInitializer viewInitializer = new org.eclipse.papyrus.preferences.initializer.LinkViewInitializer(view, store);
+		viewInitializer.initFont(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceFontConstant(elementType.displayName.toUpperCase())»);
+		viewInitializer.initFontColor(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceFontColorConstant(elementType.displayName.toUpperCase())»);
+		viewInitializer.initLineColor(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpperCase())»);
+		
+		viewInitializer.initAvoidObstructions(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceRoutingObstructionPolicyConstant(elementType.displayName.toUpperCase())»);
+		viewInitializer.initClosestDistance(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceRoutingDistancePolicyConstant(elementType.displayName.toUpperCase())»);
+		viewInitializer.initJumpLinkReverse(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceJumpLinkReverseConstant(elementType.displayName.toUpperCase())»);
+		viewInitializer.initJumpLinkStatus(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceJumpLinkStatusConstant(elementType.displayName.toUpperCase())»);
+		viewInitializer.initJumpLinkType(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceJumpLinkTypeConstant(elementType.displayName.toUpperCase())»);
+		viewInitializer.initRouting(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceRoutingStyleConstant(elementType.displayName.toUpperCase())»);
+		viewInitializer.initSmoothness(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceSmoothnessConstant(elementType.displayName.toUpperCase())»);
+	}
+ «ENDDEFINE»
+
