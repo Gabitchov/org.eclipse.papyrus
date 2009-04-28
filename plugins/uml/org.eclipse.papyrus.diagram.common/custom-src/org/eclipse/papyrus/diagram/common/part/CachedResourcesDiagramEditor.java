@@ -23,8 +23,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class CachedResourcesDiagramEditor.
  * 
