@@ -15,8 +15,13 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
+import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLPackage;
+
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.diagram.common.providers.ViewInfoRegistry;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentInteractionOperatorEditPart;
@@ -45,14 +50,11 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
-import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
- * This registry is used to determine which type of visual object should be created for the corresponding Diagram, Node, ChildNode or Link represented by a domain model object.
+ * This registry is used to determine which type of visual object should be
+ * created for the corresponding Diagram, Node, ChildNode or Link represented
+ * by a domain model object.
  * 
  * @generated
  */
@@ -104,7 +106,8 @@ public class UMLVisualIDRegistry {
 				return -1;
 			}
 		}
-		return org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(view.getType());
+		return org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
+				.getVisualID(view.getType());
 	}
 
 	/**
@@ -115,7 +118,7 @@ public class UMLVisualIDRegistry {
 		while (view != diagram) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 			if (annotation != null) {
-				return annotation.getDetails().get("modelID"); //$NON-NLS-1$
+				return (String) annotation.getDetails().get("modelID"); //$NON-NLS-1$
 			}
 			view = (View) view.eContainer();
 		}
@@ -129,8 +132,11 @@ public class UMLVisualIDRegistry {
 		try {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
+			if (Boolean.TRUE.toString().equalsIgnoreCase(
+					Platform.getDebugOption(DEBUG_KEY))) {
+				UMLDiagramEditorPlugin.getInstance().logError(
+						"Unable to parse view type as a visualID number: "
+								+ type);
 			}
 		}
 		return -1;
@@ -150,11 +156,15 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package) domainElement)) {
+		if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(
+				domainElement.eClass())
+				&& isDiagram((Package) domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
 
-		if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass()) && isDiagram((Interaction) domainElement)) {
+		if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+				domainElement.eClass())
+				&& isDiagram((Interaction) domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
 
@@ -168,13 +178,16 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getModelID(containerView);
-		if (!PackageEditPart.MODEL_ID.equals(containerModelID) && !"UMLSequence".equals(containerModelID)) { //$NON-NLS-1$
+		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
+				.getModelID(containerView);
+		if (!PackageEditPart.MODEL_ID.equals(containerModelID)
+				&& !"UMLSequence".equals(containerModelID)) { //$NON-NLS-1$
 			return -1;
 		}
 		int containerVisualID;
 		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
@@ -184,37 +197,46 @@ public class UMLVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case LifelineEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification()
+					.isSuperTypeOf(domainElement.eClass())) {
 				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
 			}
 			break;
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+					domainElement.eClass())) {
 				return Interaction2EditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(
+					domainElement.eClass())) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(
+					domainElement.eClass())) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		case InteractionInteractionCompartment2EditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+					domainElement.eClass())) {
 				return Interaction2EditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(
+					domainElement.eClass())) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(
+					domainElement.eClass())) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		case PackageEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+					domainElement.eClass())) {
 				return InteractionEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(
+					domainElement.eClass())) {
 				return CommentEditPart.VISUAL_ID;
 			}
 			break;
@@ -226,13 +248,16 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getModelID(containerView);
-		if (!PackageEditPart.MODEL_ID.equals(containerModelID) && !"UMLSequence".equals(containerModelID)) { //$NON-NLS-1$
+		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
+				.getModelID(containerView);
+		if (!PackageEditPart.MODEL_ID.equals(containerModelID)
+				&& !"UMLSequence".equals(containerModelID)) { //$NON-NLS-1$
 			return false;
 		}
 		int containerVisualID;
 		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
@@ -346,29 +371,42 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_3001((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(
+				domainElement.eClass())
+				&& isMessage_3001((Message) domainElement)) {
 			return MessageEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_3002((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(
+				domainElement.eClass())
+				&& isMessage_3002((Message) domainElement)) {
 			return Message2EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_3003((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(
+				domainElement.eClass())
+				&& isMessage_3003((Message) domainElement)) {
 			return Message3EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_3004((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(
+				domainElement.eClass())
+				&& isMessage_3004((Message) domainElement)) {
 			return Message4EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_3005((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(
+				domainElement.eClass())
+				&& isMessage_3005((Message) domainElement)) {
 			return Message5EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_3006((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(
+				domainElement.eClass())
+				&& isMessage_3006((Message) domainElement)) {
 			return Message6EditPart.VISUAL_ID;
 		}
 		return -1;
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific situations not covered by default logic.
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
 	 * 
 	 * @generated
 	 */
@@ -388,7 +426,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_3001(Message domainElement) {
 		if (Message_3001_Constraint == null) { // lazy initialization
-			Message_3001_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::synchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_3001_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.messageSort=MessageSort::synchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_3001_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -399,7 +439,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_3002(Message domainElement) {
 		if (Message_3002_Constraint == null) { // lazy initialization
-			Message_3002_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::asynchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_3002_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.messageSort=MessageSort::asynchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_3002_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -410,7 +452,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_3003(Message domainElement) {
 		if (Message_3003_Constraint == null) { // lazy initialization
-			Message_3003_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::reply", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_3003_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.messageSort=MessageSort::reply", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_3003_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -421,7 +465,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_3004(Message domainElement) {
 		if (Message_3004_Constraint == null) { // lazy initialization
-			Message_3004_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::asynchSignal", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_3004_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.messageSort=MessageSort::asynchSignal", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_3004_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -432,7 +478,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_3005(Message domainElement) {
 		if (Message_3005_Constraint == null) { // lazy initialization
-			Message_3005_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::createMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_3005_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.messageSort=MessageSort::createMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_3005_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -443,7 +491,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_3006(Message domainElement) {
 		if (Message_3006_Constraint == null) { // lazy initialization
-			Message_3006_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::deleteMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_3006_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.messageSort=MessageSort::deleteMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_3006_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -452,13 +502,15 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	protected static boolean hasViewChild(View containerView, EObject domainElement, int visualId) {
+	protected static boolean hasViewChild(View containerView,
+			EObject domainElement, int visualId) {
 		if (domainElement == null) {
 			return false;
 		}
 		for (Object next : containerView.getChildren()) {
 			View nextView = (View) next;
-			if (domainElement.equals(nextView.getElement()) && getType(visualId).equals(nextView.getType())) {
+			if (domainElement.equals(nextView.getElement())
+					&& getType(visualId).equals(nextView.getType())) {
 				return true;
 			}
 		}
@@ -468,61 +520,77 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static int getChildDescriptorVisualID(UMLNodeDescriptor container, EObject domainElement) {
+	public static int getChildDescriptorVisualID(UMLNodeDescriptor container,
+			EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
 		}
 		switch (container.getVisualID()) {
 		case InteractionEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+					domainElement.eClass())) {
 				return Interaction2EditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(
+					domainElement.eClass())) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(
+					domainElement.eClass())) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		case Interaction2EditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+					domainElement.eClass())) {
 				return Interaction2EditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(
+					domainElement.eClass())) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(
+					domainElement.eClass())) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		case LifelineEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification()
+					.isSuperTypeOf(domainElement.eClass())) {
 				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
 			}
 			break;
 		case PackageEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+					domainElement.eClass())) {
 				return InteractionEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(
+					domainElement.eClass())) {
 				return CommentEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+					domainElement.eClass())) {
 				return Interaction2EditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(
+					domainElement.eClass())) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(
+					domainElement.eClass())) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(
+					domainElement.eClass())) {
 				return Interaction2EditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(
+					domainElement.eClass())) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(
+					domainElement.eClass())) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
@@ -540,90 +608,10 @@ public class UMLVisualIDRegistry {
 	 */
 	public static ViewInfo getDiagramViewInfo() {
 		if (diagramViewInfo == null) {
-			diagramViewInfo = getPackage_79ViewInfo();
+			diagramViewInfo = ViewInfoRegistry.getInstance()
+					.getHeadViewInfoForEditor(UMLDiagramEditor.ID);
 		}
 		return diagramViewInfo;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected static ViewInfo getPackage_79ViewInfo() {
-		ViewInfo root = new BaseViewInfo(79, ViewInfo.Head, "", null, null);
-		ViewInfo viewInfo = null;
-		ViewInfo labelInfo = null;
-
-		viewInfo = new BaseViewInfo(1001, ViewInfo.Node, "Interaction");
-		root.addNode(79, viewInfo);
-
-		viewInfo = new BaseViewInfo(2005, ViewInfo.Node, "Comment");
-		root.addNode(79, viewInfo);
-
-		viewInfo = new BaseViewInfo(3001, ViewInfo.Edge, "Message");
-		root.addNode(79, viewInfo);
-
-		labelInfo = new BaseViewInfo(4005, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(3002, ViewInfo.Edge, "Message");
-		root.addNode(79, viewInfo);
-
-		labelInfo = new BaseViewInfo(4006, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(3003, ViewInfo.Edge, "Message");
-		root.addNode(79, viewInfo);
-
-		labelInfo = new BaseViewInfo(4007, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(3004, ViewInfo.Edge, "Message");
-		root.addNode(79, viewInfo);
-
-		labelInfo = new BaseViewInfo(4008, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(3005, ViewInfo.Edge, "Message");
-		root.addNode(79, viewInfo);
-
-		labelInfo = new BaseViewInfo(4009, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(3006, ViewInfo.Edge, "Message");
-		root.addNode(79, viewInfo);
-
-		labelInfo = new BaseViewInfo(4010, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(3007, ViewInfo.Edge, "");
-		root.addNode(79, viewInfo);
-
-		viewInfo = new BaseViewInfo(3008, ViewInfo.Edge, "");
-		root.addNode(79, viewInfo);
-
-		viewInfo = new BaseViewInfo(2001, ViewInfo.Node, "Interaction");
-
-		root.addNode(2001, viewInfo);
-
-		root.addNode(1001, viewInfo);
-
-		viewInfo = new BaseViewInfo(2002, ViewInfo.Node, "Lifeline");
-
-		root.addNode(2001, viewInfo);
-
-		root.addNode(1001, viewInfo);
-
-		viewInfo = new BaseViewInfo(2003, ViewInfo.Node, "BehaviorExecutionSpecification");
-
-		root.addNode(2002, viewInfo);
-
-		viewInfo = new BaseViewInfo(2004, ViewInfo.Node, "CombinedFragment");
-
-		root.addNode(2001, viewInfo);
-
-		root.addNode(1001, viewInfo);
-
-		return root;
 	}
 
 }

@@ -16,18 +16,22 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageOrderCommand;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
-public class MessageDestroySemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageOrderCommand;
 
+public class MessageDestroySemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		/*
-		 * Destroy all the elements that are created when a message is created the first time: 1.- The Send Event 2.- The Receive Event 3.- The 2 Message Occurrence Specifications 4.- The message
+		 * Destroy all the elements that are created when a message is created the first time:
+		 * 1.- The Send Event
+		 * 2.- The Receive Event
+		 * 3.- The 2 Message Occurrence Specifications
+		 * 4.- The message
 		 * 
 		 * To accomplish this, will build a compound command
 		 */
@@ -47,49 +51,60 @@ public class MessageDestroySemanticEditPolicy extends UMLBaseItemSemanticEditPol
 				msgSend = (MessageOccurrenceSpecification) msg.getSendEvent();
 
 			if (msg.getReceiveEvent() instanceof MessageOccurrenceSpecification)
-				msgRecieve = (MessageOccurrenceSpecification) msg.getReceiveEvent();
+				msgRecieve = (MessageOccurrenceSpecification) msg
+						.getReceiveEvent();
 
 			if (msgSend != null)
 				sendEvent = msgSend.getEvent();
 			if (msgRecieve != null)
 				receiveEvent = msgRecieve.getEvent();
-
+			
 			// Update ordering
 			compoundCmd.add(new MessageOrderCommand(req));
 
 			// Create and compound the Destroy Element Commands
 			if (sendEvent != null) {
-				DestroyElementRequest reqSendEvent = new DestroyElementRequest(req.getEditingDomain(), sendEvent, false);
-				compoundCmd.add(getGEFWrapper(new DestroyElementCommand(reqSendEvent)));
+				DestroyElementRequest reqSendEvent = new DestroyElementRequest(req
+						.getEditingDomain(), sendEvent, false);
+				compoundCmd
+						.add(getGEFWrapper(new DestroyElementCommand(reqSendEvent)));
 			}
 
 			if (receiveEvent != null) {
-				DestroyElementRequest reqReceiveEvent = new DestroyElementRequest(req.getEditingDomain(), receiveEvent, false);
-				compoundCmd.add(getGEFWrapper(new DestroyElementCommand(reqReceiveEvent)));
+				DestroyElementRequest reqReceiveEvent = new DestroyElementRequest(req
+						.getEditingDomain(), receiveEvent, false);
+				compoundCmd
+						.add(getGEFWrapper(new DestroyElementCommand(reqReceiveEvent)));
 			}
 
 			if (msgSend != null) {
 				// Destroy first its general ordering
 				for (Iterator<GeneralOrdering> i = msgSend.getGeneralOrderings().iterator(); i.hasNext();) {
 					DestroyElementRequest reqGenOrd = new DestroyElementRequest(req.getEditingDomain(), i.next(), false);
-					compoundCmd.add(getGEFWrapper(new DestroyElementCommand(reqGenOrd)));
+					compoundCmd.add(getGEFWrapper(new DestroyElementCommand(
+							reqGenOrd)));
 				}
-
+				
 				// Destroy the MessageOccurrenceSpecification
-				DestroyElementRequest reqMsgSend = new DestroyElementRequest(req.getEditingDomain(), msgSend, false);
-				compoundCmd.add(getGEFWrapper(new DestroyElementCommand(reqMsgSend)));
+				DestroyElementRequest reqMsgSend = new DestroyElementRequest(
+						req.getEditingDomain(), msgSend, false);
+				compoundCmd.add(getGEFWrapper(new DestroyElementCommand(
+						reqMsgSend)));
 			}
 
 			if (msgRecieve != null) {
 				// Destroy first its general ordering
 				for (Iterator<GeneralOrdering> i = msgRecieve.getGeneralOrderings().iterator(); i.hasNext();) {
 					DestroyElementRequest reqGenOrd = new DestroyElementRequest(req.getEditingDomain(), i.next(), false);
-					compoundCmd.add(getGEFWrapper(new DestroyElementCommand(reqGenOrd)));
+					compoundCmd.add(getGEFWrapper(new DestroyElementCommand(
+							reqGenOrd)));
 				}
-
+				
 				// Destroy the MessageOccurrenceSpecification
-				DestroyElementRequest reqMsgReceive = new DestroyElementRequest(req.getEditingDomain(), msgRecieve, false);
-				compoundCmd.add(getGEFWrapper(new DestroyElementCommand(reqMsgReceive)));
+				DestroyElementRequest reqMsgReceive = new DestroyElementRequest(
+						req.getEditingDomain(), msgRecieve, false);
+				compoundCmd.add(getGEFWrapper(new DestroyElementCommand(
+						reqMsgReceive)));
 			}
 
 		}

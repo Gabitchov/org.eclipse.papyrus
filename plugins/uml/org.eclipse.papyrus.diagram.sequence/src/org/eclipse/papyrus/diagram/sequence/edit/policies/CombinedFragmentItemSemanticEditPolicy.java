@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+
 import org.eclipse.papyrus.diagram.common.ids.ReorientLinkIDs;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
@@ -50,11 +51,11 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 
-
 /**
  * @generated
  */
-public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class CombinedFragmentItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -72,36 +73,47 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 */
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		if (UMLElementTypes.Message_3001 == req.getElementType()) {
-			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3002 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message2CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3003 == req.getElementType()) {
-			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message3CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3004 == req.getElementType()) {
-			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message4CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3005 == req.getElementType()) {
-			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message5CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3006 == req.getElementType()) {
-			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message6CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ElementOwnedComment_3007 == req.getElementType()) {
-			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3008 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_3008 == req
+				.getElementType()) {
 			return null;
 		}
 		return null;
@@ -110,48 +122,63 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Diagram diagram = DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+
+		Diagram diagram = DiagramEditPartsUtil
+				.findDiagramFromEditPart(getHost());
 		if (diagram != null) {
-			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
+			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
+					diagram);
 		}
 		if (UMLElementTypes.Message_3001 == req.getElementType()) {
-			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3002 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message2CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3003 == req.getElementType()) {
-			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message3CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3004 == req.getElementType()) {
-			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message4CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3005 == req.getElementType()) {
-			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message5CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3006 == req.getElementType()) {
-			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message6CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ElementOwnedComment_3007 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3008 == req.getElementType()) {
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.CommentAnnotatedElement_3008 == req
+				.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
 
 		// add the view element
-		req.setParameter(ReorientLinkIDs.nodeEditPart, ((IGraphicalEditPart) this.getHost()).getNotationView());
+		req.setParameter(ReorientLinkIDs.nodeEditPart,
+				((IGraphicalEditPart) this.getHost()).getNotationView());
 		// add the view link
 		List list = DiagramEditPartsUtil.getEObjectViews(req.getRelationship());
 		if (list.size() > 0) {
@@ -176,12 +203,14 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ElementOwnedCommentEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementOwnedCommentReorientCommand(req));

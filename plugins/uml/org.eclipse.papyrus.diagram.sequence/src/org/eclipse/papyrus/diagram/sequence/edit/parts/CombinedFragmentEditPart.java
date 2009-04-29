@@ -46,24 +46,27 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.draw2d.InteractionFigure;
-import org.eclipse.papyrus.diagram.common.draw2d.LeftToolbarLayout;
-import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDeleteOnlyViewComponentEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.diagram.common.commands.AnnotateNodeStyleCommand;
+import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.common.draw2d.InteractionFigure;
+import org.eclipse.papyrus.diagram.common.draw2d.LeftToolbarLayout;
+import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDeleteOnlyViewComponentEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
  * @generated
  */
-public class CombinedFragmentEditPart extends ShapeNodeEditPart implements PrimaryShapeEditPart {
+public class CombinedFragmentEditPart extends ShapeNodeEditPart implements
+		PrimaryShapeEditPart {
 
 	/**
 	 * @generated
@@ -88,15 +91,17 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	}
 
 	/**
-	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
+	 * @author gmerin
 	 * @generated NOT
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new CombinedFragmentItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new SequenceDeleteOnlyViewComponentEditPolicy()); // changed by
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new SequenceDeleteOnlyViewComponentEditPolicy()); // changed by
 		// gmerin
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -109,21 +114,19 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -151,7 +154,9 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof CombinedFragmentInteractionOperatorEditPart) {
-			((CombinedFragmentInteractionOperatorEditPart) childEditPart).setLabel(getPrimaryShape().getFigureCombinedFragmentLabelFigure());
+			((CombinedFragmentInteractionOperatorEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureCombinedFragmentLabelFigure());
 			return true;
 		}
 		return false;
@@ -200,14 +205,16 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(200), getMapMode().DPtoLP(200));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(200), getMapMode().DPtoLP(200));
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -222,7 +229,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *            instance of generated figure class
@@ -253,7 +261,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CombinedFragmentInteractionOperatorEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry
+				.getType(CombinedFragmentInteractionOperatorEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -262,7 +271,6 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() instanceof ShapeStyle) {
-			addChangesToAppearenceEAnnotation((EAttribute) event.getFeature());
 			super.handleNotificationEvent(event);
 
 			// Propagate style
@@ -275,9 +283,11 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 				if (ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel()).getStyle(NotationPackage.eINSTANCE.getShapeStyle());
+				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
 				if (style != null) {
-					style.eSet((EStructuralFeature) event.getFeature(), event.getNewValue());
+					style.eSet((EStructuralFeature) event.getFeature(), event
+							.getNewValue());
 					ep.refresh();
 				}
 			}
@@ -288,7 +298,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		features.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, event, features);
+		DiagramEditPartsUtil
+				.handleNotificationForDiagram(this, event, features);
 	}
 
 	/**
@@ -311,7 +322,9 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 
 			this.setFill(false);
 			this.setForegroundColor(ColorConstants.black);
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(3), getMapMode().DPtoLP(3), getMapMode().DPtoLP(3)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(-2),
+					getMapMode().DPtoLP(3), getMapMode().DPtoLP(3),
+					getMapMode().DPtoLP(3)));
 			createContents();
 		}
 
@@ -327,24 +340,31 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 			this.add(combinedFragmentLabel0, BorderLayout.TOP);
 
 			BorderLayout layoutCombinedFragmentLabel0 = new BorderLayout();
-			combinedFragmentLabel0.setLayoutManager(layoutCombinedFragmentLabel0);
+			combinedFragmentLabel0
+					.setLayoutManager(layoutCombinedFragmentLabel0);
 
 			InteractionFigure combinedFragmentLabelContainer1 = new InteractionFigure();
 
-			combinedFragmentLabelContainer1.setBorder(new MarginBorder(getMapMode().DPtoLP(3), getMapMode().DPtoLP(3), getMapMode().DPtoLP(3), getMapMode().DPtoLP(3)));
+			combinedFragmentLabelContainer1.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(3), getMapMode().DPtoLP(3),
+					getMapMode().DPtoLP(3), getMapMode().DPtoLP(3)));
 
-			combinedFragmentLabel0.add(combinedFragmentLabelContainer1, BorderLayout.LEFT);
+			combinedFragmentLabel0.add(combinedFragmentLabelContainer1,
+					BorderLayout.LEFT);
 
 			LeftToolbarLayout layoutCombinedFragmentLabelContainer1 = new LeftToolbarLayout();
 
-			combinedFragmentLabelContainer1.setLayoutManager(layoutCombinedFragmentLabelContainer1);
+			combinedFragmentLabelContainer1
+					.setLayoutManager(layoutCombinedFragmentLabelContainer1);
 
 			fFigureCombinedFragmentLabelFigure = new WrappingLabel();
 			fFigureCombinedFragmentLabelFigure.setText("");
 
-			fFigureCombinedFragmentLabelFigure.setFont(FFIGURECOMBINEDFRAGMENTLABELFIGURE_FONT);
+			fFigureCombinedFragmentLabelFigure
+					.setFont(FFIGURECOMBINEDFRAGMENTLABELFIGURE_FONT);
 
-			combinedFragmentLabelContainer1.add(fFigureCombinedFragmentLabelFigure);
+			combinedFragmentLabelContainer1
+					.add(fFigureCombinedFragmentLabelFigure);
 
 		}
 
@@ -380,69 +400,16 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURECOMBINEDFRAGMENTLABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 10, SWT.BOLD);
-
-	/**
-	 * @generated
-	 */
-	public static final String APPEARANCE_EANNOTATION_NAME = "org.eclipse.papyrus.diagram.common.gmfextension.appearance";
+	static final Font FFIGURECOMBINEDFRAGMENTLABELFIGURE_FONT = new Font(
+			Display.getCurrent(), "SANS", 10, SWT.BOLD);
 
 	/**
 	 * @generated
 	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getPrimaryView().getEAnnotation(APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getPrimaryView().getEAnnotation(
+				AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EAnnotation createAppearenceEAnnotation() {
-		EAnnotation eAnn = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnn.setSource(APPEARANCE_EANNOTATION_NAME);
-		getPrimaryView().getEAnnotations().add(eAnn);
-		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChangesToAppearenceEAnnotation(EAttribute attribute) {
-		// Get the EAnnotation
-		EAnnotation eAnn = getAppearenceEAnnotation();
-
-		// If there is no EAnnotation, create it
-		if (eAnn == null) {
-			eAnn = createAppearenceEAnnotation();
-		}
-
-		// If change is already added, don't continue
-		if (eAnn.getReferences().contains(attribute))
-			return;
-
-		// Background
-		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
-		}
-
-		// Foreground
-		if (NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
-		}
-
-		// Font
-		if (NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_NAME);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__BOLD);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__ITALIC);
-		}
 	}
 
 	/**
@@ -479,7 +446,9 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
 				if (gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart && ((GraphicalEditPart) gEP).resolveSemanticElement() == resolveSemanticElement()) {
+					if (gEP instanceof GraphicalEditPart
+							&& ((GraphicalEditPart) gEP)
+									.resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
@@ -508,7 +477,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
 			super.setBackgroundColor(color);
@@ -522,7 +492,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 		parent.setBackgroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresBackgroundColor((IFigure) obj, color);
 			}
 		}
@@ -534,7 +505,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
 			super.setForegroundColor(color);
@@ -549,7 +521,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresForegroundColor((IFigure) obj, color);
 			}
 		}
@@ -562,7 +535,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
 			super.setFontColor(color);
@@ -577,7 +551,8 @@ public class CombinedFragmentEditPart extends ShapeNodeEditPart implements Prima
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresFontColor((IFigure) obj, color);
 			}
 		}

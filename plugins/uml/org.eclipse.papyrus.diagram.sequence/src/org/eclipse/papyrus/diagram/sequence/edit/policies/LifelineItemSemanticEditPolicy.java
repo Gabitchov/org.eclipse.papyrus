@@ -31,12 +31,16 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
+import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.UMLPackage;
+
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
-import org.eclipse.papyrus.diagram.common.commands.CreateElementAndInitializeFeatureCommand;
-import org.eclipse.papyrus.diagram.common.commands.UpdateLifelineRepresentsCommand;
 import org.eclipse.papyrus.diagram.common.ids.ReorientLinkIDs;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.papyrus.diagram.common.commands.CreateElementAndInitializeFeatureCommand;
+import org.eclipse.papyrus.diagram.common.commands.UpdateLifelineRepresentsCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.BehaviorExecutionSpecificationCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
@@ -66,36 +70,40 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
-import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * @generated
  */
-public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class LifelineItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated NOT
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		Diagram diagram = DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
+		Diagram diagram = DiagramEditPartsUtil
+				.findDiagramFromEditPart(getHost());
 		if (diagram != null) {
-			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
+			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
+					diagram);
 		}
-		if (UMLElementTypes.BehaviorExecutionSpecification_2003 == req.getElementType()) {
+		if (UMLElementTypes.BehaviorExecutionSpecification_2003 == req
+				.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getInteraction_Fragment());
+				req.setContainmentFeature(UMLPackage.eINSTANCE
+						.getInteraction_Fragment());
 			}
 
 			// Added to initialize the property "Covered" of the new
 			// BehaviourExecutionSpecification
-			CreateElementCommand behaviourCmd = new BehaviorExecutionSpecificationCreateCommand(req);
-			EReference feature = UMLPackage.eINSTANCE.getInteractionFragment_Covered();
+			CreateElementCommand behaviourCmd = new BehaviorExecutionSpecificationCreateCommand(
+					req);
+			EReference feature = UMLPackage.eINSTANCE
+					.getInteractionFragment_Covered();
 			Object value = req.getContainer();
-			return new CreateElementAndInitializeFeatureCommand(behaviourCmd, feature, value);
+			return new CreateElementAndInitializeFeatureCommand(behaviourCmd,
+					feature, value);
 
 		}
 		return super.getCreateCommand(req);
@@ -113,31 +121,40 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		// Lifeline
 		if (req.getElementToDestroy() instanceof Lifeline) {
 			Lifeline lifeline = (Lifeline) req.getElementToDestroy();
-			for (Iterator it = lifeline.getCoveredBys().iterator(); it.hasNext();) {
+			for (Iterator it = lifeline.getCoveredBys().iterator(); it
+					.hasNext();) {
 				Object obj = it.next();
 
 				if (obj instanceof BehaviorExecutionSpecification) {
 					// Search for its EditPart
 					EditPart besEditPart = null;
-					for (Iterator epIt = getHost().getViewer().getEditPartRegistry().keySet().iterator(); epIt.hasNext();) {
+					for (Iterator epIt = getHost().getViewer()
+							.getEditPartRegistry().keySet().iterator(); epIt
+							.hasNext();) {
 						Object epObj = epIt.next();
 						if (epObj instanceof Node) {
 							Node node = (Node) epObj;
 							if (node.getElement() == obj) {
-								besEditPart = (EditPart) getHost().getViewer().getEditPartRegistry().get(node);
+								besEditPart = (EditPart) getHost().getViewer()
+										.getEditPartRegistry().get(node);
 								break;
 							}
 						}
 					}
 					if (besEditPart != null) {
-						EditCommandRequestWrapper editCommandRequest = new EditCommandRequestWrapper(new DestroyElementRequest(((LifelineEditPart) getHost()).getEditingDomain(), req
-								.isConfirmationRequired()), Collections.EMPTY_MAP);
+						EditCommandRequestWrapper editCommandRequest = new EditCommandRequestWrapper(
+								new DestroyElementRequest(
+										((LifelineEditPart) getHost())
+												.getEditingDomain(), req
+												.isConfirmationRequired()),
+								Collections.EMPTY_MAP);
 						cc.add(besEditPart.getCommand(editCommandRequest));
 					}
 				}
 			}
 
-			UpdateLifelineRepresentsCommand lifeLineCommand = new UpdateLifelineRepresentsCommand(lifeline, null, this.getEditingDomain());
+			UpdateLifelineRepresentsCommand lifeLineCommand = new UpdateLifelineRepresentsCommand(
+					lifeline, null, this.getEditingDomain());
 
 			cc.add(new EMFtoGEFCommandWrapper(lifeLineCommand));
 
@@ -174,36 +191,47 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 */
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		if (UMLElementTypes.Message_3001 == req.getElementType()) {
-			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3002 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message2CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3003 == req.getElementType()) {
-			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message3CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3004 == req.getElementType()) {
-			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message4CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3005 == req.getElementType()) {
-			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message5CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3006 == req.getElementType()) {
-			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message6CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ElementOwnedComment_3007 == req.getElementType()) {
-			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3008 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_3008 == req
+				.getElementType()) {
 			return null;
 		}
 		return null;
@@ -212,48 +240,63 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Diagram diagram = DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+
+		Diagram diagram = DiagramEditPartsUtil
+				.findDiagramFromEditPart(getHost());
 		if (diagram != null) {
-			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
+			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
+					diagram);
 		}
 		if (UMLElementTypes.Message_3001 == req.getElementType()) {
-			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3002 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message2CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3003 == req.getElementType()) {
-			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message3CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3004 == req.getElementType()) {
-			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message4CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3005 == req.getElementType()) {
-			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message5CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Message_3006 == req.getElementType()) {
-			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Message6CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ElementOwnedComment_3007 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3008 == req.getElementType()) {
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.CommentAnnotatedElement_3008 == req
+				.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
 
 		// add the view element
-		req.setParameter(ReorientLinkIDs.nodeEditPart, ((IGraphicalEditPart) this.getHost()).getNotationView());
+		req.setParameter(ReorientLinkIDs.nodeEditPart,
+				((IGraphicalEditPart) this.getHost()).getNotationView());
 		// add the view link
 		List list = DiagramEditPartsUtil.getEObjectViews(req.getRelationship());
 		if (list.size() > 0) {
@@ -278,12 +321,14 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ElementOwnedCommentEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementOwnedCommentReorientCommand(req));

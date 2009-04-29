@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
@@ -31,12 +30,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -52,8 +48,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.PopupBarEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -66,17 +64,6 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.commands.ReconnectToIntersectionPoints;
-import org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure;
-import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageOrderCommand;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDeleteOnlyViewComponentEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.sequence.util.MessageCommonUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -87,11 +74,26 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.papyrus.diagram.common.commands.AnnotateNodeStyleCommand;
+import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
+import org.eclipse.papyrus.diagram.common.commands.ReconnectToIntersectionPoints;
+import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure;
+import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageOrderCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDeleteOnlyViewComponentEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.sequence.util.MessageCommonUtil;
 
 /**
  * @generated
  */
-public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeEditPart {
+public class LifelineEditPart extends ShapeNodeEditPart implements
+		PrimaryShapeEditPart {
 
 	/**
 	 * @generated
@@ -116,6 +118,37 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	}
 
 	/**
+	 * This is to modify the feedback if anchors are going to be preserved
+	 * 
+	 * @author gmerin
+	 * @NOT-generated
+	 */
+	@Override
+	public void showSourceFeedback(Request request) {
+		super.showSourceFeedback(PreserveAnchorsPositionCommand
+				.getNewSourceFeedbackRequest(request, this));
+	}
+
+	/**
+	 * This operation returns the BES EditParts contained in the Lifeline
+	 * EditPart
+	 * 
+	 * @author gmerin
+	 * @NOT-generated
+	 * @return the list of BES EditParts
+	 */
+	public List<BehaviorExecutionSpecificationEditPart> getBESList() {
+		List<BehaviorExecutionSpecificationEditPart> besList = new ArrayList<BehaviorExecutionSpecificationEditPart>();
+		for (Object obj : getChildren()) {
+			if (obj instanceof BehaviorExecutionSpecificationEditPart) {
+				besList.add((BehaviorExecutionSpecificationEditPart) obj);
+			}
+
+		}
+		return besList;
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	@Override
@@ -133,11 +166,13 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 		for (InteractionFragment fragment : list) {
 			if (fragment instanceof MessageOccurrenceSpecification) {
 				MessageOccurrenceSpecification msg = (MessageOccurrenceSpecification) fragment;
-				if ((msg.getEvent() != null) && (msg.getEvent() instanceof DestructionEvent))
+				if ((msg.getEvent() != null)
+						&& (msg.getEvent() instanceof DestructionEvent))
 					drawCrossAtEnd = true;
 			}
 		}
-		this.getPrimaryShape().getFigureDotLineFigure().setCrossAtEnd(drawCrossAtEnd);
+		this.getPrimaryShape().getFigureDotLineFigure().setCrossAtEnd(
+				drawCrossAtEnd);
 	}
 
 	/**
@@ -146,10 +181,11 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
-		if (notification.getNotifier() == getModel() && EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(notification.getFeature())) {
+		if (notification.getNotifier() == getModel()
+				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
+						.equals(notification.getFeature())) {
 			handleMajorSemanticChange();
 		} else if (notification.getNotifier() instanceof ShapeStyle) {
-			addChangesToAppearenceEAnnotation((EAttribute) notification.getFeature());
 			super.handleNotificationEvent(notification);
 
 			// Propagate style
@@ -162,9 +198,11 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 				if (ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel()).getStyle(NotationPackage.eINSTANCE.getShapeStyle());
+				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
 				if (style != null) {
-					style.eSet((EStructuralFeature) notification.getFeature(), notification.getNewValue());
+					style.eSet((EStructuralFeature) notification.getFeature(),
+							notification.getNewValue());
 					ep.refresh();
 				}
 			}
@@ -177,11 +215,13 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 
 		// Added code
 		if (notification.getNewValue() instanceof MessageOccurrenceSpecification) {
-			MessageOccurrenceSpecification msgNew = (MessageOccurrenceSpecification) notification.getNewValue();
+			MessageOccurrenceSpecification msgNew = (MessageOccurrenceSpecification) notification
+					.getNewValue();
 			if (msgNew.getEvent() instanceof DestructionEvent) {
 				// If the MessageOccurrenceSpecification is covered by this
 				// Lifeline, set the cross at the end of the Lifeline
-				if (msgNew.getCovereds().contains(this.resolveSemanticElement())) {
+				if (msgNew.getCovereds()
+						.contains(this.resolveSemanticElement())) {
 					refreshVisuals();
 				}
 			}
@@ -194,7 +234,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		features.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification, features);
+		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification,
+				features);
 	}
 
 	/**
@@ -203,23 +244,33 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy());
 
 		// super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
+				new GraphicalNodeEditPolicy());
 
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new LifelineItemSemanticEditPolicy());
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.
 		// EditPolicyRoles.DRAG_DROP_ROLE,
 		// new
-		// org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy());
+		//org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new SequenceDeleteOnlyViewComponentEditPolicy()); // changed by
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new SequenceDeleteOnlyViewComponentEditPolicy()); // changed by
 		// gmerin
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new LifelineCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new LifelineCanonicalEditPolicy());
 		// installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// Changed policy
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifelineXYLayoutEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE,
+				new LifelineXYLayoutEditPolicy());
+
+		// Added by gmerin to have a BES shortcut on Lifelines
+		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE,
+				new PopupBarEditPolicy());
 	}
 
 	/**
@@ -228,21 +279,19 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -270,7 +319,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof LifelineNameEditPart) {
-			((LifelineNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureLifelineLabelFigure());
+			((LifelineNameEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureLifelineLabelFigure());
 			return true;
 		}
 		return false;
@@ -323,14 +373,16 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		LifelineNodeFigure result = new LifelineNodeFigure(getMapMode().DPtoLP(100), getMapMode().DPtoLP(250));
+		LifelineNodeFigure result = new LifelineNodeFigure(getMapMode().DPtoLP(
+				100), getMapMode().DPtoLP(250));
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -345,7 +397,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *            instance of generated figure class
@@ -382,13 +435,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(LifelineNameEditPart.VISUAL_ID));
-	}
-
-	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		// TODO Auto-generated method stub
-		return super.getTargetConnectionAnchor(connEditPart);
+		return getChildBySemanticHint(UMLVisualIDRegistry
+				.getType(LifelineNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -404,12 +452,16 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 			String id = iet.getSemanticHint();
 
 			// To allow creation of Comments over a Lifeline
-			if (RequestConstants.REQ_CREATE.equals(type) && (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
-				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
+			if (RequestConstants.REQ_CREATE.equals(type)
+					&& (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
+				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil
+						.getDiagramEditPart(this).getCommand(_request);
 			}
 
 			// To allow creation of CombinedFragments over a Lifeline
-			if (RequestConstants.REQ_CREATE.equals(type) && (String.valueOf(CombinedFragmentEditPart.VISUAL_ID).equals(id))) {
+			if (RequestConstants.REQ_CREATE.equals(type)
+					&& (String.valueOf(CombinedFragmentEditPart.VISUAL_ID)
+							.equals(id))) {
 				return this.getParent().getCommand(_request);
 			}
 		}// end
@@ -419,7 +471,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 			CreateConnectionViewAndElementRequest createViewAndElemReq = (CreateConnectionViewAndElementRequest) _request;
 
 			// Only order Message connections
-			if (!MessageCommonUtil.isMessageEditPart(createViewAndElemReq.getConnectionViewDescriptor().getSemanticHint()))
+			if (!MessageCommonUtil.isMessageEditPart(createViewAndElemReq
+					.getConnectionViewDescriptor().getSemanticHint()))
 				return super.getCommand(_request);
 
 			CompoundCommand ccommand = new CompoundCommand();
@@ -435,10 +488,12 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 			// Add a command to swap between created anchors (points where the
 			// user clicked and dropped the connection) with the real
 			// intersection points
-			ccommand.add(new ReconnectToIntersectionPoints(createViewAndElemReq));
+			ccommand
+					.add(new ReconnectToIntersectionPoints(createViewAndElemReq));
 
 			// Creation of the ordering command
-			MessageOrderCommand msgOrderCmd = new MessageOrderCommand(createViewAndElemReq);
+			MessageOrderCommand msgOrderCmd = new MessageOrderCommand(
+					createViewAndElemReq);
 			ccommand.add(msgOrderCmd);
 
 			return ccommand;
@@ -449,7 +504,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 			ReconnectRequest reconnReq = (ReconnectRequest) _request;
 
 			// Only order Message connections
-			if (!MessageCommonUtil.isMessageEditPart(reconnReq.getConnectionEditPart()))
+			if (!MessageCommonUtil.isMessageEditPart(reconnReq
+					.getConnectionEditPart()))
 				return super.getCommand(_request);
 
 			CompoundCommand ccommand = new CompoundCommand();
@@ -479,7 +535,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	/**
 	 * @NOT-generated
 	 */
-	public class LifelineNodeFigure extends DefaultSizeNodeFigure implements IPolygonAnchorableFigure {
+	public class LifelineNodeFigure extends DefaultSizeNodeFigure implements
+			IPolygonAnchorableFigure {
 
 		public LifelineNodeFigure(Dimension defSize) {
 			super(defSize.width, defSize.height);
@@ -527,7 +584,6 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 		 * @generated
 		 */
 		private WrappingLabel fFigureLifelineLabelFigure;
-
 		/**
 		 * @generated
 		 */
@@ -543,7 +599,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 
 			this.setFill(false);
 			this.setOutline(false);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100),
+					getMapMode().DPtoLP(200)));
 			createContents();
 		}
 
@@ -553,8 +610,10 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 		private void createContents() {
 
 			RectangleFigure lifelineNameContainerFigure0 = new RectangleFigure();
-			lifelineNameContainerFigure0.setForegroundColor(ColorConstants.black);
-			lifelineNameContainerFigure0.setBackgroundColor(LIFELINENAMECONTAINERFIGURE0_BACK);
+			lifelineNameContainerFigure0
+					.setForegroundColor(ColorConstants.black);
+			lifelineNameContainerFigure0
+					.setBackgroundColor(LIFELINENAMECONTAINERFIGURE0_BACK);
 
 			this.add(lifelineNameContainerFigure0, BorderLayout.TOP);
 
@@ -563,7 +622,9 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 			fFigureLifelineLabelFigure = new WrapLabel();
 			fFigureLifelineLabelFigure.setText("Lifeline");
 
-			fFigureLifelineLabelFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
+			fFigureLifelineLabelFigure.setBorder(new MarginBorder(getMapMode()
+					.DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
+					getMapMode().DPtoLP(7)));
 
 			fFigureLifelineLabelFigure.setFont(FFIGURELIFELINELABELFIGURE_FONT);
 
@@ -575,7 +636,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 
 			this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
 
-			fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
+			fFigureExecutionsContainerFigure
+					.setLayoutManager(new StackLayout());
 
 			LifelineDotLineFigure lifelineLineFigure1 = new LifelineDotLineFigure();
 			// test
@@ -649,74 +711,22 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	/**
 	 * @generated
 	 */
-	static final Color LIFELINENAMECONTAINERFIGURE0_BACK = new Color(null, 253, 253, 221);
+	static final Color LIFELINENAMECONTAINERFIGURE0_BACK = new Color(null, 253,
+			253, 221);
 
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURELIFELINELABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 10, SWT.BOLD);
-
-	/**
-	 * @generated
-	 */
-	public static final String APPEARANCE_EANNOTATION_NAME = "org.eclipse.papyrus.diagram.common.gmfextension.appearance";
+	static final Font FFIGURELIFELINELABELFIGURE_FONT = new Font(Display
+			.getCurrent(), "SANS", 10, SWT.BOLD);
 
 	/**
 	 * @generated
 	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getPrimaryView().getEAnnotation(APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getPrimaryView().getEAnnotation(
+				AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EAnnotation createAppearenceEAnnotation() {
-		EAnnotation eAnn = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnn.setSource(APPEARANCE_EANNOTATION_NAME);
-		getPrimaryView().getEAnnotations().add(eAnn);
-		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChangesToAppearenceEAnnotation(EAttribute attribute) {
-		// Get the EAnnotation
-		EAnnotation eAnn = getAppearenceEAnnotation();
-
-		// If there is no EAnnotation, create it
-		if (eAnn == null) {
-			eAnn = createAppearenceEAnnotation();
-		}
-
-		// If change is already added, don't continue
-		if (eAnn.getReferences().contains(attribute))
-			return;
-
-		// Background
-		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
-		}
-
-		// Foreground
-		if (NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
-		}
-
-		// Font
-		if (NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_NAME);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__BOLD);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__ITALIC);
-		}
 	}
 
 	/**
@@ -753,7 +763,9 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
 				if (gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart && ((GraphicalEditPart) gEP).resolveSemanticElement() == resolveSemanticElement()) {
+					if (gEP instanceof GraphicalEditPart
+							&& ((GraphicalEditPart) gEP)
+									.resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
@@ -782,7 +794,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
 			super.setBackgroundColor(color);
@@ -796,7 +809,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 		parent.setBackgroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresBackgroundColor((IFigure) obj, color);
 			}
 		}
@@ -808,7 +822,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
 			super.setForegroundColor(color);
@@ -823,7 +838,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresForegroundColor((IFigure) obj, color);
 			}
 		}
@@ -836,7 +852,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
 			super.setFontColor(color);
@@ -851,7 +868,8 @@ public class LifelineEditPart extends ShapeNodeEditPart implements PrimaryShapeE
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresFontColor((IFigure) obj, color);
 			}
 		}

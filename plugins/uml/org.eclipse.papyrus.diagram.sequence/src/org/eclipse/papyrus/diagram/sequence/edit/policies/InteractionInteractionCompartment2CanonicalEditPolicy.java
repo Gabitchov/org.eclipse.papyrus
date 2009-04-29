@@ -20,7 +20,11 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewType;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.uml2.uml.UMLPackage;
+
+import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Interaction2EditPart;
@@ -28,13 +32,12 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.sequence.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
-import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * @generated
  */
-public class InteractionInteractionCompartment2CanonicalEditPolicy extends CanonicalEditPolicy {
+public class InteractionInteractionCompartment2CanonicalEditPolicy extends
+		CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -48,9 +51,13 @@ public class InteractionInteractionCompartment2CanonicalEditPolicy extends Canon
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getInteractionInteractionCompartment_5002SemanticChildren(viewObject).iterator(); it.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next()).getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
+		for (Iterator it = UMLDiagramUpdater
+				.getInteractionInteractionCompartment_5002SemanticChildren(
+						viewObject).iterator(); it.hasNext();) {
+			EObject nextValue = ((UMLNodeDescriptor) it.next())
+					.getModelElement();
+			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
+					nextValue)) {
 				result.add(nextValue);
 			}
 		}
@@ -67,7 +74,8 @@ public class InteractionInteractionCompartment2CanonicalEditPolicy extends Canon
 		}
 		if (view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
-			int suggestedID = UMLVisualIDRegistry.getNodeVisualID((View) getHost().getModel(), view.getElement());
+			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
+					(View) getHost().getModel(), view.getElement());
 			switch (actualID) {
 			case Interaction2EditPart.VISUAL_ID:
 			case LifelineEditPart.VISUAL_ID:
@@ -94,10 +102,25 @@ public class InteractionInteractionCompartment2CanonicalEditPolicy extends Canon
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Fragment());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Lifeline());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getInteraction_Fragment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getInteraction_Lifeline());
 		}
 		return myFeaturesToSynchronize;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void refreshSemantic() {
+		super.refreshSemantic();
+		// this will take care of the filtering of views
+		Diagram diagram = MDTUtil.getHostDiagram(this);
+		if (diagram != null) {
+			MDTUtil.filterDiagramViews(diagram);
+		}
 	}
 
 }

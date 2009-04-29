@@ -12,11 +12,12 @@ package org.eclipse.papyrus.diagram.sequence.navigator;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
+
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
  * @generated
@@ -26,7 +27,9 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	/**
 	 * @generated
 	 */
-	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			UMLDiagramEditorPlugin.getInstance()
+					.getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -39,7 +42,8 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public Image getImage(Object element) {
 		if (element instanceof UMLDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider.getImage(((UMLDomainNavigatorItem) element).getEObject());
+			return myAdapterFactoryLabelProvider
+					.getImage(((UMLDomainNavigatorItem) element).getEObject());
 		}
 		return null;
 	}
@@ -49,7 +53,8 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public String getText(Object element) {
 		if (element instanceof UMLDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider.getText(((UMLDomainNavigatorItem) element).getEObject());
+			return myAdapterFactoryLabelProvider
+					.getText(((UMLDomainNavigatorItem) element).getEObject());
 		}
 		return null;
 	}

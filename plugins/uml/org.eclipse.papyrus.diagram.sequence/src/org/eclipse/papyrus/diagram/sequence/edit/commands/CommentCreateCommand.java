@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 Conselleria de Infraestructuras y Transporte,
- * Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- *
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
 import org.eclipse.emf.ecore.EClass;
@@ -17,10 +6,11 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.UMLPackage;
+
+import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
  * @generated
@@ -31,7 +21,6 @@ public class CommentCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
-
 	/**
 	 * @generated
 	 */
@@ -49,7 +38,8 @@ public class CommentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static CommentCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static CommentCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
 		return new CommentCreateCommand(req, eObject);
 	}
 
@@ -66,7 +56,8 @@ public class CommentCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -96,8 +87,11 @@ public class CommentCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Diagram getDiagramFromRequest() {
-		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
+
+		if (getRequest().getParameters().get(
+				MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(
+					MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -114,9 +108,11 @@ public class CommentCreateCommand extends CreateElementCommand {
 		if (newElement != null) {
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
+						newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
+						UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;

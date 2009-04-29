@@ -16,9 +16,10 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.graphics.Image;
+
 import org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorGroup;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * @generated
@@ -29,7 +30,8 @@ public class UMLSheetLabelProvider extends DecoratingLabelProvider {
 	 * @generated
 	 */
 	public UMLSheetLabelProvider() {
-		super(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), null);
+		super(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin
+				.getInstance().getItemProvidersAdapterFactory()), null);
 	}
 
 	/**

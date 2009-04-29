@@ -23,10 +23,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -50,21 +48,24 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.UMLPackage;
+
+import org.eclipse.papyrus.diagram.common.commands.AnnotateNodeStyleCommand;
+import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.diagram.common.commands.ReconnectToIntersectionPoints;
-import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageOrderCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.BehaviorExecutionSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.util.MessageCommonUtil;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * @generated
  */
-public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart implements PrimaryShapeEditPart {
+public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart
+		implements PrimaryShapeEditPart {
 
 	/**
 	 * @generated
@@ -89,19 +90,37 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	}
 
 	/**
-	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
+	 * This is to modify the feedback if anchors are going to be preserved
+	 * 
+	 * @author gmerin
+	 * @NOT-generated
+	 */
+	@Override
+	public void showSourceFeedback(Request request) {
+		super.showSourceFeedback(PreserveAnchorsPositionCommand
+				.getNewSourceFeedbackRequest(request, this));
+	}
+
+	/**
+	 * /**
+	 * 
+	 * @author gmerin
 	 * @generated NOT
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BehaviorExecutionSpecificationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new BehaviorExecutionSpecificationItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new SequenceDeleteOnlyViewComponentEditPolicy()); // changed by
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new SequenceDeleteOnlyViewComponentEditPolicy()); // changed by
 		// gmerin
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
-		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
+		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.
+		// EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/**
@@ -110,21 +129,19 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -151,14 +168,16 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		BESNodeFigure result = new BESNodeFigure(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60));
+		BESNodeFigure result = new BESNodeFigure(getMapMode().DPtoLP(16),
+				getMapMode().DPtoLP(60));
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -173,7 +192,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *            instance of generated figure class
@@ -200,7 +220,6 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() instanceof ShapeStyle) {
-			addChangesToAppearenceEAnnotation((EAttribute) event.getFeature());
 			super.handleNotificationEvent(event);
 
 			// Propagate style
@@ -213,9 +232,11 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 				if (ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel()).getStyle(NotationPackage.eINSTANCE.getShapeStyle());
+				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
 				if (style != null) {
-					style.eSet((EStructuralFeature) event.getFeature(), event.getNewValue());
+					style.eSet((EStructuralFeature) event.getFeature(), event
+							.getNewValue());
 					ep.refresh();
 				}
 			}
@@ -226,7 +247,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		features.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, event, features);
+		DiagramEditPartsUtil
+				.handleNotificationForDiagram(this, event, features);
 	}
 
 	/**
@@ -241,8 +263,10 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 			IHintedType iet = (IHintedType) cutr.getElementTypes().get(0);
 			String id = iet.getSemanticHint();
 
-			if (RequestConstants.REQ_CREATE.equals(type) && (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
-				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
+			if (RequestConstants.REQ_CREATE.equals(type)
+					&& (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
+				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil
+						.getDiagramEditPart(this).getCommand(_request);
 			}
 		}// end
 
@@ -251,7 +275,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 			CreateConnectionViewAndElementRequest createViewAndElemReq = (CreateConnectionViewAndElementRequest) _request;
 
 			// Only order Message connections
-			if (!MessageCommonUtil.isMessageEditPart(createViewAndElemReq.getConnectionViewDescriptor().getSemanticHint()))
+			if (!MessageCommonUtil.isMessageEditPart(createViewAndElemReq
+					.getConnectionViewDescriptor().getSemanticHint()))
 				return super.getCommand(_request);
 
 			CompoundCommand ccommand = new CompoundCommand();
@@ -267,10 +292,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 			// Add a command to swap between created anchors (points where the
 			// user clicked and dropped the connection) with the real
 			// intersection points
-			ccommand.add(new ReconnectToIntersectionPoints(createViewAndElemReq));
+			ccommand
+					.add(new ReconnectToIntersectionPoints(createViewAndElemReq));
 
 			// Creation of the ordering command
-			MessageOrderCommand msgOrderCmd = new MessageOrderCommand(createViewAndElemReq);
+			MessageOrderCommand msgOrderCmd = new MessageOrderCommand(
+					createViewAndElemReq);
 			ccommand.add(msgOrderCmd);
 
 			return ccommand;
@@ -281,7 +308,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 			ReconnectRequest reconnReq = (ReconnectRequest) _request;
 
 			// Only order Message connections
-			if (!MessageCommonUtil.isMessageEditPart(reconnReq.getConnectionEditPart()))
+			if (!MessageCommonUtil.isMessageEditPart(reconnReq
+					.getConnectionEditPart()))
 				return super.getCommand(_request);
 
 			CompoundCommand ccommand = new CompoundCommand();
@@ -340,8 +368,10 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 		public BehaviourExecutionFigure() {
 			this.setForegroundColor(ColorConstants.black);
 			this.setBackgroundColor(THIS_BACK);
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(1000)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(25)));
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(16),
+					getMapMode().DPtoLP(1000)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16),
+					getMapMode().DPtoLP(25)));
 		}
 
 		/**
@@ -374,64 +404,10 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	/**
 	 * @generated
 	 */
-	public static final String APPEARANCE_EANNOTATION_NAME = "org.eclipse.papyrus.diagram.common.gmfextension.appearance";
-
-	/**
-	 * @generated
-	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getPrimaryView().getEAnnotation(APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getPrimaryView().getEAnnotation(
+				AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EAnnotation createAppearenceEAnnotation() {
-		EAnnotation eAnn = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnn.setSource(APPEARANCE_EANNOTATION_NAME);
-		getPrimaryView().getEAnnotations().add(eAnn);
-		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChangesToAppearenceEAnnotation(EAttribute attribute) {
-		// Get the EAnnotation
-		EAnnotation eAnn = getAppearenceEAnnotation();
-
-		// If there is no EAnnotation, create it
-		if (eAnn == null) {
-			eAnn = createAppearenceEAnnotation();
-		}
-
-		// If change is already added, don't continue
-		if (eAnn.getReferences().contains(attribute))
-			return;
-
-		// Background
-		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
-		}
-
-		// Foreground
-		if (NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
-		}
-
-		// Font
-		if (NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_NAME);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__BOLD);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__ITALIC);
-		}
 	}
 
 	/**
@@ -468,7 +444,9 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
 				if (gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart && ((GraphicalEditPart) gEP).resolveSemanticElement() == resolveSemanticElement()) {
+					if (gEP instanceof GraphicalEditPart
+							&& ((GraphicalEditPart) gEP)
+									.resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
@@ -497,7 +475,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
 			super.setBackgroundColor(color);
@@ -511,7 +490,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 		parent.setBackgroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresBackgroundColor((IFigure) obj, color);
 			}
 		}
@@ -523,7 +503,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
 			super.setForegroundColor(color);
@@ -538,7 +519,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresForegroundColor((IFigure) obj, color);
 			}
 		}
@@ -551,7 +533,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
 			super.setFontColor(color);
@@ -566,7 +549,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart im
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresFontColor((IFigure) obj, color);
 			}
 		}

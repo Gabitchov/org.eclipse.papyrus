@@ -14,6 +14,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
+
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 
@@ -21,14 +22,18 @@ public class InteractionDragDropEditPolicy extends DragDropEditPolicy {
 
 	@Override
 	protected Command getDropCommand(ChangeBoundsRequest request) {
-		for (Object ep : request.getEditParts()) {
-			if (ep instanceof BehaviorExecutionSpecificationEditPart) {
+		for(Object ep : request.getEditParts())
+		{
+			if (ep instanceof BehaviorExecutionSpecificationEditPart)
+			{
 				return UnexecutableCommand.INSTANCE;
-			} else if (ep instanceof LifelineEditPart) {
+			}
+			else if(ep instanceof LifelineEditPart)
+			{
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-
+		
 		return super.getDropCommand(request);
 	}
 }

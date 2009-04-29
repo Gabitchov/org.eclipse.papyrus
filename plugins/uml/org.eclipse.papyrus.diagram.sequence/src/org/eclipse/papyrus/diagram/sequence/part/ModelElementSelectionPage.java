@@ -21,19 +21,21 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.diagram.common.dialogs.IWizardModelElementProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+import org.eclipse.papyrus.diagram.common.dialogs.IWizardModelElementProvider;
+
 /**
  * Wizard page that allows to select element from model.
  * 
  * @generated
  */
-public class ModelElementSelectionPage extends WizardPage implements IWizardModelElementProvider {
+public class ModelElementSelectionPage extends WizardPage implements
+		IWizardModelElementProvider {
 
 	/**
 	 * @generated
@@ -67,7 +69,8 @@ public class ModelElementSelectionPage extends WizardPage implements IWizardMode
 		if (modelVewer != null) {
 			if (selectedModelElement != null) {
 				modelVewer.setInput(selectedModelElement.eResource());
-				modelVewer.setSelection(new StructuredSelection(selectedModelElement));
+				modelVewer.setSelection(new StructuredSelection(
+						selectedModelElement));
 			} else {
 				modelVewer.setInput(null);
 			}
@@ -92,21 +95,29 @@ public class ModelElementSelectionPage extends WizardPage implements IWizardMode
 		label.setText(getSelectionTitle());
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
 
-		modelVewer = new TreeViewer(plate, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+		modelVewer = new TreeViewer(plate, SWT.SINGLE | SWT.H_SCROLL
+				| SWT.V_SCROLL | SWT.BORDER);
 		GridData layoutData = new GridData(GridData.FILL_BOTH);
 		layoutData.heightHint = 300;
 		layoutData.widthHint = 300;
 		modelVewer.getTree().setLayoutData(layoutData);
-		modelVewer.setContentProvider(new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()));
-		modelVewer.setLabelProvider(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()));
+		modelVewer.setContentProvider(new AdapterFactoryContentProvider(
+				UMLDiagramEditorPlugin.getInstance()
+						.getItemProvidersAdapterFactory()));
+		modelVewer.setLabelProvider(new AdapterFactoryLabelProvider(
+				UMLDiagramEditorPlugin.getInstance()
+						.getItemProvidersAdapterFactory()));
 		if (selectedModelElement != null) {
 			modelVewer.setInput(selectedModelElement.eResource());
-			modelVewer.setSelection(new StructuredSelection(selectedModelElement));
+			modelVewer.setSelection(new StructuredSelection(
+					selectedModelElement));
 		}
 		modelVewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				ModelElementSelectionPage.this.updateSelection((IStructuredSelection) event.getSelection());
+				ModelElementSelectionPage.this
+						.updateSelection((IStructuredSelection) event
+								.getSelection());
 			}
 		});
 
@@ -130,10 +141,12 @@ public class ModelElementSelectionPage extends WizardPage implements IWizardMode
 		if (selection.size() == 1) {
 			Object selectedElement = selection.getFirstElement();
 			if (selectedElement instanceof IWrapperItemProvider) {
-				selectedElement = ((IWrapperItemProvider) selectedElement).getValue();
+				selectedElement = ((IWrapperItemProvider) selectedElement)
+						.getValue();
 			}
 			if (selectedElement instanceof FeatureMap.Entry) {
-				selectedElement = ((FeatureMap.Entry) selectedElement).getValue();
+				selectedElement = ((FeatureMap.Entry) selectedElement)
+						.getValue();
 			}
 			if (selectedElement instanceof EObject) {
 				selectedModelElement = (EObject) selectedElement;

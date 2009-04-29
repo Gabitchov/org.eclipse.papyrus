@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 
@@ -35,18 +36,21 @@ public class CreateLifelineAndBESCommand extends AbstractTransactionalCommand {
 
 	private EditPartViewer viewer = null;
 
-	public CreateLifelineAndBESCommand(TransactionalEditingDomain domain, ViewDescriptor descriptor, EditPartViewer viewer) {
+	public CreateLifelineAndBESCommand(TransactionalEditingDomain domain,
+			ViewDescriptor descriptor, EditPartViewer viewer) {
 		super(domain, "Create Lifeline and BES", null);
 		viewDescriptor = descriptor;
 		this.viewer = viewer;
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 
 		View view = (View) viewDescriptor.getAdapter(View.class);
 		if (view == null) {
-			return CommandResult.newErrorCommandResult("Lifeline view not created");
+			return CommandResult
+					.newErrorCommandResult("Lifeline view not created");
 		}
 
 		Command command = getBESCreateCommand(view);
@@ -63,14 +67,20 @@ public class CreateLifelineAndBESCommand extends AbstractTransactionalCommand {
 	}
 
 	private Command getBESCreateCommand(View view) {
-		IGraphicalEditPart newLifelineEditPart = (IGraphicalEditPart) viewer.getEditPartRegistry().get(view);
+		IGraphicalEditPart newLifelineEditPart = (IGraphicalEditPart) viewer
+				.getEditPartRegistry().get(view);
 		newLifelineEditPart.getFigure().getUpdateManager().performUpdate();
 
-		CreateElementRequest elementRequest = new CreateElementRequest(UMLElementTypes.BehaviorExecutionSpecification_2003);
-		CreateElementRequestAdapter requestAdatper = new CreateElementRequestAdapter(elementRequest);
-		ViewAndElementDescriptor descriptor = new ViewAndElementDescriptor(requestAdatper, Node.class, "2003", UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		CreateElementRequest elementRequest = new CreateElementRequest(
+				UMLElementTypes.BehaviorExecutionSpecification_2003);
+		CreateElementRequestAdapter requestAdatper = new CreateElementRequestAdapter(
+				elementRequest);
+		ViewAndElementDescriptor descriptor = new ViewAndElementDescriptor(
+				requestAdatper, Node.class, "2003",
+				UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 
-		CreateViewAndElementRequest request = new CreateViewAndElementRequest(descriptor);
+		CreateViewAndElementRequest request = new CreateViewAndElementRequest(
+				descriptor);
 
 		Command command = newLifelineEditPart.getCommand(request);
 		return command;

@@ -6,7 +6,6 @@
  * available at http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors: Gabriel Merin Cubero (Prodevelop) – Sequence Diagram implementation
- * 				 Marc Gil Sendra (Prodevelop) - preventing two Messages from being linked.
  *
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
@@ -15,6 +14,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ElementOwnedCommentCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3ReorientCommand;
@@ -32,11 +32,9 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 
 /**
  * @generated NOT
- * 
- * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin Cubero</a>
- * @author <a href="mailto:mgil@prodevelop.es">Marc Gil Sendra</a>
  */
-public class MessageItemSemanticEditPolicy extends MessageDestroySemanticEditPolicy {
+public class MessageItemSemanticEditPolicy extends
+		MessageDestroySemanticEditPolicy {
 
 	/**
 	 * @generated NOT
@@ -51,15 +49,18 @@ public class MessageItemSemanticEditPolicy extends MessageDestroySemanticEditPol
 	 */
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated not
-	 * @author <a href="mailto:mgil@prodevelop.es">Marc Gil Sendra</a>
+	 * @author mgil
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		/**
 		 * Commented to avoid trying to link a Message from another Message
 		 */
@@ -88,16 +89,18 @@ public class MessageItemSemanticEditPolicy extends MessageDestroySemanticEditPol
 		// req.getSource(), req.getTarget()));
 		// }
 		if (UMLElementTypes.ElementOwnedComment_3007 == req.getElementType()) {
-			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		return null;
 	}
 
 	/**
 	 * @generated not
-	 * @author <a href="mailto:mgil@prodevelop.es">Marc Gil Sendra</a>
+	 * @author mgil
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		/**
 		 * Commented to avoid trying to link a Message from another Message
 		 */
@@ -129,12 +132,14 @@ public class MessageItemSemanticEditPolicy extends MessageDestroySemanticEditPol
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case MessageEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageReorientCommand(req));

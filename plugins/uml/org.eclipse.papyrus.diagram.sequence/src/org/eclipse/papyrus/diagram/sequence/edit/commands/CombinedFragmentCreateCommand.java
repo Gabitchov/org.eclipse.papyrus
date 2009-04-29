@@ -16,13 +16,13 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 
 /**
  * @generated
@@ -33,7 +33,6 @@ public class CombinedFragmentCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
-
 	/**
 	 * @generated
 	 */
@@ -42,7 +41,8 @@ public class CombinedFragmentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public CombinedFragmentCreateCommand(CreateElementRequest req, EObject eObject) {
+	public CombinedFragmentCreateCommand(CreateElementRequest req,
+			EObject eObject) {
 		super(req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -51,7 +51,8 @@ public class CombinedFragmentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static CombinedFragmentCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static CombinedFragmentCreateCommand create(
+			CreateElementRequest req, EObject eObject) {
 		return new CombinedFragmentCreateCommand(req, eObject);
 	}
 
@@ -68,7 +69,8 @@ public class CombinedFragmentCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -98,8 +100,11 @@ public class CombinedFragmentCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Diagram getDiagramFromRequest() {
-		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
+
+		if (getRequest().getParameters().get(
+				MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(
+					MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -112,17 +117,21 @@ public class CombinedFragmentCreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
-		CombinedFragment newElement = (CombinedFragment) super.doDefaultElementCreation();
+		CombinedFragment newElement = (CombinedFragment) super
+				.doDefaultElementCreation();
 		if (newElement != null) {
 			Interaction owner = (Interaction) getElementToEdit();
 			owner.getFragments().add(newElement);
 
-			ElementInitializers.init_CombinedFragment_2004(newElement);
+			UMLElementTypes.init_CombinedFragment_2004(newElement);
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
+						newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
+						UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;

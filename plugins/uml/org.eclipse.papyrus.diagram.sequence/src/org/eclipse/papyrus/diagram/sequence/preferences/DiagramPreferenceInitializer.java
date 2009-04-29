@@ -11,13 +11,8 @@
 package org.eclipse.papyrus.diagram.sequence.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.common.preferences.IconStylePreferencePage;
+
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
@@ -31,13 +26,13 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	@Override
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		PrintingPreferencePage.initDefaults(store);
-		DiagramsPreferencePage.initDefaults(store);
-		AppearancePreferencePage.initDefaults(store);
-		ConnectionsPreferencePage.initDefaults(store);
-		RulerGridPreferencePage.initDefaults(store);
+		DiagramPrintingPreferencePage.initDefaults(store);
+		DiagramGeneralPreferencePage.initDefaults(store);
+		DiagramAppearancePreferencePage.initDefaults(store);
+		DiagramConnectionsPreferencePage.initDefaults(store);
+		DiagramRulersAndGridPreferencePage.initDefaults(store);
 
-		IconStylePreferencePage.initDefaults(store);
+		DiagramIconStylePreferencePage.initDefaults(store);
 
 	}
 

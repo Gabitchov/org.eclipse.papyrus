@@ -17,11 +17,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.ids.ReorientLinkIDs;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.util.MessageCommonUtil;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
@@ -29,6 +26,9 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
+import org.eclipse.papyrus.diagram.common.ids.ReorientLinkIDs;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.util.MessageCommonUtil;
 
 /**
  * @generated
@@ -85,10 +85,10 @@ public class Message5ReorientCommand extends EditElementCommand {
 		if (false == getElementToEdit() instanceof Message) {
 			return false;
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -101,10 +101,10 @@ public class Message5ReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		// if (getLink().getOwnedElements().size() != 1) {
-		// return false;
-		// }
-		// Element target = (Element) getLink().getOwnedElements().get(0);
+		//		if (getLink().getOwnedElements().size() != 1) {
+		//			return false;
+		//		}
+		//		Element target = (Element) getLink().getOwnedElements().get(0);
 		if (!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
@@ -113,7 +113,8 @@ public class Message5ReorientCommand extends EditElementCommand {
 		if (!(getLink().getReceiveEvent() instanceof MessageOccurrenceSpecification)) {
 			return false;
 		}
-		MessageOccurrenceSpecification mosTarget = (MessageOccurrenceSpecification) getLink().getReceiveEvent();
+		MessageOccurrenceSpecification mosTarget = (MessageOccurrenceSpecification) getLink()
+				.getReceiveEvent();
 
 		// Get target element
 		Element target = MessageCommonUtil.getMessageDst(getLink());
@@ -121,7 +122,8 @@ public class Message5ReorientCommand extends EditElementCommand {
 		// End added code
 
 		Interaction container = (Interaction) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistMessage_3005(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistMessage_3005(container, getNewSource(), target);
 	}
 
 	/**
@@ -131,7 +133,7 @@ public class Message5ReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		// Element source = getLink().getOwner();
+		//		Element source = getLink().getOwner();
 		if (!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
@@ -140,7 +142,8 @@ public class Message5ReorientCommand extends EditElementCommand {
 		if (!(getLink().getSendEvent() instanceof MessageOccurrenceSpecification)) {
 			return false;
 		}
-		MessageOccurrenceSpecification mosSource = (MessageOccurrenceSpecification) getLink().getSendEvent();
+		MessageOccurrenceSpecification mosSource = (MessageOccurrenceSpecification) getLink()
+				.getSendEvent();
 
 		// Get source element
 		Element source = MessageCommonUtil.getMessageSrc(getLink());
@@ -148,21 +151,24 @@ public class Message5ReorientCommand extends EditElementCommand {
 		// End added code
 
 		Interaction container = (Interaction) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistMessage_3005(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistMessage_3005(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -172,11 +178,12 @@ public class Message5ReorientCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		// getLink().setOwner(getNewSource());
+		//		getLink().setOwner(getNewSource());
 
 		// Added code
 		if (getLink().getSendEvent() instanceof MessageOccurrenceSpecification) {
-			MessageOccurrenceSpecification mosSource = (MessageOccurrenceSpecification) getLink().getSendEvent();
+			MessageOccurrenceSpecification mosSource = (MessageOccurrenceSpecification) getLink()
+					.getSendEvent();
 
 			mosSource.getCovereds().clear();
 
@@ -196,12 +203,13 @@ public class Message5ReorientCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		// getLink().getOwnedElements().remove(getOldTarget());
-		// getLink().getOwnedElements().add(getNewTarget());
+		//		getLink().getOwnedElements().remove(getOldTarget());
+		//		getLink().getOwnedElements().add(getNewTarget());
 
 		// Added code
 		if (getLink().getReceiveEvent() instanceof MessageOccurrenceSpecification) {
-			MessageOccurrenceSpecification mosTarget = (MessageOccurrenceSpecification) getLink().getReceiveEvent();
+			MessageOccurrenceSpecification mosTarget = (MessageOccurrenceSpecification) getLink()
+					.getReceiveEvent();
 
 			mosTarget.getCovereds().clear();
 

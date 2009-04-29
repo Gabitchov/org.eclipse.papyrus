@@ -15,12 +15,14 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 
-public class SequenceDeleteOnlyViewComponentEditPolicy extends DeleteOnlyViewComponentEditPolicy {
+import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
+
+public class SequenceDeleteOnlyViewComponentEditPolicy extends
+		DeleteOnlyViewComponentEditPolicy {
 
 	@Override
 	protected Command getDeleteCommand(GroupRequest request) {
@@ -42,5 +44,5 @@ public class SequenceDeleteOnlyViewComponentEditPolicy extends DeleteOnlyViewCom
 		// For the rest, return the parent command
 		return super.getDeleteCommand(request);
 	}
-
+	
 }

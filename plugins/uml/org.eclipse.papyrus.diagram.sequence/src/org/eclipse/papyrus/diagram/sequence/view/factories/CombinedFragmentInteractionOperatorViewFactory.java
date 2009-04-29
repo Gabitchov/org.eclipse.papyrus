@@ -19,7 +19,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class CombinedFragmentInteractionOperatorViewFactory extends BasicNodeViewFactory {
+public class CombinedFragmentInteractionOperatorViewFactory extends
+		BasicNodeViewFactory {
 
 	/**
 	 * @generated

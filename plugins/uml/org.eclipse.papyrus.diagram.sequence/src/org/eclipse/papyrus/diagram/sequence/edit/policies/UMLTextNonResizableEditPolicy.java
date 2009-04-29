@@ -140,8 +140,10 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 		if (getHostFigure() instanceof Label) {
 			Label feedbackFigure = new Label();
 			feedbackFigure.setOpaque(true);
-			feedbackFigure.setBackgroundColor(ColorConstants.menuBackgroundSelected);
-			feedbackFigure.setForegroundColor(ColorConstants.menuForegroundSelected);
+			feedbackFigure
+					.setBackgroundColor(ColorConstants.menuBackgroundSelected);
+			feedbackFigure
+					.setForegroundColor(ColorConstants.menuForegroundSelected);
 			return feedbackFigure;
 		} else {
 			RectangleFigure feedbackFigure = new RectangleFigure();
@@ -156,7 +158,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	protected IFigure createFocusFeedbackFigure() {
 		return new Figure() {
 
-			@Override
 			protected void paintFigure(Graphics graphics) {
 				graphics.drawFocus(getBounds().getResized(-1, -1));
 			}
@@ -182,7 +183,8 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 				updateLabel((Label) selectionFeedbackFigure);
 				selectionFeedbackFigure.setBounds(getFeedbackBounds());
 			} else {
-				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5, 5));
+				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5,
+						5));
 			}
 		}
 	}

@@ -93,7 +93,7 @@
    </extension>
 	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
          id="MOSKitt UMLSequencePresentation">
@@ -104,6 +104,16 @@
             </ElementType>
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
                <GlobalActionId actionId="save"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="MOSKitt UMLSequencePresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
             </ElementType>
          </ViewId>
       </GlobalActionHandlerProvider>
@@ -132,157 +142,189 @@
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+  <?gmfgen generated="false"?>
+      <contributionItemProvider class="org.eclipse.papyrus.diagram.sequence.providers.UMLContributionItemProvider">
+         <Priority name="Low"/>
+         <partContribution id="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorID">
+            <partAction menubarPath="/file/print" id="printPreviewAction"/>
+         </partContribution>
+      </contributionItemProvider>
 	<contributionItemProvider
             class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
             checkPluginLoaded="false">
          <Priority name="Low"/>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Interaction2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="flase"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentInteractionOperatorEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
 
 <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
 
 <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
 
 <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
 
 <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
 
 <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName5EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
 
 <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.ElementOwnedCommentEditPart"/>
             <popupAction path="/editGroup" id="deleteFromModelAction"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
 
 <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.ElementOwnedCommentEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart"/>
             <popupAction path="/editGroup" id="deleteFromModelAction"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
 
 <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
       </contributionItemProvider>
 </extension>
@@ -781,7 +823,7 @@
       <?gmfgen generated="true"?>
       <objectContribution
             adaptable="false"
-            id="org.eclipse.papyrus.diagram.sequence.CreateShortcut"
+            id="org.eclipse.papyrus.diagram.sequence.PackageEditPart.CreateShortcut"
             objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart">
          <action
                class="org.eclipse.papyrus.diagram.sequence.part.UMLCreateShortcutAction"
@@ -790,8 +832,33 @@
                label="%createShortcutActionLabel"
                menubarPath="additions">
          </action>
-      </objectContribution>                      
-      <objectContribution
+      </objectContribution>
+      
+            <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.diagram.sequence.InteractionInteractionCompartmentEditPart.CreateShortcut"
+            objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart">
+         <action
+               class="org.eclipse.papyrus.diagram.sequence.part.UMLCreateShortcutAction"
+               enablesFor="1"
+               id="org.eclipse.papyrus.diagram.sequence.CreateShortcutAction"
+               label="%createShortcutActionLabel"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+            <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.diagram.sequence.InteractionInteractionCompartment2EditPart.CreateShortcut"
+            objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartment2EditPart">
+         <action
+               class="org.eclipse.papyrus.diagram.sequence.part.UMLCreateShortcutAction"
+               enablesFor="1"
+               id="org.eclipse.papyrus.diagram.sequence.CreateShortcutAction"
+               label="%createShortcutActionLabel"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+            <objectContribution
             adaptable="false"
             id="org.eclipse.papyrus.diagram.sequence.LoadResource"
             objectClass="org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart">
@@ -811,8 +878,267 @@
             category="org.eclipse.uml2.uml.diagram.sequence.general"
             id="org.eclipse.papyrus.diagram.sequence.icons">
       </page>
+   </extension><extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.papyrus.diagram.sequence.providers.UMLShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+      </decoratorProvider>
    </extension>
+<extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.eclipse.papyrus.diagram.sequence.DomainModelElementPropertyTester"
+           type="org.eclipse.emf.ecore.EObject"
+           namespace="org.eclipse.papyrus.diagram.sequence"
+           properties="isDomainModelElement"
+           class="org.eclipse.papyrus.diagram.sequence.part.UMLDomainModelElementTester">
+       </propertyTester>
+   </extension><extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.sequence.providers.UMLMarkerNavigationProvider">
+         <MarkerType name="org.eclipse.papyrus.diagram.sequence.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+<extension id="diagnostic" name="MOSKitt UML Sequence Diagram Editor problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>
+<extension point="org.eclipse.emf.validation.constraintProviders">
+      <?gmfgen generated="true"?>
+            <category id="MOSKItt_Sequence_diagram_constraints" mandatory="false" name="MOSKitt Sequence diagram constraints">
+         <![CDATA[UML2 sequence diagram constraints]]>
+      </category>
+      <category id="MOSKItt_Sequence_diagram_constraints/MOSKitt_Sequence_diagram_constraints_LIVE" mandatory="false" name="MOSKitt Sequence diagram constraints LIVE">
+         <![CDATA[UML2 Sequence diagram constraints.]]>
+      </category>
+      <constraintProvider cache="true">
+         <package namespaceUri="http://www.eclipse.org/uml2/2.1.0/UML"/>
+               <constraints categories="MOSKItt_Sequence_diagram_constraints">
+                  </constraints>
+         <constraints categories="MOSKItt_Sequence_diagram_constraints/MOSKitt_Sequence_diagram_constraints_LIVE">
+                  <constraint id="unique_name_in_model_container"
+            lang="Java" class="org.eclipse.papyrus.diagram.sequence.providers.UMLValidationProvider$Adapter1"
+            name="Unique name in model container"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[Checks an element's name to be unique in its model container.]]></description>
+            <message><![CDATA[Another element exists qith that name.]]></message>
+            <target class="uml.NamedElement"/>
+         </constraint>
+                  </constraints>
+      </constraintProvider>
+   </extension>
+<extension point="org.eclipse.emf.validation.constraintBindings">
+      <?gmfgen generated="true"?>
+      <clientContext default="false" id="org.eclipse.papyrus.diagram.sequenceDefaultCtx">
+         <selector class="org.eclipse.papyrus.diagram.sequence.providers.UMLValidationProvider$DefaultCtx"/>
+      </clientContext>
+      <binding context="org.eclipse.papyrus.diagram.sequenceDefaultCtx">
+                  <constraint ref="org.eclipse.papyrus.diagram.sequence.unique_name_in_model_container"/>
+               </binding>
 
+   </extension><extension point="org.eclipse.papyrus.diagram.common.viewInfo">
+		<?gmfgen generated="true"?>
+		<RootViewInfo
+			editorID="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorID"
+			modelTypes="es.cv.gvcase.mdt.common.provider.ModelTypesProviderFactory">
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Package_79"
+			label="%viewInfo.79"
+			type="Head"
+			visualID="79">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Interaction_1001"
+			label="%viewInfo.1001"
+			parent="79"
+			type="Node"
+			visualID="1001">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Comment_2005"
+			label="%viewInfo.2005"
+			parent="79"
+			type="Node"
+			visualID="2005">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Interaction_2001"
+			label="%viewInfo.2001"
+			parent="2001"
+			type="Node"
+			visualID="2001">
+		</BaseViewInfo>
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Interaction_2001"
+			label="%viewInfo.2001"
+			parent="1001"
+			type="Node"
+			visualID="2001">
+		</BaseViewInfo>
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Lifeline_2002"
+			label="%viewInfo.2002"
+			parent="2001"
+			type="Node"
+			visualID="2002">
+		</BaseViewInfo>
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Lifeline_2002"
+			label="%viewInfo.2002"
+			parent="1001"
+			type="Node"
+			visualID="2002">
+		</BaseViewInfo>
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.BehaviorExecutionSpecification_2003"
+			label="%viewInfo.2003"
+			parent="2002"
+			type="Node"
+			visualID="2003">
+		</BaseViewInfo>
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.CombinedFragment_2004"
+			label="%viewInfo.2004"
+			parent="2001"
+			type="Node"
+			visualID="2004">
+		</BaseViewInfo>
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.CombinedFragment_2004"
+			label="%viewInfo.2004"
+			parent="1001"
+			type="Node"
+			visualID="2004">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3001"
+			label="%viewInfo.3001"
+			parent="79"
+			type="Edge"
+			visualID="3001">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3001"
+			label="%viewInfo.4005"
+			parent="3001"
+			type="Label"
+			visualID="4005">
+		</BaseViewInfo>
 
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3002"
+			label="%viewInfo.3002"
+			parent="79"
+			type="Edge"
+			visualID="3002">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3002"
+			label="%viewInfo.4006"
+			parent="3002"
+			type="Label"
+			visualID="4006">
+		</BaseViewInfo>
 
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3003"
+			label="%viewInfo.3003"
+			parent="79"
+			type="Edge"
+			visualID="3003">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3003"
+			label="%viewInfo.4007"
+			parent="3003"
+			type="Label"
+			visualID="4007">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3004"
+			label="%viewInfo.3004"
+			parent="79"
+			type="Edge"
+			visualID="3004">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3004"
+			label="%viewInfo.4008"
+			parent="3004"
+			type="Label"
+			visualID="4008">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3005"
+			label="%viewInfo.3005"
+			parent="79"
+			type="Edge"
+			visualID="3005">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3005"
+			label="%viewInfo.4009"
+			parent="3005"
+			type="Label"
+			visualID="4009">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3006"
+			label="%viewInfo.3006"
+			parent="79"
+			type="Edge"
+			visualID="3006">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.Message_3006"
+			label="%viewInfo.4010"
+			parent="3006"
+			type="Label"
+			visualID="4010">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.ElementOwnedComment_3007"
+			label="%viewInfo.3007"
+			parent="79"
+			type="Edge"
+			visualID="3007">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.sequence.CommentAnnotatedElement_3008"
+			label="%viewInfo.3008"
+			parent="79"
+			type="Edge"
+			visualID="3008">
+		</BaseViewInfo>
+						</RootViewInfo>
+	</extension>
+             <extension
+                   point="org.eclipse.papyrus.diagram.common.moskittEditorFactory">
+                <MOSKittEditorFactory
+                      diagramType="MOSKitt UMLSequence"
+                      editorID="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorID"
+                      factory="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorUtil">
+                </MOSKittEditorFactory>
+             </extension>
 </plugin>

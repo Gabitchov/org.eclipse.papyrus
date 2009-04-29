@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 Conselleria de Infraestructuras y Transporte,
- * Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- *
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -18,10 +7,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+
+import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -41,7 +31,8 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public CommentAnnotatedElementCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public CommentAnnotatedElementCreateCommand(
+			CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -65,16 +56,19 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateCommentAnnotatedElement_3008(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canCreateCommentAnnotatedElement_3008(getSource(), getTarget());
 	}
 
 	/**
 	 * @generated not
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
 			getSource().getAnnotatedElements().add(getTarget());
@@ -85,7 +79,8 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 			if (getSource().getAnnotatedElements().size() == 1) {
 				getTarget().getOwnedComments().add(getSource());
 			} else if (getSource().getAnnotatedElements().size() > 1) {
-				Model root = (Model) getTarget().eResource().getContents().get(0);
+				Model root = (Model) getTarget().eResource().getContents().get(
+						0);
 				root.getOwnedComments().add(getSource());
 			}
 		}

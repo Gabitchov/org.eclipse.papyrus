@@ -19,16 +19,16 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 
 /**
  * @generated NOT
@@ -53,7 +53,8 @@ public class Message6CreateCommand extends MessageTypeLinkCreateCommandCommon {
 	/**
 	 * @generated
 	 */
-	public Message6CreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public Message6CreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
 		super(request);
 		this.source = source;
 		this.target = target;
@@ -64,7 +65,8 @@ public class Message6CreateCommand extends MessageTypeLinkCreateCommandCommon {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
 			if (element instanceof Interaction) {
 				container = (Interaction) element;
 				super.setElementToEdit(container);
@@ -95,7 +97,8 @@ public class Message6CreateCommand extends MessageTypeLinkCreateCommandCommon {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_3006(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canCreateMessage_3006(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -119,14 +122,17 @@ public class Message6CreateCommand extends MessageTypeLinkCreateCommandCommon {
 		// 3. Initialization of all the elements (the above elements and the new
 		// message)
 		if ((source instanceof Element) && (target instanceof Element)) {
-			this.doDefaultMessageInitialize(container, (Element) source, (Element) target, newMessage);
+			this.doDefaultMessageInitialize(container, (Element) source,
+					(Element) target, newMessage);
 		}
 
 		Diagram diagram = getDiagramFromRequest();
 		if (diagram != null) {
-			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newMessage);
+			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
+					newMessage);
 		} else {
-			MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newMessage);
+			MultiDiagramUtil.addEAnnotationReferenceToDiagram(
+					UMLDiagramEditorPlugin.getInstance(), newMessage);
 		}
 
 		return newMessage;
@@ -144,9 +150,11 @@ public class Message6CreateCommand extends MessageTypeLinkCreateCommandCommon {
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}

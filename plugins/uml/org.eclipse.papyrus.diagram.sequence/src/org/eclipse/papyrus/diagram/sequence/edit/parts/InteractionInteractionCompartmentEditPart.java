@@ -42,6 +42,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.UMLPackage;
+
 import org.eclipse.papyrus.diagram.common.commands.ChangeZOrderOfCreatedEP;
 import org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
@@ -54,15 +58,12 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDiagramDragAnd
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * @generated
  */
-public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentEditPart {
+public class InteractionInteractionCompartmentEditPart extends
+		ShapeCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -72,11 +73,19 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 	/**
 	 * @generated NOT
 	 */
-	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
+	private final ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
 
+		/**
+		 * generated NOT
+		 */
 		public boolean isEObjectNode(EObject element) {
 			if (element instanceof Interaction) {
-				return true;
+				// Check if is children
+				if (resolveSemanticElement().eContents().contains(element)) {
+					// check if there is no existing view of the children
+					if (DiagramEditPartsUtil.getEObjectViews(element).size() == 0)
+						return true;
+				}
 			}
 			return false;
 		}
@@ -87,7 +96,8 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 
 		public int getEObjectSemanticHint(EObject element) {
 			if (element instanceof Interaction) {
-				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element);
+				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(),
+						element);
 			}
 			return -1;
 		}
@@ -117,7 +127,8 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 	 */
 	@Override
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
+				.createFigure();
 		result.setTitleVisibility(false);
 		return result;
 	}
@@ -131,15 +142,21 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionInteractionCompartmentItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new InteractionInteractionCompartmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy());
 		DragDropEditPolicy dragAndDropEditPolicy = null;
 		dragAndDropEditPolicy = new DragDropEditPolicy(resolver);
 		// modified to install custom Drag&Drop policy.
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new SequenceDiagramDragAndDropEditPolicy(resolver));
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new InteractionCompartmentXYLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new SequenceDiagramDragAndDropEditPolicy(resolver));
 
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new InteractionInteractionCompartmentCanonicalEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE,
+				new InteractionCompartmentXYLayoutEditPolicy());
+
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new InteractionInteractionCompartmentCanonicalEditPolicy());
 	}
 
 	/**
@@ -160,9 +177,11 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 				if (ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel()).getStyle(NotationPackage.eINSTANCE.getShapeStyle());
+				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
 				if (style != null) {
-					style.eSet((EStructuralFeature) notification.getFeature(), notification.getNewValue());
+					style.eSet((EStructuralFeature) notification.getFeature(),
+							notification.getNewValue());
 					ep.refresh();
 				}
 			}
@@ -173,7 +192,8 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 		features.add(UMLPackage.eINSTANCE.getInteraction_Fragment());
 		features.add(UMLPackage.eINSTANCE.getInteraction_Lifeline());
 		features.add(UMLPackage.eINSTANCE.getInteraction_Fragment());
-		DiagramEditPartsUtil.handleNotificationForView(this, notification, features);
+		DiagramEditPartsUtil.handleNotificationForView(this, notification,
+				features);
 	}
 
 	/**
@@ -202,11 +222,17 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 			IHintedType iet = (IHintedType) cutcr.getElementTypes().get(0);
 			String id = iet.getSemanticHint();
 
-			if (org.eclipse.gef.RequestConstants.REQ_CONNECTION_START.equals(type) && String.valueOf(ElementOwnedCommentEditPart.VISUAL_ID).equals(id)) {
+			if (org.eclipse.gef.RequestConstants.REQ_CONNECTION_START
+					.equals(type)
+					&& String.valueOf(ElementOwnedCommentEditPart.VISUAL_ID)
+							.equals(id)) {
 				if (cutcr.getTargetEditPart() instanceof InteractionInteractionCompartmentEditPart)
 					cutcr.setTargetEditPart(getParent());
 				return getParent().getCommand(cutcr);
-			} else if (org.eclipse.gef.RequestConstants.REQ_CONNECTION_END.equals(type) && String.valueOf(ElementOwnedCommentEditPart.VISUAL_ID).equals(id)) {
+			} else if (org.eclipse.gef.RequestConstants.REQ_CONNECTION_END
+					.equals(type)
+					&& String.valueOf(ElementOwnedCommentEditPart.VISUAL_ID)
+							.equals(id)) {
 				if (cutcr.getSourceEditPart() instanceof InteractionInteractionCompartmentEditPart)
 					cutcr.setSourceEditPart(getParent());
 				return getParent().getCommand(cutcr);
@@ -220,8 +246,10 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 			IHintedType iet = (IHintedType) cutr.getElementTypes().get(0);
 			String id = iet.getSemanticHint();
 
-			if (org.eclipse.gef.RequestConstants.REQ_CREATE.equals(type) && (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
-				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
+			if (org.eclipse.gef.RequestConstants.REQ_CREATE.equals(type)
+					&& (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
+				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil
+						.getDiagramEditPart(this).getCommand(_request);
 			}
 		}
 		// don't let to move a comment into a compartment
@@ -239,17 +267,28 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 
 		if (_request instanceof CreateViewAndElementRequest) {
 			CreateViewAndElementRequest request = (CreateViewAndElementRequest) _request;
-			IElementType type = (IElementType) request.getViewAndElementDescriptor().getCreateElementRequestAdapter().getAdapter(IElementType.class);
+			IElementType type = (IElementType) request
+					.getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter().getAdapter(
+							IElementType.class);
 			if (type.equals(UMLElementTypes.Lifeline_2002)) {
-				CompoundCommand compoundCommand = new CompoundCommand("Create Lifeline and BES");
+				CompoundCommand compoundCommand = new CompoundCommand(
+						"Create Lifeline and BES");
 				compoundCommand.add(super.getCommand(request));
-				compoundCommand.add(new ICommandProxy(new CreateLifelineAndBESCommand(getEditingDomain(), request.getViewAndElementDescriptor(), getViewer())));
+				compoundCommand.add(new ICommandProxy(
+						new CreateLifelineAndBESCommand(getEditingDomain(),
+								request.getViewAndElementDescriptor(),
+								getViewer())));
 				return compoundCommand;
 			}
 			if (type.equals(UMLElementTypes.CombinedFragment_2004)) {
-				CompoundCommand compoundCommand = new CompoundCommand("Create Combined Fragment and send it to the back");
+				CompoundCommand compoundCommand = new CompoundCommand(
+						"Create Combined Fragment and send it to the back");
 				compoundCommand.add(super.getCommand(request));
-				compoundCommand.add(new ICommandProxy(new ChangeZOrderOfCreatedEP(getEditingDomain(), request.getViewAndElementDescriptor(), getViewer(), ZOrderRequest.REQ_SEND_TO_BACK)));
+				compoundCommand.add(new ICommandProxy(
+						new ChangeZOrderOfCreatedEP(getEditingDomain(), request
+								.getViewAndElementDescriptor(), getViewer(),
+								ZOrderRequest.REQ_SEND_TO_BACK)));
 				return compoundCommand;
 			}
 			return super.getCommand(request);

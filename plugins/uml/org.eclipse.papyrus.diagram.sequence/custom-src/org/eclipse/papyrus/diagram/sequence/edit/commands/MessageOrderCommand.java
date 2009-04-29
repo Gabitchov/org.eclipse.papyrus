@@ -33,9 +33,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.diagram.sequence.util.MessageCommonUtil;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.GeneralOrdering;
@@ -45,6 +42,10 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.util.MessageCommonUtil;
+
 public class MessageOrderCommand extends Command {
 
 	// To store the command List
@@ -52,15 +53,12 @@ public class MessageOrderCommand extends Command {
 	private List<org.eclipse.emf.common.command.Command> commandList = new ArrayList<org.eclipse.emf.common.command.Command>();
 
 	private ShapeNodeEditPart sourceEditPart = null;
-
 	private ShapeNodeEditPart targetEditPart = null;
 
 	private ConnectionViewAndElementDescriptor connectionViewElemDes = null;
 
 	private DestroyElementRequest destroyRequest = null;
-
 	private CreateConnectionViewAndElementRequest createRequest = null;
-
 	private ReconnectRequest reconnectRequest = null;
 
 	// Only for movement of a BES EditPart
@@ -73,7 +71,8 @@ public class MessageOrderCommand extends Command {
 
 		createRequest = req;
 
-		connectionViewElemDes = createRequest.getConnectionViewAndElementDescriptor();
+		connectionViewElemDes = createRequest
+				.getConnectionViewAndElementDescriptor();
 
 		sourceEditPart = (ShapeNodeEditPart) createRequest.getSourceEditPart();
 		targetEditPart = (ShapeNodeEditPart) createRequest.getTargetEditPart();
@@ -87,9 +86,11 @@ public class MessageOrderCommand extends Command {
 		reconnectRequest = req;
 
 		// Used below as old source EditPart
-		sourceEditPart = (ShapeNodeEditPart) reconnectRequest.getConnectionEditPart().getSource();
+		sourceEditPart = (ShapeNodeEditPart) reconnectRequest
+				.getConnectionEditPart().getSource();
 		// Used below as old target EditPart
-		targetEditPart = (ShapeNodeEditPart) reconnectRequest.getConnectionEditPart().getTarget();
+		targetEditPart = (ShapeNodeEditPart) reconnectRequest
+				.getConnectionEditPart().getTarget();
 
 		// Note: Since the reconnect command has still not been executed, the
 		// connection EditPart still stores the old Source/Target EditPart. That
@@ -129,7 +130,8 @@ public class MessageOrderCommand extends Command {
 		if (besEditPart != null) {
 
 			// Get the BES
-			BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) besEditPart.resolveSemanticElement();
+			BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) besEditPart
+					.resolveSemanticElement();
 
 			// If the BES has no Start/Finish values, nothing should be done
 			// Note that if one value is null the other value should be null as
@@ -139,81 +141,106 @@ public class MessageOrderCommand extends Command {
 
 			// Get the oldBefore MOS of Start MOS
 			OccurrenceSpecification oldBefore = null;
-			if (bes.getStart() != null && bes.getStart().getGeneralOrderings().size() > 0)
-				oldBefore = bes.getStart().getGeneralOrderings().get(0).getBefore();
+			if (bes.getStart() != null
+					&& bes.getStart().getGeneralOrderings().size() > 0)
+				oldBefore = bes.getStart().getGeneralOrderings().get(0)
+						.getBefore();
 
 			// Get the oldAfter MOS of Finish MOS
 			OccurrenceSpecification oldAfter = null;
-			if (bes.getFinish() != null && bes.getFinish().getGeneralOrderings().size() > 0)
-				oldAfter = bes.getFinish().getGeneralOrderings().get(0).getAfter();
+			if (bes.getFinish() != null
+					&& bes.getFinish().getGeneralOrderings().size() > 0)
+				oldAfter = bes.getFinish().getGeneralOrderings().get(0)
+						.getAfter();
 
 			// Update BES figure
 			besEditPart.getFigure().getUpdateManager().performUpdate();
 
 			// Get the newBefore MOS of Start MOS
-			ConnectionNodeEditPart startConnEP = MessageCommonUtil.getBESStartMessageEditPart(besEditPart);
-			Point pStartMOS = MessageCommonUtil.getMessageEndIntersectionPoint(besEditPart, startConnEP, bes.getStart());
-			OccurrenceSpecification newBefore = getMOSBeforePos((LifelineEditPart) besEditPart.getParent(), pStartMOS, startConnEP);
+			ConnectionNodeEditPart startConnEP = MessageCommonUtil
+					.getBESStartMessageEditPart(besEditPart);
+			Point pStartMOS = MessageCommonUtil.getMessageEndIntersectionPoint(
+					besEditPart, startConnEP, bes.getStart());
+			OccurrenceSpecification newBefore = getMOSBeforePos(
+					(LifelineEditPart) besEditPart.getParent(), pStartMOS,
+					startConnEP);
 			// If newBefore == null, then newBefore = StartMOS
 			if (newBefore == null)
 				newBefore = bes.getStart();
 
 			// Get the newAfter MOS of Finish MOS
-			ConnectionNodeEditPart finishConnEP = MessageCommonUtil.getBESFinishMessageEditPart(besEditPart);
-			Point pFinishMOS = MessageCommonUtil.getMessageEndIntersectionPoint(besEditPart, finishConnEP, bes.getFinish());
-			OccurrenceSpecification newAfter = getMOSAfterPos((LifelineEditPart) besEditPart.getParent(), pFinishMOS, finishConnEP);
+			ConnectionNodeEditPart finishConnEP = MessageCommonUtil
+					.getBESFinishMessageEditPart(besEditPart);
+			Point pFinishMOS = MessageCommonUtil
+					.getMessageEndIntersectionPoint(besEditPart, finishConnEP,
+							bes.getFinish());
+			OccurrenceSpecification newAfter = getMOSAfterPos(
+					(LifelineEditPart) besEditPart.getParent(), pFinishMOS,
+					finishConnEP);
 			// if newAfter== null, then newAfter = FinishMOS
 			if (newAfter == null)
 				newAfter = bes.getFinish();
 
 			// To make changes
-			EReference goAfterFeature = UMLPackage.eINSTANCE.getGeneralOrdering_After();
-			EReference goBeforeFeature = UMLPackage.eINSTANCE.getGeneralOrdering_Before();
+			EReference goAfterFeature = UMLPackage.eINSTANCE
+					.getGeneralOrdering_After();
+			EReference goBeforeFeature = UMLPackage.eINSTANCE
+					.getGeneralOrdering_Before();
 
 			if (oldBefore != newBefore) {
 				// UPDATE oldBefore MOS
 				if (oldBefore != bes.getStart()) {
 					if (oldAfter == bes.getFinish())
-						doSetCommand(oldBefore.getGeneralOrderings().get(0), goAfterFeature, oldBefore);
+						doSetCommand(oldBefore.getGeneralOrderings().get(0),
+								goAfterFeature, oldBefore);
 					else
-						doSetCommand(oldBefore.getGeneralOrderings().get(0), goAfterFeature, oldAfter);
+						doSetCommand(oldBefore.getGeneralOrderings().get(0),
+								goAfterFeature, oldAfter);
 				}
 
 				// UPDATE newBefore MOS
 				if (newBefore != bes.getStart()) {
-					doSetCommand(newBefore.getGeneralOrderings().get(0), goAfterFeature, bes.getStart());
+					doSetCommand(newBefore.getGeneralOrderings().get(0),
+							goAfterFeature, bes.getStart());
 				}
 
 				// UPDATE Start MOS (from moving BES)
 				// Update the Before feature of Start MOS with newBefore
-				doSetCommand(bes.getStart().getGeneralOrderings().get(0), goBeforeFeature, newBefore);
+				doSetCommand(bes.getStart().getGeneralOrderings().get(0),
+						goBeforeFeature, newBefore);
 			}
 
 			if (oldAfter != newAfter) {
 				// UPDATE oldAfter MOS
 				if (oldAfter != bes.getFinish()) {
 					if (oldBefore == bes.getStart())
-						doSetCommand(oldAfter.getGeneralOrderings().get(0), goBeforeFeature, oldAfter);
+						doSetCommand(oldAfter.getGeneralOrderings().get(0),
+								goBeforeFeature, oldAfter);
 					else
-						doSetCommand(oldAfter.getGeneralOrderings().get(0), goBeforeFeature, oldBefore);
+						doSetCommand(oldAfter.getGeneralOrderings().get(0),
+								goBeforeFeature, oldBefore);
 				}
 
 				// UPDATE newAfter MOS
 				if (newAfter != bes.getFinish()) {
-					doSetCommand(newAfter.getGeneralOrderings().get(0), goBeforeFeature, bes.getFinish());
+					doSetCommand(newAfter.getGeneralOrderings().get(0),
+							goBeforeFeature, bes.getFinish());
 				}
 
 				// UPDATE Finish MOS (from moving BES)
 				// Update the After feature of Finish MOS with newAfter
-				doSetCommand(bes.getFinish().getGeneralOrderings().get(0), goAfterFeature, newAfter);
+				doSetCommand(bes.getFinish().getGeneralOrderings().get(0),
+						goAfterFeature, newAfter);
 			}
 
 		}
 		// Creation of a new message
 		else if (createRequest != null) {
 
-			View newMsgView = (View) connectionViewElemDes.getAdapter(View.class);
-			ConnectionEditPart newMsgEditPart = (ConnectionEditPart) sourceEditPart.getViewer().getEditPartRegistry().get(newMsgView);
+			View newMsgView = (View) connectionViewElemDes
+					.getAdapter(View.class);
+			ConnectionEditPart newMsgEditPart = (ConnectionEditPart) sourceEditPart
+					.getViewer().getEditPartRegistry().get(newMsgView);
 
 			// Needed to update the points of the connection figure
 			newMsgEditPart.getFigure().getUpdateManager().performUpdate();
@@ -240,22 +267,26 @@ public class MessageOrderCommand extends Command {
 
 			// Message
 			msgElementEditPart = reconnectRequest.getConnectionEditPart();
-			msgElement = (Message) ((ConnectionNodeEditPart) msgElementEditPart).resolveSemanticElement();
+			msgElement = (Message) ((ConnectionNodeEditPart) msgElementEditPart)
+					.resolveSemanticElement();
 
 			// Old Source End
 			if (reconnectRequest.isMovingStartAnchor()) {
 				endElement = (Element) sourceEditPart.resolveSemanticElement();
-				endMOS = (MessageOccurrenceSpecification) msgElement.getSendEvent();
+				endMOS = (MessageOccurrenceSpecification) msgElement
+						.getSendEvent();
 			}
 			// Old Target End
 			else {
 				endElement = (Element) targetEditPart.resolveSemanticElement();
-				endMOS = (MessageOccurrenceSpecification) msgElement.getReceiveEvent();
+				endMOS = (MessageOccurrenceSpecification) msgElement
+						.getReceiveEvent();
 			}
 
 			// Remove ordering from the old end
 			if (endElement instanceof BehaviorExecutionSpecification) {
-				orderBESDelMOS((BehaviorExecutionSpecification) endElement, endMOS);
+				orderBESDelMOS((BehaviorExecutionSpecification) endElement,
+						endMOS);
 			}
 			orderLifelineDelMOS(endMOS);
 
@@ -271,11 +302,13 @@ public class MessageOrderCommand extends Command {
 			// Add the ordering to the new end
 			// New Source End
 			if (reconnectRequest.isMovingStartAnchor()) {
-				endElementEditPart = ((ShapeNodeEditPart) reconnectRequest.getConnectionEditPart().getSource());
+				endElementEditPart = ((ShapeNodeEditPart) reconnectRequest
+						.getConnectionEditPart().getSource());
 			}
 			// New Target End
 			else {
-				endElementEditPart = ((ShapeNodeEditPart) reconnectRequest.getConnectionEditPart().getTarget());
+				endElementEditPart = ((ShapeNodeEditPart) reconnectRequest
+						.getConnectionEditPart().getTarget());
 			}
 
 			orderLifelineAddMOS(msgElementEditPart, endElementEditPart);
@@ -289,7 +322,8 @@ public class MessageOrderCommand extends Command {
 		orderLifelineAddMOS(newMsgEditPart, targetEditPart);
 	}
 
-	public void orderLifelineAddMOS(ConnectionEditPart msgEditPart, ShapeNodeEditPart elementEditPart) {
+	public void orderLifelineAddMOS(ConnectionEditPart msgEditPart,
+			ShapeNodeEditPart elementEditPart) {
 		// Order the MOS in the Lifeline
 
 		// Obtain the LifelineEditPart
@@ -301,7 +335,8 @@ public class MessageOrderCommand extends Command {
 		}
 
 		// Do the ordering
-		Message msg = (Message) ((ConnectionNodeEditPart) msgEditPart).resolveSemanticElement();
+		Message msg = (Message) ((ConnectionNodeEditPart) msgEditPart)
+				.resolveSemanticElement();
 		MessageOccurrenceSpecification currentMOS;
 		Point currentPos; // Position of the currentMOS
 
@@ -310,10 +345,12 @@ public class MessageOrderCommand extends Command {
 
 		if (msgEditPart.getSource() == elementEditPart) {
 			currentMOS = (MessageOccurrenceSpecification) msg.getSendEvent();
-			currentPos = elementEditPart.getSourceConnectionAnchor(msgEditPart).getReferencePoint();
+			currentPos = elementEditPart.getSourceConnectionAnchor(msgEditPart)
+					.getReferencePoint();
 		} else {
 			currentMOS = (MessageOccurrenceSpecification) msg.getReceiveEvent();
-			currentPos = elementEditPart.getTargetConnectionAnchor(msgEditPart).getReferencePoint();
+			currentPos = elementEditPart.getTargetConnectionAnchor(msgEditPart)
+					.getReferencePoint();
 		}
 
 		beforeMOS = getMOSBeforePos(lifelineEditPart, currentPos, msgEditPart);
@@ -328,30 +365,38 @@ public class MessageOrderCommand extends Command {
 		// 2.- Update beforeMOS GeneralOrdering
 		if (beforeMOS != null && beforeMOS.getGeneralOrderings().size() > 0) {
 			feature = UMLPackage.eINSTANCE.getGeneralOrdering_After();
-			doSetCommand(beforeMOS.getGeneralOrderings().get(0), feature, currentMOS);
+			doSetCommand(beforeMOS.getGeneralOrderings().get(0), feature,
+					currentMOS);
 		}
 
 		// 3.- Update afterMOS GeneralOrdering
 		if (afterMOS != null && afterMOS.getGeneralOrderings().size() > 0) {
 			feature = UMLPackage.eINSTANCE.getGeneralOrdering_Before();
-			doSetCommand(afterMOS.getGeneralOrderings().get(0), feature, currentMOS);
+			doSetCommand(afterMOS.getGeneralOrderings().get(0), feature,
+					currentMOS);
 		}
 
 		// In case the target was a BES, order the MOS in the BES
 		if (elementEditPart instanceof BehaviorExecutionSpecificationEditPart) {
-			orderBESAddMOS((BehaviorExecutionSpecificationEditPart) elementEditPart, currentMOS);
+			orderBESAddMOS(
+					(BehaviorExecutionSpecificationEditPart) elementEditPart,
+					currentMOS);
 		}
 	}
 
-	public MessageOccurrenceSpecification getMOSBeforePos(LifelineEditPart lifelineEP, Point pos, ConnectionEditPart msgEP) {
+	public MessageOccurrenceSpecification getMOSBeforePos(
+			LifelineEditPart lifelineEP, Point pos, ConnectionEditPart msgEP) {
 		return getMOSAfterOrBeforePos(lifelineEP, pos, msgEP, true);
 	}
 
-	public MessageOccurrenceSpecification getMOSAfterPos(LifelineEditPart lifelineEP, Point pos, ConnectionEditPart msgEP) {
+	public MessageOccurrenceSpecification getMOSAfterPos(
+			LifelineEditPart lifelineEP, Point pos, ConnectionEditPart msgEP) {
 		return getMOSAfterOrBeforePos(lifelineEP, pos, msgEP, false);
 	}
 
-	private MessageOccurrenceSpecification getMOSAfterOrBeforePos(LifelineEditPart lifelineEP, Point pos, ConnectionEditPart msgEP, boolean before) {
+	private MessageOccurrenceSpecification getMOSAfterOrBeforePos(
+			LifelineEditPart lifelineEP, Point pos, ConnectionEditPart msgEP,
+			boolean before) {
 		// return the MOS before or after the position indicated by pos
 
 		List<EditPart> linksList = new BasicEList<EditPart>();
@@ -374,8 +419,10 @@ public class MessageOrderCommand extends Command {
 			ConnectionEditPart currentLink = (ConnectionEditPart) i.next();
 
 			if (currentLink instanceof ConnectionNodeEditPart) {
-				auxPos = lifelineEP.getSourceConnectionAnchor(currentLink).getReferencePoint(); // intersection point
-				Message msg = (Message) ((ConnectionNodeEditPart) currentLink).resolveSemanticElement();
+				auxPos = lifelineEP.getSourceConnectionAnchor(currentLink)
+						.getReferencePoint(); // intersection point
+				Message msg = (Message) ((ConnectionNodeEditPart) currentLink)
+						.resolveSemanticElement();
 				auxMOS = (MessageOccurrenceSpecification) msg.getSendEvent(); // currentMOS
 
 				if (before && auxPos.y <= pos.y) {
@@ -406,8 +453,10 @@ public class MessageOrderCommand extends Command {
 			ConnectionEditPart currentLink = (ConnectionEditPart) i.next();
 
 			if (currentLink instanceof ConnectionNodeEditPart) {
-				auxPos = lifelineEP.getTargetConnectionAnchor(currentLink).getReferencePoint(); // intersection point
-				Message msg = (Message) ((ConnectionNodeEditPart) currentLink).resolveSemanticElement();
+				auxPos = lifelineEP.getTargetConnectionAnchor(currentLink)
+						.getReferencePoint(); // intersection point
+				Message msg = (Message) ((ConnectionNodeEditPart) currentLink)
+						.resolveSemanticElement();
 				auxMOS = (MessageOccurrenceSpecification) msg.getReceiveEvent(); // currentMOS
 
 				if (before && auxPos.y <= pos.y) {
@@ -442,12 +491,16 @@ public class MessageOrderCommand extends Command {
 				MessageCommonUtil.removeNonMessageConnections(linksList);
 
 				for (Iterator j = linksList.iterator(); j.hasNext();) {
-					ConnectionEditPart currentLink = (ConnectionEditPart) j.next();
+					ConnectionEditPart currentLink = (ConnectionEditPart) j
+							.next();
 
 					if (currentLink instanceof ConnectionNodeEditPart) {
-						auxPos = besEP.getSourceConnectionAnchor(currentLink).getReferencePoint(); // intersection point
-						Message msg = (Message) ((ConnectionNodeEditPart) currentLink).resolveSemanticElement();
-						auxMOS = (MessageOccurrenceSpecification) msg.getSendEvent(); // currentMOS
+						auxPos = besEP.getSourceConnectionAnchor(currentLink)
+								.getReferencePoint(); // intersection point
+						Message msg = (Message) ((ConnectionNodeEditPart) currentLink)
+								.resolveSemanticElement();
+						auxMOS = (MessageOccurrenceSpecification) msg
+								.getSendEvent(); // currentMOS
 
 						if (before && auxPos.y <= pos.y) {
 							if (returnPos == null || auxPos.y >= returnPos.y) {
@@ -475,12 +528,16 @@ public class MessageOrderCommand extends Command {
 				MessageCommonUtil.removeNonMessageConnections(linksList);
 
 				for (Iterator j = linksList.iterator(); j.hasNext();) {
-					ConnectionEditPart currentLink = (ConnectionEditPart) j.next();
+					ConnectionEditPart currentLink = (ConnectionEditPart) j
+							.next();
 
 					if (currentLink instanceof ConnectionNodeEditPart) {
-						auxPos = besEP.getTargetConnectionAnchor(currentLink).getReferencePoint(); // intersection point
-						Message msg = (Message) ((ConnectionNodeEditPart) currentLink).resolveSemanticElement();
-						auxMOS = (MessageOccurrenceSpecification) msg.getReceiveEvent(); // currentMOS
+						auxPos = besEP.getTargetConnectionAnchor(currentLink)
+								.getReferencePoint(); // intersection point
+						Message msg = (Message) ((ConnectionNodeEditPart) currentLink)
+								.resolveSemanticElement();
+						auxMOS = (MessageOccurrenceSpecification) msg
+								.getReceiveEvent(); // currentMOS
 
 						if (before && auxPos.y <= pos.y) {
 							if (returnPos == null || auxPos.y >= returnPos.y) {
@@ -504,7 +561,10 @@ public class MessageOrderCommand extends Command {
 		return returnMOS;
 	}
 
-	public GeneralOrdering createGeneralOrderingInMOS(MessageOccurrenceSpecification currentMOS, MessageOccurrenceSpecification beforeMOS, MessageOccurrenceSpecification afterMOS) {
+	public GeneralOrdering createGeneralOrderingInMOS(
+			MessageOccurrenceSpecification currentMOS,
+			MessageOccurrenceSpecification beforeMOS,
+			MessageOccurrenceSpecification afterMOS) {
 		GeneralOrdering currentGO = null;
 		// Not in a Transactional domain so we cannot use
 		// currentMOS.createGeneralOrdering("Name")
@@ -514,12 +574,15 @@ public class MessageOrderCommand extends Command {
 		currentGO.setName(currentMOS.getName() + "_GO");
 
 		// Add the new generalOrdering to the MOS
-		EReference featureGO = UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering();
+		EReference featureGO = UMLPackage.eINSTANCE
+				.getInteractionFragment_GeneralOrdering();
 		doAddCommand(currentMOS, featureGO, currentGO);
 
 		// features
-		EReference featureBefore = UMLPackage.eINSTANCE.getGeneralOrdering_Before();
-		EReference featureAfter = UMLPackage.eINSTANCE.getGeneralOrdering_After();
+		EReference featureBefore = UMLPackage.eINSTANCE
+				.getGeneralOrdering_Before();
+		EReference featureAfter = UMLPackage.eINSTANCE
+				.getGeneralOrdering_After();
 
 		// currentGO.setBefore(beforeMOS);
 		if (beforeMOS != null) {
@@ -545,21 +608,24 @@ public class MessageOrderCommand extends Command {
 
 	public void doSetCommand(Object owner, Object feature, Object value) {
 		EditingDomain editingDomain = getEditingDomain();
-		org.eclipse.emf.common.command.Command cmd = SetCommand.create(editingDomain, owner, feature, value);
+		org.eclipse.emf.common.command.Command cmd = SetCommand.create(
+				editingDomain, owner, feature, value);
 		commandList.add(cmd);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 
 	public void doAddCommand(Object owner, Object feature, Object value) {
 		EditingDomain editingDomain = getEditingDomain();
-		org.eclipse.emf.common.command.Command cmd = AddCommand.create(editingDomain, owner, feature, value);
+		org.eclipse.emf.common.command.Command cmd = AddCommand.create(
+				editingDomain, owner, feature, value);
 		commandList.add(cmd);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 
 	public void doRemoveCommand(Object owner, Object feature, Object value) {
 		EditingDomain editingDomain = getEditingDomain();
-		org.eclipse.emf.common.command.Command cmd = RemoveCommand.create(editingDomain, owner, feature, value);
+		org.eclipse.emf.common.command.Command cmd = RemoveCommand.create(
+				editingDomain, owner, feature, value);
 		commandList.add(cmd);
 		editingDomain.getCommandStack().execute(cmd);
 	}
@@ -571,7 +637,8 @@ public class MessageOrderCommand extends Command {
 	@Override
 	public void undo() {
 		for (int i = commandList.size() - 1; i >= 0; i--) {
-			if (getEditingDomain().getCommandStack().getUndoCommand() == commandList.get(i)) {
+			if (getEditingDomain().getCommandStack().getUndoCommand() == commandList
+					.get(i)) {
 				getEditingDomain().getCommandStack().undo();
 			}
 		}
@@ -580,7 +647,8 @@ public class MessageOrderCommand extends Command {
 	@Override
 	public void redo() {
 		for (int i = 0; i < commandList.size(); i++) {
-			if (getEditingDomain().getCommandStack().getRedoCommand() == commandList.get(i)) {
+			if (getEditingDomain().getCommandStack().getRedoCommand() == commandList
+					.get(i)) {
 				getEditingDomain().getCommandStack().redo();
 			}
 		}
@@ -627,35 +695,46 @@ public class MessageOrderCommand extends Command {
 		OccurrenceSpecification beforeOS = null;
 		OccurrenceSpecification afterOS = null;
 
-		EReference beforeFeature = UMLPackage.eINSTANCE.getGeneralOrdering_Before();
-		EReference afterFeature = UMLPackage.eINSTANCE.getGeneralOrdering_After();
+		EReference beforeFeature = UMLPackage.eINSTANCE
+				.getGeneralOrdering_Before();
+		EReference afterFeature = UMLPackage.eINSTANCE
+				.getGeneralOrdering_After();
 
 		if (mos.getGeneralOrderings().size() > 0) {
 			beforeOS = mos.getGeneralOrderings().get(0).getBefore();
 			afterOS = mos.getGeneralOrderings().get(0).getAfter();
 		}
 
-		if (beforeOS != null && beforeOS != mos && beforeOS.getGeneralOrderings().size() > 0) {
+		if (beforeOS != null && beforeOS != mos
+				&& beforeOS.getGeneralOrderings().size() > 0) {
 			if (afterOS == mos) {
-				doSetCommand(beforeOS.getGeneralOrderings().get(0), afterFeature, beforeOS);
+				doSetCommand(beforeOS.getGeneralOrderings().get(0),
+						afterFeature, beforeOS);
 			} else {
-				doSetCommand(beforeOS.getGeneralOrderings().get(0), afterFeature, afterOS);
+				doSetCommand(beforeOS.getGeneralOrderings().get(0),
+						afterFeature, afterOS);
 			}
 		}
 
-		if (afterOS != null && afterOS != mos && afterOS.getGeneralOrderings().size() > 0) {
+		if (afterOS != null && afterOS != mos
+				&& afterOS.getGeneralOrderings().size() > 0) {
 			if (beforeOS == mos) {
-				doSetCommand(afterOS.getGeneralOrderings().get(0), beforeFeature, afterOS);
+				doSetCommand(afterOS.getGeneralOrderings().get(0),
+						beforeFeature, afterOS);
 			} else {
-				doSetCommand(afterOS.getGeneralOrderings().get(0), beforeFeature, beforeOS);
+				doSetCommand(afterOS.getGeneralOrderings().get(0),
+						beforeFeature, beforeOS);
 			}
 		}
 
 	}
 
-	public void orderBESDelMOS(BehaviorExecutionSpecification bes, MessageOccurrenceSpecification mos) {
-		EReference featureStart = UMLPackage.eINSTANCE.getExecutionSpecification_Start();
-		EReference featureFinish = UMLPackage.eINSTANCE.getExecutionSpecification_Finish();
+	public void orderBESDelMOS(BehaviorExecutionSpecification bes,
+			MessageOccurrenceSpecification mos) {
+		EReference featureStart = UMLPackage.eINSTANCE
+				.getExecutionSpecification_Start();
+		EReference featureFinish = UMLPackage.eINSTANCE
+				.getExecutionSpecification_Finish();
 
 		// Do nothing.
 		if (mos != bes.getStart() && mos != bes.getFinish()) {
@@ -672,20 +751,25 @@ public class MessageOrderCommand extends Command {
 
 		if (bes.getStart() == mos) {
 			if (mos.getGeneralOrderings().size() > 0) {
-				doSetCommand(bes, featureStart, mos.getGeneralOrderings().get(0).getAfter());
+				doSetCommand(bes, featureStart, mos.getGeneralOrderings()
+						.get(0).getAfter());
 			}
 
 		} else if (bes.getFinish() == mos) {
 			if (mos.getGeneralOrderings().size() > 0) {
-				doSetCommand(bes, featureFinish, mos.getGeneralOrderings().get(0).getBefore());
+				doSetCommand(bes, featureFinish, mos.getGeneralOrderings().get(
+						0).getBefore());
 			}
 
 		}
 
 	}
 
-	public void orderBESAddMOS(BehaviorExecutionSpecificationEditPart besEditPart, MessageOccurrenceSpecification currentMOS) {
-		BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) besEditPart.resolveSemanticElement();
+	public void orderBESAddMOS(
+			BehaviorExecutionSpecificationEditPart besEditPart,
+			MessageOccurrenceSpecification currentMOS) {
+		BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) besEditPart
+				.resolveSemanticElement();
 		EReference featureStart, featureFinish;
 		featureStart = UMLPackage.eINSTANCE.getExecutionSpecification_Start();
 		featureFinish = UMLPackage.eINSTANCE.getExecutionSpecification_Finish();
@@ -711,7 +795,8 @@ public class MessageOrderCommand extends Command {
 		}
 	}
 
-	public static boolean isOS1BeforeOS2(OccurrenceSpecification os1, OccurrenceSpecification os2) {
+	public static boolean isOS1BeforeOS2(OccurrenceSpecification os1,
+			OccurrenceSpecification os2) {
 		// Check if non of the input parameters is null
 		if (os1 == null || os2 == null) {
 			return false;
@@ -719,14 +804,16 @@ public class MessageOrderCommand extends Command {
 
 		if (os1.getGeneralOrderings().size() > 0) {
 
-			if (os1.getGeneralOrderings().get(0).getAfter() == null || os1 == os1.getGeneralOrderings().get(0).getAfter()) {
+			if (os1.getGeneralOrderings().get(0).getAfter() == null
+					|| os1 == os1.getGeneralOrderings().get(0).getAfter()) {
 				return false;
 			}
 
 			if (os1.getGeneralOrderings().get(0).getAfter() == os2) {
 				return true;
 			} else {
-				return isOS1BeforeOS2(os1.getGeneralOrderings().get(0).getAfter(), os2);
+				return isOS1BeforeOS2(os1.getGeneralOrderings().get(0)
+						.getAfter(), os2);
 			}
 
 		} else {
@@ -734,7 +821,8 @@ public class MessageOrderCommand extends Command {
 		}
 	}
 
-	public static boolean isOS1AfterOS2(OccurrenceSpecification os1, OccurrenceSpecification os2) {
+	public static boolean isOS1AfterOS2(OccurrenceSpecification os1,
+			OccurrenceSpecification os2) {
 		return isOS1BeforeOS2(os2, os1);
 	}
 

@@ -31,10 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.diagram.common.ids.UMLDiagramEditorIDs;
-import org.eclipse.papyrus.diagram.common.part.CachedResourcesDocumentProvider;
-import org.eclipse.papyrus.diagram.common.part.DocumentProviderRegistry;
-import org.eclipse.papyrus.diagram.common.providers.AlternativeUMLItemProviderAdapterFactory;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
@@ -43,6 +39,10 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.osgi.framework.BundleContext;
 
+import org.eclipse.papyrus.diagram.common.part.CachedResourcesDocumentProvider;
+import org.eclipse.papyrus.diagram.common.part.DocumentProviderRegistry;
+import org.eclipse.papyrus.diagram.common.ids.UMLDiagramEditorIDs;
+import org.eclipse.papyrus.diagram.common.providers.AlternativeUMLItemProviderAdapterFactory;
 
 /**
  * @generated
@@ -82,7 +82,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
-		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
+		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT,
+				getPreferenceStore());
 		adapterFactory = createAdapterFactory();
 	}
 
@@ -117,8 +118,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	protected void fillItemProviderFactories(List factories) {
-		// custom icons for diagram elements
-		factories.add(new AlternativeUMLItemProviderAdapterFactory(getPreferenceStore()));
+		//custom icons for diagram elements
+		factories.add(new AlternativeUMLItemProviderAdapterFactory(
+				getPreferenceStore()));
 
 		factories.add(new UMLItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
@@ -137,15 +139,18 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
+		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory
+				.adapt(item, IItemLabelProvider.class);
 		if (labelProvider != null) {
-			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(
+					labelProvider.getImage(item));
 		}
 		return null;
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given plug-in relative path.
+	 * Returns an image descriptor for the image file at the given plug-in
+	 * relative path.
 	 * 
 	 * @generated
 	 * @param path
@@ -157,24 +162,30 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Respects images residing in any plug-in. If path is relative, then this bundle is looked up for the image, otherwise, for absolute path, first segment is taken as id of plug-in with image
+	 * Respects images residing in any plug-in. If path is relative, then this
+	 * bundle is looked up for the image, otherwise, for absolute path, first
+	 * segment is taken as id of plug-in with image
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
+	 *            the path to image, either absolute (with plug-in id as first
+	 *            segment), or relative for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p
+					.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
 	}
 
 	/**
-	 * Returns an image for the image file at the given plug-in relative path. Client do not need to dispose this image. Images will be disposed automatically.
+	 * Returns an image for the image file at the given plug-in relative path.
+	 * Client do not need to dispose this image. Images will be disposed
+	 * automatically.
 	 * 
 	 * @generated
 	 * @param path
@@ -202,7 +213,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public CachedResourcesDocumentProvider getDocumentProvider(String domainID, IEditorInput input) {
+	public CachedResourcesDocumentProvider getDocumentProvider(String domainID,
+			IEditorInput input) {
 		return DocumentProviderRegistry.getInstance().get(domainID, input);
 	}
 
@@ -220,7 +232,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		if (error == null && throwable != null) {
 			error = throwable.getMessage();
 		}
-		getLog().log(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, IStatus.OK, error, throwable));
+		getLog().log(
+				new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID,
+						IStatus.OK, error, throwable));
 		debug(error, throwable);
 	}
 
@@ -238,7 +252,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		if (message == null && throwable != null) {
 			message = throwable.getMessage();
 		}
-		getLog().log(new Status(IStatus.INFO, UMLDiagramEditorPlugin.ID, IStatus.OK, message, throwable));
+		getLog().log(
+				new Status(IStatus.INFO, UMLDiagramEditorPlugin.ID, IStatus.OK,
+						message, throwable));
 		debug(message, throwable);
 	}
 
@@ -263,7 +279,10 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public FontRegistry getFontRegistry() {
 		if (myFontRegistry == null) {
 			myFontRegistry = new FontRegistry(Display.getCurrent());
-			myFontRegistry.put(IPreferenceConstants.PREF_DEFAULT_FONT, PreferenceConverter.getDefaultFontDataArray(getPreferenceStore(), IPreferenceConstants.PREF_DEFAULT_FONT));
+			myFontRegistry.put(IPreferenceConstants.PREF_DEFAULT_FONT,
+					PreferenceConverter.getDefaultFontDataArray(
+							getPreferenceStore(),
+							IPreferenceConstants.PREF_DEFAULT_FONT));
 		}
 		return myFontRegistry;
 	}
@@ -279,7 +298,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public Font getDefaultBoldFont() {
-		return getFontRegistry().getBold(IPreferenceConstants.PREF_DEFAULT_FONT);
+		return getFontRegistry()
+				.getBold(IPreferenceConstants.PREF_DEFAULT_FONT);
 	}
 
 	/**

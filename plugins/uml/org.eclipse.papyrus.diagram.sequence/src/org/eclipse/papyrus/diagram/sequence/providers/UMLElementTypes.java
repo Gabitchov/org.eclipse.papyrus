@@ -25,9 +25,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
+
+import org.eclipse.papyrus.diagram.common.providers.BaseModelTypeProvider;
+import org.eclipse.papyrus.diagram.common.providers.ModelTypesProviderFactory;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditor;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
  * @generated
@@ -64,22 +68,18 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IHintedType Interaction_1001 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.Interaction_1001"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IHintedType Interaction_2001 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.Interaction_2001"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IHintedType Lifeline_2002 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.Lifeline_2002"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IHintedType BehaviorExecutionSpecification_2003 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.BehaviorExecutionSpecification_2003"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -94,27 +94,22 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IHintedType Message_3001 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.Message_3001"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IHintedType Message_3002 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.Message_3002"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IHintedType Message_3003 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.Message_3003"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IHintedType Message_3004 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.Message_3004"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IHintedType Message_3005 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.sequence.Message_3005"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -150,21 +145,26 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(
+			ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return UMLDiagramEditorPlugin.getInstance()
+						.getItemImageDescriptor(
+								eClass.getEPackage().getEFactoryInstance()
+										.create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -238,17 +238,21 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Package_79, UMLPackage.eINSTANCE.getPackage());
 
-			elements.put(Interaction_1001, UMLPackage.eINSTANCE.getInteraction());
+			elements.put(Interaction_1001, UMLPackage.eINSTANCE
+					.getInteraction());
 
 			elements.put(Comment_2005, UMLPackage.eINSTANCE.getComment());
 
-			elements.put(Interaction_2001, UMLPackage.eINSTANCE.getInteraction());
+			elements.put(Interaction_2001, UMLPackage.eINSTANCE
+					.getInteraction());
 
 			elements.put(Lifeline_2002, UMLPackage.eINSTANCE.getLifeline());
 
-			elements.put(BehaviorExecutionSpecification_2003, UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
+			elements.put(BehaviorExecutionSpecification_2003,
+					UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
 
-			elements.put(CombinedFragment_2004, UMLPackage.eINSTANCE.getCombinedFragment());
+			elements.put(CombinedFragment_2004, UMLPackage.eINSTANCE
+					.getCombinedFragment());
 
 			elements.put(Message_3001, UMLPackage.eINSTANCE.getMessage());
 
@@ -262,9 +266,11 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Message_3006, UMLPackage.eINSTANCE.getMessage());
 
-			elements.put(ElementOwnedComment_3007, UMLPackage.eINSTANCE.getElement_OwnedComment());
+			elements.put(ElementOwnedComment_3007, UMLPackage.eINSTANCE
+					.getElement_OwnedComment());
 
-			elements.put(CommentAnnotatedElement_3008, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+			elements.put(CommentAnnotatedElement_3008, UMLPackage.eINSTANCE
+					.getComment_AnnotatedElement());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -310,6 +316,19 @@ public class UMLElementTypes extends ElementInitializers {
 			imageRegistry = null;
 		}
 		imageRegistry = new ImageRegistry();
+	}
+
+	/**
+	 * @generated
+	 */
+	static {
+		ModelTypesProviderFactory.registerModelTypesProvider(
+				UMLDiagramEditor.ID, new BaseModelTypeProvider() {
+					@Override
+					public Image getImageHelper(IAdaptable hint) {
+						return getImage(hint);
+					}
+				});
 	}
 
 }

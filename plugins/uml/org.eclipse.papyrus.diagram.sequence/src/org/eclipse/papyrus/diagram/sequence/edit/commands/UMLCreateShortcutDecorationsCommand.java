@@ -24,12 +24,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
+
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 
 /**
  * @generated
  */
-public class UMLCreateShortcutDecorationsCommand extends AbstractTransactionalCommand {
+public class UMLCreateShortcutDecorationsCommand extends
+		AbstractTransactionalCommand {
 
 	/**
 	 * @generated
@@ -39,7 +41,9 @@ public class UMLCreateShortcutDecorationsCommand extends AbstractTransactionalCo
 	/**
 	 * @generated
 	 */
-	public UMLCreateShortcutDecorationsCommand(TransactionalEditingDomain editingDomain, View parentView, List viewDescriptors) {
+	public UMLCreateShortcutDecorationsCommand(
+			TransactionalEditingDomain editingDomain, View parentView,
+			List viewDescriptors) {
 		super(editingDomain, "Create Shortcuts", getWorkspaceFiles(parentView)); //$NON-NLS-1$
 		myDescriptors = viewDescriptors;
 	}
@@ -47,22 +51,29 @@ public class UMLCreateShortcutDecorationsCommand extends AbstractTransactionalCo
 	/**
 	 * @generated
 	 */
-	public UMLCreateShortcutDecorationsCommand(TransactionalEditingDomain editingDomain, View parentView, CreateViewRequest.ViewDescriptor viewDescriptor) {
-		this(editingDomain, parentView, Collections.singletonList(viewDescriptor));
+	public UMLCreateShortcutDecorationsCommand(
+			TransactionalEditingDomain editingDomain, View parentView,
+			CreateViewRequest.ViewDescriptor viewDescriptor) {
+		this(editingDomain, parentView, Collections
+				.singletonList(viewDescriptor));
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		for (Iterator it = myDescriptors.iterator(); it.hasNext();) {
-			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor) it.next();
+			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor) it
+					.next();
 			View view = (View) nextDescriptor.getAdapter(View.class);
 			if (view != null && view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
+						.createEAnnotation();
 				shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-				shortcutAnnotation.getDetails().put("modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
+				shortcutAnnotation.getDetails().put(
+						"modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
 				view.getEAnnotations().add(shortcutAnnotation);
 			}
 		}

@@ -11,6 +11,7 @@
 package org.eclipse.papyrus.diagram.sequence.navigator;
 
 import org.eclipse.jface.viewers.ViewerSorter;
+
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**

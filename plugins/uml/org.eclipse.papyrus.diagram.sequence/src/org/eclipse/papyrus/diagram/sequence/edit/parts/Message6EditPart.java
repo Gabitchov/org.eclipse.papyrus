@@ -33,20 +33,21 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.editpolicies.ConnectionEditPo
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.commands.RemoveEObjectReferencesFromDiagram;
-import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.Message6ItemSemanticEditPolicy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.papyrus.diagram.common.commands.RemoveEObjectReferencesFromDiagram;
+import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.Message6ItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class Message6EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class Message6EditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -61,31 +62,41 @@ public class Message6EditPart extends ConnectionNodeEditPart implements ITreeBra
 	}
 
 	/**
-	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
+	 * @author gmerin
 	 * @generated
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Message6ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new Message6ItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteOnlyViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new DeleteOnlyViewComponentEditPolicy());
 		// ** install new ConnectionEditPolicy
-		installEditPolicy(EditPolicy.CONNECTION_ROLE, new ConnectionEditPolicy() {
+		installEditPolicy(EditPolicy.CONNECTION_ROLE,
+				new ConnectionEditPolicy() {
+					@Override
+					protected boolean shouldDeleteSemantic() {
+						return false;
+					}
 
-			@Override
-			protected boolean shouldDeleteSemantic() {
-				return false;
-			}
-
-			@Override
-			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-				Command command = super.createDeleteViewCommand(deleteRequest);
-				command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(getEditingDomain(), Message6EditPart.this.getDiagramView(), Collections
-						.singletonList(resolveSemanticElement()))));
-				return command;
-			}
-		});
+					@Override
+					protected Command createDeleteViewCommand(
+							GroupRequest deleteRequest) {
+						Command command = super
+								.createDeleteViewCommand(deleteRequest);
+						command = command
+								.chain(new ICommandProxy(
+										new RemoveEObjectReferencesFromDiagram(
+												getEditingDomain(),
+												Message6EditPart.this
+														.getDiagramView(),
+												Collections
+														.singletonList(resolveSemanticElement()))));
+						return command;
+					}
+				});
 	}
 
 	/**
@@ -93,7 +104,8 @@ public class Message6EditPart extends ConnectionNodeEditPart implements ITreeBra
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof MessageName6EditPart) {
-			((MessageName6EditPart) childEditPart).setLabel(getPrimaryShape().getFigureMessageDestructionLabelFigure());
+			((MessageName6EditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureMessageDestructionLabelFigure());
 			return true;
 		}
 		return false;
@@ -113,7 +125,8 @@ public class Message6EditPart extends ConnectionNodeEditPart implements ITreeBra
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -158,7 +171,8 @@ public class Message6EditPart extends ConnectionNodeEditPart implements ITreeBra
 			fFigureMessageDestructionLabelFigure = new WrappingLabel();
 			fFigureMessageDestructionLabelFigure.setText("");
 
-			fFigureMessageDestructionLabelFigure.setFont(FFIGUREMESSAGEDESTRUCTIONLABELFIGURE_FONT);
+			fFigureMessageDestructionLabelFigure
+					.setFont(FFIGUREMESSAGEDESTRUCTIONLABELFIGURE_FONT);
 
 			this.add(fFigureMessageDestructionLabelFigure);
 
@@ -191,19 +205,22 @@ public class Message6EditPart extends ConnectionNodeEditPart implements ITreeBra
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREMESSAGEDESTRUCTIONLABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
+	static final Font FFIGUREMESSAGEDESTRUCTIONLABELFIGURE_FONT = new Font(
+			Display.getCurrent(), "SANS", 9, SWT.NORMAL);
 
 	/**
-	 * @generated
+	 * @author jmunoz
+	 * @generated NOT
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 
 		features.add(UMLPackage.eINSTANCE.getElement_Owner());
 		features.add(UMLPackage.eINSTANCE.getElement_OwnedElement());
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification, features);
+		features.add(UMLPackage.eINSTANCE.getMessage_MessageSort());
+		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification,
+				features);
 	}
 
 }

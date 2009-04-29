@@ -26,6 +26,17 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Event;
+import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValueSpecification;
+
+
 import org.eclipse.papyrus.diagram.common.parser.TagsAdderParser;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentInteractionOperatorEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
@@ -41,20 +52,12 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.util.MessageCommonUtil;
-import org.eclipse.uml2.uml.ConnectableElement;
-import org.eclipse.uml2.uml.Event;
-import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * @generated
  */
-public class UMLParserProvider extends AbstractProvider implements IParserProvider {
+public class UMLParserProvider extends AbstractProvider implements
+		IParserProvider {
 
 	/**
 	 * @generated
@@ -75,7 +78,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	protected IParser createInteractionName_4004Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 
 		MessageFormatParser parser = new MessageFormatParser(features);
 		parser.setViewPattern("sd: {0} ");
@@ -103,7 +107,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	protected IParser createCommentBody_5003Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getComment_Body(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getComment_Body(), };
 
 		MessageFormatParser parser = new MessageFormatParser(features);
 		return parser;
@@ -128,7 +133,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	protected IParser createInteractionName_4003Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 
 		MessageFormatParser parser = new MessageFormatParser(features);
 		parser.setViewPattern("sd: {0} ");
@@ -155,10 +161,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated NOT
 	 * 
-	 *            modified to show lifeline name and represents
+	 * modified to show lifeline name and represents
 	 */
 	protected IParser createLifelineName_4001Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 
 		// Own MessageFormatParser
 		MessageFormatParser parser = new LifelineLabelFormatParser(features);
@@ -188,7 +195,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	protected IParser createCombinedFragmentInteractionOperator_4002Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getCombinedFragment_InteractionOperator(), };
 
 		MessageFormatParser parser = new MessageFormatParser(features);
 		return parser;
@@ -213,7 +221,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated NOT
 	 */
 	protected IParser createMessageName_4005Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 		// Own parser for Message Label
 		MessageFormatParser parser = new MessageLabelFormatParser(features);
 		parser.setViewPattern(" {0}");
@@ -242,7 +251,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated NOT
 	 */
 	protected IParser createMessageName_4006Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 		// Own parser for Message Label
 		MessageFormatParser parser = new MessageLabelFormatParser(features);
 		parser.setViewPattern(" {0}");
@@ -271,7 +281,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated NOT
 	 */
 	protected IParser createMessageName_4007Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 		// Own parser for Message Label
 		MessageFormatParser parser = new MessageLabelFormatParser(features);
 		parser.setViewPattern(" {0}");
@@ -300,7 +311,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated NOT
 	 */
 	protected IParser createMessageName_4008Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 		// Own parser for Message Label
 		MessageFormatParser parser = new MessageLabelFormatParser(features);
 		parser.setViewPattern(" {0}");
@@ -329,7 +341,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated NOT
 	 */
 	protected IParser createMessageName_4009Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 		// Own parser for Message Label
 		MessageFormatParser parser = new MessageLabelFormatParser(features);
 		parser.setViewPattern(" {0}");
@@ -358,7 +371,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated NOT
 	 */
 	protected IParser createMessageName_4010Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
 		// Own parser for Message Label
 		MessageFormatParser parser = new MessageLabelFormatParser(features);
 		parser.setViewPattern(" {0}");
@@ -476,9 +490,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			String superString = super.getPrintString(adapter, flags);
 			EObject eObject = (EObject) adapter.getAdapter(EObject.class);
 			if (eObject instanceof Message) {
-				Operation op = MessageCommonUtil.getMessageSendOperation((Message) eObject);
+				Operation op = MessageCommonUtil
+						.getMessageSendOperation((Message) eObject);
 				if (op != null) {
-					superString = MessageCommonUtil.getMessageOperationString((Message) eObject, op);
+					superString = MessageCommonUtil.getMessageOperationString(
+							(Message) eObject, op);
 				}
 			}
 			return superString;
@@ -500,20 +516,26 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 		@Override
 		public List getSemanticElementsBeingParsed(EObject arg0) {
-			List eList = new ArrayList(super.getSemanticElementsBeingParsed(arg0));
+			List eList = new ArrayList(super
+					.getSemanticElementsBeingParsed(arg0));
 
 			if (arg0 instanceof Message) {
 				Message msg = (Message) arg0;
 				// add the Operation
 				Operation op = MessageCommonUtil.getMessageSendOperation(msg);
-				eList.add(op);
+				if (op != null) {
+					eList.add(op);
 
-				// add the event
-				Event e = MessageCommonUtil.getMessageSendEvent(msg);
-				eList.add(e);
+					// add the Operation Parameters : by jmunoz
+					eList.addAll(op.getOwnedParameters());
 
-				// add the MessageArguments
-				eList.addAll(msg.getArguments());
+					// add the event
+					Event e = MessageCommonUtil.getMessageSendEvent(msg);
+					eList.add(e);
+
+					// add the MessageArguments
+					eList.addAll(msg.getArguments());
+				}
 			}
 			return eList;
 		}
@@ -527,11 +549,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 					return true;
 				}
 
-				if (event.getNotifier() instanceof Operation && UMLPackage.eINSTANCE.getNamedElement_Name().equals(event.getFeature())) {
+				if (event.getNotifier() instanceof Operation
+						&& UMLPackage.eINSTANCE.getNamedElement_Name().equals(
+								event.getFeature())) {
+					return true;
+				}
+
+				if (event.getNotifier() instanceof Operation
+						&& event.getFeature() == UMLPackage.eINSTANCE
+								.getBehavioralFeature_OwnedParameter()) {
 					return true;
 				}
 
 				if (event.getNotifier() instanceof Event) {
+					return true;
+				}
+
+				if (event.getNotifier() instanceof Message) {
 					return true;
 				}
 
@@ -569,7 +603,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		private String getLifelineRepresents(Lifeline lifeline) {
 			String represents = "";
 			if (lifeline != null) {
-				ConnectableElement connectableElement = lifeline.getRepresents();
+				ConnectableElement connectableElement = lifeline
+						.getRepresents();
 				if (connectableElement instanceof Property) {
 					Property property = (Property) connectableElement;
 					Type type = property.getType();
@@ -597,14 +632,17 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 		@Override
 		public List getSemanticElementsBeingParsed(EObject arg0) {
-			List eList = new ArrayList(super.getSemanticElementsBeingParsed(arg0));
+			List eList = new ArrayList(super
+					.getSemanticElementsBeingParsed(arg0));
 
 			if (arg0 instanceof Lifeline) {
 				Lifeline lifeline = (Lifeline) arg0;
 				// add the represented element
-				ConnectableElement connectableElement = lifeline.getRepresents();
+				ConnectableElement connectableElement = lifeline
+						.getRepresents();
 
-				if (connectableElement != null && connectableElement instanceof Property) {
+				if (connectableElement != null
+						&& connectableElement instanceof Property) {
 					Property property = (Property) connectableElement;
 					// Listen to changes on the property
 					eList.add(property);
@@ -626,11 +664,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				// Change on a ConnectableElement (Parameter, Property or
 				// Variable)
 				if (event.getNotifier() instanceof ConnectableElement
-						&& (UMLPackage.eINSTANCE.getNamedElement_Name().equals(event.getFeature()) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(event.getFeature()))) {
+						&& (UMLPackage.eINSTANCE.getNamedElement_Name().equals(
+								event.getFeature()) || UMLPackage.eINSTANCE
+								.getTypedElement_Type().equals(
+										event.getFeature()))) {
 					return true;
 				}
 				// Change on the represent feature
-				if (event.getNotifier() instanceof Lifeline && UMLPackage.eINSTANCE.getLifeline_Represents().equals(event.getFeature())) {
+				if (event.getNotifier() instanceof Lifeline
+						&& UMLPackage.eINSTANCE.getLifeline_Represents()
+								.equals(event.getFeature())) {
 					return true;
 				}
 			}

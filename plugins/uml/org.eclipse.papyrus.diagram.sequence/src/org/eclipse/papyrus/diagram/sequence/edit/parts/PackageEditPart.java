@@ -18,19 +18,20 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
-import org.eclipse.papyrus.diagram.common.ids.UMLDiagramEditorIDs;
-import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.diagram.common.util.MDTUtil;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.PackageCanonicalEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.PackageItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDiagramDragAndDropEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.papyrus.diagram.common.edit.policies.DiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
+import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.diagram.common.ids.UMLDiagramEditorIDs;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.PackageCanonicalEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.PackageItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDiagramDragAndDropEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
  * @generated
@@ -40,6 +41,8 @@ public class PackageEditPart extends DiagramEditPart {
 	/**
 	 * @generated NOT
 	 */
+	// public final static String MODEL_ID = "UMLSequence"; //$NON-NLS-1$
+	// all model IDs are grouped in org.eclipse.papyrus.diagram.common.ids
 	public final static String MODEL_ID = UMLDiagramEditorIDs.SequenceModelID;
 
 	/**
@@ -52,12 +55,19 @@ public class PackageEditPart extends DiagramEditPart {
 	 * 
 	 * @generated NOT
 	 */
-	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
-
+	private final ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
+		/**
+		 * generated NOT
+		 */
 		public boolean isEObjectNode(EObject element) {
 			if (element instanceof Interaction) {
 				// an Interaction's View can now be correctly initialized.
-				return true;
+				// Check if is children
+				if (resolveSemanticElement().eContents().contains(element)) {
+					// check if there is no existing view of the children
+					if (DiagramEditPartsUtil.getEObjectViews(element).size() == 0)
+						return true;
+				}
 			}
 			if (element instanceof Comment) {
 				return true;
@@ -72,7 +82,8 @@ public class PackageEditPart extends DiagramEditPart {
 		public int getEObjectSemanticHint(EObject element) {
 			// we will only allow Interaction Drag and Drop
 			if (element instanceof Interaction) {
-				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element);
+				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(),
+						element);
 			}
 			return -1;
 		}
@@ -100,10 +111,13 @@ public class PackageEditPart extends DiagramEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new PackageCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new PackageItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new PackageCanonicalEditPolicy());
 		// fjcano: modified to install custom Drag&Drop policy.
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new SequenceDiagramDragAndDropEditPolicy(resolver));
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new SequenceDiagramDragAndDropEditPolicy(resolver));
 
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.
 		// EditPolicyRoles.POPUPBAR_ROLE);
@@ -118,7 +132,9 @@ public class PackageEditPart extends DiagramEditPart {
 		super.handleNotificationEvent(event);
 		if (event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
-			if (eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
+			if (eAnnotation.getSource() != null
+					&& eAnnotation.getSource().equals(
+							MDTUtil.FilterViewAndLabelsSource)) {
 				DiagramEditPartsUtil.updateDiagram(this);
 			}
 		}

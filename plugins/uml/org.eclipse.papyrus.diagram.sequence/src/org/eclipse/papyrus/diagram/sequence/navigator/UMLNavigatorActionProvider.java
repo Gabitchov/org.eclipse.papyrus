@@ -23,11 +23,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.sequence.part.Messages;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditor;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
@@ -37,6 +32,12 @@ import org.eclipse.ui.navigator.ICommonActionConstants;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 import org.eclipse.ui.navigator.ICommonViewerWorkbenchSite;
 import org.eclipse.ui.part.FileEditorInput;
+
+import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditor;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
  * @generated
@@ -82,10 +83,12 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 		if (!myContribute) {
 			return;
 		}
-		IStructuredSelection selection = (IStructuredSelection) getContext().getSelection();
+		IStructuredSelection selection = (IStructuredSelection) getContext()
+				.getSelection();
 		myOpenDiagramAction.selectionChanged(selection);
 		if (myOpenDiagramAction.isEnabled()) {
-			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN, myOpenDiagramAction);
+			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN,
+					myOpenDiagramAction);
 		}
 	}
 
@@ -127,13 +130,16 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 			if (selection.size() == 1) {
 				Object selectedElement = selection.getFirstElement();
 				if (selectedElement instanceof UMLNavigatorItem) {
-					selectedElement = ((UMLNavigatorItem) selectedElement).getView();
+					selectedElement = ((UMLNavigatorItem) selectedElement)
+							.getView();
 				} else if (selectedElement instanceof IAdaptable) {
-					selectedElement = ((IAdaptable) selectedElement).getAdapter(View.class);
+					selectedElement = ((IAdaptable) selectedElement)
+							.getAdapter(View.class);
 				}
 				if (selectedElement instanceof Diagram) {
 					Diagram diagram = (Diagram) selectedElement;
-					if (PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(diagram))) {
+					if (PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
+							.getModelID(diagram))) {
 						myDiagram = diagram;
 					}
 				}
@@ -155,7 +161,8 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 			try {
 				page.openEditor(editorInput, UMLDiagramEditor.ID);
 			} catch (PartInitException e) {
-				UMLDiagramEditorPlugin.getInstance().logError("Exception while openning diagram", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError(
+						"Exception while openning diagram", e); //$NON-NLS-1$
 			}
 		}
 
@@ -163,17 +170,20 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 		 * @generated
 		 */
 		private IEditorInput getEditorInput() {
-			for (Iterator it = myDiagram.eResource().getContents().iterator(); it.hasNext();) {
+			for (Iterator it = myDiagram.eResource().getContents().iterator(); it
+					.hasNext();) {
 				EObject nextEObject = (EObject) it.next();
 				if (nextEObject == myDiagram) {
-					return new FileEditorInput(WorkspaceSynchronizer.getFile(myDiagram.eResource()));
+					return new FileEditorInput(WorkspaceSynchronizer
+							.getFile(myDiagram.eResource()));
 				}
 				if (nextEObject instanceof Diagram) {
 					break;
 				}
 			}
 			URI uri = EcoreUtil.getURI(myDiagram);
-			String editorName = uri.lastSegment() + "#" + myDiagram.eResource().getContents().indexOf(myDiagram); //$NON-NLS-1$
+			String editorName = uri.lastSegment()
+					+ "#" + myDiagram.eResource().getContents().indexOf(myDiagram); //$NON-NLS-1$
 			IEditorInput editorInput = new URIEditorInput(uri, editorName);
 			return editorInput;
 		}

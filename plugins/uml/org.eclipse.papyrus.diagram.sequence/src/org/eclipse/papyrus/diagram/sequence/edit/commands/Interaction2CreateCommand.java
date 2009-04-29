@@ -16,12 +16,12 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 
 /**
  * @generated
@@ -32,7 +32,6 @@ public class Interaction2CreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
-
 	/**
 	 * @generated
 	 */
@@ -50,7 +49,8 @@ public class Interaction2CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Interaction2CreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static Interaction2CreateCommand create(CreateElementRequest req,
+			EObject eObject) {
 		return new Interaction2CreateCommand(req, eObject);
 	}
 
@@ -67,7 +67,8 @@ public class Interaction2CreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -97,8 +98,11 @@ public class Interaction2CreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Diagram getDiagramFromRequest() {
-		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
+
+		if (getRequest().getParameters().get(
+				MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(
+					MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -116,12 +120,15 @@ public class Interaction2CreateCommand extends CreateElementCommand {
 			Interaction owner = (Interaction) getElementToEdit();
 			owner.getFragments().add(newElement);
 
-			ElementInitializers.init_Interaction_2001(newElement);
+			UMLElementTypes.init_Interaction_2001(newElement);
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
+						newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
+						UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;

@@ -20,14 +20,16 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewType;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.uml2.uml.UMLPackage;
+
+import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.sequence.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
-import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * @generated
@@ -46,9 +48,12 @@ public class LifelineCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getLifeline_2002SemanticChildren(viewObject).iterator(); it.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next()).getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
+		for (Iterator it = UMLDiagramUpdater.getLifeline_2002SemanticChildren(
+				viewObject).iterator(); it.hasNext();) {
+			EObject nextValue = ((UMLNodeDescriptor) it.next())
+					.getModelElement();
+			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
+					nextValue)) {
 				result.add(nextValue);
 			}
 		}
@@ -65,7 +70,8 @@ public class LifelineCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		if (view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
-			int suggestedID = UMLVisualIDRegistry.getNodeVisualID((View) getHost().getModel(), view.getElement());
+			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
+					(View) getHost().getModel(), view.getElement());
 			switch (actualID) {
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return actualID != suggestedID;
@@ -90,9 +96,23 @@ public class LifelineCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Fragment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getInteraction_Fragment());
 		}
 		return myFeaturesToSynchronize;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void refreshSemantic() {
+		super.refreshSemantic();
+		// this will take care of the filtering of views
+		Diagram diagram = MDTUtil.getHostDiagram(this);
+		if (diagram != null) {
+			MDTUtil.filterDiagramViews(diagram);
+		}
 	}
 
 }

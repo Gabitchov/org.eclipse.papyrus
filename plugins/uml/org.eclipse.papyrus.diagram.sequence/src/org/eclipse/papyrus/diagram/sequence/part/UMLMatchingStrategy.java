@@ -11,12 +11,16 @@
 package org.eclipse.papyrus.diagram.sequence.part;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.papyrus.diagram.common.part.CachedResourcesEditorInput;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 
+import org.eclipse.papyrus.diagram.common.part.CachedResourcesDiagramEditor;
+import org.eclipse.papyrus.diagram.common.part.CachedResourcesEditorInput;
+import org.eclipse.papyrus.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.diagram.common.util.URIUtil;
 
 /**
  * @generated
@@ -26,36 +30,46 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 	/**
 	 * @generated
 	 */
-	public boolean matches(IEditorReference editorRef, IEditorInput input) {
-		IEditorInput editorInput;
+	public boolean matches(IEditorReference editorRef, IEditorInput newInput) {
+		IEditorInput oldInput;
 		try {
-			editorInput = editorRef.getEditorInput();
+			oldInput = editorRef.getEditorInput();
 		} catch (PartInitException e) {
 			return false;
 		}
 
-		CachedResourcesEditorInput cachedEditorInput = null;
-		if (input instanceof CachedResourcesEditorInput) {
-			cachedEditorInput = (CachedResourcesEditorInput) input;
+		boolean openInNewEditor = false;
+
+		CachedResourcesEditorInput newCachedEditorInput = null;
+		if (newInput instanceof CachedResourcesEditorInput) {
+			newCachedEditorInput = (CachedResourcesEditorInput) newInput;
+			openInNewEditor = newCachedEditorInput.isOpenInNewEditor();
 		}
 
-		if (cachedEditorInput != null) {
-			if (cachedEditorInput.isOpenInNewEditor()) {
-				// we want to open in a new editor, alas if the IEditorInput is
-				// exactly the same (the same resource AND diagram) we can reuse
-				// this editor
-				if (CachedResourcesEditorInput.checkSameEditorInputWithFragment(editorInput, cachedEditorInput)) {
-					return true;
-				}
-				return false;
+		if (openInNewEditor) {
+			// we want to open in a new editor, alas if the IEditorInput is
+			// exactly the same (the same resource AND diagram) we can reuse
+			// this editor
+			if (CachedResourcesEditorInput.checkSameEditorInputWithFragment(
+					oldInput, newCachedEditorInput)) {
+				return true;
 			}
+			return false;
 		}
 
-		if (editorInput instanceof URIEditorInput && input instanceof URIEditorInput) {
-			// extra insanity check
-			return ((URIEditorInput) editorInput).getURI().equals(((URIEditorInput) input).getURI());
+		// get real URIs for both the old input ant the new input
+		CachedResourcesDiagramEditor editor = MDTUtil
+				.getCachedResourcesDiagramEditorFromEditorRef(editorRef);
+		String editorID = editor != null ? editor.getEditorID() : null;
+		URI oldUri = URIUtil.getUri(oldInput, editorID);
+		URI newUri = URIUtil.getUri(newInput, editorID);
+
+		if (oldUri != null && newUri != null) {
+			return oldUri.equals(newUri);
 		}
+
 		return false;
+
 	}
 
 }

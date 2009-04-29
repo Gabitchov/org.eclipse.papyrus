@@ -10,25 +10,33 @@
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.List;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.uml2.uml.Interaction;
+
 import org.eclipse.papyrus.diagram.common.edit.policies.DiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.edit.policies.ViewResolver;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.InitializeInteractionViewCommand;
-import org.eclipse.uml2.uml.Interaction;
-
 
 /**
- * Drag and Drop edit policy for the sequence <Diagram>. Will perform the drag&drop of an <Interaction> correctly, creating views according to the general order of the <Message>s in the <Interaction>.
+ * Drag and Drop edit policy for the sequence <Diagram>. Will perform the
+ * drag&drop of an <Interaction> correctly, creating views according to the
+ * general order of the <Message>s in the <Interaction>.
  * 
- * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
+ * @author fjcano
  * 
  */
-public class SequenceDiagramDragAndDropEditPolicy extends DiagramDragDropEditPolicy {
+public class SequenceDiagramDragAndDropEditPolicy extends
+		DiagramDragDropEditPolicy {
 
 	/**
 	 * Default constructor.
@@ -42,26 +50,34 @@ public class SequenceDiagramDragAndDropEditPolicy extends DiagramDragDropEditPol
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 		// - get Interaction from DropRequest
-		Interaction interaction = null;
-		for (Object object : dropRequest.getObjects()) {
-			if (object instanceof Interaction) {
-				interaction = (Interaction) object;
-				break;
-			}
+		List<EObject> nodeObjects = findNodesInDrop(dropRequest);
+
+		// We are only interested in Interactions
+		List<Interaction> interactionObjects = new BasicEList<Interaction>();
+		for (EObject obj : nodeObjects) {
+			if (obj instanceof Interaction)
+				interactionObjects.add((Interaction) obj);
 		}
-		if (interaction == null) {
+		if (interactionObjects.size() == 0) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// - build and return command
-		IGraphicalEditPart parentEditPart = getHost() instanceof IGraphicalEditPart ? (IGraphicalEditPart) getHost() : null;
+		IGraphicalEditPart parentEditPart = getHost() instanceof IGraphicalEditPart ? (IGraphicalEditPart) getHost()
+				: null;
 		if (parentEditPart != null) {
-			TransactionalEditingDomain domain = parentEditPart.getEditingDomain();
+			TransactionalEditingDomain domain = parentEditPart
+					.getEditingDomain();
 			if (domain != null) {
-				InitializeInteractionViewCommand command = new InitializeInteractionViewCommand(domain, "Initialize Interaction view", null);
-				command.setParentEditPart(parentEditPart);
-				command.setInteraction(interaction);
-				command.setOffset(dropRequest.getLocation());
-				return new ICommandProxy(command);
+				CompoundCommand cCommand = new CompoundCommand();
+				for (Interaction interaction : interactionObjects) {
+					InitializeInteractionViewCommand command = new InitializeInteractionViewCommand(
+							domain, "Initialize Interaction view", null);
+					command.setParentEditPart(parentEditPart);
+					command.setInteraction(interaction);
+					command.setOffset(dropRequest.getLocation());
+					cCommand.add(new ICommandProxy(command));
+				}
+				return cCommand;
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

@@ -11,6 +11,7 @@
 package org.eclipse.papyrus.diagram.sequence.preferences;
 
 import org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage;
+
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
@@ -22,6 +23,7 @@ public class DiagramPrintingPreferencePage extends PrintingPreferencePage {
 	 * @generated
 	 */
 	public DiagramPrintingPreferencePage() {
-		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
+		setPreferenceStore(UMLDiagramEditorPlugin.getInstance()
+				.getPreferenceStore());
 	}
 }

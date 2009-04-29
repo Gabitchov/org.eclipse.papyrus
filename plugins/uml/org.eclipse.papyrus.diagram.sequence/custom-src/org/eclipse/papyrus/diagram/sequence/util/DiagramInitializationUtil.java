@@ -12,14 +12,17 @@
 
 package org.eclipse.papyrus.diagram.sequence.util;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.eclipse.gmf.runtime.common.core.util.HashUtil;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -28,12 +31,14 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 public class DiagramInitializationUtil {
 
-	public static List<List<Message>> getGlobalMsgOrdering(Interaction interaction) {
+	public static List<List<Message>> getGlobalMsgOrdering(
+			Interaction interaction) {
 		HashMap<Lifeline, List<Message>> lifelinesOrderedList = new HashMap<Lifeline, List<Message>>();
 
 		// For each lifeline, obtains it's ordered messages
 		for (Lifeline lifeline : interaction.getLifelines()) {
-			lifelinesOrderedList.put(lifeline, getLifelineOrderdedMsgs(lifeline));
+			lifelinesOrderedList.put(lifeline,
+					getLifelineOrderdedMsgs(lifeline));
 		}
 
 		// Merge the information of all the lifelines in a global message
@@ -55,15 +60,18 @@ public class DiagramInitializationUtil {
 		// Loop through the list of messages
 		for (Message msg : interaction.getMessages()) {
 
-			MessageOccurrenceSpecification sourceEnd = MessageCommonUtil.getMessageSrcMOS(msg);
-			MessageOccurrenceSpecification targetEnd = MessageCommonUtil.getMessageDstMOS(msg);
+			MessageOccurrenceSpecification sourceEnd = MessageCommonUtil
+					.getMessageSrcMOS(msg);
+			MessageOccurrenceSpecification targetEnd = MessageCommonUtil
+					.getMessageDstMOS(msg);
 
 			// This should not happen but just in case
 			if (sourceEnd == null || targetEnd == null)
 				continue;
 
 			// This should not happen either
-			if (sourceEnd.getGeneralOrderings().size() == 0 || targetEnd.getGeneralOrderings().size() == 0)
+			if (sourceEnd.getGeneralOrderings().size() == 0
+					|| targetEnd.getGeneralOrderings().size() == 0)
 				continue;
 
 			// Check if the message belongs to this Lifeline
@@ -107,8 +115,10 @@ public class DiagramInitializationUtil {
 		// Add the rest of elements
 		while (!isLastOS(auxOS)) {
 			auxOS = auxOS.getGeneralOrderings().get(0).getAfter();
-			if (auxOS instanceof MessageOccurrenceSpecification && ((MessageOccurrenceSpecification) auxOS).getMessage() != null) {
-				orderedList.add(((MessageOccurrenceSpecification) auxOS).getMessage());
+			if (auxOS instanceof MessageOccurrenceSpecification
+					&& ((MessageOccurrenceSpecification) auxOS).getMessage() != null) {
+				orderedList.add(((MessageOccurrenceSpecification) auxOS)
+						.getMessage());
 			}
 		}
 
@@ -116,7 +126,8 @@ public class DiagramInitializationUtil {
 		return orderedList;
 	}
 
-	public static List<List<Message>> mergeOrderedMsgsLists(HashMap<Lifeline, List<Message>> orderedLists) {
+	public static List<List<Message>> mergeOrderedMsgsLists(
+			HashMap<Lifeline, List<Message>> orderedLists) {
 
 		ArrayList<List<Message>> globalList = new ArrayList<List<Message>>();
 
@@ -157,14 +168,16 @@ public class DiagramInitializationUtil {
 
 								// Current message (and the ones that go after
 								// him) need to be moved to the new position
-								List<Message> followersList = getFollowersList(msg, visitedLists);
+								List<Message> followersList = getFollowersList(
+										msg, visitedLists);
 
 								// Note: The followers list also includes msg
 
 								int shift = (i + offset) - existingPos;
 								for (Message follower : followersList) {
 									// Update it's position
-									hashMap.put(follower, hashMap.get(follower) + shift);
+									hashMap.put(follower, hashMap.get(follower)
+											+ shift); 
 								}
 
 							} else {
@@ -185,11 +198,12 @@ public class DiagramInitializationUtil {
 				valuesSet.addAll(hashMap.values());
 				Object[] valuesSortedArray = valuesSet.toArray();
 				Arrays.sort(valuesSortedArray);
-
+				
 				// Initialize the globalList with the maximum size possible
 				for (int i = 0; i < valuesSortedArray.length; i++)
 					globalList.add(new ArrayList<Message>());
 
+				
 				// Add the ordered elements
 				for (Entry<Message, Integer> entry : hashMap.entrySet()) {
 					int pos = Arrays.binarySearch(valuesSortedArray, entry.getValue());
@@ -202,7 +216,8 @@ public class DiagramInitializationUtil {
 		return globalList;
 	}
 
-	public static List<Message> getFollowersList(Message msg, List<List<Message>> visitedLists) {
+	public static List<Message> getFollowersList(Message msg,
+			List<List<Message>> visitedLists) {
 		List<Message> followersList = new ArrayList<Message>();
 		HashMap<List<Message>, List<Message>> followersFoundPerList = new HashMap<List<Message>, List<Message>>();
 		Set<Message> addSet = new HashSet<Message>();
@@ -210,11 +225,13 @@ public class DiagramInitializationUtil {
 
 		// Foreach visited list obtain it's followersList
 		for (List<Message> visitedList : visitedLists) {
-			followersFoundPerList.put(visitedList, followersList(msg, visitedList));
+			followersFoundPerList.put(visitedList, followersList(msg,
+					visitedList));
 		}
 
 		// Build a set with the all followersLists
-		for (Entry<List<Message>, List<Message>> entry : followersFoundPerList.entrySet()) {
+		for (Entry<List<Message>, List<Message>> entry : followersFoundPerList
+				.entrySet()) {
 			addSet.addAll(entry.getValue());
 		}
 
@@ -223,12 +240,14 @@ public class DiagramInitializationUtil {
 			modifiedFlag = false;
 
 			// Check if any of the visited lists has an empty followersList
-			for (Entry<List<Message>, List<Message>> entry : followersFoundPerList.entrySet()) {
+			for (Entry<List<Message>, List<Message>> entry : followersFoundPerList
+					.entrySet()) {
 				// If empty, obtain again it's list with the addSet
 				if (entry.getValue().isEmpty()) {
 					// Loop through the addSet
 					for (Message auxMsg : addSet) {
-						partialAddSet.addAll(followersList(auxMsg, entry.getKey()));
+						partialAddSet.addAll(followersList(auxMsg, entry
+								.getKey()));
 					}
 					if (!partialAddSet.isEmpty()) {
 						entry.getValue().addAll(partialAddSet);
@@ -252,7 +271,8 @@ public class DiagramInitializationUtil {
 	public static List<Message> followersList(Message msg, List<Message> msgList) {
 		if (msgList.contains(msg)) {
 			List<Message> returnList = new ArrayList<Message>();
-			returnList.addAll(msgList.subList(msgList.indexOf(msg) + 1, msgList.size()));
+			returnList.addAll(msgList.subList(msgList.indexOf(msg) + 1, msgList
+					.size()));
 			return returnList;
 		} else
 			return new ArrayList<Message>();

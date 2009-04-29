@@ -20,19 +20,22 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.diagram.sequence.util.DiagramInitializationUtil;
-import org.eclipse.papyrus.diagram.sequence.util.InteractionViewInitializationUtil;
-import org.eclipse.papyrus.diagram.sequence.util.InteractionViewInitializationUtil.NodeInitDataFigure;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
 
+import org.eclipse.papyrus.diagram.sequence.util.DiagramInitializationUtil;
+import org.eclipse.papyrus.diagram.sequence.util.InteractionViewInitializationUtil;
+import org.eclipse.papyrus.diagram.sequence.util.InteractionViewInitializationUtil.NodeInitDataFigure;
+
 /**
- * Creates the views of an <Interaction>, its <Lifeline>s, <BehaviorExecutionSpecification>s and <Message>s.
+ * Creates the views of an <Interaction>, its <Lifeline>s,
+ * <BehaviorExecutionSpecification>s and <Message>s.
  * 
- * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
+ * @author fjcano
  * 
  */
-public class InitializeInteractionViewCommand extends AbstractTransactionalCommand {
+public class InitializeInteractionViewCommand extends
+		AbstractTransactionalCommand {
 
 	IGraphicalEditPart parentEditPart = null;
 
@@ -40,7 +43,8 @@ public class InitializeInteractionViewCommand extends AbstractTransactionalComma
 
 	Point offset = null;
 
-	public InitializeInteractionViewCommand(TransactionalEditingDomain domain, String label, List affectedFiles) {
+	public InitializeInteractionViewCommand(TransactionalEditingDomain domain,
+			String label, List affectedFiles) {
 		super(domain, label, affectedFiles);
 	}
 
@@ -70,22 +74,30 @@ public class InitializeInteractionViewCommand extends AbstractTransactionalComma
 
 	@Override
 	public boolean canExecute() {
-		boolean canExecute = getInteraction() != null && getParentEditPart() != null && getEditingDomain() != null;
+		boolean canExecute = getInteraction() != null
+				&& getParentEditPart() != null && getEditingDomain() != null;
 		return canExecute;
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (getInteraction() != null || getParentEditPart() != null && getEditingDomain() != null) {
-			List<List<Message>> orderedMessages = DiagramInitializationUtil.getGlobalMsgOrdering(getInteraction());
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		if (getInteraction() != null || getParentEditPart() != null
+				&& getEditingDomain() != null) {
+			List<List<Message>> orderedMessages = DiagramInitializationUtil
+					.getGlobalMsgOrdering(getInteraction());
 			if (orderedMessages != null && orderedMessages.size() >= 0) {
-				NodeInitDataFigure interactionData = InteractionViewInitializationUtil.calculateInteractionInitData(interaction, orderedMessages, getOffset());
+				NodeInitDataFigure interactionData = InteractionViewInitializationUtil
+						.calculateInteractionInitData(interaction,
+								orderedMessages, getOffset());
 				if (interactionData != null) {
-					InteractionViewInitializationUtil.createViews(getParentEditPart(), interactionData);
+					InteractionViewInitializationUtil.createViews(
+							getParentEditPart(), interactionData);
 					return CommandResult.newOKCommandResult();
 				}
 			}
 		}
-		return CommandResult.newErrorCommandResult("Unable to initialize Interaction Views.");
+		return CommandResult
+				.newErrorCommandResult("Unable to initialize Interaction Views.");
 	}
 }

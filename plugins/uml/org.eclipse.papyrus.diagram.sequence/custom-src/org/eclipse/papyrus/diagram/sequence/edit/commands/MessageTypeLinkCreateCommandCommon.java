@@ -13,8 +13,6 @@ package org.eclipse.papyrus.diagram.sequence.edit.commands;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
-import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.CreationEvent;
@@ -32,6 +30,8 @@ import org.eclipse.uml2.uml.SendSignalEvent;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
 
 /**
  * @generated
@@ -48,8 +48,10 @@ public class MessageTypeLinkCreateCommandCommon extends CreateElementCommand {
 	private Package getPackageFromInteraction(Interaction myContainer) {
 		Package interactionPackage = myContainer.getPackage();
 		while (interactionPackage == null) {
-			if (myContainer.getPackage() == null && myContainer.getEnclosingInteraction() != null)
-				return getPackageFromInteraction(myContainer.getEnclosingInteraction());
+			if (myContainer.getPackage() == null
+					&& myContainer.getEnclosingInteraction() != null)
+				return getPackageFromInteraction(myContainer
+						.getEnclosingInteraction());
 			else
 				return null;
 		}
@@ -66,7 +68,8 @@ public class MessageTypeLinkCreateCommandCommon extends CreateElementCommand {
 	 * @param newMessage
 	 * @generated NOT
 	 */
-	protected void doDefaultMessageInitialize(Interaction myContainer, Element mySource, Element myTarget, Message newMessage) {
+	protected void doDefaultMessageInitialize(Interaction myContainer,
+			Element mySource, Element myTarget, Message newMessage) {
 		// Events
 		Event sourceEvent = null;
 		Event targetEvent = null;
@@ -79,11 +82,14 @@ public class MessageTypeLinkCreateCommandCommon extends CreateElementCommand {
 		case MessageSort.SYNCH_CALL:
 		case MessageSort.ASYNCH_CALL:
 			// Create the SendOperationEvent
-			sourceEvent = (SendOperationEvent) interactionPackage.createPackagedElement("SendOperationEvent", UMLPackage.eINSTANCE.getSendOperationEvent());
+			sourceEvent = (SendOperationEvent) interactionPackage
+					.createPackagedElement("SendOperationEvent",
+							UMLPackage.eINSTANCE.getSendOperationEvent());
 			LabelHelper.INSTANCE.initName(interactionPackage, sourceEvent);
 
 			// Create the CallEvent
-			targetEvent = (CallEvent) interactionPackage.createPackagedElement("CallEvent", UMLPackage.eINSTANCE.getCallEvent());
+			targetEvent = (CallEvent) interactionPackage.createPackagedElement(
+					"CallEvent", UMLPackage.eINSTANCE.getCallEvent());
 			LabelHelper.INSTANCE.initName(interactionPackage, targetEvent);
 			break;
 
@@ -94,34 +100,46 @@ public class MessageTypeLinkCreateCommandCommon extends CreateElementCommand {
 
 		case MessageSort.ASYNCH_SIGNAL:
 			// Create the SendSignalEvent
-			sourceEvent = (SendSignalEvent) interactionPackage.createPackagedElement("SendSignalEvent", UMLPackage.eINSTANCE.getSendSignalEvent());
+			sourceEvent = (SendSignalEvent) interactionPackage
+					.createPackagedElement("SendSignalEvent",
+							UMLPackage.eINSTANCE.getSendSignalEvent());
 			LabelHelper.INSTANCE.initName(interactionPackage, sourceEvent);
 
 			// create the SignalEvent (equal to RecieveSignalEvent)
-			targetEvent = (SignalEvent) interactionPackage.createPackagedElement("SignalEvent", UMLPackage.eINSTANCE.getSignalEvent());
+			targetEvent = (SignalEvent) interactionPackage
+					.createPackagedElement("SignalEvent", UMLPackage.eINSTANCE
+							.getSignalEvent());
 			LabelHelper.INSTANCE.initName(interactionPackage, targetEvent);
 			break;
 
 		case MessageSort.DELETE_MESSAGE:
 			// create the SignalEvent (equal to RecieveSignalEvent)
-			targetEvent = (DestructionEvent) interactionPackage.createPackagedElement("DestructionEvent", UMLPackage.eINSTANCE.getDestructionEvent());
+			targetEvent = (DestructionEvent) interactionPackage
+					.createPackagedElement("DestructionEvent",
+							UMLPackage.eINSTANCE.getDestructionEvent());
 			LabelHelper.INSTANCE.initName(interactionPackage, targetEvent);
 			break;
 
 		case MessageSort.CREATE_MESSAGE:
 			// Create the CreationEvent
-			targetEvent = (CreationEvent) interactionPackage.createPackagedElement("CreationEvent", UMLPackage.eINSTANCE.getCreationEvent());
+			targetEvent = (CreationEvent) interactionPackage
+					.createPackagedElement("CreationEvent",
+							UMLPackage.eINSTANCE.getCreationEvent());
 			LabelHelper.INSTANCE.initName(interactionPackage, targetEvent);
 			break;
 		}
 
 		// Create the 2 MessageOcurrenceSpecification
 		MessageOccurrenceSpecification msgSend = (MessageOccurrenceSpecification) myContainer
-				.createFragment("MessageOccurrenceSpecification", UMLPackage.eINSTANCE.getMessageOccurrenceSpecification());
+				.createFragment("MessageOccurrenceSpecification",
+						UMLPackage.eINSTANCE
+								.getMessageOccurrenceSpecification());
 		LabelHelper.INSTANCE.initName(myContainer, msgSend);
 
-		MessageOccurrenceSpecification msgReceive = (MessageOccurrenceSpecification) myContainer.createFragment("MessageOccurrenceSpecification", UMLPackage.eINSTANCE
-				.getMessageOccurrenceSpecification());
+		MessageOccurrenceSpecification msgReceive = (MessageOccurrenceSpecification) myContainer
+				.createFragment("MessageOccurrenceSpecification",
+						UMLPackage.eINSTANCE
+								.getMessageOccurrenceSpecification());
 		LabelHelper.INSTANCE.initName(myContainer, msgReceive);
 
 		// Initialization of the Message
@@ -188,12 +206,14 @@ public class MessageTypeLinkCreateCommandCommon extends CreateElementCommand {
 	/**
 	 * @generated
 	 * 
-	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
+	 * @author fjcano
 	 */
 	protected Diagram getDiagramFromRequest() {
 		// used in doDefaultElementCreation()
-		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
+		if (getRequest().getParameters().get(
+				MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(
+					MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}

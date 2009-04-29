@@ -30,14 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageOrderCommand;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.Element;
@@ -58,6 +50,15 @@ import org.eclipse.uml2.uml.ReceiveOperationEvent;
 import org.eclipse.uml2.uml.SendOperationEvent;
 import org.eclipse.uml2.uml.ValueSpecification;
 
+import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageOrderCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
+
 public class MessageCommonUtil {
 
 	/**
@@ -68,8 +69,10 @@ public class MessageCommonUtil {
 	 * @return The source Element
 	 */
 	public static Element getMessageSrc(Message msg) {
-		if (msg.getSendEvent() != null && msg.getSendEvent() instanceof MessageOccurrenceSpecification) {
-			MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification) msg.getSendEvent();
+		if (msg.getSendEvent() != null
+				&& msg.getSendEvent() instanceof MessageOccurrenceSpecification) {
+			MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification) msg
+					.getSendEvent();
 
 			if (mos.getCovereds().size() > 0) {
 				Element element = mos.getCovereds().get(0);
@@ -83,12 +86,23 @@ public class MessageCommonUtil {
 					// Get the BES's from the lifeline
 					EList<BehaviorExecutionSpecification> besList = getLifelineBESList(lifeline);
 
-					// Fore each BES, check if it is the source of the msg
+					// Fore each BES, check if it is contained within its
+					// start/finish boundaries
 					for (BehaviorExecutionSpecification bes : besList) {
+						// A MOS might be contained within the boundaries of
+						// more than one BE (remember that BES can contained
+						// sub-BES)
+						BehaviorExecutionSpecification mostToRightBes = null;
 						if (isOSinBES(mos, bes)) {
-							element = bes;
-							break;
+							// We want the most-to-right BES
+							if (mostToRightBes == null
+									|| MessageOrderCommand.isOS1AfterOS2(bes
+											.getStart(), mostToRightBes
+											.getStart()))
+								mostToRightBes = bes;
 						}
+						element = mostToRightBes != null ? mostToRightBes
+								: element;
 					}
 				}
 
@@ -106,8 +120,10 @@ public class MessageCommonUtil {
 	 * @return The destination Element
 	 */
 	public static Element getMessageDst(Message msg) {
-		if (msg.getReceiveEvent() != null && msg.getReceiveEvent() instanceof MessageOccurrenceSpecification) {
-			MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification) msg.getReceiveEvent();
+		if (msg.getReceiveEvent() != null
+				&& msg.getReceiveEvent() instanceof MessageOccurrenceSpecification) {
+			MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification) msg
+					.getReceiveEvent();
 
 			if (mos.getCovereds().size() > 0) {
 				Element element = mos.getCovereds().get(0);
@@ -123,10 +139,20 @@ public class MessageCommonUtil {
 
 					// Fore each BES, check if it is the source of the msg
 					for (BehaviorExecutionSpecification bes : besList) {
+						// A MOS might be contained within the boundaries of
+						// more than one BE (remember that BES can contained
+						// sub-BES)
+						BehaviorExecutionSpecification mostToRightBes = null;
 						if (isOSinBES(mos, bes)) {
-							element = bes;
-							break;
+							// We want the most-to-right BES
+							if (mostToRightBes == null
+									|| MessageOrderCommand.isOS1AfterOS2(bes
+											.getStart(), mostToRightBes
+											.getStart()))
+								mostToRightBes = bes;
 						}
+						element = mostToRightBes != null ? mostToRightBes
+								: element;
 					}
 				}
 
@@ -148,8 +174,11 @@ public class MessageCommonUtil {
 		}
 		Element source = MessageCommonUtil.getMessageSrc(message);
 		if (source instanceof BehaviorExecutionSpecification) {
-			if (((BehaviorExecutionSpecification) source).getCovereds().size() > 0 && ((BehaviorExecutionSpecification) source).getCovereds().get(0) instanceof Lifeline) {
-				source = ((BehaviorExecutionSpecification) source).getCovereds().get(0);
+			if (((BehaviorExecutionSpecification) source).getCovereds().size() > 0
+					&& ((BehaviorExecutionSpecification) source).getCovereds()
+							.get(0) instanceof Lifeline) {
+				source = ((BehaviorExecutionSpecification) source)
+						.getCovereds().get(0);
 			}
 		}
 		if (source instanceof Lifeline) {
@@ -170,8 +199,11 @@ public class MessageCommonUtil {
 		}
 		Element target = MessageCommonUtil.getMessageDst(message);
 		if (target instanceof BehaviorExecutionSpecification) {
-			if (((BehaviorExecutionSpecification) target).getCovereds().size() > 0 && ((BehaviorExecutionSpecification) target).getCovereds().get(0) instanceof Lifeline) {
-				target = ((BehaviorExecutionSpecification) target).getCovereds().get(0);
+			if (((BehaviorExecutionSpecification) target).getCovereds().size() > 0
+					&& ((BehaviorExecutionSpecification) target).getCovereds()
+							.get(0) instanceof Lifeline) {
+				target = ((BehaviorExecutionSpecification) target)
+						.getCovereds().get(0);
 			}
 		}
 		if (target instanceof Lifeline) {
@@ -181,13 +213,16 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Returns a list with the BESs drawn within a Lifeline (It is important to mention that a BES is physically contained in a Interaction but drawn in a Lifeline)
+	 * Returns a list with the BESs drawn within a Lifeline (It is important to
+	 * mention that a BES is physically contained in a Interaction but drawn in
+	 * a Lifeline)
 	 * 
 	 * @author Gabriel Merin
 	 * @param lifeline
 	 * @return an EList with the BES
 	 */
-	public static EList<BehaviorExecutionSpecification> getLifelineBESList(Lifeline lifeline) {
+	public static EList<BehaviorExecutionSpecification> getLifelineBESList(
+			Lifeline lifeline) {
 		EList<BehaviorExecutionSpecification> besList = new BasicEList<BehaviorExecutionSpecification>();
 
 		// Get the Interaction where the Lifeline is contained.
@@ -202,7 +237,8 @@ public class MessageCommonUtil {
 			InteractionFragment fragment = (InteractionFragment) i.next();
 			if (fragment instanceof BehaviorExecutionSpecification) {
 				BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) fragment;
-				if (bes.getCovereds().size() > 0 && bes.getCovereds().get(0) == lifeline) {
+				if (bes.getCovereds().size() > 0
+						&& bes.getCovereds().get(0) == lifeline) {
 					besList.add((BehaviorExecutionSpecification) fragment);
 				}
 			}
@@ -214,14 +250,17 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Returns true if an OS intersects with a BES.
+	 * Returns true if an OS is contained between the BES.start and BES.finish
+	 * Occurrence Specifications. It is important to take into account that the
+	 * passed OS might be within the start/finish properties of a Sub-BES.
 	 * 
 	 * @author Gabriel Merin
 	 * @param os
 	 * @param bes
 	 * @return true if the OS intersects, false otherwise
 	 */
-	public static boolean isOSinBES(OccurrenceSpecification os, BehaviorExecutionSpecification bes) {
+	public static boolean isOSinBES(OccurrenceSpecification os,
+			BehaviorExecutionSpecification bes) {
 		if (bes.getStart() == os || bes.getFinish() == os) {
 			return true;
 		}
@@ -230,7 +269,8 @@ public class MessageCommonUtil {
 			return false;
 		}
 
-		if (MessageOrderCommand.isOS1AfterOS2(os, bes.getStart()) && MessageOrderCommand.isOS1BeforeOS2(os, bes.getFinish())) {
+		if (MessageOrderCommand.isOS1AfterOS2(os, bes.getStart())
+				&& MessageOrderCommand.isOS1BeforeOS2(os, bes.getFinish())) {
 			return true;
 		}
 
@@ -239,7 +279,9 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Checks if one of the end points is already occupied with another connection figure. NOTE: This is used to avoid the creation of two links with the same end points.
+	 * Checks if one of the end points is already occupied with another
+	 * connection figure. NOTE: This is used to avoid the creation of two links
+	 * with the same end points.
 	 * 
 	 * @author Gabriel Merin
 	 * @param request
@@ -275,23 +317,29 @@ public class MessageCommonUtil {
 			// 2: SetConnectionAnchorsCommand
 			iterator.next();
 			// 3: SetConnectionBendpointsCommand
-			SetConnectionBendpointsCommand scbp = (SetConnectionBendpointsCommand) iterator.next();
+			SetConnectionBendpointsCommand scbp = (SetConnectionBendpointsCommand) iterator
+					.next();
 
 			sourceRefLocation = scbp.getSourceRefPoint();
 			targetRefLocation = scbp.getTargetRefPoint();
 
-			sourceAnchor = ((NodeFigure) sourceEP.getFigure()).getSourceConnectionAnchorAt(sourceRefLocation);
+			sourceAnchor = ((NodeFigure) sourceEP.getFigure())
+					.getSourceConnectionAnchorAt(sourceRefLocation);
 			targetAnchor = targetEP.getTargetConnectionAnchor(createRequest);
 
-			targetLocation = targetAnchor.getLocation(sourceAnchor.getLocation(sourceRefLocation));
+			targetLocation = targetAnchor.getLocation(sourceAnchor
+					.getLocation(sourceRefLocation));
 
-			sourceLocation = sourceAnchor.getLocation(targetAnchor.getLocation(targetRefLocation));
+			sourceLocation = sourceAnchor.getLocation(targetAnchor
+					.getLocation(targetRefLocation));
 
 			// Source and Target should not be anchored at the same point
-			if (sourceLocation.x == targetLocation.x && sourceLocation.y == targetLocation.y)
+			if (sourceLocation.x == targetLocation.x
+					&& sourceLocation.y == targetLocation.y)
 				return false;
 
-			if (checkFreeEnd(sourceEP, sourceLocation) && checkFreeEnd(targetEP, targetLocation)) {
+			if (checkFreeEnd(sourceEP, sourceLocation)
+					&& checkFreeEnd(targetEP, targetLocation)) {
 				return true;
 			} else {
 				return false;
@@ -299,7 +347,8 @@ public class MessageCommonUtil {
 
 		}
 
-		if (request instanceof ReconnectRequest && ((ReconnectRequest) request).getTarget() instanceof ShapeNodeEditPart) {
+		if (request instanceof ReconnectRequest
+				&& ((ReconnectRequest) request).getTarget() instanceof ShapeNodeEditPart) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
 
 			ShapeNodeEditPart sourceEP;
@@ -311,24 +360,34 @@ public class MessageCommonUtil {
 
 			Point endLocation;
 
-			sourceEP = (ShapeNodeEditPart) reconnectRequest.getConnectionEditPart().getSource();
-			targetEP = (ShapeNodeEditPart) reconnectRequest.getConnectionEditPart().getTarget();
+			sourceEP = (ShapeNodeEditPart) reconnectRequest
+					.getConnectionEditPart().getSource();
+			targetEP = (ShapeNodeEditPart) reconnectRequest
+					.getConnectionEditPart().getTarget();
 
 			if (reconnectRequest.isMovingStartAnchor()) {
 				// Update the corresponding EditPart
 				sourceEP = (ShapeNodeEditPart) reconnectRequest.getTarget();
 
-				sourceAnchor = sourceEP.getSourceConnectionAnchor(reconnectRequest);
-				targetAnchor = targetEP.getTargetConnectionAnchor(reconnectRequest.getConnectionEditPart());
-				endLocation = sourceAnchor.getLocation(targetAnchor.getReferencePoint()).getCopy();
+				sourceAnchor = sourceEP
+						.getSourceConnectionAnchor(reconnectRequest);
+				targetAnchor = targetEP
+						.getTargetConnectionAnchor(reconnectRequest
+								.getConnectionEditPart());
+				endLocation = sourceAnchor.getLocation(
+						targetAnchor.getReferencePoint()).getCopy();
 				endEP = sourceEP;
 			} else {
 				// Update the corresponding EditPart
 				targetEP = (ShapeNodeEditPart) reconnectRequest.getTarget();
 
-				sourceAnchor = sourceEP.getSourceConnectionAnchor(reconnectRequest.getConnectionEditPart());
-				targetAnchor = targetEP.getTargetConnectionAnchor(reconnectRequest);
-				endLocation = targetAnchor.getLocation(sourceAnchor.getReferencePoint()).getCopy();
+				sourceAnchor = sourceEP
+						.getSourceConnectionAnchor(reconnectRequest
+								.getConnectionEditPart());
+				targetAnchor = targetEP
+						.getTargetConnectionAnchor(reconnectRequest);
+				endLocation = targetAnchor.getLocation(
+						sourceAnchor.getReferencePoint()).getCopy();
 				endEP = targetEP;
 			}
 
@@ -337,7 +396,8 @@ public class MessageCommonUtil {
 			if (sourceEP == targetEP)
 				return false;
 
-			if (checkFreeEnd(endEP, endLocation, reconnectRequest.getConnectionEditPart())) {
+			if (checkFreeEnd(endEP, endLocation, reconnectRequest
+					.getConnectionEditPart())) {
 				return true;
 			} else {
 				return false;
@@ -356,12 +416,15 @@ public class MessageCommonUtil {
 	 * @param endLocation
 	 * @return true if the passed point is free, false otherwise
 	 */
-	public static boolean checkFreeEnd(ShapeNodeEditPart shapeEP, Point endLocation) {
+	public static boolean checkFreeEnd(ShapeNodeEditPart shapeEP,
+			Point endLocation) {
 		return checkFreeEnd(shapeEP, endLocation, null);
 	}
 
 	/**
-	 * Checks if a Point is already occupied by an existing connection end. A connection EditPart can be passed in order to avoid the checking of that connection.
+	 * Checks if a Point is already occupied by an existing connection end. A
+	 * connection EditPart can be passed in order to avoid the checking of that
+	 * connection.
 	 * 
 	 * @author Gabriel Merin
 	 * @param shapeEP
@@ -370,7 +433,8 @@ public class MessageCommonUtil {
 	 *            EditPart to avoid checking
 	 * @return true if the passed point is free, false otherwise
 	 */
-	public static boolean checkFreeEnd(ShapeNodeEditPart shapeEP, Point endLocation, ConnectionEditPart connEPToAvoid) {
+	public static boolean checkFreeEnd(ShapeNodeEditPart shapeEP,
+			Point endLocation, ConnectionEditPart connEPToAvoid) {
 		List<EditPart> sourceConnections = new BasicEList<EditPart>();
 		sourceConnections.addAll(shapeEP.getSourceConnections());
 
@@ -390,10 +454,13 @@ public class MessageCommonUtil {
 			ShapeNodeEditPart sourceEP = shapeEP;
 			ShapeNodeEditPart targetEP = (ShapeNodeEditPart) linkEP.getTarget();
 
-			ConnectionAnchor sourceAnchor = sourceEP.getSourceConnectionAnchor(linkEP);
-			ConnectionAnchor targetAnchor = targetEP.getTargetConnectionAnchor(linkEP);
+			ConnectionAnchor sourceAnchor = sourceEP
+					.getSourceConnectionAnchor(linkEP);
+			ConnectionAnchor targetAnchor = targetEP
+					.getTargetConnectionAnchor(linkEP);
 
-			existingLocation = sourceAnchor.getLocation(targetAnchor.getReferencePoint());
+			existingLocation = sourceAnchor.getLocation(targetAnchor
+					.getReferencePoint());
 
 			if (endLocation.y == existingLocation.y) {
 				return false;
@@ -419,10 +486,13 @@ public class MessageCommonUtil {
 			ShapeNodeEditPart sourceEP = (ShapeNodeEditPart) linkEP.getSource();
 			ShapeNodeEditPart targetEP = shapeEP;
 
-			ConnectionAnchor targetAnchor = targetEP.getTargetConnectionAnchor(linkEP);
-			ConnectionAnchor sourceAnchor = sourceEP.getSourceConnectionAnchor(linkEP);
+			ConnectionAnchor targetAnchor = targetEP
+					.getTargetConnectionAnchor(linkEP);
+			ConnectionAnchor sourceAnchor = sourceEP
+					.getSourceConnectionAnchor(linkEP);
 
-			existingLocation = targetAnchor.getLocation(sourceAnchor.getReferencePoint());
+			existingLocation = targetAnchor.getLocation(sourceAnchor
+					.getReferencePoint());
 
 			if (endLocation.y == existingLocation.y) {
 				return false;
@@ -455,8 +525,10 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Used by '{@link #getMessageSendOperation() <em>Message Send Operation</em>}' and ' {@link #getMessageReceiveOperation() <em>Message Receive Operation</em>}' to obtain the operation from the
-	 * Send/Receive Operation Event.
+	 * Used by '{@link #getMessageSendOperation()
+	 * <em>Message Send Operation</em>}' and '
+	 * {@link #getMessageReceiveOperation() <em>Message Receive Operation</em>}'
+	 * to obtain the operation from the Send/Receive Operation Event.
 	 * 
 	 * @author Gabriel Merin
 	 * @param msg
@@ -513,7 +585,9 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Used by '{@link #getMessageSendEvent() <em>Message Send Event</em>}' and '{@link #getMessageReceiveEvent() <em>Message Receive Event</em>}'. It returns the sent/received Event of a Message.
+	 * Used by '{@link #getMessageSendEvent() <em>Message Send Event</em>}' and
+	 * '{@link #getMessageReceiveEvent() <em>Message Receive Event</em>}'. It
+	 * returns the sent/received Event of a Message.
 	 * 
 	 * @author Gabriel Merin
 	 * @param msg
@@ -538,7 +612,8 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Given a Message and an Operation, it returns a String representing the Operation appropriately.
+	 * Given a Message and an Operation, it returns a String representing the
+	 * Operation appropriately.
 	 * 
 	 * @author Gabriel Merin
 	 * @param msg
@@ -554,10 +629,12 @@ public class MessageCommonUtil {
 		returnString += "(";
 
 		// The value of the parameters is in the message itself
-		for (Iterator<ValueSpecification> i = msg.getArguments().iterator(); i.hasNext();) {
+		for (Iterator<ValueSpecification> i = msg.getArguments().iterator(); i
+				.hasNext();) {
 			ValueSpecification value = i.next();
 
-			if (value.getName() != null && value.getName().compareTo("return") == 0) {
+			if (value.getName() != null
+					&& value.getName().compareTo("return") == 0) {
 				continue;
 			}
 
@@ -574,7 +651,8 @@ public class MessageCommonUtil {
 				returnString += ((LiteralInteger) value).getValue();
 			} else if (value instanceof InstanceValue) {
 				if (((InstanceValue) value).getInstance() != null)
-					returnString += ((InstanceValue) value).getInstance().getName();
+					returnString += ((InstanceValue) value).getInstance()
+							.getName();
 				else
 					returnString += "null";
 			} else {
@@ -592,39 +670,53 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Obtains the Message EditPart associated with the Start property of the BES.
+	 * Obtains the Message EditPart associated with the Start property of the
+	 * BES.
 	 * 
 	 * @author Gabriel Merin
 	 * @param besEP
-	 * @return returns the ConnectionNodeEditPart that represents the MessageEditPart. If no connection is not found, null is returned.
+	 * @return returns the ConnectionNodeEditPart that represents the
+	 *         MessageEditPart. If no connection is not found, null is returned.
 	 */
-	public static ConnectionNodeEditPart getBESStartMessageEditPart(BehaviorExecutionSpecificationEditPart besEP) {
-		BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) besEP.resolveSemanticElement();
+	public static ConnectionNodeEditPart getBESStartMessageEditPart(
+			BehaviorExecutionSpecificationEditPart besEP) {
+		BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) besEP
+				.resolveSemanticElement();
 		return getMessageEditPart(bes.getStart(), besEP);
 	}
 
 	/**
-	 * Obtains the Message EditPart associated with the Finish property of the BES.
+	 * Obtains the Message EditPart associated with the Finish property of the
+	 * BES.
 	 * 
 	 * @author Gabriel Merin
 	 * @param besEP
-	 * @return returns the ConnectionNodeEditPart that represents the MessageEditPart. If no connection is not found, null is returned.
+	 * @return returns the ConnectionNodeEditPart that represents the
+	 *         MessageEditPart. If no connection is not found, null is returned.
 	 */
-	public static ConnectionNodeEditPart getBESFinishMessageEditPart(BehaviorExecutionSpecificationEditPart besEP) {
-		BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) besEP.resolveSemanticElement();
+	public static ConnectionNodeEditPart getBESFinishMessageEditPart(
+			BehaviorExecutionSpecificationEditPart besEP) {
+		BehaviorExecutionSpecification bes = (BehaviorExecutionSpecification) besEP
+				.resolveSemanticElement();
 		return getMessageEditPart(bes.getFinish(), besEP);
 	}
 
 	/**
-	 * Used by '{@link #getBESStartMessageEditPart() <em>BES Start Message Edit Part</em>}' and ' {@link #getBESFinishMessageEditPart() <em>BES Finish Message Edit Part</em>}' It returns the Message
-	 * EditPart associated with an OS.
+	 * Used by '{@link #getBESStartMessageEditPart()
+	 * <em>BES Start Message Edit Part</em>}' and '
+	 * {@link #getBESFinishMessageEditPart()
+	 * <em>BES Finish Message Edit Part</em>}' It returns the Message EditPart
+	 * associated with an OS.
 	 * 
 	 * @author Gabriel Merin
 	 * @param os
 	 * @param besEP
-	 * @return returns the ConnectionNodeEditPart that represents the MessageEditPart. If no connection is found, null is returned.
+	 * @return returns the ConnectionNodeEditPart that represents the
+	 *         MessageEditPart. If no connection is found, null is returned.
 	 */
-	public static ConnectionNodeEditPart getMessageEditPart(OccurrenceSpecification os, BehaviorExecutionSpecificationEditPart besEP) {
+	public static ConnectionNodeEditPart getMessageEditPart(
+			OccurrenceSpecification os,
+			BehaviorExecutionSpecificationEditPart besEP) {
 
 		// Loop through source connections
 		List sourceList = besEP.getSourceConnections();
@@ -654,8 +746,10 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Returns the intersection point between a Shape Node EditPart and the source of a Connection EditPart. Used by ' {@link #getMessageEndIntersectionPoint() <em>Message End Intersection Point</em>}
-	 * '.
+	 * Returns the intersection point between a Shape Node EditPart and the
+	 * source of a Connection EditPart. Used by '
+	 * {@link #getMessageEndIntersectionPoint()
+	 * <em>Message End Intersection Point</em>}'.
 	 * 
 	 * 
 	 * @author Gabriel Merin
@@ -663,26 +757,33 @@ public class MessageCommonUtil {
 	 * @param connEP
 	 * @return the intersection Point
 	 */
-	public static Point getSourceIntersectionPoint(ShapeNodeEditPart shapeEP, ConnectionNodeEditPart connEP) {
+	public static Point getSourceIntersectionPoint(ShapeNodeEditPart shapeEP,
+			ConnectionNodeEditPart connEP) {
 		return getIntersectionPoint(shapeEP, connEP, true);
 	}
 
 	/**
-	 * Returns the intersection point between a Shape Node EditPart and the target of a Connection EditPart. Used by ' {@link #getMessageEndIntersectionPoint() <em>Message End Intersection Point</em>}
-	 * '.
+	 * Returns the intersection point between a Shape Node EditPart and the
+	 * target of a Connection EditPart. Used by '
+	 * {@link #getMessageEndIntersectionPoint()
+	 * <em>Message End Intersection Point</em>}'.
 	 * 
 	 * @author Gabriel Merin
 	 * @param shapeEP
 	 * @param connEP
 	 * @return the intersection Point
 	 */
-	public static Point getTargetIntersectionPoint(ShapeNodeEditPart shapeEP, ConnectionNodeEditPart connEP) {
+	public static Point getTargetIntersectionPoint(ShapeNodeEditPart shapeEP,
+			ConnectionNodeEditPart connEP) {
 		return getIntersectionPoint(shapeEP, connEP, false);
 	}
 
 	/**
-	 * Used by '{@link #getSourceIntersectionPoint() <em>Source Intersection Point</em>}' and ' {@link #getTargetIntersectionPoint() <em>Target Intersection Point</em>} '. It returns the intersection
-	 * point between a Shape Node EditPart and the source/target of a Connection EditPart (depends on the source value)
+	 * Used by '{@link #getSourceIntersectionPoint()
+	 * <em>Source Intersection Point</em>}' and '
+	 * {@link #getTargetIntersectionPoint() <em>Target Intersection Point</em>}
+	 * '. It returns the intersection point between a Shape Node EditPart and
+	 * the source/target of a Connection EditPart (depends on the source value)
 	 * 
 	 * @author Gabriel Merin
 	 * @param shapeEP
@@ -690,7 +791,8 @@ public class MessageCommonUtil {
 	 * @param source
 	 * @return the intersection Point
 	 */
-	public static Point getIntersectionPoint(ShapeNodeEditPart shapeEP, ConnectionNodeEditPart connEP, boolean source) {
+	public static Point getIntersectionPoint(ShapeNodeEditPart shapeEP,
+			ConnectionNodeEditPart connEP, boolean source) {
 		Point p;
 		ConnectionAnchor cAnchor;
 
@@ -711,7 +813,8 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Returns the intersection point between a Shape Node EditPart and the end of a Connection EditPart indicated by the OS.
+	 * Returns the intersection point between a Shape Node EditPart and the end
+	 * of a Connection EditPart indicated by the OS.
 	 * 
 	 * @author Gabriel Merin
 	 * @param shapeEP
@@ -719,7 +822,9 @@ public class MessageCommonUtil {
 	 * @param os
 	 * @return the intersection Point
 	 */
-	public static Point getMessageEndIntersectionPoint(ShapeNodeEditPart shapeEP, ConnectionNodeEditPart connEP, OccurrenceSpecification os) {
+	public static Point getMessageEndIntersectionPoint(
+			ShapeNodeEditPart shapeEP, ConnectionNodeEditPart connEP,
+			OccurrenceSpecification os) {
 		Message msg = (Message) connEP.resolveSemanticElement();
 		if (msg.getSendEvent() == os)
 			return getSourceIntersectionPoint(shapeEP, connEP);
@@ -730,11 +835,13 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Checks if the semantic hint (a VISUAL_ID string) matches any of the MessageEditPart's VISUAL_ID.
+	 * Checks if the semantic hint (a VISUAL_ID string) matches any of the
+	 * MessageEditPart's VISUAL_ID.
 	 * 
 	 * @author Gabriel Merin
 	 * @param semanticHint
-	 * @return true if the there is a match among any of VISUAL_IDs from the Message EditParts.
+	 * @return true if the there is a match among any of VISUAL_IDs from the
+	 *         Message EditParts.
 	 */
 	public static boolean isMessageEditPart(String semanticHint) {
 
@@ -757,11 +864,13 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Checks if the connectionEP given as a parameter is instance of any of the Message EditParts
+	 * Checks if the connectionEP given as a parameter is instance of any of the
+	 * Message EditParts
 	 * 
 	 * @author Gabriel Merin
 	 * @param connectionEP
-	 * @return true in case the connectionEP is instance of any of the Message EditParts, false otherwise.
+	 * @return true in case the connectionEP is instance of any of the Message
+	 *         EditParts, false otherwise.
 	 */
 	public static boolean isMessageEditPart(ConnectionEditPart connectionEP) {
 		if (connectionEP instanceof MessageEditPart)
@@ -781,7 +890,9 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * Removes from a EditPart List all the elements that are not instances of ConnectionNodeEditPart and whose semantic element is different from Message
+	 * Removes from a EditPart List all the elements that are not instances of
+	 * ConnectionNodeEditPart and whose semantic element is different from
+	 * Message
 	 * 
 	 * @author Gabriel Merin
 	 * @param epList
@@ -800,7 +911,8 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * It returns the casting of msg.getSendEvent() to MessageOccurrenceSpecification if possible, otherwise it returns null.
+	 * It returns the casting of msg.getSendEvent() to
+	 * MessageOccurrenceSpecification if possible, otherwise it returns null.
 	 * 
 	 * @author Gabriel Merin
 	 * @param msg
@@ -811,7 +923,8 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * It returns the casting of msg.getReceiveEvent() to MessageOccurrenceSpecification if possible, otherwise it returns null.
+	 * It returns the casting of msg.getReceiveEvent() to
+	 * MessageOccurrenceSpecification if possible, otherwise it returns null.
 	 * 
 	 * @author Gabriel Merin
 	 * @param msg
@@ -822,14 +935,17 @@ public class MessageCommonUtil {
 	}
 
 	/**
-	 * It returns the casting of msg.getSendEvent() (source=true) or msg.getReceiveEvent() (source=false) to MessageOccurrenceSpecification if possible, otherwise it returns null.
+	 * It returns the casting of msg.getSendEvent() (source=true) or
+	 * msg.getReceiveEvent() (source=false) to MessageOccurrenceSpecification if
+	 * possible, otherwise it returns null.
 	 * 
 	 * @author Gabriel Merin
 	 * @param msg
 	 * @param source
 	 * @return The source or target MessageOccurrenceSpecification
 	 */
-	private static MessageOccurrenceSpecification getMessageMOS(Message msg, boolean source) {
+	private static MessageOccurrenceSpecification getMessageMOS(Message msg,
+			boolean source) {
 		MessageEnd msgEnd;
 		if (source) {
 			msgEnd = msg.getSendEvent();

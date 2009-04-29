@@ -20,13 +20,15 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
+
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
  * @generated
  */
-public class InteractionInteractionCompartment2ViewFactory extends BasicNodeViewFactory {
+public class InteractionInteractionCompartment2ViewFactory extends
+		BasicNodeViewFactory {
 
 	/**
 	 * @generated
@@ -43,12 +45,16 @@ public class InteractionInteractionCompartment2ViewFactory extends BasicNodeView
 	 * @generated
 	 */
 	@Override
-	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry.getType(InteractionInteractionCompartment2EditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry
+					.getType(InteractionInteractionCompartment2EditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
 		setupCompartmentTitle(view);
 		setupCompartmentCollapsed(view);
 	}
@@ -57,7 +63,8 @@ public class InteractionInteractionCompartment2ViewFactory extends BasicNodeView
 	 * @generated
 	 */
 	protected void setupCompartmentTitle(View view) {
-		TitleStyle titleStyle = (TitleStyle) view.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
+		TitleStyle titleStyle = (TitleStyle) view
+				.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
 		if (titleStyle != null) {
 			titleStyle.setShowTitle(true);
 		}
@@ -67,7 +74,8 @@ public class InteractionInteractionCompartment2ViewFactory extends BasicNodeView
 	 * @generated
 	 */
 	protected void setupCompartmentCollapsed(View view) {
-		DrawerStyle drawerStyle = (DrawerStyle) view.getStyle(NotationPackage.eINSTANCE.getDrawerStyle());
+		DrawerStyle drawerStyle = (DrawerStyle) view
+				.getStyle(NotationPackage.eINSTANCE.getDrawerStyle());
 		if (drawerStyle != null) {
 			drawerStyle.setCollapsed(false);
 		}

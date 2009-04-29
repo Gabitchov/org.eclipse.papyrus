@@ -56,10 +56,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.diagram.common.part.CachedResourcesDiagramEditor;
-import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
-import org.eclipse.papyrus.diagram.sequence.Activator;
-import org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Shell;
@@ -75,10 +71,17 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 
+import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.part.CachedResourcesDiagramEditor;
+import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.papyrus.diagram.common.ids.UMLDiagramEditorIDs;
+import org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem;
+
 /**
  * @generated
  */
-public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IGotoMarker {
+public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
+		IGotoMarker {
 
 	/**
 	 * @generated NOT
@@ -154,7 +157,6 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 	public Object getAdapter(Class type) {
 		if (type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
-
 				public String[] getShowInTargetIds() {
 					return new String[] { ProjectExplorer.VIEW_ID };
 				}
@@ -168,9 +170,11 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 	 */
 	@Override
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput
+				|| input instanceof URIEditorInput) {
 
-			return UMLDiagramEditorPlugin.getInstance().getDocumentProvider(getEditingDomainID(), input);
+			return UMLDiagramEditorPlugin.getInstance().getDocumentProvider(
+					getEditingDomainID(), input);
 		}
 		return super.getDocumentProvider(input);
 	}
@@ -180,7 +184,8 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 	 */
 	@Override
 	public TransactionalEditingDomain getEditingDomain() {
-		IDocument document = getEditorInput() != null ? getDocumentProvider().getDocument(getEditorInput()) : null;
+		IDocument document = getEditorInput() != null ? getDocumentProvider()
+				.getDocument(getEditorInput()) : null;
 		if (document instanceof IDiagramDocument) {
 			return ((IDiagramDocument) document).getEditingDomain();
 		}
@@ -192,9 +197,11 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 	 */
 	@Override
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput
+				|| input instanceof URIEditorInput) {
 
-			setDocumentProvider(UMLDiagramEditorPlugin.getInstance().getDocumentProvider(getEditingDomainID(), input));
+			setDocumentProvider(UMLDiagramEditorPlugin.getInstance()
+					.getDocumentProvider(getEditingDomainID(), input));
 		} else {
 			super.setDocumentProvider(input);
 		}
@@ -231,14 +238,17 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 		Shell shell = getSite().getShell();
 		IEditorInput input = getEditorInput();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
-		IFile original = input instanceof IFileEditorInput ? ((IFileEditorInput) input).getFile() : null;
+		IFile original = input instanceof IFileEditorInput ? ((IFileEditorInput) input)
+				.getFile()
+				: null;
 		// Store the editor ID that opens this diagram file.
 		String editorID = null;
 		if (original != null) {
 			dialog.setOriginalFile(original);
 			// Get the editor ID that opens the diagram file.
 			try {
-				editorID = original.getPersistentProperty(org.eclipse.ui.ide.IDE.EDITOR_KEY);
+				editorID = original
+						.getPersistentProperty(org.eclipse.ui.ide.IDE.EDITOR_KEY);
 			} catch (CoreException ex) {
 				editorID = null;
 			}
@@ -250,7 +260,9 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 			return;
 		}
 		if (provider.isDeleted(input) && original != null) {
-			String message = NLS.bind(Messages.UMLDiagramEditor_SavingDeletedFile, original.getName());
+			String message = NLS.bind(
+					Messages.UMLDiagramEditor_SavingDeletedFile, original
+							.getName());
 			dialog.setErrorMessage(null);
 			dialog.setMessage(message, IMessageProvider.WARNING);
 		}
@@ -271,23 +283,33 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 		IFile file = workspaceRoot.getFile(filePath);
 		final IEditorInput newInput = new FileEditorInput(file);
 		// Check if the editor is already open
-		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor().getEditorMatchingStrategy();
-		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
+		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor()
+				.getEditorMatchingStrategy();
+		IEditorReference[] editorRefs = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage()
+				.getEditorReferences();
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
-				MessageDialog.openWarning(shell, Messages.UMLDiagramEditor_SaveAsErrorTitle, Messages.UMLDiagramEditor_SaveAsErrorMessage);
+				MessageDialog.openWarning(shell,
+						Messages.UMLDiagramEditor_SaveAsErrorTitle,
+						Messages.UMLDiagramEditor_SaveAsErrorMessage);
 				return;
 			}
 		}
 		boolean success = false;
 		try {
 			provider.aboutToChange(newInput);
-			getDocumentProvider(newInput).saveDocument(progressMonitor, newInput, getDocumentProvider().getDocument(getEditorInput()), true);
+			getDocumentProvider(newInput).saveDocument(progressMonitor,
+					newInput,
+					getDocumentProvider().getDocument(getEditorInput()), true);
 			success = true;
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL) {
-				ErrorDialog.openError(shell, Messages.UMLDiagramEditor_SaveErrorTitle, Messages.UMLDiagramEditor_SaveErrorMessage, x.getStatus());
+				ErrorDialog.openError(shell,
+						Messages.UMLDiagramEditor_SaveErrorTitle,
+						Messages.UMLDiagramEditor_SaveErrorMessage, x
+								.getStatus());
 			}
 		} finally {
 			provider.changed(newInput);
@@ -345,22 +367,25 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
-		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new DropTargetListener(getDiagramGraphicalViewer(),
+						LocalSelectionTransfer.getTransfer()) {
 
-			@Override
-			protected Object getJavaObject(TransferData data) {
-				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-			}
+					protected Object getJavaObject(TransferData data) {
+						return LocalSelectionTransfer.getTransfer()
+								.nativeToJava(data);
+					}
 
-		});
-		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
+				});
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new DropTargetListener(getDiagramGraphicalViewer(),
+						LocalTransfer.getInstance()) {
 
-			@Override
-			protected Object getJavaObject(TransferData data) {
-				return LocalTransfer.getInstance().nativeToJava(data);
-			}
+					protected Object getJavaObject(TransferData data) {
+						return LocalTransfer.getInstance().nativeToJava(data);
+					}
 
-		});
+				});
 	}
 
 	/**
@@ -389,17 +414,22 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 				for (Iterator it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
 					if (nextSelectedObject instanceof UMLNavigatorItem) {
-						View view = ((UMLNavigatorItem) nextSelectedObject).getView();
+						View view = ((UMLNavigatorItem) nextSelectedObject)
+								.getView();
 						nextSelectedObject = view.getElement();
 					} else if (nextSelectedObject instanceof IAdaptable) {
 						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
-						nextSelectedObject = adaptable.getAdapter(EObject.class);
+						nextSelectedObject = adaptable
+								.getAdapter(EObject.class);
 					}
 
 					if (nextSelectedObject instanceof EObject) {
 						EObject modelElement = (EObject) nextSelectedObject;
-						Resource modelElementResource = modelElement.eResource();
-						uris.add(modelElementResource.getURI().appendFragment(modelElementResource.getURIFragment(modelElement)));
+						Resource modelElementResource = modelElement
+								.eResource();
+						uris.add(modelElementResource.getURI().appendFragment(
+								modelElementResource
+										.getURIFragment(modelElement)));
 					}
 				}
 			}
@@ -407,7 +437,8 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 			List result = new ArrayList();
 			for (Iterator it = uris.iterator(); it.hasNext();) {
 				URI nextURI = (URI) it.next();
-				EObject modelObject = getEditingDomain().getResourceSet().getEObject(nextURI, true);
+				EObject modelObject = getEditingDomain().getResourceSet()
+						.getEObject(nextURI, true);
 				result.add(modelObject);
 			}
 			return result;
@@ -439,7 +470,8 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements IG
 	 * @generated
 	 */
 	private void refreshPalette() {
-		PaletteRoot paletteRoot = getEditDomain().getPaletteViewer().getPaletteRoot();
+		PaletteRoot paletteRoot = getEditDomain().getPaletteViewer()
+				.getPaletteRoot();
 		cleanPaletteRoot(paletteRoot);
 		createPaletteRoot(paletteRoot);
 	}

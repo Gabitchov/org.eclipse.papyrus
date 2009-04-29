@@ -1,20 +1,9 @@
-/*******************************************************************************
- * Copyright (c) 2008 Conselleria de Infraestructuras y Transporte,
- * Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- *
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
+import java.util.List;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
@@ -32,7 +21,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.internal.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+
 import org.eclipse.papyrus.diagram.common.commands.RemoveEObjectReferencesFromDiagram;
+import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CommentAnnotatedElementItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDeleteOnlyViewComponentEditPolicy;
@@ -40,7 +31,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDeleteOnlyView
 /**
  * @generated
  */
-public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -60,32 +52,43 @@ public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart impl
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentAnnotatedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new CommentAnnotatedElementItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new SequenceDeleteOnlyViewComponentEditPolicy()); // changed by
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new SequenceDeleteOnlyViewComponentEditPolicy()); // changed by
 		// gmerin
 		// ** install new ConnectionEditPolicy
-		installEditPolicy(EditPolicy.CONNECTION_ROLE, new ConnectionEditPolicy() {
+		installEditPolicy(EditPolicy.CONNECTION_ROLE,
+				new ConnectionEditPolicy() {
+					@Override
+					protected boolean shouldDeleteSemantic() {
+						return false;
+					}
 
-			@Override
-			protected boolean shouldDeleteSemantic() {
-				return false;
-			}
-
-			@Override
-			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-				Command command = super.createDeleteViewCommand(deleteRequest);
-				command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(getEditingDomain(), CommentAnnotatedElementEditPart.this.getDiagramView(), Collections
-						.singletonList(resolveSemanticElement()))));
-				return command;
-			}
-		});
+					@Override
+					protected Command createDeleteViewCommand(
+							GroupRequest deleteRequest) {
+						Command command = super
+								.createDeleteViewCommand(deleteRequest);
+						command = command
+								.chain(new ICommandProxy(
+										new RemoveEObjectReferencesFromDiagram(
+												getEditingDomain(),
+												CommentAnnotatedElementEditPart.this
+														.getDiagramView(),
+												Collections
+														.singletonList(resolveSemanticElement()))));
+						return command;
+					}
+				});
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -121,13 +124,13 @@ public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 
 		// no target or source features found
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification, features);
+		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification,
+				features);
 	}
 
 	/**
@@ -135,8 +138,10 @@ public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart impl
 	 */
 	@Override
 	public Command getCommand(Request _request) {
-		if (_request instanceof GroupRequest && RequestConstants.REQ_DELETE.equals(_request.getType())) {
-			return getEditPolicy(EditPolicyRoles.SEMANTIC_ROLE).getCommand(_request);
+		if (_request instanceof GroupRequest
+				&& RequestConstants.REQ_DELETE.equals(_request.getType())) {
+			return getEditPolicy(EditPolicyRoles.SEMANTIC_ROLE).getCommand(
+					_request);
 		}
 
 		return super.getCommand(_request);
