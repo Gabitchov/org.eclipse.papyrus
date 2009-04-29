@@ -5,7 +5,8 @@
  * Eclipse Public License v1.0 which accompanies this distribution, and is
  * available at http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors: Mario Cervera Ubeda (Prodevelop)
+ * Contributors: Mario Cervera Ubeda (Integranova)
+ * 				 Marc Gil Sendra (Prodevelop)
  *
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.common.actions.handlers;
@@ -15,10 +16,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.CopyToClipboardCommand;
 import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
@@ -29,6 +34,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.action.global.GlobalActionId;
 import org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext;
@@ -42,6 +48,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.commands.AbstractCommonTransactionalCommmand;
 import org.eclipse.papyrus.diagram.common.commands.AddEObjectReferencesToDiagram;
 import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
@@ -50,15 +57,15 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class ClipboardActionHandler.
  */
-public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHandler {
+public/* abstract */class ClipboardActionHandler extends
+		DiagramGlobalActionHandler {
 
 	/*
-	 * Specifies whether the last executed action was a cut action or not. This is needed because the paste action will vary depending on it
+	 * Specifies whether the last executed action was a cut action or not. This
+	 * is needed because the paste action will vary depending on it
 	 */
 	/** The is cut. */
 	private static boolean isCut = false;
@@ -75,30 +82,58 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/** The edit parts in clipboard. */
 	protected static List<EditPart> editPartsInClipboard = new ArrayList<EditPart>();
 
+	protected static List<Object> clipboardElements = new ArrayList<Object>();
+
+	public void setContainer(EObject container) {
+		this.container = container;
+	}
+
+	public EObject getContainer() {
+		return this.container;
+	}
+
+	public boolean getIsCut() {
+		return isCut;
+	}
+
+	public void setIsCut(boolean isCut) {
+		this.isCut = isCut;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#canCopy(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #canCopy(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext)
 	 */
 	@Override
 	protected boolean canCopy(IGlobalActionContext cntxt) {
 
 		if (cntxt.getSelection() instanceof StructuredSelection) {
-			Object firstElement = ((StructuredSelection) cntxt.getSelection()).getFirstElement();
+			Object firstElement = ((StructuredSelection) cntxt.getSelection())
+					.getFirstElement();
 			if (firstElement instanceof IGraphicalEditPart) {
-				EObject eobject = ((IGraphicalEditPart) firstElement).resolveSemanticElement();
+				EObject eobject = ((IGraphicalEditPart) firstElement)
+						.resolveSemanticElement();
 				if (eobject != null) {
-					List elements = ((StructuredSelection) cntxt.getSelection()).toList();
+					List elements = ((StructuredSelection) cntxt.getSelection())
+							.toList();
 					List<EObject> eobjects = new ArrayList<EObject>();
 					for (Object o : elements) {
-						EObject eobj = ((IGraphicalEditPart) o).resolveSemanticElement();
+						EObject eobj = ((IGraphicalEditPart) o)
+								.resolveSemanticElement();
 						eobjects.add(eobj);
 					}
 					if (!allElementsSameType(eobjects, eobject))
 						return false;
-					IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+					IEditorPart editorPart = PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getActivePage()
+							.getActiveEditor();
 					if (editorPart instanceof DiagramEditor) {
-						if (((DiagramEditor) editorPart).getDiagram().getElement().equals(eobject)) {
+						if (((DiagramEditor) editorPart).getDiagram()
+								.getElement().equals(eobject)) {
 							return false;
 						}
 					}
@@ -113,7 +148,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#canCut(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #canCut(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext)
 	 */
 	@Override
 	protected boolean canCut(IGlobalActionContext cntxt) {
@@ -124,25 +162,36 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#canPaste(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #canPaste(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext)
 	 */
 	@Override
 	protected boolean canPaste(IGlobalActionContext cntxt) {
 
 		if (cntxt.getSelection() instanceof StructuredSelection) {
-			Object firstElement = ((StructuredSelection) cntxt.getSelection()).getFirstElement();
+			Object firstElement = ((StructuredSelection) cntxt.getSelection())
+					.getFirstElement();
 			if (firstElement instanceof IGraphicalEditPart) {
 				IGraphicalEditPart pasteDestination = ((IGraphicalEditPart) firstElement);
-				if (pasteDestination != null && pasteDestination.resolveSemanticElement() != null && (!pasteDestination.resolveSemanticElement().equals(container) || !isCut)) {
-					TransactionalEditingDomain domain = pasteDestination.getEditingDomain();
-					if (domain.getClipboard() != null && domain.getClipboard().size() > 0) {
+				if (pasteDestination != null
+						&& pasteDestination.resolveSemanticElement() != null
+						&& (!pasteDestination.resolveSemanticElement().equals(
+								container) || !isCut)) {
+					TransactionalEditingDomain domain = pasteDestination
+							.getEditingDomain();
+					if (domain.getClipboard() != null
+							&& domain.getClipboard().size() > 0) {
 						// All the elements in the clipboard are of the same
 						// type
 						Object[] objects = domain.getClipboard().toArray();
 						EObject firstObjectToBePasted = (EObject) objects[0];
-						EStructuralFeature feature = getFeature(firstObjectToBePasted, pasteDestination);
+						EStructuralFeature feature = getFeature(
+								firstObjectToBePasted, pasteDestination);
 						if (feature != null) {
-							if (feature.getEType().getInstanceClass().isInstance(firstObjectToBePasted)) {
+							if (feature.getEType().getInstanceClass()
+									.isInstance(firstObjectToBePasted)) {
 								return true;
 							}
 						}
@@ -157,7 +206,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#getCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #getCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext)
 	 */
 	@Override
 	public ICommand getCommand(IGlobalActionContext cntxt) {
@@ -180,12 +232,12 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 			return getCutCommand(cntxt, diagramPart);
 		} else if (actionId.equals(GlobalActionId.PASTE)) {
 			if (isCut) {
-				executePasteAfterCut(cntxt);
+				isCut = false;
+				return getExecutePasteAfterCutCommand(cntxt);
 			} else {
-				executePasteAfterCopy(cntxt);
+				isCut = false;
+				return getExecutePasteAfterCopyCommand(cntxt);
 			}
-			isCut = false;
-			return null;
 		}
 
 		return super.getCommand(cntxt);
@@ -194,30 +246,41 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#getCopyCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext,
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #getCopyCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext,
 	 * org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart, boolean)
 	 */
 	@Override
-	protected ICommand getCopyCommand(IGlobalActionContext cntxt, IDiagramWorkbenchPart diagramPart, boolean isUndoable) {
+	protected ICommand getCopyCommand(IGlobalActionContext cntxt,
+			IDiagramWorkbenchPart diagramPart, boolean isUndoable) {
 
 		if (cntxt.getSelection() instanceof StructuredSelection) {
 			// All the elements in the selection are supposed to be of the same
 			// time
 			// We couldn't have got here otherwise
-			Object firstElement = ((StructuredSelection) cntxt.getSelection()).getFirstElement();
-			EObject eobject = ((IGraphicalEditPart) firstElement).resolveSemanticElement();
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eobject);
-			List elements = ((StructuredSelection) cntxt.getSelection()).toList();
+			Object firstElement = ((StructuredSelection) cntxt.getSelection())
+					.getFirstElement();
+			EObject eobject = ((IGraphicalEditPart) firstElement)
+					.resolveSemanticElement();
+			TransactionalEditingDomain domain = TransactionUtil
+					.getEditingDomain(eobject);
+			List elements = ((StructuredSelection) cntxt.getSelection())
+					.toList();
 			List<EObject> eobjects = new ArrayList<EObject>();
 			editPartsInClipboard.clear();
 			for (Object o : elements) {
-				EObject eobj = ((IGraphicalEditPart) o).resolveSemanticElement();
+				EObject eobj = ((IGraphicalEditPart) o)
+						.resolveSemanticElement();
 				eobjects.add(eobj);
 				container = eobj.eContainer();
 
 				for (Object view : DiagramEditPartsUtil.getEObjectViews(eobj)) {
 					if (view instanceof View) {
-						EditPart editpart = DiagramEditPartsUtil.getEditPartFromView((View) view, (EditPart) firstElement);
+						EditPart editpart = DiagramEditPartsUtil
+								.getEditPartFromView((View) view,
+										(EditPart) firstElement);
 						editPartsInClipboard.add(editpart);
 					}
 				}
@@ -226,7 +289,26 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 			clipboard.clear();
 			clipboard.addAll(eobjects);
 
-			Command copyCommand = CopyToClipboardCommand.create(domain, eobjects);
+			final List<EObject> eobjects2 = eobjects;
+			Command copyCommand = new CopyToClipboardCommand(domain, eobjects) {
+				@Override
+				public void doExecute() {
+
+					/**
+					 * @author mgil : Don't use a different command to copy
+					 *         every element, use the copy function from
+					 *         EcoreUtil
+					 */
+					ArrayList<Object> list = new ArrayList<Object>();
+					for (EObject eobj : eobjects2) {
+						EObject eo = EcoreUtil.copy(eobj);
+						list.add(eo);
+					}
+
+					oldClipboard = domain.getClipboard();
+					domain.setClipboard(list);
+				}
+			};
 
 			if (copyCommand != null) {
 				return new EMFtoGMFCommandWrapper(copyCommand);
@@ -240,13 +322,83 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#getCutCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext,
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #getCutCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext,
 	 * org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart)
 	 */
 	@Override
-	protected ICommand getCutCommand(IGlobalActionContext cntxt, IDiagramWorkbenchPart diagramPart) {
+	protected ICommand getCutCommand(IGlobalActionContext cntxt,
+			IDiagramWorkbenchPart diagramPart) {
 
-		return getCopyCommand(cntxt, diagramPart, false);
+		if (cntxt.getSelection() instanceof StructuredSelection) {
+			// All the elements in the selection are supposed to be of the same
+			// type
+			// We couldn't have got here otherwise
+			Object firstElement = ((StructuredSelection) cntxt.getSelection())
+					.getFirstElement();
+			EObject eobject = ((IGraphicalEditPart) firstElement)
+					.resolveSemanticElement();
+			TransactionalEditingDomain domain = TransactionUtil
+					.getEditingDomain(eobject);
+			List elements = ((StructuredSelection) cntxt.getSelection())
+					.toList();
+			List<EObject> eobjects = new ArrayList<EObject>();
+			editPartsInClipboard.clear();
+			for (Object o : elements) {
+				EObject eobj = ((IGraphicalEditPart) o)
+						.resolveSemanticElement();
+				eobjects.add(eobj);
+				container = eobj.eContainer();
+
+				for (Object view : DiagramEditPartsUtil.getEObjectViews(eobj)) {
+					if (view instanceof View) {
+						EditPart editpart = DiagramEditPartsUtil
+								.getEditPartFromView((View) view,
+										(EditPart) firstElement);
+						editPartsInClipboard.add(editpart);
+					}
+				}
+			}
+
+			clipboard.clear();
+			clipboard.addAll(eobjects);
+
+			final List<EObject> eobjects2 = eobjects;
+			Command cutCommand = new CopyToClipboardCommand(domain, eobjects) {
+				@Override
+				public void doExecute() {
+
+					/**
+					 * @author mgil : Don't use a different command to copy
+					 *         every element, use the copy function from
+					 *         EcoreUtil
+					 */
+					ArrayList<Object> list = new ArrayList<Object>();
+					for (EObject eobj : eobjects2) {
+						list.add((Object) eobj);
+					}
+
+					oldClipboard = domain.getClipboard();
+					domain.setClipboard(list);
+				}
+			};
+
+			if (cutCommand != null) {
+				return new EMFtoGMFCommandWrapper(cutCommand);
+			}
+		}
+
+		return super.getCutCommand(cntxt, diagramPart);
+	}
+
+	/**
+	 * Do something with the copied EObject
+	 * 
+	 * @param eo
+	 */
+	protected void prepareEObject(EObject eObject) {
 	}
 
 	/**
@@ -255,48 +407,73 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 * @param cntxt
 	 *            the cntxt
 	 */
-	protected void executePasteAfterCopy(IGlobalActionContext cntxt) {
+	protected ICommand getExecutePasteAfterCopyCommand(
+			IGlobalActionContext cntxt) {
 
-		if (cntxt.getSelection() instanceof StructuredSelection) {
-			Object firstElement = ((StructuredSelection) cntxt.getSelection()).getFirstElement();
-			if (firstElement instanceof IGraphicalEditPart) {
-				IGraphicalEditPart pasteDestination = ((IGraphicalEditPart) firstElement);
-				TransactionalEditingDomain domain = pasteDestination.getEditingDomain();
-				if (domain.getClipboard() != null && domain.getClipboard().size() > 0) {
+		if (!(cntxt.getSelection() instanceof StructuredSelection))
+			return null;
 
-					// All the objects in the clipboard are supposed to be of
-					// the
-					// same type
+		Object first = ((StructuredSelection) cntxt.getSelection())
+				.getFirstElement();
+		if (!(first instanceof IGraphicalEditPart))
+			return null;
 
+		IGraphicalEditPart pasteDestination = ((IGraphicalEditPart) first);
+		TransactionalEditingDomain editingDomain = pasteDestination
+				.getEditingDomain();
+
+		final Object firstElement = first;
+		final IGraphicalEditPart editPart = pasteDestination;
+		final TransactionalEditingDomain domain = editingDomain;
+		AbstractCommonTransactionalCommmand command = new AbstractCommonTransactionalCommmand(
+				editingDomain, "Paste after copy", null) {
+			@Override
+			protected CommandResult doExecuteWithResult(
+					IProgressMonitor monitor, IAdaptable info)
+					throws ExecutionException {
+				if (domain.getClipboard() != null
+						&& domain.getClipboard().size() > 0) {
+					// All the objects in the clipboard are supposed to
+					// be of the same type
 					Object[] objects = domain.getClipboard().toArray();
 					EObject firstObjectToBePasted = (EObject) objects[0];
-					EStructuralFeature feature = getFeature(firstObjectToBePasted, pasteDestination);
+					EStructuralFeature feature = getFeature(
+							firstObjectToBePasted, editPart);
 
 					// Execute paste
+					Command pasteCommand = PasteFromClipboardCommand.create(
+							domain, editPart.resolveSemanticElement(), feature);
 
-					Command pasteCommand = PasteFromClipboardCommand.create(domain, pasteDestination.resolveSemanticElement(), feature);
 					domain.getCommandStack().execute(pasteCommand);
 
 					// The new elements must be shown on the diagram
-
 					List<EObject> eobjects = new ArrayList<EObject>();
 
 					for (Object o : pasteCommand.getAffectedObjects()) {
 						if (o instanceof EObject) {
+							prepareEObject((EObject) o);
 							eobjects.add((EObject) o);
 						}
 					}
 
-					ICommand command = new AddEObjectReferencesToDiagram(domain, DiagramEditPartsUtil.findDiagramFromEditPart((IGraphicalEditPart) firstElement), eobjects);
-					domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+					ICommand command = new AddEObjectReferencesToDiagram(
+							domain,
+							DiagramEditPartsUtil
+									.findDiagramFromEditPart((IGraphicalEditPart) firstElement),
+							eobjects);
+					domain.getCommandStack().execute(
+							new GMFtoEMFCommandWrapper(command));
 
 					// refresh the affected EditPart
+					DiagramEditPartsUtil.updateEditPart(editPart);
 
-					DiagramEditPartsUtil.updateEditPart(pasteDestination);
-
+					return CommandResult.newOKCommandResult();
 				}
+				return CommandResult.newCancelledCommandResult();
 			}
-		}
+		};
+
+		return command.canExecute() ? command : null;
 	}
 
 	/**
@@ -305,69 +482,106 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 * @param cntxt
 	 *            the cntxt
 	 */
-	protected void executePasteAfterCut(IGlobalActionContext cntxt) {
+	protected ICommand getExecutePasteAfterCutCommand(IGlobalActionContext cntxt) {
 
-		if (cntxt.getSelection() instanceof StructuredSelection) {
-			Object firstElement = ((StructuredSelection) cntxt.getSelection()).getFirstElement();
-			IGraphicalEditPart pasteDestination = ((IGraphicalEditPart) firstElement);
-			TransactionalEditingDomain domain = pasteDestination.getEditingDomain();
-			if (domain.getClipboard() != null && domain.getClipboard().size() > 0) {
+		if (!(cntxt.getSelection() instanceof StructuredSelection))
+			return null;
 
-				// All the objects in the clipboard are supposed to be of the
-				// same type
+		Object first = ((StructuredSelection) cntxt.getSelection())
+				.getFirstElement();
+		if (!(first instanceof IGraphicalEditPart))
+			return null;
 
-				Object[] objects = domain.getClipboard().toArray();
-				EObject firstObjectToBePasted = (EObject) objects[0];
-				EStructuralFeature feature = getFeature(firstObjectToBePasted, pasteDestination);
+		IGraphicalEditPart pasteDestination = ((IGraphicalEditPart) first);
+		TransactionalEditingDomain editingDomain = pasteDestination
+				.getEditingDomain();
 
-				// Execute paste
+		final Object firstElement = first;
+		final IGraphicalEditPart editPart = pasteDestination;
+		final TransactionalEditingDomain domain = editingDomain;
+		AbstractCommonTransactionalCommmand command = new AbstractCommonTransactionalCommmand(
+				editingDomain, "Paste after cut", null) {
+			@Override
+			protected CommandResult doExecuteWithResult(
+					IProgressMonitor monitor, IAdaptable info)
+					throws ExecutionException {
 
-				CompoundCommand cc = new CompoundCommand("Paste");
-				Command removeCommand = RemoveCommand.create(domain, container, feature, clipboard);
-				cc.append(removeCommand);
+				if (domain.getClipboard() != null
+						&& domain.getClipboard().size() > 0) {
 
-				for (EditPart ep : editPartsInClipboard) {
-					Command c = getDeleteViewCommand(ep);
-					if (c != null) {
+					// All the objects in the clipboard are supposed to be of
+					// the
+					// same type
+					Object[] objects = domain.getClipboard().toArray();
+					EObject firstObjectToBePasted = (EObject) objects[0];
+					EStructuralFeature feature = getFeature(
+							firstObjectToBePasted, editPart);
+
+					// Execute paste
+					CompoundCommand cc = new CompoundCommand("Paste");
+					Command removeCommand = RemoveCommand.create(domain,
+							container, feature, clipboard);
+					if (!removeCommand.canExecute())
+						return CommandResult.newCancelledCommandResult();
+
+					cc.append(removeCommand);
+
+					for (EditPart ep : editPartsInClipboard) {
+						Command c = getDeleteViewCommand(ep);
+						if (c != null && !c.canExecute())
+							return CommandResult.newCancelledCommandResult();
+
 						cc.append(c);
 					}
-				}
 
-				for (Object obj : domain.getClipboard()) {
-					Command addCommand = AddCommand.create(domain, pasteDestination.resolveSemanticElement(), feature, obj);
-					cc.append(addCommand);
-				}
+					for (Object obj : domain.getClipboard()) {
+						Command addCommand = AddCommand.create(domain, editPart
+								.resolveSemanticElement(), feature, obj);
+						if (!addCommand.canExecute())
+							return CommandResult.newCancelledCommandResult();
 
-				// The new elements must be shown on the diagram
-
-				List<EObject> eobjects = new ArrayList<EObject>();
-
-				for (Object o : domain.getClipboard()) {
-					if (o instanceof EObject) {
-						eobjects.add((EObject) o);
+						cc.append(addCommand);
 					}
-				}
 
-				ICommand command = new AddEObjectReferencesToDiagram(domain, DiagramEditPartsUtil.findDiagramFromEditPart((IGraphicalEditPart) firstElement), eobjects);
-				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+					// The new elements must be shown on the diagram
+					List<EObject> eobjects = new ArrayList<EObject>();
 
-				if (!cc.isEmpty()) {
+					for (Object o : domain.getClipboard()) {
+						if (o instanceof EObject) {
+							eobjects.add((EObject) o);
+						}
+					}
+
+					ICommand command = new AddEObjectReferencesToDiagram(
+							domain,
+							DiagramEditPartsUtil
+									.findDiagramFromEditPart((IGraphicalEditPart) firstElement),
+							eobjects);
+					if (!command.canExecute())
+						return CommandResult.newCancelledCommandResult();
+
+					cc.append(new GMFtoEMFCommandWrapper(command));
+
+					if (!cc.canExecute())
+						return CommandResult.newCancelledCommandResult();
+
 					domain.getCommandStack().execute(cc);
+
+					// Empty the clipboard
+					domain.setClipboard(new ArrayList<Object>());
+					clipboard.clear();
+					editPartsInClipboard.clear();
+
+					// Refresh the diagram
+					DiagramEditPartsUtil.updateEditPart(editPart);
+
+					return CommandResult.newOKCommandResult();
 				}
-
-				// Empty the clipboard
-
-				domain.setClipboard(new ArrayList<Object>());
-				clipboard.clear();
-				editPartsInClipboard.clear();
-
-				// Refresh the diagram
-
-				DiagramEditPartsUtil.updateEditPart(pasteDestination);
-
+				return CommandResult.newCancelledCommandResult();
 			}
-		}
+		};
 
+		return command.canExecute() ? command : null;
 	}
 
 	/**
@@ -378,12 +592,14 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 * 
 	 * @return the diagram preferences hint
 	 */
-	private PreferencesHint getDiagramPreferencesHint(IGraphicalEditPart editPart) {
+	private PreferencesHint getDiagramPreferencesHint(
+			IGraphicalEditPart editPart) {
 		return editPart.getDiagramPreferencesHint();
 	}
 
 	/*
-	 * Checks if all the objects contained in the list are of the same type than the eobject passed as parameter
+	 * Checks if all the objects contained in the list are of the same type than
+	 * the eobject passed as parameter
 	 */
 	/**
 	 * All elements same type.
@@ -398,7 +614,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	private boolean allElementsSameType(List<EObject> eobjects, EObject eobject) {
 
 		for (EObject o : eobjects) {
-			if (!o.eClass().equals(eobject.eClass()))
+			if (o != null) {
+				if (!o.eClass().equals(eobject.eClass()))
+					return false;
+			} else
 				return false;
 		}
 
@@ -418,8 +637,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 		if (editPart == null)
 			return null;
 
-		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
-		org.eclipse.gef.commands.Command command = editPart.getCommand(deleteViewRequest);
+		Request deleteViewRequest = new GroupRequest(
+				RequestConstants.REQ_DELETE);
+		org.eclipse.gef.commands.Command command = editPart
+				.getCommand(deleteViewRequest);
 		return new GEFtoEMFCommandWrapper(command);
 	}
 
@@ -431,7 +652,8 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 * 
 	 * @return the edits the parts in clipboard
 	 */
-	protected Collection<EditPart> getEditPartsInClipboard(Collection<Object> clipboard) {
+	protected Collection<EditPart> getEditPartsInClipboard(
+			Collection<Object> clipboard) {
 		if (clipboard != null && clipboard.size() > 0) {
 			Collection<EditPart> editParts = new ArrayList<EditPart>();
 			for (Object object : clipboard) {
@@ -454,7 +676,8 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 * 
 	 * @return the feature
 	 */
-	public EStructuralFeature getFeature(EObject objectToBePasted, EditPart pasteDestination) {
+	public EStructuralFeature getFeature(EObject objectToBePasted,
+			EditPart pasteDestination) {
 		if (objectToBePasted == null || pasteDestination == null) {
 			return null;
 		}
@@ -474,7 +697,8 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 * 
 	 * @return the feature
 	 */
-	protected EStructuralFeature getFeature(EObject element, EObject objectToBePasted, EditPart editPart) {
+	protected EStructuralFeature getFeature(EObject element,
+			EObject objectToBePasted, EditPart editPart) {
 
 		if (!(element == MDTUtil.resolveSemantic(editPart))) {
 			return null;
@@ -488,12 +712,14 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 			resolver = (ViewAndFeatureResolver) adapter;
 		}
 		if (resolver != null) {
-			feature = resolver.getEStructuralFeatureForEClass(objectToBePasted.eClass());
+			feature = resolver.getEStructuralFeatureForEClass(objectToBePasted
+					.eClass());
 		}
 		if (feature == null) {
 			for (Object child : editPart.getChildren()) {
 				if (child instanceof EditPart) {
-					feature = getFeature(element, objectToBePasted, (EditPart) child);
+					feature = getFeature(element, objectToBePasted,
+							(EditPart) child);
 				}
 				if (feature != null) {
 					break;

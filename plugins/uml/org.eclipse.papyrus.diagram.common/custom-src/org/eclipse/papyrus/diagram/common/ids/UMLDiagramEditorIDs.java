@@ -9,18 +9,11 @@
  * Contributors: Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
  *
  ******************************************************************************/
-
 package org.eclipse.papyrus.diagram.common.ids;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.uml.UMLPackage;
-
-// TODO: Auto-generated Javadoc
 /**
  * Groups all UML Diagram Editors' IDs.
  * 

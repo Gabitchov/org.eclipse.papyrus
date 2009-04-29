@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 
 public class DuplicateAnythingCommand extends DuplicateEObjectsCommand {

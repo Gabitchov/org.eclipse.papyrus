@@ -5,7 +5,7 @@
  * Eclipse Public License v1.0 which accompanies this distribution, and is
  * available at http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors: Mario Cervera Ubeda (Prodevelop)
+ * Contributors: Mario Cervera Ubeda (Integranova)
  *
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.common.actions.handlers;
@@ -22,13 +22,15 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * The Class ClipboardActionHandlerProvider.
  */
-public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerProvider {
+public class ClipboardActionHandlerProvider extends
+		AbstractGlobalActionHandlerProvider {
 
 	/** List for handlers. */
 	private Hashtable handlerList = new Hashtable();
 
 	/**
-	 * Returns a global action handler that supports operations (cut, copy, and paste).
+	 * Returns a global action handler that supports operations (cut, copy, and
+	 * paste).
 	 * 
 	 * @param context
 	 *            the context
@@ -36,64 +38,72 @@ public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerP
 	 * @return the global action handler
 	 */
 	@Override
-	public IGlobalActionHandler getGlobalActionHandler(final IGlobalActionHandlerContext context) {
+	public IGlobalActionHandler getGlobalActionHandler(
+			final IGlobalActionHandlerContext context) {
 
 		/* Create the handler */
 
 		if (!getHandlerList().containsKey(context.getActivePart())) {
 
-			getHandlerList().put(context.getActivePart(), new ClipboardActionHandler());
+			getHandlerList().put(context.getActivePart(),
+					getClipboardActionHandler());
 
 			/*
-			 * Register as a part listener so that the cache can be cleared when the part is disposed
+			 * Register as a part listener so that the cache can be cleared when
+			 * the part is disposed
 			 */
-			context.getActivePart().getSite().getPage().addPartListener(new IPartListener() {
+			context.getActivePart().getSite().getPage().addPartListener(
+					new IPartListener() {
 
-				private IWorkbenchPart localPart = context.getActivePart();
+						private IWorkbenchPart localPart = context
+								.getActivePart();
 
-				/**
-				 * @see org.eclipse.ui.IPartListener#partActivated(IWorkbenchPart)
-				 */
-				public void partActivated(IWorkbenchPart part) {
-					// Do nothing
-				}
+						/**
+						 * @see org.eclipse.ui.IPartListener#partActivated(IWorkbenchPart)
+						 */
+						public void partActivated(IWorkbenchPart part) {
+							// Do nothing
+						}
 
-				/**
-				 * @see org.eclipse.ui.IPartListener#partBroughtToTop(IWorkbenchPart)
-				 */
-				public void partBroughtToTop(IWorkbenchPart part) {
-					// Do nothing
-				}
+						/**
+						 * @see org.eclipse.ui.IPartListener#partBroughtToTop(IWorkbenchPart)
+						 */
+						public void partBroughtToTop(IWorkbenchPart part) {
+							// Do nothing
+						}
 
-				/**
-				 * @see org.eclipse.ui.IPartListener#partClosed(IWorkbenchPart)
-				 */
-				public void partClosed(IWorkbenchPart part) {
-					/* Remove the cache associated with the part */
-					if (part != null && part == localPart && getHandlerList().containsKey(part)) {
-						getHandlerList().remove(part);
-						localPart.getSite().getPage().removePartListener(this);
-						localPart = null;
-					}
-				}
+						/**
+						 * @see org.eclipse.ui.IPartListener#partClosed(IWorkbenchPart)
+						 */
+						public void partClosed(IWorkbenchPart part) {
+							/* Remove the cache associated with the part */
+							if (part != null && part == localPart
+									&& getHandlerList().containsKey(part)) {
+								getHandlerList().remove(part);
+								localPart.getSite().getPage()
+										.removePartListener(this);
+								localPart = null;
+							}
+						}
 
-				/**
-				 * @see org.eclipse.ui.IPartListener#partDeactivated(IWorkbenchPart)
-				 */
-				public void partDeactivated(IWorkbenchPart part) {
-					// Do nothing
-				}
+						/**
+						 * @see org.eclipse.ui.IPartListener#partDeactivated(IWorkbenchPart)
+						 */
+						public void partDeactivated(IWorkbenchPart part) {
+							// Do nothing
+						}
 
-				/**
-				 * @see org.eclipse.ui.IPartListener#partOpened(IWorkbenchPart)
-				 */
-				public void partOpened(IWorkbenchPart part) {
-					// Do nothing
-				}
-			});
+						/**
+						 * @see org.eclipse.ui.IPartListener#partOpened(IWorkbenchPart)
+						 */
+						public void partOpened(IWorkbenchPart part) {
+							// Do nothing
+						}
+					});
 		}
 
-		return (ClipboardActionHandler) getHandlerList().get(context.getActivePart());
+		return (ClipboardActionHandler) getHandlerList().get(
+				context.getActivePart());
 	}
 
 	/**
@@ -103,6 +113,10 @@ public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerP
 	 */
 	private Hashtable getHandlerList() {
 		return handlerList;
+	}
+
+	protected ClipboardActionHandler getClipboardActionHandler() {
+		return new ClipboardActionHandler();
 	}
 
 }

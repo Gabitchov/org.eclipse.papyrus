@@ -57,6 +57,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.ids.MOSKittEditorIDs;
+import org.eclipse.papyrus.diagram.common.part.CachedResourcesDiagramEditor;
+import org.eclipse.papyrus.diagram.common.part.CachedResourcesEditorInput;
+import org.eclipse.papyrus.diagram.common.part.EditingDomainRegistry;
+import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
@@ -68,16 +75,11 @@ import org.eclipse.ui.ide.IDE;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.diagram.common.ids.MOSKittEditorIDs;
-import org.eclipse.papyrus.diagram.common.part.CachedResourcesDiagramEditor;
-import org.eclipse.papyrus.diagram.common.part.CachedResourcesEditorInput;
-import org.eclipse.papyrus.diagram.common.part.EditingDomainRegistry;
-import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
-
 /**
  * The Class MDTUtil.
+ * 
+ * @author <a href="fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
+ * @author <a href="gmerin@prodevelop.es">Grabriel Merin Cubero</a>
  * 
  */
 public class MDTUtil {
