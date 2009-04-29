@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.ui.toolbox;singleton:=true
 Bundle-Version: 0.7.0.vqualifier
