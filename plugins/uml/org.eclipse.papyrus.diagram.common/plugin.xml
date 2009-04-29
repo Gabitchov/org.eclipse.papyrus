@@ -16,6 +16,9 @@
 
 <plugin>
 	<extension-point id="modelToEditorMap" name="ModelToEditorMap" schema="schema/modelToEditorMap.exsd"/>
+ <extension-point id="editorAssistantProvider" name="editorAssistantProvider" schema="schema/editorAssistantProvider.exsd"/>
+ <extension-point id="viewInfo" name="viewInfo" schema="schema/viewInfo.exsd"/>
+ <extension-point id="moskittEditorFactory" name="moskittEditorFactory" schema="schema/moskittEditorFactory.exsd"/>
    <!--
    <extension
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">

@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.diagram.common" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.diagram.common" id="viewInfo" name="viewInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="RootViewInfo"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="RootViewInfo">
+      <annotation>
+         <documentation>
+            The root element for a ViewInfo structure for one diagram editor.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="1">
+            <element ref="BaseViewInfo" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="editorID" type="string">
+            <annotation>
+               <documentation>
+                  The editor identifier, as defined in the org.eclipse.ui.editors extension point.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="modelTypes" type="string">
+            <annotation>
+               <documentation>
+                  A class that implements IModelTypesProviderFactory so that it can provide an IModelTypesProvider to get labels and images for ViewInfo elements. It is usually &apos;es.cv.gvcase.mdt.common.provider.IModelTypesProviderFactoty&apos;.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":es.cv.gvcase.mdt.common.provider.IModelTypesProviderFactoty"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="BaseViewInfo">
+      <annotation>
+         <documentation>
+            A basic ViewInfo element. Although all these elements hang directly from the RootViewInfo, once the extension is read a hierarchical structure is created. This structure starts with a RootViewInfo which has a BaseviewInfo that is of type Head, and this Head must be the canvas. from this Head BaseViewInfo all other BaseViewInfo elements will hang.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="elementType" type="string">
+            <annotation>
+               <documentation>
+                  The identifier of the IElementType this BaseViewInfo represents.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.gmf.runtime.emf.type.core.elementTypes/metamodel/metamodelType/@id"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="parent" type="string">
+            <annotation>
+               <documentation>
+                  The visualID of the parent BaseViewInfo. This is the field used to create the hierarchical structure.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier" basedOn="es.cv.gvcase.mdt.common.viewInfo/RootViewInfo/BaseViewInfo/@visualID"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string">
+            <annotation>
+               <documentation>
+                  The label that will be shown in the filter dialog.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="visualID" type="string">
+            <annotation>
+               <documentation>
+                  The visualID of the node/edge/label this BaseViewInfo represents.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="type">
+            <annotation>
+               <documentation>
+                  The type of figure this BaseViewInfo represents. It can be one of {None, Head, Node, Edge, Label}.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="None">
+                  </enumeration>
+                  <enumeration value="Head">
+                  </enumeration>
+                  <enumeration value="Node">
+                  </enumeration>
+                  <enumeration value="Edge">
+                  </enumeration>
+                  <enumeration value="Label">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="selectable" type="boolean">
+            <annotation>
+               <documentation>
+                  If false, this ViewInfo will not be selecteble in the filter views selection dialog.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

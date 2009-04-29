@@ -1,12 +1,11 @@
 /*******************************************************************************
- * Copyright (c) 2008 Conselleria de Infraestructuras y Transporte,
- * Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors: Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
+ * Copyright (c) 2009 Conselleria de Infraestructuras y Transporte, Generalitat 
+ * de la Comunitat Valenciana . All rights reserved. This program
+ * and the accompanying materials are made available under the terms of the
+ * Eclipse Public License v1.0 which accompanies this distribution, and is
+ * available at http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: Francisco Javier Cano Muñoz (Prodevelop) – Initial implementation
  *
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.common.providers;
@@ -16,33 +15,53 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BaseViewInfo.
+ * A basic implementation of {@link ViewInfo}. This class is used to parse the
+ * 'es.cv.gvcase.mdt.common.viewInfo' extension point. It can handle the
+ * additions of child nodes that have parents that have not yet been added;
+ * these nodes are stores in a temporary storage. Upon a later addition of a
+ * node, nodes in the temporary storage are revisited to put them in their
+ * correct place.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
+ * @NOT-generated
  */
 public class BaseViewInfo implements ViewInfo {
 
 	// // attributes
 
-	/** The parent. */
-	private ViewInfo parent = null;
+	/** The parent ViewInfo in the hierarchy. */
+	private ViewInfo parentViewInfo = null;
 
-	/** The visual id. */
-	private int visualID = -1;
+	/** The visual id in String form. */
+	public String visualID = "-1";
 
-	/** The type. */
-	private int type = ViewInfo.None;
+	/** The type in String form. */
+	public String type;
 
-	/** The label. */
-	private String label = null;
+	/** The type in integer form. */
+	private int typeViewInfo = ViewInfo.None;
 
-	/** The children. */
+	/** The label that will be shown. */
+	public String label = null;
+
+	/** The children of this ViewInfo in the hierarchy. */
 	private Collection<ViewInfo> children = null;
 
-	/** The to add. */
+	/** Temporary storage of ViewInfo elements to be added. */
 	private static Map<Integer, Collection<ViewInfo>> toAdd = null;
+
+	/** Identifier of the IElementType this ViewInfo represents. */
+	public String elementType;
+
+	/** VisualID in String form of this ViewInfo's parent. */
+	public String parent;
+
+	/** Pointer to the RootInfo which this ViewInfo belong to. */
+	public RootViewInfo rootViewInfo;
+	
+	/** Flag that indicates if this ViewInfo can be selected to be filtered. */
+	public Boolean selectable = true;
 
 	// // constructors
 
@@ -81,19 +100,19 @@ public class BaseViewInfo implements ViewInfo {
 	 * @param parent
 	 *            the parent
 	 */
-	public BaseViewInfo(int visualID, int type, String label, Collection<ViewInfo> children, ViewInfo parent) {
-		this.visualID = visualID;
-		this.type = type;
+	public BaseViewInfo(int visualID, int type, String label,
+			Collection<ViewInfo> children, ViewInfo parent) {
+		this.visualID = String.valueOf(visualID);
+		this.typeViewInfo = type;
 		this.label = label;
 		this.children = children;
-		this.parent = parent;
+		this.parentViewInfo = parent;
 	}
 
 	// // getters
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#getChildren()
 	 */
 	public Collection<ViewInfo> getChildren() {
 		if (children == null) {
@@ -102,40 +121,71 @@ public class BaseViewInfo implements ViewInfo {
 		return children;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#getLabel()
 	 */
 	public String getLabel() {
 		return label;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#getType()
 	 */
 	public int getType() {
-		return type;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 */
-	public int getVisualID() {
-		return visualID;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 */
-	public ViewInfo getParent() {
-		return parent;
+		// type by its integer form
+		switch (typeViewInfo) {
+		case ViewInfo.Head:
+		case ViewInfo.Node:
+		case ViewInfo.Edge:
+		case ViewInfo.Label:
+			return typeViewInfo;
+		default: {
+			// type by its String form
+			if (type != null && type.length() > 0) {
+				if (ViewInfo.NONE_LITERAL.equals(type)) {
+					return ViewInfo.None;
+				} else if (ViewInfo.HEAD_LITERAL.equals(type)) {
+					return ViewInfo.Head;
+				} else if (ViewInfo.NODE_LITERAL.equals(type)) {
+					return ViewInfo.Node;
+				} else if (ViewInfo.EDGE_LITERAL.equals(type)) {
+					return ViewInfo.Edge;
+				} else if (ViewInfo.LABEL_LITERAL.equals(type)) {
+					return ViewInfo.Label;
+				} else {
+					return ViewInfo.None;
+				}
+			} else {
+				// unknown
+				return -1;
+			}
+		}
+		}
 	}
 
 	/**
-	 * Gets the to add.
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#getVisualID()
+	 */
+	public int getVisualID() {
+		return Integer.valueOf(visualID);
+	}
+
+	/**
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#getParent()
+	 */
+	public ViewInfo getParent() {
+		return parentViewInfo;
+	}
+	
+	/**
+	 * Indicates whether this ViewInfo can be selected to be filtered.
+	 */
+	public boolean isSelectable() {
+		return selectable;
+	}
+
+	/**
+	 * Gets the temporary storage for nodes without parents in the hierarchy.
 	 * 
 	 * @return the to add
 	 */
@@ -148,48 +198,45 @@ public class BaseViewInfo implements ViewInfo {
 
 	// // setters
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setChildren(java.util.Collection
+	 *      )
 	 */
 	public void setChildren(Collection<ViewInfo> children) {
 		this.children = children;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setLabel(java.lang.String)
 	 */
 	public void setLabel(String label) {
 		this.label = label;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setParent(es.cv.gvcase.mdt.
+	 *      common.provider.ViewInfo)
 	 */
 	public void setParent(ViewInfo parent) {
-		this.parent = parent;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 */
-	public void setType(int type) {
-		this.type = type;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 */
-	public void setVisualID(int visualID) {
-		this.visualID = visualID;
+		this.parentViewInfo = parent;
 	}
 
 	/**
-	 * Gets the root info.
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setType(int)
+	 */
+	public void setType(int type) {
+		this.typeViewInfo = type;
+	}
+
+	/**
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setVisualID(int)
+	 */
+	public void setVisualID(int visualID) {
+		this.visualID = String.valueOf(visualID);
+	}
+
+	/**
+	 * Gets the root info which this ViewInfo belong to.
 	 * 
 	 * @return the root info
 	 */
@@ -202,7 +249,7 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Checks if is root.
+	 * Checks whether ViewInfo is the higher in the hierarchy.
 	 * 
 	 * @return true, if is root
 	 */
@@ -216,9 +263,13 @@ public class BaseViewInfo implements ViewInfo {
 
 	// // add a node
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Adds a node in its corresponding place in the hierarchy. The parent node
+	 * needs not exist yet in the hierarchy. Orphan nodes are stored in a
+	 * temporary storage, that is revisited when a new node is added.
 	 * 
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#addNode(int,
+	 *      es.cv.gvcase.mdt.common.provider.ViewInfo)
 	 */
 	public boolean addNode(int parentVisualID, ViewInfo info) {
 		if (isAlreadyContained(info)) {
@@ -238,7 +289,7 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Checks if is already contained.
+	 * Checks if a ViewInfo is already contained in the hierarchy.
 	 * 
 	 * @param info
 	 *            the info
@@ -253,7 +304,7 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Look in children.
+	 * Look in children for a given ViewInfo.
 	 * 
 	 * @param info
 	 *            the info
@@ -275,7 +326,8 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Adds the pendent node.
+	 * Adds a node that was in the temporary storage and its parent node has
+	 * just been added to the hierarchy.
 	 * 
 	 * @param parentID
 	 *            the parent id
@@ -293,7 +345,8 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Revise pendent nodes.
+	 * Revise pending nodes in the temporary storage. Nodes whose parent has
+	 * been added will be put in their corresponding in the hierarchy.
 	 * 
 	 * @param info
 	 *            the info
@@ -303,7 +356,9 @@ public class BaseViewInfo implements ViewInfo {
 		Map<Integer, Collection<ViewInfo>> toAdd = getToAdd();
 		if (toAdd.containsKey(parentVisualID)) {
 			for (ViewInfo viewInfo : toAdd.get(parentVisualID)) {
-				if (info.getChildren().contains(viewInfo) == false && info != viewInfo && isAlreadyContained(viewInfo) == false) {
+				if (info.getChildren().contains(viewInfo) == false
+						&& info != viewInfo
+						&& isAlreadyContained(viewInfo) == false) {
 					info.getChildren().add(viewInfo);
 					if (viewInfo.getParent() == null) {
 						viewInfo.setParent(info);
@@ -346,8 +401,8 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	// // for debugging purposes
-	/*
-	 * (non-Javadoc)
+	/**
+	 * A Debugging method. Shows some info.
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
@@ -355,7 +410,8 @@ public class BaseViewInfo implements ViewInfo {
 	public String toString() {
 		String superString = super.toString();
 		String myString = getVisualID() + ", " + getLabel();
-		superString = superString != null ? superString + " :: " + myString : myString;
+		superString = superString != null ? superString + " :: " + myString
+				: myString;
 		return superString;
 	}
 
