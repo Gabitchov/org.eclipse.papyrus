@@ -213,9 +213,6 @@
 
    </extension>
 
-
-
-
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
 	<contributionItemProvider
             class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
@@ -223,398 +220,392 @@
          <Priority name="Low"/>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CommentBodyEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPinEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPinNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPin2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPinName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPin3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPinName3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OutputPin2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPin4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPinName4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ValuePin2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.PinEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.PinNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OutputPin3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinName3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OutputPin4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinName4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPin5EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPinName5EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPin6EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.InputPinName6EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartition2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionName2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueAction2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionName3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionName4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventAction2EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionName3EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionName4EditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
-
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+	<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
-
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+	<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowNameEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ObjectNodeSelectionEditPart"/>
             <popupAction path="/editGroup" id="deleteFromModelAction"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
-
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+	<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ObjectNodeSelectionEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
-
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+	<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ZigZagLabelEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ElementOwnedCommentEditPart"/>
             <popupAction path="/editGroup" id="deleteFromModelAction"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
-
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+	<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.ElementOwnedCommentEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CommentAnnotatedElementEditPart"/>
             <popupAction path="/editGroup" id="deleteFromModelAction"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
-
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+	<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria objectClass="org.eclipse.papyrus.diagram.activity.edit.parts.CommentAnnotatedElementEditPart"/>
-            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="false"/>
          </popupContribution>
       </contributionItemProvider>
 </extension>
@@ -645,7 +636,7 @@
          </ViewId>
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
-            class="org.eclipse.papyrus.diagram.common.actions.handlers.ClipboardActionHandlerProvider"
+            class="org.eclipse.papyrus.diagram.common.actions.handlers.UMLClipboardActionHandlerProvider"
             id="MOSKitt UMLActivityRender">
          <Priority name="Lowest"/>
          <ViewId id="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorID">
@@ -1162,7 +1153,6 @@
       </binding>
    </extension>
 
-
    <extension point="org.eclipse.ui.navigator.viewer">
       <?gmfgen generated="true"?>
       <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
@@ -1459,6 +1449,676 @@
             id="org.eclipse.papyrus.diagram.activity.icons">
       </page>
    </extension>
-   
+
+   <extension
+            point="org.eclipse.papyrus.diagram.common.modelToEditorMap">
+         <modelToEditor
+               editorID="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorID"
+               modelID="MOSKitt UMLActivity"
+               label="MOSKItt UML2 Activity">
+         </modelToEditor>
+      </extension>
+      <extension point="org.eclipse.papyrus.diagram.common.viewInfo">
+		<?gmfgen generated="true"?>
+		<RootViewInfo
+			editorID="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorID"
+			modelTypes="org.eclipse.papyrus.diagram.common.providers.ModelTypesProviderFactory">
+						
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.Package_79"
+			label="%viewInfo.79"
+			type="Head"
+			visualID="79">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.Activity_1001"
+			label="%viewInfo.1001"
+			parent="79"
+			type="Node"
+			visualID="1001">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.Comment_2034"
+			label="%viewInfo.2034"
+			parent="79"
+			type="Node"
+			visualID="2034">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.SendObjectAction_2001"
+			label="%viewInfo.2001"
+			parent="1001"
+			type="Node"
+			visualID="2001">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.SendObjectAction_2001"
+			label="%viewInfo.2001"
+			parent="2031"
+			type="Node"
+			visualID="2001">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.SendObjectAction_2001"
+			label="%viewInfo.2001"
+			parent="2030"
+			type="Node"
+			visualID="2001">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InputPin_2002"
+			label="%viewInfo.2002"
+			parent="2001"
+			type="Node"
+			visualID="2002">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InputPin_2003"
+			label="%viewInfo.2003"
+			parent="2001"
+			type="Node"
+			visualID="2003">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ValuePin_2004"
+			label="%viewInfo.2004"
+			parent="2001"
+			type="Node"
+			visualID="2004">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.SendSignalAction_2005"
+			label="%viewInfo.2005"
+			parent="1001"
+			type="Node"
+			visualID="2005">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.SendSignalAction_2005"
+			label="%viewInfo.2005"
+			parent="2031"
+			type="Node"
+			visualID="2005">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.SendSignalAction_2005"
+			label="%viewInfo.2005"
+			parent="2030"
+			type="Node"
+			visualID="2005">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InputPin_2006"
+			label="%viewInfo.2006"
+			parent="2005"
+			type="Node"
+			visualID="2006">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.AcceptEventAction_2007"
+			label="%viewInfo.2007"
+			parent="1001"
+			type="Node"
+			visualID="2007">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OutputPin_2008"
+			label="%viewInfo.2008"
+			parent="2007"
+			type="Node"
+			visualID="2008">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OutputPin_2008"
+			label="%viewInfo.2008"
+			parent="2033"
+			type="Node"
+			visualID="2008">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ActivityFinalNode_2009"
+			label="%viewInfo.2009"
+			parent="1001"
+			type="Node"
+			visualID="2009">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ActivityFinalNode_2009"
+			label="%viewInfo.2009"
+			parent="2031"
+			type="Node"
+			visualID="2009">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ActivityFinalNode_2009"
+			label="%viewInfo.2009"
+			parent="2030"
+			type="Node"
+			visualID="2009">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.DecisionNode_2010"
+			label="%viewInfo.2010"
+			parent="1001"
+			type="Node"
+			visualID="2010">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.DecisionNode_2010"
+			label="%viewInfo.2010"
+			parent="2031"
+			type="Node"
+			visualID="2010">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.DecisionNode_2010"
+			label="%viewInfo.2010"
+			parent="2030"
+			type="Node"
+			visualID="2010">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.MergeNode_2011"
+			label="%viewInfo.2011"
+			parent="1001"
+			type="Node"
+			visualID="2011">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.MergeNode_2011"
+			label="%viewInfo.2011"
+			parent="2031"
+			type="Node"
+			visualID="2011">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.MergeNode_2011"
+			label="%viewInfo.2011"
+			parent="2030"
+			type="Node"
+			visualID="2011">
+			</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InitialNode_2012"
+			label="%viewInfo.2012"
+			parent="1001"
+			type="Node"
+			visualID="2012">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InitialNode_2012"
+			label="%viewInfo.2012"
+			parent="2031"
+			type="Node"
+			visualID="2012">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InitialNode_2012"
+			label="%viewInfo.2012"
+			parent="2030"
+			type="Node"
+			visualID="2012">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.DataStoreNode_2013"
+			label="%viewInfo.2013"
+			parent="1001"
+			type="Node"
+			visualID="2013">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.DataStoreNode_2013"
+			label="%viewInfo.2013"
+			parent="2031"
+			type="Node"
+			visualID="2013">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.DataStoreNode_2013"
+			label="%viewInfo.2013"
+			parent="2030"
+			type="Node"
+			visualID="2013">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OpaqueAction_2014"
+			label="%viewInfo.2014"
+			parent="1001"
+			type="Node"
+			visualID="2014">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OutputPin_2015"
+			label="%viewInfo.2015"
+			parent="2014"
+			type="Node"
+			visualID="2015">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OutputPin_2015"
+			label="%viewInfo.2015"
+			parent="2032"
+			type="Node"
+			visualID="2015">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InputPin_2016"
+			label="%viewInfo.2016"
+			parent="2014"
+			type="Node"
+			visualID="2016">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InputPin_2016"
+			label="%viewInfo.2016"
+			parent="2032"
+			type="Node"
+			visualID="2016">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ValuePin_2017"
+			label="%viewInfo.2017"
+			parent="2014"
+			type="Node"
+			visualID="2017">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ValuePin_2017"
+			label="%viewInfo.2017"
+			parent="2032"
+			type="Node"
+			visualID="2017">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.FlowFinalNode_2018"
+			label="%viewInfo.2018"
+			parent="1001"
+			type="Node"
+			visualID="2018">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.FlowFinalNode_2018"
+			label="%viewInfo.2018"
+			parent="2031"
+			type="Node"
+			visualID="2018">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.FlowFinalNode_2018"
+			label="%viewInfo.2018"
+			parent="2030"
+			type="Node"
+			visualID="2018">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ForkNode_2019"
+			label="%viewInfo.2019"
+			parent="1001"
+			type="Node"
+			visualID="2019">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ForkNode_2019"
+			label="%viewInfo.2019"
+			parent="2031"
+			type="Node"
+			visualID="2019">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ForkNode_2019"
+			label="%viewInfo.2019"
+			parent="2030"
+			type="Node"
+			visualID="2019">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.JoinNode_2020"
+			label="%viewInfo.2020"
+			parent="1001"
+			type="Node"
+			visualID="2020">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.JoinNode_2020"
+			label="%viewInfo.2020"
+			parent="2031"
+			type="Node"
+			visualID="2020">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.JoinNode_2020"
+			label="%viewInfo.2020"
+			parent="2030"
+			type="Node"
+			visualID="2020">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.Pin_2021"
+			label="%viewInfo.2021"
+			parent="1001"
+			type="Node"
+			visualID="2021">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.Pin_2021"
+			label="%viewInfo.2021"
+			parent="2031"
+			type="Node"
+			visualID="2021">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.Pin_2021"
+			label="%viewInfo.2021"
+			parent="2030"
+			type="Node"
+			visualID="2021">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CreateObjectAction_2022"
+			label="%viewInfo.2022"
+			parent="1001"
+			type="Node"
+			visualID="2022">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CreateObjectAction_2022"
+			label="%viewInfo.2022"
+			parent="2031"
+			type="Node"
+			visualID="2022">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CreateObjectAction_2022"
+			label="%viewInfo.2022"
+			parent="2030"
+			type="Node"
+			visualID="2022">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OutputPin_2023"
+			label="%viewInfo.2023"
+			parent="2022"
+			type="Node"
+			visualID="2023">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CallBehaviorAction_2024"
+			label="%viewInfo.2024"
+			parent="1001"
+			type="Node"
+			visualID="2024">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CallBehaviorAction_2024"
+			label="%viewInfo.2024"
+			parent="2031"
+			type="Node"
+			visualID="2024">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CallBehaviorAction_2024"
+			label="%viewInfo.2024"
+			parent="2030"
+			type="Node"
+			visualID="2024">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OutputPin_2025"
+			label="%viewInfo.2025"
+			parent="2024"
+			type="Node"
+			visualID="2025">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OutputPin_2025"
+			label="%viewInfo.2025"
+			parent="2027"
+			type="Node"
+			visualID="2025">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InputPin_2026"
+			label="%viewInfo.2026"
+			parent="2024"
+			type="Node"
+			visualID="2026">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InputPin_2026"
+			label="%viewInfo.2026"
+			parent="2027"
+			type="Node"
+			visualID="2026">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CallOperationAction_2027"
+			label="%viewInfo.2027"
+			parent="1001"
+			type="Node"
+			visualID="2027">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CallOperationAction_2027"
+			label="%viewInfo.2027"
+			parent="2031"
+			type="Node"
+			visualID="2027">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CallOperationAction_2027"
+			label="%viewInfo.2027"
+			parent="2030"
+			type="Node"
+			visualID="2027">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.InputPin_2028"
+			label="%viewInfo.2028"
+			parent="2027"
+			type="Node"
+			visualID="2028">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ActivityParameterNode_2029"
+			label="%viewInfo.2029"
+			parent="1001"
+			type="Node"
+			visualID="2029">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ActivityPartition_2030"
+			label="%viewInfo.2030"
+			parent="1001"
+			type="Node"
+			visualID="2030">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ActivityPartition_2031"
+			label="%viewInfo.2031"
+			parent="2031"
+			type="Node"
+			visualID="2031">
+		</BaseViewInfo>
+		
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ActivityPartition_2031"
+			label="%viewInfo.2031"
+			parent="2030"
+			type="Node"
+			visualID="2031">
+		</BaseViewInfo>
+			
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OpaqueAction_2032"
+			label="%viewInfo.2032"
+			parent="2031"
+			type="Node"
+			visualID="2032">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.OpaqueAction_2032"
+			label="%viewInfo.2032"
+			parent="2030"
+			type="Node"
+			visualID="2032">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.AcceptEventAction_2033"
+			label="%viewInfo.2033"
+			parent="2031"
+			type="Node"
+			visualID="2033">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.AcceptEventAction_2033"
+			label="%viewInfo.2033"
+			parent="2030"
+			type="Node"
+			visualID="2033">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ControlFlow_3001"
+			label="%viewInfo.3001"
+			parent="79"
+			type="Edge"
+			visualID="3001">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ControlFlow_3001"
+			label="%viewInfo.4043"
+			parent="3001"
+			type="Label"
+			visualID="4043">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ObjectFlow_3002"
+			label="%viewInfo.3002"
+			parent="79"
+			type="Edge"
+			visualID="3002">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ObjectFlow_3002"
+			label="%viewInfo.4044"
+			parent="3002"
+			type="Label"
+			visualID="4044">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ObjectNodeSelection_3003"
+			label="%viewInfo.3003"
+			parent="79"
+			type="Edge"
+			visualID="3003">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ExceptionHandler_3004"
+			label="%viewInfo.3004"
+			parent="79"
+			type="Edge"
+			visualID="3004">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ExceptionHandler_3004"
+			label="%viewInfo.4045"
+			parent="3004"
+			type="Label"
+			visualID="4045">
+		</BaseViewInfo>
+
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.ElementOwnedComment_3005"
+			label="%viewInfo.3005"
+			parent="79"
+			type="Edge"
+			visualID="3005">
+		</BaseViewInfo>
+				
+		<BaseViewInfo
+			elementType="org.eclipse.papyrus.diagram.activity.CommentAnnotatedElement_3006"
+			label="%viewInfo.3006"
+			parent="79"
+			type="Edge"
+			visualID="3006">
+		</BaseViewInfo>
+		</RootViewInfo>
+	</extension>
 
 </plugin>

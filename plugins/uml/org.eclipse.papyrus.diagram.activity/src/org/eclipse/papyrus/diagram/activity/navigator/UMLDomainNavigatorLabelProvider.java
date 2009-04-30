@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.navigator;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -27,7 +16,9 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	/**
 	 * @generated
 	 */
-	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			UMLDiagramEditorPlugin.getInstance()
+					.getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -40,7 +31,8 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public Image getImage(Object element) {
 		if (element instanceof UMLDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider.getImage(((UMLDomainNavigatorItem) element).getEObject());
+			return myAdapterFactoryLabelProvider
+					.getImage(((UMLDomainNavigatorItem) element).getEObject());
 		}
 		return null;
 	}
@@ -50,7 +42,8 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public String getText(Object element) {
 		if (element instanceof UMLDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider.getText(((UMLDomainNavigatorItem) element).getEObject());
+			return myAdapterFactoryLabelProvider
+					.getText(((UMLDomainNavigatorItem) element).getEObject());
 		}
 		return null;
 	}

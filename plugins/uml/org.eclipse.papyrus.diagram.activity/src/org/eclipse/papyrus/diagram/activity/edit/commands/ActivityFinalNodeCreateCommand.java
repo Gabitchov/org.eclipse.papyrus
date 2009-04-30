@@ -18,6 +18,7 @@
  */
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
@@ -26,11 +27,13 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.helpers.ActivityPartitionActivity;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityFinalNode;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * @generated
@@ -109,6 +112,7 @@ public class ActivityFinalNodeCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Diagram getDiagramFromRequest() {
+
 		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
 			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
@@ -125,6 +129,13 @@ public class ActivityFinalNodeCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		ActivityFinalNode newElement = (ActivityFinalNode) super.doDefaultElementCreation();
 		if (newElement != null) {
+			Activity owner = (Activity) getElementToEdit();
+			owner.getNodes().add(newElement);
+
+			UMLElementTypes.init_ActivityFinalNode_2009(newElement);
+
+			addActionToActivityPartition(newElement);
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
 				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
@@ -133,5 +144,27 @@ public class ActivityFinalNodeCreateCommand extends CreateElementCommand {
 			}
 		}
 		return newElement;
+	}
+
+	/**
+	 * Add the actions'a inPartition if it was created inside an ActivityPartition.
+	 * 
+	 * @param newAction
+	 * @return
+	 */
+	protected boolean addActionToActivityPartition(ActivityNode newAction) {
+		if (newAction == null) {
+			return false;
+		}
+		CreateElementRequest createRequest = getCreateRequest() instanceof CreateElementRequest ? (CreateElementRequest) getCreateRequest() : null;
+		if (createRequest != null) {
+			EObject container = createRequest.getContainer();
+			ActivityPartition activityPartition = (ActivityPartition) Platform.getAdapterManager().getAdapter(container, ActivityPartition.class);
+			if (activityPartition != null) {
+				newAction.getInPartitions().add(activityPartition);
+				return newAction.getInPartitions().contains(activityPartition);
+			}
+		}
+		return false;
 	}
 }

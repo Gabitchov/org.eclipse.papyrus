@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 Conselleria de Infraestructuras y Transporte, Generalitat 
+ * Copyright (c) 2007-2009 Conselleria de Infraestructuras y Transporte, Generalitat 
  * de la Comunitat Valenciana . All rights reserved. This program
  * and the accompanying materials are made available under the terms of the
  * Eclipse Public License v1.0 which accompanies this distribution, and is
@@ -26,7 +26,6 @@ import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.UMLPackage;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SetActivityPartitionChildrenInActivity.
  * 
@@ -48,7 +47,8 @@ public class SetActivityPartitionChildrenInActivity extends Command {
 	 * @param activity
 	 *            the activity
 	 */
-	public SetActivityPartitionChildrenInActivity(ActivityPartition activityPartition, Activity activity) {
+	public SetActivityPartitionChildrenInActivity(
+			ActivityPartition activityPartition, Activity activity) {
 		parentActivity = activity;
 
 		addChildCommands(activityPartition, actualCommand);
@@ -62,7 +62,8 @@ public class SetActivityPartitionChildrenInActivity extends Command {
 	 * @param cc
 	 *            the cc
 	 */
-	private void addChildCommands(ActivityPartition activityPartition, CompoundCommand cc) {
+	private void addChildCommands(ActivityPartition activityPartition,
+			CompoundCommand cc) {
 		List<EObject> children = new ArrayList();
 		children.addAll(activityPartition.getNodes());
 		children.addAll(activityPartition.getSubpartitions());
@@ -85,14 +86,16 @@ public class SetActivityPartitionChildrenInActivity extends Command {
 
 		if (object instanceof ActivityNode) {
 			reference = UMLPackage.eINSTANCE.getActivityNode_Activity();
-			SetRequest request = new SetRequest(object, reference, parentActivity);
+			SetRequest request = new SetRequest(object, reference,
+					parentActivity);
 			cc.add(new ICommandProxy(new SetValueCommand(request)));
 			return;
 		}
 		if (object instanceof ActivityPartition) {
 			addChildCommands((ActivityPartition) object, cc);
 			reference = UMLPackage.eINSTANCE.getActivityGroup_InActivity();
-			SetRequest request = new SetRequest(object, reference, parentActivity);
+			SetRequest request = new SetRequest(object, reference,
+					parentActivity);
 			cc.add(new ICommandProxy(new SetValueCommand(request)));
 			return;
 		}

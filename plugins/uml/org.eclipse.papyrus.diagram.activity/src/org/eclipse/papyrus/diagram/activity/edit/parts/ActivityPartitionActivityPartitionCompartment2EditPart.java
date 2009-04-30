@@ -1,14 +1,21 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Copyright (c) of modifications Conselleria de Infraestructuras y
+ * Transporte, Generalitat de la Comunitat Valenciana. All rights reserved.
+ * Modifications are made available under the terms of the Eclipse Public
+ * License v1.0.
+ *
+ * Contributors:
+ *  Sergey Gribovsky (Borland) - initial API and implementation
+ *  Francisco Javier Cano Mu�oz (Prodevelop)
+ *  Marc Gil Sendra (Prodevelop)
+ */
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -43,12 +50,11 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityPartitionActiv
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.UMLPackage;
-
 import org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -61,7 +67,7 @@ public class ActivityPartitionActivityPartitionCompartment2EditPart extends Shap
 	public static final int VISUAL_ID = 5003;
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
 
@@ -90,8 +96,9 @@ public class ActivityPartitionActivityPartitionCompartment2EditPart extends Shap
 			if (UMLPackage.eINSTANCE.getActivityPartition().equals(class1)) {
 				return UMLPackage.eINSTANCE.getActivityPartition_Subpartition();
 			}
+			// OpaqueAction feature should be Activity_Node too
 			if (UMLPackage.eINSTANCE.getOpaqueAction().equals(class1)) {
-				return UMLPackage.eINSTANCE.getStructuredActivityNode_Node();
+				return UMLPackage.eINSTANCE.getActivity_Node();
 			}
 			if (UMLPackage.eINSTANCE.getSendObjectAction().equals(class1)) {
 				return UMLPackage.eINSTANCE.getActivity_Node();
@@ -99,8 +106,9 @@ public class ActivityPartitionActivityPartitionCompartment2EditPart extends Shap
 			if (UMLPackage.eINSTANCE.getSendSignalAction().equals(class1)) {
 				return UMLPackage.eINSTANCE.getActivity_Node();
 			}
+			// AcceptEventAction feature should be Activity_Node too
 			if (UMLPackage.eINSTANCE.getAcceptEventAction().equals(class1)) {
-				return UMLPackage.eINSTANCE.getStructuredActivityNode_Node();
+				return UMLPackage.eINSTANCE.getActivity_Node();
 			}
 			if (UMLPackage.eINSTANCE.getActivityFinalNode().equals(class1)) {
 				return UMLPackage.eINSTANCE.getActivity_Node();
@@ -178,7 +186,7 @@ public class ActivityPartitionActivityPartitionCompartment2EditPart extends Shap
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityPartitionActivityPartitionCompartment2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		DragDropEditPolicy dragAndDropEditPolicy = null;
-		dragAndDropEditPolicy = new org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy(resolver) {
+		dragAndDropEditPolicy = new DragDropEditPolicy(resolver) {
 
 			// don't highlight the target if the element to drag is a Label
 			@Override
@@ -366,7 +374,7 @@ public class ActivityPartitionActivityPartitionCompartment2EditPart extends Shap
 			String id = iet.getSemanticHint();
 
 			if (org.eclipse.gef.RequestConstants.REQ_CREATE.equals(type) && (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
-				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
+				return DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
 			}
 		}
 		// don't let to move a comment into a compartment

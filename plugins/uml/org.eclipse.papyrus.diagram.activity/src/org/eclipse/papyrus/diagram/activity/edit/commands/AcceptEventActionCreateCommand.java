@@ -18,6 +18,7 @@
  */
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
@@ -30,12 +31,12 @@ import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * @generated
@@ -113,6 +114,7 @@ public class AcceptEventActionCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Diagram getDiagramFromRequest() {
+
 		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
 			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
@@ -132,6 +134,9 @@ public class AcceptEventActionCreateCommand extends CreateElementCommand {
 		AcceptEventAction newElement = (AcceptEventAction) super.doDefaultElementCreation();
 		if (newElement != null) {
 			ElementInitializers.init_AcceptEventAction_2007(newElement);
+
+			addActionToActivityPartition(newElement);
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
 				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
@@ -147,5 +152,27 @@ public class AcceptEventActionCreateCommand extends CreateElementCommand {
 		((Activity) getElementToEdit()).getNearestPackage().getPackagedElements().add(event);
 
 		return newElement;
+	}
+
+	/**
+	 * Add the actions'a inPartition if it was created inside an ActivityPartition.
+	 * 
+	 * @param newAction
+	 * @return
+	 */
+	protected boolean addActionToActivityPartition(ActivityNode newAction) {
+		if (newAction == null) {
+			return false;
+		}
+		CreateElementRequest createRequest = getCreateRequest() instanceof CreateElementRequest ? (CreateElementRequest) getCreateRequest() : null;
+		if (createRequest != null) {
+			EObject container = createRequest.getContainer();
+			ActivityPartition activityPartition = (ActivityPartition) Platform.getAdapterManager().getAdapter(container, ActivityPartition.class);
+			if (activityPartition != null) {
+				newAction.getInPartitions().add(activityPartition);
+				return newAction.getInPartitions().contains(activityPartition);
+			}
+		}
+		return false;
 	}
 }

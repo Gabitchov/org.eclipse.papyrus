@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.providers;
 
 import org.eclipse.core.runtime.IStatus;
@@ -52,10 +41,10 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 	/**
 	 * @generated
 	 */
-	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
+	public static void runWithConstraints(
+			TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
-
 			public void run() {
 				try {
 					constraintsActive = true;
@@ -69,7 +58,8 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
-				UMLDiagramEditorPlugin.getInstance().logError("Validation failed", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError(
+						"Validation failed", e); //$NON-NLS-1$
 			}
 		} else {
 			task.run();
@@ -79,8 +69,8 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 	/**
 	 * @generated
 	 */
-	@Override
-	protected IAction createAction(String actionId, IWorkbenchPartDescriptor partDescriptor) {
+	protected IAction createAction(String actionId,
+			IWorkbenchPartDescriptor partDescriptor) {
 		if (ValidateAction.VALIDATE_ACTION_KEY.equals(actionId)) {
 			return new ValidateAction(partDescriptor);
 		}
@@ -95,7 +85,9 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+			return constraintsActive
+					&& PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
+							.getModelID((View) object));
 		}
 		return true;
 	}
@@ -123,7 +115,6 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 		 * 
 		 * @generated NOT
 		 */
-		@Override
 		public IStatus validate(IValidationContext ctx) {
 			NamedElement context = (NamedElement) ctx.getTarget();
 			IStatus status = ValidationProvider.validateUniqueName(context);

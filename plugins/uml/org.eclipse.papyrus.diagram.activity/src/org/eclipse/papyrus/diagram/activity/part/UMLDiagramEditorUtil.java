@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.part;
 
 import java.io.IOException;
@@ -38,7 +27,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -49,6 +37,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -56,8 +45,10 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.diagram.activity.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.common.providers.IMOSKittEditorFactory;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -71,7 +62,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 /**
  * @generated
  */
-public class UMLDiagramEditorUtil {
+public class UMLDiagramEditorUtil implements IMOSKittEditorFactory {
 
 	/**
 	 * @generated
@@ -158,14 +149,13 @@ public class UMLDiagramEditorUtil {
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
-		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		progressMonitor.beginTask(Messages.UMLDiagramEditorUtil_CreateDiagramProgressTask, 3);
 		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
 		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
 
-			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				Package model = createInitialModel();
 
@@ -423,6 +413,20 @@ public class UMLDiagramEditorUtil {
 		if (!MultiDiagramUtil.findEObjectReferencedInEAnnotation(diagram, elementImport)) {
 			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, elementImport);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean providesFor(Object object) {
+		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	public IEditorPart createEditorFor(Object object) {
+		return new UMLDiagramEditor();
 	}
 
 }

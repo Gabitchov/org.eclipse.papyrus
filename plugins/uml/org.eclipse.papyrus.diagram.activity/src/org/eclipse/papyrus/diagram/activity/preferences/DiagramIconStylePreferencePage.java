@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.preferences;
 
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditor;
@@ -24,7 +13,6 @@ import org.eclipse.ui.IWorkbench;
  */
 
 public class DiagramIconStylePreferencePage extends IconStylePreferencePage {
-
 	/**
 	 * @generated
 	 */
@@ -34,7 +22,8 @@ public class DiagramIconStylePreferencePage extends IconStylePreferencePage {
 	 * @generated
 	 */
 	public DiagramIconStylePreferencePage() {
-		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
+		setPreferenceStore(UMLDiagramEditorPlugin.getInstance()
+				.getPreferenceStore());
 	}
 
 	/**
@@ -61,7 +50,8 @@ public class DiagramIconStylePreferencePage extends IconStylePreferencePage {
 	 * @generated
 	 */
 	private void refreshDiagramEditors() {
-		IEditorReference[] editors = myWorkbench.getActiveWorkbenchWindow().getActivePage().getEditorReferences();
+		IEditorReference[] editors = myWorkbench.getActiveWorkbenchWindow()
+				.getActivePage().getEditorReferences();
 		for (int i = 0; i < editors.length; i++) {
 			IEditorPart editor = editors[i].getEditor(false);
 			if (editor != null && editor instanceof UMLDiagramEditor) {

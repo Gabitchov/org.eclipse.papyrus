@@ -28,8 +28,8 @@ import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLPackage;
 
-public class ObjectNodeInStateParser implements IParser {
 
+public class ObjectNodeInStateParser implements IParser {
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		return null;
 	}
@@ -43,7 +43,7 @@ public class ObjectNodeInStateParser implements IParser {
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
-		EObject eObject = (EObject) element.getAdapter(EObject.class);
+		EObject eObject = (EObject)element.getAdapter(EObject.class);
 		if (eObject instanceof ObjectNode) {
 			EList<State> states = ((ObjectNode) eObject).getInStates();
 			if (!states.isEmpty()) {

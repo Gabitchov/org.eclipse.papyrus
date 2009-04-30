@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.Collection;
@@ -21,6 +10,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewType;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Ratio;
@@ -32,6 +22,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPin4EditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -52,9 +43,13 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getCallOperationAction_2027SemanticChildren(viewObject).iterator(); it.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next()).getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
+		for (Iterator it = UMLDiagramUpdater
+				.getCallOperationAction_2027SemanticChildren(viewObject)
+				.iterator(); it.hasNext();) {
+			EObject nextValue = ((UMLNodeDescriptor) it.next())
+					.getModelElement();
+			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
+					nextValue)) {
 				result.add(nextValue);
 			}
 		}
@@ -71,7 +66,8 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 		}
 		if (view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
-			int suggestedID = UMLVisualIDRegistry.getNodeVisualID((View) getHost().getModel(), view.getElement());
+			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
+					(View) getHost().getModel(), view.getElement());
 			switch (actualID) {
 			case OutputPin4EditPart.VISUAL_ID:
 			case InputPin5EditPart.VISUAL_ID:
@@ -90,16 +86,26 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 		if (oldView instanceof Node && newView instanceof Node) {
 			Node oldNode = (Node) oldView;
 			Node newNode = (Node) newView;
-			if (oldNode.getLayoutConstraint() instanceof Location && newNode.getLayoutConstraint() instanceof Location) {
-				((Location) newNode.getLayoutConstraint()).setX(((Location) oldNode.getLayoutConstraint()).getX());
-				((Location) newNode.getLayoutConstraint()).setY(((Location) oldNode.getLayoutConstraint()).getY());
+			if (oldNode.getLayoutConstraint() instanceof Location
+					&& newNode.getLayoutConstraint() instanceof Location) {
+				((Location) newNode.getLayoutConstraint())
+						.setX(((Location) oldNode.getLayoutConstraint()).getX());
+				((Location) newNode.getLayoutConstraint())
+						.setY(((Location) oldNode.getLayoutConstraint()).getY());
 			}
-			if (oldNode.getLayoutConstraint() instanceof Size && newNode.getLayoutConstraint() instanceof Size) {
-				((Size) newNode.getLayoutConstraint()).setWidth(((Size) oldNode.getLayoutConstraint()).getWidth());
-				((Size) newNode.getLayoutConstraint()).setHeight(((Size) oldNode.getLayoutConstraint()).getHeight());
+			if (oldNode.getLayoutConstraint() instanceof Size
+					&& newNode.getLayoutConstraint() instanceof Size) {
+				((Size) newNode.getLayoutConstraint()).setWidth(((Size) oldNode
+						.getLayoutConstraint()).getWidth());
+				((Size) newNode.getLayoutConstraint())
+						.setHeight(((Size) oldNode.getLayoutConstraint())
+								.getHeight());
 			}
-			if (oldNode.getLayoutConstraint() instanceof Ratio && newNode.getLayoutConstraint() instanceof Ratio) {
-				((Ratio) newNode.getLayoutConstraint()).setValue(((Ratio) oldNode.getLayoutConstraint()).getValue());
+			if (oldNode.getLayoutConstraint() instanceof Ratio
+					&& newNode.getLayoutConstraint() instanceof Ratio) {
+				((Ratio) newNode.getLayoutConstraint())
+						.setValue(((Ratio) oldNode.getLayoutConstraint())
+								.getValue());
 			}
 			newNode.persist();
 		}
@@ -120,11 +126,37 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallAction_Result());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInvocationAction_Argument());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallOperationAction_Target());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getCallAction_Result());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getInvocationAction_Argument());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getCallOperationAction_Target());
 		}
 		return myFeaturesToSynchronize;
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void refreshSemantic() {
+		super.refreshSemantic();
+		// this will take care of the filtering of views
+		Diagram diagram = MDTUtil.getHostDiagram(this);
+		if (diagram != null) {
+			MDTUtil.filterDiagramViews(diagram);
+		}
+	}
+
+	/**
+	 * To make the DeleteFromDiagram action work while preserving the CanonicalEditPolicy for the EditPart.
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canCreate(EObject object) {
+		return false;
+	}
+	
 }

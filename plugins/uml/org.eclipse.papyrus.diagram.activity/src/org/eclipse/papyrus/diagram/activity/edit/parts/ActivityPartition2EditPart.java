@@ -1,14 +1,21 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Copyright (c) of modifications Conselleria de Infraestructuras y
+ * Transporte, Generalitat de la Comunitat Valenciana. All rights reserved.
+ * Modifications are made available under the terms of the Eclipse Public
+ * License v1.0.
+ *
+ * Contributors:
+ *  Sergey Gribovsky (Borland) - initial API and implementation
+ *  Francisco Javier Cano Mu�oz (Prodevelop)
+ *  Marc Gil Sendra (Prodevelop)
+ */
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
@@ -24,10 +31,8 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -57,15 +62,15 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.RefreshEditPartCommand;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityPartition2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.commands.AnnotateNodeStyleCommand;
+import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 
 /**
  * @generated
@@ -134,7 +139,7 @@ public class ActivityPartition2EditPart extends ShapeNodeEditPart implements Pri
 			String id = iet.getSemanticHint();
 
 			if (RequestConstants.REQ_CREATE.equals(type) && (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
-				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
+				return DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
 			}
 		}// end
 
@@ -178,7 +183,6 @@ public class ActivityPartition2EditPart extends ShapeNodeEditPart implements Pri
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -187,12 +191,10 @@ public class ActivityPartition2EditPart extends ShapeNodeEditPart implements Pri
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -342,10 +344,8 @@ public class ActivityPartition2EditPart extends ShapeNodeEditPart implements Pri
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() instanceof ShapeStyle) {
-			addChangesToAppearenceEAnnotation((EAttribute) event.getFeature());
 			super.handleNotificationEvent(event);
 
 			// Propagate style
@@ -471,64 +471,9 @@ public class ActivityPartition2EditPart extends ShapeNodeEditPart implements Pri
 	/**
 	 * @generated
 	 */
-	public static final String APPEARANCE_EANNOTATION_NAME = "org.eclipse.papyrus.diagram.common.gmfextension.appearance";
-
-	/**
-	 * @generated
-	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getPrimaryView().getEAnnotation(APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getPrimaryView().getEAnnotation(AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EAnnotation createAppearenceEAnnotation() {
-		EAnnotation eAnn = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnn.setSource(APPEARANCE_EANNOTATION_NAME);
-		getPrimaryView().getEAnnotations().add(eAnn);
-		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChangesToAppearenceEAnnotation(EAttribute attribute) {
-		// Get the EAnnotation
-		EAnnotation eAnn = getAppearenceEAnnotation();
-
-		// If there is no EAnnotation, create it
-		if (eAnn == null) {
-			eAnn = createAppearenceEAnnotation();
-		}
-
-		// If change is already added, don't continue
-		if (eAnn.getReferences().contains(attribute))
-			return;
-
-		// Background
-		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
-		}
-
-		// Foreground
-		if (NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
-		}
-
-		// Font
-		if (NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_NAME);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__BOLD);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__ITALIC);
-		}
 	}
 
 	/**

@@ -28,6 +28,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewType;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventAction2EditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
@@ -50,6 +51,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.PinEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -248,6 +250,29 @@ public class ActivityPartitionActivityPartitionCompartmentCanonicalEditPolicy ex
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Node());
 		}
 		return myFeaturesToSynchronize;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void refreshSemantic() {
+		super.refreshSemantic();
+		// this will take care of the filtering of views
+		Diagram diagram = MDTUtil.getHostDiagram(this);
+		if (diagram != null) {
+			MDTUtil.filterDiagramViews(diagram);
+		}
+	}
+
+	/**
+	 * To make the DeleteFromDiagram action work while preserving the CanonicalEditPolicy for the EditPart.
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canCreate(EObject object) {
+		return false;
 	}
 
 }

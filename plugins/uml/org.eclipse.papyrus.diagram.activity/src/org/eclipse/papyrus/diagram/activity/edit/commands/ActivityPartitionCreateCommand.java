@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 Conselleria de Infraestructuras y Transporte, Generalitat 
- * de la Comunitat Valenciana . All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- *
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
 import org.eclipse.emf.ecore.EClass;
@@ -17,7 +7,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityPartition;
@@ -97,6 +87,7 @@ public class ActivityPartitionCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Diagram getDiagramFromRequest() {
+
 		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
 			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
@@ -116,7 +107,8 @@ public class ActivityPartitionCreateCommand extends CreateElementCommand {
 			Activity owner = (Activity) getElementToEdit();
 			owner.getGroups().add(newElement);
 
-			ElementInitializers.init_ActivityPartition_2030(newElement);
+			UMLElementTypes.init_ActivityPartition_2030(newElement);
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
 				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);

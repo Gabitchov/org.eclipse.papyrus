@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -34,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.JoinNode2CanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.JoinNode2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.DynamicResizeDirectionsEditPolicy;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 
 /**
  * @generated
@@ -220,7 +210,7 @@ public class JoinNode2EditPart extends ShapeNodeEditPart {
 			String id = iet.getSemanticHint();
 
 			if (RequestConstants.REQ_CREATE.equals(type) && (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
-				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
+				return DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
 			}
 		}// end
 

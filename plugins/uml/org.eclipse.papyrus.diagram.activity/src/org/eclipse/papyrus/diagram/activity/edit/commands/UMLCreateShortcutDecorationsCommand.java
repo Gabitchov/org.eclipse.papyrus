@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 Conselleria de Infraestructuras y Transporte, Generalitat 
- * de la Comunitat Valenciana . All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- *
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
 import java.util.Collections;
@@ -29,7 +19,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.PackageEditPart;
 /**
  * @generated
  */
-public class UMLCreateShortcutDecorationsCommand extends AbstractTransactionalCommand {
+public class UMLCreateShortcutDecorationsCommand extends
+		AbstractTransactionalCommand {
 
 	/**
 	 * @generated
@@ -39,7 +30,9 @@ public class UMLCreateShortcutDecorationsCommand extends AbstractTransactionalCo
 	/**
 	 * @generated
 	 */
-	public UMLCreateShortcutDecorationsCommand(TransactionalEditingDomain editingDomain, View parentView, List viewDescriptors) {
+	public UMLCreateShortcutDecorationsCommand(
+			TransactionalEditingDomain editingDomain, View parentView,
+			List viewDescriptors) {
 		super(editingDomain, "Create Shortcuts", getWorkspaceFiles(parentView)); //$NON-NLS-1$
 		myDescriptors = viewDescriptors;
 	}
@@ -47,22 +40,29 @@ public class UMLCreateShortcutDecorationsCommand extends AbstractTransactionalCo
 	/**
 	 * @generated
 	 */
-	public UMLCreateShortcutDecorationsCommand(TransactionalEditingDomain editingDomain, View parentView, CreateViewRequest.ViewDescriptor viewDescriptor) {
-		this(editingDomain, parentView, Collections.singletonList(viewDescriptor));
+	public UMLCreateShortcutDecorationsCommand(
+			TransactionalEditingDomain editingDomain, View parentView,
+			CreateViewRequest.ViewDescriptor viewDescriptor) {
+		this(editingDomain, parentView, Collections
+				.singletonList(viewDescriptor));
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		for (Iterator it = myDescriptors.iterator(); it.hasNext();) {
-			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor) it.next();
+			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor) it
+					.next();
 			View view = (View) nextDescriptor.getAdapter(View.class);
 			if (view != null && view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
+						.createEAnnotation();
 				shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-				shortcutAnnotation.getDetails().put("modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
+				shortcutAnnotation.getDetails().put(
+						"modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
 				view.getEAnnotations().add(shortcutAnnotation);
 			}
 		}

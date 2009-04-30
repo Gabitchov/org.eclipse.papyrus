@@ -18,6 +18,7 @@
  */
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
@@ -26,11 +27,12 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.helpers.ActivityPartitionActivity;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * @generated
@@ -41,7 +43,6 @@ public class MergeNodeCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
-
 	/**
 	 * @generated
 	 */
@@ -59,7 +60,8 @@ public class MergeNodeCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static MergeNodeCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static MergeNodeCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
 		return new MergeNodeCreateCommand(req, eObject);
 	}
 
@@ -77,13 +79,15 @@ public class MergeNodeCreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
 		// fjcano : we have to return the nearest Activity.
 		if (container instanceof ActivityPartition) {
-			return ActivityPartitionActivity.getActivityPartitionActivity((ActivityPartition) container);
+			return ActivityPartitionActivity
+					.getActivityPartitionActivity((ActivityPartition) container);
 		}
 
 		return container;
@@ -109,8 +113,11 @@ public class MergeNodeCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Diagram getDiagramFromRequest() {
-		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
+
+		if (getRequest().getParameters().get(
+				MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(
+					MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -125,13 +132,42 @@ public class MergeNodeCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		MergeNode newElement = (MergeNode) super.doDefaultElementCreation();
 		if (newElement != null) {
+			// Element initialization
+			UMLElementTypes.init_MergeNode_2011(newElement);
+			
+			addActionToActivityPartition(newElement);
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
+						newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
+						UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;
+	}
+	
+	/**
+	 * Add the actions'a inPartition if it was created inside an ActivityPartition.
+	 * 
+	 * @param newAction
+	 * @return
+	 */
+	protected boolean addActionToActivityPartition(ActivityNode newAction) {
+		if (newAction == null) {
+			return false;
+		}
+		CreateElementRequest createRequest = getCreateRequest() instanceof CreateElementRequest ? (CreateElementRequest) getCreateRequest() : null;
+		if (createRequest != null) {
+			EObject container = createRequest.getContainer();
+			ActivityPartition activityPartition = (ActivityPartition) Platform.getAdapterManager().getAdapter(container, ActivityPartition.class);
+			if (activityPartition != null) {
+				newAction.getInPartitions().add(activityPartition);
+				return newAction.getInPartitions().contains(activityPartition);
+			}
+		}
+		return false;
 	}
 }

@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.providers;
 
 import java.util.ArrayList;
@@ -44,7 +33,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.common.providers.assistant.ModelingAssistantRegistry;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
@@ -55,72 +46,53 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host
+				.getAdapter(IGraphicalEditPart.class);
+		List types = new ArrayList();
 		if (editPart instanceof ActivityEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.ActivityParameterNode_2029);
-			return types;
 		}
 		if (editPart instanceof SendObjectActionEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.InputPin_2002);
 			types.add(UMLElementTypes.InputPin_2003);
 			types.add(UMLElementTypes.ValuePin_2004);
-			return types;
 		}
 		if (editPart instanceof SendSignalActionEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.InputPin_2006);
-			return types;
 		}
 		if (editPart instanceof AcceptEventActionEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.OutputPin_2008);
-			return types;
 		}
 		if (editPart instanceof OpaqueActionEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.OutputPin_2015);
 			types.add(UMLElementTypes.InputPin_2016);
 			types.add(UMLElementTypes.ValuePin_2017);
-			return types;
 		}
 		if (editPart instanceof CreateObjectActionEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.OutputPin_2023);
-			return types;
 		}
 		if (editPart instanceof CallBehaviorActionEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.OutputPin_2025);
 			types.add(UMLElementTypes.InputPin_2026);
-			return types;
 		}
 		if (editPart instanceof CallOperationActionEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.OutputPin_2025);
 			types.add(UMLElementTypes.InputPin_2026);
 			types.add(UMLElementTypes.InputPin_2028);
-			return types;
 		}
 		if (editPart instanceof OpaqueAction2EditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.OutputPin_2015);
 			types.add(UMLElementTypes.InputPin_2016);
 			types.add(UMLElementTypes.ValuePin_2017);
-			return types;
 		}
 		if (editPart instanceof AcceptEventAction2EditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.OutputPin_2008);
-			return types;
 		}
 		if (editPart instanceof ActivitySubverticesEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.SendObjectAction_2001);
 			types.add(UMLElementTypes.SendSignalAction_2005);
 			types.add(UMLElementTypes.AcceptEventAction_2007);
@@ -138,10 +110,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.CallBehaviorAction_2024);
 			types.add(UMLElementTypes.CallOperationAction_2027);
 			types.add(UMLElementTypes.ActivityPartition_2030);
-			return types;
+			// mgil :: add an ActivityParameterNode shortcut to the Activity
+			types.add(UMLElementTypes.ActivityParameterNode_2029);
 		}
 		if (editPart instanceof ActivityPartitionActivityPartitionCompartmentEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.ActivityPartition_2031);
 			types.add(UMLElementTypes.OpaqueAction_2032);
 			types.add(UMLElementTypes.SendObjectAction_2001);
@@ -159,10 +131,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.CreateObjectAction_2022);
 			types.add(UMLElementTypes.CallBehaviorAction_2024);
 			types.add(UMLElementTypes.CallOperationAction_2027);
-			return types;
 		}
 		if (editPart instanceof ActivityPartitionActivityPartitionCompartment2EditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.ActivityPartition_2031);
 			types.add(UMLElementTypes.OpaqueAction_2032);
 			types.add(UMLElementTypes.SendObjectAction_2001);
@@ -180,15 +150,16 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.CreateObjectAction_2022);
 			types.add(UMLElementTypes.CallBehaviorAction_2024);
 			types.add(UMLElementTypes.CallOperationAction_2027);
-			return types;
 		}
 		if (editPart instanceof PackageEditPart) {
-			List types = new ArrayList();
 			types.add(UMLElementTypes.Activity_1001);
 			types.add(UMLElementTypes.Comment_2034);
-			return types;
 		}
-		return Collections.EMPTY_LIST;
+
+		types = ModelingAssistantRegistry
+				.getInstance()
+				.customizeTypesForEditPart(UMLDiagramEditor.ID, editPart, types);
+		return types;
 	}
 
 	/**
@@ -196,7 +167,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	@Override
 	public List getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof CommentEditPart) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.CommentAnnotatedElement_3006);
@@ -210,7 +182,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	@Override
 	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof CommentEditPart) {
 			List types = new ArrayList();
 			types.add(UMLElementTypes.ElementOwnedComment_3005);
@@ -223,9 +196,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	@Override
-	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+	public List getRelTypesOnSourceAndTarget(IAdaptable source,
+			IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof CommentEditPart) {
 			List types = new ArrayList();
 			return types;
@@ -237,8 +213,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	@Override
-	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+	public List getTypesForSource(IAdaptable target,
+			IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof CommentEditPart) {
 			List types = new ArrayList();
 			return types;
@@ -250,8 +228,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	@Override
-	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+	public List getTypesForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof CommentEditPart) {
 			List types = new ArrayList();
 			return types;
@@ -263,16 +243,20 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	@Override
-	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target, relationshipType));
+	public EObject selectExistingElementForSource(IAdaptable target,
+			IElementType relationshipType) {
+		return selectExistingElement(target, getTypesForSource(target,
+				relationshipType));
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
+	public EObject selectExistingElementForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		return selectExistingElement(source, getTypesForTarget(source,
+				relationshipType));
 	}
 
 	/**
@@ -282,7 +266,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (types.isEmpty()) {
 			return null;
 		}
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host
+				.getAdapter(IGraphicalEditPart.class);
 		if (editPart == null) {
 			return null;
 		}
@@ -297,14 +282,16 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (elements.isEmpty()) {
 			return null;
 		}
-		return selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
+		return selectElement((EObject[]) elements.toArray(new EObject[elements
+				.size()]));
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(
+				element);
 		return types.contains(type);
 	}
 
@@ -313,8 +300,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
+				UMLDiagramEditorPlugin.getInstance()
+						.getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+				shell, labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);

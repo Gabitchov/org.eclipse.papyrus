@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
@@ -34,6 +23,7 @@ import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
+import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
@@ -60,35 +50,38 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AcceptEventActionName2EditPart.
- * 
  * @generated
  */
-public class AcceptEventActionName2EditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class AcceptEventActionName2EditPart extends CompartmentEditPart
+		implements ITextAwareEditPart {
 
-	/** The Constant VISUAL_ID. */
+	/**
+	 * @generated
+	 */
 	public static final int VISUAL_ID = 4011;
 
-	/** The manager. */
+	/**
+	 * @generated
+	 */
 	private DirectEditManager manager;
 
-	/** The parser. */
+	/**
+	 * @generated
+	 */
 	private IParser parser;
 
-	/** The parser elements. */
+	/**
+	 * @generated
+	 */
 	private List parserElements;
 
-	/** The default text. */
+	/**
+	 * @generated
+	 */
 	private String defaultText;
 
 	/**
-	 * The Constructor.
-	 * 
-	 * @param view
-	 *            the view
-	 * 
 	 * @generated
 	 */
 	public AcceptEventActionName2EditPart(View view) {
@@ -96,43 +89,34 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Creates the default edit policies.
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
+				new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
+				new NonResizableEditPolicy() {
 
-			@Override
-			protected List createSelectionHandles() {
-				List handles = new ArrayList();
-				NonResizableHandleKit.addMoveHandle((GraphicalEditPart) getHost(), handles);
-				return handles;
-			}
+					protected List createSelectionHandles() {
+						List handles = new ArrayList();
+						NonResizableHandleKit.addMoveHandle(
+								(GraphicalEditPart) getHost(), handles);
+						return handles;
+					}
 
-			@Override
-			public Command getCommand(Request request) {
-				return null;
-			}
+					public Command getCommand(Request request) {
+						return null;
+					}
 
-			@Override
-			public boolean understandsRequest(Request request) {
-				return false;
-			}
-		});
+					public boolean understandsRequest(Request request) {
+						return false;
+					}
+				});
 	}
 
 	/**
-	 * Gets the label text helper.
-	 * 
-	 * @param figure
-	 *            the figure
-	 * 
-	 * @return the label text helper
-	 * 
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
@@ -144,13 +128,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Sets the label text helper.
-	 * 
-	 * @param figure
-	 *            the figure
-	 * @param text
-	 *            the text
-	 * 
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
@@ -162,13 +139,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the label icon helper.
-	 * 
-	 * @param figure
-	 *            the figure
-	 * 
-	 * @return the label icon helper
-	 * 
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
@@ -180,13 +150,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Sets the label icon helper.
-	 * 
-	 * @param figure
-	 *            the figure
-	 * @param icon
-	 *            the icon
-	 * 
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
@@ -198,11 +161,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Sets the label.
-	 * 
-	 * @param figure
-	 *            the figure
-	 * 
 	 * @generated
 	 */
 	public void setLabel(WrappingLabel figure) {
@@ -210,17 +168,13 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
 		if (figure instanceof WrappingLabel) {
-			(figure).setAlignment(PositionConstants.CENTER);
+			((WrappingLabel) figure).setAlignment(PositionConstants.CENTER);
 		}
 		registerVisuals();
 		refreshVisuals();
 	}
 
 	/**
-	 * Gets the model children.
-	 * 
-	 * @return the model children
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -229,13 +183,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the child by semantic hint.
-	 * 
-	 * @param semanticHint
-	 *            the semantic hint
-	 * 
-	 * @return the child by semantic hint
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,10 +191,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the parser element.
-	 * 
-	 * @return the parser element
-	 * 
 	 * @generated
 	 */
 	protected EObject getParserElement() {
@@ -255,10 +198,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the label icon.
-	 * 
-	 * @return the label icon
-	 * 
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
@@ -266,17 +205,15 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the label text.
-	 * 
-	 * @return the label text
-	 * 
 	 * @generated
 	 */
 	protected String getLabelText() {
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			text = getParser().getPrintString(
+					new EObjectAdapter(parserElement),
+					getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -285,11 +222,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Sets the label text.
-	 * 
-	 * @param text
-	 *            the text
-	 * 
 	 * @generated
 	 */
 	public void setLabelText(String text) {
@@ -301,24 +233,18 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the edit text.
-	 * 
-	 * @return the edits the text
-	 * 
 	 * @generated
 	 */
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
+		return getParser().getEditString(
+				new EObjectAdapter(getParserElement()),
+				getParserOptions().intValue());
 	}
 
 	/**
-	 * Checks if is editable.
-	 * 
-	 * @return true, if checks if is editable
-	 * 
 	 * @generated
 	 */
 	protected boolean isEditable() {
@@ -326,10 +252,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the edit text validator.
-	 * 
-	 * @return the edits the text validator
-	 * 
 	 * @generated
 	 */
 	public ICellEditorValidator getEditTextValidator() {
@@ -340,13 +262,17 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain()
+								.runExclusive(new RunnableWithResult.Impl() {
 
-							public void run() {
-								setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
-							}
-						});
-						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
+									public void run() {
+										setResult(parser.isValidEditString(
+												new EObjectAdapter(element),
+												(String) value));
+									}
+								});
+						return valid.getCode() == ParserEditStatus.EDITABLE ? null
+								: valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
@@ -359,24 +285,17 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the completion processor.
-	 * 
-	 * @return the completion processor
-	 * 
 	 * @generated
 	 */
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
 		}
-		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
+		return getParser().getCompletionProcessor(
+				new EObjectAdapter(getParserElement()));
 	}
 
 	/**
-	 * Gets the parser options.
-	 * 
-	 * @return the parser options
-	 * 
 	 * @generated
 	 */
 	public ParserOptions getParserOptions() {
@@ -384,16 +303,14 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the parser.
-	 * 
-	 * @return the parser
-	 * 
 	 * @generated
 	 */
 	public IParser getParser() {
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
-			IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(UMLElementTypes.AcceptEventAction_2007, getParserElement(), parserHint);
+			IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
+					UMLElementTypes.AcceptEventAction_2007, getParserElement(),
+					parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 
 		}
@@ -401,25 +318,18 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the manager.
-	 * 
-	 * @return the manager
-	 * 
 	 * @generated
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager(this, TextDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new TextDirectEditManager(this, TextDirectEditManager
+					.getTextCellEditorClass(this), UMLEditPartFactory
+					.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
 
 	/**
-	 * Sets the manager.
-	 * 
-	 * @param manager
-	 *            the manager
-	 * 
 	 * @generated
 	 */
 	protected void setManager(DirectEditManager manager) {
@@ -427,8 +337,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Perform direct edit.
-	 * 
 	 * @generated
 	 */
 	protected void performDirectEdit() {
@@ -436,25 +344,16 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Perform direct edit.
-	 * 
-	 * @param eventLocation
-	 *            the event location
-	 * 
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
 		if (getManager().getClass() == TextDirectEditManager.class) {
-			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
+			((TextDirectEditManager) getManager()).show(eventLocation
+					.getSWTPoint());
 		}
 	}
 
 	/**
-	 * Perform direct edit.
-	 * 
-	 * @param initialCharacter
-	 *            the initial character
-	 * 
 	 * @generated
 	 */
 	private void performDirectEdit(char initialCharacter) {
@@ -466,11 +365,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Perform direct edit request.
-	 * 
-	 * @param request
-	 *            the request
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -481,10 +375,17 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+						if (theRequest
+								.getExtendedData()
+								.get(
+										RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest
+									.getExtendedData()
+									.get(
+											RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+						} else if ((theRequest instanceof DirectEditRequest)
+								&& (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
 							performDirectEdit(editRequest.getLocation());
 						} else {
@@ -499,8 +400,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Refresh visuals.
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -514,8 +413,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Refresh label.
-	 * 
 	 * @generated
 	 */
 	protected void refreshLabel() {
@@ -528,49 +425,44 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Refresh underline.
-	 * 
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
 	}
 
 	/**
-	 * Refresh strike through.
-	 * 
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+			((WrappingLabel) getFigure()).setTextStrikeThrough(style
+					.isStrikeThrough());
 		}
 	}
 
 	/**
-	 * Refresh font.
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(style.getFontName(), style
+					.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
+					| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
 
 	/**
-	 * Sets the font color.
-	 * 
-	 * @param color
-	 *            the color
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -579,17 +471,17 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Adds the semantic listeners.
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
-			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
+			parserElements = ((ISemanticParser) getParser())
+					.getSemanticElementsBeingParsed(element);
 			for (int i = 0; i < parserElements.size(); i++) {
-				addListenerFilter("SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
+				addListenerFilter(
+						"SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
 			}
 		} else {
 			super.addSemanticListeners();
@@ -597,8 +489,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Removes the semantic listeners.
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -613,10 +503,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the accessible edit part.
-	 * 
-	 * @return the accessible edit part
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -624,7 +510,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
-				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -634,10 +519,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Gets the font style owner view.
-	 * 
-	 * @return the font style owner view
-	 * 
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
@@ -645,8 +526,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Adds the notational listeners.
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -656,8 +535,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Removes the notational listeners.
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -667,11 +544,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Handle notification event.
-	 * 
-	 * @param event
-	 *            the event
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -680,15 +552,25 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
 			setFontColor(DiagramColorRegistry.getInstance().getColor(c));
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(
+				feature)) {
 			refreshUnderline();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough()
+				.equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(
+				feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(
+						feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Bold()
+						.equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(
+						feature)) {
 			refreshFont();
 		} else {
-			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
+			if (getParser() != null
+					&& getParser().isAffectingEvent(event,
+							getParserOptions().intValue())) {
 				refreshLabel();
 			}
 			if (getParser() instanceof ISemanticParser) {
@@ -706,10 +588,6 @@ public class AcceptEventActionName2EditPart extends CompartmentEditPart implemen
 	}
 
 	/**
-	 * Creates the figure.
-	 * 
-	 * @return the i figure
-	 * 
 	 * @generated
 	 */
 	@Override

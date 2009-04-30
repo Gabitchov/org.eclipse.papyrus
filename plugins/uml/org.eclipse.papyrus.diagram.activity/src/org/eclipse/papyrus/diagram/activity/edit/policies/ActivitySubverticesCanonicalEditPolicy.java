@@ -18,6 +18,7 @@
  */
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -25,9 +26,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewType;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
@@ -47,6 +50,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.PinEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -69,6 +73,11 @@ public class ActivitySubverticesCanonicalEditPolicy extends CanonicalEditPolicy 
 	 */
 	@Override
 	protected List getSemanticChildrenList() {
+		List children = getCanonicalSemanticChildrenList();
+		return filterSemanticChildrenList(children);
+	}
+
+	protected List getCanonicalSemanticChildrenList() {
 		List result = new LinkedList();
 		EObject modelObject = ((View) getHost().getModel()).getElement();
 		View viewObject = (View) getHost().getModel();
@@ -89,63 +98,43 @@ public class ActivitySubverticesCanonicalEditPolicy extends CanonicalEditPolicy 
 			nodeVID = UMLVisualIDRegistry.getNodeVisualID(viewObject, nextValue);
 			switch (nodeVID) {
 			case SendObjectActionEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case SendSignalActionEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case AcceptEventActionEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case ActivityFinalNodeEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case DecisionNodeEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case MergeNodeEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case InitialNodeEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case DataStoreNodeEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case OpaqueActionEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case FlowFinalNodeEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case ForkNodeEditPart.VISUAL_ID: {
@@ -155,33 +144,23 @@ public class ActivitySubverticesCanonicalEditPolicy extends CanonicalEditPolicy 
 				break;
 			}
 			case JoinNodeEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case PinEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case CreateObjectActionEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case CallBehaviorActionEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			case CallOperationActionEditPart.VISUAL_ID: {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 				break;
 			}
 			}
@@ -190,14 +169,25 @@ public class ActivitySubverticesCanonicalEditPolicy extends CanonicalEditPolicy 
 			nextValue = (EObject) values.next();
 			nodeVID = UMLVisualIDRegistry.getNodeVisualID(viewObject, nextValue);
 			if (ActivityPartitionEditPart.VISUAL_ID == nodeVID) {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
-					result.add(nextValue);
-				}
+				result.add(nextValue);
 			}
 		}
 		// end added code
 
 		return result;
+	}
+
+	protected List filterSemanticChildrenList(List children) {
+		List toRemove = new ArrayList();
+		EObject eObject = null;
+		for (Object object : children) {
+			eObject = (EObject) Platform.getAdapterManager().getAdapter(object, EObject.class);
+			if (!MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), eObject)) {
+				toRemove.add(eObject);
+			}
+		}
+		children.removeAll(toRemove);
+		return children;
 	}
 
 	/**
@@ -255,6 +245,29 @@ public class ActivitySubverticesCanonicalEditPolicy extends CanonicalEditPolicy 
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
 		}
 		return myFeaturesToSynchronize;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void refreshSemantic() {
+		super.refreshSemantic();
+		// this will take care of the filtering of views
+		Diagram diagram = MDTUtil.getHostDiagram(this);
+		if (diagram != null) {
+			MDTUtil.filterDiagramViews(diagram);
+		}
+	}
+
+	/**
+	 * To make the DeleteFromDiagram action work while preserving the CanonicalEditPolicy for the EditPart.
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canCreate(EObject object) {
+		return false;
 	}
 
 }

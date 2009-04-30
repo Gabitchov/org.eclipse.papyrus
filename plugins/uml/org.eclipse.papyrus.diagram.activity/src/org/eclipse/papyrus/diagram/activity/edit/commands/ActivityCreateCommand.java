@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 Conselleria de Infraestructuras y Transporte, Generalitat 
- * de la Comunitat Valenciana . All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- *
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
 import java.util.List;
@@ -19,7 +9,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -33,7 +23,6 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
-
 	/**
 	 * @generated
 	 */
@@ -51,7 +40,8 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static ActivityCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static ActivityCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
 		return new ActivityCreateCommand(req, eObject);
 	}
 
@@ -68,7 +58,8 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -98,8 +89,11 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Diagram getDiagramFromRequest() {
-		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
+
+		if (getRequest().getParameters().get(
+				MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(
+					MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -116,17 +110,20 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		Activity newElement = (Activity) super.doDefaultElementCreation();
 		if (newElement != null) {
-			Object feature = getElementToEdit().eGet(getContainmentFeature(), true);
+			Object feature = getElementToEdit().eGet(getContainmentFeature(),
+					true);
 			if (feature instanceof List) {
 				((List) feature).add(newElement);
 			}
 
-			ElementInitializers.init_Activity_1001(newElement);
+			UMLElementTypes.init_Activity_1001(newElement);
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
+						newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
+						UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;

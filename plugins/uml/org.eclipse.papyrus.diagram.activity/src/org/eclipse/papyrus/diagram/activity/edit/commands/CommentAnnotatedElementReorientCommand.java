@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 Conselleria de Infraestructuras y Transporte, Generalitat 
- * de la Comunitat Valenciana . All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- *
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -17,7 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
@@ -51,7 +41,8 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public CommentAnnotatedElementReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public CommentAnnotatedElementReorientCommand(
+			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -67,10 +58,10 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		if (false == referenceOwner instanceof Comment) {
 			return false;
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -83,7 +74,9 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Element && newEnd instanceof Comment)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistCommentAnnotatedElement_3006(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistCommentAnnotatedElement_3006(getNewSource(),
+						getOldTarget());
 	}
 
 	/**
@@ -93,21 +86,25 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistCommentAnnotatedElement_3006(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistCommentAnnotatedElement_3006(getOldSource(),
+						getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -125,21 +122,25 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		// modify the parent of the old Comment?
 		// if now it has only one annotated Element
 		if (getOldSource().getAnnotatedElements().size() == 1) {
-			getOldSource().getAnnotatedElements().get(0).getOwnedComments().add(getOldSource());
+			getOldSource().getAnnotatedElements().get(0).getOwnedComments()
+					.add(getOldSource());
 		}
 		// if now it has no annotated Elements
 		if (getOldSource().getAnnotatedElements().size() == 0) {
-			((Model) getOldSource().eResource().getContents().get(0)).getOwnedComments().add(getOldSource());
+			((Model) getOldSource().eResource().getContents().get(0))
+					.getOwnedComments().add(getOldSource());
 		}
 
 		// modify the parent of the new Comment?
 		// if now it has only one annotated Element
 		if (getNewSource().getAnnotatedElements().size() == 1) {
-			getNewSource().getAnnotatedElements().get(0).getOwnedComments().add(getNewSource());
+			getNewSource().getAnnotatedElements().get(0).getOwnedComments()
+					.add(getNewSource());
 		}
 		// if now it has more than one annotated Element
 		if (getNewSource().getAnnotatedElements().size() > 1) {
-			((Model) getNewSource().eResource().getContents().get(0)).getOwnedComments().add(getNewSource());
+			((Model) getNewSource().eResource().getContents().get(0))
+					.getOwnedComments().add(getNewSource());
 		}
 
 		return CommandResult.newOKCommandResult(referenceOwner);

@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.view.factories;
 
 import java.util.ArrayList;
@@ -32,10 +21,14 @@ public class OutputPinName3ViewFactory extends AbstractLabelViewFactory {
 	 * @generated
 	 */
 	@Override
-	public View createView(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node view = (Node) super.createView(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+	public View createView(IAdaptable semanticAdapter, View containerView,
+			String semanticHint, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node view = (Node) super.createView(semanticAdapter, containerView,
+				semanticHint, index, persisted, preferencesHint);
 		Location location = (Location) view.getLayoutConstraint();
-		IMapMode mapMode = MeasurementUnitHelper.getMapMode(containerView.getDiagram().getMeasurementUnit());
+		IMapMode mapMode = MeasurementUnitHelper.getMapMode(containerView
+				.getDiagram().getMeasurementUnit());
 		location.setX(mapMode.DPtoLP(0));
 		location.setY(mapMode.DPtoLP(5));
 		return view;

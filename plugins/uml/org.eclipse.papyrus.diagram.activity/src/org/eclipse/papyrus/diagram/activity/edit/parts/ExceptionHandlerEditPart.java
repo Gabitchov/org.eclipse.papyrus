@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
@@ -34,16 +23,16 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.editpolicies.ConnectionEditPo
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ExceptionHandlerItemSemanticEditPolicy;
-import org.eclipse.uml2.uml.UMLPackage;
-
 import org.eclipse.papyrus.diagram.common.commands.RemoveEObjectReferencesFromDiagram;
 import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class ExceptionHandlerEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ExceptionHandlerEditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -63,25 +52,35 @@ public class ExceptionHandlerEditPart extends ConnectionNodeEditPart implements 
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExceptionHandlerItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new ExceptionHandlerItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteOnlyViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new DeleteOnlyViewComponentEditPolicy());
 		// ** install new ConnectionEditPolicy
-		installEditPolicy(EditPolicy.CONNECTION_ROLE, new ConnectionEditPolicy() {
+		installEditPolicy(EditPolicy.CONNECTION_ROLE,
+				new ConnectionEditPolicy() {
+					@Override
+					protected boolean shouldDeleteSemantic() {
+						return false;
+					}
 
-			@Override
-			protected boolean shouldDeleteSemantic() {
-				return false;
-			}
-
-			@Override
-			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-				Command command = super.createDeleteViewCommand(deleteRequest);
-				command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(getEditingDomain(), ExceptionHandlerEditPart.this.getDiagramView(), Collections
-						.singletonList(resolveSemanticElement()))));
-				return command;
-			}
-		});
+					@Override
+					protected Command createDeleteViewCommand(
+							GroupRequest deleteRequest) {
+						Command command = super
+								.createDeleteViewCommand(deleteRequest);
+						command = command
+								.chain(new ICommandProxy(
+										new RemoveEObjectReferencesFromDiagram(
+												getEditingDomain(),
+												ExceptionHandlerEditPart.this
+														.getDiagramView(),
+												Collections
+														.singletonList(resolveSemanticElement()))));
+						return command;
+					}
+				});
 	}
 
 	/**
@@ -105,7 +104,8 @@ public class ExceptionHandlerEditPart extends ConnectionNodeEditPart implements 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -155,14 +155,14 @@ public class ExceptionHandlerEditPart extends ConnectionNodeEditPart implements 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 
 		features.add(UMLPackage.eINSTANCE.getExceptionHandler_ProtectedNode());
 		features.add(UMLPackage.eINSTANCE.getExceptionHandler_HandlerBody());
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification, features);
+		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification,
+				features);
 	}
 
 }

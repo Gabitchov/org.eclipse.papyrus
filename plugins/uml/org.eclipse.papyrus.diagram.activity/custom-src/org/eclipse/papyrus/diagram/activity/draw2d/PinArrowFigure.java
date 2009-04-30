@@ -1,13 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
+ * Copyright (c) 2007-2009 Conselleria de Infraestructuras y Transporte, Generalitat 
+ * de la Comunitat Valenciana . All rights reserved. This program
  * and the accompanying materials are made available under the terms of the
  * Eclipse Public License v1.0 which accompanies this distribution, and is
  * available at http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
+ * Contributors: Marc Gil Sendra (Prodevelop) - Initial api implementation
+ *
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.draw2d;
 
@@ -30,6 +29,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePin2EditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinEditPart;
 
+/**
+ * A figure showing an enclosed Arrow that points to its parent figure according to which side it is located.
+ * 
+ * @author <a href="mailto:mgil@prodevelop.es">Marc Gil</a>
+ */
 public class PinArrowFigure extends Shape {
 
 	protected EditPart editPart;

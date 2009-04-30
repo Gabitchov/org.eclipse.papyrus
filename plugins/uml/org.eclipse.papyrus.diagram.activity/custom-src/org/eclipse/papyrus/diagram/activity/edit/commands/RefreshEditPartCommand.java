@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 Conselleria de Infraestructuras y Transporte, Generalitat 
+ * Copyright (c) 2007-2009 Conselleria de Infraestructuras y Transporte, Generalitat 
  * de la Comunitat Valenciana . All rights reserved. This program
  * and the accompanying materials are made available under the terms of the
  * Eclipse Public License v1.0 which accompanies this distribution, and is
@@ -14,7 +14,6 @@ package org.eclipse.papyrus.diagram.activity.edit.commands;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RefreshEditPartCommand.
  * 

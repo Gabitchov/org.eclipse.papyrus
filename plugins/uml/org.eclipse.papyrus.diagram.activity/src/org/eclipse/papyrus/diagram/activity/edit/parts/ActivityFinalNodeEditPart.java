@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
@@ -22,13 +11,12 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -52,6 +40,7 @@ import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityFinalNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.commands.AnnotateNodeStyleCommand;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
@@ -62,7 +51,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart implements PrimaryShapeEditPart {
+public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart
+		implements PrimaryShapeEditPart {
 
 	/**
 	 * @generated
@@ -92,9 +82,11 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityFinalNodeItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new ActivityFinalNodeItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteOnlyViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new DeleteOnlyViewComponentEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -106,25 +98,23 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				// Commented to show the "virtual" link that links the two nodes
 				// if (child instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart) {
-				// return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
+				// 	return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
 				// }
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -151,31 +141,53 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	 * @generated
 	 */
 	@Override
-	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+	protected void addBorderItem(IFigure borderItemContainer,
+			IBorderItemEditPart borderItemEditPart) {
 		// Modify the BorderItemLocator to remove the snap of the labels
 		if (borderItemEditPart instanceof LabelEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NSEW) {
-
-				@Override
-				public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
-					return proposedLocation;
-				}
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
+					PositionConstants.NSEW) {
 
 				@Override
 				public void relocate(IFigure borderItem) {
 					Dimension size = getSize(borderItem);
-					Rectangle rectSuggested = new Rectangle(getPreferredLocation(borderItem), size);
-					int closestSide = findClosestSideOfParent(rectSuggested, getParentBorder());
+					Rectangle rectSuggested = new Rectangle(
+							getPreferredLocation(borderItem), size);
+					int closestSide = findClosestSideOfParent(rectSuggested,
+							getParentBorder());
 					setPreferredSideOfParent(closestSide);
 
 					borderItem.setBounds(rectSuggested);
 
-					setCurrentSideOfParent(findClosestSideOfParent(rectSuggested, getParentBorder()));
+					setCurrentSideOfParent(findClosestSideOfParent(
+							rectSuggested, getParentBorder()));
 				}
+
+				@Override
+				protected Point getPreferredLocation(int side,
+						IFigure borderItem) {
+					Point p = super.getPreferredLocation(side, borderItem);
+					if (side == PositionConstants.NORTH
+							|| side == PositionConstants.SOUTH) {
+						Dimension borderItemSize = getSize(borderItem);
+						p.x = p.x - borderItemSize.width / 2;
+					} else if (side == PositionConstants.EAST
+							|| side == PositionConstants.WEST) {
+						Dimension borderItemSize = getSize(borderItem);
+						p.y = p.y - borderItemSize.height / 2;
+					}
+					return p;
+				}
+
 			};
+
+			if (borderItemEditPart instanceof ActivityFinalNodeNameEditPart)
+				locatorActivityFinalNodeNameEditPart(locator);
+
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else if (borderItemEditPart instanceof ActivityFinalNodeNameEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
+					PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -186,8 +198,18 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	/**
 	 * @generated
 	 */
+	protected void locatorActivityFinalNodeNameEditPart(
+			BorderItemLocator locator) {
+		locator.setBorderItemOffset(new Dimension(0, 0));
+		locator.setPreferredSideOfParent(PositionConstants.SOUTH);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(23), getMapMode().DPtoLP(23));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(23), getMapMode().DPtoLP(23));
 		return result;
 	}
 
@@ -207,7 +229,8 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -222,10 +245,9 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -248,16 +270,15 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActivityFinalNodeNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry
+				.getType(ActivityFinalNodeNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() instanceof ShapeStyle) {
-			addChangesToAppearenceEAnnotation((EAttribute) event.getFeature());
 			super.handleNotificationEvent(event);
 
 			// Propagate style
@@ -270,9 +291,11 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 				if (ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel()).getStyle(NotationPackage.eINSTANCE.getShapeStyle());
+				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
 				if (style != null) {
-					style.eSet((EStructuralFeature) event.getFeature(), event.getNewValue());
+					style.eSet((EStructuralFeature) event.getFeature(), event
+							.getNewValue());
 					ep.refresh();
 				}
 			}
@@ -283,7 +306,8 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		features.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, event, features);
+		DiagramEditPartsUtil
+				.handleNotificationForDiagram(this, event, features);
 	}
 
 	/**
@@ -301,9 +325,12 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 			this.setLayoutManager(layoutThis);
 
 			this.setForegroundColor(ColorConstants.black);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(23), getMapMode().DPtoLP(23)));
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(23), getMapMode().DPtoLP(23)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(23), getMapMode().DPtoLP(23)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(23),
+					getMapMode().DPtoLP(23)));
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(23),
+					getMapMode().DPtoLP(23)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(23),
+					getMapMode().DPtoLP(23)));
 			createContents();
 		}
 
@@ -314,9 +341,12 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 
 			Ellipse activityFinalFigure_inner0 = new Ellipse();
 			activityFinalFigure_inner0.setBackgroundColor(ColorConstants.black);
-			activityFinalFigure_inner0.setPreferredSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
-			activityFinalFigure_inner0.setMaximumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
-			activityFinalFigure_inner0.setMinimumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			activityFinalFigure_inner0.setPreferredSize(new Dimension(
+					getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			activityFinalFigure_inner0.setMaximumSize(new Dimension(
+					getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			activityFinalFigure_inner0.setMinimumSize(new Dimension(
+					getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
 
 			this.add(activityFinalFigure_inner0);
 
@@ -347,64 +377,10 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	/**
 	 * @generated
 	 */
-	public static final String APPEARANCE_EANNOTATION_NAME = "org.eclipse.papyrus.diagram.common.gmfextension.appearance";
-
-	/**
-	 * @generated
-	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getPrimaryView().getEAnnotation(APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getPrimaryView().getEAnnotation(
+				AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EAnnotation createAppearenceEAnnotation() {
-		EAnnotation eAnn = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnn.setSource(APPEARANCE_EANNOTATION_NAME);
-		getPrimaryView().getEAnnotations().add(eAnn);
-		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChangesToAppearenceEAnnotation(EAttribute attribute) {
-		// Get the EAnnotation
-		EAnnotation eAnn = getAppearenceEAnnotation();
-
-		// If there is no EAnnotation, create it
-		if (eAnn == null) {
-			eAnn = createAppearenceEAnnotation();
-		}
-
-		// If change is already added, don't continue
-		if (eAnn.getReferences().contains(attribute))
-			return;
-
-		// Background
-		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
-		}
-
-		// Foreground
-		if (NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
-		}
-
-		// Font
-		if (NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_NAME);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__BOLD);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__ITALIC);
-		}
 	}
 
 	/**
@@ -441,7 +417,9 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
 				if (gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart && ((GraphicalEditPart) gEP).resolveSemanticElement() == resolveSemanticElement()) {
+					if (gEP instanceof GraphicalEditPart
+							&& ((GraphicalEditPart) gEP)
+									.resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
@@ -470,7 +448,8 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
 			super.setBackgroundColor(color);
@@ -484,7 +463,8 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 		parent.setBackgroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresBackgroundColor((IFigure) obj, color);
 			}
 		}
@@ -496,7 +476,8 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
 			super.setForegroundColor(color);
@@ -511,7 +492,8 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresForegroundColor((IFigure) obj, color);
 			}
 		}
@@ -524,7 +506,8 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
 			super.setFontColor(color);
@@ -539,7 +522,8 @@ public class ActivityFinalNodeEditPart extends AbstractBorderedShapeEditPart imp
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresFontColor((IFigure) obj, color);
 			}
 		}

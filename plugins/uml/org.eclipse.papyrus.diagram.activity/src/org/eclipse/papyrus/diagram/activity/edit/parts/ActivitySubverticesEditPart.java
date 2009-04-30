@@ -1,14 +1,22 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Copyright (c) of modifications Conselleria de Infraestructuras y
+ * Transporte, Generalitat de la Comunitat Valenciana. All rights reserved.
+ * Modifications are made available under the terms of the Eclipse Public
+ * License v1.0.
+ *
+ * Contributors:
+ *  Sergey Gribovsky (Borland) - initial API and implementation
+ *  Francisco Javier Cano Mu�oz (Prodevelop)
+ *  Marc Gil Sendra (Prodevelop) - can create ActivityParamenterNodes by clicking in
+ *  	the ActivitySubvertices compartment
+ */
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
@@ -52,12 +60,12 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ActivitySubverticesIte
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 
 /**
  * @generated
@@ -187,8 +195,8 @@ public class ActivitySubverticesEditPart extends ShapeCompartmentEditPart {
 		;
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivitySubverticesItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
-		org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy dragAndDropEditPolicy = null;
-		dragAndDropEditPolicy = new org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy(resolver) {
+		DragDropEditPolicy dragAndDropEditPolicy = null;
+		dragAndDropEditPolicy = new DragDropEditPolicy(resolver) {
 
 			// don't highlight the target if the element to drag is a Label
 			@Override
@@ -294,7 +302,7 @@ public class ActivitySubverticesEditPart extends ShapeCompartmentEditPart {
 			String id = iet.getSemanticHint();
 
 			if (org.eclipse.gef.RequestConstants.REQ_CREATE.equals(type) && (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
-				return org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
+				return DiagramEditPartsUtil.getDiagramEditPart(this).getCommand(_request);
 			}
 		}
 		// don't let to move a comment into a compartment
@@ -389,7 +397,7 @@ public class ActivitySubverticesEditPart extends ShapeCompartmentEditPart {
 		features.add(UMLPackage.eINSTANCE.getActivity_Group());
 		features.add(UMLPackage.eINSTANCE.getActivity_Edge());
 		features.add(UMLPackage.eINSTANCE.getActivity_Partition());
-		org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.handleNotificationForView(this, event, features);
+		DiagramEditPartsUtil.handleNotificationForView(this, event, features);
 
 		// Activity partitions need refresh too.
 		for (Object o : getChildren()) {

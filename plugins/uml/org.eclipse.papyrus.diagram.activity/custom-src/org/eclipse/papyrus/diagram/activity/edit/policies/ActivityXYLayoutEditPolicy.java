@@ -1,5 +1,5 @@
 /***************************************************************************
- * Copyright (c) 2007 Conselleria de Infraestructuras y Transporte,
+ * Copyright (c) 2007-2009 Conselleria de Infraestructuras y Transporte,
  * Generalitat de la Comunitat Valenciana . All rights reserved. This program
  * and the accompanying materials are made available under the terms of the
  * Eclipse Public License v1.0 which accompanies this distribution, and is
@@ -51,7 +51,6 @@ import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ActivityPartition;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ActivityXYLayoutEditPolicy.
  */
@@ -74,8 +73,9 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				if (o instanceof LabelEditPart)
 					return UnexecutableCommand.INSTANCE;
 			}
-
-			for (Iterator<EditPart> it = chr.getEditParts().iterator(); it.hasNext();) {
+			
+			for (Iterator<EditPart> it = chr.getEditParts().iterator(); it
+					.hasNext();) {
 				EditPart ep = it.next();
 
 				if (((View) ep.getModel()).getElement() instanceof ActivityPartition) {
@@ -86,10 +86,16 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					Rectangle boundsDelta;
 
 					editingDomain = apep.getEditingDomain();
-					boundsDelta = new Rectangle(chr.getMoveDelta().x, chr.getMoveDelta().y, chr.getSizeDelta().width, chr.getSizeDelta().height);
+					boundsDelta = new Rectangle(chr.getMoveDelta().x, chr
+							.getMoveDelta().y, chr.getSizeDelta().width, chr
+							.getSizeDelta().height);
 					Command superCommand = super.getCommand(request);
 					if (superCommand != null) {
-						superCommand = superCommand.chain(new ICommandProxy(new ActivityPartitionViewAlignerCommand(editingDomain, label, ep, boundsDelta)));
+						superCommand = superCommand
+								.chain(new ICommandProxy(
+										new ActivityPartitionViewAlignerCommand(
+												editingDomain, label, ep,
+												boundsDelta)));
 					}
 
 					return superCommand;
@@ -101,20 +107,37 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		if (request instanceof CreateViewAndElementRequest) {
 			GraphicalEditPart host = (GraphicalEditPart) getHost();
 
-			CreateElementRequest createElementRequest = (CreateElementRequest) ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter().getAdapter(
-					CreateElementRequest.class);
+			CreateElementRequest createElementRequest = (CreateElementRequest) ((CreateViewAndElementRequest) request)
+					.getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter().getAdapter(
+							CreateElementRequest.class);
 
-			IAdaptable adaptableToView = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor();
-			Point location = ((CreateViewAndElementRequest) request).getLocation();
+			IAdaptable adaptableToView = ((CreateViewAndElementRequest) request)
+					.getViewAndElementDescriptor();
+			Point location = ((CreateViewAndElementRequest) request)
+					.getLocation();
 
-			if (!createElementRequest.getElementType().equals(UMLElementTypes.ActivityPartition_2031) && !createElementRequest.getElementType().equals(UMLElementTypes.ActivityPartition_2030)) {
-				((CreateViewAndElementRequest) request).setLocation(adaptLocationToVisibleRegion(host, ((CreateViewAndElementRequest) request).getLocation()));
-				return new ICommandProxy(new SetBoundsCommand(host.getEditingDomain(), "Set Element initial location", adaptableToView, adaptLocationToVisibleRegion(host, location)));
+			if (!createElementRequest.getElementType().equals(
+					UMLElementTypes.ActivityPartition_2031)
+					&& !createElementRequest.getElementType().equals(
+							UMLElementTypes.ActivityPartition_2030)) {
+				((CreateViewAndElementRequest) request)
+						.setLocation(adaptLocationToVisibleRegion(host,
+								((CreateViewAndElementRequest) request)
+										.getLocation()));
+				return new ICommandProxy(new SetBoundsCommand(host
+						.getEditingDomain(), "Set Element initial location",
+						adaptableToView, adaptLocationToVisibleRegion(host,
+								location)));
 			}
 
-			Rectangle bounds = getActivityPartitionBounds(host, ((CreateViewAndElementRequest) request).getLocation());
+			Rectangle bounds = getActivityPartitionBounds(host,
+					((CreateViewAndElementRequest) request).getLocation());
 			if (bounds != null) {
-				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(host.getEditingDomain(), "Set ActivityPartition initial Location", adaptableToView, bounds);
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(host
+						.getEditingDomain(),
+						"Set ActivityPartition initial Location",
+						adaptableToView, bounds);
 				return new ICommandProxy(setBoundsCommand);
 			}
 		}
@@ -124,24 +147,37 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			GraphicalEditPart host = (GraphicalEditPart) getHost();
 
 			CreateViewRequest createViewRequest = (CreateViewRequest) request;
-			ViewDescriptor viewDescriptor = createViewRequest.getViewDescriptors().size() > 0 ? ((ViewDescriptor) createViewRequest.getViewDescriptors().get(0)) : null;
+			ViewDescriptor viewDescriptor = createViewRequest
+					.getViewDescriptors().size() > 0 ? ((ViewDescriptor) createViewRequest
+					.getViewDescriptors().get(0))
+					: null;
 			if (viewDescriptor == null) {
 				return super.getCommand(request);
 			}
-			Object adapted = viewDescriptor.getElementAdapter().getAdapter(EObject.class);
+			Object adapted = viewDescriptor.getElementAdapter().getAdapter(
+					EObject.class);
 			if (adapted instanceof EObject == false) {
 				return super.getCommand(request);
 			}
-			int elementType = UMLVisualIDRegistry.getNodeVisualID(host.getNotationView(), (EObject) adapted);
-			if (elementType != ActivityPartitionEditPart.VISUAL_ID && elementType != ActivityPartition2EditPart.VISUAL_ID) {
-				createViewRequest.setLocation(adaptLocationToVisibleRegion(host, createViewRequest.getLocation()));
-				return new ICommandProxy(new SetBoundsCommand(host.getEditingDomain(), "Set Element initial location", viewDescriptor, adaptLocationToVisibleRegion(host, createViewRequest
-						.getLocation())));
+			int elementType = UMLVisualIDRegistry.getNodeVisualID(host
+					.getNotationView(), (EObject) adapted);
+			if (elementType != ActivityPartitionEditPart.VISUAL_ID
+					&& elementType != ActivityPartition2EditPart.VISUAL_ID) {
+				createViewRequest.setLocation(adaptLocationToVisibleRegion(
+						host, createViewRequest.getLocation()));
+				return new ICommandProxy(new SetBoundsCommand(host
+						.getEditingDomain(), "Set Element initial location",
+						viewDescriptor, adaptLocationToVisibleRegion(host,
+								createViewRequest.getLocation())));
 			}
 
-			Rectangle bounds = getActivityPartitionBounds(host, createViewRequest.getLocation());
+			Rectangle bounds = getActivityPartitionBounds(host,
+					createViewRequest.getLocation());
 			if (bounds != null) {
-				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(host.getEditingDomain(), "Set ActivityPartition initial Location", viewDescriptor, bounds);
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(host
+						.getEditingDomain(),
+						"Set ActivityPartition initial Location",
+						viewDescriptor, bounds);
 				return new ICommandProxy(setBoundsCommand);
 			}
 		}
@@ -150,9 +186,11 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		if (RequestConstants.REQ_DELETE.equals(request.getType())) {
 			GroupRequest groupRequest = (GroupRequest) request;
 			// check that there are any EditParts selected.
-			if (groupRequest.getEditParts() != null && groupRequest.getEditParts().size() > 0) {
+			if (groupRequest.getEditParts() != null
+					&& groupRequest.getEditParts().size() > 0) {
 
-				for (Iterator<EditPart> it = this.getHost().getChildren().iterator(); it.hasNext();) {
+				for (Iterator<EditPart> it = this.getHost().getChildren()
+						.iterator(); it.hasNext();) {
 					EditPart ep = it.next();
 
 					// if the ActivityPartition selected is the same of the
@@ -161,7 +199,8 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					if (ep.equals(groupRequest.getEditParts().get(0)))
 						continue;
 
-					if (ep instanceof ActivityPartitionEditPart || ep instanceof ActivityPartition2EditPart) {
+					if (ep instanceof ActivityPartitionEditPart
+							|| ep instanceof ActivityPartition2EditPart) {
 						GraphicalEditPart apep = (GraphicalEditPart) ep;
 
 						TransactionalEditingDomain editingDomain;
@@ -170,26 +209,38 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 						editingDomain = apep.getEditingDomain();
 						boundsDelta = new Rectangle(0, 0, 0, 0);
-						EditPart epart = (EditPart) groupRequest.getEditParts().get(0);
+						EditPart epart = (EditPart) groupRequest.getEditParts()
+								.get(0);
 						View v = (View) epart.getModel();
 						EObject e = v.getElement();
 
-						return new ICommandProxy(new ActivityPartitionViewAlignerCommand(editingDomain, label, ep, boundsDelta));
+						return new ICommandProxy(
+								new ActivityPartitionViewAlignerCommand(
+										editingDomain, label, ep, boundsDelta));
 					}
 				}
 			}
 		}
 
 		// delete partition by context menu
-		if (request instanceof EditCommandRequestWrapper && ((EditCommandRequestWrapper) request).getEditCommandRequest() instanceof DestroyElementRequest) {
+		if (request instanceof EditCommandRequestWrapper
+				&& ((EditCommandRequestWrapper) request)
+						.getEditCommandRequest() instanceof DestroyElementRequest) {
 			EditCommandRequestWrapper ecrw = (EditCommandRequestWrapper) request;
-			DestroyElementRequest der = (DestroyElementRequest) ecrw.getEditCommandRequest();
+			DestroyElementRequest der = (DestroyElementRequest) ecrw
+					.getEditCommandRequest();
 
-			for (Iterator<EditPart> it = this.getHost().getChildren().iterator(); it.hasNext();) {
+			for (Iterator<EditPart> it = this.getHost().getChildren()
+					.iterator(); it.hasNext();) {
 				EditPart ep = it.next();
 
-				if (der.getElementToDestroy() != null && ((ep instanceof ActivityPartitionEditPart && !((ActivityPartitionEditPart) ep).resolveSemanticElement().equals(der.getElementToDestroy())))
-						|| (ep instanceof ActivityPartition2EditPart && !((ActivityPartition2EditPart) ep).resolveSemanticElement().equals(der.getElementToDestroy()))) {
+				if (der.getElementToDestroy() != null
+						&& ((ep instanceof ActivityPartitionEditPart && !((ActivityPartitionEditPart) ep)
+								.resolveSemanticElement().equals(
+										der.getElementToDestroy())))
+						|| (ep instanceof ActivityPartition2EditPart && !((ActivityPartition2EditPart) ep)
+								.resolveSemanticElement().equals(
+										der.getElementToDestroy()))) {
 					GraphicalEditPart apep = (GraphicalEditPart) ep;
 
 					TransactionalEditingDomain editingDomain;
@@ -198,9 +249,12 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 					editingDomain = apep.getEditingDomain();
 					boundsDelta = new Rectangle(0, 0, 0, 0);
-					return new ICommandProxy(new ActivityPartitionViewAlignerCommand(editingDomain, label, ep, boundsDelta));
+					return new ICommandProxy(
+							new ActivityPartitionViewAlignerCommand(
+									editingDomain, label, ep, boundsDelta));
 				}
-				if (der.getElementToDestroy() == null && ep instanceof ActivityPartitionEditPart) {
+				if (der.getElementToDestroy() == null
+						&& ep instanceof ActivityPartitionEditPart) {
 					GraphicalEditPart apep = (GraphicalEditPart) ep;
 
 					TransactionalEditingDomain editingDomain;
@@ -209,7 +263,9 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 					editingDomain = apep.getEditingDomain();
 					boundsDelta = new Rectangle(0, 0, 0, 0);
-					return new ICommandProxy(new ActivityPartitionViewAlignerCommand(editingDomain, label, ep, boundsDelta));
+					return new ICommandProxy(
+							new ActivityPartitionViewAlignerCommand(
+									editingDomain, label, ep, boundsDelta));
 				}
 			}
 		}
@@ -229,7 +285,8 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * @return the point
 	 */
 
-	private Point adaptLocationToVisibleRegion(GraphicalEditPart host, Point bounds) {
+	private Point adaptLocationToVisibleRegion(GraphicalEditPart host,
+			Point bounds) {
 		Point newBounds = new Point();
 
 		Point hostPoint = host.getFigure().getBounds().getTopLeft().getCopy();
@@ -261,7 +318,8 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @return the activity partition bounds
 	 */
-	private Rectangle getActivityPartitionBounds(GraphicalEditPart host, Point location) {
+	private Rectangle getActivityPartitionBounds(GraphicalEditPart host,
+			Point location) {
 		List<GraphicalEditPart> sortedPartitions = SortActivitiesPartitionsByX(getAllActivityPartitions(host));
 
 		Rectangle bounds = new Rectangle();
@@ -273,7 +331,8 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			bounds.width = -1;
 			bounds.height = -1;
 		} else {
-			GraphicalEditPart last = sortedPartitions.get(sortedPartitions.size() - 1);
+			GraphicalEditPart last = sortedPartitions.get(sortedPartitions
+					.size() - 1);
 			Rectangle lastBounds = last.getFigure().getBounds();
 
 			bounds.x = lastBounds.x + lastBounds.width;
@@ -293,10 +352,12 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @return the all activity partitions
 	 */
-	private List<GraphicalEditPart> getAllActivityPartitions(GraphicalEditPart apep) {
+	private List<GraphicalEditPart> getAllActivityPartitions(
+			GraphicalEditPart apep) {
 
 		List<GraphicalEditPart> activities = new LinkedList<GraphicalEditPart>();
-		for (Iterator<EditPart> it = apep.getChildren().iterator(); it.hasNext();) {
+		for (Iterator<EditPart> it = apep.getChildren().iterator(); it
+				.hasNext();) {
 			EditPart ep = it.next();
 			if (((View) ep.getModel()).getElement() instanceof ActivityPartition) {
 				activities.add((GraphicalEditPart) ep);
@@ -314,7 +375,8 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @return the list< graphical edit part>
 	 */
-	private List<GraphicalEditPart> SortActivitiesPartitionsByX(List<GraphicalEditPart> activities) {
+	private List<GraphicalEditPart> SortActivitiesPartitionsByX(
+			List<GraphicalEditPart> activities) {
 		// Compare two ActivityPartitionEditParts by their x coordinate
 		Comparator<GraphicalEditPart> comp = new Comparator<GraphicalEditPart>() {
 
@@ -335,7 +397,8 @@ public class ActivityXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 		};
 
-		GraphicalEditPart[] activitiesArray = new GraphicalEditPart[activities.size()];
+		GraphicalEditPart[] activitiesArray = new GraphicalEditPart[activities
+				.size()];
 		activities.toArray(activitiesArray);
 
 		Arrays.sort(activitiesArray, comp);

@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.part;
 
 import org.eclipse.core.expressions.PropertyTester;
@@ -24,7 +13,8 @@ public class UMLDomainModelElementTester extends PropertyTester {
 	/**
 	 * @generated
 	 */
-	public boolean test(Object receiver, String method, Object[] args, Object expectedValue) {
+	public boolean test(Object receiver, String method, Object[] args,
+			Object expectedValue) {
 		if (false == receiver instanceof EObject) {
 			return false;
 		}
@@ -132,7 +122,8 @@ public class UMLDomainModelElementTester extends PropertyTester {
 		if (eClass == UMLPackage.eINSTANCE.getConnectableElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getConnectableElementTemplateParameter()) {
+		if (eClass == UMLPackage.eINSTANCE
+				.getConnectableElementTemplateParameter()) {
 			return true;
 		}
 		if (eClass == UMLPackage.eINSTANCE.getConnectorEnd()) {
@@ -492,7 +483,8 @@ public class UMLDomainModelElementTester extends PropertyTester {
 		if (eClass == UMLPackage.eINSTANCE.getMessageOccurrenceSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExecutionOccurrenceSpecification()) {
+		if (eClass == UMLPackage.eINSTANCE
+				.getExecutionOccurrenceSpecification()) {
 			return true;
 		}
 		if (eClass == UMLPackage.eINSTANCE.getReceiveOperationEvent()) {
@@ -588,7 +580,8 @@ public class UMLDomainModelElementTester extends PropertyTester {
 		if (eClass == UMLPackage.eINSTANCE.getClearStructuralFeatureAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getRemoveStructuralFeatureValueAction()) {
+		if (eClass == UMLPackage.eINSTANCE
+				.getRemoveStructuralFeatureValueAction()) {
 			return true;
 		}
 		if (eClass == UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction()) {
@@ -717,7 +710,8 @@ public class UMLDomainModelElementTester extends PropertyTester {
 		if (eClass == UMLPackage.eINSTANCE.getReadLinkObjectEndAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReadLinkObjectEndQualifierAction()) {
+		if (eClass == UMLPackage.eINSTANCE
+				.getReadLinkObjectEndQualifierAction()) {
 			return true;
 		}
 		if (eClass == UMLPackage.eINSTANCE.getCreateLinkObjectAction()) {

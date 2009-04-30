@@ -1,14 +1,21 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Copyright (c) of modifications Conselleria de Infraestructuras y
+ * Transporte, Generalitat de la Comunitat Valenciana. All rights reserved.
+ * Modifications are made available under the terms of the Eclipse Public
+ * License v1.0.
+ *
+ * Contributors:
+ *  Sergey Gribovsky (Borland) - initial API and implementation
+ *  Francisco Javier Cano Mu�oz (Prodevelop)
+ *  Marc Gil Sendra (Prodevelop) - Reorder bordered childs error solved
+ */
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
@@ -28,10 +35,8 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -57,20 +62,21 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.CallOperationActionCanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.CallOperationActionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.commands.AnnotateNodeStyleCommand;
+import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
-
 /**
  * @generated
  */
-public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart implements PrimaryShapeEditPart {
+public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart
+		implements PrimaryShapeEditPart {
 
 	/**
 	 * @generated
@@ -99,13 +105,18 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CallOperationActionItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new CallOperationActionItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new DragDropEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteOnlyViewComponentEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new CallOperationActionCanonicalEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new DeleteOnlyViewComponentEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new CallOperationActionCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -117,25 +128,23 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				// Commented to show the "virtual" link that links the two nodes
 				// if (child instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart) {
-				// return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
+				// 	return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
 				// }
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -147,7 +156,7 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ActionBaseFigure figure = new ActionBaseFigure();
+		ActionBaseFigure figure = new ActionBaseFigureAux();
 		return primaryShape = figure;
 	}
 
@@ -163,26 +172,36 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof CallOperationActionNameEditPart) {
-			((CallOperationActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureActionBaseFigure_name());
+			((CallOperationActionNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureActionBaseFigure_name());
 			return true;
 		}
 		if (childEditPart instanceof CallOperationActionName2EditPart) {
-			((CallOperationActionName2EditPart) childEditPart).setLabel(getPrimaryShape().getFigureActionBaseFigure_stereotypes());
+			((CallOperationActionName2EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureActionBaseFigure_stereotypes());
 			return true;
 		}
 		if (childEditPart instanceof OutputPin4EditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPin4EditPart) childEditPart).getFigure(), locator);
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
+					PositionConstants.EAST);
+			getBorderedFigure().getBorderItemContainer().add(
+					((OutputPin4EditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 		if (childEditPart instanceof InputPin5EditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((InputPin5EditPart) childEditPart).getFigure(), locator);
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
+					PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(
+					((InputPin5EditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 		if (childEditPart instanceof InputPin6EditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((InputPin6EditPart) childEditPart).getFigure(), locator);
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
+					PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(
+					((InputPin6EditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 		return false;
@@ -194,15 +213,18 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
 		if (childEditPart instanceof OutputPin4EditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPin4EditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(
+					((OutputPin4EditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof InputPin5EditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPin5EditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(
+					((InputPin5EditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof InputPin6EditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPin6EditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(
+					((InputPin6EditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -252,14 +274,16 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(160), getMapMode().DPtoLP(60));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(160), getMapMode().DPtoLP(60));
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -274,10 +298,9 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -305,16 +328,15 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CallOperationActionNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry
+				.getType(CallOperationActionNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() instanceof ShapeStyle) {
-			addChangesToAppearenceEAnnotation((EAttribute) event.getFeature());
 			super.handleNotificationEvent(event);
 
 			// Propagate style
@@ -327,9 +349,11 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 				if (ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel()).getStyle(NotationPackage.eINSTANCE.getShapeStyle());
+				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
 				if (style != null) {
-					style.eSet((EStructuralFeature) event.getFeature(), event.getNewValue());
+					style.eSet((EStructuralFeature) event.getFeature(), event
+							.getNewValue());
 					ep.refresh();
 				}
 			}
@@ -341,7 +365,8 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		features.add(UMLPackage.eINSTANCE.getExecutableNode_Handler());
 		features.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, event, features);
+		DiagramEditPartsUtil
+				.handleNotificationForDiagram(this, event, features);
 	}
 
 	/**
@@ -353,7 +378,6 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 		 * @generated
 		 */
 		private WrappingLabel fFigureActionBaseFigure_stereotypes;
-
 		/**
 		 * @generated
 		 */
@@ -369,10 +393,12 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16)));
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(16),
+					getMapMode().DPtoLP(16)));
 			this.setForegroundColor(ColorConstants.black);
 			this.setBackgroundColor(THIS_BACK);
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(6)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16),
+					getMapMode().DPtoLP(6)));
 			createContents();
 		}
 
@@ -384,9 +410,12 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 			fFigureActionBaseFigure_stereotypes = new WrappingLabel();
 			fFigureActionBaseFigure_stereotypes.setText("");
 
-			fFigureActionBaseFigure_stereotypes.setFont(FFIGUREACTIONBASEFIGURE_STEREOTYPES_FONT);
+			fFigureActionBaseFigure_stereotypes
+					.setFont(FFIGUREACTIONBASEFIGURE_STEREOTYPES_FONT);
 
-			fFigureActionBaseFigure_stereotypes.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
+			fFigureActionBaseFigure_stereotypes.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
 
 			GridData constraintFFigureActionBaseFigure_stereotypes = new GridData();
 			constraintFFigureActionBaseFigure_stereotypes.verticalAlignment = GridData.CENTER;
@@ -396,14 +425,18 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 			constraintFFigureActionBaseFigure_stereotypes.verticalSpan = 1;
 			constraintFFigureActionBaseFigure_stereotypes.grabExcessHorizontalSpace = false;
 			constraintFFigureActionBaseFigure_stereotypes.grabExcessVerticalSpace = false;
-			this.add(fFigureActionBaseFigure_stereotypes, constraintFFigureActionBaseFigure_stereotypes);
+			this.add(fFigureActionBaseFigure_stereotypes,
+					constraintFFigureActionBaseFigure_stereotypes);
 
 			fFigureActionBaseFigure_name = new WrappingLabel();
 			fFigureActionBaseFigure_name.setText("");
 
-			fFigureActionBaseFigure_name.setFont(FFIGUREACTIONBASEFIGURE_NAME_FONT);
+			fFigureActionBaseFigure_name
+					.setFont(FFIGUREACTIONBASEFIGURE_NAME_FONT);
 
-			fFigureActionBaseFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
+			fFigureActionBaseFigure_name.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
 
 			GridData constraintFFigureActionBaseFigure_name = new GridData();
 			constraintFFigureActionBaseFigure_name.verticalAlignment = GridData.CENTER;
@@ -413,7 +446,8 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 			constraintFFigureActionBaseFigure_name.verticalSpan = 1;
 			constraintFFigureActionBaseFigure_name.grabExcessHorizontalSpace = true;
 			constraintFFigureActionBaseFigure_name.grabExcessVerticalSpace = true;
-			this.add(fFigureActionBaseFigure_name, constraintFFigureActionBaseFigure_name);
+			this.add(fFigureActionBaseFigure_name,
+					constraintFFigureActionBaseFigure_name);
 
 		}
 
@@ -461,12 +495,99 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREACTIONBASEFIGURE_STEREOTYPES_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
+	static final Font FFIGUREACTIONBASEFIGURE_STEREOTYPES_FONT = new Font(
+			Display.getCurrent(), "SANS", 9, SWT.NORMAL);
 
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREACTIONBASEFIGURE_NAME_FONT = new Font(Display.getCurrent(), "SANS", 10, SWT.BOLD);
+	static final Font FFIGUREACTIONBASEFIGURE_NAME_FONT = new Font(Display
+			.getCurrent(), "SANS", 10, SWT.BOLD);
+
+	/**
+	 * @generated
+	 */
+	public class ActionBaseFigureAux extends ActionBaseFigure {
+		/**
+		 * @generated
+		 */
+		private WrappingLabel figureStereotypeLabel;
+
+		/**
+		 * @generated
+		 */
+		private IFigure stereotypeParent;
+
+		/**
+		 * @generated
+		 */
+		public ActionBaseFigureAux() {
+			super();
+			stereotypeParent = super.getFigureActionBaseFigure_stereotypes()
+					.getParent();
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+			if (stereotypeParent.getChildren().contains(
+					super.getFigureActionBaseFigure_stereotypes())) {
+				stereotypeParent.getChildren().remove(
+						super.getFigureActionBaseFigure_stereotypes());
+			}
+
+			figureStereotypeLabel = new WrappingLabel() {
+				@Override
+				public void setText(String text) {
+					if (stereotypeParent == null || text == null) {
+						super.setText(text);
+						return;
+					}
+
+					if (text.equals("")) {
+						super.setText(text);
+						if (stereotypeParent.getChildren().contains(this)) {
+							stereotypeParent.remove(this);
+						}
+					} else {
+						super.setText(text);
+						if (!stereotypeParent.getChildren().contains(this)) {
+							stereotypeParent.add(this, 0);
+						}
+					}
+				}
+			};
+			figureStereotypeLabel.setText("");
+
+			Font stereotypeLabelFont = new Font(Display.getCurrent(), "SANS",
+					9, SWT.NORMAL);
+			figureStereotypeLabel.setFont(stereotypeLabelFont);
+
+			figureStereotypeLabel.setBorder(new MarginBorder(getMapMode()
+					.DPtoLP(2), getMapMode().DPtoLP(2), getMapMode().DPtoLP(2),
+					getMapMode().DPtoLP(2)));
+
+			GridData stereotypeLabelConstraint = new GridData();
+			stereotypeLabelConstraint.verticalAlignment = GridData.CENTER;
+			stereotypeLabelConstraint.horizontalAlignment = GridData.CENTER;
+			stereotypeLabelConstraint.horizontalIndent = 0;
+			stereotypeLabelConstraint.horizontalSpan = 1;
+			stereotypeLabelConstraint.verticalSpan = 1;
+			stereotypeLabelConstraint.grabExcessHorizontalSpace = true;
+			stereotypeLabelConstraint.grabExcessVerticalSpace = false;
+			stereotypeParent.add(figureStereotypeLabel,
+					stereotypeLabelConstraint, 0);
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureActionBaseFigure_stereotypes() {
+			return figureStereotypeLabel;
+		}
+	}
 
 	/**
 	 * @generated not
@@ -476,8 +597,9 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 		// Save the constraint of the child so that it does not
 		// get lost during the remove and re-add.
 		IFigure childFigure = ((GraphicalEditPart) child).getFigure();
-		// the only change is here! getContentPaneFor() is used instead of getContentPane()
-		LayoutManager layout = getContentPaneFor((IGraphicalEditPart) child).getLayoutManager();
+		//the only change is here! getContentPaneFor() is used instead of getContentPane()
+		LayoutManager layout = getContentPaneFor((IGraphicalEditPart) child)
+				.getLayoutManager();
 		Object constraint = null;
 		if (layout != null)
 			constraint = layout.getConstraint(childFigure);
@@ -489,64 +611,10 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	/**
 	 * @generated
 	 */
-	public static final String APPEARANCE_EANNOTATION_NAME = "org.eclipse.papyrus.diagram.common.gmfextension.appearance";
-
-	/**
-	 * @generated
-	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getPrimaryView().getEAnnotation(APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getPrimaryView().getEAnnotation(
+				AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EAnnotation createAppearenceEAnnotation() {
-		EAnnotation eAnn = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnn.setSource(APPEARANCE_EANNOTATION_NAME);
-		getPrimaryView().getEAnnotations().add(eAnn);
-		return eAnn;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChangesToAppearenceEAnnotation(EAttribute attribute) {
-		// Get the EAnnotation
-		EAnnotation eAnn = getAppearenceEAnnotation();
-
-		// If there is no EAnnotation, create it
-		if (eAnn == null) {
-			eAnn = createAppearenceEAnnotation();
-		}
-
-		// If change is already added, don't continue
-		if (eAnn.getReferences().contains(attribute))
-			return;
-
-		// Background
-		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
-		}
-
-		// Foreground
-		if (NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
-		}
-
-		// Font
-		if (NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_NAME);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__BOLD);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
-			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__ITALIC);
-		}
 	}
 
 	/**
@@ -583,7 +651,9 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
 				if (gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart && ((GraphicalEditPart) gEP).resolveSemanticElement() == resolveSemanticElement()) {
+					if (gEP instanceof GraphicalEditPart
+							&& ((GraphicalEditPart) gEP)
+									.resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
@@ -612,7 +682,8 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
 			super.setBackgroundColor(color);
@@ -626,7 +697,8 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 		parent.setBackgroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresBackgroundColor((IFigure) obj, color);
 			}
 		}
@@ -638,7 +710,8 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
 			super.setForegroundColor(color);
@@ -653,7 +726,8 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresForegroundColor((IFigure) obj, color);
 			}
 		}
@@ -666,7 +740,8 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(
+				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
 			super.setFontColor(color);
@@ -681,7 +756,8 @@ public class CallOperationActionEditPart extends AbstractBorderedShapeEditPart i
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && isLabel((IFigure) obj)
+					&& !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresFontColor((IFigure) obj, color);
 			}
 		}

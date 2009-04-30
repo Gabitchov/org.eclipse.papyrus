@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.part;
 
 import org.eclipse.core.runtime.IPath;
@@ -33,7 +22,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	public UMLCreationWizardPage(String pageName, IStructuredSelection selection, String fileExtension) {
+	public UMLCreationWizardPage(String pageName,
+			IStructuredSelection selection, String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
 	}
@@ -75,7 +65,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
+		setFileName(UMLDiagramEditorUtil.getUniqueFileName(
+				getContainerFullPath(), getFileName(), getExtension()));
 		setPageComplete(validatePage());
 	}
 
@@ -88,8 +79,10 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS.bind(Messages.UMLCreationWizardPageExtensionError, extension));
+		if (extension != null
+				&& !getFilePath().toString().endsWith("." + extension)) {
+			setErrorMessage(NLS.bind(
+					Messages.UMLCreationWizardPageExtensionError, extension));
 			return false;
 		}
 		return true;
@@ -97,13 +90,13 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
 	 * #174315 Automatically set diagram file extension
-	 * 
 	 * @generated
 	 */
 	@Override
 	public IWizardPage getNextPage() {
 		IWizardPage nextPage = super.getNextPage();
-		if ("DiagramModelFile".equals(getName()) && "DomainModelFile".equals(nextPage.getName())) {
+		if ("DiagramModelFile".equals(getName())
+				&& "DomainModelFile".equals(nextPage.getName())) {
 			setDomainFileName(nextPage);
 		}
 		return nextPage;
@@ -111,7 +104,6 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
 	 * #174315 Automatically set diagram file extension
-	 * 
 	 * @generated
 	 */
 	protected void setDomainFileName(IWizardPage nextPage) {
@@ -119,7 +111,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 		String fileName = getFileName();
 		String extension = getExtension();
 		if (fileName.endsWith(extension)) {
-			fileName = fileName.substring(0, fileName.length() - extension.length());
+			fileName = fileName.substring(0, fileName.length()
+					- extension.length());
 		}
 		fileName += nextWizardPage.getExtension();
 		nextWizardPage.setFileName(fileName);

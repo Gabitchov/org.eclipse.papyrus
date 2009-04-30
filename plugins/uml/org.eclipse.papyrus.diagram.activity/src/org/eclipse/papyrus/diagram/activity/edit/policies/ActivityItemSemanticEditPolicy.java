@@ -78,24 +78,28 @@ import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * @generated
  */
-public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ActivityItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		Diagram diagram = DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
+
+		Diagram diagram = DiagramEditPartsUtil
+				.findDiagramFromEditPart(getHost());
 		if (diagram != null) {
-			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
+			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
+					diagram);
 		}
 		if (UMLElementTypes.ActivityParameterNode_2029 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE
+						.getActivity_Node());
 			}
 			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
 		}
@@ -123,14 +127,16 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		allEdges.addAll(view.getTargetEdges());
 		for (Iterator it = allEdges.iterator(); it.hasNext();) {
 			Edge nextEdge = (Edge) it.next();
-			EditPart nextEditPart = (EditPart) getHost().getViewer().getEditPartRegistry().get(nextEdge);
-			EditCommandRequestWrapper editCommandRequest = new EditCommandRequestWrapper(new DestroyElementRequest(((ActivityEditPart) getHost()).getEditingDomain(), req.isConfirmationRequired()),
+			EditPart nextEditPart = (EditPart) getHost().getViewer()
+					.getEditPartRegistry().get(nextEdge);
+			EditCommandRequestWrapper editCommandRequest = new EditCommandRequestWrapper(
+					new DestroyElementRequest(((ActivityEditPart) getHost())
+							.getEditingDomain(), req.isConfirmationRequired()),
 					Collections.EMPTY_MAP);
 			cc.add(nextEditPart.getCommand(editCommandRequest));
 		}
 
 		cc.add(getMSLWrapper(new DestroyElementCommand(req) {
-
 			@Override
 			protected EObject getElementToDestroy() {
 				View view = (View) getHost().getModel();
@@ -161,7 +167,8 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				cmd.add(getDestroyElementCommand(node));
 				break;
 			case ActivitySubverticesEditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+				for (Iterator cit = node.getChildren().iterator(); cit
+						.hasNext();) {
 					Node cnode = (Node) cit.next();
 					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
 					case SendObjectActionEditPart.VISUAL_ID:
@@ -227,21 +234,26 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 */
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		if (UMLElementTypes.ObjectNodeSelection_3003 == req.getElementType()) {
 			return null;
 		}
 		if (UMLElementTypes.ElementOwnedComment_3005 == req.getElementType()) {
-			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3006 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_3006 == req
+				.getElementType()) {
 			return null;
 		}
 		return null;
@@ -250,30 +262,39 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Diagram diagram = DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+
+		Diagram diagram = DiagramEditPartsUtil
+				.findDiagramFromEditPart(getHost());
 		if (diagram != null) {
-			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
+			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
+					diagram);
 		}
 		if (UMLElementTypes.ObjectNodeSelection_3003 == req.getElementType()) {
-			return getGEFWrapper(new ObjectNodeSelectionCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ObjectNodeSelectionCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ElementOwnedComment_3005 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3006 == req.getElementType()) {
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.CommentAnnotatedElement_3006 == req
+				.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ObjectNodeSelectionEditPart.VISUAL_ID:
 			return getGEFWrapper(new ObjectNodeSelectionReorientCommand(req));

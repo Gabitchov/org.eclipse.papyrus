@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 
- * Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana .
- * All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *	  Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- ******************************************************************************/
 package org.eclipse.papyrus.diagram.activity.navigator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -21,26 +10,32 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class UMLNavigatorItem extends UMLAbstractNavigatorItem implements IAdaptableSelection {
+public class UMLNavigatorItem extends UMLAbstractNavigatorItem implements
+		IAdaptableSelection {
 
 	/**
 	 * @generated
 	 */
 	static {
 		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
-		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
+		Platform.getAdapterManager().registerAdapters(
+				new IAdapterFactory() {
 
-			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem) adaptableObject).getView();
-				}
-				return null;
-			}
+					public Object getAdapter(Object adaptableObject,
+							Class adapterType) {
+						if (adaptableObject instanceof org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem
+								&& (adapterType == View.class || adapterType == EObject.class)) {
+							return ((org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem) adaptableObject)
+									.getView();
+						}
+						return null;
+					}
 
-			public Class[] getAdapterList() {
-				return supportedTypes;
-			}
-		}, org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem.class);
+					public Class[] getAdapterList() {
+						return supportedTypes;
+					}
+				},
+				org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem.class);
 	}
 
 	/**
@@ -82,7 +77,12 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem implements IAdapt
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem) {
-			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem) obj).getView()));
+			return EcoreUtil
+					.getURI(getView())
+					.equals(
+							EcoreUtil
+									.getURI(((org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem) obj)
+											.getView()));
 		}
 		return super.equals(obj);
 	}
