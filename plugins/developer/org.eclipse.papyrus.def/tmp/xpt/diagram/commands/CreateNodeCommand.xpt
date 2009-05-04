@@ -16,6 +16,7 @@
 «IMPORT 'http://www.eclipse.org/emf/2002/GenModel'»
 «EXTENSION xpt::GenModelUtils»
 «EXTENSION xpt::diagram::Utils»
+«EXTENSION xpt::diagram::commands::file»
 «DEFINE CreateNodeCommand FOR gmfgen::GenNode-»
 «EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
 package «getDiagram().editCommandsPackageName»;

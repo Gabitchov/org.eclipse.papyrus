@@ -1,0 +1,204 @@
+/*
+ * Copyright (c) 2007, 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ *    Emilien Perico (Atos Origin) - update template for GMF 2.2 compliance
+ */
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+
+«EXTENSION MetaModel»
+«EXTENSION ViewInfoUtils»
+«EXTENSION xpt::EMFUtils»
+«EXTENSION xpt::editor::Utils»
+«EXTENSION xpt::GenModelUtils»
+«EXTENSION xpt::diagram::editpolicies::LinkUtils»
+«EXTENSION xpt::expressions::ValueExpression»
+«REM»«EXTENSION xpt::editor::ViewInfoUtils»«ENDREM»
+
+«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
+«REM» install the mecanism of "filters views..." view for subelements«ENDREM»
+«REM» and  [MutatingCanvas] With mutating canvas multiple elements can be the canvas' element «ENDREM»
+
+«DEFINE VisualIDRegistry FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «editorGen.editor.packageName»;
+
+	«EXPAND xpt::Common::generatedClassComment(
+		"This registry is used to determine which type of visual object should be\n" +
+		"created for the corresponding Diagram, Node, ChildNode or Link represented\n" + 
+		"by a domain model object.\n"	
+	)»
+public class «visualIDRegistryClassName» {
+
+	«EXPAND attributes-»
+
+	«EXPAND getViewVisualID-»
+	
+	«EXPAND getModelID-»
+	
+	«EXPAND getVisualID-»
+
+	«EXPAND getType-»
+	
+	«EXPAND getDiagramVisualID-»
+	
+	«EXPAND getNodeVisualID-»
+	
+	«EXPAND canCreateNode-»
+	
+	«EXPAND getLinkWithClassVisualID-»
+	
+	«EXPAND isDiagram-»
+
+	«EXPAND _constraintMethods-»
+
+	«EXPAND additions-»
+	//test
+	«EXPAND createViewInfo-»	
+}
+«ENDDEFINE»
+
+«AROUND getDiagramVisualID FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public static int «EXPAND xpt::editor::VisualIDRegistry::getDiagramVisualIDMethodName»(org.eclipse.emf.ecore.EObject domainElement) {
+	if (domainElement == null) {
+		«EXPAND xpt::editor::VisualIDRegistry::unrecognizedVID-»
+	}
+«IF null != domainDiagramElement-»
+	«EXPAND xpt::editor::VisualIDRegistry::returnVisualID-»
+«ENDIF-»
+	«IF getReferencingObjects().typeSelect(AlternateCanvas).size() > 0»
+		«FOREACH getReferencingObjects().typeSelect(AlternateCanvas) AS referencer»
+			«EXPAND returnMutatingVisualID FOR referencer»	
+		«ENDFOREACH»
+	«ENDIF»
+	«EXPAND xpt::editor::VisualIDRegistry::unrecognizedVID-»
+}
+«ENDAROUND»
+
+«AROUND additions FOR gmfgen::GenDiagram»
+«REM» [ViewInfo] Added to alow filtering the views by type and/or label «ENDREM»
+«EXPAND createViewInfo FOR self»
+«ENDAROUND»
+
+«REM»[MutatingCanvas]«ENDREM»
+«DEFINE returnMutatingVisualID FOR papyrusgmfgenextension::AlternateCanvas-»
+if («EXPAND checkMutatingSemanticElement») {
+	return «EXPAND xpt::editor::VisualIDRegistry::visualID FOR diagram»;
+}
+«ENDDEFINE»
+
+«REM»[MutatingCanvas]«ENDREM»
+«DEFINE checkMutatingSemanticElement FOR papyrusgmfgenextension::AlternateCanvas-»
+	«EXPAND xpt::editor::VisualIDRegistry::checkDomainElementMetaclass FOR domainDiagramElement» and 
+	«EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodName FOR diagram»((«EXPAND MetaModel::MetaClass FOR domainDiagramElement») domainElement)
+«ENDDEFINE»
+
+«DEFINE isDiagramMethodName FOR gmfgen::GenDiagram»isDiagram«ENDDEFINE»
+
+«AROUND isDiagram FOR gmfgen::GenDiagram-»
+	«IF null != domainDiagramElement-»
+		«EXPAND xpt::Common::generatedMemberComment(
+			"User can change implementation of this method to handle some specific\n" +
+			"situations not covered by default logic.\n"
+		)»
+private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodName»(«getQualifiedInterfaceName(domainDiagramElement)» element) {
+	return true;
+}
+	«REM»[MutatingCanvas]«ENDREM»
+	«IF getReferencingObjects().typeSelect(AlternateCanvas).size() > 0»
+		«FOREACH getReferencingObjects().typeSelect(AlternateCanvas) AS referencer»
+			private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodName»(«getQualifiedInterfaceName(referencer.domainDiagramElement)» element) {
+				return true;
+			}
+		«ENDFOREACH»
+	«ENDIF»
+	«ENDIF-»
+«ENDAROUND»
+
+«DEFINE createViewInfo FOR gmfgen::GenDiagram»
+	«REM» [ViewInfo] Added to alow filtering the views by type and/or label «ENDREM»
+	
+	«REM» [ViewInfo] Diagram visual info for filtering dialog «ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private static org.eclipse.papyrus.diagram.common.providers.ViewInfo diagramViewInfo = null;
+
+	«REM» [ViewInfo] ViewInfo tree construction «ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public static org.eclipse.papyrus.diagram.common.providers.ViewInfo getDiagramViewInfo() {
+		if (diagramViewInfo == null) {
+			diagramViewInfo = «diagramViewInfoGetterName(self)»();
+		}
+		return diagramViewInfo;
+	}
+	
+	«REM» [ViewInfo] Start point to build all ViewInfo tree «ENDREM»
+	«EXPAND getRootDiagramViewInfo FOR self-»	
+«ENDDEFINE»
+
+«REM» [ViewInfo] Start point for all ViewInfo tree «ENDREM»
+«DEFINE getRootDiagramViewInfo FOR gmfgen::GenDiagram»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected static org.eclipse.papyrus.diagram.common.providers.ViewInfo «diagramViewInfoGetterName(self)»() {
+		org.eclipse.papyrus.diagram.common.providers.ViewInfo root = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.diagram.common.providers.ViewInfo.Head, "", null, null);
+		org.eclipse.papyrus.diagram.common.providers.ViewInfo viewInfo = null;
+		org.eclipse.papyrus.diagram.common.providers.ViewInfo labelInfo = null;
+		«FOREACH topLevelNodes AS node-»
+			«EXPAND createNodeViewInfo FOR node-»
+		«ENDFOREACH-»
+		«FOREACH links AS link-»
+			«EXPAND createLinkViewInfo FOR link-»
+		«ENDFOREACH-»
+		«FOREACH childNodes AS node-»
+			«EXPAND createNodeViewInfo FOR node-»
+		«ENDFOREACH-»
+		return root;
+	}
+«ENDDEFINE»
+
+«REM» [ViewInfo] Create a node ViewInfo «ENDREM»
+«DEFINE createNodeViewInfo FOR gmfgen::GenTopLevelNode»
+	viewInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.diagram.common.providers.ViewInfo.Node, "«modelFacet.metaClass.ecoreClass.name»");
+	root.addNode(«diagram.visualID.toString()», viewInfo);
+«ENDDEFINE»
+
+«REM» [ViewInfo] Create a node ViewInfo «ENDREM»
+«DEFINE createNodeViewInfo FOR gmfgen::GenChildNode»
+	viewInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.diagram.common.providers.ViewInfo.Node, "«modelFacet.metaClass.ecoreClass.name»");
+	«FOREACH containers AS container»
+		root.addNode(«getContainerVidualID(container)», viewInfo);
+	«ENDFOREACH»
+«ENDDEFINE»
+
+«REM» [ViewInfo] Create a node ViewInfo «ENDREM»
+«DEFINE createNodeViewInfo FOR gmfgen::GenCompartment»
+	viewInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.diagram.common.providers.ViewInfo.Node, "«title»", null, parent);
+	viewInfos.add(viewInfo);
+«ENDDEFINE»
+
+«REM» [ViewInfo] Create a link ViewInfo «ENDREM»
+«DEFINE createLinkViewInfo FOR gmfgen::GenLink»
+	viewInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.diagram.common.providers.ViewInfo.Edge, "«linkEClass(modelFacet)»");
+	root.addNode(«diagram.visualID.toString()», viewInfo);
+	«FOREACH labels AS label»
+		«EXPAND createLabelViewInfo FOR label-»
+	«ENDFOREACH»
+«ENDDEFINE»
+
+«REM» [ViewInfo] Create a label ViewInfo «ENDREM»
+«REM»not used. may be used in the future«ENDREM»
+«DEFINE createLabelViewInfo FOR gmfgen::GenLabel»
+	labelInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.diagram.common.providers.ViewInfo.Label, "«linkEClass(modelFacet)»", null, viewInfo);
+	viewInfo.getChildren().add(labelInfo);
+«ENDDEFINE»
+
+
+
+
