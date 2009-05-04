@@ -12,6 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.codegen.utils;
 
+import org.eclipse.m2m.qvt.oml.blackbox.java.Operation;
+import org.eclipse.m2m.qvt.oml.blackbox.java.Operation.Kind;
+
 /**
  * Defined constants are used in the dynamic-template and in the java code.
  * 
@@ -30,6 +33,7 @@ public class PapyrusGenConstants {
 	 * 
 	 * @return the name of the class
 	 */
+	@Operation(contextual = false, kind = Kind.HELPER)
 	public static final String getIDiagramPreferenceConstantJavaClassName() {
 		return IDiagramPreferenceConstantJavaClassName;
 	}
@@ -44,6 +48,7 @@ public class PapyrusGenConstants {
 	 *            the name of the Diagram
 	 * @return the name of the java class used for the diagram preference page
 	 */
+	@Operation(contextual = false, kind = Kind.HELPER)
 	public static final String getDiagramPreferencePageJavaClassName(String diagramName) {
 		return diagramName + DiagramPreferencePageJavaClassName;
 	}
@@ -51,6 +56,7 @@ public class PapyrusGenConstants {
 	/**
 	 * @return the Papyrus diagram category on which preference pages will appear
 	 */
+	@Operation(contextual = false, kind = Kind.HELPER)
 	public static final String getDiagramPreferencePageCategory() {
 		return DiagramPreferencePageCategory;
 	}

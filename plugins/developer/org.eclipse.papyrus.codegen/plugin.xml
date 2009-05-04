@@ -25,6 +25,17 @@
             </includes>
         </viewerContentBinding>
     </extension>
-   
+   <extension
+         point="org.eclipse.m2m.qvt.oml.javaBlackboxUnits">
+      <library
+            class="org.eclipse.papyrus.codegen.utils.PapyrusGenConstants">
+         <metamodel
+               nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         </metamodel>
+         <metamodel
+               nsURI="http://www.eclipse.org/gmf/2009/GenModel">
+         </metamodel>
+      </library>
+   </extension>
 
 </plugin>
