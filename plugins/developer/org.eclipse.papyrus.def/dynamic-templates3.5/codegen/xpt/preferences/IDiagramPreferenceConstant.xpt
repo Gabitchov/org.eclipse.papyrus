@@ -1,0 +1,82 @@
+/*
+ * Copyright (c) 2008 Atos Origin
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thibault Landre (Atos Origin) - initial API and implementation
+ */
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+
+«EXTENSION xpt::preferences::PrefsConstant»
+
+«DEFINE IDiagramPreferenceConstant FOR gmfgen::GenDiagram-»
+package «preferencesPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public interface «getPreferenceConstantFileName()» {
+
+«FOREACH topLevelNodes AS node»
+	«EXPAND getNodeConstants FOR node-»
+«ENDFOREACH»
+
+«FOREACH links AS link»
+	«EXPAND getLinkConstants FOR link-»
+«ENDFOREACH»
+}
+«ENDDEFINE»
+
+«DEFINE getNodeConstants FOR gmfgen::GenNode»
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceFillColorConstant(getUniqueIdentifier().toUpper())» = "«getUniqueIdentifier()».fill.color";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceFontColorConstant(getUniqueIdentifier().toUpper())» = "«getUniqueIdentifier()».font.color";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceFontConstant(getUniqueIdentifier().toUpper())» = "«getUniqueIdentifier()».font";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceLineColorConstant(getUniqueIdentifier().toUpper())» = "«getUniqueIdentifier()».line.color";
+«ENDDEFINE»
+
+«DEFINE getLinkConstants FOR gmfgen::GenLink»
+
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceFontColorConstant(elementType.displayName.toUpper())» = "«elementType.displayName».font.color";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceFontConstant(elementType.displayName.toUpper())» = "«elementType.displayName».font";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceLineColorConstant(elementType.displayName.toUpper())» = "«elementType.displayName».line.color";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceJumpLinkReverseConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.reverse";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceJumpLinkStatusConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.status";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceJumpLinkTypeConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.type";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceRoutingDistancePolicyConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.distance.policy";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceRoutingObstructionPolicyConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.obstruction.policy";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceRoutingStyleConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.style";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceSmoothnessConstant(elementType.displayName.toUpper())» = "«elementType.displayName».smoothness";
+	
+«ENDDEFINE»
+
+«DEFINE getLinkConstants FOR ElementType»
+«ENDDEFINE»
