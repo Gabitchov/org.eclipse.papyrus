@@ -31,61 +31,61 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getJumpLinkReversePreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceJumpLinkReverseConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceJumpLinkReverseConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getJumpLinkStatusPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceJumpLinkStatusConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceJumpLinkStatusConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getJumpLinkTypePreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceJumpLinkTypeConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceJumpLinkTypeConstant(elementType.displayName.toUpper())»;
 	}
 	
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getRoutingDistancePolicyPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceRoutingDistancePolicyConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceRoutingDistancePolicyConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getRoutingObstructionPolicyPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceRoutingObstructionPolicyConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceRoutingObstructionPolicyConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getRoutingStylePreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceRoutingStyleConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceRoutingStyleConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getSmoothnessPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceSmoothnessConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceSmoothnessConstant(elementType.displayName.toUpper())»;
 	}
 	
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getFontColorPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceSmoothnessConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceSmoothnessConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getFontPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceFontConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceFontConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getLineColorPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpperCase())»;
+		return «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
