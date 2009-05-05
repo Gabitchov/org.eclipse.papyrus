@@ -12,40 +12,64 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.impl;
 
 // Start of user code for imports
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.CommentPropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.uml2.uml.Element;
+
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.CommentPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.jface.viewers.StructuredSelection;
+import java.util.Iterator;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFModelViewerDialog;
+import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
+
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
 /**
@@ -54,34 +78,31 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class CommentPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, CommentPropertiesEditionPart {
 
 	private Text body;
+
 	private EMFListEditUtil annotatedElementEditUtil;
+
 	private ReferencesTable<?> annotatedElement;
 
-
-
-
-	
 	public CommentPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
-		view.setLayout(layout);	
-		
+		view.setLayout(layout);
+
 		createControls(view);
-		
 		return view;
 	}
-	
-	public void createControls(Composite view) { 
+
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
-		
+
 		// Start of user code for additional ui definition
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	protected void createGeneralGroup(Composite parent) {
@@ -95,9 +116,11 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 		generalGroup.setLayout(generalGroupLayout);
 		createBodyTextarea(generalGroup);
 		createAnnotatedElementReferencesTable(generalGroup);
-   	}
+	}
+
 	protected void createBodyTextarea(Composite parent) {
-		Label bodyLabel = SWTUtils.createPartLabel(parent, UMLMessages.CommentPropertiesEditionPart_BodyLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Comment.body, UMLViewsRepository.SWT_KIND));
+		Label bodyLabel = SWTUtils.createPartLabel(parent, UMLMessages.CommentPropertiesEditionPart_BodyLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Comment.body,
+				UMLViewsRepository.SWT_KIND));
 		GridData bodyLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		bodyLabelData.horizontalSpan = 3;
 		bodyLabel.setLayoutData(bodyLabelData);
@@ -107,39 +130,56 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 		bodyData.heightHint = 80;
 		body.setLayoutData(bodyData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Comment.body, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
-	}		
+	}
+
 	protected void createAnnotatedElementReferencesTable(Composite parent) {
 		this.annotatedElement = new ReferencesTable<Element>(UMLMessages.CommentPropertiesEditionPart_AnnotatedElementLabel, new ReferencesTableListener<Element>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter annotatedElementFilter = new EObjectFilter(UMLPackage.eINSTANCE.getElement());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!annotatedElementEditUtil.contains((EObject)element));
-						return false;					
+							return (!annotatedElementEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { annotatedElementFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<Element> dialog = new TabElementTreeSelectionDialog<Element>(resourceSet, filters,
-				"Element", UMLPackage.eINSTANCE.getElement()) {
-					@Override
-					public void process(IStructuredSelection selection) {						
+
+				};
+				List filters = new ArrayList();
+				filters.add(annotatedElementFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<Element> dialog = new TabElementTreeSelectionDialog<Element>(resourceSet, filters, "Element", UMLPackage.eINSTANCE.getElement()) {
+
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!annotatedElementEditUtil.getVirtualList().contains(elem))
 								annotatedElementEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(CommentPropertiesEditionPartImpl.this, UMLViewsRepository.Comment.annotatedElement,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));	
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CommentPropertiesEditionPartImpl.this, UMLViewsRepository.Comment.annotatedElement,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						annotatedElement.refresh();											
+						annotatedElement.refresh();
 					}
+
 				};
 				dialog.open();
 			}
-			public void handleEdit(Element element) { editAnnotatedElement(element); }
-			public void handleMove(Element element, int oldIndex, int newIndex) { moveAnnotatedElement(element, oldIndex, newIndex); }
-			public void handleRemove(Element element) { removeFromAnnotatedElement(element); }
-			public void navigateTo(Element element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(Element element) {
+				editAnnotatedElement(element);
+			}
+
+			public void handleMove(Element element, int oldIndex, int newIndex) {
+				moveAnnotatedElement(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Element element) {
+				removeFromAnnotatedElement(element);
+			}
+
+			public void navigateTo(Element element) {
+			}
 		});
 		this.annotatedElement.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Comment.annotatedElement, UMLViewsRepository.SWT_KIND));
 		this.annotatedElement.createControls(parent);
@@ -148,13 +188,13 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 		this.annotatedElement.setLayoutData(annotatedElementData);
 		this.annotatedElement.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveAnnotatedElement(Element element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -165,7 +205,8 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 		EObject editedElement = annotatedElementEditUtil.foundCorrespondingEObject(element);
 		annotatedElementEditUtil.removeElement(element);
 		annotatedElement.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(CommentPropertiesEditionPartImpl.this, UMLViewsRepository.Comment.annotatedElement, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CommentPropertiesEditionPartImpl.this, UMLViewsRepository.Comment.annotatedElement, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -176,29 +217,29 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 	private void editAnnotatedElement(Element element) {
 
 		// Start of user code editAnnotatedElement() method body
-				 
+
 		EObject editedElement = annotatedElementEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				annotatedElementEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				annotatedElement.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(CommentPropertiesEditionPartImpl.this, UMLViewsRepository.Comment.annotatedElement, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CommentPropertiesEditionPartImpl.this, UMLViewsRepository.Comment.annotatedElement,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
 
-	
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code		
+
+		// End of user code
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -207,7 +248,7 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 	public String getBody() {
 		return body.getText();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -216,15 +257,15 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 	public void setBody(String newValue) {
 		body.setText(newValue);
 	}
-	
-	public void setMessageForBody (String msg, int msgLevel) {
-	
+
+	public void setMessageForBody(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForBody () {
-	
+
+	public void unsetMessageForBody() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -233,7 +274,7 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 	public List getAnnotatedElementToAdd() {
 		return annotatedElementEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -242,7 +283,7 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 	public List getAnnotatedElementToRemove() {
 		return annotatedElementEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -253,40 +294,32 @@ public class CommentPropertiesEditionPartImpl extends CompositePropertiesEdition
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			annotatedElementEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			annotatedElementEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			annotatedElementEditUtil = new EMFListEditUtil(current, feature);
 		this.annotatedElement.setInput(annotatedElementEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CommentPropertiesEditionPart#updateAnnotatedElement(EObject newValue)
 	 */
 	public void updateAnnotatedElement(EObject newValue) {
-		if(annotatedElementEditUtil!=null){
+		if (annotatedElementEditUtil != null) {
 			annotatedElementEditUtil.reinit(newValue);
 			annotatedElement.refresh();
-		}		
-	}
-	
-	public void setMessageForAnnotatedElement (String msg, int msgLevel) {
-	
-	}
-	
-	public void unsetMessageForAnnotatedElement () {
-	
+		}
 	}
 
-	
-	
+	public void setMessageForAnnotatedElement(String msg, int msgLevel) {
 
-	
-	
+	}
 
+	public void unsetMessageForAnnotatedElement() {
 
+	}
 
 	// Start of user code additional methods
- 	
+
 	// End of user code
-}	
+}

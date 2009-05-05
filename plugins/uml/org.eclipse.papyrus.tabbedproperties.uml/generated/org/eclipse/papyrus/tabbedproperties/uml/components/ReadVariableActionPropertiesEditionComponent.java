@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ReadVariableAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ReadVariableActionPropertiesEditionComponent extends ComposedProper
 	 * @param readVariableAction
 	 *            the EObject to edit
 	 */
-	public ReadVariableActionPropertiesEditionComponent(EObject readVariableAction, String mode) {
-		super(mode);
+	public ReadVariableActionPropertiesEditionComponent(EObject readVariableAction, String editing_mode) {
+		super(editing_mode);
 		if (readVariableAction instanceof ReadVariableAction) {
-			addSubComponent(new ReadVariableActionBasePropertiesEditionComponent(readVariableAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(readVariableAction, mode));
+			addSubComponent(new ReadVariableActionBasePropertiesEditionComponent(readVariableAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(readVariableAction, editing_mode));
 		}
 	}
 }
-

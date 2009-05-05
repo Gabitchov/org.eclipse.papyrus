@@ -17,35 +17,49 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
+
+import org.eclipse.uml2.uml.TemplateBinding;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.uml2.uml.TemplateParameterSubstitution;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateBindingPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
 import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateBindingPropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
-import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.jface.dialogs.IMessageProvider;
 
 // End of user code
 /**
@@ -54,36 +68,37 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class TemplateBindingBasePropertiesEditionComponent extends StandardPropertiesEditionComponent {
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
-	
-	private String[] parts = {BASE_PART};
-	
+
+	private String[] parts = { BASE_PART };
+
 	/**
 	 * The EObject to edit
 	 */
 	private TemplateBinding templateBinding;
-	
+
 	/**
 	 * The Base part
 	 */
 	private TemplateBindingPropertiesEditionPart basePart;
-	
+
 	/**
 	 * Default constructor
 	 */
-	public TemplateBindingBasePropertiesEditionComponent(EObject templateBinding, String mode) {
+	public TemplateBindingBasePropertiesEditionComponent(EObject templateBinding, String editing_mode) {
 		if (templateBinding instanceof TemplateBinding) {
-			this.templateBinding = (TemplateBinding)templateBinding;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(mode)) {
+			this.templateBinding = (TemplateBinding) templateBinding;
+			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.templateBinding.eAdapters().add(semanticAdapter);
 			}
 		}
 		listeners = new ArrayList();
-		this.mode = mode;
+		this.editing_mode = editing_mode;
 	}
-	
+
 	/**
 	 * Initialize the semantic model listener for live editing mode
+	 * 
 	 * @return the semantic model listener
 	 */
 	private AdapterImpl initializeSemanticAdapter() {
@@ -95,12 +110,11 @@ public class TemplateBindingBasePropertiesEditionComponent extends StandardPrope
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getTemplateBinding_ParameterSubstitution()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getTemplateParameterSubstitution())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getTemplateBinding_ParameterSubstitution() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getTemplateParameterSubstitution())) {
 					basePart.updateParameterSubstitution(templateBinding);
 				}
-
 
 			}
 
@@ -109,6 +123,7 @@ public class TemplateBindingBasePropertiesEditionComponent extends StandardPrope
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
@@ -116,56 +131,53 @@ public class TemplateBindingBasePropertiesEditionComponent extends StandardPrope
 			return UMLViewsRepository.TemplateBinding.class;
 		return super.translatePart(key);
 	}
-	
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#partsList()
 	 */
 	public String[] partsList() {
 		return parts;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (templateBinding != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (TemplateBindingPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.TemplateBinding.class, kind, this);
+					basePart = (TemplateBindingPropertiesEditionPart) provider.getPropertiesEditionPart(UMLViewsRepository.TemplateBinding.class, kind, this);
 					listeners.add(basePart);
 				}
 			}
-			return (IPropertiesEditionPart)basePart;
+			return (IPropertiesEditionPart) basePart;
 		}
 		return null;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent
-	 * 		#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
-	 * 						org.eclipse.emf.ecore.resource.ResourceSet)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.TemplateBinding.class) {
-			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
-			TemplateBinding templateBinding = (TemplateBinding)elt;
-			basePart.initParameterSubstitution(templateBinding, null, UMLPackage.eINSTANCE.getTemplateBinding_ParameterSubstitution());				
+			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
+			TemplateBinding templateBinding = (TemplateBinding) elt;
+			basePart.initParameterSubstitution(templateBinding, null, UMLPackage.eINSTANCE.getTemplateBinding_ParameterSubstitution());
 		}
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 * (org.eclipse.emf.edit.domain.EditingDomain)
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
@@ -175,23 +187,22 @@ public class TemplateBindingBasePropertiesEditionComponent extends StandardPrope
 				cc.append(AddCommand.create(editingDomain, templateBinding, UMLPackage.eINSTANCE.getTemplateBinding_ParameterSubstitution(), iter.next()));
 			Map parameterSubstitutionToRefresh = basePart.getParameterSubstitutionToEdit();
 			for (Iterator iter = parameterSubstitutionToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for parameterSubstitution reference refreshment
-				
+
 				TemplateParameterSubstitution nextElement = (TemplateParameterSubstitution) iter.next();
 				TemplateParameterSubstitution parameterSubstitution = (TemplateParameterSubstitution) parameterSubstitutionToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List parameterSubstitutionToRemove = basePart.getParameterSubstitutionToRemove();
 			for (Iterator iter = parameterSubstitutionToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List parameterSubstitutionToMove = basePart.getParameterSubstitutionToMove();
-			for (Iterator iter = parameterSubstitutionToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = parameterSubstitutionToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, templateBinding, UMLPackage.eINSTANCE.getTemplateParameterSubstitution(), moveElement.getElement(), moveElement.getIndex()));
 			}
-
 
 		}
 		if (!cc.isEmpty())
@@ -200,79 +211,75 @@ public class TemplateBindingBasePropertiesEditionComponent extends StandardPrope
 		return cc;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject
-	 * ()
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof TemplateBinding) {
-			TemplateBinding templateBindingToUpdate = (TemplateBinding)source;
+			TemplateBinding templateBindingToUpdate = (TemplateBinding) source;
 			templateBindingToUpdate.getParameterSubstitutions().addAll(basePart.getParameterSubstitutionToAdd());
 
-
 			return templateBindingToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.common.notify.Notification)
 	 */
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PathedPropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.TemplateBinding.parameterSubstitution == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					TemplateParameterSubstitution oldValue = (TemplateParameterSubstitution)event.getOldValue();
-					TemplateParameterSubstitution newValue = (TemplateParameterSubstitution)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					TemplateParameterSubstitution oldValue = (TemplateParameterSubstitution) event.getOldValue();
+					TemplateParameterSubstitution newValue = (TemplateParameterSubstitution) event.getNewValue();
+
 					// Start of user code for parameterSubstitution live update command
 					// TODO: Complete the templateBinding update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, templateBinding, UMLPackage.eINSTANCE.getTemplateBinding_ParameterSubstitution(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, templateBinding, UMLPackage.eINSTANCE.getTemplateParameterSubstitution(), event.getNewValue(), event.getNewIndex()));
 			}
 
-
 			if (command != null)
 				liveEditingDomain.getCommandStack().execute(command);
-		} else if (PathedPropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
-				
-
 
 			} else {
-				
-
 
 			}
 		}
-	}	
+	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String, int)
 	 */
 	public String getHelpContent(String key, int kind) {
-			if (key == UMLViewsRepository.TemplateBinding.parameterSubstitution)
-				return "The parameter substitutions owned by this template binding."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.TemplateBinding.parameterSubstitution)
+			return "The parameter substitutions owned by this template binding."; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
-	public Diagnostic validateValue(PathedPropertiesEditionEvent event) {
+	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
 		try {
@@ -289,17 +296,15 @@ public class TemplateBindingBasePropertiesEditionComponent extends StandardPrope
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(mode)) {
+		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
 			return Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(mode))
+		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			return Diagnostician.INSTANCE.validate(templateBinding);
 		else
 			return null;
 	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -312,4 +317,3 @@ public class TemplateBindingBasePropertiesEditionComponent extends StandardPrope
 	}
 
 }
-

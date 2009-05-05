@@ -12,34 +12,49 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.impl;
 
 // Start of user code for imports
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectorEndPropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.uml2.uml.Comment;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectorEndPropertiesEditionPart;
+
+import java.util.Map;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Comment;
+
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
 /**
@@ -48,35 +63,33 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ConnectorEndPropertiesEditionPart {
 
 	private EMFListEditUtil ownedCommentEditUtil;
+
 	private ReferencesTable<?> ownedComment;
+
 	private Button isOrdered;
+
 	private Button isUnique;
 
-
-
-
-	
 	public ConnectorEndPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
-		view.setLayout(layout);	
-		
+		view.setLayout(layout);
+
 		createControls(view);
-		
 		return view;
 	}
-	
-	public void createControls(Composite view) { 
+
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
-		
+
 		// Start of user code for additional ui definition
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	protected void createPropertiesGroup(Composite parent) {
@@ -91,17 +104,32 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 		createOwnedCommentTableComposition(propertiesGroup);
 		createIsOrderedCheckbox(propertiesGroup);
 		createIsUniqueCheckbox(propertiesGroup);
-   	}
+	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ConnectorEndPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }			
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { System.out.println("---> navigateTo"); }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ConnectorEndPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectorEnd.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -109,41 +137,41 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 		ownedCommentData.horizontalSpan = 3;
 		this.ownedComment.setLayoutData(ownedCommentData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConnectorEndPropertiesEditionPartImpl.this, UMLViewsRepository.ConnectorEnd.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectorEndPropertiesEditionPartImpl.this, UMLViewsRepository.ConnectorEnd.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToOwnedComment() {
-	
-		// Start of user code addToOwnedComment() method body
 
+		// Start of user code addToOwnedComment() method body
 
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConnectorEndPropertiesEditionPartImpl.this, UMLViewsRepository.ConnectorEnd.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectorEndPropertiesEditionPartImpl.this, UMLViewsRepository.ConnectorEnd.ownedComment,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -156,7 +184,8 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConnectorEndPropertiesEditionPartImpl.this, UMLViewsRepository.ConnectorEnd.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectorEndPropertiesEditionPartImpl.this, UMLViewsRepository.ConnectorEnd.ownedComment,
+				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -167,21 +196,23 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 	private void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-				 
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConnectorEndPropertiesEditionPartImpl.this, UMLViewsRepository.ConnectorEnd.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectorEndPropertiesEditionPartImpl.this, UMLViewsRepository.ConnectorEnd.ownedComment,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createIsOrderedCheckbox(Composite parent) {
 		isOrdered = new Button(parent, SWT.CHECK);
 		isOrdered.setText(UMLMessages.ConnectorEndPropertiesEditionPart_IsOrderedLabel);
@@ -190,6 +221,7 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 		isOrdered.setLayoutData(isOrderedData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectorEnd.isOrdered, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsUniqueCheckbox(Composite parent) {
 		isUnique = new Button(parent, SWT.CHECK);
 		isUnique.setText(UMLMessages.ConnectorEndPropertiesEditionPart_IsUniqueLabel);
@@ -199,13 +231,12 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectorEnd.isUnique, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
 
-	
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code		
+
+		// End of user code
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -214,7 +245,7 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 	public List getOwnedCommentToAdd() {
 		return ownedCommentEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -223,7 +254,7 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 	public List getOwnedCommentToRemove() {
 		return ownedCommentEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -231,8 +262,8 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 	 */
 	public Map getOwnedCommentToEdit() {
 		return ownedCommentEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -240,8 +271,8 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 	 */
 	public List getOwnedCommentToMove() {
 		return ownedCommentEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -249,8 +280,8 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 	 */
 	public List getOwnedCommentTable() {
 		return ownedCommentEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -261,31 +292,31 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			ownedCommentEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
 		this.ownedComment.setInput(ownedCommentEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectorEndPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForOwnedComment (String msg, int msgLevel) {
-	
+
+	public void setMessageForOwnedComment(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForOwnedComment () {
-	
+
+	public void unsetMessageForOwnedComment() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -294,24 +325,28 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 	public Boolean getIsOrdered() {
 		return Boolean.valueOf(isOrdered.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectorEndPropertiesEditionPart#setIsOrdered(Boolean newValue)
 	 */
 	public void setIsOrdered(Boolean newValue) {
-		isOrdered.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isOrdered.setSelection(newValue.booleanValue());
+		} else {
+			isOrdered.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsOrdered (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsOrdered(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsOrdered () {
-	
+
+	public void unsetMessageForIsOrdered() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -320,33 +355,29 @@ public class ConnectorEndPropertiesEditionPartImpl extends CompositePropertiesEd
 	public Boolean getIsUnique() {
 		return Boolean.valueOf(isUnique.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectorEndPropertiesEditionPart#setIsUnique(Boolean newValue)
 	 */
 	public void setIsUnique(Boolean newValue) {
-		isUnique.setSelection(newValue.booleanValue());
-	}
-	
-	public void setMessageForIsUnique (String msg, int msgLevel) {
-	
-	}
-	
-	public void unsetMessageForIsUnique () {
-	
+		if (newValue != null) {
+			isUnique.setSelection(newValue.booleanValue());
+		} else {
+			isUnique.setSelection(false);
+		}
 	}
 
-	
-	
+	public void setMessageForIsUnique(String msg, int msgLevel) {
 
-	
-	
+	}
 
+	public void unsetMessageForIsUnique() {
 
+	}
 
 	// Start of user code additional methods
- 	
+
 	// End of user code
-}	
+}

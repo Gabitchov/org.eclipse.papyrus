@@ -15,720 +15,747 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EObject;
+import java.util.List;
 import org.eclipse.emf.ecore.EReference;
- 
+import java.util.Map;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 // End of user code
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public interface InterfacePropertiesEditionPart {
+public interface Interface_PropertiesEditionPart {
 
 	/**
 	 * @return the name
 	 */
 	public String getName();
-	
+
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
-	
-	public void setMessageForName (String msg, int msgLevel);	
-	
-	public void unsetMessageForName ();
-	
+
+	public void setMessageForName(String msg, int msgLevel);
+
+	public void unsetMessageForName();
+
 	/**
 	 * @return the visibility
 	 */
 	public Enumerator getVisibility();
-	
+
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
-/**
+	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the isAbstract
 	 */
 	public Boolean getIsAbstract();
-	
+
 	/**
 	 * Defines a new isAbstract
-	 * @param newValue the new isAbstract to set
+	 * 
+	 * @param newValue
+	 *            the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the isLeaf
 	 */
 	public Boolean getIsLeaf();
-	
+
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *            the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the ownedAttribute to add
 	 */
 	public List getOwnedAttributeToAdd();
-	
+
 	/**
 	 * @return the ownedAttribute to remove
 	 */
 	public List getOwnedAttributeToRemove();
-	
+
 	/**
 	 * @return the ownedAttribute to move
 	 */
 	public List getOwnedAttributeToMove();
-	
+
 	/**
 	 * @return the ownedAttribute to edit
 	 */
 	public Map getOwnedAttributeToEdit();
-	
+
 	/**
 	 * @return the current ownedAttribute
 	 */
 	public List getOwnedAttributeTable();
-	
+
 	/**
 	 * Init the ownedAttribute
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedAttribute(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the ownedAttribute
-	 * @param newValue the ownedAttribute to update
+	 * 
+	 * @param newValue
+	 *            the ownedAttribute to update
 	 */
 	public void updateOwnedAttribute(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the ownedOperation to add
 	 */
 	public List getOwnedOperationToAdd();
-	
+
 	/**
 	 * @return the ownedOperation to remove
 	 */
 	public List getOwnedOperationToRemove();
-	
+
 	/**
 	 * @return the ownedOperation to move
 	 */
 	public List getOwnedOperationToMove();
-	
+
 	/**
 	 * @return the ownedOperation to edit
 	 */
 	public Map getOwnedOperationToEdit();
-	
+
 	/**
 	 * @return the current ownedOperation
 	 */
 	public List getOwnedOperationTable();
-	
+
 	/**
 	 * Init the ownedOperation
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedOperation(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the ownedOperation
-	 * @param newValue the ownedOperation to update
+	 * 
+	 * @param newValue
+	 *            the ownedOperation to update
 	 */
 	public void updateOwnedOperation(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the nestedClassifier to add
 	 */
 	public List getNestedClassifierToAdd();
-	
+
 	/**
 	 * @return the nestedClassifier to remove
 	 */
 	public List getNestedClassifierToRemove();
-	
+
 	/**
 	 * @return the nestedClassifier to move
 	 */
 	public List getNestedClassifierToMove();
-	
+
 	/**
 	 * @return the nestedClassifier to edit
 	 */
 	public Map getNestedClassifierToEdit();
-	
+
 	/**
 	 * @return the current nestedClassifier
 	 */
 	public List getNestedClassifierTable();
-	
+
 	/**
 	 * Init the nestedClassifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initNestedClassifier(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the nestedClassifier
-	 * @param newValue the nestedClassifier to update
+	 * 
+	 * @param newValue
+	 *            the nestedClassifier to update
 	 */
 	public void updateNestedClassifier(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the generalization to add
 	 */
 	public List getGeneralizationToAdd();
-	
+
 	/**
 	 * @return the generalization to remove
 	 */
 	public List getGeneralizationToRemove();
-	
+
 	/**
 	 * @return the generalization to move
 	 */
 	public List getGeneralizationToMove();
-	
+
 	/**
 	 * @return the generalization to edit
 	 */
 	public Map getGeneralizationToEdit();
-	
+
 	/**
 	 * @return the current generalization
 	 */
 	public List getGeneralizationTable();
-	
+
 	/**
 	 * Init the generalization
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initGeneralization(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the generalization
-	 * @param newValue the generalization to update
+	 * 
+	 * @param newValue
+	 *            the generalization to update
 	 */
 	public void updateGeneralization(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the redefinedClassifier to add
 	 */
 	public List getRedefinedClassifierToAdd();
-	
+
 	/**
 	 * @return the redefinedClassifier to remove
 	 */
 	public List getRedefinedClassifierToRemove();
-	
+
 	/**
 	 * Init the redefinedClassifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRedefinedClassifier(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the redefinedClassifier
-	 * @param newValue the redefinedClassifier to update
+	 * 
+	 * @param newValue
+	 *            the redefinedClassifier to update
 	 */
 	public void updateRedefinedClassifier(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the redefinedInterface to add
 	 */
 	public List getRedefinedInterfaceToAdd();
-	
+
 	/**
 	 * @return the redefinedInterface to remove
 	 */
 	public List getRedefinedInterfaceToRemove();
-	
+
 	/**
 	 * Init the redefinedInterface
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRedefinedInterface(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the redefinedInterface
-	 * @param newValue the redefinedInterface to update
+	 * 
+	 * @param newValue
+	 *            the redefinedInterface to update
 	 */
 	public void updateRedefinedInterface(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the templateBinding to add
 	 */
 	public List getTemplateBindingToAdd();
-	
+
 	/**
 	 * @return the templateBinding to remove
 	 */
 	public List getTemplateBindingToRemove();
-	
+
 	/**
 	 * @return the templateBinding to move
 	 */
 	public List getTemplateBindingToMove();
-	
+
 	/**
 	 * @return the templateBinding to edit
 	 */
 	public Map getTemplateBindingToEdit();
-	
+
 	/**
 	 * @return the current templateBinding
 	 */
 	public List getTemplateBindingTable();
-	
+
 	/**
 	 * Init the templateBinding
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the templateBinding
-	 * @param newValue the templateBinding to update
+	 * 
+	 * @param newValue
+	 *            the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the elementImport to add
 	 */
 	public List getElementImportToAdd();
-	
+
 	/**
 	 * @return the elementImport to remove
 	 */
 	public List getElementImportToRemove();
-	
+
 	/**
 	 * @return the elementImport to move
 	 */
 	public List getElementImportToMove();
-	
+
 	/**
 	 * @return the elementImport to edit
 	 */
 	public Map getElementImportToEdit();
-	
+
 	/**
 	 * @return the current elementImport
 	 */
 	public List getElementImportTable();
-	
+
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *            the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the packageImport to add
 	 */
 	public List getPackageImportToAdd();
-	
+
 	/**
 	 * @return the packageImport to remove
 	 */
 	public List getPackageImportToRemove();
-	
+
 	/**
 	 * @return the packageImport to move
 	 */
 	public List getPackageImportToMove();
-	
+
 	/**
 	 * @return the packageImport to edit
 	 */
 	public Map getPackageImportToEdit();
-	
+
 	/**
 	 * @return the current packageImport
 	 */
 	public List getPackageImportTable();
-	
+
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *            the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the ownedRule to add
 	 */
 	public List getOwnedRuleToAdd();
-	
+
 	/**
 	 * @return the ownedRule to remove
 	 */
 	public List getOwnedRuleToRemove();
-	
+
 	/**
 	 * @return the ownedRule to move
 	 */
 	public List getOwnedRuleToMove();
-	
+
 	/**
 	 * @return the ownedRule to edit
 	 */
 	public Map getOwnedRuleToEdit();
-	
+
 	/**
 	 * @return the current ownedRule
 	 */
 	public List getOwnedRuleTable();
-	
+
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *            the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the powertypeExtent to add
 	 */
 	public List getPowertypeExtentToAdd();
-	
+
 	/**
 	 * @return the powertypeExtent to remove
 	 */
 	public List getPowertypeExtentToRemove();
-	
+
 	/**
 	 * Init the powertypeExtent
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPowertypeExtent(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the powertypeExtent
-	 * @param newValue the powertypeExtent to update
+	 * 
+	 * @param newValue
+	 *            the powertypeExtent to update
 	 */
 	public void updatePowertypeExtent(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the useCase to add
 	 */
 	public List getUseCaseToAdd();
-	
+
 	/**
 	 * @return the useCase to remove
 	 */
 	public List getUseCaseToRemove();
-	
+
 	/**
 	 * Init the useCase
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initUseCase(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the useCase
-	 * @param newValue the useCase to update
+	 * 
+	 * @param newValue
+	 *            the useCase to update
 	 */
 	public void updateUseCase(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the ownedUseCase to add
 	 */
 	public List getOwnedUseCaseToAdd();
-	
+
 	/**
 	 * @return the ownedUseCase to remove
 	 */
 	public List getOwnedUseCaseToRemove();
-	
+
 	/**
 	 * @return the ownedUseCase to move
 	 */
 	public List getOwnedUseCaseToMove();
-	
+
 	/**
 	 * @return the ownedUseCase to edit
 	 */
 	public Map getOwnedUseCaseToEdit();
-	
+
 	/**
 	 * @return the current ownedUseCase
 	 */
 	public List getOwnedUseCaseTable();
-	
+
 	/**
 	 * Init the ownedUseCase
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedUseCase(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the ownedUseCase
-	 * @param newValue the ownedUseCase to update
+	 * 
+	 * @param newValue
+	 *            the ownedUseCase to update
 	 */
 	public void updateOwnedUseCase(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the collaborationUse to add
 	 */
 	public List getCollaborationUseToAdd();
-	
+
 	/**
 	 * @return the collaborationUse to remove
 	 */
 	public List getCollaborationUseToRemove();
-	
+
 	/**
 	 * @return the collaborationUse to move
 	 */
 	public List getCollaborationUseToMove();
-	
+
 	/**
 	 * @return the collaborationUse to edit
 	 */
 	public Map getCollaborationUseToEdit();
-	
+
 	/**
 	 * @return the current collaborationUse
 	 */
 	public List getCollaborationUseTable();
-	
+
 	/**
 	 * Init the collaborationUse
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initCollaborationUse(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the collaborationUse
-	 * @param newValue the collaborationUse to update
+	 * 
+	 * @param newValue
+	 *            the collaborationUse to update
 	 */
 	public void updateCollaborationUse(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the substitution to add
 	 */
 	public List getSubstitutionToAdd();
-	
+
 	/**
 	 * @return the substitution to remove
 	 */
 	public List getSubstitutionToRemove();
-	
+
 	/**
 	 * @return the substitution to move
 	 */
 	public List getSubstitutionToMove();
-	
+
 	/**
 	 * @return the substitution to edit
 	 */
 	public Map getSubstitutionToEdit();
-	
+
 	/**
 	 * @return the current substitution
 	 */
 	public List getSubstitutionTable();
-	
+
 	/**
 	 * Init the substitution
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initSubstitution(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the substitution
-	 * @param newValue the substitution to update
+	 * 
+	 * @param newValue
+	 *            the substitution to update
 	 */
 	public void updateSubstitution(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the ownedReception to add
 	 */
 	public List getOwnedReceptionToAdd();
-	
+
 	/**
 	 * @return the ownedReception to remove
 	 */
 	public List getOwnedReceptionToRemove();
-	
+
 	/**
 	 * @return the ownedReception to move
 	 */
 	public List getOwnedReceptionToMove();
-	
+
 	/**
 	 * @return the ownedReception to edit
 	 */
 	public Map getOwnedReceptionToEdit();
-	
+
 	/**
 	 * @return the current ownedReception
 	 */
 	public List getOwnedReceptionTable();
-	
+
 	/**
 	 * Init the ownedReception
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedReception(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the ownedReception
-	 * @param newValue the ownedReception to update
+	 * 
+	 * @param newValue
+	 *            the ownedReception to update
 	 */
 	public void updateOwnedReception(EObject newValue);
-	
-	
-	
-	
-	
-
-
-
-
 
 	// Start of user code for additional methods
- 	
+
 	// End of user code
 }
-

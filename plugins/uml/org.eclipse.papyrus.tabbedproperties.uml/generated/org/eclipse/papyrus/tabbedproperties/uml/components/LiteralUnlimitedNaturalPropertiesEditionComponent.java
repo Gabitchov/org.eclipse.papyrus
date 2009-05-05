@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class LiteralUnlimitedNaturalPropertiesEditionComponent extends ComposedP
 	 * @param literalUnlimitedNatural
 	 *            the EObject to edit
 	 */
-	public LiteralUnlimitedNaturalPropertiesEditionComponent(EObject literalUnlimitedNatural, String mode) {
-		super(mode);
+	public LiteralUnlimitedNaturalPropertiesEditionComponent(EObject literalUnlimitedNatural, String editing_mode) {
+		super(editing_mode);
 		if (literalUnlimitedNatural instanceof LiteralUnlimitedNatural) {
-			addSubComponent(new LiteralUnlimitedNaturalBasePropertiesEditionComponent(literalUnlimitedNatural, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(literalUnlimitedNatural, mode));
+			addSubComponent(new LiteralUnlimitedNaturalBasePropertiesEditionComponent(literalUnlimitedNatural, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(literalUnlimitedNatural, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class InterfaceRealizationPropertiesEditionComponent extends ComposedProp
 	 * @param interfaceRealization
 	 *            the EObject to edit
 	 */
-	public InterfaceRealizationPropertiesEditionComponent(EObject interfaceRealization, String mode) {
-		super(mode);
+	public InterfaceRealizationPropertiesEditionComponent(EObject interfaceRealization, String editing_mode) {
+		super(editing_mode);
 		if (interfaceRealization instanceof InterfaceRealization) {
-			addSubComponent(new InterfaceRealizationBasePropertiesEditionComponent(interfaceRealization, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(interfaceRealization, mode));
+			addSubComponent(new InterfaceRealizationBasePropertiesEditionComponent(interfaceRealization, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(interfaceRealization, editing_mode));
 		}
 	}
 }
-

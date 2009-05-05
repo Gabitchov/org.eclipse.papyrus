@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ExecutionEnvironment;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ExecutionEnvironmentPropertiesEditionComponent extends ComposedProp
 	 * @param executionEnvironment
 	 *            the EObject to edit
 	 */
-	public ExecutionEnvironmentPropertiesEditionComponent(EObject executionEnvironment, String mode) {
-		super(mode);
+	public ExecutionEnvironmentPropertiesEditionComponent(EObject executionEnvironment, String editing_mode) {
+		super(editing_mode);
 		if (executionEnvironment instanceof ExecutionEnvironment) {
-			addSubComponent(new ExecutionEnvironmentBasePropertiesEditionComponent(executionEnvironment, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(executionEnvironment, mode));
+			addSubComponent(new ExecutionEnvironmentBasePropertiesEditionComponent(executionEnvironment, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(executionEnvironment, editing_mode));
 		}
 	}
 }
-

@@ -16,14 +16,13 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 public class UMLViewsRepository {
 
 	public static final int SWT_KIND = 0;
-		
+
 	public static final int FORM_KIND = 1;
 
-    /**
-     * Class view descriptor
-     *
-     */
-	public static class Class {
+	/**
+	 * Class view descriptor
+	 */
+	public static class Class_ {
 
 		public static String name = "UML::Class::name";
 
@@ -72,13 +71,12 @@ public class UMLViewsRepository {
 		public static String ownedRule = "UML::Class::ownedRule";
 
 		public static String powertypeExtent = "UML::Class::powertypeExtent";
-	
+
 	}
-	
-    /**
-     * AssociationClass view descriptor
-     *
-     */
+
+	/**
+	 * AssociationClass view descriptor
+	 */
 	public static class AssociationClass {
 
 		public static String name = "UML::AssociationClass::name";
@@ -136,13 +134,12 @@ public class UMLViewsRepository {
 		public static String powertypeExtent = "UML::AssociationClass::powertypeExtent";
 
 		public static String ownedRule = "UML::AssociationClass::ownedRule";
-	
+
 	}
-	
-    /**
-     * LiteralUnlimitedNatural view descriptor
-     *
-     */
+
+	/**
+	 * LiteralUnlimitedNatural view descriptor
+	 */
 	public static class LiteralUnlimitedNatural {
 
 		public static String ownedComment = "UML::LiteralUnlimitedNatural::ownedComment";
@@ -154,13 +151,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::LiteralUnlimitedNatural::clientDependency";
 
 		public static String value = "UML::LiteralUnlimitedNatural::value";
-	
+
 	}
-	
-    /**
-     * InstanceValue view descriptor
-     *
-     */
+
+	/**
+	 * InstanceValue view descriptor
+	 */
 	public static class InstanceValue {
 
 		public static String ownedComment = "UML::InstanceValue::ownedComment";
@@ -170,13 +166,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::InstanceValue::visibility";
 
 		public static String clientDependency = "UML::InstanceValue::clientDependency";
-	
+
 	}
-	
-    /**
-     * LiteralNull view descriptor
-     *
-     */
+
+	/**
+	 * LiteralNull view descriptor
+	 */
 	public static class LiteralNull {
 
 		public static String ownedComment = "UML::LiteralNull::ownedComment";
@@ -186,13 +181,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::LiteralNull::visibility";
 
 		public static String clientDependency = "UML::LiteralNull::clientDependency";
-	
+
 	}
-	
-    /**
-     * LiteralBoolean view descriptor
-     *
-     */
+
+	/**
+	 * LiteralBoolean view descriptor
+	 */
 	public static class LiteralBoolean {
 
 		public static String ownedComment = "UML::LiteralBoolean::ownedComment";
@@ -204,13 +198,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::LiteralBoolean::clientDependency";
 
 		public static String value = "UML::LiteralBoolean::value";
-	
+
 	}
-	
-    /**
-     * LiteralString view descriptor
-     *
-     */
+
+	/**
+	 * LiteralString view descriptor
+	 */
 	public static class LiteralString {
 
 		public static String ownedComment = "UML::LiteralString::ownedComment";
@@ -222,13 +215,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::LiteralString::clientDependency";
 
 		public static String value = "UML::LiteralString::value";
-	
+
 	}
-	
-    /**
-     * LiteralInteger view descriptor
-     *
-     */
+
+	/**
+	 * LiteralInteger view descriptor
+	 */
 	public static class LiteralInteger {
 
 		public static String ownedComment = "UML::LiteralInteger::ownedComment";
@@ -240,13 +232,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::LiteralInteger::clientDependency";
 
 		public static String value = "UML::LiteralInteger::value";
-	
+
 	}
-	
-    /**
-     * PrimitiveType view descriptor
-     *
-     */
+
+	/**
+	 * PrimitiveType view descriptor
+	 */
 	public static class PrimitiveType {
 
 		public static String name = "UML::PrimitiveType::name";
@@ -282,23 +273,21 @@ public class UMLViewsRepository {
 		public static String packageImport = "UML::PrimitiveType::packageImport";
 
 		public static String ownedRule = "UML::PrimitiveType::ownedRule";
-	
+
 	}
-	
-    /**
-     * Slot view descriptor
-     *
-     */
+
+	/**
+	 * Slot view descriptor
+	 */
 	public static class Slot {
 
 		public static String value = "UML::Slot::value";
-	
+
 	}
-	
-    /**
-     * InstanceSpecification view descriptor
-     *
-     */
+
+	/**
+	 * InstanceSpecification view descriptor
+	 */
 	public static class InstanceSpecification {
 
 		public static String name = "UML::InstanceSpecification::name";
@@ -310,13 +299,12 @@ public class UMLViewsRepository {
 		public static String classifier = "UML::InstanceSpecification::classifier";
 
 		public static String deployment = "UML::InstanceSpecification::deployment";
-	
+
 	}
-	
-    /**
-     * EnumerationLiteral view descriptor
-     *
-     */
+
+	/**
+	 * EnumerationLiteral view descriptor
+	 */
 	public static class EnumerationLiteral {
 
 		public static String name = "UML::EnumerationLiteral::name";
@@ -328,13 +316,12 @@ public class UMLViewsRepository {
 		public static String slot = "UML::EnumerationLiteral::slot";
 
 		public static String classifier = "UML::EnumerationLiteral::classifier";
-	
+
 	}
-	
-    /**
-     * Enumeration view descriptor
-     *
-     */
+
+	/**
+	 * Enumeration view descriptor
+	 */
 	public static class Enumeration {
 
 		public static String name = "UML::Enumeration::name";
@@ -372,21 +359,19 @@ public class UMLViewsRepository {
 		public static String substitution = "UML::Enumeration::substitution";
 
 		public static String redefinedClassifier = "UML::Enumeration::redefinedClassifier";
-	
+
 	}
-	
-    /**
-     * PackageMerge view descriptor
-     *
-     */
+
+	/**
+	 * PackageMerge view descriptor
+	 */
 	public static class PackageMerge {
-	
+
 	}
-	
-    /**
-     * Usage view descriptor
-     *
-     */
+
+	/**
+	 * Usage view descriptor
+	 */
 	public static class Usage {
 
 		public static String name = "UML::Usage::name";
@@ -396,13 +381,12 @@ public class UMLViewsRepository {
 		public static String client = "UML::Usage::client";
 
 		public static String supplier = "UML::Usage::supplier";
-	
+
 	}
-	
-    /**
-     * Expression view descriptor
-     *
-     */
+
+	/**
+	 * Expression view descriptor
+	 */
 	public static class Expression {
 
 		public static String ownedComment = "UML::Expression::ownedComment";
@@ -416,13 +400,12 @@ public class UMLViewsRepository {
 		public static String symbol = "UML::Expression::symbol";
 
 		public static String operand = "UML::Expression::operand";
-	
+
 	}
-	
-    /**
-     * DataType view descriptor
-     *
-     */
+
+	/**
+	 * DataType view descriptor
+	 */
 	public static class DataType {
 
 		public static String name = "UML::DataType::name";
@@ -458,13 +441,12 @@ public class UMLViewsRepository {
 		public static String elementImport = "UML::DataType::elementImport";
 
 		public static String packageImport = "UML::DataType::packageImport";
-	
+
 	}
-	
-    /**
-     * InterfaceRealization view descriptor
-     *
-     */
+
+	/**
+	 * InterfaceRealization view descriptor
+	 */
 	public static class InterfaceRealization {
 
 		public static String name = "UML::InterfaceRealization::name";
@@ -474,13 +456,12 @@ public class UMLViewsRepository {
 		public static String client = "UML::InterfaceRealization::client";
 
 		public static String supplier = "UML::InterfaceRealization::supplier";
-	
+
 	}
-	
-    /**
-     * Operation view descriptor
-     *
-     */
+
+	/**
+	 * Operation view descriptor
+	 */
 	public static class Operation {
 
 		public static String name = "UML::Operation::name";
@@ -518,13 +499,12 @@ public class UMLViewsRepository {
 		public static String packageImport = "UML::Operation::packageImport";
 
 		public static String elementImport = "UML::Operation::elementImport";
-	
+
 	}
-	
-    /**
-     * Property view descriptor
-     *
-     */
+
+	/**
+	 * Property view descriptor
+	 */
 	public static class Property {
 
 		public static String name = "UML::Property::name";
@@ -562,13 +542,12 @@ public class UMLViewsRepository {
 		public static String redefinedProperty = "UML::Property::redefinedProperty";
 
 		public static String subsettedProperty = "UML::Property::subsettedProperty";
-	
+
 	}
-	
-    /**
-     * Parameter view descriptor
-     *
-     */
+
+	/**
+	 * Parameter view descriptor
+	 */
 	public static class Parameter {
 
 		public static String name = "UML::Parameter::name";
@@ -594,13 +573,12 @@ public class UMLViewsRepository {
 		public static String upper = "UML::Parameter::upper";
 
 		public static String parameterSet = "UML::Parameter::parameterSet";
-	
+
 	}
-	
-    /**
-     * OpaqueExpression view descriptor
-     *
-     */
+
+	/**
+	 * OpaqueExpression view descriptor
+	 */
 	public static class OpaqueExpression {
 
 		public static String ownedComment = "UML::OpaqueExpression::ownedComment";
@@ -614,13 +592,12 @@ public class UMLViewsRepository {
 		public static String body = "UML::OpaqueExpression::body";
 
 		public static String language = "UML::OpaqueExpression::language";
-	
+
 	}
-	
-    /**
-     * Abstraction view descriptor
-     *
-     */
+
+	/**
+	 * Abstraction view descriptor
+	 */
 	public static class Abstraction {
 
 		public static String name = "UML::Abstraction::name";
@@ -630,13 +607,12 @@ public class UMLViewsRepository {
 		public static String client = "UML::Abstraction::client";
 
 		public static String supplier = "UML::Abstraction::supplier";
-	
+
 	}
-	
-    /**
-     * Realization view descriptor
-     *
-     */
+
+	/**
+	 * Realization view descriptor
+	 */
 	public static class Realization {
 
 		public static String name = "UML::Realization::name";
@@ -646,13 +622,12 @@ public class UMLViewsRepository {
 		public static String client = "UML::Realization::client";
 
 		public static String supplier = "UML::Realization::supplier";
-	
+
 	}
-	
-    /**
-     * Substitution view descriptor
-     *
-     */
+
+	/**
+	 * Substitution view descriptor
+	 */
 	public static class Substitution {
 
 		public static String name = "UML::Substitution::name";
@@ -662,13 +637,12 @@ public class UMLViewsRepository {
 		public static String client = "UML::Substitution::client";
 
 		public static String supplier = "UML::Substitution::supplier";
-	
+
 	}
-	
-    /**
-     * GeneralizationSet view descriptor
-     *
-     */
+
+	/**
+	 * GeneralizationSet view descriptor
+	 */
 	public static class GeneralizationSet {
 
 		public static String ownedComment = "UML::GeneralizationSet::ownedComment";
@@ -684,25 +658,23 @@ public class UMLViewsRepository {
 		public static String isDisjoint = "UML::GeneralizationSet::isDisjoint";
 
 		public static String generalization = "UML::GeneralizationSet::generalization";
-	
+
 	}
-	
-    /**
-     * Generalization view descriptor
-     *
-     */
+
+	/**
+	 * Generalization view descriptor
+	 */
 	public static class Generalization {
 
 		public static String isSubstitutable = "UML::Generalization::isSubstitutable";
 
 		public static String generalizationSet = "UML::Generalization::generalizationSet";
-	
+
 	}
-	
-    /**
-     * Association view descriptor
-     *
-     */
+
+	/**
+	 * Association view descriptor
+	 */
 	public static class Association {
 
 		public static String name = "UML::Association::name";
@@ -742,13 +714,12 @@ public class UMLViewsRepository {
 		public static String packageImport = "UML::Association::packageImport";
 
 		public static String ownedRule = "UML::Association::ownedRule";
-	
+
 	}
-	
-    /**
-     * Constraint view descriptor
-     *
-     */
+
+	/**
+	 * Constraint view descriptor
+	 */
 	public static class Constraint {
 
 		public static String ownedComment = "UML::Constraint::ownedComment";
@@ -760,26 +731,24 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::Constraint::clientDependency";
 
 		public static String constrainedElement = "UML::Constraint::constrainedElement";
-	
+
 	}
-	
-    /**
-     * Comment view descriptor
-     *
-     */
+
+	/**
+	 * Comment view descriptor
+	 */
 	public static class Comment {
 
 		public static String body = "UML::Comment::body";
 
 		public static String annotatedElement = "UML::Comment::annotatedElement";
-	
+
 	}
-	
-    /**
-     * Package view descriptor
-     *
-     */
-	public static class Package {
+
+	/**
+	 * Package view descriptor
+	 */
+	public static class Package_ {
 
 		public static String name = "UML::Package::name";
 
@@ -796,23 +765,21 @@ public class UMLViewsRepository {
 		public static String packagedElement = "UML::Package::packagedElement";
 
 		public static String ownedRule = "UML::Package::ownedRule";
-	
+
 	}
-	
-    /**
-     * PackageImport view descriptor
-     *
-     */
+
+	/**
+	 * PackageImport view descriptor
+	 */
 	public static class PackageImport {
 
 		public static String visibility = "UML::PackageImport::visibility";
-	
+
 	}
-	
-    /**
-     * Dependency view descriptor
-     *
-     */
+
+	/**
+	 * Dependency view descriptor
+	 */
 	public static class Dependency {
 
 		public static String name = "UML::Dependency::name";
@@ -822,25 +789,23 @@ public class UMLViewsRepository {
 		public static String client = "UML::Dependency::client";
 
 		public static String supplier = "UML::Dependency::supplier";
-	
+
 	}
-	
-    /**
-     * ElementImport view descriptor
-     *
-     */
+
+	/**
+	 * ElementImport view descriptor
+	 */
 	public static class ElementImport {
 
 		public static String visibility = "UML::ElementImport::visibility";
 
 		public static String alias = "UML::ElementImport::alias";
-	
+
 	}
-	
-    /**
-     * Component view descriptor
-     *
-     */
+
+	/**
+	 * Component view descriptor
+	 */
 	public static class Component {
 
 		public static String name = "UML::Component::name";
@@ -896,13 +861,12 @@ public class UMLViewsRepository {
 		public static String ownedRule = "UML::Component::ownedRule";
 
 		public static String packageImport = "UML::Component::packageImport";
-	
+
 	}
-	
-    /**
-     * ComponentRealization view descriptor
-     *
-     */
+
+	/**
+	 * ComponentRealization view descriptor
+	 */
 	public static class ComponentRealization {
 
 		public static String ownedComment = "UML::ComponentRealization::ownedComment";
@@ -916,13 +880,12 @@ public class UMLViewsRepository {
 		public static String supplier = "UML::ComponentRealization::supplier";
 
 		public static String client = "UML::ComponentRealization::client";
-	
+
 	}
-	
-    /**
-     * Connector view descriptor
-     *
-     */
+
+	/**
+	 * Connector view descriptor
+	 */
 	public static class Connector {
 
 		public static String ownedComment = "UML::Connector::ownedComment";
@@ -944,13 +907,12 @@ public class UMLViewsRepository {
 		public static String kind = "UML::Connector::kind";
 
 		public static String contract = "UML::Connector::contract";
-	
+
 	}
-	
-    /**
-     * Collaboration view descriptor
-     *
-     */
+
+	/**
+	 * Collaboration view descriptor
+	 */
 	public static class Collaboration {
 
 		public static String ownedComment = "UML::Collaboration::ownedComment";
@@ -998,13 +960,12 @@ public class UMLViewsRepository {
 		public static String ownedConnector = "UML::Collaboration::ownedConnector";
 
 		public static String collaborationRole = "UML::Collaboration::collaborationRole";
-	
+
 	}
-	
-    /**
-     * CollaborationUse view descriptor
-     *
-     */
+
+	/**
+	 * CollaborationUse view descriptor
+	 */
 	public static class CollaborationUse {
 
 		public static String ownedComment = "UML::CollaborationUse::ownedComment";
@@ -1016,13 +977,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::CollaborationUse::clientDependency";
 
 		public static String roleBinding = "UML::CollaborationUse::roleBinding";
-	
+
 	}
-	
-    /**
-     * Port view descriptor
-     *
-     */
+
+	/**
+	 * Port view descriptor
+	 */
 	public static class Port {
 
 		public static String ownedComment = "UML::Port::ownedComment";
@@ -1064,13 +1024,12 @@ public class UMLViewsRepository {
 		public static String isService = "UML::Port::isService";
 
 		public static String redefinedPort = "UML::Port::redefinedPort";
-	
+
 	}
-	
-    /**
-     * Trigger view descriptor
-     *
-     */
+
+	/**
+	 * Trigger view descriptor
+	 */
 	public static class Trigger {
 
 		public static String ownedComment = "UML::Trigger::ownedComment";
@@ -1082,13 +1041,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::Trigger::clientDependency";
 
 		public static String port = "UML::Trigger::port";
-	
+
 	}
-	
-    /**
-     * ConnectorEnd view descriptor
-     *
-     */
+
+	/**
+	 * ConnectorEnd view descriptor
+	 */
 	public static class ConnectorEnd {
 
 		public static String ownedComment = "UML::ConnectorEnd::ownedComment";
@@ -1096,13 +1054,12 @@ public class UMLViewsRepository {
 		public static String isOrdered = "UML::ConnectorEnd::isOrdered";
 
 		public static String isUnique = "UML::ConnectorEnd::isUnique";
-	
+
 	}
-	
-    /**
-     * ExecutionEnvironment view descriptor
-     *
-     */
+
+	/**
+	 * ExecutionEnvironment view descriptor
+	 */
 	public static class ExecutionEnvironment {
 
 		public static String ownedComment = "UML::ExecutionEnvironment::ownedComment";
@@ -1160,13 +1117,12 @@ public class UMLViewsRepository {
 		public static String deployment = "UML::ExecutionEnvironment::deployment";
 
 		public static String nestedNode = "UML::ExecutionEnvironment::nestedNode";
-	
+
 	}
-	
-    /**
-     * Device view descriptor
-     *
-     */
+
+	/**
+	 * Device view descriptor
+	 */
 	public static class Device {
 
 		public static String ownedComment = "UML::Device::ownedComment";
@@ -1224,13 +1180,12 @@ public class UMLViewsRepository {
 		public static String deployment = "UML::Device::deployment";
 
 		public static String nestedNode = "UML::Device::nestedNode";
-	
+
 	}
-	
-    /**
-     * CommunicationPath view descriptor
-     *
-     */
+
+	/**
+	 * CommunicationPath view descriptor
+	 */
 	public static class CommunicationPath {
 
 		public static String ownedComment = "UML::CommunicationPath::ownedComment";
@@ -1274,13 +1229,12 @@ public class UMLViewsRepository {
 		public static String isDerived = "UML::CommunicationPath::isDerived";
 
 		public static String navigableOwnedEnd = "UML::CommunicationPath::navigableOwnedEnd";
-	
+
 	}
-	
-    /**
-     * Node view descriptor
-     *
-     */
+
+	/**
+	 * Node view descriptor
+	 */
 	public static class Node {
 
 		public static String ownedComment = "UML::Node::ownedComment";
@@ -1338,13 +1292,12 @@ public class UMLViewsRepository {
 		public static String deployment = "UML::Node::deployment";
 
 		public static String nestedNode = "UML::Node::nestedNode";
-	
+
 	}
-	
-    /**
-     * Manifestation view descriptor
-     *
-     */
+
+	/**
+	 * Manifestation view descriptor
+	 */
 	public static class Manifestation {
 
 		public static String ownedComment = "UML::Manifestation::ownedComment";
@@ -1358,13 +1311,12 @@ public class UMLViewsRepository {
 		public static String supplier = "UML::Manifestation::supplier";
 
 		public static String client = "UML::Manifestation::client";
-	
+
 	}
-	
-    /**
-     * Artifact view descriptor
-     *
-     */
+
+	/**
+	 * Artifact view descriptor
+	 */
 	public static class Artifact {
 
 		public static String ownedComment = "UML::Artifact::ownedComment";
@@ -1410,13 +1362,12 @@ public class UMLViewsRepository {
 		public static String ownedOperation = "UML::Artifact::ownedOperation";
 
 		public static String ownedAttribute = "UML::Artifact::ownedAttribute";
-	
+
 	}
-	
-    /**
-     * DeploymentSpecification view descriptor
-     *
-     */
+
+	/**
+	 * DeploymentSpecification view descriptor
+	 */
 	public static class DeploymentSpecification {
 
 		public static String ownedComment = "UML::DeploymentSpecification::ownedComment";
@@ -1466,13 +1417,12 @@ public class UMLViewsRepository {
 		public static String deploymentLocation = "UML::DeploymentSpecification::deploymentLocation";
 
 		public static String executionLocation = "UML::DeploymentSpecification::executionLocation";
-	
+
 	}
-	
-    /**
-     * Deployment view descriptor
-     *
-     */
+
+	/**
+	 * Deployment view descriptor
+	 */
 	public static class Deployment {
 
 		public static String ownedComment = "UML::Deployment::ownedComment";
@@ -1490,13 +1440,12 @@ public class UMLViewsRepository {
 		public static String deployedArtifact = "UML::Deployment::deployedArtifact";
 
 		public static String configuration = "UML::Deployment::configuration";
-	
+
 	}
-	
-    /**
-     * ReduceAction view descriptor
-     *
-     */
+
+	/**
+	 * ReduceAction view descriptor
+	 */
 	public static class ReduceAction {
 
 		public static String ownedComment = "UML::ReduceAction::ownedComment";
@@ -1526,13 +1475,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::ReduceAction::localPostcondition";
 
 		public static String isOrdered = "UML::ReduceAction::isOrdered";
-	
+
 	}
-	
-    /**
-     * ReplyAction view descriptor
-     *
-     */
+
+	/**
+	 * ReplyAction view descriptor
+	 */
 	public static class ReplyAction {
 
 		public static String ownedComment = "UML::ReplyAction::ownedComment";
@@ -1562,13 +1510,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::ReplyAction::localPostcondition";
 
 		public static String replyValue = "UML::ReplyAction::replyValue";
-	
+
 	}
-	
-    /**
-     * AcceptCallAction view descriptor
-     *
-     */
+
+	/**
+	 * AcceptCallAction view descriptor
+	 */
 	public static class AcceptCallAction {
 
 		public static String ownedComment = "UML::AcceptCallAction::ownedComment";
@@ -1602,13 +1549,12 @@ public class UMLViewsRepository {
 		public static String result = "UML::AcceptCallAction::result";
 
 		public static String trigger = "UML::AcceptCallAction::trigger";
-	
+
 	}
-	
-    /**
-     * AcceptEventAction view descriptor
-     *
-     */
+
+	/**
+	 * AcceptEventAction view descriptor
+	 */
 	public static class AcceptEventAction {
 
 		public static String ownedComment = "UML::AcceptEventAction::ownedComment";
@@ -1642,13 +1588,12 @@ public class UMLViewsRepository {
 		public static String result = "UML::AcceptEventAction::result";
 
 		public static String trigger = "UML::AcceptEventAction::trigger";
-	
+
 	}
-	
-    /**
-     * CreateLinkObjectAction view descriptor
-     *
-     */
+
+	/**
+	 * CreateLinkObjectAction view descriptor
+	 */
 	public static class CreateLinkObjectAction {
 
 		public static String ownedComment = "UML::CreateLinkObjectAction::ownedComment";
@@ -1680,13 +1625,12 @@ public class UMLViewsRepository {
 		public static String endData = "UML::CreateLinkObjectAction::endData";
 
 		public static String inputValue = "UML::CreateLinkObjectAction::inputValue";
-	
+
 	}
-	
-    /**
-     * ReadLinkObjectEndQualifierAction view descriptor
-     *
-     */
+
+	/**
+	 * ReadLinkObjectEndQualifierAction view descriptor
+	 */
 	public static class ReadLinkObjectEndQualifierAction {
 
 		public static String ownedComment = "UML::ReadLinkObjectEndQualifierAction::ownedComment";
@@ -1714,13 +1658,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ReadLinkObjectEndQualifierAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ReadLinkObjectEndQualifierAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * ReadLinkObjectEndAction view descriptor
-     *
-     */
+
+	/**
+	 * ReadLinkObjectEndAction view descriptor
+	 */
 	public static class ReadLinkObjectEndAction {
 
 		public static String ownedComment = "UML::ReadLinkObjectEndAction::ownedComment";
@@ -1748,13 +1691,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ReadLinkObjectEndAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ReadLinkObjectEndAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * StartClassifierBehaviorAction view descriptor
-     *
-     */
+
+	/**
+	 * StartClassifierBehaviorAction view descriptor
+	 */
 	public static class StartClassifierBehaviorAction {
 
 		public static String ownedComment = "UML::StartClassifierBehaviorAction::ownedComment";
@@ -1782,13 +1724,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::StartClassifierBehaviorAction::localPrecondition";
 
 		public static String localPostcondition = "UML::StartClassifierBehaviorAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * ReadIsClassifiedObjectAction view descriptor
-     *
-     */
+
+	/**
+	 * ReadIsClassifiedObjectAction view descriptor
+	 */
 	public static class ReadIsClassifiedObjectAction {
 
 		public static String ownedComment = "UML::ReadIsClassifiedObjectAction::ownedComment";
@@ -1818,13 +1759,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::ReadIsClassifiedObjectAction::localPostcondition";
 
 		public static String isDirect = "UML::ReadIsClassifiedObjectAction::isDirect";
-	
+
 	}
-	
-    /**
-     * ReclassifyObjectAction view descriptor
-     *
-     */
+
+	/**
+	 * ReclassifyObjectAction view descriptor
+	 */
 	public static class ReclassifyObjectAction {
 
 		public static String ownedComment = "UML::ReclassifyObjectAction::ownedComment";
@@ -1858,13 +1798,12 @@ public class UMLViewsRepository {
 		public static String oldClassifier = "UML::ReclassifyObjectAction::oldClassifier";
 
 		public static String newClassifier = "UML::ReclassifyObjectAction::newClassifier";
-	
+
 	}
-	
-    /**
-     * ReadExtentAction view descriptor
-     *
-     */
+
+	/**
+	 * ReadExtentAction view descriptor
+	 */
 	public static class ReadExtentAction {
 
 		public static String ownedComment = "UML::ReadExtentAction::ownedComment";
@@ -1892,13 +1831,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ReadExtentAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ReadExtentAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * RaiseExceptionAction view descriptor
-     *
-     */
+
+	/**
+	 * RaiseExceptionAction view descriptor
+	 */
 	public static class RaiseExceptionAction {
 
 		public static String ownedComment = "UML::RaiseExceptionAction::ownedComment";
@@ -1926,13 +1864,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::RaiseExceptionAction::localPrecondition";
 
 		public static String localPostcondition = "UML::RaiseExceptionAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * RemoveVariableValueAction view descriptor
-     *
-     */
+
+	/**
+	 * RemoveVariableValueAction view descriptor
+	 */
 	public static class RemoveVariableValueAction {
 
 		public static String ownedComment = "UML::RemoveVariableValueAction::ownedComment";
@@ -1962,13 +1899,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::RemoveVariableValueAction::localPostcondition";
 
 		public static String isRemoveDuplicates = "UML::RemoveVariableValueAction::isRemoveDuplicates";
-	
+
 	}
-	
-    /**
-     * ClearVariableAction view descriptor
-     *
-     */
+
+	/**
+	 * ClearVariableAction view descriptor
+	 */
 	public static class ClearVariableAction {
 
 		public static String ownedComment = "UML::ClearVariableAction::ownedComment";
@@ -1996,13 +1932,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ClearVariableAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ClearVariableAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * AddVariableValueAction view descriptor
-     *
-     */
+
+	/**
+	 * AddVariableValueAction view descriptor
+	 */
 	public static class AddVariableValueAction {
 
 		public static String ownedComment = "UML::AddVariableValueAction::ownedComment";
@@ -2032,13 +1967,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::AddVariableValueAction::localPostcondition";
 
 		public static String isReplaceAll = "UML::AddVariableValueAction::isReplaceAll";
-	
+
 	}
-	
-    /**
-     * ReadVariableAction view descriptor
-     *
-     */
+
+	/**
+	 * ReadVariableAction view descriptor
+	 */
 	public static class ReadVariableAction {
 
 		public static String ownedComment = "UML::ReadVariableAction::ownedComment";
@@ -2066,13 +2000,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ReadVariableAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ReadVariableAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * ValueSpecificationAction view descriptor
-     *
-     */
+
+	/**
+	 * ValueSpecificationAction view descriptor
+	 */
 	public static class ValueSpecificationAction {
 
 		public static String ownedComment = "UML::ValueSpecificationAction::ownedComment";
@@ -2100,13 +2033,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ValueSpecificationAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ValueSpecificationAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * SendObjectAction view descriptor
-     *
-     */
+
+	/**
+	 * SendObjectAction view descriptor
+	 */
 	public static class SendObjectAction {
 
 		public static String ownedComment = "UML::SendObjectAction::ownedComment";
@@ -2136,13 +2068,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::SendObjectAction::localPostcondition";
 
 		public static String argument = "UML::SendObjectAction::argument";
-	
+
 	}
-	
-    /**
-     * BroadcastSignalAction view descriptor
-     *
-     */
+
+	/**
+	 * BroadcastSignalAction view descriptor
+	 */
 	public static class BroadcastSignalAction {
 
 		public static String ownedComment = "UML::BroadcastSignalAction::ownedComment";
@@ -2172,13 +2103,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::BroadcastSignalAction::localPostcondition";
 
 		public static String argument = "UML::BroadcastSignalAction::argument";
-	
+
 	}
-	
-    /**
-     * ClearAssociationAction view descriptor
-     *
-     */
+
+	/**
+	 * ClearAssociationAction view descriptor
+	 */
 	public static class ClearAssociationAction {
 
 		public static String ownedComment = "UML::ClearAssociationAction::ownedComment";
@@ -2206,13 +2136,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ClearAssociationAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ClearAssociationAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * LinkEndDestructionData view descriptor
-     *
-     */
+
+	/**
+	 * LinkEndDestructionData view descriptor
+	 */
 	public static class LinkEndDestructionData {
 
 		public static String ownedComment = "UML::LinkEndDestructionData::ownedComment";
@@ -2220,13 +2149,12 @@ public class UMLViewsRepository {
 		public static String qualifier = "UML::LinkEndDestructionData::qualifier";
 
 		public static String isDestroyDuplicates = "UML::LinkEndDestructionData::isDestroyDuplicates";
-	
+
 	}
-	
-    /**
-     * DestroyLinkAction view descriptor
-     *
-     */
+
+	/**
+	 * DestroyLinkAction view descriptor
+	 */
 	public static class DestroyLinkAction {
 
 		public static String ownedComment = "UML::DestroyLinkAction::ownedComment";
@@ -2258,13 +2186,12 @@ public class UMLViewsRepository {
 		public static String endData = "UML::DestroyLinkAction::endData";
 
 		public static String inputValue = "UML::DestroyLinkAction::inputValue";
-	
+
 	}
-	
-    /**
-     * CreateLinkAction view descriptor
-     *
-     */
+
+	/**
+	 * CreateLinkAction view descriptor
+	 */
 	public static class CreateLinkAction {
 
 		public static String ownedComment = "UML::CreateLinkAction::ownedComment";
@@ -2296,13 +2223,12 @@ public class UMLViewsRepository {
 		public static String endData = "UML::CreateLinkAction::endData";
 
 		public static String inputValue = "UML::CreateLinkAction::inputValue";
-	
+
 	}
-	
-    /**
-     * ReadLinkAction view descriptor
-     *
-     */
+
+	/**
+	 * ReadLinkAction view descriptor
+	 */
 	public static class ReadLinkAction {
 
 		public static String ownedComment = "UML::ReadLinkAction::ownedComment";
@@ -2334,13 +2260,12 @@ public class UMLViewsRepository {
 		public static String endData = "UML::ReadLinkAction::endData";
 
 		public static String inputValue = "UML::ReadLinkAction::inputValue";
-	
+
 	}
-	
-    /**
-     * LinkEndCreationData view descriptor
-     *
-     */
+
+	/**
+	 * LinkEndCreationData view descriptor
+	 */
 	public static class LinkEndCreationData {
 
 		public static String ownedComment = "UML::LinkEndCreationData::ownedComment";
@@ -2348,13 +2273,12 @@ public class UMLViewsRepository {
 		public static String qualifier = "UML::LinkEndCreationData::qualifier";
 
 		public static String isReplaceAll = "UML::LinkEndCreationData::isReplaceAll";
-	
+
 	}
-	
-    /**
-     * AddStructuralFeatureValueAction view descriptor
-     *
-     */
+
+	/**
+	 * AddStructuralFeatureValueAction view descriptor
+	 */
 	public static class AddStructuralFeatureValueAction {
 
 		public static String ownedComment = "UML::AddStructuralFeatureValueAction::ownedComment";
@@ -2384,13 +2308,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::AddStructuralFeatureValueAction::localPostcondition";
 
 		public static String isReplaceAll = "UML::AddStructuralFeatureValueAction::isReplaceAll";
-	
+
 	}
-	
-    /**
-     * RemoveStructuralFeatureValueAction view descriptor
-     *
-     */
+
+	/**
+	 * RemoveStructuralFeatureValueAction view descriptor
+	 */
 	public static class RemoveStructuralFeatureValueAction {
 
 		public static String ownedComment = "UML::RemoveStructuralFeatureValueAction::ownedComment";
@@ -2420,13 +2343,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::RemoveStructuralFeatureValueAction::localPostcondition";
 
 		public static String isRemoveDuplicates = "UML::RemoveStructuralFeatureValueAction::isRemoveDuplicates";
-	
+
 	}
-	
-    /**
-     * ClearStructuralFeatureAction view descriptor
-     *
-     */
+
+	/**
+	 * ClearStructuralFeatureAction view descriptor
+	 */
 	public static class ClearStructuralFeatureAction {
 
 		public static String ownedComment = "UML::ClearStructuralFeatureAction::ownedComment";
@@ -2454,13 +2376,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ClearStructuralFeatureAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ClearStructuralFeatureAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * ReadStructuralFeatureAction view descriptor
-     *
-     */
+
+	/**
+	 * ReadStructuralFeatureAction view descriptor
+	 */
 	public static class ReadStructuralFeatureAction {
 
 		public static String ownedComment = "UML::ReadStructuralFeatureAction::ownedComment";
@@ -2488,13 +2409,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ReadStructuralFeatureAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ReadStructuralFeatureAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * ReadSelfAction view descriptor
-     *
-     */
+
+	/**
+	 * ReadSelfAction view descriptor
+	 */
 	public static class ReadSelfAction {
 
 		public static String ownedComment = "UML::ReadSelfAction::ownedComment";
@@ -2522,13 +2442,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::ReadSelfAction::localPrecondition";
 
 		public static String localPostcondition = "UML::ReadSelfAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * TestIdentityAction view descriptor
-     *
-     */
+
+	/**
+	 * TestIdentityAction view descriptor
+	 */
 	public static class TestIdentityAction {
 
 		public static String ownedComment = "UML::TestIdentityAction::ownedComment";
@@ -2556,13 +2475,12 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::TestIdentityAction::localPrecondition";
 
 		public static String localPostcondition = "UML::TestIdentityAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * DestroyObjectAction view descriptor
-     *
-     */
+
+	/**
+	 * DestroyObjectAction view descriptor
+	 */
 	public static class DestroyObjectAction {
 
 		public static String ownedComment = "UML::DestroyObjectAction::ownedComment";
@@ -2594,13 +2512,12 @@ public class UMLViewsRepository {
 		public static String isDestroyLinks = "UML::DestroyObjectAction::isDestroyLinks";
 
 		public static String isDestroyOwnedObjects = "UML::DestroyObjectAction::isDestroyOwnedObjects";
-	
+
 	}
-	
-    /**
-     * CreateObjectAction view descriptor
-     *
-     */
+
+	/**
+	 * CreateObjectAction view descriptor
+	 */
 	public static class CreateObjectAction {
 
 		public static String ownedComment = "UML::CreateObjectAction::ownedComment";
@@ -2628,35 +2545,32 @@ public class UMLViewsRepository {
 		public static String localPrecondition = "UML::CreateObjectAction::localPrecondition";
 
 		public static String localPostcondition = "UML::CreateObjectAction::localPostcondition";
-	
+
 	}
-	
-    /**
-     * QualifierValue view descriptor
-     *
-     */
+
+	/**
+	 * QualifierValue view descriptor
+	 */
 	public static class QualifierValue {
 
 		public static String ownedComment = "UML::QualifierValue::ownedComment";
-	
+
 	}
-	
-    /**
-     * LinkEndData view descriptor
-     *
-     */
+
+	/**
+	 * LinkEndData view descriptor
+	 */
 	public static class LinkEndData {
 
 		public static String ownedComment = "UML::LinkEndData::ownedComment";
 
 		public static String qualifier = "UML::LinkEndData::qualifier";
-	
+
 	}
-	
-    /**
-     * ValuePin view descriptor
-     *
-     */
+
+	/**
+	 * ValuePin view descriptor
+	 */
 	public static class ValuePin {
 
 		public static String ownedComment = "UML::ValuePin::ownedComment";
@@ -2690,13 +2604,12 @@ public class UMLViewsRepository {
 		public static String isUnique = "UML::ValuePin::isUnique";
 
 		public static String isControl = "UML::ValuePin::isControl";
-	
+
 	}
-	
-    /**
-     * OpaqueAction view descriptor
-     *
-     */
+
+	/**
+	 * OpaqueAction view descriptor
+	 */
 	public static class OpaqueAction {
 
 		public static String ownedComment = "UML::OpaqueAction::ownedComment";
@@ -2732,13 +2645,12 @@ public class UMLViewsRepository {
 		public static String inputValue = "UML::OpaqueAction::inputValue";
 
 		public static String outputValue = "UML::OpaqueAction::outputValue";
-	
+
 	}
-	
-    /**
-     * ExpansionRegion view descriptor
-     *
-     */
+
+	/**
+	 * ExpansionRegion view descriptor
+	 */
 	public static class ExpansionRegion {
 
 		public static String ownedComment = "UML::ExpansionRegion::ownedComment";
@@ -2786,13 +2698,12 @@ public class UMLViewsRepository {
 		public static String inputElement = "UML::ExpansionRegion::inputElement";
 
 		public static String outputElement = "UML::ExpansionRegion::outputElement";
-	
+
 	}
-	
-    /**
-     * ExpansionNode view descriptor
-     *
-     */
+
+	/**
+	 * ExpansionNode view descriptor
+	 */
 	public static class ExpansionNode {
 
 		public static String ownedComment = "UML::ExpansionNode::ownedComment";
@@ -2820,13 +2731,12 @@ public class UMLViewsRepository {
 		public static String isControlType = "UML::ExpansionNode::isControlType";
 
 		public static String inState = "UML::ExpansionNode::inState";
-	
+
 	}
-	
-    /**
-     * Clause view descriptor
-     *
-     */
+
+	/**
+	 * Clause view descriptor
+	 */
 	public static class Clause {
 
 		public static String ownedComment = "UML::Clause::ownedComment";
@@ -2840,13 +2750,12 @@ public class UMLViewsRepository {
 		public static String successorClause = "UML::Clause::successorClause";
 
 		public static String bodyOutput = "UML::Clause::bodyOutput";
-	
+
 	}
-	
-    /**
-     * LoopNode view descriptor
-     *
-     */
+
+	/**
+	 * LoopNode view descriptor
+	 */
 	public static class LoopNode {
 
 		public static String ownedComment = "UML::LoopNode::ownedComment";
@@ -2904,13 +2813,12 @@ public class UMLViewsRepository {
 		public static String bodyOutput = "UML::LoopNode::bodyOutput";
 
 		public static String loopVariableInput = "UML::LoopNode::loopVariableInput";
-	
+
 	}
-	
-    /**
-     * ConditionalNode view descriptor
-     *
-     */
+
+	/**
+	 * ConditionalNode view descriptor
+	 */
 	public static class ConditionalNode {
 
 		public static String ownedComment = "UML::ConditionalNode::ownedComment";
@@ -2960,13 +2868,12 @@ public class UMLViewsRepository {
 		public static String clause = "UML::ConditionalNode::clause";
 
 		public static String result = "UML::ConditionalNode::result";
-	
+
 	}
-	
-    /**
-     * ObjectFlow view descriptor
-     *
-     */
+
+	/**
+	 * ObjectFlow view descriptor
+	 */
 	public static class ObjectFlow {
 
 		public static String ownedComment = "UML::ObjectFlow::ownedComment";
@@ -2986,13 +2893,12 @@ public class UMLViewsRepository {
 		public static String isMulticast = "UML::ObjectFlow::isMulticast";
 
 		public static String isMultireceive = "UML::ObjectFlow::isMultireceive";
-	
+
 	}
-	
-    /**
-     * DataStoreNode view descriptor
-     *
-     */
+
+	/**
+	 * DataStoreNode view descriptor
+	 */
 	public static class DataStoreNode {
 
 		public static String ownedComment = "UML::DataStoreNode::ownedComment";
@@ -3020,13 +2926,12 @@ public class UMLViewsRepository {
 		public static String isControlType = "UML::DataStoreNode::isControlType";
 
 		public static String inState = "UML::DataStoreNode::inState";
-	
+
 	}
-	
-    /**
-     * JoinNode view descriptor
-     *
-     */
+
+	/**
+	 * JoinNode view descriptor
+	 */
 	public static class JoinNode {
 
 		public static String ownedComment = "UML::JoinNode::ownedComment";
@@ -3050,13 +2955,12 @@ public class UMLViewsRepository {
 		public static String redefinedNode = "UML::JoinNode::redefinedNode";
 
 		public static String isCombineDuplicate = "UML::JoinNode::isCombineDuplicate";
-	
+
 	}
-	
-    /**
-     * UnmarshallAction view descriptor
-     *
-     */
+
+	/**
+	 * UnmarshallAction view descriptor
+	 */
 	public static class UnmarshallAction {
 
 		public static String ownedComment = "UML::UnmarshallAction::ownedComment";
@@ -3086,13 +2990,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::UnmarshallAction::localPostcondition";
 
 		public static String result = "UML::UnmarshallAction::result";
-	
+
 	}
-	
-    /**
-     * ActionInputPin view descriptor
-     *
-     */
+
+	/**
+	 * ActionInputPin view descriptor
+	 */
 	public static class ActionInputPin {
 
 		public static String ownedComment = "UML::ActionInputPin::ownedComment";
@@ -3126,13 +3029,12 @@ public class UMLViewsRepository {
 		public static String isUnique = "UML::ActionInputPin::isUnique";
 
 		public static String isControl = "UML::ActionInputPin::isControl";
-	
+
 	}
-	
-    /**
-     * ActivityFinalNode view descriptor
-     *
-     */
+
+	/**
+	 * ActivityFinalNode view descriptor
+	 */
 	public static class ActivityFinalNode {
 
 		public static String ownedComment = "UML::ActivityFinalNode::ownedComment";
@@ -3154,13 +3056,12 @@ public class UMLViewsRepository {
 		public static String inInterruptibleRegion = "UML::ActivityFinalNode::inInterruptibleRegion";
 
 		public static String redefinedNode = "UML::ActivityFinalNode::redefinedNode";
-	
+
 	}
-	
-    /**
-     * DecisionNode view descriptor
-     *
-     */
+
+	/**
+	 * DecisionNode view descriptor
+	 */
 	public static class DecisionNode {
 
 		public static String ownedComment = "UML::DecisionNode::ownedComment";
@@ -3182,13 +3083,12 @@ public class UMLViewsRepository {
 		public static String inInterruptibleRegion = "UML::DecisionNode::inInterruptibleRegion";
 
 		public static String redefinedNode = "UML::DecisionNode::redefinedNode";
-	
+
 	}
-	
-    /**
-     * MergeNode view descriptor
-     *
-     */
+
+	/**
+	 * MergeNode view descriptor
+	 */
 	public static class MergeNode {
 
 		public static String ownedComment = "UML::MergeNode::ownedComment";
@@ -3210,13 +3110,12 @@ public class UMLViewsRepository {
 		public static String inInterruptibleRegion = "UML::MergeNode::inInterruptibleRegion";
 
 		public static String redefinedNode = "UML::MergeNode::redefinedNode";
-	
+
 	}
-	
-    /**
-     * CentralBufferNode view descriptor
-     *
-     */
+
+	/**
+	 * CentralBufferNode view descriptor
+	 */
 	public static class CentralBufferNode {
 
 		public static String ownedComment = "UML::CentralBufferNode::ownedComment";
@@ -3244,13 +3143,12 @@ public class UMLViewsRepository {
 		public static String isControlType = "UML::CentralBufferNode::isControlType";
 
 		public static String inState = "UML::CentralBufferNode::inState";
-	
+
 	}
-	
-    /**
-     * FlowFinalNode view descriptor
-     *
-     */
+
+	/**
+	 * FlowFinalNode view descriptor
+	 */
 	public static class FlowFinalNode {
 
 		public static String ownedComment = "UML::FlowFinalNode::ownedComment";
@@ -3272,13 +3170,12 @@ public class UMLViewsRepository {
 		public static String inInterruptibleRegion = "UML::FlowFinalNode::inInterruptibleRegion";
 
 		public static String redefinedNode = "UML::FlowFinalNode::redefinedNode";
-	
+
 	}
-	
-    /**
-     * ForkNode view descriptor
-     *
-     */
+
+	/**
+	 * ForkNode view descriptor
+	 */
 	public static class ForkNode {
 
 		public static String ownedComment = "UML::ForkNode::ownedComment";
@@ -3300,13 +3197,12 @@ public class UMLViewsRepository {
 		public static String inInterruptibleRegion = "UML::ForkNode::inInterruptibleRegion";
 
 		public static String redefinedNode = "UML::ForkNode::redefinedNode";
-	
+
 	}
-	
-    /**
-     * AnyReceiveEvent view descriptor
-     *
-     */
+
+	/**
+	 * AnyReceiveEvent view descriptor
+	 */
 	public static class AnyReceiveEvent {
 
 		public static String ownedComment = "UML::AnyReceiveEvent::ownedComment";
@@ -3316,13 +3212,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::AnyReceiveEvent::visibility";
 
 		public static String clientDependency = "UML::AnyReceiveEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * ActivityParameterNode view descriptor
-     *
-     */
+
+	/**
+	 * ActivityParameterNode view descriptor
+	 */
 	public static class ActivityParameterNode {
 
 		public static String ownedComment = "UML::ActivityParameterNode::ownedComment";
@@ -3350,13 +3245,12 @@ public class UMLViewsRepository {
 		public static String isControlType = "UML::ActivityParameterNode::isControlType";
 
 		public static String inState = "UML::ActivityParameterNode::inState";
-	
+
 	}
-	
-    /**
-     * InitialNode view descriptor
-     *
-     */
+
+	/**
+	 * InitialNode view descriptor
+	 */
 	public static class InitialNode {
 
 		public static String ownedComment = "UML::InitialNode::ownedComment";
@@ -3378,13 +3272,12 @@ public class UMLViewsRepository {
 		public static String inInterruptibleRegion = "UML::InitialNode::inInterruptibleRegion";
 
 		public static String redefinedNode = "UML::InitialNode::redefinedNode";
-	
+
 	}
-	
-    /**
-     * ControlFlow view descriptor
-     *
-     */
+
+	/**
+	 * ControlFlow view descriptor
+	 */
 	public static class ControlFlow {
 
 		public static String ownedComment = "UML::ControlFlow::ownedComment";
@@ -3400,13 +3293,12 @@ public class UMLViewsRepository {
 		public static String redefinedEdge = "UML::ControlFlow::redefinedEdge";
 
 		public static String inPartition = "UML::ControlFlow::inPartition";
-	
+
 	}
-	
-    /**
-     * SequenceNode view descriptor
-     *
-     */
+
+	/**
+	 * SequenceNode view descriptor
+	 */
 	public static class SequenceNode {
 
 		public static String ownedComment = "UML::SequenceNode::ownedComment";
@@ -3450,13 +3342,12 @@ public class UMLViewsRepository {
 		public static String node = "UML::SequenceNode::node";
 
 		public static String executableNode = "UML::SequenceNode::executableNode";
-	
+
 	}
-	
-    /**
-     * CallBehaviorAction view descriptor
-     *
-     */
+
+	/**
+	 * CallBehaviorAction view descriptor
+	 */
 	public static class CallBehaviorAction {
 
 		public static String ownedComment = "UML::CallBehaviorAction::ownedComment";
@@ -3490,13 +3381,12 @@ public class UMLViewsRepository {
 		public static String isSynchronous = "UML::CallBehaviorAction::isSynchronous";
 
 		public static String result = "UML::CallBehaviorAction::result";
-	
+
 	}
-	
-    /**
-     * CallOperationAction view descriptor
-     *
-     */
+
+	/**
+	 * CallOperationAction view descriptor
+	 */
 	public static class CallOperationAction {
 
 		public static String ownedComment = "UML::CallOperationAction::ownedComment";
@@ -3530,13 +3420,12 @@ public class UMLViewsRepository {
 		public static String isSynchronous = "UML::CallOperationAction::isSynchronous";
 
 		public static String result = "UML::CallOperationAction::result";
-	
+
 	}
-	
-    /**
-     * SendSignalAction view descriptor
-     *
-     */
+
+	/**
+	 * SendSignalAction view descriptor
+	 */
 	public static class SendSignalAction {
 
 		public static String ownedComment = "UML::SendSignalAction::ownedComment";
@@ -3566,13 +3455,12 @@ public class UMLViewsRepository {
 		public static String localPostcondition = "UML::SendSignalAction::localPostcondition";
 
 		public static String argument = "UML::SendSignalAction::argument";
-	
+
 	}
-	
-    /**
-     * InputPin view descriptor
-     *
-     */
+
+	/**
+	 * InputPin view descriptor
+	 */
 	public static class InputPin {
 
 		public static String ownedComment = "UML::InputPin::ownedComment";
@@ -3606,13 +3494,12 @@ public class UMLViewsRepository {
 		public static String isUnique = "UML::InputPin::isUnique";
 
 		public static String isControl = "UML::InputPin::isControl";
-	
+
 	}
-	
-    /**
-     * Pin view descriptor
-     *
-     */
+
+	/**
+	 * Pin view descriptor
+	 */
 	public static class Pin {
 
 		public static String ownedComment = "UML::Pin::ownedComment";
@@ -3646,13 +3533,12 @@ public class UMLViewsRepository {
 		public static String isUnique = "UML::Pin::isUnique";
 
 		public static String isControl = "UML::Pin::isControl";
-	
+
 	}
-	
-    /**
-     * OutputPin view descriptor
-     *
-     */
+
+	/**
+	 * OutputPin view descriptor
+	 */
 	public static class OutputPin {
 
 		public static String ownedComment = "UML::OutputPin::ownedComment";
@@ -3686,25 +3572,23 @@ public class UMLViewsRepository {
 		public static String isUnique = "UML::OutputPin::isUnique";
 
 		public static String isControl = "UML::OutputPin::isControl";
-	
+
 	}
-	
-    /**
-     * ExceptionHandler view descriptor
-     *
-     */
+
+	/**
+	 * ExceptionHandler view descriptor
+	 */
 	public static class ExceptionHandler {
 
 		public static String ownedComment = "UML::ExceptionHandler::ownedComment";
 
 		public static String exceptionType = "UML::ExceptionHandler::exceptionType";
-	
+
 	}
-	
-    /**
-     * InterruptibleActivityRegion view descriptor
-     *
-     */
+
+	/**
+	 * InterruptibleActivityRegion view descriptor
+	 */
 	public static class InterruptibleActivityRegion {
 
 		public static String ownedComment = "UML::InterruptibleActivityRegion::ownedComment";
@@ -3712,13 +3596,12 @@ public class UMLViewsRepository {
 		public static String node = "UML::InterruptibleActivityRegion::node";
 
 		public static String interruptingEdge = "UML::InterruptibleActivityRegion::interruptingEdge";
-	
+
 	}
-	
-    /**
-     * ActivityPartition view descriptor
-     *
-     */
+
+	/**
+	 * ActivityPartition view descriptor
+	 */
 	public static class ActivityPartition {
 
 		public static String ownedComment = "UML::ActivityPartition::ownedComment";
@@ -3738,13 +3621,12 @@ public class UMLViewsRepository {
 		public static String subpartition = "UML::ActivityPartition::subpartition";
 
 		public static String edge = "UML::ActivityPartition::edge";
-	
+
 	}
-	
-    /**
-     * Variable view descriptor
-     *
-     */
+
+	/**
+	 * Variable view descriptor
+	 */
 	public static class Variable {
 
 		public static String ownedComment = "UML::Variable::ownedComment";
@@ -3758,13 +3640,12 @@ public class UMLViewsRepository {
 		public static String isOrdered = "UML::Variable::isOrdered";
 
 		public static String isUnique = "UML::Variable::isUnique";
-	
+
 	}
-	
-    /**
-     * Activity view descriptor
-     *
-     */
+
+	/**
+	 * Activity view descriptor
+	 */
 	public static class Activity {
 
 		public static String ownedComment = "UML::Activity::ownedComment";
@@ -3844,13 +3725,12 @@ public class UMLViewsRepository {
 		public static String isSingleExecution = "UML::Activity::isSingleExecution";
 
 		public static String group = "UML::Activity::group";
-	
+
 	}
-	
-    /**
-     * StructuredActivityNode view descriptor
-     *
-     */
+
+	/**
+	 * StructuredActivityNode view descriptor
+	 */
 	public static class StructuredActivityNode {
 
 		public static String ownedComment = "UML::StructuredActivityNode::ownedComment";
@@ -3892,13 +3772,12 @@ public class UMLViewsRepository {
 		public static String mustIsolate = "UML::StructuredActivityNode::mustIsolate";
 
 		public static String node = "UML::StructuredActivityNode::node";
-	
+
 	}
-	
-    /**
-     * ParameterSet view descriptor
-     *
-     */
+
+	/**
+	 * ParameterSet view descriptor
+	 */
 	public static class ParameterSet {
 
 		public static String ownedComment = "UML::ParameterSet::ownedComment";
@@ -3912,13 +3791,12 @@ public class UMLViewsRepository {
 		public static String parameter = "UML::ParameterSet::parameter";
 
 		public static String condition = "UML::ParameterSet::condition";
-	
+
 	}
-	
-    /**
-     * DurationObservation view descriptor
-     *
-     */
+
+	/**
+	 * DurationObservation view descriptor
+	 */
 	public static class DurationObservation {
 
 		public static String ownedComment = "UML::DurationObservation::ownedComment";
@@ -3930,13 +3808,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::DurationObservation::clientDependency";
 
 		public static String firstEvent = "UML::DurationObservation::firstEvent";
-	
+
 	}
-	
-    /**
-     * TimeObservation view descriptor
-     *
-     */
+
+	/**
+	 * TimeObservation view descriptor
+	 */
 	public static class TimeObservation {
 
 		public static String ownedComment = "UML::TimeObservation::ownedComment";
@@ -3948,13 +3825,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::TimeObservation::clientDependency";
 
 		public static String firstEvent = "UML::TimeObservation::firstEvent";
-	
+
 	}
-	
-    /**
-     * TimeInterval view descriptor
-     *
-     */
+
+	/**
+	 * TimeInterval view descriptor
+	 */
 	public static class TimeInterval {
 
 		public static String ownedComment = "UML::TimeInterval::ownedComment";
@@ -3964,13 +3840,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::TimeInterval::visibility";
 
 		public static String clientDependency = "UML::TimeInterval::clientDependency";
-	
+
 	}
-	
-    /**
-     * DurationConstraint view descriptor
-     *
-     */
+
+	/**
+	 * DurationConstraint view descriptor
+	 */
 	public static class DurationConstraint {
 
 		public static String ownedComment = "UML::DurationConstraint::ownedComment";
@@ -3984,13 +3859,12 @@ public class UMLViewsRepository {
 		public static String constrainedElement = "UML::DurationConstraint::constrainedElement";
 
 		public static String firstEvent = "UML::DurationConstraint::firstEvent";
-	
+
 	}
-	
-    /**
-     * IntervalConstraint view descriptor
-     *
-     */
+
+	/**
+	 * IntervalConstraint view descriptor
+	 */
 	public static class IntervalConstraint {
 
 		public static String ownedComment = "UML::IntervalConstraint::ownedComment";
@@ -4002,13 +3876,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::IntervalConstraint::clientDependency";
 
 		public static String constrainedElement = "UML::IntervalConstraint::constrainedElement";
-	
+
 	}
-	
-    /**
-     * TimeConstraint view descriptor
-     *
-     */
+
+	/**
+	 * TimeConstraint view descriptor
+	 */
 	public static class TimeConstraint {
 
 		public static String ownedComment = "UML::TimeConstraint::ownedComment";
@@ -4022,13 +3895,12 @@ public class UMLViewsRepository {
 		public static String constrainedElement = "UML::TimeConstraint::constrainedElement";
 
 		public static String firstEvent = "UML::TimeConstraint::firstEvent";
-	
+
 	}
-	
-    /**
-     * DurationInterval view descriptor
-     *
-     */
+
+	/**
+	 * DurationInterval view descriptor
+	 */
 	public static class DurationInterval {
 
 		public static String ownedComment = "UML::DurationInterval::ownedComment";
@@ -4038,13 +3910,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::DurationInterval::visibility";
 
 		public static String clientDependency = "UML::DurationInterval::clientDependency";
-	
+
 	}
-	
-    /**
-     * Duration view descriptor
-     *
-     */
+
+	/**
+	 * Duration view descriptor
+	 */
 	public static class Duration {
 
 		public static String ownedComment = "UML::Duration::ownedComment";
@@ -4056,13 +3927,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::Duration::clientDependency";
 
 		public static String observation = "UML::Duration::observation";
-	
+
 	}
-	
-    /**
-     * Interval view descriptor
-     *
-     */
+
+	/**
+	 * Interval view descriptor
+	 */
 	public static class Interval {
 
 		public static String ownedComment = "UML::Interval::ownedComment";
@@ -4072,13 +3942,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::Interval::visibility";
 
 		public static String clientDependency = "UML::Interval::clientDependency";
-	
+
 	}
-	
-    /**
-     * TimeExpression view descriptor
-     *
-     */
+
+	/**
+	 * TimeExpression view descriptor
+	 */
 	public static class TimeExpression {
 
 		public static String ownedComment = "UML::TimeExpression::ownedComment";
@@ -4090,13 +3959,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::TimeExpression::clientDependency";
 
 		public static String observation = "UML::TimeExpression::observation";
-	
+
 	}
-	
-    /**
-     * SignalEvent view descriptor
-     *
-     */
+
+	/**
+	 * SignalEvent view descriptor
+	 */
 	public static class SignalEvent {
 
 		public static String ownedComment = "UML::SignalEvent::ownedComment";
@@ -4106,13 +3974,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::SignalEvent::visibility";
 
 		public static String clientDependency = "UML::SignalEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * ChangeEvent view descriptor
-     *
-     */
+
+	/**
+	 * ChangeEvent view descriptor
+	 */
 	public static class ChangeEvent {
 
 		public static String ownedComment = "UML::ChangeEvent::ownedComment";
@@ -4122,13 +3989,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::ChangeEvent::visibility";
 
 		public static String clientDependency = "UML::ChangeEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * CallEvent view descriptor
-     *
-     */
+
+	/**
+	 * CallEvent view descriptor
+	 */
 	public static class CallEvent {
 
 		public static String ownedComment = "UML::CallEvent::ownedComment";
@@ -4138,13 +4004,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::CallEvent::visibility";
 
 		public static String clientDependency = "UML::CallEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * FunctionBehavior view descriptor
-     *
-     */
+
+	/**
+	 * FunctionBehavior view descriptor
+	 */
 	public static class FunctionBehavior {
 
 		public static String ownedComment = "UML::FunctionBehavior::ownedComment";
@@ -4214,13 +4079,12 @@ public class UMLViewsRepository {
 		public static String body = "UML::FunctionBehavior::body";
 
 		public static String language = "UML::FunctionBehavior::language";
-	
+
 	}
-	
-    /**
-     * OpaqueBehavior view descriptor
-     *
-     */
+
+	/**
+	 * OpaqueBehavior view descriptor
+	 */
 	public static class OpaqueBehavior {
 
 		public static String ownedComment = "UML::OpaqueBehavior::ownedComment";
@@ -4290,13 +4154,12 @@ public class UMLViewsRepository {
 		public static String body = "UML::OpaqueBehavior::body";
 
 		public static String language = "UML::OpaqueBehavior::language";
-	
+
 	}
-	
-    /**
-     * Signal view descriptor
-     *
-     */
+
+	/**
+	 * Signal view descriptor
+	 */
 	public static class Signal {
 
 		public static String name = "UML::Signal::name";
@@ -4330,13 +4193,12 @@ public class UMLViewsRepository {
 		public static String packageImport = "UML::Signal::packageImport";
 
 		public static String elementImport = "UML::Signal::elementImport";
-	
+
 	}
-	
-    /**
-     * Reception view descriptor
-     *
-     */
+
+	/**
+	 * Reception view descriptor
+	 */
 	public static class Reception {
 
 		public static String name = "UML::Reception::name";
@@ -4364,14 +4226,13 @@ public class UMLViewsRepository {
 		public static String elementImport = "UML::Reception::elementImport";
 
 		public static String ownedRule = "UML::Reception::ownedRule";
-	
+
 	}
-	
-    /**
-     * Interface view descriptor
-     *
-     */
-	public static class Interface {
+
+	/**
+	 * Interface view descriptor
+	 */
+	public static class Interface_ {
 
 		public static String name = "UML::Interface::name";
 
@@ -4412,13 +4273,12 @@ public class UMLViewsRepository {
 		public static String substitution = "UML::Interface::substitution";
 
 		public static String ownedReception = "UML::Interface::ownedReception";
-	
+
 	}
-	
-    /**
-     * ConsiderIgnoreFragment view descriptor
-     *
-     */
+
+	/**
+	 * ConsiderIgnoreFragment view descriptor
+	 */
 	public static class ConsiderIgnoreFragment {
 
 		public static String ownedComment = "UML::ConsiderIgnoreFragment::ownedComment";
@@ -4440,13 +4300,12 @@ public class UMLViewsRepository {
 		public static String cfragmentGate = "UML::ConsiderIgnoreFragment::cfragmentGate";
 
 		public static String message = "UML::ConsiderIgnoreFragment::message";
-	
+
 	}
-	
-    /**
-     * Continuation view descriptor
-     *
-     */
+
+	/**
+	 * Continuation view descriptor
+	 */
 	public static class Continuation {
 
 		public static String ownedComment = "UML::Continuation::ownedComment";
@@ -4462,13 +4321,12 @@ public class UMLViewsRepository {
 		public static String generalOrdering = "UML::Continuation::generalOrdering";
 
 		public static String setting = "UML::Continuation::setting";
-	
+
 	}
-	
-    /**
-     * CombinedFragment view descriptor
-     *
-     */
+
+	/**
+	 * CombinedFragment view descriptor
+	 */
 	public static class CombinedFragment {
 
 		public static String ownedComment = "UML::CombinedFragment::ownedComment";
@@ -4488,13 +4346,12 @@ public class UMLViewsRepository {
 		public static String operand = "UML::CombinedFragment::operand";
 
 		public static String cfragmentGate = "UML::CombinedFragment::cfragmentGate";
-	
+
 	}
-	
-    /**
-     * ReceiveSignalEvent view descriptor
-     *
-     */
+
+	/**
+	 * ReceiveSignalEvent view descriptor
+	 */
 	public static class ReceiveSignalEvent {
 
 		public static String ownedComment = "UML::ReceiveSignalEvent::ownedComment";
@@ -4504,13 +4361,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::ReceiveSignalEvent::visibility";
 
 		public static String clientDependency = "UML::ReceiveSignalEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * ReceiveOperationEvent view descriptor
-     *
-     */
+
+	/**
+	 * ReceiveOperationEvent view descriptor
+	 */
 	public static class ReceiveOperationEvent {
 
 		public static String ownedComment = "UML::ReceiveOperationEvent::ownedComment";
@@ -4520,13 +4376,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::ReceiveOperationEvent::visibility";
 
 		public static String clientDependency = "UML::ReceiveOperationEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * ExecutionOccurrenceSpecification view descriptor
-     *
-     */
+
+	/**
+	 * ExecutionOccurrenceSpecification view descriptor
+	 */
 	public static class ExecutionOccurrenceSpecification {
 
 		public static String ownedComment = "UML::ExecutionOccurrenceSpecification::ownedComment";
@@ -4544,13 +4399,12 @@ public class UMLViewsRepository {
 		public static String toBefore = "UML::ExecutionOccurrenceSpecification::toBefore";
 
 		public static String toAfter = "UML::ExecutionOccurrenceSpecification::toAfter";
-	
+
 	}
-	
-    /**
-     * MessageOccurrenceSpecification view descriptor
-     *
-     */
+
+	/**
+	 * MessageOccurrenceSpecification view descriptor
+	 */
 	public static class MessageOccurrenceSpecification {
 
 		public static String ownedComment = "UML::MessageOccurrenceSpecification::ownedComment";
@@ -4568,13 +4422,12 @@ public class UMLViewsRepository {
 		public static String toBefore = "UML::MessageOccurrenceSpecification::toBefore";
 
 		public static String toAfter = "UML::MessageOccurrenceSpecification::toAfter";
-	
+
 	}
-	
-    /**
-     * SendSignalEvent view descriptor
-     *
-     */
+
+	/**
+	 * SendSignalEvent view descriptor
+	 */
 	public static class SendSignalEvent {
 
 		public static String ownedComment = "UML::SendSignalEvent::ownedComment";
@@ -4584,13 +4437,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::SendSignalEvent::visibility";
 
 		public static String clientDependency = "UML::SendSignalEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * SendOperationEvent view descriptor
-     *
-     */
+
+	/**
+	 * SendOperationEvent view descriptor
+	 */
 	public static class SendOperationEvent {
 
 		public static String ownedComment = "UML::SendOperationEvent::ownedComment";
@@ -4600,13 +4452,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::SendOperationEvent::visibility";
 
 		public static String clientDependency = "UML::SendOperationEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * DestructionEvent view descriptor
-     *
-     */
+
+	/**
+	 * DestructionEvent view descriptor
+	 */
 	public static class DestructionEvent {
 
 		public static String ownedComment = "UML::DestructionEvent::ownedComment";
@@ -4616,13 +4467,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::DestructionEvent::visibility";
 
 		public static String clientDependency = "UML::DestructionEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * CreationEvent view descriptor
-     *
-     */
+
+	/**
+	 * CreationEvent view descriptor
+	 */
 	public static class CreationEvent {
 
 		public static String ownedComment = "UML::CreationEvent::ownedComment";
@@ -4632,13 +4482,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::CreationEvent::visibility";
 
 		public static String clientDependency = "UML::CreationEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * ExecutionEvent view descriptor
-     *
-     */
+
+	/**
+	 * ExecutionEvent view descriptor
+	 */
 	public static class ExecutionEvent {
 
 		public static String ownedComment = "UML::ExecutionEvent::ownedComment";
@@ -4648,13 +4497,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::ExecutionEvent::visibility";
 
 		public static String clientDependency = "UML::ExecutionEvent::clientDependency";
-	
+
 	}
-	
-    /**
-     * BehaviorExecutionSpecification view descriptor
-     *
-     */
+
+	/**
+	 * BehaviorExecutionSpecification view descriptor
+	 */
 	public static class BehaviorExecutionSpecification {
 
 		public static String ownedComment = "UML::BehaviorExecutionSpecification::ownedComment";
@@ -4668,13 +4516,12 @@ public class UMLViewsRepository {
 		public static String covered = "UML::BehaviorExecutionSpecification::covered";
 
 		public static String generalOrdering = "UML::BehaviorExecutionSpecification::generalOrdering";
-	
+
 	}
-	
-    /**
-     * ActionExecutionSpecification view descriptor
-     *
-     */
+
+	/**
+	 * ActionExecutionSpecification view descriptor
+	 */
 	public static class ActionExecutionSpecification {
 
 		public static String ownedComment = "UML::ActionExecutionSpecification::ownedComment";
@@ -4688,13 +4535,12 @@ public class UMLViewsRepository {
 		public static String covered = "UML::ActionExecutionSpecification::covered";
 
 		public static String generalOrdering = "UML::ActionExecutionSpecification::generalOrdering";
-	
+
 	}
-	
-    /**
-     * StateInvariant view descriptor
-     *
-     */
+
+	/**
+	 * StateInvariant view descriptor
+	 */
 	public static class StateInvariant {
 
 		public static String ownedComment = "UML::StateInvariant::ownedComment";
@@ -4708,13 +4554,12 @@ public class UMLViewsRepository {
 		public static String covered = "UML::StateInvariant::covered";
 
 		public static String generalOrdering = "UML::StateInvariant::generalOrdering";
-	
+
 	}
-	
-    /**
-     * InteractionConstraint view descriptor
-     *
-     */
+
+	/**
+	 * InteractionConstraint view descriptor
+	 */
 	public static class InteractionConstraint {
 
 		public static String ownedComment = "UML::InteractionConstraint::ownedComment";
@@ -4726,13 +4571,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::InteractionConstraint::clientDependency";
 
 		public static String constrainedElement = "UML::InteractionConstraint::constrainedElement";
-	
+
 	}
-	
-    /**
-     * InteractionOperand view descriptor
-     *
-     */
+
+	/**
+	 * InteractionOperand view descriptor
+	 */
 	public static class InteractionOperand {
 
 		public static String ownedComment = "UML::InteractionOperand::ownedComment";
@@ -4754,13 +4598,12 @@ public class UMLViewsRepository {
 		public static String generalOrdering = "UML::InteractionOperand::generalOrdering";
 
 		public static String fragment = "UML::InteractionOperand::fragment";
-	
+
 	}
-	
-    /**
-     * OccurrenceSpecification view descriptor
-     *
-     */
+
+	/**
+	 * OccurrenceSpecification view descriptor
+	 */
 	public static class OccurrenceSpecification {
 
 		public static String ownedComment = "UML::OccurrenceSpecification::ownedComment";
@@ -4778,13 +4621,12 @@ public class UMLViewsRepository {
 		public static String toBefore = "UML::OccurrenceSpecification::toBefore";
 
 		public static String toAfter = "UML::OccurrenceSpecification::toAfter";
-	
+
 	}
-	
-    /**
-     * GeneralOrdering view descriptor
-     *
-     */
+
+	/**
+	 * GeneralOrdering view descriptor
+	 */
 	public static class GeneralOrdering {
 
 		public static String ownedComment = "UML::GeneralOrdering::ownedComment";
@@ -4794,13 +4636,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::GeneralOrdering::visibility";
 
 		public static String clientDependency = "UML::GeneralOrdering::clientDependency";
-	
+
 	}
-	
-    /**
-     * Gate view descriptor
-     *
-     */
+
+	/**
+	 * Gate view descriptor
+	 */
 	public static class Gate {
 
 		public static String ownedComment = "UML::Gate::ownedComment";
@@ -4810,13 +4651,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::Gate::visibility";
 
 		public static String clientDependency = "UML::Gate::clientDependency";
-	
+
 	}
-	
-    /**
-     * InteractionUse view descriptor
-     *
-     */
+
+	/**
+	 * InteractionUse view descriptor
+	 */
 	public static class InteractionUse {
 
 		public static String ownedComment = "UML::InteractionUse::ownedComment";
@@ -4834,13 +4674,12 @@ public class UMLViewsRepository {
 		public static String actualGate = "UML::InteractionUse::actualGate";
 
 		public static String argument = "UML::InteractionUse::argument";
-	
+
 	}
-	
-    /**
-     * PartDecomposition view descriptor
-     *
-     */
+
+	/**
+	 * PartDecomposition view descriptor
+	 */
 	public static class PartDecomposition {
 
 		public static String ownedComment = "UML::PartDecomposition::ownedComment";
@@ -4858,13 +4697,12 @@ public class UMLViewsRepository {
 		public static String actualGate = "UML::PartDecomposition::actualGate";
 
 		public static String argument = "UML::PartDecomposition::argument";
-	
+
 	}
-	
-    /**
-     * Lifeline view descriptor
-     *
-     */
+
+	/**
+	 * Lifeline view descriptor
+	 */
 	public static class Lifeline {
 
 		public static String ownedComment = "UML::Lifeline::ownedComment";
@@ -4876,13 +4714,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::Lifeline::clientDependency";
 
 		public static String coveredBy = "UML::Lifeline::coveredBy";
-	
+
 	}
-	
-    /**
-     * Interaction view descriptor
-     *
-     */
+
+	/**
+	 * Interaction view descriptor
+	 */
 	public static class Interaction {
 
 		public static String ownedComment = "UML::Interaction::ownedComment";
@@ -4962,13 +4799,12 @@ public class UMLViewsRepository {
 		public static String formalGate = "UML::Interaction::formalGate";
 
 		public static String message = "UML::Interaction::message";
-	
+
 	}
-	
-    /**
-     * Message view descriptor
-     *
-     */
+
+	/**
+	 * Message view descriptor
+	 */
 	public static class Message {
 
 		public static String ownedComment = "UML::Message::ownedComment";
@@ -4982,13 +4818,12 @@ public class UMLViewsRepository {
 		public static String messageSort = "UML::Message::messageSort";
 
 		public static String argument = "UML::Message::argument";
-	
+
 	}
-	
-    /**
-     * ProtocolTransition view descriptor
-     *
-     */
+
+	/**
+	 * ProtocolTransition view descriptor
+	 */
 	public static class ProtocolTransition {
 
 		public static String ownedComment = "UML::ProtocolTransition::ownedComment";
@@ -5010,13 +4845,12 @@ public class UMLViewsRepository {
 		public static String kind = "UML::ProtocolTransition::kind";
 
 		public static String trigger = "UML::ProtocolTransition::trigger";
-	
+
 	}
-	
-    /**
-     * TimeEvent view descriptor
-     *
-     */
+
+	/**
+	 * TimeEvent view descriptor
+	 */
 	public static class TimeEvent {
 
 		public static String ownedComment = "UML::TimeEvent::ownedComment";
@@ -5028,13 +4862,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::TimeEvent::clientDependency";
 
 		public static String isRelative = "UML::TimeEvent::isRelative";
-	
+
 	}
-	
-    /**
-     * FinalState view descriptor
-     *
-     */
+
+	/**
+	 * FinalState view descriptor
+	 */
 	public static class FinalState {
 
 		public static String ownedComment = "UML::FinalState::ownedComment";
@@ -5060,23 +4893,21 @@ public class UMLViewsRepository {
 		public static String deferrableTrigger = "UML::FinalState::deferrableTrigger";
 
 		public static String region = "UML::FinalState::region";
-	
+
 	}
-	
-    /**
-     * ProtocolConformance view descriptor
-     *
-     */
+
+	/**
+	 * ProtocolConformance view descriptor
+	 */
 	public static class ProtocolConformance {
 
 		public static String ownedComment = "UML::ProtocolConformance::ownedComment";
-	
+
 	}
-	
-    /**
-     * Pseudostate view descriptor
-     *
-     */
+
+	/**
+	 * Pseudostate view descriptor
+	 */
 	public static class Pseudostate {
 
 		public static String ownedComment = "UML::Pseudostate::ownedComment";
@@ -5088,13 +4919,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::Pseudostate::clientDependency";
 
 		public static String kind = "UML::Pseudostate::kind";
-	
+
 	}
-	
-    /**
-     * ConnectionPointReference view descriptor
-     *
-     */
+
+	/**
+	 * ConnectionPointReference view descriptor
+	 */
 	public static class ConnectionPointReference {
 
 		public static String ownedComment = "UML::ConnectionPointReference::ownedComment";
@@ -5108,13 +4938,12 @@ public class UMLViewsRepository {
 		public static String entry = "UML::ConnectionPointReference::entry";
 
 		public static String exit = "UML::ConnectionPointReference::exit";
-	
+
 	}
-	
-    /**
-     * State view descriptor
-     *
-     */
+
+	/**
+	 * State view descriptor
+	 */
 	public static class State {
 
 		public static String ownedComment = "UML::State::ownedComment";
@@ -5140,13 +4969,12 @@ public class UMLViewsRepository {
 		public static String deferrableTrigger = "UML::State::deferrableTrigger";
 
 		public static String region = "UML::State::region";
-	
+
 	}
-	
-    /**
-     * Transition view descriptor
-     *
-     */
+
+	/**
+	 * Transition view descriptor
+	 */
 	public static class Transition {
 
 		public static String ownedComment = "UML::Transition::ownedComment";
@@ -5168,13 +4996,12 @@ public class UMLViewsRepository {
 		public static String kind = "UML::Transition::kind";
 
 		public static String trigger = "UML::Transition::trigger";
-	
+
 	}
-	
-    /**
-     * Region view descriptor
-     *
-     */
+
+	/**
+	 * Region view descriptor
+	 */
 	public static class Region {
 
 		public static String ownedComment = "UML::Region::ownedComment";
@@ -5196,13 +5023,12 @@ public class UMLViewsRepository {
 		public static String subvertex = "UML::Region::subvertex";
 
 		public static String transition = "UML::Region::transition";
-	
+
 	}
-	
-    /**
-     * StateMachine view descriptor
-     *
-     */
+
+	/**
+	 * StateMachine view descriptor
+	 */
 	public static class StateMachine {
 
 		public static String ownedComment = "UML::StateMachine::ownedComment";
@@ -5276,13 +5102,12 @@ public class UMLViewsRepository {
 		public static String connectionPoint = "UML::StateMachine::connectionPoint";
 
 		public static String extendedStateMachine = "UML::StateMachine::extendedStateMachine";
-	
+
 	}
-	
-    /**
-     * ProtocolStateMachine view descriptor
-     *
-     */
+
+	/**
+	 * ProtocolStateMachine view descriptor
+	 */
 	public static class ProtocolStateMachine {
 
 		public static String ownedComment = "UML::ProtocolStateMachine::ownedComment";
@@ -5358,13 +5183,12 @@ public class UMLViewsRepository {
 		public static String extendedStateMachine = "UML::ProtocolStateMachine::extendedStateMachine";
 
 		public static String conformance = "UML::ProtocolStateMachine::conformance";
-	
+
 	}
-	
-    /**
-     * Actor view descriptor
-     *
-     */
+
+	/**
+	 * Actor view descriptor
+	 */
 	public static class Actor {
 
 		public static String ownedComment = "UML::Actor::ownedComment";
@@ -5406,13 +5230,12 @@ public class UMLViewsRepository {
 		public static String interfaceRealization = "UML::Actor::interfaceRealization";
 
 		public static String ownedTrigger = "UML::Actor::ownedTrigger";
-	
+
 	}
-	
-    /**
-     * ExtensionPoint view descriptor
-     *
-     */
+
+	/**
+	 * ExtensionPoint view descriptor
+	 */
 	public static class ExtensionPoint {
 
 		public static String ownedComment = "UML::ExtensionPoint::ownedComment";
@@ -5424,13 +5247,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::ExtensionPoint::clientDependency";
 
 		public static String isLeaf = "UML::ExtensionPoint::isLeaf";
-	
+
 	}
-	
-    /**
-     * Extend view descriptor
-     *
-     */
+
+	/**
+	 * Extend view descriptor
+	 */
 	public static class Extend {
 
 		public static String ownedComment = "UML::Extend::ownedComment";
@@ -5442,13 +5264,12 @@ public class UMLViewsRepository {
 		public static String clientDependency = "UML::Extend::clientDependency";
 
 		public static String extensionLocation = "UML::Extend::extensionLocation";
-	
+
 	}
-	
-    /**
-     * Include view descriptor
-     *
-     */
+
+	/**
+	 * Include view descriptor
+	 */
 	public static class Include {
 
 		public static String ownedComment = "UML::Include::ownedComment";
@@ -5458,13 +5279,12 @@ public class UMLViewsRepository {
 		public static String visibility = "UML::Include::visibility";
 
 		public static String clientDependency = "UML::Include::clientDependency";
-	
+
 	}
-	
-    /**
-     * UseCase view descriptor
-     *
-     */
+
+	/**
+	 * UseCase view descriptor
+	 */
 	public static class UseCase {
 
 		public static String ownedComment = "UML::UseCase::ownedComment";
@@ -5514,13 +5334,12 @@ public class UMLViewsRepository {
 		public static String extensionPoint = "UML::UseCase::extensionPoint";
 
 		public static String subject = "UML::UseCase::subject";
-	
+
 	}
-	
-    /**
-     * InformationFlow view descriptor
-     *
-     */
+
+	/**
+	 * InformationFlow view descriptor
+	 */
 	public static class InformationFlow {
 
 		public static String ownedComment = "UML::InformationFlow::ownedComment";
@@ -5544,13 +5363,12 @@ public class UMLViewsRepository {
 		public static String realizingConnector = "UML::InformationFlow::realizingConnector";
 
 		public static String realizingMessage = "UML::InformationFlow::realizingMessage";
-	
+
 	}
-	
-    /**
-     * InformationItem view descriptor
-     *
-     */
+
+	/**
+	 * InformationItem view descriptor
+	 */
 	public static class InformationItem {
 
 		public static String ownedComment = "UML::InformationItem::ownedComment";
@@ -5588,13 +5406,12 @@ public class UMLViewsRepository {
 		public static String useCase = "UML::InformationItem::useCase";
 
 		public static String represented = "UML::InformationItem::represented";
-	
+
 	}
-	
-    /**
-     * StringExpression view descriptor
-     *
-     */
+
+	/**
+	 * StringExpression view descriptor
+	 */
 	public static class StringExpression {
 
 		public static String ownedComment = "UML::StringExpression::ownedComment";
@@ -5612,25 +5429,23 @@ public class UMLViewsRepository {
 		public static String templateBinding = "UML::StringExpression::templateBinding";
 
 		public static String subExpression = "UML::StringExpression::subExpression";
-	
+
 	}
-	
-    /**
-     * ClassifierTemplateParameter view descriptor
-     *
-     */
+
+	/**
+	 * ClassifierTemplateParameter view descriptor
+	 */
 	public static class ClassifierTemplateParameter {
 
 		public static String ownedComment = "UML::ClassifierTemplateParameter::ownedComment";
 
 		public static String allowSubstitutable = "UML::ClassifierTemplateParameter::allowSubstitutable";
-	
+
 	}
-	
-    /**
-     * RedefinableTemplateSignature view descriptor
-     *
-     */
+
+	/**
+	 * RedefinableTemplateSignature view descriptor
+	 */
 	public static class RedefinableTemplateSignature {
 
 		public static String name = "UML::RedefinableTemplateSignature::name";
@@ -5644,23 +5459,21 @@ public class UMLViewsRepository {
 		public static String ownedParameter = "UML::RedefinableTemplateSignature::ownedParameter";
 
 		public static String extendedSignature = "UML::RedefinableTemplateSignature::extendedSignature";
-	
+
 	}
-	
-    /**
-     * OperationTemplateParameter view descriptor
-     *
-     */
+
+	/**
+	 * OperationTemplateParameter view descriptor
+	 */
 	public static class OperationTemplateParameter {
 
 		public static String ownedComment = "UML::OperationTemplateParameter::ownedComment";
-	
+
 	}
-	
-    /**
-     * Model view descriptor
-     *
-     */
+
+	/**
+	 * Model view descriptor
+	 */
 	public static class Model {
 
 		public static String name = "UML::Model::name";
@@ -5680,23 +5493,21 @@ public class UMLViewsRepository {
 		public static String packageImport = "UML::Model::packageImport";
 
 		public static String ownedRule = "UML::Model::ownedRule";
-	
+
 	}
-	
-    /**
-     * ConnectableElementTemplateParameter view descriptor
-     *
-     */
+
+	/**
+	 * ConnectableElementTemplateParameter view descriptor
+	 */
 	public static class ConnectableElementTemplateParameter {
 
 		public static String ownedComment = "UML::ConnectableElementTemplateParameter::ownedComment";
-	
+
 	}
-	
-    /**
-     * TemplateParameterSubstitution view descriptor
-     *
-     */
+
+	/**
+	 * TemplateParameterSubstitution view descriptor
+	 */
 	public static class TemplateParameterSubstitution {
 
 		public static String ownedComment = "UML::TemplateParameterSubstitution::ownedComment";
@@ -5704,21 +5515,19 @@ public class UMLViewsRepository {
 		public static String actual = "UML::TemplateParameterSubstitution::actual";
 
 		public static String ownedActual = "UML::TemplateParameterSubstitution::ownedActual";
-	
+
 	}
-	
-    /**
-     * TemplateParameter view descriptor
-     *
-     */
+
+	/**
+	 * TemplateParameter view descriptor
+	 */
 	public static class TemplateParameter {
-	
+
 	}
-	
-    /**
-     * TemplateSignature view descriptor
-     *
-     */
+
+	/**
+	 * TemplateSignature view descriptor
+	 */
 	public static class TemplateSignature {
 
 		public static String ownedComment = "UML::TemplateSignature::ownedComment";
@@ -5726,35 +5535,32 @@ public class UMLViewsRepository {
 		public static String parameter = "UML::TemplateSignature::parameter";
 
 		public static String ownedParameter = "UML::TemplateSignature::ownedParameter";
-	
+
 	}
-	
-    /**
-     * TemplateBinding view descriptor
-     *
-     */
+
+	/**
+	 * TemplateBinding view descriptor
+	 */
 	public static class TemplateBinding {
 
 		public static String parameterSubstitution = "UML::TemplateBinding::parameterSubstitution";
-	
+
 	}
-	
-    /**
-     * ProfileApplication view descriptor
-     *
-     */
+
+	/**
+	 * ProfileApplication view descriptor
+	 */
 	public static class ProfileApplication {
 
 		public static String ownedComment = "UML::ProfileApplication::ownedComment";
 
 		public static String isStrict = "UML::ProfileApplication::isStrict";
-	
+
 	}
-	
-    /**
-     * Profile view descriptor
-     *
-     */
+
+	/**
+	 * Profile view descriptor
+	 */
 	public static class Profile {
 
 		public static String ownedComment = "UML::Profile::ownedComment";
@@ -5782,13 +5588,12 @@ public class UMLViewsRepository {
 		public static String metaclassReference = "UML::Profile::metaclassReference";
 
 		public static String metamodelReference = "UML::Profile::metamodelReference";
-	
+
 	}
-	
-    /**
-     * Image view descriptor
-     *
-     */
+
+	/**
+	 * Image view descriptor
+	 */
 	public static class Image {
 
 		public static String ownedComment = "UML::Image::ownedComment";
@@ -5798,13 +5603,12 @@ public class UMLViewsRepository {
 		public static String location = "UML::Image::location";
 
 		public static String format = "UML::Image::format";
-	
+
 	}
-	
-    /**
-     * Stereotype view descriptor
-     *
-     */
+
+	/**
+	 * Stereotype view descriptor
+	 */
 	public static class Stereotype {
 
 		public static String ownedComment = "UML::Stereotype::ownedComment";
@@ -5860,13 +5664,12 @@ public class UMLViewsRepository {
 		public static String ownedReception = "UML::Stereotype::ownedReception";
 
 		public static String icon = "UML::Stereotype::icon";
-	
+
 	}
-	
-    /**
-     * ExtensionEnd view descriptor
-     *
-     */
+
+	/**
+	 * ExtensionEnd view descriptor
+	 */
 	public static class ExtensionEnd {
 
 		public static String ownedComment = "UML::ExtensionEnd::ownedComment";
@@ -5902,13 +5705,12 @@ public class UMLViewsRepository {
 		public static String subsettedProperty = "UML::ExtensionEnd::subsettedProperty";
 
 		public static String qualifier = "UML::ExtensionEnd::qualifier";
-	
+
 	}
-	
-    /**
-     * Extension view descriptor
-     *
-     */
+
+	/**
+	 * Extension view descriptor
+	 */
 	public static class Extension {
 
 		public static String ownedComment = "UML::Extension::ownedComment";
@@ -5952,18 +5754,16 @@ public class UMLViewsRepository {
 		public static String isDerived = "UML::Extension::isDerived";
 
 		public static String navigableOwnedEnd = "UML::Extension::navigableOwnedEnd";
-	
+
 	}
-	
-    /**
-     * Comments view descriptor
-     *
-     */
+
+	/**
+	 * Comments view descriptor
+	 */
 	public static class Comments {
 
 		public static String ownedComment = "UML::Comments::ownedComment";
-	
-	}
-	
-}
 
+	}
+
+}

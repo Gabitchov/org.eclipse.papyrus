@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Duration;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class DurationPropertiesEditionComponent extends ComposedPropertiesEditio
 	 * @param duration
 	 *            the EObject to edit
 	 */
-	public DurationPropertiesEditionComponent(EObject duration, String mode) {
-		super(mode);
+	public DurationPropertiesEditionComponent(EObject duration, String editing_mode) {
+		super(editing_mode);
 		if (duration instanceof Duration) {
-			addSubComponent(new DurationBasePropertiesEditionComponent(duration, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(duration, mode));
+			addSubComponent(new DurationBasePropertiesEditionComponent(duration, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(duration, editing_mode));
 		}
 	}
 }
-

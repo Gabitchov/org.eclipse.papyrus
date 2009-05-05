@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class PackagePropertiesEditionProvider implements IPropertiesEditionProvider {
+public class Package_PropertiesEditionProvider implements IPropertiesEditionProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -32,34 +32,32 @@ public class PackagePropertiesEditionProvider implements IPropertiesEditionProvi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Package) && (UMLPackage.eINSTANCE.getPackage() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
-	 *      java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject, java.lang.String)
 	 */
-	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String mode) {
+	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
 		if (eObject instanceof Package) {
-			return new PackagePropertiesEditionComponent(eObject, mode);
+			return new PackagePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
-	 *      java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject, java.lang.String, java.lang.String)
 	 */
-	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String mode, String part) {
+	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
 		if (eObject instanceof Package) {
 			if (PackageBasePropertiesEditionComponent.BASE_PART.equals(part))
-				return new PackageBasePropertiesEditionComponent(eObject, mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))			
-				return new ElementPropertiesEditionComponent(eObject, mode);
+				return new PackageBasePropertiesEditionComponent(eObject, editing_mode);
+			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
 	}
-	
-}	
+
+}

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.PartDecomposition;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class PartDecompositionPropertiesEditionComponent extends ComposedPropert
 	 * @param partDecomposition
 	 *            the EObject to edit
 	 */
-	public PartDecompositionPropertiesEditionComponent(EObject partDecomposition, String mode) {
-		super(mode);
+	public PartDecompositionPropertiesEditionComponent(EObject partDecomposition, String editing_mode) {
+		super(editing_mode);
 		if (partDecomposition instanceof PartDecomposition) {
-			addSubComponent(new PartDecompositionBasePropertiesEditionComponent(partDecomposition, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(partDecomposition, mode));
+			addSubComponent(new PartDecompositionBasePropertiesEditionComponent(partDecomposition, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(partDecomposition, editing_mode));
 		}
 	}
 }
-

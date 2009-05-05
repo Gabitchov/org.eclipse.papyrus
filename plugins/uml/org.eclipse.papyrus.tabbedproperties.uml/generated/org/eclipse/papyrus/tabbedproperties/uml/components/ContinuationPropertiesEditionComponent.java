@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Continuation;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ContinuationPropertiesEditionComponent extends ComposedPropertiesEd
 	 * @param continuation
 	 *            the EObject to edit
 	 */
-	public ContinuationPropertiesEditionComponent(EObject continuation, String mode) {
-		super(mode);
+	public ContinuationPropertiesEditionComponent(EObject continuation, String editing_mode) {
+		super(editing_mode);
 		if (continuation instanceof Continuation) {
-			addSubComponent(new ContinuationBasePropertiesEditionComponent(continuation, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(continuation, mode));
+			addSubComponent(new ContinuationBasePropertiesEditionComponent(continuation, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(continuation, editing_mode));
 		}
 	}
 }
-

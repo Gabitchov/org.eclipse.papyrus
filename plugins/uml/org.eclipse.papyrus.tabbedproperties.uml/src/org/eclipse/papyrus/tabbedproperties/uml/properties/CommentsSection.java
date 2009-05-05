@@ -30,7 +30,7 @@ public class CommentsSection extends ElementCommentsPropertySection {
 		else if (toTest instanceof IAdaptable && ((IAdaptable) toTest).getAdapter(EObject.class) != null)
 			eObjectToTest = (EObject) ((IAdaptable) toTest).getAdapter(EObject.class);
 		// is an instance of uml::Element
-		return eObjectToTest != null && EcoreTool.isInstanceOfEClass(eObjectToTest,UMLPackage.eINSTANCE.getElement());
+		return eObjectToTest != null && EcoreTool.isInstanceOfEClass(eObjectToTest, UMLPackage.eINSTANCE.getElement());
 	}
 
 }

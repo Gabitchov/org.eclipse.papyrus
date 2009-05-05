@@ -32,34 +32,32 @@ public class LinkEndDestructionDataPropertiesEditionProvider implements IPropert
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof LinkEndDestructionData) && (UMLPackage.eINSTANCE.getLinkEndDestructionData() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
-	 *      java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject, java.lang.String)
 	 */
-	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String mode) {
+	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
 		if (eObject instanceof LinkEndDestructionData) {
-			return new LinkEndDestructionDataPropertiesEditionComponent(eObject, mode);
+			return new LinkEndDestructionDataPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
-	 *      java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject, java.lang.String, java.lang.String)
 	 */
-	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String mode, String part) {
+	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
 		if (eObject instanceof LinkEndDestructionData) {
 			if (LinkEndDestructionDataBasePropertiesEditionComponent.BASE_PART.equals(part))
-				return new LinkEndDestructionDataBasePropertiesEditionComponent(eObject, mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))			
-				return new ElementPropertiesEditionComponent(eObject, mode);
+				return new LinkEndDestructionDataBasePropertiesEditionComponent(eObject, editing_mode);
+			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
 	}
-	
-}	
+
+}

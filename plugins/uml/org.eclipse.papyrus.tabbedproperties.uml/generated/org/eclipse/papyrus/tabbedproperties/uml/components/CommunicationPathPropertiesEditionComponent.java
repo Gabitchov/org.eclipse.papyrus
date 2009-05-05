@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.CommunicationPath;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class CommunicationPathPropertiesEditionComponent extends ComposedPropert
 	 * @param communicationPath
 	 *            the EObject to edit
 	 */
-	public CommunicationPathPropertiesEditionComponent(EObject communicationPath, String mode) {
-		super(mode);
+	public CommunicationPathPropertiesEditionComponent(EObject communicationPath, String editing_mode) {
+		super(editing_mode);
 		if (communicationPath instanceof CommunicationPath) {
-			addSubComponent(new CommunicationPathBasePropertiesEditionComponent(communicationPath, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(communicationPath, mode));
+			addSubComponent(new CommunicationPathBasePropertiesEditionComponent(communicationPath, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(communicationPath, editing_mode));
 		}
 	}
 }
-

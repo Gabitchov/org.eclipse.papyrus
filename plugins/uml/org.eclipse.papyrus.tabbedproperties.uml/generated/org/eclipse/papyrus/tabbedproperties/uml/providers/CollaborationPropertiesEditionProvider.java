@@ -32,34 +32,32 @@ public class CollaborationPropertiesEditionProvider implements IPropertiesEditio
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Collaboration) && (UMLPackage.eINSTANCE.getCollaboration() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
-	 *      java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject, java.lang.String)
 	 */
-	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String mode) {
+	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
 		if (eObject instanceof Collaboration) {
-			return new CollaborationPropertiesEditionComponent(eObject, mode);
+			return new CollaborationPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
-	 *      java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject, java.lang.String, java.lang.String)
 	 */
-	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String mode, String part) {
+	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
 		if (eObject instanceof Collaboration) {
 			if (CollaborationBasePropertiesEditionComponent.BASE_PART.equals(part))
-				return new CollaborationBasePropertiesEditionComponent(eObject, mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))			
-				return new ElementPropertiesEditionComponent(eObject, mode);
+				return new CollaborationBasePropertiesEditionComponent(eObject, editing_mode);
+			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
 	}
-	
-}	
+
+}

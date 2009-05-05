@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.StartClassifierBehaviorAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class StartClassifierBehaviorActionPropertiesEditionComponent extends Com
 	 * @param startClassifierBehaviorAction
 	 *            the EObject to edit
 	 */
-	public StartClassifierBehaviorActionPropertiesEditionComponent(EObject startClassifierBehaviorAction, String mode) {
-		super(mode);
+	public StartClassifierBehaviorActionPropertiesEditionComponent(EObject startClassifierBehaviorAction, String editing_mode) {
+		super(editing_mode);
 		if (startClassifierBehaviorAction instanceof StartClassifierBehaviorAction) {
-			addSubComponent(new StartClassifierBehaviorActionBasePropertiesEditionComponent(startClassifierBehaviorAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(startClassifierBehaviorAction, mode));
+			addSubComponent(new StartClassifierBehaviorActionBasePropertiesEditionComponent(startClassifierBehaviorAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(startClassifierBehaviorAction, editing_mode));
 		}
 	}
 }
-

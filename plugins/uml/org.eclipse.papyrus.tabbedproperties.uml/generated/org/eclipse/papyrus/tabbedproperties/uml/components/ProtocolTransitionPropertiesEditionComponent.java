@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ProtocolTransition;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ProtocolTransitionPropertiesEditionComponent extends ComposedProper
 	 * @param protocolTransition
 	 *            the EObject to edit
 	 */
-	public ProtocolTransitionPropertiesEditionComponent(EObject protocolTransition, String mode) {
-		super(mode);
+	public ProtocolTransitionPropertiesEditionComponent(EObject protocolTransition, String editing_mode) {
+		super(editing_mode);
 		if (protocolTransition instanceof ProtocolTransition) {
-			addSubComponent(new ProtocolTransitionBasePropertiesEditionComponent(protocolTransition, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(protocolTransition, mode));
+			addSubComponent(new ProtocolTransitionBasePropertiesEditionComponent(protocolTransition, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(protocolTransition, editing_mode));
 		}
 	}
 }
-

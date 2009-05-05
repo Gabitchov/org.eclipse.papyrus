@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class OpaqueExpressionPropertiesEditionComponent extends ComposedProperti
 	 * @param opaqueExpression
 	 *            the EObject to edit
 	 */
-	public OpaqueExpressionPropertiesEditionComponent(EObject opaqueExpression, String mode) {
-		super(mode);
+	public OpaqueExpressionPropertiesEditionComponent(EObject opaqueExpression, String editing_mode) {
+		super(editing_mode);
 		if (opaqueExpression instanceof OpaqueExpression) {
-			addSubComponent(new OpaqueExpressionBasePropertiesEditionComponent(opaqueExpression, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(opaqueExpression, mode));
+			addSubComponent(new OpaqueExpressionBasePropertiesEditionComponent(opaqueExpression, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(opaqueExpression, editing_mode));
 		}
 	}
 }
-

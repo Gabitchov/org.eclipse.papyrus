@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Trigger;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class TriggerPropertiesEditionComponent extends ComposedPropertiesEdition
 	 * @param trigger
 	 *            the EObject to edit
 	 */
-	public TriggerPropertiesEditionComponent(EObject trigger, String mode) {
-		super(mode);
+	public TriggerPropertiesEditionComponent(EObject trigger, String editing_mode) {
+		super(editing_mode);
 		if (trigger instanceof Trigger) {
-			addSubComponent(new TriggerBasePropertiesEditionComponent(trigger, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(trigger, mode));
+			addSubComponent(new TriggerBasePropertiesEditionComponent(trigger, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(trigger, editing_mode));
 		}
 	}
 }
-

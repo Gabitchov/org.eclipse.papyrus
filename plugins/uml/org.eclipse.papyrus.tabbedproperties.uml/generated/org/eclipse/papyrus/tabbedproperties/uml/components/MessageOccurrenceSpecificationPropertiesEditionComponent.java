@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class MessageOccurrenceSpecificationPropertiesEditionComponent extends Co
 	 * @param messageOccurrenceSpecification
 	 *            the EObject to edit
 	 */
-	public MessageOccurrenceSpecificationPropertiesEditionComponent(EObject messageOccurrenceSpecification, String mode) {
-		super(mode);
+	public MessageOccurrenceSpecificationPropertiesEditionComponent(EObject messageOccurrenceSpecification, String editing_mode) {
+		super(editing_mode);
 		if (messageOccurrenceSpecification instanceof MessageOccurrenceSpecification) {
-			addSubComponent(new MessageOccurrenceSpecificationBasePropertiesEditionComponent(messageOccurrenceSpecification, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(messageOccurrenceSpecification, mode));
+			addSubComponent(new MessageOccurrenceSpecificationBasePropertiesEditionComponent(messageOccurrenceSpecification, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(messageOccurrenceSpecification, editing_mode));
 		}
 	}
 }
-

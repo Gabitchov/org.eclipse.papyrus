@@ -12,32 +12,48 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.impl;
 
 // Start of user code for imports
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
 import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateBindingPropertiesEditionPart;
+import java.util.Map;
 import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateBindingPropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.TemplateParameterSubstitution;
+
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
 /**
@@ -46,33 +62,29 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, TemplateBindingPropertiesEditionPart {
 
 	private EMFListEditUtil parameterSubstitutionEditUtil;
+
 	private ReferencesTable<?> parameterSubstitution;
 
-
-
-
-	
 	public TemplateBindingPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
-		view.setLayout(layout);	
-		
+		view.setLayout(layout);
+
 		createControls(view);
-		
 		return view;
 	}
-	
-	public void createControls(Composite view) { 
+
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
-		
+
 		// Start of user code for additional ui definition
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	protected void createGeneralGroup(Composite parent) {
@@ -85,59 +97,75 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 		generalGroupLayout.numColumns = 3;
 		generalGroup.setLayout(generalGroupLayout);
 		createParameterSubstitutionTableComposition(generalGroup);
-   	}
+	}
+
 	/**
 	 * @param container
 	 */
 	protected void createParameterSubstitutionTableComposition(Composite parent) {
-		this.parameterSubstitution = new ReferencesTable<TemplateParameterSubstitution>(UMLMessages.TemplateBindingPropertiesEditionPart_ParameterSubstitutionLabel, new ReferencesTableListener<TemplateParameterSubstitution>() {			
-			public void handleAdd() { addToParameterSubstitution();}
-			public void handleEdit(TemplateParameterSubstitution element) { editParameterSubstitution(element); }
-			public void handleMove(TemplateParameterSubstitution element, int oldIndex, int newIndex) { moveParameterSubstitution(element, oldIndex, newIndex); }			
-			public void handleRemove(TemplateParameterSubstitution element) { removeFromParameterSubstitution(element); }
-			public void navigateTo(TemplateParameterSubstitution element) { System.out.println("---> navigateTo"); }
-		});
+		this.parameterSubstitution = new ReferencesTable<TemplateParameterSubstitution>(UMLMessages.TemplateBindingPropertiesEditionPart_ParameterSubstitutionLabel,
+				new ReferencesTableListener<TemplateParameterSubstitution>() {
+
+					public void handleAdd() {
+						addToParameterSubstitution();
+					}
+
+					public void handleEdit(TemplateParameterSubstitution element) {
+						editParameterSubstitution(element);
+					}
+
+					public void handleMove(TemplateParameterSubstitution element, int oldIndex, int newIndex) {
+						moveParameterSubstitution(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(TemplateParameterSubstitution element) {
+						removeFromParameterSubstitution(element);
+					}
+
+					public void navigateTo(TemplateParameterSubstitution element) {
+					}
+				});
 		this.parameterSubstitution.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateBinding.parameterSubstitution, UMLViewsRepository.SWT_KIND));
 		this.parameterSubstitution.createControls(parent);
 		GridData parameterSubstitutionData = new GridData(GridData.FILL_HORIZONTAL);
 		parameterSubstitutionData.horizontalSpan = 3;
 		this.parameterSubstitution.setLayoutData(parameterSubstitutionData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveParameterSubstitution(TemplateParameterSubstitution element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = parameterSubstitutionEditUtil.foundCorrespondingEObject(element);
 		parameterSubstitutionEditUtil.moveElement(element, oldIndex, newIndex);
 		parameterSubstitution.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateBindingPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateBinding.parameterSubstitution, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateBindingPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateBinding.parameterSubstitution,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToParameterSubstitution() {
-	
-		// Start of user code addToParameterSubstitution() method body
 
+		// Start of user code addToParameterSubstitution() method body
 
 		TemplateParameterSubstitution eObject = UMLFactory.eINSTANCE.createTemplateParameterSubstitution();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				parameterSubstitutionEditUtil.addElement(propertiesEditionObject);
 				parameterSubstitution.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateBindingPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateBinding.parameterSubstitution, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateBindingPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateBinding.parameterSubstitution,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -150,7 +178,8 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = parameterSubstitutionEditUtil.foundCorrespondingEObject(element);
 		parameterSubstitutionEditUtil.removeElement(element);
 		parameterSubstitution.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateBindingPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateBinding.parameterSubstitution, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateBindingPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateBinding.parameterSubstitution,
+				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -161,29 +190,29 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 	private void editParameterSubstitution(TemplateParameterSubstitution element) {
 
 		// Start of user code editParameterSubstitution() method body
-				 
+
 		EObject editedElement = parameterSubstitutionEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				parameterSubstitutionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				parameterSubstitution.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TemplateBindingPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateBinding.parameterSubstitution, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateBindingPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateBinding.parameterSubstitution,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
 
-	
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code		
+
+		// End of user code
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -192,7 +221,7 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 	public List getParameterSubstitutionToAdd() {
 		return parameterSubstitutionEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -201,7 +230,7 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 	public List getParameterSubstitutionToRemove() {
 		return parameterSubstitutionEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -209,8 +238,8 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 	 */
 	public Map getParameterSubstitutionToEdit() {
 		return parameterSubstitutionEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -218,8 +247,8 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 	 */
 	public List getParameterSubstitutionToMove() {
 		return parameterSubstitutionEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -227,8 +256,8 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 	 */
 	public List getParameterSubstitutionTable() {
 		return parameterSubstitutionEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -239,40 +268,32 @@ public class TemplateBindingPropertiesEditionPartImpl extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			parameterSubstitutionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			parameterSubstitutionEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			parameterSubstitutionEditUtil = new EMFListEditUtil(current, feature);
 		this.parameterSubstitution.setInput(parameterSubstitutionEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateBindingPropertiesEditionPart#updateParameterSubstitution(EObject newValue)
 	 */
 	public void updateParameterSubstitution(EObject newValue) {
-		if(parameterSubstitutionEditUtil!=null){
+		if (parameterSubstitutionEditUtil != null) {
 			parameterSubstitutionEditUtil.reinit(newValue);
 			parameterSubstitution.refresh();
-		}		
-	}
-	
-	public void setMessageForParameterSubstitution (String msg, int msgLevel) {
-	
-	}
-	
-	public void unsetMessageForParameterSubstitution () {
-	
+		}
 	}
 
-	
-	
+	public void setMessageForParameterSubstitution(String msg, int msgLevel) {
 
-	
-	
+	}
 
+	public void unsetMessageForParameterSubstitution() {
 
+	}
 
 	// Start of user code additional methods
- 	
+
 	// End of user code
-}	
+}

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.LiteralNull;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class LiteralNullPropertiesEditionComponent extends ComposedPropertiesEdi
 	 * @param literalNull
 	 *            the EObject to edit
 	 */
-	public LiteralNullPropertiesEditionComponent(EObject literalNull, String mode) {
-		super(mode);
+	public LiteralNullPropertiesEditionComponent(EObject literalNull, String editing_mode) {
+		super(editing_mode);
 		if (literalNull instanceof LiteralNull) {
-			addSubComponent(new LiteralNullBasePropertiesEditionComponent(literalNull, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(literalNull, mode));
+			addSubComponent(new LiteralNullBasePropertiesEditionComponent(literalNull, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(literalNull, editing_mode));
 		}
 	}
 }
-

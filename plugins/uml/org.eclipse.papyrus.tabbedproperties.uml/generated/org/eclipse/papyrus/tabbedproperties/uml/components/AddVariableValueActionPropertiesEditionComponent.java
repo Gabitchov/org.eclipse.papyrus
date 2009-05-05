@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.AddVariableValueAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class AddVariableValueActionPropertiesEditionComponent extends ComposedPr
 	 * @param addVariableValueAction
 	 *            the EObject to edit
 	 */
-	public AddVariableValueActionPropertiesEditionComponent(EObject addVariableValueAction, String mode) {
-		super(mode);
+	public AddVariableValueActionPropertiesEditionComponent(EObject addVariableValueAction, String editing_mode) {
+		super(editing_mode);
 		if (addVariableValueAction instanceof AddVariableValueAction) {
-			addSubComponent(new AddVariableValueActionBasePropertiesEditionComponent(addVariableValueAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(addVariableValueAction, mode));
+			addSubComponent(new AddVariableValueActionBasePropertiesEditionComponent(addVariableValueAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(addVariableValueAction, editing_mode));
 		}
 	}
 }
-

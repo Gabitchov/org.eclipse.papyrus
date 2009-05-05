@@ -12,42 +12,66 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.forms;
 
 // Start of user code for imports
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.EEFMessageManager;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.IMessageManager;
+import org.eclipse.ui.forms.events.ExpansionEvent;
+import org.eclipse.ui.forms.events.IExpansionListener;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.forms.events.ExpansionEvent;
+import org.eclipse.ui.forms.events.IExpansionListener;
+
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+import org.eclipse.emf.eef.runtime.api.parts.EEFMessageManager;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart;
+
+import java.util.Map;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.QualifierValue;
-import org.eclipse.uml2.uml.UMLFactory;
+
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
 /**
@@ -56,37 +80,36 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, LinkEndDestructionDataPropertiesEditionPart {
 
 	private EMFListEditUtil ownedCommentEditUtil;
+
 	private ReferencesTable<?> ownedComment;
+
 	private EMFListEditUtil qualifierEditUtil;
+
 	private ReferencesTable<?> qualifier;
+
 	private Button isDestroyDuplicates;
 
-
-
-
-	
 	public LinkEndDestructionDataPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
-		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);		
+		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
 		view = form.getBody();
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
-		view.setLayout(layout);	
-		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));		
-		
+		view.setLayout(layout);
+		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
-	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) { 
+
+	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createPropertiesGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
@@ -103,17 +126,32 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 		createQualifierTableComposition(widgetFactory, propertiesGroup);
 		createIsDestroyDuplicatesCheckbox(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
-	}   		
+	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }			
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { System.out.println("---> navigateTo"); }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.LinkEndDestructionData.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
@@ -121,41 +159,40 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 		ownedCommentData.horizontalSpan = 3;
 		this.ownedComment.setLayoutData(ownedCommentData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToOwnedComment() {
-	
+
 		// Start of user code addToOwnedComment() method body
-		
-		
+
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this,
+						UMLViewsRepository.LinkEndDestructionData.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -168,7 +205,8 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -179,31 +217,47 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	protected void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-				 
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this,
+						UMLViewsRepository.LinkEndDestructionData.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createQualifierTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.qualifier = new ReferencesTable<QualifierValue>(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_QualifierLabel, new ReferencesTableListener<QualifierValue>() {			
-			public void handleAdd() { addToQualifier();}
-			public void handleEdit(QualifierValue element) { editQualifier(element); }
-			public void handleMove(QualifierValue element, int oldIndex, int newIndex) { moveQualifier(element, oldIndex, newIndex); }			
-			public void handleRemove(QualifierValue element) { removeFromQualifier(element); }
-			public void navigateTo(QualifierValue element) { System.out.println("---> navigateTo"); }
+		this.qualifier = new ReferencesTable<QualifierValue>(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_QualifierLabel, new ReferencesTableListener<QualifierValue>() {
+
+			public void handleAdd() {
+				addToQualifier();
+			}
+
+			public void handleEdit(QualifierValue element) {
+				editQualifier(element);
+			}
+
+			public void handleMove(QualifierValue element, int oldIndex, int newIndex) {
+				moveQualifier(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(QualifierValue element) {
+				removeFromQualifier(element);
+			}
+
+			public void navigateTo(QualifierValue element) {
+			}
 		});
 		this.qualifier.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.LinkEndDestructionData.qualifier, UMLViewsRepository.FORM_KIND));
 		this.qualifier.createControls(parent, widgetFactory);
@@ -211,41 +265,40 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 		qualifierData.horizontalSpan = 3;
 		this.qualifier.setLayoutData(qualifierData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveQualifier(QualifierValue element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = qualifierEditUtil.foundCorrespondingEObject(element);
 		qualifierEditUtil.moveElement(element, oldIndex, newIndex);
 		qualifier.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.qualifier, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.qualifier,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToQualifier() {
-	
+
 		// Start of user code addToQualifier() method body
-		
-		
+
 		QualifierValue eObject = UMLFactory.eINSTANCE.createQualifierValue();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				qualifierEditUtil.addElement(propertiesEditionObject);
 				qualifier.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.qualifier, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.qualifier,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -258,7 +311,8 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 		EObject editedElement = qualifierEditUtil.foundCorrespondingEObject(element);
 		qualifierEditUtil.removeElement(element);
 		qualifier.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.qualifier, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.qualifier,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -269,50 +323,52 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	protected void editQualifier(QualifierValue element) {
 
 		// Start of user code editQualifier() method body
-				 
+
 		EObject editedElement = qualifierEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				qualifierEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				qualifier.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.qualifier, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.qualifier,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createIsDestroyDuplicatesCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isDestroyDuplicates = widgetFactory.createButton(parent, UMLMessages.LinkEndDestructionDataPropertiesEditionPart_IsDestroyDuplicatesLabel, SWT.CHECK);
-   		isDestroyDuplicates.addSelectionListener(new SelectionAdapter() {
+		isDestroyDuplicates.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 *
+			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndDestructionData.isDestroyDuplicates, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, null, new Boolean(isDestroyDuplicates.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartForm.this,
+							UMLViewsRepository.LinkEndDestructionData.isDestroyDuplicates, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isDestroyDuplicates
+									.getSelection())));
 			}
-   			
-   			
-   		});
+
+		});
 		GridData isDestroyDuplicatesData = new GridData(GridData.FILL_HORIZONTAL);
 		isDestroyDuplicatesData.horizontalSpan = 2;
 		isDestroyDuplicates.setLayoutData(isDestroyDuplicatesData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.LinkEndDestructionData.isDestroyDuplicates, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
 
-	
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code		
+
+		// End of user code
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -321,7 +377,7 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	public List getOwnedCommentToAdd() {
 		return ownedCommentEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -330,7 +386,7 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	public List getOwnedCommentToRemove() {
 		return ownedCommentEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -338,8 +394,8 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	 */
 	public Map getOwnedCommentToEdit() {
 		return ownedCommentEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -347,8 +403,8 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	 */
 	public List getOwnedCommentToMove() {
 		return ownedCommentEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -356,8 +412,8 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	 */
 	public List getOwnedCommentTable() {
 		return ownedCommentEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -368,27 +424,23 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			ownedCommentEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
 		this.ownedComment.setInput(ownedCommentEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -397,7 +449,7 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	public List getQualifierToAdd() {
 		return qualifierEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -406,7 +458,7 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	public List getQualifierToRemove() {
 		return qualifierEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -414,8 +466,8 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	 */
 	public Map getQualifierToEdit() {
 		return qualifierEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -423,8 +475,8 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	 */
 	public List getQualifierToMove() {
 		return qualifierEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -432,8 +484,8 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	 */
 	public List getQualifierTable() {
 		return qualifierEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -444,27 +496,23 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			qualifierEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			qualifierEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			qualifierEditUtil = new EMFListEditUtil(current, feature);
 		this.qualifier.setInput(qualifierEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#updateQualifier(EObject newValue)
 	 */
 	public void updateQualifier(EObject newValue) {
-		if(qualifierEditUtil!=null){
+		if (qualifierEditUtil != null) {
 			qualifierEditUtil.reinit(newValue);
 			qualifier.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -473,28 +521,21 @@ public class LinkEndDestructionDataPropertiesEditionPartForm extends CompositePr
 	public Boolean getIsDestroyDuplicates() {
 		return Boolean.valueOf(isDestroyDuplicates.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#setIsDestroyDuplicates(Boolean newValue)
 	 */
 	public void setIsDestroyDuplicates(Boolean newValue) {
-		isDestroyDuplicates.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isDestroyDuplicates.setSelection(newValue.booleanValue());
+		} else {
+			isDestroyDuplicates.setSelection(false);
+		}
 	}
-	
-	
-	
-	
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
- 	
+
 	// End of user code
-}	
+}

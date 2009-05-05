@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.DataStoreNode;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class DataStoreNodePropertiesEditionComponent extends ComposedPropertiesE
 	 * @param dataStoreNode
 	 *            the EObject to edit
 	 */
-	public DataStoreNodePropertiesEditionComponent(EObject dataStoreNode, String mode) {
-		super(mode);
+	public DataStoreNodePropertiesEditionComponent(EObject dataStoreNode, String editing_mode) {
+		super(editing_mode);
 		if (dataStoreNode instanceof DataStoreNode) {
-			addSubComponent(new DataStoreNodeBasePropertiesEditionComponent(dataStoreNode, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(dataStoreNode, mode));
+			addSubComponent(new DataStoreNodeBasePropertiesEditionComponent(dataStoreNode, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(dataStoreNode, editing_mode));
 		}
 	}
 }
-

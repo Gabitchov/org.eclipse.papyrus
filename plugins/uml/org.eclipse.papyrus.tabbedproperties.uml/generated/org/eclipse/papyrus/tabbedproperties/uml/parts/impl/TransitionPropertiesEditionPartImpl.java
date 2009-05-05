@@ -12,40 +12,17 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.impl;
 
 // Start of user code for imports
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFEnumViewer;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -54,15 +31,65 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.Constraint;
+
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.jface.viewers.StructuredSelection;
+import java.util.Iterator;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFModelViewerDialog;
+import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
+
+import java.util.Map;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Trigger;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
+
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
 /**
@@ -71,47 +98,57 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, TransitionPropertiesEditionPart {
 
 	private EMFListEditUtil ownedCommentEditUtil;
+
 	private ReferencesTable<?> ownedComment;
+
 	private Text name;
-	private EMFEnumViewer visibility;
+
+	private EMFComboViewer visibility;
+
 	private EMFListEditUtil clientDependencyEditUtil;
+
 	private ReferencesTable<?> clientDependency;
+
 	private EMFListEditUtil elementImportEditUtil;
+
 	private ReferencesTable<?> elementImport;
+
 	private EMFListEditUtil packageImportEditUtil;
+
 	private ReferencesTable<?> packageImport;
+
 	private EMFListEditUtil ownedRuleEditUtil;
+
 	private ReferencesTable<?> ownedRule;
+
 	private Button isLeaf;
-	private EMFEnumViewer kind;
+
+	private EMFComboViewer kind;
+
 	private EMFListEditUtil triggerEditUtil;
+
 	private ReferencesTable<?> trigger;
 
-
-
-
-	
 	public TransitionPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
-		view.setLayout(layout);	
-		
+		view.setLayout(layout);
+
 		createControls(view);
-		
 		return view;
 	}
-	
-	public void createControls(Composite view) { 
+
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
-		
+
 		// Start of user code for additional ui definition
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	protected void createPropertiesGroup(Composite parent) {
@@ -133,17 +170,32 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		createIsLeafCheckbox(propertiesGroup);
 		createKindEEnumViewer(propertiesGroup);
 		createTriggerTableComposition(propertiesGroup);
-   	}
+	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.TransitionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }			
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { System.out.println("---> navigateTo"); }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.TransitionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -151,41 +203,41 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		ownedCommentData.horizontalSpan = 3;
 		this.ownedComment.setLayoutData(ownedCommentData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToOwnedComment() {
-	
-		// Start of user code addToOwnedComment() method body
 
+		// Start of user code addToOwnedComment() method body
 
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedComment,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -198,7 +250,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedComment,
+				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -209,21 +262,23 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	private void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-				 
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedComment,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createNameText(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.TransitionPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Transition.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
@@ -238,54 +293,74 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.name, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.name,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEEnumViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.TransitionPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Transition.visibility, UMLViewsRepository.SWT_KIND));
-		visibility = new EMFEnumViewer(parent);
+		SWTUtils.createPartLabel(parent, UMLMessages.TransitionPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Transition.visibility,
+				UMLViewsRepository.SWT_KIND));
+		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createClientDependencyReferencesTable(Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.TransitionPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter clientDependencyFilter = new EObjectFilter(UMLPackage.eINSTANCE.getDependency());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!clientDependencyEditUtil.contains((EObject)element));
-						return false;					
+							return (!clientDependencyEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { clientDependencyFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, filters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency()) {
-					@Override
-					public void process(IStructuredSelection selection) {						
+
+				};
+				List filters = new ArrayList();
+				filters.add(clientDependencyFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, filters, "Dependency", UMLPackage.eINSTANCE.getDependency()) {
+
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.clientDependency,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));	
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.clientDependency,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						clientDependency.refresh();											
+						clientDependency.refresh();
 					}
+
 				};
 				dialog.open();
 			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(Dependency element) {
+				editClientDependency(element);
+			}
+
+			public void handleMove(Dependency element, int oldIndex, int newIndex) {
+				moveClientDependency(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Dependency element) {
+				removeFromClientDependency(element);
+			}
+
+			public void navigateTo(Dependency element) {
+			}
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.clientDependency, UMLViewsRepository.SWT_KIND));
 		this.clientDependency.createControls(parent);
@@ -294,19 +369,18 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		this.clientDependency.setLayoutData(clientDependencyData);
 		this.clientDependency.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveClientDependency(Dependency element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.moveElement(element, oldIndex, newIndex);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.clientDependency,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -317,7 +391,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.removeElement(element);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.clientDependency,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -328,31 +403,47 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	private void editClientDependency(Dependency element) {
 
 		// Start of user code editClientDependency() method body
-				 
+
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.clientDependency,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createElementImportTableComposition(Composite parent) {
-		this.elementImport = new ReferencesTable<ElementImport>(UMLMessages.TransitionPropertiesEditionPart_ElementImportLabel, new ReferencesTableListener<ElementImport>() {			
-			public void handleAdd() { addToElementImport();}
-			public void handleEdit(ElementImport element) { editElementImport(element); }
-			public void handleMove(ElementImport element, int oldIndex, int newIndex) { moveElementImport(element, oldIndex, newIndex); }			
-			public void handleRemove(ElementImport element) { removeFromElementImport(element); }
-			public void navigateTo(ElementImport element) { System.out.println("---> navigateTo"); }
+		this.elementImport = new ReferencesTable<ElementImport>(UMLMessages.TransitionPropertiesEditionPart_ElementImportLabel, new ReferencesTableListener<ElementImport>() {
+
+			public void handleAdd() {
+				addToElementImport();
+			}
+
+			public void handleEdit(ElementImport element) {
+				editElementImport(element);
+			}
+
+			public void handleMove(ElementImport element, int oldIndex, int newIndex) {
+				moveElementImport(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ElementImport element) {
+				removeFromElementImport(element);
+			}
+
+			public void navigateTo(ElementImport element) {
+			}
 		});
 		this.elementImport.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.elementImport, UMLViewsRepository.SWT_KIND));
 		this.elementImport.createControls(parent);
@@ -360,41 +451,41 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		elementImportData.horizontalSpan = 3;
 		this.elementImport.setLayoutData(elementImportData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveElementImport(ElementImport element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		elementImportEditUtil.moveElement(element, oldIndex, newIndex);
 		elementImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.elementImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.elementImport,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToElementImport() {
-	
-		// Start of user code addToElementImport() method body
 
+		// Start of user code addToElementImport() method body
 
 		ElementImport eObject = UMLFactory.eINSTANCE.createElementImport();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				elementImportEditUtil.addElement(propertiesEditionObject);
 				elementImport.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.elementImport, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.elementImport,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -407,7 +498,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		elementImportEditUtil.removeElement(element);
 		elementImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.elementImport, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.elementImport,
+				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -418,31 +510,47 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	private void editElementImport(ElementImport element) {
 
 		// Start of user code editElementImport() method body
-				 
+
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				elementImportEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				elementImport.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.elementImport, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.elementImport,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createPackageImportTableComposition(Composite parent) {
-		this.packageImport = new ReferencesTable<PackageImport>(UMLMessages.TransitionPropertiesEditionPart_PackageImportLabel, new ReferencesTableListener<PackageImport>() {			
-			public void handleAdd() { addToPackageImport();}
-			public void handleEdit(PackageImport element) { editPackageImport(element); }
-			public void handleMove(PackageImport element, int oldIndex, int newIndex) { movePackageImport(element, oldIndex, newIndex); }			
-			public void handleRemove(PackageImport element) { removeFromPackageImport(element); }
-			public void navigateTo(PackageImport element) { System.out.println("---> navigateTo"); }
+		this.packageImport = new ReferencesTable<PackageImport>(UMLMessages.TransitionPropertiesEditionPart_PackageImportLabel, new ReferencesTableListener<PackageImport>() {
+
+			public void handleAdd() {
+				addToPackageImport();
+			}
+
+			public void handleEdit(PackageImport element) {
+				editPackageImport(element);
+			}
+
+			public void handleMove(PackageImport element, int oldIndex, int newIndex) {
+				movePackageImport(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(PackageImport element) {
+				removeFromPackageImport(element);
+			}
+
+			public void navigateTo(PackageImport element) {
+			}
 		});
 		this.packageImport.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.packageImport, UMLViewsRepository.SWT_KIND));
 		this.packageImport.createControls(parent);
@@ -450,41 +558,41 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		packageImportData.horizontalSpan = 3;
 		this.packageImport.setLayoutData(packageImportData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void movePackageImport(PackageImport element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		packageImportEditUtil.moveElement(element, oldIndex, newIndex);
 		packageImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.packageImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.packageImport,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToPackageImport() {
-	
-		// Start of user code addToPackageImport() method body
 
+		// Start of user code addToPackageImport() method body
 
 		PackageImport eObject = UMLFactory.eINSTANCE.createPackageImport();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				packageImportEditUtil.addElement(propertiesEditionObject);
 				packageImport.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.packageImport, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.packageImport,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -497,7 +605,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		packageImportEditUtil.removeElement(element);
 		packageImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.packageImport, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.packageImport,
+				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -508,31 +617,47 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	private void editPackageImport(PackageImport element) {
 
 		// Start of user code editPackageImport() method body
-				 
+
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				packageImportEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				packageImport.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.packageImport, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.packageImport,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedRuleTableComposition(Composite parent) {
-		this.ownedRule = new ReferencesTable<Constraint>(UMLMessages.TransitionPropertiesEditionPart_OwnedRuleLabel, new ReferencesTableListener<Constraint>() {			
-			public void handleAdd() { addToOwnedRule();}
-			public void handleEdit(Constraint element) { editOwnedRule(element); }
-			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveOwnedRule(element, oldIndex, newIndex); }			
-			public void handleRemove(Constraint element) { removeFromOwnedRule(element); }
-			public void navigateTo(Constraint element) { System.out.println("---> navigateTo"); }
+		this.ownedRule = new ReferencesTable<Constraint>(UMLMessages.TransitionPropertiesEditionPart_OwnedRuleLabel, new ReferencesTableListener<Constraint>() {
+
+			public void handleAdd() {
+				addToOwnedRule();
+			}
+
+			public void handleEdit(Constraint element) {
+				editOwnedRule(element);
+			}
+
+			public void handleMove(Constraint element, int oldIndex, int newIndex) {
+				moveOwnedRule(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Constraint element) {
+				removeFromOwnedRule(element);
+			}
+
+			public void navigateTo(Constraint element) {
+			}
 		});
 		this.ownedRule.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.ownedRule, UMLViewsRepository.SWT_KIND));
 		this.ownedRule.createControls(parent);
@@ -540,41 +665,41 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		ownedRuleData.horizontalSpan = 3;
 		this.ownedRule.setLayoutData(ownedRuleData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveOwnedRule(Constraint element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		ownedRuleEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedRule.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedRule, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedRule, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToOwnedRule() {
-	
-		// Start of user code addToOwnedRule() method body
 
+		// Start of user code addToOwnedRule() method body
 
 		Constraint eObject = UMLFactory.eINSTANCE.createConstraint();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedRuleEditUtil.addElement(propertiesEditionObject);
 				ownedRule.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedRule, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedRule,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -587,7 +712,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		ownedRuleEditUtil.removeElement(element);
 		ownedRule.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedRule, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedRule, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -598,21 +724,23 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	private void editOwnedRule(Constraint element) {
 
 		// Start of user code editOwnedRule() method body
-				 
+
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedRuleEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedRule.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedRule, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.ownedRule,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createIsLeafCheckbox(Composite parent) {
 		isLeaf = new Button(parent, SWT.CHECK);
 		isLeaf.setText(UMLMessages.TransitionPropertiesEditionPart_IsLeafLabel);
@@ -621,25 +749,41 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		isLeaf.setLayoutData(isLeafData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.isLeaf, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createKindEEnumViewer(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.TransitionPropertiesEditionPart_KindLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Transition.kind, UMLViewsRepository.SWT_KIND));
-		kind = new EMFEnumViewer(parent);
+		kind = new EMFComboViewer(parent);
 		kind.setContentProvider(new ArrayContentProvider());
 		kind.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData kindData = new GridData(GridData.FILL_HORIZONTAL);
 		kind.getCombo().setLayoutData(kindData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.kind, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createTriggerTableComposition(Composite parent) {
-		this.trigger = new ReferencesTable<Trigger>(UMLMessages.TransitionPropertiesEditionPart_TriggerLabel, new ReferencesTableListener<Trigger>() {			
-			public void handleAdd() { addToTrigger();}
-			public void handleEdit(Trigger element) { editTrigger(element); }
-			public void handleMove(Trigger element, int oldIndex, int newIndex) { moveTrigger(element, oldIndex, newIndex); }			
-			public void handleRemove(Trigger element) { removeFromTrigger(element); }
-			public void navigateTo(Trigger element) { System.out.println("---> navigateTo"); }
+		this.trigger = new ReferencesTable<Trigger>(UMLMessages.TransitionPropertiesEditionPart_TriggerLabel, new ReferencesTableListener<Trigger>() {
+
+			public void handleAdd() {
+				addToTrigger();
+			}
+
+			public void handleEdit(Trigger element) {
+				editTrigger(element);
+			}
+
+			public void handleMove(Trigger element, int oldIndex, int newIndex) {
+				moveTrigger(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Trigger element) {
+				removeFromTrigger(element);
+			}
+
+			public void navigateTo(Trigger element) {
+			}
 		});
 		this.trigger.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Transition.trigger, UMLViewsRepository.SWT_KIND));
 		this.trigger.createControls(parent);
@@ -647,41 +791,41 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		triggerData.horizontalSpan = 3;
 		this.trigger.setLayoutData(triggerData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveTrigger(Trigger element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = triggerEditUtil.foundCorrespondingEObject(element);
 		triggerEditUtil.moveElement(element, oldIndex, newIndex);
 		trigger.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.trigger, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.trigger, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToTrigger() {
-	
-		// Start of user code addToTrigger() method body
 
+		// Start of user code addToTrigger() method body
 
 		Trigger eObject = UMLFactory.eINSTANCE.createTrigger();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				triggerEditUtil.addElement(propertiesEditionObject);
 				trigger.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.trigger, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.trigger,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -694,7 +838,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		EObject editedElement = triggerEditUtil.foundCorrespondingEObject(element);
 		triggerEditUtil.removeElement(element);
 		trigger.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.trigger, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.trigger, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -705,29 +850,29 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	private void editTrigger(Trigger element) {
 
 		// Start of user code editTrigger() method body
-				 
+
 		EObject editedElement = triggerEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				triggerEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				trigger.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.trigger, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TransitionPropertiesEditionPartImpl.this, UMLViewsRepository.Transition.trigger,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
 
-	
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code		
+
+		// End of user code
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -736,7 +881,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getOwnedCommentToAdd() {
 		return ownedCommentEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -745,7 +890,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getOwnedCommentToRemove() {
 		return ownedCommentEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -753,8 +898,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public Map getOwnedCommentToEdit() {
 		return ownedCommentEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -762,8 +907,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getOwnedCommentToMove() {
 		return ownedCommentEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -771,8 +916,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getOwnedCommentTable() {
 		return ownedCommentEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -783,31 +928,31 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			ownedCommentEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
 		this.ownedComment.setInput(ownedCommentEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForOwnedComment (String msg, int msgLevel) {
-	
+
+	public void setMessageForOwnedComment(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForOwnedComment () {
-	
+
+	public void unsetMessageForOwnedComment() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -816,7 +961,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public String getName() {
 		return name.getText();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -825,15 +970,15 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public void setName(String newValue) {
 		name.setText(newValue);
 	}
-	
-	public void setMessageForName (String msg, int msgLevel) {
-	
+
+	public void setMessageForName(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForName () {
-	
+
+	public void unsetMessageForName() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -843,7 +988,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -854,7 +999,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		visibility.setSelection(new StructuredSelection(current));
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#setVisibility(Enumerator newValue)
@@ -862,15 +1007,15 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
 	}
-	
-	public void setMessageForVisibility (String msg, int msgLevel) {
-	
+
+	public void setMessageForVisibility(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForVisibility () {
-	
+
+	public void unsetMessageForVisibility() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -879,7 +1024,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getClientDependencyToAdd() {
 		return clientDependencyEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -888,7 +1033,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getClientDependencyToRemove() {
 		return clientDependencyEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -899,31 +1044,31 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			clientDependencyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			clientDependencyEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			clientDependencyEditUtil = new EMFListEditUtil(current, feature);
 		this.clientDependency.setInput(clientDependencyEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil!=null){
+		if (clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForClientDependency (String msg, int msgLevel) {
-	
+
+	public void setMessageForClientDependency(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForClientDependency () {
-	
+
+	public void unsetMessageForClientDependency() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -932,7 +1077,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getElementImportToAdd() {
 		return elementImportEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -941,7 +1086,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getElementImportToRemove() {
 		return elementImportEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -949,8 +1094,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public Map getElementImportToEdit() {
 		return elementImportEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -958,8 +1103,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getElementImportToMove() {
 		return elementImportEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -967,8 +1112,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getElementImportTable() {
 		return elementImportEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -979,31 +1124,31 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			elementImportEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			elementImportEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			elementImportEditUtil = new EMFListEditUtil(current, feature);
 		this.elementImport.setInput(elementImportEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#updateElementImport(EObject newValue)
 	 */
 	public void updateElementImport(EObject newValue) {
-		if(elementImportEditUtil!=null){
+		if (elementImportEditUtil != null) {
 			elementImportEditUtil.reinit(newValue);
 			elementImport.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForElementImport (String msg, int msgLevel) {
-	
+
+	public void setMessageForElementImport(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForElementImport () {
-	
+
+	public void unsetMessageForElementImport() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1012,7 +1157,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getPackageImportToAdd() {
 		return packageImportEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1021,7 +1166,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getPackageImportToRemove() {
 		return packageImportEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1029,8 +1174,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public Map getPackageImportToEdit() {
 		return packageImportEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1038,8 +1183,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getPackageImportToMove() {
 		return packageImportEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1047,8 +1192,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getPackageImportTable() {
 		return packageImportEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1059,31 +1204,31 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			packageImportEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			packageImportEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			packageImportEditUtil = new EMFListEditUtil(current, feature);
 		this.packageImport.setInput(packageImportEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#updatePackageImport(EObject newValue)
 	 */
 	public void updatePackageImport(EObject newValue) {
-		if(packageImportEditUtil!=null){
+		if (packageImportEditUtil != null) {
 			packageImportEditUtil.reinit(newValue);
 			packageImport.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForPackageImport (String msg, int msgLevel) {
-	
+
+	public void setMessageForPackageImport(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForPackageImport () {
-	
+
+	public void unsetMessageForPackageImport() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1092,7 +1237,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getOwnedRuleToAdd() {
 		return ownedRuleEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1101,7 +1246,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getOwnedRuleToRemove() {
 		return ownedRuleEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1109,8 +1254,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public Map getOwnedRuleToEdit() {
 		return ownedRuleEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1118,8 +1263,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getOwnedRuleToMove() {
 		return ownedRuleEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1127,8 +1272,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getOwnedRuleTable() {
 		return ownedRuleEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1139,31 +1284,31 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			ownedRuleEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			ownedRuleEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			ownedRuleEditUtil = new EMFListEditUtil(current, feature);
 		this.ownedRule.setInput(ownedRuleEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#updateOwnedRule(EObject newValue)
 	 */
 	public void updateOwnedRule(EObject newValue) {
-		if(ownedRuleEditUtil!=null){
+		if (ownedRuleEditUtil != null) {
 			ownedRuleEditUtil.reinit(newValue);
 			ownedRule.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForOwnedRule (String msg, int msgLevel) {
-	
+
+	public void setMessageForOwnedRule(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForOwnedRule () {
-	
+
+	public void unsetMessageForOwnedRule() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1172,24 +1317,28 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public Boolean getIsLeaf() {
 		return Boolean.valueOf(isLeaf.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#setIsLeaf(Boolean newValue)
 	 */
 	public void setIsLeaf(Boolean newValue) {
-		isLeaf.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isLeaf.setSelection(newValue.booleanValue());
+		} else {
+			isLeaf.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsLeaf (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsLeaf(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsLeaf () {
-	
+
+	public void unsetMessageForIsLeaf() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1199,7 +1348,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) kind.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1210,7 +1359,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 		kind.setSelection(new StructuredSelection(current));
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#setKind(Enumerator newValue)
@@ -1218,15 +1367,15 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public void setKind(Enumerator newValue) {
 		kind.modelUpdating(new StructuredSelection(newValue));
 	}
-	
-	public void setMessageForKind (String msg, int msgLevel) {
-	
+
+	public void setMessageForKind(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForKind () {
-	
+
+	public void unsetMessageForKind() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1235,7 +1384,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getTriggerToAdd() {
 		return triggerEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1244,7 +1393,7 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	public List getTriggerToRemove() {
 		return triggerEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1252,8 +1401,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public Map getTriggerToEdit() {
 		return triggerEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1261,8 +1410,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getTriggerToMove() {
 		return triggerEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1270,8 +1419,8 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public List getTriggerTable() {
 		return triggerEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1282,40 +1431,32 @@ public class TransitionPropertiesEditionPartImpl extends CompositePropertiesEdit
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			triggerEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			triggerEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			triggerEditUtil = new EMFListEditUtil(current, feature);
 		this.trigger.setInput(triggerEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TransitionPropertiesEditionPart#updateTrigger(EObject newValue)
 	 */
 	public void updateTrigger(EObject newValue) {
-		if(triggerEditUtil!=null){
+		if (triggerEditUtil != null) {
 			triggerEditUtil.reinit(newValue);
 			trigger.refresh();
-		}		
-	}
-	
-	public void setMessageForTrigger (String msg, int msgLevel) {
-	
-	}
-	
-	public void unsetMessageForTrigger () {
-	
+		}
 	}
 
-	
-	
+	public void setMessageForTrigger(String msg, int msgLevel) {
 
-	
-	
+	}
 
+	public void unsetMessageForTrigger() {
 
+	}
 
 	// Start of user code additional methods
- 	
+
 	// End of user code
-}	
+}

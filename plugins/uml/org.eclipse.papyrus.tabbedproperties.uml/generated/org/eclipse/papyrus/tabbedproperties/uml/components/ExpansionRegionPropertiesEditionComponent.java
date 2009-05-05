@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ExpansionRegion;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ExpansionRegionPropertiesEditionComponent extends ComposedPropertie
 	 * @param expansionRegion
 	 *            the EObject to edit
 	 */
-	public ExpansionRegionPropertiesEditionComponent(EObject expansionRegion, String mode) {
-		super(mode);
+	public ExpansionRegionPropertiesEditionComponent(EObject expansionRegion, String editing_mode) {
+		super(editing_mode);
 		if (expansionRegion instanceof ExpansionRegion) {
-			addSubComponent(new ExpansionRegionBasePropertiesEditionComponent(expansionRegion, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(expansionRegion, mode));
+			addSubComponent(new ExpansionRegionBasePropertiesEditionComponent(expansionRegion, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(expansionRegion, editing_mode));
 		}
 	}
 }
-

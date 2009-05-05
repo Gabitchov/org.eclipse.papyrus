@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class TemplateBindingPropertiesEditionComponent extends ComposedPropertie
 	 * @param templateBinding
 	 *            the EObject to edit
 	 */
-	public TemplateBindingPropertiesEditionComponent(EObject templateBinding, String mode) {
-		super(mode);
+	public TemplateBindingPropertiesEditionComponent(EObject templateBinding, String editing_mode) {
+		super(editing_mode);
 		if (templateBinding instanceof TemplateBinding) {
-			addSubComponent(new TemplateBindingBasePropertiesEditionComponent(templateBinding, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(templateBinding, mode));
+			addSubComponent(new TemplateBindingBasePropertiesEditionComponent(templateBinding, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(templateBinding, editing_mode));
 		}
 	}
 }
-

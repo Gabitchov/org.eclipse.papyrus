@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class LifelinePropertiesEditionComponent extends ComposedPropertiesEditio
 	 * @param lifeline
 	 *            the EObject to edit
 	 */
-	public LifelinePropertiesEditionComponent(EObject lifeline, String mode) {
-		super(mode);
+	public LifelinePropertiesEditionComponent(EObject lifeline, String editing_mode) {
+		super(editing_mode);
 		if (lifeline instanceof Lifeline) {
-			addSubComponent(new LifelineBasePropertiesEditionComponent(lifeline, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(lifeline, mode));
+			addSubComponent(new LifelineBasePropertiesEditionComponent(lifeline, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(lifeline, editing_mode));
 		}
 	}
 }
-

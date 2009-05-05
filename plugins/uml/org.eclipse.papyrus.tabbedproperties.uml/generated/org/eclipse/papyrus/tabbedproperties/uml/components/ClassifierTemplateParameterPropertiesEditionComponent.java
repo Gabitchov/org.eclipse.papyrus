@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ClassifierTemplateParameterPropertiesEditionComponent extends Compo
 	 * @param classifierTemplateParameter
 	 *            the EObject to edit
 	 */
-	public ClassifierTemplateParameterPropertiesEditionComponent(EObject classifierTemplateParameter, String mode) {
-		super(mode);
+	public ClassifierTemplateParameterPropertiesEditionComponent(EObject classifierTemplateParameter, String editing_mode) {
+		super(editing_mode);
 		if (classifierTemplateParameter instanceof ClassifierTemplateParameter) {
-			addSubComponent(new ClassifierTemplateParameterBasePropertiesEditionComponent(classifierTemplateParameter, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(classifierTemplateParameter, mode));
+			addSubComponent(new ClassifierTemplateParameterBasePropertiesEditionComponent(classifierTemplateParameter, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(classifierTemplateParameter, editing_mode));
 		}
 	}
 }
-

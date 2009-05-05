@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.TemplateSignature;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class TemplateSignaturePropertiesEditionComponent extends ComposedPropert
 	 * @param templateSignature
 	 *            the EObject to edit
 	 */
-	public TemplateSignaturePropertiesEditionComponent(EObject templateSignature, String mode) {
-		super(mode);
+	public TemplateSignaturePropertiesEditionComponent(EObject templateSignature, String editing_mode) {
+		super(editing_mode);
 		if (templateSignature instanceof TemplateSignature) {
-			addSubComponent(new TemplateSignatureBasePropertiesEditionComponent(templateSignature, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(templateSignature, mode));
+			addSubComponent(new TemplateSignatureBasePropertiesEditionComponent(templateSignature, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(templateSignature, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class DurationConstraintPropertiesEditionComponent extends ComposedProper
 	 * @param durationConstraint
 	 *            the EObject to edit
 	 */
-	public DurationConstraintPropertiesEditionComponent(EObject durationConstraint, String mode) {
-		super(mode);
+	public DurationConstraintPropertiesEditionComponent(EObject durationConstraint, String editing_mode) {
+		super(editing_mode);
 		if (durationConstraint instanceof DurationConstraint) {
-			addSubComponent(new DurationConstraintBasePropertiesEditionComponent(durationConstraint, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(durationConstraint, mode));
+			addSubComponent(new DurationConstraintBasePropertiesEditionComponent(durationConstraint, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(durationConstraint, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.LiteralInteger;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class LiteralIntegerPropertiesEditionComponent extends ComposedProperties
 	 * @param literalInteger
 	 *            the EObject to edit
 	 */
-	public LiteralIntegerPropertiesEditionComponent(EObject literalInteger, String mode) {
-		super(mode);
+	public LiteralIntegerPropertiesEditionComponent(EObject literalInteger, String editing_mode) {
+		super(editing_mode);
 		if (literalInteger instanceof LiteralInteger) {
-			addSubComponent(new LiteralIntegerBasePropertiesEditionComponent(literalInteger, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(literalInteger, mode));
+			addSubComponent(new LiteralIntegerBasePropertiesEditionComponent(literalInteger, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(literalInteger, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.LinkEndData;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class LinkEndDataPropertiesEditionComponent extends ComposedPropertiesEdi
 	 * @param linkEndData
 	 *            the EObject to edit
 	 */
-	public LinkEndDataPropertiesEditionComponent(EObject linkEndData, String mode) {
-		super(mode);
+	public LinkEndDataPropertiesEditionComponent(EObject linkEndData, String editing_mode) {
+		super(editing_mode);
 		if (linkEndData instanceof LinkEndData) {
-			addSubComponent(new LinkEndDataBasePropertiesEditionComponent(linkEndData, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(linkEndData, mode));
+			addSubComponent(new LinkEndDataBasePropertiesEditionComponent(linkEndData, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(linkEndData, editing_mode));
 		}
 	}
 }
-

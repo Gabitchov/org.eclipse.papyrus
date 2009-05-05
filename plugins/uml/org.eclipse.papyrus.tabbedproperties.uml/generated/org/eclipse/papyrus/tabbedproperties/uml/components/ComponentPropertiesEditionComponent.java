@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Component;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ComponentPropertiesEditionComponent extends ComposedPropertiesEditi
 	 * @param component
 	 *            the EObject to edit
 	 */
-	public ComponentPropertiesEditionComponent(EObject component, String mode) {
-		super(mode);
+	public ComponentPropertiesEditionComponent(EObject component, String editing_mode) {
+		super(editing_mode);
 		if (component instanceof Component) {
-			addSubComponent(new ComponentBasePropertiesEditionComponent(component, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(component, mode));
+			addSubComponent(new ComponentBasePropertiesEditionComponent(component, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(component, editing_mode));
 		}
 	}
 }
-

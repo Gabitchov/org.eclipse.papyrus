@@ -15,9 +15,11 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
+import java.util.List;
 import org.eclipse.emf.ecore.EReference;
- 
+import java.util.Map;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 // End of user code
 /**
@@ -29,97 +31,99 @@ public interface ImagePropertiesEditionPart {
 	 * @return the ownedComment to add
 	 */
 	public List getOwnedCommentToAdd();
-	
+
 	/**
 	 * @return the ownedComment to remove
 	 */
 	public List getOwnedCommentToRemove();
-	
+
 	/**
 	 * @return the ownedComment to move
 	 */
 	public List getOwnedCommentToMove();
-	
+
 	/**
 	 * @return the ownedComment to edit
 	 */
 	public Map getOwnedCommentToEdit();
-	
+
 	/**
 	 * @return the current ownedComment
 	 */
 	public List getOwnedCommentTable();
-	
+
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the content
 	 */
 	public String getContent();
-	
+
 	/**
 	 * Defines a new content
-	 * @param newValue the new content to set
+	 * 
+	 * @param newValue
+	 *            the new content to set
 	 */
 	public void setContent(String newValue);
-	
-	public void setMessageForContent (String msg, int msgLevel);	
-	
-	public void unsetMessageForContent ();
-	
+
+	public void setMessageForContent(String msg, int msgLevel);
+
+	public void unsetMessageForContent();
+
 	/**
 	 * @return the location
 	 */
 	public String getLocation();
-	
+
 	/**
 	 * Defines a new location
-	 * @param newValue the new location to set
+	 * 
+	 * @param newValue
+	 *            the new location to set
 	 */
 	public void setLocation(String newValue);
-	
-	public void setMessageForLocation (String msg, int msgLevel);	
-	
-	public void unsetMessageForLocation ();
-	
+
+	public void setMessageForLocation(String msg, int msgLevel);
+
+	public void unsetMessageForLocation();
+
 	/**
 	 * @return the format
 	 */
 	public String getFormat();
-	
+
 	/**
 	 * Defines a new format
-	 * @param newValue the new format to set
+	 * 
+	 * @param newValue
+	 *            the new format to set
 	 */
 	public void setFormat(String newValue);
-	
-	public void setMessageForFormat (String msg, int msgLevel);	
-	
-	public void unsetMessageForFormat ();
-	
 
+	public void setMessageForFormat(String msg, int msgLevel);
 
-
-
+	public void unsetMessageForFormat();
 
 	// Start of user code for additional methods
- 	
+
 	// End of user code
 }
-

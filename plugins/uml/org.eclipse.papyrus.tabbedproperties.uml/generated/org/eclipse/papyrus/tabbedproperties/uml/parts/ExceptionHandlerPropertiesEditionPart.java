@@ -15,9 +15,11 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
+import java.util.List;
 import org.eclipse.emf.ecore.EReference;
- 
+import java.util.Map;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 // End of user code
 /**
@@ -29,80 +31,78 @@ public interface ExceptionHandlerPropertiesEditionPart {
 	 * @return the ownedComment to add
 	 */
 	public List getOwnedCommentToAdd();
-	
+
 	/**
 	 * @return the ownedComment to remove
 	 */
 	public List getOwnedCommentToRemove();
-	
+
 	/**
 	 * @return the ownedComment to move
 	 */
 	public List getOwnedCommentToMove();
-	
+
 	/**
 	 * @return the ownedComment to edit
 	 */
 	public Map getOwnedCommentToEdit();
-	
+
 	/**
 	 * @return the current ownedComment
 	 */
 	public List getOwnedCommentTable();
-	
+
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the exceptionType to add
 	 */
 	public List getExceptionTypeToAdd();
-	
+
 	/**
 	 * @return the exceptionType to remove
 	 */
 	public List getExceptionTypeToRemove();
-	
+
 	/**
 	 * Init the exceptionType
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initExceptionType(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the exceptionType
-	 * @param newValue the exceptionType to update
+	 * 
+	 * @param newValue
+	 *            the exceptionType to update
 	 */
 	public void updateExceptionType(EObject newValue);
-	
-	
-	
-	
-	
-
-
-
-
 
 	// Start of user code for additional methods
- 	
+
 	// End of user code
 }
-

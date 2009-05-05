@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class AddStructuralFeatureValueActionPropertiesEditionComponent extends C
 	 * @param addStructuralFeatureValueAction
 	 *            the EObject to edit
 	 */
-	public AddStructuralFeatureValueActionPropertiesEditionComponent(EObject addStructuralFeatureValueAction, String mode) {
-		super(mode);
+	public AddStructuralFeatureValueActionPropertiesEditionComponent(EObject addStructuralFeatureValueAction, String editing_mode) {
+		super(editing_mode);
 		if (addStructuralFeatureValueAction instanceof AddStructuralFeatureValueAction) {
-			addSubComponent(new AddStructuralFeatureValueActionBasePropertiesEditionComponent(addStructuralFeatureValueAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(addStructuralFeatureValueAction, mode));
+			addSubComponent(new AddStructuralFeatureValueActionBasePropertiesEditionComponent(addStructuralFeatureValueAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(addStructuralFeatureValueAction, editing_mode));
 		}
 	}
 }
-

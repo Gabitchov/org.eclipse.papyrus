@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.GeneralOrdering;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class GeneralOrderingPropertiesEditionComponent extends ComposedPropertie
 	 * @param generalOrdering
 	 *            the EObject to edit
 	 */
-	public GeneralOrderingPropertiesEditionComponent(EObject generalOrdering, String mode) {
-		super(mode);
+	public GeneralOrderingPropertiesEditionComponent(EObject generalOrdering, String editing_mode) {
+		super(editing_mode);
 		if (generalOrdering instanceof GeneralOrdering) {
-			addSubComponent(new GeneralOrderingBasePropertiesEditionComponent(generalOrdering, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(generalOrdering, mode));
+			addSubComponent(new GeneralOrderingBasePropertiesEditionComponent(generalOrdering, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(generalOrdering, editing_mode));
 		}
 	}
 }
-

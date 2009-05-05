@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ClearStructuralFeatureAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ClearStructuralFeatureActionPropertiesEditionComponent extends Comp
 	 * @param clearStructuralFeatureAction
 	 *            the EObject to edit
 	 */
-	public ClearStructuralFeatureActionPropertiesEditionComponent(EObject clearStructuralFeatureAction, String mode) {
-		super(mode);
+	public ClearStructuralFeatureActionPropertiesEditionComponent(EObject clearStructuralFeatureAction, String editing_mode) {
+		super(editing_mode);
 		if (clearStructuralFeatureAction instanceof ClearStructuralFeatureAction) {
-			addSubComponent(new ClearStructuralFeatureActionBasePropertiesEditionComponent(clearStructuralFeatureAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(clearStructuralFeatureAction, mode));
+			addSubComponent(new ClearStructuralFeatureActionBasePropertiesEditionComponent(clearStructuralFeatureAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(clearStructuralFeatureAction, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ReadSelfAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ReadSelfActionPropertiesEditionComponent extends ComposedProperties
 	 * @param readSelfAction
 	 *            the EObject to edit
 	 */
-	public ReadSelfActionPropertiesEditionComponent(EObject readSelfAction, String mode) {
-		super(mode);
+	public ReadSelfActionPropertiesEditionComponent(EObject readSelfAction, String editing_mode) {
+		super(editing_mode);
 		if (readSelfAction instanceof ReadSelfAction) {
-			addSubComponent(new ReadSelfActionBasePropertiesEditionComponent(readSelfAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(readSelfAction, mode));
+			addSubComponent(new ReadSelfActionBasePropertiesEditionComponent(readSelfAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(readSelfAction, editing_mode));
 		}
 	}
 }
-

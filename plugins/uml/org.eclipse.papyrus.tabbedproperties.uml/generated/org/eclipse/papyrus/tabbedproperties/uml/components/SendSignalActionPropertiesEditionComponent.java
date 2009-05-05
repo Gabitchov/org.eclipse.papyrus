@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.SendSignalAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class SendSignalActionPropertiesEditionComponent extends ComposedProperti
 	 * @param sendSignalAction
 	 *            the EObject to edit
 	 */
-	public SendSignalActionPropertiesEditionComponent(EObject sendSignalAction, String mode) {
-		super(mode);
+	public SendSignalActionPropertiesEditionComponent(EObject sendSignalAction, String editing_mode) {
+		super(editing_mode);
 		if (sendSignalAction instanceof SendSignalAction) {
-			addSubComponent(new SendSignalActionBasePropertiesEditionComponent(sendSignalAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(sendSignalAction, mode));
+			addSubComponent(new SendSignalActionBasePropertiesEditionComponent(sendSignalAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(sendSignalAction, editing_mode));
 		}
 	}
 }
-

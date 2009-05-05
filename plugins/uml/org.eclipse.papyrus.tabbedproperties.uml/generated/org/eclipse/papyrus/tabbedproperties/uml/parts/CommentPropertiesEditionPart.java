@@ -13,10 +13,12 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 // Start of user code for imports
 
 import java.util.List;
+import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
+import java.util.List;
 import org.eclipse.emf.ecore.EReference;
- 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 // End of user code
 /**
@@ -28,52 +30,50 @@ public interface CommentPropertiesEditionPart {
 	 * @return the body
 	 */
 	public String getBody();
-	
+
 	/**
 	 * Defines a new body
-	 * @param newValue the new body to set
+	 * 
+	 * @param newValue
+	 *            the new body to set
 	 */
 	public void setBody(String newValue);
-	
-	public void setMessageForBody (String msg, int msgLevel);	
-	
-	public void unsetMessageForBody ();
-	
+
+	public void setMessageForBody(String msg, int msgLevel);
+
+	public void unsetMessageForBody();
+
 	/**
 	 * @return the annotatedElement to add
 	 */
 	public List getAnnotatedElementToAdd();
-	
+
 	/**
 	 * @return the annotatedElement to remove
 	 */
 	public List getAnnotatedElementToRemove();
-	
+
 	/**
 	 * Init the annotatedElement
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initAnnotatedElement(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the annotatedElement
-	 * @param newValue the annotatedElement to update
+	 * 
+	 * @param newValue
+	 *            the annotatedElement to update
 	 */
 	public void updateAnnotatedElement(EObject newValue);
-	
-	
-	
-	
-	
-
-
-
-
 
 	// Start of user code for additional methods
- 	
+
 	// End of user code
 }
-

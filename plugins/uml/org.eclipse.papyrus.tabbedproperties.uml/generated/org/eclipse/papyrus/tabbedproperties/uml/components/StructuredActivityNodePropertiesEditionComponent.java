@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.StructuredActivityNode;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class StructuredActivityNodePropertiesEditionComponent extends ComposedPr
 	 * @param structuredActivityNode
 	 *            the EObject to edit
 	 */
-	public StructuredActivityNodePropertiesEditionComponent(EObject structuredActivityNode, String mode) {
-		super(mode);
+	public StructuredActivityNodePropertiesEditionComponent(EObject structuredActivityNode, String editing_mode) {
+		super(editing_mode);
 		if (structuredActivityNode instanceof StructuredActivityNode) {
-			addSubComponent(new StructuredActivityNodeBasePropertiesEditionComponent(structuredActivityNode, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(structuredActivityNode, mode));
+			addSubComponent(new StructuredActivityNodeBasePropertiesEditionComponent(structuredActivityNode, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(structuredActivityNode, editing_mode));
 		}
 	}
 }
-

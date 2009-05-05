@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Transition;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class TransitionPropertiesEditionComponent extends ComposedPropertiesEdit
 	 * @param transition
 	 *            the EObject to edit
 	 */
-	public TransitionPropertiesEditionComponent(EObject transition, String mode) {
-		super(mode);
+	public TransitionPropertiesEditionComponent(EObject transition, String editing_mode) {
+		super(editing_mode);
 		if (transition instanceof Transition) {
-			addSubComponent(new TransitionBasePropertiesEditionComponent(transition, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(transition, mode));
+			addSubComponent(new TransitionBasePropertiesEditionComponent(transition, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(transition, editing_mode));
 		}
 	}
 }
-

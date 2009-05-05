@@ -22,12 +22,13 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionComponentServi
 import org.eclipse.jface.viewers.IFilter;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.tabbedproperties.uml.components.TestIdentityActionBasePropertiesEditionComponent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.components.TestIdentityActionBasePropertiesEditionComponent;
 
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
@@ -35,11 +36,11 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class TestIdentityActionBasePropertySection extends AbstractPropertySection implements IFilter {
 
 	private Composite parent;
+
 	private IPropertiesEditionComponent propertiesEditionComponent;
 
 	/**
-	 * The current selected object or the first object in the selection when
-	 * multiple objects are selected.
+	 * The current selected object or the first object in the selection when multiple objects are selected.
 	 */
 	protected EObject eObject;
 
@@ -49,8 +50,7 @@ public class TestIdentityActionBasePropertySection extends AbstractPropertySecti
 	private IPropertiesEditionPart editionPart = null;
 
 	/**
-	 * @see org.eclipse.ui.views.properties.tabbed.ISection#createControls(org.eclipse.swt.widgets.Composite,
-	 *      org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage)
+	 * @see org.eclipse.ui.views.properties.tabbed.ISection#createControls(org.eclipse.swt.widgets.Composite, org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage)
 	 */
 	public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
 		super.createControls(parent, aTabbedPropertySheetPage);
@@ -58,35 +58,33 @@ public class TestIdentityActionBasePropertySection extends AbstractPropertySecti
 	}
 
 	/**
-	 * @see org.eclipse.ui.views.properties.tabbed.ISection#setInput(org.eclipse.ui.IWorkbenchPart,
-	 *      org.eclipse.jface.viewers.ISelection)
+	 * @see org.eclipse.ui.views.properties.tabbed.ISection#setInput(org.eclipse.ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
 	 */
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (!(selection instanceof IStructuredSelection) || 
-				!((part instanceof IEditingDomainProvider) || ((part instanceof IAdaptable) && ((IAdaptable)part).getAdapter(IEditingDomainProvider.class) != null))) {
+		if (!(selection instanceof IStructuredSelection)
+				|| !((part instanceof IEditingDomainProvider) || ((part instanceof IAdaptable) && ((IAdaptable) part).getAdapter(IEditingDomainProvider.class) != null))) {
 			return;
 		}
 		EObject newEObject = null;
 		Object firstElement = ((IStructuredSelection) selection).getFirstElement();
 		if (firstElement instanceof EObject)
 			newEObject = (EObject) firstElement;
-		else if (firstElement instanceof IAdaptable && ((IAdaptable)firstElement).getAdapter(EObject.class) != null)
-			newEObject = (EObject) ((IAdaptable)firstElement).getAdapter(EObject.class);
+		else if (firstElement instanceof IAdaptable && ((IAdaptable) firstElement).getAdapter(EObject.class) != null)
+			newEObject = (EObject) ((IAdaptable) firstElement).getAdapter(EObject.class);
 		EditingDomain editingDomain = null;
 		if (part instanceof IEditingDomainProvider)
 			editingDomain = ((IEditingDomainProvider) part).getEditingDomain();
-		else if ((part instanceof IAdaptable) && ((IAdaptable)part).getAdapter(IEditingDomainProvider.class) != null)
-			editingDomain = (((IEditingDomainProvider)((IAdaptable)part).getAdapter(IEditingDomainProvider.class))).getEditingDomain();
-		
+		else if ((part instanceof IAdaptable) && ((IAdaptable) part).getAdapter(IEditingDomainProvider.class) != null)
+			editingDomain = (((IEditingDomainProvider) ((IAdaptable) part).getAdapter(IEditingDomainProvider.class))).getEditingDomain();
+
 		if (editingDomain != null && newEObject != null && newEObject != eObject) {
 			eObject = newEObject;
 			if (eObject != null) {
 				IPropertiesEditionProvider provider = PropertiesEditionComponentService.getInstance().getProvider(eObject);
 				if (this.propertiesEditionComponent != null)
 					this.propertiesEditionComponent.dispose();
-				this.propertiesEditionComponent = provider.getPropertiesEditionComponent(eObject, IPropertiesEditionComponent.LIVE_MODE,
-						TestIdentityActionBasePropertiesEditionComponent.BASE_PART);
+				this.propertiesEditionComponent = provider.getPropertiesEditionComponent(eObject, IPropertiesEditionComponent.LIVE_MODE, TestIdentityActionBasePropertiesEditionComponent.BASE_PART);
 				if (this.propertiesEditionComponent != null) {
 					this.propertiesEditionComponent.setLiveEditingDomain(editingDomain);
 					// FIXME: find a better way to define the Form constant
@@ -134,4 +132,3 @@ public class TestIdentityActionBasePropertySection extends AbstractPropertySecti
 	}
 
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ReclassifyObjectAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ReclassifyObjectActionPropertiesEditionComponent extends ComposedPr
 	 * @param reclassifyObjectAction
 	 *            the EObject to edit
 	 */
-	public ReclassifyObjectActionPropertiesEditionComponent(EObject reclassifyObjectAction, String mode) {
-		super(mode);
+	public ReclassifyObjectActionPropertiesEditionComponent(EObject reclassifyObjectAction, String editing_mode) {
+		super(editing_mode);
 		if (reclassifyObjectAction instanceof ReclassifyObjectAction) {
-			addSubComponent(new ReclassifyObjectActionBasePropertiesEditionComponent(reclassifyObjectAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(reclassifyObjectAction, mode));
+			addSubComponent(new ReclassifyObjectActionBasePropertiesEditionComponent(reclassifyObjectAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(reclassifyObjectAction, editing_mode));
 		}
 	}
 }
-

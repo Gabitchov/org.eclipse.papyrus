@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ConnectionPointReference;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ConnectionPointReferencePropertiesEditionComponent extends Composed
 	 * @param connectionPointReference
 	 *            the EObject to edit
 	 */
-	public ConnectionPointReferencePropertiesEditionComponent(EObject connectionPointReference, String mode) {
-		super(mode);
+	public ConnectionPointReferencePropertiesEditionComponent(EObject connectionPointReference, String editing_mode) {
+		super(editing_mode);
 		if (connectionPointReference instanceof ConnectionPointReference) {
-			addSubComponent(new ConnectionPointReferenceBasePropertiesEditionComponent(connectionPointReference, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(connectionPointReference, mode));
+			addSubComponent(new ConnectionPointReferenceBasePropertiesEditionComponent(connectionPointReference, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(connectionPointReference, editing_mode));
 		}
 	}
 }
-

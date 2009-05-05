@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.LoopNode;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class LoopNodePropertiesEditionComponent extends ComposedPropertiesEditio
 	 * @param loopNode
 	 *            the EObject to edit
 	 */
-	public LoopNodePropertiesEditionComponent(EObject loopNode, String mode) {
-		super(mode);
+	public LoopNodePropertiesEditionComponent(EObject loopNode, String editing_mode) {
+		super(editing_mode);
 		if (loopNode instanceof LoopNode) {
-			addSubComponent(new LoopNodeBasePropertiesEditionComponent(loopNode, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(loopNode, mode));
+			addSubComponent(new LoopNodeBasePropertiesEditionComponent(loopNode, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(loopNode, editing_mode));
 		}
 	}
 }
-

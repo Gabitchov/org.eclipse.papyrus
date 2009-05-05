@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ProfilePropertiesEditionComponent extends ComposedPropertiesEdition
 	 * @param profile
 	 *            the EObject to edit
 	 */
-	public ProfilePropertiesEditionComponent(EObject profile, String mode) {
-		super(mode);
+	public ProfilePropertiesEditionComponent(EObject profile, String editing_mode) {
+		super(editing_mode);
 		if (profile instanceof Profile) {
-			addSubComponent(new ProfileBasePropertiesEditionComponent(profile, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(profile, mode));
+			addSubComponent(new ProfileBasePropertiesEditionComponent(profile, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(profile, editing_mode));
 		}
 	}
 }
-

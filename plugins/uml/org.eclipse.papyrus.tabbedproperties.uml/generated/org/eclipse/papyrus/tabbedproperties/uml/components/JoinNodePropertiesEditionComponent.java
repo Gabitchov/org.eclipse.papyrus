@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.JoinNode;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class JoinNodePropertiesEditionComponent extends ComposedPropertiesEditio
 	 * @param joinNode
 	 *            the EObject to edit
 	 */
-	public JoinNodePropertiesEditionComponent(EObject joinNode, String mode) {
-		super(mode);
+	public JoinNodePropertiesEditionComponent(EObject joinNode, String editing_mode) {
+		super(editing_mode);
 		if (joinNode instanceof JoinNode) {
-			addSubComponent(new JoinNodeBasePropertiesEditionComponent(joinNode, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(joinNode, mode));
+			addSubComponent(new JoinNodeBasePropertiesEditionComponent(joinNode, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(joinNode, editing_mode));
 		}
 	}
 }
-

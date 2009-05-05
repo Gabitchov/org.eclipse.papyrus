@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class PortPropertiesEditionComponent extends ComposedPropertiesEditionCom
 	 * @param port
 	 *            the EObject to edit
 	 */
-	public PortPropertiesEditionComponent(EObject port, String mode) {
-		super(mode);
+	public PortPropertiesEditionComponent(EObject port, String editing_mode) {
+		super(editing_mode);
 		if (port instanceof Port) {
-			addSubComponent(new PortBasePropertiesEditionComponent(port, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(port, mode));
+			addSubComponent(new PortBasePropertiesEditionComponent(port, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(port, editing_mode));
 		}
 	}
 }
-

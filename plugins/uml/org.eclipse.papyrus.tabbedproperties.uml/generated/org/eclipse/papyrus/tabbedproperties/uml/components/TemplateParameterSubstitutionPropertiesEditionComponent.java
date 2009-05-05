@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class TemplateParameterSubstitutionPropertiesEditionComponent extends Com
 	 * @param templateParameterSubstitution
 	 *            the EObject to edit
 	 */
-	public TemplateParameterSubstitutionPropertiesEditionComponent(EObject templateParameterSubstitution, String mode) {
-		super(mode);
+	public TemplateParameterSubstitutionPropertiesEditionComponent(EObject templateParameterSubstitution, String editing_mode) {
+		super(editing_mode);
 		if (templateParameterSubstitution instanceof TemplateParameterSubstitution) {
-			addSubComponent(new TemplateParameterSubstitutionBasePropertiesEditionComponent(templateParameterSubstitution, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(templateParameterSubstitution, mode));
+			addSubComponent(new TemplateParameterSubstitutionBasePropertiesEditionComponent(templateParameterSubstitution, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(templateParameterSubstitution, editing_mode));
 		}
 	}
 }
-

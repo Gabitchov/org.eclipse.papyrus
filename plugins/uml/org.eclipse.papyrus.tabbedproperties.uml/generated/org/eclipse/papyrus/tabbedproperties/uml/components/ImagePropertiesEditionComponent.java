@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Image;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ImagePropertiesEditionComponent extends ComposedPropertiesEditionCo
 	 * @param image
 	 *            the EObject to edit
 	 */
-	public ImagePropertiesEditionComponent(EObject image, String mode) {
-		super(mode);
+	public ImagePropertiesEditionComponent(EObject image, String editing_mode) {
+		super(editing_mode);
 		if (image instanceof Image) {
-			addSubComponent(new ImageBasePropertiesEditionComponent(image, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(image, mode));
+			addSubComponent(new ImageBasePropertiesEditionComponent(image, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(image, editing_mode));
 		}
 	}
 }
-

@@ -12,40 +12,17 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.impl;
 
 // Start of user code for imports
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFEnumViewer;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -54,15 +31,66 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.Deployment;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.TemplateBinding;
-import org.eclipse.uml2.uml.UMLFactory;
+
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.jface.viewers.StructuredSelection;
+import java.util.Iterator;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFModelViewerDialog;
+import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Port;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
+import java.util.Map;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Deployment;
+import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.Property;
+
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
 /**
@@ -71,59 +99,81 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, PortPropertiesEditionPart {
 
 	private EMFListEditUtil ownedCommentEditUtil;
+
 	private ReferencesTable<?> ownedComment;
+
 	private Text name;
-	private EMFEnumViewer visibility;
+
+	private EMFComboViewer visibility;
+
 	private EMFListEditUtil clientDependencyEditUtil;
+
 	private ReferencesTable<?> clientDependency;
+
 	private Button isLeaf;
+
 	private Button isStatic;
+
 	private Button isOrdered;
+
 	private Button isUnique;
+
 	private Button isReadOnly;
+
 	private EMFListEditUtil deploymentEditUtil;
+
 	private ReferencesTable<?> deployment;
+
 	private EMFListEditUtil templateBindingEditUtil;
+
 	private ReferencesTable<?> templateBinding;
+
 	private Button isDerived;
+
 	private Button isDerivedUnion;
-	private EMFEnumViewer aggregation;
+
+	private EMFComboViewer aggregation;
+
 	private EMFListEditUtil redefinedPropertyEditUtil;
+
 	private ReferencesTable<?> redefinedProperty;
+
 	private EMFListEditUtil subsettedPropertyEditUtil;
+
 	private ReferencesTable<?> subsettedProperty;
+
 	private EMFListEditUtil qualifierEditUtil;
+
 	private ReferencesTable<?> qualifier;
+
 	private Button isBehavior;
+
 	private Button isService;
+
 	private EMFListEditUtil redefinedPortEditUtil;
+
 	private ReferencesTable<?> redefinedPort;
 
-
-
-
-	
 	public PortPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
-		view.setLayout(layout);	
-		
+		view.setLayout(layout);
+
 		createControls(view);
-		
 		return view;
 	}
-	
-	public void createControls(Composite view) { 
+
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
-		
+
 		// Start of user code for additional ui definition
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	protected void createPropertiesGroup(Composite parent) {
@@ -155,17 +205,32 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		createIsBehaviorCheckbox(propertiesGroup);
 		createIsServiceCheckbox(propertiesGroup);
 		createRedefinedPortReferencesTable(propertiesGroup);
-   	}
+	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.PortPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }			
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { System.out.println("---> navigateTo"); }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.PortPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -173,41 +238,41 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		ownedCommentData.horizontalSpan = 3;
 		this.ownedComment.setLayoutData(ownedCommentData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.ownedComment, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToOwnedComment() {
-	
-		// Start of user code addToOwnedComment() method body
 
+		// Start of user code addToOwnedComment() method body
 
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.ownedComment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -220,7 +285,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.ownedComment, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -231,21 +297,23 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-				 
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.ownedComment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.ownedComment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createNameText(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.PortPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Port.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
@@ -260,54 +328,73 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.name, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.name, PropertiesEditionEvent.CHANGE,
+							PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEEnumViewer(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.PortPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Port.visibility, UMLViewsRepository.SWT_KIND));
-		visibility = new EMFEnumViewer(parent);
+		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createClientDependencyReferencesTable(Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.PortPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter clientDependencyFilter = new EObjectFilter(UMLPackage.eINSTANCE.getDependency());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!clientDependencyEditUtil.contains((EObject)element));
-						return false;					
+							return (!clientDependencyEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { clientDependencyFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, filters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency()) {
-					@Override
-					public void process(IStructuredSelection selection) {						
+
+				};
+				List filters = new ArrayList();
+				filters.add(clientDependencyFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, filters, "Dependency", UMLPackage.eINSTANCE.getDependency()) {
+
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.clientDependency,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));	
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.clientDependency,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						clientDependency.refresh();											
+						clientDependency.refresh();
 					}
+
 				};
 				dialog.open();
 			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(Dependency element) {
+				editClientDependency(element);
+			}
+
+			public void handleMove(Dependency element, int oldIndex, int newIndex) {
+				moveClientDependency(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Dependency element) {
+				removeFromClientDependency(element);
+			}
+
+			public void navigateTo(Dependency element) {
+			}
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.clientDependency, UMLViewsRepository.SWT_KIND));
 		this.clientDependency.createControls(parent);
@@ -316,19 +403,18 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		this.clientDependency.setLayoutData(clientDependencyData);
 		this.clientDependency.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveClientDependency(Dependency element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.moveElement(element, oldIndex, newIndex);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.clientDependency, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -339,7 +425,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.removeElement(element);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.clientDependency, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -350,21 +437,23 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editClientDependency(Dependency element) {
 
 		// Start of user code editClientDependency() method body
-				 
+
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.clientDependency,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createIsLeafCheckbox(Composite parent) {
 		isLeaf = new Button(parent, SWT.CHECK);
 		isLeaf.setText(UMLMessages.PortPropertiesEditionPart_IsLeafLabel);
@@ -373,6 +462,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isLeaf.setLayoutData(isLeafData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isLeaf, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsStaticCheckbox(Composite parent) {
 		isStatic = new Button(parent, SWT.CHECK);
 		isStatic.setText(UMLMessages.PortPropertiesEditionPart_IsStaticLabel);
@@ -381,6 +471,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isStatic.setLayoutData(isStaticData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isStatic, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsOrderedCheckbox(Composite parent) {
 		isOrdered = new Button(parent, SWT.CHECK);
 		isOrdered.setText(UMLMessages.PortPropertiesEditionPart_IsOrderedLabel);
@@ -389,6 +480,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isOrdered.setLayoutData(isOrderedData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isOrdered, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsUniqueCheckbox(Composite parent) {
 		isUnique = new Button(parent, SWT.CHECK);
 		isUnique.setText(UMLMessages.PortPropertiesEditionPart_IsUniqueLabel);
@@ -397,6 +489,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isUnique.setLayoutData(isUniqueData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isUnique, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsReadOnlyCheckbox(Composite parent) {
 		isReadOnly = new Button(parent, SWT.CHECK);
 		isReadOnly.setText(UMLMessages.PortPropertiesEditionPart_IsReadOnlyLabel);
@@ -405,16 +498,31 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isReadOnly.setLayoutData(isReadOnlyData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isReadOnly, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createDeploymentTableComposition(Composite parent) {
-		this.deployment = new ReferencesTable<Deployment>(UMLMessages.PortPropertiesEditionPart_DeploymentLabel, new ReferencesTableListener<Deployment>() {			
-			public void handleAdd() { addToDeployment();}
-			public void handleEdit(Deployment element) { editDeployment(element); }
-			public void handleMove(Deployment element, int oldIndex, int newIndex) { moveDeployment(element, oldIndex, newIndex); }			
-			public void handleRemove(Deployment element) { removeFromDeployment(element); }
-			public void navigateTo(Deployment element) { System.out.println("---> navigateTo"); }
+		this.deployment = new ReferencesTable<Deployment>(UMLMessages.PortPropertiesEditionPart_DeploymentLabel, new ReferencesTableListener<Deployment>() {
+
+			public void handleAdd() {
+				addToDeployment();
+			}
+
+			public void handleEdit(Deployment element) {
+				editDeployment(element);
+			}
+
+			public void handleMove(Deployment element, int oldIndex, int newIndex) {
+				moveDeployment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Deployment element) {
+				removeFromDeployment(element);
+			}
+
+			public void navigateTo(Deployment element) {
+			}
 		});
 		this.deployment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.deployment, UMLViewsRepository.SWT_KIND));
 		this.deployment.createControls(parent);
@@ -422,41 +530,41 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		deploymentData.horizontalSpan = 3;
 		this.deployment.setLayoutData(deploymentData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveDeployment(Deployment element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = deploymentEditUtil.foundCorrespondingEObject(element);
 		deploymentEditUtil.moveElement(element, oldIndex, newIndex);
 		deployment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.deployment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.deployment, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToDeployment() {
-	
-		// Start of user code addToDeployment() method body
 
+		// Start of user code addToDeployment() method body
 
 		Deployment eObject = UMLFactory.eINSTANCE.createDeployment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				deploymentEditUtil.addElement(propertiesEditionObject);
 				deployment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.deployment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.deployment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -469,7 +577,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = deploymentEditUtil.foundCorrespondingEObject(element);
 		deploymentEditUtil.removeElement(element);
 		deployment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.deployment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.deployment, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -480,31 +589,47 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editDeployment(Deployment element) {
 
 		// Start of user code editDeployment() method body
-				 
+
 		EObject editedElement = deploymentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				deploymentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				deployment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.deployment, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.deployment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createTemplateBindingTableComposition(Composite parent) {
-		this.templateBinding = new ReferencesTable<TemplateBinding>(UMLMessages.PortPropertiesEditionPart_TemplateBindingLabel, new ReferencesTableListener<TemplateBinding>() {			
-			public void handleAdd() { addToTemplateBinding();}
-			public void handleEdit(TemplateBinding element) { editTemplateBinding(element); }
-			public void handleMove(TemplateBinding element, int oldIndex, int newIndex) { moveTemplateBinding(element, oldIndex, newIndex); }			
-			public void handleRemove(TemplateBinding element) { removeFromTemplateBinding(element); }
-			public void navigateTo(TemplateBinding element) { System.out.println("---> navigateTo"); }
+		this.templateBinding = new ReferencesTable<TemplateBinding>(UMLMessages.PortPropertiesEditionPart_TemplateBindingLabel, new ReferencesTableListener<TemplateBinding>() {
+
+			public void handleAdd() {
+				addToTemplateBinding();
+			}
+
+			public void handleEdit(TemplateBinding element) {
+				editTemplateBinding(element);
+			}
+
+			public void handleMove(TemplateBinding element, int oldIndex, int newIndex) {
+				moveTemplateBinding(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(TemplateBinding element) {
+				removeFromTemplateBinding(element);
+			}
+
+			public void navigateTo(TemplateBinding element) {
+			}
 		});
 		this.templateBinding.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.templateBinding, UMLViewsRepository.SWT_KIND));
 		this.templateBinding.createControls(parent);
@@ -512,41 +637,41 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		templateBindingData.horizontalSpan = 3;
 		this.templateBinding.setLayoutData(templateBindingData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveTemplateBinding(TemplateBinding element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = templateBindingEditUtil.foundCorrespondingEObject(element);
 		templateBindingEditUtil.moveElement(element, oldIndex, newIndex);
 		templateBinding.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.templateBinding, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.templateBinding, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToTemplateBinding() {
-	
-		// Start of user code addToTemplateBinding() method body
 
+		// Start of user code addToTemplateBinding() method body
 
 		TemplateBinding eObject = UMLFactory.eINSTANCE.createTemplateBinding();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				templateBindingEditUtil.addElement(propertiesEditionObject);
 				templateBinding.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.templateBinding, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.templateBinding, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -559,7 +684,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = templateBindingEditUtil.foundCorrespondingEObject(element);
 		templateBindingEditUtil.removeElement(element);
 		templateBinding.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.templateBinding, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.templateBinding, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -570,21 +696,23 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editTemplateBinding(TemplateBinding element) {
 
 		// Start of user code editTemplateBinding() method body
-				 
+
 		EObject editedElement = templateBindingEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				templateBindingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				templateBinding.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.templateBinding, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.templateBinding, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createIsDerivedCheckbox(Composite parent) {
 		isDerived = new Button(parent, SWT.CHECK);
 		isDerived.setText(UMLMessages.PortPropertiesEditionPart_IsDerivedLabel);
@@ -593,6 +721,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isDerived.setLayoutData(isDerivedData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isDerived, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsDerivedUnionCheckbox(Composite parent) {
 		isDerivedUnion = new Button(parent, SWT.CHECK);
 		isDerivedUnion.setText(UMLMessages.PortPropertiesEditionPart_IsDerivedUnionLabel);
@@ -601,47 +730,66 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isDerivedUnion.setLayoutData(isDerivedUnionData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isDerivedUnion, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createAggregationEEnumViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.PortPropertiesEditionPart_AggregationLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Port.aggregation, UMLViewsRepository.SWT_KIND));
-		aggregation = new EMFEnumViewer(parent);
+		SWTUtils.createPartLabel(parent, UMLMessages.PortPropertiesEditionPart_AggregationLabel, propertiesEditionComponent
+				.isRequired(UMLViewsRepository.Port.aggregation, UMLViewsRepository.SWT_KIND));
+		aggregation = new EMFComboViewer(parent);
 		aggregation.setContentProvider(new ArrayContentProvider());
 		aggregation.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData aggregationData = new GridData(GridData.FILL_HORIZONTAL);
 		aggregation.getCombo().setLayoutData(aggregationData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.aggregation, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createRedefinedPropertyReferencesTable(Composite parent) {
 		this.redefinedProperty = new ReferencesTable<Property>(UMLMessages.PortPropertiesEditionPart_RedefinedPropertyLabel, new ReferencesTableListener<Property>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter redefinedPropertyFilter = new EObjectFilter(UMLPackage.eINSTANCE.getProperty());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!redefinedPropertyEditUtil.contains((EObject)element));
-						return false;					
+							return (!redefinedPropertyEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { redefinedPropertyFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<Property> dialog = new TabElementTreeSelectionDialog<Property>(resourceSet, filters,
-				"Property", UMLPackage.eINSTANCE.getProperty()) {
-					@Override
-					public void process(IStructuredSelection selection) {						
+
+				};
+				List filters = new ArrayList();
+				filters.add(redefinedPropertyFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<Property> dialog = new TabElementTreeSelectionDialog<Property>(resourceSet, filters, "Property", UMLPackage.eINSTANCE.getProperty()) {
+
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!redefinedPropertyEditUtil.getVirtualList().contains(elem))
 								redefinedPropertyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedProperty,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));	
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedProperty,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						redefinedProperty.refresh();											
+						redefinedProperty.refresh();
 					}
+
 				};
 				dialog.open();
 			}
-			public void handleEdit(Property element) { editRedefinedProperty(element); }
-			public void handleMove(Property element, int oldIndex, int newIndex) { moveRedefinedProperty(element, oldIndex, newIndex); }
-			public void handleRemove(Property element) { removeFromRedefinedProperty(element); }
-			public void navigateTo(Property element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(Property element) {
+				editRedefinedProperty(element);
+			}
+
+			public void handleMove(Property element, int oldIndex, int newIndex) {
+				moveRedefinedProperty(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Property element) {
+				removeFromRedefinedProperty(element);
+			}
+
+			public void navigateTo(Property element) {
+			}
 		});
 		this.redefinedProperty.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.redefinedProperty, UMLViewsRepository.SWT_KIND));
 		this.redefinedProperty.createControls(parent);
@@ -650,19 +798,18 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		this.redefinedProperty.setLayoutData(redefinedPropertyData);
 		this.redefinedProperty.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveRedefinedProperty(Property element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = redefinedPropertyEditUtil.foundCorrespondingEObject(element);
 		redefinedPropertyEditUtil.moveElement(element, oldIndex, newIndex);
 		redefinedProperty.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedProperty, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedProperty, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -673,7 +820,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = redefinedPropertyEditUtil.foundCorrespondingEObject(element);
 		redefinedPropertyEditUtil.removeElement(element);
 		redefinedProperty.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedProperty, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedProperty, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -684,53 +832,71 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editRedefinedProperty(Property element) {
 
 		// Start of user code editRedefinedProperty() method body
-				 
+
 		EObject editedElement = redefinedPropertyEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				redefinedPropertyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				redefinedProperty.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedProperty, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedProperty,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createSubsettedPropertyReferencesTable(Composite parent) {
 		this.subsettedProperty = new ReferencesTable<Property>(UMLMessages.PortPropertiesEditionPart_SubsettedPropertyLabel, new ReferencesTableListener<Property>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter subsettedPropertyFilter = new EObjectFilter(UMLPackage.eINSTANCE.getProperty());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!subsettedPropertyEditUtil.contains((EObject)element));
-						return false;					
+							return (!subsettedPropertyEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { subsettedPropertyFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<Property> dialog = new TabElementTreeSelectionDialog<Property>(resourceSet, filters,
-				"Property", UMLPackage.eINSTANCE.getProperty()) {
-					@Override
-					public void process(IStructuredSelection selection) {						
+
+				};
+				List filters = new ArrayList();
+				filters.add(subsettedPropertyFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<Property> dialog = new TabElementTreeSelectionDialog<Property>(resourceSet, filters, "Property", UMLPackage.eINSTANCE.getProperty()) {
+
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!subsettedPropertyEditUtil.getVirtualList().contains(elem))
 								subsettedPropertyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.subsettedProperty,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));	
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.subsettedProperty,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						subsettedProperty.refresh();											
+						subsettedProperty.refresh();
 					}
+
 				};
 				dialog.open();
 			}
-			public void handleEdit(Property element) { editSubsettedProperty(element); }
-			public void handleMove(Property element, int oldIndex, int newIndex) { moveSubsettedProperty(element, oldIndex, newIndex); }
-			public void handleRemove(Property element) { removeFromSubsettedProperty(element); }
-			public void navigateTo(Property element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(Property element) {
+				editSubsettedProperty(element);
+			}
+
+			public void handleMove(Property element, int oldIndex, int newIndex) {
+				moveSubsettedProperty(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Property element) {
+				removeFromSubsettedProperty(element);
+			}
+
+			public void navigateTo(Property element) {
+			}
 		});
 		this.subsettedProperty.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.subsettedProperty, UMLViewsRepository.SWT_KIND));
 		this.subsettedProperty.createControls(parent);
@@ -739,19 +905,18 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		this.subsettedProperty.setLayoutData(subsettedPropertyData);
 		this.subsettedProperty.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveSubsettedProperty(Property element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = subsettedPropertyEditUtil.foundCorrespondingEObject(element);
 		subsettedPropertyEditUtil.moveElement(element, oldIndex, newIndex);
 		subsettedProperty.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.subsettedProperty, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.subsettedProperty, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -762,7 +927,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = subsettedPropertyEditUtil.foundCorrespondingEObject(element);
 		subsettedPropertyEditUtil.removeElement(element);
 		subsettedProperty.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.subsettedProperty, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.subsettedProperty, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -773,31 +939,47 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editSubsettedProperty(Property element) {
 
 		// Start of user code editSubsettedProperty() method body
-				 
+
 		EObject editedElement = subsettedPropertyEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				subsettedPropertyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				subsettedProperty.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.subsettedProperty, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.subsettedProperty,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createQualifierTableComposition(Composite parent) {
-		this.qualifier = new ReferencesTable<Property>(UMLMessages.PortPropertiesEditionPart_QualifierLabel, new ReferencesTableListener<Property>() {			
-			public void handleAdd() { addToQualifier();}
-			public void handleEdit(Property element) { editQualifier(element); }
-			public void handleMove(Property element, int oldIndex, int newIndex) { moveQualifier(element, oldIndex, newIndex); }			
-			public void handleRemove(Property element) { removeFromQualifier(element); }
-			public void navigateTo(Property element) { System.out.println("---> navigateTo"); }
+		this.qualifier = new ReferencesTable<Property>(UMLMessages.PortPropertiesEditionPart_QualifierLabel, new ReferencesTableListener<Property>() {
+
+			public void handleAdd() {
+				addToQualifier();
+			}
+
+			public void handleEdit(Property element) {
+				editQualifier(element);
+			}
+
+			public void handleMove(Property element, int oldIndex, int newIndex) {
+				moveQualifier(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Property element) {
+				removeFromQualifier(element);
+			}
+
+			public void navigateTo(Property element) {
+			}
 		});
 		this.qualifier.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.qualifier, UMLViewsRepository.SWT_KIND));
 		this.qualifier.createControls(parent);
@@ -805,41 +987,41 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		qualifierData.horizontalSpan = 3;
 		this.qualifier.setLayoutData(qualifierData);
 	}
-		
+
 	/**
 	 * 
 	 */
 	private void moveQualifier(Property element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = qualifierEditUtil.foundCorrespondingEObject(element);
 		qualifierEditUtil.moveElement(element, oldIndex, newIndex);
 		qualifier.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.qualifier, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
-	}	
-	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.qualifier, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
+	}
+
 	/**
 	 * 
 	 */
 	private void addToQualifier() {
-	
-		// Start of user code addToQualifier() method body
 
+		// Start of user code addToQualifier() method body
 
 		Property eObject = UMLFactory.eINSTANCE.createProperty();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				qualifierEditUtil.addElement(propertiesEditionObject);
 				qualifier.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.qualifier, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.qualifier, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -852,7 +1034,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = qualifierEditUtil.foundCorrespondingEObject(element);
 		qualifierEditUtil.removeElement(element);
 		qualifier.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.qualifier, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.qualifier, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -863,21 +1046,23 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editQualifier(Property element) {
 
 		// Start of user code editQualifier() method body
-				 
+
 		EObject editedElement = qualifierEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				qualifierEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				qualifier.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.qualifier, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.qualifier, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createIsBehaviorCheckbox(Composite parent) {
 		isBehavior = new Button(parent, SWT.CHECK);
 		isBehavior.setText(UMLMessages.PortPropertiesEditionPart_IsBehaviorLabel);
@@ -886,6 +1071,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isBehavior.setLayoutData(isBehaviorData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isBehavior, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsServiceCheckbox(Composite parent) {
 		isService = new Button(parent, SWT.CHECK);
 		isService.setText(UMLMessages.PortPropertiesEditionPart_IsServiceLabel);
@@ -894,38 +1080,55 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		isService.setLayoutData(isServiceData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.isService, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createRedefinedPortReferencesTable(Composite parent) {
 		this.redefinedPort = new ReferencesTable<Port>(UMLMessages.PortPropertiesEditionPart_RedefinedPortLabel, new ReferencesTableListener<Port>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter redefinedPortFilter = new EObjectFilter(UMLPackage.eINSTANCE.getPort());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!redefinedPortEditUtil.contains((EObject)element));
-						return false;					
+							return (!redefinedPortEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { redefinedPortFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<Port> dialog = new TabElementTreeSelectionDialog<Port>(resourceSet, filters,
-				"Port", UMLPackage.eINSTANCE.getPort()) {
-					@Override
-					public void process(IStructuredSelection selection) {						
+
+				};
+				List filters = new ArrayList();
+				filters.add(redefinedPortFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<Port> dialog = new TabElementTreeSelectionDialog<Port>(resourceSet, filters, "Port", UMLPackage.eINSTANCE.getPort()) {
+
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!redefinedPortEditUtil.getVirtualList().contains(elem))
 								redefinedPortEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedPort,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));	
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedPort,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						redefinedPort.refresh();											
+						redefinedPort.refresh();
 					}
+
 				};
 				dialog.open();
 			}
-			public void handleEdit(Port element) { editRedefinedPort(element); }
-			public void handleMove(Port element, int oldIndex, int newIndex) { moveRedefinedPort(element, oldIndex, newIndex); }
-			public void handleRemove(Port element) { removeFromRedefinedPort(element); }
-			public void navigateTo(Port element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(Port element) {
+				editRedefinedPort(element);
+			}
+
+			public void handleMove(Port element, int oldIndex, int newIndex) {
+				moveRedefinedPort(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Port element) {
+				removeFromRedefinedPort(element);
+			}
+
+			public void navigateTo(Port element) {
+			}
 		});
 		this.redefinedPort.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Port.redefinedPort, UMLViewsRepository.SWT_KIND));
 		this.redefinedPort.createControls(parent);
@@ -934,19 +1137,18 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		this.redefinedPort.setLayoutData(redefinedPortData);
 		this.redefinedPort.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveRedefinedPort(Port element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = redefinedPortEditUtil.foundCorrespondingEObject(element);
 		redefinedPortEditUtil.moveElement(element, oldIndex, newIndex);
 		redefinedPort.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedPort, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedPort, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -957,7 +1159,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = redefinedPortEditUtil.foundCorrespondingEObject(element);
 		redefinedPortEditUtil.removeElement(element);
 		redefinedPort.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedPort, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedPort, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -968,29 +1171,29 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editRedefinedPort(Port element) {
 
 		// Start of user code editRedefinedPort() method body
-				 
+
 		EObject editedElement = redefinedPortEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				redefinedPortEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				redefinedPort.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedPort, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PortPropertiesEditionPartImpl.this, UMLViewsRepository.Port.redefinedPort, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
 
-	
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code		
+
+		// End of user code
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -999,7 +1202,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getOwnedCommentToAdd() {
 		return ownedCommentEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1008,7 +1211,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getOwnedCommentToRemove() {
 		return ownedCommentEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1016,8 +1219,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public Map getOwnedCommentToEdit() {
 		return ownedCommentEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1025,8 +1228,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public List getOwnedCommentToMove() {
 		return ownedCommentEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1034,8 +1237,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public List getOwnedCommentTable() {
 		return ownedCommentEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1046,31 +1249,31 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			ownedCommentEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
 		this.ownedComment.setInput(ownedCommentEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForOwnedComment (String msg, int msgLevel) {
-	
+
+	public void setMessageForOwnedComment(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForOwnedComment () {
-	
+
+	public void unsetMessageForOwnedComment() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1079,7 +1282,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public String getName() {
 		return name.getText();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1088,15 +1291,15 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public void setName(String newValue) {
 		name.setText(newValue);
 	}
-	
-	public void setMessageForName (String msg, int msgLevel) {
-	
+
+	public void setMessageForName(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForName () {
-	
+
+	public void unsetMessageForName() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1106,7 +1309,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1117,7 +1320,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		visibility.setSelection(new StructuredSelection(current));
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setVisibility(Enumerator newValue)
@@ -1125,15 +1328,15 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
 	}
-	
-	public void setMessageForVisibility (String msg, int msgLevel) {
-	
+
+	public void setMessageForVisibility(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForVisibility () {
-	
+
+	public void unsetMessageForVisibility() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1142,7 +1345,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getClientDependencyToAdd() {
 		return clientDependencyEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1151,7 +1354,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getClientDependencyToRemove() {
 		return clientDependencyEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1162,31 +1365,31 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			clientDependencyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			clientDependencyEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			clientDependencyEditUtil = new EMFListEditUtil(current, feature);
 		this.clientDependency.setInput(clientDependencyEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil!=null){
+		if (clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForClientDependency (String msg, int msgLevel) {
-	
+
+	public void setMessageForClientDependency(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForClientDependency () {
-	
+
+	public void unsetMessageForClientDependency() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1195,24 +1398,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsLeaf() {
 		return Boolean.valueOf(isLeaf.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsLeaf(Boolean newValue)
 	 */
 	public void setIsLeaf(Boolean newValue) {
-		isLeaf.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isLeaf.setSelection(newValue.booleanValue());
+		} else {
+			isLeaf.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsLeaf (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsLeaf(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsLeaf () {
-	
+
+	public void unsetMessageForIsLeaf() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1221,24 +1428,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsStatic() {
 		return Boolean.valueOf(isStatic.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsStatic(Boolean newValue)
 	 */
 	public void setIsStatic(Boolean newValue) {
-		isStatic.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isStatic.setSelection(newValue.booleanValue());
+		} else {
+			isStatic.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsStatic (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsStatic(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsStatic () {
-	
+
+	public void unsetMessageForIsStatic() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1247,24 +1458,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsOrdered() {
 		return Boolean.valueOf(isOrdered.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsOrdered(Boolean newValue)
 	 */
 	public void setIsOrdered(Boolean newValue) {
-		isOrdered.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isOrdered.setSelection(newValue.booleanValue());
+		} else {
+			isOrdered.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsOrdered (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsOrdered(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsOrdered () {
-	
+
+	public void unsetMessageForIsOrdered() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1273,24 +1488,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsUnique() {
 		return Boolean.valueOf(isUnique.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsUnique(Boolean newValue)
 	 */
 	public void setIsUnique(Boolean newValue) {
-		isUnique.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isUnique.setSelection(newValue.booleanValue());
+		} else {
+			isUnique.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsUnique (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsUnique(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsUnique () {
-	
+
+	public void unsetMessageForIsUnique() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1299,24 +1518,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsReadOnly() {
 		return Boolean.valueOf(isReadOnly.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsReadOnly(Boolean newValue)
 	 */
 	public void setIsReadOnly(Boolean newValue) {
-		isReadOnly.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isReadOnly.setSelection(newValue.booleanValue());
+		} else {
+			isReadOnly.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsReadOnly (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsReadOnly(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsReadOnly () {
-	
+
+	public void unsetMessageForIsReadOnly() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1325,7 +1548,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getDeploymentToAdd() {
 		return deploymentEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1334,7 +1557,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getDeploymentToRemove() {
 		return deploymentEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1342,8 +1565,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public Map getDeploymentToEdit() {
 		return deploymentEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1351,8 +1574,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public List getDeploymentToMove() {
 		return deploymentEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1360,8 +1583,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public List getDeploymentTable() {
 		return deploymentEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1372,31 +1595,31 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			deploymentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			deploymentEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			deploymentEditUtil = new EMFListEditUtil(current, feature);
 		this.deployment.setInput(deploymentEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#updateDeployment(EObject newValue)
 	 */
 	public void updateDeployment(EObject newValue) {
-		if(deploymentEditUtil!=null){
+		if (deploymentEditUtil != null) {
 			deploymentEditUtil.reinit(newValue);
 			deployment.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForDeployment (String msg, int msgLevel) {
-	
+
+	public void setMessageForDeployment(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForDeployment () {
-	
+
+	public void unsetMessageForDeployment() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1405,7 +1628,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getTemplateBindingToAdd() {
 		return templateBindingEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1414,7 +1637,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getTemplateBindingToRemove() {
 		return templateBindingEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1422,8 +1645,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public Map getTemplateBindingToEdit() {
 		return templateBindingEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1431,8 +1654,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public List getTemplateBindingToMove() {
 		return templateBindingEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1440,8 +1663,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public List getTemplateBindingTable() {
 		return templateBindingEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1452,31 +1675,31 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			templateBindingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			templateBindingEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			templateBindingEditUtil = new EMFListEditUtil(current, feature);
 		this.templateBinding.setInput(templateBindingEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#updateTemplateBinding(EObject newValue)
 	 */
 	public void updateTemplateBinding(EObject newValue) {
-		if(templateBindingEditUtil!=null){
+		if (templateBindingEditUtil != null) {
 			templateBindingEditUtil.reinit(newValue);
 			templateBinding.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForTemplateBinding (String msg, int msgLevel) {
-	
+
+	public void setMessageForTemplateBinding(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForTemplateBinding () {
-	
+
+	public void unsetMessageForTemplateBinding() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1485,24 +1708,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsDerived() {
 		return Boolean.valueOf(isDerived.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsDerived(Boolean newValue)
 	 */
 	public void setIsDerived(Boolean newValue) {
-		isDerived.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isDerived.setSelection(newValue.booleanValue());
+		} else {
+			isDerived.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsDerived (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsDerived(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsDerived () {
-	
+
+	public void unsetMessageForIsDerived() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1511,24 +1738,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsDerivedUnion() {
 		return Boolean.valueOf(isDerivedUnion.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsDerivedUnion(Boolean newValue)
 	 */
 	public void setIsDerivedUnion(Boolean newValue) {
-		isDerivedUnion.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isDerivedUnion.setSelection(newValue.booleanValue());
+		} else {
+			isDerivedUnion.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsDerivedUnion (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsDerivedUnion(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsDerivedUnion () {
-	
+
+	public void unsetMessageForIsDerivedUnion() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1538,7 +1769,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) aggregation.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1549,7 +1780,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		aggregation.setSelection(new StructuredSelection(current));
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setAggregation(Enumerator newValue)
@@ -1557,15 +1788,15 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public void setAggregation(Enumerator newValue) {
 		aggregation.modelUpdating(new StructuredSelection(newValue));
 	}
-	
-	public void setMessageForAggregation (String msg, int msgLevel) {
-	
+
+	public void setMessageForAggregation(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForAggregation () {
-	
+
+	public void unsetMessageForAggregation() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1574,7 +1805,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getRedefinedPropertyToAdd() {
 		return redefinedPropertyEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1583,7 +1814,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getRedefinedPropertyToRemove() {
 		return redefinedPropertyEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1594,31 +1825,31 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			redefinedPropertyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			redefinedPropertyEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			redefinedPropertyEditUtil = new EMFListEditUtil(current, feature);
 		this.redefinedProperty.setInput(redefinedPropertyEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#updateRedefinedProperty(EObject newValue)
 	 */
 	public void updateRedefinedProperty(EObject newValue) {
-		if(redefinedPropertyEditUtil!=null){
+		if (redefinedPropertyEditUtil != null) {
 			redefinedPropertyEditUtil.reinit(newValue);
 			redefinedProperty.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForRedefinedProperty (String msg, int msgLevel) {
-	
+
+	public void setMessageForRedefinedProperty(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForRedefinedProperty () {
-	
+
+	public void unsetMessageForRedefinedProperty() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1627,7 +1858,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getSubsettedPropertyToAdd() {
 		return subsettedPropertyEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1636,7 +1867,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getSubsettedPropertyToRemove() {
 		return subsettedPropertyEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1647,31 +1878,31 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			subsettedPropertyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			subsettedPropertyEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			subsettedPropertyEditUtil = new EMFListEditUtil(current, feature);
 		this.subsettedProperty.setInput(subsettedPropertyEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#updateSubsettedProperty(EObject newValue)
 	 */
 	public void updateSubsettedProperty(EObject newValue) {
-		if(subsettedPropertyEditUtil!=null){
+		if (subsettedPropertyEditUtil != null) {
 			subsettedPropertyEditUtil.reinit(newValue);
 			subsettedProperty.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForSubsettedProperty (String msg, int msgLevel) {
-	
+
+	public void setMessageForSubsettedProperty(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForSubsettedProperty () {
-	
+
+	public void unsetMessageForSubsettedProperty() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1680,7 +1911,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getQualifierToAdd() {
 		return qualifierEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1689,7 +1920,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getQualifierToRemove() {
 		return qualifierEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1697,8 +1928,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public Map getQualifierToEdit() {
 		return qualifierEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1706,8 +1937,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public List getQualifierToMove() {
 		return qualifierEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1715,8 +1946,8 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public List getQualifierTable() {
 		return qualifierEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1727,31 +1958,31 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			qualifierEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			qualifierEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			qualifierEditUtil = new EMFListEditUtil(current, feature);
 		this.qualifier.setInput(qualifierEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#updateQualifier(EObject newValue)
 	 */
 	public void updateQualifier(EObject newValue) {
-		if(qualifierEditUtil!=null){
+		if (qualifierEditUtil != null) {
 			qualifierEditUtil.reinit(newValue);
 			qualifier.refresh();
-		}		
+		}
 	}
-	
-	public void setMessageForQualifier (String msg, int msgLevel) {
-	
+
+	public void setMessageForQualifier(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForQualifier () {
-	
+
+	public void unsetMessageForQualifier() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1760,24 +1991,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsBehavior() {
 		return Boolean.valueOf(isBehavior.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsBehavior(Boolean newValue)
 	 */
 	public void setIsBehavior(Boolean newValue) {
-		isBehavior.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isBehavior.setSelection(newValue.booleanValue());
+		} else {
+			isBehavior.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsBehavior (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsBehavior(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsBehavior () {
-	
+
+	public void unsetMessageForIsBehavior() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1786,24 +2021,28 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public Boolean getIsService() {
 		return Boolean.valueOf(isService.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#setIsService(Boolean newValue)
 	 */
 	public void setIsService(Boolean newValue) {
-		isService.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isService.setSelection(newValue.booleanValue());
+		} else {
+			isService.setSelection(false);
+		}
 	}
-	
-	public void setMessageForIsService (String msg, int msgLevel) {
-	
+
+	public void setMessageForIsService(String msg, int msgLevel) {
+
 	}
-	
-	public void unsetMessageForIsService () {
-	
+
+	public void unsetMessageForIsService() {
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1812,7 +2051,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getRedefinedPortToAdd() {
 		return redefinedPortEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1821,7 +2060,7 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	public List getRedefinedPortToRemove() {
 		return redefinedPortEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1832,40 +2071,32 @@ public class PortPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			redefinedPortEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			redefinedPortEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			redefinedPortEditUtil = new EMFListEditUtil(current, feature);
 		this.redefinedPort.setInput(redefinedPortEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PortPropertiesEditionPart#updateRedefinedPort(EObject newValue)
 	 */
 	public void updateRedefinedPort(EObject newValue) {
-		if(redefinedPortEditUtil!=null){
+		if (redefinedPortEditUtil != null) {
 			redefinedPortEditUtil.reinit(newValue);
 			redefinedPort.refresh();
-		}		
-	}
-	
-	public void setMessageForRedefinedPort (String msg, int msgLevel) {
-	
-	}
-	
-	public void unsetMessageForRedefinedPort () {
-	
+		}
 	}
 
-	
-	
+	public void setMessageForRedefinedPort(String msg, int msgLevel) {
 
-	
-	
+	}
 
+	public void unsetMessageForRedefinedPort() {
 
+	}
 
 	// Start of user code additional methods
- 	
+
 	// End of user code
-}	
+}

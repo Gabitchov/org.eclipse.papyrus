@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ConnectableElementTemplateParameter;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ConnectableElementTemplateParameterPropertiesEditionComponent exten
 	 * @param connectableElementTemplateParameter
 	 *            the EObject to edit
 	 */
-	public ConnectableElementTemplateParameterPropertiesEditionComponent(EObject connectableElementTemplateParameter, String mode) {
-		super(mode);
+	public ConnectableElementTemplateParameterPropertiesEditionComponent(EObject connectableElementTemplateParameter, String editing_mode) {
+		super(editing_mode);
 		if (connectableElementTemplateParameter instanceof ConnectableElementTemplateParameter) {
-			addSubComponent(new ConnectableElementTemplateParameterBasePropertiesEditionComponent(connectableElementTemplateParameter, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(connectableElementTemplateParameter, mode));
+			addSubComponent(new ConnectableElementTemplateParameterBasePropertiesEditionComponent(connectableElementTemplateParameter, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(connectableElementTemplateParameter, editing_mode));
 		}
 	}
 }
-

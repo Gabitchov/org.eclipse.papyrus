@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.DeploymentSpecification;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class DeploymentSpecificationPropertiesEditionComponent extends ComposedP
 	 * @param deploymentSpecification
 	 *            the EObject to edit
 	 */
-	public DeploymentSpecificationPropertiesEditionComponent(EObject deploymentSpecification, String mode) {
-		super(mode);
+	public DeploymentSpecificationPropertiesEditionComponent(EObject deploymentSpecification, String editing_mode) {
+		super(editing_mode);
 		if (deploymentSpecification instanceof DeploymentSpecification) {
-			addSubComponent(new DeploymentSpecificationBasePropertiesEditionComponent(deploymentSpecification, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(deploymentSpecification, mode));
+			addSubComponent(new DeploymentSpecificationBasePropertiesEditionComponent(deploymentSpecification, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(deploymentSpecification, editing_mode));
 		}
 	}
 }
-

@@ -17,41 +17,59 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
+
+import org.eclipse.uml2.uml.ConnectionPointReference;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.VisibilityKind;
+import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Pseudostate;
+import org.eclipse.uml2.uml.Pseudostate;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.MoveCommand;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
 import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement;
-import org.eclipse.jface.dialogs.IMessageProvider;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.ConnectionPointReference;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.VisibilityKind;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.jface.dialogs.IMessageProvider;
 
 // End of user code
 /**
@@ -60,36 +78,37 @@ import org.eclipse.uml2.uml.VisibilityKind;
 public class ConnectionPointReferenceBasePropertiesEditionComponent extends StandardPropertiesEditionComponent {
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
-	
-	private String[] parts = {BASE_PART};
-	
+
+	private String[] parts = { BASE_PART };
+
 	/**
 	 * The EObject to edit
 	 */
 	private ConnectionPointReference connectionPointReference;
-	
+
 	/**
 	 * The Base part
 	 */
 	private ConnectionPointReferencePropertiesEditionPart basePart;
-	
+
 	/**
 	 * Default constructor
 	 */
-	public ConnectionPointReferenceBasePropertiesEditionComponent(EObject connectionPointReference, String mode) {
+	public ConnectionPointReferenceBasePropertiesEditionComponent(EObject connectionPointReference, String editing_mode) {
 		if (connectionPointReference instanceof ConnectionPointReference) {
-			this.connectionPointReference = (ConnectionPointReference)connectionPointReference;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(mode)) {
+			this.connectionPointReference = (ConnectionPointReference) connectionPointReference;
+			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.connectionPointReference.eAdapters().add(semanticAdapter);
 			}
 		}
 		listeners = new ArrayList();
-		this.mode = mode;
+		this.editing_mode = editing_mode;
 	}
-	
+
 	/**
 	 * Initialize the semantic model listener for live editing mode
+	 * 
 	 * @return the semantic model listener
 	 */
 	private AdapterImpl initializeSemanticAdapter() {
@@ -101,25 +120,23 @@ public class ConnectionPointReferenceBasePropertiesEditionComponent extends Stan
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getComment())) {
 					basePart.updateOwnedComment(connectionPointReference);
 				}
 				if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
-					basePart.setName((String)msg.getNewValue());
-				if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
-					basePart.setVisibility((Enumerator)msg.getNewValue());
-				if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature())) {
-					basePart.updateClientDependency(connectionPointReference);
-				}
-				if (UMLPackage.eINSTANCE.getConnectionPointReference_Entry().equals(msg.getFeature())) {
-					basePart.updateEntry(connectionPointReference);
-				}
-				if (UMLPackage.eINSTANCE.getConnectionPointReference_Exit().equals(msg.getFeature())) {
-					basePart.updateExit(connectionPointReference);
-				}
+					basePart.setName((String) msg.getNewValue());
 
+				if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					basePart.setVisibility((Enumerator) msg.getNewValue());
+
+				if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
+					basePart.updateClientDependency(connectionPointReference);
+				if (UMLPackage.eINSTANCE.getConnectionPointReference_Entry().equals(msg.getFeature()))
+					basePart.updateEntry(connectionPointReference);
+				if (UMLPackage.eINSTANCE.getConnectionPointReference_Exit().equals(msg.getFeature()))
+					basePart.updateExit(connectionPointReference);
 
 			}
 
@@ -128,6 +145,7 @@ public class ConnectionPointReferenceBasePropertiesEditionComponent extends Stan
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
@@ -135,63 +153,60 @@ public class ConnectionPointReferenceBasePropertiesEditionComponent extends Stan
 			return UMLViewsRepository.ConnectionPointReference.class;
 		return super.translatePart(key);
 	}
-	
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#partsList()
 	 */
 	public String[] partsList() {
 		return parts;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (connectionPointReference != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (ConnectionPointReferencePropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.ConnectionPointReference.class, kind, this);
+					basePart = (ConnectionPointReferencePropertiesEditionPart) provider.getPropertiesEditionPart(UMLViewsRepository.ConnectionPointReference.class, kind, this);
 					listeners.add(basePart);
 				}
 			}
-			return (IPropertiesEditionPart)basePart;
+			return (IPropertiesEditionPart) basePart;
 		}
 		return null;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent
-	 * 		#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
-	 * 						org.eclipse.emf.ecore.resource.ResourceSet)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.ConnectionPointReference.class) {
-			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
-			ConnectionPointReference connectionPointReference = (ConnectionPointReference)elt;
-			basePart.initOwnedComment(connectionPointReference, null, UMLPackage.eINSTANCE.getElement_OwnedComment());				
+			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
+			ConnectionPointReference connectionPointReference = (ConnectionPointReference) elt;
+			basePart.initOwnedComment(connectionPointReference, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
 			if (connectionPointReference.getName() != null)
 				basePart.setName(connectionPointReference.getName());
-				
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), connectionPointReference.getVisibility());				
-			basePart.initClientDependency(connectionPointReference, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());				
-			basePart.initEntry(connectionPointReference, null, UMLPackage.eINSTANCE.getConnectionPointReference_Entry());				
-			basePart.initExit(connectionPointReference, null, UMLPackage.eINSTANCE.getConnectionPointReference_Exit());				
+
+			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), connectionPointReference.getVisibility());
+			basePart.initClientDependency(connectionPointReference, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
+			basePart.initEntry(connectionPointReference, null, UMLPackage.eINSTANCE.getConnectionPointReference_Entry());
+			basePart.initExit(connectionPointReference, null, UMLPackage.eINSTANCE.getConnectionPointReference_Exit());
 		}
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 * (org.eclipse.emf.edit.domain.EditingDomain)
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
@@ -201,58 +216,59 @@ public class ConnectionPointReferenceBasePropertiesEditionComponent extends Stan
 				cc.append(AddCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefresh = basePart.getOwnedCommentToEdit();
 			for (Iterator iter = ownedCommentToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for ownedComment reference refreshment
-				
+
 				Comment nextElement = (Comment) iter.next();
 				Comment ownedComment = (Comment) ownedCommentToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List ownedCommentToRemove = basePart.getOwnedCommentToRemove();
 			for (Iterator iter = ownedCommentToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMove = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = ownedCommentToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
+
 			cc.append(SetCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
+
 			List clientDependencyToAdd = basePart.getClientDependencyToAdd();
 			for (Iterator iter = clientDependencyToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemove = basePart.getClientDependencyToRemove();
 			for (Iterator iter = clientDependencyToRemove.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
-			//List clientDependencyToMove = basePart.getClientDependencyToMove();
-			//for (Iterator iter = clientDependencyToMove.iterator(); iter.hasNext();){
-			//	MoveElement moveElement = (MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
-			//}
+			// List clientDependencyToMove = basePart.getClientDependencyToMove();
+			// for (Iterator iter = clientDependencyToMove.iterator(); iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
+			// }
 			List entryToAdd = basePart.getEntryToAdd();
 			for (Iterator iter = entryToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Entry(), iter.next()));
 			List entryToRemove = basePart.getEntryToRemove();
 			for (Iterator iter = entryToRemove.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Entry(), iter.next()));
-			//List entryToMove = basePart.getEntryToMove();
-			//for (Iterator iter = entryToMove.iterator(); iter.hasNext();){
-			//	MoveElement moveElement = (MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getPseudostate(), moveElement.getElement(), moveElement.getIndex()));
-			//}
+			// List entryToMove = basePart.getEntryToMove();
+			// for (Iterator iter = entryToMove.iterator(); iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getPseudostate(), moveElement.getElement(), moveElement.getIndex()));
+			// }
 			List exitToAdd = basePart.getExitToAdd();
 			for (Iterator iter = exitToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Exit(), iter.next()));
 			List exitToRemove = basePart.getExitToRemove();
 			for (Iterator iter = exitToRemove.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Exit(), iter.next()));
-			//List exitToMove = basePart.getExitToMove();
-			//for (Iterator iter = exitToMove.iterator(); iter.hasNext();){
-			//	MoveElement moveElement = (MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getPseudostate(), moveElement.getElement(), moveElement.getIndex()));
-			//}
-
+			// List exitToMove = basePart.getExitToMove();
+			// for (Iterator iter = exitToMove.iterator(); iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, connectionPointReference, UMLPackage.eINSTANCE.getPseudostate(), moveElement.getElement(), moveElement.getIndex()));
+			// }
 
 		}
 		if (!cc.isEmpty())
@@ -261,136 +277,128 @@ public class ConnectionPointReferenceBasePropertiesEditionComponent extends Stan
 		return cc;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject
-	 * ()
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof ConnectionPointReference) {
-			ConnectionPointReference connectionPointReferenceToUpdate = (ConnectionPointReference)source;
+			ConnectionPointReference connectionPointReferenceToUpdate = (ConnectionPointReference) source;
 			connectionPointReferenceToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			connectionPointReferenceToUpdate.setName(basePart.getName());
-			connectionPointReferenceToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());
+
+			connectionPointReferenceToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
+
 			connectionPointReferenceToUpdate.getClientDependencies().addAll(basePart.getClientDependencyToAdd());
 			connectionPointReferenceToUpdate.getEntries().addAll(basePart.getEntryToAdd());
 			connectionPointReferenceToUpdate.getExits().addAll(basePart.getExitToAdd());
 
-
 			return connectionPointReferenceToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.common.notify.Notification)
 	 */
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PathedPropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.ConnectionPointReference.ownedComment == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment)event.getOldValue();
-					Comment newValue = (Comment)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					Comment oldValue = (Comment) event.getOldValue();
+					Comment newValue = (Comment) event.getNewValue();
+
 					// Start of user code for ownedComment live update command
 					// TODO: Complete the connectionPointReference update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.ConnectionPointReference.name == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));	
+				command.append(SetCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
 			if (UMLViewsRepository.ConnectionPointReference.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
 			if (UMLViewsRepository.ConnectionPointReference.clientDependency == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.ADD == event.getKind())
+				if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.ConnectionPointReference.entry == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.ADD == event.getKind())
+				if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Entry(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Entry(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Entry(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.ConnectionPointReference.exit == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.ADD == event.getKind())
+				if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Exit(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Exit(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, connectionPointReference, UMLPackage.eINSTANCE.getConnectionPointReference_Exit(), event.getNewValue(), event.getNewIndex()));
 			}
 
-
 			if (command != null)
 				liveEditingDomain.getCommandStack().execute(command);
-		} else if (PathedPropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
-				
+
 				if (UMLViewsRepository.ConnectionPointReference.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
-				
-				
-				
-				
-
 
 			} else {
-				
+
 				if (UMLViewsRepository.ConnectionPointReference.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
-				
-				
-				
-				
-
 
 			}
 		}
-	}	
+	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String, int)
 	 */
 	public String getHelpContent(String key, int kind) {
-			if (key == UMLViewsRepository.ConnectionPointReference.ownedComment)
-				return "The Comments owned by this element."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.ConnectionPointReference.name)
-				return "The name of the NamedElement."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.ConnectionPointReference.visibility)
-				return "Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.ConnectionPointReference.clientDependency)
-				return "Indicates the dependencies that reference the client."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.ConnectionPointReference.entry)
-				return "The entryPoint kind pseudo states corresponding to this connection point."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.ConnectionPointReference.exit)
-				return "The exitPoints kind pseudo states corresponding to this connection point."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.ConnectionPointReference.ownedComment)
+			return "The Comments owned by this element."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.ConnectionPointReference.name)
+			return "The name of the NamedElement."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.ConnectionPointReference.visibility)
+			return "Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.ConnectionPointReference.clientDependency)
+			return "Indicates the dependencies that reference the client."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.ConnectionPointReference.entry)
+			return "The entryPoint kind pseudo states corresponding to this connection point."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.ConnectionPointReference.exit)
+			return "The exitPoints kind pseudo states corresponding to this connection point."; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
-	public Diagnostic validateValue(PathedPropertiesEditionEvent event) {
+	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
 		try {
@@ -415,17 +423,15 @@ public class ConnectionPointReferenceBasePropertiesEditionComponent extends Stan
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(mode)) {
+		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
 			return Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(mode))
+		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			return Diagnostician.INSTANCE.validate(connectionPointReference);
 		else
 			return null;
 	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -438,4 +444,3 @@ public class ConnectionPointReferenceBasePropertiesEditionComponent extends Stan
 	}
 
 }
-

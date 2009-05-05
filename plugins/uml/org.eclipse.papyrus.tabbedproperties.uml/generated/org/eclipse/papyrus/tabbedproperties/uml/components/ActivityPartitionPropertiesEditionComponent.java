@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ActivityPartitionPropertiesEditionComponent extends ComposedPropert
 	 * @param activityPartition
 	 *            the EObject to edit
 	 */
-	public ActivityPartitionPropertiesEditionComponent(EObject activityPartition, String mode) {
-		super(mode);
+	public ActivityPartitionPropertiesEditionComponent(EObject activityPartition, String editing_mode) {
+		super(editing_mode);
 		if (activityPartition instanceof ActivityPartition) {
-			addSubComponent(new ActivityPartitionBasePropertiesEditionComponent(activityPartition, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(activityPartition, mode));
+			addSubComponent(new ActivityPartitionBasePropertiesEditionComponent(activityPartition, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(activityPartition, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Gate;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class GatePropertiesEditionComponent extends ComposedPropertiesEditionCom
 	 * @param gate
 	 *            the EObject to edit
 	 */
-	public GatePropertiesEditionComponent(EObject gate, String mode) {
-		super(mode);
+	public GatePropertiesEditionComponent(EObject gate, String editing_mode) {
+		super(editing_mode);
 		if (gate instanceof Gate) {
-			addSubComponent(new GateBasePropertiesEditionComponent(gate, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(gate, mode));
+			addSubComponent(new GateBasePropertiesEditionComponent(gate, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(gate, editing_mode));
 		}
 	}
 }
-

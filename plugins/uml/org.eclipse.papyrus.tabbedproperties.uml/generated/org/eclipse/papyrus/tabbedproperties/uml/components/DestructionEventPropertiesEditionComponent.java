@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class DestructionEventPropertiesEditionComponent extends ComposedProperti
 	 * @param destructionEvent
 	 *            the EObject to edit
 	 */
-	public DestructionEventPropertiesEditionComponent(EObject destructionEvent, String mode) {
-		super(mode);
+	public DestructionEventPropertiesEditionComponent(EObject destructionEvent, String editing_mode) {
+		super(editing_mode);
 		if (destructionEvent instanceof DestructionEvent) {
-			addSubComponent(new DestructionEventBasePropertiesEditionComponent(destructionEvent, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(destructionEvent, mode));
+			addSubComponent(new DestructionEventBasePropertiesEditionComponent(destructionEvent, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(destructionEvent, editing_mode));
 		}
 	}
 }
-

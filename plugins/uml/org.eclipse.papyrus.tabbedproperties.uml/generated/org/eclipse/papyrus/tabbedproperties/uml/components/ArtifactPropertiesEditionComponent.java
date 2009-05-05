@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Artifact;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ArtifactPropertiesEditionComponent extends ComposedPropertiesEditio
 	 * @param artifact
 	 *            the EObject to edit
 	 */
-	public ArtifactPropertiesEditionComponent(EObject artifact, String mode) {
-		super(mode);
+	public ArtifactPropertiesEditionComponent(EObject artifact, String editing_mode) {
+		super(editing_mode);
 		if (artifact instanceof Artifact) {
-			addSubComponent(new ArtifactBasePropertiesEditionComponent(artifact, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(artifact, mode));
+			addSubComponent(new ArtifactBasePropertiesEditionComponent(artifact, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(artifact, editing_mode));
 		}
 	}
 }
-

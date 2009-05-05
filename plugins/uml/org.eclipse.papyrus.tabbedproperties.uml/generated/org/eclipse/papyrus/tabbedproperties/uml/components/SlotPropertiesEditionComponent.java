@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Slot;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class SlotPropertiesEditionComponent extends ComposedPropertiesEditionCom
 	 * @param slot
 	 *            the EObject to edit
 	 */
-	public SlotPropertiesEditionComponent(EObject slot, String mode) {
-		super(mode);
+	public SlotPropertiesEditionComponent(EObject slot, String editing_mode) {
+		super(editing_mode);
 		if (slot instanceof Slot) {
-			addSubComponent(new SlotBasePropertiesEditionComponent(slot, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(slot, mode));
+			addSubComponent(new SlotBasePropertiesEditionComponent(slot, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(slot, editing_mode));
 		}
 	}
 }
-

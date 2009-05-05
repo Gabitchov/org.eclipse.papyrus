@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.RemoveStructuralFeatureValueAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class RemoveStructuralFeatureValueActionPropertiesEditionComponent extend
 	 * @param removeStructuralFeatureValueAction
 	 *            the EObject to edit
 	 */
-	public RemoveStructuralFeatureValueActionPropertiesEditionComponent(EObject removeStructuralFeatureValueAction, String mode) {
-		super(mode);
+	public RemoveStructuralFeatureValueActionPropertiesEditionComponent(EObject removeStructuralFeatureValueAction, String editing_mode) {
+		super(editing_mode);
 		if (removeStructuralFeatureValueAction instanceof RemoveStructuralFeatureValueAction) {
-			addSubComponent(new RemoveStructuralFeatureValueActionBasePropertiesEditionComponent(removeStructuralFeatureValueAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(removeStructuralFeatureValueAction, mode));
+			addSubComponent(new RemoveStructuralFeatureValueActionBasePropertiesEditionComponent(removeStructuralFeatureValueAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(removeStructuralFeatureValueAction, editing_mode));
 		}
 	}
 }
-

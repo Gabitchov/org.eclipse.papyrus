@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ClearVariableAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ClearVariableActionPropertiesEditionComponent extends ComposedPrope
 	 * @param clearVariableAction
 	 *            the EObject to edit
 	 */
-	public ClearVariableActionPropertiesEditionComponent(EObject clearVariableAction, String mode) {
-		super(mode);
+	public ClearVariableActionPropertiesEditionComponent(EObject clearVariableAction, String editing_mode) {
+		super(editing_mode);
 		if (clearVariableAction instanceof ClearVariableAction) {
-			addSubComponent(new ClearVariableActionBasePropertiesEditionComponent(clearVariableAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(clearVariableAction, mode));
+			addSubComponent(new ClearVariableActionBasePropertiesEditionComponent(clearVariableAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(clearVariableAction, editing_mode));
 		}
 	}
 }
-

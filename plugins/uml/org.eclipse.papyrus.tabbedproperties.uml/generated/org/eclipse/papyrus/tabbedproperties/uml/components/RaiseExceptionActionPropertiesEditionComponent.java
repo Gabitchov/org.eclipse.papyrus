@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.RaiseExceptionAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class RaiseExceptionActionPropertiesEditionComponent extends ComposedProp
 	 * @param raiseExceptionAction
 	 *            the EObject to edit
 	 */
-	public RaiseExceptionActionPropertiesEditionComponent(EObject raiseExceptionAction, String mode) {
-		super(mode);
+	public RaiseExceptionActionPropertiesEditionComponent(EObject raiseExceptionAction, String editing_mode) {
+		super(editing_mode);
 		if (raiseExceptionAction instanceof RaiseExceptionAction) {
-			addSubComponent(new RaiseExceptionActionBasePropertiesEditionComponent(raiseExceptionAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(raiseExceptionAction, mode));
+			addSubComponent(new RaiseExceptionActionBasePropertiesEditionComponent(raiseExceptionAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(raiseExceptionAction, editing_mode));
 		}
 	}
 }
-

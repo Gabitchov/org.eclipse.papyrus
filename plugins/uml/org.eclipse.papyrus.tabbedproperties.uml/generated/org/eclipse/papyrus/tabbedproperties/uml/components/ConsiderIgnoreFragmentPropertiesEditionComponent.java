@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ConsiderIgnoreFragmentPropertiesEditionComponent extends ComposedPr
 	 * @param considerIgnoreFragment
 	 *            the EObject to edit
 	 */
-	public ConsiderIgnoreFragmentPropertiesEditionComponent(EObject considerIgnoreFragment, String mode) {
-		super(mode);
+	public ConsiderIgnoreFragmentPropertiesEditionComponent(EObject considerIgnoreFragment, String editing_mode) {
+		super(editing_mode);
 		if (considerIgnoreFragment instanceof ConsiderIgnoreFragment) {
-			addSubComponent(new ConsiderIgnoreFragmentBasePropertiesEditionComponent(considerIgnoreFragment, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(considerIgnoreFragment, mode));
+			addSubComponent(new ConsiderIgnoreFragmentBasePropertiesEditionComponent(considerIgnoreFragment, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(considerIgnoreFragment, editing_mode));
 		}
 	}
 }
-

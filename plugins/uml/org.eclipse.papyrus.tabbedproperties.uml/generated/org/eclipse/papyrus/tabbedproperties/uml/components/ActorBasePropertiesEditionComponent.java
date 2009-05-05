@@ -17,52 +17,82 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
+
+import org.eclipse.uml2.uml.Actor;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.VisibilityKind;
+import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.GeneralizationSet;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Substitution;
+import org.eclipse.uml2.uml.CollaborationUse;
+import org.eclipse.uml2.uml.UseCase;
+import org.eclipse.uml2.uml.UseCase;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.uml2.uml.Trigger;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.MoveCommand;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.ActorPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
 import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement;
-import org.eclipse.jface.dialogs.IMessageProvider;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.ActorPropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.uml2.uml.Actor;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.CollaborationUse;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.Generalization;
-import org.eclipse.uml2.uml.InterfaceRealization;
-import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.Substitution;
-import org.eclipse.uml2.uml.TemplateBinding;
-import org.eclipse.uml2.uml.Trigger;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UseCase;
 import org.eclipse.uml2.uml.VisibilityKind;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.Substitution;
+import org.eclipse.uml2.uml.CollaborationUse;
+import org.eclipse.uml2.uml.UseCase;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.uml2.uml.Trigger;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.jface.dialogs.IMessageProvider;
 
 // End of user code
 /**
@@ -71,36 +101,37 @@ import org.eclipse.uml2.uml.VisibilityKind;
 public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditionComponent {
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
-	
-	private String[] parts = {BASE_PART};
-	
+
+	private String[] parts = { BASE_PART };
+
 	/**
 	 * The EObject to edit
 	 */
 	private Actor actor;
-	
+
 	/**
 	 * The Base part
 	 */
 	private ActorPropertiesEditionPart basePart;
-	
+
 	/**
 	 * Default constructor
 	 */
-	public ActorBasePropertiesEditionComponent(EObject actor, String mode) {
+	public ActorBasePropertiesEditionComponent(EObject actor, String editing_mode) {
 		if (actor instanceof Actor) {
-			this.actor = (Actor)actor;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(mode)) {
+			this.actor = (Actor) actor;
+			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.actor.eAdapters().add(semanticAdapter);
 			}
 		}
 		listeners = new ArrayList();
-		this.mode = mode;
+		this.editing_mode = editing_mode;
 	}
-	
+
 	/**
 	 * Initialize the semantic model listener for live editing mode
+	 * 
 	 * @return the semantic model listener
 	 */
 	private AdapterImpl initializeSemanticAdapter() {
@@ -112,87 +143,86 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getComment())) {
 					basePart.updateOwnedComment(actor);
 				}
 				if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
-					basePart.setName((String)msg.getNewValue());
+					basePart.setName((String) msg.getNewValue());
+
 				if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
-					basePart.setVisibility((Enumerator)msg.getNewValue());
-				if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature())) {
+					basePart.setVisibility((Enumerator) msg.getNewValue());
+
+				if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
 					basePart.updateClientDependency(actor);
-				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_ElementImport()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElementImport())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_ElementImport() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getElementImport())) {
 					basePart.updateElementImport(actor);
 				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_PackageImport()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getPackageImport())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_PackageImport() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getPackageImport())) {
 					basePart.updatePackageImport(actor);
 				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_OwnedRule()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getConstraint())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_OwnedRule() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getConstraint())) {
 					basePart.updateOwnedRule(actor);
 				}
 				if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature()) && basePart != null)
-					basePart.setIsLeaf((Boolean)msg.getNewValue());
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getTemplateableElement_TemplateBinding()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getTemplateBinding())) {
+					basePart.setIsLeaf((Boolean) msg.getNewValue());
+
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getTemplateableElement_TemplateBinding() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getTemplateBinding())) {
 					basePart.updateTemplateBinding(actor);
 				}
 				if (UMLPackage.eINSTANCE.getClassifier_IsAbstract().equals(msg.getFeature()) && basePart != null)
-					basePart.setIsAbstract((Boolean)msg.getNewValue());
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getClassifier_Generalization()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getGeneralization())) {
+					basePart.setIsAbstract((Boolean) msg.getNewValue());
+
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getClassifier_Generalization() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getGeneralization())) {
 					basePart.updateGeneralization(actor);
 				}
-				if (UMLPackage.eINSTANCE.getClassifier_PowertypeExtent().equals(msg.getFeature())) {
+				if (UMLPackage.eINSTANCE.getClassifier_PowertypeExtent().equals(msg.getFeature()))
 					basePart.updatePowertypeExtent(actor);
-				}
-				if (UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier().equals(msg.getFeature())) {
+				if (UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier().equals(msg.getFeature()))
 					basePart.updateRedefinedClassifier(actor);
-				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getClassifier_Substitution()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getSubstitution())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getClassifier_Substitution() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getSubstitution())) {
 					basePart.updateSubstitution(actor);
 				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getClassifier_CollaborationUse()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getCollaborationUse())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getClassifier_CollaborationUse() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getCollaborationUse())) {
 					basePart.updateCollaborationUse(actor);
 				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getClassifier_OwnedUseCase()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getUseCase())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getClassifier_OwnedUseCase() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getUseCase())) {
 					basePart.updateOwnedUseCase(actor);
 				}
-				if (UMLPackage.eINSTANCE.getClassifier_UseCase().equals(msg.getFeature())) {
+				if (UMLPackage.eINSTANCE.getClassifier_UseCase().equals(msg.getFeature()))
 					basePart.updateUseCase(actor);
-				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getBehavior())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getBehavior())) {
 					basePart.updateOwnedBehavior(actor);
 				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getBehavioredClassifier_InterfaceRealization()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getInterfaceRealization())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getBehavioredClassifier_InterfaceRealization() || ((EStructuralFeature) msg.getFeature())
+								.getEContainingClass() == UMLPackage.eINSTANCE.getInterfaceRealization())) {
 					basePart.updateInterfaceRealization(actor);
 				}
-				if (msg.getFeature() != null && 
-						(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedTrigger()
-						|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getTrigger())) {
+				if (msg.getFeature() != null
+						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedTrigger() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
+								.getTrigger())) {
 					basePart.updateOwnedTrigger(actor);
 				}
-
 
 			}
 
@@ -201,6 +231,7 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
@@ -208,77 +239,76 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 			return UMLViewsRepository.Actor.class;
 		return super.translatePart(key);
 	}
-	
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#partsList()
 	 */
 	public String[] partsList() {
 		return parts;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (actor != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (ActorPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Actor.class, kind, this);
+					basePart = (ActorPropertiesEditionPart) provider.getPropertiesEditionPart(UMLViewsRepository.Actor.class, kind, this);
 					listeners.add(basePart);
 				}
 			}
-			return (IPropertiesEditionPart)basePart;
+			return (IPropertiesEditionPart) basePart;
 		}
 		return null;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent
-	 * 		#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
-	 * 						org.eclipse.emf.ecore.resource.ResourceSet)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.Actor.class) {
-			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
-			Actor actor = (Actor)elt;
-			basePart.initOwnedComment(actor, null, UMLPackage.eINSTANCE.getElement_OwnedComment());				
+			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
+			Actor actor = (Actor) elt;
+			basePart.initOwnedComment(actor, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
 			if (actor.getName() != null)
 				basePart.setName(actor.getName());
-				
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), actor.getVisibility());				
-			basePart.initClientDependency(actor, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());				
-			basePart.initElementImport(actor, null, UMLPackage.eINSTANCE.getNamespace_ElementImport());				
-			basePart.initPackageImport(actor, null, UMLPackage.eINSTANCE.getNamespace_PackageImport());				
-			basePart.initOwnedRule(actor, null, UMLPackage.eINSTANCE.getNamespace_OwnedRule());				
-			basePart.setIsLeaf(actor.isLeaf());				
-			basePart.initTemplateBinding(actor, null, UMLPackage.eINSTANCE.getTemplateableElement_TemplateBinding());				
-			basePart.setIsAbstract(actor.isAbstract());				
-			basePart.initGeneralization(actor, null, UMLPackage.eINSTANCE.getClassifier_Generalization());				
-			basePart.initPowertypeExtent(actor, null, UMLPackage.eINSTANCE.getClassifier_PowertypeExtent());				
-			basePart.initRedefinedClassifier(actor, null, UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier());				
-			basePart.initSubstitution(actor, null, UMLPackage.eINSTANCE.getClassifier_Substitution());				
-			basePart.initCollaborationUse(actor, null, UMLPackage.eINSTANCE.getClassifier_CollaborationUse());				
-			basePart.initOwnedUseCase(actor, null, UMLPackage.eINSTANCE.getClassifier_OwnedUseCase());				
-			basePart.initUseCase(actor, null, UMLPackage.eINSTANCE.getClassifier_UseCase());				
-			basePart.initOwnedBehavior(actor, null, UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior());				
-			basePart.initInterfaceRealization(actor, null, UMLPackage.eINSTANCE.getBehavioredClassifier_InterfaceRealization());				
-			basePart.initOwnedTrigger(actor, null, UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedTrigger());				
+
+			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), actor.getVisibility());
+			basePart.initClientDependency(actor, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
+			basePart.initElementImport(actor, null, UMLPackage.eINSTANCE.getNamespace_ElementImport());
+			basePart.initPackageImport(actor, null, UMLPackage.eINSTANCE.getNamespace_PackageImport());
+			basePart.initOwnedRule(actor, null, UMLPackage.eINSTANCE.getNamespace_OwnedRule());
+			basePart.setIsLeaf(actor.isLeaf());
+
+			basePart.initTemplateBinding(actor, null, UMLPackage.eINSTANCE.getTemplateableElement_TemplateBinding());
+			basePart.setIsAbstract(actor.isAbstract());
+
+			basePart.initGeneralization(actor, null, UMLPackage.eINSTANCE.getClassifier_Generalization());
+			basePart.initPowertypeExtent(actor, null, UMLPackage.eINSTANCE.getClassifier_PowertypeExtent());
+			basePart.initRedefinedClassifier(actor, null, UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier());
+			basePart.initSubstitution(actor, null, UMLPackage.eINSTANCE.getClassifier_Substitution());
+			basePart.initCollaborationUse(actor, null, UMLPackage.eINSTANCE.getClassifier_CollaborationUse());
+			basePart.initOwnedUseCase(actor, null, UMLPackage.eINSTANCE.getClassifier_OwnedUseCase());
+			basePart.initUseCase(actor, null, UMLPackage.eINSTANCE.getClassifier_UseCase());
+			basePart.initOwnedBehavior(actor, null, UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior());
+			basePart.initInterfaceRealization(actor, null, UMLPackage.eINSTANCE.getBehavioredClassifier_InterfaceRealization());
+			basePart.initOwnedTrigger(actor, null, UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedTrigger());
 		}
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 * (org.eclipse.emf.edit.domain.EditingDomain)
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
@@ -288,54 +318,56 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefresh = basePart.getOwnedCommentToEdit();
 			for (Iterator iter = ownedCommentToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for ownedComment reference refreshment
-				
+
 				Comment nextElement = (Comment) iter.next();
 				Comment ownedComment = (Comment) ownedCommentToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List ownedCommentToRemove = basePart.getOwnedCommentToRemove();
 			for (Iterator iter = ownedCommentToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMove = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = ownedCommentToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
+
 			cc.append(SetCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
+
 			List clientDependencyToAdd = basePart.getClientDependencyToAdd();
 			for (Iterator iter = clientDependencyToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemove = basePart.getClientDependencyToRemove();
 			for (Iterator iter = clientDependencyToRemove.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
-			//List clientDependencyToMove = basePart.getClientDependencyToMove();
-			//for (Iterator iter = clientDependencyToMove.iterator(); iter.hasNext();){
-			//	MoveElement moveElement = (MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
-			//}
+			// List clientDependencyToMove = basePart.getClientDependencyToMove();
+			// for (Iterator iter = clientDependencyToMove.iterator(); iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
+			// }
 			List elementImportToAdd = basePart.getElementImportToAdd();
 			for (Iterator iter = elementImportToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getNamespace_ElementImport(), iter.next()));
 			Map elementImportToRefresh = basePart.getElementImportToEdit();
 			for (Iterator iter = elementImportToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for elementImport reference refreshment
-				
+
 				ElementImport nextElement = (ElementImport) iter.next();
 				ElementImport elementImport = (ElementImport) elementImportToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List elementImportToRemove = basePart.getElementImportToRemove();
 			for (Iterator iter = elementImportToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List elementImportToMove = basePart.getElementImportToMove();
-			for (Iterator iter = elementImportToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = elementImportToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getElementImport(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List packageImportToAdd = basePart.getPackageImportToAdd();
@@ -343,20 +375,20 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getNamespace_PackageImport(), iter.next()));
 			Map packageImportToRefresh = basePart.getPackageImportToEdit();
 			for (Iterator iter = packageImportToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for packageImport reference refreshment
-				
+
 				PackageImport nextElement = (PackageImport) iter.next();
 				PackageImport packageImport = (PackageImport) packageImportToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List packageImportToRemove = basePart.getPackageImportToRemove();
 			for (Iterator iter = packageImportToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List packageImportToMove = basePart.getPackageImportToMove();
-			for (Iterator iter = packageImportToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = packageImportToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getPackageImport(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List ownedRuleToAdd = basePart.getOwnedRuleToAdd();
@@ -364,64 +396,66 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), iter.next()));
 			Map ownedRuleToRefresh = basePart.getOwnedRuleToEdit();
 			for (Iterator iter = ownedRuleToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for ownedRule reference refreshment
-				
+
 				Constraint nextElement = (Constraint) iter.next();
 				Constraint ownedRule = (Constraint) ownedRuleToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List ownedRuleToRemove = basePart.getOwnedRuleToRemove();
 			for (Iterator iter = ownedRuleToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedRuleToMove = basePart.getOwnedRuleToMove();
-			for (Iterator iter = ownedRuleToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = ownedRuleToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), basePart.getIsLeaf()));
+
 			List templateBindingToAdd = basePart.getTemplateBindingToAdd();
 			for (Iterator iter = templateBindingToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getTemplateableElement_TemplateBinding(), iter.next()));
 			Map templateBindingToRefresh = basePart.getTemplateBindingToEdit();
 			for (Iterator iter = templateBindingToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for templateBinding reference refreshment
-				
+
 				TemplateBinding nextElement = (TemplateBinding) iter.next();
 				TemplateBinding templateBinding = (TemplateBinding) templateBindingToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List templateBindingToRemove = basePart.getTemplateBindingToRemove();
 			for (Iterator iter = templateBindingToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List templateBindingToMove = basePart.getTemplateBindingToMove();
-			for (Iterator iter = templateBindingToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = templateBindingToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getTemplateBinding(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_IsAbstract(), basePart.getIsAbstract()));
+
 			List generalizationToAdd = basePart.getGeneralizationToAdd();
 			for (Iterator iter = generalizationToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_Generalization(), iter.next()));
 			Map generalizationToRefresh = basePart.getGeneralizationToEdit();
 			for (Iterator iter = generalizationToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for generalization reference refreshment
-				
+
 				Generalization nextElement = (Generalization) iter.next();
 				Generalization generalization = (Generalization) generalizationToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List generalizationToRemove = basePart.getGeneralizationToRemove();
 			for (Iterator iter = generalizationToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List generalizationToMove = basePart.getGeneralizationToMove();
-			for (Iterator iter = generalizationToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = generalizationToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getGeneralization(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List powertypeExtentToAdd = basePart.getPowertypeExtentToAdd();
@@ -430,41 +464,41 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 			List powertypeExtentToRemove = basePart.getPowertypeExtentToRemove();
 			for (Iterator iter = powertypeExtentToRemove.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_PowertypeExtent(), iter.next()));
-			//List powertypeExtentToMove = basePart.getPowertypeExtentToMove();
-			//for (Iterator iter = powertypeExtentToMove.iterator(); iter.hasNext();){
-			//	MoveElement moveElement = (MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getGeneralizationSet(), moveElement.getElement(), moveElement.getIndex()));
-			//}
+			// List powertypeExtentToMove = basePart.getPowertypeExtentToMove();
+			// for (Iterator iter = powertypeExtentToMove.iterator(); iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getGeneralizationSet(), moveElement.getElement(), moveElement.getIndex()));
+			// }
 			List redefinedClassifierToAdd = basePart.getRedefinedClassifierToAdd();
 			for (Iterator iter = redefinedClassifierToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier(), iter.next()));
 			List redefinedClassifierToRemove = basePart.getRedefinedClassifierToRemove();
 			for (Iterator iter = redefinedClassifierToRemove.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier(), iter.next()));
-			//List redefinedClassifierToMove = basePart.getRedefinedClassifierToMove();
-			//for (Iterator iter = redefinedClassifierToMove.iterator(); iter.hasNext();){
-			//	MoveElement moveElement = (MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier(), moveElement.getElement(), moveElement.getIndex()));
-			//}
+			// List redefinedClassifierToMove = basePart.getRedefinedClassifierToMove();
+			// for (Iterator iter = redefinedClassifierToMove.iterator(); iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier(), moveElement.getElement(), moveElement.getIndex()));
+			// }
 			List substitutionToAdd = basePart.getSubstitutionToAdd();
 			for (Iterator iter = substitutionToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_Substitution(), iter.next()));
 			Map substitutionToRefresh = basePart.getSubstitutionToEdit();
 			for (Iterator iter = substitutionToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for substitution reference refreshment
-				
+
 				Substitution nextElement = (Substitution) iter.next();
 				Substitution substitution = (Substitution) substitutionToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List substitutionToRemove = basePart.getSubstitutionToRemove();
 			for (Iterator iter = substitutionToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List substitutionToMove = basePart.getSubstitutionToMove();
-			for (Iterator iter = substitutionToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = substitutionToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getSubstitution(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List collaborationUseToAdd = basePart.getCollaborationUseToAdd();
@@ -472,20 +506,20 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_CollaborationUse(), iter.next()));
 			Map collaborationUseToRefresh = basePart.getCollaborationUseToEdit();
 			for (Iterator iter = collaborationUseToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for collaborationUse reference refreshment
-				
+
 				CollaborationUse nextElement = (CollaborationUse) iter.next();
 				CollaborationUse collaborationUse = (CollaborationUse) collaborationUseToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List collaborationUseToRemove = basePart.getCollaborationUseToRemove();
 			for (Iterator iter = collaborationUseToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List collaborationUseToMove = basePart.getCollaborationUseToMove();
-			for (Iterator iter = collaborationUseToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = collaborationUseToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getCollaborationUse(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List ownedUseCaseToAdd = basePart.getOwnedUseCaseToAdd();
@@ -493,20 +527,20 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_OwnedUseCase(), iter.next()));
 			Map ownedUseCaseToRefresh = basePart.getOwnedUseCaseToEdit();
 			for (Iterator iter = ownedUseCaseToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for ownedUseCase reference refreshment
-				
+
 				UseCase nextElement = (UseCase) iter.next();
 				UseCase ownedUseCase = (UseCase) ownedUseCaseToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List ownedUseCaseToRemove = basePart.getOwnedUseCaseToRemove();
 			for (Iterator iter = ownedUseCaseToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedUseCaseToMove = basePart.getOwnedUseCaseToMove();
-			for (Iterator iter = ownedUseCaseToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = ownedUseCaseToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getUseCase(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List useCaseToAdd = basePart.getUseCaseToAdd();
@@ -515,30 +549,30 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 			List useCaseToRemove = basePart.getUseCaseToRemove();
 			for (Iterator iter = useCaseToRemove.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getClassifier_UseCase(), iter.next()));
-			//List useCaseToMove = basePart.getUseCaseToMove();
-			//for (Iterator iter = useCaseToMove.iterator(); iter.hasNext();){
-			//	MoveElement moveElement = (MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getUseCase(), moveElement.getElement(), moveElement.getIndex()));
-			//}
+			// List useCaseToMove = basePart.getUseCaseToMove();
+			// for (Iterator iter = useCaseToMove.iterator(); iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getUseCase(), moveElement.getElement(), moveElement.getIndex()));
+			// }
 			List ownedBehaviorToAdd = basePart.getOwnedBehaviorToAdd();
 			for (Iterator iter = ownedBehaviorToAdd.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior(), iter.next()));
 			Map ownedBehaviorToRefresh = basePart.getOwnedBehaviorToEdit();
 			for (Iterator iter = ownedBehaviorToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for ownedBehavior reference refreshment
-				
+
 				Behavior nextElement = (Behavior) iter.next();
 				Behavior ownedBehavior = (Behavior) ownedBehaviorToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List ownedBehaviorToRemove = basePart.getOwnedBehaviorToRemove();
 			for (Iterator iter = ownedBehaviorToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedBehaviorToMove = basePart.getOwnedBehaviorToMove();
-			for (Iterator iter = ownedBehaviorToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = ownedBehaviorToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getBehavior(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List interfaceRealizationToAdd = basePart.getInterfaceRealizationToAdd();
@@ -546,20 +580,20 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getBehavioredClassifier_InterfaceRealization(), iter.next()));
 			Map interfaceRealizationToRefresh = basePart.getInterfaceRealizationToEdit();
 			for (Iterator iter = interfaceRealizationToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for interfaceRealization reference refreshment
-				
+
 				InterfaceRealization nextElement = (InterfaceRealization) iter.next();
 				InterfaceRealization interfaceRealization = (InterfaceRealization) interfaceRealizationToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List interfaceRealizationToRemove = basePart.getInterfaceRealizationToRemove();
 			for (Iterator iter = interfaceRealizationToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List interfaceRealizationToMove = basePart.getInterfaceRealizationToMove();
-			for (Iterator iter = interfaceRealizationToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = interfaceRealizationToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getInterfaceRealization(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List ownedTriggerToAdd = basePart.getOwnedTriggerToAdd();
@@ -567,23 +601,22 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 				cc.append(AddCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedTrigger(), iter.next()));
 			Map ownedTriggerToRefresh = basePart.getOwnedTriggerToEdit();
 			for (Iterator iter = ownedTriggerToRefresh.keySet().iterator(); iter.hasNext();) {
-			
+
 				// Start of user code for ownedTrigger reference refreshment
-				
+
 				Trigger nextElement = (Trigger) iter.next();
 				Trigger ownedTrigger = (Trigger) ownedTriggerToRefresh.get(nextElement);
-				
-				// End of user code			
+
+				// End of user code
 			}
 			List ownedTriggerToRemove = basePart.getOwnedTriggerToRemove();
 			for (Iterator iter = ownedTriggerToRemove.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedTriggerToMove = basePart.getOwnedTriggerToMove();
-			for (Iterator iter = ownedTriggerToMove.iterator(); iter.hasNext();){
-				MoveElement moveElement = (MoveElement)iter.next();
+			for (Iterator iter = ownedTriggerToMove.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
 				cc.append(MoveCommand.create(editingDomain, actor, UMLPackage.eINSTANCE.getTrigger(), moveElement.getElement(), moveElement.getIndex()));
 			}
-
 
 		}
 		if (!cc.isEmpty())
@@ -592,25 +625,28 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 		return cc;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject
-	 * ()
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof Actor) {
-			Actor actorToUpdate = (Actor)source;
+			Actor actorToUpdate = (Actor) source;
 			actorToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			actorToUpdate.setName(basePart.getName());
-			actorToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());
+
+			actorToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
+
 			actorToUpdate.getClientDependencies().addAll(basePart.getClientDependencyToAdd());
 			actorToUpdate.getElementImports().addAll(basePart.getElementImportToAdd());
 			actorToUpdate.getPackageImports().addAll(basePart.getPackageImportToAdd());
 			actorToUpdate.getOwnedRules().addAll(basePart.getOwnedRuleToAdd());
 			actorToUpdate.setIsLeaf(new Boolean(basePart.getIsLeaf()).booleanValue());
+
 			actorToUpdate.getTemplateBindings().addAll(basePart.getTemplateBindingToAdd());
 			actorToUpdate.setIsAbstract(new Boolean(basePart.getIsAbstract()).booleanValue());
+
 			actorToUpdate.getGeneralizations().addAll(basePart.getGeneralizationToAdd());
 			actorToUpdate.getPowertypeExtents().addAll(basePart.getPowertypeExtentToAdd());
 			actorToUpdate.getRedefinedClassifiers().addAll(basePart.getRedefinedClassifierToAdd());
@@ -622,304 +658,266 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 			actorToUpdate.getInterfaceRealizations().addAll(basePart.getInterfaceRealizationToAdd());
 			actorToUpdate.getOwnedTriggers().addAll(basePart.getOwnedTriggerToAdd());
 
-
 			return actorToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener#firePropertiesChanged(org.eclipse.emf.common.notify.Notification)
 	 */
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PathedPropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.Actor.ownedComment == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment)event.getOldValue();
-					Comment newValue = (Comment)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					Comment oldValue = (Comment) event.getOldValue();
+					Comment newValue = (Comment) event.getNewValue();
+
 					// Start of user code for ownedComment live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.name == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));	
+				command.append(SetCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
 			if (UMLViewsRepository.Actor.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
 			if (UMLViewsRepository.Actor.clientDependency == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.ADD == event.getKind())
+				if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.elementImport == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					ElementImport oldValue = (ElementImport)event.getOldValue();
-					ElementImport newValue = (ElementImport)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					ElementImport oldValue = (ElementImport) event.getOldValue();
+					ElementImport newValue = (ElementImport) event.getNewValue();
+
 					// Start of user code for elementImport live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamespace_ElementImport(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getElementImport(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.packageImport == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					PackageImport oldValue = (PackageImport)event.getOldValue();
-					PackageImport newValue = (PackageImport)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					PackageImport oldValue = (PackageImport) event.getOldValue();
+					PackageImport newValue = (PackageImport) event.getNewValue();
+
 					// Start of user code for packageImport live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamespace_PackageImport(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getPackageImport(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.ownedRule == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					Constraint oldValue = (Constraint)event.getOldValue();
-					Constraint newValue = (Constraint)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					Constraint oldValue = (Constraint) event.getOldValue();
+					Constraint newValue = (Constraint) event.getNewValue();
+
 					// Start of user code for ownedRule live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getConstraint(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.isLeaf == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), event.getNewValue()));
 
 			if (UMLViewsRepository.Actor.templateBinding == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					TemplateBinding oldValue = (TemplateBinding)event.getOldValue();
-					TemplateBinding newValue = (TemplateBinding)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					TemplateBinding oldValue = (TemplateBinding) event.getOldValue();
+					TemplateBinding newValue = (TemplateBinding) event.getNewValue();
+
 					// Start of user code for templateBinding live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getTemplateableElement_TemplateBinding(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getTemplateBinding(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.isAbstract == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_IsAbstract(), event.getNewValue()));
 
 			if (UMLViewsRepository.Actor.generalization == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					Generalization oldValue = (Generalization)event.getOldValue();
-					Generalization newValue = (Generalization)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					Generalization oldValue = (Generalization) event.getOldValue();
+					Generalization newValue = (Generalization) event.getNewValue();
+
 					// Start of user code for generalization live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_Generalization(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getGeneralization(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.powertypeExtent == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.ADD == event.getKind())
+				if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_PowertypeExtent(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_PowertypeExtent(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_PowertypeExtent(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.redefinedClassifier == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.ADD == event.getKind())
+				if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_RedefinedClassifier(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.substitution == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					Substitution oldValue = (Substitution)event.getOldValue();
-					Substitution newValue = (Substitution)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					Substitution oldValue = (Substitution) event.getOldValue();
+					Substitution newValue = (Substitution) event.getNewValue();
+
 					// Start of user code for substitution live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_Substitution(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getSubstitution(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.collaborationUse == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					CollaborationUse oldValue = (CollaborationUse)event.getOldValue();
-					CollaborationUse newValue = (CollaborationUse)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					CollaborationUse oldValue = (CollaborationUse) event.getOldValue();
+					CollaborationUse newValue = (CollaborationUse) event.getNewValue();
+
 					// Start of user code for collaborationUse live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_CollaborationUse(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getCollaborationUse(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.ownedUseCase == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					UseCase oldValue = (UseCase)event.getOldValue();
-					UseCase newValue = (UseCase)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					UseCase oldValue = (UseCase) event.getOldValue();
+					UseCase newValue = (UseCase) event.getNewValue();
+
 					// Start of user code for ownedUseCase live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_OwnedUseCase(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getUseCase(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.useCase == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.ADD == event.getKind())
+				if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_UseCase(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_UseCase(), event.getNewValue()));
-				if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getClassifier_UseCase(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.ownedBehavior == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					Behavior oldValue = (Behavior)event.getOldValue();
-					Behavior newValue = (Behavior)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					Behavior oldValue = (Behavior) event.getOldValue();
+					Behavior newValue = (Behavior) event.getNewValue();
+
 					// Start of user code for ownedBehavior live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getBehavior(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.interfaceRealization == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					InterfaceRealization oldValue = (InterfaceRealization)event.getOldValue();
-					InterfaceRealization newValue = (InterfaceRealization)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					InterfaceRealization oldValue = (InterfaceRealization) event.getOldValue();
+					InterfaceRealization newValue = (InterfaceRealization) event.getNewValue();
+
 					// Start of user code for interfaceRealization live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getBehavioredClassifier_InterfaceRealization(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getInterfaceRealization(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.Actor.ownedTrigger == event.getAffectedEditor()) {
-				if (PathedPropertiesEditionEvent.SET == event.getKind()) {
-					Trigger oldValue = (Trigger)event.getOldValue();
-					Trigger newValue = (Trigger)event.getNewValue();
+				if (PropertiesEditionEvent.SET == event.getKind()) {
+					Trigger oldValue = (Trigger) event.getOldValue();
+					Trigger newValue = (Trigger) event.getNewValue();
+
 					// Start of user code for ownedTrigger live update command
 					// TODO: Complete the actor update command
-					// End of user code					
-				}
-				else if (PathedPropertiesEditionEvent.ADD == event.getKind())
+					// End of user code
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedTrigger(), event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.REMOVE == event.getKind())
+				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PathedPropertiesEditionEvent.MOVE == event.getKind())
+				else if (PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, actor, UMLPackage.eINSTANCE.getTrigger(), event.getNewValue(), event.getNewIndex()));
 			}
 
-
 			if (command != null)
 				liveEditingDomain.getCommandStack().execute(command);
-		} else if (PathedPropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
-				
+
 				if (UMLViewsRepository.Actor.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-
 
 			} else {
-				
+
 				if (UMLViewsRepository.Actor.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-
 
 			}
 		}
-	}	
+	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
 	 */
 	public boolean isRequired(String key, int kind) {
@@ -928,57 +926,59 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String, int)
 	 */
 	public String getHelpContent(String key, int kind) {
-			if (key == UMLViewsRepository.Actor.ownedComment)
-				return "The Comments owned by this element."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.name)
-				return "The name of the NamedElement."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.visibility)
-				return "Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.clientDependency)
-				return "Indicates the dependencies that reference the client."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.elementImport)
-				return "References the ElementImports owned by the Namespace."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.packageImport)
-				return "References the PackageImports owned by the Namespace."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.ownedRule)
-				return "Specifies a set of Constraints owned by this Namespace."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.isLeaf)
-				return "Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.templateBinding)
-				return "The optional bindings from this element to templates."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.isAbstract)
-				return "If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.generalization)
-				return "Specifies the Generalization relationships for this Classifier. These Generalizations navigaten to more general classifiers in the generalization hierarchy."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.powertypeExtent)
-				return "Designates the GeneralizationSet of which the associated Classifier is a power type."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.redefinedClassifier)
-				return "References the Classifiers that are redefined by this Classifier."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.substitution)
-				return "References the substitutions that are owned by this Classifier."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.collaborationUse)
-				return "References the collaboration uses owned by the classifier."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.ownedUseCase)
-				return "References the use cases owned by this classifier."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.useCase)
-				return "The set of use cases for which this Classifier is the subject."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.ownedBehavior)
-				return "References behavior specifications owned by a classifier."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.interfaceRealization)
-				return "The set of InterfaceRealizations owned by the BehavioredClassifier. Interface realizations reference the Interfaces of which the BehavioredClassifier is an implementation."; //$NON-NLS-1$
-			if (key == UMLViewsRepository.Actor.ownedTrigger)
-				return "References Trigger descriptions owned by a Classifier."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.ownedComment)
+			return "The Comments owned by this element."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.name)
+			return "The name of the NamedElement."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.visibility)
+			return "Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.clientDependency)
+			return "Indicates the dependencies that reference the client."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.elementImport)
+			return "References the ElementImports owned by the Namespace."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.packageImport)
+			return "References the PackageImports owned by the Namespace."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.ownedRule)
+			return "Specifies a set of Constraints owned by this Namespace."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.isLeaf)
+			return "Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.templateBinding)
+			return "The optional bindings from this element to templates."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.isAbstract)
+			return "If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.generalization)
+			return "Specifies the Generalization relationships for this Classifier. These Generalizations navigaten to more general classifiers in the generalization hierarchy."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.powertypeExtent)
+			return "Designates the GeneralizationSet of which the associated Classifier is a power type."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.redefinedClassifier)
+			return "References the Classifiers that are redefined by this Classifier."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.substitution)
+			return "References the substitutions that are owned by this Classifier."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.collaborationUse)
+			return "References the collaboration uses owned by the classifier."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.ownedUseCase)
+			return "References the use cases owned by this classifier."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.useCase)
+			return "The set of use cases for which this Classifier is the subject."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.ownedBehavior)
+			return "References behavior specifications owned by a classifier."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.interfaceRealization)
+			return "The set of InterfaceRealizations owned by the BehavioredClassifier. Interface realizations reference the Interfaces of which the BehavioredClassifier is an implementation."; //$NON-NLS-1$
+		if (key == UMLViewsRepository.Actor.ownedTrigger)
+			return "References Trigger descriptions owned by a Classifier."; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
-	public Diagnostic validateValue(PathedPropertiesEditionEvent event) {
+	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
 		try {
@@ -1011,17 +1011,15 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(mode)) {
+		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
 			return Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(mode))
+		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			return Diagnostician.INSTANCE.validate(actor);
 		else
 			return null;
 	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -1034,4 +1032,3 @@ public class ActorBasePropertiesEditionComponent extends StandardPropertiesEditi
 	}
 
 }
-

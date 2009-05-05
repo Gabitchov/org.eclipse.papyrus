@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ReadStructuralFeatureActionPropertiesEditionComponent extends Compo
 	 * @param readStructuralFeatureAction
 	 *            the EObject to edit
 	 */
-	public ReadStructuralFeatureActionPropertiesEditionComponent(EObject readStructuralFeatureAction, String mode) {
-		super(mode);
+	public ReadStructuralFeatureActionPropertiesEditionComponent(EObject readStructuralFeatureAction, String editing_mode) {
+		super(editing_mode);
 		if (readStructuralFeatureAction instanceof ReadStructuralFeatureAction) {
-			addSubComponent(new ReadStructuralFeatureActionBasePropertiesEditionComponent(readStructuralFeatureAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(readStructuralFeatureAction, mode));
+			addSubComponent(new ReadStructuralFeatureActionBasePropertiesEditionComponent(readStructuralFeatureAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(readStructuralFeatureAction, editing_mode));
 		}
 	}
 }
-

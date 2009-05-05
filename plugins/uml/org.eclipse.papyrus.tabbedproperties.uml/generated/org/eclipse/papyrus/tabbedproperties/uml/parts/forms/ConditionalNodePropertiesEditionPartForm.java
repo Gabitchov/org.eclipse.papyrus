@@ -12,43 +12,18 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.forms;
 
 // Start of user code for imports
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.EEFMessageManager;
-import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import org.eclipse.emf.eef.runtime.impl.notify.PathedPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFEnumViewer;
-import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
@@ -62,27 +37,89 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.IMessageManager;
+import org.eclipse.ui.forms.events.ExpansionEvent;
+import org.eclipse.ui.forms.events.IExpansionListener;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.forms.events.ExpansionEvent;
+import org.eclipse.ui.forms.events.IExpansionListener;
+
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
+import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+import org.eclipse.emf.eef.runtime.api.parts.EEFMessageManager;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.jface.viewers.StructuredSelection;
+import java.util.Iterator;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFModelViewerDialog;
+import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
+import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.InterruptibleActivityRegion;
+import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
+import java.util.Map;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.ExceptionHandler;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Variable;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Clause;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.ExceptionHandler;
-import org.eclipse.uml2.uml.InterruptibleActivityRegion;
 import org.eclipse.uml2.uml.OutputPin;
-import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.Variable;
+
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
 /**
@@ -91,74 +128,110 @@ import org.eclipse.uml2.uml.Variable;
 public class ConditionalNodePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ConditionalNodePropertiesEditionPart {
 
 	private EMFListEditUtil ownedCommentEditUtil;
+
 	private ReferencesTable<?> ownedComment;
+
 	private Text name;
-	private EMFEnumViewer visibility;
+
+	private EMFComboViewer visibility;
+
 	private EMFListEditUtil clientDependencyEditUtil;
+
 	private ReferencesTable<?> clientDependency;
+
 	private Button isLeaf;
+
 	private EMFListEditUtil outgoingEditUtil;
+
 	private ReferencesTable<?> outgoing;
+
 	private EMFListEditUtil incomingEditUtil;
+
 	private ReferencesTable<?> incoming;
+
 	private EMFListEditUtil inPartitionEditUtil;
+
 	private ReferencesTable<?> inPartition;
+
 	private EMFListEditUtil inInterruptibleRegionEditUtil;
+
 	private ReferencesTable<?> inInterruptibleRegion;
+
 	private EMFListEditUtil redefinedNodeEditUtil;
+
 	private ReferencesTable<?> redefinedNode;
+
 	private EMFListEditUtil handlerEditUtil;
+
 	private ReferencesTable<?> handler;
+
 	private EMFListEditUtil localPreconditionEditUtil;
+
 	private ReferencesTable<?> localPrecondition;
+
 	private EMFListEditUtil localPostconditionEditUtil;
+
 	private ReferencesTable<?> localPostcondition;
+
 	private EMFListEditUtil elementImportEditUtil;
+
 	private ReferencesTable<?> elementImport;
+
 	private EMFListEditUtil packageImportEditUtil;
+
 	private ReferencesTable<?> packageImport;
+
 	private EMFListEditUtil ownedRuleEditUtil;
+
 	private ReferencesTable<?> ownedRule;
+
 	private EMFListEditUtil variableEditUtil;
+
 	private ReferencesTable<?> variable;
+
 	private EMFListEditUtil edgeEditUtil;
+
 	private ReferencesTable<?> edge;
+
 	private Button mustIsolate;
+
 	private EMFListEditUtil nodeEditUtil;
+
 	private ReferencesTable<?> node;
+
 	private Button isDeterminate;
+
 	private Button isAssured;
+
 	private EMFListEditUtil clauseEditUtil;
+
 	private ReferencesTable<?> clause;
+
 	private EMFListEditUtil resultEditUtil;
+
 	private ReferencesTable<?> result;
 
-
-
-
-	
 	public ConditionalNodePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
-		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);		
+		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
 		view = form.getBody();
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
-		view.setLayout(layout);	
-		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));		
-		
+		view.setLayout(layout);
+		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
-	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) { 
+
+	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createPropertiesGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-		
-		// End of user code		
+
+		// End of user code
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
@@ -196,17 +269,32 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		createClauseTableComposition(widgetFactory, propertiesGroup);
 		createResultTableComposition(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
-	}   		
+	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ConditionalNodePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }			
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { System.out.println("---> navigateTo"); }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ConditionalNodePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
@@ -214,41 +302,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		ownedCommentData.horizontalSpan = 3;
 		this.ownedComment.setLayoutData(ownedCommentData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToOwnedComment() {
-	
+
 		// Start of user code addToOwnedComment() method body
-		
-		
+
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedComment,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -261,7 +348,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -272,24 +360,27 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-				 
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedComment, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedComment,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConditionalNodePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ConditionalNode.name, UMLViewsRepository.FORM_KIND));
-		name = widgetFactory.createText(parent, "");  //$NON-NLS-1$
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConditionalNodePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ConditionalNode.name,
+				UMLViewsRepository.FORM_KIND));
+		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
@@ -303,9 +394,10 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.name, PathedPropertiesEditionEvent.CHANGE, PathedPropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.name,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 		name.addFocusListener(new FocusAdapter() {
 
@@ -316,9 +408,10 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			 */
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.name, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.name,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 		name.addKeyListener(new KeyAdapter() {
 
@@ -330,16 +423,20 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.name, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, null, name.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.name,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
-			
+
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+
 	}
+
 	protected void createVisibilityEEnumViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConditionalNodePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ConditionalNode.visibility, UMLViewsRepository.FORM_KIND));
-		visibility = new EMFEnumViewer(parent);
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConditionalNodePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(
+				UMLViewsRepository.ConditionalNode.visibility, UMLViewsRepository.FORM_KIND));
+		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
@@ -353,44 +450,61 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.visibility, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, null, getVisibility()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.visibility,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
-			
+
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-	protected void createClientDependencyReferencesTable(FormToolkit widgetFactory, Composite parent) {	
+
+	protected void createClientDependencyReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.ConditionalNodePropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter clientDependencyFilter = new EObjectFilter(UMLPackage.eINSTANCE.getDependency());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!clientDependencyEditUtil.contains((EObject)element));
-						return false;				
+							return (!clientDependencyEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { clientDependencyFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, filters, 
-				"Dependency", UMLPackage.eINSTANCE.getDependency()) {
+				};
+				List filters = new ArrayList();
+				filters.add(clientDependencyFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, filters, "Dependency", UMLPackage.eINSTANCE.getDependency()) {
+
 					@Override
-					public void process(IStructuredSelection selection) {						
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clientDependency,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this,
+									UMLViewsRepository.ConditionalNode.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						clientDependency.refresh();												
+						clientDependency.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(Dependency element) {
+				editClientDependency(element);
+			}
+
+			public void handleMove(Dependency element, int oldIndex, int newIndex) {
+				moveClientDependency(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Dependency element) {
+				removeFromClientDependency(element);
+			}
+
+			public void navigateTo(Dependency element) {
+			}
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.clientDependency, UMLViewsRepository.FORM_KIND));
 		this.clientDependency.createControls(parent, widgetFactory);
@@ -399,20 +513,18 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		this.clientDependency.setLayoutData(clientDependencyData);
 		this.clientDependency.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveClientDependency(Dependency element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.moveElement(element, oldIndex, newIndex);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));
-	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clientDependency,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -423,7 +535,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.removeElement(element);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clientDependency,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -434,74 +547,92 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editClientDependency(Dependency element) {
 
 		// Start of user code editClientDependency() method body
-				 
+
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clientDependency, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clientDependency,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createIsLeafCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isLeaf = widgetFactory.createButton(parent, UMLMessages.ConditionalNodePropertiesEditionPart_IsLeafLabel, SWT.CHECK);
-   		isLeaf.addSelectionListener(new SelectionAdapter() {
+		isLeaf.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 *
+			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.isLeaf, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, null, new Boolean(isLeaf.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.isLeaf,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isLeaf.getSelection())));
 			}
-   			
-   			
-   		});
+
+		});
 		GridData isLeafData = new GridData(GridData.FILL_HORIZONTAL);
 		isLeafData.horizontalSpan = 2;
 		isLeaf.setLayoutData(isLeafData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.isLeaf, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-	protected void createOutgoingReferencesTable(FormToolkit widgetFactory, Composite parent) {	
+
+	protected void createOutgoingReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.outgoing = new ReferencesTable<ActivityEdge>(UMLMessages.ConditionalNodePropertiesEditionPart_OutgoingLabel, new ReferencesTableListener<ActivityEdge>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter outgoingFilter = new EObjectFilter(UMLPackage.eINSTANCE.getActivityEdge());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!outgoingEditUtil.contains((EObject)element));
-						return false;				
+							return (!outgoingEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { outgoingFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, filters, 
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge()) {
+				};
+				List filters = new ArrayList();
+				filters.add(outgoingFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, filters, "ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge()) {
+
 					@Override
-					public void process(IStructuredSelection selection) {						
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!outgoingEditUtil.getVirtualList().contains(elem))
 								outgoingEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.outgoing,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.outgoing,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						outgoing.refresh();												
+						outgoing.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityEdge element) { editOutgoing(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveOutgoing(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromOutgoing(element); }
-			public void navigateTo(ActivityEdge element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(ActivityEdge element) {
+				editOutgoing(element);
+			}
+
+			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+				moveOutgoing(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityEdge element) {
+				removeFromOutgoing(element);
+			}
+
+			public void navigateTo(ActivityEdge element) {
+			}
 		});
 		this.outgoing.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.outgoing, UMLViewsRepository.FORM_KIND));
 		this.outgoing.createControls(parent, widgetFactory);
@@ -510,13 +641,13 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		this.outgoing.setLayoutData(outgoingData);
 		this.outgoing.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveOutgoing(ActivityEdge element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -527,7 +658,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = outgoingEditUtil.foundCorrespondingEObject(element);
 		outgoingEditUtil.removeElement(element);
 		outgoing.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.outgoing, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.outgoing,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -538,53 +670,70 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editOutgoing(ActivityEdge element) {
 
 		// Start of user code editOutgoing() method body
-				 
+
 		EObject editedElement = outgoingEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				outgoingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				outgoing.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.outgoing, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.outgoing,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
-	protected void createIncomingReferencesTable(FormToolkit widgetFactory, Composite parent) {	
+
+	protected void createIncomingReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.incoming = new ReferencesTable<ActivityEdge>(UMLMessages.ConditionalNodePropertiesEditionPart_IncomingLabel, new ReferencesTableListener<ActivityEdge>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter incomingFilter = new EObjectFilter(UMLPackage.eINSTANCE.getActivityEdge());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!incomingEditUtil.contains((EObject)element));
-						return false;				
+							return (!incomingEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { incomingFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, filters, 
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge()) {
+				};
+				List filters = new ArrayList();
+				filters.add(incomingFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, filters, "ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge()) {
+
 					@Override
-					public void process(IStructuredSelection selection) {						
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!incomingEditUtil.getVirtualList().contains(elem))
 								incomingEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.incoming,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.incoming,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						incoming.refresh();												
+						incoming.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityEdge element) { editIncoming(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveIncoming(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromIncoming(element); }
-			public void navigateTo(ActivityEdge element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(ActivityEdge element) {
+				editIncoming(element);
+			}
+
+			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+				moveIncoming(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityEdge element) {
+				removeFromIncoming(element);
+			}
+
+			public void navigateTo(ActivityEdge element) {
+			}
 		});
 		this.incoming.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.incoming, UMLViewsRepository.FORM_KIND));
 		this.incoming.createControls(parent, widgetFactory);
@@ -593,13 +742,13 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		this.incoming.setLayoutData(incomingData);
 		this.incoming.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveIncoming(ActivityEdge element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -610,7 +759,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = incomingEditUtil.foundCorrespondingEObject(element);
 		incomingEditUtil.removeElement(element);
 		incoming.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.incoming, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.incoming,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -621,53 +771,71 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editIncoming(ActivityEdge element) {
 
 		// Start of user code editIncoming() method body
-				 
+
 		EObject editedElement = incomingEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				incomingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				incoming.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.incoming, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.incoming,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
-	protected void createInPartitionReferencesTable(FormToolkit widgetFactory, Composite parent) {	
+
+	protected void createInPartitionReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.inPartition = new ReferencesTable<ActivityPartition>(UMLMessages.ConditionalNodePropertiesEditionPart_InPartitionLabel, new ReferencesTableListener<ActivityPartition>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter inPartitionFilter = new EObjectFilter(UMLPackage.eINSTANCE.getActivityPartition());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!inPartitionEditUtil.contains((EObject)element));
-						return false;				
+							return (!inPartitionEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { inPartitionFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<ActivityPartition> dialog = new TabElementTreeSelectionDialog<ActivityPartition>(resourceSet, filters, 
-				"ActivityPartition", UMLPackage.eINSTANCE.getActivityPartition()) {
+				};
+				List filters = new ArrayList();
+				filters.add(inPartitionFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<ActivityPartition> dialog = new TabElementTreeSelectionDialog<ActivityPartition>(resourceSet, filters, "ActivityPartition", UMLPackage.eINSTANCE
+						.getActivityPartition()) {
+
 					@Override
-					public void process(IStructuredSelection selection) {						
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!inPartitionEditUtil.getVirtualList().contains(elem))
 								inPartitionEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inPartition,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inPartition,
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						inPartition.refresh();												
+						inPartition.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityPartition element) { editInPartition(element); }
-			public void handleMove(ActivityPartition element, int oldIndex, int newIndex) { moveInPartition(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityPartition element) { removeFromInPartition(element); }
-			public void navigateTo(ActivityPartition element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(ActivityPartition element) {
+				editInPartition(element);
+			}
+
+			public void handleMove(ActivityPartition element, int oldIndex, int newIndex) {
+				moveInPartition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityPartition element) {
+				removeFromInPartition(element);
+			}
+
+			public void navigateTo(ActivityPartition element) {
+			}
 		});
 		this.inPartition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.inPartition, UMLViewsRepository.FORM_KIND));
 		this.inPartition.createControls(parent, widgetFactory);
@@ -676,20 +844,18 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		this.inPartition.setLayoutData(inPartitionData);
 		this.inPartition.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveInPartition(ActivityPartition element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = inPartitionEditUtil.foundCorrespondingEObject(element);
 		inPartitionEditUtil.moveElement(element, oldIndex, newIndex);
 		inPartition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inPartition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));
-	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inPartition,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -700,7 +866,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = inPartitionEditUtil.foundCorrespondingEObject(element);
 		inPartitionEditUtil.removeElement(element);
 		inPartition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inPartition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inPartition,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -711,54 +878,73 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editInPartition(ActivityPartition element) {
 
 		// Start of user code editInPartition() method body
-				 
+
 		EObject editedElement = inPartitionEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				inPartitionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inPartition.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inPartition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inPartition,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
-	protected void createInInterruptibleRegionReferencesTable(FormToolkit widgetFactory, Composite parent) {	
-		this.inInterruptibleRegion = new ReferencesTable<InterruptibleActivityRegion>(UMLMessages.ConditionalNodePropertiesEditionPart_InInterruptibleRegionLabel, new ReferencesTableListener<InterruptibleActivityRegion>() {
-			public void handleAdd() {				
-				ViewerFilter inInterruptibleRegionFilter = new EObjectFilter(UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof EObject)
-							return (!inInterruptibleRegionEditUtil.contains((EObject)element));
-						return false;				
+
+	protected void createInInterruptibleRegionReferencesTable(FormToolkit widgetFactory, Composite parent) {
+		this.inInterruptibleRegion = new ReferencesTable<InterruptibleActivityRegion>(UMLMessages.ConditionalNodePropertiesEditionPart_InInterruptibleRegionLabel,
+				new ReferencesTableListener<InterruptibleActivityRegion>() {
+
+					public void handleAdd() {
+						ViewerFilter inInterruptibleRegionFilter = new EObjectFilter(UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
+						ViewerFilter viewerFilter = new ViewerFilter() {
+
+							public boolean select(Viewer viewer, Object parentElement, Object element) {
+								if (element instanceof EObject)
+									return (!inInterruptibleRegionEditUtil.contains((EObject) element));
+								return false;
+							}
+						};
+						List filters = new ArrayList();
+						filters.add(inInterruptibleRegionFilter);
+						filters.add(viewerFilter);
+						TabElementTreeSelectionDialog<InterruptibleActivityRegion> dialog = new TabElementTreeSelectionDialog<InterruptibleActivityRegion>(resourceSet, filters,
+								"InterruptibleActivityRegion", UMLPackage.eINSTANCE.getInterruptibleActivityRegion()) {
+
+							@Override
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!inInterruptibleRegionEditUtil.getVirtualList().contains(elem))
+										inInterruptibleRegionEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this,
+											UMLViewsRepository.ConditionalNode.inInterruptibleRegion, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								inInterruptibleRegion.refresh();
+							}
+						};
+						dialog.open();
 					}
-				};				
-				ViewerFilter[] filters = { inInterruptibleRegionFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<InterruptibleActivityRegion> dialog = new TabElementTreeSelectionDialog<InterruptibleActivityRegion>(resourceSet, filters, 
-				"InterruptibleActivityRegion", UMLPackage.eINSTANCE.getInterruptibleActivityRegion()) {
-					@Override
-					public void process(IStructuredSelection selection) {						
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!inInterruptibleRegionEditUtil.getVirtualList().contains(elem))
-								inInterruptibleRegionEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inInterruptibleRegion,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));
-						}
-						inInterruptibleRegion.refresh();												
+
+					public void handleEdit(InterruptibleActivityRegion element) {
+						editInInterruptibleRegion(element);
 					}
-				};
-				dialog.open();
-			}
-			public void handleEdit(InterruptibleActivityRegion element) { editInInterruptibleRegion(element); }
-			public void handleMove(InterruptibleActivityRegion element, int oldIndex, int newIndex) { moveInInterruptibleRegion(element, oldIndex, newIndex); }
-			public void handleRemove(InterruptibleActivityRegion element) { removeFromInInterruptibleRegion(element); }
-			public void navigateTo(InterruptibleActivityRegion element) { System.out.println("---> navigateTo"); }
-		});
+
+					public void handleMove(InterruptibleActivityRegion element, int oldIndex, int newIndex) {
+						moveInInterruptibleRegion(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(InterruptibleActivityRegion element) {
+						removeFromInInterruptibleRegion(element);
+					}
+
+					public void navigateTo(InterruptibleActivityRegion element) {
+					}
+				});
 		this.inInterruptibleRegion.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.inInterruptibleRegion, UMLViewsRepository.FORM_KIND));
 		this.inInterruptibleRegion.createControls(parent, widgetFactory);
 		GridData inInterruptibleRegionData = new GridData(GridData.FILL_HORIZONTAL);
@@ -766,20 +952,18 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		this.inInterruptibleRegion.setLayoutData(inInterruptibleRegionData);
 		this.inInterruptibleRegion.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveInInterruptibleRegion(InterruptibleActivityRegion element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = inInterruptibleRegionEditUtil.foundCorrespondingEObject(element);
 		inInterruptibleRegionEditUtil.moveElement(element, oldIndex, newIndex);
 		inInterruptibleRegion.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inInterruptibleRegion, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));
-	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inInterruptibleRegion,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -790,7 +974,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = inInterruptibleRegionEditUtil.foundCorrespondingEObject(element);
 		inInterruptibleRegionEditUtil.removeElement(element);
 		inInterruptibleRegion.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inInterruptibleRegion, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inInterruptibleRegion,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -801,53 +986,70 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editInInterruptibleRegion(InterruptibleActivityRegion element) {
 
 		// Start of user code editInInterruptibleRegion() method body
-				 
+
 		EObject editedElement = inInterruptibleRegionEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				inInterruptibleRegionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inInterruptibleRegion.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inInterruptibleRegion, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.inInterruptibleRegion,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
-	protected void createRedefinedNodeReferencesTable(FormToolkit widgetFactory, Composite parent) {	
+
+	protected void createRedefinedNodeReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.redefinedNode = new ReferencesTable<ActivityNode>(UMLMessages.ConditionalNodePropertiesEditionPart_RedefinedNodeLabel, new ReferencesTableListener<ActivityNode>() {
-			public void handleAdd() {				
+
+			public void handleAdd() {
 				ViewerFilter redefinedNodeFilter = new EObjectFilter(UMLPackage.eINSTANCE.getActivityNode());
-				ViewerFilter viewerFilter = new ViewerFilter() {					
+				ViewerFilter viewerFilter = new ViewerFilter() {
+
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof EObject)
-							return (!redefinedNodeEditUtil.contains((EObject)element));
-						return false;				
+							return (!redefinedNodeEditUtil.contains((EObject) element));
+						return false;
 					}
-				};				
-				ViewerFilter[] filters = { redefinedNodeFilter, viewerFilter };		
-				TabElementTreeSelectionDialog<ActivityNode> dialog = new TabElementTreeSelectionDialog<ActivityNode>(resourceSet, filters, 
-				"ActivityNode", UMLPackage.eINSTANCE.getActivityNode()) {
+				};
+				List filters = new ArrayList();
+				filters.add(redefinedNodeFilter);
+				filters.add(viewerFilter);
+				TabElementTreeSelectionDialog<ActivityNode> dialog = new TabElementTreeSelectionDialog<ActivityNode>(resourceSet, filters, "ActivityNode", UMLPackage.eINSTANCE.getActivityNode()) {
+
 					@Override
-					public void process(IStructuredSelection selection) {						
+					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!redefinedNodeEditUtil.getVirtualList().contains(elem))
 								redefinedNodeEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.redefinedNode,
-								PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this,
+									UMLViewsRepository.ConditionalNode.redefinedNode, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
-						redefinedNode.refresh();												
+						redefinedNode.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityNode element) { editRedefinedNode(element); }
-			public void handleMove(ActivityNode element, int oldIndex, int newIndex) { moveRedefinedNode(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityNode element) { removeFromRedefinedNode(element); }
-			public void navigateTo(ActivityNode element) { System.out.println("---> navigateTo"); }
+
+			public void handleEdit(ActivityNode element) {
+				editRedefinedNode(element);
+			}
+
+			public void handleMove(ActivityNode element, int oldIndex, int newIndex) {
+				moveRedefinedNode(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityNode element) {
+				removeFromRedefinedNode(element);
+			}
+
+			public void navigateTo(ActivityNode element) {
+			}
 		});
 		this.redefinedNode.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.redefinedNode, UMLViewsRepository.FORM_KIND));
 		this.redefinedNode.createControls(parent, widgetFactory);
@@ -856,13 +1058,13 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		this.redefinedNode.setLayoutData(redefinedNodeData);
 		this.redefinedNode.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveRedefinedNode(ActivityNode element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -873,7 +1075,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = redefinedNodeEditUtil.foundCorrespondingEObject(element);
 		redefinedNodeEditUtil.removeElement(element);
 		redefinedNode.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.redefinedNode, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.redefinedNode,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -884,31 +1087,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editRedefinedNode(ActivityNode element) {
 
 		// Start of user code editRedefinedNode() method body
-				 
+
 		EObject editedElement = redefinedNodeEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				redefinedNodeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				redefinedNode.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.redefinedNode, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.redefinedNode,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createHandlerTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.handler = new ReferencesTable<ExceptionHandler>(UMLMessages.ConditionalNodePropertiesEditionPart_HandlerLabel, new ReferencesTableListener<ExceptionHandler>() {			
-			public void handleAdd() { addToHandler();}
-			public void handleEdit(ExceptionHandler element) { editHandler(element); }
-			public void handleMove(ExceptionHandler element, int oldIndex, int newIndex) { moveHandler(element, oldIndex, newIndex); }			
-			public void handleRemove(ExceptionHandler element) { removeFromHandler(element); }
-			public void navigateTo(ExceptionHandler element) { System.out.println("---> navigateTo"); }
+		this.handler = new ReferencesTable<ExceptionHandler>(UMLMessages.ConditionalNodePropertiesEditionPart_HandlerLabel, new ReferencesTableListener<ExceptionHandler>() {
+
+			public void handleAdd() {
+				addToHandler();
+			}
+
+			public void handleEdit(ExceptionHandler element) {
+				editHandler(element);
+			}
+
+			public void handleMove(ExceptionHandler element, int oldIndex, int newIndex) {
+				moveHandler(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ExceptionHandler element) {
+				removeFromHandler(element);
+			}
+
+			public void navigateTo(ExceptionHandler element) {
+			}
 		});
 		this.handler.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.handler, UMLViewsRepository.FORM_KIND));
 		this.handler.createControls(parent, widgetFactory);
@@ -916,41 +1135,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		handlerData.horizontalSpan = 3;
 		this.handler.setLayoutData(handlerData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveHandler(ExceptionHandler element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = handlerEditUtil.foundCorrespondingEObject(element);
 		handlerEditUtil.moveElement(element, oldIndex, newIndex);
 		handler.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.handler, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.handler,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToHandler() {
-	
+
 		// Start of user code addToHandler() method body
-		
-		
+
 		ExceptionHandler eObject = UMLFactory.eINSTANCE.createExceptionHandler();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				handlerEditUtil.addElement(propertiesEditionObject);
 				handler.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.handler, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.handler,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -963,7 +1181,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = handlerEditUtil.foundCorrespondingEObject(element);
 		handlerEditUtil.removeElement(element);
 		handler.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.handler, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.handler,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -974,31 +1193,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editHandler(ExceptionHandler element) {
 
 		// Start of user code editHandler() method body
-				 
+
 		EObject editedElement = handlerEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				handlerEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				handler.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.handler, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.handler,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createLocalPreconditionTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.localPrecondition = new ReferencesTable<Constraint>(UMLMessages.ConditionalNodePropertiesEditionPart_LocalPreconditionLabel, new ReferencesTableListener<Constraint>() {			
-			public void handleAdd() { addToLocalPrecondition();}
-			public void handleEdit(Constraint element) { editLocalPrecondition(element); }
-			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveLocalPrecondition(element, oldIndex, newIndex); }			
-			public void handleRemove(Constraint element) { removeFromLocalPrecondition(element); }
-			public void navigateTo(Constraint element) { System.out.println("---> navigateTo"); }
+		this.localPrecondition = new ReferencesTable<Constraint>(UMLMessages.ConditionalNodePropertiesEditionPart_LocalPreconditionLabel, new ReferencesTableListener<Constraint>() {
+
+			public void handleAdd() {
+				addToLocalPrecondition();
+			}
+
+			public void handleEdit(Constraint element) {
+				editLocalPrecondition(element);
+			}
+
+			public void handleMove(Constraint element, int oldIndex, int newIndex) {
+				moveLocalPrecondition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Constraint element) {
+				removeFromLocalPrecondition(element);
+			}
+
+			public void navigateTo(Constraint element) {
+			}
 		});
 		this.localPrecondition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.localPrecondition, UMLViewsRepository.FORM_KIND));
 		this.localPrecondition.createControls(parent, widgetFactory);
@@ -1006,41 +1241,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		localPreconditionData.horizontalSpan = 3;
 		this.localPrecondition.setLayoutData(localPreconditionData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveLocalPrecondition(Constraint element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = localPreconditionEditUtil.foundCorrespondingEObject(element);
 		localPreconditionEditUtil.moveElement(element, oldIndex, newIndex);
 		localPrecondition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPrecondition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPrecondition,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToLocalPrecondition() {
-	
+
 		// Start of user code addToLocalPrecondition() method body
-		
-		
+
 		Constraint eObject = UMLFactory.eINSTANCE.createConstraint();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				localPreconditionEditUtil.addElement(propertiesEditionObject);
 				localPrecondition.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPrecondition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPrecondition,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1053,7 +1287,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = localPreconditionEditUtil.foundCorrespondingEObject(element);
 		localPreconditionEditUtil.removeElement(element);
 		localPrecondition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPrecondition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPrecondition,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1064,31 +1299,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editLocalPrecondition(Constraint element) {
 
 		// Start of user code editLocalPrecondition() method body
-				 
+
 		EObject editedElement = localPreconditionEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				localPreconditionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				localPrecondition.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPrecondition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPrecondition,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createLocalPostconditionTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.localPostcondition = new ReferencesTable<Constraint>(UMLMessages.ConditionalNodePropertiesEditionPart_LocalPostconditionLabel, new ReferencesTableListener<Constraint>() {			
-			public void handleAdd() { addToLocalPostcondition();}
-			public void handleEdit(Constraint element) { editLocalPostcondition(element); }
-			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveLocalPostcondition(element, oldIndex, newIndex); }			
-			public void handleRemove(Constraint element) { removeFromLocalPostcondition(element); }
-			public void navigateTo(Constraint element) { System.out.println("---> navigateTo"); }
+		this.localPostcondition = new ReferencesTable<Constraint>(UMLMessages.ConditionalNodePropertiesEditionPart_LocalPostconditionLabel, new ReferencesTableListener<Constraint>() {
+
+			public void handleAdd() {
+				addToLocalPostcondition();
+			}
+
+			public void handleEdit(Constraint element) {
+				editLocalPostcondition(element);
+			}
+
+			public void handleMove(Constraint element, int oldIndex, int newIndex) {
+				moveLocalPostcondition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Constraint element) {
+				removeFromLocalPostcondition(element);
+			}
+
+			public void navigateTo(Constraint element) {
+			}
 		});
 		this.localPostcondition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.localPostcondition, UMLViewsRepository.FORM_KIND));
 		this.localPostcondition.createControls(parent, widgetFactory);
@@ -1096,41 +1347,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		localPostconditionData.horizontalSpan = 3;
 		this.localPostcondition.setLayoutData(localPostconditionData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveLocalPostcondition(Constraint element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = localPostconditionEditUtil.foundCorrespondingEObject(element);
 		localPostconditionEditUtil.moveElement(element, oldIndex, newIndex);
 		localPostcondition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPostcondition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPostcondition,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToLocalPostcondition() {
-	
+
 		// Start of user code addToLocalPostcondition() method body
-		
-		
+
 		Constraint eObject = UMLFactory.eINSTANCE.createConstraint();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				localPostconditionEditUtil.addElement(propertiesEditionObject);
 				localPostcondition.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPostcondition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPostcondition,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1143,7 +1393,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = localPostconditionEditUtil.foundCorrespondingEObject(element);
 		localPostconditionEditUtil.removeElement(element);
 		localPostcondition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPostcondition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPostcondition,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1154,31 +1405,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editLocalPostcondition(Constraint element) {
 
 		// Start of user code editLocalPostcondition() method body
-				 
+
 		EObject editedElement = localPostconditionEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				localPostconditionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				localPostcondition.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPostcondition, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.localPostcondition,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createElementImportTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.elementImport = new ReferencesTable<ElementImport>(UMLMessages.ConditionalNodePropertiesEditionPart_ElementImportLabel, new ReferencesTableListener<ElementImport>() {			
-			public void handleAdd() { addToElementImport();}
-			public void handleEdit(ElementImport element) { editElementImport(element); }
-			public void handleMove(ElementImport element, int oldIndex, int newIndex) { moveElementImport(element, oldIndex, newIndex); }			
-			public void handleRemove(ElementImport element) { removeFromElementImport(element); }
-			public void navigateTo(ElementImport element) { System.out.println("---> navigateTo"); }
+		this.elementImport = new ReferencesTable<ElementImport>(UMLMessages.ConditionalNodePropertiesEditionPart_ElementImportLabel, new ReferencesTableListener<ElementImport>() {
+
+			public void handleAdd() {
+				addToElementImport();
+			}
+
+			public void handleEdit(ElementImport element) {
+				editElementImport(element);
+			}
+
+			public void handleMove(ElementImport element, int oldIndex, int newIndex) {
+				moveElementImport(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ElementImport element) {
+				removeFromElementImport(element);
+			}
+
+			public void navigateTo(ElementImport element) {
+			}
 		});
 		this.elementImport.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.elementImport, UMLViewsRepository.FORM_KIND));
 		this.elementImport.createControls(parent, widgetFactory);
@@ -1186,41 +1453,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		elementImportData.horizontalSpan = 3;
 		this.elementImport.setLayoutData(elementImportData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveElementImport(ElementImport element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		elementImportEditUtil.moveElement(element, oldIndex, newIndex);
 		elementImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.elementImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.elementImport,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToElementImport() {
-	
+
 		// Start of user code addToElementImport() method body
-		
-		
+
 		ElementImport eObject = UMLFactory.eINSTANCE.createElementImport();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				elementImportEditUtil.addElement(propertiesEditionObject);
 				elementImport.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.elementImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.elementImport,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1233,7 +1499,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		elementImportEditUtil.removeElement(element);
 		elementImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.elementImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.elementImport,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1244,31 +1511,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editElementImport(ElementImport element) {
 
 		// Start of user code editElementImport() method body
-				 
+
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				elementImportEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				elementImport.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.elementImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.elementImport,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createPackageImportTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.packageImport = new ReferencesTable<PackageImport>(UMLMessages.ConditionalNodePropertiesEditionPart_PackageImportLabel, new ReferencesTableListener<PackageImport>() {			
-			public void handleAdd() { addToPackageImport();}
-			public void handleEdit(PackageImport element) { editPackageImport(element); }
-			public void handleMove(PackageImport element, int oldIndex, int newIndex) { movePackageImport(element, oldIndex, newIndex); }			
-			public void handleRemove(PackageImport element) { removeFromPackageImport(element); }
-			public void navigateTo(PackageImport element) { System.out.println("---> navigateTo"); }
+		this.packageImport = new ReferencesTable<PackageImport>(UMLMessages.ConditionalNodePropertiesEditionPart_PackageImportLabel, new ReferencesTableListener<PackageImport>() {
+
+			public void handleAdd() {
+				addToPackageImport();
+			}
+
+			public void handleEdit(PackageImport element) {
+				editPackageImport(element);
+			}
+
+			public void handleMove(PackageImport element, int oldIndex, int newIndex) {
+				movePackageImport(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(PackageImport element) {
+				removeFromPackageImport(element);
+			}
+
+			public void navigateTo(PackageImport element) {
+			}
 		});
 		this.packageImport.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.packageImport, UMLViewsRepository.FORM_KIND));
 		this.packageImport.createControls(parent, widgetFactory);
@@ -1276,41 +1559,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		packageImportData.horizontalSpan = 3;
 		this.packageImport.setLayoutData(packageImportData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void movePackageImport(PackageImport element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		packageImportEditUtil.moveElement(element, oldIndex, newIndex);
 		packageImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.packageImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.packageImport,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToPackageImport() {
-	
+
 		// Start of user code addToPackageImport() method body
-		
-		
+
 		PackageImport eObject = UMLFactory.eINSTANCE.createPackageImport();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				packageImportEditUtil.addElement(propertiesEditionObject);
 				packageImport.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.packageImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.packageImport,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1323,7 +1605,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		packageImportEditUtil.removeElement(element);
 		packageImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.packageImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.packageImport,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1334,31 +1617,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editPackageImport(PackageImport element) {
 
 		// Start of user code editPackageImport() method body
-				 
+
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				packageImportEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				packageImport.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.packageImport, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.packageImport,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedRuleTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedRule = new ReferencesTable<Constraint>(UMLMessages.ConditionalNodePropertiesEditionPart_OwnedRuleLabel, new ReferencesTableListener<Constraint>() {			
-			public void handleAdd() { addToOwnedRule();}
-			public void handleEdit(Constraint element) { editOwnedRule(element); }
-			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveOwnedRule(element, oldIndex, newIndex); }			
-			public void handleRemove(Constraint element) { removeFromOwnedRule(element); }
-			public void navigateTo(Constraint element) { System.out.println("---> navigateTo"); }
+		this.ownedRule = new ReferencesTable<Constraint>(UMLMessages.ConditionalNodePropertiesEditionPart_OwnedRuleLabel, new ReferencesTableListener<Constraint>() {
+
+			public void handleAdd() {
+				addToOwnedRule();
+			}
+
+			public void handleEdit(Constraint element) {
+				editOwnedRule(element);
+			}
+
+			public void handleMove(Constraint element, int oldIndex, int newIndex) {
+				moveOwnedRule(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Constraint element) {
+				removeFromOwnedRule(element);
+			}
+
+			public void navigateTo(Constraint element) {
+			}
 		});
 		this.ownedRule.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.ownedRule, UMLViewsRepository.FORM_KIND));
 		this.ownedRule.createControls(parent, widgetFactory);
@@ -1366,41 +1665,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		ownedRuleData.horizontalSpan = 3;
 		this.ownedRule.setLayoutData(ownedRuleData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveOwnedRule(Constraint element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		ownedRuleEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedRule.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedRule, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedRule,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToOwnedRule() {
-	
+
 		// Start of user code addToOwnedRule() method body
-		
-		
+
 		Constraint eObject = UMLFactory.eINSTANCE.createConstraint();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedRuleEditUtil.addElement(propertiesEditionObject);
 				ownedRule.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedRule, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedRule,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1413,7 +1711,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		ownedRuleEditUtil.removeElement(element);
 		ownedRule.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedRule, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedRule,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1424,31 +1723,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editOwnedRule(Constraint element) {
 
 		// Start of user code editOwnedRule() method body
-				 
+
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedRuleEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedRule.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedRule, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.ownedRule,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createVariableTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.variable = new ReferencesTable<Variable>(UMLMessages.ConditionalNodePropertiesEditionPart_VariableLabel, new ReferencesTableListener<Variable>() {			
-			public void handleAdd() { addToVariable();}
-			public void handleEdit(Variable element) { editVariable(element); }
-			public void handleMove(Variable element, int oldIndex, int newIndex) { moveVariable(element, oldIndex, newIndex); }			
-			public void handleRemove(Variable element) { removeFromVariable(element); }
-			public void navigateTo(Variable element) { System.out.println("---> navigateTo"); }
+		this.variable = new ReferencesTable<Variable>(UMLMessages.ConditionalNodePropertiesEditionPart_VariableLabel, new ReferencesTableListener<Variable>() {
+
+			public void handleAdd() {
+				addToVariable();
+			}
+
+			public void handleEdit(Variable element) {
+				editVariable(element);
+			}
+
+			public void handleMove(Variable element, int oldIndex, int newIndex) {
+				moveVariable(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Variable element) {
+				removeFromVariable(element);
+			}
+
+			public void navigateTo(Variable element) {
+			}
 		});
 		this.variable.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.variable, UMLViewsRepository.FORM_KIND));
 		this.variable.createControls(parent, widgetFactory);
@@ -1456,41 +1771,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		variableData.horizontalSpan = 3;
 		this.variable.setLayoutData(variableData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveVariable(Variable element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = variableEditUtil.foundCorrespondingEObject(element);
 		variableEditUtil.moveElement(element, oldIndex, newIndex);
 		variable.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.variable, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.variable,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToVariable() {
-	
+
 		// Start of user code addToVariable() method body
-		
-		
+
 		Variable eObject = UMLFactory.eINSTANCE.createVariable();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				variableEditUtil.addElement(propertiesEditionObject);
 				variable.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.variable, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.variable,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1503,7 +1817,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = variableEditUtil.foundCorrespondingEObject(element);
 		variableEditUtil.removeElement(element);
 		variable.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.variable, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.variable,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1514,31 +1829,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editVariable(Variable element) {
 
 		// Start of user code editVariable() method body
-				 
+
 		EObject editedElement = variableEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				variableEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				variable.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.variable, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.variable,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createEdgeTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.edge = new ReferencesTable<ActivityEdge>(UMLMessages.ConditionalNodePropertiesEditionPart_EdgeLabel, new ReferencesTableListener<ActivityEdge>() {			
-			public void handleAdd() { addToEdge();}
-			public void handleEdit(ActivityEdge element) { editEdge(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveEdge(element, oldIndex, newIndex); }			
-			public void handleRemove(ActivityEdge element) { removeFromEdge(element); }
-			public void navigateTo(ActivityEdge element) { System.out.println("---> navigateTo"); }
+		this.edge = new ReferencesTable<ActivityEdge>(UMLMessages.ConditionalNodePropertiesEditionPart_EdgeLabel, new ReferencesTableListener<ActivityEdge>() {
+
+			public void handleAdd() {
+				addToEdge();
+			}
+
+			public void handleEdit(ActivityEdge element) {
+				editEdge(element);
+			}
+
+			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+				moveEdge(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityEdge element) {
+				removeFromEdge(element);
+			}
+
+			public void navigateTo(ActivityEdge element) {
+			}
 		});
 		this.edge.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.edge, UMLViewsRepository.FORM_KIND));
 		this.edge.createControls(parent, widgetFactory);
@@ -1546,22 +1877,21 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		edgeData.horizontalSpan = 3;
 		this.edge.setLayoutData(edgeData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveEdge(ActivityEdge element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToEdge() {
-	
+
 		// Start of user code addToEdge() method body
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1574,7 +1904,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = edgeEditUtil.foundCorrespondingEObject(element);
 		edgeEditUtil.removeElement(element);
 		edge.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.edge, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.edge,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1585,52 +1916,69 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editEdge(ActivityEdge element) {
 
 		// Start of user code editEdge() method body
-				 
+
 		EObject editedElement = edgeEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				edgeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				edge.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.edge, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.edge,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createMustIsolateCheckbox(FormToolkit widgetFactory, Composite parent) {
 		mustIsolate = widgetFactory.createButton(parent, UMLMessages.ConditionalNodePropertiesEditionPart_MustIsolateLabel, SWT.CHECK);
-   		mustIsolate.addSelectionListener(new SelectionAdapter() {
+		mustIsolate.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 *
+			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.mustIsolate, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, null, new Boolean(mustIsolate.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.mustIsolate,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(mustIsolate.getSelection())));
 			}
-   			
-   			
-   		});
+
+		});
 		GridData mustIsolateData = new GridData(GridData.FILL_HORIZONTAL);
 		mustIsolateData.horizontalSpan = 2;
 		mustIsolate.setLayoutData(mustIsolateData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.mustIsolate, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createNodeTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.node = new ReferencesTable<ActivityNode>(UMLMessages.ConditionalNodePropertiesEditionPart_NodeLabel, new ReferencesTableListener<ActivityNode>() {			
-			public void handleAdd() { addToNode();}
-			public void handleEdit(ActivityNode element) { editNode(element); }
-			public void handleMove(ActivityNode element, int oldIndex, int newIndex) { moveNode(element, oldIndex, newIndex); }			
-			public void handleRemove(ActivityNode element) { removeFromNode(element); }
-			public void navigateTo(ActivityNode element) { System.out.println("---> navigateTo"); }
+		this.node = new ReferencesTable<ActivityNode>(UMLMessages.ConditionalNodePropertiesEditionPart_NodeLabel, new ReferencesTableListener<ActivityNode>() {
+
+			public void handleAdd() {
+				addToNode();
+			}
+
+			public void handleEdit(ActivityNode element) {
+				editNode(element);
+			}
+
+			public void handleMove(ActivityNode element, int oldIndex, int newIndex) {
+				moveNode(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityNode element) {
+				removeFromNode(element);
+			}
+
+			public void navigateTo(ActivityNode element) {
+			}
 		});
 		this.node.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.node, UMLViewsRepository.FORM_KIND));
 		this.node.createControls(parent, widgetFactory);
@@ -1638,22 +1986,21 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		nodeData.horizontalSpan = 3;
 		this.node.setLayoutData(nodeData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveNode(ActivityNode element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToNode() {
-	
+
 		// Start of user code addToNode() method body
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1666,7 +2013,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = nodeEditUtil.foundCorrespondingEObject(element);
 		nodeEditUtil.removeElement(element);
 		node.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.node, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.node,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1677,73 +2025,91 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editNode(ActivityNode element) {
 
 		// Start of user code editNode() method body
-				 
+
 		EObject editedElement = nodeEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				nodeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				node.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.node, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.node,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	protected void createIsDeterminateCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isDeterminate = widgetFactory.createButton(parent, UMLMessages.ConditionalNodePropertiesEditionPart_IsDeterminateLabel, SWT.CHECK);
-   		isDeterminate.addSelectionListener(new SelectionAdapter() {
+		isDeterminate.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 *
+			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.isDeterminate, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, null, new Boolean(isDeterminate.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.isDeterminate,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isDeterminate.getSelection())));
 			}
-   			
-   			
-   		});
+
+		});
 		GridData isDeterminateData = new GridData(GridData.FILL_HORIZONTAL);
 		isDeterminateData.horizontalSpan = 2;
 		isDeterminate.setLayoutData(isDeterminateData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.isDeterminate, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsAssuredCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isAssured = widgetFactory.createButton(parent, UMLMessages.ConditionalNodePropertiesEditionPart_IsAssuredLabel, SWT.CHECK);
-   		isAssured.addSelectionListener(new SelectionAdapter() {
+		isAssured.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 *
+			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.isAssured, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, null, new Boolean(isAssured.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.isAssured,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isAssured.getSelection())));
 			}
-   			
-   			
-   		});
+
+		});
 		GridData isAssuredData = new GridData(GridData.FILL_HORIZONTAL);
 		isAssuredData.horizontalSpan = 2;
 		isAssured.setLayoutData(isAssuredData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.isAssured, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createClauseTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.clause = new ReferencesTable<Clause>(UMLMessages.ConditionalNodePropertiesEditionPart_ClauseLabel, new ReferencesTableListener<Clause>() {			
-			public void handleAdd() { addToClause();}
-			public void handleEdit(Clause element) { editClause(element); }
-			public void handleMove(Clause element, int oldIndex, int newIndex) { moveClause(element, oldIndex, newIndex); }			
-			public void handleRemove(Clause element) { removeFromClause(element); }
-			public void navigateTo(Clause element) { System.out.println("---> navigateTo"); }
+		this.clause = new ReferencesTable<Clause>(UMLMessages.ConditionalNodePropertiesEditionPart_ClauseLabel, new ReferencesTableListener<Clause>() {
+
+			public void handleAdd() {
+				addToClause();
+			}
+
+			public void handleEdit(Clause element) {
+				editClause(element);
+			}
+
+			public void handleMove(Clause element, int oldIndex, int newIndex) {
+				moveClause(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Clause element) {
+				removeFromClause(element);
+			}
+
+			public void navigateTo(Clause element) {
+			}
 		});
 		this.clause.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.clause, UMLViewsRepository.FORM_KIND));
 		this.clause.createControls(parent, widgetFactory);
@@ -1751,41 +2117,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		clauseData.horizontalSpan = 3;
 		this.clause.setLayoutData(clauseData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveClause(Clause element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = clauseEditUtil.foundCorrespondingEObject(element);
 		clauseEditUtil.moveElement(element, oldIndex, newIndex);
 		clause.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clause, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clause,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToClause() {
-	
+
 		// Start of user code addToClause() method body
-		
-		
+
 		Clause eObject = UMLFactory.eINSTANCE.createClause();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				clauseEditUtil.addElement(propertiesEditionObject);
 				clause.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clause, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clause,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1798,7 +2163,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = clauseEditUtil.foundCorrespondingEObject(element);
 		clauseEditUtil.removeElement(element);
 		clause.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clause, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clause,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1809,31 +2175,47 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editClause(Clause element) {
 
 		// Start of user code editClause() method body
-				 
+
 		EObject editedElement = clauseEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				clauseEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clause.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clause, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.clause,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createResultTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.result = new ReferencesTable<OutputPin>(UMLMessages.ConditionalNodePropertiesEditionPart_ResultLabel, new ReferencesTableListener<OutputPin>() {			
-			public void handleAdd() { addToResult();}
-			public void handleEdit(OutputPin element) { editResult(element); }
-			public void handleMove(OutputPin element, int oldIndex, int newIndex) { moveResult(element, oldIndex, newIndex); }			
-			public void handleRemove(OutputPin element) { removeFromResult(element); }
-			public void navigateTo(OutputPin element) { System.out.println("---> navigateTo"); }
+		this.result = new ReferencesTable<OutputPin>(UMLMessages.ConditionalNodePropertiesEditionPart_ResultLabel, new ReferencesTableListener<OutputPin>() {
+
+			public void handleAdd() {
+				addToResult();
+			}
+
+			public void handleEdit(OutputPin element) {
+				editResult(element);
+			}
+
+			public void handleMove(OutputPin element, int oldIndex, int newIndex) {
+				moveResult(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(OutputPin element) {
+				removeFromResult(element);
+			}
+
+			public void navigateTo(OutputPin element) {
+			}
 		});
 		this.result.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConditionalNode.result, UMLViewsRepository.FORM_KIND));
 		this.result.createControls(parent, widgetFactory);
@@ -1841,41 +2223,40 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		resultData.horizontalSpan = 3;
 		this.result.setLayoutData(resultData);
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void moveResult(OutputPin element, int oldIndex, int newIndex) {
-				
 		EObject editedElement = resultEditUtil.foundCorrespondingEObject(element);
 		resultEditUtil.moveElement(element, oldIndex, newIndex);
 		result.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.result, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.result,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToResult() {
-	
+
 		// Start of user code addToResult() method body
-		
-		
+
 		OutputPin eObject = UMLFactory.eINSTANCE.createOutputPin();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				resultEditUtil.addElement(propertiesEditionObject);
 				result.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.result, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.result,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
-		// End of user code		
+
+		// End of user code
 	}
 
 	/**
@@ -1888,7 +2269,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EObject editedElement = resultEditUtil.foundCorrespondingEObject(element);
 		resultEditUtil.removeElement(element);
 		result.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.result, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.result,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 	}
@@ -1899,29 +2281,29 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	protected void editResult(OutputPin element) {
 
 		// Start of user code editResult() method body
-				 
+
 		EObject editedElement = resultEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				resultEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				result.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PathedPropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.result, PathedPropertiesEditionEvent.COMMIT, PathedPropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConditionalNodePropertiesEditionPartForm.this, UMLViewsRepository.ConditionalNode.result,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 	}
 
-	
-	public void firePropertiesChanged(PathedPropertiesEditionEvent event) {
+	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code		
+
+		// End of user code
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1930,7 +2312,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getOwnedCommentToAdd() {
 		return ownedCommentEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1939,7 +2321,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getOwnedCommentToRemove() {
 		return ownedCommentEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1947,8 +2329,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getOwnedCommentToEdit() {
 		return ownedCommentEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1956,8 +2338,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getOwnedCommentToMove() {
 		return ownedCommentEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1965,8 +2347,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getOwnedCommentTable() {
 		return ownedCommentEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1977,27 +2359,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			ownedCommentEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
 		this.ownedComment.setInput(ownedCommentEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2006,7 +2384,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public String getName() {
 		return name.getText();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2015,15 +2393,15 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public void setName(String newValue) {
 		name.setText(newValue);
 	}
-	
-	public void setMessageForName (String msg, int msgLevel) {
-	messageManager.addMessage("Name_key", msg, null, msgLevel, name);
-}	
-	
-			public void unsetMessageForName () {
-			messageManager.removeMessage("Name_key", name);
-		}	
-	
+
+	public void setMessageForName(String msg, int msgLevel) {
+		messageManager.addMessage("Name_key", msg, null, msgLevel, name);
+	}
+
+	public void unsetMessageForName() {
+		messageManager.removeMessage("Name_key", name);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2033,7 +2411,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2044,7 +2422,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 		visibility.setSelection(new StructuredSelection(current));
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#setVisibility(Enumerator newValue)
@@ -2052,11 +2430,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2065,7 +2439,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getClientDependencyToAdd() {
 		return clientDependencyEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2074,7 +2448,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getClientDependencyToRemove() {
 		return clientDependencyEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2085,27 +2459,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			clientDependencyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			clientDependencyEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			clientDependencyEditUtil = new EMFListEditUtil(current, feature);
 		this.clientDependency.setInput(clientDependencyEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil!=null){
+		if (clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2114,20 +2484,20 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public Boolean getIsLeaf() {
 		return Boolean.valueOf(isLeaf.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#setIsLeaf(Boolean newValue)
 	 */
 	public void setIsLeaf(Boolean newValue) {
-		isLeaf.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isLeaf.setSelection(newValue.booleanValue());
+		} else {
+			isLeaf.setSelection(false);
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2136,7 +2506,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getOutgoingToAdd() {
 		return outgoingEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2145,7 +2515,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getOutgoingToRemove() {
 		return outgoingEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2156,27 +2526,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			outgoingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			outgoingEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			outgoingEditUtil = new EMFListEditUtil(current, feature);
 		this.outgoing.setInput(outgoingEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateOutgoing(EObject newValue)
 	 */
 	public void updateOutgoing(EObject newValue) {
-		if(outgoingEditUtil!=null){
+		if (outgoingEditUtil != null) {
 			outgoingEditUtil.reinit(newValue);
 			outgoing.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2185,7 +2551,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getIncomingToAdd() {
 		return incomingEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2194,7 +2560,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getIncomingToRemove() {
 		return incomingEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2205,27 +2571,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			incomingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			incomingEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			incomingEditUtil = new EMFListEditUtil(current, feature);
 		this.incoming.setInput(incomingEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateIncoming(EObject newValue)
 	 */
 	public void updateIncoming(EObject newValue) {
-		if(incomingEditUtil!=null){
+		if (incomingEditUtil != null) {
 			incomingEditUtil.reinit(newValue);
 			incoming.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2234,7 +2596,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getInPartitionToAdd() {
 		return inPartitionEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2243,7 +2605,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getInPartitionToRemove() {
 		return inPartitionEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2254,27 +2616,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			inPartitionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			inPartitionEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			inPartitionEditUtil = new EMFListEditUtil(current, feature);
 		this.inPartition.setInput(inPartitionEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateInPartition(EObject newValue)
 	 */
 	public void updateInPartition(EObject newValue) {
-		if(inPartitionEditUtil!=null){
+		if (inPartitionEditUtil != null) {
 			inPartitionEditUtil.reinit(newValue);
 			inPartition.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2283,7 +2641,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getInInterruptibleRegionToAdd() {
 		return inInterruptibleRegionEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2292,7 +2650,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getInInterruptibleRegionToRemove() {
 		return inInterruptibleRegionEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2303,27 +2661,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			inInterruptibleRegionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			inInterruptibleRegionEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			inInterruptibleRegionEditUtil = new EMFListEditUtil(current, feature);
 		this.inInterruptibleRegion.setInput(inInterruptibleRegionEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateInInterruptibleRegion(EObject newValue)
 	 */
 	public void updateInInterruptibleRegion(EObject newValue) {
-		if(inInterruptibleRegionEditUtil!=null){
+		if (inInterruptibleRegionEditUtil != null) {
 			inInterruptibleRegionEditUtil.reinit(newValue);
 			inInterruptibleRegion.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2332,7 +2686,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getRedefinedNodeToAdd() {
 		return redefinedNodeEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2341,7 +2695,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getRedefinedNodeToRemove() {
 		return redefinedNodeEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2352,27 +2706,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			redefinedNodeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			redefinedNodeEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			redefinedNodeEditUtil = new EMFListEditUtil(current, feature);
 		this.redefinedNode.setInput(redefinedNodeEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateRedefinedNode(EObject newValue)
 	 */
 	public void updateRedefinedNode(EObject newValue) {
-		if(redefinedNodeEditUtil!=null){
+		if (redefinedNodeEditUtil != null) {
 			redefinedNodeEditUtil.reinit(newValue);
 			redefinedNode.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2381,7 +2731,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getHandlerToAdd() {
 		return handlerEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2390,7 +2740,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getHandlerToRemove() {
 		return handlerEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2398,8 +2748,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getHandlerToEdit() {
 		return handlerEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2407,8 +2757,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getHandlerToMove() {
 		return handlerEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2416,8 +2766,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getHandlerTable() {
 		return handlerEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2428,27 +2778,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			handlerEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			handlerEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			handlerEditUtil = new EMFListEditUtil(current, feature);
 		this.handler.setInput(handlerEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateHandler(EObject newValue)
 	 */
 	public void updateHandler(EObject newValue) {
-		if(handlerEditUtil!=null){
+		if (handlerEditUtil != null) {
 			handlerEditUtil.reinit(newValue);
 			handler.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2457,7 +2803,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getLocalPreconditionToAdd() {
 		return localPreconditionEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2466,7 +2812,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getLocalPreconditionToRemove() {
 		return localPreconditionEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2474,8 +2820,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getLocalPreconditionToEdit() {
 		return localPreconditionEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2483,8 +2829,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getLocalPreconditionToMove() {
 		return localPreconditionEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2492,8 +2838,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getLocalPreconditionTable() {
 		return localPreconditionEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2504,27 +2850,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			localPreconditionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			localPreconditionEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			localPreconditionEditUtil = new EMFListEditUtil(current, feature);
 		this.localPrecondition.setInput(localPreconditionEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateLocalPrecondition(EObject newValue)
 	 */
 	public void updateLocalPrecondition(EObject newValue) {
-		if(localPreconditionEditUtil!=null){
+		if (localPreconditionEditUtil != null) {
 			localPreconditionEditUtil.reinit(newValue);
 			localPrecondition.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2533,7 +2875,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getLocalPostconditionToAdd() {
 		return localPostconditionEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2542,7 +2884,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getLocalPostconditionToRemove() {
 		return localPostconditionEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2550,8 +2892,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getLocalPostconditionToEdit() {
 		return localPostconditionEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2559,8 +2901,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getLocalPostconditionToMove() {
 		return localPostconditionEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2568,8 +2910,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getLocalPostconditionTable() {
 		return localPostconditionEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2580,27 +2922,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			localPostconditionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			localPostconditionEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			localPostconditionEditUtil = new EMFListEditUtil(current, feature);
 		this.localPostcondition.setInput(localPostconditionEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateLocalPostcondition(EObject newValue)
 	 */
 	public void updateLocalPostcondition(EObject newValue) {
-		if(localPostconditionEditUtil!=null){
+		if (localPostconditionEditUtil != null) {
 			localPostconditionEditUtil.reinit(newValue);
 			localPostcondition.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2609,7 +2947,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getElementImportToAdd() {
 		return elementImportEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2618,7 +2956,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getElementImportToRemove() {
 		return elementImportEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2626,8 +2964,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getElementImportToEdit() {
 		return elementImportEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2635,8 +2973,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getElementImportToMove() {
 		return elementImportEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2644,8 +2982,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getElementImportTable() {
 		return elementImportEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2656,27 +2994,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			elementImportEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			elementImportEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			elementImportEditUtil = new EMFListEditUtil(current, feature);
 		this.elementImport.setInput(elementImportEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateElementImport(EObject newValue)
 	 */
 	public void updateElementImport(EObject newValue) {
-		if(elementImportEditUtil!=null){
+		if (elementImportEditUtil != null) {
 			elementImportEditUtil.reinit(newValue);
 			elementImport.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2685,7 +3019,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getPackageImportToAdd() {
 		return packageImportEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2694,7 +3028,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getPackageImportToRemove() {
 		return packageImportEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2702,8 +3036,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getPackageImportToEdit() {
 		return packageImportEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2711,8 +3045,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getPackageImportToMove() {
 		return packageImportEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2720,8 +3054,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getPackageImportTable() {
 		return packageImportEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2732,27 +3066,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			packageImportEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			packageImportEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			packageImportEditUtil = new EMFListEditUtil(current, feature);
 		this.packageImport.setInput(packageImportEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updatePackageImport(EObject newValue)
 	 */
 	public void updatePackageImport(EObject newValue) {
-		if(packageImportEditUtil!=null){
+		if (packageImportEditUtil != null) {
 			packageImportEditUtil.reinit(newValue);
 			packageImport.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2761,7 +3091,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getOwnedRuleToAdd() {
 		return ownedRuleEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2770,7 +3100,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getOwnedRuleToRemove() {
 		return ownedRuleEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2778,8 +3108,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getOwnedRuleToEdit() {
 		return ownedRuleEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2787,8 +3117,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getOwnedRuleToMove() {
 		return ownedRuleEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2796,8 +3126,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getOwnedRuleTable() {
 		return ownedRuleEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2808,27 +3138,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			ownedRuleEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			ownedRuleEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			ownedRuleEditUtil = new EMFListEditUtil(current, feature);
 		this.ownedRule.setInput(ownedRuleEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateOwnedRule(EObject newValue)
 	 */
 	public void updateOwnedRule(EObject newValue) {
-		if(ownedRuleEditUtil!=null){
+		if (ownedRuleEditUtil != null) {
 			ownedRuleEditUtil.reinit(newValue);
 			ownedRule.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2837,7 +3163,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getVariableToAdd() {
 		return variableEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2846,7 +3172,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getVariableToRemove() {
 		return variableEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2854,8 +3180,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getVariableToEdit() {
 		return variableEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2863,8 +3189,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getVariableToMove() {
 		return variableEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2872,8 +3198,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getVariableTable() {
 		return variableEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2884,27 +3210,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			variableEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			variableEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			variableEditUtil = new EMFListEditUtil(current, feature);
 		this.variable.setInput(variableEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateVariable(EObject newValue)
 	 */
 	public void updateVariable(EObject newValue) {
-		if(variableEditUtil!=null){
+		if (variableEditUtil != null) {
 			variableEditUtil.reinit(newValue);
 			variable.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2913,7 +3235,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getEdgeToAdd() {
 		return edgeEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2922,7 +3244,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getEdgeToRemove() {
 		return edgeEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2930,8 +3252,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getEdgeToEdit() {
 		return edgeEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2939,8 +3261,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getEdgeToMove() {
 		return edgeEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2948,8 +3270,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getEdgeTable() {
 		return edgeEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2960,27 +3282,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			edgeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			edgeEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			edgeEditUtil = new EMFListEditUtil(current, feature);
 		this.edge.setInput(edgeEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateEdge(EObject newValue)
 	 */
 	public void updateEdge(EObject newValue) {
-		if(edgeEditUtil!=null){
+		if (edgeEditUtil != null) {
 			edgeEditUtil.reinit(newValue);
 			edge.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -2989,20 +3307,20 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public Boolean getMustIsolate() {
 		return Boolean.valueOf(mustIsolate.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#setMustIsolate(Boolean newValue)
 	 */
 	public void setMustIsolate(Boolean newValue) {
-		mustIsolate.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			mustIsolate.setSelection(newValue.booleanValue());
+		} else {
+			mustIsolate.setSelection(false);
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3011,7 +3329,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getNodeToAdd() {
 		return nodeEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3020,7 +3338,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getNodeToRemove() {
 		return nodeEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3028,8 +3346,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getNodeToEdit() {
 		return nodeEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3037,8 +3355,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getNodeToMove() {
 		return nodeEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3046,8 +3364,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getNodeTable() {
 		return nodeEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3058,27 +3376,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			nodeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			nodeEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			nodeEditUtil = new EMFListEditUtil(current, feature);
 		this.node.setInput(nodeEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateNode(EObject newValue)
 	 */
 	public void updateNode(EObject newValue) {
-		if(nodeEditUtil!=null){
+		if (nodeEditUtil != null) {
 			nodeEditUtil.reinit(newValue);
 			node.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3087,20 +3401,20 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public Boolean getIsDeterminate() {
 		return Boolean.valueOf(isDeterminate.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#setIsDeterminate(Boolean newValue)
 	 */
 	public void setIsDeterminate(Boolean newValue) {
-		isDeterminate.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isDeterminate.setSelection(newValue.booleanValue());
+		} else {
+			isDeterminate.setSelection(false);
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3109,20 +3423,20 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public Boolean getIsAssured() {
 		return Boolean.valueOf(isAssured.getSelection());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#setIsAssured(Boolean newValue)
 	 */
 	public void setIsAssured(Boolean newValue) {
-		isAssured.setSelection(newValue.booleanValue());
+		if (newValue != null) {
+			isAssured.setSelection(newValue.booleanValue());
+		} else {
+			isAssured.setSelection(false);
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3131,7 +3445,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getClauseToAdd() {
 		return clauseEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3140,7 +3454,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getClauseToRemove() {
 		return clauseEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3148,8 +3462,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getClauseToEdit() {
 		return clauseEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3157,8 +3471,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getClauseToMove() {
 		return clauseEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3166,8 +3480,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getClauseTable() {
 		return clauseEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3178,27 +3492,23 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			clauseEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			clauseEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			clauseEditUtil = new EMFListEditUtil(current, feature);
 		this.clause.setInput(clauseEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateClause(EObject newValue)
 	 */
 	public void updateClause(EObject newValue) {
-		if(clauseEditUtil!=null){
+		if (clauseEditUtil != null) {
 			clauseEditUtil.reinit(newValue);
 			clause.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3207,7 +3517,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getResultToAdd() {
 		return resultEditUtil.getElementsToAdd();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3216,7 +3526,7 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	public List getResultToRemove() {
 		return resultEditUtil.getElementsToRemove();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3224,8 +3534,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public Map getResultToEdit() {
 		return resultEditUtil.getElementsToRefresh();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3233,8 +3543,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getResultToMove() {
 		return resultEditUtil.getElementsToMove();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3242,8 +3552,8 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 	 */
 	public List getResultTable() {
 		return resultEditUtil.getVirtualList();
-	};
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -3254,35 +3564,24 @@ public class ConditionalNodePropertiesEditionPartForm extends CompositePropertie
 			this.resourceSet = current.eResource().getResourceSet();
 		if (containingFeature != null)
 			resultEditUtil = new EMFListEditUtil(current, containingFeature, feature);
-		else	
-			resultEditUtil = new EMFListEditUtil(current, feature);	
+		else
+			resultEditUtil = new EMFListEditUtil(current, feature);
 		this.result.setInput(resultEditUtil.getVirtualList());
 	}
 
-/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConditionalNodePropertiesEditionPart#updateResult(EObject newValue)
 	 */
 	public void updateResult(EObject newValue) {
-		if(resultEditUtil!=null){
+		if (resultEditUtil != null) {
 			resultEditUtil.reinit(newValue);
 			result.refresh();
-		}		
+		}
 	}
-	
-	
-	
-	
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
- 	
+
 	// End of user code
-}	
+}

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class GeneralizationPropertiesEditionComponent extends ComposedProperties
 	 * @param generalization
 	 *            the EObject to edit
 	 */
-	public GeneralizationPropertiesEditionComponent(EObject generalization, String mode) {
-		super(mode);
+	public GeneralizationPropertiesEditionComponent(EObject generalization, String editing_mode) {
+		super(editing_mode);
 		if (generalization instanceof Generalization) {
-			addSubComponent(new GeneralizationBasePropertiesEditionComponent(generalization, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(generalization, mode));
+			addSubComponent(new GeneralizationBasePropertiesEditionComponent(generalization, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(generalization, editing_mode));
 		}
 	}
 }
-

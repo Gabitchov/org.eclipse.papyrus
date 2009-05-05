@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ClearAssociationAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ClearAssociationActionPropertiesEditionComponent extends ComposedPr
 	 * @param clearAssociationAction
 	 *            the EObject to edit
 	 */
-	public ClearAssociationActionPropertiesEditionComponent(EObject clearAssociationAction, String mode) {
-		super(mode);
+	public ClearAssociationActionPropertiesEditionComponent(EObject clearAssociationAction, String editing_mode) {
+		super(editing_mode);
 		if (clearAssociationAction instanceof ClearAssociationAction) {
-			addSubComponent(new ClearAssociationActionBasePropertiesEditionComponent(clearAssociationAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(clearAssociationAction, mode));
+			addSubComponent(new ClearAssociationActionBasePropertiesEditionComponent(clearAssociationAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(clearAssociationAction, editing_mode));
 		}
 	}
 }
-

@@ -45,9 +45,9 @@ Contributors:
         	  
 	     <!-- Generated Sections -->
           <propertySection
-               class="org.eclipse.papyrus.tabbedproperties.uml.properties.ClassBasePropertySection"
-               filter="org.eclipse.papyrus.tabbedproperties.uml.properties.ClassBasePropertySection"
-               id="org.eclipse.papyrus.tabbedproperties.uml.section.ClassBasePropertySection"
+               class="org.eclipse.papyrus.tabbedproperties.uml.properties.Class_BasePropertySection"
+               filter="org.eclipse.papyrus.tabbedproperties.uml.properties.Class_BasePropertySection"
+               id="org.eclipse.papyrus.tabbedproperties.uml.section.Class_BasePropertySection"
                tab="Base">
         </propertySection>
          <propertySection
@@ -213,9 +213,9 @@ Contributors:
                tab="Base">
         </propertySection>
          <propertySection
-               class="org.eclipse.papyrus.tabbedproperties.uml.properties.PackageBasePropertySection"
-               filter="org.eclipse.papyrus.tabbedproperties.uml.properties.PackageBasePropertySection"
-               id="org.eclipse.papyrus.tabbedproperties.uml.section.PackageBasePropertySection"
+               class="org.eclipse.papyrus.tabbedproperties.uml.properties.Package_BasePropertySection"
+               filter="org.eclipse.papyrus.tabbedproperties.uml.properties.Package_BasePropertySection"
+               id="org.eclipse.papyrus.tabbedproperties.uml.section.Package_BasePropertySection"
                tab="Base">
         </propertySection>
          <propertySection
@@ -867,9 +867,9 @@ Contributors:
                tab="Base">
         </propertySection>
          <propertySection
-               class="org.eclipse.papyrus.tabbedproperties.uml.properties.InterfaceBasePropertySection"
-               filter="org.eclipse.papyrus.tabbedproperties.uml.properties.InterfaceBasePropertySection"
-               id="org.eclipse.papyrus.tabbedproperties.uml.section.InterfaceBasePropertySection"
+               class="org.eclipse.papyrus.tabbedproperties.uml.properties.Interface_BasePropertySection"
+               filter="org.eclipse.papyrus.tabbedproperties.uml.properties.Interface_BasePropertySection"
+               id="org.eclipse.papyrus.tabbedproperties.uml.section.Interface_BasePropertySection"
                tab="Base">
         </propertySection>
          <propertySection

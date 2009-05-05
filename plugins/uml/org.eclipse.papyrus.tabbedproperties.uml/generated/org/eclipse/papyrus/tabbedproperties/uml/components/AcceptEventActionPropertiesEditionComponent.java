@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.AcceptEventAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class AcceptEventActionPropertiesEditionComponent extends ComposedPropert
 	 * @param acceptEventAction
 	 *            the EObject to edit
 	 */
-	public AcceptEventActionPropertiesEditionComponent(EObject acceptEventAction, String mode) {
-		super(mode);
+	public AcceptEventActionPropertiesEditionComponent(EObject acceptEventAction, String editing_mode) {
+		super(editing_mode);
 		if (acceptEventAction instanceof AcceptEventAction) {
-			addSubComponent(new AcceptEventActionBasePropertiesEditionComponent(acceptEventAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(acceptEventAction, mode));
+			addSubComponent(new AcceptEventActionBasePropertiesEditionComponent(acceptEventAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(acceptEventAction, editing_mode));
 		}
 	}
 }
-

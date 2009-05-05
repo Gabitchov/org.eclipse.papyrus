@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.QualifierValue;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class QualifierValuePropertiesEditionComponent extends ComposedProperties
 	 * @param qualifierValue
 	 *            the EObject to edit
 	 */
-	public QualifierValuePropertiesEditionComponent(EObject qualifierValue, String mode) {
-		super(mode);
+	public QualifierValuePropertiesEditionComponent(EObject qualifierValue, String editing_mode) {
+		super(editing_mode);
 		if (qualifierValue instanceof QualifierValue) {
-			addSubComponent(new QualifierValueBasePropertiesEditionComponent(qualifierValue, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(qualifierValue, mode));
+			addSubComponent(new QualifierValueBasePropertiesEditionComponent(qualifierValue, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(qualifierValue, editing_mode));
 		}
 	}
 }
-

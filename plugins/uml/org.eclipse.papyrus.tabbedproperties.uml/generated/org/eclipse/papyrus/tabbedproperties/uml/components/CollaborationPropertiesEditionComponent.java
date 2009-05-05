@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Collaboration;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class CollaborationPropertiesEditionComponent extends ComposedPropertiesE
 	 * @param collaboration
 	 *            the EObject to edit
 	 */
-	public CollaborationPropertiesEditionComponent(EObject collaboration, String mode) {
-		super(mode);
+	public CollaborationPropertiesEditionComponent(EObject collaboration, String editing_mode) {
+		super(editing_mode);
 		if (collaboration instanceof Collaboration) {
-			addSubComponent(new CollaborationBasePropertiesEditionComponent(collaboration, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(collaboration, mode));
+			addSubComponent(new CollaborationBasePropertiesEditionComponent(collaboration, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(collaboration, editing_mode));
 		}
 	}
 }
-

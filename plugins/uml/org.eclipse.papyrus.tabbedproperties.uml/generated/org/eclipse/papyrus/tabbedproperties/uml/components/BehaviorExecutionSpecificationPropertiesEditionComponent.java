@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class BehaviorExecutionSpecificationPropertiesEditionComponent extends Co
 	 * @param behaviorExecutionSpecification
 	 *            the EObject to edit
 	 */
-	public BehaviorExecutionSpecificationPropertiesEditionComponent(EObject behaviorExecutionSpecification, String mode) {
-		super(mode);
+	public BehaviorExecutionSpecificationPropertiesEditionComponent(EObject behaviorExecutionSpecification, String editing_mode) {
+		super(editing_mode);
 		if (behaviorExecutionSpecification instanceof BehaviorExecutionSpecification) {
-			addSubComponent(new BehaviorExecutionSpecificationBasePropertiesEditionComponent(behaviorExecutionSpecification, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(behaviorExecutionSpecification, mode));
+			addSubComponent(new BehaviorExecutionSpecificationBasePropertiesEditionComponent(behaviorExecutionSpecification, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(behaviorExecutionSpecification, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ReadIsClassifiedObjectAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ReadIsClassifiedObjectActionPropertiesEditionComponent extends Comp
 	 * @param readIsClassifiedObjectAction
 	 *            the EObject to edit
 	 */
-	public ReadIsClassifiedObjectActionPropertiesEditionComponent(EObject readIsClassifiedObjectAction, String mode) {
-		super(mode);
+	public ReadIsClassifiedObjectActionPropertiesEditionComponent(EObject readIsClassifiedObjectAction, String editing_mode) {
+		super(editing_mode);
 		if (readIsClassifiedObjectAction instanceof ReadIsClassifiedObjectAction) {
-			addSubComponent(new ReadIsClassifiedObjectActionBasePropertiesEditionComponent(readIsClassifiedObjectAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(readIsClassifiedObjectAction, mode));
+			addSubComponent(new ReadIsClassifiedObjectActionBasePropertiesEditionComponent(readIsClassifiedObjectAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(readIsClassifiedObjectAction, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Reception;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ReceptionPropertiesEditionComponent extends ComposedPropertiesEditi
 	 * @param reception
 	 *            the EObject to edit
 	 */
-	public ReceptionPropertiesEditionComponent(EObject reception, String mode) {
-		super(mode);
+	public ReceptionPropertiesEditionComponent(EObject reception, String editing_mode) {
+		super(editing_mode);
 		if (reception instanceof Reception) {
-			addSubComponent(new ReceptionBasePropertiesEditionComponent(reception, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(reception, mode));
+			addSubComponent(new ReceptionBasePropertiesEditionComponent(reception, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(reception, editing_mode));
 		}
 	}
 }
-

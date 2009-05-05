@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.DestroyLinkAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class DestroyLinkActionPropertiesEditionComponent extends ComposedPropert
 	 * @param destroyLinkAction
 	 *            the EObject to edit
 	 */
-	public DestroyLinkActionPropertiesEditionComponent(EObject destroyLinkAction, String mode) {
-		super(mode);
+	public DestroyLinkActionPropertiesEditionComponent(EObject destroyLinkAction, String editing_mode) {
+		super(editing_mode);
 		if (destroyLinkAction instanceof DestroyLinkAction) {
-			addSubComponent(new DestroyLinkActionBasePropertiesEditionComponent(destroyLinkAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(destroyLinkAction, mode));
+			addSubComponent(new DestroyLinkActionBasePropertiesEditionComponent(destroyLinkAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(destroyLinkAction, editing_mode));
 		}
 	}
 }
-

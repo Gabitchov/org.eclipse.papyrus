@@ -15,11 +15,13 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EObject;
+import java.util.List;
 import org.eclipse.emf.ecore.EReference;
- 
+import java.util.Map;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 // End of user code
 /**
@@ -31,274 +33,283 @@ public interface InteractionUsePropertiesEditionPart {
 	 * @return the ownedComment to add
 	 */
 	public List getOwnedCommentToAdd();
-	
+
 	/**
 	 * @return the ownedComment to remove
 	 */
 	public List getOwnedCommentToRemove();
-	
+
 	/**
 	 * @return the ownedComment to move
 	 */
 	public List getOwnedCommentToMove();
-	
+
 	/**
 	 * @return the ownedComment to edit
 	 */
 	public Map getOwnedCommentToEdit();
-	
+
 	/**
 	 * @return the current ownedComment
 	 */
 	public List getOwnedCommentTable();
-	
+
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the name
 	 */
 	public String getName();
-	
+
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
-	
-	public void setMessageForName (String msg, int msgLevel);	
-	
-	public void unsetMessageForName ();
-	
+
+	public void setMessageForName(String msg, int msgLevel);
+
+	public void unsetMessageForName();
+
 	/**
 	 * @return the visibility
 	 */
 	public Enumerator getVisibility();
-	
+
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
-/**
+	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the clientDependency to add
 	 */
 	public List getClientDependencyToAdd();
-	
+
 	/**
 	 * @return the clientDependency to remove
 	 */
 	public List getClientDependencyToRemove();
-	
+
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *            the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the covered to add
 	 */
 	public List getCoveredToAdd();
-	
+
 	/**
 	 * @return the covered to remove
 	 */
 	public List getCoveredToRemove();
-	
+
 	/**
 	 * Init the covered
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the covered
-	 * @param newValue the covered to update
+	 * 
+	 * @param newValue
+	 *            the covered to update
 	 */
 	public void updateCovered(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the generalOrdering to add
 	 */
 	public List getGeneralOrderingToAdd();
-	
+
 	/**
 	 * @return the generalOrdering to remove
 	 */
 	public List getGeneralOrderingToRemove();
-	
+
 	/**
 	 * @return the generalOrdering to move
 	 */
 	public List getGeneralOrderingToMove();
-	
+
 	/**
 	 * @return the generalOrdering to edit
 	 */
 	public Map getGeneralOrderingToEdit();
-	
+
 	/**
 	 * @return the current generalOrdering
 	 */
 	public List getGeneralOrderingTable();
-	
+
 	/**
 	 * Init the generalOrdering
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the generalOrdering
-	 * @param newValue the generalOrdering to update
+	 * 
+	 * @param newValue
+	 *            the generalOrdering to update
 	 */
 	public void updateGeneralOrdering(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the actualGate to add
 	 */
 	public List getActualGateToAdd();
-	
+
 	/**
 	 * @return the actualGate to remove
 	 */
 	public List getActualGateToRemove();
-	
+
 	/**
 	 * @return the actualGate to move
 	 */
 	public List getActualGateToMove();
-	
+
 	/**
 	 * @return the actualGate to edit
 	 */
 	public Map getActualGateToEdit();
-	
+
 	/**
 	 * @return the current actualGate
 	 */
 	public List getActualGateTable();
-	
+
 	/**
 	 * Init the actualGate
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initActualGate(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the actualGate
-	 * @param newValue the actualGate to update
+	 * 
+	 * @param newValue
+	 *            the actualGate to update
 	 */
 	public void updateActualGate(EObject newValue);
-	
-	
-	
-	
-	
+
 	/**
 	 * @return the argument to add
 	 */
 	public List getArgumentToAdd();
-	
+
 	/**
 	 * @return the argument to remove
 	 */
 	public List getArgumentToRemove();
-	
+
 	/**
 	 * @return the argument to move
 	 */
 	public List getArgumentToMove();
-	
+
 	/**
 	 * @return the argument to edit
 	 */
 	public Map getArgumentToEdit();
-	
+
 	/**
 	 * @return the current argument
 	 */
 	public List getArgumentTable();
-	
+
 	/**
 	 * Init the argument
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initArgument(EObject current, EReference containingFeature, EReference feature);
 
-/**
+	/**
 	 * Update the argument
-	 * @param newValue the argument to update
+	 * 
+	 * @param newValue
+	 *            the argument to update
 	 */
 	public void updateArgument(EObject newValue);
-	
-	
-	
-	
-	
-
-
-
-
 
 	// Start of user code for additional methods
- 	
+
 	// End of user code
 }
-

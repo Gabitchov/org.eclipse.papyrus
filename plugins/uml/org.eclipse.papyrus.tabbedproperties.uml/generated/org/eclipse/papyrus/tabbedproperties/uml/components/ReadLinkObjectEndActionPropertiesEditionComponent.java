@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ReadLinkObjectEndAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ReadLinkObjectEndActionPropertiesEditionComponent extends ComposedP
 	 * @param readLinkObjectEndAction
 	 *            the EObject to edit
 	 */
-	public ReadLinkObjectEndActionPropertiesEditionComponent(EObject readLinkObjectEndAction, String mode) {
-		super(mode);
+	public ReadLinkObjectEndActionPropertiesEditionComponent(EObject readLinkObjectEndAction, String editing_mode) {
+		super(editing_mode);
 		if (readLinkObjectEndAction instanceof ReadLinkObjectEndAction) {
-			addSubComponent(new ReadLinkObjectEndActionBasePropertiesEditionComponent(readLinkObjectEndAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(readLinkObjectEndAction, mode));
+			addSubComponent(new ReadLinkObjectEndActionBasePropertiesEditionComponent(readLinkObjectEndAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(readLinkObjectEndAction, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.TestIdentityAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class TestIdentityActionPropertiesEditionComponent extends ComposedProper
 	 * @param testIdentityAction
 	 *            the EObject to edit
 	 */
-	public TestIdentityActionPropertiesEditionComponent(EObject testIdentityAction, String mode) {
-		super(mode);
+	public TestIdentityActionPropertiesEditionComponent(EObject testIdentityAction, String editing_mode) {
+		super(editing_mode);
 		if (testIdentityAction instanceof TestIdentityAction) {
-			addSubComponent(new TestIdentityActionBasePropertiesEditionComponent(testIdentityAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(testIdentityAction, mode));
+			addSubComponent(new TestIdentityActionBasePropertiesEditionComponent(testIdentityAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(testIdentityAction, editing_mode));
 		}
 	}
 }
-

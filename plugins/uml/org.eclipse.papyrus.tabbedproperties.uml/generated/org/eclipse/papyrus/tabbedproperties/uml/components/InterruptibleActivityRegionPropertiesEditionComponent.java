@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.InterruptibleActivityRegion;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class InterruptibleActivityRegionPropertiesEditionComponent extends Compo
 	 * @param interruptibleActivityRegion
 	 *            the EObject to edit
 	 */
-	public InterruptibleActivityRegionPropertiesEditionComponent(EObject interruptibleActivityRegion, String mode) {
-		super(mode);
+	public InterruptibleActivityRegionPropertiesEditionComponent(EObject interruptibleActivityRegion, String editing_mode) {
+		super(editing_mode);
 		if (interruptibleActivityRegion instanceof InterruptibleActivityRegion) {
-			addSubComponent(new InterruptibleActivityRegionBasePropertiesEditionComponent(interruptibleActivityRegion, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(interruptibleActivityRegion, mode));
+			addSubComponent(new InterruptibleActivityRegionBasePropertiesEditionComponent(interruptibleActivityRegion, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(interruptibleActivityRegion, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.CentralBufferNode;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class CentralBufferNodePropertiesEditionComponent extends ComposedPropert
 	 * @param centralBufferNode
 	 *            the EObject to edit
 	 */
-	public CentralBufferNodePropertiesEditionComponent(EObject centralBufferNode, String mode) {
-		super(mode);
+	public CentralBufferNodePropertiesEditionComponent(EObject centralBufferNode, String editing_mode) {
+		super(editing_mode);
 		if (centralBufferNode instanceof CentralBufferNode) {
-			addSubComponent(new CentralBufferNodeBasePropertiesEditionComponent(centralBufferNode, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(centralBufferNode, mode));
+			addSubComponent(new CentralBufferNodeBasePropertiesEditionComponent(centralBufferNode, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(centralBufferNode, editing_mode));
 		}
 	}
 }
-

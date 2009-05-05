@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Interval;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class IntervalPropertiesEditionComponent extends ComposedPropertiesEditio
 	 * @param interval
 	 *            the EObject to edit
 	 */
-	public IntervalPropertiesEditionComponent(EObject interval, String mode) {
-		super(mode);
+	public IntervalPropertiesEditionComponent(EObject interval, String editing_mode) {
+		super(editing_mode);
 		if (interval instanceof Interval) {
-			addSubComponent(new IntervalBasePropertiesEditionComponent(interval, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(interval, mode));
+			addSubComponent(new IntervalBasePropertiesEditionComponent(interval, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(interval, editing_mode));
 		}
 	}
 }
-

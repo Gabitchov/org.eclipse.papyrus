@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ExceptionHandler;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ExceptionHandlerPropertiesEditionComponent extends ComposedProperti
 	 * @param exceptionHandler
 	 *            the EObject to edit
 	 */
-	public ExceptionHandlerPropertiesEditionComponent(EObject exceptionHandler, String mode) {
-		super(mode);
+	public ExceptionHandlerPropertiesEditionComponent(EObject exceptionHandler, String editing_mode) {
+		super(editing_mode);
 		if (exceptionHandler instanceof ExceptionHandler) {
-			addSubComponent(new ExceptionHandlerBasePropertiesEditionComponent(exceptionHandler, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(exceptionHandler, mode));
+			addSubComponent(new ExceptionHandlerBasePropertiesEditionComponent(exceptionHandler, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(exceptionHandler, editing_mode));
 		}
 	}
 }
-

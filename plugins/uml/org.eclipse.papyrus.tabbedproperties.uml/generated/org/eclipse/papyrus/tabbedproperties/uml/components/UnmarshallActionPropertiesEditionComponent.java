@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.UnmarshallAction;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class UnmarshallActionPropertiesEditionComponent extends ComposedProperti
 	 * @param unmarshallAction
 	 *            the EObject to edit
 	 */
-	public UnmarshallActionPropertiesEditionComponent(EObject unmarshallAction, String mode) {
-		super(mode);
+	public UnmarshallActionPropertiesEditionComponent(EObject unmarshallAction, String editing_mode) {
+		super(editing_mode);
 		if (unmarshallAction instanceof UnmarshallAction) {
-			addSubComponent(new UnmarshallActionBasePropertiesEditionComponent(unmarshallAction, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(unmarshallAction, mode));
+			addSubComponent(new UnmarshallActionBasePropertiesEditionComponent(unmarshallAction, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(unmarshallAction, editing_mode));
 		}
 	}
 }
-

@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.LiteralBoolean;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class LiteralBooleanPropertiesEditionComponent extends ComposedProperties
 	 * @param literalBoolean
 	 *            the EObject to edit
 	 */
-	public LiteralBooleanPropertiesEditionComponent(EObject literalBoolean, String mode) {
-		super(mode);
+	public LiteralBooleanPropertiesEditionComponent(EObject literalBoolean, String editing_mode) {
+		super(editing_mode);
 		if (literalBoolean instanceof LiteralBoolean) {
-			addSubComponent(new LiteralBooleanBasePropertiesEditionComponent(literalBoolean, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(literalBoolean, mode));
+			addSubComponent(new LiteralBooleanBasePropertiesEditionComponent(literalBoolean, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(literalBoolean, editing_mode));
 		}
 	}
 }
-

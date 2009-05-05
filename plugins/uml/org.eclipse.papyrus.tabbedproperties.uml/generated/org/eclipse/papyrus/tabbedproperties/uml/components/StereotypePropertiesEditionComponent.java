@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class StereotypePropertiesEditionComponent extends ComposedPropertiesEdit
 	 * @param stereotype
 	 *            the EObject to edit
 	 */
-	public StereotypePropertiesEditionComponent(EObject stereotype, String mode) {
-		super(mode);
+	public StereotypePropertiesEditionComponent(EObject stereotype, String editing_mode) {
+		super(editing_mode);
 		if (stereotype instanceof Stereotype) {
-			addSubComponent(new StereotypeBasePropertiesEditionComponent(stereotype, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(stereotype, mode));
+			addSubComponent(new StereotypeBasePropertiesEditionComponent(stereotype, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(stereotype, editing_mode));
 		}
 	}
 }
-

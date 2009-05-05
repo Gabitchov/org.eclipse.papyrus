@@ -19,29 +19,30 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.impl.*;
 
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
- *
+ * 
  */
 public class UMLPropertiesEditionPartProvider implements IPropertiesEditionPartProvider {
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#provides(java.lang.Class)
 	 */
-	public boolean provides(Class key) {
+	public boolean provides(java.lang.Class key) {
 		return key == UMLViewsRepository.class;
 	}
 
-	
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#getPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent)
 	 */
-	public IPropertiesEditionPart getPropertiesEditionPart(Class key, int kind, IPropertiesEditionComponent component) {
-		if (key == UMLViewsRepository.Class.class) {
+	public IPropertiesEditionPart getPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionComponent component) {
+		if (key == UMLViewsRepository.Class_.class) {
 			if (kind == UMLViewsRepository.SWT_KIND)
-				return new ClassPropertiesEditionPartImpl(component);
+				return new Class_PropertiesEditionPartImpl(component);
 			if (kind == UMLViewsRepository.FORM_KIND)
-				return new ClassPropertiesEditionPartForm(component);
+				return new Class_PropertiesEditionPartForm(component);
 		}
 		if (key == UMLViewsRepository.AssociationClass.class) {
 			if (kind == UMLViewsRepository.SWT_KIND)
@@ -217,11 +218,11 @@ public class UMLPropertiesEditionPartProvider implements IPropertiesEditionPartP
 			if (kind == UMLViewsRepository.FORM_KIND)
 				return new CommentPropertiesEditionPartForm(component);
 		}
-		if (key == UMLViewsRepository.Package.class) {
+		if (key == UMLViewsRepository.Package_.class) {
 			if (kind == UMLViewsRepository.SWT_KIND)
-				return new PackagePropertiesEditionPartImpl(component);
+				return new Package_PropertiesEditionPartImpl(component);
 			if (kind == UMLViewsRepository.FORM_KIND)
-				return new PackagePropertiesEditionPartForm(component);
+				return new Package_PropertiesEditionPartForm(component);
 		}
 		if (key == UMLViewsRepository.PackageImport.class) {
 			if (kind == UMLViewsRepository.SWT_KIND)
@@ -865,11 +866,11 @@ public class UMLPropertiesEditionPartProvider implements IPropertiesEditionPartP
 			if (kind == UMLViewsRepository.FORM_KIND)
 				return new ReceptionPropertiesEditionPartForm(component);
 		}
-		if (key == UMLViewsRepository.Interface.class) {
+		if (key == UMLViewsRepository.Interface_.class) {
 			if (kind == UMLViewsRepository.SWT_KIND)
-				return new InterfacePropertiesEditionPartImpl(component);
+				return new Interface_PropertiesEditionPartImpl(component);
 			if (kind == UMLViewsRepository.FORM_KIND)
-				return new InterfacePropertiesEditionPartForm(component);
+				return new Interface_PropertiesEditionPartForm(component);
 		}
 		if (key == UMLViewsRepository.ConsiderIgnoreFragment.class) {
 			if (kind == UMLViewsRepository.SWT_KIND)
@@ -1235,4 +1236,3 @@ public class UMLPropertiesEditionPartProvider implements IPropertiesEditionPartP
 	}
 
 }
-

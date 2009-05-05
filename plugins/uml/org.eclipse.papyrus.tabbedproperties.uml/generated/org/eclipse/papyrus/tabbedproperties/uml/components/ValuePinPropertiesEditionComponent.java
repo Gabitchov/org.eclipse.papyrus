@@ -13,8 +13,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.uml2.uml.ValuePin;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 
 // End of user code
 /**
@@ -28,12 +28,11 @@ public class ValuePinPropertiesEditionComponent extends ComposedPropertiesEditio
 	 * @param valuePin
 	 *            the EObject to edit
 	 */
-	public ValuePinPropertiesEditionComponent(EObject valuePin, String mode) {
-		super(mode);
+	public ValuePinPropertiesEditionComponent(EObject valuePin, String editing_mode) {
+		super(editing_mode);
 		if (valuePin instanceof ValuePin) {
-			addSubComponent(new ValuePinBasePropertiesEditionComponent(valuePin, mode));
-			addSubComponent(new ElementPropertiesEditionComponent(valuePin, mode));
+			addSubComponent(new ValuePinBasePropertiesEditionComponent(valuePin, editing_mode));
+			addSubComponent(new ElementPropertiesEditionComponent(valuePin, editing_mode));
 		}
 	}
 }
-
