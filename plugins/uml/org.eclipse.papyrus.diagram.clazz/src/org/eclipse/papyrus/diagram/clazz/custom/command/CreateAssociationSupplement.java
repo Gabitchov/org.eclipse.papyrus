@@ -109,17 +109,17 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		sourceProperty.setName(((Type) getSource()).getName().toLowerCase());
 		List<Property> memberEnds = association.getMemberEnds();
 
+		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, ((Property) sourceProperty));
+		} else {
+			association.getMemberEnds().add(0, ((Property) sourceProperty));
+		}
 		if ((memberEnds.indexOf(((Property) targetProperty)) >= 0)) {
 			association.getMemberEnds().move(1, ((Property) targetProperty));
 		} else {
 			association.getMemberEnds().add(1, ((Property) targetProperty));
 		}
 
-		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
-			association.getMemberEnds().move(0, ((Property) sourceProperty));
-		} else {
-			association.getMemberEnds().add(0, ((Property) sourceProperty));
-		}
 		((Package) getContainer()).getPackagedElements().add(association);
 		return association;
 	}

@@ -13,8 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.command;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -41,6 +45,14 @@ public class PropertyCommandForAssociation extends PropertyCreateCommand {
 
 		UMLElementTypes.init_Property_3002(newElement);
 		return newElement;
+	}
+
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		Property newElement = (Property) doDefaultElementCreation();
+
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**

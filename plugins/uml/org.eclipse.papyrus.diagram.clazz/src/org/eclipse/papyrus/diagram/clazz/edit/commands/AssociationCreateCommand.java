@@ -11,6 +11,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CreateAssociationSupplement;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
@@ -22,6 +23,30 @@ import org.eclipse.uml2.uml.Type;
 public class AssociationCreateCommand extends EditElementCommand {
 
 	/**
+	 * Default approach is to traverse ancestors of the source to find instance
+	 * of container. Modify with appropriate logic.
+	 * 
+	 * @generated
+	 */
+	private static Package deduceContainer(EObject source, EObject target) {
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
+			if (element instanceof Package) {
+				return (Package) element;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	private final Package container;
+
+	/**
 	 * @generated
 	 */
 	private final EObject source;
@@ -30,11 +55,6 @@ public class AssociationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	private final EObject target;
-
-	/**
-	 * @generated
-	 */
-	private final Package container;
 
 	/**
 	 * @generated
@@ -61,7 +81,8 @@ public class AssociationCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined yet
+			return true; // link creation is in progress; source is not defined
+			// yet
 		}
 		// target may be null here but it's possible to check constraint
 		if (getContainer() == null) {
@@ -70,20 +91,6 @@ public class AssociationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canCreateAssociation_4001(getContainer(), getSource(),
 						getTarget());
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
-		}
-
-		throw new UnsupportedOperationException();
-
 	}
 
 	/**
@@ -113,8 +120,26 @@ public class AssociationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void setElementToEdit(EObject element) {
-		throw new UnsupportedOperationException();
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		if (!canExecute()) {
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
+		}
+
+		CreateAssociationSupplement cacs = new CreateAssociationSupplement(
+				container, source, target);
+		Association newElement = (Association) cacs.doDefaultElementCreation(
+				getEditingDomain(), null);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+	}
+
+	/**
+	 * @generated
+	 */
+	public Package getContainer() {
+		return container;
 	}
 
 	/**
@@ -134,26 +159,8 @@ public class AssociationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Package getContainer() {
-		return container;
-	}
-
-	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container.
-	 * Modify with appropriate logic.
-	 * @generated
-	 */
-	private static Package deduceContainer(EObject source, EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
-			if (element instanceof Package) {
-				return (Package) element;
-			}
-		}
-		return null;
+	protected void setElementToEdit(EObject element) {
+		throw new UnsupportedOperationException();
 	}
 
 }
