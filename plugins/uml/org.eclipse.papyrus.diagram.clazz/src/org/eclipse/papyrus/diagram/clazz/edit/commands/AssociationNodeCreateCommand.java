@@ -1,23 +1,30 @@
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class AssociationNodeCreateCommand extends CreateElementCommand {
+public class AssociationNodeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
 	private EClass eClass = null;
-
 	/**
 	 * @generated
 	 */
@@ -26,8 +33,9 @@ public class AssociationNodeCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public AssociationNodeCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req);
+	public AssociationNodeCreateCommand(CreateElementRequest req,
+			EObject eObject) {
+		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
 	}
@@ -35,7 +43,8 @@ public class AssociationNodeCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static AssociationNodeCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static AssociationNodeCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
 		return new AssociationNodeCreateCommand(req, eObject);
 	}
 
@@ -43,15 +52,17 @@ public class AssociationNodeCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	public AssociationNodeCreateCommand(CreateElementRequest req) {
-		super(req);
+		super(req.getLabel(), null, req);
 	}
 
 	/**
+	 * FIXME: replace with setElementToEdit()
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -64,37 +75,45 @@ public class AssociationNodeCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected EClass getEClassToEdit() {
+	public boolean canExecute() {
+		return true;
 
-		EObject eObject = getElementToEdit();
-		if (eObject != null) {
-			return eObject.eClass();
-		}
-		if (eClass != null) {
-			return eClass;
-		}
-		return UMLPackage.eINSTANCE.getPackage();
 	}
 
 	/**
 	 * @generated
 	 */
-	protected EObject doDefaultElementCreation() {
-		Association newElement = (Association) super.doDefaultElementCreation();
-		// code used in MOSKitt approach in order to manage "delete from diagram"
-		// if (newElement != null) {
-		//	
-		// org.eclipse.gmf.runtime.notation.Diagram diagram = es.cv.gvcase.mdt.common.util.MDTUtil.getDiagramFromRequest(getRequest());
-		// if (diagram != null) {
-		// es.cv.gvcase.mdt.common.util.MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
-		// }
-		// else {
-		// es.cv.gvcase.mdt.common.util.MultiDiagramUtil.
-		// addEAnnotationReferenceToDiagram(
-		// org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin.getInstance(), newElement);
-		// }
-		// }
-		return newElement;
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		Association newElement = UMLFactory.eINSTANCE.createAssociation();
+
+		Package owner = (Package) getElementToEdit();
+		owner.getPackagedElements().add(newElement);
+
+		doConfigure(newElement, monitor, info);
+
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void doConfigure(Association newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
+		configureRequest.addParameters(getRequest().getParameters());
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
+			configureCommand.execute(monitor, info);
+		}
 	}
 
 }

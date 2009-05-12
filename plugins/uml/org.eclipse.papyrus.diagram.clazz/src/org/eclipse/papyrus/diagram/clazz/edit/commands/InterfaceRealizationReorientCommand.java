@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -48,7 +35,8 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public InterfaceRealizationReorientCommand(ReorientRelationshipRequest request) {
+	public InterfaceRealizationReorientCommand(
+			ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -79,7 +67,8 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interface target = getLink().getContract();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInterfaceRealization_4003(getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistInterfaceRealization_4003(getNewSource(), target);
 	}
 
 	/**
@@ -92,16 +81,20 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 		if (!(getLink().eContainer() instanceof BehavioredClassifier)) {
 			return false;
 		}
-		BehavioredClassifier source = (BehavioredClassifier) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInterfaceRealization_4003(source, getNewTarget());
+		BehavioredClassifier source = (BehavioredClassifier) getLink()
+				.eContainer();
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistInterfaceRealization_4003(source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

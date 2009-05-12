@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.Collection;
@@ -32,7 +19,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ClassOperationCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+public class ClassOperationCompartmentCanonicalEditPolicy extends
+		CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -45,7 +33,9 @@ public class ClassOperationCompartmentCanonicalEditPolicy extends CanonicalEditP
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getClassOperationCompartment_7012SemanticChildren(viewObject).iterator(); it.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater
+				.getClassOperationCompartment_7012SemanticChildren(viewObject)
+				.iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -79,8 +69,10 @@ public class ClassOperationCompartmentCanonicalEditPolicy extends CanonicalEditP
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedReception());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedOperation());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getClass_OwnedReception());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getClass_OwnedOperation());
 		}
 		return myFeaturesToSynchronize;
 	}

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -50,9 +37,24 @@ public class ModelEditPart extends DiagramEditPart {
 	 */
 	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
 
+		public boolean isEObjectNode(EObject element) {
+			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
+				return true;
+			}
+			return false;
+		}
+
+		public boolean isEObjectLink(EObject element) {
+			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
+				return true;
+			}
+			return false;
+		}
+
 		public int getEObjectSemanticHint(EObject element) {
 			if (element != null) {
-				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element);
+				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(),
+						element);
 			}
 			return -1;
 		}
@@ -105,20 +107,6 @@ public class ModelEditPart extends DiagramEditPart {
 			}
 			return null;
 		}
-
-		public boolean isEObjectLink(EObject element) {
-			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
-				return true;
-			}
-			return false;
-		}
-
-		public boolean isEObjectNode(EObject element) {
-			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
-				return true;
-			}
-			return false;
-		}
 	};
 
 	/**
@@ -133,15 +121,34 @@ public class ModelEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new ModelItemSemanticEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
 
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DiagramDragDropEditPolicy(resolver));
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new DiagramDragDropEditPolicy(resolver));
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void handleNotificationEvent(Notification event) {
+
+		super.handleNotificationEvent(event);
+		if (event.getNotifier() instanceof EAnnotation) {
+			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
+			if (eAnnotation.getSource() != null
+					&& eAnnotation.getSource().equals(
+							MDTUtil.FilterViewAndLabelsSource)) {
+				//modification form MOSKitt approach, canonical policies are not called
+				MDTUtil.filterDiagramViews(this.getDiagramView());
+			}
+		}
 	}
 
 	/**
@@ -156,30 +163,6 @@ public class ModelEditPart extends DiagramEditPart {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);
-	}
-
-	// tempory code to see with Cedric
-	// public DragTracker getDragTracker(Request req) {
-	// if (req instanceof SelectionRequest && ((SelectionRequest) req).getLastButtonPressed() == 3)
-	// return new DeselectAllTracker(this);
-	// tempory code
-	// return new PapyrusRubberbandDragTracker();
-
-	// }
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-
-		super.handleNotificationEvent(event);
-		if (event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
-			if (eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				// modification form MOSKitt approach, canonical policies are not called
-				MDTUtil.filterDiagramViews(this.getDiagramView());
-			}
-		}
 	}
 
 }

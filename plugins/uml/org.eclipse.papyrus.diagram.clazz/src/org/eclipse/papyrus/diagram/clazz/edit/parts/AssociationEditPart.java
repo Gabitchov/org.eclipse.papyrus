@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -27,7 +14,8 @@ import org.eclipse.papyrus.diagram.common.figure.edge.CAssociationFigure;
 /**
  * @generated
  */
-public class AssociationEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,7 +34,8 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new AssociationItemSemanticEditPolicy());
 	}
 
 	/**
@@ -54,27 +43,34 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AppliedStereotypeAssociationEditPart) {
-			((AppliedStereotypeAssociationEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeAssociationLabel());
+			((AppliedStereotypeAssociationEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getAppliedStereotypeAssociationLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName2EditPart) {
-			((AssociationName2EditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+			((AssociationName2EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAssociationNameLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName3EditPart) {
-			((AssociationName3EditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+			((AssociationName3EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName4EditPart) {
-			((AssociationName4EditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			((AssociationName4EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName5EditPart) {
-			((AssociationName5EditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+			((AssociationName5EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName6EditPart) {
-			((AssociationName6EditPart) childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
+			((AssociationName6EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
 		return false;
@@ -91,9 +87,45 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	}
 
 	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof AppliedStereotypeAssociationEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof AssociationName2EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof AssociationName3EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof AssociationName4EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof AssociationName5EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof AssociationName6EditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -118,27 +150,22 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 		 * @generated
 		 */
 		private WrappingLabel fAssociationNameLabel;
-
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fAppliedStereotypeAssociationLabel;
-
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fRoleSourceLabel;
-
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fMultiplicitySourceLabel;
-
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fRoleTargetLabel;
-
 		/**
 		 * @generated
 		 */

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -27,7 +14,8 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure;
 /**
  * @generated
  */
-public class ElementImportEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ElementImportEditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,7 +34,8 @@ public class ElementImportEditPart extends ConnectionNodeEditPart implements ITr
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ElementImportItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new ElementImportItemSemanticEditPolicy());
 	}
 
 	/**
@@ -54,11 +43,13 @@ public class ElementImportEditPart extends ConnectionNodeEditPart implements ITr
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ElementImportAliasEditPart) {
-			((ElementImportAliasEditPart) childEditPart).setLabel(getPrimaryShape().getDependencyNameLabel());
+			((ElementImportAliasEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getDependencyNameLabel());
 			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeElementImportEditPart) {
-			((AppliedStereotypeElementImportEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeElementImportEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -75,9 +66,33 @@ public class ElementImportEditPart extends ConnectionNodeEditPart implements ITr
 	}
 
 	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof ElementImportAliasEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof AppliedStereotypeElementImportEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -102,7 +117,6 @@ public class ElementImportEditPart extends ConnectionNodeEditPart implements ITr
 		 * @generated
 		 */
 		private WrappingLabel fDependencyNameLabel;
-
 		/**
 		 * @generated
 		 */

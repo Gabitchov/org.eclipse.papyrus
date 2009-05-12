@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -53,7 +40,8 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public CommentAnnotatedElementReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public CommentAnnotatedElementReorientCommand(
+			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -84,7 +72,9 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Element && newEnd instanceof Comment)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistCommentAnnotatedElement_4013(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistCommentAnnotatedElement_4013(getNewSource(),
+						getOldTarget());
 	}
 
 	/**
@@ -94,15 +84,19 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistCommentAnnotatedElement_4013(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistCommentAnnotatedElement_4013(getOldSource(),
+						getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

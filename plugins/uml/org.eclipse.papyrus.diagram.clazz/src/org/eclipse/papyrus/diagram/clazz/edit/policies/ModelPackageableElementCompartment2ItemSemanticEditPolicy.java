@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -28,87 +15,58 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.PackageCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PrimitiveTypeCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.SignalCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class ModelPackageableElementCompartment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ModelPackageableElementCompartment2ItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	public ModelPackageableElementCompartment2ItemSemanticEditPolicy() {
+		super(UMLElementTypes.Model_3024);
+	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (UMLElementTypes.InstanceSpecification_3020 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new InstanceSpecificationCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Component_3021 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new ComponentCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Signal_3022 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new SignalCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Interface_3023 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new InterfaceCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Model_3024 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new ModelCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Enumeration_3025 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new EnumerationCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Package_3009 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new PackageCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Class_3010 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new ClassCreateCommandCN(req));
 		}
 		if (UMLElementTypes.PrimitiveType_3026 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req));
 		}
 		if (UMLElementTypes.DataType_3027 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new DataTypeCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Comment_3028 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getElement_OwnedComment());
-			}
 			return getGEFWrapper(new Comment2CreateCommand(req));
 		}
 		if (UMLElementTypes.Constraint_3029 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new Constraint2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.Collections;
@@ -146,8 +133,10 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 		if (getHostFigure() instanceof Label) {
 			Label feedbackFigure = new Label();
 			feedbackFigure.setOpaque(true);
-			feedbackFigure.setBackgroundColor(ColorConstants.menuBackgroundSelected);
-			feedbackFigure.setForegroundColor(ColorConstants.menuForegroundSelected);
+			feedbackFigure
+					.setBackgroundColor(ColorConstants.menuBackgroundSelected);
+			feedbackFigure
+					.setForegroundColor(ColorConstants.menuForegroundSelected);
 			return feedbackFigure;
 		} else {
 			RectangleFigure feedbackFigure = new RectangleFigure();
@@ -187,7 +176,8 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 				updateLabel((Label) selectionFeedbackFigure);
 				selectionFeedbackFigure.setBounds(getFeedbackBounds());
 			} else {
-				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5, 5));
+				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5,
+						5));
 			}
 		}
 	}
@@ -215,7 +205,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	private FigureListener getHostPositionListener() {
 		if (hostPositionListener == null) {
 			hostPositionListener = new FigureListener() {
-
 				public void figureMoved(IFigure source) {
 					refreshFeedback();
 				}

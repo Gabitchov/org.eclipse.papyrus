@@ -33,21 +33,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.clazz.view.factories.AssociationClassViewFactory;
+import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
 
 /**
  * Custom class to create the associationClass node
  * 
  * @author Patrick Tessier
  */
-public class AssociationClassViewCreateCommand extends AbstractTransactionalCommand {
+public class AssociationClassViewCreateCommand extends
+		AbstractTransactionalCommand {
 
 	/**
 	 * iadapter to send eobjet
@@ -109,8 +108,10 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 	 * @param point
 	 *            the location of the future association node
 	 */
-	public AssociationClassViewCreateCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, TransactionalEditingDomain domain, View container, EditPartViewer viewer,
-			PreferencesHint preferencesHint, Point point) {
+	public AssociationClassViewCreateCommand(
+			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
+			TransactionalEditingDomain domain, View container,
+			EditPartViewer viewer, PreferencesHint preferencesHint, Point point) {
 		super(domain, "AssociationClassViewCreateCommand", null); //$NON-NLS-1$
 		this.containerView = container;
 		this.viewer = viewer;
@@ -124,16 +125,27 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 	 * 
 	 * {@inheritDoc}
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		// / get the factory of the viewer
-		AssociationClassViewFactory factory = new AssociationClassViewFactory();
-		// creation of the element
-		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) createConnectionViewAndElementRequest).getConnectionViewAndElementDescriptor()
-				.getCreateElementRequestAdapter();
-		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
+		// AssociationClassViewFactory factory = new
+		// AssociationClassViewFactory();
 
-		this.node = factory.createView(new SemanticAdapter(createElementRequest.getNewElement()), this.containerView, ((IHintedType) UMLElementTypes.AssociationClass_2013).getSemanticHint(), -1,
+		// creation of the element
+		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) createConnectionViewAndElementRequest)
+				.getConnectionViewAndElementDescriptor()
+				.getCreateElementRequestAdapter();
+		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter
+				.getAdapter(CreateRelationshipRequest.class);
+		UMLViewProvider viewProvider = new UMLViewProvider();
+		this.node = viewProvider.createAssociationClass_2013(
+				createElementRequest.getNewElement(), this.containerView, -1,
 				true, preferenceHint);
+		// this.node = factory.createView(new
+		// SemanticAdapter(createElementRequest.getNewElement()),
+		// this.containerView, ((IHintedType)
+		// UMLElementTypes.AssociationClass_2013).getSemanticHint(), -1,
+		// true, preferenceHint);
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
@@ -153,7 +165,8 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 				View view = (View) ((IGraphicalEditPart) editpart).getModel();
 				if (view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
-					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
+					return f != null ? Collections.singletonList(f)
+							: Collections.EMPTY_LIST;
 				}
 			}
 		}

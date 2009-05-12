@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.io.IOException;
@@ -65,17 +52,20 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			return null;
 		}
 		View view = (View) targetEditPart.getModel();
-		Style link = view.getStyle(NotationPackage.eINSTANCE.getHintedDiagramLinkStyle());
+		Style link = view.getStyle(NotationPackage.eINSTANCE
+				.getHintedDiagramLinkStyle());
 		if (false == link instanceof HintedDiagramLinkStyle) {
 			return null;
 		}
-		return new ICommandProxy(new OpenDiagramCommand((HintedDiagramLinkStyle) link));
+		return new ICommandProxy(new OpenDiagramCommand(
+				(HintedDiagramLinkStyle) link));
 	}
 
 	/**
 	 * @generated
 	 */
-	private static class OpenDiagramCommand extends AbstractTransactionalCommand {
+	private static class OpenDiagramCommand extends
+			AbstractTransactionalCommand {
 
 		/**
 		 * @generated
@@ -86,27 +76,31 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
-			// editing domain is taken for original diagram,
+			// editing domain is taken for original diagram, 
 			// if we open diagram from another file, we should use another editing domain
-			super(TransactionUtil.getEditingDomain(linkStyle), Messages.CommandName_OpenDiagram, null);
+			super(TransactionUtil.getEditingDomain(linkStyle),
+					Messages.CommandName_OpenDiagram, null);
 			diagramFacet = linkStyle;
 		}
 
-		// FIXME canExecute if !(readOnly && getDiagramToOpen == null), i.e. open works on ro diagrams only when there's associated diagram already
+		// FIXME canExecute if  !(readOnly && getDiagramToOpen == null), i.e. open works on ro diagrams only when there's associated diagram already
 
 		/**
 		 * @generated
 		 */
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+				IAdaptable info) throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
 				if (diagram == null) {
 					diagram = intializeNewDiagram();
 				}
 				URI uri = EcoreUtil.getURI(diagram);
-				String editorName = uri.lastSegment() + "#" + diagram.eResource().getContents().indexOf(diagram); //$NON-NLS-1$
+				String editorName = uri.lastSegment()
+						+ "#" + diagram.eResource().getContents().indexOf(diagram); //$NON-NLS-1$
 				IEditorInput editorInput = new URIEditorInput(uri, editorName);
-				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				IWorkbenchPage page = PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getActivePage();
 				page.openEditor(editorInput, getEditorID());
 				return CommandResult.newOKCommandResult();
 			} catch (Exception ex) {
@@ -125,9 +119,11 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		protected Diagram intializeNewDiagram() throws ExecutionException {
-			Diagram d = ViewService.createDiagram(getDiagramDomainElement(), getDiagramKind(), getPreferencesHint());
+			Diagram d = ViewService.createDiagram(getDiagramDomainElement(),
+					getDiagramKind(), getPreferencesHint());
 			if (d == null) {
-				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind");
+				throw new ExecutionException("Can't create diagram of '"
+						+ getDiagramKind() + "' kind");
 			}
 			diagramFacet.setDiagramLink(d);
 			assert diagramFacet.eResource() != null;
@@ -139,24 +135,33 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			}
 			try {
 				new WorkspaceModifyOperation() {
-
-					protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
+					protected void execute(IProgressMonitor monitor)
+							throws CoreException, InvocationTargetException,
+							InterruptedException {
 						try {
-							for (Iterator it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it.hasNext();) {
+							for (Iterator it = diagramFacet.eResource()
+									.getResourceSet().getResources().iterator(); it
+									.hasNext();) {
 								Resource nextResource = (Resource) it.next();
-								if (nextResource.isLoaded() && !getEditingDomain().isReadOnly(nextResource)) {
-									nextResource.save(UMLDiagramEditorUtil.getSaveOptions());
+								if (nextResource.isLoaded()
+										&& !getEditingDomain().isReadOnly(
+												nextResource)) {
+									nextResource.save(UMLDiagramEditorUtil
+											.getSaveOptions());
 								}
 							}
 						} catch (IOException ex) {
-							throw new InvocationTargetException(ex, "Save operation failed");
+							throw new InvocationTargetException(ex,
+									"Save operation failed");
 						}
 					}
 				}.run(null);
 			} catch (InvocationTargetException e) {
-				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
+				throw new ExecutionException("Can't create diagram of '"
+						+ getDiagramKind() + "' kind", e);
 			} catch (InterruptedException e) {
-				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
+				throw new ExecutionException("Can't create diagram of '"
+						+ getDiagramKind() + "' kind", e);
 			}
 			return d;
 		}

@@ -31,20 +31,19 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.clazz.view.factories.Dependency2ViewFactory;
+import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
 
 /**
  * Custom class to create the associationClass node
  * 
  * @author Patrick Tessier
  */
-public class DependencyDiamonViewCreateCommand extends AbstractTransactionalCommand {
+public class DependencyDiamonViewCreateCommand extends
+		AbstractTransactionalCommand {
 
 	/**
 	 * iadapter to send eobjet
@@ -86,7 +85,10 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 	 * @param point
 	 *            the location of the future association node
 	 */
-	public DependencyDiamonViewCreateCommand(TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, SemanticAdapter semanticAdapter) {
+	public DependencyDiamonViewCreateCommand(TransactionalEditingDomain domain,
+			View container, EditPartViewer viewer,
+			PreferencesHint preferencesHint, Point point,
+			SemanticAdapter semanticAdapter) {
 		super(domain, "AssociationClassViewCreateCommand", null); //$NON-NLS-1$
 		this.containerView = container;
 		this.viewer = viewer;
@@ -101,12 +103,19 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 	 * 
 	 * {@inheritDoc}
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		// / get the factory of the viewer
-		Dependency2ViewFactory factory = new Dependency2ViewFactory();
+		// Dependency2ViewFactory factory = new Dependency2ViewFactory();
 		// creation of the element
+		// this.node = factory.createView(semanticApdater, this.containerView,
+		// ((IHintedType) UMLElementTypes.Dependency_2014)
+		// .getSemanticHint(), -1, true, preferenceHint);
+		UMLViewProvider viewProvider = new UMLViewProvider();
+		this.node = viewProvider.createDependency_2014(
+				((EObject) semanticApdater.getAdapter(EObject.class)),
+				this.containerView, -1, true, preferenceHint);
 
-		this.node = factory.createView(semanticApdater, this.containerView, ((IHintedType) UMLElementTypes.Dependency_2014).getSemanticHint(), -1, true, preferenceHint);
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
@@ -127,7 +136,8 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 				View view = (View) ((IGraphicalEditPart) editpart).getModel();
 				if (view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
-					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
+					return f != null ? Collections.singletonList(f)
+							: Collections.EMPTY_LIST;
 				}
 			}
 		}

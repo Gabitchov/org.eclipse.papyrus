@@ -73,7 +73,8 @@ public class Association2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4019(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistAssociation_4019(container, getNewSource(), target);
 	}
 
 	/**
@@ -91,15 +92,18 @@ public class Association2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4019(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistAssociation_4019(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -114,18 +118,14 @@ public class Association2ReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getLink().getEndTypes().remove(getOldSource());
-		getLink().getEndTypes().add(getNewSource());
-		return CommandResult.newOKCommandResult(getLink());
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().getEndTypes().remove(getOldTarget());
-		getLink().getEndTypes().add(getNewTarget());
-		return CommandResult.newOKCommandResult(getLink());
+		throw new UnsupportedOperationException();
 	}
 
 	/**

@@ -16607,8 +16607,9 @@
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
       <propRefreshHook
           comment="set the figure active when the feature of the of a class is true"
+          classpath=""
           triggeringCondition="resolveSemanticElement().equals(event.getNotifier()) &amp;&amp; (event.getFeature() instanceof org.eclipse.emf.ecore.EAttribute)&amp;&amp; ((org.eclipse.emf.ecore.EAttribute) (event.getFeature())).getName().equals(&quot;isActive&quot;)"
-          action="((ClassifierFigure) getFigure()).setActive(event.getNewBooleanValue())"/>
+          action="((org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure) getFigure()).setActive(event.getNewBooleanValue())"/>
     </extensionNodes>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"

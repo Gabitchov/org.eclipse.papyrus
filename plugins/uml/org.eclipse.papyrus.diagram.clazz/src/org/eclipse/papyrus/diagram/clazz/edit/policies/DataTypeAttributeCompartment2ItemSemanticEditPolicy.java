@@ -1,37 +1,28 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Property5CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class DataTypeAttributeCompartment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class DataTypeAttributeCompartment2ItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	public DataTypeAttributeCompartment2ItemSemanticEditPolicy() {
+		super(UMLElementTypes.DataType_3027);
+	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (UMLElementTypes.Property_3018 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getDataType_OwnedAttribute());
-			}
 			return getGEFWrapper(new Property5CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

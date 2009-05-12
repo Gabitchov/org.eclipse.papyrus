@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.helpers;
 
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -45,7 +32,8 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	 */
 	protected IEditHelperAdvice[] getEditHelperAdvice(IEditCommandRequest req) {
 		if (req.getParameter(CONTEXT_ELEMENT_TYPE) instanceof IElementType) {
-			return ElementTypeRegistry.getInstance().getEditHelperAdvice((IElementType) req.getParameter(CONTEXT_ELEMENT_TYPE));
+			return ElementTypeRegistry.getInstance().getEditHelperAdvice(
+					(IElementType) req.getParameter(CONTEXT_ELEMENT_TYPE));
 		}
 		return super.getEditHelperAdvice(req);
 	}
@@ -79,7 +67,8 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
-	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected ICommand getCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		return null;
 	}
 

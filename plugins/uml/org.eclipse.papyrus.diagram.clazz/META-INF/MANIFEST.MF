@@ -43,7 +43,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.draw2d;visibility:=reexport,
  org.eclipse.gmf.codegen;bundle-version="2.1.1"
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.diagram.clazzBis.part.UMLClazzDiagramEditorPlugin
+Bundle-Activator: org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy

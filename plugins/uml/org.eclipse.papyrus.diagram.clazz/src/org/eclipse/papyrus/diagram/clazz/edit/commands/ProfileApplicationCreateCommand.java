@@ -1,38 +1,26 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class ProfileApplicationCreateCommand extends CreateElementCommand {
+public class ProfileApplicationCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,15 +35,11 @@ public class ProfileApplicationCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public ProfileApplicationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
-		super(request);
+	public ProfileApplicationCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
+		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
-		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(UMLPackage.eINSTANCE.getPackage_ProfileApplication());
-		}
-
-		super.setElementToEdit(source);
 	}
 
 	/**
@@ -75,44 +59,52 @@ public class ProfileApplicationCreateCommand extends CreateElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateProfileApplication_4012(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canCreateProfileApplication_4012(getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected EObject doDefaultElementCreation() {
-		ProfileApplication newElement = UMLFactory.eINSTANCE.createProfileApplication();
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		if (!canExecute()) {
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
+		}
+
+		ProfileApplication newElement = UMLFactory.eINSTANCE
+				.createProfileApplication();
 		getSource().getProfileApplications().add(newElement);
 		newElement.setAppliedProfile(getTarget());
-		return newElement;
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+
 	}
 
 	/**
 	 * @generated
 	 */
-	protected EClass getEClassToEdit() {
-		return UMLPackage.eINSTANCE.getPackage();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+	protected void doConfigure(ProfileApplication newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
+		configureRequest.addParameters(getRequest().getParameters());
+		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
+				getSource());
+		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
+				getTarget());
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
+			configureCommand.execute(monitor, info);
 		}
-		return super.doExecuteWithResult(monitor, info);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected ConfigureRequest createConfigureRequest() {
-		ConfigureRequest request = super.createConfigureRequest();
-		request.setParameter(CreateRelationshipRequest.SOURCE, getSource());
-		request.setParameter(CreateRelationshipRequest.TARGET, getTarget());
-		return request;
 	}
 
 	/**
@@ -135,4 +127,5 @@ public class ProfileApplicationCreateCommand extends CreateElementCommand {
 	protected Profile getTarget() {
 		return (Profile) target;
 	}
+
 }

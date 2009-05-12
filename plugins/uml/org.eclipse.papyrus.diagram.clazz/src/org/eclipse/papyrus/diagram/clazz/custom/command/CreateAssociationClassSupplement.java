@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -51,7 +51,8 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 	 * @param target
 	 *            the target of the association (Type)
 	 */
-	public CreateAssociationClassSupplement(EObject container, EObject source, EObject target) {
+	public CreateAssociationClassSupplement(EObject container, EObject source,
+			EObject target) {
 		super(container, source, target);
 	}
 
@@ -78,28 +79,36 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public EObject doDefaultElementCreation(TransactionalEditingDomain domain, EObject newElement) {
+	public EObject doDefaultElementCreation(TransactionalEditingDomain domain,
+			EObject newElement) {
 
-		AssociationClass association = UMLFactory.eINSTANCE.createAssociationClass();
+		AssociationClass association = UMLFactory.eINSTANCE
+				.createAssociationClass();
 
 		// create target property
 
-		CreateElementRequest request = new CreateElementRequest(domain, getSource(), UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
-		CreateElementCommand c = new PropertyCreateCommand(request);
+		CreateElementRequest request = new CreateElementRequest(domain,
+				getSource(), UMLElementTypes.Property_3002,
+				UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+		EditElementCommand c = new PropertyCreateCommand(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property targetProperty = (Property) c.getCommandResult().getReturnValue();
+		Property targetProperty = (Property) c.getCommandResult()
+				.getReturnValue();
 		targetProperty.setType((Type) getTarget());
 		targetProperty.setName(((Type) getTarget()).getName().toLowerCase());
 		// create source property
 
-		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
+		request = new CreateElementRequest(domain, association,
+				UMLElementTypes.Property_3002, UMLPackage.eINSTANCE
+						.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property sourceProperty = (Property) c.getCommandResult().getReturnValue();
+		Property sourceProperty = (Property) c.getCommandResult()
+				.getReturnValue();
 		sourceProperty.setType((Type) getSource());
 		sourceProperty.setName(((Type) getSource()).getName().toLowerCase());
 		List<Property> memberEnds = association.getMemberEnds();

@@ -1,38 +1,26 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class SubstitutionCreateCommand extends CreateElementCommand {
+public class SubstitutionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,29 +35,17 @@ public class SubstitutionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	private Classifier container;
+	private final Classifier container;
 
 	/**
 	 * @generated
 	 */
-	public SubstitutionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
-		super(request);
+	public SubstitutionCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
+		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
-		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(UMLPackage.eINSTANCE.getClassifier_Substitution());
-		}
-
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
-			if (element instanceof Classifier) {
-				container = (Classifier) element;
-				super.setElementToEdit(container);
-				break;
-			}
-		}
+		container = deduceContainer(source, target);
 	}
 
 	/**
@@ -92,46 +68,54 @@ public class SubstitutionCreateCommand extends CreateElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateSubstitution_4004(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canCreateSubstitution_4004(getContainer(), getSource(),
+						getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected EObject doDefaultElementCreation() {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		if (!canExecute()) {
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
+		}
+
 		Substitution newElement = UMLFactory.eINSTANCE.createSubstitution();
 		getContainer().getSubstitutions().add(newElement);
 		newElement.setSubstitutingClassifier(getSource());
 		newElement.setContract(getTarget());
 		UMLElementTypes.init_Substitution_4004(newElement);
-		return newElement;
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+
 	}
 
 	/**
 	 * @generated
 	 */
-	protected EClass getEClassToEdit() {
-		return UMLPackage.eINSTANCE.getClassifier();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+	protected void doConfigure(Substitution newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
+		configureRequest.addParameters(getRequest().getParameters());
+		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
+				getSource());
+		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
+				getTarget());
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
+			configureCommand.execute(monitor, info);
 		}
-		return super.doExecuteWithResult(monitor, info);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected ConfigureRequest createConfigureRequest() {
-		ConfigureRequest request = super.createConfigureRequest();
-		request.setParameter(CreateRelationshipRequest.SOURCE, getSource());
-		request.setParameter(CreateRelationshipRequest.TARGET, getTarget());
-		return request;
 	}
 
 	/**
@@ -161,4 +145,23 @@ public class SubstitutionCreateCommand extends CreateElementCommand {
 	public Classifier getContainer() {
 		return container;
 	}
+
+	/**
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
+	 * @generated
+	 */
+	private static Classifier deduceContainer(EObject source, EObject target) {
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
+			if (element instanceof Classifier) {
+				return (Classifier) element;
+			}
+		}
+		return null;
+	}
+
 }

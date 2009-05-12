@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -86,7 +73,9 @@ public class AssociationClassReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociationClass_4017(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistAssociationClass_4017(container, getNewSource(),
+						target);
 	}
 
 	/**
@@ -104,15 +93,19 @@ public class AssociationClassReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociationClass_4017(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistAssociationClass_4017(container, source,
+						getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -127,18 +120,14 @@ public class AssociationClassReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getLink().getEndTypes().remove(getOldSource());
-		getLink().getEndTypes().add(getNewSource());
-		return CommandResult.newOKCommandResult(getLink());
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().getEndTypes().remove(getOldTarget());
-		getLink().getEndTypes().add(getNewTarget());
-		return CommandResult.newOKCommandResult(getLink());
+		throw new UnsupportedOperationException();
 	}
 
 	/**

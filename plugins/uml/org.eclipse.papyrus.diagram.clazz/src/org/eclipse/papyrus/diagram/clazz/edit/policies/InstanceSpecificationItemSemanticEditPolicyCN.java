@@ -4,12 +4,17 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
@@ -47,37 +52,194 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class InstanceSpecificationItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
+public class InstanceSpecificationItemSemanticEditPolicyCN extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		CompoundCommand cc = getDestroyEdgesCommand();
-		addDestroyChildNodesCommand(cc);
-		addDestroyShortcutsCommand(cc);
-		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
-		return cc.unwrap();
+	public InstanceSpecificationItemSemanticEditPolicyCN() {
+		super(UMLElementTypes.InstanceSpecification_3020);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void addDestroyChildNodesCommand(CompoundCommand cmd) {
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation != null) {
-			return;
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
+				getEditingDomain(), null);
+		cmd.setTransactionNestingEnabled(false);
+		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == RealizationEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == AbstractionEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == UsageEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == Dependency3EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == ElementImportEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == TemplateBindingEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 		}
-		for (Iterator it = view.getChildren().iterator(); it.hasNext();) {
-			Node node = (Node) it.next();
+		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge) it.next();
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RealizationEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AbstractionEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == UsageEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DependencyEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Dependency3EditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+		}
+		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
+		if (annotation == null) {
+			// there are indirectly referenced children, need extra commands: false
+			addDestroyChildNodesCommand(cmd);
+			addDestroyShortcutsCommand(cmd, view);
+			// delete host element
+			cmd.add(new DestroyElementCommand(req));
+		} else {
+			cmd.add(new DeleteCommand(getEditingDomain(), view));
+		}
+		return getGEFWrapper(cmd.reduce());
+	}
+
+	/**
+	 * @generated
+	 */
+	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
+		View view = (View) getHost().getModel();
+		for (Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
+			Node node = (Node) nit.next();
 			switch (UMLVisualIDRegistry.getVisualID(node)) {
 			case InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+				for (Iterator cit = node.getChildren().iterator(); cit
+						.hasNext();) {
 					Node cnode = (Node) cit.next();
 					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
 					case SlotEditPart.VISUAL_ID:
-						cmd.add(getDestroyElementCommand(cnode));
+						for (Iterator it = cnode.getTargetEdges().iterator(); it
+								.hasNext();) {
+							Edge incomingLink = (Edge) it.next();
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == TemplateBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(
+										incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(
+								new DestroyElementRequest(getEditingDomain(),
+										cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					}
 				}
@@ -90,36 +252,46 @@ public class InstanceSpecificationItemSemanticEditPolicyCN extends UMLBaseItemSe
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		if (UMLElementTypes.Realization_4005 == req.getElementType()) {
-			return getGEFWrapper(new RealizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new RealizationCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Abstraction_4006 == req.getElementType()) {
-			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AbstractionCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Usage_4007 == req.getElementType()) {
-			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Dependency_4008 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new DependencyCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Dependency_4018 == req.getElementType()) {
-			return getGEFWrapper(new Dependency3CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Dependency3CreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ElementImport_4009 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4013 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_4013 == req
+				.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4014 == req
+				.getElementType()) {
 			return null;
 		}
 		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
@@ -131,43 +303,57 @@ public class InstanceSpecificationItemSemanticEditPolicyCN extends UMLBaseItemSe
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		if (UMLElementTypes.Realization_4005 == req.getElementType()) {
-			return getGEFWrapper(new RealizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new RealizationCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Abstraction_4006 == req.getElementType()) {
-			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AbstractionCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Usage_4007 == req.getElementType()) {
-			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
 		if (UMLElementTypes.Dependency_4008 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new DependencyCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Dependency_4018 == req.getElementType()) {
-			return getGEFWrapper(new Dependency3CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Dependency3CreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ElementImport_4009 == req.getElementType()) {
-			return getGEFWrapper(new ElementImportCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ElementImportCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4013 == req.getElementType()) {
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.CommentAnnotatedElement_4013 == req
+				.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
-			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.ConstraintConstrainedElement_4014 == req
+				.getElementType()) {
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new TemplateBindingCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case RealizationEditPart.VISUAL_ID:
 			return getGEFWrapper(new RealizationReorientCommand(req));
@@ -188,16 +374,19 @@ public class InstanceSpecificationItemSemanticEditPolicyCN extends UMLBaseItemSe
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(
+					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

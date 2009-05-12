@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -32,7 +19,7 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject newEnd;
+	private final int reorientDirection;
 
 	/**
 	 * @generated
@@ -42,7 +29,7 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final int reorientDirection;
+	private final EObject newEnd;
 
 	/**
 	 * @generated
@@ -78,7 +65,8 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Classifier target = getLink().getGeneral();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistGeneralization_4002(getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistGeneralization_4002(getNewSource(), target);
 	}
 
 	/**
@@ -92,15 +80,18 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Classifier source = (Classifier) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistGeneralization_4002(source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistGeneralization_4002(source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -109,41 +100,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Generalization getLink() {
-		return (Generalization) getElementToEdit();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Classifier getNewSource() {
-		return (Classifier) newEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Classifier getNewTarget() {
-		return (Classifier) newEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Classifier getOldSource() {
-		return (Classifier) oldEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Classifier getOldTarget() {
-		return (Classifier) oldEnd;
 	}
 
 	/**
@@ -161,5 +117,40 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setGeneral(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Generalization getLink() {
+		return (Generalization) getElementToEdit();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Classifier getOldSource() {
+		return (Classifier) oldEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Classifier getNewSource() {
+		return (Classifier) newEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Classifier getOldTarget() {
+		return (Classifier) oldEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Classifier getNewTarget() {
+		return (Classifier) newEnd;
 	}
 }

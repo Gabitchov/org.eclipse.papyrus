@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -28,7 +15,8 @@ import org.eclipse.papyrus.diagram.clazz.part.Messages;
 /**
  * @generated
  */
-public class PackagePackageableElementCompartment2EditPart extends ShapeCompartmentEditPart {
+public class PackagePackageableElementCompartment2EditPart extends
+		ShapeCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -45,24 +33,16 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 	/**
 	 * @generated
 	 */
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackagePackageableElementCompartment2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new
-		// org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartment2CanonicalEditPolicy());
-
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+	public String getCompartmentName() {
+		return Messages.PackagePackageableElementCompartment2EditPart_title;
 	}
 
 	/**
 	 * @generated
 	 */
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
+				.createFigure();
 		result.setTitleVisibility(false);
 		return result;
 	}
@@ -70,8 +50,20 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 	/**
 	 * @generated
 	 */
-	public String getCompartmentName() {
-		return Messages.PackagePackageableElementCompartment2EditPart_title;
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new PackagePackageableElementCompartment2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new DragDropEditPolicy());
+
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartment2CanonicalEditPolicy());
+
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 	}
 
 	/**
