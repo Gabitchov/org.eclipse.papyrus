@@ -50,8 +50,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.diagram.clazz.edit.parts,
  org.eclipse.papyrus.diagram.clazz.part,
- org.eclipse.papyrus.diagram.clazz.providers,
- org.eclipse.papyrus.diagram.clazzBis.edit.parts,
- org.eclipse.papyrus.diagram.clazzBis.part,
- org.eclipse.papyrus.diagram.clazzBis.providers
+ org.eclipse.papyrus.diagram.clazz.providers
 Eclipse-LazyStart: true
