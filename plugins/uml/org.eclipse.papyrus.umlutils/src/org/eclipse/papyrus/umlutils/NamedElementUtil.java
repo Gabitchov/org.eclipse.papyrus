@@ -36,6 +36,9 @@ public class NamedElementUtil {
 	public static int getQualifiedNameMaxDepth(NamedElement namedElement) {
 		int d = 0;
 		String s = namedElement.getQualifiedName();
+		if(s==null){
+			return 0;
+		}
 		int n = 0;
 		while ((n = s.indexOf(QUALIFIED_NAME_SEPARATOR, n)) != -1) {
 			n += 2;
