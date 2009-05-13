@@ -83,7 +83,7 @@ public class AssociationClass2CreateCommand extends EditElementCommand {
 		}
 		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined
-							// yet
+			// yet
 		}
 		// target may be null here but it's possible to check constraint
 		if (getContainer() == null) {
@@ -119,7 +119,7 @@ public class AssociationClass2CreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {

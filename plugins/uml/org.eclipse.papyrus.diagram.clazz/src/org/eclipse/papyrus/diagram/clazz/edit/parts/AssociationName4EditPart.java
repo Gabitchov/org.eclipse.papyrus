@@ -85,7 +85,7 @@ public class AssociationName4EditPart extends LabelEditPart implements
 		registerSnapBackPosition(
 				UMLVisualIDRegistry
 						.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName4EditPart.VISUAL_ID),
-				new Point(0, 100));
+				new Point(0, 20));
 	}
 
 	/**

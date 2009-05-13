@@ -25,11 +25,27 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	public static AssociationClassCreateCommand create(
+			CreateElementRequest req, EObject eObject) {
+		return new AssociationClassCreateCommand(req, eObject);
+	}
+
+	/**
+	 * @generated
+	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
 	private EObject eObject = null;
+
+	/**
+	 * @generated
+	 */
+	public AssociationClassCreateCommand(CreateElementRequest req) {
+		super(req.getLabel(), null, req);
+	}
 
 	/**
 	 * @generated
@@ -44,60 +60,9 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static AssociationClassCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
-		return new AssociationClassCreateCommand(req, eObject);
-	}
-
-	/**
-	 * @generated
-	 */
-	public AssociationClassCreateCommand(CreateElementRequest req) {
-		super(req.getLabel(), null, req);
-	}
-
-	/**
-	 * FIXME: replace with setElementToEdit()
-	 * @generated
-	 */
-	protected EObject getElementToEdit() {
-
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
-		}
-		if (container != null) {
-			return container;
-		}
-		return eObject;
-	}
-
-	/**
-	 * @generated
-	 */
 	public boolean canExecute() {
 		return true;
 
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		AssociationClass newElement = UMLFactory.eINSTANCE
-				.createAssociationClass();
-
-		Package owner = (Package) getElementToEdit();
-		owner.getPackagedElements().add(newElement);
-
-		UMLElementTypes.init_AssociationClass_2013(newElement);
-
-		doConfigure(newElement, monitor, info);
-
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
@@ -118,6 +83,43 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		AssociationClass newElement = UMLFactory.eINSTANCE
+				.createAssociationClass();
+
+		Package owner = (Package) getElementToEdit();
+		owner.getPackagedElements().add(newElement);
+
+		UMLElementTypes.init_AssociationClass_2013(newElement);
+
+		doConfigure(newElement, monitor, info);
+
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+	}
+
+	/**
+	 * FIXME: replace with setElementToEdit()
+	 * 
+	 * @generated
+	 */
+	protected EObject getElementToEdit() {
+
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
+		}
+		if (container != null) {
+			return container;
+		}
+		return eObject;
 	}
 
 }

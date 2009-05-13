@@ -2240,7 +2240,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6001 = (Location) AssociationName_6001
 				.getLayoutConstraint();
 		location6001.setX(0);
-		location6001.setY(40);
+		location6001.setY(-20);
 		Node AssociationName_6002 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName2EditPart.VISUAL_ID));
 		AssociationName_6002.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -2248,7 +2248,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6002 = (Location) AssociationName_6002
 				.getLayoutConstraint();
 		location6002.setX(0);
-		location6002.setY(60);
+		location6002.setY(20);
 		Node AssociationName_6003 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName3EditPart.VISUAL_ID));
 		AssociationName_6003.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -2256,7 +2256,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6003 = (Location) AssociationName_6003
 				.getLayoutConstraint();
 		location6003.setX(0);
-		location6003.setY(80);
+		location6003.setY(-20);
 		Node AssociationName_6004 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName4EditPart.VISUAL_ID));
 		AssociationName_6004.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -2264,7 +2264,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6004 = (Location) AssociationName_6004
 				.getLayoutConstraint();
 		location6004.setX(0);
-		location6004.setY(100);
+		location6004.setY(20);
 		Node AssociationName_6005 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName5EditPart.VISUAL_ID));
 		AssociationName_6005.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -2272,7 +2272,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6005 = (Location) AssociationName_6005
 				.getLayoutConstraint();
 		location6005.setX(0);
-		location6005.setY(120);
+		location6005.setY(20);
 		Node AssociationName_6006 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName6EditPart.VISUAL_ID));
 		AssociationName_6006.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -2280,7 +2280,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6006 = (Location) AssociationName_6006
 				.getLayoutConstraint();
 		location6006.setX(0);
-		location6006.setY(140);
+		location6006.setY(-20);
 		return edge;
 	}
 

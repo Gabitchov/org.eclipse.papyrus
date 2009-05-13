@@ -85,7 +85,7 @@ public class AppliedStereotypeAssociationEditPart extends LabelEditPart
 		registerSnapBackPosition(
 				UMLVisualIDRegistry
 						.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAssociationEditPart.VISUAL_ID),
-				new Point(0, 40));
+				new Point(0, -20));
 	}
 
 	/**
