@@ -17,11 +17,11 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public void initializeDefaultPreferences() {
-		IPreferenceStore store = getPreferenceStore();
 		/*
+		 * IPreferenceStore store = getPreferenceStore();
 		 * Dependency_2014PreferencePage.initDefaults(store);
 		 * AssociationClass_2013PreferencePage.initDefaults(store);
 		 * Association_2015PreferencePage.initDefaults(store);

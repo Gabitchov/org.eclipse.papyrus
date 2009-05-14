@@ -254,7 +254,7 @@ public class AppliedStereotypeAssociationEditPart extends LabelEditPart
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**

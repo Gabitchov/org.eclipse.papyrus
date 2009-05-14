@@ -98,6 +98,8 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 				.getReturnValue();
 		targetProperty.setType((Type) getTarget());
 		targetProperty.setName(((Type) getTarget()).getName().toLowerCase());
+		targetProperty.setLower(1);
+		targetProperty.setUpper(1);
 		// create source property
 
 		request = new CreateElementRequest(domain, association,
@@ -111,6 +113,8 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 				.getReturnValue();
 		sourceProperty.setType((Type) getSource());
 		sourceProperty.setName(((Type) getSource()).getName().toLowerCase());
+		sourceProperty.setLower(1);
+		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
 		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
 			association.getMemberEnds().move(0, ((Property) sourceProperty));
@@ -124,7 +128,7 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		}
 
 		((Package) getContainer()).getPackagedElements().add(association);
-
+		UMLElementTypes.init_AssociationClass_2013(association);
 		// ////////////////////////////////////////////////////////////////////
 		return association;
 	}

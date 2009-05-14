@@ -2513,7 +2513,8 @@
         <labels
             visualID="6001"
             editPartClassName="AppliedStereotypeAssociationEditPart"
-            itemSemanticEditPolicyClassName="AssociationNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="AssociationNameItemSemanticEditPolicy"
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2559,6 +2560,7 @@
             visualID="6003"
             editPartClassName="AssociationName3EditPart"
             itemSemanticEditPolicyClassName="AssociationName3ItemSemanticEditPolicy"
+            readOnly="true"
             alignment="SOURCE">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2584,6 +2586,7 @@
             visualID="6004"
             editPartClassName="AssociationName4EditPart"
             itemSemanticEditPolicyClassName="AssociationName4ItemSemanticEditPolicy"
+            readOnly="true"
             alignment="SOURCE">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2609,6 +2612,7 @@
             visualID="6005"
             editPartClassName="AssociationName5EditPart"
             itemSemanticEditPolicyClassName="AssociationName5ItemSemanticEditPolicy"
+            readOnly="true"
             alignment="TARGET">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2634,6 +2638,7 @@
             visualID="6006"
             editPartClassName="AssociationName6EditPart"
             itemSemanticEditPolicyClassName="AssociationName6ItemSemanticEditPolicy"
+            readOnly="true"
             alignment="TARGET">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
