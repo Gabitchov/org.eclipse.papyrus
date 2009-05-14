@@ -54,14 +54,14 @@
 «REM»BEGIN: PapyrusGenCode«ENDREM»
 «REM»CreateGenerator to refresh figure by taking account of event of UML element or graphical element «ENDREM»
 «DEFINE specificHandleNotificationEvent FOR gmfgen::GenNode-»
-	«IF papyrusgmfgenextension::ExtendedGenNode.allInstances()->size()<>0»
+	«IF papyrusgmfgenextension::ExtendedGenNode.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenNode|v.genNode->includes(self))->size()<>0»
 /**
 *Papyrus codeGen
 *@generated
 **/
 protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
 		super.handleNotificationEvent(event);
-		«FOREACH papyrusgmfgenextension::ExtendedGenNode.allInstances() AS extendedObject»
+		«FOREACH papyrusgmfgenextension::ExtendedGenNode.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenNode|v.genNode->includes(self)) AS extendedObject»
 	 		«EXPAND specificHandleNotificationEventBody FOR extendedObject.propRefreshHook-»
 	 	«ENDFOREACH-»
 	 	}
