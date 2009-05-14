@@ -166,13 +166,13 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		case AssociationName2EditPart.VISUAL_ID:
 			return getAssociationName_6002Parser();
 		case AssociationName3EditPart.VISUAL_ID:
-			return getAssociationSourceRole();
-		case AssociationName4EditPart.VISUAL_ID:
-			return getAssociationSourceMultiplicity();
-		case AssociationName5EditPart.VISUAL_ID:
-			return getAssociationTargetMultiplicity();
-		case AssociationName6EditPart.VISUAL_ID:
 			return getAssociationTargetRole();
+		case AssociationName4EditPart.VISUAL_ID:
+			return getAssociationTargetMultiplicity();
+		case AssociationName5EditPart.VISUAL_ID:
+			return getAssociationSourceMultiplicity();
+		case AssociationName6EditPart.VISUAL_ID:
+			return getAssociationSourceRole();
 		case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:

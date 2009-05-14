@@ -402,7 +402,6 @@ public class AssociationName6EditPart extends LabelEditPart implements
 				}
 			}
 		}
-		refreshLabel();
 		super.handleNotificationEvent(event);
 	}
 

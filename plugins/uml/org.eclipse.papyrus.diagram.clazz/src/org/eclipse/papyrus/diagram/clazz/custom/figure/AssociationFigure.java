@@ -3,8 +3,10 @@ package org.eclipse.papyrus.diagram.clazz.custom.figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineDecoration;
+import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.SWT;
 
 /**
@@ -17,22 +19,56 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * the end of the association is an aggregation i.e. this a translucide
 	 * diamond.
 	 */
-	public static final int aggregation = 1;
+	public static final int aggregation = 2;
 
 	/**
 	 * the end of the association is a composition so this a black diamond.
 	 */
-	public static final int composition = 2;
-
+	public static final int composition = 4;
 	/**
 	 * the end of the association is navigable so this is an arrow.
 	 */
-	public static final int navigable = 0;
+	public static final int navigable = 1;
 
 	/**
-	 * the end of teh association is not navigable so there is nothing.
+	 * the end of contained the property.
 	 */
-	public static final int nothing = 3;
+	public static final int owned = 8;
+
+	/**
+	 * @generated
+	 */
+	private WrappingLabel fAppliedStereotypeAssociationLabel;
+	/**
+	 * @generated
+	 */
+	private WrappingLabel fAssociationNameLabel;
+
+	/**
+	 * @generated
+	 */
+	private WrappingLabel fMultiplicitySourceLabel;
+
+	/**
+	 * @generated
+	 */
+	private WrappingLabel fMultiplicityTargetLabel;
+
+	/**
+	 * @generated
+	 */
+	private WrappingLabel fRoleSourceLabel;
+
+	/**
+	 * @generated
+	 */
+	private WrappingLabel fRoleTargetLabel;
+
+	public AssociationFigure() {
+		super();
+		setAntialias(SWT.ON);
+		createContents();
+	}
 
 	/**
 	 * create an association figure.
@@ -47,18 +83,282 @@ public class AssociationFigure extends PolylineConnectionEx {
 	public AssociationFigure(int sourceType, int targetType) {
 		super();
 		this.setEnd(sourceType, targetType);
+		createContents();
+	}
 
+	/**
+	 * @generated
+	 */
+	private void createContents() {
+
+		fAssociationNameLabel = new WrappingLabel();
+		fAssociationNameLabel.setText("");
+
+		this.add(fAssociationNameLabel);
+
+		fAppliedStereotypeAssociationLabel = new WrappingLabel();
+		fAppliedStereotypeAssociationLabel.setText("");
+
+		this.add(fAppliedStereotypeAssociationLabel);
+
+		fRoleSourceLabel = new WrappingLabel();
+		fRoleSourceLabel.setText("");
+
+		this.add(fRoleSourceLabel);
+
+		fMultiplicitySourceLabel = new WrappingLabel();
+		fMultiplicitySourceLabel.setText("");
+
+		this.add(fMultiplicitySourceLabel);
+
+		fRoleTargetLabel = new WrappingLabel();
+		fRoleTargetLabel.setText("");
+
+		this.add(fRoleTargetLabel);
+
+		fMultiplicityTargetLabel = new WrappingLabel();
+		fMultiplicityTargetLabel.setText("");
+
+		this.add(fMultiplicityTargetLabel);
+
+	}
+
+	protected RotatableDecoration getAggregationDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 0);
+		decorationPointList.addPoint(-2, 2);
+		decorationPointList.addPoint(-4, 0);
+		decorationPointList.addPoint(-2, -2);
+		decoration.setTemplate(decorationPointList);
+		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
+		decoration.setScale(3, 3);
+		return decoration;
+	}
+
+	/**
+	 * @generated
+	 */
+	public WrappingLabel getAppliedStereotypeAssociationLabel() {
+		return fAppliedStereotypeAssociationLabel;
+	}
+
+	/**
+	 * @generated
+	 */
+	public WrappingLabel getAssociationNameLabel() {
+		return fAssociationNameLabel;
+	}
+
+	protected RotatableDecoration getCompositionDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 0);
+		decorationPointList.addPoint(-2, 2);
+		decorationPointList.addPoint(-4, 0);
+		decorationPointList.addPoint(-2, -2);
+		decoration.setTemplate(decorationPointList);
+		decoration.setScale(3, 3);
+		return decoration;
+	}
+
+	public RotatableDecoration getDecoration(int typeDecoration) {
+		// test if this a owned decoration
+		int ownedValue = typeDecoration / owned;
+		int remain = typeDecoration % owned;
+		int compositeValue = remain / composition;
+		remain = remain % composition;
+		int aggregationValue = remain / aggregation;
+		remain = remain % aggregation;
+		int navigationValue = remain / navigable;
+
+		// the end association is contained by the association?
+		if (ownedValue == 1) {
+			// this is composite.
+			if (compositeValue == 1) {
+				return getOwnedCompositionDecoration();
+			}
+			// an aggragation?
+			else if (aggregationValue == 1) {
+				return getOwnedAggregationDecoration();
+			}
+			// Is it naviagable?
+			else if (navigationValue == 1) {
+				return getOwnedNavigationDecoration();
+			} else {
+				return getOwnedDecoration();
+			}
+		}
+
+		else {
+			// this is composite.
+			if (compositeValue == 1) {
+				return getCompositionDecoration();
+			}
+			// an aggragation?
+			else if (aggregationValue == 1) {
+				return getAggregationDecoration();
+			}
+			// Is it naviagable?
+			else if (navigationValue == 1) {
+				return getNavigationDecoration();
+			}
+		}
+		return null;
+
+	}
+
+	/**
+	 * @generated
+	 */
+	public WrappingLabel getMultiplicitySourceLabel() {
+		return fMultiplicitySourceLabel;
+	}
+
+	/**
+	 * @generated
+	 */
+	public WrappingLabel getMultiplicityTargetLabel() {
+		return fMultiplicityTargetLabel;
+	}
+
+	protected RotatableDecoration getNavigationDecoration() {
+		PolylineDecoration dec = new PolylineDecoration();
+		dec.setScale(15, 5);
+		dec.setLineWidth(1);
+		return dec;
+	}
+
+	protected RotatableDecoration getOwnedAggregationDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-18, 6);
+		decorationPointList.addPoint(-30, 0);
+		decorationPointList.addPoint(-18, -6);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-6, -1);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(0, -1); // color Point
+		decorationPointList.addPoint(-1, -1);
+		decorationPointList.addPoint(-1, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(-3, -3);
+		decorationPointList.addPoint(-3, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-5, -2);
+		decorationPointList.addPoint(-5, 2);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, -1);
+
+		decoration.setScale(1, 1);
+		decoration.setTemplate(decorationPointList);
+		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
+		return decoration;
+	}
+
+	protected RotatableDecoration getOwnedCompositionDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-18, 6);
+		decorationPointList.addPoint(-30, 0);
+		decorationPointList.addPoint(-18, -6);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-6, -1);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(0, -1); // color Point
+		decorationPointList.addPoint(-1, -1);
+		decorationPointList.addPoint(-1, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(-3, -3);
+		decorationPointList.addPoint(-3, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-5, -2);
+		decorationPointList.addPoint(-5, 2);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, -1);
+
+		decoration.setScale(1, 1);
+		decoration.setTemplate(decorationPointList);
+		return decoration;
+	}
+
+	protected RotatableDecoration getOwnedDecoration() {
+
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, -1);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(0, -1);
+		decoration.setTemplate(decorationPointList);
+		decoration.setScale(1, 1);
+
+		return decoration;
+	}
+
+	protected RotatableDecoration getOwnedNavigationDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-18, 6);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-18, -6);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-6, -1);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(0, -1);
+
+		decoration.setScale(1, 1);
+		decoration.setTemplate(decorationPointList);
+		return decoration;
+	}
+
+	/**
+	 * @generated
+	 */
+	public WrappingLabel getRoleSourceLabel() {
+		return fRoleSourceLabel;
+	}
+
+	/**
+	 * @generated
+	 */
+	public WrappingLabel getRoleTargetLabel() {
+		return fRoleTargetLabel;
 	}
 
 	/**
 	 * @{inheritDoc
 	 */
 	public void paintFigure(Graphics graphics) {
-		graphics.pushState();
 		graphics.setAntialias(SWT.ON);
 		super.paintFigure(graphics);
 
-		graphics.popState();
 	}
 
 	/**
@@ -72,137 +372,8 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 *            {@link AssociationFigure#navigable}
 	 */
 	public void setEnd(int sourceType, int targetType) {
-		PolylineDecoration dec;
-		PolygonDecoration decoration;
-		PointList decorationPointList;
 
-		// display end link near of the source
-		switch (sourceType) {
-		case navigable: // its only navigable
-			dec = new PolylineDecoration();
-			dec.setScale(15, 5);
-			dec.setLineWidth(1);
-			this.setSourceDecoration(dec); // arrow at target endpoint
-			break;
-
-		case aggregation: // this is aggregation
-			decoration = new PolygonDecoration();
-			decorationPointList = new PointList();
-			decorationPointList.addPoint(0, 0);
-			decorationPointList.addPoint(-2, 2);
-			decorationPointList.addPoint(-4, 0);
-			decorationPointList.addPoint(-2, -2);
-			decoration.setTemplate(decorationPointList);
-			decoration
-					.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
-			decoration.setScale(3, 3);
-			this.setSourceDecoration(decoration);
-			break;
-		case composition: // this a compostion
-			decoration = new PolygonDecoration();
-			decorationPointList = new PointList();
-			decorationPointList.addPoint(0, 0);
-			decorationPointList.addPoint(-2, 2);
-			decorationPointList.addPoint(-4, 0);
-			decorationPointList.addPoint(-2, -2);
-			decoration.setTemplate(decorationPointList);
-			decoration.setScale(3, 3);
-			this.setSourceDecoration(decoration);
-			break;
-		case nothing: // its only navigable
-
-			this.setSourceDecoration(null); // arrow at target endpoint
-			break;
-
-		}
-		switch (targetType) {
-		case navigable:// navigation
-			dec = new PolylineDecoration();
-			dec.setScale(15, 5);
-			dec.setLineWidth(1);
-			this.setTargetDecoration(dec); // arrow at target endpoint
-			break;
-
-		case aggregation:// aggregation
-			decoration = new PolygonDecoration();
-			decorationPointList = new PointList();
-			decorationPointList.addPoint(0, 0);
-			decorationPointList.addPoint(-2, 2);
-			decorationPointList.addPoint(-4, 0);
-			decorationPointList.addPoint(-2, -2);
-			decoration.setTemplate(decorationPointList);
-			decoration
-					.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
-			decoration.setScale(3, 3);
-			this.setTargetDecoration(decoration);
-			break;
-		case composition:// composition
-			decoration = new PolygonDecoration();
-			decorationPointList = new PointList();
-			decorationPointList.addPoint(0, 0);
-			decorationPointList.addPoint(-2, 2);
-			decorationPointList.addPoint(-4, 0);
-			decorationPointList.addPoint(-2, -2);
-			decoration.setScale(3, 3);
-			decoration.setTemplate(decorationPointList);
-			this.setTargetDecoration(decoration);
-			break;
-		case nothing: // its only navigable
-
-			this.setTargetDecoration(null); // arrow at target endpoint
-			break;
-		}
-
+		this.setSourceDecoration(getDecoration(sourceType));
+		this.setTargetDecoration(getDecoration(targetType));
 	}
 }
-// DO NOT DELETE follow lines
-// this code to display point that may be present in UML2
-// circle
-
-/*
- * PointList decorationPointList = new PointList();
- * decorationPointList.addPoint(0,1); decorationPointList.addPoint(-2,3);
- * decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-6,1);
- * decorationPointList.addPoint(-6,-1); decorationPointList.addPoint(-4,-3);
- * decorationPointList.addPoint(-2,-3); decorationPointList.addPoint(0,-1);
- * 
- * decoration.setScale(1, 1);
- */
-// this.setTargetDecoration(decoration);
-
-// composition+ circle
-/*
- * PointList decorationPointList = new PointList();
- * decorationPointList.addPoint(0,1); decorationPointList.addPoint(-2,3);
- * decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-6,1);
- * decorationPointList.addPoint(-6,0); decorationPointList.addPoint(-18,6);
- * decorationPointList.addPoint(-30,0); decorationPointList.addPoint(-18,-6);
- * decorationPointList.addPoint(-6,0); decorationPointList.addPoint(-6,-1);
- * decorationPointList.addPoint(-4,-3); decorationPointList.addPoint(-2,-3);
- * decorationPointList.addPoint(0,-1); //color Point
- * decorationPointList.addPoint(-1,-1); decorationPointList.addPoint(-1,1);
- * decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-2,-3);
- * decorationPointList.addPoint(-3,-3); decorationPointList.addPoint(-3,3);
- * decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-4,-3);
- * decorationPointList.addPoint(-5,-2); decorationPointList.addPoint(-5,2);
- * decorationPointList.addPoint(-6,1); decorationPointList.addPoint(-6,-1);
- * 
- * decoration.setScale(1, 1); decoration.setTemplate(decorationPointList);
- * decoration.setBackgroundColor(ColorConstants.white);
- * this.setSourceDecoration(decoration);
- */
-// circle +arrow
-/*
- * PointList decorationPointList = new PointList();
- * decorationPointList.addPoint(0,1); decorationPointList.addPoint(-2,3);
- * decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-6,1);
- * decorationPointList.addPoint(-6,0); decorationPointList.addPoint(-18,6);
- * decorationPointList.addPoint(-6,0); decorationPointList.addPoint(-18,-6);
- * decorationPointList.addPoint(-6,0); decorationPointList.addPoint(-6,-1);
- * decorationPointList.addPoint(-4,-3); decorationPointList.addPoint(-2,-3);
- * decorationPointList.addPoint(0,-1);
- * 
- * decoration.setScale(1, 1); decoration.setTemplate(decorationPointList);
- * 
- * this.setSourceDecoration(decoration);
- */

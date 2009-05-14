@@ -113,7 +113,6 @@ NamedElementEditPart
 				refreshVisuals();
 			}
 		}
-
 	}
 
 	/**
