@@ -23,7 +23,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.notation;bundle-version="1.0.100",
  org.eclipse.gmf.runtime.diagram.core;bundle-version="1.1.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.4.0";visibility:=reexport,
- org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0";visibility:=reexport
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0";visibility:=reexport,
+ org.junit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.core,
@@ -38,5 +39,6 @@ Export-Package: org.eclipse.papyrus.core,
  org.eclipse.papyrus.core.multidiagram.actionbarcontributor,
  org.eclipse.papyrus.core.multidiagram.commands,
  org.eclipse.papyrus.core.perspective,
+ org.eclipse.papyrus.core.services,
  org.eclipse.papyrus.core.utils
 Bundle-Vendor: %providerName

@@ -29,7 +29,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.validation.internal.service.GetBatchConstraintsOperation;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -49,6 +48,9 @@ import org.eclipse.papyrus.core.multidiagram.SashDiagramModelManager;
 import org.eclipse.papyrus.core.multidiagram.SashWindowModelManagerWrapper;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
+import org.eclipse.papyrus.core.services.ExtensionServiceRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
@@ -406,6 +408,16 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 
 		// Set editor name
 		setPartName(file.getName());
+		
+		// Create Services Registry
+		try {
+			ServicesRegistry servicesRegistry = new ExtensionServiceRegistry(Activator.PLUGIN_ID);
+			servicesRegistry.startRegistry();
+		} catch (ServiceException e) {
+			// Show log and error
+			log.severe(e.getMessage());
+			e.printStackTrace();
+		}
 
 	}
 
@@ -430,7 +442,7 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 			String message = "Error while  showing the Model Explorer view." + e.getMessage();
 			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
 			Activator.getDefault().getLog().log(status);
-			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
+//			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
 		}
 
 	}

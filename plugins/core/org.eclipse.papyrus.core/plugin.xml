@@ -4,6 +4,7 @@
    <extension-point id="papyrusDiagram" name="PapyrusDiagram" schema="schema/papyrusDiagram.exsd"/>
    <extension-point id="modelListener" name="ModelListener" schema="schema/modelListener.exsd"/>
    <extension-point id="papyrusContentOutline" name="PapyrusContentOutline" schema="schema/contentOutline.exsd"/>
+   <extension-point id="service" name="Service" schema="schema/service.exsd"/>
 	
 	
 </plugin>
