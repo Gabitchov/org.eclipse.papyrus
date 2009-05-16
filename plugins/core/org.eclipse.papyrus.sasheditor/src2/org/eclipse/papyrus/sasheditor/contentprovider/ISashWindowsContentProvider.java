@@ -26,7 +26,7 @@ public interface ISashWindowsContentProvider {
 	 * This method is called by the sashes window to get the interface.
 	 * The method is called only once for a given object.
 	 * @param root
-	 * @return
+	 * @return The SashModel corresponding to the specified root object.
 	 */
 	public IAbstractPanelModel createChildSashModel( Object root );
 	
@@ -66,7 +66,7 @@ public interface ISashWindowsContentProvider {
 	 * Remove the page at the specified index of the current tabFolder
 	 * @param index
 	 */
-	public IPageModel removePage(int index);
+	public void removePage(int index);
 	
 	/**
 	 * Remove the page from the sashes window.

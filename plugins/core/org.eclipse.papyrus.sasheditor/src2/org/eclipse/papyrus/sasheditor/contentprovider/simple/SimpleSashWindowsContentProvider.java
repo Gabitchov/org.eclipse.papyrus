@@ -288,8 +288,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 * {@inheritDoc}
 	 */
-	public IPageModel removePage(int index) {
-		return currentTabFolder.removeTab(index);
+	public void removePage(int index) {
+		currentTabFolder.removeTab(index);
 	}
 
 	/**
