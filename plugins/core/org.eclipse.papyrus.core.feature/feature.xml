@@ -3,8 +3,7 @@
       id="org.eclipse.papyrus.core.feature"
       label="%featureName"
       version="0.7.0.vqualifier"
-      provider-name="%providerName"
-      plugin="org.eclipse.papyrus.core">
+      provider-name="%providerName">
 
    <description url="http://www.eclipse.org/modeling/mdt/?project=papyrus">
       %description
@@ -27,7 +26,7 @@ this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://www.obeo.fr/download/papyrus/incubation"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/updates/"/>
    </url>
 
    <requires>
@@ -75,12 +74,6 @@ this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.uml2.diagram.statemachine"/>
       <import plugin="org.eclipse.uml2"/>
       <import plugin="org.eclipse.emf.edit.ui" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.diagram.common" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.sasheditor" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.di" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.di.edit" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.core" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.umlutils" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.emf.workspace" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore.edit" version="2.4.0" match="greaterOrEqual"/>
@@ -158,6 +151,48 @@ this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.papyrus.preferences"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.navigator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.outline"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.outline.emftree"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.eef.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.extensionpoints.uml2"
          download-size="0"
          install-size="0"
          version="0.0.0"

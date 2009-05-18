@@ -27,12 +27,8 @@ this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://www.obeo.fr/download/papyrus/incubation"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/updates/"/>
    </url>
-
-   <includes
-         id="org.eclipse.papyrus.core.feature"
-         version="0.0.0"/>
 
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
@@ -137,20 +133,6 @@ this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.papyrus.ui.toolbox"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="es.cv.gvcase.mdt.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.antlr"
          download-size="0"
          install-size="0"
          version="0.0.0"
