@@ -60,7 +60,6 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	protected void handleNotificationEvent(Notification event) {
@@ -74,8 +73,11 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		}
 	}
 
+	/**
+	 * Refreshes the displayed stereotypes properties for this edit part.
+	 */
 	private void refreshAppliedStereotypesProperties() {
-		if (stereotypesPropertiesToDisplay() != "") {
+		if ("" != stereotypesPropertiesToDisplay()) {
 			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(stereotypesPropertiesToDisplay());
 		} else {
 			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(null);
@@ -157,6 +159,13 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		}
 	}
 
+	/**
+	 * Computes the string that displays the stereotypes for the current element 
+	 * @param separator the separator used to split the string representing the stereotypes. 
+	 * @param stereotypesToDisplay the list of stereotypes displayed
+	 * @param stereotypeWithQualifiedName the list of stereotypes displayed using their qualified names
+	 * @return the string that represent the stereotypes
+	 */
 	public String stereotypesToDisplay(String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName) {
 
 		// AL Changes Feb. 07 - Beg
@@ -164,14 +173,18 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		// Stereotype displayed according to UML standard (first letter forced to lower case) - default -
 		// or kept as entered by user (user controlled)
 
-		// Get the preference from PreferenceStore
-		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		// Get the preference from PreferenceStore. there should be an assert
+		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		assert store != null : "The preference store was not found";
+		if(store == null) {
+			return "";
+		}
 		String sNameAppearance = store.getString(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
 
-		StringTokenizer strqualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
+		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
 		String out = "";
-		while (strqualifiedName.hasMoreElements()) {
-			String currentStereotype = strqualifiedName.nextToken();
+		while (strQualifiedName.hasMoreElements()) {
+			String currentStereotype = strQualifiedName.nextToken();
 			String name = currentStereotype;
 			if ((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
 				// property value contains qualifiedName ==> extract name from it

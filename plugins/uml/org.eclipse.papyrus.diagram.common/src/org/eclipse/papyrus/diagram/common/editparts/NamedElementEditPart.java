@@ -31,7 +31,6 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	 */
 	public NamedElementEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
 
 	public NamedElement getNamedElement() {
@@ -47,7 +46,7 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
-			refreshqualifiedNameDepth();
+			refreshQualifiedNameDepth();
 			refreshQualifiedName();
 			refreshIconNamedLabel();
 		}
@@ -61,13 +60,13 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 		((NodeNamedElementFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement()).getQualifiedName());
 	}
 
-	private void refreshqualifiedNameDepth() {
-		((NodeNamedElementFigure) getPrimaryShape()).setDepth(QualifiedNameHelper.getQualifiedNamedepth((View) getModel()));
+	private void refreshQualifiedNameDepth() {
+		((NodeNamedElementFigure) getPrimaryShape()).setDepth(QualifiedNameHelper.getQualifiedNameDepth((View) getModel()));
 	}
 
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		refreshqualifiedNameDepth();
+		refreshQualifiedNameDepth();
 		refreshQualifiedName();
 		refreshIconNamedLabel();
 
