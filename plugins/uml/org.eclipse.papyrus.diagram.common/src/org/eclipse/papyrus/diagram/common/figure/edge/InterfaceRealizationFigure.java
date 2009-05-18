@@ -13,10 +13,25 @@
   *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.edge;
 
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.PolygonDecoration;
+
 /**
- * future code of the extensionFigure
- * @deprecated
+ * Code of the CInterfaceRealizationFigure
  **/
-public class CExtensionFigure extends DashEdgeFigure {
-	// to add
+public class InterfaceRealizationFigure extends DashedEdgeFigure {
+
+	public InterfaceRealizationFigure() {
+		PolygonDecoration dec = new PolygonDecoration();
+		dec.setScale(15, 5);
+		dec.setBackgroundColor(ColorConstants.white);
+		dec.setLineWidth(1);
+		setTargetDecoration(dec); // arrow at target endpoint
+
+		setForegroundColor(ColorConstants.black);
+
+		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
+
+	}
 }

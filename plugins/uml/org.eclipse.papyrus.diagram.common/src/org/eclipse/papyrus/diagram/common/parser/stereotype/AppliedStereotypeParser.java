@@ -68,7 +68,7 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	}
 
 	public String getEditString(IAdaptable element, int flags) {
-		NamedElement subject = doAdapt(element);
+		Element subject = doAdapt(element);
 		List<Stereotype> stereos = subject.getAppliedStereotypes();
 		if (stereos.isEmpty()) {
 			return ""; //$NON-NLS-1$
@@ -100,8 +100,8 @@ public class AppliedStereotypeParser implements ISemanticParser {
 		return ParserEditStatus.UNEDITABLE_STATUS;
 	}
 
-	private NamedElement doAdapt(IAdaptable adaptable) {
-		NamedElement element = (NamedElement) adaptable.getAdapter(EObject.class);
+	private Element doAdapt(IAdaptable adaptable) {
+		Element element = (Element) adaptable.getAdapter(EObject.class);
 		return element;
 	}
 

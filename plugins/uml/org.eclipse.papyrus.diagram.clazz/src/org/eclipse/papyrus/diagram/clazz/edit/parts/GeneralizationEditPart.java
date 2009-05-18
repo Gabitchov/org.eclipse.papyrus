@@ -10,6 +10,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.CGeneralizationFigure;
+import org.eclipse.papyrus.diagram.common.figure.edge.GeneralizationFigure;
 
 /**
  * @generated
@@ -90,74 +91,14 @@ public class GeneralizationEditPart extends ConnectionNodeEditPart implements
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new GeneralizationDescriptor();
+		return new GeneralizationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public GeneralizationDescriptor getPrimaryShape() {
-		return (GeneralizationDescriptor) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class GeneralizationDescriptor extends CGeneralizationFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fAppliedStereotypeLabel;
-
-		/**
-		 * @generated
-		 */
-		public GeneralizationDescriptor() {
-
-			this.setForegroundColor(ColorConstants.black);
-			this.setBackgroundColor(ColorConstants.black);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fAppliedStereotypeLabel = new WrappingLabel();
-			fAppliedStereotypeLabel.setText("");
-
-			this.add(fAppliedStereotypeLabel);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getAppliedStereotypeLabel() {
-			return fAppliedStereotypeLabel;
-		}
-
+	public GeneralizationFigure getPrimaryShape() {
+		return (GeneralizationFigure) getFigure();
 	}
 
 }

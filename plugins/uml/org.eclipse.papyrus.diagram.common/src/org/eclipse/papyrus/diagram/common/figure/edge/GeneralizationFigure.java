@@ -16,23 +16,26 @@ package org.eclipse.papyrus.diagram.common.figure.edge;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
 /**
- * future code of the CInterfaceRealizationFigure
- * @deprecated
+ * future code of the CGeneralizationFigure
  **/
-public class CInterfaceRealizationFigure extends DashEdgeFigure {
+public class GeneralizationFigure extends UMLEdgeFigure {
 
-	public CInterfaceRealizationFigure() {
+	/**
+	 * 
+	 */
+	public GeneralizationFigure() {
+		super();
 		PolygonDecoration dec = new PolygonDecoration();
 		dec.setScale(15, 5);
 		dec.setBackgroundColor(ColorConstants.white);
 		dec.setLineWidth(1);
 		setTargetDecoration(dec); // arrow at target endpoint
-
+		setLineStyle(Graphics.LINE_SOLID); // line drawing style
+		setLineWidth(2);
 		setForegroundColor(ColorConstants.black);
-
-		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
 
 	}
 }

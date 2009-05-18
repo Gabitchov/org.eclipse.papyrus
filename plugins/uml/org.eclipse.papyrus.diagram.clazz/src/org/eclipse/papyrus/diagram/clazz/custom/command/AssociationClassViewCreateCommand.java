@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
@@ -148,9 +149,8 @@ public class AssociationClassViewCreateCommand extends
 		// true, preferenceHint);
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
-		notationLocation.setX(location.x);
-		notationLocation.setY(location.y);
-		((Node) this.node).setLayoutConstraint(notationLocation);
+		((Bounds) ((Node) this.node).getLayoutConstraint()).setX(location.x);
+		((Bounds) ((Node) this.node).getLayoutConstraint()).setY(location.y);
 		return CommandResult.newOKCommandResult(node);
 	}
 

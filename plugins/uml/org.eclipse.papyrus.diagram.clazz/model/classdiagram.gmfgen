@@ -2701,15 +2701,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="GeneralizationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="GeneralizationDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GeneralizationDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.CGeneralizationFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GeneralizationDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.GeneralizationFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -2758,15 +2751,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="InterfaceRealizationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="InterfaceRealizationDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InterfaceRealizationDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.CInterfaceRealizationFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fInterfaceRealizationNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InterfaceRealizationDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fInterfaceRealizationNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fInterfaceRealizationNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fInterfaceRealizationNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getInterfaceRealizationNameLabel() {&#xA;&#x9;&#x9;return fInterfaceRealizationNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -2819,7 +2805,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getInterfaceRealizationNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -2848,15 +2834,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="SubstitutionEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -2911,7 +2890,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getDependencyNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -2940,15 +2919,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="RealizationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="InterfaceRealizationDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InterfaceRealizationDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.CInterfaceRealizationFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fInterfaceRealizationNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InterfaceRealizationDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fInterfaceRealizationNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fInterfaceRealizationNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fInterfaceRealizationNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getInterfaceRealizationNameLabel() {&#xA;&#x9;&#x9;return fInterfaceRealizationNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3003,7 +2975,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getInterfaceRealizationNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -3032,15 +3004,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="AbstractionEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3071,7 +3036,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getDependencyNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -3123,15 +3088,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="UsageEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3162,7 +3120,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getDependencyNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -3214,15 +3172,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@topLevelNodes.0/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3253,7 +3204,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getDependencyNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -3305,15 +3256,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@topLevelNodes.0/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3344,7 +3288,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getDependencyNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -3396,15 +3340,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ElementImportEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3433,7 +3370,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getDependencyNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -3485,15 +3422,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="PackageImportEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3543,15 +3473,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="PackageMergeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3578,15 +3501,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ProfileApplicationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DependencyDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DependencyDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDependencyNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DependencyDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDependencyNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fDependencyNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fDependencyNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDependencyNameLabel() {&#xA;&#x9;&#x9;return fDependencyNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3655,15 +3571,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="TemplateBindingEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="InterfaceRealizationDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InterfaceRealizationDescriptor extends org.eclipse.papyrus.diagram.common.figure.edge.CInterfaceRealizationFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fInterfaceRealizationNameLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InterfaceRealizationDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fInterfaceRealizationNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fInterfaceRealizationNameLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fInterfaceRealizationNameLabel);&#xA;&#xA;&#xA;&#xA;fAppliedStereotypeLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fAppliedStereotypeLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fAppliedStereotypeLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getInterfaceRealizationNameLabel() {&#xA;&#x9;&#x9;return fInterfaceRealizationNameLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3686,7 +3595,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getInterfaceRealizationNameLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -16617,7 +16526,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenNode"
         comment="adding to manange otherNamedElement"
-        genNode="/0/@diagram/@childNodes.23 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.12"
+        genNode="/0/@diagram/@childNodes.23 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.12 /0/@diagram/@topLevelNodes.1"
         name="OtherNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>

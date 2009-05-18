@@ -82,7 +82,6 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		Association association = UMLFactory.eINSTANCE.createAssociation();
 
 		// create target property
-
 		CreateElementRequest request = new CreateElementRequest(domain,
 				getSource(), UMLElementTypes.Property_3002,
 				UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());

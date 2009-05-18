@@ -10,6 +10,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.RealizationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.CInterfaceRealizationFigure;
+import org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure;
 
 /**
  * @generated
@@ -49,8 +50,7 @@ public class RealizationEditPart extends ConnectionNodeEditPart implements
 		}
 		if (childEditPart instanceof RealizationName2EditPart) {
 			((RealizationName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getInterfaceRealizationNameLabel());
+					.setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -99,91 +99,14 @@ public class RealizationEditPart extends ConnectionNodeEditPart implements
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new InterfaceRealizationDescriptor();
+		return new InterfaceRealizationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public InterfaceRealizationDescriptor getPrimaryShape() {
-		return (InterfaceRealizationDescriptor) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class InterfaceRealizationDescriptor extends
-			CInterfaceRealizationFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fInterfaceRealizationNameLabel;
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fAppliedStereotypeLabel;
-
-		/**
-		 * @generated
-		 */
-		public InterfaceRealizationDescriptor() {
-
-			this.setForegroundColor(ColorConstants.black);
-			this.setBackgroundColor(ColorConstants.black);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fInterfaceRealizationNameLabel = new WrappingLabel();
-			fInterfaceRealizationNameLabel.setText("");
-
-			this.add(fInterfaceRealizationNameLabel);
-
-			fAppliedStereotypeLabel = new WrappingLabel();
-			fAppliedStereotypeLabel.setText("");
-
-			this.add(fAppliedStereotypeLabel);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getInterfaceRealizationNameLabel() {
-			return fInterfaceRealizationNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getAppliedStereotypeLabel() {
-			return fAppliedStereotypeLabel;
-		}
-
+	public InterfaceRealizationFigure getPrimaryShape() {
+		return (InterfaceRealizationFigure) getFigure();
 	}
 
 }

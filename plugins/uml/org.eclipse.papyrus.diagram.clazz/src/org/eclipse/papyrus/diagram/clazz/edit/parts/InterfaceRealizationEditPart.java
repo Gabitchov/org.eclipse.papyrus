@@ -1,15 +1,14 @@
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceRealizationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.CInterfaceRealizationFigure;
+import org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure;
 
 /**
  * @generated
@@ -32,10 +31,11 @@ public class InterfaceRealizationEditPart extends ConnectionNodeEditPart
 	/**
 	 * @generated
 	 */
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new InterfaceRealizationItemSemanticEditPolicy());
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
@@ -49,34 +49,39 @@ public class InterfaceRealizationEditPart extends ConnectionNodeEditPart
 		}
 		if (childEditPart instanceof InterfaceRealizationName2EditPart) {
 			((InterfaceRealizationName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getInterfaceRealizationNameLabel());
+					.setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
 	}
 
 	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
+	 * 
 	 * @generated
 	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
+
+	protected Connection createConnectionFigure() {
+		return new InterfaceRealizationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
-			return true;
-		}
-		if (childEditPart instanceof InterfaceRealizationName2EditPart) {
-			return true;
-		}
-		return false;
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new InterfaceRealizationItemSemanticEditPolicy());
+	}
+
+	/**
+	 * @generated
+	 */
+	public InterfaceRealizationFigure getPrimaryShape() {
+		return (InterfaceRealizationFigure) getFigure();
 	}
 
 	/**
@@ -90,100 +95,16 @@ public class InterfaceRealizationEditPart extends ConnectionNodeEditPart
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
 	 * @generated
 	 */
-
-	protected Connection createConnectionFigure() {
-		return new InterfaceRealizationDescriptor();
-	}
-
-	/**
-	 * @generated
-	 */
-	public InterfaceRealizationDescriptor getPrimaryShape() {
-		return (InterfaceRealizationDescriptor) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class InterfaceRealizationDescriptor extends
-			CInterfaceRealizationFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fInterfaceRealizationNameLabel;
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fAppliedStereotypeLabel;
-
-		/**
-		 * @generated
-		 */
-		public InterfaceRealizationDescriptor() {
-
-			this.setForegroundColor(ColorConstants.black);
-			this.setBackgroundColor(ColorConstants.black);
-			createContents();
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
+			return true;
 		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fInterfaceRealizationNameLabel = new WrappingLabel();
-			fInterfaceRealizationNameLabel.setText("");
-
-			this.add(fInterfaceRealizationNameLabel);
-
-			fAppliedStereotypeLabel = new WrappingLabel();
-			fAppliedStereotypeLabel.setText("");
-
-			this.add(fAppliedStereotypeLabel);
-
+		if (childEditPart instanceof InterfaceRealizationName2EditPart) {
+			return true;
 		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getInterfaceRealizationNameLabel() {
-			return fInterfaceRealizationNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getAppliedStereotypeLabel() {
-			return fAppliedStereotypeLabel;
-		}
-
+		return false;
 	}
 
 }

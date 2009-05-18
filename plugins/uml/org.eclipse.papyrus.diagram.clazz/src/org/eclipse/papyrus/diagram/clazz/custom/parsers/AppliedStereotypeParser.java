@@ -72,7 +72,8 @@ public class AppliedStereotypeParser implements IParser {
 	 * 
 	 * {@inheritDoc}
 	 */
-	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
+	public ICommand getParseCommand(IAdaptable element, String newString,
+			int flags) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -84,7 +85,8 @@ public class AppliedStereotypeParser implements IParser {
 	public String getPrintString(IAdaptable element, int flags) {
 
 		if (element instanceof EObjectAdapter) {
-			return stereotypesToDisplay(" ", (Element) ((EObjectAdapter) element).getRealObject());
+			return stereotypesToDisplay(" ",
+					(Element) ((EObjectAdapter) element).getRealObject());
 		}
 		return null;
 
@@ -103,13 +105,15 @@ public class AppliedStereotypeParser implements IParser {
 	 * 
 	 * {@inheritDoc}
 	 */
-	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
+	public IParserEditStatus isValidEditString(IAdaptable element,
+			String editString) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * get the list of sterotype to display.To modify by taking account preferences of stereotype display
+	 * get the list of stereotype to display.To modify by taking account
+	 * preferences of stereotype display
 	 * 
 	 * @param separator
 	 *            " " or "/n" for example
@@ -121,13 +125,17 @@ public class AppliedStereotypeParser implements IParser {
 		String stereotypesToDisplay = "";
 
 		// AL Changes Feb. 07 - Beg
-		// Style Handling for STEREOTYPE_NAME_APPEARANCE from ProfileApplicationPreferencePage
-		// Stereotype displayed according to UML standard (first letter forced to lower case) - default -
+		// Style Handling for STEREOTYPE_NAME_APPEARANCE from
+		// ProfileApplicationPreferencePage
+		// Stereotype displayed according to UML standard (first letter forced
+		// to lower case) - default -
 		// or kept as entered by user (user controlled)
 
 		// Get the preference from PreferenceStore
-		// IPreferenceStore store = PapyrusPlugin.getDefault().getPreferenceStore();
-		// String sNameAppearance = store.getString(ProfileApplicationPreferenceConstants.P_STEREOTYPE_NAME_APPEARANCE);
+		// IPreferenceStore store =
+		// PapyrusPlugin.getDefault().getPreferenceStore();
+		// String sNameAppearance =
+		// store.getString(ProfileApplicationPreferenceConstants.P_STEREOTYPE_NAME_APPEARANCE);
 
 		// AL Changes Feb. 07 - End
 		// TODO: remove this and replace by figurelabel
@@ -136,9 +144,11 @@ public class AppliedStereotypeParser implements IParser {
 			stereotypesToDisplay = "signal," + separator;
 		} else if (umlElement instanceof Enumeration) {
 			stereotypesToDisplay = "enumeration," + separator;
-		} else if (umlElement instanceof DataType && !(umlElement instanceof PrimitiveType)) {
+		} else if (umlElement instanceof DataType
+				&& !(umlElement instanceof PrimitiveType)) {
 			stereotypesToDisplay = "dataType," + separator;
-		} else if (umlElement instanceof PrimitiveType && !(umlElement instanceof DataType)) {
+		} else if (umlElement instanceof PrimitiveType
+				&& !(umlElement instanceof DataType)) {
 			stereotypesToDisplay = "primitiveType," + separator;
 		} else if (umlElement instanceof Interface) {
 			stereotypesToDisplay = "interface," + separator;
@@ -154,7 +164,8 @@ public class AppliedStereotypeParser implements IParser {
 			stereotypesToDisplay = "component," + separator;
 		} else if (umlElement instanceof Substitution) {
 			stereotypesToDisplay = "substitute," + separator;
-		} else if (umlElement instanceof Abstraction && !(umlElement instanceof Realization)) {
+		} else if (umlElement instanceof Abstraction
+				&& !(umlElement instanceof Realization)) {
 			stereotypesToDisplay = "abstraction," + separator;
 		} else if (umlElement instanceof PackageImport) {
 			stereotypesToDisplay = "import," + separator;
@@ -164,14 +175,17 @@ public class AppliedStereotypeParser implements IParser {
 			stereotypesToDisplay = "use," + separator;
 		}
 
-		Iterator<Stereotype> iterStereotype = (umlElement).getAppliedStereotypes().iterator();
+		Iterator<Stereotype> iterStereotype = (umlElement)
+				.getAppliedStereotypes().iterator();
 		while (iterStereotype.hasNext()) {
 			stereotypesToDisplay = iterStereotype.next().getLabel();
 			stereotypesToDisplay += "," + separator;
 		}
 
 		if (!(stereotypesToDisplay.equals(""))) {
-			return stereoBegin + stereotypesToDisplay.substring(0, stereotypesToDisplay.length() - 2) + stereoEnd;
+			return stereoBegin
+					+ stereotypesToDisplay.substring(0, stereotypesToDisplay
+							.length() - 2) + stereoEnd;
 		}
 
 		return " ";

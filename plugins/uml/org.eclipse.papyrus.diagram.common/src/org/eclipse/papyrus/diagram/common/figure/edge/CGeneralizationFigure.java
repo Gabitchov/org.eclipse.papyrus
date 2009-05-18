@@ -20,6 +20,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
 /**
  * future code of the CGeneralizationFigure
+ * @deprecated
+ * 
  **/
 public class CGeneralizationFigure extends PolylineConnectionEx {
 

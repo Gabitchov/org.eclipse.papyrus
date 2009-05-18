@@ -17,14 +17,14 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
 /**
  * Patrick This is a custom figure to represents a default edge. This code was used in Papyrus 1. This edge figure is painted using dashes. This is the base figure for dependencies, for exempale
- *@deprecated
  */
-public class DashEdgeFigure extends PolylineConnectionEx {
+public class DashedEdgeFigure extends UMLEdgeFigure {
 
 	/**
 	 * Dashes used to paint line.
@@ -36,13 +36,25 @@ public class DashEdgeFigure extends PolylineConnectionEx {
 	 */
 	protected boolean arrow = true;
 
+	private WrappingLabel nameLabel;
+
+
 	/**
 	 * Creates a new DashEdgeFigure.
 	 */
-	public DashEdgeFigure() {
+	public DashedEdgeFigure() {
 		super();
 		setStyle();
 	}
+
+
+	/**
+	 * @generated
+	 */
+	public WrappingLabel getNameLabel() {
+		return nameLabel;
+	}
+
 
 	/**
 	 * This is the constructor
@@ -50,10 +62,11 @@ public class DashEdgeFigure extends PolylineConnectionEx {
 	 * @param arrow
 	 *            true if the arrow of the edge is displayed
 	 */
-	public DashEdgeFigure(Boolean arrow) {
+	public DashedEdgeFigure(Boolean arrow) {
 		super();
 		this.arrow = arrow;
 		setStyle();
+		createContents();
 	}
 
 	/**
@@ -67,6 +80,18 @@ public class DashEdgeFigure extends PolylineConnectionEx {
 		setStyle();
 	}
 
+	/**
+	 * @generated
+	 */
+	protected void createContents() {
+		super.createContents();
+		nameLabel = new WrappingLabel();
+		nameLabel.setText("");
+
+		this.add(nameLabel);
+
+
+	}
 	/**
 	 * Sets initial Style for the figure. It does not give any special Color for Background and Foreground. This is the style used for classic arrows: ------>
 	 */
@@ -85,6 +110,7 @@ public class DashEdgeFigure extends PolylineConnectionEx {
 		for (int i = 0; i < 10; i++) {
 			dashes[i] = 5;
 		}
+		setLineDash(dashes);
 
 	}
 
@@ -128,23 +154,9 @@ public class DashEdgeFigure extends PolylineConnectionEx {
 		for (int i = 0; i < 10; i++) {
 			dashes[i] = 5;
 		}
+		setLineDash(dashes);
 	}
 
-	/**
-	 *{@inheritDoc}
-	 * 
-	 */
-	@Override
-	public void paintFigure(Graphics graphics) {
-		graphics.pushState();
-		graphics.setAntialias(SWT.ON);
-		if (dashes != null) {
-			graphics.setLineDash(dashes);
-		}
-
-		super.paintFigure(graphics);
-
-		graphics.popState();
-	}
+	
 
 }

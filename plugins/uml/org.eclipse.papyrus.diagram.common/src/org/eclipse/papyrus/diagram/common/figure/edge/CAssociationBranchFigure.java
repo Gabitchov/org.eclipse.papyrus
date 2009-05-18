@@ -25,6 +25,7 @@ import org.eclipse.swt.SWT;
  * This edge figure is painted using dashes. This is the base figure for dependencies, for example
  * 
  * @author Patrick Tessier
+ * @deprecated
  */
 public class CAssociationBranchFigure extends PolylineConnectionEx {
 

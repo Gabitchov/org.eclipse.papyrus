@@ -10,6 +10,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UsageItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure;
+import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
  * @generated
@@ -44,7 +45,7 @@ public class UsageEditPart extends ConnectionNodeEditPart implements
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof UsageNameEditPart) {
 			((UsageNameEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getDependencyNameLabel());
+					.getNameLabel());
 			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeUsageEditPart) {
@@ -98,90 +99,14 @@ public class UsageEditPart extends ConnectionNodeEditPart implements
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new DependencyDescriptor();
+		return new DashedEdgeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public DependencyDescriptor getPrimaryShape() {
-		return (DependencyDescriptor) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class DependencyDescriptor extends DashEdgeFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fDependencyNameLabel;
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fAppliedStereotypeLabel;
-
-		/**
-		 * @generated
-		 */
-		public DependencyDescriptor() {
-
-			this.setForegroundColor(ColorConstants.black);
-			this.setBackgroundColor(ColorConstants.black);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fDependencyNameLabel = new WrappingLabel();
-			fDependencyNameLabel.setText("");
-
-			this.add(fDependencyNameLabel);
-
-			fAppliedStereotypeLabel = new WrappingLabel();
-			fAppliedStereotypeLabel.setText("");
-
-			this.add(fAppliedStereotypeLabel);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getDependencyNameLabel() {
-			return fDependencyNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getAppliedStereotypeLabel() {
-			return fAppliedStereotypeLabel;
-		}
-
+	public DashedEdgeFigure getPrimaryShape() {
+		return (DashedEdgeFigure) getFigure();
 	}
 
 }
