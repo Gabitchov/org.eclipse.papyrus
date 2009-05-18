@@ -433,8 +433,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 				return new AppliedStereotypeDependencyEditPart(view);
 
-			case Dependency3EditPart.VISUAL_ID:
-				return new Dependency3EditPart(view);
+			case DependencyBranchEditPart.VISUAL_ID:
+				return new DependencyBranchEditPart(view);
 
 			case DependencyName3EditPart.VISUAL_ID:
 				return new DependencyName3EditPart(view);

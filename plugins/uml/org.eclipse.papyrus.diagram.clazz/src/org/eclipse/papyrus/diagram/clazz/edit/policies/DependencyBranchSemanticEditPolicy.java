@@ -27,7 +27,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
@@ -38,13 +38,13 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class Dependency3ItemSemanticEditPolicy extends
+public class DependencyBranchSemanticEditPolicy extends
 		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public Dependency3ItemSemanticEditPolicy() {
+	public DependencyBranchSemanticEditPolicy() {
 		super(UMLElementTypes.Dependency_4018);
 	}
 
@@ -170,7 +170,7 @@ public class Dependency3ItemSemanticEditPolicy extends
 			return getGEFWrapper(new UsageReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new Dependency2ReorientCommand(req));
 		case ElementImportEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementImportReorientCommand(req));

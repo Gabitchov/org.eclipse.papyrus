@@ -256,7 +256,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 		case DependencyEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Dependency", UMLElementTypes.Dependency_4008); //$NON-NLS-1$
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Dependency", UMLElementTypes.Dependency_4018); //$NON-NLS-1$
 		case ElementImportEditPart.VISUAL_ID:
@@ -444,7 +444,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 			return getUsage_4007Text(view);
 		case DependencyEditPart.VISUAL_ID:
 			return getDependency_4008Text(view);
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return getDependency_4018Text(view);
 		case ElementImportEditPart.VISUAL_ID:
 			return getElementImport_4009Text(view);

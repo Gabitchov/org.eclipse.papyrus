@@ -469,7 +469,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case DependencyEditPart.VISUAL_ID:
 			return createDependency_4008(getSemanticElement(semanticAdapter),
 					containerView, index, persisted, preferencesHint);
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return createDependency_4018(getSemanticElement(semanticAdapter),
 					containerView, index, persisted, preferencesHint);
 		case ElementImportEditPart.VISUAL_ID:
@@ -2766,9 +2766,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge
-				.setType(UMLVisualIDRegistry
-						.getType(Dependency3EditPart.VISUAL_ID));
+		edge.setType(UMLVisualIDRegistry
+				.getType(DependencyBranchEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint

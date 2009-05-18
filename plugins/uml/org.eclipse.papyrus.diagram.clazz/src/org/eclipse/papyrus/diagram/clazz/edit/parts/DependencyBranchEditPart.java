@@ -1,21 +1,18 @@
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.Dependency3ItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.DependencyBranchSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
  * @generated
  */
-public class Dependency3EditPart extends ConnectionNodeEditPart implements
+public class DependencyBranchEditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
 
 	/**
@@ -26,7 +23,7 @@ public class Dependency3EditPart extends ConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
-	public Dependency3EditPart(View view) {
+	public DependencyBranchEditPart(View view) {
 		super(view);
 	}
 
@@ -36,7 +33,7 @@ public class Dependency3EditPart extends ConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new Dependency3ItemSemanticEditPolicy());
+				new DependencyBranchSemanticEditPolicy());
 	}
 
 	/**
@@ -97,7 +94,6 @@ public class Dependency3EditPart extends ConnectionNodeEditPart implements
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new DashedEdgeFigure();
 	}

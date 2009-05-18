@@ -1376,7 +1376,7 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			if (DependencyName3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -1455,7 +1455,7 @@ public class UMLVisualIDRegistry {
 		}
 		if (UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(
 				domainElement.eClass())) {
-			return Dependency3EditPart.VISUAL_ID;
+			return DependencyBranchEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getElementImport().isSuperTypeOf(
 				domainElement.eClass())) {

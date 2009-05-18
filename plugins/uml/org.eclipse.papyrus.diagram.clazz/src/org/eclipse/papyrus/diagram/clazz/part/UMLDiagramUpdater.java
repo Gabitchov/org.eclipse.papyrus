@@ -50,7 +50,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeOperationCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeOperationCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
@@ -1899,7 +1899,7 @@ public class UMLDiagramUpdater {
 			return getUsage_4007ContainedLinks(view);
 		case DependencyEditPart.VISUAL_ID:
 			return getDependency_4008ContainedLinks(view);
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return getDependency_4018ContainedLinks(view);
 		case ElementImportEditPart.VISUAL_ID:
 			return getElementImport_4009ContainedLinks(view);
@@ -2028,7 +2028,7 @@ public class UMLDiagramUpdater {
 			return getUsage_4007IncomingLinks(view);
 		case DependencyEditPart.VISUAL_ID:
 			return getDependency_4008IncomingLinks(view);
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return getDependency_4018IncomingLinks(view);
 		case ElementImportEditPart.VISUAL_ID:
 			return getElementImport_4009IncomingLinks(view);
@@ -2157,7 +2157,7 @@ public class UMLDiagramUpdater {
 			return getUsage_4007OutgoingLinks(view);
 		case DependencyEditPart.VISUAL_ID:
 			return getDependency_4008OutgoingLinks(view);
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return getDependency_4018OutgoingLinks(view);
 		case ElementImportEditPart.VISUAL_ID:
 			return getElementImport_4009OutgoingLinks(view);
@@ -6244,7 +6244,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Dependency link = (Dependency) linkObject;
-			if (Dependency3EditPart.VISUAL_ID != UMLVisualIDRegistry
+			if (DependencyBranchEditPart.VISUAL_ID != UMLVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -6265,7 +6265,7 @@ public class UMLDiagramUpdater {
 			NamedElement src = (NamedElement) theSource;
 			result.add(new UMLLinkDescriptor(src, dst, link,
 					UMLElementTypes.Dependency_4018,
-					Dependency3EditPart.VISUAL_ID));
+					DependencyBranchEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -6767,7 +6767,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Dependency link = (Dependency) setting.getEObject();
-			if (Dependency3EditPart.VISUAL_ID != UMLVisualIDRegistry
+			if (DependencyBranchEditPart.VISUAL_ID != UMLVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -6781,7 +6781,7 @@ public class UMLDiagramUpdater {
 			NamedElement src = (NamedElement) theSource;
 			result.add(new UMLLinkDescriptor(src, target, link,
 					UMLElementTypes.Dependency_4018,
-					Dependency3EditPart.VISUAL_ID));
+					DependencyBranchEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -7410,7 +7410,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Dependency link = (Dependency) linkObject;
-			if (Dependency3EditPart.VISUAL_ID != UMLVisualIDRegistry
+			if (DependencyBranchEditPart.VISUAL_ID != UMLVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -7434,7 +7434,7 @@ public class UMLDiagramUpdater {
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link,
 					UMLElementTypes.Dependency_4018,
-					Dependency3EditPart.VISUAL_ID));
+					DependencyBranchEditPart.VISUAL_ID));
 
 		}
 		return result;

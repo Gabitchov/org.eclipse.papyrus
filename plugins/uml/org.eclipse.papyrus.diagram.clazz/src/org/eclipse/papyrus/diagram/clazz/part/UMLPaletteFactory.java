@@ -22,7 +22,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
-		paletteRoot.add(createDefault1Group());
+		paletteRoot.add(createPackages1Group());
 		paletteRoot.add(createClassifiers2Group());
 		paletteRoot.add(createRelationShips3Group());
 		paletteRoot.add(createFeatures4Group());
@@ -30,14 +30,14 @@ public class UMLPaletteFactory {
 	}
 
 	/**
-	 * Creates "Default" palette tool group
+	 * Creates "Packages" palette tool group
 	 * @generated
 	 */
-	private PaletteContainer createDefault1Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(
-				Messages.Default1Group_title);
-		paletteContainer.setId("createDefault1Group"); //$NON-NLS-1$
-		paletteContainer.setDescription(Messages.Default1Group_desc);
+	private PaletteContainer createPackages1Group() {
+		PaletteDrawer paletteContainer = new PaletteDrawer(
+				Messages.Packages1Group_title);
+		paletteContainer.setId("createPackages1Group"); //$NON-NLS-1$
+		paletteContainer.setDescription(Messages.Packages1Group_desc);
 		paletteContainer.add(createModel1CreationTool());
 		paletteContainer.add(createPackage2CreationTool());
 		paletteContainer.add(createConstraint3CreationTool());
@@ -106,7 +106,7 @@ public class UMLPaletteFactory {
 		paletteContainer.add(createProperty2CreationTool());
 		paletteContainer.add(createOperation3CreationTool());
 		paletteContainer.add(createSlot4CreationTool());
-		paletteContainer.add(createLiteralEnumeration5CreationTool());
+		paletteContainer.add(createEnumerationliteral5CreationTool());
 		return paletteContainer;
 	}
 
@@ -665,13 +665,13 @@ public class UMLPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createLiteralEnumeration5CreationTool() {
+	private ToolEntry createEnumerationliteral5CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types.add(UMLElementTypes.EnumerationLiteral_3017);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.LiteralEnumeration5CreationTool_title,
-				Messages.LiteralEnumeration5CreationTool_desc, types);
-		entry.setId("createLiteralEnumeration5CreationTool"); //$NON-NLS-1$
+				Messages.Enumerationliteral5CreationTool_title,
+				Messages.Enumerationliteral5CreationTool_desc, types);
+		entry.setId("createEnumerationliteral5CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.EnumerationLiteral_3017));
 		entry.setLargeIcon(entry.getSmallIcon());

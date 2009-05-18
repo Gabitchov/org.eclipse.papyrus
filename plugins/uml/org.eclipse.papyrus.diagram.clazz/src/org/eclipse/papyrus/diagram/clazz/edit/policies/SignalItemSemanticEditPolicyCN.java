@@ -55,7 +55,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
@@ -168,7 +168,7 @@ public class SignalItemSemanticEditPolicyCN extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (UMLVisualIDRegistry.getVisualID(incomingLink) == Dependency3EditPart.VISUAL_ID) {
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyBranchEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -271,7 +271,7 @@ public class SignalItemSemanticEditPolicyCN extends
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Dependency3EditPart.VISUAL_ID) {
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DependencyBranchEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -357,7 +357,7 @@ public class SignalItemSemanticEditPolicyCN extends
 								incomingLink));
 						continue;
 					}
-					if (UMLVisualIDRegistry.getVisualID(incomingLink) == Dependency3EditPart.VISUAL_ID) {
+					if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyBranchEditPart.VISUAL_ID) {
 						DestroyElementRequest r = new DestroyElementRequest(
 								incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(r));
@@ -427,7 +427,7 @@ public class SignalItemSemanticEditPolicyCN extends
 								outgoingLink));
 						continue;
 					}
-					if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Dependency3EditPart.VISUAL_ID) {
+					if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DependencyBranchEditPart.VISUAL_ID) {
 						DestroyElementRequest r = new DestroyElementRequest(
 								outgoingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(r));
@@ -634,7 +634,7 @@ public class SignalItemSemanticEditPolicyCN extends
 			return getGEFWrapper(new UsageReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new Dependency2ReorientCommand(req));
 		case ElementImportEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementImportReorientCommand(req));

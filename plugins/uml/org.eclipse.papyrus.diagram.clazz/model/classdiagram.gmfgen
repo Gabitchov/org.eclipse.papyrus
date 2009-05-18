@@ -3246,8 +3246,8 @@
       </links>
       <links
           visualID="4018"
-          editPartClassName="Dependency3EditPart"
-          itemSemanticEditPolicyClassName="Dependency3ItemSemanticEditPolicy"
+          editPartClassName="DependencyBranchEditPart"
+          itemSemanticEditPolicyClassName="DependencyBranchSemanticEditPolicy"
           createCommandClassName="Dependency3CreateCommand"
           reorientCommandClassName="Dependency2ReorientCommand">
         <diagramRunTimeClass
@@ -4296,8 +4296,10 @@
       </compartments>
       <palette>
         <groups
-            title="Default"
-            description="Holds top-level non-container tools">
+            title="Packages"
+            description="Packages &amp; Constraints"
+            stack="true"
+            collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Model"
@@ -4454,6 +4456,7 @@
         <groups
             title="Features"
             description="Features"
+            stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -4477,8 +4480,8 @@
               genNodes="/0/@diagram/@childNodes.1"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="LiteralEnumeration"
-              description="Create a literal enumeration"
+              title="Enumeration literal"
+              description="Create an enumeration literal"
               genNodes="/0/@diagram/@childNodes.16"/>
         </groups>
         <groups

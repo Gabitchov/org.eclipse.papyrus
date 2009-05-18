@@ -42,7 +42,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
@@ -247,7 +247,7 @@ public class AssociationItemSemanticEditPolicy extends
 			return getGEFWrapper(new UsageReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
-		case Dependency3EditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new Dependency2ReorientCommand(req));
 		case ElementImportEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementImportReorientCommand(req));

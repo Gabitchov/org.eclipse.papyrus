@@ -243,12 +243,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_title;
+	public static String Packages1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_desc;
+	public static String Packages1Group_desc;
 
 	/**
 	 * @generated
@@ -613,12 +613,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String LiteralEnumeration5CreationTool_title;
+	public static String Enumerationliteral5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LiteralEnumeration5CreationTool_desc;
+	public static String Enumerationliteral5CreationTool_desc;
 
 	/**
 	 * @generated
