@@ -30,7 +30,7 @@ public class QualifiedNameHelper {
 	 *            the view where is attach the element
 	 * @return the depth
 	 */
-	public static int getQualifiedNamedepth(EModelElement modelElement) {
+	public static int getQualifiedNameDepth(EModelElement modelElement) {
 		EAnnotation stereotypeDisplayKind = modelElement.getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();

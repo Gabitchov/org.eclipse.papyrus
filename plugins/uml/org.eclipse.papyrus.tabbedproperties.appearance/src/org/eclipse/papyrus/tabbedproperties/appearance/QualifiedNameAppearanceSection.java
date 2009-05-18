@@ -202,7 +202,7 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 						}
 
 						int qualifiedNameDepth =
-								QualifiedNameHelper.getQualifiedNamedepth((EModelElement) (namedElementEditPart
+								QualifiedNameHelper.getQualifiedNameDepth((EModelElement) (namedElementEditPart
 										.getModel()));
 
 						if (depth != 0) {

@@ -235,7 +235,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 				setPropertiesValue(selectedElt, selectedSt, property, currentPropertyValues);
 				// otherwise
 			} else {
-				setPropertiesValue(selectedElt, selectedSt, property, currentPropertyValues);
+				setPropertiesValue(selectedElt, selectedSt, property, newValue);
 			}
 
 			// Update tree && Refresh
