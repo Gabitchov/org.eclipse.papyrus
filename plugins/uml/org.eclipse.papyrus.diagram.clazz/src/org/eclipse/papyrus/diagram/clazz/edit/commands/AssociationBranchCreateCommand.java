@@ -19,7 +19,7 @@ import org.eclipse.uml2.uml.Type;
 /**
  * @generated
  */
-public class Association3CreateCommand extends EditElementCommand {
+public class AssociationBranchCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -39,7 +39,7 @@ public class Association3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Association3CreateCommand(CreateRelationshipRequest request,
+	public AssociationBranchCreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;

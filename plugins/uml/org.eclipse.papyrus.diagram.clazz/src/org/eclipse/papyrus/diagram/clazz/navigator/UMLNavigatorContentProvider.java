@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Association3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
@@ -316,7 +316,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				UMLVisualIDRegistry.getType(AssociationEditPart.VISUAL_ID));
 		links.addChildren(createNavigatorItems(connectedViews, links, false));
 		connectedViews = getDiagramLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		links.addChildren(createNavigatorItems(connectedViews, links, false));
 		connectedViews = getDiagramLinksByType(Collections.singleton(view),
 				UMLVisualIDRegistry.getType(GeneralizationEditPart.VISUAL_ID));
@@ -520,11 +521,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -672,11 +675,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -954,11 +959,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -1121,11 +1128,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -1301,11 +1310,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -1698,11 +1709,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -2122,11 +2135,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -2274,11 +2289,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -2445,11 +2462,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -2984,11 +3003,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -3562,11 +3583,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -3849,11 +3872,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -4016,11 +4041,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -4196,11 +4223,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -4593,11 +4622,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -5110,11 +5141,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -5549,11 +5582,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -5701,11 +5736,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -5872,11 +5909,13 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews,
 				incominglinks, true));
 		connectedViews = getOutgoingLinksByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(Association3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry
+						.getType(AssociationBranchEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 				outgoinglinks, true));
 		connectedViews = getIncomingLinksByType(Collections.singleton(view),
@@ -6903,7 +6942,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
 	 *@generated
 	 **/
-	private Object[] getViewChildrenForAssociation3EditPart(View view,
+	private Object[] getViewChildrenForAssociationBranchEditPart(View view,
 			Object parentElement) {
 		Collection result = new ArrayList();
 		UMLNavigatorGroup target = new UMLNavigatorGroup(
@@ -10158,10 +10197,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		}
 
-		case Association3EditPart.VISUAL_ID: {
+		case AssociationBranchEditPart.VISUAL_ID: {
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForAssociation3EditPart(view, parentElement);
+			return getViewChildrenForAssociationBranchEditPart(view,
+					parentElement);
 
 		}
 

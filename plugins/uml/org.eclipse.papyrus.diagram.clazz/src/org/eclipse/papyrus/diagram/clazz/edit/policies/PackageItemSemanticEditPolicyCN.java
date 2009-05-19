@@ -44,7 +44,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCo
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Association3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
@@ -563,7 +563,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										incomingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -683,7 +683,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										outgoingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -806,7 +806,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										incomingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -926,7 +926,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										outgoingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1041,7 +1041,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										incomingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1169,7 +1169,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										outgoingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1471,7 +1471,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										incomingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1591,7 +1591,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										outgoingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1893,7 +1893,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										incomingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2013,7 +2013,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										outgoingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2136,7 +2136,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										incomingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2256,7 +2256,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										outgoingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2371,7 +2371,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										incomingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2491,7 +2491,7 @@ public class PackageItemSemanticEditPolicyCN extends
 										outgoingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Association3EditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationBranchEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));

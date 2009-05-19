@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Association2ReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Association3CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationBranchCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationBranchReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClass2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClassReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationCreateCommand;
@@ -50,7 +50,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCo
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Association3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
@@ -107,7 +107,7 @@ public class AssociationClassItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (UMLVisualIDRegistry.getVisualID(incomingLink) == Association3EditPart.VISUAL_ID) {
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationBranchEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -210,7 +210,7 @@ public class AssociationClassItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Association3EditPart.VISUAL_ID) {
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationBranchEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -359,7 +359,7 @@ public class AssociationClassItemSemanticEditPolicy extends
 					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Association_4019 == req.getElementType()) {
-			return getGEFWrapper(new Association3CreateCommand(req, req
+			return getGEFWrapper(new AssociationBranchCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Generalization_4002 == req.getElementType()) {
@@ -431,7 +431,7 @@ public class AssociationClassItemSemanticEditPolicy extends
 					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Association_4019 == req.getElementType()) {
-			return getGEFWrapper(new Association3CreateCommand(req, req
+			return getGEFWrapper(new AssociationBranchCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Generalization_4002 == req.getElementType()) {
@@ -502,8 +502,8 @@ public class AssociationClassItemSemanticEditPolicy extends
 			return getGEFWrapper(new AssociationClassReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new AssociationReorientCommand(req));
-		case Association3EditPart.VISUAL_ID:
-			return getGEFWrapper(new Association2ReorientCommand(req));
+		case AssociationBranchEditPart.VISUAL_ID:
+			return getGEFWrapper(new AssociationBranchReorientCommand(req));
 		case GeneralizationEditPart.VISUAL_ID:
 			return getGEFWrapper(new GeneralizationReorientCommand(req));
 		case InterfaceRealizationEditPart.VISUAL_ID:

@@ -1423,7 +1423,7 @@ public class UMLVisualIDRegistry {
 		}
 		if (UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(
 				domainElement.eClass())) {
-			return Association3EditPart.VISUAL_ID;
+			return AssociationBranchEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(
 				domainElement.eClass())) {

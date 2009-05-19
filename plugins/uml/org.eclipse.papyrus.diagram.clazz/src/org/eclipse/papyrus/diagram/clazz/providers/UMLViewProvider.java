@@ -443,7 +443,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case AssociationEditPart.VISUAL_ID:
 			return createAssociation_4001(getSemanticElement(semanticAdapter),
 					containerView, index, persisted, preferencesHint);
-		case Association3EditPart.VISUAL_ID:
+		case AssociationBranchEditPart.VISUAL_ID:
 			return createAssociation_4019(getSemanticElement(semanticAdapter),
 					containerView, index, persisted, preferencesHint);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -2307,7 +2307,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(UMLVisualIDRegistry
-				.getType(Association3EditPart.VISUAL_ID));
+				.getType(AssociationBranchEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint

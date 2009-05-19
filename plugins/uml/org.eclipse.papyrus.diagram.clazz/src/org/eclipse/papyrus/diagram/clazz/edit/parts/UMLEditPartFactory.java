@@ -370,8 +370,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationName6EditPart.VISUAL_ID:
 				return new AssociationName6EditPart(view);
 
-			case Association3EditPart.VISUAL_ID:
-				return new Association3EditPart(view);
+			case AssociationBranchEditPart.VISUAL_ID:
+				return new AssociationBranchEditPart(view);
 
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);

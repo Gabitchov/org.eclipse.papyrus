@@ -453,132 +453,142 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String AssociationClass3CreationTool_title;
+	public static String AssociationBranch3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String AssociationClass3CreationTool_desc;
+	public static String AssociationBranch3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency4CreationTool_title;
+	public static String AssociationClass4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency4CreationTool_desc;
+	public static String AssociationClass4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DependencyBranch5CreationTool_title;
+	public static String Dependency5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DependencyBranch5CreationTool_desc;
+	public static String Dependency5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ElementImport6CreationTool_title;
+	public static String DependencyBranch6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ElementImport6CreationTool_desc;
+	public static String DependencyBranch6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization7CreationTool_title;
+	public static String ElementImport7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization7CreationTool_desc;
+	public static String ElementImport7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InterfaceRealization8CreationTool_title;
+	public static String Generalization8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InterfaceRealization8CreationTool_desc;
+	public static String Generalization8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageImport9CreationTool_title;
+	public static String InterfaceRealization9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageImport9CreationTool_desc;
+	public static String InterfaceRealization9CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageMerge10CreationTool_title;
+	public static String PackageImport10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageMerge10CreationTool_desc;
+	public static String PackageImport10CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ProfileApplication11CreationTool_title;
+	public static String PackageMerge11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ProfileApplication11CreationTool_desc;
+	public static String PackageMerge11CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Realization12CreationTool_title;
+	public static String ProfileApplication12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Realization12CreationTool_desc;
+	public static String ProfileApplication12CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Substitution13CreationTool_title;
+	public static String Realization13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Substitution13CreationTool_desc;
+	public static String Realization13CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Usage14CreationTool_title;
+	public static String Substitution14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Usage14CreationTool_desc;
+	public static String Substitution14CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TemplateBinding15CreationTool_title;
+	public static String Usage15CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TemplateBinding15CreationTool_desc;
+	public static String Usage15CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String TemplateBinding16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String TemplateBinding16CreationTool_desc;
 
 	/**
 	 * @generated

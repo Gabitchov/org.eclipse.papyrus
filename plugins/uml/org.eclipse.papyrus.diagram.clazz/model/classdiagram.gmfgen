@@ -2660,10 +2660,10 @@
       </links>
       <links
           visualID="4019"
-          editPartClassName="Association3EditPart"
-          itemSemanticEditPolicyClassName="Association3ItemSemanticEditPolicy"
-          createCommandClassName="Association3CreateCommand"
-          reorientCommandClassName="Association2ReorientCommand">
+          editPartClassName="AssociationBranchEditPart"
+          itemSemanticEditPolicyClassName="AssociationBranchItemSemanticEditPolicy"
+          createCommandClassName="AssociationBranchCreateCommand"
+          reorientCommandClassName="AssociationBranchReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -4396,6 +4396,11 @@
               title="Association"
               description="Create an association"
               genLinks="/0/@diagram/@links.2"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="AssociationBranch"
+              description="Create an association branch"
+              genLinks="/0/@diagram/@links.3"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="AssociationClass"

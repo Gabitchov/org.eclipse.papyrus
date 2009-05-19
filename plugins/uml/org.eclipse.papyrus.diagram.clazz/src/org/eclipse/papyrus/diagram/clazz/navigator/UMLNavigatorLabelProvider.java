@@ -232,7 +232,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 		case AssociationEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Association", UMLElementTypes.Association_4001); //$NON-NLS-1$
-		case Association3EditPart.VISUAL_ID:
+		case AssociationBranchEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Association", UMLElementTypes.Association_4019); //$NON-NLS-1$
 		case GeneralizationEditPart.VISUAL_ID:
@@ -428,7 +428,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 			return getAssociationClass_4017Text(view);
 		case AssociationEditPart.VISUAL_ID:
 			return getAssociation_4001Text(view);
-		case Association3EditPart.VISUAL_ID:
+		case AssociationBranchEditPart.VISUAL_ID:
 			return getAssociation_4019Text(view);
 		case GeneralizationEditPart.VISUAL_ID:
 			return getGeneralization_4002Text(view);

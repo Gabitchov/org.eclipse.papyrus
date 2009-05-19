@@ -15,7 +15,7 @@ import org.eclipse.uml2.uml.Type;
 /**
  * @generated
  */
-public class Association2ReorientCommand extends EditElementCommand {
+public class AssociationBranchReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -35,7 +35,7 @@ public class Association2ReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Association2ReorientCommand(ReorientRelationshipRequest request) {
+	public AssociationBranchReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();

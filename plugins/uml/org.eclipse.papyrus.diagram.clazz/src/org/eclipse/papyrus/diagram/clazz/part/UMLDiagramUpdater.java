@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Association3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
@@ -1883,7 +1883,7 @@ public class UMLDiagramUpdater {
 			return getAssociationClass_4017ContainedLinks(view);
 		case AssociationEditPart.VISUAL_ID:
 			return getAssociation_4001ContainedLinks(view);
-		case Association3EditPart.VISUAL_ID:
+		case AssociationBranchEditPart.VISUAL_ID:
 			return getAssociation_4019ContainedLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
 			return getGeneralization_4002ContainedLinks(view);
@@ -2012,7 +2012,7 @@ public class UMLDiagramUpdater {
 			return getAssociationClass_4017IncomingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
 			return getAssociation_4001IncomingLinks(view);
-		case Association3EditPart.VISUAL_ID:
+		case AssociationBranchEditPart.VISUAL_ID:
 			return getAssociation_4019IncomingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
 			return getGeneralization_4002IncomingLinks(view);
@@ -2141,7 +2141,7 @@ public class UMLDiagramUpdater {
 			return getAssociationClass_4017OutgoingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
 			return getAssociation_4001OutgoingLinks(view);
-		case Association3EditPart.VISUAL_ID:
+		case AssociationBranchEditPart.VISUAL_ID:
 			return getAssociation_4019OutgoingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
 			return getGeneralization_4002OutgoingLinks(view);
@@ -5962,7 +5962,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Association link = (Association) linkObject;
-			if (Association3EditPart.VISUAL_ID != UMLVisualIDRegistry
+			if (AssociationBranchEditPart.VISUAL_ID != UMLVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -5984,7 +5984,7 @@ public class UMLDiagramUpdater {
 			Type src = (Type) theSource;
 			result.add(new UMLLinkDescriptor(src, dst, link,
 					UMLElementTypes.Association_4019,
-					Association3EditPart.VISUAL_ID));
+					AssociationBranchEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -6499,7 +6499,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Association link = (Association) setting.getEObject();
-			if (Association3EditPart.VISUAL_ID != UMLVisualIDRegistry
+			if (AssociationBranchEditPart.VISUAL_ID != UMLVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -6513,7 +6513,7 @@ public class UMLDiagramUpdater {
 			Type src = (Type) theSource;
 			result.add(new UMLLinkDescriptor(src, target, link,
 					UMLElementTypes.Association_4019,
-					Association3EditPart.VISUAL_ID));
+					AssociationBranchEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -7086,7 +7086,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Association link = (Association) linkObject;
-			if (Association3EditPart.VISUAL_ID != UMLVisualIDRegistry
+			if (AssociationBranchEditPart.VISUAL_ID != UMLVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -7111,7 +7111,7 @@ public class UMLDiagramUpdater {
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link,
 					UMLElementTypes.Association_4019,
-					Association3EditPart.VISUAL_ID));
+					AssociationBranchEditPart.VISUAL_ID));
 
 		}
 		return result;
