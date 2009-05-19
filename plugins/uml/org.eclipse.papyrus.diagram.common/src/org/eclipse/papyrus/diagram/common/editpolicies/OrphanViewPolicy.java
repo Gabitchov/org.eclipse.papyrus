@@ -171,13 +171,11 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 
 	protected boolean isOrphaned(View view) {
 		String semanticHint = view.getType();
+		boolean t=view.isSetElement();
 		if (notOrphanList.contains(new Integer(semanticHint))) {
 			return false;
 		}
-		if (view.getElement() != null) {
-			return false;
-		}
-		return true;
+		return !view.isSetElement();
 	}
 
 	/**
