@@ -278,7 +278,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 
 						public void run() {
 
-							String appliedStereotypeListToAdd = stereotype.getQualifiedName() + "." + prop.getLabel();
+							String appliedStereotypeListToAdd = stereotype.getQualifiedName() + "." + prop.getName();
 							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(domain, diagramElement, appliedStereotypeListToAdd);
 							getDomain().getCommandStack().execute(command);
 							// refresh();
