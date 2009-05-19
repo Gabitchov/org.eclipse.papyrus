@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -69,6 +69,23 @@ public class IncludeEditPart extends ConnectionNodeEditPart implements
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
 	}
 
 	/**

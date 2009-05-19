@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.providers;
 
 import java.util.HashSet;
@@ -27,6 +27,27 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -360,6 +381,57 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4007);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
+	}
+
+	/**
+	 * @generated
+	 */
+	public static IElementType getElementType(int visualID) {
+		switch (visualID) {
+		case PackageEditPart.VISUAL_ID:
+			return Package_1000;
+		case ActorEditPart.VISUAL_ID:
+			return Actor_2002;
+		case Actor2EditPart.VISUAL_ID:
+			return Actor_2003;
+		case UseCaseEditPart.VISUAL_ID:
+			return UseCase_2004;
+		case UseCase2EditPart.VISUAL_ID:
+			return UseCase_2005;
+		case ComponentEditPart.VISUAL_ID:
+			return Component_2006;
+		case Package3EditPart.VISUAL_ID:
+			return Package_2009;
+		case ConstraintEditPart.VISUAL_ID:
+			return Constraint_2008;
+		case CommentEditPart.VISUAL_ID:
+			return Comment_2010;
+		case ExtensionPointEditPart.VISUAL_ID:
+			return ExtensionPoint_3002;
+		case ExtensionPoint2EditPart.VISUAL_ID:
+			return ExtensionPoint_3003;
+		case UseCase3EditPart.VISUAL_ID:
+			return UseCase_3004;
+		case Actor3EditPart.VISUAL_ID:
+			return Actor_3005;
+		case UseCase4EditPart.VISUAL_ID:
+			return UseCase_3006;
+		case IncludeEditPart.VISUAL_ID:
+			return Include_4001;
+		case ExtendEditPart.VISUAL_ID:
+			return Extend_4002;
+		case GeneralizationEditPart.VISUAL_ID:
+			return Generalization_4003;
+		case AssociationEditPart.VISUAL_ID:
+			return Association_4004;
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return ConstraintConstrainedElement_4005;
+		case DependencyEditPart.VISUAL_ID:
+			return Dependency_4006;
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return CommentAnnotatedElement_4007;
+		}
+		return null;
 	}
 
 }

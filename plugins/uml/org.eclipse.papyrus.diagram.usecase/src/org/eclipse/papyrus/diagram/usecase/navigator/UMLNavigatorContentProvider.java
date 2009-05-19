@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.navigator;
 
 import java.util.ArrayList;
@@ -163,10 +163,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForPackageEditPart(View view,
 			Object parentElement) {
@@ -246,10 +246,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForActorEditPart(View view,
 			Object parentElement) {
@@ -306,10 +306,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForActor2EditPart(View view,
 			Object parentElement) {
@@ -366,10 +366,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForUseCaseEditPart(View view,
 			Object parentElement) {
@@ -449,10 +449,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForUseCase2EditPart(View view,
 			Object parentElement) {
@@ -532,10 +532,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForComponentEditPart(View view,
 			Object parentElement) {
@@ -599,10 +599,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForPackage3EditPart(View view,
 			Object parentElement) {
@@ -660,10 +660,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForConstraintEditPart(View view,
 			Object parentElement) {
@@ -708,10 +708,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForCommentEditPart(View view,
 			Object parentElement) {
@@ -747,10 +747,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForExtensionPointEditPart(View view,
 			Object parentElement) {
@@ -789,10 +789,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForExtensionPoint2EditPart(View view,
 			Object parentElement) {
@@ -831,10 +831,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForUseCase3EditPart(View view,
 			Object parentElement) {
@@ -914,10 +914,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForActor3EditPart(View view,
 			Object parentElement) {
@@ -974,10 +974,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForUseCase4EditPart(View view,
 			Object parentElement) {
@@ -1057,10 +1057,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForIncludeEditPart(View view,
 			Object parentElement) {
@@ -1106,10 +1106,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForExtendEditPart(View view,
 			Object parentElement) {
@@ -1155,10 +1155,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForGeneralizationEditPart(View view,
 			Object parentElement) {
@@ -1228,10 +1228,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForAssociationEditPart(View view,
 			Object parentElement) {
@@ -1301,10 +1301,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForConstraintConstrainedElementEditPart(
 			View view, Object parentElement) {
@@ -1368,10 +1368,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForDependencyEditPart(View view,
 			Object parentElement) {
@@ -1465,10 +1465,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 *
-	 *Papyrus Template
-	 *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
-	 *@generated
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
 	 **/
 	private Object[] getViewChildrenForCommentAnnotatedElementEditPart(
 			View view, Object parentElement) {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,12 +10,11 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.providers;
 
 import java.util.Collection;
 
-import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
 import org.eclipse.papyrus.diagram.usecase.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Actor;
@@ -144,6 +143,7 @@ public class ElementInitializers {
 					.createOpaqueExpression();
 
 			instance.setSpecification(newInstance_0_0);
+			;
 			Object value_0_0_0 = UMLOCLFactory.getExpression(
 					"\'OpaqueExpression\'",
 					UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(
@@ -260,28 +260,17 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public static void init_Association_4004(Association instance) {
 		try {
-			Object value0 = name_Association_4004(instance);
-			instance.setName((String) value0);
+			Object value_0 = UMLOCLFactory.getExpression("\' \'",
+					UMLPackage.eINSTANCE.getAssociation()).evaluate(instance);
+			instance.setName((String) value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError(
 					"Element initialization failed", e); //$NON-NLS-1$						
 		}
-	}
-
-	/**
-	 * Implementation provided
-	 * 
-	 * @generated NOT
-	 */
-	private static String name_Association_4004(Association self) {
-		if (self != null && self.eContainer() != null) {
-			return LabelHelper.INSTANCE.findName(self.eContainer(), self);
-		}
-		return "";
 	}
 
 }

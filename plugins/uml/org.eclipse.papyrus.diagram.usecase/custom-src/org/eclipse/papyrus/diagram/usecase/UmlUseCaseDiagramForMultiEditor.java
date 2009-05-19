@@ -48,8 +48,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
-			.getBundledImageDescriptor(UmlUseCaseDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlUseCaseDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/**
 	 * The diagram shown by the editor.
@@ -74,8 +73,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 * 
 	 * @generated NOT
 	 */
-	public UmlUseCaseDiagramForMultiEditor(Object diagram,
-			IEditorContext context) {
+	public UmlUseCaseDiagramForMultiEditor(Object diagram, IEditorContext context) {
 		this((Diagram) diagram, (GmfEditorContext) context);
 	}
 
@@ -89,8 +87,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 * 
 	 * @generated NOT
 	 */
-	public UmlUseCaseDiagramForMultiEditor(Diagram diagram,
-			GmfEditorContext context) {
+	public UmlUseCaseDiagramForMultiEditor(Diagram diagram, GmfEditorContext context) {
 		super();
 		this.diagram = diagram;
 		this.context = context;
@@ -101,8 +98,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void init(IEditorSite site, IEditorInput input)
-			throws PartInitException {
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		setPartName(getDiagram().getName());
 		setTitleImage(DIAG_IMG_DESC.createImage());
@@ -112,8 +108,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 * {@inheritDoc}
 	 */
 	protected final IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
-				|| input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			return context.getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
@@ -123,8 +118,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 * {@inheritDoc}
 	 */
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
-				|| input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			setDocumentProvider(context.getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
@@ -139,8 +133,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 		try {
 			// Provide an URI with fragment in order to reuse the same Resource
 			// and set the diagram to the fragment.
-			URIEditorInput uriInput = new URIEditorInput(EcoreUtil
-					.getURI(diagram));
+			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(diagram));
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
 			String title = "Problem opening";

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,7 +25,6 @@ import org.eclipse.papyrus.diagram.common.edit.policies.DiagramDragDropEditPolic
 import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
-import org.eclipse.papyrus.diagram.usecase.edit.policies.PackageCanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.PackageItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;

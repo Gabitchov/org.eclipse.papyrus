@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,13 +10,12 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -33,7 +32,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -116,6 +114,8 @@ public class ActorName3EditPart extends LabelEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
 				new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
+				new UMLTextSelectionEditPolicy());
 	}
 
 	/**
@@ -256,6 +256,10 @@ public class ActorName3EditPart extends LabelEditPart implements
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
 		}
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
+		}
 	}
 
 	/**
@@ -333,10 +337,12 @@ public class ActorName3EditPart extends LabelEditPart implements
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			String parserHint = ((View) getModel()).getType();
-			IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
-					UMLElementTypes.Actor_3005, getParserElement(), parserHint);
-			parser = ParserService.getInstance().getParser(hintAdapter);
+			parser = UMLParserProvider
+					.getParser(
+							UMLElementTypes.Actor_3005,
+							getParserElement(),
+							UMLVisualIDRegistry
+									.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -443,6 +449,10 @@ public class ActorName3EditPart extends LabelEditPart implements
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		}
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
 		}
 	}
 

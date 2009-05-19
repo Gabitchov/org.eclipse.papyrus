@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -35,6 +35,13 @@ import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
  */
 public class DependencyItemSemanticEditPolicy extends
 		UMLBaseItemSemanticEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	public DependencyItemSemanticEditPolicy() {
+		super(UMLElementTypes.Dependency_4006);
+	}
 
 	/**
 	 * @generated

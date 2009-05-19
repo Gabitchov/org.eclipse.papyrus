@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.usecase.edit.policies.ComponentUsecasesCanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.ComponentUsecasesItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 

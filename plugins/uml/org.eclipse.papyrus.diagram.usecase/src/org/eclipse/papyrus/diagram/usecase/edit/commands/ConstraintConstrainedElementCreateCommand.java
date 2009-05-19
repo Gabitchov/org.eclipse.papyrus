@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -81,10 +81,19 @@ public class ConstraintConstrainedElementCreateCommand extends
 			throw new ExecutionException(
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
+
 		if (getSource() != null && getTarget() != null) {
 			getSource().getConstrainedElements().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setElementToEdit(EObject element) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

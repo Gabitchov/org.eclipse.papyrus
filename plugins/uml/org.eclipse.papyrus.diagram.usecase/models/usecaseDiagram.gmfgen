@@ -2,18 +2,16 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.eclipse.papyrus.diagram.usecase"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.eclipse.papyrus.diagram.usecase"
     modelID="UseCase"
     dynamicTemplates="true"
-    templateDirectory="/org.eclipse.papyrus.def/dynamic-templates/codegen">
+    templateDirectory="/org.eclipse.papyrus.def/dynamic-templates3.5/codegen">
   <diagram
       visualID="1000"
       editPartClassName="PackageEditPart"
       itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicy"
-      notationViewFactoryClassName="PackageViewFactory"
       canonicalEditPolicyClassName="PackageCanonicalEditPolicy"
-      iconProviderPriority="Low"
-      validationProviderPriority="Low">
+      iconProviderPriority="Low">
     <diagramRunTimeClass
         href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
@@ -29,11 +27,10 @@
         visualID="3002"
         editPartClassName="ExtensionPointEditPart"
         itemSemanticEditPolicyClassName="ExtensionPointItemSemanticEditPolicy"
-        notationViewFactoryClassName="ExtensionPointViewFactory"
         canonicalEditPolicyClassName="ExtensionPointCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ExtensionPointGraphicalNodeEditPolicy"
         createCommandClassName="ExtensionPointCreateCommand"
-        containers="//@diagram/@compartments.0 //@diagram/@compartments.3 //@diagram/@compartments.5">
+        containers="//@diagram/@compartments.5 //@diagram/@compartments.0 //@diagram/@compartments.3">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
@@ -64,6 +61,7 @@
       </modelFacet>
       <labelModelFacet
           xsi:type="gmfgen:FeatureLabelModelFacet"
+          parser="//@labelParsers/@implementations.1"
           editPattern="">
         <metaFeatures
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -74,7 +72,6 @@
         visualID="3003"
         editPartClassName="ExtensionPoint2EditPart"
         itemSemanticEditPolicyClassName="ExtensionPoint2ItemSemanticEditPolicy"
-        notationViewFactoryClassName="ExtensionPoint2ViewFactory"
         canonicalEditPolicyClassName="ExtensionPoint2CanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ExtensionPoint2GraphicalNodeEditPolicy"
         createCommandClassName="ExtensionPoint2CreateCommand"
@@ -109,6 +106,7 @@
       </modelFacet>
       <labelModelFacet
           xsi:type="gmfgen:FeatureLabelModelFacet"
+          parser="//@labelParsers/@implementations.1"
           editPattern="">
         <metaFeatures
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -118,7 +116,6 @@
         visualID="3004"
         editPartClassName="UseCase3EditPart"
         itemSemanticEditPolicyClassName="UseCase3ItemSemanticEditPolicy"
-        notationViewFactoryClassName="UseCase3ViewFactory"
         canonicalEditPolicyClassName="UseCase3CanonicalEditPolicy"
         compartments="//@diagram/@compartments.3"
         graphicalNodeEditPolicyClassName="UseCase3GraphicalNodeEditPolicy"
@@ -165,7 +162,6 @@
           visualID="5006"
           editPartClassName="UseCaseName3EditPart"
           itemSemanticEditPolicyClassName="UseCaseName3ItemSemanticEditPolicy"
-          notationViewFactoryClassName="UseCaseName3ViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -179,6 +175,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -189,7 +186,6 @@
         visualID="3005"
         editPartClassName="Actor3EditPart"
         itemSemanticEditPolicyClassName="Actor3ItemSemanticEditPolicy"
-        notationViewFactoryClassName="Actor3ViewFactory"
         canonicalEditPolicyClassName="Actor3CanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="Actor3GraphicalNodeEditPolicy"
         createCommandClassName="Actor3CreateCommand"
@@ -230,8 +226,7 @@
           xsi:type="gmfgen:GenExternalNodeLabel"
           visualID="5008"
           editPartClassName="ActorName3EditPart"
-          itemSemanticEditPolicyClassName="ActorName3ItemSemanticEditPolicy"
-          notationViewFactoryClassName="ActorName3ViewFactory">
+          itemSemanticEditPolicyClassName="ActorName3ItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -242,6 +237,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -252,7 +248,6 @@
         visualID="3006"
         editPartClassName="UseCase4EditPart"
         itemSemanticEditPolicyClassName="UseCase4ItemSemanticEditPolicy"
-        notationViewFactoryClassName="UseCase4ViewFactory"
         canonicalEditPolicyClassName="UseCase4CanonicalEditPolicy"
         compartments="//@diagram/@compartments.5"
         graphicalNodeEditPolicyClassName="UseCase4GraphicalNodeEditPolicy"
@@ -299,7 +294,6 @@
           visualID="5009"
           editPartClassName="UseCaseName4EditPart"
           itemSemanticEditPolicyClassName="UseCaseName4ItemSemanticEditPolicy"
-          notationViewFactoryClassName="UseCaseName4ViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -313,6 +307,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -323,7 +318,6 @@
         visualID="2002"
         editPartClassName="ActorEditPart"
         itemSemanticEditPolicyClassName="ActorItemSemanticEditPolicy"
-        notationViewFactoryClassName="ActorViewFactory"
         canonicalEditPolicyClassName="ActorCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ActorGraphicalNodeEditPolicy"
         createCommandClassName="ActorCreateCommand">
@@ -363,8 +357,7 @@
           xsi:type="gmfgen:GenExternalNodeLabel"
           visualID="5002"
           editPartClassName="ActorNameEditPart"
-          itemSemanticEditPolicyClassName="ActorNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="ActorNameViewFactory">
+          itemSemanticEditPolicyClassName="ActorNameItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -375,6 +368,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -385,7 +379,6 @@
         visualID="2003"
         editPartClassName="Actor2EditPart"
         itemSemanticEditPolicyClassName="Actor2ItemSemanticEditPolicy"
-        notationViewFactoryClassName="Actor2ViewFactory"
         canonicalEditPolicyClassName="Actor2CanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="Actor2GraphicalNodeEditPolicy"
         createCommandClassName="Actor2CreateCommand">
@@ -426,8 +419,7 @@
       <labels
           visualID="5003"
           editPartClassName="ActorName2EditPart"
-          itemSemanticEditPolicyClassName="ActorName2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="ActorName2ViewFactory">
+          itemSemanticEditPolicyClassName="ActorName2ItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -436,6 +428,7 @@
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -446,7 +439,6 @@
         visualID="2004"
         editPartClassName="UseCaseEditPart"
         itemSemanticEditPolicyClassName="UseCaseItemSemanticEditPolicy"
-        notationViewFactoryClassName="UseCaseViewFactory"
         canonicalEditPolicyClassName="UseCaseCanonicalEditPolicy"
         compartments="//@diagram/@compartments.0"
         graphicalNodeEditPolicyClassName="UseCaseGraphicalNodeEditPolicy"
@@ -492,7 +484,6 @@
           visualID="5004"
           editPartClassName="UseCaseNameEditPart"
           itemSemanticEditPolicyClassName="UseCaseNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="UseCaseNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -506,6 +497,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -516,7 +508,6 @@
         visualID="2005"
         editPartClassName="UseCase2EditPart"
         itemSemanticEditPolicyClassName="UseCase2ItemSemanticEditPolicy"
-        notationViewFactoryClassName="UseCase2ViewFactory"
         canonicalEditPolicyClassName="UseCase2CanonicalEditPolicy"
         compartments="//@diagram/@compartments.1"
         graphicalNodeEditPolicyClassName="UseCase2GraphicalNodeEditPolicy"
@@ -559,7 +550,6 @@
           visualID="5005"
           editPartClassName="UseCaseName2EditPart"
           itemSemanticEditPolicyClassName="UseCaseName2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="UseCaseName2ViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -573,6 +563,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -583,7 +574,6 @@
         visualID="2006"
         editPartClassName="ComponentEditPart"
         itemSemanticEditPolicyClassName="ComponentItemSemanticEditPolicy"
-        notationViewFactoryClassName="ComponentViewFactory"
         canonicalEditPolicyClassName="ComponentCanonicalEditPolicy"
         compartments="//@diagram/@compartments.2"
         graphicalNodeEditPolicyClassName="ComponentGraphicalNodeEditPolicy"
@@ -627,8 +617,7 @@
       <labels
           visualID="5007"
           editPartClassName="ComponentNameEditPart"
-          itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="ComponentNameViewFactory">
+          itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -641,6 +630,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -651,7 +641,6 @@
         visualID="2009"
         editPartClassName="Package3EditPart"
         itemSemanticEditPolicyClassName="Package3ItemSemanticEditPolicy"
-        notationViewFactoryClassName="Package3ViewFactory"
         canonicalEditPolicyClassName="Package3CanonicalEditPolicy"
         compartments="//@diagram/@compartments.4"
         graphicalNodeEditPolicyClassName="Package2GraphicalNodeEditPolicy"
@@ -694,7 +683,6 @@
           visualID="5012"
           editPartClassName="PackageName2EditPart"
           itemSemanticEditPolicyClassName="PackageName2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="PackageName2ViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -708,6 +696,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -718,7 +707,6 @@
         visualID="2008"
         editPartClassName="ConstraintEditPart"
         itemSemanticEditPolicyClassName="ConstraintItemSemanticEditPolicy"
-        notationViewFactoryClassName="ConstraintViewFactory"
         canonicalEditPolicyClassName="ConstraintCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ConstraintGraphicalNodeEditPolicy"
         createCommandClassName="ConstraintCreateCommand">
@@ -762,8 +750,7 @@
       <labels
           visualID="5011"
           editPartClassName="ConstraintNameEditPart"
-          itemSemanticEditPolicyClassName="ConstraintNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="ConstraintNameViewFactory">
+          itemSemanticEditPolicyClassName="ConstraintNameItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -772,6 +759,7 @@
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -782,7 +770,6 @@
         visualID="2010"
         editPartClassName="CommentEditPart"
         itemSemanticEditPolicyClassName="CommentItemSemanticEditPolicy"
-        notationViewFactoryClassName="CommentViewFactory"
         canonicalEditPolicyClassName="CommentCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="CommentGraphicalNodeEditPolicy"
         createCommandClassName="CommentCreateCommand">
@@ -823,8 +810,7 @@
       <labels
           visualID="5013"
           editPartClassName="CommentBodyEditPart"
-          itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicy"
-          notationViewFactoryClassName="CommentBodyViewFactory">
+          itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -837,6 +823,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"
             editPattern="">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
@@ -847,7 +834,6 @@
         visualID="4001"
         editPartClassName="IncludeEditPart"
         itemSemanticEditPolicyClassName="IncludeItemSemanticEditPolicy"
-        notationViewFactoryClassName="IncludeViewFactory"
         createCommandClassName="IncludeCreateCommand"
         reorientCommandClassName="IncludeReorientCommand">
       <diagramRunTimeClass
@@ -882,7 +868,6 @@
           visualID="6001"
           editPartClassName="IncludeLink_fixedEditPart"
           itemSemanticEditPolicyClassName="IncludeLink_fixedItemSemanticEditPolicy"
-          notationViewFactoryClassName="IncludeLink_fixedViewFactory"
           readOnly="true"
           elementIcon="true">
         <diagramRunTimeClass
@@ -897,13 +882,14 @@
           <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.0"/>
       </labels>
     </links>
     <links
         visualID="4002"
         editPartClassName="ExtendEditPart"
         itemSemanticEditPolicyClassName="ExtendItemSemanticEditPolicy"
-        notationViewFactoryClassName="ExtendViewFactory"
         createCommandClassName="ExtendCreateCommand"
         reorientCommandClassName="ExtendReorientCommand">
       <diagramRunTimeClass
@@ -938,7 +924,6 @@
           visualID="6002"
           editPartClassName="ExtendsLink_fixedEditPart"
           itemSemanticEditPolicyClassName="ExtendsLink_fixedItemSemanticEditPolicy"
-          notationViewFactoryClassName="ExtendsLink_fixedViewFactory"
           readOnly="true"
           elementIcon="true">
         <diagramRunTimeClass
@@ -953,13 +938,14 @@
           <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.0"/>
       </labels>
     </links>
     <links
         visualID="4003"
         editPartClassName="GeneralizationEditPart"
         itemSemanticEditPolicyClassName="GeneralizationItemSemanticEditPolicy"
-        notationViewFactoryClassName="GeneralizationViewFactory"
         createCommandClassName="GeneralizationCreateCommand"
         reorientCommandClassName="GeneralizationReorientCommand">
       <diagramRunTimeClass
@@ -995,7 +981,6 @@
         visualID="4004"
         editPartClassName="AssociationEditPart"
         itemSemanticEditPolicyClassName="AssociationItemSemanticEditPolicy"
-        notationViewFactoryClassName="AssociationViewFactory"
         createCommandClassName="AssociationCreateCommand"
         reorientCommandClassName="AssociationReorientCommand">
       <diagramRunTimeClass
@@ -1004,25 +989,25 @@
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="AssociationEditHelper"/>
       <viewmap
-          xsi:type="gmfgen:InnerClassViewmap"
-          className="AssociationLinkFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class AssociationLinkFigure extends org.eclipse.uml2.diagram.common.draw2d.AssociationLinkFigureBase {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public AssociationLinkFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.blue);&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-        <attributes
-            xsi:type="gmfgen:StyleAttributes"
-            fixedForeground="true"/>
-        <requiredPluginIDs>org.eclipse.draw2d</requiredPluginIDs>
-        <requiredPluginIDs>org.eclipse.uml2.diagram.common</requiredPluginIDs>
-        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-      </viewmap>
+          xsi:type="gmfgen:FigureViewmap"
+          figureQualifiedClassName="org.eclipse.papyrus.diagram.usecase.figure.AssociationFigure"/>
       <modelFacet
-          xsi:type="gmfgen:TypeLinkModelFacet"
-          modelElementSelector="//@expressionProviders/@providers.0/@expressions.12">
+          xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association"/>
         <containmentMetaFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
         <childMetaFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+        <modelElementInitializer
+            xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers
+              xsi:type="gmfgen:GenFeatureValueSpec"
+              value="//@expressionProviders/@providers.0/@expressions.9">
+            <feature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </initializers>
+        </modelElementInitializer>
         <sourceMetaFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
         <targetMetaFeature
@@ -1032,7 +1017,6 @@
           visualID="6003"
           editPartClassName="AssociationNameEditPart"
           itemSemanticEditPolicyClassName="AssociationNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="AssociationNameViewFactory"
           alignment="TARGET">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1047,7 +1031,8 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet">
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </modelFacet>
@@ -1056,7 +1041,6 @@
           visualID="6004"
           editPartClassName="AssociationName2EditPart"
           itemSemanticEditPolicyClassName="AssociationName2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="AssociationName2ViewFactory"
           alignment="SOURCE">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1071,7 +1055,8 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet">
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </modelFacet>
@@ -1084,7 +1069,6 @@
         visualID="4005"
         editPartClassName="ConstraintConstrainedElementEditPart"
         itemSemanticEditPolicyClassName="ConstraintConstrainedElementItemSemanticEditPolicy"
-        notationViewFactoryClassName="ConstraintConstrainedElementViewFactory"
         createCommandClassName="ConstraintConstrainedElementCreateCommand"
         reorientCommandClassName="ConstraintConstrainedElementReorientCommand">
       <diagramRunTimeClass
@@ -1108,7 +1092,6 @@
         visualID="4006"
         editPartClassName="DependencyEditPart"
         itemSemanticEditPolicyClassName="DependencyItemSemanticEditPolicy"
-        notationViewFactoryClassName="DependencyViewFactory"
         createCommandClassName="DependencyCreateCommand"
         reorientCommandClassName="DependencyReorientCommand">
       <diagramRunTimeClass
@@ -1143,7 +1126,6 @@
           visualID="6005"
           editPartClassName="DependencyNameEditPart"
           itemSemanticEditPolicyClassName="DependencyNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="DependencyNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1156,7 +1138,8 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet">
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.1">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </modelFacet>
@@ -1168,7 +1151,6 @@
         visualID="4007"
         editPartClassName="CommentAnnotatedElementEditPart"
         itemSemanticEditPolicyClassName="CommentAnnotatedElementItemSemanticEditPolicy"
-        notationViewFactoryClassName="CommentAnnotatedElementViewFactory"
         createCommandClassName="CommentAnnotatedElementCreateCommand"
         reorientCommandClassName="CommentAnnotatedElementReorientCommand">
       <diagramRunTimeClass
@@ -1191,7 +1173,6 @@
         visualID="7002"
         editPartClassName="UseCasePointsEditPart"
         itemSemanticEditPolicyClassName="UseCasePointsItemSemanticEditPolicy"
-        notationViewFactoryClassName="UseCasePointsViewFactory"
         canonicalEditPolicyClassName="UseCasePointsCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0"
         title="points"
@@ -1209,7 +1190,6 @@
         visualID="7003"
         editPartClassName="UseCaseExtensionpointsEditPart"
         itemSemanticEditPolicyClassName="UseCaseExtensionpointsItemSemanticEditPolicy"
-        notationViewFactoryClassName="UseCaseExtensionpointsViewFactory"
         canonicalEditPolicyClassName="UseCaseExtensionpointsCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.1"
         title="extension points"
@@ -1225,7 +1205,6 @@
         visualID="7004"
         editPartClassName="ComponentUsecasesEditPart"
         itemSemanticEditPolicyClassName="ComponentUsecasesItemSemanticEditPolicy"
-        notationViewFactoryClassName="ComponentUsecasesViewFactory"
         canonicalEditPolicyClassName="ComponentUsecasesCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.2"
         title="use cases"
@@ -1244,7 +1223,6 @@
         visualID="7005"
         editPartClassName="UseCasePoints2EditPart"
         itemSemanticEditPolicyClassName="UseCasePoints2ItemSemanticEditPolicy"
-        notationViewFactoryClassName="UseCasePoints2ViewFactory"
         canonicalEditPolicyClassName="UseCasePoints2CanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0"
         title="points"
@@ -1262,7 +1240,6 @@
         visualID="7008"
         editPartClassName="PackagePackageableElementCompartmentEditPart"
         itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicy"
-        notationViewFactoryClassName="PackagePackageableElementCompartmentViewFactory"
         canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.3 //@diagram/@childNodes.4"
         title="PackageableElementCompartment"
@@ -1281,7 +1258,6 @@
         visualID="7007"
         editPartClassName="UseCasePoints3EditPart"
         itemSemanticEditPolicyClassName="UseCasePoints3ItemSemanticEditPolicy"
-        notationViewFactoryClassName="UseCasePoints3ViewFactory"
         canonicalEditPolicyClassName="UseCasePoints3CanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0"
         title="points"
@@ -2773,4 +2749,19 @@
           body="not self.oclIsKindOf(uml::Interface)&#xD;&#xA;"/>
     </providers>
   </expressionProviders>
+  <labelParsers
+      extensibleViaService="true">
+    <implementations
+        xsi:type="gmfgen:ExternalParser"
+        uses="//@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet"/>
+    <implementations
+        xsi:type="gmfgen:PredefinedParser"
+        uses="//@diagram/@childNodes.0/@labelModelFacet //@diagram/@childNodes.1/@labelModelFacet //@diagram/@childNodes.2/@labels.0/@modelFacet //@diagram/@childNodes.3/@labels.0/@modelFacet //@diagram/@childNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.5/@labels.0/@modelFacet //@diagram/@topLevelNodes.6/@labels.0/@modelFacet //@diagram/@topLevelNodes.7/@labels.0/@modelFacet //@diagram/@links.3/@labels.0/@modelFacet //@diagram/@links.3/@labels.1/@modelFacet //@diagram/@links.5/@labels.0/@modelFacet"/>
+  </labelParsers>
+  <contextMenus
+      context="//@diagram">
+    <items
+        xsi:type="gmfgen:LoadResourceAction"
+        qualifiedClassName="org.eclipse.papyrus.diagram.usecase.part.LoadResourceAction"/>
+  </contextMenus>
 </gmfgen:GenEditorGenerator>

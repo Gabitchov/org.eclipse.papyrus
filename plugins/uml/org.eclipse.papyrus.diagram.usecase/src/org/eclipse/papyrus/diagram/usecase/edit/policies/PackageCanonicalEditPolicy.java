@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import java.util.Collection;
@@ -287,9 +287,9 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			EObject diagramLinkObject = nextDiagramLink.getElement();
 			EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-			for (Iterator LinkDescriptorsIterator = linkDescriptors.iterator(); LinkDescriptorsIterator
+			for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator
 					.hasNext();) {
-				UMLLinkDescriptor nextLinkDescriptor = (UMLLinkDescriptor) LinkDescriptorsIterator
+				UMLLinkDescriptor nextLinkDescriptor = (UMLLinkDescriptor) linkDescriptorsIterator
 						.next();
 				if (diagramLinkObject == nextLinkDescriptor.getModelElement()
 						&& diagramLinkSrc == nextLinkDescriptor.getSource()
@@ -298,7 +298,8 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 						&& diagramLinkVisualID == nextLinkDescriptor
 								.getVisualID()) {
 					linksIterator.remove();
-					LinkDescriptorsIterator.remove();
+					linkDescriptorsIterator.remove();
+					break;
 				}
 			}
 		}

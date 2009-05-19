@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.emf.ecore.EObject;
@@ -23,17 +23,12 @@ public class UMLNodeDescriptor {
 	/**
 	 * @generated
 	 */
-	private EObject myModelElement;
+	private final EObject myModelElement;
 
 	/**
 	 * @generated
 	 */
-	private int myVisualID;
-
-	/**
-	 * @generated
-	 */
-	private String myType;
+	private final int myVisualID;
 
 	/**
 	 * @generated
@@ -55,16 +50,6 @@ public class UMLNodeDescriptor {
 	 */
 	public int getVisualID() {
 		return myVisualID;
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getType() {
-		if (myType == null) {
-			myType = UMLVisualIDRegistry.getType(getVisualID());
-		}
-		return myType;
 	}
 
 }

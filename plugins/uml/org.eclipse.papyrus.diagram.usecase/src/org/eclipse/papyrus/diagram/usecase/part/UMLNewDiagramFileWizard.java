@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import java.io.IOException;
@@ -68,9 +68,9 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	 */
 	public UMLNewDiagramFileWizard(URI domainModelURI, EObject diagramRoot,
 			TransactionalEditingDomain editingDomain) {
-		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
-		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
-		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
+		assert domainModelURI != null : "Domain model uri must be specified";
+		assert diagramRoot != null : "Doagram root element must be specified";
+		assert editingDomain != null : "Editing domain must be specified";
 
 		myFileCreationPage = new WizardNewFileCreationPage(
 				Messages.UMLNewDiagramFileWizard_CreationPageName,
@@ -81,7 +81,8 @@ public class UMLNewDiagramFileWizard extends Wizard {
 				Messages.UMLNewDiagramFileWizard_CreationPageDescription,
 				PackageEditPart.MODEL_ID));
 		IPath filePath;
-		String fileName = domainModelURI.trimFileExtension().lastSegment();
+		String fileName = URI.decode(domainModelURI.trimFileExtension()
+				.lastSegment());
 		if (domainModelURI.isPlatformResource()) {
 			filePath = new Path(domainModelURI.trimSegments(1)
 					.toPlatformString(true));

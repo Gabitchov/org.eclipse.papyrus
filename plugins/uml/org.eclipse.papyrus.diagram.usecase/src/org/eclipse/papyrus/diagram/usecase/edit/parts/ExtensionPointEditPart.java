@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,13 +10,12 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -34,7 +33,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -56,6 +54,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.ExtensionPointItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLParserProvider;
 import org.eclipse.swt.SWT;
@@ -237,6 +236,10 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
 		}
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
+		}
 	}
 
 	/**
@@ -314,11 +317,12 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			String parserHint = ((View) getModel()).getType();
-			IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
-					UMLElementTypes.ExtensionPoint_3002, getParserElement(),
-					parserHint);
-			parser = ParserService.getInstance().getParser(hintAdapter);
+			parser = UMLParserProvider
+					.getParser(
+							UMLElementTypes.ExtensionPoint_3002,
+							getParserElement(),
+							UMLVisualIDRegistry
+									.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -425,6 +429,10 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		}
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
 		}
 	}
 

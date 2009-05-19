@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,14 +10,13 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase3CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -28,12 +27,15 @@ public class ComponentUsecasesItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
+	public ComponentUsecasesItemSemanticEditPolicy() {
+		super(UMLElementTypes.Component_2006);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (UMLElementTypes.UseCase_3004 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getClassifier_OwnedUseCase());
-			}
 			return getGEFWrapper(new UseCase3CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

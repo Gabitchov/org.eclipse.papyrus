@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.core.resources.IFile;
@@ -94,17 +94,14 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
-			MessageDialog
-					.openError(
-							getShell(),
-							Messages.UMLInitDiagramFileAction_InitDiagramFileResourceErrorDialogTitle,
-							Messages.UMLInitDiagramFileAction_InitDiagramFileResourceErrorDialogMessage);
+			MessageDialog.openError(getShell(),
+					Messages.InitDiagramFile_ResourceErrorDialogTitle,
+					Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
 		Wizard wizard = new UMLNewDiagramFileWizard(domainModelURI,
 				diagramRoot, editingDomain);
-		wizard.setWindowTitle(NLS.bind(
-				Messages.UMLInitDiagramFileAction_InitDiagramFileWizardTitle,
+		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle,
 				PackageEditPart.MODEL_ID));
 		UMLDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
 	}

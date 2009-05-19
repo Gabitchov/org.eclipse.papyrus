@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.expressions;
 
 import java.math.BigDecimal;
@@ -112,7 +112,7 @@ public abstract class UMLAbstractExpression {
 				return doEvaluate(context, env);
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError(
-						"Expression evaluation failure: " + body(), e);//$NON-NLS-1$
+						"Expression evaluation failure: " + body(), e); //$NON-NLS-1$
 			}
 		}
 		return null;

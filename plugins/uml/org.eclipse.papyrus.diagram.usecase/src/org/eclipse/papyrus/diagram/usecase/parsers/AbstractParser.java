@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.parsers;
 
 import java.util.Arrays;
@@ -51,6 +51,11 @@ public abstract class AbstractParser implements IParser {
 	/**
 	 * @generated
 	 */
+	protected final EAttribute[] editableFeatures;
+
+	/**
+	 * @generated
+	 */
 	private String viewPattern;
 
 	/**
@@ -70,7 +75,22 @@ public abstract class AbstractParser implements IParser {
 		if (features == null || Arrays.asList(features).contains(null)) {
 			throw new IllegalArgumentException();
 		}
+		this.editableFeatures = this.features = features;
+	}
+
+	/**
+	 * @generated
+	 */
+	public AbstractParser(EAttribute[] features, EAttribute[] editableFeatures) {
+		if (features == null || Arrays.asList(features).contains(null)) {
+			throw new IllegalArgumentException();
+		}
 		this.features = features;
+		if (editableFeatures == null
+				|| Arrays.asList(editableFeatures).contains(null)) {
+			throw new IllegalArgumentException();
+		}
+		this.editableFeatures = editableFeatures;
 	}
 
 	/**
@@ -158,6 +178,17 @@ public abstract class AbstractParser implements IParser {
 	/**
 	 * @generated
 	 */
+	protected Object[] getEditableValues(EObject element) {
+		Object[] values = new Object[editableFeatures.length];
+		for (int i = 0; i < editableFeatures.length; i++) {
+			values[i] = getValue(element, editableFeatures[i]);
+		}
+		return values;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Object getValue(EObject element, EAttribute feature) {
 		Object value = element.eGet(feature);
 		Class iClass = feature.getEAttributeType().getInstanceClass();
@@ -187,8 +218,8 @@ public abstract class AbstractParser implements IParser {
 		CompositeTransactionalCommand command = new CompositeTransactionalCommand(
 				editingDomain, "Set Values"); //$NON-NLS-1$
 		for (int i = 0; i < values.length; i++) {
-			command.compose(getModificationCommand(element, features[i],
-					values[i]));
+			command.compose(getModificationCommand(element,
+					editableFeatures[i], values[i]));
 		}
 		return command;
 	}
@@ -210,11 +241,11 @@ public abstract class AbstractParser implements IParser {
 	 * @generated
 	 */
 	protected IParserEditStatus validateNewValues(Object[] values) {
-		if (values.length != features.length) {
+		if (values.length != editableFeatures.length) {
 			return ParserEditStatus.UNEDITABLE_STATUS;
 		}
 		for (int i = 0; i < values.length; i++) {
-			Object value = getValidNewValue(features[i], values[i]);
+			Object value = getValidNewValue(editableFeatures[i], values[i]);
 			if (value instanceof InvalidValue) {
 				return new ParserEditStatus(UMLDiagramEditorPlugin.ID,
 						IParserEditStatus.UNEDITABLE, value.toString());
@@ -237,8 +268,8 @@ public abstract class AbstractParser implements IParser {
 					value = Boolean.valueOf((String) value);
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
-							iClass.getName()));
+							Messages.AbstractParser_UnexpectedValueType, iClass
+									.getName()));
 				}
 			} else if (Character.TYPE.equals(iClass)) {
 				if (value instanceof Character) {
@@ -252,8 +283,8 @@ public abstract class AbstractParser implements IParser {
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
-							iClass.getName()));
+							Messages.AbstractParser_UnexpectedValueType, iClass
+									.getName()));
 				}
 			} else if (Byte.TYPE.equals(iClass)) {
 				if (value instanceof Byte) {
@@ -271,14 +302,14 @@ public abstract class AbstractParser implements IParser {
 							value = new InvalidValue(
 									NLS
 											.bind(
-													Messages.AbstractParser_WrongStringConversionMessage,
+													Messages.AbstractParser_WrongStringConversion,
 													iClass.getName()));
 						}
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
-							iClass.getName()));
+							Messages.AbstractParser_UnexpectedValueType, iClass
+									.getName()));
 				}
 			} else if (Short.TYPE.equals(iClass)) {
 				if (value instanceof Short) {
@@ -296,14 +327,14 @@ public abstract class AbstractParser implements IParser {
 							value = new InvalidValue(
 									NLS
 											.bind(
-													Messages.AbstractParser_WrongStringConversionMessage,
+													Messages.AbstractParser_WrongStringConversion,
 													iClass.getName()));
 						}
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
-							iClass.getName()));
+							Messages.AbstractParser_UnexpectedValueType, iClass
+									.getName()));
 				}
 			} else if (Integer.TYPE.equals(iClass)) {
 				if (value instanceof Integer) {
@@ -321,14 +352,14 @@ public abstract class AbstractParser implements IParser {
 							value = new InvalidValue(
 									NLS
 											.bind(
-													Messages.AbstractParser_WrongStringConversionMessage,
+													Messages.AbstractParser_WrongStringConversion,
 													iClass.getName()));
 						}
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
-							iClass.getName()));
+							Messages.AbstractParser_UnexpectedValueType, iClass
+									.getName()));
 				}
 			} else if (Long.TYPE.equals(iClass)) {
 				if (value instanceof Long) {
@@ -346,14 +377,14 @@ public abstract class AbstractParser implements IParser {
 							value = new InvalidValue(
 									NLS
 											.bind(
-													Messages.AbstractParser_WrongStringConversionMessage,
+													Messages.AbstractParser_WrongStringConversion,
 													iClass.getName()));
 						}
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
-							iClass.getName()));
+							Messages.AbstractParser_UnexpectedValueType, iClass
+									.getName()));
 				}
 			} else if (Float.TYPE.equals(iClass)) {
 				if (value instanceof Float) {
@@ -371,14 +402,14 @@ public abstract class AbstractParser implements IParser {
 							value = new InvalidValue(
 									NLS
 											.bind(
-													Messages.AbstractParser_WrongStringConversionMessage,
+													Messages.AbstractParser_WrongStringConversion,
 													iClass.getName()));
 						}
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
-							iClass.getName()));
+							Messages.AbstractParser_UnexpectedValueType, iClass
+									.getName()));
 				}
 			} else if (Double.TYPE.equals(iClass)) {
 				if (value instanceof Double) {
@@ -396,14 +427,14 @@ public abstract class AbstractParser implements IParser {
 							value = new InvalidValue(
 									NLS
 											.bind(
-													Messages.AbstractParser_WrongStringConversionMessage,
+													Messages.AbstractParser_WrongStringConversion,
 													iClass.getName()));
 						}
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
-							iClass.getName()));
+							Messages.AbstractParser_UnexpectedValueType, iClass
+									.getName()));
 				}
 			} else if (type instanceof EEnum) {
 				if (value instanceof String) {
@@ -411,14 +442,13 @@ public abstract class AbstractParser implements IParser {
 							.getEEnumLiteralByLiteral((String) value);
 					if (literal == null) {
 						value = new InvalidValue(NLS.bind(
-								Messages.AbstractParser_UnknownLiteralMessage,
-								value));
+								Messages.AbstractParser_UnknownLiteral, value));
 					} else {
 						value = literal.getInstance();
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueTypeMessage,
+							Messages.AbstractParser_UnexpectedValueType,
 							String.class.getName()));
 				}
 			}

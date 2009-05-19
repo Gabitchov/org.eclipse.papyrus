@@ -13,8 +13,12 @@
   *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -28,6 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -35,6 +40,7 @@ import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.CommentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -128,11 +134,13 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+
 		if (childEditPart instanceof CommentBodyEditPart) {
 			((CommentBodyEditPart) childEditPart).setLabel(getPrimaryShape()
 					.getCornerBentContentLabel());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -140,9 +148,11 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
+
 		if (childEditPart instanceof CommentBodyEditPart) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -170,6 +180,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+
 		return getContentPane();
 	}
 
@@ -177,16 +188,16 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(40), getMapMode().DPtoLP(40));
+
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -200,15 +211,16 @@ ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(getMapMode().DPtoLP(5));
+			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
 		}
 		return nodeShape; // use nodeShape itself as contentPane
@@ -227,9 +239,163 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	protected void setForegroundColor(Color color) {
+		if (primaryShape != null) {
+			primaryShape.setForegroundColor(color);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setBackgroundColor(Color color) {
+		if (primaryShape != null) {
+			primaryShape.setBackgroundColor(color);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineWidth(int width) {
+		if (primaryShape instanceof Shape) {
+			((Shape) primaryShape).setLineWidth(width);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineType(int style) {
+		if (primaryShape instanceof Shape) {
+			((Shape) primaryShape).setLineStyle(style);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry
 				.getType(CommentBodyEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+			IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (targetEditPart instanceof ActorEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof Actor2EditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof UseCaseEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof UseCase2EditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof ComponentEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof Package3EditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof UseCase3EditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof Actor3EditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		if (targetEditPart instanceof UseCase4EditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+			IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.Actor_2002);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.Actor_2003);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.UseCase_2004);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.UseCase_2005);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.Component_2006);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.Package_2009);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.Constraint_2008);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.Comment_2010);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.UseCase_3004);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.Actor_3005);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.UseCase_3006);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4007);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+			IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
+			types.add(UMLElementTypes.Constraint_2008);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
+			types.add(UMLElementTypes.Comment_2010);
+		}
+		return types;
 	}
 
 	/**

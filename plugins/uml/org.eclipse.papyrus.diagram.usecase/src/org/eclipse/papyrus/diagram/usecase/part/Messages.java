@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.osgi.util.NLS;
@@ -141,22 +141,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String UMLInitDiagramFileAction_InitDiagramFileResourceErrorDialogTitle;
+	public static String InitDiagramFile_ResourceErrorDialogTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String UMLInitDiagramFileAction_InitDiagramFileResourceErrorDialogMessage;
+	public static String InitDiagramFile_ResourceErrorDialogMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String UMLInitDiagramFileAction_InitDiagramFileWizardTitle;
+	public static String InitDiagramFile_WizardTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String UMLInitDiagramFileAction_OpenModelFileDialogTitle;
+	public static String InitDiagramFile_OpenModelFileDialogTitle;
 
 	/**
 	 * @generated
@@ -671,17 +671,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String AbstractParser_UnexpectedValueTypeMessage;
+	public static String AbstractParser_UnexpectedValueType;
 
 	/**
 	 * @generated
 	 */
-	public static String AbstractParser_WrongStringConversionMessage;
+	public static String AbstractParser_WrongStringConversion;
 
 	/**
 	 * @generated
 	 */
-	public static String AbstractParser_UnknownLiteralMessage;
+	public static String AbstractParser_UnknownLiteral;
 
 	/**
 	 * @generated

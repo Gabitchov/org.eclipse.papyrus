@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import java.util.ArrayList;
@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
-import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
@@ -48,6 +47,7 @@ public class UMLPaletteFactory {
 	private PaletteContainer createNodes1Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Nodes1Group_title);
+		paletteContainer.setId("createNodes1Group"); //$NON-NLS-1$
 		paletteContainer.setDescription(Messages.Nodes1Group_desc);
 		paletteContainer.add(createPackage1CreationTool());
 		paletteContainer.add(createSubject2CreationTool());
@@ -66,6 +66,7 @@ public class UMLPaletteFactory {
 	private PaletteContainer createChildren2Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Children2Group_title);
+		paletteContainer.setId("createChildren2Group"); //$NON-NLS-1$
 		paletteContainer.setDescription(Messages.Children2Group_desc);
 		paletteContainer.add(createExtensionPoint1CreationTool());
 		return paletteContainer;
@@ -79,6 +80,7 @@ public class UMLPaletteFactory {
 	private PaletteContainer createLinks3Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Links3Group_title);
+		paletteContainer.setId("createLinks3Group"); //$NON-NLS-1$
 		paletteContainer.setDescription(Messages.Links3Group_desc);
 		paletteContainer.add(createAssociation1CreationTool());
 		paletteContainer.add(createGeneralization2CreationTool());
@@ -99,6 +101,7 @@ public class UMLPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Package1CreationTool_title,
 				Messages.Package1CreationTool_desc, types);
+		entry.setId("createPackage1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Package_2009));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -114,6 +117,7 @@ public class UMLPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Subject2CreationTool_title,
 				Messages.Subject2CreationTool_desc, types);
+		entry.setId("createSubject2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Component_2006));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -130,6 +134,7 @@ public class UMLPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Actor3CreationTool_title,
 				Messages.Actor3CreationTool_desc, types);
+		entry.setId("createActor3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Actor_2002));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -147,6 +152,7 @@ public class UMLPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.UseCase4CreationTool_title,
 				Messages.UseCase4CreationTool_desc, types);
+		entry.setId("createUseCase4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.UseCase_2004));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -162,6 +168,7 @@ public class UMLPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Constraint5CreationTool_title,
 				Messages.Constraint5CreationTool_desc, types);
+		entry.setId("createConstraint5CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Constraint_2008));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -177,6 +184,7 @@ public class UMLPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Comment6CreationTool_title,
 				Messages.Comment6CreationTool_desc, types);
+		entry.setId("createComment6CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Comment_2010));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -193,6 +201,7 @@ public class UMLPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.ExtensionPoint1CreationTool_title,
 				Messages.ExtensionPoint1CreationTool_desc, types);
+		entry.setId("createExtensionPoint1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.ExtensionPoint_3002));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -208,6 +217,7 @@ public class UMLPaletteFactory {
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.Association1CreationTool_title,
 				Messages.Association1CreationTool_desc, types);
+		entry.setId("createAssociation1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Association_4004));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -223,6 +233,7 @@ public class UMLPaletteFactory {
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.Generalization2CreationTool_title,
 				Messages.Generalization2CreationTool_desc, types);
+		entry.setId("createGeneralization2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Generalization_4003));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -238,6 +249,7 @@ public class UMLPaletteFactory {
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.Dependency3CreationTool_title,
 				Messages.Dependency3CreationTool_desc, types);
+		entry.setId("createDependency3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Dependency_4006));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -253,6 +265,7 @@ public class UMLPaletteFactory {
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.Include4CreationTool_title,
 				Messages.Include4CreationTool_desc, types);
+		entry.setId("createInclude4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Include_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -268,6 +281,7 @@ public class UMLPaletteFactory {
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.Extend5CreationTool_title,
 				Messages.Extend5CreationTool_desc, types);
+		entry.setId("createExtend5CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes
 				.getImageDescriptor(UMLElementTypes.Extend_4002));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -283,6 +297,7 @@ public class UMLPaletteFactory {
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.ConstrainedElement6CreationTool_title,
 				Messages.ConstrainedElement6CreationTool_desc, types);
+		entry.setId("createConstrainedElement6CreationTool"); //$NON-NLS-1$
 		entry
 				.setSmallIcon(UMLElementTypes
 						.getImageDescriptor(UMLElementTypes.ConstraintConstrainedElement_4005));
@@ -299,6 +314,7 @@ public class UMLPaletteFactory {
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.Commentlink7CreationTool_title,
 				Messages.Commentlink7CreationTool_desc, types);
+		entry.setId("createCommentlink7CreationTool"); //$NON-NLS-1$
 		entry
 				.setSmallIcon(UMLElementTypes
 						.getImageDescriptor(UMLElementTypes.CommentAnnotatedElement_4007));

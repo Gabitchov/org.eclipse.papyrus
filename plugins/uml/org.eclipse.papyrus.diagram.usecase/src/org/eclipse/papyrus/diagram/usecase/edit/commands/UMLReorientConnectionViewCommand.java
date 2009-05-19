@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import java.util.List;
@@ -72,9 +72,9 @@ public class UMLReorientConnectionViewCommand extends
 	 */
 	protected CommandResult doExecuteWithResult(
 			IProgressMonitor progressMonitor, IAdaptable info) {
-		assert null != edgeAdaptor : "Null child in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
+		assert null != edgeAdaptor : "Null child in UMLReorientConnectionViewCommand";
 		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
-		assert null != edge : "Null edge in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
+		assert null != edge : "Null edge in UMLReorientConnectionViewCommand";
 		View tempView = edge.getSource();
 		edge.setSource(edge.getTarget());
 		edge.setTarget(tempView);

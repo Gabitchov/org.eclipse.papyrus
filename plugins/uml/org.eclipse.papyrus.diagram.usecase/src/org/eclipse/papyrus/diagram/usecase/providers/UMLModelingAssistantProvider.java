@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.providers;
 
 import java.util.ArrayList;
@@ -30,9 +30,14 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentUsecasesEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
@@ -57,38 +62,38 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof UseCaseEditPart) {
-			List types = new ArrayList();
+			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3002);
 			return types;
 		}
 		if (editPart instanceof UseCase2EditPart) {
-			List types = new ArrayList();
+			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3003);
 			return types;
 		}
 		if (editPart instanceof UseCase3EditPart) {
-			List types = new ArrayList();
+			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3002);
 			return types;
 		}
 		if (editPart instanceof UseCase4EditPart) {
-			List types = new ArrayList();
+			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3002);
 			return types;
 		}
 		if (editPart instanceof ComponentUsecasesEditPart) {
-			List types = new ArrayList();
+			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.UseCase_3004);
 			return types;
 		}
 		if (editPart instanceof PackagePackageableElementCompartmentEditPart) {
-			List types = new ArrayList();
+			ArrayList types = new ArrayList(2);
 			types.add(UMLElementTypes.Actor_3005);
 			types.add(UMLElementTypes.UseCase_3006);
 			return types;
 		}
 		if (editPart instanceof PackageEditPart) {
-			List types = new ArrayList();
+			ArrayList types = new ArrayList(8);
 			types.add(UMLElementTypes.Actor_2002);
 			types.add(UMLElementTypes.Actor_2003);
 			types.add(UMLElementTypes.UseCase_2004);
@@ -108,39 +113,39 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof Actor2EditPart) {
+			return ((Actor2EditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		if (sourceEditPart instanceof UseCaseEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.Include_4001);
-			types.add(UMLElementTypes.Extend_4002);
-			return types;
+			return ((UseCaseEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof UseCase2EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.Include_4001);
-			types.add(UMLElementTypes.Extend_4002);
-			return types;
+			return ((UseCase2EditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof ComponentEditPart) {
+			return ((ComponentEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof Package3EditPart) {
+			return ((Package3EditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof ConstraintEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
-			return types;
+			return ((ConstraintEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof CommentEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.CommentAnnotatedElement_4007);
-			return types;
+			return ((CommentEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof UseCase3EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.Include_4001);
-			types.add(UMLElementTypes.Extend_4002);
-			return types;
+			return ((UseCase3EditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof Actor3EditPart) {
+			return ((Actor3EditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof UseCase4EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.Include_4001);
-			types.add(UMLElementTypes.Extend_4002);
-			return types;
+			return ((UseCase4EditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -151,29 +156,39 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof Actor2EditPart) {
+			return ((Actor2EditPart) targetEditPart).getMARelTypesOnTarget();
+		}
 		if (targetEditPart instanceof UseCaseEditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.Include_4001);
-			types.add(UMLElementTypes.Extend_4002);
-			return types;
+			return ((UseCaseEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof UseCase2EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.Include_4001);
-			types.add(UMLElementTypes.Extend_4002);
-			return types;
+			return ((UseCase2EditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ComponentEditPart) {
+			return ((ComponentEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof Package3EditPart) {
+			return ((Package3EditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof UseCase3EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.Include_4001);
-			types.add(UMLElementTypes.Extend_4002);
-			return types;
+			return ((UseCase3EditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof Actor3EditPart) {
+			return ((Actor3EditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof UseCase4EditPart) {
-			List types = new ArrayList();
-			types.add(UMLElementTypes.Include_4001);
-			types.add(UMLElementTypes.Extend_4002);
-			return types;
+			return ((UseCase4EditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -187,125 +202,49 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof Actor2EditPart) {
+			return ((Actor2EditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if (sourceEditPart instanceof UseCaseEditPart) {
-			List types = new ArrayList();
-			if (targetEditPart instanceof UseCaseEditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase2EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase3EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase4EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCaseEditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase2EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase3EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase4EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			return types;
+			return ((UseCaseEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof UseCase2EditPart) {
-			List types = new ArrayList();
-			if (targetEditPart instanceof UseCaseEditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase2EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase3EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase4EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCaseEditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase2EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase3EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase4EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			return types;
+			return ((UseCase2EditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof ComponentEditPart) {
+			return ((ComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof Package3EditPart) {
+			return ((Package3EditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof ConstraintEditPart) {
-			List types = new ArrayList();
-			return types;
+			return ((ConstraintEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof CommentEditPart) {
-			List types = new ArrayList();
-			return types;
+			return ((CommentEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof UseCase3EditPart) {
-			List types = new ArrayList();
-			if (targetEditPart instanceof UseCaseEditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase2EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase3EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase4EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCaseEditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase2EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase3EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase4EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			return types;
+			return ((UseCase3EditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof Actor3EditPart) {
+			return ((Actor3EditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof UseCase4EditPart) {
-			List types = new ArrayList();
-			if (targetEditPart instanceof UseCaseEditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase2EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase3EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCase4EditPart) {
-				types.add(UMLElementTypes.Include_4001);
-			}
-			if (targetEditPart instanceof UseCaseEditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase2EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase3EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			if (targetEditPart instanceof UseCase4EditPart) {
-				types.add(UMLElementTypes.Extend_4002);
-			}
-			return types;
+			return ((UseCase4EditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -317,117 +256,49 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof Actor2EditPart) {
+			return ((Actor2EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
 		if (targetEditPart instanceof UseCaseEditPart) {
-			List types = new ArrayList();
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			return types;
+			return ((UseCaseEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof UseCase2EditPart) {
-			List types = new ArrayList();
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			return types;
+			return ((UseCase2EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ComponentEditPart) {
+			return ((ComponentEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof Package3EditPart) {
+			return ((Package3EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof UseCase3EditPart) {
-			List types = new ArrayList();
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			return types;
+			return ((UseCase3EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof Actor3EditPart) {
+			return ((Actor3EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof UseCase4EditPart) {
-			List types = new ArrayList();
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			return types;
+			return ((UseCase4EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -439,125 +310,49 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ActorEditPart) {
+			return ((ActorEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof Actor2EditPart) {
+			return ((Actor2EditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
 		if (sourceEditPart instanceof UseCaseEditPart) {
-			List types = new ArrayList();
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			return types;
+			return ((UseCaseEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof UseCase2EditPart) {
-			List types = new ArrayList();
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			return types;
+			return ((UseCase2EditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ComponentEditPart) {
+			return ((ComponentEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof Package3EditPart) {
+			return ((Package3EditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof ConstraintEditPart) {
-			List types = new ArrayList();
-			return types;
+			return ((ConstraintEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof CommentEditPart) {
-			List types = new ArrayList();
-			return types;
+			return ((CommentEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof UseCase3EditPart) {
-			List types = new ArrayList();
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			return types;
+			return ((UseCase3EditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof Actor3EditPart) {
+			return ((Actor3EditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof UseCase4EditPart) {
-			List types = new ArrayList();
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Include_4001) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_2005);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3004);
-			}
-			if (relationshipType == UMLElementTypes.Extend_4002) {
-				types.add(UMLElementTypes.UseCase_3006);
-			}
-			return types;
+			return ((UseCase4EditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

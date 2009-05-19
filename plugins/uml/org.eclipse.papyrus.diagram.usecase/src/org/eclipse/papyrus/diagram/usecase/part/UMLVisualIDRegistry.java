@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -63,7 +63,6 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPart;
 import org.eclipse.papyrus.diagram.usecase.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.usecase.expressions.UMLOCLFactory;
-import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -79,11 +78,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static final String DEBUG_KEY = "org.eclipse.papyrus.diagram.usecase/debug/visualID"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Association_4004_Constraint;
 
 	/**
 	 * @generated
@@ -461,8 +455,7 @@ public class UMLVisualIDRegistry {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(
-				domainElement.eClass())
-				&& isAssociation_4004((Association) domainElement)) {
+				domainElement.eClass())) {
 			return AssociationEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(
@@ -485,19 +478,6 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static boolean isAssociation_4004(Association domainElement) {
-		if (Association_4004_Constraint == null) { // lazy initialization
-			Association_4004_Constraint = UMLOCLFactory
-					.getExpression(
-							"not self.oclIsTypeOf(uml::AssociationClass)", UMLPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
-		}
-		Object result = Association_4004_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
 	private static boolean isDependency_4006(Dependency domainElement) {
 		if (Dependency_4006_Constraint == null) { // lazy initialization
 			Dependency_4006_Constraint = UMLOCLFactory
@@ -507,6 +487,8 @@ public class UMLVisualIDRegistry {
 		Object result = Dependency_4006_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
+
+	// test
 
 	/**
 	 * @generated
@@ -555,22 +537,22 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(2010, ViewInfo.Node, "Comment");
 		root.addNode(1000, viewInfo);
 
-		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "Include");
+		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "Extend");
+		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "Generalization");
+		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "Association");
+		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
@@ -582,7 +564,7 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "Dependency");
+		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
@@ -593,29 +575,28 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "ExtensionPoint");
 
-		root.addNode(2004, viewInfo);
+		root.addNode(7007, viewInfo);
 
-		root.addNode(3004, viewInfo);
+		root.addNode(7002, viewInfo);
 
-		root.addNode(3006, viewInfo);
+		root.addNode(7005, viewInfo);
 
 		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "ExtensionPoint");
 
-		root.addNode(2005, viewInfo);
+		root.addNode(7003, viewInfo);
 
 		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "UseCase");
 
-		root.addNode(2006, viewInfo);
+		root.addNode(7004, viewInfo);
 
 		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "Actor");
 
-		root.addNode(2009, viewInfo);
+		root.addNode(7008, viewInfo);
 
 		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "UseCase");
 
-		root.addNode(2009, viewInfo);
+		root.addNode(7008, viewInfo);
 
 		return root;
 	}
-
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,10 +10,14 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.IWorkbenchPage;
 
 /**
  * @generated
@@ -32,5 +36,17 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 	 */
 	protected String getEditorId() {
 		return UMLDiagramEditor.ID;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init(IActionBars bars, IWorkbenchPage page) {
+		super.init(bars, page);
+		// print preview
+		IMenuManager fileMenu = bars.getMenuManager().findMenuUsingPath(
+				IWorkbenchActionConstants.M_FILE);
+		assert fileMenu != null;
+		fileMenu.remove("pageSetupAction"); //$NON-NLS-1$
 	}
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -26,11 +26,9 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ComponentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Package2CreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCaseCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -41,61 +39,36 @@ public class PackageItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
+	public PackageItemSemanticEditPolicy() {
+		super(UMLElementTypes.Package_1000);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (UMLElementTypes.Actor_2002 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new ActorCreateCommand(req));
 		}
 		if (UMLElementTypes.Actor_2003 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new Actor2CreateCommand(req));
 		}
 		if (UMLElementTypes.UseCase_2004 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new UseCaseCreateCommand(req));
 		}
 		if (UMLElementTypes.UseCase_2005 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new UseCase2CreateCommand(req));
 		}
 		if (UMLElementTypes.Component_2006 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new ComponentCreateCommand(req));
 		}
 		if (UMLElementTypes.Package_2009 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new Package2CreateCommand(req));
 		}
 		if (UMLElementTypes.Constraint_2008 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getPackage_PackagedElement());
-			}
 			return getGEFWrapper(new ConstraintCreateCommand(req));
 		}
 		if (UMLElementTypes.Comment_2010 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getElement_OwnedComment());
-			}
 			return getGEFWrapper(new CommentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -135,7 +108,6 @@ public class PackageItemSemanticEditPolicy extends
 					.getAllDuplicatedElementsMap());
 			this.diagram = currentDiagram;
 		}
-
 	}
 
 }
