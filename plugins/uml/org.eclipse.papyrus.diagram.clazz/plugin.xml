@@ -1318,7 +1318,7 @@
       <objectContribution
             adaptable="false"
             id="org.eclipse.papyrus.diagram.clazz.objectContribution.dependencybranchdeletion"
-            objectClass="org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency3EditPart">
+            objectClass="org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart">
     
          <action
                class="org.eclipse.papyrus.diagram.clazz.custom.command.DependencyBranchDeletion"

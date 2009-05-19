@@ -120,7 +120,7 @@ ShapeNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(10, 10);
 
 		return result;
 	}

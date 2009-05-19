@@ -176,13 +176,19 @@ public class AssociationFigure extends PolylineConnectionEx {
 		if (ownedValue == 1) {
 			// this is composite.
 			if (compositeValue == 1) {
+				if (navigationValue == 1) {
+					return getOwnedNavigableCompositionDecoration();
+				}
 				return getOwnedCompositionDecoration();
 			}
-			// an aggragation?
+			// an aggregation?
 			else if (aggregationValue == 1) {
+				if (navigationValue == 1) {
+					return getOwnedNavigableAggregationDecoration();
+				}
 				return getOwnedAggregationDecoration();
 			}
-			// Is it naviagable?
+			// Is it navigable?
 			else if (navigationValue == 1) {
 				return getOwnedNavigationDecoration();
 			} else {
@@ -193,10 +199,16 @@ public class AssociationFigure extends PolylineConnectionEx {
 		else {
 			// this is composite.
 			if (compositeValue == 1) {
+				if (navigationValue == 1) {
+					return getNavigableCompositionDecoration();
+				}
 				return getCompositionDecoration();
 			}
-			// an aggragation?
+			// an aggregation?
 			else if (aggregationValue == 1) {
+				if (navigationValue == 1) {
+					return getNavigableAggregationDecoration();
+				}
 				return getAggregationDecoration();
 			}
 			// Is it naviagable?
@@ -222,6 +234,39 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return fMultiplicityTargetLabel;
 	}
 
+	protected RotatableDecoration getNavigableAggregationDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 0);
+		decorationPointList.addPoint(-2, 2);
+		decorationPointList.addPoint(-4, 0);
+		decorationPointList.addPoint(-10, 2);
+		decorationPointList.addPoint(-4, 0);
+		decorationPointList.addPoint(-10, -2);
+		decorationPointList.addPoint(-4, 0);
+		decorationPointList.addPoint(-2, -2);
+		decoration.setTemplate(decorationPointList);
+		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
+		decoration.setScale(3, 3);
+		return decoration;
+	}
+
+	protected RotatableDecoration getNavigableCompositionDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 0);
+		decorationPointList.addPoint(-2, 2);
+		decorationPointList.addPoint(-4, 0);
+		decorationPointList.addPoint(-10, 2);
+		decorationPointList.addPoint(-4, 0);
+		decorationPointList.addPoint(-10, -2);
+		decorationPointList.addPoint(-4, 0);
+		decorationPointList.addPoint(-2, -2);
+		decoration.setTemplate(decorationPointList);
+		decoration.setScale(3, 3);
+		return decoration;
+	}
+
 	protected RotatableDecoration getNavigationDecoration() {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
@@ -237,9 +282,9 @@ public class AssociationFigure extends PolylineConnectionEx {
 		decorationPointList.addPoint(-4, 3);
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, 0);
-		decorationPointList.addPoint(-18, 6);
-		decorationPointList.addPoint(-30, 0);
-		decorationPointList.addPoint(-18, -6);
+		decorationPointList.addPoint(-12, 6);
+		decorationPointList.addPoint(-18, 0);
+		decorationPointList.addPoint(-12, -6);
 		decorationPointList.addPoint(-6, 0);
 		decorationPointList.addPoint(-6, -1);
 		decorationPointList.addPoint(-4, -3);
@@ -272,26 +317,26 @@ public class AssociationFigure extends PolylineConnectionEx {
 		decorationPointList.addPoint(-4, 3);
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, 0);
-		decorationPointList.addPoint(-18, 6);
-		decorationPointList.addPoint(-30, 0);
-		decorationPointList.addPoint(-18, -6);
+		decorationPointList.addPoint(-12, 6);
+		decorationPointList.addPoint(-18, 0);
+		decorationPointList.addPoint(-12, -6);
 		decorationPointList.addPoint(-6, 0);
 		decorationPointList.addPoint(-6, -1);
 		decorationPointList.addPoint(-4, -3);
 		decorationPointList.addPoint(-2, -3);
 		decorationPointList.addPoint(0, -1); // color Point
-		decorationPointList.addPoint(-1, -1);
-		decorationPointList.addPoint(-1, 1);
-		decorationPointList.addPoint(-2, 3);
-		decorationPointList.addPoint(-2, -3);
-		decorationPointList.addPoint(-3, -3);
-		decorationPointList.addPoint(-3, 3);
-		decorationPointList.addPoint(-4, 3);
-		decorationPointList.addPoint(-4, -3);
-		decorationPointList.addPoint(-5, -2);
-		decorationPointList.addPoint(-5, 2);
-		decorationPointList.addPoint(-6, 1);
-		decorationPointList.addPoint(-6, -1);
+		// decorationPointList.addPoint(-1, -1);
+		// decorationPointList.addPoint(-1, 1);
+		// decorationPointList.addPoint(-2, 3);
+		// decorationPointList.addPoint(-2, -3);
+		// decorationPointList.addPoint(-3, -3);
+		// decorationPointList.addPoint(-3, 3);
+		// decorationPointList.addPoint(-4, 3);
+		// decorationPointList.addPoint(-4, -3);
+		// decorationPointList.addPoint(-5, -2);
+		// decorationPointList.addPoint(-5, 2);
+		// decorationPointList.addPoint(-6, 1);
+		// decorationPointList.addPoint(-6, -1);
 
 		decoration.setScale(1, 1);
 		decoration.setTemplate(decorationPointList);
@@ -313,6 +358,83 @@ public class AssociationFigure extends PolylineConnectionEx {
 		decoration.setTemplate(decorationPointList);
 		decoration.setScale(1, 1);
 
+		return decoration;
+	}
+
+	protected RotatableDecoration getOwnedNavigableAggregationDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-12, 6);
+		decorationPointList.addPoint(-18, 0);
+		decorationPointList.addPoint(-36, 6);
+		decorationPointList.addPoint(-18, 0);
+		decorationPointList.addPoint(-36, -6);
+		decorationPointList.addPoint(-18, 0);
+		decorationPointList.addPoint(-12, -6);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-6, -1);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(0, -1); // color Point
+		decorationPointList.addPoint(-1, -1);
+		decorationPointList.addPoint(-1, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(-3, -3);
+		decorationPointList.addPoint(-3, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-5, -2);
+		decorationPointList.addPoint(-5, 2);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, -1);
+
+		decoration.setScale(1, 1);
+		decoration.setTemplate(decorationPointList);
+		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
+		return decoration;
+	}
+
+	protected RotatableDecoration getOwnedNavigableCompositionDecoration() {
+		PolygonDecoration decoration = new PolygonDecoration();
+		PointList decorationPointList = new PointList();
+		decorationPointList.addPoint(0, 1);
+		decorationPointList.addPoint(-2, 3);
+		decorationPointList.addPoint(-4, 3);
+		decorationPointList.addPoint(-6, 1);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-12, 6);
+		decorationPointList.addPoint(-18, 0);
+		decorationPointList.addPoint(-36, 6);
+		decorationPointList.addPoint(-18, 0);
+		decorationPointList.addPoint(-36, -6);
+		decorationPointList.addPoint(-18, 0);
+		decorationPointList.addPoint(-12, -6);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-6, -1);
+		decorationPointList.addPoint(-4, -3);
+		decorationPointList.addPoint(-2, -3);
+		decorationPointList.addPoint(0, -1); // color Point
+		// decorationPointList.addPoint(-1, -1);
+		// decorationPointList.addPoint(-1, 1);
+		// decorationPointList.addPoint(-2, 3);
+		// decorationPointList.addPoint(-2, -3);
+		// decorationPointList.addPoint(-3, -3);
+		// decorationPointList.addPoint(-3, 3);
+		// decorationPointList.addPoint(-4, 3);
+		// decorationPointList.addPoint(-4, -3);
+		// decorationPointList.addPoint(-5, -2);
+		// decorationPointList.addPoint(-5, 2);
+		// decorationPointList.addPoint(-6, 1);
+		// decorationPointList.addPoint(-6, -1);
+
+		decoration.setScale(1, 1);
+		decoration.setTemplate(decorationPointList);
 		return decoration;
 	}
 
