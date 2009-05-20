@@ -24,6 +24,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -42,8 +43,11 @@ public class PropertyCommandForAssociation extends PropertyCreateCommand {
 
 		Association owner = (Association) getElementToEdit();
 		owner.getOwnedEnds().add(newElement);
-
-		UMLElementTypes.init_Property_3002(newElement);
+		Object type = getRequest().getParameter("type");
+		if (type != null && type instanceof Type) {
+			newElement.setType((Type) type);
+		}
+		UMLElementTypes.init_Property_3005(newElement);
 		return newElement;
 	}
 

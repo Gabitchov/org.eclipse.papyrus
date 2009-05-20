@@ -39,17 +39,24 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.AssociationClassViewCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.AssociationDiamonViewCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.DependencyDiamonViewCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.PropertyCommandForAssociation;
 import org.eclipse.papyrus.diagram.clazz.custom.command.SemanticAdapter;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -119,6 +126,175 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return command;
 		}
 		return null;
+	}
+
+	private Command getAssociationToMultiAssociationCommand(
+			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
+			Command command) {
+		// 0. creation of variables
+		command = new CompoundCommand();
+		Point sourceLocation = null;
+		Point targetLocation = null;
+		Point nodeLocation = null;
+		NamedElement newSemanticElement = null;// element that will be added as
+		// client ou supplier of the
+		// association
+		EStructuralFeature feature = null; // role client or supplier
+		EditPart sourceEditPart = createConnectionViewAndElementRequest
+				.getSourceEditPart();
+		EditPart targetEditPart = createConnectionViewAndElementRequest
+				.getTargetEditPart();
+		View associationView = null;
+		Association association = null;
+		View parentView = null;
+
+		// 1. initialization
+		ICommandProxy startcommand = ((ICommandProxy) createConnectionViewAndElementRequest
+				.getStartCommand());
+		Iterator<?> ite = ((CompositeCommand) startcommand.getICommand())
+				.iterator();
+
+		while (ite.hasNext()) {
+			ICommand currentCommand = (ICommand) ite.next();
+			if (currentCommand instanceof SetConnectionBendpointsCommand) {
+				sourceLocation = ((SetConnectionBendpointsCommand) currentCommand)
+						.getSourceRefPoint();
+				targetLocation = ((SetConnectionBendpointsCommand) currentCommand)
+						.getTargetRefPoint();
+			}
+		}
+
+		if (targetEditPart != null) {
+			// the source or the target must be a association
+			// look for the edit part that represent the editpart
+			if (((View) sourceEditPart.getModel()).getElement() != null
+					&& ((View) sourceEditPart.getModel()).getElement() instanceof Association) {
+				associationView = ((View) sourceEditPart.getModel());
+				association = (Association) ((View) sourceEditPart.getModel())
+						.getElement();
+				nodeLocation = sourceLocation;
+				newSemanticElement = (NamedElement) ((View) targetEditPart
+						.getModel()).getElement();
+				feature = UMLPackage.eINSTANCE.getTypedElement_Type();
+			}
+
+			if (((View) targetEditPart.getModel()).getElement() != null
+					&& ((View) targetEditPart.getModel()).getElement() instanceof Association) {
+				associationView = ((View) targetEditPart.getModel());
+				association = (Association) ((View) targetEditPart.getModel())
+						.getElement();
+				nodeLocation = targetLocation;
+				newSemanticElement = (NamedElement) ((View) sourceEditPart
+						.getModel()).getElement();
+				feature = UMLPackage.eINSTANCE.getTypedElement_Type();
+			}
+
+			if (associationView == null) {
+				return null;
+			}
+			parentView = (View) associationView.eContainer();
+
+			// 2. Remove the view of the association
+			View associationViewSource = ((Edge) associationView).getSource();
+			View associationViewTarget = ((Edge) associationView).getTarget();
+
+			((CompoundCommand) command).add(new ICommandProxy(
+					new DeleteCommand(getEditingDomain(), associationView)));
+
+			// 3. Node creation at this position
+			AssociationDiamonViewCreateCommand nodeCreation = new AssociationDiamonViewCreateCommand(
+					getEditingDomain(), parentView,
+					(EditPartViewer) sourceEditPart.getViewer(),
+					((IGraphicalEditPart) sourceEditPart)
+							.getDiagramPreferencesHint(), nodeLocation,
+					new SemanticAdapter(association, null));
+			((CompoundCommand) command).add(new ICommandProxy(nodeCreation));
+
+			// 4. reconstruction of the old link by taking in account the old
+			// connection
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(
+					UMLElementTypes.Association_4019,
+					((IHintedType) UMLElementTypes.Association_4019)
+							.getSemanticHint(),
+					((IGraphicalEditPart) sourceEditPart)
+							.getDiagramPreferencesHint());
+
+			// 5. reconstruction of the first branch between old source to node
+			ICommand firstBranchCommand = new CustomDeferredCreateConnectionViewCommand(
+					getEditingDomain(),
+					((IHintedType) UMLElementTypes.Association_4019)
+							.getSemanticHint(), new SemanticAdapter(null,
+							associationViewSource), (IAdaptable) nodeCreation
+							.getCommandResult().getReturnValue(),
+					sourceEditPart.getViewer(),
+					((IGraphicalEditPart) sourceEditPart)
+							.getDiagramPreferencesHint(), viewDescriptor, null);
+			((CustomDeferredCreateConnectionViewCommand) firstBranchCommand)
+					.setElement(association);
+			((CompoundCommand) command).add(new ICommandProxy(
+					firstBranchCommand));
+			// 6. reconstruction of the second branch between node to old target
+			ICommand secondBranchCommand = new CustomDeferredCreateConnectionViewCommand(
+					getEditingDomain(),
+					((IHintedType) UMLElementTypes.Association_4019)
+							.getSemanticHint(), (IAdaptable) nodeCreation
+							.getCommandResult().getReturnValue(),
+					new SemanticAdapter(null, associationViewTarget),
+					sourceEditPart.getViewer(),
+					((IGraphicalEditPart) sourceEditPart)
+							.getDiagramPreferencesHint(), viewDescriptor, null);
+			((CustomDeferredCreateConnectionViewCommand) secondBranchCommand)
+					.setElement(association);
+			((CompoundCommand) command).add(new ICommandProxy(
+					secondBranchCommand));
+
+			// 7. Create of the third branch between node and target our source.
+			ICommand thirdBranchCommand = null;
+
+			if (associationView.equals(((View) sourceEditPart.getModel()))) {
+				// third branch node and target
+				thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(
+						getEditingDomain(),
+						((IHintedType) UMLElementTypes.Association_4019)
+								.getSemanticHint(), (IAdaptable) nodeCreation
+								.getCommandResult().getReturnValue(),
+						new SemanticAdapter(null, targetEditPart.getModel()),
+						sourceEditPart.getViewer(),
+						((IGraphicalEditPart) sourceEditPart)
+								.getDiagramPreferencesHint(), viewDescriptor,
+						null);
+			} else {
+				// // third branch source and node
+				thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(
+						getEditingDomain(),
+						((IHintedType) UMLElementTypes.Association_4019)
+								.getSemanticHint(), new SemanticAdapter(null,
+								sourceEditPart.getModel()),
+						(IAdaptable) nodeCreation.getCommandResult()
+								.getReturnValue(), sourceEditPart.getViewer(),
+						((IGraphicalEditPart) sourceEditPart)
+								.getDiagramPreferencesHint(), viewDescriptor,
+						null);
+			}
+			((CustomDeferredCreateConnectionViewCommand) thirdBranchCommand)
+					.setElement(association);
+			((CompoundCommand) command).add(new ICommandProxy(
+					thirdBranchCommand));
+
+			// 8. set a new end association in the UML model
+			// 8.1 creation of the property
+			CreateElementRequest request = new CreateElementRequest(
+					getEditingDomain(), association,
+					UMLElementTypes.Property_3005, UMLPackage.eINSTANCE
+							.getAssociation_OwnedEnd());
+			request.setParameter("type", newSemanticElement);
+			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(
+					request);
+			((CompoundCommand) command).add(new ICommandProxy(
+					propertyCreateCommand));
+
+		}
+		return command;
 	}
 
 	private Command getBranchDepencencyCommand(
@@ -203,6 +379,12 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				} else if (UMLElementTypes.Dependency_4018
 						.equals(createElementRequest.getElementType())) {
 					return getDependencyCommand(
+							((CreateConnectionViewAndElementRequest) request),
+							c);
+
+				} else if (UMLElementTypes.Association_4019
+						.equals(createElementRequest.getElementType())) {
+					return getMultiAssociationCommand(
 							((CreateConnectionViewAndElementRequest) request),
 							c);
 
@@ -426,6 +608,39 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 */
 	private TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+	}
+
+	private Command getMultiAssociationCommand(
+			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
+			Command command) {
+		// 0. get source and target type
+		command = new CompoundCommand();
+		EditPart sourceEditPart = createConnectionViewAndElementRequest
+				.getSourceEditPart();
+		EditPart targetEditPart = createConnectionViewAndElementRequest
+				.getTargetEditPart();
+
+		// if the the source or the target is a node association the goal is
+		// to create only one branch
+		if ((((View) sourceEditPart.getModel()).getType() == ""
+				+ AssociationNodeEditPart.VISUAL_ID)
+				|| (((View) targetEditPart.getModel()).getType() == ""
+						+ AssociationNodeEditPart.VISUAL_ID)) {
+			// return
+			// getBranchAssociationCommand(createConnectionViewAndElementRequest,
+			// command);
+		}
+
+		// the source or the target has to be different of a dependency branch
+		if ((((View) sourceEditPart.getModel()).getType() == ""
+				+ AssociationBranchEditPart.VISUAL_ID)
+				|| (((View) targetEditPart.getModel()).getType() == ""
+						+ AssociationBranchEditPart.VISUAL_ID)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// if not this a transformation of simple dependency to multiDependency
+		return getAssociationToMultiAssociationCommand(
+				createConnectionViewAndElementRequest, command);
 	}
 
 }
