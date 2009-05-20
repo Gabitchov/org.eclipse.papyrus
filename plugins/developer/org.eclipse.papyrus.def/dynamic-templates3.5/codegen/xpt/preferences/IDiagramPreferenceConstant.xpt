@@ -46,37 +46,36 @@ public interface «getPreferenceConstantFileName()» {
 
 «DEFINE getLinkConstants FOR gmfgen::GenLink»
 
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceFontColorConstant(elementType.displayName.toUpper())» = "«elementType.displayName».font.color";
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
 	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceFontConstant(elementType.displayName.toUpper())» = "«elementType.displayName».font";
-	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceLineColorConstant(elementType.displayName.toUpper())» = "«elementType.displayName».line.color";
-	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceJumpLinkReverseConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.reverse";
-	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceJumpLinkStatusConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.status";
-	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceJumpLinkTypeConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.type";
-	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceRoutingDistancePolicyConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.distance.policy";
-	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceRoutingObstructionPolicyConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.obstruction.policy";
-	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceRoutingStyleConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.style";
-	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceSmoothnessConstant(elementType.displayName.toUpper())» = "«elementType.displayName».smoothness";
-	
-«ENDDEFINE»
-
-«DEFINE getLinkConstants FOR ElementType»
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceFontColorConstant(elementType.displayName.toUpper())» = "«elementType.displayName».font.color";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceFontConstant(elementType.displayName.toUpper())» = "«elementType.displayName».font";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceLineColorConstant(elementType.displayName.toUpper())» = "«elementType.displayName».line.color";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceJumpLinkReverseConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.reverse";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceJumpLinkStatusConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.status";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceJumpLinkTypeConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.type";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceRoutingDistancePolicyConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.distance.policy";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceRoutingObstructionPolicyConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.obstruction.policy";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceRoutingStyleConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.style";
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceSmoothnessConstant(elementType.displayName.toUpper())» = "«elementType.displayName».smoothness";
+	«ENDIF»
 «ENDDEFINE»
