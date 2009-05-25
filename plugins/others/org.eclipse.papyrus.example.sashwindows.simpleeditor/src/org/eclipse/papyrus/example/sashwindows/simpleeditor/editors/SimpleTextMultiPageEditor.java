@@ -106,28 +106,23 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 	 */
 	public class Page0 implements IEditorModel {
 
-		@Override
 		public IEditorPart createIEditorPart() throws PartInitException {
 				editor = new TextEditor();
 			return editor;
 		}
 
-		@Override
 		public Image getTabIcon() {
 			return null;
 		}
 
-		@Override
 		public String getTabTitle() {
 			return editor.getTitle();
 		}
 
-		@Override
 		public Object getRawModel() {
 			return this;
 		}
 
-		@Override
 		public EditorActionBarContributor getActionBarContributor() {
 			return null;
 		}
@@ -139,7 +134,6 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 	 */
 	public class Page1 implements IComponentModel {
 
-		@Override
 		public Composite createPartControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE);
 			GridLayout layout = new GridLayout();
@@ -161,17 +155,14 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 			return composite;
 		}
 
-		@Override
 		public Image getTabIcon() {
 			return null;
 		}
 
-		@Override
 		public String getTabTitle() {
 			return "Properties";
 		}
 
-		@Override
 		public Object getRawModel() {
 			return this;
 		}
@@ -180,7 +171,6 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 	
 	public class Page2 implements IComponentModel {
 
-		@Override
 		public Composite createPartControl(Composite parent) {
 			Composite composite = new Composite(getContainer(), SWT.NONE);
 			FillLayout layout = new FillLayout();
@@ -191,17 +181,14 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 			return composite;
 		}
 
-		@Override
 		public Image getTabIcon() {
 			return null;
 		}
 
-		@Override
 		public String getTabTitle() {
 			return "Preview";
 		}
 		
-		@Override
 		public Object getRawModel() {
 			return this;
 		}

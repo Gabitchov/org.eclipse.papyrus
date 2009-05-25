@@ -5,26 +5,26 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="Core Multi-page Editor"
-            extensions="mpe"
+            name="Sash Windows Simple Editor"
+            extensions="simpleEditor"
             icon="icons/sample.gif"
             contributorClass="org.eclipse.papyrus.example.sashwindows.simpleeditor.editors.MultiPageEditorContributor"
             class="org.eclipse.papyrus.example.sashwindows.simpleeditor.editors.SimpleTextMultiPageEditor"
-            id="org.eclipse.papyrus.example.core.editors.MultiPageEditor">
+            id="org.eclipse.papyrus.example.sashwindows.SimpleEditor">
       </editor>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
       <category
-            name="Core Editor Wizards"
-            id="org.eclipse.papyrus.example.core">
+            name="Sash Windows Examples"
+            id="org.eclipse.papyrus.example.sashwindows">
       </category>
       <wizard
-            name="Multi-page Editor file"
+            name="Sash Windows Simple Editor"
             icon="icons/sample.gif"
-            category="org.eclipse.papyrus.example.core"
+            category="org.eclipse.papyrus.example.sashwindows"
             class="org.eclipse.papyrus.example.sashwindows.simpleeditor.wizards.MultiPageEditorNewWizard"
-            id="org.eclipse.papyrus.example.core.wizards.MultiPageEditorNewWizard">
+            id="org.eclipse.papyrus.example.sashwindows.wizards.SimpleEditor">
       </wizard>
    </extension>
 

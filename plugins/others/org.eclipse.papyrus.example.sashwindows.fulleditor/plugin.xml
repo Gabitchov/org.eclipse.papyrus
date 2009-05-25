@@ -5,26 +5,26 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="Sample Multi-Text Editor"
-            extensions="mte"
+            name="Sash Windows Full Editor"
+            extensions="fullEditor"
             icon="icons/sample.gif"
             contributorClass="org.eclipse.papyrus.example.sashwindows.fulleditor.editor.MultiTextEditorContributor"
             class="org.eclipse.papyrus.example.sashwindows.fulleditor.editor.MultiTextEditor"
-            id="org.eclipse.example.multitext.editors.MultiTextEditor">
+            id="org.eclipse.papyrus.example.sashwindows.FullEditor">
       </editor>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
       <category
-            name="Sample Wizards"
-            id="org.eclipse.example.multitext.editor">
+            id="org.eclipse.papyrus.example.sashwindows"
+            name="Sash Windows Examples">
       </category>
       <wizard
-            name="Multi-Text Editor file"
+            name="Sash Windows Full Editor"
             icon="icons/sample.gif"
-            category="org.eclipse.example.multitext.editor"
+            category="org.eclipse.papyrus.example.sashwindows"
             class="org.eclipse.papyrus.example.sashwindows.fulleditor.wizards.MultiTextNewWizard"
-            id="org.eclipse.example.multitext.wizards.MultiTextNewWizard">
+            id="org.eclipse.papyrus.example.sashwindows.wizards.FullEditor">
       </wizard>
    </extension>
    <extension
@@ -33,7 +33,7 @@
             locationURI="menu:org.eclipse.ui.main.menu?after=navigate">
          <menu
                id="org.eclipse.example.multitext.ui.menu"
-               label="Multi Text Editor">
+               label="Sash Windows Full Editor">
             <menu
                   id="org.eclipse.example.multitext.ui.menu.create"
                   label="Create Tab">
@@ -90,7 +90,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.example.multitext.editors.MultiTextEditor">
+                        value="org.eclipse.papyrus.example.sashwindows.FullEditor">
                   </equals>
                </with>
             </or>
@@ -104,7 +104,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.example.multitext.editors.MultiTextEditor">
+                        value="org.eclipse.papyrus.example.sashwindows.FullEditor">
                   </equals>
                </with>
             </or>

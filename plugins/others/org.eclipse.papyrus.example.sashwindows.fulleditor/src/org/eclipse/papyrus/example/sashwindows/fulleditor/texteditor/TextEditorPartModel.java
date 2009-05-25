@@ -48,7 +48,6 @@ public class TextEditorPartModel implements IEditorModel {
 		title = "newText" + count++;
 	}
 
-	@Override
 	public IEditorPart createIEditorPart() throws PartInitException {
 		editor = new TabTextEditor();
 		if (title == null)
@@ -56,12 +55,10 @@ public class TextEditorPartModel implements IEditorModel {
 		return editor;
 	}
 
-	@Override
 	public Image getTabIcon() {
 		return null;
 	}
 
-	@Override
 	public String getTabTitle() {
 		return title;
 	}
@@ -70,7 +67,6 @@ public class TextEditorPartModel implements IEditorModel {
 	 * Return this. In this implementation, the rawModel and the IEditorModel are the same.
 	 * 
 	 */
-	@Override
 	public Object getRawModel() {
 		return this;
 	}
@@ -79,7 +75,6 @@ public class TextEditorPartModel implements IEditorModel {
 	 * Return the ActionBarContributor dedicated to the created editor.
 	 * Can return null if no particular ActionBarContributor is required.;
 	 */
-	@Override
 	public EditorActionBarContributor getActionBarContributor() {
 		return null;
 	}

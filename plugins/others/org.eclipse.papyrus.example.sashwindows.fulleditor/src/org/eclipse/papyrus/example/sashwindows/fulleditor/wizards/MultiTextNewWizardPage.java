@@ -40,8 +40,8 @@ public class MultiTextNewWizardPage extends WizardPage {
 	 */
 	public MultiTextNewWizardPage(ISelection selection) {
 		super("wizardPage");
-		setTitle("Multi-page Editor File");
-		setDescription("This wizard creates a new file with *.mte extension that can be opened by a multi-page editor.");
+		setTitle("Sash Windows Full Editor File");
+		setDescription("This wizard creates a new file with *.fullEditor extension that can be opened by a multi-page editor.");
 		this.selection = selection;
 	}
 
@@ -109,7 +109,7 @@ public class MultiTextNewWizardPage extends WizardPage {
 				containerText.setText(container.getFullPath().toString());
 			}
 		}
-		fileText.setText("new_file.mte");
+		fileText.setText("new_file.fullEditor");
 	}
 
 	/**
@@ -162,8 +162,8 @@ public class MultiTextNewWizardPage extends WizardPage {
 		int dotLoc = fileName.lastIndexOf('.');
 		if (dotLoc != -1) {
 			String ext = fileName.substring(dotLoc + 1);
-			if (ext.equalsIgnoreCase("mte") == false) {
-				updateStatus("File extension must be \"mte\"");
+			if (ext.equalsIgnoreCase("fullEditor") == false) {
+				updateStatus("File extension must be \"fullEditor\"");
 				return;
 			}
 		}

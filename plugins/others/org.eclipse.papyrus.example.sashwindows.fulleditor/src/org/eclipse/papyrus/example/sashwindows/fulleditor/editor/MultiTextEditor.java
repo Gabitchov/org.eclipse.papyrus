@@ -63,7 +63,6 @@ public class MultiTextEditor extends /*MultiPageEditor */ AbstractMultiPageSashE
 	 */
 	private IPropertyListener dirtyPropertyListener = new IPropertyListener() {
 
-		@Override
 		public void propertyChanged(Object source, int propId) {
 			if(propId == PROP_DIRTY)
 			  isDirty = true;

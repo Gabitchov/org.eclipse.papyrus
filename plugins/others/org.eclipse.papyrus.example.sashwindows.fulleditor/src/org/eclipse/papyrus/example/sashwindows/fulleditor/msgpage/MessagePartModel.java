@@ -41,7 +41,6 @@ public class MessagePartModel implements IComponentModel {
 	 * Return the control to be shown.
 	 * {@inheritDoc}
 	 */
-	@Override
 	public Composite createPartControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		FillLayout layout = new FillLayout();
@@ -55,12 +54,10 @@ public class MessagePartModel implements IComponentModel {
 		return composite;
 	}
 
-	@Override
 	public Image getTabIcon() {
 		return null;
 	}
 
-	@Override
 	public String getTabTitle() {
 		return title;
 	}
@@ -69,7 +66,6 @@ public class MessagePartModel implements IComponentModel {
 	 * Return this. In this implementation, the rawModel and the IEditorModel are the same.
 	 * 
 	 */
-	@Override
 	public Object getRawModel() {
 		return this;
 	}

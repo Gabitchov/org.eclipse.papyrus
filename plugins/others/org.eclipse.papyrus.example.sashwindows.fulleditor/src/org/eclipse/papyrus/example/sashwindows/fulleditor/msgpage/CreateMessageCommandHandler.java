@@ -35,7 +35,6 @@ public class CreateMessageCommandHandler extends AbstractHandler implements IHan
 	/**
 	 * Method called when the command is invoked.
 	 */
-	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		// Create the Editor Model

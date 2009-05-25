@@ -122,7 +122,7 @@ public class MultiPageEditorNewWizardPage extends WizardPage {
 				containerText.setText(container.getFullPath().toString());
 			}
 		}
-		fileText.setText("new_file.mpe");
+		fileText.setText("new_file.simpleEditor");
 	}
 
 	/**
@@ -175,8 +175,8 @@ public class MultiPageEditorNewWizardPage extends WizardPage {
 		int dotLoc = fileName.lastIndexOf('.');
 		if (dotLoc != -1) {
 			String ext = fileName.substring(dotLoc + 1);
-			if (ext.equalsIgnoreCase("mpe") == false) {
-				updateStatus("File extension must be \"mpe\"");
+			if (ext.equalsIgnoreCase("simpleEditor") == false) {
+				updateStatus("File extension must be \"simpleEditor\"");
 				return;
 			}
 		}
