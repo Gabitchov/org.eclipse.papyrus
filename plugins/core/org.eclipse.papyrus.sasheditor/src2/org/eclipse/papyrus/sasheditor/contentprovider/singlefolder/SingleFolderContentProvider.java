@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
@@ -29,7 +30,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.Co
  *
  * @author dumoulin
  */
-public class SingleFolderContentProvider implements ISashWindowsContentProvider {
+public class SingleFolderContentProvider implements ISashWindowsContentProvider, IContentChangedProvider  {
 
 	/** The currently selected tab folder */
 	private SingleFolderModel currentTabFolder;
@@ -75,6 +76,22 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider 
 	}
 	
 	/**
+	 * Add the page which should be an IPageModel instance.
+	 * {@inheritDoc}
+	 */
+	public void addPage(Object newModel) {
+		addPage((IPageModel)newModel);		
+	}
+
+	/**
+	 * Add the page which should be an IPageModel instance.
+	 * {@inheritDoc}
+	 */
+	public void addPage(Object newModel, int index) {
+		addPage((IPageModel)newModel, index);		
+	}
+
+	/**
 	 * 
 	 * {@inheritDoc}
 	 */
@@ -116,6 +133,15 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider 
 		// The root object should be of type IAbstractPanelModel.
 		// This is normally the object returned by getRootPanel
 		return (IAbstractPanelModel)root;
+	}
+
+	/**
+	 * Remove the specified page which should be an instance of IPageModel.
+	 * {@inheritDoc}
+	 */
+	public void removePage(Object page) {
+		
+		removePage((IPageModel)page);
 	}
 
 	/**

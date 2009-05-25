@@ -77,7 +77,7 @@ public class DiUtils {
 	 * @param diResource 
 	 * @return The {@link DiSashModel} or null if not found.
 	 */
-	static public SashWindowsMngr lookupSashModel(Resource diResource) {
+	static public SashWindowsMngr lookupSashWindowsMngr(Resource diResource) {
 		
 		for( Object node : diResource.getContents() )
 		{

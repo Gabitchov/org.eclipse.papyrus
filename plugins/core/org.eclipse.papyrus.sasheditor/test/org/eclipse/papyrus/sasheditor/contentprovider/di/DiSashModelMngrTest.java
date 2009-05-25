@@ -149,7 +149,7 @@ public class DiSashModelMngrTest extends TestCase {
 	 */
 	private SashWindowsMngr lookupSashModel(Resource diResource) {
 		
-		return DiUtils.lookupSashModel(diResource);
+		return DiUtils.lookupSashWindowsMngr(diResource);
 	}
 
 }

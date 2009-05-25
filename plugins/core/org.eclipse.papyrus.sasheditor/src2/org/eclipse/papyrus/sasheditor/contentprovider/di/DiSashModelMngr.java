@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.sasheditor.contentprovider.di;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.DiContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl;
@@ -30,7 +31,7 @@ import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
 public class DiSashModelMngr {
 
 	/** The EMF model used to store the sash windows structure and pages */
-	private SashWindowsMngr diSashModel;
+	private SashWindowsMngr sashWindowMngr;
 	
 	/** The factory used to create IPageModel */
 	private IPageModelFactory pageModelFactory;
@@ -55,7 +56,7 @@ public class DiSashModelMngr {
 	public DiSashModelMngr(IPageModelFactory pageModelFactory) {
 		this.pageModelFactory = pageModelFactory;
 		// Create a SashModel
-		diSashModel = createDefaultSashModel();
+		sashWindowMngr = createDefaultSashModel();
 	}
 
 	/**
@@ -70,12 +71,12 @@ public class DiSashModelMngr {
 		this.pageModelFactory = pageModelFactory;
 		
 		// lookup the SashModel
-		diSashModel = lookupSashModel(diResource);
-		if(diSashModel == null)
+		sashWindowMngr = lookupSashWindowMngr(diResource);
+		if(sashWindowMngr == null)
 		{
 			// Create a default model and attach it to resource.
-			diSashModel = createDefaultSashModel();
-			diResource.getContents().add(diSashModel);
+			sashWindowMngr = createDefaultSashModel();
+			diResource.getContents().add(sashWindowMngr);
 		}
 	}
 
@@ -88,14 +89,15 @@ public class DiSashModelMngr {
 	 */
 	public DiSashModelMngr(IPageModelFactory pageModelFactory, SashWindowsMngr sashModel) {
 		this.pageModelFactory = pageModelFactory;
-		this.diSashModel = sashModel;
+		this.sashWindowMngr = sashModel;
 	}
 
 	/**
-	 * @return the diSashModel
+	 * Get the internal EMF implementation.
+	 * @return the sashWindowMngr
 	 */
 	public SashWindowsMngr getDiSashWindowsMngr() {
-		return diSashModel;
+		return sashWindowMngr;
 	}
 
 	/**
@@ -106,7 +108,7 @@ public class DiSashModelMngr {
 		
 		if(pageMngr == null)
 		{
-			pageMngr = new PageMngrImpl(diSashModel);
+			pageMngr = new PageMngrImpl(sashWindowMngr);
 		}
 		
 		return pageMngr;
@@ -122,11 +124,25 @@ public class DiSashModelMngr {
 	{
 		if(contentProvider == null)
 		{
-			contentProvider = new DiContentProvider(diSashModel.getSashModel(), pageModelFactory);
+			contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory);
 		}
 		
 		return contentProvider;
 		
+	}
+	
+	/**
+	 * Get the ContentChangedProvider for the SashModel
+	 * @return
+	 */
+	public IContentChangedProvider getSashModelContentChangedProvider()
+	{
+		if(contentProvider == null)
+		{
+			contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory);
+		}
+		
+		return contentProvider;
 	}
 	
 	/**
@@ -143,9 +159,9 @@ public class DiSashModelMngr {
 	 * @param diResource
 	 * @return
 	 */
-	private SashWindowsMngr lookupSashModel(Resource diResource) {
+	private SashWindowsMngr lookupSashWindowMngr(Resource diResource) {
 		
-		return DiUtils.lookupSashModel(diResource);
+		return DiUtils.lookupSashWindowsMngr(diResource);
 	}
 
 

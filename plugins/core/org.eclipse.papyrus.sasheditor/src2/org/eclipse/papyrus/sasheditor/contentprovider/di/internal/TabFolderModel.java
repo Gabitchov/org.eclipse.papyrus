@@ -41,7 +41,7 @@ public class TabFolderModel implements ITabFolderModel {
 	 */
 	public TabFolderModel(TabFolder tabFolder, IPageModelFactory pageModelFactory) {
 		this.tabFolder = tabFolder;
-		
+		this.pageModelFactory = pageModelFactory;
 	}
 
 	/**

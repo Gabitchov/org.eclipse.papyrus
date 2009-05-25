@@ -12,6 +12,14 @@
             class="org.eclipse.papyrus.example.sashwindows.fulleditor.editor.MultiTextEditor"
             id="org.eclipse.papyrus.example.sashwindows.FullEditor">
       </editor>
+      <editor
+            class="org.eclipse.papyrus.example.sashwindows.fulleditor.editor.DiMultiTextEditor"
+            contributorClass="org.eclipse.papyrus.example.sashwindows.fulleditor.editor.MultiTextEditorContributor"
+            extensions="fullEditor"
+            icon="icons/sample.gif"
+            id="org.eclipse.papyrus.example.sashwindows.DiFullEditor"
+            name="Sash Windows Full Editor (Di ContentProvider)">
+      </editor>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
@@ -93,6 +101,12 @@
                         value="org.eclipse.papyrus.example.sashwindows.FullEditor">
                   </equals>
                </with>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.example.sashwindows.DiFullEditor">
+                  </equals>
+               </with>
             </or>
          </activeWhen>
       </handler>
@@ -105,6 +119,12 @@
                      variable="activeEditorId">
                   <equals
                         value="org.eclipse.papyrus.example.sashwindows.FullEditor">
+                  </equals>
+               </with>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.example.sashwindows.DiFullEditor">
                   </equals>
                </with>
             </or>

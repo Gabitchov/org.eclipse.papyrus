@@ -31,14 +31,21 @@ public interface ISashWindowsContentProvider {
 	public IAbstractPanelModel createChildSashModel( Object root );
 	
 	/**
-	 * Add a Page to the current TabFolder.
+	 * Add a page to the current TabFolder.
 	 * The Page is added at the end of the tab list.
-	 * @param tabItem TabItem to add
-	 * TODO Not used by the SashWindows, but by client wishing to add pages. Should be removed or replaced 
-	 * by another mechanism.
+	 * @param page An object identifying the page to add. The object could be anything. It will be
+	 * passed to the {@link ITabFolderModel#createChildSashModel(Object)} method.
 	 */
-	public void addPage( IPageModel tabItem );
+	public void addPage( Object page );
 
+	/**
+	 * Add a page at the specified index of TabFolder.
+	 * @param page An object identifying the page to add. The object could be anything. It will be
+	 * passed to the {@link ITabFolderModel#createChildSashModel(Object)} method.
+	 * @param index Index to where the tabItem should be added.
+	 */
+	public void addPage( Object page, int index );
+	
 	/**
 	 * Move a tab inside the specified folder.
 	 * @param model
@@ -57,14 +64,6 @@ public interface ISashWindowsContentProvider {
 	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex);
 	
 	/**
-	 * Add a page to the current TabFolder.
-	 * The page is added at the end of the page list.
-	 * @param index Index to where the tabItem should be added.
-	 * @param tabItem TabItem to add
-	 */
-	public void addPage( int index, IPageModel tabItem );
-	
-	/**
 	 * Remove the page at the specified index of the current tabFolder
 	 * @param index
 	 */
@@ -74,9 +73,9 @@ public interface ISashWindowsContentProvider {
 	 * Remove the page from the sashes window.
 	 * Look for the folder containing the page.
 	 * 
-	 * @param tabItem
+	 * @param page The Object identifying the page. This is the object used in {@link #addPage(Object)}.
 	 */
-	public void removePage(IPageModel tabItem);
+	public void removePage(Object page);
 	
 	/**
 	 * Remove the specified page from the parentFolder.

@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
@@ -39,7 +40,7 @@ import org.eclipse.papyrus.sashwindows.di.Window;
  * 
  * @author dumoulin
  */
-public class DiContentProvider implements ISashWindowsContentProvider {
+public class DiContentProvider implements ISashWindowsContentProvider, IContentChangedProvider {
 
 	/** Internal EMF model */
 	private SashModel diSashModel;
@@ -80,17 +81,6 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#addPage(org.eclipse.papyrus.sasheditor.contentprovider.IPageModel)
-	 *
-	 * @param tabItem
-	 * TODO Remove. Not used by {@link DiContentProvider} because can't add directly {@link IPageModel}.
-	 */
-	public void addPage(IPageModel tabItem) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
 	 * Add a page identifier to the SashModel. This page identifier will be added as "child" of the current 
 	 * TabFolder.
 	 * 
@@ -110,9 +100,9 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	 * @param index
 	 * @param tabItem
 	 */
-	public void addPage(int index, IPageModel tabItem) {
+	public void addPage(Object page, int index ) {
 		
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not yet implemented.");
 	}
 
 	/**
@@ -125,8 +115,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	 * @return
 	 */
 	public ITabFolderModel createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Not yet implemented.");
 	}
 
 	/**
@@ -201,8 +190,8 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	 *
 	 * @param tabItem
 	 */
-	public void removePage(IPageModel tabItem) {
-		// TODO Auto-generated method stub
+	public void removePage(Object page) {
+		throw new UnsupportedOperationException("Not yet implemented.");
 
 	}
 

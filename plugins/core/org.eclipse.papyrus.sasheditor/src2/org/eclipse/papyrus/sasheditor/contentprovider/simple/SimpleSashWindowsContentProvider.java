@@ -16,10 +16,11 @@ package org.eclipse.papyrus.sasheditor.contentprovider.simple;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.swt.SWT;
@@ -31,7 +32,7 @@ import org.eclipse.swt.SWT;
  * @author dumoulin
  *
  */
-public class SimpleSashWindowsContentProvider implements ISashWindowsContentProvider {
+public class SimpleSashWindowsContentProvider implements ISashWindowsContentProvider, IContentChangedProvider {
 
 	/** The currently selected tab folder */
 	private TabFolderModel currentTabFolder;
@@ -83,6 +84,22 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		contentChangedListenerManager.fireContentChanged(event);
 	}
 	
+	/**
+	 * Add the page which should be an IPageModel instance.
+	 * {@inheritDoc}
+	 */
+	public void addPage(Object newModel) {
+		addPage((IPageModel)newModel);		
+	}
+
+	/**
+	 * Add the page which should be an IPageModel instance.
+	 * {@inheritDoc}
+	 */
+	public void addPage(Object newModel, int index) {
+		addPage((IPageModel)newModel, index);		
+	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -290,6 +307,15 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	public void removePage(int index) {
 		currentTabFolder.removeTab(index);
+	}
+
+	/**
+	 * Remove the specified page which should be an instance of IPageModel.
+	 * {@inheritDoc}
+	 */
+	public void removePage(Object page) {
+		
+		removePage((IPageModel)page);
 	}
 
 	/**
