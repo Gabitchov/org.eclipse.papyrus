@@ -418,7 +418,6 @@ public class PropertyBasePropertiesEditionComponent extends StandardPropertiesEd
 			propertyToUpdate.setIsReadOnly(new Boolean(basePart.getIsReadOnly()).booleanValue());
 
 			propertyToUpdate.getDeployments().addAll(basePart.getDeploymentToAdd());
-			propertyToUpdate.getTemplateBindings().addAll(basePart.getTemplateBindingToAdd());
 			propertyToUpdate.setIsDerived(new Boolean(basePart.getIsDerived()).booleanValue());
 
 			propertyToUpdate.setIsDerivedUnion(new Boolean(basePart.getIsDerivedUnion()).booleanValue());

@@ -475,7 +475,7 @@ public class PortBasePropertiesEditionComponent extends StandardPropertiesEditio
 			portToUpdate.setIsReadOnly(new Boolean(basePart.getIsReadOnly()).booleanValue());
 
 			portToUpdate.getDeployments().addAll(basePart.getDeploymentToAdd());
-			portToUpdate.getTemplateBindings().addAll(basePart.getTemplateBindingToAdd());
+			//portToUpdate.getTemplateBindings().addAll(basePart.getTemplateBindingToAdd());
 			portToUpdate.setIsDerived(new Boolean(basePart.getIsDerived()).booleanValue());
 
 			portToUpdate.setIsDerivedUnion(new Boolean(basePart.getIsDerivedUnion()).booleanValue());

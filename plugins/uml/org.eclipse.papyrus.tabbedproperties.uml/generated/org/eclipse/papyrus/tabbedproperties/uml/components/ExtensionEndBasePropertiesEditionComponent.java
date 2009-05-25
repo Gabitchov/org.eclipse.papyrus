@@ -446,7 +446,7 @@ public class ExtensionEndBasePropertiesEditionComponent extends StandardProperti
 			extensionEndToUpdate.setIsReadOnly(new Boolean(basePart.getIsReadOnly()).booleanValue());
 
 			extensionEndToUpdate.getDeployments().addAll(basePart.getDeploymentToAdd());
-			extensionEndToUpdate.getTemplateBindings().addAll(basePart.getTemplateBindingToAdd());
+			//extensionEndToUpdate.getTemplateBindings().addAll(basePart.getTemplateBindingToAdd());
 			extensionEndToUpdate.setIsDerived(new Boolean(basePart.getIsDerived()).booleanValue());
 
 			extensionEndToUpdate.setIsDerivedUnion(new Boolean(basePart.getIsDerivedUnion()).booleanValue());

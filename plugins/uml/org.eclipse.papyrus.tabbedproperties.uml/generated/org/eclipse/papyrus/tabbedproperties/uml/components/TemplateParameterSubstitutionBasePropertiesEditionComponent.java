@@ -266,8 +266,8 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 		if (source instanceof TemplateParameterSubstitution) {
 			TemplateParameterSubstitution templateParameterSubstitutionToUpdate = (TemplateParameterSubstitution) source;
 			templateParameterSubstitutionToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
-			templateParameterSubstitutionToUpdate.getActuals().addAll(basePart.getActualToAdd());
-			templateParameterSubstitutionToUpdate.getOwnedActuals().addAll(basePart.getOwnedActualToAdd());
+			//templateParameterSubstitutionToUpdate.getActuals().addAll(basePart.getActualToAdd());
+			//templateParameterSubstitutionToUpdate.getOwnedActuals().addAll(basePart.getOwnedActualToAdd());
 
 			return templateParameterSubstitutionToUpdate;
 		} else
