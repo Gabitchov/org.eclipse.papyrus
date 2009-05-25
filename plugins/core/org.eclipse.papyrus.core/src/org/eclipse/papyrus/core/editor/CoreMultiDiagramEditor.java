@@ -48,7 +48,7 @@ import org.eclipse.papyrus.core.multidiagram.SashDiagramModelManager;
 import org.eclipse.papyrus.core.multidiagram.SashWindowModelManagerWrapper;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
-import org.eclipse.papyrus.core.services.ExtensionServiceRegistry;
+import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.di.Diagram;
@@ -411,7 +411,7 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		
 		// Create Services Registry
 		try {
-			ServicesRegistry servicesRegistry = new ExtensionServiceRegistry(Activator.PLUGIN_ID);
+			ServicesRegistry servicesRegistry = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
 			servicesRegistry.startRegistry();
 		} catch (ServiceException e) {
 			// Show log and error

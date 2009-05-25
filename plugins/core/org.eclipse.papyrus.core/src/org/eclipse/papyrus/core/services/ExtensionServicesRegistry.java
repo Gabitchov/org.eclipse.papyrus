@@ -17,7 +17,7 @@ import org.eclipse.papyrus.core.extension.editorcontext.ContextDescriptorExtensi
  * @author dumoulin
  *
  */
-public class ExtensionServiceRegistry extends ServicesRegistry {
+public class ExtensionServicesRegistry extends ServicesRegistry {
 
 	/** ID of the extension (schema filename) */
 	public static final String SERVICE_EXTENSION_ID = "service";
@@ -37,7 +37,7 @@ public class ExtensionServiceRegistry extends ServicesRegistry {
 	 * Constructor.
 	 * @throws Exception 
 	 */
-	public ExtensionServiceRegistry(String extensionPointNamespace) throws ServiceException {
+	public ExtensionServicesRegistry(String extensionPointNamespace) throws ServiceException {
 		this.extensionPointNamespace = extensionPointNamespace;
 		registerDeclaredExtensions();
 	}
