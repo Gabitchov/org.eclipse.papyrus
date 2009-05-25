@@ -30,6 +30,8 @@ import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.extension.NotFoundException;
+import org.eclipse.papyrus.core.services.IService;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.sasheditor.Activator;
@@ -41,7 +43,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * @author dumoulin
  *
  */
-public class ActionBarContributorRegistry implements IActionBarContributorFactory {
+public class ActionBarContributorRegistry implements IActionBarContributorFactory, IService {
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
@@ -153,6 +155,28 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 		  log.warning(this.getClass().getSimpleName() + " : contributors desc loaded  [" + editorContextDescriptors.size() + "]");
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorContextDescriptors.size() + " editorContextDescriptors loaded");
 
+	}
+
+	/**
+	 * Do nothing in this implementation.
+	 * {@inheritDoc}
+	 * @see org.eclipse.papyrus.core.services.IService#initService(org.eclipse.papyrus.core.services.ServicesRegistry)
+	 */
+	public void initService(ServicesRegistry servicesRegistry) {
+	}
+
+	/**
+	 * Do nothing in this implementation.
+	 * {@inheritDoc}
+	 * @see org.eclipse.papyrus.core.services.IService#startService()
+	 */
+	public void startService() {
+	}
+
+	/*
+	 * Do nothing in this implementation.
+	 */
+	public void stopService() {
 	}
 
 }

@@ -12,9 +12,11 @@
 package org.eclipse.papyrus.diagram.emftree;
 
 import org.eclipse.papyrus.core.editor.BackboneContext;
+import org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.di.Diagram;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -58,6 +60,28 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 */
 	public IEditorPart createEditorFor(BackboneContext context, Object root) {
 		return new Di2Editor(context);
+	}
+
+	/**
+	 * TODO Implements next methods
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory#createIPageModel(java.lang.Object)
+	 * @param pageIdentifier
+	 * @return
+	 *
+	 */
+	public IPageModel createIPageModel(Object pageIdentifier) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isPageModelFactoryFor(Object pageIdentifier) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void setEditorDescriptor(EditorDescriptor editorDescriptor) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

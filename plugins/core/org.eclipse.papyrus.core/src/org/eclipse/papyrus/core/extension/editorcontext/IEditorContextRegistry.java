@@ -15,6 +15,7 @@ package org.eclipse.papyrus.core.extension.editorcontext;
 
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.ExtensionException;
+import org.eclipse.papyrus.core.services.IService;
 
 /**
  * Registry containing registered EditorContext. EditorContexts can be registered by using Eclipse extension.
@@ -22,7 +23,7 @@ import org.eclipse.papyrus.core.extension.ExtensionException;
  * @author dumoulin
  * 
  */
-public interface IEditorContextRegistry {
+public interface IEditorContextRegistry extends IService {
 
 	/**
 	 * Get the context registered under the specified Id. Return the requested context, or the default context if not found.

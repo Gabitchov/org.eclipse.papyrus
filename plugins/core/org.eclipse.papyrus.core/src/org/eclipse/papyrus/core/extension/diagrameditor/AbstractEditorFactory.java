@@ -15,8 +15,11 @@ package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Remi Schnekenburger
@@ -32,6 +35,15 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 	/** Expected diagram type (@see {@link Diagram#getType()}) */
 	private String expectedType;
 
+	/** Cached instance of the ServiceRegistry */
+	private ServicesRegistry servicesRegistry;
+	
+	/**
+	 * EditorDescriptor associated to the factory.
+	 * TODO : Maybe use individual setters to set the requested data (ContributorId and Icon).
+	 */
+	protected EditorDescriptor editorDescriptor;
+	
 	/**
 	 * Creates a new AbstractEditorFactory.
 	 * 
@@ -80,6 +92,40 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 		}
 		// no
 		return false;
+	}
+
+	
+	/**
+	 * @return the editorDescriptor
+	 */
+	public EditorDescriptor getEditorDescriptor() {
+		return editorDescriptor;
+	}
+
+	
+	/**
+	 * Set the {@link EditorDescriptor} used by the factory to get the ActionBarContributorId and the Icon
+	 * TODO Find a better way to provide these data.
+	 * @param editorDescriptor the editorDescriptor to set
+	 */
+	public void setEditorDescriptor(EditorDescriptor editorDescriptor) {
+		this.editorDescriptor = editorDescriptor;
+	}
+
+	/**
+	 * Get the ServiceRegistry of the main editor.
+	 * @return
+	 */
+	public ServicesRegistry getServiceRegistry() {
+		if( servicesRegistry == null)
+		{
+			// Lookup ServiceRegistry
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IEditorPart editorPart = page.getActiveEditor();
+			servicesRegistry = (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
+		}
+
+		return servicesRegistry;
 	}
 
 }

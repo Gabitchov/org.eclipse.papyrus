@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.core.extension.editorcontext.ContextDescriptorExtensionFactory;
 
 
 /**

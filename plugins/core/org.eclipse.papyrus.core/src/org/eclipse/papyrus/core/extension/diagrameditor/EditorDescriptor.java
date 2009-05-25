@@ -16,6 +16,8 @@ package org.eclipse.papyrus.core.extension.diagrameditor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -130,6 +132,8 @@ public class EditorDescriptor implements IEditorDescriptor {
 		// Create it
 		try {
 			editorFactory = (IEditorFactory) editorFactoryClass.newInstance();
+			// Set the descriptor. USed by the factory to get the ActionBarId and Icon
+			editorFactory.setEditorDescriptor(this);
 			return editorFactory;
 		} catch (InstantiationException e) {
 			// Lets propagate. This is an implementation problem that should be
@@ -163,6 +167,27 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 */
 	public IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException {
 		return getEditorFactory().createEditorFor(context, root);
+	}
+
+	/**
+	 * Return true if the descriptor is for the specified pageIdentifier.
+	 * Delegate to the PageModelFactory s.
+	 * 
+	 * @param root
+	 *            the element that can be edited
+	 * @return boolean true if the editor can edit it.
+	 */
+	public boolean isDescriptorForPage(Object pageIdentifier) {
+		return getEditorFactory().isPageModelFactoryFor(pageIdentifier);
+	}
+
+	/**
+	 * see {@link IPageModelFactory#createIPageModel(Object)}
+	 * @param pageIdentifier
+	 * @return
+	 */
+	public IPageModel createIPageModel(Object pageIdentifier) {
+		return getEditorFactory().createIPageModel(pageIdentifier);
 	}
 
 	/**

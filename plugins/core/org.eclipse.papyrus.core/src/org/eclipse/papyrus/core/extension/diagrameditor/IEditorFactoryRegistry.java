@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.swt.graphics.Image;
@@ -22,7 +23,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * Registry used to create a new nested editor for a specified model.
  * 
- * @author dumoulin TODO move this to extension.
+ * @author dumoulin 
  */
 public interface IEditorFactoryRegistry {
 
@@ -43,14 +44,5 @@ public interface IEditorFactoryRegistry {
 	 *             No editor handling the model can be found.
 	 */
 	public IEditorDescriptor getEditorDescriptorFor(Object model) throws MultiDiagramException;
-
-	/**
-	 * Get the editor icon.
-	 * 
-	 * @param model
-	 *            the model object
-	 * @return the icon representing the editor
-	 */
-	public Image getEditorIcon(Object model);
 
 }

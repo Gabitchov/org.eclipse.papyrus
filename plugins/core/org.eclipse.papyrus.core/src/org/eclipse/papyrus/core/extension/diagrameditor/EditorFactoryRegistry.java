@@ -26,6 +26,8 @@ import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.swt.graphics.Image;
@@ -34,7 +36,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * A registry recording possible editor descriptors. This class use the eclipse extension mechanism.
  */
-public class EditorFactoryRegistry implements IEditorFactoryRegistry {
+public class EditorFactoryRegistry implements IEditorFactoryRegistry, IPageModelFactory {
 
 	/** ID of the editor extension (schema filename) */
 	public static final String EDITOR_EXTENSION_ID = "papyrusDiagram";
@@ -87,6 +89,25 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 		}
 		// no editor found !
 		throw new EditorNotFoundException("No editor registered for '" + model + "'.");
+	}
+
+	/**
+	 * Create the IPageModel for the specified identifier.
+	 * {@inheritDoc}
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory#createIPageModel(java.lang.Object)
+	 */
+	public IPageModel createIPageModel(Object pageIdentifier) {
+		for (EditorDescriptor desc : getEditorDescriptors()) {
+			if (desc.isDescriptorForPage(pageIdentifier)) {
+				{
+						return desc.createIPageModel(pageIdentifier);
+				}
+			}
+		}
+		// no editor found !
+		// TODO Throw an exception.
+//		throw new EditorNotFoundException("No editor registered for '" + pageIdentifier + "'.");
+		return null;
 	}
 
 	/**

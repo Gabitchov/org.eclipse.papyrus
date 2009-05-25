@@ -104,6 +104,8 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	/** ContentOutline registry */
 	private ContentOutlineRegistry contentOutlineRegistry;
 
+	/** Services registry. Used to get registered services */
+	private ServicesRegistry servicesRegistry;
 	/**
 	 * ActionBarContributor Registry. Allows to get an ActionBar by its Id. The registry is initialized from the Eclipse extension mechanism.
 	 */
@@ -265,6 +267,7 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		return editorRegistry;
 	}
 
+	
 	/**
 	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this method in order to return the registry associated to the extension point namespace.
 	 * 
@@ -272,6 +275,34 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	 */
 	protected IEditorFactoryRegistry createEditorRegistry() {
 		return new EditorFactoryRegistry(Activator.PLUGIN_ID);
+	}
+
+	/**
+	 * @return the servicesRegistry
+	 */
+	protected ServicesRegistry getServicesRegistry() {
+		if (servicesRegistry == null) {
+			servicesRegistry = createServicesRegistry();
+		}
+		return servicesRegistry;
+	}
+
+	/**
+	 * Create the ServicesRegistry.
+	 * @return
+	 */
+	private ServicesRegistry createServicesRegistry() {
+		// Create Services Registry
+		try {
+			ServicesRegistry servicesRegistry = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
+			servicesRegistry.startRegistry();
+			return servicesRegistry;
+		} catch (ServiceException e) {
+			// Show log and error
+			log.severe(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
@@ -316,6 +347,12 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	 */
 	@Override
 	public Object getAdapter(@SuppressWarnings("unchecked") Class adapter) {
+		
+		if(ServicesRegistry.class == adapter)
+		{
+			return getServicesRegistry();
+		}
+		
 		if (IPropertySheetPage.class == adapter) {
 			// Do not test if tabbedPropertySheetPage is null before calling new
 			// this is managed by Eclipse which only call current method when necessary
@@ -409,15 +446,12 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		// Set editor name
 		setPartName(file.getName());
 		
-		// Create Services Registry
-		try {
-			ServicesRegistry servicesRegistry = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
-			servicesRegistry.startRegistry();
-		} catch (ServiceException e) {
-			// Show log and error
-			log.severe(e.getMessage());
-			e.printStackTrace();
-		}
+		// Create ServicesRegistry and register services
+		servicesRegistry = createServicesRegistry();
+		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
+		servicesRegistry.add(EditorContextRegistry.class, 1, editorContextRegistry);
+		
+		
 
 	}
 
