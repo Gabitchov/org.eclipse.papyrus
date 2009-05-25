@@ -20,8 +20,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
@@ -139,7 +141,8 @@ public  abstract class MultiPageEditor extends MultiPageEditorPart {
 		// get the page descriptions
 		pageProvider = createPageProvider();
 		// Get the current tabFolder
-		tabFolderModel = pageProvider.getCurrentTabFolder();
+		// 
+		tabFolderModel = lookupFolder();
 	
 		refreshTabs();
 		
@@ -163,6 +166,46 @@ public  abstract class MultiPageEditor extends MultiPageEditorPart {
 //		}
 	}
 
+	/**
+	 * Lookup for a folder in the SashModel. Return the first folder found.
+	 * @return
+	 */
+	private ITabFolderModel lookupFolder() {
+		if (pageProvider == null)
+			return null;
+		
+		Object rawModel = pageProvider.getRootModel();
+		IAbstractPanelModel panelModel = pageProvider.createChildSashModel(rawModel);
+		
+		return lookupFolder(panelModel);
+	}
+
+	/**
+	 * Recursively search in sash models for a FolderModel.
+	 * Return the first encountered folder.
+	 * @param panelModel
+	 * @return
+	 */
+	private ITabFolderModel lookupFolder(IAbstractPanelModel panelModel) {
+		
+		if(panelModel instanceof ITabFolderModel)
+			return (ITabFolderModel)panelModel;
+		else
+		{
+			ISashPanelModel sashModel = (ISashPanelModel)panelModel;
+			// Iterate on children
+			for(Object child : sashModel.getChildren() )
+			{
+				IAbstractPanelModel childModel = pageProvider.createChildSashModel(child);
+				ITabFolderModel res = lookupFolder(childModel);
+				if(res != null)
+					return res;
+			}
+		}
+		// Not found
+		return null;
+	}
+	
 	/**
 	 * Create the provider.
 	 * Subclass must implements this method. It should return the provider used by the editor.

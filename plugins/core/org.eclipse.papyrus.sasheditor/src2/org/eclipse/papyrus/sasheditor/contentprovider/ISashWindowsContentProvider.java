@@ -34,6 +34,8 @@ public interface ISashWindowsContentProvider {
 	 * Add a Page to the current TabFolder.
 	 * The Page is added at the end of the tab list.
 	 * @param tabItem TabItem to add
+	 * TODO Not used by the SashWindows, but by client wishing to add pages. Should be removed or replaced 
+	 * by another mechanism.
 	 */
 	public void addPage( IPageModel tabItem );
 
@@ -96,14 +98,5 @@ public interface ISashWindowsContentProvider {
 	 * @param side Side where node should be inserted : SWT.LEFT, SWT.RIGHT, SWT.TOP, SWT.DOWN.
 	 */
 	public ITabFolderModel createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side);
-
-	/**
-	 * Get the current tabFolder.
-	 * TODO Check if this method is really needed from sasheditor. If not, move it away.
-	 * It is needed by MultiPageEditor.
-	 * @return
-	 */
-	public ITabFolderModel getCurrentTabFolder();
-
 
 }

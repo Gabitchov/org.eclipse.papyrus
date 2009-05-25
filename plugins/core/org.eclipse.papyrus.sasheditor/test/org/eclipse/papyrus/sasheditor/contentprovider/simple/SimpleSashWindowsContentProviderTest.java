@@ -60,16 +60,16 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 	/**
 	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#movePage(org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int, int)}.
 	 */
-	public void testMoveTabITabFolderModelIntInt() {
-		fail("Not yet implemented");
-	}
+//	public void testMoveTabITabFolderModelIntInt() {
+//		fail("Not yet implemented");
+//	}
 
 	/**
 	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#movePage(org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int, org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int)}.
 	 */
-	public void testMoveTabITabFolderModelIntITabFolderModelInt() {
-		fail("Not yet implemented");
-	}
+//	public void testMoveTabITabFolderModelIntITabFolderModelInt() {
+//		fail("Not yet implemented");
+//	}
 
 	/**
 	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#createFolder(org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int, org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int)}.
@@ -158,15 +158,15 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 	/**
 	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#removePage(int)}.
 	 */
-	public void testRemoveTabInt() {
-		fail("Not yet implemented");
-	}
+//	public void testRemoveTabInt() {
+//		fail("Not yet implemented");
+//	}
 
 	/**
 	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#removePage(org.eclipse.papyrus.sasheditor.contentprovider.IPageModel)}.
 	 */
-	public void testRemoveTabIPageModel() {
-		fail("Not yet implemented");
-	}
+//	public void testRemoveTabIPageModel() {
+//		fail("Not yet implemented");
+//	}
 
 }
