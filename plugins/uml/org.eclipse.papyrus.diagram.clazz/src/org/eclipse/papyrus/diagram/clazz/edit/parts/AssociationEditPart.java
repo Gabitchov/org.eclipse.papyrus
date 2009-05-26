@@ -138,6 +138,10 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements
 		return (AssociationFigure) getFigure();
 	}
 
+	/**
+	 * @generated NOT
+	 */
+
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 

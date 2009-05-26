@@ -1326,7 +1326,21 @@
                enablesFor="1"
                icon="icons/Delete_16x16.gif"
                id="org.eclipse.papyrus.diagram.clazz.dependencybranchdeletionActionID"
-               label="Branch Deletion"
+               label="Dependency Branch Deletion"
+               menubarPath="editGroup">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.diagram.clazz.objectContribution.associationbranchdeletion"
+            objectClass="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart">
+         <action
+               class="org.eclipse.papyrus.diagram.clazz.custom.command.AssociationBranchDeletion"
+               definitionId="org.eclipse.papyrus.diagram.clazz.associationbranchdeletionID"
+               enablesFor="1"
+               icon="icons/Delete_16x16.gif"
+               id="org.eclipse.papyrus.diagram.clazz.AssociationbranchdeletionActionID"
+               label="Association Branch Deletion"
                menubarPath="editGroup">
          </action>
       </objectContribution>

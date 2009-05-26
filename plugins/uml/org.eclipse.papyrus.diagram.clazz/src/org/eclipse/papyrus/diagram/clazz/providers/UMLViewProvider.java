@@ -2295,8 +2295,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	public Edge createAssociation_4019(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Edge edge = NotationFactory.eINSTANCE.createEdge();
-		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
@@ -2312,6 +2311,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
+				.getLineStyle_LineColor(), FigureUtilities
+				.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2326,6 +2331,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
+		Node AssociationName_6024 = createLabel(edge, UMLVisualIDRegistry
+				.getType(AssociationBranchRoleEditPart.VISUAL_ID));
+		AssociationName_6024.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6024 = (Location) AssociationName_6024
+				.getLayoutConstraint();
+		location6024.setX(0);
+		location6024.setY(-20);
+		Node AssociationName_6025 = createLabel(edge, UMLVisualIDRegistry
+				.getType(AssociationBranchMultEditPart.VISUAL_ID));
+		AssociationName_6025.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6025 = (Location) AssociationName_6025
+				.getLayoutConstraint();
+		location6025.setX(0);
+		location6025.setY(20);
 		return edge;
 	}
 

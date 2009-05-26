@@ -29,6 +29,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeRealization
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMultEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchRoleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName4EditPart;
@@ -62,6 +64,15 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	protected IParser getAppliedStereotypeParser() {
 		IParser parser = new AppliedStereotypeParser();
 		return parser;
+	}
+
+	protected IParser getAssociationBranchRole() {
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+				.getNamedElement_Name(), };
+		IParser parser = new CustomMessageFormatParser(features,
+				UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
+		return parser;
+
 	}
 
 	/**
@@ -173,6 +184,10 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAssociationSourceMultiplicity();
 		case AssociationName6EditPart.VISUAL_ID:
 			return getAssociationSourceRole();
+		case AssociationBranchRoleEditPart.VISUAL_ID:
+			return getAssociationSourceRole();
+		case AssociationBranchMultEditPart.VISUAL_ID:
+			return getAssociationSourceMultiplicity();
 		case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:

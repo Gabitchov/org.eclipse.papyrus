@@ -42,12 +42,14 @@ public class PropertyCommandForAssociation extends PropertyCreateCommand {
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
 		Association owner = (Association) getElementToEdit();
-		owner.getOwnedEnds().add(newElement);
+
 		Object type = getRequest().getParameter("type");
 		if (type != null && type instanceof Type) {
 			newElement.setType((Type) type);
 		}
+		owner.getOwnedEnds().add(newElement);
 		UMLElementTypes.init_Property_3005(newElement);
+
 		return newElement;
 	}
 

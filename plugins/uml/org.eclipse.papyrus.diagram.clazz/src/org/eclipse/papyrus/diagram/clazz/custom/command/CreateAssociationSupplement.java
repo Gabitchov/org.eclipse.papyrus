@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.Association;
@@ -83,9 +82,9 @@ public class CreateAssociationSupplement extends SupplementCommand {
 
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain,
-				getSource(), UMLElementTypes.Property_3002,
-				UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
-		EditElementCommand c = new PropertyCreateCommand(request);
+				association, UMLElementTypes.Property_3002,
+				UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
+		EditElementCommand c = new PropertyCommandForAssociation(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);

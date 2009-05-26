@@ -1344,12 +1344,18 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getAssociation_4019Text(View view) {
-		Association domainModelElement = (Association) view.getElement();
-		if (domainModelElement != null) {
-			return String.valueOf(domainModelElement.getName());
+		IParser parser = UMLParserProvider.getParser(
+				UMLElementTypes.Association_4019,
+				view.getElement() != null ? view.getElement() : view,
+				UMLVisualIDRegistry
+						.getType(AssociationBranchRoleEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 4019); //$NON-NLS-1$
+					"Parser was not found for label " + 6024); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
