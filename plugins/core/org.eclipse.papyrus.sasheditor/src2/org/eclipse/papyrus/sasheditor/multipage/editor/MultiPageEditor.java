@@ -45,7 +45,7 @@ import org.eclipse.ui.part.MultiPageEditorPart;
  * This implementation is intended for debug and testing purpose : it can be used in place
  * of the AbstractMultiPageSashEditor. It takes the same arguments and ContentProvider, but
  * it only allows one folder and don't deal with multisashes. 
- * Also, the implementation use the regular Eclipse EditorSite management. This allows to check for problemes from this
+ * Also, the implementation use the regular Eclipse EditorSite management. This allows to check for problems from this
  * site management.
  * 
  * @author dumoulin 
