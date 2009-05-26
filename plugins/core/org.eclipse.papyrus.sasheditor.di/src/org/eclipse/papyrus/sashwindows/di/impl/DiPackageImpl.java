@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.sashwindows.di.AbstractNode;
@@ -204,6 +205,9 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		DiPackageImpl theDiPackage = (DiPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof DiPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new DiPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDiPackage.createPackageContents();
@@ -402,8 +406,26 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPageRef_EmfPageIdentifier() {
+		return (EReference)pageRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getPageRef_PageIdentifier() {
-		return (EAttribute)pageRefEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)pageRefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPageRef_ObjectPageIdentifier() {
+		return (EAttribute)pageRefEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -412,7 +434,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * @generated
 	 */
 	public EReference getPageRef_Parent() {
-		return (EReference)pageRefEClass.getEStructuralFeatures().get(1);
+		return (EReference)pageRefEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -605,7 +627,9 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		createEReference(tabFolderEClass, TAB_FOLDER__CHILDREN);
 
 		pageRefEClass = createEClass(PAGE_REF);
+		createEReference(pageRefEClass, PAGE_REF__EMF_PAGE_IDENTIFIER);
 		createEAttribute(pageRefEClass, PAGE_REF__PAGE_IDENTIFIER);
+		createEAttribute(pageRefEClass, PAGE_REF__OBJECT_PAGE_IDENTIFIER);
 		createEReference(pageRefEClass, PAGE_REF__PARENT);
 
 		sashPanelEClass = createEClass(SASH_PANEL);
@@ -653,6 +677,9 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -676,10 +703,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 
 		op = addEOperation(sashModelEClass, this.getPageRef(), "lookupPage", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		op = addEOperation(sashModelEClass, null, "removePage", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getint(), "pageIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getTabFolder(), "parentFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(sashModelEClass, null, "movePage", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getTabFolder(), "srcParentFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -720,7 +743,9 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		addEParameter(op, this.getint(), "pageIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(pageRefEClass, PageRef.class, "PageRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPageRef_PageIdentifier(), this.getJavaObject(), "pageIdentifier", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getPageRef_EmfPageIdentifier(), theEcorePackage.getEObject(), null, "emfPageIdentifier", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPageRef_PageIdentifier(), this.getJavaObject(), "pageIdentifier", null, 1, 1, PageRef.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPageRef_ObjectPageIdentifier(), this.getJavaObject(), "objectPageIdentifier", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPageRef_Parent(), this.getTabFolder(), this.getTabFolder_Children(), "parent", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = addEOperation(pageRefEClass, ecorePackage.getEBoolean(), "isForIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);

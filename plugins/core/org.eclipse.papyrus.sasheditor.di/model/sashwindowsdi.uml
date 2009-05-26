@@ -196,10 +196,24 @@ Lookup in the entire SashModel structure.</body>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ANIzlEJWEd6kIY39uis5Uw" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ANIzlUJWEd6kIY39uis5Uw" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_WOKbgEVbEd6g-YgfS2DHrA" name="pageIdentifier" visibility="public" type="_A-BP8EVhEd6g-YgfS2DHrA" isUnique="false">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Y5hOgEVbEd6g-YgfS2DHrA" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Y5YEkEVbEd6g-YgfS2DHrA" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Y5hOgUVbEd6g-YgfS2DHrA">
+      <ownedAttribute xmi:id="_b94xUEnjEd6ussMWxXGeXg" name="emfPageIdentifier" visibility="private" isUnique="false" association="_b3enUEnjEd6ussMWxXGeXg">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EObject"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-CiUUnjEd6ussMWxXGeXg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-CiUEnjEd6ussMWxXGeXg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_GrqUYEnkEd6ussMWxXGeXg" name="pageIdentifier" isLeaf="true" type="_A-BP8EVhEd6g-YgfS2DHrA" isUnique="false" isDerived="true">
+        <ownedComment xmi:id="_YfXUoEnmEd6ussMWxXGeXg" annotatedElement="_GrqUYEnkEd6ussMWxXGeXg">
+          <body>pageIdentifier can be a plain JavaObject or an EObject.&#xD;
+They are not stored in the same place.</body>
+        </ownedComment>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_RkM5UEnmEd6ussMWxXGeXg" name="objectPageIdentifier" visibility="private" type="_A-BP8EVhEd6g-YgfS2DHrA" isUnique="false">
+        <ownedComment xmi:id="_UZ2QwEnmEd6ussMWxXGeXg" annotatedElement="_RkM5UEnmEd6ussMWxXGeXg">
+          <body>Storage to store Identifier that are not EObject.</body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DXj_AUnnEd6ussMWxXGeXg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DXj_AEnnEd6ussMWxXGeXg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_DXtI8EnnEd6ussMWxXGeXg">
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
@@ -346,6 +360,12 @@ Lookup in the entire SashModel structure.</body>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_A-BP8EVhEd6g-YgfS2DHrA" name="JavaObject"/>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_IEBx4EV4Ed6g-YgfS2DHrA" name="Float"/>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SNSWAEbaEd6g-YgfS2DHrA" name="boolean"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b3enUEnjEd6ussMWxXGeXg" name="A_PageRef_EObject" memberEnd="_b94xUEnjEd6ussMWxXGeXg _b-CiUknjEd6ussMWxXGeXg">
+      <ownedEnd xmi:id="_b-CiUknjEd6ussMWxXGeXg" name="pageRef" visibility="public" type="_h_HVwEJVEd6kIY39uis5Uw" isUnique="false" association="_b3enUEnjEd6ussMWxXGeXg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-MTUEnjEd6ussMWxXGeXg" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-MTUUnjEd6ussMWxXGeXg"/>
+      </ownedEnd>
+    </packagedElement>
     <profileApplication xmi:id="_NuHhwkJVEd6kIY39uis5Uw">
       <eAnnotations xmi:id="_NuHhw0JVEd6kIY39uis5Uw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
@@ -368,4 +388,5 @@ Lookup in the entire SashModel structure.</body>
   <Ecore:EDataType xmi:id="_DLSYwEVhEd6g-YgfS2DHrA" instanceClassName="java.lang.Object" base_PrimitiveType="_A-BP8EVhEd6g-YgfS2DHrA"/>
   <Ecore:EDataType xmi:id="_MeaSgEV4Ed6g-YgfS2DHrA" instanceClassName="float" base_PrimitiveType="_IEBx4EV4Ed6g-YgfS2DHrA"/>
   <Ecore:EDataType xmi:id="_UtLf4EbaEd6g-YgfS2DHrA" instanceClassName="boolean" base_PrimitiveType="_SNSWAEbaEd6g-YgfS2DHrA"/>
+  <Ecore:EAttribute xmi:id="_UVaAMEnnEd6ussMWxXGeXg" isTransient="true" base_Property="_GrqUYEnkEd6ussMWxXGeXg"/>
 </xmi:XMI>

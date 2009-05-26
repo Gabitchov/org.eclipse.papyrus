@@ -330,13 +330,31 @@ public interface DiPackage extends EPackage {
 	int PAGE_REF = 7;
 
 	/**
+	 * The feature id for the '<em><b>Emf Page Identifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_REF__EMF_PAGE_IDENTIFIER = 0;
+
+	/**
 	 * The feature id for the '<em><b>Page Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_REF__PAGE_IDENTIFIER = 0;
+	int PAGE_REF__PAGE_IDENTIFIER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Object Page Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_REF__OBJECT_PAGE_IDENTIFIER = 2;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference.
@@ -345,7 +363,7 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_REF__PARENT = 1;
+	int PAGE_REF__PARENT = 3;
 
 	/**
 	 * The number of structural features of the '<em>Page Ref</em>' class.
@@ -354,7 +372,7 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_REF_FEATURE_COUNT = 2;
+	int PAGE_REF_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl <em>Sash Panel</em>}' class.
@@ -765,6 +783,17 @@ public interface DiPackage extends EPackage {
 	EClass getPageRef();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sashwindows.di.PageRef#getEmfPageIdentifier <em>Emf Page Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Emf Page Identifier</em>'.
+	 * @see org.eclipse.papyrus.sashwindows.di.PageRef#getEmfPageIdentifier()
+	 * @see #getPageRef()
+	 * @generated
+	 */
+	EReference getPageRef_EmfPageIdentifier();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sashwindows.di.PageRef#getPageIdentifier <em>Page Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -774,6 +803,17 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPageRef_PageIdentifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sashwindows.di.PageRef#getObjectPageIdentifier <em>Object Page Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Object Page Identifier</em>'.
+	 * @see org.eclipse.papyrus.sashwindows.di.PageRef#getObjectPageIdentifier()
+	 * @see #getPageRef()
+	 * @generated
+	 */
+	EAttribute getPageRef_ObjectPageIdentifier();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.sashwindows.di.PageRef#getParent <em>Parent</em>}'.
@@ -1143,12 +1183,28 @@ public interface DiPackage extends EPackage {
 		EClass PAGE_REF = eINSTANCE.getPageRef();
 
 		/**
+		 * The meta object literal for the '<em><b>Emf Page Identifier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAGE_REF__EMF_PAGE_IDENTIFIER = eINSTANCE.getPageRef_EmfPageIdentifier();
+
+		/**
 		 * The meta object literal for the '<em><b>Page Identifier</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute PAGE_REF__PAGE_IDENTIFIER = eINSTANCE.getPageRef_PageIdentifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Object Page Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PAGE_REF__OBJECT_PAGE_IDENTIFIER = eINSTANCE.getPageRef_ObjectPageIdentifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.

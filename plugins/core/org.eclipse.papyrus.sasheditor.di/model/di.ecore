@@ -19,10 +19,6 @@
       </eAnnotations>
       <eParameters name="pageIdentifier" ordered="false" lowerBound="1" eType="#//JavaObject"/>
     </eOperations>
-    <eOperations name="removePage" ordered="false" lowerBound="1">
-      <eParameters name="pageIndex" ordered="false" lowerBound="1" eType="#//int"/>
-      <eParameters name="parentFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
-    </eOperations>
     <eOperations name="movePage" ordered="false" lowerBound="1">
       <eParameters name="srcParentFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
       <eParameters name="srcIndex" ordered="false" lowerBound="1" eType="#//int"/>
@@ -80,8 +76,21 @@
     <eOperations name="isForIdentifier" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="pageIdentifier" ordered="false" lowerBound="1" eType="#//JavaObject"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="emfPageIdentifier" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pageIdentifier" ordered="false"
-        unique="false" lowerBound="1" eType="#//JavaObject"/>
+        unique="false" lowerBound="1" eType="#//JavaObject" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="pageIdentifier can be a plain JavaObject or an EObject.&#xD;&#xA;They are not stored in the same place."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectPageIdentifier" ordered="false"
+        unique="false" lowerBound="1" eType="#//JavaObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Storage to store Identifier that are not EObject."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
         unique="false" lowerBound="1" eType="#//TabFolder" eOpposite="#//TabFolder/children"/>
   </eClassifiers>

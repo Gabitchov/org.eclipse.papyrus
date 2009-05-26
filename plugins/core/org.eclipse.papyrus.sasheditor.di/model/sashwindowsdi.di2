@@ -199,7 +199,7 @@
       <anchorage position="992:486" graphEdge="/1/@contained.11"/>
       <anchorage position="916:433" graphEdge="/1/@contained.18"/>
     </contained>
-    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="1082:433" size="211:120">
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="1082:433" size="211:160">
       <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
       <property key="QUALIFIED_NAME_DEPTH" value="0"/>
       <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100">
@@ -209,8 +209,17 @@
           <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
           <property key="QUALIFIED_NAME_DEPTH" value="0"/>
           <property key="custom_disp" value="252"/>
+          <property key="PropStereoDisplay" value="Ecore::EAttribute"/>
           <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
-            <element xsi:type="uml:Property" href="sashwindowsdi.uml#_WOKbgEVbEd6g-YgfS2DHrA"/>
+            <element xsi:type="uml:Property" href="sashwindowsdi.uml#_GrqUYEnkEd6ussMWxXGeXg"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="166:157:183" position="20:20" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          <property key="custom_disp" value="252"/>
+          <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+            <element xsi:type="uml:Property" href="sashwindowsdi.uml#_RkM5UEnmEd6ussMWxXGeXg"/>
           </semanticModel>
         </contained>
       </contained>
@@ -233,7 +242,8 @@
         <element xsi:type="uml:Class" href="sashwindowsdi.uml#_h_HVwEJVEd6kIY39uis5Uw"/>
       </semanticModel>
       <anchorage position="1081:486" graphEdge="/1/@contained.11"/>
-      <anchorage position="1167:553" graphEdge="/1/@contained.16"/>
+      <anchorage position="1167:593" graphEdge="/1/@contained.16"/>
+      <anchorage position="1293:517" graphEdge="/1/@contained.29"/>
     </contained>
     <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="/1/@contained.3/@anchorage.0 /1/@contained.2/@anchorage.0">
       <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
@@ -503,7 +513,7 @@
       <waypoints>228:672</waypoints>
       <waypoints>1167:672</waypoints>
     </contained>
-    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="1297:32" size="100:100">
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="1400:550" size="100:100">
       <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
       <property key="QUALIFIED_NAME_DEPTH" value="0"/>
       <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100">
@@ -521,6 +531,7 @@
       <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
         <element xsi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EObject"/>
       </semanticModel>
+      <anchorage position="1399:562" graphEdge="/1/@contained.29"/>
     </contained>
     <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="/1/@contained.0/@anchorage.1 /1/@contained.4/@anchorage.2">
       <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
@@ -781,6 +792,39 @@
       <property key="PropStereoDisplay" value="Ecore::EDataType"/>
       <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
         <element xsi:type="uml:PrimitiveType" href="sashwindowsdi.uml#_SNSWAEbaEd6g-YgfS2DHrA"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="/1/@contained.5/@anchorage.2 /1/@contained.17/@anchorage.0">
+      <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+      <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+      <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="-98:16" size="130:17">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="custom_disp" value="1166"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:-20" size="100:100">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="custom_disp" value="1166"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="-48:-21" size="24:17">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:-20" size="100:100">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+      </contained>
+      <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+        <element xsi:type="uml:Association" href="sashwindowsdi.uml#_b3enUEnjEd6ussMWxXGeXg"/>
       </semanticModel>
     </contained>
     <owner xsi:type="di2:Uml1SemanticModelBridge">
