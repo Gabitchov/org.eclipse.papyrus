@@ -40,9 +40,11 @@ import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.multidiagram.SashDiagramModelUtil;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.di.CoreSemanticModelBridge;
 import org.eclipse.papyrus.di.DiFactory;
+import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -127,7 +129,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 					Diagram diagram = createDiagram(diagramResource, model, diagramName);
 
-					SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
+					openDiagram(diResource, diagram);
+//					SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
 
 					return CommandResult.newOKCommandResult();
 				}
@@ -139,6 +142,17 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				Activator.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
 			}
 		}
+	}
+
+	/**
+	 * Open the specified diagram.
+	 * @param diResource
+	 * @param diagram
+	 */
+	protected void openDiagram(Resource diResource, Diagram diagram) {
+		// Lookup Editor ContentProvider
+		getISashWindowsContentProvider().addPage(diagram);
+		
 	}
 
 	/**
@@ -342,5 +356,30 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		};
 		transactionalEditingDomain.getCommandStack().execute(command);
 	}
+
+	/**
+	 * Get the ServiceRegistry of the main editor.
+	 * @return
+	 */
+	public ServicesRegistry getServiceRegistry() {
+			// Lookup ServiceRegistry
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IEditorPart editorPart = page.getActiveEditor();
+			return (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
+
+	}
+
+	/**
+	 * Get the ISashWindowsContentProvider from the main editor.
+	 * @return
+	 */
+	protected ISashWindowsContentProvider getISashWindowsContentProvider() {
+			// Lookup ServiceRegistry
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IEditorPart editorPart = page.getActiveEditor();
+			return (ISashWindowsContentProvider)editorPart.getAdapter(ISashWindowsContentProvider.class);
+
+	}
+
 
 }

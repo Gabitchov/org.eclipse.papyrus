@@ -11,13 +11,23 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.emftree;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneContext;
+import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
+import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.Diagram;
+import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
  * @author Cedric Dumoulin
@@ -26,6 +36,12 @@ import org.eclipse.ui.IEditorPart;
  */
 public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 
+	/**
+	 * Descriptor of the editor. Values come from the declaration in the extension point.
+	 * The descriptor is set by the EditorFactory.
+	 */
+	private EditorDescriptor editorDescriptor;
+	
 	/** name of the emf diagram in Di2 type diagram */
 	public static final String EMF_DIAGRAM_TYPE = "emftree";
 
@@ -70,18 +86,137 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 *
 	 */
 	public IPageModel createIPageModel(Object pageIdentifier) {
-		// TODO Auto-generated method stub
-		return null;
+		return new EmfTreeEditorModel((Diagram)pageIdentifier);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory#isPageModelFactoryFor(java.lang.Object)
+	 * @param pageIdentifier
+	 * @return
+	 *
+	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
-		// TODO Auto-generated method stub
+		if (pageIdentifier instanceof Diagram) {
+			Diagram diagram = (Diagram) pageIdentifier;
+
+			if (EMF_DIAGRAM_TYPE.equals(diagram.getType())) {
+				return true;
+			}
+		}
+		// no
 		return false;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory#setEditorDescriptor(org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor)
+	 * @param editorDescriptor
+	 *
+	 */
 	public void setEditorDescriptor(EditorDescriptor editorDescriptor) {
-		// TODO Auto-generated method stub
-		
+		this.editorDescriptor = editorDescriptor;
 	}
 
+	/**
+	 * Model used to describe an instance of this editor in the SashSystem.
+	 * @author dumoulin
+	 *
+	 */
+	public class EmfTreeEditorModel implements IEditorModel {
+
+		/**
+		 * The object used as page identifier and rawModel.
+		 */
+		private Diagram pageIdentifier;
+		
+		public EmfTreeEditorModel(Diagram pageIdentifier) {
+			this.pageIdentifier = pageIdentifier;
+		}
+		
+		/**
+		 * Create the instance of the editor.
+		 * @see org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel#createIEditorPart()
+		 * @return
+		 * @throws PartInitException
+		 *
+		 */
+		public IEditorPart createIEditorPart() throws PartInitException {
+			try {
+				return new Di2Editor();
+			} catch (ServiceException e) {
+				throw new PartInitException("Can't create Di2Editor.", e);
+			} catch (BackboneException e) {
+				throw new PartInitException("Can't create Di2Editor.", e);
+			}
+		}
+
+		public EditorActionBarContributor getActionBarContributor() {
+			
+			String actionBarId = editorDescriptor.getActionBarContributorId();
+
+			// Do nothing if no EditorActionBarContributor is specify.
+			if(actionBarId == null || actionBarId.length() == 0)
+			{
+				return null;
+			}
+			
+			// Try to get it.
+			
+			// Get ServiceRegistry
+			ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
+			ActionBarContributorRegistry registry;
+			try {
+				registry = (ActionBarContributorRegistry)serviceRegistry.getService(ActionBarContributorRegistry.class);
+			} catch (ServiceException e) {
+				// Service not found
+				// TODO Log the error 
+				e.printStackTrace();
+				return null;
+			}
+			
+			try {
+				return registry.getActionBarContributor(actionBarId );
+			} catch (BackboneException e) {
+				// TODO Log the error and throw an exception instead
+				e.printStackTrace();
+				return null;
+			}
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageModel#getRawModel()
+		 * @return
+		 *
+		 */
+		public Object getRawModel() {
+			return pageIdentifier;
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageModel#getTabIcon()
+		 * @return
+		 *
+		 */
+		public Image getTabIcon() {
+			ImageDescriptor imageDescriptor = editorDescriptor.getIcon();
+			if(imageDescriptor == null)
+				return null;
+			
+			return imageDescriptor.createImage();
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageModel#getTabTitle()
+		 * @return
+		 *
+		 */
+		public String getTabTitle() {
+			return "EmfTree";
+		}
+		
+	}
 }

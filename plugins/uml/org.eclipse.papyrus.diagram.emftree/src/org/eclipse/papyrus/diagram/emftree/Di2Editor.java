@@ -28,6 +28,11 @@ import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.papyrus.core.editor.BackboneContext;
+import org.eclipse.papyrus.core.editor.BackboneException;
+import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -47,6 +52,24 @@ public class Di2Editor extends org.eclipse.papyrus.di.presentation.DiEditor impl
 	 */
 	protected BackboneContext editorContext;
 
+	
+	/**
+	 * 
+	 * Constructor.
+	 * @throws ServiceException 
+	 * @throws BackboneException 
+	 */
+	public Di2Editor() throws ServiceException, BackboneException {
+		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
+		IEditorContextRegistry contextRegistry;
+		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
+
+		// Get the context by its ID
+		BackboneContext editorContext = (BackboneContext) contextRegistry.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
+
+		initEditor(editorContext);
+	}
+	
 	/**
 	 * This creates a model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -55,6 +78,15 @@ public class Di2Editor extends org.eclipse.papyrus.di.presentation.DiEditor impl
 	public Di2Editor(BackboneContext editorContext) {
 		super();
 
+		initEditor(editorContext);
+		
+	}
+	
+	/**
+	 * Init the editor from the specified context.
+	 * @param editorContext
+	 */
+	private void initEditor(BackboneContext editorContext) {
 		CommandStack commandStack = editorContext.getTransactionalEditingDomain().getCommandStack();
 
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
@@ -79,6 +111,7 @@ public class Di2Editor extends org.eclipse.papyrus.di.presentation.DiEditor impl
 					}
 				});
 			}
+			
 		});
 
 		// Create the editing domain with a special command stack.

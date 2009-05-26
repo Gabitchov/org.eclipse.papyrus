@@ -58,6 +58,17 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	}
 
 	/**
+	 * Set the contentProvider if not set. If it is already set, this method do not change it.
+	 * @param contentProvider
+	 */
+	protected void setContentProvider(ISashWindowsContentProvider contentProvider)
+	{
+		if (pageProvider == null)
+			pageProvider = contentProvider;
+
+	}
+	
+	/**
 	 * Create the provider.
 	 * Subclass must implements this method. It should return the provider used by the editor.
 	 * 
@@ -112,8 +123,38 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		sashContainer = new SashWindowsContainer(this);
 		sashContainer.setContentProvider(getContentProvider());
 		sashContainer.createPartControl(parent);
+		activate();
 	}
 
+	/**
+	 * Method to activate the editor. 
+	 * Called immediately after createPartControl() is complete.
+	 * To be implemented by subclasses. Default implementation do nothing.
+	 */
+	protected void activate() {
+		
+	}
+
+	/**
+	 * Method to deactivate the editor. 
+	 * Called when dispose() is called.
+	 * To be implemented by subclasses. Default implementation do nothing.
+	 */
+	protected void deactivate() {
+		
+	}
+
+	/**
+	 * Dispose the Editor. Also dispose the sashsystem.
+	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		deactivate();
+		super.dispose();
+//		sashContainer.dispose();
+	}
 	/**
 	 * Refresh the sash windows system
 	 */

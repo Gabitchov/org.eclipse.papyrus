@@ -24,6 +24,7 @@ import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.CoreSemanticModelBridge;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
@@ -208,8 +209,18 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		 */
 		public EditorActionBarContributor getActionBarContributor() {
 			
+			String actionBarId = editorDescriptor.getActionBarContributorId();
+
+			// Do nothing if no EditorActionBarContributor is specify.
+			if(actionBarId == null || actionBarId.length() == 0)
+			{
+				return null;
+			}
+			
+			// Try to get it.
+			
 			// Get ServiceRegistry
-			ServicesRegistry serviceRegistry = getServiceRegistry();
+			ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
 			ActionBarContributorRegistry registry;
 			try {
 				registry = (ActionBarContributorRegistry)serviceRegistry.getService(ActionBarContributorRegistry.class);
@@ -220,9 +231,8 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 				return null;
 			}
 			
-			getEditorDescriptor().getActionBarContributorId();
 			try {
-				return registry.getActionBarContributor(getEditorDescriptor().getActionBarContributorId() );
+				return registry.getActionBarContributor(actionBarId );
 			} catch (BackboneException e) {
 				// TODO Log the error and throw an exception instead
 				e.printStackTrace();

@@ -156,6 +156,7 @@ public class EditorPart extends PagePart {
 			
 		} catch (PartInitException e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
+			// TODO Create a fake Error Page and initialize this part with.
 		} 
 	}
 

@@ -835,7 +835,9 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			getResourceSet().eAdapters().remove(myResourceSetListener);
 			for (Iterator it = getResourceSet().getResources().iterator(); it.hasNext();) {
 				Resource resource = (Resource) it.next();
-				resource.unload();
+				// Do not unload the resource because the DocumentProvider can be disposed while its Diagram node is
+				// kept for future re-openeing.
+//				resource.unload();
 			}
 		}
 

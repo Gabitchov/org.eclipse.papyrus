@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.CoreSemanticModelBridge;
 import org.eclipse.papyrus.di.DiFactory;
 import org.eclipse.papyrus.di.Diagram;
@@ -587,8 +588,9 @@ public class SashDiagramModelUtil {
 	 */
 	private static void openDiagram(Diagram folderNode, EObject diagram) {
 		// Create the Tab node
-		Diagram tabNode = createTabItemNode(diagram);
-		folderNode.getContained().add(tabNode);
+//		Diagram tabNode = createTabItemNode(diagram);
+//		folderNode.getContained().add(tabNode);
+		EditorUtils.getISashWindowsContentProvider().addPage(diagram);
 	}
 
 	/**

@@ -21,7 +21,12 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorContext;
+import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
+import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -49,6 +54,30 @@ public class UMLSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	 * The image descriptor of the diagram icon
 	 */
 	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UMLSequenceDiagramForMultiEditor.DIAG_IMG_PATH);
+
+	/**
+	 * Constructor for SashSystem v2. Context and required objects are retrieved from the ServiceRegistry.
+	 * 
+	 * @throws BackboneException
+	 * @throws ServiceException
+	 * 
+	 * @generated NOT
+	 */
+	public UMLSequenceDiagramForMultiEditor(Diagram diagram) throws BackboneException, ServiceException {
+		super();
+		this.diagram = diagram;
+		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
+		IEditorContextRegistry contextRegistry;
+		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
+
+		// Get the context by its ID
+		this.context = (GmfEditorContext) contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
+
+		// overrides editing domain created by super constructor
+
+		setDocumentProvider(context.getDocumentProvider());
+		System.err.println(this.getClass().getName());
+	}
 
 	/**
 	 * Instantiates a new uML sequence diagram for multi editor.

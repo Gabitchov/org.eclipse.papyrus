@@ -17,7 +17,7 @@ public class PapyrusRubberbandDragTracker extends RubberbandDragTracker {
 
 			if (editorPart instanceof CoreMultiDiagramEditor) {
 				CoreMultiDiagramEditor multiEditorPart = (CoreMultiDiagramEditor) editorPart;
-				multiEditorPart.getRootContainer().refreshTabs();
+				// multiEditorPart.refreshTabs();
 			}
 		}
 

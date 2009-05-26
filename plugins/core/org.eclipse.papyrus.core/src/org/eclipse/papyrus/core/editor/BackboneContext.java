@@ -30,6 +30,11 @@ import org.eclipse.ui.IEditorInput;
  */
 public class BackboneContext extends AbstractEditorContext {
 
+	/** ID used to identify the Context. This ID is used to retrieve the context from
+	 * the factory, and to register it in the factory (from extension point in plugin.xml).
+	 */
+	public static final Object BACKBONE_CONTEXT_ID = "defaultContext";
+
 	/**
 	 * Object managing models lifeCycle.
 	 */
