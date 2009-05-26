@@ -52,6 +52,11 @@ import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.di.Diagram;
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
+import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
@@ -87,7 +92,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  *         TODO : remove GMF dependency !
  */
-public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
+public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
@@ -110,6 +115,9 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	 * ActionBarContributor Registry. Allows to get an ActionBar by its Id. The registry is initialized from the Eclipse extension mechanism.
 	 */
 	private ActionBarContributorRegistry actionBarContributorRegistry;
+
+	/** SashModelMngr to add pages */
+	protected DiSashModelMngr sashModelMngr;
 
 	/**
 	 * Context associated to this backbone editor.
@@ -153,6 +161,21 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		}
 
 	};
+
+	/**
+	 * A listener on model change events.
+	 */
+	private IContentChangedListener contentChangedListener = new IContentChangedListener() {
+
+		/**
+		 * Called when the content is changed. RefreshTabs.
+		 */
+		public void contentChanged(ContentEvent event) {
+			System.out.println("contentChanged()");
+			refreshTabs();
+		}
+	};
+	
 
 	/**
 	 * Listen on change on commandStack. Mark editor as dirty if needed.
@@ -306,6 +329,31 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	}
 
 	/**
+	 * Do nothing as we create the provider before any calls to this method.
+	 * {@inheritDoc}
+	 * @see org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor#createPageProvider()
+	 */
+	@Override
+	protected ISashWindowsContentProvider createPageProvider() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Create the pageContentProvider.
+	 */
+	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory) {
+		sashModelMngr = new DiSashModelMngr(pageFactory);
+		
+		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
+		
+		// Listen on contentProvider changes
+		sashModelMngr.getSashModelContentChangedProvider().addContentChangedListener(contentChangedListener);
+		
+		return pageProvider;
+	}
+
+	/**
 	 * Get the ActionBarContributorRegistry. Creates it if necessary.
 	 * 
 	 * @return
@@ -443,13 +491,16 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 		editorContextRegistry.registerContext("defaultContext", defaultContext);
 		editorRegistry = createEditorRegistry();
 
+		// Create ContentProvider
+		setContentProvider( createPageProvider(editorRegistry));
+		
 		// Set editor name
 		setPartName(file.getName());
 		
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
-		servicesRegistry.add(EditorContextRegistry.class, 1, editorContextRegistry);
+		servicesRegistry.add(IEditorContextRegistry.class, 1, editorContextRegistry);
 		
 		
 
@@ -613,27 +664,6 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	}
 
 	/**
-	 * @TODO To be removed
-	 */
-	// public class Test {
-	// MultiEditor mEditor;
-	// WorkbenchPage wpage;
-	// org.eclipse.ui.internal.EditorAreaHelper areaHelper;
-	// org.eclipse.ui.internal.EditorSashContainer sashContainer;
-	//
-	// TabbedStackPresentation tStackPresentation;
-	// }
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.SashMultiPageEditorPart#createTilePartContainerModel()
-	 */
-	@Override
-	protected ISashWindowsModelManager<Diagram> createTilePartContainerModel() {
-		SashDiagramModelManager mngr = new SashDiagramModelManager(getDefaultContext().getTransactionalEditingDomain(), getDefaultContext().getResourceSet().getDiResource());
-		return new SashWindowModelManagerWrapper(mngr);
-	}
-
-	/**
 	 * Sets the default edit domain, shared among all editors
 	 * 
 	 * @param diagramEditDomain
@@ -671,7 +701,10 @@ public class CoreMultiDiagramEditor extends SashMultiPageEditorPart<Diagram> imp
 	public DiagramEditPart getDiagramEditPart() {
 
 		// Get the editor under the mouse
-		IEditorPart activeEditor = rootContainer.getEditorUnderMouse();
+//		IEditorPart activeEditor = rootContainer.getEditorUnderMouse();
+		IEditorPart activeEditor = getActiveEditor();
+		if(activeEditor == null)
+			return null;
 		// IEditorPart activeEditor = getActiveEditor();
 		if (activeEditor instanceof DiagramEditor) {
 			return ((DiagramEditor) activeEditor).getDiagramEditPart();
