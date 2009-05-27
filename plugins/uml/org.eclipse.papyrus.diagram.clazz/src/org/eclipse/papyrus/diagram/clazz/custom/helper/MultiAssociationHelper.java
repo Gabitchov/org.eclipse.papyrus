@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -15,15 +17,23 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.AssociationDiamonViewCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.PropertyCommandForAssociation;
@@ -78,6 +88,127 @@ public class MultiAssociationHelper {
 	public MultiAssociationHelper(TransactionalEditingDomain editDomain) {
 		super();
 		this.editDomain = editDomain;
+	}
+
+	public Command displayAllBranchesCommand(
+			AssociationNodeEditPart associationNodeEditPart) {
+		Command command = new CompoundCommand();
+		// 0. Obtain list of property to display
+		Association association = (Association) associationNodeEditPart
+				.resolveSemanticElement();
+		ArrayList<Property> endToDisplay = new ArrayList(association
+				.getMemberEnds());
+		// 1. remove in the list all displayedElement.
+		Iterator iter = associationNodeEditPart.getSourceConnections()
+				.iterator();
+		while (iter.hasNext()) {
+			EditPart currentEditPart = (EditPart) iter.next();
+			if (currentEditPart instanceof AssociationBranchEditPart) {
+				endToDisplay.remove(getPropertyToListen(
+						(Edge) ((AssociationBranchEditPart) currentEditPart)
+								.getModel(), association));
+			}
+		}
+
+		// 2. for each element create a graphical representation of the type and
+		// finally the branch
+		Iterator<Property> iteratorProp = endToDisplay.iterator();
+		int index = 0;
+		while (iteratorProp.hasNext()) {
+			index += 1;
+			// source editPart
+			EditPart sourceEditPart = null;
+			// end of the association end
+			Property currentEnd = iteratorProp.next();
+
+			// look for if an editpart exist for this element
+			Collection<EditPart> editPartSet = associationNodeEditPart
+					.getViewer().getEditPartRegistry().values();
+			Iterator<EditPart> editPartIterator = editPartSet.iterator();
+
+			while (editPartIterator.hasNext() && sourceEditPart == null) {
+
+				EditPart currentEditPart = editPartIterator.next();
+
+				if ((!(currentEditPart instanceof CompartmentEditPart))
+						&& currentEditPart instanceof GraphicalEditPart
+						&& currentEnd.getType().equals(
+								((GraphicalEditPart) currentEditPart)
+										.resolveSemanticElement())) {
+					sourceEditPart = currentEditPart;
+				}
+			}
+			// descriptor for the branch
+			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(
+					UMLElementTypes.Association_4019,
+					((IHintedType) UMLElementTypes.Association_4019)
+							.getSemanticHint(),
+					((IGraphicalEditPart) associationNodeEditPart)
+							.getDiagramPreferencesHint());
+
+			// the editpart exist -> only creation of the branch
+			if (sourceEditPart != null) {
+
+				CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(
+						getEditingDomain(),
+						((IHintedType) UMLElementTypes.Association_4019)
+								.getSemanticHint(), new SemanticAdapter(null,
+								associationNodeEditPart.getModel()),
+						new SemanticAdapter(null, sourceEditPart.getModel()),
+						sourceEditPart.getViewer(),
+						((IGraphicalEditPart) sourceEditPart)
+								.getDiagramPreferencesHint(),
+						viewBranchDescriptor, null);
+
+				aBranchCommand.setElement(association);
+				((CompoundCommand) command).add(new ICommandProxy(
+						aBranchCommand));
+			} else {// the editpart does not exist
+
+				// creation of the node
+				IAdaptable elementAdapter = new EObjectAdapter(currentEnd
+						.getType());
+				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter,
+						Node.class, null, ViewUtil.APPEND, false,
+						associationNodeEditPart.getDiagramPreferencesHint());
+
+				// get the command and execute it.
+				CreateCommand nodeCreationCommand = new CreateCommand(
+						getEditingDomain(), descriptor,
+						(View) ((View) associationNodeEditPart.getModel())
+								.eContainer());
+				((CompoundCommand) command).add(new ICommandProxy(
+						nodeCreationCommand));
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(
+						getEditingDomain(), "move",
+						(IAdaptable) nodeCreationCommand.getCommandResult()
+								.getReturnValue(), new Point(
+								associationNodeEditPart.getLocation().x + 200,
+								associationNodeEditPart.getLocation().y + index
+										* 100));
+				((CompoundCommand) command).add(new ICommandProxy(
+						setBoundsCommand));
+				// Creation of the branch
+				CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(
+						getEditingDomain(),
+						((IHintedType) UMLElementTypes.Association_4019)
+								.getSemanticHint(), new SemanticAdapter(null,
+								associationNodeEditPart.getModel()),
+						(IAdaptable) nodeCreationCommand.getCommandResult()
+								.getReturnValue(), associationNodeEditPart
+								.getViewer(),
+						((IGraphicalEditPart) associationNodeEditPart)
+								.getDiagramPreferencesHint(),
+						viewBranchDescriptor, null);
+
+				aBranchCommand.setElement(association);
+				((CompoundCommand) command).add(new ICommandProxy(
+						aBranchCommand));
+				// creation of the link
+			}
+
+		}
+		return command;
 	}
 
 	/**
