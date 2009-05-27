@@ -19,9 +19,8 @@
 
 «EXTENSION xpt::preferences::PrefsConstant»
 
-«REM»PapyrusGen : To modify for the version 3.5
-«DEFINE category FOR gmfgen::GenDiagram»«getDiagramPreferencePageCategory()».«editorGen.modelID.toLowerCase()»«ENDDEFINE»
-«ENDREM»
+«DEFINE category FOR gmfgen::GenDiagram»«getDiagramPreferencePageCategory()».«editorGen.modelID»«ENDDEFINE»
+
 
 
 «AROUND plugin FOR gmfgen::GenPlugin-»
@@ -176,49 +175,35 @@
 «ENDDEFINE»
 
 «DEFINE preferencePages FOR gmfgen::GenDiagram»
-«EXPAND xpt::Common::xmlGeneratedTag»
-«REM»PapyrusGen : To modify for the version 3.5«ENDREM»
 «REM»Generate Diagram Preference Page«ENDREM»
-
+«EXPAND xpt::Common::xmlGeneratedTag»
 <extension point="org.eclipse.ui.preferencePages">
-«REM»
-
-	<page 
-			category="«getDiagramPreferencePageCategory()»"
+	<page 	category="«getDiagramPreferencePageCategory()»"
 			class="«preferencesPackageName».«getDiagramPreferencePageFileName(editorGen.modelID)»"
 			id="«EXPAND category»"
-			name="«editorGen.modelID» Diagram"/>
-«ENDREM»
-«REM»Generate Nodes Preference Pages«ENDREM»
-«REM»
-«FOREACH topLevelNodes AS node -»
-	«EXPAND preferenceExtensionNode FOR node-»
-«ENDFOREACH»
-«ENDREM»
-«REM»Generate Links Preference Pages«ENDREM»
-«FOREACH links AS link -»
-	«EXPAND preferenceExtensionLink(self) FOR link.elementType-»
-«ENDFOREACH»
+			name="«editorGen.modelID» Diagram" />
 
+«REM»Generate Nodes Preference Pages«ENDREM»
+«FOREACH topLevelNodes.elementType.displayName->asSet() AS string -»
+	«IF "UNDEFINED" <> string.toUpper()»
+		«EXPAND preferencePageExtension(self) FOR string-»
+	«ENDIF»
+«ENDFOREACH»
+«REM»Generate Links Preference Pages«ENDREM»
+«FOREACH links.elementType.displayName->asSet() AS string -»
+	«IF "UNDEFINED" <> string.toUpper()»
+		«EXPAND preferencePageExtension(self) FOR string-»
+	«ENDIF»
+«ENDFOREACH»
 </extension>
 «ENDDEFINE»
 
+«DEFINE preferencePageExtension(gmfgen::GenDiagram diagram) FOR String-»
+	«EXPAND xpt::Common::xmlGeneratedTag»
+	<page  	category="«EXPAND category FOR diagram»"
+			class="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
+            id="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
+            name="«self»" />	
+«ENDDEFINE»
 
-«DEFINE preferenceExtensionNode FOR gmfgen::GenNode»
-«REM»PapyrusGen : To modify for the version 3.5
-      <page
-            category="«EXPAND category FOR getDiagram()»"
-            class="«getDiagram().preferencesPackageName».«getUniqueIdentifier()»«getPreferencePageSuffix()»"
-            id="«getDiagram().preferencesPackageName».«getUniqueIdentifier()»«getPreferencePageSuffix()»"
-            name="«elementType.displayName»"/>«ENDREM»«ENDDEFINE»
-
-«DEFINE preferenceExtensionLink(gmfgen::GenDiagram diagram) FOR gmfgen::MetamodelType»
-    «REM»PapyrusGen : To modify for the version 3.5«ENDREM»
-     «REM» <page
-            category="«EXPAND category FOR diagram»"
-            class="«diagram.preferencesPackageName».«displayName»«getPreferencePageSuffix()»"
-            id="«diagram.preferencesPackageName».«displayName»«getPreferencePageSuffix()»"
-            name="«displayName»"/> «ENDREM»«ENDDEFINE»
-
- «DEFINE preferenceExtensionLink(gmfgen::GenDiagram diagram) FOR gmfgen::ElementType»«ENDDEFINE»
  

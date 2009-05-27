@@ -56,7 +56,9 @@
 «ENDAROUND»
 
 «DEFINE specificInitFontFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode-»
-	initFontStyleFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFontConstant(getUniqueIdentifier().toUpper())», «getPreferenceConstantFileName()».«getPreferenceFontColorConstant(getUniqueIdentifier().toUpper())»);
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		initFontStyleFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFontConstant(elementType.displayName.toUpper())», «getPreferenceConstantFileName()».«getPreferenceFontColorConstant(elementType.displayName.toUpper())»);
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitFontFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode-»
@@ -77,11 +79,16 @@
 	«EXPAND specificInitForegroundFromPrefs(viewVar, prefStoreVar) FOR self-»
 «ENDAROUND»
 
-«DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode-»
-	initForegroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(getUniqueIdentifier().toUpper())»);
+«DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode-»	
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		initForegroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»);
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode-»
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		initForegroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»);
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink-»
@@ -102,10 +109,15 @@
 «ENDAROUND»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode»
-	initBackgroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(getUniqueIdentifier().toUpper())»);
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		initBackgroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())»);
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode»
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		initBackgroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())»);
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink»

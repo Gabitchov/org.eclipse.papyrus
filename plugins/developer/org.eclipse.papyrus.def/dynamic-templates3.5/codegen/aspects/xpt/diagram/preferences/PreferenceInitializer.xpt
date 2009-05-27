@@ -28,12 +28,16 @@ public class «EXPAND className» extends org.eclipse.core.runtime.preferences.A
 	«EXPAND xpt::Common::generatedMemberComment»
 	public void initializeDefaultPreferences() {
 		org.eclipse.jface.preference.IPreferenceStore store = getPreferenceStore();
-		«FOREACH topLevelNodes AS node -»
-			«self.preferencesPackageName».«node.getUniqueIdentifier()»PreferencePage.initDefaults(store);
+		«FOREACH topLevelNodes.elementType.displayName->asSet() AS string -»
+			«IF "UNDEFINED" <> string.toUpper()»
+				«self.preferencesPackageName».«string»PreferencePage.initDefaults(store);
+			«ENDIF»
 		«ENDFOREACH»
 		
-		«FOREACH links AS link -»
-			«EXPAND linkInitDefaults(self) FOR link.elementType-»
+		«FOREACH links.elementType.displayName->asSet() AS string -»
+			«IF "UNDEFINED" <> string.toUpper()»
+				«self.preferencesPackageName».«string»PreferencePage.initDefaults(store);
+			«ENDIF»
 		«ENDFOREACH»
 	}
 
@@ -43,10 +47,4 @@ public class «EXPAND className» extends org.eclipse.core.runtime.preferences.A
 	}		
 }
 «ENDAROUND»
-
-«DEFINE linkInitDefaults(gmfgen::GenDiagram diagram) FOR gmfgen::MetamodelType-»
-	«diagram.preferencesPackageName».«displayName»PreferencePage.initDefaults(store);
-«ENDDEFINE»
-
-«DEFINE linkInitDefaults(gmfgen::GenDiagram diagram) FOR gmfgen::ElementType-»«ENDDEFINE»
 

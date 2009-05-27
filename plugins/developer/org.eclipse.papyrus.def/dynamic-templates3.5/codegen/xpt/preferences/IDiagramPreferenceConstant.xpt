@@ -20,62 +20,59 @@ package «preferencesPackageName»;
 «EXPAND xpt::Common::generatedClassComment»
 public interface «getPreferenceConstantFileName()» {
 
-«FOREACH topLevelNodes AS node»
-	«EXPAND getNodeConstants FOR node-»
+«FOREACH topLevelNodes.elementType.displayName->asSet() AS string»
+	«IF "UNDEFINED" <> string.toUpper()»
+		«EXPAND getGlobalConstants FOR string-»
+		«EXPAND getNodeConstants FOR string-»
+	«ENDIF»
 «ENDFOREACH»
 
-«FOREACH links AS link»
-	«EXPAND getLinkConstants FOR link-»
+«FOREACH links.elementType.displayName->asSet() AS string»
+	«IF "UNDEFINED" <> string.toUpper()»
+		«EXPAND getGlobalConstants FOR string-»
+		«EXPAND getLinkConstants FOR string-»
+	«ENDIF»
 «ENDFOREACH»
 }
 «ENDDEFINE»
 
-«DEFINE getNodeConstants FOR gmfgen::GenNode»
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceFillColorConstant(getUniqueIdentifier().toUpper())» = "«getUniqueIdentifier()».fill.color";
+«DEFINE getGlobalConstants FOR String»
 	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceFontColorConstant(getUniqueIdentifier().toUpper())» = "«getUniqueIdentifier()».font.color";
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceFontColorConstant(self.toUpper())» = "«self».font.color";
 	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceFontConstant(getUniqueIdentifier().toUpper())» = "«getUniqueIdentifier()».font";
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceFontConstant(self.toUpper())» = "«self».font";
 	
-	«EXPAND xpt::Common::generatedClassComment»
-	public static final String «getPreferenceLineColorConstant(getUniqueIdentifier().toUpper())» = "«getUniqueIdentifier()».line.color";
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String «getPreferenceLineColorConstant(self.toUpper())» = "«self».line.color";
+	
 «ENDDEFINE»
 
-«DEFINE getLinkConstants FOR gmfgen::GenLink»
+«DEFINE getNodeConstants FOR String»
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceFillColorConstant(self.toUpper())» = "«self».fill.color";
+«ENDDEFINE»
 
-	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-	
+«DEFINE getLinkConstants FOR String»	
 		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceFontColorConstant(elementType.displayName.toUpper())» = "«elementType.displayName».font.color";
+		public static final String «getPreferenceJumpLinkReverseConstant(self.toUpper())» = "«self».jumplink.reverse";
 		
 		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceFontConstant(elementType.displayName.toUpper())» = "«elementType.displayName».font";
+		public static final String «getPreferenceJumpLinkStatusConstant(self.toUpper())» = "«self».jumplink.status";
 		
 		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceLineColorConstant(elementType.displayName.toUpper())» = "«elementType.displayName».line.color";
+		public static final String «getPreferenceJumpLinkTypeConstant(self.toUpper())» = "«self».jumplink.type";
 		
 		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceJumpLinkReverseConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.reverse";
+		public static final String «getPreferenceRoutingDistancePolicyConstant(self.toUpper())» = "«self».routing.distance.policy";
 		
 		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceJumpLinkStatusConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.status";
+		public static final String «getPreferenceRoutingObstructionPolicyConstant(self.toUpper())» = "«self».routing.obstruction.policy";
 		
 		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceJumpLinkTypeConstant(elementType.displayName.toUpper())» = "«elementType.displayName».jumplink.type";
+		public static final String «getPreferenceRoutingStyleConstant(self.toUpper())» = "«self».routing.style";
 		
 		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceRoutingDistancePolicyConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.distance.policy";
-		
-		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceRoutingObstructionPolicyConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.obstruction.policy";
-		
-		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceRoutingStyleConstant(elementType.displayName.toUpper())» = "«elementType.displayName».routing.style";
-		
-		«EXPAND xpt::Common::generatedClassComment»
-		public static final String «getPreferenceSmoothnessConstant(elementType.displayName.toUpper())» = "«elementType.displayName».smoothness";
-	«ENDIF»
+		public static final String «getPreferenceSmoothnessConstant(self.toUpper())» = "«self».smoothness";
 «ENDDEFINE»

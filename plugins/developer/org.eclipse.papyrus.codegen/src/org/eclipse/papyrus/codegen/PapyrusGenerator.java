@@ -60,7 +60,7 @@ public class PapyrusGenerator extends Generator {
 
 		// Generate NodePreferencePage
 		for (GenNode node : diagram.getTopLevelNodes()) {
-			generateNodePreferencePage(node, node.getUniqueIdentifier());
+			generateNodePreferencePage(node, node.getElementType().getDisplayName());
 		}
 
 		// Generate LinkPreferencePage

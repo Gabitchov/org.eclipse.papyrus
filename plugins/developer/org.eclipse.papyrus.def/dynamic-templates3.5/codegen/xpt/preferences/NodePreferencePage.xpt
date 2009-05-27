@@ -14,7 +14,8 @@
 
 «EXTENSION xpt::preferences::PrefsConstant»
 
-«DEFINE className FOR gmfgen::GenNode»«getUniqueIdentifier()»«getPreferencePageSuffix()»«ENDDEFINE»
+«DEFINE className FOR gmfgen::GenNode-»«IF "UNDEFINED" <> elementType.displayName.toUpper()-»«elementType.displayName-»«getPreferencePageSuffix()-»«ENDIF»
+«ENDDEFINE»
 
 «DEFINE NodePreferencePage FOR gmfgen::GenNode-»
 package «getDiagram().preferencesPackageName»;
@@ -31,33 +32,31 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getFillColorPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(getUniqueIdentifier().toUpper())»;
+		return «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())»;
 	}
 	
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getFontColorPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceFontColorConstant(getUniqueIdentifier().toUpper())»;
+		return «getPreferenceConstantFileName()».«getPreferenceFontColorConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getFontPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceFontConstant(getUniqueIdentifier().toUpper())»;
+		return «getPreferenceConstantFileName()».«getPreferenceFontConstant(elementType.displayName.toUpper())»;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getLineColorPreferenceName() {
-		return «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(getUniqueIdentifier().toUpper())»;
+		return «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»;
 	}
 	
 	«EXPAND xpt::Common::generatedClassComment»
 	public static void initDefaults(org.eclipse.jface.preference.IPreferenceStore store) {
-	    org.eclipse.jface.preference.PreferenceConverter.setDefault(store, «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(getUniqueIdentifier().toUpper())», new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		org.eclipse.jface.preference.PreferenceConverter.setDefault(store, «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(getUniqueIdentifier().toUpper())», new org.eclipse.swt.graphics.RGB(177, 207, 229));
-	
-
+	    org.eclipse.jface.preference.PreferenceConverter.setDefault(store, «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())», new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		org.eclipse.jface.preference.PreferenceConverter.setDefault(store, «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())», new org.eclipse.swt.graphics.RGB(177, 207, 229));
 	}
 
 }
