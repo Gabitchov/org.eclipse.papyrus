@@ -21,8 +21,7 @@ import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class UseCasePointsItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class UseCasePointsItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

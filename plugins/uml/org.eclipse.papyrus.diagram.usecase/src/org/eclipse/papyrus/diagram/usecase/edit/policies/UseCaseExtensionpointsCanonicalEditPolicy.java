@@ -31,8 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class UseCaseExtensionpointsCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class UseCaseExtensionpointsCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -45,9 +44,7 @@ public class UseCaseExtensionpointsCanonicalEditPolicy extends
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getUseCaseExtensionpoints_7003SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater.getUseCaseExtensionpoints_7003SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -80,8 +77,7 @@ public class UseCaseExtensionpointsCanonicalEditPolicy extends
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getUseCase_ExtensionPoint());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getUseCase_ExtensionPoint());
 		}
 		return myFeaturesToSynchronize;
 	}

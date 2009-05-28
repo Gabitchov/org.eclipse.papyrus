@@ -28,8 +28,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.policies.GeneralizationItemSeman
 /**
  * @generated
  */
-public class GeneralizationEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class GeneralizationEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,8 +47,7 @@ public class GeneralizationEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new GeneralizationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new GeneralizationItemSemanticEditPolicy());
 	}
 
 	/**

@@ -29,8 +29,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * @generated
  */
-public class AssociationEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class AssociationEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -65,10 +64,8 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements
 	 * @generated NOT
 	 */
 	protected void addAssociationEndListeners() {
-		EObject sourceEnd = ((Association) resolveSemanticElement())
-				.getMemberEnds().get(0);
-		EObject targetEnd = ((Association) resolveSemanticElement())
-				.getMemberEnds().get(1);
+		EObject sourceEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(0);
+		EObject targetEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(1);
 		addListenerFilter("AssociationEndListenersSource", this, sourceEnd);
 		addListenerFilter("AssociationEndListenersTarget", this, targetEnd);
 	}
@@ -99,8 +96,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new AssociationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
 	}
 
 	/**
@@ -159,10 +155,8 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements
 	 * @generated NOT
 	 */
 	protected void refreshVisuals() {
-		Property source = (Property) ((Association) resolveSemanticElement())
-				.getMembers().get(0);
-		Property target = (Property) ((Association) resolveSemanticElement())
-				.getMembers().get(1);
+		Property source = (Property) ((Association) resolveSemanticElement()).getMembers().get(0);
+		Property target = (Property) ((Association) resolveSemanticElement()).getMembers().get(1);
 		int sourceType = 0;
 		int targetType = 0;
 

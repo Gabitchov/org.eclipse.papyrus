@@ -27,8 +27,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * @generated
  */
-public class ConstraintConstrainedElementCreateCommand extends
-		EditElementCommand {
+public class ConstraintConstrainedElementCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -43,8 +42,7 @@ public class ConstraintConstrainedElementCreateCommand extends
 	/**
 	 * @generated
 	 */
-	public ConstraintConstrainedElementCreateCommand(
-			CreateRelationshipRequest request, EObject source, EObject target) {
+	public ConstraintConstrainedElementCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -67,19 +65,15 @@ public class ConstraintConstrainedElementCreateCommand extends
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateConstraintConstrainedElement_4005(getSource(),
-						getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateConstraintConstrainedElement_4005(getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
 		if (getSource() != null && getTarget() != null) {

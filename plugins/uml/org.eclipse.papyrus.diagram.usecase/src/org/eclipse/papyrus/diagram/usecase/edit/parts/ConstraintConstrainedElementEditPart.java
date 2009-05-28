@@ -25,8 +25,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.policies.ConstraintConstrainedEl
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,8 +44,7 @@ public class ConstraintConstrainedElementEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ConstraintConstrainedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
 	}
 
 	/**

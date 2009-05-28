@@ -81,8 +81,7 @@ ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ComponentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ComponentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -95,8 +94,7 @@ ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -135,8 +133,7 @@ ShapeNodeEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 
 		if (childEditPart instanceof ComponentNameEditPart) {
-			((ComponentNameEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getUseCaseSubjectFigure_name());
+			((ComponentNameEditPart) childEditPart).setLabel(getPrimaryShape().getUseCaseSubjectFigure_name());
 			return true;
 		}
 
@@ -162,9 +159,7 @@ ShapeNodeEditPart {
 		if (childEditPart instanceof ComponentUsecasesEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane
-					.remove(((ComponentUsecasesEditPart) childEditPart)
-							.getFigure());
+			pane.remove(((ComponentUsecasesEditPart) childEditPart).getFigure());
 			return true;
 		}
 
@@ -295,8 +290,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(ComponentNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -313,8 +307,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof ActorEditPart) {
 			types.add(UMLElementTypes.Generalization_4003);
@@ -400,8 +393,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-			IElementType relationshipType) {
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.Generalization_4003) {
 			types.add(UMLElementTypes.Actor_2002);
@@ -500,8 +492,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-			IElementType relationshipType) {
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.Generalization_4003) {
 			types.add(UMLElementTypes.Actor_2002);
@@ -631,17 +622,14 @@ ShapeNodeEditPart {
 
 			CenterLayout layoutUseCaseSubjectFigure_header0 = new CenterLayout();
 
-			useCaseSubjectFigure_header0
-					.setLayoutManager(layoutUseCaseSubjectFigure_header0);
+			useCaseSubjectFigure_header0.setLayoutManager(layoutUseCaseSubjectFigure_header0);
 
 			fUseCaseSubjectFigure_name = new WrappingLabel();
 			fUseCaseSubjectFigure_name.setText("");
 
 			fUseCaseSubjectFigure_name.setFont(FUSECASESUBJECTFIGURE_NAME_FONT);
 
-			fUseCaseSubjectFigure_name.setBorder(new MarginBorder(getMapMode()
-					.DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5)));
+			fUseCaseSubjectFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			useCaseSubjectFigure_header0.add(fUseCaseSubjectFigure_name);
 
@@ -695,9 +683,6 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FUSECASESUBJECTFIGURE_NAME_FONT = new Font(Display
-			.getCurrent(),
-			Display.getDefault().getSystemFont().getFontData()[0].getName(), 9,
-			SWT.NORMAL);
+	static final Font FUSECASESUBJECTFIGURE_NAME_FONT = new Font(Display.getCurrent(), Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, SWT.NORMAL);
 
 }

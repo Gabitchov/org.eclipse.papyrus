@@ -203,26 +203,21 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(
-			ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass
-					&& !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance()
-						.getItemImageDescriptor(
-								eClass.getEPackage().getEFactoryInstance()
-										.create(eClass));
+				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -312,11 +307,9 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Comment_2010, UMLPackage.eINSTANCE.getComment());
 
-			elements.put(ExtensionPoint_3002, UMLPackage.eINSTANCE
-					.getExtensionPoint());
+			elements.put(ExtensionPoint_3002, UMLPackage.eINSTANCE.getExtensionPoint());
 
-			elements.put(ExtensionPoint_3003, UMLPackage.eINSTANCE
-					.getExtensionPoint());
+			elements.put(ExtensionPoint_3003, UMLPackage.eINSTANCE.getExtensionPoint());
 
 			elements.put(UseCase_3004, UMLPackage.eINSTANCE.getUseCase());
 
@@ -328,19 +321,15 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Extend_4002, UMLPackage.eINSTANCE.getExtend());
 
-			elements.put(Generalization_4003, UMLPackage.eINSTANCE
-					.getGeneralization());
+			elements.put(Generalization_4003, UMLPackage.eINSTANCE.getGeneralization());
 
-			elements.put(Association_4004, UMLPackage.eINSTANCE
-					.getAssociation());
+			elements.put(Association_4004, UMLPackage.eINSTANCE.getAssociation());
 
-			elements.put(ConstraintConstrainedElement_4005,
-					UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+			elements.put(ConstraintConstrainedElement_4005, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
 			elements.put(Dependency_4006, UMLPackage.eINSTANCE.getDependency());
 
-			elements.put(CommentAnnotatedElement_4007, UMLPackage.eINSTANCE
-					.getComment_AnnotatedElement());
+			elements.put(CommentAnnotatedElement_4007, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 		}
 		return (ENamedElement) elements.get(type);
 	}

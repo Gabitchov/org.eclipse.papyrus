@@ -80,11 +80,9 @@ ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new Package3ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Package3ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -96,8 +94,7 @@ ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -136,17 +133,14 @@ ShapeNodeEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 
 		if (childEditPart instanceof PackageName2EditPart) {
-			((PackageName2EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getPackageNameLabel());
+			((PackageName2EditPart) childEditPart).setLabel(getPrimaryShape().getPackageNameLabel());
 			return true;
 		}
 
 		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane
-					.add(((PackagePackageableElementCompartmentEditPart) childEditPart)
-							.getFigure());
+			pane.add(((PackagePackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
@@ -165,9 +159,7 @@ ShapeNodeEditPart {
 		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane
-					.remove(((PackagePackageableElementCompartmentEditPart) childEditPart)
-							.getFigure());
+			pane.remove(((PackagePackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
@@ -298,8 +290,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(PackageName2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PackageName2EditPart.VISUAL_ID));
 	}
 
 	/**
@@ -314,8 +305,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof ActorEditPart) {
 			types.add(UMLElementTypes.Dependency_4006);
@@ -353,8 +343,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-			IElementType relationshipType) {
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.Dependency_4006) {
 			types.add(UMLElementTypes.Actor_2002);
@@ -403,8 +392,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-			IElementType relationshipType) {
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
 			types.add(UMLElementTypes.Constraint_2008);
@@ -574,19 +562,16 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FSTEREOTYPESLABEL_FONT = new Font(Display.getCurrent(),
-			"Arial", 8, SWT.NORMAL);
+	static final Font FSTEREOTYPESLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
 
 	/**
 	 * @generated
 	 */
-	static final Font FPACKAGENAMELABEL_FONT = new Font(Display.getCurrent(),
-			"Arial", 10, SWT.BOLD);
+	static final Font FPACKAGENAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
 
 	/**
 	 * @generated
 	 */
-	static final Font FPACKAGEQUALIFIEDNAMELABEL_FONT = new Font(Display
-			.getCurrent(), "Arial", 8, SWT.ITALIC);
+	static final Font FPACKAGEQUALIFIEDNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.ITALIC);
 
 }

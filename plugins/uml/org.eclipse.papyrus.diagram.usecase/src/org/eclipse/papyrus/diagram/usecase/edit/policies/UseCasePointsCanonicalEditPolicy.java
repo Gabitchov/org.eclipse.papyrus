@@ -44,9 +44,7 @@ public class UseCasePointsCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getUseCasePoints_7002SemanticChildren(viewObject).iterator(); it
-				.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater.getUseCasePoints_7002SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -79,8 +77,7 @@ public class UseCasePointsCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getUseCase_ExtensionPoint());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getUseCase_ExtensionPoint());
 		}
 		return myFeaturesToSynchronize;
 	}

@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -20,8 +20,7 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 /**
  * @generated
  */
-public class GeneralizationPreferencePage extends
-		AbstractPapyrusLinkPreferencePage {
+public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated

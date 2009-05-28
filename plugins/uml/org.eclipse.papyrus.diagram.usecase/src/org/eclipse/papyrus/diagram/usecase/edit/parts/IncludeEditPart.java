@@ -30,8 +30,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.policies.IncludeItemSemanticEdit
 /**
  * @generated
  */
-public class IncludeEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class IncludeEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -50,8 +49,7 @@ public class IncludeEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new IncludeItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new IncludeItemSemanticEditPolicy());
 	}
 
 	/**

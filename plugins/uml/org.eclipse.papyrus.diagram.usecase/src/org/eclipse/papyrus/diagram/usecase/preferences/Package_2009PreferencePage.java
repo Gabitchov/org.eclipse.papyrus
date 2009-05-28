@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -21,8 +21,7 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 /**
  * @generated
  */
-public class Package_2009PreferencePage extends
-		AbstractPapyrusNodePreferencePage {
+public class Package_2009PreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
@@ -68,12 +67,8 @@ public class Package_2009PreferencePage extends
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		PreferenceConverter.setDefault(store,
-				IPapyrusPreferencesConstant.PACKAGE_2009_PREF_FILL_COLOR,
-				new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store,
-				IPapyrusPreferencesConstant.PACKAGE_2009_PREF_LINE_COLOR,
-				new org.eclipse.swt.graphics.RGB(177, 207, 229));
+		PreferenceConverter.setDefault(store, IPapyrusPreferencesConstant.PACKAGE_2009_PREF_FILL_COLOR, new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store, IPapyrusPreferencesConstant.PACKAGE_2009_PREF_LINE_COLOR, new org.eclipse.swt.graphics.RGB(177, 207, 229));
 
 	}
 
