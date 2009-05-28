@@ -234,9 +234,12 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @param tabIndex
 	 */
 	public void removePage(ITabFolderModel parentFolder, int tabIndex) {
-		TabFolderModel folder = (TabFolderModel)parentFolder;
+		TabFolder folder = ((TabFolderModel)parentFolder).getTabFolder();
 		
-		folder.getTabFolder().removePage(tabIndex);
+		contentChangedListenerManager.setDeliver(false);
+		folder.removePage(tabIndex);
+		diSashModel.removeEmptyFolder(folder);
+		contentChangedListenerManager.setDeliver(true);
 	}
 	
 	/**
