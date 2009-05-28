@@ -88,17 +88,23 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
 	@Override
 	public void createControl(Composite parent) {
 		// SashForm
+			
+			
 		sashComp = new SashForm(parent, SWT.VERTICAL);
 		sashComp.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-		// Set up the thumbnail view
-		GraphicalViewer viewer = (GraphicalViewer) editorPart.getAdapter(GraphicalViewer.class);
-		RootEditPart rootEditPart = viewer.getRootEditPart();
-		if (rootEditPart instanceof ScalableFreeformRootEditPart) {
-			overview = createOverview(sashComp, (ScalableFreeformRootEditPart) rootEditPart);
-			overview.setLayoutData(new GridData(GridData.FILL_BOTH));
-		}
+		// Set up the thumbnail view if possible
+		if(editorPart != null)
+		{
+			GraphicalViewer viewer = (GraphicalViewer) editorPart.getAdapter(GraphicalViewer.class);
+			RootEditPart rootEditPart = viewer.getRootEditPart();
+			if (rootEditPart instanceof ScalableFreeformRootEditPart) {
+				overview = createOverview(sashComp, (ScalableFreeformRootEditPart) rootEditPart);
+				overview.setLayoutData(new GridData(GridData.FILL_BOTH));
+			}
 
+		}
+		
 		// Set up the tree viewer
 		navigator = createNavigator(sashComp, diagram, getSite());
 
