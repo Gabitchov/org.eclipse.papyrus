@@ -96,20 +96,19 @@ public class DiSwitch<T> {
 			case DiPackage.WINDOW: {
 				Window window = (Window)theEObject;
 				T result = caseWindow(window);
-				if (result == null) result = caseAbstractNode(window);
+				if (result == null) result = casePanelParent(window);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DiPackage.ABSTRACT_NODE: {
-				AbstractNode abstractNode = (AbstractNode)theEObject;
-				T result = caseAbstractNode(abstractNode);
+			case DiPackage.PANEL_PARENT: {
+				PanelParent panelParent = (PanelParent)theEObject;
+				T result = casePanelParent(panelParent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DiPackage.ABSTRACT_PANEL: {
 				AbstractPanel abstractPanel = (AbstractPanel)theEObject;
 				T result = caseAbstractPanel(abstractPanel);
-				if (result == null) result = caseAbstractNode(abstractPanel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,7 +128,6 @@ public class DiSwitch<T> {
 				TabFolder tabFolder = (TabFolder)theEObject;
 				T result = caseTabFolder(tabFolder);
 				if (result == null) result = caseAbstractPanel(tabFolder);
-				if (result == null) result = caseAbstractNode(tabFolder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -143,7 +141,7 @@ public class DiSwitch<T> {
 				SashPanel sashPanel = (SashPanel)theEObject;
 				T result = caseSashPanel(sashPanel);
 				if (result == null) result = caseAbstractPanel(sashPanel);
-				if (result == null) result = caseAbstractNode(sashPanel);
+				if (result == null) result = casePanelParent(sashPanel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -200,17 +198,17 @@ public class DiSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Panel Parent</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Panel Parent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractNode(AbstractNode object) {
+	public T casePanelParent(PanelParent object) {
 		return null;
 	}
 

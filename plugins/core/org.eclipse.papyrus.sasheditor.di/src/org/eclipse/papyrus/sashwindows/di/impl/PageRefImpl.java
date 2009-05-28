@@ -39,6 +39,7 @@ import org.eclipse.papyrus.sashwindows.di.TabFolder;
  * @generated
  */
 public class PageRefImpl extends EObjectImpl implements PageRef {
+
 	/**
 	 * The cached value of the '{@link #getEmfPageIdentifier() <em>Emf Page Identifier</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -75,6 +76,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * @ordered
 	 */
 	protected Object objectPageIdentifier = OBJECT_PAGE_IDENTIFIER_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,94 +148,6 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 		}
 		else
 			return getObjectPageIdentifier();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setPageIdentifier(Object newPageIdentifier) {
-		
-		if(newPageIdentifier instanceof EObject)
-		{
-			setEmfPageIdentifier((EObject)newPageIdentifier);
-			return;
-		}
-		
-		// if null, unset all
-		if( newPageIdentifier == null && getEmfPageIdentifier() != null)
-		{
-			setEmfPageIdentifier(null);
-		}
-		else
-		{
-			setObjectPageIdentifier(newPageIdentifier);
-		}
-		
-		
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object getObjectPageIdentifier() {
-		return objectPageIdentifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setObjectPageIdentifier(Object newObjectPageIdentifier) {
-		Object oldObjectPageIdentifier = objectPageIdentifier;
-		objectPageIdentifier = newObjectPageIdentifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.PAGE_REF__OBJECT_PAGE_IDENTIFIER, oldObjectPageIdentifier, objectPageIdentifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TabFolder getParent() {
-		if (eContainerFeatureID() != DiPackage.PAGE_REF__PARENT) return null;
-		return (TabFolder)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetParent(TabFolder newParent, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newParent, DiPackage.PAGE_REF__PARENT, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParent(TabFolder newParent) {
-		if (newParent != eInternalContainer() || (eContainerFeatureID() != DiPackage.PAGE_REF__PARENT && newParent != null)) {
-			if (EcoreUtil.isAncestor(this, newParent))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newParent != null)
-				msgs = ((InternalEObject)newParent).eInverseAdd(this, DiPackage.TAB_FOLDER__CHILDREN, TabFolder.class, msgs);
-			msgs = basicSetParent(newParent, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.PAGE_REF__PARENT, newParent, newParent));
 	}
 
 	/**
@@ -392,6 +306,94 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 		result.append(objectPageIdentifier);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setPageIdentifier(Object newPageIdentifier) {
+		
+		if(newPageIdentifier instanceof EObject)
+		{
+			setEmfPageIdentifier((EObject)newPageIdentifier);
+			return;
+		}
+		
+		// if null, unset all
+		if( newPageIdentifier == null && getEmfPageIdentifier() != null)
+		{
+			setEmfPageIdentifier(null);
+		}
+		else
+		{
+			setObjectPageIdentifier(newPageIdentifier);
+		}
+		
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object getObjectPageIdentifier() {
+		return objectPageIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setObjectPageIdentifier(Object newObjectPageIdentifier) {
+		Object oldObjectPageIdentifier = objectPageIdentifier;
+		objectPageIdentifier = newObjectPageIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.PAGE_REF__OBJECT_PAGE_IDENTIFIER, oldObjectPageIdentifier, objectPageIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TabFolder getParent() {
+		if (eContainerFeatureID() != DiPackage.PAGE_REF__PARENT) return null;
+		return (TabFolder)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetParent(TabFolder newParent, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newParent, DiPackage.PAGE_REF__PARENT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParent(TabFolder newParent) {
+		if (newParent != eInternalContainer() || (eContainerFeatureID() != DiPackage.PAGE_REF__PARENT && newParent != null)) {
+			if (EcoreUtil.isAncestor(this, newParent))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newParent != null)
+				msgs = ((InternalEObject)newParent).eInverseAdd(this, DiPackage.TAB_FOLDER__CHILDREN, TabFolder.class, msgs);
+			msgs = basicSetParent(newParent, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.PAGE_REF__PARENT, newParent, newParent));
 	}
 
 } //PageRefImpl

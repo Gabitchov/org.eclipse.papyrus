@@ -108,17 +108,33 @@ public interface SashModel extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model pageIndexDataType="org.eclipse.papyrus.sashwindows.di.int" pageIndexRequired="true" pageIndexOrdered="false" parentFolderRequired="true" parentFolderOrdered="false"
-	 * @generated
-	 */
-	void removePage(int pageIndex, TabFolder parentFolder);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model srcParentFolderRequired="true" srcParentFolderOrdered="false" srcIndexDataType="org.eclipse.papyrus.sashwindows.di.int" srcIndexRequired="true" srcIndexOrdered="false" targetParentFolderRequired="true" targetParentFolderOrdered="false" targetIndexRequired="true" targetIndexOrdered="false"
 	 * @generated
 	 */
 	void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder, int targetIndex);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model folderToInsertRequired="true" folderToInsertOrdered="false" refFolderRequired="true" refFolderOrdered="false" refFolderSideRequired="true" refFolderSideOrdered="false"
+	 * @generated
+	 */
+	void insertFolder(TabFolder folderToInsert, TabFolder refFolder, int refFolderSide);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model srcParentFolderRequired="true" srcParentFolderOrdered="false" srcIndexDataType="org.eclipse.papyrus.sashwindows.di.int" srcIndexRequired="true" srcIndexOrdered="false" targetParentFolderRequired="true" targetParentFolderOrdered="false"
+	 * @generated
+	 */
+	void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model folderRequired="true" folderOrdered="false"
+	 * @generated
+	 */
+	void removeEmptyFolder(TabFolder folder);
 
 } // SashModel

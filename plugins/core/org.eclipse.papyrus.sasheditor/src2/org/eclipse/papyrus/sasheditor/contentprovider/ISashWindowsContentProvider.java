@@ -96,6 +96,6 @@ public interface ISashWindowsContentProvider {
 	 * @param targetFolder The folder to which the side refer to
 	 * @param side Side where node should be inserted : SWT.LEFT, SWT.RIGHT, SWT.TOP, SWT.DOWN.
 	 */
-	public ITabFolderModel createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side);
+	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side);
 
 }

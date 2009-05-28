@@ -44,12 +44,12 @@ public interface TabFolder extends AbstractPanel {
 	EList<PageRef> getChildren();
 
 	/**
-	 * Move the page inside the folder.
-	 * @param oldIndex
-	 * @param newIndex
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model oldIndexRequired="true" oldIndexOrdered="false" newIndexDataType="org.eclipse.papyrus.sashwindows.di.int" newIndexRequired="true" newIndexOrdered="false"
 	 * @generated
 	 */
-	public void movePage(int oldIndex, int newIndex);
+	void movePage(int oldIndex, int newIndex);
 
 	/**
 	 * <!-- begin-user-doc -->

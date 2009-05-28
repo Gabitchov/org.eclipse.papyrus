@@ -176,12 +176,12 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * The change event is sent only once after the complete operation is performed.
 	 * {@inheritDoc}
 	 */
-	public ITabFolderModel createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
+	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
 		System.out.println("createFolder()");
 		
 		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)tabFolder, tabIndex, (TabFolderModel)targetFolder, side);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, tabFolder) );	
-		return newFolder;
+//		return newFolder;
 	}
 
 	/**

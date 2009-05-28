@@ -6,6 +6,7 @@
  */
 package org.eclipse.papyrus.sashwindows.di;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +17,6 @@ package org.eclipse.papyrus.sashwindows.di;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.sashwindows.di.AbstractPanel#getParent <em>Parent</em>}</li>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.AbstractPanel#getWindow <em>Window</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,59 +24,33 @@ package org.eclipse.papyrus.sashwindows.di;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractPanel extends AbstractNode {
+public interface AbstractPanel extends EObject {
+
 	/**
-	 * Returns the value of the '<em><b>Parent</b></em>' reference.
+	 * Returns the value of the '<em><b>Parent</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.sashwindows.di.PanelParent#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parent</em>' reference isn't clear,
+	 * If the meaning of the '<em>Parent</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parent</em>' reference.
-	 * @see #setParent(AbstractNode)
+	 * @return the value of the '<em>Parent</em>' container reference.
+	 * @see #setParent(PanelParent)
 	 * @see org.eclipse.papyrus.sashwindows.di.DiPackage#getAbstractPanel_Parent()
-	 * @model required="true" ordered="false"
+	 * @see org.eclipse.papyrus.sashwindows.di.PanelParent#getChildren
+	 * @model opposite="children" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
-	AbstractNode getParent();
+	PanelParent getParent();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.AbstractPanel#getParent <em>Parent</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.AbstractPanel#getParent <em>Parent</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parent</em>' reference.
+	 * @param value the new value of the '<em>Parent</em>' container reference.
 	 * @see #getParent()
 	 * @generated
 	 */
-	void setParent(AbstractNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Window</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.sashwindows.di.Window#getPanel <em>Panel</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Window</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Window</em>' container reference.
-	 * @see #setWindow(Window)
-	 * @see org.eclipse.papyrus.sashwindows.di.DiPackage#getAbstractPanel_Window()
-	 * @see org.eclipse.papyrus.sashwindows.di.Window#getPanel
-	 * @model opposite="panel" required="true" transient="false" ordered="false"
-	 * @generated
-	 */
-	Window getWindow();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.AbstractPanel#getWindow <em>Window</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Window</em>' container reference.
-	 * @see #getWindow()
-	 * @generated
-	 */
-	void setWindow(Window value);
-
+	void setParent(PanelParent value);
 } // AbstractPanel

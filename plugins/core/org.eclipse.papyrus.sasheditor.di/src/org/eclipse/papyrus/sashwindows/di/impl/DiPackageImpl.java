@@ -12,17 +12,17 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.papyrus.sashwindows.di.AbstractNode;
 import org.eclipse.papyrus.sashwindows.di.AbstractPage;
 import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.sashwindows.di.PageList;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
+import org.eclipse.papyrus.sashwindows.di.PanelParent;
 import org.eclipse.papyrus.sashwindows.di.Position;
 import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
@@ -57,7 +57,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abstractNodeEClass = null;
+	private EClass panelParentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -262,7 +262,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWindow_Panel() {
+	public EReference getWindow_Position() {
 		return (EReference)windowEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -271,7 +271,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWindow_Position() {
+	public EReference getWindow_Size() {
 		return (EReference)windowEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -280,7 +280,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWindow_Size() {
+	public EReference getWindow_Panel() {
 		return (EReference)windowEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -289,8 +289,17 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAbstractNode() {
-		return abstractNodeEClass;
+	public EClass getPanelParent() {
+		return panelParentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPanelParent_Children() {
+		return (EReference)panelParentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -309,15 +318,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 */
 	public EReference getAbstractPanel_Parent() {
 		return (EReference)abstractPanelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractPanel_Window() {
-		return (EReference)abstractPanelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -451,17 +451,8 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSashPanel_Children() {
-		return (EReference)sashPanelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getSashPanel_SashPosition() {
-		return (EAttribute)sashPanelEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)sashPanelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -470,7 +461,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * @generated
 	 */
 	public EAttribute getSashPanel_Direction() {
-		return (EAttribute)sashPanelEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)sashPanelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -605,15 +596,15 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		createEReference(sashModelEClass, SASH_MODEL__CURRENT_SELECTION);
 
 		windowEClass = createEClass(WINDOW);
-		createEReference(windowEClass, WINDOW__PANEL);
 		createEReference(windowEClass, WINDOW__POSITION);
 		createEReference(windowEClass, WINDOW__SIZE);
+		createEReference(windowEClass, WINDOW__PANEL);
 
-		abstractNodeEClass = createEClass(ABSTRACT_NODE);
+		panelParentEClass = createEClass(PANEL_PARENT);
+		createEReference(panelParentEClass, PANEL_PARENT__CHILDREN);
 
 		abstractPanelEClass = createEClass(ABSTRACT_PANEL);
 		createEReference(abstractPanelEClass, ABSTRACT_PANEL__PARENT);
-		createEReference(abstractPanelEClass, ABSTRACT_PANEL__WINDOW);
 
 		positionEClass = createEClass(POSITION);
 		createEAttribute(positionEClass, POSITION__X);
@@ -633,7 +624,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		createEReference(pageRefEClass, PAGE_REF__PARENT);
 
 		sashPanelEClass = createEClass(SASH_PANEL);
-		createEReference(sashPanelEClass, SASH_PANEL__CHILDREN);
 		createEAttribute(sashPanelEClass, SASH_PANEL__SASH_POSITION);
 		createEAttribute(sashPanelEClass, SASH_PANEL__DIRECTION);
 
@@ -685,10 +675,10 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		windowEClass.getESuperTypes().add(this.getAbstractNode());
-		abstractPanelEClass.getESuperTypes().add(this.getAbstractNode());
+		windowEClass.getESuperTypes().add(this.getPanelParent());
 		tabFolderEClass.getESuperTypes().add(this.getAbstractPanel());
 		sashPanelEClass.getESuperTypes().add(this.getAbstractPanel());
+		sashPanelEClass.getESuperTypes().add(this.getPanelParent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(sashModelEClass, SashModel.class, "SashModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -710,16 +700,33 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		addEParameter(op, this.getTabFolder(), "targetParentFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "targetIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
+		op = addEOperation(sashModelEClass, null, "insertFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTabFolder(), "folderToInsert", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTabFolder(), "refFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "refFolderSide", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(sashModelEClass, null, "movePage", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTabFolder(), "srcParentFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getint(), "srcIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTabFolder(), "targetParentFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(sashModelEClass, null, "removeEmptyFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTabFolder(), "folder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(windowEClass, Window.class, "Window", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWindow_Panel(), this.getAbstractPanel(), this.getAbstractPanel_Window(), "panel", null, 1, 1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getWindow_Position(), this.getPosition(), null, "position", null, 1, 1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getWindow_Size(), this.getSize(), null, "size", null, 1, 1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getWindow_Panel(), this.getAbstractPanel(), null, "panel", null, 1, 1, Window.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(abstractNodeEClass, AbstractNode.class, "AbstractNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(panelParentEClass, PanelParent.class, "PanelParent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPanelParent_Children(), this.getAbstractPanel(), this.getAbstractPanel_Parent(), "children", null, 2, 2, PanelParent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		op = addEOperation(panelParentEClass, null, "replaceChild", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getAbstractPanel(), "oldChild", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getAbstractPanel(), "newChild", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(abstractPanelEClass, AbstractPanel.class, "AbstractPanel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractPanel_Parent(), this.getAbstractNode(), null, "parent", null, 1, 1, AbstractPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getAbstractPanel_Window(), this.getWindow(), this.getWindow_Panel(), "window", null, 1, 1, AbstractPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getAbstractPanel_Parent(), this.getPanelParent(), this.getPanelParent_Children(), "parent", null, 1, 1, AbstractPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(positionEClass, Position.class, "Position", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPosition_X(), ecorePackage.getEInt(), "x", null, 1, 1, Position.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -752,9 +759,16 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(sashPanelEClass, SashPanel.class, "SashPanel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSashPanel_Children(), this.getAbstractPanel(), null, "children", null, 2, 2, SashPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSashPanel_SashPosition(), this.getFloat(), "sashPosition", null, 1, 1, SashPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSashPanel_Direction(), ecorePackage.getEInt(), "direction", null, 1, 1, SashPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		op = addEOperation(sashPanelEClass, null, "setChildren", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getAbstractPanel(), "leftChild", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getAbstractPanel(), "rightChild", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getint(), "direction", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(sashPanelEClass, null, "delete", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getAbstractPanel(), "childToDelete", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(abstractPageEClass, AbstractPage.class, "AbstractPage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractPage_PageIdentifier(), this.getJavaObject(), "pageIdentifier", null, 1, 1, AbstractPage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

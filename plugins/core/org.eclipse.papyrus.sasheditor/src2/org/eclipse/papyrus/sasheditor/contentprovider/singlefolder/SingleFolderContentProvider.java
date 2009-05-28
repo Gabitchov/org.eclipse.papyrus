@@ -112,9 +112,8 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * Do nothing because this implementation doesn't allows folders.
 	 * {@inheritDoc}
 	 */
-	public ITabFolderModel createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
+	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/**

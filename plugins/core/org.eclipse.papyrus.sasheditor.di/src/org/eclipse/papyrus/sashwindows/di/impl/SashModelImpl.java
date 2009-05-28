@@ -11,26 +11,24 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
+import org.eclipse.papyrus.sashwindows.di.PanelParent;
 import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.sashwindows.di.Window;
 import org.eclipse.papyrus.sashwindows.di.util.DiSwitch;
+import org.eclipse.swt.SWT;
 
 /**
  * <!-- begin-user-doc -->
@@ -188,6 +186,27 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			}
 			
 			/**
+			 * 
+			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseWindow(org.eclipse.papyrus.sashwindows.di.Window)
+			 *
+			 * @param object
+			 * @return
+			 */
+			public PageRef caseWindow(Window window) {
+				
+				AbstractPanel panel = window.getPanel();
+				if(panel == null)
+					return null;
+				
+				
+				PageRef res = this.doSwitch(panel);
+				if(res != null)
+				  return res;
+				
+				return super.caseWindow(window);
+			}
+
+			/**
 			 * Iterate over children
 			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseSashPanel(org.eclipse.papyrus.sashwindows.di.SashPanel)
 			 *
@@ -223,6 +242,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 				
 				return super.caseTabFolder(object);
 			}
+			
 		};
 		
 		// Do lookup
@@ -234,12 +254,34 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void removePage(int pageIndex, TabFolder parentFolder) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder, int targetIndex) {
+
+		
+		// Check if we move all pages of srcFolder
+		if(srcIndex == -1)
+		{
+			// move all
+			List<PageRef> srcChildrens = srcParentFolder.getChildren();
+			List<PageRef> targetChildrens = targetParentFolder.getChildren();
+			while( srcChildrens.size()>0 )
+			{
+				PageRef pageRef = srcChildrens.remove(0);
+				targetChildrens.add(pageRef);
+			}
+			return;
+		}
+		
+		// Move only one
+		PageRef pageRef = srcParentFolder.getChildren().remove(srcIndex);
+
+		List<PageRef> targetChildrens = targetParentFolder.getChildren();
+		// Check if out of target range.
+		if( targetIndex<0 || targetIndex > targetChildrens.size())
+			targetChildrens.add(pageRef);
+		else
+		    targetChildrens.add(targetIndex, pageRef);
 	}
 
 	/**
@@ -247,16 +289,70 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder, int targetIndex) {
+	public void insertFolder(TabFolder folderToInsert, TabFolder refFolder, int side) {
+
+		// Get the parent under which the sash will be inserted
+		PanelParent refParent = refFolder.getParent();
+		
+		SashPanel newSash ;
+		int direction;
+		
+		// Compute sash direction
+		if(side == SWT.LEFT || side == SWT.RIGHT)
+			direction = SWT.HORIZONTAL;
+		else
+			direction = SWT.VERTICAL;
+		// Create sash
+		newSash = DiFactory.eINSTANCE.createSashPanel();
+		// Insert in parent. Should be done before setting childrens, otherwise, the child can't be
+		// replaced as it will not belong to parent anymore.
+		refParent.replaceChild( refFolder, newSash);
+		
+		if(side == SWT.LEFT || side == SWT.UP)
+		{ // insert left
+			newSash.setChildren(folderToInsert, refFolder, direction);
+		}
+		else
+		{
+			newSash.setChildren(refFolder, folderToInsert, direction);
+		}
+
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder) {
 
 		PageRef pageRef = srcParentFolder.getChildren().remove(srcIndex);
 		
 		List<PageRef> targetChildrens = targetParentFolder.getChildren();
 		// Check if out of target range.
-		if( targetIndex<0 || targetIndex > targetChildrens.size())
-			targetChildrens.add(pageRef);
-		else
-		    targetChildrens.add(targetIndex, pageRef);
+		targetChildrens.add(pageRef);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void removeEmptyFolder(TabFolder folder) {
+		
+		EList<PageRef> children = folder.getChildren();
+		
+		// Check if empty
+		if(children.size() > 0)
+			return;
+		
+		PanelParent parent = folder.getParent();
+		// Forbid removing of the last folder
+		if(parent instanceof Window)
+			return;
+		
+		// Parent is a sash. Ask it to remove the child and itself
+		((SashPanel)parent).delete(folder);
 	}
 
 	/**

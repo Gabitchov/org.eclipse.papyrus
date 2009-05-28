@@ -44,6 +44,15 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 		newPage.setPageIdentifier(pageIdentifier);
 		getChildren().add(newPage);
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void removePage(int pageIndex) {
+		getChildren().remove(pageIndex);
+	}
 
 	/**
 	 * 
@@ -66,22 +75,12 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 		
 		if (oldIndex == newIndex)
 			return;
-	
+
 		if( listSize == 0)
 			return;
-	
-	
+
+
 		getChildren().move(newIndex, oldIndex);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void removePage(int pageIndex) {
-		getChildren().remove(pageIndex);
-	}
-
 
 } //TabFolderImpl

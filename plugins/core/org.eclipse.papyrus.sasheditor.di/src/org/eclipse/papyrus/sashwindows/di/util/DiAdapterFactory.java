@@ -80,8 +80,8 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 				return createWindowAdapter();
 			}
 			@Override
-			public Adapter caseAbstractNode(AbstractNode object) {
-				return createAbstractNodeAdapter();
+			public Adapter casePanelParent(PanelParent object) {
+				return createPanelParentAdapter();
 			}
 			@Override
 			public Adapter caseAbstractPanel(AbstractPanel object) {
@@ -168,16 +168,16 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.AbstractNode <em>Abstract Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.PanelParent <em>Panel Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.sashwindows.di.AbstractNode
+	 * @see org.eclipse.papyrus.sashwindows.di.PanelParent
 	 * @generated
 	 */
-	public Adapter createAbstractNodeAdapter() {
+	public Adapter createPanelParentAdapter() {
 		return null;
 	}
 

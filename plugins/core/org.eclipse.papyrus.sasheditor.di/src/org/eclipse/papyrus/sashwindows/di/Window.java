@@ -15,9 +15,9 @@ package org.eclipse.papyrus.sashwindows.di;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.Window#getPanel <em>Panel</em>}</li>
  *   <li>{@link org.eclipse.papyrus.sashwindows.di.Window#getPosition <em>Position</em>}</li>
  *   <li>{@link org.eclipse.papyrus.sashwindows.di.Window#getSize <em>Size</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.sashwindows.di.Window#getPanel <em>Panel</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,35 +25,7 @@ package org.eclipse.papyrus.sashwindows.di;
  * @model
  * @generated
  */
-public interface Window extends AbstractNode {
-	/**
-	 * Returns the value of the '<em><b>Panel</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.sashwindows.di.AbstractPanel#getWindow <em>Window</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Panel</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Panel</em>' containment reference.
-	 * @see #setPanel(AbstractPanel)
-	 * @see org.eclipse.papyrus.sashwindows.di.DiPackage#getWindow_Panel()
-	 * @see org.eclipse.papyrus.sashwindows.di.AbstractPanel#getWindow
-	 * @model opposite="window" containment="true" required="true" ordered="false"
-	 * @generated
-	 */
-	AbstractPanel getPanel();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.Window#getPanel <em>Panel</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Panel</em>' containment reference.
-	 * @see #getPanel()
-	 * @generated
-	 */
-	void setPanel(AbstractPanel value);
-
+public interface Window extends PanelParent {
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -105,5 +77,30 @@ public interface Window extends AbstractNode {
 	 * @generated
 	 */
 	void setSize(Size value);
+
+	/**
+	 * Returns the value of the '<em><b>Panel</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Redefine children.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Panel</em>' reference.
+	 * @see #setPanel(AbstractPanel)
+	 * @see org.eclipse.papyrus.sashwindows.di.DiPackage#getWindow_Panel()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	AbstractPanel getPanel();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.Window#getPanel <em>Panel</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Panel</em>' reference.
+	 * @see #getPanel()
+	 * @generated
+	 */
+	void setPanel(AbstractPanel value);
 
 } // Window

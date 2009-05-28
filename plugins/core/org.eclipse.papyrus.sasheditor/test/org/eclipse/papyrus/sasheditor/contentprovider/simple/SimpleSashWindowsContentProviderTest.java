@@ -76,17 +76,7 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 	 */
 	public void testCreateFolder() {
 		
-		// Create content
-//		IPageModel newModel1 = new FakePageModel();
-//		contentProvider.addTab(newModel1);
-//		IPageModel newModel2 = new FakePageModel();
-//		contentProvider.addTab(newModel2);
-//		IPageModel newModel3 = new FakePageModel();
-//		contentProvider.addTab(newModel2);
-//		IPageModel newModel4 = new FakePageModel();
-//		contentProvider.addTab(newModel2);
-		
-		// Create models
+		// Create pages and add them to the default folder
 		List<IPageModel> models = new ArrayList<IPageModel>();
 		for(int i=0; i<8; i++)
 		{
@@ -117,22 +107,27 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 		int index = 0;
 		IPageModel movedTab = models.get(index++);
 		assertEquals("moved tab is the first in tab", movedTab, folder.getChildren().get(0) );
-		ITabFolderModel newFolder2 = contentProvider.createFolder(folder, 0, folder, SWT.UP);
+		contentProvider.createFolder(folder, 0, folder, SWT.UP);
+		// Find created folder
+		ITabFolderModel newFolder2 = contentProvider.getParentFolder(movedTab);
 		assertFolderCreated(folder, newFolder2, movedTab);
 		
 		movedTab = models.get(index++);
 		assertEquals("moved tab is the first in tab", movedTab, folder.getChildren().get(0) );
-		ITabFolderModel newFolder3 = contentProvider.createFolder(folder, 0, newFolder2, SWT.UP);
+		contentProvider.createFolder(folder, 0, newFolder2, SWT.UP);
+		ITabFolderModel newFolder3 = contentProvider.getParentFolder(movedTab);
 		assertFolderCreated(folder, newFolder3, movedTab);
 		
 		movedTab = models.get(index++);
 		assertEquals("moved tab is the first in tab", movedTab, folder.getChildren().get(0) );
-		ITabFolderModel newFolder4 = contentProvider.createFolder(folder, 0, newFolder2, SWT.DOWN);
+		contentProvider.createFolder(folder, 0, newFolder2, SWT.DOWN);
+		ITabFolderModel newFolder4 = contentProvider.getParentFolder(movedTab);
 		assertFolderCreated(folder, newFolder4, movedTab);
 
 		movedTab = models.get(index++);
 		assertEquals("moved tab is the first in tab", movedTab, folder.getChildren().get(0) );
-		ITabFolderModel newFolder5 = contentProvider.createFolder(folder, 0, folder, SWT.LEFT);
+		contentProvider.createFolder(folder, 0, folder, SWT.LEFT);
+		ITabFolderModel newFolder5 = contentProvider.getParentFolder(movedTab);
 		assertFolderCreated(folder, newFolder5, movedTab);
 
 	}
@@ -140,20 +135,21 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 	/**
 	 * Assert folder is correctly created
 	 * @param srcFolder
-	 * @param srcTab
-	 * @param createdFolder
+	 * @param newFolder
 	 * @param movedTab
 	 */
-	protected void assertFolderCreated(ITabFolderModel srcFolder, ITabFolderModel createdFolder, IPageModel movedTab )
+	protected void assertFolderCreated(ITabFolderModel srcFolder, ITabFolderModel newFolder, IPageModel movedTab )
 	{
 		// Check creation
-		assertNotNull("Folder created", createdFolder);
-		// Check if correctly attached and reachable
-		assertEquals("Item added in correct folder", createdFolder, contentProvider.getParentFolder(movedTab));
+		assertNotNull("Folder exist", newFolder);
+		
+		// Check if it is really a new folder
+		assertNotSame("Old folder and new folder are differents", srcFolder, newFolder);
+		
 		// Check removed from source
 		assertFalse("item removed from source folder", srcFolder.getChildren().contains(movedTab));
 		// Check contained in created folder
-		assertTrue("Folder contains added item", createdFolder.getChildren().contains(movedTab));
+		assertTrue("Folder contains added item", newFolder.getChildren().contains(movedTab));
 	}
 	/**
 	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#removePage(int)}.

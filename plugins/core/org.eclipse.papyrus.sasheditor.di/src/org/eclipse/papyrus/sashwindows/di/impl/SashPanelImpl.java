@@ -7,22 +7,19 @@
 package org.eclipse.papyrus.sashwindows.di.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.sashwindows.di.PanelParent;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
 
 /**
@@ -50,7 +47,6 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	 * @ordered
 	 */
 	protected EList<AbstractPanel> children;
-
 	/**
 	 * The default value of the '{@link #getSashPosition() <em>Sash Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,7 +56,6 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	 * @ordered
 	 */
 	protected static final float SASH_POSITION_EDEFAULT = 0.0F;
-
 	/**
 	 * The cached value of the '{@link #getSashPosition() <em>Sash Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,7 +65,6 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	 * @ordered
 	 */
 	protected float sashPosition = SASH_POSITION_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -80,7 +74,6 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	 * @ordered
 	 */
 	protected static final int DIRECTION_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,7 +110,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	 */
 	public EList<AbstractPanel> getChildren() {
 		if (children == null) {
-			children = new EObjectContainmentEList<AbstractPanel>(AbstractPanel.class, this, DiPackage.SASH_PANEL__CHILDREN);
+			children = new EObjectContainmentWithInverseEList<AbstractPanel>(AbstractPanel.class, this, DiPackage.SASH_PANEL__CHILDREN, DiPackage.ABSTRACT_PANEL__PARENT);
 		}
 		return children;
 	}
@@ -162,6 +155,61 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 		direction = newDirection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SASH_PANEL__DIRECTION, oldDirection, direction));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setChildren(AbstractPanel leftChild, AbstractPanel rightChild, int direction) {
+		setDirection(direction);
+		List<AbstractPanel> children = getChildren();
+
+		if( children.size()==0)
+		{
+			children.add(leftChild);
+			children.add(rightChild);
+			
+		}
+		else
+		{
+			children.set(0, leftChild);
+			children.set(1, rightChild);
+		}
+
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void delete(AbstractPanel childToDelete) {
+		// Get the other child
+		EList<AbstractPanel> children = getChildren();
+		AbstractPanel otherChild = (childToDelete==children.get(0)?children.get(1):children.get(0));
+		
+		PanelParent parent = getParent();
+		// Change parent
+//		otherChild.setParent( parent );
+		parent.replaceChild(this, otherChild);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DiPackage.SASH_PANEL__CHILDREN:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -264,6 +312,38 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == PanelParent.class) {
+			switch (derivedFeatureID) {
+				case DiPackage.SASH_PANEL__CHILDREN: return DiPackage.PANEL_PARENT__CHILDREN;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == PanelParent.class) {
+			switch (baseFeatureID) {
+				case DiPackage.PANEL_PARENT__CHILDREN: return DiPackage.SASH_PANEL__CHILDREN;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -274,6 +354,25 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 		result.append(direction);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Set both ends (parent and child).
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void replaceChild(AbstractPanel oldChild, AbstractPanel newChild) {
+		
+		int index = getChildren().indexOf(oldChild);
+		if(index>=0)
+		{
+			// do replace
+			getChildren().set(index, newChild);
+			newChild.setParent(this);
+		}
+		else
+			throw new IndexOutOfBoundsException("Child '" + oldChild + "' not found in sash. Can't replace it.");
 	}
 
 } //SashPanelImpl

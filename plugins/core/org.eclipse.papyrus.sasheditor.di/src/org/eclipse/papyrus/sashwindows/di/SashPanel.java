@@ -6,7 +6,6 @@
  */
 package org.eclipse.papyrus.sashwindows.di;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +15,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.SashPanel#getChildren <em>Children</em>}</li>
  *   <li>{@link org.eclipse.papyrus.sashwindows.di.SashPanel#getSashPosition <em>Sash Position</em>}</li>
  *   <li>{@link org.eclipse.papyrus.sashwindows.di.SashPanel#getDirection <em>Direction</em>}</li>
  * </ul>
@@ -26,23 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface SashPanel extends AbstractPanel {
-	/**
-	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.sashwindows.di.AbstractPanel}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Children</em>' containment reference list.
-	 * @see org.eclipse.papyrus.sashwindows.di.DiPackage#getSashPanel_Children()
-	 * @model containment="true" lower="2" upper="2" ordered="false"
-	 * @generated
-	 */
-	EList<AbstractPanel> getChildren();
-
+public interface SashPanel extends AbstractPanel, PanelParent {
 	/**
 	 * Returns the value of the '<em><b>Sash Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -93,5 +75,21 @@ public interface SashPanel extends AbstractPanel {
 	 * @generated
 	 */
 	void setDirection(int value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model leftChildRequired="true" leftChildOrdered="false" rightChildRequired="true" rightChildOrdered="false" directionDataType="org.eclipse.papyrus.sashwindows.di.int" directionRequired="true" directionOrdered="false"
+	 * @generated
+	 */
+	void setChildren(AbstractPanel leftChild, AbstractPanel rightChild, int direction);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model childToDeleteRequired="true" childToDeleteOrdered="false"
+	 * @generated
+	 */
+	void delete(AbstractPanel childToDelete);
 
 } // SashPanel

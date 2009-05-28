@@ -8,18 +8,16 @@ package org.eclipse.papyrus.sashwindows.di.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.eclipse.papyrus.sashwindows.di.AbstractNode;
 import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.sashwindows.di.DiPackage;
-import org.eclipse.papyrus.sashwindows.di.Window;
+import org.eclipse.papyrus.sashwindows.di.PanelParent;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,23 +27,12 @@ import org.eclipse.papyrus.sashwindows.di.Window;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.AbstractPanelImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.AbstractPanelImpl#getWindow <em>Window</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class AbstractPanelImpl extends AbstractNodeImpl implements AbstractPanel {
-	/**
-	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParent()
-	 * @generated
-	 * @ordered
-	 */
-	protected AbstractNode parent;
-
+public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractPanel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,16 +57,9 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractNode getParent() {
-		if (parent != null && parent.eIsProxy()) {
-			InternalEObject oldParent = (InternalEObject)parent;
-			parent = (AbstractNode)eResolveProxy(oldParent);
-			if (parent != oldParent) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.ABSTRACT_PANEL__PARENT, oldParent, parent));
-			}
-		}
-		return parent;
+	public PanelParent getParent() {
+		if (eContainerFeatureID() != DiPackage.ABSTRACT_PANEL__PARENT) return null;
+		return (PanelParent)eContainer();
 	}
 
 	/**
@@ -87,39 +67,8 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractNode basicGetParent() {
-		return parent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParent(AbstractNode newParent) {
-		AbstractNode oldParent = parent;
-		parent = newParent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ABSTRACT_PANEL__PARENT, oldParent, parent));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Window getWindow() {
-		if (eContainerFeatureID() != DiPackage.ABSTRACT_PANEL__WINDOW) return null;
-		return (Window)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetWindow(Window newWindow, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newWindow, DiPackage.ABSTRACT_PANEL__WINDOW, msgs);
+	public NotificationChain basicSetParent(PanelParent newParent, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newParent, DiPackage.ABSTRACT_PANEL__PARENT, msgs);
 		return msgs;
 	}
 
@@ -128,20 +77,20 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWindow(Window newWindow) {
-		if (newWindow != eInternalContainer() || (eContainerFeatureID() != DiPackage.ABSTRACT_PANEL__WINDOW && newWindow != null)) {
-			if (EcoreUtil.isAncestor(this, newWindow))
+	public void setParent(PanelParent newParent) {
+		if (newParent != eInternalContainer() || (eContainerFeatureID() != DiPackage.ABSTRACT_PANEL__PARENT && newParent != null)) {
+			if (EcoreUtil.isAncestor(this, newParent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newWindow != null)
-				msgs = ((InternalEObject)newWindow).eInverseAdd(this, DiPackage.WINDOW__PANEL, Window.class, msgs);
-			msgs = basicSetWindow(newWindow, msgs);
+			if (newParent != null)
+				msgs = ((InternalEObject)newParent).eInverseAdd(this, DiPackage.PANEL_PARENT__CHILDREN, PanelParent.class, msgs);
+			msgs = basicSetParent(newParent, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ABSTRACT_PANEL__WINDOW, newWindow, newWindow));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ABSTRACT_PANEL__PARENT, newParent, newParent));
 	}
 
 	/**
@@ -152,10 +101,10 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DiPackage.ABSTRACT_PANEL__WINDOW:
+			case DiPackage.ABSTRACT_PANEL__PARENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetWindow((Window)otherEnd, msgs);
+				return basicSetParent((PanelParent)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -168,8 +117,8 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DiPackage.ABSTRACT_PANEL__WINDOW:
-				return basicSetWindow(null, msgs);
+			case DiPackage.ABSTRACT_PANEL__PARENT:
+				return basicSetParent(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -182,8 +131,8 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case DiPackage.ABSTRACT_PANEL__WINDOW:
-				return eInternalContainer().eInverseRemove(this, DiPackage.WINDOW__PANEL, Window.class, msgs);
+			case DiPackage.ABSTRACT_PANEL__PARENT:
+				return eInternalContainer().eInverseRemove(this, DiPackage.PANEL_PARENT__CHILDREN, PanelParent.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -197,10 +146,7 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DiPackage.ABSTRACT_PANEL__PARENT:
-				if (resolve) return getParent();
-				return basicGetParent();
-			case DiPackage.ABSTRACT_PANEL__WINDOW:
-				return getWindow();
+				return getParent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,10 +160,7 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiPackage.ABSTRACT_PANEL__PARENT:
-				setParent((AbstractNode)newValue);
-				return;
-			case DiPackage.ABSTRACT_PANEL__WINDOW:
-				setWindow((Window)newValue);
+				setParent((PanelParent)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -232,10 +175,7 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiPackage.ABSTRACT_PANEL__PARENT:
-				setParent((AbstractNode)null);
-				return;
-			case DiPackage.ABSTRACT_PANEL__WINDOW:
-				setWindow((Window)null);
+				setParent((PanelParent)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -250,9 +190,7 @@ public abstract class AbstractPanelImpl extends AbstractNodeImpl implements Abst
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiPackage.ABSTRACT_PANEL__PARENT:
-				return parent != null;
-			case DiPackage.ABSTRACT_PANEL__WINDOW:
-				return getWindow() != null;
+				return getParent() != null;
 		}
 		return super.eIsSet(featureID);
 	}

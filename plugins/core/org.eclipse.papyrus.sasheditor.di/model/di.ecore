@@ -25,25 +25,52 @@
       <eParameters name="targetParentFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
       <eParameters name="targetIndex" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eOperations>
+    <eOperations name="insertFolder" ordered="false" lowerBound="1">
+      <eParameters name="folderToInsert" ordered="false" lowerBound="1" eType="#//TabFolder"/>
+      <eParameters name="refFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
+      <eParameters name="refFolderSide" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="movePage" ordered="false" lowerBound="1">
+      <eParameters name="srcParentFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
+      <eParameters name="srcIndex" ordered="false" lowerBound="1" eType="#//int"/>
+      <eParameters name="targetParentFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
+    </eOperations>
+    <eOperations name="removeEmptyFolder" ordered="false" lowerBound="1">
+      <eParameters name="folder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="windows" ordered="false"
         upperBound="-1" eType="#//Window" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentSelection" ordered="false"
         unique="false" lowerBound="1" eType="#//TabFolder"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Window" eSuperTypes="#//AbstractNode">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="panel" ordered="false"
-        lowerBound="1" eType="#//AbstractPanel" containment="true" eOpposite="#//AbstractPanel/window"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Window" eSuperTypes="#//PanelParent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
         unique="false" lowerBound="1" eType="#//Position"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="size" ordered="false" unique="false"
         lowerBound="1" eType="#//Size"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="panel" ordered="false"
+        unique="false" lowerBound="1" eType="#//AbstractPanel" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Redefine children."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractNode" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractPanel" abstract="true" eSuperTypes="#//AbstractNode">
+  <eClassifiers xsi:type="ecore:EClass" name="PanelParent" abstract="true">
+    <eOperations name="replaceChild" ordered="false" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Replace the specified child by the new value.&#xD;&#xA;Don't need to be implemented in TabFolder.&#xD;&#xA;Used to insert a new SashPanel."/>
+      </eAnnotations>
+      <eParameters name="oldChild" ordered="false" lowerBound="1" eType="#//AbstractPanel"/>
+      <eParameters name="newChild" ordered="false" lowerBound="1" eType="#//AbstractPanel"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
+        lowerBound="2" upperBound="2" eType="#//AbstractPanel" containment="true"
+        eOpposite="#//AbstractPanel/parent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPanel" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
-        unique="false" lowerBound="1" eType="#//AbstractNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="window" ordered="false"
-        lowerBound="1" eType="#//Window" eOpposite="#//Window/panel"/>
+        unique="false" lowerBound="1" eType="#//PanelParent" eOpposite="#//PanelParent/children"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Position">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" ordered="false" unique="false"
@@ -95,9 +122,15 @@
         unique="false" lowerBound="1" eType="#//TabFolder" eOpposite="#//TabFolder/children"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="JavaObject" instanceClassName="java.lang.Object"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SashPanel" eSuperTypes="#//AbstractPanel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
-        lowerBound="2" upperBound="2" eType="#//AbstractPanel" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SashPanel" eSuperTypes="#//AbstractPanel #//PanelParent">
+    <eOperations name="setChildren" ordered="false" lowerBound="1">
+      <eParameters name="leftChild" ordered="false" lowerBound="1" eType="#//AbstractPanel"/>
+      <eParameters name="rightChild" ordered="false" lowerBound="1" eType="#//AbstractPanel"/>
+      <eParameters name="direction" ordered="false" lowerBound="1" eType="#//int"/>
+    </eOperations>
+    <eOperations name="delete" ordered="false" lowerBound="1">
+      <eParameters name="childToDelete" ordered="false" lowerBound="1" eType="#//AbstractPanel"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sashPosition" ordered="false"
         unique="false" lowerBound="1" eType="#//Float">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

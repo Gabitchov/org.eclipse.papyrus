@@ -22,13 +22,14 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
-import org.eclipse.papyrus.sashwindows.di.AbstractNode;
+import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
+import org.eclipse.papyrus.sashwindows.di.PanelParent;
 import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
@@ -114,8 +115,27 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @param side
 	 * @return
 	 */
-	public ITabFolderModel createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
-		throw new UnsupportedOperationException("Not yet implemented.");
+	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
+
+		// disable fired events
+		contentChangedListenerManager.setDeliver(false);
+		// Create new folder. Parent will be set when inserted.
+		TabFolder newFolder = DiFactory.eINSTANCE.createTabFolder();
+		
+		TabFolder refFolder = ((TabFolderModel)targetFolder).getTabFolder();
+		TabFolder pageSrcFolder = ((TabFolderModel)tabFolder).getTabFolder();
+		
+		// Insert folder
+		diSashModel.insertFolder(newFolder, refFolder, side);
+		// Move tab from folder to folder
+		diSashModel.movePage(pageSrcFolder, tabIndex, newFolder);
+		// Remove unused folder if necessary
+		diSashModel.removeEmptyFolder(pageSrcFolder);
+		diSashModel.setCurrentSelection(newFolder);
+		
+		// Reenable events, and fire the last one
+		contentChangedListenerManager.setDeliver(true);
+		
 	}
 
 	/**
@@ -157,9 +177,12 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @param newIndex
 	 */
 	public void movePage(ITabFolderModel folderModel, int oldIndex, int newIndex) {
-		TabFolderModel folder = (TabFolderModel)folderModel;
+		TabFolder folder = ((TabFolderModel)folderModel).getTabFolder();
 		
-		folder.getTabFolder().movePage(oldIndex, newIndex);
+		contentChangedListenerManager.setDeliver(false);
+		folder.movePage(oldIndex, newIndex);
+		diSashModel.setCurrentSelection(folder);
+		contentChangedListenerManager.setDeliver(true);
 	}
 
 	/**
@@ -171,7 +194,16 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @param targetIndex
 	 */
 	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex) {
-		diSashModel.movePage(((TabFolderModel)srcFolderModel).getTabFolder(), sourceIndex, ((TabFolderModel)targetFolderModel).getTabFolder(), targetIndex);
+
+		TabFolder srcFolder = ((TabFolderModel)srcFolderModel).getTabFolder();
+		TabFolder targetFolder = ((TabFolderModel)targetFolderModel).getTabFolder();
+		
+		contentChangedListenerManager.setDeliver(false);
+		diSashModel.movePage(srcFolder, sourceIndex, targetFolder, targetIndex);
+        diSashModel.removeEmptyFolder(srcFolder);
+        diSashModel.setCurrentSelection(targetFolder);
+		contentChangedListenerManager.setDeliver(true);
+        
 	}
 
 	/**
@@ -245,6 +277,42 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 		
 		private List<IContentChangedListener> listeners;
 
+		/** Is this mngr delivering events ? */
+		private boolean isDeliverEnable = true;
+
+		/** Last event stored when isDeliverEnable == false; */
+		private ContentEvent storedEvent;
+		
+		
+		/**
+		 * @return the isDeliverEnable
+		 */
+		protected boolean isDeliver() {
+			return isDeliverEnable;
+		}
+		
+		/**
+		 * @param isDeliverEnable the isDeliverEnable to set
+		 */
+		protected void setDeliver(boolean isDeliverEnable) {
+			
+			if( this.isDeliverEnable == isDeliverEnable)
+				return;
+			
+			// Check if the old value is not delivering event
+			if( !this.isDeliverEnable)
+			{
+				this.isDeliverEnable = true;
+				// reenable events. Check if an event is stored
+				if(storedEvent!=null)
+					fireContentChanged(storedEvent);
+				
+			}
+			else
+			  this.isDeliverEnable = isDeliverEnable;
+			
+			storedEvent = null;
+		}
 		/**
 		 * Add a listener listening on content changed. This listener will be 
 		 * notified each time the content change.
@@ -292,6 +360,12 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 			if(listeners==null)
 				return;
 			
+			if( !isDeliverEnable)
+			{
+				storedEvent = event;
+				return;
+			}
+
 			for( IContentChangedListener listener : listeners)
 			{
 				listener.contentChanged(event);
@@ -315,8 +389,9 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 		@Override
 		public void notifyChanged(Notification msg) {
 			super.notifyChanged(msg);
+			
 			Object sender = msg.getNotifier();
-			if(sender instanceof AbstractNode || sender instanceof Window || sender instanceof PageRef )
+			if(sender instanceof AbstractPanel || sender instanceof Window || sender instanceof PageRef )
 			  firePropertyChanged(new ContentEvent(msg.getEventType(), sender, null));
 		}
 	}

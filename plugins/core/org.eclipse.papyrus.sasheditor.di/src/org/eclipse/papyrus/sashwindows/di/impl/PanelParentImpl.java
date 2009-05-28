@@ -6,9 +6,7 @@
  */
 package org.eclipse.papyrus.sashwindows.di.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -19,44 +17,44 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.sashwindows.di.DiFactory;
+import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.sashwindows.di.DiPackage;
-import org.eclipse.papyrus.sashwindows.di.PageList;
-import org.eclipse.papyrus.sashwindows.di.PageRef;
+import org.eclipse.papyrus.sashwindows.di.PanelParent;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Page List</b></em>'.
+ * An implementation of the model object '<em><b>Panel Parent</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageListImpl#getAvailablePage <em>Available Page</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PanelParentImpl#getChildren <em>Children</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PageListImpl extends EObjectImpl implements PageList {
+public abstract class PanelParentImpl extends EObjectImpl implements PanelParent {
 	/**
-	 * The cached value of the '{@link #getAvailablePage() <em>Available Page</em>}' containment reference list.
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAvailablePage()
+	 * @see #getChildren()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PageRef> availablePage;
+	protected EList<AbstractPanel> children;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PageListImpl() {
+	protected PanelParentImpl() {
 		super();
 	}
 
@@ -67,7 +65,7 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DiPackage.Literals.PAGE_LIST;
+		return DiPackage.Literals.PANEL_PARENT;
 	}
 
 	/**
@@ -75,41 +73,37 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PageRef> getAvailablePage() {
-		if (availablePage == null) {
-			availablePage = new EObjectContainmentEList<PageRef>(PageRef.class, this, DiPackage.PAGE_LIST__AVAILABLE_PAGE);
+	public EList<AbstractPanel> getChildren() {
+		if (children == null) {
+			children = new EObjectContainmentWithInverseEList<AbstractPanel>(AbstractPanel.class, this, DiPackage.PANEL_PARENT__CHILDREN, DiPackage.ABSTRACT_PANEL__PARENT);
 		}
-		return availablePage;
+		return children;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public void addPage(Object pageIdentifier) {
-		
-		PageRef pageRef = DiFactory.eINSTANCE.createPageRef();
-		pageRef.setPageIdentifier(pageIdentifier);
-		getAvailablePage().add(pageRef);
-
+	public void replaceChild(AbstractPanel oldChild, AbstractPanel newChild) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public void removePage(Object pageIdentifier) {
-		for( PageRef pageRef : getAvailablePage() )
-		{
-
-			if(pageRef.getPageIdentifier().equals(pageIdentifier))
-			{
-				getAvailablePage().remove(pageRef);
-				return ;
-			}
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
 		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -120,8 +114,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DiPackage.PAGE_LIST__AVAILABLE_PAGE:
-				return ((InternalEList<?>)getAvailablePage()).basicRemove(otherEnd, msgs);
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -134,8 +128,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DiPackage.PAGE_LIST__AVAILABLE_PAGE:
-				return getAvailablePage();
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				return getChildren();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,9 +143,9 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DiPackage.PAGE_LIST__AVAILABLE_PAGE:
-				getAvailablePage().clear();
-				getAvailablePage().addAll((Collection<? extends PageRef>)newValue);
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				getChildren().clear();
+				getChildren().addAll((Collection<? extends AbstractPanel>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -165,8 +159,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DiPackage.PAGE_LIST__AVAILABLE_PAGE:
-				getAvailablePage().clear();
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				getChildren().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -180,10 +174,10 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DiPackage.PAGE_LIST__AVAILABLE_PAGE:
-				return availablePage != null && !availablePage.isEmpty();
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				return children != null && !children.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //PageListImpl
+} //PanelParentImpl
