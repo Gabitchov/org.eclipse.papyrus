@@ -6,22 +6,15 @@
  */
 package org.eclipse.papyrus.sashwindows.di.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.sashwindows.di.PageList;
