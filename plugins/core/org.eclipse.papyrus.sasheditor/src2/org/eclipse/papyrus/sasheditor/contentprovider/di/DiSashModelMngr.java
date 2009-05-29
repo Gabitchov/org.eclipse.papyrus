@@ -31,10 +31,7 @@ import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
 public class DiSashModelMngr {
 
 	/** The EMF model used to store the sash windows structure and pages */
-	private SashWindowsMngr sashWindowMngr;
-	
-	/** The factory used to create IPageModel */
-	private IPageModelFactory pageModelFactory;
+	protected SashWindowsMngr sashWindowMngr;
 	
 	/**
 	 * Instance of the pageMngr.
@@ -42,11 +39,28 @@ public class DiSashModelMngr {
 	private PageMngrImpl pageMngr = null;
 
 	/**
-	 * Instance of the DiContentProvider. 
+	 * Instance of the DiContentProvider used to manipulate SashModel. 
 	 */
 	private DiContentProvider contentProvider;
 	
+	/** The factory used to create IPageModel */
+	private IPageModelFactory pageModelFactory;
 	
+	
+	/**
+	 * Constructor.
+	 * Create a DiSashModelMngr with the specified factory. A SashModel is created but not attached to a resource.
+	 * 
+	 * @param pageModelFactory
+	 * @param createDefaultSashModel If true, create the default SashModel by calling {@link #createDefaultSashModel()}
+	 */
+	protected DiSashModelMngr(IPageModelFactory pageModelFactory, boolean createDefaultSashModel) {
+		this.pageModelFactory = pageModelFactory;
+		// Create a SashModel
+		if(createDefaultSashModel)
+		  sashWindowMngr = createDefaultSashModel();
+	}
+
 	/**
 	 * Constructor.
 	 * Create a DiSashModelMngr with the specified factory. A SashModel is created but not attached to a resource.
@@ -94,10 +108,19 @@ public class DiSashModelMngr {
 
 	/**
 	 * Get the internal EMF implementation.
+	 * Intended to be used by tests.
 	 * @return the sashWindowMngr
 	 */
-	public SashWindowsMngr getDiSashWindowsMngr() {
+	protected SashWindowsMngr getDiSashWindowsMngr() {
 		return sashWindowMngr;
+	}
+
+	
+	/**
+	 * @return the contentProvider
+	 */
+	protected DiContentProvider getDiContentProvider() {
+		return contentProvider;
 	}
 
 	/**
@@ -150,7 +173,7 @@ public class DiSashModelMngr {
 	 * @param diResource
 	 * @return
 	 */
-	private SashWindowsMngr createDefaultSashModel() {
+	protected SashWindowsMngr createDefaultSashModel() {
 		return DiUtils.createDefaultSashWindowsMngr();
 	}
 
@@ -159,7 +182,7 @@ public class DiSashModelMngr {
 	 * @param diResource
 	 * @return
 	 */
-	private SashWindowsMngr lookupSashWindowMngr(Resource diResource) {
+	protected SashWindowsMngr lookupSashWindowMngr(Resource diResource) {
 		
 		return DiUtils.lookupSashWindowsMngr(diResource);
 	}

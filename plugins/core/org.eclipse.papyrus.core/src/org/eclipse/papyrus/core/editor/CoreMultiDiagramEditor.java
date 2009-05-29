@@ -27,8 +27,10 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -56,6 +58,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
@@ -341,9 +344,12 @@ public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPa
 
 	/**
 	 * Create the pageContentProvider.
+	 * @param pageFactory
+	 * @param diResource Resource used to load/save the SashModel.
 	 */
-	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory) {
-		sashModelMngr = new DiSashModelMngr(pageFactory);
+	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory, Resource diResource, TransactionalEditingDomain editingDomain) {
+		
+		sashModelMngr = new TransactionalDiSashModelMngr(pageFactory, diResource, editingDomain);
 		
 		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
 		
@@ -492,7 +498,7 @@ public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPa
 		editorRegistry = createEditorRegistry();
 
 		// Create ContentProvider
-		setContentProvider( createPageProvider(editorRegistry));
+		setContentProvider( createPageProvider(editorRegistry, defaultContext.getResourceSet().getDiResource(), defaultContext.getTransactionalEditingDomain()));
 		
 		// Set editor name
 		setPartName(file.getName());
