@@ -486,7 +486,12 @@
             metamodelType="/0/@diagram/@topLevelNodes.3/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InstanceSpecificationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InstanceSpecificationFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -545,7 +550,12 @@
             metamodelType="/0/@diagram/@topLevelNodes.4/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ComponentFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ComponentFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -611,7 +621,12 @@
             metamodelType="/0/@diagram/@topLevelNodes.5/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.SignalFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.SignalFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -673,7 +688,12 @@
             metamodelType="/0/@diagram/@topLevelNodes.6/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InterfaceFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InterfaceFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
@@ -733,7 +753,12 @@
             metamodelType="/0/@diagram/@topLevelNodes.7/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="200"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -798,7 +823,12 @@
             editHelperClassName="EnumerationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.EnumerationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.EnumerationFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -907,7 +937,12 @@
             metamodelType="/0/@diagram/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="200"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -973,7 +1008,12 @@
             metamodelType="/0/@diagram/@childNodes.3/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -1223,7 +1263,12 @@
             editHelperClassName="PrimitiveTypeEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PrimitiveTypeFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PrimitiveTypeFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="50"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1283,7 +1328,12 @@
             editHelperClassName="DataTypeEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.DataTypeFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.DataTypeFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1604,7 +1654,12 @@
             editHelperClassName="AssociationClassEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1701,7 +1756,12 @@
             editHelperClassName="InstanceSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InstanceSpecificationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InstanceSpecificationFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1760,7 +1820,12 @@
             editHelperClassName="ComponentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ComponentFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ComponentFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -1825,7 +1890,12 @@
             editHelperClassName="SignalEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.SignalFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.SignalFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1886,7 +1956,12 @@
             editHelperClassName="InterfaceEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InterfaceFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InterfaceFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
@@ -1945,7 +2020,12 @@
             editHelperClassName="ModelEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="200"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2009,7 +2089,12 @@
             metamodelType="/0/@diagram/@childNodes.15/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.EnumerationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.EnumerationFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -2068,7 +2153,12 @@
             metamodelType="/0/@diagram/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="200"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2133,7 +2223,12 @@
             metamodelType="/0/@diagram/@childNodes.3/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2196,7 +2291,12 @@
             metamodelType="/0/@diagram/@childNodes.23/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PrimitiveTypeFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PrimitiveTypeFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="50"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -2255,7 +2355,12 @@
             metamodelType="/0/@diagram/@childNodes.24/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.DataTypeFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.DataTypeFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="100"
+              height="100"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
