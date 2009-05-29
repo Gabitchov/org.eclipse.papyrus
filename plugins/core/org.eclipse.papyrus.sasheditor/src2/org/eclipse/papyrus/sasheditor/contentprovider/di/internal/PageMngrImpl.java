@@ -27,6 +27,7 @@ import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 /**
  * Implementation of the page manager.
  * The page manager provides basic methods to access the DiSashModel and its PageList.
+ * This is the users interface to add, open, close and remove pages.
  * 
  * @author cedric dumoulin
  */
@@ -49,10 +50,7 @@ public class PageMngrImpl implements IPageMngr {
 	 */
 	public void addPage(EObject pageIdentifier) {
 		
-		PageRef pageRef = DiFactory.eINSTANCE.createPageRef();
-		pageRef.setPageIdentifier(pageIdentifier);
-		
-		diSashModel.getPageList().getAvailablePage().add(pageRef);
+		diSashModel.getPageList().addPage(pageIdentifier);
 	}
 
 	/**
@@ -90,7 +88,7 @@ public class PageMngrImpl implements IPageMngr {
 	 */
 	public void openPage(EObject pageIdentifier) {
 		// Add the page to the SashModel and to the PageList
-		addPage(pageIdentifier);
+		diSashModel.getPageList().addPage(pageIdentifier);
 		diSashModel.getSashModel().addPage(pageIdentifier);
 	}
 
@@ -103,7 +101,6 @@ public class PageMngrImpl implements IPageMngr {
 		// remove from pageList and from SashModel
 		diSashModel.getPageList().addPage(pageIdentifier);
 		diSashModel.getSashModel().removePage(pageIdentifier);
-		
 	}
 
 }

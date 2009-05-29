@@ -97,7 +97,7 @@ public class PageListImpl extends EObjectImpl implements PageList {
 		for( PageRef pageRef : getAvailablePage() )
 		{
 
-			if(pageRef.getPageIdentifier().equals(pageIdentifier))
+			if(pageRef.isForIdentifier(pageIdentifier))
 			{
 				getAvailablePage().remove(pageRef);
 				return ;
