@@ -224,6 +224,21 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
+	public static final String ASSOCIATIONCLASS_PREF_FONT_COLOR = "AssociationClass.font.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String ASSOCIATIONCLASS_PREF_FONT = "AssociationClass.font";
+
+	/**
+	 * @generated
+	 */
+	public static final String ASSOCIATIONCLASS_PREF_LINE_COLOR = "AssociationClass.line.color";
+
+	/**
+	 * @generated
+	 */
 	public static final String CLASS_PREF_FONT = "Class.font";
 
 	/**
@@ -443,6 +458,21 @@ public interface IPapyrusPreferencesConstant {
 	 * @generated
 	 */
 	public static final String ENUMERATION_PREF_FILL_COLOR = "Enumeration.fill.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String DEPENDENCY_PREF_FONT_COLOR = "Dependency.font.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String DEPENDENCY_PREF_FONT = "Dependency.font";
+
+	/**
+	 * @generated
+	 */
+	public static final String DEPENDENCY_PREF_LINE_COLOR = "Dependency.line.color";
 
 	/**
 	 * @generated
@@ -863,6 +893,21 @@ public interface IPapyrusPreferencesConstant {
 	 * @generated
 	 */
 	public static final String SIGNAL_PREF_FILL_COLOR = "Signal.fill.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String ASSOCIATION_PREF_FONT_COLOR = "Association.font.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String ASSOCIATION_PREF_FONT = "Association.font";
+
+	/**
+	 * @generated
+	 */
+	public static final String ASSOCIATION_PREF_LINE_COLOR = "Association.line.color";
 
 	/**
 	 * @generated
