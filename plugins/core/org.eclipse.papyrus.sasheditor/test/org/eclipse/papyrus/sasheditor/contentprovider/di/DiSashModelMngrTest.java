@@ -97,6 +97,7 @@ public class DiSashModelMngrTest extends TestCase {
 	 */
 	public void testDiSashModelMngrIPageModelFactoryResource() {
 		Resource resource = createDiSashModelResource();
+		
 	       DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory, resource);
 	       
 	       assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
