@@ -24,6 +24,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	private DiContentProvider diContentProvider;
 	
 	private TransactionalEditingDomain editingDomain;
+	
 	/**
 	 * 
 	 * Constructor.

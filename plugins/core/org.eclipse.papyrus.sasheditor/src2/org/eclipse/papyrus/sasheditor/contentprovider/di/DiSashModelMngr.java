@@ -120,9 +120,22 @@ public class DiSashModelMngr {
 	 * @return the contentProvider
 	 */
 	protected DiContentProvider getDiContentProvider() {
+		if(contentProvider == null)
+		{
+			contentProvider = createDiContentProvider();
+		}
 		return contentProvider;
 	}
 
+	/**
+	 * Create the contentProvider.
+	 * @return
+	 */
+	protected DiContentProvider createDiContentProvider()
+	{
+		return new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory);		
+	}
+	
 	/**
 	 * Get the IPageMngr providing basic methods to manage Pages in the sash model.
 	 * @return
@@ -145,11 +158,7 @@ public class DiSashModelMngr {
 	 */
 	public ISashWindowsContentProvider getISashWindowsContentProvider()
 	{
-		if(contentProvider == null)
-		{
-			contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory);
-		}
-		
+				
 		return contentProvider;
 		
 	}

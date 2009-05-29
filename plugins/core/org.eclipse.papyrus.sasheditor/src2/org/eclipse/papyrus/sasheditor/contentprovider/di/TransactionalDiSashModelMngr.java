@@ -6,6 +6,7 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.TransactionalDiContentProvider;
 
 
@@ -49,4 +50,14 @@ public class TransactionalDiSashModelMngr extends DiSashModelMngr {
 		}
 	}
 
+	/**
+	 * Return the transactional version
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getISashWindowsContentProvider()
+	 * @return
+	 *
+	 */
+	@Override
+	public ISashWindowsContentProvider getISashWindowsContentProvider() {
+		return transDiContentProvider;
+	}
 }
