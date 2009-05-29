@@ -257,7 +257,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 			if (part instanceof IEditorPart) {
 				ISelection unwrappedSelection = NavigatorUtils.unwrapSelection(selection);
 				if (!unwrappedSelection.isEmpty()) {
-					getCommonViewer().setSelection(unwrappedSelection, true);
+					getCommonViewer().setSelection(unwrappedSelection, true);					
 				}
 			}
 			this.handlingSelectionChanged = false;

@@ -62,6 +62,29 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProvider
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.runtime.api.parts.EEFMessageManager;
 import org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.emf.eef.runtime.ui.widgets.AdvancedEObjectFlatComboViewer;
+import org.eclipse.emf.eef.runtime.ui.widgets.AdvancedEObjectFlatComboViewer.EObjectFlatComboViewerListener;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.uml2.uml.Type;
+
+
+
 import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -86,67 +109,41 @@ import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.emf.eef.runtime.ui.widgets.AdvancedEObjectFlatComboViewer;
-import org.eclipse.emf.eef.runtime.ui.widgets.AdvancedEObjectFlatComboViewer.EObjectFlatComboViewerListener;
-import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.uml2.uml.Type;
-
 import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
-
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ParameterPropertiesEditionPart {
 
-	private Text name;
-
-	private EMFComboViewer visibility;
-
-	private AdvancedEObjectFlatComboViewer type;
-
-	private EMFComboViewer direction;
-
-	private EMFComboViewer effect;
-
-	private Button isOrdered;
-
-	private Button isUnique;
-
-	private Button isException;
-
-	private Button isStream;
-
-	private Text lower;
-
-	private Text upper;
-
+	protected Text name;
+	protected EMFComboViewer visibility;
+	protected AdvancedEObjectFlatComboViewer type;
+	protected ViewerFilter typeFilter;
+	protected EMFComboViewer direction;
+	protected EMFComboViewer effect;
+	protected Button isOrdered;
+	protected Button isUnique;
+	protected Button isException;
+	protected Button isStream;
+	protected Text lower;
+	protected Text upper;
 	private EMFListEditUtil parameterSetEditUtil;
+	protected ReferencesTable<?> parameterSet;
+	protected List<ViewerFilter> parameterSetBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> parameterSetFilters = new ArrayList<ViewerFilter>();
 
-	private ReferencesTable<?> parameterSet;
 
+
+
+	
 	public ParameterPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-
+	
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
@@ -157,13 +154,14 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-
+	
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createGeneralGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-
+		
 		// End of user code
+		
 	}
 
 	protected void createGeneralGroup(FormToolkit widgetFactory, final Composite view) {
@@ -177,19 +175,17 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 		generalGroupLayout.numColumns = 3;
 		generalGroup.setLayout(generalGroupLayout);
 		createNameText(widgetFactory, generalGroup);
-		createVisibilityEEnumViewer(widgetFactory, generalGroup);
+		createVisibilityEMFComboViewer(widgetFactory, generalGroup);
 		createTypeFlatComboViewer(generalGroup, widgetFactory);
-		createDirectionEEnumViewer(widgetFactory, generalGroup);
-		createEffectEEnumViewer(widgetFactory, generalGroup);
+		createDirectionEMFComboViewer(widgetFactory, generalGroup);
+		createEffectEMFComboViewer(widgetFactory, generalGroup);
 		createGeneralHBox1HBox(widgetFactory, generalGroup);
 		createGeneralHBox2HBox(widgetFactory, generalGroup);
 		createParameterSetReferencesTable(widgetFactory, generalGroup);
 		generalSection.setClient(generalGroup);
 	}
-
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.name,
-				UMLViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.name, UMLViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -204,10 +200,9 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.name,
-							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-
+			
 		});
 		name.addFocusListener(new FocusAdapter() {
 
@@ -218,8 +213,7 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.name,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
 		});
@@ -233,19 +227,16 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.name,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 
 	}
-
-	protected void createVisibilityEEnumViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.visibility,
-				UMLViewsRepository.FORM_KIND));
+	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -260,43 +251,34 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.visibility,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
 	/**
 	 * @param generalGroup
 	 */
 	protected void createTypeFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		Label typeLabel = FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(
-				UMLViewsRepository.Parameter.type, UMLViewsRepository.FORM_KIND));
-
-		ViewerFilter typeFilter = new EObjectFilter(UMLPackage.eINSTANCE.getType());
-		type = new AdvancedEObjectFlatComboViewer<Type>(UMLMessages.ParameterPropertiesEditionPart_TypeLabel, resourceSet, typeFilter, UMLPackage.eINSTANCE.getType(),
-				new EObjectFlatComboViewerListener<Type>() {
-
-					public void handleSet(Type element) {
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.type,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element));
-					}
-
-					public void navigateTo(Type element) {
-					}
-				});
+		Label typeLabel = FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.type, UMLViewsRepository.FORM_KIND));
+		
+		type = new AdvancedEObjectFlatComboViewer<Type>(UMLMessages.ParameterPropertiesEditionPart_TypeLabel, 
+			resourceSet, typeFilter, UMLPackage.eINSTANCE.getType(), new EObjectFlatComboViewerListener<Type>(){
+			public void handleSet(Type element){
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.type, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element)); 
+			}
+			public void navigateTo(Type element){ }
+		});
 		type.createControls(parent, widgetFactory);
 		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
 		type.setLayoutData(typeData);
-
+		
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.type, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
-	protected void createDirectionEEnumViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_DirectionLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.direction,
-				UMLViewsRepository.FORM_KIND));
+	
+	protected void createDirectionEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_DirectionLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.direction, UMLViewsRepository.FORM_KIND));
 		direction = new EMFComboViewer(parent);
 		direction.setContentProvider(new ArrayContentProvider());
 		direction.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -311,17 +293,14 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.direction,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getDirection()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.direction, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getDirection()));
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.direction, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
-	protected void createEffectEEnumViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_EffectLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.effect,
-				UMLViewsRepository.FORM_KIND));
+	protected void createEffectEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_EffectLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.effect, UMLViewsRepository.FORM_KIND));
 		effect = new EMFComboViewer(parent);
 		effect.setContentProvider(new ArrayContentProvider());
 		effect.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -336,144 +315,132 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.effect,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getEffect()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.effect, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getEffect()));
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.effect, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createGeneralHBox1HBox(FormToolkit widgetFactory, Composite parent) {
 		Composite container = widgetFactory.createComposite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan = 3;
+		gridData.horizontalSpan=3;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox1HBox = new HorizontalBox(container);
-
-		// Apply constraint for checkbox
+		
+		//Apply constraint for checkbox
 		GridData constraint = new GridData(GridData.FILL_HORIZONTAL);
 		constraint.horizontalAlignment = GridData.BEGINNING;
 		generalHBox1HBox.setLayoutData(constraint);
-
-		// create sub figures
-		createIsOrderedCheckbox(widgetFactory, generalHBox1HBox);
-		createIsUniqueCheckbox(widgetFactory, generalHBox1HBox);
-		createIsExceptionCheckbox(widgetFactory, generalHBox1HBox);
-		createIsStreamCheckbox(widgetFactory, generalHBox1HBox);
-
+		
+		//create sub figures
+				createIsOrderedCheckbox(widgetFactory, generalHBox1HBox);
+				createIsUniqueCheckbox(widgetFactory, generalHBox1HBox);
+				createIsExceptionCheckbox(widgetFactory, generalHBox1HBox);
+				createIsStreamCheckbox(widgetFactory, generalHBox1HBox);
+		
 		container.pack();
 	}
-
 	protected void createIsOrderedCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isOrdered = widgetFactory.createButton(parent, UMLMessages.ParameterPropertiesEditionPart_IsOrderedLabel, SWT.CHECK);
 		isOrdered.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 * 
+			 *
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.isOrdered,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isOrdered.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.isOrdered, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isOrdered.getSelection())));
 			}
-
+			
 		});
 		GridData isOrderedData = new GridData(GridData.FILL_HORIZONTAL);
-		// isOrderedData.horizontalSpan = 2;
+		//isOrderedData.horizontalSpan = 2;
 		isOrdered.setLayoutData(isOrderedData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.isOrdered, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createIsUniqueCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isUnique = widgetFactory.createButton(parent, UMLMessages.ParameterPropertiesEditionPart_IsUniqueLabel, SWT.CHECK);
 		isUnique.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 * 
+			 *
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.isUnique,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isUnique.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.isUnique, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isUnique.getSelection())));
 			}
-
+			
 		});
 		GridData isUniqueData = new GridData(GridData.FILL_HORIZONTAL);
-		// isUniqueData.horizontalSpan = 2;
+		//isUniqueData.horizontalSpan = 2;
 		isUnique.setLayoutData(isUniqueData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.isUnique, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createIsExceptionCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isException = widgetFactory.createButton(parent, UMLMessages.ParameterPropertiesEditionPart_IsExceptionLabel, SWT.CHECK);
 		isException.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 * 
+			 *
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.isException,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isException.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.isException, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isException.getSelection())));
 			}
-
+			
 		});
 		GridData isExceptionData = new GridData(GridData.FILL_HORIZONTAL);
-		// isExceptionData.horizontalSpan = 2;
+		//isExceptionData.horizontalSpan = 2;
 		isException.setLayoutData(isExceptionData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.isException, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createIsStreamCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isStream = widgetFactory.createButton(parent, UMLMessages.ParameterPropertiesEditionPart_IsStreamLabel, SWT.CHECK);
 		isStream.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 * 
+			 *
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.isStream,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isStream.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.isStream, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isStream.getSelection())));
 			}
-
+			
 		});
 		GridData isStreamData = new GridData(GridData.FILL_HORIZONTAL);
-		// isStreamData.horizontalSpan = 2;
+		//isStreamData.horizontalSpan = 2;
 		isStream.setLayoutData(isStreamData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.isStream, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createGeneralHBox2HBox(FormToolkit widgetFactory, Composite parent) {
 		Composite container = widgetFactory.createComposite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan = 3;
+		gridData.horizontalSpan=3;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox2HBox = new HorizontalBox(container);
-
-		// create sub figures
-		createLowerText(widgetFactory, generalHBox2HBox);
-		createUpperText(widgetFactory, generalHBox2HBox);
-
+		
+		
+		//create sub figures
+				createLowerText(widgetFactory, generalHBox2HBox);
+				createUpperText(widgetFactory, generalHBox2HBox);
+		
 		container.pack();
 	}
-
 	protected void createLowerText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_LowerLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.lower,
-				UMLViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_LowerLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.lower, UMLViewsRepository.FORM_KIND));
 		lower = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		lower.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -488,10 +455,9 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.lower,
-							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, lower.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.lower, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, lower.getText()));
 			}
-
+			
 		});
 		lower.addFocusListener(new FocusAdapter() {
 
@@ -502,8 +468,7 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.lower,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, lower.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.lower, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, lower.getText()));
 			}
 
 		});
@@ -517,19 +482,16 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.lower,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, lower.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.lower, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, lower.getText()));
 				}
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.lower, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 
 	}
-
 	protected void createUpperText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_UpperLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.upper,
-				UMLViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ParameterPropertiesEditionPart_UpperLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.upper, UMLViewsRepository.FORM_KIND));
 		upper = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		upper.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -544,10 +506,9 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.upper,
-							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, upper.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.upper, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, upper.getText()));
 			}
-
+			
 		});
 		upper.addFocusListener(new FocusAdapter() {
 
@@ -558,8 +519,7 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			 */
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.upper,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, upper.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.upper, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, upper.getText()));
 			}
 
 		});
@@ -573,34 +533,19 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.upper,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, upper.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.upper, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, upper.getText()));
 				}
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.upper, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 
 	}
-
 	protected void createParameterSetReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.parameterSet = new ReferencesTable<ParameterSet>(UMLMessages.ParameterPropertiesEditionPart_ParameterSetLabel, new ReferencesTableListener<ParameterSet>() {
-
 			public void handleAdd() {
-				ViewerFilter parameterSetFilter = new EObjectFilter(UMLPackage.eINSTANCE.getParameterSet());
-				ViewerFilter viewerFilter = new ViewerFilter() {
-
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof EObject)
-							return (!parameterSetEditUtil.contains((EObject) element));
-						return false;
-					}
-				};
-				List filters = new ArrayList();
-				filters.add(parameterSetFilter);
-				filters.add(viewerFilter);
-				TabElementTreeSelectionDialog<ParameterSet> dialog = new TabElementTreeSelectionDialog<ParameterSet>(resourceSet, filters, "ParameterSet", UMLPackage.eINSTANCE.getParameterSet()) {
-
+				TabElementTreeSelectionDialog<ParameterSet> dialog = new TabElementTreeSelectionDialog<ParameterSet>(resourceSet, parameterSetFilters, parameterSetBusinessFilters,
+				"ParameterSet", UMLPackage.eINSTANCE.getParameterSet()) {
 					@Override
 					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
@@ -608,28 +553,17 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 							if (!parameterSetEditUtil.getVirtualList().contains(elem))
 								parameterSetEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.parameterSet,
-									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						parameterSet.refresh();
 					}
 				};
 				dialog.open();
 			}
-
-			public void handleEdit(ParameterSet element) {
-				editParameterSet(element);
-			}
-
-			public void handleMove(ParameterSet element, int oldIndex, int newIndex) {
-				moveParameterSet(element, oldIndex, newIndex);
-			}
-
-			public void handleRemove(ParameterSet element) {
-				removeFromParameterSet(element);
-			}
-
-			public void navigateTo(ParameterSet element) {
-			}
+			public void handleEdit(ParameterSet element) { editParameterSet(element); }
+			public void handleMove(ParameterSet element, int oldIndex, int newIndex) { moveParameterSet(element, oldIndex, newIndex); }
+			public void handleRemove(ParameterSet element) { removeFromParameterSet(element); }
+			public void navigateTo(ParameterSet element) { }
 		});
 		this.parameterSet.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.parameterSet, UMLViewsRepository.FORM_KIND));
 		this.parameterSet.createControls(parent, widgetFactory);
@@ -638,7 +572,7 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 		this.parameterSet.setLayoutData(parameterSetData);
 		this.parameterSet.disableMove();
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -646,10 +580,9 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 		EObject editedElement = parameterSetEditUtil.foundCorrespondingEObject(element);
 		parameterSetEditUtil.moveElement(element, oldIndex, newIndex);
 		parameterSet.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT,
-				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -660,10 +593,10 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 		EObject editedElement = parameterSetEditUtil.foundCorrespondingEObject(element);
 		parameterSetEditUtil.removeElement(element);
 		parameterSet.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT,
-				PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -672,27 +605,29 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	protected void editParameterSet(ParameterSet element) {
 
 		// Start of user code editParameterSet() method body
-
+		
 		EObject editedElement = parameterSetEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				parameterSetEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				parameterSet.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.parameterSet,
-						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartForm.this, UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
+
 	}
 
+	
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
+		
 		// End of user code
+		
 	}
 
 	/**
@@ -738,7 +673,7 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
-		visibility.setSelection(new StructuredSelection(current));
+		visibility.modelUpdating(new StructuredSelection(current));
 	}
 
 	/**
@@ -749,6 +684,10 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
 	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -776,10 +715,32 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setType(EObject newValue)
 	 */
 	public void setType(EObject newValue) {
-		if (newValue != null) {
+		if (newValue != null){
 			type.setSelection(newValue);
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addFilterType(ViewerFilter filter)
+	 */
+	public void addFilterToType(ViewerFilter filter) {
+		type.addFilter(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addBusinessFilterType(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToType(ViewerFilter filter) {
+		type.addBusinessRuleFilter(filter);
+	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -798,7 +759,7 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	 */
 	public void initDirection(EEnum eenum, Enumerator current) {
 		direction.setInput(eenum.getELiterals());
-		direction.setSelection(new StructuredSelection(current));
+		direction.modelUpdating(new StructuredSelection(current));
 	}
 
 	/**
@@ -809,6 +770,10 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	public void setDirection(Enumerator newValue) {
 		direction.modelUpdating(new StructuredSelection(newValue));
 	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -827,7 +792,7 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	 */
 	public void initEffect(EEnum eenum, Enumerator current) {
 		effect.setInput(eenum.getELiterals());
-		effect.setSelection(new StructuredSelection(current));
+		effect.modelUpdating(new StructuredSelection(current));
 	}
 
 	/**
@@ -838,6 +803,10 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	public void setEffect(Enumerator newValue) {
 		effect.modelUpdating(new StructuredSelection(newValue));
 	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -861,6 +830,10 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 		}
 	}
 
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -882,6 +855,10 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			isUnique.setSelection(false);
 		}
 	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -905,6 +882,10 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 		}
 	}
 
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -926,6 +907,10 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 			isStream.setSelection(false);
 		}
 	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -1000,6 +985,15 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#getParameterSetTable()
+	 */
+	public List getParameterSetTable() {
+		return parameterSetEditUtil.getVirtualList();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initParameterSet(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initParameterSet(EObject current, EReference containingFeature, EReference feature) {
@@ -1018,13 +1012,43 @@ public class ParameterPropertiesEditionPartForm extends CompositePropertiesEditi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#updateParameterSet(EObject newValue)
 	 */
 	public void updateParameterSet(EObject newValue) {
-		if (parameterSetEditUtil != null) {
+		if(parameterSetEditUtil!=null){
 			parameterSetEditUtil.reinit(newValue);
 			parameterSet.refresh();
 		}
 	}
 
-	// Start of user code additional methods
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addFilterParameterSet(ViewerFilter filter)
+	 */
+	public void addFilterToParameterSet(ViewerFilter filter) {
+		parameterSetFilters.add(filter);
+	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addBusinessFilterParameterSet(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToParameterSet(ViewerFilter filter) {
+		parameterSetBusinessFilters.add(filter);
+	}
+
+
+
+
+
+
+
+
+
+
+
+	
+	// Start of user code additional methods
+	
 	// End of user code
-}
+
+}	

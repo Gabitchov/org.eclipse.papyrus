@@ -22,8 +22,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.viewers.ViewerFilter;
+ 
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -56,23 +59,39 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedComment edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedComment(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedComment edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the name
@@ -81,9 +100,7 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -98,21 +115,20 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -125,24 +141,45 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
+	 * @return the current clientDependency
+	 */
+	public List getClientDependencyTable();
+
+	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
+
+	/**
+	 * Adds the given filter to the clientDependency edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToClientDependency(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the clientDependency edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToClientDependency(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the realization to add
@@ -155,24 +192,45 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getRealizationToRemove();
 
 	/**
+	 * @return the current realization
+	 */
+	public List getRealizationTable();
+
+	/**
 	 * Init the realization
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRealization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realization
-	 * 
-	 * @param newValue
-	 *            the realization to update
+	 * @param newValue the realization to update
 	 */
 	public void updateRealization(EObject newValue);
+
+	/**
+	 * Adds the given filter to the realization edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToRealization(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the realization edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToRealization(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the conveyed to add
@@ -185,24 +243,45 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getConveyedToRemove();
 
 	/**
+	 * @return the current conveyed
+	 */
+	public List getConveyedTable();
+
+	/**
 	 * Init the conveyed
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initConveyed(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the conveyed
-	 * 
-	 * @param newValue
-	 *            the conveyed to update
+	 * @param newValue the conveyed to update
 	 */
 	public void updateConveyed(EObject newValue);
+
+	/**
+	 * Adds the given filter to the conveyed edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToConveyed(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the conveyed edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToConveyed(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the informationSource to add
@@ -215,24 +294,45 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getInformationSourceToRemove();
 
 	/**
+	 * @return the current informationSource
+	 */
+	public List getInformationSourceTable();
+
+	/**
 	 * Init the informationSource
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initInformationSource(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the informationSource
-	 * 
-	 * @param newValue
-	 *            the informationSource to update
+	 * @param newValue the informationSource to update
 	 */
 	public void updateInformationSource(EObject newValue);
+
+	/**
+	 * Adds the given filter to the informationSource edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToInformationSource(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the informationSource edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToInformationSource(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the informationTarget to add
@@ -245,24 +345,45 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getInformationTargetToRemove();
 
 	/**
+	 * @return the current informationTarget
+	 */
+	public List getInformationTargetTable();
+
+	/**
 	 * Init the informationTarget
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initInformationTarget(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the informationTarget
-	 * 
-	 * @param newValue
-	 *            the informationTarget to update
+	 * @param newValue the informationTarget to update
 	 */
 	public void updateInformationTarget(EObject newValue);
+
+	/**
+	 * Adds the given filter to the informationTarget edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToInformationTarget(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the informationTarget edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToInformationTarget(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the realizingActivityEdge to add
@@ -275,24 +396,45 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getRealizingActivityEdgeToRemove();
 
 	/**
+	 * @return the current realizingActivityEdge
+	 */
+	public List getRealizingActivityEdgeTable();
+
+	/**
 	 * Init the realizingActivityEdge
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRealizingActivityEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingActivityEdge
-	 * 
-	 * @param newValue
-	 *            the realizingActivityEdge to update
+	 * @param newValue the realizingActivityEdge to update
 	 */
 	public void updateRealizingActivityEdge(EObject newValue);
+
+	/**
+	 * Adds the given filter to the realizingActivityEdge edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToRealizingActivityEdge(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the realizingActivityEdge edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToRealizingActivityEdge(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the realizingConnector to add
@@ -305,24 +447,45 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getRealizingConnectorToRemove();
 
 	/**
+	 * @return the current realizingConnector
+	 */
+	public List getRealizingConnectorTable();
+
+	/**
 	 * Init the realizingConnector
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRealizingConnector(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingConnector
-	 * 
-	 * @param newValue
-	 *            the realizingConnector to update
+	 * @param newValue the realizingConnector to update
 	 */
 	public void updateRealizingConnector(EObject newValue);
+
+	/**
+	 * Adds the given filter to the realizingConnector edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToRealizingConnector(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the realizingConnector edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToRealizingConnector(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the realizingMessage to add
@@ -335,26 +498,54 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getRealizingMessageToRemove();
 
 	/**
+	 * @return the current realizingMessage
+	 */
+	public List getRealizingMessageTable();
+
+	/**
 	 * Init the realizingMessage
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRealizingMessage(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingMessage
-	 * 
-	 * @param newValue
-	 *            the realizingMessage to update
+	 * @param newValue the realizingMessage to update
 	 */
 	public void updateRealizingMessage(EObject newValue);
 
-	// Start of user code for additional methods
+	/**
+	 * Adds the given filter to the realizingMessage edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToRealizingMessage(ViewerFilter filter);
 
+	/**
+	 * Adds the given filter to the realizingMessage edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToRealizingMessage(ViewerFilter filter);
+
+
+
+
+
+
+
+
+
+
+	// Start of user code for additional methods
+	
 	// End of user code
+
 }
+

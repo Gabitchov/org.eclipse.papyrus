@@ -23,8 +23,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.viewers.ViewerFilter;
+ 
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -57,23 +60,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedComment edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedComment(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedComment edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the name
@@ -82,9 +101,7 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -99,21 +116,20 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -126,24 +142,45 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
+	 * @return the current clientDependency
+	 */
+	public List getClientDependencyTable();
+
+	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
+
+	/**
+	 * Adds the given filter to the clientDependency edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToClientDependency(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the clientDependency edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToClientDependency(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the elementImport to add
@@ -172,23 +209,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * 
-	 * @param newValue
-	 *            the elementImport to update
+	 * @param newValue the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
+
+	/**
+	 * Adds the given filter to the elementImport edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToElementImport(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the elementImport edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToElementImport(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the packageImport to add
@@ -217,23 +270,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * 
-	 * @param newValue
-	 *            the packageImport to update
+	 * @param newValue the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
+
+	/**
+	 * Adds the given filter to the packageImport edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToPackageImport(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the packageImport edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToPackageImport(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedRule to add
@@ -262,23 +331,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * 
-	 * @param newValue
-	 *            the ownedRule to update
+	 * @param newValue the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedRule edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedRule(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedRule edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the isLeaf
@@ -287,11 +372,13 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * 
-	 * @param newValue
-	 *            the new isLeaf to set
+	 * @param newValue the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the templateBinding to add
@@ -320,23 +407,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the templateBinding
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * 
-	 * @param newValue
-	 *            the templateBinding to update
+	 * @param newValue the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
+
+	/**
+	 * Adds the given filter to the templateBinding edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToTemplateBinding(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the templateBinding edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the isAbstract
@@ -345,11 +448,13 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Defines a new isAbstract
-	 * 
-	 * @param newValue
-	 *            the new isAbstract to set
+	 * @param newValue the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the generalization to add
@@ -378,23 +483,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the generalization
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initGeneralization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalization
-	 * 
-	 * @param newValue
-	 *            the generalization to update
+	 * @param newValue the generalization to update
 	 */
 	public void updateGeneralization(EObject newValue);
+
+	/**
+	 * Adds the given filter to the generalization edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToGeneralization(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the generalization edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToGeneralization(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the powertypeExtent to add
@@ -407,24 +528,45 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getPowertypeExtentToRemove();
 
 	/**
+	 * @return the current powertypeExtent
+	 */
+	public List getPowertypeExtentTable();
+
+	/**
 	 * Init the powertypeExtent
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPowertypeExtent(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the powertypeExtent
-	 * 
-	 * @param newValue
-	 *            the powertypeExtent to update
+	 * @param newValue the powertypeExtent to update
 	 */
 	public void updatePowertypeExtent(EObject newValue);
+
+	/**
+	 * Adds the given filter to the powertypeExtent edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToPowertypeExtent(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the powertypeExtent edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToPowertypeExtent(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the redefinedClassifier to add
@@ -437,24 +579,45 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getRedefinedClassifierToRemove();
 
 	/**
+	 * @return the current redefinedClassifier
+	 */
+	public List getRedefinedClassifierTable();
+
+	/**
 	 * Init the redefinedClassifier
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRedefinedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedClassifier
-	 * 
-	 * @param newValue
-	 *            the redefinedClassifier to update
+	 * @param newValue the redefinedClassifier to update
 	 */
 	public void updateRedefinedClassifier(EObject newValue);
+
+	/**
+	 * Adds the given filter to the redefinedClassifier edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToRedefinedClassifier(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the redefinedClassifier edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToRedefinedClassifier(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the substitution to add
@@ -483,23 +646,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the substitution
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initSubstitution(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the substitution
-	 * 
-	 * @param newValue
-	 *            the substitution to update
+	 * @param newValue the substitution to update
 	 */
 	public void updateSubstitution(EObject newValue);
+
+	/**
+	 * Adds the given filter to the substitution edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToSubstitution(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the substitution edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToSubstitution(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the collaborationUse to add
@@ -528,23 +707,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the collaborationUse
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initCollaborationUse(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the collaborationUse
-	 * 
-	 * @param newValue
-	 *            the collaborationUse to update
+	 * @param newValue the collaborationUse to update
 	 */
 	public void updateCollaborationUse(EObject newValue);
+
+	/**
+	 * Adds the given filter to the collaborationUse edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToCollaborationUse(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the collaborationUse edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToCollaborationUse(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedUseCase to add
@@ -573,23 +768,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedUseCase
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedUseCase
-	 * 
-	 * @param newValue
-	 *            the ownedUseCase to update
+	 * @param newValue the ownedUseCase to update
 	 */
 	public void updateOwnedUseCase(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedUseCase edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedUseCase(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedUseCase edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedUseCase(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the useCase to add
@@ -602,24 +813,45 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getUseCaseToRemove();
 
 	/**
+	 * @return the current useCase
+	 */
+	public List getUseCaseTable();
+
+	/**
 	 * Init the useCase
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the useCase
-	 * 
-	 * @param newValue
-	 *            the useCase to update
+	 * @param newValue the useCase to update
 	 */
 	public void updateUseCase(EObject newValue);
+
+	/**
+	 * Adds the given filter to the useCase edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToUseCase(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the useCase edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToUseCase(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedAttribute to add
@@ -648,23 +880,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedAttribute
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedAttribute(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedAttribute
-	 * 
-	 * @param newValue
-	 *            the ownedAttribute to update
+	 * @param newValue the ownedAttribute to update
 	 */
 	public void updateOwnedAttribute(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedAttribute edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedAttribute(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedAttribute edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedAttribute(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedConnector to add
@@ -693,23 +941,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedConnector
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedConnector(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedConnector
-	 * 
-	 * @param newValue
-	 *            the ownedConnector to update
+	 * @param newValue the ownedConnector to update
 	 */
 	public void updateOwnedConnector(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedConnector edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedConnector(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedConnector edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedConnector(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedBehavior to add
@@ -738,23 +1002,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedBehavior
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedBehavior(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedBehavior
-	 * 
-	 * @param newValue
-	 *            the ownedBehavior to update
+	 * @param newValue the ownedBehavior to update
 	 */
 	public void updateOwnedBehavior(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedBehavior edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedBehavior(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedBehavior edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedBehavior(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the interfaceRealization to add
@@ -783,23 +1063,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the interfaceRealization
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initInterfaceRealization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the interfaceRealization
-	 * 
-	 * @param newValue
-	 *            the interfaceRealization to update
+	 * @param newValue the interfaceRealization to update
 	 */
 	public void updateInterfaceRealization(EObject newValue);
+
+	/**
+	 * Adds the given filter to the interfaceRealization edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToInterfaceRealization(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the interfaceRealization edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToInterfaceRealization(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedTrigger to add
@@ -828,23 +1124,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedTrigger
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedTrigger(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedTrigger
-	 * 
-	 * @param newValue
-	 *            the ownedTrigger to update
+	 * @param newValue the ownedTrigger to update
 	 */
 	public void updateOwnedTrigger(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedTrigger edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedTrigger(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedTrigger edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedTrigger(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the nestedClassifier to add
@@ -873,23 +1185,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the nestedClassifier
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initNestedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the nestedClassifier
-	 * 
-	 * @param newValue
-	 *            the nestedClassifier to update
+	 * @param newValue the nestedClassifier to update
 	 */
 	public void updateNestedClassifier(EObject newValue);
+
+	/**
+	 * Adds the given filter to the nestedClassifier edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToNestedClassifier(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the nestedClassifier edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToNestedClassifier(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedOperation to add
@@ -918,23 +1246,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedOperation
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedOperation(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedOperation
-	 * 
-	 * @param newValue
-	 *            the ownedOperation to update
+	 * @param newValue the ownedOperation to update
 	 */
 	public void updateOwnedOperation(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedOperation edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedOperation(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedOperation edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedOperation(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the isActive
@@ -943,11 +1287,13 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Defines a new isActive
-	 * 
-	 * @param newValue
-	 *            the new isActive to set
+	 * @param newValue the new isActive to set
 	 */
 	public void setIsActive(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the ownedReception to add
@@ -976,23 +1322,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedReception
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedReception(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedReception
-	 * 
-	 * @param newValue
-	 *            the ownedReception to update
+	 * @param newValue the ownedReception to update
 	 */
 	public void updateOwnedReception(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedReception edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedReception(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedReception edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedReception(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the isReentrant
@@ -1001,11 +1363,13 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Defines a new isReentrant
-	 * 
-	 * @param newValue
-	 *            the new isReentrant to set
+	 * @param newValue the new isReentrant to set
 	 */
 	public void setIsReentrant(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the redefinedBehavior to add
@@ -1018,24 +1382,45 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getRedefinedBehaviorToRemove();
 
 	/**
+	 * @return the current redefinedBehavior
+	 */
+	public List getRedefinedBehaviorTable();
+
+	/**
 	 * Init the redefinedBehavior
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRedefinedBehavior(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedBehavior
-	 * 
-	 * @param newValue
-	 *            the redefinedBehavior to update
+	 * @param newValue the redefinedBehavior to update
 	 */
 	public void updateRedefinedBehavior(EObject newValue);
+
+	/**
+	 * Adds the given filter to the redefinedBehavior edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToRedefinedBehavior(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the redefinedBehavior edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToRedefinedBehavior(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedParameter to add
@@ -1064,23 +1449,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameter
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * 
-	 * @param newValue
-	 *            the ownedParameter to update
+	 * @param newValue the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedParameter edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedParameter(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedParameter edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the precondition to add
@@ -1093,24 +1494,45 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getPreconditionToRemove();
 
 	/**
+	 * @return the current precondition
+	 */
+	public List getPreconditionTable();
+
+	/**
 	 * Init the precondition
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPrecondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the precondition
-	 * 
-	 * @param newValue
-	 *            the precondition to update
+	 * @param newValue the precondition to update
 	 */
 	public void updatePrecondition(EObject newValue);
+
+	/**
+	 * Adds the given filter to the precondition edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToPrecondition(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the precondition edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToPrecondition(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the postcondition to add
@@ -1123,24 +1545,45 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getPostconditionToRemove();
 
 	/**
+	 * @return the current postcondition
+	 */
+	public List getPostconditionTable();
+
+	/**
 	 * Init the postcondition
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPostcondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the postcondition
-	 * 
-	 * @param newValue
-	 *            the postcondition to update
+	 * @param newValue the postcondition to update
 	 */
 	public void updatePostcondition(EObject newValue);
+
+	/**
+	 * Adds the given filter to the postcondition edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToPostcondition(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the postcondition edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToPostcondition(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedParameterSet to add
@@ -1169,23 +1612,39 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameterSet
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameterSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameterSet
-	 * 
-	 * @param newValue
-	 *            the ownedParameterSet to update
+	 * @param newValue the ownedParameterSet to update
 	 */
 	public void updateOwnedParameterSet(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedParameterSet edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedParameterSet(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedParameterSet edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedParameterSet(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the body
@@ -1194,11 +1653,13 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Defines a new body
-	 * 
-	 * @param newValue
-	 *            the new body to set
+	 * @param newValue the new body to set
 	 */
 	public void setBody(EList newValue);
+
+
+
+
 
 	/**
 	 * @return the language
@@ -1207,13 +1668,22 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Defines a new language
-	 * 
-	 * @param newValue
-	 *            the new language to set
+	 * @param newValue the new language to set
 	 */
 	public void setLanguage(EList newValue);
 
-	// Start of user code for additional methods
 
+
+
+
+
+
+
+
+
+	// Start of user code for additional methods
+	
 	// End of user code
+
 }
+

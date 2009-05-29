@@ -46,6 +46,7 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProvider
 
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -69,13 +70,6 @@ import org.eclipse.uml2.uml.RedefinableTemplateSignature;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import java.util.Map;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.TemplateParameter;
-
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -84,35 +78,46 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+import java.util.Map;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.TemplateParameter;
+
+
 
 import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
-
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, RedefinableTemplateSignaturePropertiesEditionPart {
 
-	private Text name;
+	protected Text name;
+	protected EMFComboViewer visibility;
+	protected Button isLeaf;
+	protected EMFListEditUtil parameterEditUtil;
+	protected ReferencesTable<?> parameter;
+	protected List<ViewerFilter> parameterBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> parameterFilters = new ArrayList<ViewerFilter>();
+	protected EMFListEditUtil ownedParameterEditUtil;
+	protected ReferencesTable<?> ownedParameter;
+	protected List<ViewerFilter> ownedParameterBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> ownedParameterFilters = new ArrayList<ViewerFilter>();
+	protected EMFListEditUtil extendedSignatureEditUtil;
+	protected ReferencesTable<?> extendedSignature;
+	protected List<ViewerFilter> extendedSignatureBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> extendedSignatureFilters = new ArrayList<ViewerFilter>();
 
-	private EMFComboViewer visibility;
 
-	private Button isLeaf;
 
-	private EMFListEditUtil parameterEditUtil;
 
-	private ReferencesTable<?> parameter;
-
-	private EMFListEditUtil ownedParameterEditUtil;
-
-	private ReferencesTable<?> ownedParameter;
-
-	private EMFListEditUtil extendedSignatureEditUtil;
-
-	private ReferencesTable<?> extendedSignature;
-
+	
 	public RedefinableTemplateSignaturePropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -122,17 +127,18 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-
+		
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) {
+	public void createControls(Composite view) { 
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
-
+		
 		// End of user code
+
 	}
 
 	protected void createGeneralGroup(Composite parent) {
@@ -145,14 +151,12 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 		generalGroupLayout.numColumns = 3;
 		generalGroup.setLayout(generalGroupLayout);
 		createNameText(generalGroup);
-		createVisibilityEEnumViewer(generalGroup);
+		createVisibilityEMFComboViewer(generalGroup);
 		createIsLeafCheckbox(generalGroup);
 		createGeneralHBox1HBox(generalGroup);
 	}
-
 	protected void createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(
-				UMLViewsRepository.RedefinableTemplateSignature.name, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.RedefinableTemplateSignature.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -165,18 +169,15 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-							UMLViewsRepository.RedefinableTemplateSignature.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-
+			
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.RedefinableTemplateSignature.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
-	protected void createVisibilityEEnumViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(
-				UMLViewsRepository.RedefinableTemplateSignature.visibility, UMLViewsRepository.SWT_KIND));
+	protected void createVisibilityEMFComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.RedefinableTemplateSignature.visibility, UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -184,7 +185,6 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 		visibility.getCombo().setLayoutData(visibilityData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.RedefinableTemplateSignature.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createIsLeafCheckbox(Composite parent) {
 		isLeaf = new Button(parent, SWT.CHECK);
 		isLeaf.setText(UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_IsLeafLabel);
@@ -193,51 +193,36 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 		isLeaf.setLayoutData(isLeafData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.RedefinableTemplateSignature.isLeaf, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createGeneralHBox1HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan = 2;
+		gridData.horizontalSpan=2;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox1HBox = new HorizontalBox(container);
-
-		// create sub figures
-		createParameterReferencesTable(generalHBox1HBox);
-		createOwnedParameterTableComposition(generalHBox1HBox);
-		createExtendedSignatureReferencesTable(generalHBox1HBox);
-
+		
+		
+		//create sub figures
+				createParameterAdvancedReferencesTable(generalHBox1HBox);
+				createOwnedParameterAdvancedTableComposition(generalHBox1HBox);
+				createExtendedSignatureAdvancedReferencesTable(generalHBox1HBox);
+		
 		parent.pack();
 	}
-
-	protected void createParameterReferencesTable(Composite parent) {
+	protected void createParameterAdvancedReferencesTable(Composite parent) {
 		this.parameter = new ReferencesTable<TemplateParameter>(UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_ParameterLabel, new ReferencesTableListener<TemplateParameter>() {
-
 			public void handleAdd() {
-				ViewerFilter parameterFilter = new EObjectFilter(UMLPackage.eINSTANCE.getTemplateParameter());
-				ViewerFilter viewerFilter = new ViewerFilter() {
-
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof EObject)
-							return (!parameterEditUtil.contains((EObject) element));
-						return false;
-					}
-
-				};
-				List filters = new ArrayList();
-				filters.add(parameterFilter);
-				filters.add(viewerFilter);
-				TabElementTreeSelectionDialog<TemplateParameter> dialog = new TabElementTreeSelectionDialog<TemplateParameter>(resourceSet, filters, "TemplateParameter", UMLPackage.eINSTANCE
-						.getTemplateParameter()) {
+				TabElementTreeSelectionDialog<TemplateParameter> dialog = new TabElementTreeSelectionDialog<TemplateParameter>(resourceSet, parameterFilters, parameterBusinessFilters,
+				"TemplateParameter", UMLPackage.eINSTANCE.getTemplateParameter()) {
 
 					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!parameterEditUtil.getVirtualList().contains(elem))
 								parameterEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-									UMLViewsRepository.RedefinableTemplateSignature.parameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.parameter,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						parameter.refresh();
 					}
@@ -245,21 +230,10 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 				};
 				dialog.open();
 			}
-
-			public void handleEdit(TemplateParameter element) {
-				editParameter(element);
-			}
-
-			public void handleMove(TemplateParameter element, int oldIndex, int newIndex) {
-				moveParameter(element, oldIndex, newIndex);
-			}
-
-			public void handleRemove(TemplateParameter element) {
-				removeFromParameter(element);
-			}
-
-			public void navigateTo(TemplateParameter element) {
-			}
+			public void handleEdit(TemplateParameter element) { editParameter(element); }
+			public void handleMove(TemplateParameter element, int oldIndex, int newIndex) { moveParameter(element, oldIndex, newIndex); }
+			public void handleRemove(TemplateParameter element) { removeFromParameter(element); }
+			public void navigateTo(TemplateParameter element) { }
 		});
 		this.parameter.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.RedefinableTemplateSignature.parameter, UMLViewsRepository.SWT_KIND));
 		this.parameter.createControls(parent);
@@ -268,7 +242,7 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 		this.parameter.setLayoutData(parameterData);
 		this.parameter.disableMove();
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -276,24 +250,23 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 		EObject editedElement = parameterEditUtil.foundCorrespondingEObject(element);
 		parameterEditUtil.moveElement(element, oldIndex, newIndex);
 		parameter.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-				UMLViewsRepository.RedefinableTemplateSignature.parameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.parameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-
+	
 	/**
 	 * 
 	 */
 	private void removeFromParameter(TemplateParameter element) {
 
-		// Start of user code for the removeFromParameter() method body
+		// Start of user code removeFromParameter() method body
 
 		EObject editedElement = parameterEditUtil.foundCorrespondingEObject(element);
 		parameterEditUtil.removeElement(element);
 		parameter.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-				UMLViewsRepository.RedefinableTemplateSignature.parameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.parameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -302,49 +275,33 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	private void editParameter(TemplateParameter element) {
 
 		// Start of user code editParameter() method body
-
+		
 		EObject editedElement = parameterEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				parameterEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				parameter.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-						UMLViewsRepository.RedefinableTemplateSignature.parameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.parameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
-	}
 
+	}
 	/**
 	 * @param container
 	 */
-	protected void createOwnedParameterTableComposition(Composite parent) {
-		this.ownedParameter = new ReferencesTable<TemplateParameter>(UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_OwnedParameterLabel,
-				new ReferencesTableListener<TemplateParameter>() {
-
-					public void handleAdd() {
-						addToOwnedParameter();
-					}
-
-					public void handleEdit(TemplateParameter element) {
-						editOwnedParameter(element);
-					}
-
-					public void handleMove(TemplateParameter element, int oldIndex, int newIndex) {
-						moveOwnedParameter(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(TemplateParameter element) {
-						removeFromOwnedParameter(element);
-					}
-
-					public void navigateTo(TemplateParameter element) {
-					}
-				});
+	protected void createOwnedParameterAdvancedTableComposition(Composite parent) {
+		this.ownedParameter = new ReferencesTable<TemplateParameter>(UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_OwnedParameterLabel, new ReferencesTableListener<TemplateParameter>() {			
+			public void handleAdd() { addToOwnedParameter();}
+			public void handleEdit(TemplateParameter element) { editOwnedParameter(element); }
+			public void handleMove(TemplateParameter element, int oldIndex, int newIndex) { moveOwnedParameter(element, oldIndex, newIndex); }
+			public void handleRemove(TemplateParameter element) { removeFromOwnedParameter(element); }
+			public void navigateTo(TemplateParameter element) { }
+		});
 		this.ownedParameter.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, UMLViewsRepository.SWT_KIND));
 		this.ownedParameter.createControls(parent);
 		GridData ownedParameterData = new GridData(GridData.FILL_HORIZONTAL);
@@ -356,36 +313,37 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	 * 
 	 */
 	private void moveOwnedParameter(TemplateParameter element, int oldIndex, int newIndex) {
-
+				
 		EObject editedElement = ownedParameterEditUtil.foundCorrespondingEObject(element);
 		ownedParameterEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedParameter.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-				UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		
 	}
 
 	/**
 	 * 
 	 */
-	private void addToOwnedParameter() {
+	protected void addToOwnedParameter() {
 
 		// Start of user code addToOwnedParameter() method body
+
 
 		TemplateParameter eObject = UMLFactory.eINSTANCE.createTemplateParameter();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedParameterEditUtil.addElement(propertiesEditionObject);
 				ownedParameter.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-						UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
+		
+		
 		// End of user code
+		
 	}
 
 	/**
@@ -393,15 +351,15 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	 */
 	private void removeFromOwnedParameter(TemplateParameter element) {
 
-		// Start of user code for the removeFromOwnedParameter() method body
+		// Start of user code removeFromOwnedParameter() method body
 
 		EObject editedElement = ownedParameterEditUtil.foundCorrespondingEObject(element);
 		ownedParameterEditUtil.removeElement(element);
 		ownedParameter.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-				UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -410,74 +368,47 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	private void editOwnedParameter(TemplateParameter element) {
 
 		// Start of user code editOwnedParameter() method body
-
+		
 		EObject editedElement = ownedParameterEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedParameterEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedParameter.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-						UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.ownedParameter, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-
+		
 		// End of user code
+
 	}
+	protected void createExtendedSignatureAdvancedReferencesTable(Composite parent) {
+		this.extendedSignature = new ReferencesTable<RedefinableTemplateSignature>(UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_ExtendedSignatureLabel, new ReferencesTableListener<RedefinableTemplateSignature>() {
+			public void handleAdd() {
+				TabElementTreeSelectionDialog<RedefinableTemplateSignature> dialog = new TabElementTreeSelectionDialog<RedefinableTemplateSignature>(resourceSet, extendedSignatureFilters, extendedSignatureBusinessFilters,
+				"RedefinableTemplateSignature", UMLPackage.eINSTANCE.getRedefinableTemplateSignature()) {
 
-	protected void createExtendedSignatureReferencesTable(Composite parent) {
-		this.extendedSignature = new ReferencesTable<RedefinableTemplateSignature>(UMLMessages.RedefinableTemplateSignaturePropertiesEditionPart_ExtendedSignatureLabel,
-				new ReferencesTableListener<RedefinableTemplateSignature>() {
-
-					public void handleAdd() {
-						ViewerFilter extendedSignatureFilter = new EObjectFilter(UMLPackage.eINSTANCE.getRedefinableTemplateSignature());
-						ViewerFilter viewerFilter = new ViewerFilter() {
-
-							public boolean select(Viewer viewer, Object parentElement, Object element) {
-								if (element instanceof EObject)
-									return (!extendedSignatureEditUtil.contains((EObject) element));
-								return false;
-							}
-
-						};
-						List filters = new ArrayList();
-						filters.add(extendedSignatureFilter);
-						filters.add(viewerFilter);
-						TabElementTreeSelectionDialog<RedefinableTemplateSignature> dialog = new TabElementTreeSelectionDialog<RedefinableTemplateSignature>(resourceSet, filters,
-								"RedefinableTemplateSignature", UMLPackage.eINSTANCE.getRedefinableTemplateSignature()) {
-
-							public void process(IStructuredSelection selection) {
-								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-									EObject elem = (EObject) iter.next();
-									if (!extendedSignatureEditUtil.getVirtualList().contains(elem))
-										extendedSignatureEditUtil.addElement(elem);
-									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-											UMLViewsRepository.RedefinableTemplateSignature.extendedSignature, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-								}
-								extendedSignature.refresh();
-							}
-
-						};
-						dialog.open();
+					public void process(IStructuredSelection selection) {
+						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject) iter.next();
+							if (!extendedSignatureEditUtil.getVirtualList().contains(elem))
+								extendedSignatureEditUtil.addElement(elem);
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.extendedSignature,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+						}
+						extendedSignature.refresh();
 					}
 
-					public void handleEdit(RedefinableTemplateSignature element) {
-						editExtendedSignature(element);
-					}
-
-					public void handleMove(RedefinableTemplateSignature element, int oldIndex, int newIndex) {
-						moveExtendedSignature(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(RedefinableTemplateSignature element) {
-						removeFromExtendedSignature(element);
-					}
-
-					public void navigateTo(RedefinableTemplateSignature element) {
-					}
-				});
+				};
+				dialog.open();
+			}
+			public void handleEdit(RedefinableTemplateSignature element) { editExtendedSignature(element); }
+			public void handleMove(RedefinableTemplateSignature element, int oldIndex, int newIndex) { moveExtendedSignature(element, oldIndex, newIndex); }
+			public void handleRemove(RedefinableTemplateSignature element) { removeFromExtendedSignature(element); }
+			public void navigateTo(RedefinableTemplateSignature element) { }
+		});
 		this.extendedSignature.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.RedefinableTemplateSignature.extendedSignature, UMLViewsRepository.SWT_KIND));
 		this.extendedSignature.createControls(parent);
 		GridData extendedSignatureData = new GridData(GridData.FILL_HORIZONTAL);
@@ -485,7 +416,7 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 		this.extendedSignature.setLayoutData(extendedSignatureData);
 		this.extendedSignature.disableMove();
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -493,24 +424,23 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 		EObject editedElement = extendedSignatureEditUtil.foundCorrespondingEObject(element);
 		extendedSignatureEditUtil.moveElement(element, oldIndex, newIndex);
 		extendedSignature.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-				UMLViewsRepository.RedefinableTemplateSignature.extendedSignature, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.extendedSignature, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-
+	
 	/**
 	 * 
 	 */
 	private void removeFromExtendedSignature(RedefinableTemplateSignature element) {
 
-		// Start of user code for the removeFromExtendedSignature() method body
+		// Start of user code removeFromExtendedSignature() method body
 
 		EObject editedElement = extendedSignatureEditUtil.foundCorrespondingEObject(element);
 		extendedSignatureEditUtil.removeElement(element);
 		extendedSignature.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-				UMLViewsRepository.RedefinableTemplateSignature.extendedSignature, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.extendedSignature, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -519,27 +449,29 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	private void editExtendedSignature(RedefinableTemplateSignature element) {
 
 		// Start of user code editExtendedSignature() method body
-
+		
 		EObject editedElement = extendedSignatureEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				extendedSignatureEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				extendedSignature.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this,
-						UMLViewsRepository.RedefinableTemplateSignature.extendedSignature, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RedefinableTemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.RedefinableTemplateSignature.extendedSignature, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
+
 	}
+
 
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
+		
 		// End of user code
+
 	}
 
 	/**
@@ -585,7 +517,7 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
-		visibility.setSelection(new StructuredSelection(current));
+		visibility.modelUpdating(new StructuredSelection(current));
 	}
 
 	/**
@@ -656,6 +588,15 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#getParameterTable()
+	 */
+	public List getParameterTable() {
+		return parameterEditUtil.getVirtualList();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#initParameter(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initParameter(EObject current, EReference containingFeature, EReference feature) {
@@ -674,10 +615,28 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#updateParameter(EObject newValue)
 	 */
 	public void updateParameter(EObject newValue) {
-		if (parameterEditUtil != null) {
+		if(parameterEditUtil!=null){
 			parameterEditUtil.reinit(newValue);
 			parameter.refresh();
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#addFilterParameter(ViewerFilter filter)
+	 */
+	public void addFilterToParameter(ViewerFilter filter) {
+		parameterFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#addBusinessFilterParameter(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToParameter(ViewerFilter filter) {
+		parameterBusinessFilters.add(filter);
 	}
 
 	public void setMessageForParameter(String msg, int msgLevel) {
@@ -754,10 +713,28 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#updateOwnedParameter(EObject newValue)
 	 */
 	public void updateOwnedParameter(EObject newValue) {
-		if (ownedParameterEditUtil != null) {
+		if(ownedParameterEditUtil!=null){
 			ownedParameterEditUtil.reinit(newValue);
 			ownedParameter.refresh();
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#addFilterOwnedParameter(ViewerFilter filter)
+	 */
+	public void addFilterToOwnedParameter(ViewerFilter filter) {
+		ownedParameterFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#addBusinessFilterOwnedParameter(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToOwnedParameter(ViewerFilter filter) {
+		ownedParameterBusinessFilters.add(filter);
 	}
 
 	public void setMessageForOwnedParameter(String msg, int msgLevel) {
@@ -789,6 +766,15 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#getExtendedSignatureTable()
+	 */
+	public List getExtendedSignatureTable() {
+		return extendedSignatureEditUtil.getVirtualList();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#initExtendedSignature(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initExtendedSignature(EObject current, EReference containingFeature, EReference feature) {
@@ -807,10 +793,28 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#updateExtendedSignature(EObject newValue)
 	 */
 	public void updateExtendedSignature(EObject newValue) {
-		if (extendedSignatureEditUtil != null) {
+		if(extendedSignatureEditUtil!=null){
 			extendedSignatureEditUtil.reinit(newValue);
 			extendedSignature.refresh();
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#addFilterExtendedSignature(ViewerFilter filter)
+	 */
+	public void addFilterToExtendedSignature(ViewerFilter filter) {
+		extendedSignatureFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RedefinableTemplateSignaturePropertiesEditionPart#addBusinessFilterExtendedSignature(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToExtendedSignature(ViewerFilter filter) {
+		extendedSignatureBusinessFilters.add(filter);
 	}
 
 	public void setMessageForExtendedSignature(String msg, int msgLevel) {
@@ -821,7 +825,15 @@ public class RedefinableTemplateSignaturePropertiesEditionPartImpl extends Compo
 
 	}
 
-	// Start of user code additional methods
 
+
+
+
+
+
+
+	// Start of user code additional methods
+	
 	// End of user code
+
 }

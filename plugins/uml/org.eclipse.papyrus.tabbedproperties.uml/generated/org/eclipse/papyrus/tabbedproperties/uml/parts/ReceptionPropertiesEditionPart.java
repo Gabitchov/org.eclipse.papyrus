@@ -22,8 +22,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.viewers.ViewerFilter;
+ 
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -36,9 +39,7 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -53,21 +54,20 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the concurrency
@@ -76,21 +76,20 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Init the concurrency
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initConcurrency(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new concurrency
-	 * 
-	 * @param newValue
-	 *            the new concurrency to set
+	 * @param newValue the new concurrency to set
 	 */
 	public void setConcurrency(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the isAbstract
@@ -99,11 +98,13 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isAbstract
-	 * 
-	 * @param newValue
-	 *            the new isAbstract to set
+	 * @param newValue the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isLeaf
@@ -112,11 +113,13 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * 
-	 * @param newValue
-	 *            the new isLeaf to set
+	 * @param newValue the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isStatic
@@ -125,11 +128,13 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isStatic
-	 * 
-	 * @param newValue
-	 *            the new isStatic to set
+	 * @param newValue the new isStatic to set
 	 */
 	public void setIsStatic(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the method to add
@@ -142,24 +147,45 @@ public interface ReceptionPropertiesEditionPart {
 	public List getMethodToRemove();
 
 	/**
+	 * @return the current method
+	 */
+	public List getMethodTable();
+
+	/**
 	 * Init the method
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initMethod(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the method
-	 * 
-	 * @param newValue
-	 *            the method to update
+	 * @param newValue the method to update
 	 */
 	public void updateMethod(EObject newValue);
+
+	/**
+	 * Adds the given filter to the method edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToMethod(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the method edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToMethod(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the raisedException to add
@@ -172,24 +198,45 @@ public interface ReceptionPropertiesEditionPart {
 	public List getRaisedExceptionToRemove();
 
 	/**
+	 * @return the current raisedException
+	 */
+	public List getRaisedExceptionTable();
+
+	/**
 	 * Init the raisedException
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRaisedException(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the raisedException
-	 * 
-	 * @param newValue
-	 *            the raisedException to update
+	 * @param newValue the raisedException to update
 	 */
 	public void updateRaisedException(EObject newValue);
+
+	/**
+	 * Adds the given filter to the raisedException edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToRaisedException(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the raisedException edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToRaisedException(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedParameter to add
@@ -218,23 +265,39 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameter
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * 
-	 * @param newValue
-	 *            the ownedParameter to update
+	 * @param newValue the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedParameter edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedParameter(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedParameter edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedParameterSet to add
@@ -263,23 +326,39 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameterSet
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameterSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameterSet
-	 * 
-	 * @param newValue
-	 *            the ownedParameterSet to update
+	 * @param newValue the ownedParameterSet to update
 	 */
 	public void updateOwnedParameterSet(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedParameterSet edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedParameterSet(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedParameterSet edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedParameterSet(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the packageImport to add
@@ -308,23 +387,39 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * 
-	 * @param newValue
-	 *            the packageImport to update
+	 * @param newValue the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
+
+	/**
+	 * Adds the given filter to the packageImport edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToPackageImport(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the packageImport edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToPackageImport(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the elementImport to add
@@ -353,23 +448,39 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * 
-	 * @param newValue
-	 *            the elementImport to update
+	 * @param newValue the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
+
+	/**
+	 * Adds the given filter to the elementImport edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToElementImport(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the elementImport edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToElementImport(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the ownedRule to add
@@ -398,25 +509,48 @@ public interface ReceptionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * 
-	 * @param newValue
-	 *            the ownedRule to update
+	 * @param newValue the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
-	// Start of user code for additional methods
+	/**
+	 * Adds the given filter to the ownedRule edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedRule(ViewerFilter filter);
 
+	/**
+	 * Adds the given filter to the ownedRule edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
+
+
+
+
+
+
+
+
+
+
+	// Start of user code for additional methods
+	
 	// End of user code
+
 }
+

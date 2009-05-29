@@ -12,96 +12,61 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 
 // Start of user code for imports
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.command.MoveCommand;
-
-import org.eclipse.uml2.uml.LoopNode;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.VisibilityKind;
-import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.ActivityEdge;
-import org.eclipse.uml2.uml.ActivityEdge;
-import org.eclipse.uml2.uml.ActivityPartition;
-import org.eclipse.uml2.uml.InterruptibleActivityRegion;
-import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.ExceptionHandler;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.Variable;
-import org.eclipse.uml2.uml.ActivityEdge;
-import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.ExecutableNode;
-import org.eclipse.uml2.uml.ExecutableNode;
-import org.eclipse.uml2.uml.ExecutableNode;
-import org.eclipse.uml2.uml.OutputPin;
-import org.eclipse.uml2.uml.OutputPin;
-import org.eclipse.uml2.uml.OutputPin;
-import org.eclipse.uml2.uml.InputPin;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.LoopNodePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
 import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
-import org.eclipse.uml2.uml.VisibilityKind;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.ExceptionHandler;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.Variable;
+import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.LoopNodePropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.OutputPin;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.ExceptionHandler;
 import org.eclipse.uml2.uml.InputPin;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.uml2.uml.LoopNode;
+import org.eclipse.uml2.uml.OutputPin;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Variable;
+import org.eclipse.uml2.uml.VisibilityKind;
+
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -109,7 +74,7 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -126,13 +91,12 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 	 */
 	public LoopNodeBasePropertiesEditionComponent(EObject loopNode, String editing_mode) {
 		if (loopNode instanceof LoopNode) {
-			this.loopNode = (LoopNode) loopNode;
+			this.loopNode = (LoopNode)loopNode;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.loopNode.eAdapters().add(semanticAdapter);
 			}
 		}
-		listeners = new ArrayList();
 		this.editing_mode = editing_mode;
 	}
 
@@ -150,104 +114,109 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getComment())) {
-					basePart.updateOwnedComment(loopNode);
-				}
-				if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
-					basePart.setName((String) msg.getNewValue());
+				if (basePart == null)
+					LoopNodeBasePropertiesEditionComponent.this.dispose();
+				else {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+						basePart.updateOwnedComment(loopNode);
+					}
+					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
+						basePart.setName((String)msg.getNewValue());
 
-				if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
-					basePart.setVisibility((Enumerator) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-				if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
-					basePart.updateClientDependency(loopNode);
-				if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature()) && basePart != null)
-					basePart.setIsLeaf((Boolean) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
+						basePart.updateClientDependency(loopNode);
+					if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature()) && basePart != null)
+						basePart.setIsLeaf((Boolean)msg.getNewValue());
 
-				if (UMLPackage.eINSTANCE.getActivityNode_Outgoing().equals(msg.getFeature()))
-					basePart.updateOutgoing(loopNode);
-				if (UMLPackage.eINSTANCE.getActivityNode_Incoming().equals(msg.getFeature()))
-					basePart.updateIncoming(loopNode);
-				if (UMLPackage.eINSTANCE.getActivityNode_InPartition().equals(msg.getFeature()))
-					basePart.updateInPartition(loopNode);
-				if (UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion().equals(msg.getFeature()))
-					basePart.updateInInterruptibleRegion(loopNode);
-				if (UMLPackage.eINSTANCE.getActivityNode_RedefinedNode().equals(msg.getFeature()))
-					basePart.updateRedefinedNode(loopNode);
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getExecutableNode_Handler() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getExceptionHandler())) {
-					basePart.updateHandler(loopNode);
-				}
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getAction_LocalPrecondition() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getConstraint())) {
-					basePart.updateLocalPrecondition(loopNode);
-				}
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getAction_LocalPostcondition() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getConstraint())) {
-					basePart.updateLocalPostcondition(loopNode);
-				}
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_ElementImport() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getElementImport())) {
-					basePart.updateElementImport(loopNode);
-				}
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_PackageImport() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getPackageImport())) {
-					basePart.updatePackageImport(loopNode);
-				}
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_OwnedRule() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getConstraint())) {
-					basePart.updateOwnedRule(loopNode);
-				}
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getStructuredActivityNode_Variable() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getVariable())) {
-					basePart.updateVariable(loopNode);
-				}
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getStructuredActivityNode_Edge() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getActivityEdge())) {
-					basePart.updateEdge(loopNode);
-				}
-				if (UMLPackage.eINSTANCE.getStructuredActivityNode_MustIsolate().equals(msg.getFeature()) && basePart != null)
-					basePart.setMustIsolate((Boolean) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getActivityNode_Outgoing().equals(msg.getFeature()))
+						basePart.updateOutgoing(loopNode);
+					if (UMLPackage.eINSTANCE.getActivityNode_Incoming().equals(msg.getFeature()))
+						basePart.updateIncoming(loopNode);
+					if (UMLPackage.eINSTANCE.getActivityNode_InPartition().equals(msg.getFeature()))
+						basePart.updateInPartition(loopNode);
+					if (UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion().equals(msg.getFeature()))
+						basePart.updateInInterruptibleRegion(loopNode);
+					if (UMLPackage.eINSTANCE.getActivityNode_RedefinedNode().equals(msg.getFeature()))
+						basePart.updateRedefinedNode(loopNode);
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getExecutableNode_Handler()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getExceptionHandler())) {
+						basePart.updateHandler(loopNode);
+					}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getAction_LocalPrecondition()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getConstraint())) {
+						basePart.updateLocalPrecondition(loopNode);
+					}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getAction_LocalPostcondition()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getConstraint())) {
+						basePart.updateLocalPostcondition(loopNode);
+					}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_ElementImport()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElementImport())) {
+						basePart.updateElementImport(loopNode);
+					}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_PackageImport()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getPackageImport())) {
+						basePart.updatePackageImport(loopNode);
+					}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_OwnedRule()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getConstraint())) {
+						basePart.updateOwnedRule(loopNode);
+					}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getStructuredActivityNode_Variable()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getVariable())) {
+						basePart.updateVariable(loopNode);
+					}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getStructuredActivityNode_Edge()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getActivityEdge())) {
+						basePart.updateEdge(loopNode);
+					}
+					if (UMLPackage.eINSTANCE.getStructuredActivityNode_MustIsolate().equals(msg.getFeature()) && basePart != null)
+						basePart.setMustIsolate((Boolean)msg.getNewValue());
 
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getStructuredActivityNode_Node() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getActivityNode())) {
-					basePart.updateNode(loopNode);
-				}
-				if (UMLPackage.eINSTANCE.getLoopNode_IsTestedFirst().equals(msg.getFeature()) && basePart != null)
-					basePart.setIsTestedFirst((Boolean) msg.getNewValue());
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getStructuredActivityNode_Node()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getActivityNode())) {
+						basePart.updateNode(loopNode);
+					}
+					if (UMLPackage.eINSTANCE.getLoopNode_IsTestedFirst().equals(msg.getFeature()) && basePart != null)
+						basePart.setIsTestedFirst((Boolean)msg.getNewValue());
 
-				if (UMLPackage.eINSTANCE.getLoopNode_BodyPart().equals(msg.getFeature()))
-					basePart.updateBodyPart(loopNode);
-				if (UMLPackage.eINSTANCE.getLoopNode_SetupPart().equals(msg.getFeature()))
-					basePart.updateSetupPart(loopNode);
-				if (UMLPackage.eINSTANCE.getLoopNode_Test().equals(msg.getFeature()))
-					basePart.updateTest(loopNode);
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getLoopNode_Result() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getOutputPin())) {
-					basePart.updateResult(loopNode);
-				}
-				if (UMLPackage.eINSTANCE.getLoopNode_LoopVariable().equals(msg.getFeature()))
-					basePart.updateLoopVariable(loopNode);
-				if (UMLPackage.eINSTANCE.getLoopNode_BodyOutput().equals(msg.getFeature()))
-					basePart.updateBodyOutput(loopNode);
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getInputPin())) {
-					basePart.updateLoopVariableInput(loopNode);
-				}
+					if (UMLPackage.eINSTANCE.getLoopNode_BodyPart().equals(msg.getFeature()))
+						basePart.updateBodyPart(loopNode);
+					if (UMLPackage.eINSTANCE.getLoopNode_SetupPart().equals(msg.getFeature()))
+						basePart.updateSetupPart(loopNode);
+					if (UMLPackage.eINSTANCE.getLoopNode_Test().equals(msg.getFeature()))
+						basePart.updateTest(loopNode);
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getLoopNode_Result()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getOutputPin())) {
+						basePart.updateResult(loopNode);
+					}
+					if (UMLPackage.eINSTANCE.getLoopNode_LoopVariable().equals(msg.getFeature()))
+						basePart.updateLoopVariable(loopNode);
+					if (UMLPackage.eINSTANCE.getLoopNode_BodyOutput().equals(msg.getFeature()))
+						basePart.updateBodyOutput(loopNode);
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getInputPin())) {
+						basePart.updateLoopVariableInput(loopNode);
+					}
 
+
+				}
 			}
 
 		};
@@ -276,18 +245,19 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (loopNode != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (LoopNodePropertiesEditionPart) provider.getPropertiesEditionPart(UMLViewsRepository.LoopNode.class, kind, this);
-					listeners.add(basePart);
+					basePart = (LoopNodePropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.LoopNode.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -295,19 +265,32 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 */
+	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
+		if (key == UMLViewsRepository.LoopNode.class)
+			this.basePart = (LoopNodePropertiesEditionPart) propertiesEditionPart;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.LoopNode.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			LoopNode loopNode = (LoopNode) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			LoopNode loopNode = (LoopNode)elt;
+			// init values
 			basePart.initOwnedComment(loopNode, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
 			if (loopNode.getName() != null)
 				basePart.setName(loopNode.getName());
 
 			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), loopNode.getVisibility());
 			basePart.initClientDependency(loopNode, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
-			basePart.setIsLeaf(loopNode.isLeaf());
+basePart.setIsLeaf(loopNode.isLeaf());
 
 			basePart.initOutgoing(loopNode, null, UMLPackage.eINSTANCE.getActivityNode_Outgoing());
 			basePart.initIncoming(loopNode, null, UMLPackage.eINSTANCE.getActivityNode_Incoming());
@@ -322,10 +305,10 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			basePart.initOwnedRule(loopNode, null, UMLPackage.eINSTANCE.getNamespace_OwnedRule());
 			basePart.initVariable(loopNode, null, UMLPackage.eINSTANCE.getStructuredActivityNode_Variable());
 			basePart.initEdge(loopNode, null, UMLPackage.eINSTANCE.getStructuredActivityNode_Edge());
-			basePart.setMustIsolate(loopNode.isMustIsolate());
+basePart.setMustIsolate(loopNode.isMustIsolate());
 
 			basePart.initNode(loopNode, null, UMLPackage.eINSTANCE.getStructuredActivityNode_Node());
-			basePart.setIsTestedFirst(loopNode.isTestedFirst());
+basePart.setIsTestedFirst(loopNode.isTestedFirst());
 
 			basePart.initBodyPart(loopNode, null, UMLPackage.eINSTANCE.getLoopNode_BodyPart());
 			basePart.initSetupPart(loopNode, null, UMLPackage.eINSTANCE.getLoopNode_SetupPart());
@@ -334,406 +317,852 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			basePart.initLoopVariable(loopNode, null, UMLPackage.eINSTANCE.getLoopNode_LoopVariable());
 			basePart.initBodyOutput(loopNode, null, UMLPackage.eINSTANCE.getLoopNode_BodyOutput());
 			basePart.initLoopVariableInput(loopNode, null, UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput());
+			
+			// init filters
+			basePart.addFilterToOwnedComment(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for ownedComment
+			
+			// End of user code
+
+
+			basePart.addFilterToClientDependency(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getClientDependencyTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToClientDependency(new EObjectFilter(UMLPackage.eINSTANCE.getDependency()));
+			// Start of user code for additional businessfilters for clientDependency
+			
+			// End of user code
+
+			basePart.addFilterToOutgoing(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getOutgoingTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToOutgoing(new EObjectFilter(UMLPackage.eINSTANCE.getActivityEdge()));
+			// Start of user code for additional businessfilters for outgoing
+			
+			// End of user code
+			basePart.addFilterToIncoming(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getIncomingTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToIncoming(new EObjectFilter(UMLPackage.eINSTANCE.getActivityEdge()));
+			// Start of user code for additional businessfilters for incoming
+			
+			// End of user code
+			basePart.addFilterToInPartition(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getInPartitionTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToInPartition(new EObjectFilter(UMLPackage.eINSTANCE.getActivityPartition()));
+			// Start of user code for additional businessfilters for inPartition
+			
+			// End of user code
+			basePart.addFilterToInInterruptibleRegion(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getInInterruptibleRegionTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToInInterruptibleRegion(new EObjectFilter(UMLPackage.eINSTANCE.getInterruptibleActivityRegion()));
+			// Start of user code for additional businessfilters for inInterruptibleRegion
+			
+			// End of user code
+			basePart.addFilterToRedefinedNode(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getRedefinedNodeTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToRedefinedNode(new EObjectFilter(UMLPackage.eINSTANCE.getActivityNode()));
+			// Start of user code for additional businessfilters for redefinedNode
+			
+			// End of user code
+			basePart.addFilterToHandler(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof ExceptionHandler); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for handler
+			
+			// End of user code
+			basePart.addFilterToLocalPrecondition(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for localPrecondition
+			
+			// End of user code
+			basePart.addFilterToLocalPostcondition(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for localPostcondition
+			
+			// End of user code
+			basePart.addFilterToElementImport(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof ElementImport); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for elementImport
+			
+			// End of user code
+			basePart.addFilterToPackageImport(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof PackageImport); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for packageImport
+			
+			// End of user code
+			basePart.addFilterToOwnedRule(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for ownedRule
+			
+			// End of user code
+			basePart.addFilterToVariable(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Variable); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for variable
+			
+			// End of user code
+			basePart.addFilterToEdge(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof ActivityEdge); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for edge
+			
+			// End of user code
+
+			basePart.addFilterToNode(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof ActivityNode); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for node
+			
+			// End of user code
+
+			basePart.addFilterToBodyPart(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getBodyPartTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToBodyPart(new EObjectFilter(UMLPackage.eINSTANCE.getExecutableNode()));
+			// Start of user code for additional businessfilters for bodyPart
+			
+			// End of user code
+			basePart.addFilterToSetupPart(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getSetupPartTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToSetupPart(new EObjectFilter(UMLPackage.eINSTANCE.getExecutableNode()));
+			// Start of user code for additional businessfilters for setupPart
+			
+			// End of user code
+			basePart.addFilterToTest(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getTestTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToTest(new EObjectFilter(UMLPackage.eINSTANCE.getExecutableNode()));
+			// Start of user code for additional businessfilters for test
+			
+			// End of user code
+			basePart.addFilterToResult(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof OutputPin); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for result
+			
+			// End of user code
+			basePart.addFilterToLoopVariable(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getLoopVariableTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToLoopVariable(new EObjectFilter(UMLPackage.eINSTANCE.getOutputPin()));
+			// Start of user code for additional businessfilters for loopVariable
+			
+			// End of user code
+			basePart.addFilterToBodyOutput(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getBodyOutputTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToBodyOutput(new EObjectFilter(UMLPackage.eINSTANCE.getOutputPin()));
+			// Start of user code for additional businessfilters for bodyOutput
+			
+			// End of user code
+			basePart.addFilterToLoopVariableInput(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof InputPin); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for loopVariableInput
+			
+			// End of user code
 		}
+		// init values for referenced views
+
+		// init filters for referenced views
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand (org.eclipse.emf.edit.domain.EditingDomain)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (loopNode != null) {
-			List ownedCommentToAdd = basePart.getOwnedCommentToAdd();
-			for (Iterator iter = ownedCommentToAdd.iterator(); iter.hasNext();)
+			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
+			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
-			Map ownedCommentToRefresh = basePart.getOwnedCommentToEdit();
-			for (Iterator iter = ownedCommentToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for ownedComment reference refreshment
-
+			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
+			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for ownedComment reference refreshment from ownedComment
+				
 				Comment nextElement = (Comment) iter.next();
-				Comment ownedComment = (Comment) ownedCommentToRefresh.get(nextElement);
-
+				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List ownedCommentToRemove = basePart.getOwnedCommentToRemove();
-			for (Iterator iter = ownedCommentToRemove.iterator(); iter.hasNext();)
+			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
+			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List ownedCommentToMove = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
+			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
 
 			cc.append(SetCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
-			List clientDependencyToAdd = basePart.getClientDependencyToAdd();
-			for (Iterator iter = clientDependencyToAdd.iterator(); iter.hasNext();)
+			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
+			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
-			List clientDependencyToRemove = basePart.getClientDependencyToRemove();
-			for (Iterator iter = clientDependencyToRemove.iterator(); iter.hasNext();)
+			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
+			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
-			// List clientDependencyToMove = basePart.getClientDependencyToMove();
-			// for (Iterator iter = clientDependencyToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
-			// }
+			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
+			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
+			//}
 			cc.append(SetCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), basePart.getIsLeaf()));
 
-			List outgoingToAdd = basePart.getOutgoingToAdd();
-			for (Iterator iter = outgoingToAdd.iterator(); iter.hasNext();)
+			List outgoingToAddFromOutgoing = basePart.getOutgoingToAdd();
+			for (Iterator iter = outgoingToAddFromOutgoing.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_Outgoing(), iter.next()));
-			List outgoingToRemove = basePart.getOutgoingToRemove();
-			for (Iterator iter = outgoingToRemove.iterator(); iter.hasNext();)
+			List outgoingToRemoveFromOutgoing = basePart.getOutgoingToRemove();
+			for (Iterator iter = outgoingToRemoveFromOutgoing.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_Outgoing(), iter.next()));
-			// List outgoingToMove = basePart.getOutgoingToMove();
-			// for (Iterator iter = outgoingToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityEdge(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List incomingToAdd = basePart.getIncomingToAdd();
-			for (Iterator iter = incomingToAdd.iterator(); iter.hasNext();)
+			//List outgoingToMoveFromOutgoing = basePart.getOutgoingToMove();
+			//for (Iterator iter = outgoingToMoveFromOutgoing.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityEdge(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List incomingToAddFromIncoming = basePart.getIncomingToAdd();
+			for (Iterator iter = incomingToAddFromIncoming.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_Incoming(), iter.next()));
-			List incomingToRemove = basePart.getIncomingToRemove();
-			for (Iterator iter = incomingToRemove.iterator(); iter.hasNext();)
+			List incomingToRemoveFromIncoming = basePart.getIncomingToRemove();
+			for (Iterator iter = incomingToRemoveFromIncoming.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_Incoming(), iter.next()));
-			// List incomingToMove = basePart.getIncomingToMove();
-			// for (Iterator iter = incomingToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityEdge(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List inPartitionToAdd = basePart.getInPartitionToAdd();
-			for (Iterator iter = inPartitionToAdd.iterator(); iter.hasNext();)
+			//List incomingToMoveFromIncoming = basePart.getIncomingToMove();
+			//for (Iterator iter = incomingToMoveFromIncoming.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityEdge(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List inPartitionToAddFromInPartition = basePart.getInPartitionToAdd();
+			for (Iterator iter = inPartitionToAddFromInPartition.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_InPartition(), iter.next()));
-			List inPartitionToRemove = basePart.getInPartitionToRemove();
-			for (Iterator iter = inPartitionToRemove.iterator(); iter.hasNext();)
+			List inPartitionToRemoveFromInPartition = basePart.getInPartitionToRemove();
+			for (Iterator iter = inPartitionToRemoveFromInPartition.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_InPartition(), iter.next()));
-			// List inPartitionToMove = basePart.getInPartitionToMove();
-			// for (Iterator iter = inPartitionToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityPartition(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List inInterruptibleRegionToAdd = basePart.getInInterruptibleRegionToAdd();
-			for (Iterator iter = inInterruptibleRegionToAdd.iterator(); iter.hasNext();)
+			//List inPartitionToMoveFromInPartition = basePart.getInPartitionToMove();
+			//for (Iterator iter = inPartitionToMoveFromInPartition.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityPartition(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List inInterruptibleRegionToAddFromInInterruptibleRegion = basePart.getInInterruptibleRegionToAdd();
+			for (Iterator iter = inInterruptibleRegionToAddFromInInterruptibleRegion.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), iter.next()));
-			List inInterruptibleRegionToRemove = basePart.getInInterruptibleRegionToRemove();
-			for (Iterator iter = inInterruptibleRegionToRemove.iterator(); iter.hasNext();)
+			List inInterruptibleRegionToRemoveFromInInterruptibleRegion = basePart.getInInterruptibleRegionToRemove();
+			for (Iterator iter = inInterruptibleRegionToRemoveFromInInterruptibleRegion.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), iter.next()));
-			// List inInterruptibleRegionToMove = basePart.getInInterruptibleRegionToMove();
-			// for (Iterator iter = inInterruptibleRegionToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getInterruptibleActivityRegion(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List redefinedNodeToAdd = basePart.getRedefinedNodeToAdd();
-			for (Iterator iter = redefinedNodeToAdd.iterator(); iter.hasNext();)
+			//List inInterruptibleRegionToMoveFromInInterruptibleRegion = basePart.getInInterruptibleRegionToMove();
+			//for (Iterator iter = inInterruptibleRegionToMoveFromInInterruptibleRegion.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getInterruptibleActivityRegion(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List redefinedNodeToAddFromRedefinedNode = basePart.getRedefinedNodeToAdd();
+			for (Iterator iter = redefinedNodeToAddFromRedefinedNode.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_RedefinedNode(), iter.next()));
-			List redefinedNodeToRemove = basePart.getRedefinedNodeToRemove();
-			for (Iterator iter = redefinedNodeToRemove.iterator(); iter.hasNext();)
+			List redefinedNodeToRemoveFromRedefinedNode = basePart.getRedefinedNodeToRemove();
+			for (Iterator iter = redefinedNodeToRemoveFromRedefinedNode.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode_RedefinedNode(), iter.next()));
-			// List redefinedNodeToMove = basePart.getRedefinedNodeToMove();
-			// for (Iterator iter = redefinedNodeToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List handlerToAdd = basePart.getHandlerToAdd();
-			for (Iterator iter = handlerToAdd.iterator(); iter.hasNext();)
+			//List redefinedNodeToMoveFromRedefinedNode = basePart.getRedefinedNodeToMove();
+			//for (Iterator iter = redefinedNodeToMoveFromRedefinedNode.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List handlerToAddFromHandler = basePart.getHandlerToAdd();
+			for (Iterator iter = handlerToAddFromHandler.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getExecutableNode_Handler(), iter.next()));
-			Map handlerToRefresh = basePart.getHandlerToEdit();
-			for (Iterator iter = handlerToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for handler reference refreshment
-
+			Map handlerToRefreshFromHandler = basePart.getHandlerToEdit();
+			for (Iterator iter = handlerToRefreshFromHandler.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for handler reference refreshment from handler
+				
 				ExceptionHandler nextElement = (ExceptionHandler) iter.next();
-				ExceptionHandler handler = (ExceptionHandler) handlerToRefresh.get(nextElement);
-
+				ExceptionHandler handler = (ExceptionHandler) handlerToRefreshFromHandler.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List handlerToRemove = basePart.getHandlerToRemove();
-			for (Iterator iter = handlerToRemove.iterator(); iter.hasNext();)
+			List handlerToRemoveFromHandler = basePart.getHandlerToRemove();
+			for (Iterator iter = handlerToRemoveFromHandler.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List handlerToMove = basePart.getHandlerToMove();
-			for (Iterator iter = handlerToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List handlerToMoveFromHandler = basePart.getHandlerToMove();
+			for (Iterator iter = handlerToMoveFromHandler.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getExceptionHandler(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List localPreconditionToAdd = basePart.getLocalPreconditionToAdd();
-			for (Iterator iter = localPreconditionToAdd.iterator(); iter.hasNext();)
+			List localPreconditionToAddFromLocalPrecondition = basePart.getLocalPreconditionToAdd();
+			for (Iterator iter = localPreconditionToAddFromLocalPrecondition.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getAction_LocalPrecondition(), iter.next()));
-			Map localPreconditionToRefresh = basePart.getLocalPreconditionToEdit();
-			for (Iterator iter = localPreconditionToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for localPrecondition reference refreshment
-
+			Map localPreconditionToRefreshFromLocalPrecondition = basePart.getLocalPreconditionToEdit();
+			for (Iterator iter = localPreconditionToRefreshFromLocalPrecondition.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for localPrecondition reference refreshment from localPrecondition
+				
 				Constraint nextElement = (Constraint) iter.next();
-				Constraint localPrecondition = (Constraint) localPreconditionToRefresh.get(nextElement);
-
+				Constraint localPrecondition = (Constraint) localPreconditionToRefreshFromLocalPrecondition.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List localPreconditionToRemove = basePart.getLocalPreconditionToRemove();
-			for (Iterator iter = localPreconditionToRemove.iterator(); iter.hasNext();)
+			List localPreconditionToRemoveFromLocalPrecondition = basePart.getLocalPreconditionToRemove();
+			for (Iterator iter = localPreconditionToRemoveFromLocalPrecondition.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List localPreconditionToMove = basePart.getLocalPreconditionToMove();
-			for (Iterator iter = localPreconditionToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List localPreconditionToMoveFromLocalPrecondition = basePart.getLocalPreconditionToMove();
+			for (Iterator iter = localPreconditionToMoveFromLocalPrecondition.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List localPostconditionToAdd = basePart.getLocalPostconditionToAdd();
-			for (Iterator iter = localPostconditionToAdd.iterator(); iter.hasNext();)
+			List localPostconditionToAddFromLocalPostcondition = basePart.getLocalPostconditionToAdd();
+			for (Iterator iter = localPostconditionToAddFromLocalPostcondition.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getAction_LocalPostcondition(), iter.next()));
-			Map localPostconditionToRefresh = basePart.getLocalPostconditionToEdit();
-			for (Iterator iter = localPostconditionToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for localPostcondition reference refreshment
-
+			Map localPostconditionToRefreshFromLocalPostcondition = basePart.getLocalPostconditionToEdit();
+			for (Iterator iter = localPostconditionToRefreshFromLocalPostcondition.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for localPostcondition reference refreshment from localPostcondition
+				
 				Constraint nextElement = (Constraint) iter.next();
-				Constraint localPostcondition = (Constraint) localPostconditionToRefresh.get(nextElement);
-
+				Constraint localPostcondition = (Constraint) localPostconditionToRefreshFromLocalPostcondition.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List localPostconditionToRemove = basePart.getLocalPostconditionToRemove();
-			for (Iterator iter = localPostconditionToRemove.iterator(); iter.hasNext();)
+			List localPostconditionToRemoveFromLocalPostcondition = basePart.getLocalPostconditionToRemove();
+			for (Iterator iter = localPostconditionToRemoveFromLocalPostcondition.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List localPostconditionToMove = basePart.getLocalPostconditionToMove();
-			for (Iterator iter = localPostconditionToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List localPostconditionToMoveFromLocalPostcondition = basePart.getLocalPostconditionToMove();
+			for (Iterator iter = localPostconditionToMoveFromLocalPostcondition.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List elementImportToAdd = basePart.getElementImportToAdd();
-			for (Iterator iter = elementImportToAdd.iterator(); iter.hasNext();)
+			List elementImportToAddFromElementImport = basePart.getElementImportToAdd();
+			for (Iterator iter = elementImportToAddFromElementImport.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getNamespace_ElementImport(), iter.next()));
-			Map elementImportToRefresh = basePart.getElementImportToEdit();
-			for (Iterator iter = elementImportToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for elementImport reference refreshment
-
+			Map elementImportToRefreshFromElementImport = basePart.getElementImportToEdit();
+			for (Iterator iter = elementImportToRefreshFromElementImport.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for elementImport reference refreshment from elementImport
+				
 				ElementImport nextElement = (ElementImport) iter.next();
-				ElementImport elementImport = (ElementImport) elementImportToRefresh.get(nextElement);
-
+				ElementImport elementImport = (ElementImport) elementImportToRefreshFromElementImport.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List elementImportToRemove = basePart.getElementImportToRemove();
-			for (Iterator iter = elementImportToRemove.iterator(); iter.hasNext();)
+			List elementImportToRemoveFromElementImport = basePart.getElementImportToRemove();
+			for (Iterator iter = elementImportToRemoveFromElementImport.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List elementImportToMove = basePart.getElementImportToMove();
-			for (Iterator iter = elementImportToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List elementImportToMoveFromElementImport = basePart.getElementImportToMove();
+			for (Iterator iter = elementImportToMoveFromElementImport.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getElementImport(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List packageImportToAdd = basePart.getPackageImportToAdd();
-			for (Iterator iter = packageImportToAdd.iterator(); iter.hasNext();)
+			List packageImportToAddFromPackageImport = basePart.getPackageImportToAdd();
+			for (Iterator iter = packageImportToAddFromPackageImport.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getNamespace_PackageImport(), iter.next()));
-			Map packageImportToRefresh = basePart.getPackageImportToEdit();
-			for (Iterator iter = packageImportToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for packageImport reference refreshment
-
+			Map packageImportToRefreshFromPackageImport = basePart.getPackageImportToEdit();
+			for (Iterator iter = packageImportToRefreshFromPackageImport.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for packageImport reference refreshment from packageImport
+				
 				PackageImport nextElement = (PackageImport) iter.next();
-				PackageImport packageImport = (PackageImport) packageImportToRefresh.get(nextElement);
-
+				PackageImport packageImport = (PackageImport) packageImportToRefreshFromPackageImport.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List packageImportToRemove = basePart.getPackageImportToRemove();
-			for (Iterator iter = packageImportToRemove.iterator(); iter.hasNext();)
+			List packageImportToRemoveFromPackageImport = basePart.getPackageImportToRemove();
+			for (Iterator iter = packageImportToRemoveFromPackageImport.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List packageImportToMove = basePart.getPackageImportToMove();
-			for (Iterator iter = packageImportToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List packageImportToMoveFromPackageImport = basePart.getPackageImportToMove();
+			for (Iterator iter = packageImportToMoveFromPackageImport.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getPackageImport(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List ownedRuleToAdd = basePart.getOwnedRuleToAdd();
-			for (Iterator iter = ownedRuleToAdd.iterator(); iter.hasNext();)
+			List ownedRuleToAddFromOwnedRule = basePart.getOwnedRuleToAdd();
+			for (Iterator iter = ownedRuleToAddFromOwnedRule.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), iter.next()));
-			Map ownedRuleToRefresh = basePart.getOwnedRuleToEdit();
-			for (Iterator iter = ownedRuleToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for ownedRule reference refreshment
-
+			Map ownedRuleToRefreshFromOwnedRule = basePart.getOwnedRuleToEdit();
+			for (Iterator iter = ownedRuleToRefreshFromOwnedRule.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for ownedRule reference refreshment from ownedRule
+				
 				Constraint nextElement = (Constraint) iter.next();
-				Constraint ownedRule = (Constraint) ownedRuleToRefresh.get(nextElement);
-
+				Constraint ownedRule = (Constraint) ownedRuleToRefreshFromOwnedRule.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List ownedRuleToRemove = basePart.getOwnedRuleToRemove();
-			for (Iterator iter = ownedRuleToRemove.iterator(); iter.hasNext();)
+			List ownedRuleToRemoveFromOwnedRule = basePart.getOwnedRuleToRemove();
+			for (Iterator iter = ownedRuleToRemoveFromOwnedRule.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List ownedRuleToMove = basePart.getOwnedRuleToMove();
-			for (Iterator iter = ownedRuleToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List ownedRuleToMoveFromOwnedRule = basePart.getOwnedRuleToMove();
+			for (Iterator iter = ownedRuleToMoveFromOwnedRule.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List variableToAdd = basePart.getVariableToAdd();
-			for (Iterator iter = variableToAdd.iterator(); iter.hasNext();)
+			List variableToAddFromVariable = basePart.getVariableToAdd();
+			for (Iterator iter = variableToAddFromVariable.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getStructuredActivityNode_Variable(), iter.next()));
-			Map variableToRefresh = basePart.getVariableToEdit();
-			for (Iterator iter = variableToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for variable reference refreshment
-
+			Map variableToRefreshFromVariable = basePart.getVariableToEdit();
+			for (Iterator iter = variableToRefreshFromVariable.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for variable reference refreshment from variable
+				
 				Variable nextElement = (Variable) iter.next();
-				Variable variable = (Variable) variableToRefresh.get(nextElement);
-
+				Variable variable = (Variable) variableToRefreshFromVariable.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List variableToRemove = basePart.getVariableToRemove();
-			for (Iterator iter = variableToRemove.iterator(); iter.hasNext();)
+			List variableToRemoveFromVariable = basePart.getVariableToRemove();
+			for (Iterator iter = variableToRemoveFromVariable.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List variableToMove = basePart.getVariableToMove();
-			for (Iterator iter = variableToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List variableToMoveFromVariable = basePart.getVariableToMove();
+			for (Iterator iter = variableToMoveFromVariable.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getVariable(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List edgeToAdd = basePart.getEdgeToAdd();
-			for (Iterator iter = edgeToAdd.iterator(); iter.hasNext();)
+			List edgeToAddFromEdge = basePart.getEdgeToAdd();
+			for (Iterator iter = edgeToAddFromEdge.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getStructuredActivityNode_Edge(), iter.next()));
-			Map edgeToRefresh = basePart.getEdgeToEdit();
-			for (Iterator iter = edgeToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for edge reference refreshment
-
+			Map edgeToRefreshFromEdge = basePart.getEdgeToEdit();
+			for (Iterator iter = edgeToRefreshFromEdge.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for edge reference refreshment from edge
+				
 				ActivityEdge nextElement = (ActivityEdge) iter.next();
-				ActivityEdge edge = (ActivityEdge) edgeToRefresh.get(nextElement);
-
+				ActivityEdge edge = (ActivityEdge) edgeToRefreshFromEdge.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List edgeToRemove = basePart.getEdgeToRemove();
-			for (Iterator iter = edgeToRemove.iterator(); iter.hasNext();)
+			List edgeToRemoveFromEdge = basePart.getEdgeToRemove();
+			for (Iterator iter = edgeToRemoveFromEdge.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List edgeToMove = basePart.getEdgeToMove();
-			for (Iterator iter = edgeToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List edgeToMoveFromEdge = basePart.getEdgeToMove();
+			for (Iterator iter = edgeToMoveFromEdge.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityEdge(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getStructuredActivityNode_MustIsolate(), basePart.getMustIsolate()));
 
-			List nodeToAdd = basePart.getNodeToAdd();
-			for (Iterator iter = nodeToAdd.iterator(); iter.hasNext();)
+			List nodeToAddFromNode = basePart.getNodeToAdd();
+			for (Iterator iter = nodeToAddFromNode.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getStructuredActivityNode_Node(), iter.next()));
-			Map nodeToRefresh = basePart.getNodeToEdit();
-			for (Iterator iter = nodeToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for node reference refreshment
-
+			Map nodeToRefreshFromNode = basePart.getNodeToEdit();
+			for (Iterator iter = nodeToRefreshFromNode.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for node reference refreshment from node
+				
 				ActivityNode nextElement = (ActivityNode) iter.next();
-				ActivityNode node = (ActivityNode) nodeToRefresh.get(nextElement);
-
+				ActivityNode node = (ActivityNode) nodeToRefreshFromNode.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List nodeToRemove = basePart.getNodeToRemove();
-			for (Iterator iter = nodeToRemove.iterator(); iter.hasNext();)
+			List nodeToRemoveFromNode = basePart.getNodeToRemove();
+			for (Iterator iter = nodeToRemoveFromNode.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List nodeToMove = basePart.getNodeToMove();
-			for (Iterator iter = nodeToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List nodeToMoveFromNode = basePart.getNodeToMove();
+			for (Iterator iter = nodeToMoveFromNode.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getActivityNode(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_IsTestedFirst(), basePart.getIsTestedFirst()));
 
-			List bodyPartToAdd = basePart.getBodyPartToAdd();
-			for (Iterator iter = bodyPartToAdd.iterator(); iter.hasNext();)
+			List bodyPartToAddFromBodyPart = basePart.getBodyPartToAdd();
+			for (Iterator iter = bodyPartToAddFromBodyPart.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_BodyPart(), iter.next()));
-			List bodyPartToRemove = basePart.getBodyPartToRemove();
-			for (Iterator iter = bodyPartToRemove.iterator(); iter.hasNext();)
+			List bodyPartToRemoveFromBodyPart = basePart.getBodyPartToRemove();
+			for (Iterator iter = bodyPartToRemoveFromBodyPart.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_BodyPart(), iter.next()));
-			// List bodyPartToMove = basePart.getBodyPartToMove();
-			// for (Iterator iter = bodyPartToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getExecutableNode(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List setupPartToAdd = basePart.getSetupPartToAdd();
-			for (Iterator iter = setupPartToAdd.iterator(); iter.hasNext();)
+			//List bodyPartToMoveFromBodyPart = basePart.getBodyPartToMove();
+			//for (Iterator iter = bodyPartToMoveFromBodyPart.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getExecutableNode(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List setupPartToAddFromSetupPart = basePart.getSetupPartToAdd();
+			for (Iterator iter = setupPartToAddFromSetupPart.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_SetupPart(), iter.next()));
-			List setupPartToRemove = basePart.getSetupPartToRemove();
-			for (Iterator iter = setupPartToRemove.iterator(); iter.hasNext();)
+			List setupPartToRemoveFromSetupPart = basePart.getSetupPartToRemove();
+			for (Iterator iter = setupPartToRemoveFromSetupPart.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_SetupPart(), iter.next()));
-			// List setupPartToMove = basePart.getSetupPartToMove();
-			// for (Iterator iter = setupPartToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getExecutableNode(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List testToAdd = basePart.getTestToAdd();
-			for (Iterator iter = testToAdd.iterator(); iter.hasNext();)
+			//List setupPartToMoveFromSetupPart = basePart.getSetupPartToMove();
+			//for (Iterator iter = setupPartToMoveFromSetupPart.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getExecutableNode(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List testToAddFromTest = basePart.getTestToAdd();
+			for (Iterator iter = testToAddFromTest.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_Test(), iter.next()));
-			List testToRemove = basePart.getTestToRemove();
-			for (Iterator iter = testToRemove.iterator(); iter.hasNext();)
+			List testToRemoveFromTest = basePart.getTestToRemove();
+			for (Iterator iter = testToRemoveFromTest.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_Test(), iter.next()));
-			// List testToMove = basePart.getTestToMove();
-			// for (Iterator iter = testToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getExecutableNode(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List resultToAdd = basePart.getResultToAdd();
-			for (Iterator iter = resultToAdd.iterator(); iter.hasNext();)
+			//List testToMoveFromTest = basePart.getTestToMove();
+			//for (Iterator iter = testToMoveFromTest.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getExecutableNode(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List resultToAddFromResult = basePart.getResultToAdd();
+			for (Iterator iter = resultToAddFromResult.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_Result(), iter.next()));
-			Map resultToRefresh = basePart.getResultToEdit();
-			for (Iterator iter = resultToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for result reference refreshment
-
+			Map resultToRefreshFromResult = basePart.getResultToEdit();
+			for (Iterator iter = resultToRefreshFromResult.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for result reference refreshment from result
+				
 				OutputPin nextElement = (OutputPin) iter.next();
-				OutputPin result = (OutputPin) resultToRefresh.get(nextElement);
-
+				OutputPin result = (OutputPin) resultToRefreshFromResult.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List resultToRemove = basePart.getResultToRemove();
-			for (Iterator iter = resultToRemove.iterator(); iter.hasNext();)
+			List resultToRemoveFromResult = basePart.getResultToRemove();
+			for (Iterator iter = resultToRemoveFromResult.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List resultToMove = basePart.getResultToMove();
-			for (Iterator iter = resultToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List resultToMoveFromResult = basePart.getResultToMove();
+			for (Iterator iter = resultToMoveFromResult.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getOutputPin(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List loopVariableToAdd = basePart.getLoopVariableToAdd();
-			for (Iterator iter = loopVariableToAdd.iterator(); iter.hasNext();)
+			List loopVariableToAddFromLoopVariable = basePart.getLoopVariableToAdd();
+			for (Iterator iter = loopVariableToAddFromLoopVariable.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_LoopVariable(), iter.next()));
-			List loopVariableToRemove = basePart.getLoopVariableToRemove();
-			for (Iterator iter = loopVariableToRemove.iterator(); iter.hasNext();)
+			List loopVariableToRemoveFromLoopVariable = basePart.getLoopVariableToRemove();
+			for (Iterator iter = loopVariableToRemoveFromLoopVariable.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_LoopVariable(), iter.next()));
-			// List loopVariableToMove = basePart.getLoopVariableToMove();
-			// for (Iterator iter = loopVariableToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getOutputPin(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List bodyOutputToAdd = basePart.getBodyOutputToAdd();
-			for (Iterator iter = bodyOutputToAdd.iterator(); iter.hasNext();)
+			//List loopVariableToMoveFromLoopVariable = basePart.getLoopVariableToMove();
+			//for (Iterator iter = loopVariableToMoveFromLoopVariable.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getOutputPin(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List bodyOutputToAddFromBodyOutput = basePart.getBodyOutputToAdd();
+			for (Iterator iter = bodyOutputToAddFromBodyOutput.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_BodyOutput(), iter.next()));
-			List bodyOutputToRemove = basePart.getBodyOutputToRemove();
-			for (Iterator iter = bodyOutputToRemove.iterator(); iter.hasNext();)
+			List bodyOutputToRemoveFromBodyOutput = basePart.getBodyOutputToRemove();
+			for (Iterator iter = bodyOutputToRemoveFromBodyOutput.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_BodyOutput(), iter.next()));
-			// List bodyOutputToMove = basePart.getBodyOutputToMove();
-			// for (Iterator iter = bodyOutputToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getOutputPin(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List loopVariableInputToAdd = basePart.getLoopVariableInputToAdd();
-			for (Iterator iter = loopVariableInputToAdd.iterator(); iter.hasNext();)
+			//List bodyOutputToMoveFromBodyOutput = basePart.getBodyOutputToMove();
+			//for (Iterator iter = bodyOutputToMoveFromBodyOutput.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getOutputPin(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List loopVariableInputToAddFromLoopVariableInput = basePart.getLoopVariableInputToAdd();
+			for (Iterator iter = loopVariableInputToAddFromLoopVariableInput.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput(), iter.next()));
-			Map loopVariableInputToRefresh = basePart.getLoopVariableInputToEdit();
-			for (Iterator iter = loopVariableInputToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for loopVariableInput reference refreshment
-
+			Map loopVariableInputToRefreshFromLoopVariableInput = basePart.getLoopVariableInputToEdit();
+			for (Iterator iter = loopVariableInputToRefreshFromLoopVariableInput.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for loopVariableInput reference refreshment from loopVariableInput
+				
 				InputPin nextElement = (InputPin) iter.next();
-				InputPin loopVariableInput = (InputPin) loopVariableInputToRefresh.get(nextElement);
-
+				InputPin loopVariableInput = (InputPin) loopVariableInputToRefreshFromLoopVariableInput.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List loopVariableInputToRemove = basePart.getLoopVariableInputToRemove();
-			for (Iterator iter = loopVariableInputToRemove.iterator(); iter.hasNext();)
+			List loopVariableInputToRemoveFromLoopVariableInput = basePart.getLoopVariableInputToRemove();
+			for (Iterator iter = loopVariableInputToRemoveFromLoopVariableInput.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List loopVariableInputToMove = basePart.getLoopVariableInputToMove();
-			for (Iterator iter = loopVariableInputToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List loopVariableInputToMoveFromLoopVariableInput = basePart.getLoopVariableInputToMove();
+			for (Iterator iter = loopVariableInputToMoveFromLoopVariableInput.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, loopNode, UMLPackage.eINSTANCE.getInputPin(), moveElement.getElement(), moveElement.getIndex()));
 			}
+
 
 		}
 		if (!cc.isEmpty())
 			return cc;
-		cc.append(UnexecutableCommand.INSTANCE);
+		cc.append(IdentityCommand.INSTANCE);
 		return cc;
 	}
 
@@ -744,11 +1173,11 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof LoopNode) {
-			LoopNode loopNodeToUpdate = (LoopNode) source;
+			LoopNode loopNodeToUpdate = (LoopNode)source;
 			loopNodeToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			loopNodeToUpdate.setName(basePart.getName());
 
-			loopNodeToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
+			loopNodeToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());	
 
 			loopNodeToUpdate.getClientDependencies().addAll(basePart.getClientDependencyToAdd());
 			loopNodeToUpdate.setIsLeaf(new Boolean(basePart.getIsLeaf()).booleanValue());
@@ -779,8 +1208,10 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			loopNodeToUpdate.getBodyOutputs().addAll(basePart.getBodyOutputToAdd());
 			loopNodeToUpdate.getLoopVariableInputs().addAll(basePart.getLoopVariableInputToAdd());
 
+
 			return loopNodeToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -795,13 +1226,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.LoopNode.ownedComment == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment) event.getOldValue();
-					Comment newValue = (Comment) event.getNewValue();
-
+					Comment oldValue = (Comment)event.getOldValue();
+					Comment newValue = (Comment)event.getNewValue();
+					
 					// Start of user code for ownedComment live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -867,13 +1300,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.handler == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					ExceptionHandler oldValue = (ExceptionHandler) event.getOldValue();
-					ExceptionHandler newValue = (ExceptionHandler) event.getNewValue();
-
+					ExceptionHandler oldValue = (ExceptionHandler)event.getOldValue();
+					ExceptionHandler newValue = (ExceptionHandler)event.getNewValue();
+					
 					// Start of user code for handler live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getExecutableNode_Handler(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -882,13 +1317,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.localPrecondition == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Constraint oldValue = (Constraint) event.getOldValue();
-					Constraint newValue = (Constraint) event.getNewValue();
-
+					Constraint oldValue = (Constraint)event.getOldValue();
+					Constraint newValue = (Constraint)event.getNewValue();
+					
 					// Start of user code for localPrecondition live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getAction_LocalPrecondition(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -897,13 +1334,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.localPostcondition == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Constraint oldValue = (Constraint) event.getOldValue();
-					Constraint newValue = (Constraint) event.getNewValue();
-
+					Constraint oldValue = (Constraint)event.getOldValue();
+					Constraint newValue = (Constraint)event.getNewValue();
+					
 					// Start of user code for localPostcondition live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getAction_LocalPostcondition(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -912,13 +1351,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.elementImport == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					ElementImport oldValue = (ElementImport) event.getOldValue();
-					ElementImport newValue = (ElementImport) event.getNewValue();
-
+					ElementImport oldValue = (ElementImport)event.getOldValue();
+					ElementImport newValue = (ElementImport)event.getNewValue();
+					
 					// Start of user code for elementImport live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getNamespace_ElementImport(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -927,13 +1368,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.packageImport == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					PackageImport oldValue = (PackageImport) event.getOldValue();
-					PackageImport newValue = (PackageImport) event.getNewValue();
-
+					PackageImport oldValue = (PackageImport)event.getOldValue();
+					PackageImport newValue = (PackageImport)event.getNewValue();
+					
 					// Start of user code for packageImport live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getNamespace_PackageImport(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -942,13 +1385,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.ownedRule == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Constraint oldValue = (Constraint) event.getOldValue();
-					Constraint newValue = (Constraint) event.getNewValue();
-
+					Constraint oldValue = (Constraint)event.getOldValue();
+					Constraint newValue = (Constraint)event.getNewValue();
+					
 					// Start of user code for ownedRule live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -957,13 +1402,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.variable == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Variable oldValue = (Variable) event.getOldValue();
-					Variable newValue = (Variable) event.getNewValue();
-
+					Variable oldValue = (Variable)event.getOldValue();
+					Variable newValue = (Variable)event.getNewValue();
+					
 					// Start of user code for variable live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getStructuredActivityNode_Variable(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -972,13 +1419,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.edge == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					ActivityEdge oldValue = (ActivityEdge) event.getOldValue();
-					ActivityEdge newValue = (ActivityEdge) event.getNewValue();
-
+					ActivityEdge oldValue = (ActivityEdge)event.getOldValue();
+					ActivityEdge newValue = (ActivityEdge)event.getNewValue();
+					
 					// Start of user code for edge live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getStructuredActivityNode_Edge(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -990,13 +1439,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 
 			if (UMLViewsRepository.LoopNode.node == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					ActivityNode oldValue = (ActivityNode) event.getOldValue();
-					ActivityNode newValue = (ActivityNode) event.getNewValue();
-
+					ActivityNode oldValue = (ActivityNode)event.getOldValue();
+					ActivityNode newValue = (ActivityNode)event.getNewValue();
+					
 					// Start of user code for node live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getStructuredActivityNode_Node(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -1032,13 +1483,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.result == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					OutputPin oldValue = (OutputPin) event.getOldValue();
-					OutputPin newValue = (OutputPin) event.getNewValue();
-
+					OutputPin oldValue = (OutputPin)event.getOldValue();
+					OutputPin newValue = (OutputPin)event.getNewValue();
+					
 					// Start of user code for result live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_Result(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -1063,13 +1516,15 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			}
 			if (UMLViewsRepository.LoopNode.loopVariableInput == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					InputPin oldValue = (InputPin) event.getOldValue();
-					InputPin newValue = (InputPin) event.getNewValue();
-
+					InputPin oldValue = (InputPin)event.getOldValue();
+					InputPin newValue = (InputPin)event.getNewValue();
+					
 					// Start of user code for loopVariableInput live update command
 					// TODO: Complete the loopNode update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -1077,8 +1532,8 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 					command.append(MoveCommand.create(liveEditingDomain, loopNode, UMLPackage.eINSTANCE.getInputPin(), event.getNewValue(), event.getNewIndex()));
 			}
 
-			if (command != null)
-				liveEditingDomain.getCommandStack().execute(command);
+
+			liveEditingDomain.getCommandStack().execute(command);
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
@@ -1086,10 +1541,64 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 				if (UMLViewsRepository.LoopNode.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			} else {
 
 				if (UMLViewsRepository.LoopNode.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			}
 		}
@@ -1111,61 +1620,89 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 	 */
 	public String getHelpContent(String key, int kind) {
 		if (key == UMLViewsRepository.LoopNode.ownedComment)
-			return "The Comments owned by this element."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.name)
-			return "The name of the NamedElement."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.visibility)
-			return "Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.clientDependency)
-			return "Indicates the dependencies that reference the client."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.isLeaf)
-			return "Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.outgoing)
-			return "Edges that have the node as source."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.incoming)
-			return "Edges that have the node as target."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.inPartition)
-			return "Partitions containing the node."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.inInterruptibleRegion)
-			return "Interruptible regions containing the node."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.redefinedNode)
-			return "Inherited nodes replaced by this node in a specialization of the activity."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.handler)
-			return "A set of exception handlers that are examined if an uncaught exception propagates to the outer level of the executable node."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.localPrecondition)
-			return "Constraint that must be satisfied when execution is started."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.localPostcondition)
-			return "Constraint that must be satisfied when executed is completed."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.elementImport)
-			return "References the ElementImports owned by the Namespace."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.packageImport)
-			return "References the PackageImports owned by the Namespace."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.ownedRule)
-			return "Specifies a set of Constraints owned by this Namespace."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.variable)
-			return "A variable defined in the scope of the structured activity node. It has no value and may not be accessed"; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.edge)
-			return "Edges immediately contained in the structured node."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.mustIsolate)
-			return "If true, then the actions in the node execute in isolation from actions outside the node."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.node)
-			return "Nodes immediately contained in the group."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.isTestedFirst)
-			return "If true, the test is performed before the first execution of the body.If false, the body is executed once before the test is performed."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.bodyPart)
-			return "The set of nodes and edges that perform the repetitive computations of the loop. The body section is executed as long as the test section produces a true value."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.setupPart)
-			return "The set of nodes and edges that initialize values or perform other setup computations for the loop."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.test)
-			return "The set of nodes, edges, and designated value that compute a Boolean value to determine if another execution of the body will be performed."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.result)
-			return "A list of output pins that constitute the data flow output of the entire loop."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.loopVariable)
-			return "A list of output pins that hold the values of the loop variables during an execution of the loop. When the test fails, the values are movied to the result pins of the loop."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.bodyOutput)
-			return "A list of output pins within the body fragment the values of which are moved to the loop variable pins after completion of execution of the body, before the next iteration of the loop begins or before the loop exits."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.LoopNode.loopVariableInput)
-			return "A list of values that are moved into the loop variable pins before the first iteration of the loop."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
 
@@ -1215,11 +1752,13 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
 			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			return Diagnostician.INSTANCE.validate(loopNode);
 		else
 			return null;
 	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -1232,3 +1771,4 @@ public class LoopNodeBasePropertiesEditionComponent extends StandardPropertiesEd
 	}
 
 }
+

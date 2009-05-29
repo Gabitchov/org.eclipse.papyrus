@@ -61,15 +61,21 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.PackageMergePropertiesEdit
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class PackageMergePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, PackageMergePropertiesEditionPart {
 
+
+
+
+
+	
 	public PackageMergePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-
+	
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
@@ -80,13 +86,14 @@ public class PackageMergePropertiesEditionPartForm extends CompositePropertiesEd
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-
+	
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createGeneralGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-
+		
 		// End of user code
+		
 	}
 
 	protected void createGeneralGroup(FormToolkit widgetFactory, final Composite view) {
@@ -102,13 +109,23 @@ public class PackageMergePropertiesEditionPartForm extends CompositePropertiesEd
 		generalSection.setClient(generalGroup);
 	}
 
+	
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
+		
 		// End of user code
+		
 	}
 
-	// Start of user code additional methods
 
+
+
+
+
+
+	
+	// Start of user code additional methods
+	
 	// End of user code
-}
+
+}	

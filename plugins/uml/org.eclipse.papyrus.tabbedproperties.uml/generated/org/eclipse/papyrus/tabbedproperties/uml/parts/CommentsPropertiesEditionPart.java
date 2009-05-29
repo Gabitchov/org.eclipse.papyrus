@@ -20,8 +20,11 @@ import org.eclipse.emf.ecore.EReference;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.viewers.ViewerFilter;
+ 
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -54,25 +57,48 @@ public interface CommentsPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
-	// Start of user code for additional methods
+	/**
+	 * Adds the given filter to the ownedComment edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedComment(ViewerFilter filter);
 
+	/**
+	 * Adds the given filter to the ownedComment edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
+
+
+
+
+
+
+
+
+
+
+	// Start of user code for additional methods
+	
 	// End of user code
+
 }
+

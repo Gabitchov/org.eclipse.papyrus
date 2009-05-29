@@ -22,8 +22,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.viewers.ViewerFilter;
+ 
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -56,23 +59,39 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
+
+	/**
+	 * Adds the given filter to the ownedComment edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToOwnedComment(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the ownedComment edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the name
@@ -81,9 +100,7 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -98,21 +115,20 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -125,24 +141,45 @@ public interface ExtensionEndPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
+	 * @return the current clientDependency
+	 */
+	public List getClientDependencyTable();
+
+	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
+
+	/**
+	 * Adds the given filter to the clientDependency edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToClientDependency(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the clientDependency edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToClientDependency(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the isLeaf
@@ -151,11 +188,13 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * 
-	 * @param newValue
-	 *            the new isLeaf to set
+	 * @param newValue the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isStatic
@@ -164,11 +203,13 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Defines a new isStatic
-	 * 
-	 * @param newValue
-	 *            the new isStatic to set
+	 * @param newValue the new isStatic to set
 	 */
 	public void setIsStatic(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isOrdered
@@ -177,11 +218,13 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Defines a new isOrdered
-	 * 
-	 * @param newValue
-	 *            the new isOrdered to set
+	 * @param newValue the new isOrdered to set
 	 */
 	public void setIsOrdered(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isUnique
@@ -190,11 +233,13 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Defines a new isUnique
-	 * 
-	 * @param newValue
-	 *            the new isUnique to set
+	 * @param newValue the new isUnique to set
 	 */
 	public void setIsUnique(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isReadOnly
@@ -203,11 +248,13 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Defines a new isReadOnly
-	 * 
-	 * @param newValue
-	 *            the new isReadOnly to set
+	 * @param newValue the new isReadOnly to set
 	 */
 	public void setIsReadOnly(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the deployment to add
@@ -236,68 +283,39 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Init the deployment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initDeployment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the deployment
-	 * 
-	 * @param newValue
-	 *            the deployment to update
+	 * @param newValue the deployment to update
 	 */
 	public void updateDeployment(EObject newValue);
 
 	/**
-	 * @return the templateBinding to add
-	 */
-	public List getTemplateBindingToAdd();
-
-	/**
-	 * @return the templateBinding to remove
-	 */
-	public List getTemplateBindingToRemove();
-
-	/**
-	 * @return the templateBinding to move
-	 */
-	public List getTemplateBindingToMove();
-
-	/**
-	 * @return the templateBinding to edit
-	 */
-	public Map getTemplateBindingToEdit();
-
-	/**
-	 * @return the current templateBinding
-	 */
-	public List getTemplateBindingTable();
-
-	/**
-	 * Init the templateBinding
+	 * Adds the given filter to the deployment edition editor.
 	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
-	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
+	public void addFilterToDeployment(ViewerFilter filter);
 
 	/**
-	 * Update the templateBinding
+	 * Adds the given filter to the deployment edition editor.
 	 * 
-	 * @param newValue
-	 *            the templateBinding to update
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
-	public void updateTemplateBinding(EObject newValue);
+	public void addBusinessFilterToDeployment(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the isDerived
@@ -306,11 +324,13 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Defines a new isDerived
-	 * 
-	 * @param newValue
-	 *            the new isDerived to set
+	 * @param newValue the new isDerived to set
 	 */
 	public void setIsDerived(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isDerivedUnion
@@ -319,11 +339,13 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Defines a new isDerivedUnion
-	 * 
-	 * @param newValue
-	 *            the new isDerivedUnion to set
+	 * @param newValue the new isDerivedUnion to set
 	 */
 	public void setIsDerivedUnion(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the aggregation
@@ -332,21 +354,20 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Init the aggregation
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initAggregation(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new aggregation
-	 * 
-	 * @param newValue
-	 *            the new aggregation to set
+	 * @param newValue the new aggregation to set
 	 */
 	public void setAggregation(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the redefinedProperty to add
@@ -359,24 +380,45 @@ public interface ExtensionEndPropertiesEditionPart {
 	public List getRedefinedPropertyToRemove();
 
 	/**
+	 * @return the current redefinedProperty
+	 */
+	public List getRedefinedPropertyTable();
+
+	/**
 	 * Init the redefinedProperty
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRedefinedProperty(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedProperty
-	 * 
-	 * @param newValue
-	 *            the redefinedProperty to update
+	 * @param newValue the redefinedProperty to update
 	 */
 	public void updateRedefinedProperty(EObject newValue);
+
+	/**
+	 * Adds the given filter to the redefinedProperty edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToRedefinedProperty(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the redefinedProperty edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToRedefinedProperty(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the subsettedProperty to add
@@ -389,24 +431,45 @@ public interface ExtensionEndPropertiesEditionPart {
 	public List getSubsettedPropertyToRemove();
 
 	/**
+	 * @return the current subsettedProperty
+	 */
+	public List getSubsettedPropertyTable();
+
+	/**
 	 * Init the subsettedProperty
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initSubsettedProperty(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the subsettedProperty
-	 * 
-	 * @param newValue
-	 *            the subsettedProperty to update
+	 * @param newValue the subsettedProperty to update
 	 */
 	public void updateSubsettedProperty(EObject newValue);
+
+	/**
+	 * Adds the given filter to the subsettedProperty edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToSubsettedProperty(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the subsettedProperty edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToSubsettedProperty(ViewerFilter filter);
+
+
+
+
 
 	/**
 	 * @return the qualifier to add
@@ -435,25 +498,48 @@ public interface ExtensionEndPropertiesEditionPart {
 
 	/**
 	 * Init the qualifier
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initQualifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the qualifier
-	 * 
-	 * @param newValue
-	 *            the qualifier to update
+	 * @param newValue the qualifier to update
 	 */
 	public void updateQualifier(EObject newValue);
 
-	// Start of user code for additional methods
+	/**
+	 * Adds the given filter to the qualifier edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToQualifier(ViewerFilter filter);
 
+	/**
+	 * Adds the given filter to the qualifier edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToQualifier(ViewerFilter filter);
+
+
+
+
+
+
+
+
+
+
+	// Start of user code for additional methods
+	
 	// End of user code
+
 }
+

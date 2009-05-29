@@ -32,11 +32,12 @@ public class GeneralOrderingPropertiesEditionProvider implements IPropertiesEdit
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof GeneralOrdering) && (UMLPackage.eINSTANCE.getGeneralOrdering() == eObject.eClass());
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
+	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
 		if (eObject instanceof GeneralOrdering) {
@@ -44,11 +45,12 @@ public class GeneralOrderingPropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject, java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#getPropertiesEditionComponent(org.eclipse.emf.ecore.EObject,
+	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
 		if (eObject instanceof GeneralOrdering) {
@@ -59,5 +61,5 @@ public class GeneralOrderingPropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-
-}
+	
+}	

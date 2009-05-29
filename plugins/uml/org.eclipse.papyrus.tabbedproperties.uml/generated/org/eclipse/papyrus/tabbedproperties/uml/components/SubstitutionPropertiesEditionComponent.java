@@ -13,15 +13,34 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Substitution;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.SubstitutionPropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.uml2.uml.Substitution;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class SubstitutionPropertiesEditionComponent extends ComposedPropertiesEditionComponent {
 
+	/**
+	 * The Base part
+	 */
+	private SubstitutionPropertiesEditionPart basePart;
+
+	/**
+	 * The SubstitutionBasePropertiesEditionComponent sub component
+	 */
+	protected SubstitutionBasePropertiesEditionComponent substitutionBasePropertiesEditionComponent;
+
+	/**
+	 * The ElementPropertiesEditionComponent sub component
+	 */
+	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
 	/**
 	 * Parameterized constructor
 	 * 
@@ -31,8 +50,52 @@ public class SubstitutionPropertiesEditionComponent extends ComposedPropertiesEd
 	public SubstitutionPropertiesEditionComponent(EObject substitution, String editing_mode) {
 		super(editing_mode);
 		if (substitution instanceof Substitution) {
-			addSubComponent(new SubstitutionBasePropertiesEditionComponent(substitution, editing_mode));
-			addSubComponent(new ElementPropertiesEditionComponent(substitution, editing_mode));
+			substitutionBasePropertiesEditionComponent = new SubstitutionBasePropertiesEditionComponent(substitution, editing_mode); 
+			addSubComponent(substitutionBasePropertiesEditionComponent);
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(substitution, editing_mode); 	
+			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
+	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 */
+	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
+		if ("Base".equals(key)) {
+			basePart = (SubstitutionPropertiesEditionPart)substitutionBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
+		}
+		return super.getPropertiesEditionPart(kind, key);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 */
+	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
+		if (UMLViewsRepository.Substitution.class == key) {
+			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
+			basePart = (SubstitutionPropertiesEditionPart)propertiesEditionPart;
+		}
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 */
+	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
+		if (key == UMLViewsRepository.Substitution.class) {
+			super.initPart(key, kind, element, allResource);
+		}
+            if (key == UMLViewsRepository.Comments.class) {
+                    super.initPart(key, kind, element, allResource);
+            
+            
+            }
+	}
 }
+

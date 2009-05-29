@@ -13,15 +13,34 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 // Start of user code for imports
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.OpaqueExpressionPropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.uml2.uml.OpaqueExpression;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class OpaqueExpressionPropertiesEditionComponent extends ComposedPropertiesEditionComponent {
 
+	/**
+	 * The Base part
+	 */
+	private OpaqueExpressionPropertiesEditionPart basePart;
+
+	/**
+	 * The OpaqueExpressionBasePropertiesEditionComponent sub component
+	 */
+	protected OpaqueExpressionBasePropertiesEditionComponent opaqueExpressionBasePropertiesEditionComponent;
+
+	/**
+	 * The ElementPropertiesEditionComponent sub component
+	 */
+	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
 	/**
 	 * Parameterized constructor
 	 * 
@@ -31,8 +50,52 @@ public class OpaqueExpressionPropertiesEditionComponent extends ComposedProperti
 	public OpaqueExpressionPropertiesEditionComponent(EObject opaqueExpression, String editing_mode) {
 		super(editing_mode);
 		if (opaqueExpression instanceof OpaqueExpression) {
-			addSubComponent(new OpaqueExpressionBasePropertiesEditionComponent(opaqueExpression, editing_mode));
-			addSubComponent(new ElementPropertiesEditionComponent(opaqueExpression, editing_mode));
+			opaqueExpressionBasePropertiesEditionComponent = new OpaqueExpressionBasePropertiesEditionComponent(opaqueExpression, editing_mode); 
+			addSubComponent(opaqueExpressionBasePropertiesEditionComponent);
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(opaqueExpression, editing_mode); 	
+			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
+	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 */
+	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
+		if ("Base".equals(key)) {
+			basePart = (OpaqueExpressionPropertiesEditionPart)opaqueExpressionBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
+		}
+		return super.getPropertiesEditionPart(kind, key);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 */
+	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
+		if (UMLViewsRepository.OpaqueExpression.class == key) {
+			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
+			basePart = (OpaqueExpressionPropertiesEditionPart)propertiesEditionPart;
+		}
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 */
+	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
+		if (key == UMLViewsRepository.OpaqueExpression.class) {
+			super.initPart(key, kind, element, allResource);
+		}
+            if (key == UMLViewsRepository.Comments.class) {
+                    super.initPart(key, kind, element, allResource);
+            
+            
+            }
+	}
 }
+

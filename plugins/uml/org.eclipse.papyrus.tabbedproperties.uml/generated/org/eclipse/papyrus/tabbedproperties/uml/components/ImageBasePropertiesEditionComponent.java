@@ -12,43 +12,27 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 
 // Start of user code for imports
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.command.MoveCommand;
-
-import org.eclipse.uml2.uml.Image;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.ImagePropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -57,11 +41,18 @@ import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComp
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.ImagePropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Image;
+import org.eclipse.uml2.uml.UMLPackage;
+
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -69,7 +60,7 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -86,13 +77,12 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 	 */
 	public ImageBasePropertiesEditionComponent(EObject image, String editing_mode) {
 		if (image instanceof Image) {
-			this.image = (Image) image;
+			this.image = (Image)image;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.image.eAdapters().add(semanticAdapter);
 			}
 		}
-		listeners = new ArrayList();
 		this.editing_mode = editing_mode;
 	}
 
@@ -110,20 +100,26 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getComment())) {
-					basePart.updateOwnedComment(image);
+				if (basePart == null)
+					ImageBasePropertiesEditionComponent.this.dispose();
+				else {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+						basePart.updateOwnedComment(image);
+					}
+					if (UMLPackage.eINSTANCE.getImage_Content().equals(msg.getFeature()) && basePart != null)
+						basePart.setContent((String)msg.getNewValue());
+
+					if (UMLPackage.eINSTANCE.getImage_Location().equals(msg.getFeature()) && basePart != null)
+						basePart.setLocation((String)msg.getNewValue());
+
+					if (UMLPackage.eINSTANCE.getImage_Format().equals(msg.getFeature()) && basePart != null)
+						basePart.setFormat((String)msg.getNewValue());
+
+
+
 				}
-				if (UMLPackage.eINSTANCE.getImage_Content().equals(msg.getFeature()) && basePart != null)
-					basePart.setContent((String) msg.getNewValue());
-
-				if (UMLPackage.eINSTANCE.getImage_Location().equals(msg.getFeature()) && basePart != null)
-					basePart.setLocation((String) msg.getNewValue());
-
-				if (UMLPackage.eINSTANCE.getImage_Format().equals(msg.getFeature()) && basePart != null)
-					basePart.setFormat((String) msg.getNewValue());
-
 			}
 
 		};
@@ -152,18 +148,19 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (image != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (ImagePropertiesEditionPart) provider.getPropertiesEditionPart(UMLViewsRepository.Image.class, kind, this);
-					listeners.add(basePart);
+					basePart = (ImagePropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Image.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -171,12 +168,25 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 */
+	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
+		if (key == UMLViewsRepository.Image.class)
+			this.basePart = (ImagePropertiesEditionPart) propertiesEditionPart;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.Image.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			Image image = (Image) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			Image image = (Image)elt;
+			// init values
 			basePart.initOwnedComment(image, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
 			if (image.getContent() != null)
 				basePart.setContent(image.getContent());
@@ -187,37 +197,71 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 			if (image.getFormat() != null)
 				basePart.setFormat(image.getFormat());
 
+			
+			// init filters
+			basePart.addFilterToOwnedComment(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for ownedComment
+			
+			// End of user code
+
+
+
 		}
+		// init values for referenced views
+
+		// init filters for referenced views
 
 	}
+
+
+
+
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand (org.eclipse.emf.edit.domain.EditingDomain)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (image != null) {
-			List ownedCommentToAdd = basePart.getOwnedCommentToAdd();
-			for (Iterator iter = ownedCommentToAdd.iterator(); iter.hasNext();)
+			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
+			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, image, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
-			Map ownedCommentToRefresh = basePart.getOwnedCommentToEdit();
-			for (Iterator iter = ownedCommentToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for ownedComment reference refreshment
-
+			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
+			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for ownedComment reference refreshment from ownedComment
+				
 				Comment nextElement = (Comment) iter.next();
-				Comment ownedComment = (Comment) ownedCommentToRefresh.get(nextElement);
-
+				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List ownedCommentToRemove = basePart.getOwnedCommentToRemove();
-			for (Iterator iter = ownedCommentToRemove.iterator(); iter.hasNext();)
+			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
+			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List ownedCommentToMove = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
+			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, image, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, image, UMLPackage.eINSTANCE.getImage_Content(), basePart.getContent()));
@@ -226,10 +270,12 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 
 			cc.append(SetCommand.create(editingDomain, image, UMLPackage.eINSTANCE.getImage_Format(), basePart.getFormat()));
 
+
+
 		}
 		if (!cc.isEmpty())
 			return cc;
-		cc.append(UnexecutableCommand.INSTANCE);
+		cc.append(IdentityCommand.INSTANCE);
 		return cc;
 	}
 
@@ -240,7 +286,7 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof Image) {
-			Image imageToUpdate = (Image) source;
+			Image imageToUpdate = (Image)source;
 			imageToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			imageToUpdate.setContent(basePart.getContent());
 
@@ -248,8 +294,11 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 
 			imageToUpdate.setFormat(basePart.getFormat());
 
+
+
 			return imageToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -264,13 +313,15 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.Image.ownedComment == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment) event.getOldValue();
-					Comment newValue = (Comment) event.getNewValue();
-
+					Comment oldValue = (Comment)event.getOldValue();
+					Comment newValue = (Comment)event.getNewValue();
+					
 					// Start of user code for ownedComment live update command
 					// TODO: Complete the image update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, image, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -286,8 +337,9 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 			if (UMLViewsRepository.Image.format == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, image, UMLPackage.eINSTANCE.getImage_Format(), event.getNewValue()));
 
-			if (command != null)
-				liveEditingDomain.getCommandStack().execute(command);
+
+
+			liveEditingDomain.getCommandStack().execute(command);
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
@@ -299,6 +351,7 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 				if (UMLViewsRepository.Image.format == event.getAffectedEditor())
 					basePart.setMessageForFormat(diag.getMessage(), IMessageProvider.ERROR);
 
+
 			} else {
 
 				if (UMLViewsRepository.Image.content == event.getAffectedEditor())
@@ -307,6 +360,7 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 					basePart.unsetMessageForLocation();
 				if (UMLViewsRepository.Image.format == event.getAffectedEditor())
 					basePart.unsetMessageForFormat();
+
 
 			}
 		}
@@ -319,13 +373,17 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 	 */
 	public String getHelpContent(String key, int kind) {
 		if (key == UMLViewsRepository.Image.ownedComment)
-			return "The Comments owned by this element."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.Image.content)
-			return "This contains the serialization of the image according to the format. The value could represent a bitmap, image such as a GIF file, or drawing 'instructions' using a standard such as Scalable Vector Graphic (SVG) (which is XML based)."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.Image.location)
-			return "This contains a location that can be used by a tool to locate the image as an alternative to embedding it in the stereotype."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.Image.format)
-			return "This indicates the format of the content - which is how the string content should be interpreted. The following values are reserved: SVG, GIF, PNG, JPG, WMF, EMF, BMP.In addition the prefix 'MIME: ' is also reserved. This option can be used as an alternative to express the reserved values above, for example \"SVG\" could instead be expressed as \"MIME: image/svg+xml\"."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
 
@@ -367,11 +425,13 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
 			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			return Diagnostician.INSTANCE.validate(image);
 		else
 			return null;
 	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -384,3 +444,4 @@ public class ImageBasePropertiesEditionComponent extends StandardPropertiesEditi
 	}
 
 }
+

@@ -72,17 +72,22 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class PackageImportPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, PackageImportPropertiesEditionPart {
 
-	private EMFComboViewer visibility;
+	protected EMFComboViewer visibility;
 
+
+
+
+	
 	public PackageImportPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-
+	
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
@@ -93,13 +98,14 @@ public class PackageImportPropertiesEditionPartForm extends CompositePropertiesE
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-
+	
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createGeneralGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-
+		
 		// End of user code
+		
 	}
 
 	protected void createGeneralGroup(FormToolkit widgetFactory, final Composite view) {
@@ -112,13 +118,11 @@ public class PackageImportPropertiesEditionPartForm extends CompositePropertiesE
 		GridLayout generalGroupLayout = new GridLayout();
 		generalGroupLayout.numColumns = 3;
 		generalGroup.setLayout(generalGroupLayout);
-		createVisibilityEEnumViewer(widgetFactory, generalGroup);
+		createVisibilityEMFComboViewer(widgetFactory, generalGroup);
 		generalSection.setClient(generalGroup);
 	}
-
-	protected void createVisibilityEEnumViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.PackageImportPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(
-				UMLViewsRepository.PackageImport.visibility, UMLViewsRepository.FORM_KIND));
+	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.PackageImportPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.PackageImport.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -133,18 +137,19 @@ public class PackageImportPropertiesEditionPartForm extends CompositePropertiesE
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PackageImportPropertiesEditionPartForm.this, UMLViewsRepository.PackageImport.visibility,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PackageImportPropertiesEditionPartForm.this, UMLViewsRepository.PackageImport.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.PackageImport.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
 
+	
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
+		
 		// End of user code
+		
 	}
 
 	/**
@@ -164,7 +169,7 @@ public class PackageImportPropertiesEditionPartForm extends CompositePropertiesE
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
-		visibility.setSelection(new StructuredSelection(current));
+		visibility.modelUpdating(new StructuredSelection(current));
 	}
 
 	/**
@@ -176,7 +181,19 @@ public class PackageImportPropertiesEditionPartForm extends CompositePropertiesE
 		visibility.modelUpdating(new StructuredSelection(newValue));
 	}
 
-	// Start of user code additional methods
 
+
+
+
+
+
+
+
+
+
+	
+	// Start of user code additional methods
+	
 	// End of user code
-}
+
+}	

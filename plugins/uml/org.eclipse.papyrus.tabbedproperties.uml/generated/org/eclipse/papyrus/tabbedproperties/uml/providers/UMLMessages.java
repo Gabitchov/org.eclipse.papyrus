@@ -16,7 +16,6 @@ import org.eclipse.osgi.util.NLS;
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class UMLMessages extends NLS {
-
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.tabbedproperties.uml.providers.uMLMessages"; //$NON-NLS-1$
 
 	public static String Class_PropertiesEditionPart_GeneralGroupLabel;
@@ -1231,8 +1230,6 @@ public class UMLMessages extends NLS {
 
 	public static String PropertyPropertiesEditionPart_UpperLabel;
 
-	public static String PropertyPropertiesEditionPart_TemplateBindingLabel;
-
 	public static String PropertyPropertiesEditionPart_QualifierLabel;
 
 	public static String PropertyPropertiesEditionPart_DeploymentLabel;
@@ -1562,8 +1559,6 @@ public class UMLMessages extends NLS {
 	public static String PortPropertiesEditionPart_IsReadOnlyLabel;
 
 	public static String PortPropertiesEditionPart_DeploymentLabel;
-
-	public static String PortPropertiesEditionPart_TemplateBindingLabel;
 
 	public static String PortPropertiesEditionPart_IsDerivedLabel;
 
@@ -5151,8 +5146,6 @@ public class UMLMessages extends NLS {
 
 	public static String ExtensionEndPropertiesEditionPart_DeploymentLabel;
 
-	public static String ExtensionEndPropertiesEditionPart_TemplateBindingLabel;
-
 	public static String ExtensionEndPropertiesEditionPart_IsDerivedLabel;
 
 	public static String ExtensionEndPropertiesEditionPart_IsDerivedUnionLabel;
@@ -5242,14 +5235,16 @@ public class UMLMessages extends NLS {
 	public static String PropertiesEditionPart_RemoveListViewerLabel;
 
 	// Start of user code for additionnal NLS Constants
-
+	
 	// End of user code
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, UMLMessages.class);
 	}
 
 	private UMLMessages() {
-		// protect instanciation
+		//protect instanciation
 	}
 }
+

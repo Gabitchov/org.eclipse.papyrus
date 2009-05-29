@@ -86,24 +86,30 @@ import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 
+
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class GeneralizationPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, GeneralizationPropertiesEditionPart {
 
-	private Button isSubstitutable;
-
+	protected Button isSubstitutable;
 	private EMFListEditUtil generalizationSetEditUtil;
+	protected ReferencesTable<?> generalizationSet;
+	protected List<ViewerFilter> generalizationSetBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> generalizationSetFilters = new ArrayList<ViewerFilter>();
 
-	private ReferencesTable<?> generalizationSet;
 
+
+
+	
 	public GeneralizationPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-
+	
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
@@ -114,13 +120,14 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-
+	
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createGeneralGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-
+		
 		// End of user code
+		
 	}
 
 	protected void createGeneralGroup(FormToolkit widgetFactory, final Composite view) {
@@ -137,77 +144,49 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 		createGeneralizationSetReferencesTable(widgetFactory, generalGroup);
 		generalSection.setClient(generalGroup);
 	}
-
 	protected void createIsSubstitutableCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isSubstitutable = widgetFactory.createButton(parent, UMLMessages.GeneralizationPropertiesEditionPart_IsSubstitutableLabel, SWT.CHECK);
 		isSubstitutable.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 * 
+			 *
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.isSubstitutable,
-							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isSubstitutable.getSelection())));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.isSubstitutable, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isSubstitutable.getSelection())));
 			}
-
+			
 		});
 		GridData isSubstitutableData = new GridData(GridData.FILL_HORIZONTAL);
 		isSubstitutableData.horizontalSpan = 2;
 		isSubstitutable.setLayoutData(isSubstitutableData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Generalization.isSubstitutable, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createGeneralizationSetReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.generalizationSet = new ReferencesTable<GeneralizationSet>(UMLMessages.GeneralizationPropertiesEditionPart_GeneralizationSetLabel, new ReferencesTableListener<GeneralizationSet>() {
-
 			public void handleAdd() {
-				ViewerFilter generalizationSetFilter = new EObjectFilter(UMLPackage.eINSTANCE.getGeneralizationSet());
-				ViewerFilter viewerFilter = new ViewerFilter() {
-
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof EObject)
-							return (!generalizationSetEditUtil.contains((EObject) element));
-						return false;
-					}
-				};
-				List filters = new ArrayList();
-				filters.add(generalizationSetFilter);
-				filters.add(viewerFilter);
-				TabElementTreeSelectionDialog<GeneralizationSet> dialog = new TabElementTreeSelectionDialog<GeneralizationSet>(resourceSet, filters, "GeneralizationSet", UMLPackage.eINSTANCE
-						.getGeneralizationSet()) {
-
+				TabElementTreeSelectionDialog<GeneralizationSet> dialog = new TabElementTreeSelectionDialog<GeneralizationSet>(resourceSet, generalizationSetFilters, generalizationSetBusinessFilters,
+				"GeneralizationSet", UMLPackage.eINSTANCE.getGeneralizationSet()) {
 					@Override
 					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!generalizationSetEditUtil.getVirtualList().contains(elem))
 								generalizationSetEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this,
-									UMLViewsRepository.Generalization.generalizationSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.generalizationSet,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						generalizationSet.refresh();
 					}
 				};
 				dialog.open();
 			}
-
-			public void handleEdit(GeneralizationSet element) {
-				editGeneralizationSet(element);
-			}
-
-			public void handleMove(GeneralizationSet element, int oldIndex, int newIndex) {
-				moveGeneralizationSet(element, oldIndex, newIndex);
-			}
-
-			public void handleRemove(GeneralizationSet element) {
-				removeFromGeneralizationSet(element);
-			}
-
-			public void navigateTo(GeneralizationSet element) {
-			}
+			public void handleEdit(GeneralizationSet element) { editGeneralizationSet(element); }
+			public void handleMove(GeneralizationSet element, int oldIndex, int newIndex) { moveGeneralizationSet(element, oldIndex, newIndex); }
+			public void handleRemove(GeneralizationSet element) { removeFromGeneralizationSet(element); }
+			public void navigateTo(GeneralizationSet element) { }
 		});
 		this.generalizationSet.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Generalization.generalizationSet, UMLViewsRepository.FORM_KIND));
 		this.generalizationSet.createControls(parent, widgetFactory);
@@ -216,7 +195,7 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 		this.generalizationSet.setLayoutData(generalizationSetData);
 		this.generalizationSet.disableMove();
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -224,10 +203,9 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 		EObject editedElement = generalizationSetEditUtil.foundCorrespondingEObject(element);
 		generalizationSetEditUtil.moveElement(element, oldIndex, newIndex);
 		generalizationSet.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.generalizationSet,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.generalizationSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -238,10 +216,10 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 		EObject editedElement = generalizationSetEditUtil.foundCorrespondingEObject(element);
 		generalizationSetEditUtil.removeElement(element);
 		generalizationSet.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.generalizationSet,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.generalizationSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -250,27 +228,29 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 	protected void editGeneralizationSet(GeneralizationSet element) {
 
 		// Start of user code editGeneralizationSet() method body
-
+		
 		EObject editedElement = generalizationSetEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				generalizationSetEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				generalizationSet.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.generalizationSet,
-						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartForm.this, UMLViewsRepository.Generalization.generalizationSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
+
 	}
 
+	
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
+		
 		// End of user code
+		
 	}
 
 	/**
@@ -295,6 +275,10 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 		}
 	}
 
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -311,6 +295,15 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 	 */
 	public List getGeneralizationSetToRemove() {
 		return generalizationSetEditUtil.getElementsToRemove();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationPropertiesEditionPart#getGeneralizationSetTable()
+	 */
+	public List getGeneralizationSetTable() {
+		return generalizationSetEditUtil.getVirtualList();
 	}
 
 	/**
@@ -334,13 +327,43 @@ public class GeneralizationPropertiesEditionPartForm extends CompositeProperties
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationPropertiesEditionPart#updateGeneralizationSet(EObject newValue)
 	 */
 	public void updateGeneralizationSet(EObject newValue) {
-		if (generalizationSetEditUtil != null) {
+		if(generalizationSetEditUtil!=null){
 			generalizationSetEditUtil.reinit(newValue);
 			generalizationSet.refresh();
 		}
 	}
 
-	// Start of user code additional methods
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationPropertiesEditionPart#addFilterGeneralizationSet(ViewerFilter filter)
+	 */
+	public void addFilterToGeneralizationSet(ViewerFilter filter) {
+		generalizationSetFilters.add(filter);
+	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationPropertiesEditionPart#addBusinessFilterGeneralizationSet(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToGeneralizationSet(ViewerFilter filter) {
+		generalizationSetBusinessFilters.add(filter);
+	}
+
+
+
+
+
+
+
+
+
+
+
+	
+	// Start of user code additional methods
+	
 	// End of user code
-}
+
+}	

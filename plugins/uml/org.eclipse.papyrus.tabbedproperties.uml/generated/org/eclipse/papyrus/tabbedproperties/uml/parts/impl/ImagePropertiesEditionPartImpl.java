@@ -46,31 +46,37 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProvider
 
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.papyrus.tabbedproperties.uml.parts.ImagePropertiesEditionPart;
+
 import java.util.Map;
 import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Comment;
+
 
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ImagePropertiesEditionPart {
 
-	private EMFListEditUtil ownedCommentEditUtil;
+	protected EMFListEditUtil ownedCommentEditUtil;
+	protected ReferencesTable<?> ownedComment;
+	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+	protected Text content;
+	protected Text location;
+	protected Text format;
 
-	private ReferencesTable<?> ownedComment;
 
-	private Text content;
 
-	private Text location;
 
-	private Text format;
-
+	
 	public ImagePropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -80,17 +86,18 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-
+		
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) {
+	public void createControls(Composite view) { 
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
-
+		
 		// End of user code
+
 	}
 
 	protected void createPropertiesGroup(Composite parent) {
@@ -102,36 +109,21 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 		GridLayout propertiesGroupLayout = new GridLayout();
 		propertiesGroupLayout.numColumns = 3;
 		propertiesGroup.setLayout(propertiesGroupLayout);
-		createOwnedCommentTableComposition(propertiesGroup);
+		createOwnedCommentAdvancedTableComposition(propertiesGroup);
 		createContentText(propertiesGroup);
 		createLocationText(propertiesGroup);
 		createFormatText(propertiesGroup);
 	}
-
 	/**
 	 * @param container
 	 */
-	protected void createOwnedCommentTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ImagePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
-
-			public void handleAdd() {
-				addToOwnedComment();
-			}
-
-			public void handleEdit(Comment element) {
-				editOwnedComment(element);
-			}
-
-			public void handleMove(Comment element, int oldIndex, int newIndex) {
-				moveOwnedComment(element, oldIndex, newIndex);
-			}
-
-			public void handleRemove(Comment element) {
-				removeFromOwnedComment(element);
-			}
-
-			public void navigateTo(Comment element) {
-			}
+	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ImagePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
+			public void handleAdd() { addToOwnedComment();}
+			public void handleEdit(Comment element) { editOwnedComment(element); }
+			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
+			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
+			public void navigateTo(Comment element) { }
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Image.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -144,36 +136,37 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 	 * 
 	 */
 	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-
+				
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.ownedComment, PropertiesEditionEvent.COMMIT,
-				PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		
 	}
 
 	/**
 	 * 
 	 */
-	private void addToOwnedComment() {
+	protected void addToOwnedComment() {
 
 		// Start of user code addToOwnedComment() method body
+
 
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.ownedComment, PropertiesEditionEvent.CHANGE,
-						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
+		
+		
 		// End of user code
+		
 	}
 
 	/**
@@ -181,15 +174,15 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 	 */
 	private void removeFromOwnedComment(Comment element) {
 
-		// Start of user code for the removeFromOwnedComment() method body
+		// Start of user code removeFromOwnedComment() method body
 
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.ownedComment, PropertiesEditionEvent.CHANGE,
-				PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -198,23 +191,22 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 	private void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-
+		
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.ownedComment, PropertiesEditionEvent.CHANGE,
-						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-
+		
 		// End of user code
-	}
 
+	}
 	protected void createContentText(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.ImagePropertiesEditionPart_ContentLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Image.content, UMLViewsRepository.SWT_KIND));
 		content = new Text(parent, SWT.BORDER);
@@ -229,15 +221,13 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.content, PropertiesEditionEvent.CHANGE,
-							PropertiesEditionEvent.SET, null, content.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.content, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, content.getText()));
 			}
-
+			
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Image.content, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createLocationText(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.ImagePropertiesEditionPart_LocationLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Image.location, UMLViewsRepository.SWT_KIND));
 		location = new Text(parent, SWT.BORDER);
@@ -252,15 +242,13 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.location, PropertiesEditionEvent.CHANGE,
-							PropertiesEditionEvent.SET, null, location.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.location, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, location.getText()));
 			}
-
+			
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Image.location, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createFormatText(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.ImagePropertiesEditionPart_FormatLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Image.format, UMLViewsRepository.SWT_KIND));
 		format = new Text(parent, SWT.BORDER);
@@ -275,19 +263,20 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.format, PropertiesEditionEvent.CHANGE,
-							PropertiesEditionEvent.SET, null, format.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ImagePropertiesEditionPartImpl.this, UMLViewsRepository.Image.format, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, format.getText()));
 			}
-
+			
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Image.format, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
 
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
+		
 		// End of user code
+
 	}
 
 	/**
@@ -356,10 +345,28 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ImagePropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if (ownedCommentEditUtil != null) {
+		if(ownedCommentEditUtil!=null){
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ImagePropertiesEditionPart#addFilterOwnedComment(ViewerFilter filter)
+	 */
+	public void addFilterToOwnedComment(ViewerFilter filter) {
+		ownedCommentFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ImagePropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
+		ownedCommentBusinessFilters.add(filter);
 	}
 
 	public void setMessageForOwnedComment(String msg, int msgLevel) {
@@ -448,7 +455,15 @@ public class ImagePropertiesEditionPartImpl extends CompositePropertiesEditionPa
 
 	}
 
-	// Start of user code additional methods
 
+
+
+
+
+
+
+	// Start of user code additional methods
+	
 	// End of user code
+
 }

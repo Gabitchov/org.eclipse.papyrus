@@ -62,6 +62,7 @@ import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProvider
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.runtime.api.parts.EEFMessageManager;
 import org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -87,13 +88,6 @@ import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import java.util.Map;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.Comment;
-
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -104,39 +98,51 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import java.util.Map;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Comment;
+
 
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class ConnectionPointReferencePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ConnectionPointReferencePropertiesEditionPart {
 
-	private EMFListEditUtil ownedCommentEditUtil;
-
-	private ReferencesTable<?> ownedComment;
-
-	private Text name;
-
-	private EMFComboViewer visibility;
-
+	protected EMFListEditUtil ownedCommentEditUtil;
+	protected ReferencesTable<?> ownedComment;
+	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+	protected Text name;
+	protected EMFComboViewer visibility;
 	private EMFListEditUtil clientDependencyEditUtil;
-
-	private ReferencesTable<?> clientDependency;
-
+	protected ReferencesTable<?> clientDependency;
+	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
 	private EMFListEditUtil entryEditUtil;
-
-	private ReferencesTable<?> entry;
-
+	protected ReferencesTable<?> entry;
+	protected List<ViewerFilter> entryBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> entryFilters = new ArrayList<ViewerFilter>();
 	private EMFListEditUtil exitEditUtil;
+	protected ReferencesTable<?> exit;
+	protected List<ViewerFilter> exitBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> exitFilters = new ArrayList<ViewerFilter>();
 
-	private ReferencesTable<?> exit;
 
+
+
+	
 	public ConnectionPointReferencePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-
+	
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
@@ -147,13 +153,14 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-
+	
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createPropertiesGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-
+		
 		// End of user code
+		
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
@@ -168,37 +175,22 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		propertiesGroup.setLayout(propertiesGroupLayout);
 		createOwnedCommentTableComposition(widgetFactory, propertiesGroup);
 		createNameText(widgetFactory, propertiesGroup);
-		createVisibilityEEnumViewer(widgetFactory, propertiesGroup);
+		createVisibilityEMFComboViewer(widgetFactory, propertiesGroup);
 		createClientDependencyReferencesTable(widgetFactory, propertiesGroup);
 		createEntryReferencesTable(widgetFactory, propertiesGroup);
 		createExitReferencesTable(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
 	}
-
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ConnectionPointReferencePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
-
-			public void handleAdd() {
-				addToOwnedComment();
-			}
-
-			public void handleEdit(Comment element) {
-				editOwnedComment(element);
-			}
-
-			public void handleMove(Comment element, int oldIndex, int newIndex) {
-				moveOwnedComment(element, oldIndex, newIndex);
-			}
-
-			public void handleRemove(Comment element) {
-				removeFromOwnedComment(element);
-			}
-
-			public void navigateTo(Comment element) {
-			}
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ConnectionPointReferencePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
+			public void handleAdd() { addToOwnedComment();}
+			public void handleEdit(Comment element) { editOwnedComment(element); }
+			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
+			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
+			public void navigateTo(Comment element) { }
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectionPointReference.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
@@ -206,7 +198,7 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		ownedCommentData.horizontalSpan = 3;
 		this.ownedComment.setLayoutData(ownedCommentData);
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -214,32 +206,33 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.ownedComment,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		
 	}
-
+	
 	/**
 	 * 
 	 */
 	protected void addToOwnedComment() {
-
+	
 		// Start of user code addToOwnedComment() method body
-
+		
+		
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-						UMLViewsRepository.ConnectionPointReference.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
+		
+			
 		// End of user code
+		
 	}
 
 	/**
@@ -252,10 +245,10 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.ownedComment,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -264,26 +257,24 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	protected void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-
+				 
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-						UMLViewsRepository.ConnectionPointReference.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
-	}
 
+	}
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConnectionPointReferencePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(
-				UMLViewsRepository.ConnectionPointReference.name, UMLViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConnectionPointReferencePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ConnectionPointReference.name, UMLViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -298,10 +289,9 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-							UMLViewsRepository.ConnectionPointReference.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-
+			
 		});
 		name.addFocusListener(new FocusAdapter() {
 
@@ -312,8 +302,7 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 			 */
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-							UMLViewsRepository.ConnectionPointReference.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
 		});
@@ -327,19 +316,16 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-								UMLViewsRepository.ConnectionPointReference.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectionPointReference.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 
 	}
-
-	protected void createVisibilityEEnumViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConnectionPointReferencePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(
-				UMLViewsRepository.ConnectionPointReference.visibility, UMLViewsRepository.FORM_KIND));
+	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConnectionPointReferencePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ConnectionPointReference.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -354,61 +340,35 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-							UMLViewsRepository.ConnectionPointReference.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
-
+			
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectionPointReference.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createClientDependencyReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.ConnectionPointReferencePropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
-
 			public void handleAdd() {
-				ViewerFilter clientDependencyFilter = new EObjectFilter(UMLPackage.eINSTANCE.getDependency());
-				ViewerFilter viewerFilter = new ViewerFilter() {
-
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof EObject)
-							return (!clientDependencyEditUtil.contains((EObject) element));
-						return false;
-					}
-				};
-				List filters = new ArrayList();
-				filters.add(clientDependencyFilter);
-				filters.add(viewerFilter);
-				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, filters, "Dependency", UMLPackage.eINSTANCE.getDependency()) {
-
+				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
+				"Dependency", UMLPackage.eINSTANCE.getDependency()) {
 					@Override
 					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-									UMLViewsRepository.ConnectionPointReference.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.clientDependency,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						clientDependency.refresh();
 					}
 				};
 				dialog.open();
 			}
-
-			public void handleEdit(Dependency element) {
-				editClientDependency(element);
-			}
-
-			public void handleMove(Dependency element, int oldIndex, int newIndex) {
-				moveClientDependency(element, oldIndex, newIndex);
-			}
-
-			public void handleRemove(Dependency element) {
-				removeFromClientDependency(element);
-			}
-
-			public void navigateTo(Dependency element) {
-			}
+			public void handleEdit(Dependency element) { editClientDependency(element); }
+			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
+			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
+			public void navigateTo(Dependency element) { }
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectionPointReference.clientDependency, UMLViewsRepository.FORM_KIND));
 		this.clientDependency.createControls(parent, widgetFactory);
@@ -417,7 +377,7 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		this.clientDependency.setLayoutData(clientDependencyData);
 		this.clientDependency.disableMove();
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -425,10 +385,9 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.moveElement(element, oldIndex, newIndex);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-				UMLViewsRepository.ConnectionPointReference.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -439,10 +398,10 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.removeElement(element);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-				UMLViewsRepository.ConnectionPointReference.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -451,70 +410,45 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	protected void editClientDependency(Dependency element) {
 
 		// Start of user code editClientDependency() method body
-
+		
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-						UMLViewsRepository.ConnectionPointReference.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
-	}
 
+	}
 	protected void createEntryReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.entry = new ReferencesTable<Pseudostate>(UMLMessages.ConnectionPointReferencePropertiesEditionPart_EntryLabel, new ReferencesTableListener<Pseudostate>() {
-
 			public void handleAdd() {
-				ViewerFilter entryFilter = new EObjectFilter(UMLPackage.eINSTANCE.getPseudostate());
-				ViewerFilter viewerFilter = new ViewerFilter() {
-
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof EObject)
-							return (!entryEditUtil.contains((EObject) element));
-						return false;
-					}
-				};
-				List filters = new ArrayList();
-				filters.add(entryFilter);
-				filters.add(viewerFilter);
-				TabElementTreeSelectionDialog<Pseudostate> dialog = new TabElementTreeSelectionDialog<Pseudostate>(resourceSet, filters, "Pseudostate", UMLPackage.eINSTANCE.getPseudostate()) {
-
+				TabElementTreeSelectionDialog<Pseudostate> dialog = new TabElementTreeSelectionDialog<Pseudostate>(resourceSet, entryFilters, entryBusinessFilters,
+				"Pseudostate", UMLPackage.eINSTANCE.getPseudostate()) {
 					@Override
 					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!entryEditUtil.getVirtualList().contains(elem))
 								entryEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-									UMLViewsRepository.ConnectionPointReference.entry, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.entry,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						entry.refresh();
 					}
 				};
 				dialog.open();
 			}
-
-			public void handleEdit(Pseudostate element) {
-				editEntry(element);
-			}
-
-			public void handleMove(Pseudostate element, int oldIndex, int newIndex) {
-				moveEntry(element, oldIndex, newIndex);
-			}
-
-			public void handleRemove(Pseudostate element) {
-				removeFromEntry(element);
-			}
-
-			public void navigateTo(Pseudostate element) {
-			}
+			public void handleEdit(Pseudostate element) { editEntry(element); }
+			public void handleMove(Pseudostate element, int oldIndex, int newIndex) { moveEntry(element, oldIndex, newIndex); }
+			public void handleRemove(Pseudostate element) { removeFromEntry(element); }
+			public void navigateTo(Pseudostate element) { }
 		});
 		this.entry.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectionPointReference.entry, UMLViewsRepository.FORM_KIND));
 		this.entry.createControls(parent, widgetFactory);
@@ -523,7 +457,7 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		this.entry.setLayoutData(entryData);
 		this.entry.disableMove();
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -531,10 +465,9 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		EObject editedElement = entryEditUtil.foundCorrespondingEObject(element);
 		entryEditUtil.moveElement(element, oldIndex, newIndex);
 		entry.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.entry,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.entry, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -545,10 +478,10 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		EObject editedElement = entryEditUtil.foundCorrespondingEObject(element);
 		entryEditUtil.removeElement(element);
 		entry.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.entry,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.entry, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -557,70 +490,45 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	protected void editEntry(Pseudostate element) {
 
 		// Start of user code editEntry() method body
-
+		
 		EObject editedElement = entryEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				entryEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				entry.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.entry,
-						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.entry, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
-	}
 
+	}
 	protected void createExitReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.exit = new ReferencesTable<Pseudostate>(UMLMessages.ConnectionPointReferencePropertiesEditionPart_ExitLabel, new ReferencesTableListener<Pseudostate>() {
-
 			public void handleAdd() {
-				ViewerFilter exitFilter = new EObjectFilter(UMLPackage.eINSTANCE.getPseudostate());
-				ViewerFilter viewerFilter = new ViewerFilter() {
-
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof EObject)
-							return (!exitEditUtil.contains((EObject) element));
-						return false;
-					}
-				};
-				List filters = new ArrayList();
-				filters.add(exitFilter);
-				filters.add(viewerFilter);
-				TabElementTreeSelectionDialog<Pseudostate> dialog = new TabElementTreeSelectionDialog<Pseudostate>(resourceSet, filters, "Pseudostate", UMLPackage.eINSTANCE.getPseudostate()) {
-
+				TabElementTreeSelectionDialog<Pseudostate> dialog = new TabElementTreeSelectionDialog<Pseudostate>(resourceSet, exitFilters, exitBusinessFilters,
+				"Pseudostate", UMLPackage.eINSTANCE.getPseudostate()) {
 					@Override
 					public void process(IStructuredSelection selection) {
 						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
 							EObject elem = (EObject) iter.next();
 							if (!exitEditUtil.getVirtualList().contains(elem))
 								exitEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this,
-									UMLViewsRepository.ConnectionPointReference.exit, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.exit,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						exit.refresh();
 					}
 				};
 				dialog.open();
 			}
-
-			public void handleEdit(Pseudostate element) {
-				editExit(element);
-			}
-
-			public void handleMove(Pseudostate element, int oldIndex, int newIndex) {
-				moveExit(element, oldIndex, newIndex);
-			}
-
-			public void handleRemove(Pseudostate element) {
-				removeFromExit(element);
-			}
-
-			public void navigateTo(Pseudostate element) {
-			}
+			public void handleEdit(Pseudostate element) { editExit(element); }
+			public void handleMove(Pseudostate element, int oldIndex, int newIndex) { moveExit(element, oldIndex, newIndex); }
+			public void handleRemove(Pseudostate element) { removeFromExit(element); }
+			public void navigateTo(Pseudostate element) { }
 		});
 		this.exit.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConnectionPointReference.exit, UMLViewsRepository.FORM_KIND));
 		this.exit.createControls(parent, widgetFactory);
@@ -629,7 +537,7 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		this.exit.setLayoutData(exitData);
 		this.exit.disableMove();
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -637,10 +545,9 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		EObject editedElement = exitEditUtil.foundCorrespondingEObject(element);
 		exitEditUtil.moveElement(element, oldIndex, newIndex);
 		exit.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.exit,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.exit, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -651,10 +558,10 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 		EObject editedElement = exitEditUtil.foundCorrespondingEObject(element);
 		exitEditUtil.removeElement(element);
 		exit.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.exit,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.exit, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
+
 	}
 
 	/**
@@ -663,27 +570,29 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	protected void editExit(Pseudostate element) {
 
 		// Start of user code editExit() method body
-
+		
 		EObject editedElement = exitEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
+			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
 			if (propertiesEditionObject != null) {
 				exitEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				exit.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.exit,
-						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConnectionPointReferencePropertiesEditionPartForm.this, UMLViewsRepository.ConnectionPointReference.exit, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
+
 	}
 
+	
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
+		
 		// End of user code
+		
 	}
 
 	/**
@@ -752,11 +661,33 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if (ownedCommentEditUtil != null) {
+		if(ownedCommentEditUtil!=null){
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#addFilterOwnedComment(ViewerFilter filter)
+	 */
+	public void addFilterToOwnedComment(ViewerFilter filter) {
+		ownedCommentFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
+		ownedCommentBusinessFilters.add(filter);
+	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -801,7 +732,7 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
-		visibility.setSelection(new StructuredSelection(current));
+		visibility.modelUpdating(new StructuredSelection(current));
 	}
 
 	/**
@@ -812,6 +743,10 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
 	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -829,6 +764,15 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	 */
 	public List getClientDependencyToRemove() {
 		return clientDependencyEditUtil.getElementsToRemove();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#getClientDependencyTable()
+	 */
+	public List getClientDependencyTable() {
+		return clientDependencyEditUtil.getVirtualList();
 	}
 
 	/**
@@ -852,11 +796,33 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if (clientDependencyEditUtil != null) {
+		if(clientDependencyEditUtil!=null){
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#addFilterClientDependency(ViewerFilter filter)
+	 */
+	public void addFilterToClientDependency(ViewerFilter filter) {
+		clientDependencyFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
+		clientDependencyBusinessFilters.add(filter);
+	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -874,6 +840,15 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	 */
 	public List getEntryToRemove() {
 		return entryEditUtil.getElementsToRemove();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#getEntryTable()
+	 */
+	public List getEntryTable() {
+		return entryEditUtil.getVirtualList();
 	}
 
 	/**
@@ -897,11 +872,33 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#updateEntry(EObject newValue)
 	 */
 	public void updateEntry(EObject newValue) {
-		if (entryEditUtil != null) {
+		if(entryEditUtil!=null){
 			entryEditUtil.reinit(newValue);
 			entry.refresh();
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#addFilterEntry(ViewerFilter filter)
+	 */
+	public void addFilterToEntry(ViewerFilter filter) {
+		entryFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#addBusinessFilterEntry(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToEntry(ViewerFilter filter) {
+		entryBusinessFilters.add(filter);
+	}
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -919,6 +916,15 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	 */
 	public List getExitToRemove() {
 		return exitEditUtil.getElementsToRemove();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#getExitTable()
+	 */
+	public List getExitTable() {
+		return exitEditUtil.getVirtualList();
 	}
 
 	/**
@@ -942,13 +948,43 @@ public class ConnectionPointReferencePropertiesEditionPartForm extends Composite
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#updateExit(EObject newValue)
 	 */
 	public void updateExit(EObject newValue) {
-		if (exitEditUtil != null) {
+		if(exitEditUtil!=null){
 			exitEditUtil.reinit(newValue);
 			exit.refresh();
 		}
 	}
 
-	// Start of user code additional methods
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#addFilterExit(ViewerFilter filter)
+	 */
+	public void addFilterToExit(ViewerFilter filter) {
+		exitFilters.add(filter);
+	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConnectionPointReferencePropertiesEditionPart#addBusinessFilterExit(ViewerFilter filter)
+	 */
+	public void addBusinessFilterToExit(ViewerFilter filter) {
+		exitBusinessFilters.add(filter);
+	}
+
+
+
+
+
+
+
+
+
+
+
+	
+	// Start of user code additional methods
+	
 	// End of user code
-}
+
+}	

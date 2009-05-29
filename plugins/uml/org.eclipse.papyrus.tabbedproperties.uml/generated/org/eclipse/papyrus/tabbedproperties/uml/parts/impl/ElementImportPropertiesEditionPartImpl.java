@@ -42,6 +42,7 @@ import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
 
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart;
+
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -54,15 +55,19 @@ import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ElementImportPropertiesEditionPart {
 
-	private EMFComboViewer visibility;
+	protected EMFComboViewer visibility;
+	protected Text alias;
 
-	private Text alias;
 
+
+
+	
 	public ElementImportPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -72,17 +77,18 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-
+		
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) {
+	public void createControls(Composite view) { 
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
-
+		
 		// End of user code
+
 	}
 
 	protected void createGeneralGroup(Composite parent) {
@@ -94,13 +100,11 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 		GridLayout generalGroupLayout = new GridLayout();
 		generalGroupLayout.numColumns = 3;
 		generalGroup.setLayout(generalGroupLayout);
-		createVisibilityEEnumViewer(generalGroup);
+		createVisibilityEMFComboViewer(generalGroup);
 		createAliasText(generalGroup);
 	}
-
-	protected void createVisibilityEEnumViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ElementImportPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.visibility,
-				UMLViewsRepository.SWT_KIND));
+	protected void createVisibilityEMFComboViewer(Composite parent) {
+		SWTUtils.createPartLabel(parent, UMLMessages.ElementImportPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -108,10 +112,8 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 		visibility.getCombo().setLayoutData(visibilityData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createAliasText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ElementImportPropertiesEditionPart_AliasLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.alias,
-				UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ElementImportPropertiesEditionPart_AliasLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.alias, UMLViewsRepository.SWT_KIND));
 		alias = new Text(parent, SWT.BORDER);
 		GridData aliasData = new GridData(GridData.FILL_HORIZONTAL);
 		alias.setLayoutData(aliasData);
@@ -124,19 +126,20 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ElementImportPropertiesEditionPartImpl.this, UMLViewsRepository.ElementImport.alias,
-							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, alias.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ElementImportPropertiesEditionPartImpl.this, UMLViewsRepository.ElementImport.alias, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, alias.getText()));
 			}
-
+			
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ElementImport.alias, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
 
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
+		
 		// End of user code
+
 	}
 
 	/**
@@ -156,7 +159,7 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
-		visibility.setSelection(new StructuredSelection(current));
+		visibility.modelUpdating(new StructuredSelection(current));
 	}
 
 	/**
@@ -202,7 +205,15 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 
 	}
 
-	// Start of user code additional methods
 
+
+
+
+
+
+
+	// Start of user code additional methods
+	
 	// End of user code
+
 }

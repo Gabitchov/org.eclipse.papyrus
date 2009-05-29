@@ -602,9 +602,6 @@
           <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKo0RAfgEd6wG9u4vksShw" name="deployment" views="_yLP4VgfgEd6wG9u4vksShw">
             <model xsi:type="ecore:EReference" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentTarget/deployment"/>
           </properties>
-          <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKo0RQfgEd6wG9u4vksShw" name="templateBinding" views="_yLP4VwfgEd6wG9u4vksShw">
-            <model xsi:type="ecore:EReference" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateableElement/templateBinding"/>
-          </properties>
           <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKo0RgfgEd6wG9u4vksShw" name="isDerived" views="_yLP4WAfgEd6wG9u4vksShw">
             <model xsi:type="ecore:EAttribute" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property/isDerived"/>
           </properties>
@@ -1105,9 +1102,6 @@
           </properties>
           <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKviJgfgEd6wG9u4vksShw" name="deployment" views="_yLRtogfgEd6wG9u4vksShw">
             <model xsi:type="ecore:EReference" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentTarget/deployment"/>
-          </properties>
-          <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKviJwfgEd6wG9u4vksShw" name="templateBinding" views="_yLRtowfgEd6wG9u4vksShw">
-            <model xsi:type="ecore:EReference" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateableElement/templateBinding"/>
           </properties>
           <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKviKAfgEd6wG9u4vksShw" name="isDerived" views="_yLRtpAfgEd6wG9u4vksShw">
             <model xsi:type="ecore:EAttribute" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property/isDerived"/>
@@ -7239,9 +7233,6 @@
           <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKwwKQfgEd6wG9u4vksShw" name="deployment" views="_yLSUsAfgEd6wG9u4vksShw">
             <model xsi:type="ecore:EReference" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentTarget/deployment"/>
           </properties>
-          <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKwwKgfgEd6wG9u4vksShw" name="templateBinding" views="_yLSUsQfgEd6wG9u4vksShw">
-            <model xsi:type="ecore:EReference" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateableElement/templateBinding"/>
-          </properties>
           <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_yKwwKwfgEd6wG9u4vksShw" name="isDerived" views="_yLSUsgfgEd6wG9u4vksShw">
             <model xsi:type="ecore:EAttribute" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property/isDerived"/>
           </properties>
@@ -8124,9 +8115,6 @@
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
             <elements xsi:type="eef-views:Container" xmi:id="_JB-00AikEd68kZ9ShDNhew" name="othersHBox1">
               <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.6"/>
-              <elements xsi:type="eef-views:ElementEditor" xmi:id="_yLP4VwfgEd6wG9u4vksShw" name="templateBinding">
-                <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
-              </elements>
               <elements xsi:type="eef-views:ElementEditor" xmi:id="_yLP4XQfgEd6wG9u4vksShw" name="qualifier">
                 <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
               </elements>
@@ -8785,9 +8773,6 @@
               <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
             </elements>
             <elements xsi:type="eef-views:ElementEditor" xmi:id="_yLRtogfgEd6wG9u4vksShw" name="deployment">
-              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
-            </elements>
-            <elements xsi:type="eef-views:ElementEditor" xmi:id="_yLRtowfgEd6wG9u4vksShw" name="templateBinding">
               <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
             </elements>
             <elements xsi:type="eef-views:ElementEditor" xmi:id="_yLRtpAfgEd6wG9u4vksShw" name="isDerived">
@@ -15025,9 +15010,6 @@
               <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.1"/>
             </elements>
             <elements xsi:type="eef-views:ElementEditor" xmi:id="_yLSUsAfgEd6wG9u4vksShw" name="deployment">
-              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
-            </elements>
-            <elements xsi:type="eef-views:ElementEditor" xmi:id="_yLSUsQfgEd6wG9u4vksShw" name="templateBinding">
               <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
             </elements>
             <elements xsi:type="eef-views:ElementEditor" xmi:id="_yLSUsgfgEd6wG9u4vksShw" name="isDerived">

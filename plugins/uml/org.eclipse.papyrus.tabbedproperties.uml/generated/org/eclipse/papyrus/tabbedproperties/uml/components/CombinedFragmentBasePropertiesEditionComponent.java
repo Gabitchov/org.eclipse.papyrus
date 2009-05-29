@@ -12,73 +12,56 @@ package org.eclipse.papyrus.tabbedproperties.uml.components;
 
 // Start of user code for imports
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.command.MoveCommand;
-
-import org.eclipse.uml2.uml.CombinedFragment;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.VisibilityKind;
-import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.GeneralOrdering;
-import org.eclipse.uml2.uml.InteractionOperatorKind;
-import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.Gate;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
 import org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesContextService;
 import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPartProviderService;
-import org.eclipse.uml2.uml.VisibilityKind;
-import org.eclipse.uml2.uml.InteractionOperatorKind;
+import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.Gate;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
-import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.VisibilityKind;
+
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -86,7 +69,7 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -103,13 +86,12 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 	 */
 	public CombinedFragmentBasePropertiesEditionComponent(EObject combinedFragment, String editing_mode) {
 		if (combinedFragment instanceof CombinedFragment) {
-			this.combinedFragment = (CombinedFragment) combinedFragment;
+			this.combinedFragment = (CombinedFragment)combinedFragment;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.combinedFragment.eAdapters().add(semanticAdapter);
 			}
 		}
-		listeners = new ArrayList();
 		this.editing_mode = editing_mode;
 	}
 
@@ -127,40 +109,45 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getComment())) {
-					basePart.updateOwnedComment(combinedFragment);
-				}
-				if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
-					basePart.setName((String) msg.getNewValue());
+				if (basePart == null)
+					CombinedFragmentBasePropertiesEditionComponent.this.dispose();
+				else {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+						basePart.updateOwnedComment(combinedFragment);
+					}
+					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
+						basePart.setName((String)msg.getNewValue());
 
-				if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
-					basePart.setVisibility((Enumerator) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-				if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
-					basePart.updateClientDependency(combinedFragment);
-				if (UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(msg.getFeature()))
-					basePart.updateCovered(combinedFragment);
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getGeneralOrdering())) {
-					basePart.updateGeneralOrdering(combinedFragment);
-				}
-				if (UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator().equals(msg.getFeature()) && basePart != null)
-					basePart.setInteractionOperator((Enumerator) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
+						basePart.updateClientDependency(combinedFragment);
+					if (UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(msg.getFeature()))
+						basePart.updateCovered(combinedFragment);
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getGeneralOrdering())) {
+						basePart.updateGeneralOrdering(combinedFragment);
+					}
+					if (UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator().equals(msg.getFeature()) && basePart != null)
+						basePart.setInteractionOperator((Enumerator)msg.getNewValue());
 
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getCombinedFragment_Operand() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getInteractionOperand())) {
-					basePart.updateOperand(combinedFragment);
-				}
-				if (msg.getFeature() != null
-						&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getCombinedFragment_CfragmentGate() || ((EStructuralFeature) msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-								.getGate())) {
-					basePart.updateCfragmentGate(combinedFragment);
-				}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getCombinedFragment_Operand()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getInteractionOperand())) {
+						basePart.updateOperand(combinedFragment);
+					}
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getCombinedFragment_CfragmentGate()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getGate())) {
+						basePart.updateCfragmentGate(combinedFragment);
+					}
 
+
+				}
 			}
 
 		};
@@ -189,18 +176,19 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (combinedFragment != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (CombinedFragmentPropertiesEditionPart) provider.getPropertiesEditionPart(UMLViewsRepository.CombinedFragment.class, kind, this);
-					listeners.add(basePart);
+					basePart = (CombinedFragmentPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.CombinedFragment.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -208,12 +196,25 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 */
+	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
+		if (key == UMLViewsRepository.CombinedFragment.class)
+			this.basePart = (CombinedFragmentPropertiesEditionPart) propertiesEditionPart;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.CombinedFragment.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			CombinedFragment combinedFragment = (CombinedFragment) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			CombinedFragment combinedFragment = (CombinedFragment)elt;
+			// init values
 			basePart.initOwnedComment(combinedFragment, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
 			if (combinedFragment.getName() != null)
 				basePart.setName(combinedFragment.getName());
@@ -225,135 +226,262 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 			basePart.initInteractionOperator((EEnum) UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator().getEType(), combinedFragment.getInteractionOperator());
 			basePart.initOperand(combinedFragment, null, UMLPackage.eINSTANCE.getCombinedFragment_Operand());
 			basePart.initCfragmentGate(combinedFragment, null, UMLPackage.eINSTANCE.getCombinedFragment_CfragmentGate());
+			
+			// init filters
+			basePart.addFilterToOwnedComment(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for ownedComment
+			
+			// End of user code
+
+
+			basePart.addFilterToClientDependency(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getClientDependencyTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToClientDependency(new EObjectFilter(UMLPackage.eINSTANCE.getDependency()));
+			// Start of user code for additional businessfilters for clientDependency
+			
+			// End of user code
+			basePart.addFilterToCovered(new ViewerFilter() {
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					if (element instanceof EObject)
+						return (!basePart.getCoveredTable().contains(element));
+					return false;
+				}
+
+			});
+			basePart.addFilterToCovered(new EObjectFilter(UMLPackage.eINSTANCE.getLifeline()));
+			// Start of user code for additional businessfilters for covered
+			
+			// End of user code
+			basePart.addFilterToGeneralOrdering(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof GeneralOrdering); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for generalOrdering
+			
+			// End of user code
+
+			basePart.addFilterToOperand(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof InteractionOperand);
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for operand
+			
+			// End of user code
+			basePart.addFilterToCfragmentGate(new ViewerFilter() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Gate); //$NON-NLS-1$ 
+
+				}
+
+			});
+			// Start of user code for additional businessfilters for cfragmentGate
+			
+			// End of user code
 		}
+		// init values for referenced views
+
+		// init filters for referenced views
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand (org.eclipse.emf.edit.domain.EditingDomain)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (combinedFragment != null) {
-			List ownedCommentToAdd = basePart.getOwnedCommentToAdd();
-			for (Iterator iter = ownedCommentToAdd.iterator(); iter.hasNext();)
+			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
+			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
-			Map ownedCommentToRefresh = basePart.getOwnedCommentToEdit();
-			for (Iterator iter = ownedCommentToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for ownedComment reference refreshment
-
+			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
+			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for ownedComment reference refreshment from ownedComment
+				
 				Comment nextElement = (Comment) iter.next();
-				Comment ownedComment = (Comment) ownedCommentToRefresh.get(nextElement);
-
+				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List ownedCommentToRemove = basePart.getOwnedCommentToRemove();
-			for (Iterator iter = ownedCommentToRemove.iterator(); iter.hasNext();)
+			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
+			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List ownedCommentToMove = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
+			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
 
 			cc.append(SetCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
-			List clientDependencyToAdd = basePart.getClientDependencyToAdd();
-			for (Iterator iter = clientDependencyToAdd.iterator(); iter.hasNext();)
+			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
+			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
-			List clientDependencyToRemove = basePart.getClientDependencyToRemove();
-			for (Iterator iter = clientDependencyToRemove.iterator(); iter.hasNext();)
+			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
+			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
-			// List clientDependencyToMove = basePart.getClientDependencyToMove();
-			// for (Iterator iter = clientDependencyToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List coveredToAdd = basePart.getCoveredToAdd();
-			for (Iterator iter = coveredToAdd.iterator(); iter.hasNext();)
+			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
+			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List coveredToAddFromCovered = basePart.getCoveredToAdd();
+			for (Iterator iter = coveredToAddFromCovered.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), iter.next()));
-			List coveredToRemove = basePart.getCoveredToRemove();
-			for (Iterator iter = coveredToRemove.iterator(); iter.hasNext();)
+			List coveredToRemoveFromCovered = basePart.getCoveredToRemove();
+			for (Iterator iter = coveredToRemoveFromCovered.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), iter.next()));
-			// List coveredToMove = basePart.getCoveredToMove();
-			// for (Iterator iter = coveredToMove.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getLifeline(), moveElement.getElement(), moveElement.getIndex()));
-			// }
-			List generalOrderingToAdd = basePart.getGeneralOrderingToAdd();
-			for (Iterator iter = generalOrderingToAdd.iterator(); iter.hasNext();)
+			//List coveredToMoveFromCovered = basePart.getCoveredToMove();
+			//for (Iterator iter = coveredToMoveFromCovered.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getLifeline(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			List generalOrderingToAddFromGeneralOrdering = basePart.getGeneralOrderingToAdd();
+			for (Iterator iter = generalOrderingToAddFromGeneralOrdering.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering(), iter.next()));
-			Map generalOrderingToRefresh = basePart.getGeneralOrderingToEdit();
-			for (Iterator iter = generalOrderingToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for generalOrdering reference refreshment
-
+			Map generalOrderingToRefreshFromGeneralOrdering = basePart.getGeneralOrderingToEdit();
+			for (Iterator iter = generalOrderingToRefreshFromGeneralOrdering.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for generalOrdering reference refreshment from generalOrdering
+				
 				GeneralOrdering nextElement = (GeneralOrdering) iter.next();
-				GeneralOrdering generalOrdering = (GeneralOrdering) generalOrderingToRefresh.get(nextElement);
-
+				GeneralOrdering generalOrdering = (GeneralOrdering) generalOrderingToRefreshFromGeneralOrdering.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List generalOrderingToRemove = basePart.getGeneralOrderingToRemove();
-			for (Iterator iter = generalOrderingToRemove.iterator(); iter.hasNext();)
+			List generalOrderingToRemoveFromGeneralOrdering = basePart.getGeneralOrderingToRemove();
+			for (Iterator iter = generalOrderingToRemoveFromGeneralOrdering.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List generalOrderingToMove = basePart.getGeneralOrderingToMove();
-			for (Iterator iter = generalOrderingToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List generalOrderingToMoveFromGeneralOrdering = basePart.getGeneralOrderingToMove();
+			for (Iterator iter = generalOrderingToMoveFromGeneralOrdering.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getGeneralOrdering(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			cc.append(SetCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator(), basePart.getInteractionOperator()));
 
-			List operandToAdd = basePart.getOperandToAdd();
-			for (Iterator iter = operandToAdd.iterator(); iter.hasNext();)
+			List operandToAddFromOperand = basePart.getOperandToAdd();
+			for (Iterator iter = operandToAddFromOperand.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getCombinedFragment_Operand(), iter.next()));
-			Map operandToRefresh = basePart.getOperandToEdit();
-			for (Iterator iter = operandToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for operand reference refreshment
-
+			Map operandToRefreshFromOperand = basePart.getOperandToEdit();
+			for (Iterator iter = operandToRefreshFromOperand.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for operand reference refreshment from operand
+				
 				InteractionOperand nextElement = (InteractionOperand) iter.next();
-				InteractionOperand operand = (InteractionOperand) operandToRefresh.get(nextElement);
-
+				InteractionOperand operand = (InteractionOperand) operandToRefreshFromOperand.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List operandToRemove = basePart.getOperandToRemove();
-			for (Iterator iter = operandToRemove.iterator(); iter.hasNext();)
+			List operandToRemoveFromOperand = basePart.getOperandToRemove();
+			for (Iterator iter = operandToRemoveFromOperand.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List operandToMove = basePart.getOperandToMove();
-			for (Iterator iter = operandToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List operandToMoveFromOperand = basePart.getOperandToMove();
+			for (Iterator iter = operandToMoveFromOperand.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getInteractionOperand(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			List cfragmentGateToAdd = basePart.getCfragmentGateToAdd();
-			for (Iterator iter = cfragmentGateToAdd.iterator(); iter.hasNext();)
+			List cfragmentGateToAddFromCfragmentGate = basePart.getCfragmentGateToAdd();
+			for (Iterator iter = cfragmentGateToAddFromCfragmentGate.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getCombinedFragment_CfragmentGate(), iter.next()));
-			Map cfragmentGateToRefresh = basePart.getCfragmentGateToEdit();
-			for (Iterator iter = cfragmentGateToRefresh.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for cfragmentGate reference refreshment
-
+			Map cfragmentGateToRefreshFromCfragmentGate = basePart.getCfragmentGateToEdit();
+			for (Iterator iter = cfragmentGateToRefreshFromCfragmentGate.keySet().iterator(); iter.hasNext();) {
+				
+				// Start of user code for cfragmentGate reference refreshment from cfragmentGate
+				
 				Gate nextElement = (Gate) iter.next();
-				Gate cfragmentGate = (Gate) cfragmentGateToRefresh.get(nextElement);
-
+				Gate cfragmentGate = (Gate) cfragmentGateToRefreshFromCfragmentGate.get(nextElement);
+				
 				// End of user code
+				
 			}
-			List cfragmentGateToRemove = basePart.getCfragmentGateToRemove();
-			for (Iterator iter = cfragmentGateToRemove.iterator(); iter.hasNext();)
+			List cfragmentGateToRemoveFromCfragmentGate = basePart.getCfragmentGateToRemove();
+			for (Iterator iter = cfragmentGateToRemoveFromCfragmentGate.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
-			List cfragmentGateToMove = basePart.getCfragmentGateToMove();
-			for (Iterator iter = cfragmentGateToMove.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter.next();
+			List cfragmentGateToMoveFromCfragmentGate = basePart.getCfragmentGateToMove();
+			for (Iterator iter = cfragmentGateToMoveFromCfragmentGate.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, combinedFragment, UMLPackage.eINSTANCE.getGate(), moveElement.getElement(), moveElement.getIndex()));
 			}
+
 
 		}
 		if (!cc.isEmpty())
 			return cc;
-		cc.append(UnexecutableCommand.INSTANCE);
+		cc.append(IdentityCommand.INSTANCE);
 		return cc;
 	}
 
@@ -364,22 +492,24 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof CombinedFragment) {
-			CombinedFragment combinedFragmentToUpdate = (CombinedFragment) source;
+			CombinedFragment combinedFragmentToUpdate = (CombinedFragment)source;
 			combinedFragmentToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			combinedFragmentToUpdate.setName(basePart.getName());
 
-			combinedFragmentToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
+			combinedFragmentToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());	
 
 			combinedFragmentToUpdate.getClientDependencies().addAll(basePart.getClientDependencyToAdd());
 			combinedFragmentToUpdate.getCovereds().addAll(basePart.getCoveredToAdd());
 			combinedFragmentToUpdate.getGeneralOrderings().addAll(basePart.getGeneralOrderingToAdd());
-			combinedFragmentToUpdate.setInteractionOperator((InteractionOperatorKind) basePart.getInteractionOperator());
+			combinedFragmentToUpdate.setInteractionOperator((InteractionOperatorKind)basePart.getInteractionOperator());	
 
 			combinedFragmentToUpdate.getOperands().addAll(basePart.getOperandToAdd());
 			combinedFragmentToUpdate.getCfragmentGates().addAll(basePart.getCfragmentGateToAdd());
 
+
 			return combinedFragmentToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -394,13 +524,15 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.CombinedFragment.ownedComment == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment) event.getOldValue();
-					Comment newValue = (Comment) event.getNewValue();
-
+					Comment oldValue = (Comment)event.getOldValue();
+					Comment newValue = (Comment)event.getNewValue();
+					
 					// Start of user code for ownedComment live update command
 					// TODO: Complete the combinedFragment update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, combinedFragment, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -431,13 +563,15 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 			}
 			if (UMLViewsRepository.CombinedFragment.generalOrdering == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					GeneralOrdering oldValue = (GeneralOrdering) event.getOldValue();
-					GeneralOrdering newValue = (GeneralOrdering) event.getNewValue();
-
+					GeneralOrdering oldValue = (GeneralOrdering)event.getOldValue();
+					GeneralOrdering newValue = (GeneralOrdering)event.getNewValue();
+					
 					// Start of user code for generalOrdering live update command
 					// TODO: Complete the combinedFragment update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -449,13 +583,15 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 
 			if (UMLViewsRepository.CombinedFragment.operand == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					InteractionOperand oldValue = (InteractionOperand) event.getOldValue();
-					InteractionOperand newValue = (InteractionOperand) event.getNewValue();
-
+					InteractionOperand oldValue = (InteractionOperand)event.getOldValue();
+					InteractionOperand newValue = (InteractionOperand)event.getNewValue();
+					
 					// Start of user code for operand live update command
 					// TODO: Complete the combinedFragment update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, combinedFragment, UMLPackage.eINSTANCE.getCombinedFragment_Operand(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -464,13 +600,15 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 			}
 			if (UMLViewsRepository.CombinedFragment.cfragmentGate == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Gate oldValue = (Gate) event.getOldValue();
-					Gate newValue = (Gate) event.getNewValue();
-
+					Gate oldValue = (Gate)event.getOldValue();
+					Gate newValue = (Gate)event.getNewValue();
+					
 					// Start of user code for cfragmentGate live update command
 					// TODO: Complete the combinedFragment update command
 					// End of user code
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, combinedFragment, UMLPackage.eINSTANCE.getCombinedFragment_CfragmentGate(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
@@ -478,8 +616,8 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 					command.append(MoveCommand.create(liveEditingDomain, combinedFragment, UMLPackage.eINSTANCE.getGate(), event.getNewValue(), event.getNewIndex()));
 			}
 
-			if (command != null)
-				liveEditingDomain.getCommandStack().execute(command);
+
+			liveEditingDomain.getCommandStack().execute(command);
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
@@ -487,10 +625,26 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 				if (UMLViewsRepository.CombinedFragment.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
+
+
+
+
+
+
+
+
 			} else {
 
 				if (UMLViewsRepository.CombinedFragment.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
+
+
+
+
+
+
+
+
 
 			}
 		}
@@ -512,23 +666,32 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 	 */
 	public String getHelpContent(String key, int kind) {
 		if (key == UMLViewsRepository.CombinedFragment.ownedComment)
-			return "The Comments owned by this element."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.CombinedFragment.name)
-			return "The name of the NamedElement."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.CombinedFragment.visibility)
-			return "Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.CombinedFragment.clientDependency)
-			return "Indicates the dependencies that reference the client."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.CombinedFragment.covered)
-			return "References the Lifelines that the InteractionFragment involves."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.CombinedFragment.generalOrdering)
-			return "The general ordering relationships contained in this fragment."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.CombinedFragment.interactionOperator)
-			return "Specifies the operation which defines the semantics of this combination of InteractionFragments."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.CombinedFragment.operand)
-			return "The set of operands of the combined fragment."; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		if (key == UMLViewsRepository.CombinedFragment.cfragmentGate)
-			return "Specifies the gates that form the interface between this CombinedFragment and its surroundings"; //$NON-NLS-1$
+			return null
+; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
 
@@ -570,11 +733,13 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
 			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			return Diagnostician.INSTANCE.validate(combinedFragment);
 		else
 			return null;
 	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -587,3 +752,4 @@ public class CombinedFragmentBasePropertiesEditionComponent extends StandardProp
 	}
 
 }
+

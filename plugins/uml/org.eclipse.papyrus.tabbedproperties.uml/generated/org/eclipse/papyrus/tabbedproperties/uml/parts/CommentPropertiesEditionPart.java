@@ -19,8 +19,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.viewers.ViewerFilter;
+ 
 
 // End of user code
+
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -33,9 +36,7 @@ public interface CommentPropertiesEditionPart {
 
 	/**
 	 * Defines a new body
-	 * 
-	 * @param newValue
-	 *            the new body to set
+	 * @param newValue the new body to set
 	 */
 	public void setBody(String newValue);
 
@@ -54,26 +55,54 @@ public interface CommentPropertiesEditionPart {
 	public List getAnnotatedElementToRemove();
 
 	/**
+	 * @return the current annotatedElement
+	 */
+	public List getAnnotatedElementTable();
+
+	/**
 	 * Init the annotatedElement
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initAnnotatedElement(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the annotatedElement
-	 * 
-	 * @param newValue
-	 *            the annotatedElement to update
+	 * @param newValue the annotatedElement to update
 	 */
 	public void updateAnnotatedElement(EObject newValue);
 
-	// Start of user code for additional methods
+	/**
+	 * Adds the given filter to the annotatedElement edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addFilterToAnnotatedElement(ViewerFilter filter);
 
+	/**
+	 * Adds the given filter to the annotatedElement edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 */
+	public void addBusinessFilterToAnnotatedElement(ViewerFilter filter);
+
+
+
+
+
+
+
+
+
+
+	// Start of user code for additional methods
+	
 	// End of user code
+
 }
+
