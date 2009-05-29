@@ -117,25 +117,19 @@ public class DiSashModelMngr {
 
 	
 	/**
+	 * Return the internal implementation of ContentProvider.
+	 * Create if if needed.
+	 * This method should not be subclassed
 	 * @return the contentProvider
 	 */
-	protected DiContentProvider getDiContentProvider() {
+	protected final DiContentProvider getDiContentProvider() {
 		if(contentProvider == null)
 		{
-			contentProvider = createDiContentProvider();
+			contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory);
 		}
 		return contentProvider;
 	}
 
-	/**
-	 * Create the contentProvider.
-	 * @return
-	 */
-	protected DiContentProvider createDiContentProvider()
-	{
-		return new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory);		
-	}
-	
 	/**
 	 * Get the IPageMngr providing basic methods to manage Pages in the sash model.
 	 * @return
@@ -159,7 +153,7 @@ public class DiSashModelMngr {
 	public ISashWindowsContentProvider getISashWindowsContentProvider()
 	{
 				
-		return contentProvider;
+		return getDiContentProvider();
 		
 	}
 	
@@ -169,12 +163,7 @@ public class DiSashModelMngr {
 	 */
 	public IContentChangedProvider getSashModelContentChangedProvider()
 	{
-		if(contentProvider == null)
-		{
-			contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory);
-		}
-		
-		return contentProvider;
+		return getDiContentProvider();
 	}
 	
 	/**

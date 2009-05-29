@@ -12,7 +12,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.TransactionalD
 
 /**
  * DiSashModelMngr providing transactional commands to modify SashModel.
- * @author dumoulin
+ * @author cedric dumoulin
  *
  */
 public class TransactionalDiSashModelMngr extends DiSashModelMngr {
@@ -29,11 +29,10 @@ public class TransactionalDiSashModelMngr extends DiSashModelMngr {
 		super(pageModelFactory, false);
 		
 		
-		// Set the 
-		transDiContentProvider = new TransactionalDiContentProvider(getDiContentProvider(), editingDomain);
 		
 		// lookup the SashModel
 		sashWindowMngr = lookupSashWindowMngr(diResource);
+		// If no SashWindow structure is found, create a new one using a transaction.
 		if(sashWindowMngr == null)
 		{
 			RecordingCommand command = new RecordingCommand(editingDomain){
@@ -45,11 +44,23 @@ public class TransactionalDiSashModelMngr extends DiSashModelMngr {
 					diResource.getContents().add(sashWindowMngr);
 				}
 			};
-			
 			editingDomain.getCommandStack().execute(command);
 		}
+		
+		// Create the TransactionalDiContentProvider
+		transDiContentProvider = new TransactionalDiContentProvider(getDiContentProvider(), editingDomain);
+
 	}
 
+	/**
+	 * Get the internal implementation of TransactionalDiContentProvider.
+	 * @return
+	 */
+	protected TransactionalDiContentProvider getTransactionalDiContentProvider() {
+		return transDiContentProvider;
+		
+	}
+	
 	/**
 	 * Return the transactional version
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getISashWindowsContentProvider()
