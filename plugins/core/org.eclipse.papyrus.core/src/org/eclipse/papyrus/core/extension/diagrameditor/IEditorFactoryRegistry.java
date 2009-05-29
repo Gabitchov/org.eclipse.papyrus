@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
@@ -26,7 +27,7 @@ import org.eclipse.ui.IEditorPart;
  * 
  * @author dumoulin 
  */
-public interface IEditorFactoryRegistry extends IPageModelFactory {
+public interface IEditorFactoryRegistry  {
 
 	/**
 	 * Create a new editor for the specified diagram root.
@@ -55,4 +56,9 @@ public interface IEditorFactoryRegistry extends IPageModelFactory {
 	 */
 	public Image getEditorIcon(Object model);
 
+	/**
+	 * Create the IPageModel for the specified identifier.
+	 * 
+	 */
+	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry);
 }

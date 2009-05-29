@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.core.utils;
 
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
@@ -25,7 +26,14 @@ public class EditorUtils {
 	{
 			// Lookup ServiceRegistry
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			if(page==null)
+				throw new IllegalStateException("No Active Page can be found. So no Service Registry can be returned.");
 			IEditorPart editorPart = page.getActiveEditor();
+			if(editorPart==null)
+				throw new IllegalStateException("No Active Editor can be found. So no Service Registry can be returned.");
+			if( ! (editorPart instanceof CoreMultiDiagramEditor) )
+				throw new IllegalStateException("No CoreMultiDiagramEditor  can be found. So no Service Registry can be returned.");
+				
 			return (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
 	}
 	

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.core.extension.diagrameditor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.ui.IEditorPart;
@@ -133,7 +134,7 @@ public class EditorDescriptor implements IEditorDescriptor {
 		try {
 			editorFactory = (IEditorFactory) editorFactoryClass.newInstance();
 			// Set the descriptor. USed by the factory to get the ActionBarId and Icon
-			editorFactory.setEditorDescriptor(this);
+			editorFactory.init(this );
 			return editorFactory;
 		} catch (InstantiationException e) {
 			// Lets propagate. This is an implementation problem that should be
@@ -186,8 +187,8 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 * @param pageIdentifier
 	 * @return
 	 */
-	public IPageModel createIPageModel(Object pageIdentifier) {
-		return getEditorFactory().createIPageModel(pageIdentifier);
+	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
+		return getEditorFactory().createIPageModel(pageIdentifier, servicesRegistry);
 	}
 
 	/**

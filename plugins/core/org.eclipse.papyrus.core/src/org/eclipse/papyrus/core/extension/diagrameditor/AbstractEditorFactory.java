@@ -35,9 +35,6 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 	/** Expected diagram type (@see {@link Diagram#getType()}) */
 	private String expectedType;
 
-	/** Cached instance of the ServiceRegistry */
-	private ServicesRegistry servicesRegistry;
-	
 	/**
 	 * EditorDescriptor associated to the factory.
 	 * TODO : Maybe use individual setters to set the requested data (ContributorId and Icon).
@@ -104,28 +101,13 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 
 	
 	/**
-	 * Set the {@link EditorDescriptor} used by the factory to get the ActionBarContributorId and the Icon
+	 * Initialize the factory with useful Classes.
 	 * TODO Find a better way to provide these data.
-	 * @param editorDescriptor the editorDescriptor to set
+	 * @param editorDescriptor
 	 */
-	public void setEditorDescriptor(EditorDescriptor editorDescriptor) {
+	public void init(EditorDescriptor editorDescriptor) {
 		this.editorDescriptor = editorDescriptor;
-	}
 
-	/**
-	 * Get the ServiceRegistry of the main editor.
-	 * @return
-	 */
-	public ServicesRegistry getServiceRegistry() {
-		if( servicesRegistry == null)
-		{
-			// Lookup ServiceRegistry
-			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			IEditorPart editorPart = page.getActiveEditor();
-			servicesRegistry = (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
-		}
-
-		return servicesRegistry;
 	}
 
 }

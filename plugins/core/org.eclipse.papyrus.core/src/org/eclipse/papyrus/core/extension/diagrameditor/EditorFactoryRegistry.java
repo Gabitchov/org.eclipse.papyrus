@@ -24,6 +24,7 @@ import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
@@ -36,7 +37,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * A registry recording possible editor descriptors. This class use the eclipse extension mechanism.
  */
-public class EditorFactoryRegistry implements IEditorFactoryRegistry, IPageModelFactory {
+public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 
 	/** ID of the editor extension (schema filename) */
 	public static final String EDITOR_EXTENSION_ID = "papyrusDiagram";
@@ -50,6 +51,7 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry, IPageModel
 	/** indicates if extension is loaded or not */
 	private boolean isExtensionLoaded = false;
 
+	
 	/**
 	 * Create a new Registry reading extension from the specified namespace. The namespace is usually the name of the plugin owning the registry.
 	 * 
@@ -96,11 +98,11 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry, IPageModel
 	 * {@inheritDoc}
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory#createIPageModel(java.lang.Object)
 	 */
-	public IPageModel createIPageModel(Object pageIdentifier) {
+	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
 		for (EditorDescriptor desc : getEditorDescriptors()) {
 			if (desc.isDescriptorForPage(pageIdentifier)) {
 				{
-						return desc.createIPageModel(pageIdentifier);
+						return desc.createIPageModel(pageIdentifier, servicesRegistry);
 				}
 			}
 		}

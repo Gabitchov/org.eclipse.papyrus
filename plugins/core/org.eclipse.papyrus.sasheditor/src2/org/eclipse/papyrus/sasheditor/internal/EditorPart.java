@@ -24,6 +24,7 @@ import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.graphics.Image;
@@ -33,6 +34,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPropertyListener;
@@ -155,9 +157,28 @@ public class EditorPart extends PagePart {
 //			attachListeners(editorControl, true);
 			
 		} catch (PartInitException e) {
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 			// TODO Create a fake Error Page and initialize this part with.
+			editorControl = createErrorPartControl(parent, e);
 		} 
+	}
+
+	/**
+	 * Create a Control showing the error.
+	 * @param parent Parent Control to which the Created Control should be attached
+	 * @param e Exception containing the error.
+	 */
+	private Composite createErrorPartControl(Composite parent, PartInitException e) {
+		
+		Composite comp = new Composite(parent, SWT.NONE);
+		comp.setLayout(new FillLayout());
+		// TODO Auto-generated method stub
+		Text diag = new Text(comp, SWT.MULTI);
+		diag.setSize (64, 32);
+
+		diag.setText(e.getMessage());
+		diag.append(e.toString());
+		return comp;
 	}
 
 	/**
@@ -522,9 +543,9 @@ public class EditorPart extends PagePart {
 //				+ ", garbState=" + garbageState
 //				+ ", '" + editorPart.getTitle()
 //				+ "', " + this);
-		
+		String title = (editorPart!=null?editorPart.getTitle():"no editorPart");
 		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n" 
-				, editorControl.isDisposed(), (editorControl.isDisposed()?false:editorControl.isVisible()), garbageState, editorPart.getTitle(), this);
+				, editorControl.isDisposed(), (editorControl.isDisposed()?false:editorControl.isVisible()), garbageState, title, this);
 
 	}
 	

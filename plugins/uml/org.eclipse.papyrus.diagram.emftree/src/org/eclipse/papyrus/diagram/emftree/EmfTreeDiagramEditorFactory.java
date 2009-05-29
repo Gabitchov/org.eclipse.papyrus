@@ -20,7 +20,6 @@ import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
@@ -85,8 +84,8 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 * @return
 	 *
 	 */
-	public IPageModel createIPageModel(Object pageIdentifier) {
-		return new EmfTreeEditorModel((Diagram)pageIdentifier);
+	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry serviceRegistry) {
+		return new EmfTreeEditorModel((Diagram)pageIdentifier, serviceRegistry);
 	}
 
 	/**
@@ -114,7 +113,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 * @param editorDescriptor
 	 *
 	 */
-	public void setEditorDescriptor(EditorDescriptor editorDescriptor) {
+	public void init(EditorDescriptor editorDescriptor) {
 		this.editorDescriptor = editorDescriptor;
 	}
 
@@ -130,8 +129,17 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 		 */
 		private Diagram pageIdentifier;
 		
-		public EmfTreeEditorModel(Diagram pageIdentifier) {
+		private ServicesRegistry servicesRegistry;
+		
+		/**
+		 * 
+		 * Constructor.
+		 * @param pageIdentifier
+		 * @param servicesRegistry
+		 */
+		public EmfTreeEditorModel(Diagram pageIdentifier, ServicesRegistry servicesRegistry) {
 			this.pageIdentifier = pageIdentifier;
+			this.servicesRegistry = servicesRegistry;
 		}
 		
 		/**
@@ -164,10 +172,9 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 			// Try to get it.
 			
 			// Get ServiceRegistry
-			ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
 			ActionBarContributorRegistry registry;
 			try {
-				registry = (ActionBarContributorRegistry)serviceRegistry.getService(ActionBarContributorRegistry.class);
+				registry = (ActionBarContributorRegistry)servicesRegistry.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
 				// TODO Log the error 

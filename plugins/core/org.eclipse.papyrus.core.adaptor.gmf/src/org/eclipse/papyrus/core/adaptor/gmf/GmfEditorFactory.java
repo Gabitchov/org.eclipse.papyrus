@@ -24,7 +24,6 @@ import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.CoreSemanticModelBridge;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
@@ -155,9 +154,9 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 * @return
 	 *
 	 */
-	public IPageModel createIPageModel(Object pageIdentifier) {
+	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
 		
-		return new GMFEditorModel((Diagram)pageIdentifier);
+		return new GMFEditorModel((Diagram)pageIdentifier, servicesRegistry);
 	}
 
 	/**
@@ -170,14 +169,20 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		/**
 		 * The Diagram object describing the diagram.
 		 */
-		Diagram diagram;
+		private Diagram diagram;
+		
+		/**
+		 * The servicesRegistry provided at creation.
+		 */
+		private ServicesRegistry servicesRegistry;
 		
 		/**
 		 * 
 		 * Constructor.
 		 */
-		public GMFEditorModel( Diagram pageIdentifier) {
+		public GMFEditorModel( Diagram pageIdentifier, ServicesRegistry servicesRegistry) {
 			diagram = pageIdentifier;
+			this.servicesRegistry = servicesRegistry;
 		}
 		
 		/**
@@ -190,8 +195,8 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		public IEditorPart createIEditorPart() throws PartInitException {
 			GraphicalEditor editor;
 			try {
-				Constructor<?> c = getDiagramClass().getConstructor(Diagram.class);
-				editor = (GraphicalEditor) c.newInstance(diagram);
+				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, Diagram.class);
+				editor = (GraphicalEditor) c.newInstance(servicesRegistry, diagram);
 				return editor;
 
 			} catch (Exception e) {
@@ -220,10 +225,10 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 			// Try to get it.
 			
 			// Get ServiceRegistry
-			ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
+//			ServicesRegistry serviceRegistry = getServicesRegistry();
 			ActionBarContributorRegistry registry;
 			try {
-				registry = (ActionBarContributorRegistry)serviceRegistry.getService(ActionBarContributorRegistry.class);
+				registry = (ActionBarContributorRegistry)servicesRegistry.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
 				// TODO Log the error 

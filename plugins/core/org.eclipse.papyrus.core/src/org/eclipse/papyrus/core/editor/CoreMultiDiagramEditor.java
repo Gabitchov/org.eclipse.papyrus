@@ -46,14 +46,11 @@ import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.editorcontext.EditorContextRegistry;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
-import org.eclipse.papyrus.core.multidiagram.SashDiagramModelManager;
-import org.eclipse.papyrus.core.multidiagram.SashWindowModelManagerWrapper;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
@@ -64,8 +61,6 @@ import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.papyrus.sasheditor.gef.SelectionSynchronizer;
-import org.eclipse.papyrus.sasheditor.sash.ISashWindowsModelManager;
-import org.eclipse.papyrus.sasheditor.sash.SashMultiPageEditorPart;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
@@ -497,16 +492,17 @@ public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPa
 		editorContextRegistry.registerContext("defaultContext", defaultContext);
 		editorRegistry = createEditorRegistry();
 
-		// Create ContentProvider
-		setContentProvider( createPageProvider(editorRegistry, defaultContext.getResourceSet().getDiResource(), defaultContext.getTransactionalEditingDomain()));
-		
-		// Set editor name
-		setPartName(file.getName());
-		
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
 		servicesRegistry.add(IEditorContextRegistry.class, 1, editorContextRegistry);
+		
+		// Create ContentProvider
+		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
+		setContentProvider( createPageProvider(pageModelRegistry, defaultContext.getResourceSet().getDiResource(), defaultContext.getTransactionalEditingDomain()));
+		
+		// Set editor name
+		setPartName(file.getName());
 		
 		
 

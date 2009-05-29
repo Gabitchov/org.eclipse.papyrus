@@ -76,10 +76,10 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 * 
 	 * @generated NOT
 	 */
-	public UmlUseCaseDiagramForMultiEditor(Diagram diagram) throws BackboneException, ServiceException {
+	public UmlUseCaseDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super();
 		this.diagram = diagram;
-		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
+//		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
 		IEditorContextRegistry contextRegistry;
 		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
 

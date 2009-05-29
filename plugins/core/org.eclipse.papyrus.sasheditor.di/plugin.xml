@@ -12,8 +12,8 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///sashwindowsdi/di.ecore"
-            class="sashwindowsdi.di.DiPackage"
+            uri="http://www.eclipse.org/papyrus/0.7.0/sashdi"
+            class="org.eclipse.papyrus.sashwindows.di.DiPackage"
             genModel="model/sashwindowsdi.genmodel"/>
    </extension>
 

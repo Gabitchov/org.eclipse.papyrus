@@ -63,10 +63,10 @@ public class UMLSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	 * 
 	 * @generated NOT
 	 */
-	public UMLSequenceDiagramForMultiEditor(Diagram diagram) throws BackboneException, ServiceException {
+	public UMLSequenceDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super();
 		this.diagram = diagram;
-		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
+//		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
 		IEditorContextRegistry contextRegistry;
 		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
 

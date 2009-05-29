@@ -16,6 +16,7 @@ package org.eclipse.papyrus.core.extension.diagrameditor;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.ui.IEditorPart;
 
@@ -55,7 +56,7 @@ public interface IEditorFactory {
 	 * @param pageIdentifier Object identifying an Editor.
 	 * @return PageModel allowing to create the editor.
 	 */
-	public IPageModel createIPageModel(Object pageIdentifier);
+	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry);
 
 	/**
 	 * Return true if the factory can create an IPageModel for the specified pageIdentifier.
@@ -66,9 +67,9 @@ public interface IEditorFactory {
 	public boolean isPageModelFactoryFor(Object pageIdentifier);
 
 	/**
-	 * Set the {@link EditorDescriptor} used by the factory to get the ActionBarContributorId and the Icon
+	 * Initialize the factory with useful Classes.
 	 * TODO Find a better way to provide these data.
 	 * @param editorDescriptor
 	 */
-	public void setEditorDescriptor(EditorDescriptor editorDescriptor);
+	public void init(EditorDescriptor editorDescriptor);
 }
