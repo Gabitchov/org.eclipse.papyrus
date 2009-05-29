@@ -413,7 +413,7 @@ public class MultiAssociationHelper {
 			// the source or the target must be a association
 			// look for the edit part that represent the editpart
 			EObject association = null;
-			Object newSemanticElement = null;
+			NamedElement newSemanticElement = null;
 			if (((View) sourceEditPart.getModel()).getElement() != null
 					&& ((View) sourceEditPart.getModel()).getElement() instanceof Association) {
 				association = (Association) ((View) sourceEditPart.getModel())
@@ -441,6 +441,7 @@ public class MultiAssociationHelper {
 					request);
 			((CompoundCommand) command).add(new ICommandProxy(
 					propertyCreateCommand));
+
 			System.err.println("0. add semantic, can execute?"
 					+ command.canExecute());
 			// 1. add the branch graphically

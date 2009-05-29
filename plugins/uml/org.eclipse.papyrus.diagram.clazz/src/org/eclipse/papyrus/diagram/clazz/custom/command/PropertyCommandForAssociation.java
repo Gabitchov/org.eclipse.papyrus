@@ -46,10 +46,13 @@ public class PropertyCommandForAssociation extends PropertyCreateCommand {
 		Object type = getRequest().getParameter("type");
 		if (type != null && type instanceof Type) {
 			newElement.setType((Type) type);
+			newElement.setName(((Type) type).getName());
 		}
 		owner.getOwnedEnds().add(newElement);
 		UMLElementTypes.init_Property_3005(newElement);
-
+		if (type != null && type instanceof Type) {
+			newElement.setName(((Type) type).getName());
+		}
 		return newElement;
 	}
 
