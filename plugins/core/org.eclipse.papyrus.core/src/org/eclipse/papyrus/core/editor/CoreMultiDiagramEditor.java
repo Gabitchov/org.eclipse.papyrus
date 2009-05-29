@@ -54,6 +54,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
@@ -355,6 +356,22 @@ public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPa
 	}
 
 	/**
+	 * Get The {@link IPageMngr} used to add, open, remove or close a diagram in the 
+	 * SashWindow.
+	 * This method is available as soon as the {@link CoreMultiDiagramEditor#init(IEditorSite, IEditorInput)} 
+	 * method is called.
+	 * @return
+	 */
+	protected IPageMngr getIPageMngr() throws IllegalStateException
+	{
+		try {
+			return sashModelMngr.getIPageMngr();
+		} catch (Exception e) {
+			throw new IllegalStateException("Method should be called after CoreMultiDiagramEditor#init(IEditorSite, IEditorInput) is called");
+		}
+	}
+	
+	/**
 	 * Get the ActionBarContributorRegistry. Creates it if necessary.
 	 * 
 	 * @return
@@ -400,6 +417,11 @@ public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPa
 		if(ServicesRegistry.class == adapter)
 		{
 			return getServicesRegistry();
+		}
+		
+		if(IPageMngr.class == adapter)
+		{
+			return getIPageMngr();
 		}
 		
 		if (IPropertySheetPage.class == adapter) {
@@ -500,7 +522,6 @@ public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPa
 		// Create ContentProvider
 		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
 		setContentProvider( createPageProvider(pageModelRegistry, defaultContext.getResourceSet().getDiResource(), defaultContext.getTransactionalEditingDomain()));
-		
 		// Set editor name
 		setPartName(file.getName());
 		

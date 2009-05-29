@@ -42,9 +42,11 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.multidiagram.SashDiagramModelUtil;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.CoreSemanticModelBridge;
 import org.eclipse.papyrus.di.DiFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -151,7 +153,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected void openDiagram(Resource diResource, Diagram diagram) {
 		// Lookup Editor ContentProvider
-		getISashWindowsContentProvider().addPage(diagram);
+		getIPageMngr().openPage(diagram);
 		
 	}
 
@@ -361,12 +363,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * Get the ServiceRegistry of the main editor.
 	 * @return
 	 */
-	public ServicesRegistry getServiceRegistry() {
-			// Lookup ServiceRegistry
-			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			IEditorPart editorPart = page.getActiveEditor();
-			return (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
-
+	protected ServicesRegistry getServiceRegistry() {
+		return EditorUtils.getServiceRegistry();
 	}
 
 	/**
@@ -374,10 +372,16 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @return
 	 */
 	protected ISashWindowsContentProvider getISashWindowsContentProvider() {
-			// Lookup ServiceRegistry
-			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			IEditorPart editorPart = page.getActiveEditor();
-			return (ISashWindowsContentProvider)editorPart.getAdapter(ISashWindowsContentProvider.class);
+			return EditorUtils.getISashWindowsContentProvider();
+
+	}
+
+	/**
+	 * Get the IPageMngr from the main editor.
+	 * @return
+	 */
+	protected IPageMngr getIPageMngr() {
+			return EditorUtils.getIPageMngr();
 
 	}
 

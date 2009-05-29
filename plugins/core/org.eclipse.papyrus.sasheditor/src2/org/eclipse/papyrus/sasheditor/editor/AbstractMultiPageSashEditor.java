@@ -65,7 +65,6 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	{
 		if (pageProvider == null)
 			pageProvider = contentProvider;
-
 	}
 	
 	/**
