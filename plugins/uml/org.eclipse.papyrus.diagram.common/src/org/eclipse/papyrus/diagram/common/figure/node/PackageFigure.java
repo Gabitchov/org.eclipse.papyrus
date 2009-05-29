@@ -76,9 +76,9 @@ public class PackageFigure extends NodeNamedElementFigure implements IAbstractEl
 				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
 				if (i > 0) {
 					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
-					bound.x = getBounds().x;
+					bound.x = getBounds().x+3;
 				} else {
-					bound.x = getBounds().x;
+					bound.x = getBounds().x+3;
 					bound.y = getBounds().y;
 
 				}
@@ -87,6 +87,7 @@ public class PackageFigure extends NodeNamedElementFigure implements IAbstractEl
 			// container
 			Rectangle lastRectangle = getPackageableElementFigure().getBounds();
 			lastRectangle.height = getBounds().y + getBounds().height - lastRectangle.y;
+			lastRectangle.x=lastRectangle.x-3;
 			lastRectangle.width = getBounds().width;
 			getPackageableElementFigure().setBounds(lastRectangle);
 			if (getGMFPackageableElementContainer() != null) {
