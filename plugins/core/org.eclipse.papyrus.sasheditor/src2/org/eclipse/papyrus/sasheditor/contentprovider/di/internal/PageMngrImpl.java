@@ -48,7 +48,7 @@ public class PageMngrImpl implements IPageMngr {
 	 *
 	 * @param pageIdentifier
 	 */
-	public void addPage(EObject pageIdentifier) {
+	public void addPage(Object pageIdentifier) {
 		
 		diSashModel.getPageList().addPage(pageIdentifier);
 	}
@@ -77,7 +77,7 @@ public class PageMngrImpl implements IPageMngr {
 	 *
 	 * @param pageIdentifier
 	 */
-	public void closePage(EObject pageIdentifier) {
+	public void closePage(Object pageIdentifier) {
 		diSashModel.getSashModel().removePage(pageIdentifier);
 	}
 
@@ -86,7 +86,7 @@ public class PageMngrImpl implements IPageMngr {
 	 *
 	 * @param pageIdentifier
 	 */
-	public void openPage(EObject pageIdentifier) {
+	public void openPage(Object pageIdentifier) {
 		// Add the page to the SashModel and to the PageList
 		diSashModel.getPageList().addPage(pageIdentifier);
 		diSashModel.getSashModel().addPage(pageIdentifier);
@@ -97,9 +97,9 @@ public class PageMngrImpl implements IPageMngr {
 	 *
 	 * @param pageIdentifier
 	 */
-	public void removePage(EObject pageIdentifier) {
+	public void removePage(Object pageIdentifier) {
 		// remove from pageList and from SashModel
-		diSashModel.getPageList().addPage(pageIdentifier);
+		diSashModel.getPageList().removePage(pageIdentifier);
 		diSashModel.getSashModel().removePage(pageIdentifier);
 	}
 

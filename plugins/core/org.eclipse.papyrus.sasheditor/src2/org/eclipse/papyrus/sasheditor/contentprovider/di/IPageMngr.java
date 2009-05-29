@@ -35,21 +35,21 @@ public interface IPageMngr {
 	 * {@link IPageModelFactory#createIPageModel(EObject)}. This identifier is stored in the sash model.
 	 * It should be a reference on a EMF object identifying the page.
 	 */
-	public void addPage(EObject pageIdentifier);
+	public void addPage(Object pageIdentifier);
 	
 	/**
 	 * Remove the page from the SashWindows system and from the list of page.
 	 * The page will not be available anymore.
 	 * @param pageIdentifier The object identifying the page
 	 */
-	public void removePage(EObject pageIdentifier);
+	public void removePage(Object pageIdentifier);
 
 	/**
 	 * Close the page corresponding to the identifier.
 	 * The identifier is removed from the Sash Windows, but not from the list of pages.
 	 * @param pageIdentifier The object identifying the page
 	 */
-	public void closePage(EObject pageIdentifier);
+	public void closePage(Object pageIdentifier);
 	
 
 	/**
@@ -62,7 +62,7 @@ public interface IPageMngr {
 	 * {@link IPageModelFactory#createIPageModel(EObject)}. This identifier is stored in the sash model.
 	 * It should be a reference on a EMF object identifying the page.
 	 */
-	public void openPage(EObject pageIdentifier);
+	public void openPage(Object pageIdentifier);
 		
 	/**
 	 * Return all available page identifiers (open and closed pages).

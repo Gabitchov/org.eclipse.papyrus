@@ -13,7 +13,10 @@ import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 
 
 /**
- * @author dumoulin
+ * A content provider based on EMF di and using Transactions.
+ * This implementation is a wrapper on {@link DiContentProvider}.
+ * Each method is wrapped in a {@link RecordingCommand}.
+ * @author cedric dumoulin
  *
  */
 public class TransactionalDiContentProvider implements ISashWindowsContentProvider, IContentChangedProvider {

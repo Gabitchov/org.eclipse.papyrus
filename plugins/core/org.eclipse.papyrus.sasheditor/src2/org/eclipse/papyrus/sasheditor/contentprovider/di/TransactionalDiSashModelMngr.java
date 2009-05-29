@@ -8,6 +8,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.TransactionalDiContentProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.TransactionalPageMngrImpl;
 
 
 /**
@@ -18,6 +19,8 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.TransactionalD
 public class TransactionalDiSashModelMngr extends DiSashModelMngr {
 
 	private TransactionalDiContentProvider transDiContentProvider;
+	
+	private TransactionalPageMngrImpl transPageMngrImpl;
 	
 	/**
 	 * 
@@ -50,17 +53,10 @@ public class TransactionalDiSashModelMngr extends DiSashModelMngr {
 		// Create the TransactionalDiContentProvider
 		transDiContentProvider = new TransactionalDiContentProvider(getDiContentProvider(), editingDomain);
 
+		// Create the TransactionalPageMngrImpl
+		transPageMngrImpl = new TransactionalPageMngrImpl(getPageMngrImpl(), editingDomain);
 	}
 
-	/**
-	 * Get the internal implementation of TransactionalDiContentProvider.
-	 * @return
-	 */
-	protected TransactionalDiContentProvider getTransactionalDiContentProvider() {
-		return transDiContentProvider;
-		
-	}
-	
 	/**
 	 * Return the transactional version
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getISashWindowsContentProvider()
@@ -70,5 +66,16 @@ public class TransactionalDiSashModelMngr extends DiSashModelMngr {
 	@Override
 	public ISashWindowsContentProvider getISashWindowsContentProvider() {
 		return transDiContentProvider;
+	}
+	
+	/**
+	 * Return the transactional version
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getIPageMngr()
+	 *
+	 * @return
+	 */
+	@Override
+	public IPageMngr getIPageMngr() {
+		return transPageMngrImpl;
 	}
 }

@@ -131,17 +131,27 @@ public class DiSashModelMngr {
 	}
 
 	/**
-	 * Get the IPageMngr providing basic methods to manage Pages in the sash model.
-	 * @return
+	 * Return the internal implementation of PageMngr.
+	 * Create if if needed.
+	 * This method should not be subclassed
+	 * @return the PageMngrImpl
 	 */
-	public IPageMngr getIPageMngr() {
-		
+	protected final PageMngrImpl getPageMngrImpl() 
+	{
 		if(pageMngr == null)
 		{
 			pageMngr = new PageMngrImpl(sashWindowMngr);
 		}
 		
-		return pageMngr;
+		return pageMngr;		
+	}
+	
+	/**
+	 * Get the IPageMngr providing basic methods to manage Pages in the sash model.
+	 * @return
+	 */
+	public IPageMngr getIPageMngr() {	
+		return getPageMngrImpl();
 	}
 	
 	/**
