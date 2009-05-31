@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 
 /**
  * A registry of services.
- * This registry allows to get a service by its identificator. The identificator is generally
- * the classname of the services.
+ * This registry allows to get a service by its identifier. The identifier is generally
+ * the classname of the service.
  * Services can be added using the Eclipse extension mechanism.
  * A Service is a class providing operations. A service is shared across the editors.
  * 
@@ -27,25 +27,25 @@ public class ServicesRegistry {
 	/**
 	 * Map of existing services.
 	 */
-	private Map<Object, ServiceEntry> services;
+	private Map<Object, AbstractServiceEntry> services;
 	
 	
 	/**
 	 * Constructor.
 	 */
 	public ServicesRegistry() {
-		services = new HashMap<Object, ServiceEntry>();
+		services = new HashMap<Object, AbstractServiceEntry>();
 	}
 	
 	/**
-	 * Add a new ServiceDescriptor.
-	 * @param serviceDescriptor
+	 * Add a service by its ServiceDescriptor.
+	 * @param serviceDescriptor Descriptor describing the service.
 	 * @throws ServiceException If an error occurs while initializing service.
 	 */
 	public void add(ServiceDescriptor serviceDescriptor) 
 	{
 		// Check if the service already exist.
-		ServiceEntry service = services.get(serviceDescriptor.getKey());
+		AbstractServiceEntry service = services.get(serviceDescriptor.getKey());
 		if(service!=null )
 		{
 			if(service.getDescriptor().getPriority() > serviceDescriptor.getPriority() )
@@ -68,7 +68,7 @@ public class ServicesRegistry {
 	public void add( Object key, int priority, IService serviceInstance)
 	{
 		// Check if the service already exist.
-		ServiceEntry service = services.get(key);
+		AbstractServiceEntry service = services.get(key);
 		if(service!=null )
 		{
 			if(service.getDescriptor().getPriority() > priority )
@@ -82,11 +82,38 @@ public class ServicesRegistry {
 		services.put(key, new ServiceEntry(descriptor, serviceInstance) );
 
 	}
+	
+	/**
+	 * Add an already instanciated pojo (Plain Old Java Object) as Service.
+	 * The descriptor will be created.
+	 * No life cycle methods are called on the service.
+	 * @param key Service key
+	 * @param priority service priority
+	 * @param serviceInstance The instance of the service
+	 */
+	public void add( Object key, int priority, Object serviceInstance)
+	{
+		// Check if the service already exist.
+		AbstractServiceEntry service = services.get(key);
+		if(service!=null )
+		{
+			if(service.getDescriptor().getPriority() > priority )
+				return;
+			else if( service.getDescriptor().getPriority() == priority)
+				log.warning("Two services with same priority are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
+		}
+		
+		// Create descriptor and add service.
+		ServiceDescriptor descriptor = new ServiceDescriptor(key, serviceInstance.getClass().getName(), ServiceStartKind.STARTUP, priority);
+		services.put(key, new PojoServiceEntry(descriptor, serviceInstance) );
+
+	}
+
 	/**
 	 * Remove the specified service from the registry.
 	 * @param key
 	 */
-	public void remove(ServiceDescriptor serviceDescriptor)
+	public void remove(ServiceDescriptor serviceDescriptor) throws ServiceException
 	{
 		remove(serviceDescriptor.getKey());
 	}
@@ -95,16 +122,16 @@ public class ServicesRegistry {
 	 * Remove the specified service from the registry.
 	 * @param key
 	 */
-	public void remove(Object key)
+	public void remove(Object key) throws ServiceException
 	{
-		ServiceEntry service = services.remove(key);
+		AbstractServiceEntry service = services.remove(key);
 		if(service==null )
 		{
 			return;
 		}
 		
 		// Stop the service
-		service.stopService();
+		service.disposeService();
 	}
 
 	/**
@@ -116,7 +143,7 @@ public class ServicesRegistry {
 	 */
 	public Object getService( Object key) throws ServiceException
 	{
-		ServiceEntry service = services.get(key);
+		AbstractServiceEntry service = services.get(key);
 		if(service==null )
 		{
 			throw new ServiceNotFoundException( "No service registered under '" + key + "'" );
@@ -131,7 +158,7 @@ public class ServicesRegistry {
 	 */
 	public boolean isStarted(Object key) throws ServiceNotFoundException
 	{
-		ServiceEntry service = services.get(key);
+		AbstractServiceEntry service = services.get(key);
 		if(service==null )
 		{
 			throw new ServiceNotFoundException( "No service registered under '" + key + "'" );
@@ -141,17 +168,20 @@ public class ServicesRegistry {
 	}
 	
 	/**
+	 * Start the registry.
+	 * Start all services marked as start = STARTUP are started.
+	 * Then, method start() is called on all IService.
 	 * Start services marked as start = STARTUP.
 	 * @throws ServiceException  If a service can't be started.
 	 */
 	public void startRegistry() 
 	{
-		for( ServiceEntry serviceEntry : services.values() )
+		for( AbstractServiceEntry serviceEntry : services.values() )
 		{
 			try {
 				serviceEntry.startup();
 			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't start service '" + serviceEntry + "'", e);
+				log.log(Level.SEVERE, "Can't init service '" + serviceEntry + "'", e);
 			}
 		}
 	}
@@ -160,9 +190,9 @@ public class ServicesRegistry {
 	 * Start services marked as start = STARTUP.
 	 * @throws ServiceException  If a service can't be started.
 	 */
-	public void startServices() 
+	private void startServices() 
 	{
-		for( ServiceEntry serviceEntry : services.values() )
+		for( AbstractServiceEntry serviceEntry : services.values() )
 		{
 			try {
 				serviceEntry.startService();
@@ -173,13 +203,17 @@ public class ServicesRegistry {
 	}
 	
 	/**
-	 * Stop all services.
+	 * Dispose all services.
 	 */
-	public void stopServices()
+	public void disposeService()
 	{
-		for( ServiceEntry serviceDesc : services.values() )
+		for( AbstractServiceEntry serviceDesc : services.values() )
 		{
-			serviceDesc.stopService();
+			try {
+				serviceDesc.disposeService();
+			} catch (ServiceException e) {
+				log.log(Level.SEVERE, "Can't dispose service '" + serviceDesc + "'", e);
+			}
 		}
 	}
 

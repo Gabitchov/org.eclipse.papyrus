@@ -149,7 +149,7 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	/*
 	 * Do nothing in this implementation.
 	 */
-	public void stopService() {
+	public void disposeService() {
 	}
 
 

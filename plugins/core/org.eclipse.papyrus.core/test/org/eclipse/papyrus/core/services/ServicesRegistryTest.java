@@ -18,6 +18,7 @@ public class ServicesRegistryTest extends TestCase {
 	ServiceDescriptor serviceA10Desc = new LazyServiceA10Descriptor();
 	ServiceDescriptor serviceBDesc = new LazyServiceBDescriptor();
 	ServiceDescriptor serviceCDesc = new ServiceCDescriptor();
+	ServiceDescriptor servicePojoADesc = new LazyServicePojoADescriptor();
 	
 	public ServicesRegistryTest(String name) {
 		super(name);
@@ -44,6 +45,7 @@ public class ServicesRegistryTest extends TestCase {
 		servicesRegistry.add( serviceADesc );
 		servicesRegistry.add( serviceBDesc );
 		servicesRegistry.add( serviceCDesc );
+		servicesRegistry.add( servicePojoADesc );
 		
 		
 		// Test entries creation
@@ -51,6 +53,7 @@ public class ServicesRegistryTest extends TestCase {
 			assertFalse("serviceA stopped", servicesRegistry.isStarted(serviceADesc.getKey()));
 			assertFalse("serviceB stopped", servicesRegistry.isStarted(serviceBDesc.getKey()));
 			assertFalse("serviceC stopped", servicesRegistry.isStarted(serviceCDesc.getKey()));
+			assertFalse("servicePojoA stopped", servicesRegistry.isStarted(servicePojoADesc.getKey()));
 		} catch (ServiceNotFoundException e) {
 			fail("Service should exist.");
 		}
@@ -63,6 +66,7 @@ public class ServicesRegistryTest extends TestCase {
 			assertFalse("serviceA stopped", servicesRegistry.isStarted(serviceADesc.getKey()));
 			assertFalse("serviceB stopped", servicesRegistry.isStarted(serviceBDesc.getKey()));
 			assertTrue("serviceC started", servicesRegistry.isStarted(serviceCDesc.getKey()));
+			assertFalse("servicePojoA stopped", servicesRegistry.isStarted(servicePojoADesc.getKey()));
 		} catch (ServiceNotFoundException e) {
 			fail("Service should exist.");
 		}
@@ -78,6 +82,7 @@ public class ServicesRegistryTest extends TestCase {
 		servicesRegistry.add( serviceADesc );
 		servicesRegistry.add( serviceBDesc );
 		servicesRegistry.add( serviceCDesc );
+		servicesRegistry.add( servicePojoADesc );
 		
 
 		// Test lazy service
@@ -88,13 +93,21 @@ public class ServicesRegistryTest extends TestCase {
 		Object serviceA2 = servicesRegistry.getService(serviceADesc.getKey());
 		assertEquals("Second retrieve get the same service", serviceA, serviceA2);
 		
-		// test always service
+		// test startup service
 		Object serviceC = servicesRegistry.getService(serviceCDesc.getKey());
 		assertNotNull("service created", serviceC);
 		assertEquals("right class", ServiceC.class, serviceC.getClass());
 
 		Object serviceC2 = servicesRegistry.getService(serviceCDesc.getKey());
 		assertEquals("Second retrieve get the same service", serviceC, serviceC2);
+		
+		// test pojo service
+		Object servicePojo = servicesRegistry.getService(servicePojoADesc.getKey());
+		assertNotNull("service created", servicePojo);
+		assertEquals("right class", ServicePojoA.class, servicePojo.getClass());
+
+		Object servicePojo2 = servicesRegistry.getService(servicePojoADesc.getKey());
+		assertEquals("Second retrieve get the same service", servicePojo, servicePojo2);
 		
 		
 	}
@@ -185,4 +198,14 @@ public class ServicesRegistryTest extends TestCase {
 			super(ServiceC.class.getName(), ServiceStartKind.STARTUP, 1);
 		}
 	}
+	
+	public class LazyServicePojoADescriptor extends ServiceDescriptor {
+		
+		
+		public LazyServicePojoADescriptor() {
+			super(ServicePojoA.class.getName(), ServiceStartKind.LAZY, 1);
+		}
+	}
+	
+
 }

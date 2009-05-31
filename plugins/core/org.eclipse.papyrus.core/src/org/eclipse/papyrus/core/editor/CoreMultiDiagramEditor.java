@@ -522,6 +522,9 @@ public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPa
 		// Create ContentProvider
 		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
 		setContentProvider( createPageProvider(pageModelRegistry, defaultContext.getResourceSet().getDiResource(), defaultContext.getTransactionalEditingDomain()));
+		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
+		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
+		
 		// Set editor name
 		setPartName(file.getName());
 		

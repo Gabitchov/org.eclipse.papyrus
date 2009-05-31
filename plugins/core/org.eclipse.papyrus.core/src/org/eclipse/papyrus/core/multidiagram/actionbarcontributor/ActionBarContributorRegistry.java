@@ -176,7 +176,7 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 	/*
 	 * Do nothing in this implementation.
 	 */
-	public void stopService() {
+	public void disposeService() {
 	}
 
 }

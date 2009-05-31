@@ -12,7 +12,7 @@ public class ServiceA implements IService
 		
 	}
 
-	public void stopService() {
+	public void disposeService() {
 		// TODO Auto-generated method stub
 		
 	}
