@@ -195,5 +195,19 @@ public class DiSashModelMngr {
 		return DiUtils.lookupSashWindowsMngr(diResource);
 	}
 
+	/**
+	 * Create an instance of IPageMngr acting on the provided resource.
+	 * This instance is suitable to add, remove, close or open diagrams.
+	 * @param diResource
+	 * @return The non transactional version of the IPageMngr
+	 */
+	public static IPageMngr createIPageMngr(Resource diResource) {
+		
+		// Create an instance of the DiSashModelMngr with no factory.
+		// The factory is not needed since we don't get the ISashWindowsContentProvider.
+		return new DiSashModelMngr(null, diResource).getIPageMngr();
+		
+	}
+
 
 }

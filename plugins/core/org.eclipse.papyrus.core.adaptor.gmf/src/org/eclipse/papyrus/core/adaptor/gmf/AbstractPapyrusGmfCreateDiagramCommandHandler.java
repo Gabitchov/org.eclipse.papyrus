@@ -54,9 +54,18 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.edit.providers.ExecutionOccurrenceSpecificationItemProvider;
 
 /**
- * Command creating a new GMF diagram in Papyrus. This command is intended to be used in eclipse extensions. This command is to be used with Editors using Context.
+ * Command creating a new GMF diagram in Papyrus. This command is intended to be used in eclipse 
+ * extensions. This command is to be used with Editors using Context.
+ * 
+ * Commands to create a GMF Diagram can subclass this class.
+ * There is two kinds of commands:
+ * - Eclipse handlers issuing commands (toolbar, menu, ...). This commands can find the active editor 
+ * by using the Worbench.getActivePArt(). The entry point is {@link #execute(ExecutionEvent)}.
+ * - Commands called during editor initializing (like wizard).  This commands require the 
+ * diResourceSet to work. The entry point is {@link #createDiagram(DiResourceSet, EObject, String)}
  * 
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
@@ -153,7 +162,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected void openDiagram(Resource diResource, Diagram diagram) {
 		// Lookup Editor ContentProvider
-		getIPageMngr().openPage(diagram);
+		
+		EditorUtils.getIPageMngr(diResource).openPage(diagram);
 		
 	}
 
@@ -373,15 +383,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected ISashWindowsContentProvider getISashWindowsContentProvider() {
 			return EditorUtils.getISashWindowsContentProvider();
-
-	}
-
-	/**
-	 * Get the IPageMngr from the main editor.
-	 * @return
-	 */
-	protected IPageMngr getIPageMngr() {
-			return EditorUtils.getIPageMngr();
 
 	}
 

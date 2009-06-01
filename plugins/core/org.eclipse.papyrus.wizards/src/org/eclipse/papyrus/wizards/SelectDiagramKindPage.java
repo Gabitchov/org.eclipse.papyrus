@@ -167,7 +167,9 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 		if (diagramList.getItemCount() > 0) {
 			diagramList.select(0);
-			handleListSelected();
+			// Uncomment next if we always want a default diagram.
+			// Ensure that this is the ClassDiagram !!
+//			handleListSelected();
 		}
 	}
 	

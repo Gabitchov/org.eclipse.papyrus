@@ -3,11 +3,16 @@
  */
 package org.eclipse.papyrus.core.utils;
 
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -81,4 +86,24 @@ public class EditorUtils {
 		return editorPart;
 		
 	}
+
+	/**
+	 * Lookup the IPageMngr from the provided resource. Create it if not found.
+	 * @param diResource
+	 * @return The non transactional implementation of IPageMngr
+	 */
+	public static IPageMngr getIPageMngr(Resource diResource) {
+		return DiSashModelMngr.createIPageMngr(diResource);
+	}
+
+	/**
+	 * Lookup the IPageMngr from the provided resource. Create it if not found.
+	 * @param diResource
+	 * @return The transactional implementation of IPageMngr
+	 */
+	public static IPageMngr getTransactionalIPageMngr(Resource diResource, TransactionalEditingDomain editingDomain) {
+		return TransactionalDiSashModelMngr.createIPageMngr(diResource, editingDomain);
+		
+	}
+
 }

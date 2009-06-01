@@ -21,6 +21,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.IPapyrusUIConstants;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -144,11 +145,23 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			String diagramName = selectDiagramKindPage.getDiagramName();
 			ICreationCommand creationCommand = selectDiagramKindPage.getCreationCommand();
 
-			if (domainModelURI != null) {
-				creationCommand.createDiagram(diResourceSet, selectRootElementPage.getModelElement(), diagramName);
-			} else {
-				creationCommand.createDiagram(diResourceSet, null, diagramName);
+			if( creationCommand == null)
+			{
+				// Create an empty editor (no diagrams opened)
+				// Geting an IPageMngr is enough to initialize the SashSystem.
+				EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
 			}
+			else
+			{
+				// Create requested diagram.
+				if (domainModelURI != null) {
+					creationCommand.createDiagram(diResourceSet, selectRootElementPage.getModelElement(), diagramName);
+				} else {
+					creationCommand.createDiagram(diResourceSet, null, diagramName);
+				}
+			}
+			
+			
 			try {
 				diResourceSet.saveResources();
 			} catch (IOException e) {

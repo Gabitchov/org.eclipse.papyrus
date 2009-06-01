@@ -56,8 +56,13 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * Create a ContentProvider
 	 * @param diSashModel
 	 * @param pageModelFactory
+	 * @throws IllegalArgumentException If the factory is null.
 	 */
-	public DiContentProvider(SashModel diSashModel, IPageModelFactory pageModelFactory) {
+	public DiContentProvider(SashModel diSashModel, IPageModelFactory pageModelFactory) throws IllegalArgumentException {
+		
+		if( pageModelFactory == null)
+			throw new IllegalArgumentException("A IPageModelFactory should be provided.");
+		
 		this.diSashModel = diSashModel;
 		this.pageModelFactory = pageModelFactory;
 		connectChangeListeners();
