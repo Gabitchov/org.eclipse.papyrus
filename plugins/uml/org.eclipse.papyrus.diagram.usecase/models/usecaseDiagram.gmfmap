@@ -124,7 +124,7 @@
               xsi:type="gmfmap:FeatureLabelMapping"
               editPattern="">
             <diagramLabel
-                href="classDiagram_auxiliary.gmfgraph#AuxiliaryPureLabel"/>
+                href="usecaseDiagram.gmfgraph#AuxiliaryPureLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
@@ -132,7 +132,7 @@
               xsi:type="gmftool:CreationTool"
               href="usecaseDiagram.gmftool#//@palette/@tools.1/@tools.0"/>
           <diagramNode
-              href="classDiagram_auxiliary.gmfgraph#AuxiliaryPureLabel"/>
+              href="usecaseDiagram.gmfgraph#AuxiliaryPureLabel"/>
         </ownedChild>
       </children>
       <compartments
@@ -193,7 +193,7 @@
               xsi:type="gmfmap:FeatureLabelMapping"
               editPattern="">
             <diagramLabel
-                href="classDiagram_auxiliary.gmfgraph#AuxiliaryPureLabel"/>
+                href="usecaseDiagram.gmfgraph#AuxiliaryPureLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
@@ -201,7 +201,7 @@
               xsi:type="gmftool:CreationTool"
               href="usecaseDiagram.gmftool#//@palette/@tools.1/@tools.0"/>
           <diagramNode
-              href="classDiagram_auxiliary.gmfgraph#AuxiliaryPureLabel"/>
+              href="usecaseDiagram.gmfgraph#AuxiliaryPureLabel"/>
         </ownedChild>
       </children>
       <compartments
@@ -251,8 +251,32 @@
         <childrenFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/useCase"/>
       </children>
+      <children
+          compartment="//@nodes.4/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.4/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component/packagedElement"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component/packagedElement"/>
+      </children>
+      <children
+          compartment="//@nodes.4/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.7/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedComment"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedComment"/>
+      </children>
+      <children
+          compartment="//@nodes.4/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.6/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/ownedRule"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/ownedRule"/>
+      </children>
       <compartments
-          children="//@nodes.4/@ownedChild/@children.0">
+          children="//@nodes.4/@ownedChild/@children.0 //@nodes.4/@ownedChild/@children.1 //@nodes.4/@ownedChild/@children.2 //@nodes.4/@ownedChild/@children.3">
         <compartment
             href="usecaseDiagram.gmfgraph#use cases"/>
       </compartments>
@@ -291,6 +315,14 @@
           href="../../org.eclipse.papyrus.diagram.common/model/PackageElement.gmfgraph#PackageNode"/>
       <children
           compartment="//@nodes.5/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.6/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/ownedRule"/>
+      </children>
+      <children
+          compartment="//@nodes.5/@ownedChild/@compartments.0"
           referencedChild="//@nodes.0/@ownedChild">
         <containmentFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -305,8 +337,32 @@
         <childrenFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/ownedType"/>
       </children>
+      <children
+          compartment="//@nodes.5/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.4/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/ownedType"/>
+      </children>
+      <children
+          compartment="//@nodes.5/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.5/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/nestedPackage"/>
+      </children>
+      <children
+          compartment="//@nodes.5/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.7/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedComment"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedComment"/>
+      </children>
       <compartments
-          children="//@nodes.5/@ownedChild/@children.0 //@nodes.5/@ownedChild/@children.1">
+          children="//@nodes.5/@ownedChild/@children.1 //@nodes.5/@ownedChild/@children.2 //@nodes.5/@ownedChild/@children.3 //@nodes.5/@ownedChild/@children.0 //@nodes.5/@ownedChild/@children.4 //@nodes.5/@ownedChild/@children.5">
         <compartment
             href="../../org.eclipse.papyrus.diagram.common/model/PackageElement.gmfgraph#PackageableElementCompartment"/>
       </compartments>
@@ -343,7 +399,7 @@
           xsi:type="gmfmap:FeatureLabelMapping"
           editPattern="">
         <diagramLabel
-            href="classDiagram_constraints.gmfgraph#Constraint_ValueSpecification"/>
+            href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
         <features
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
       </labelMappings>
@@ -351,7 +407,7 @@
           xsi:type="gmftool:CreationTool"
           href="usecaseDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
       <diagramNode
-          href="classDiagram_constraints.gmfgraph#ConstraintNode"/>
+          href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -459,17 +515,21 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
     <domainSpecialization
         body="not self.oclIsTypeOf(uml::AssociationClass)"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+        <value
+            body="let sourceName : String = self.memberEnd->first().name in&#xD;&#xA;let targetName : String = self.memberEnd->at(2).name in&#xD;&#xA;'A_'.concat(sourceName).concat('_').concat(targetName)"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="classDiagram_associations.gmfgraph#AssociationLink_sourceMultiplicity"/>
-      <features
-          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-    </labelMappings>
-    <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping">
-      <diagramLabel
-          href="classDiagram_associations.gmfgraph#AssociationLink_targetMultiplicity"/>
+          href="../../org.eclipse.papyrus.diagram.common/model/Association.gmfgraph#AssociationNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
@@ -479,7 +539,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
     <diagramLink
-        href="classDiagram_associations.gmfgraph#AssociationLink"/>
+        href="../../org.eclipse.papyrus.diagram.common/model/Association.gmfgraph#AssociationConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association/endType"/>

@@ -102,7 +102,7 @@ public class CommentCreateCommand extends EditElementCommand {
 		Element owner = (Element) getElementToEdit();
 		owner.getOwnedComments().add(newElement);
 
-		UMLElementTypes.init_Comment_2010(newElement);
+		UMLElementTypes.init_Comment_2018(newElement);
 
 		doConfigure(newElement, monitor, info);
 

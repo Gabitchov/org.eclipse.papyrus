@@ -28,10 +28,17 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Component2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Component3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentUsecases2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentUsecases3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentUsecasesEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
@@ -40,8 +47,10 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
@@ -82,17 +91,23 @@ public class UMLDiagramUpdater {
 	public static List getSemanticChildren(View view) {
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
 		case UseCasePointsEditPart.VISUAL_ID:
-			return getUseCasePoints_7002SemanticChildren(view);
+			return getUseCasePoints_7009SemanticChildren(view);
 		case UseCaseExtensionpointsEditPart.VISUAL_ID:
-			return getUseCaseExtensionpoints_7003SemanticChildren(view);
+			return getUseCaseExtensionpoints_7010SemanticChildren(view);
 		case ComponentUsecasesEditPart.VISUAL_ID:
-			return getComponentUsecases_7004SemanticChildren(view);
+			return getComponentUsecases_7011SemanticChildren(view);
 		case UseCasePoints2EditPart.VISUAL_ID:
-			return getUseCasePoints_7005SemanticChildren(view);
+			return getUseCasePoints_7012SemanticChildren(view);
+		case ComponentUsecases2EditPart.VISUAL_ID:
+			return getComponentUsecases_7017SemanticChildren(view);
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-			return getPackagePackageableElementCompartment_7008SemanticChildren(view);
+			return getPackagePackageableElementCompartment_7013SemanticChildren(view);
 		case UseCasePoints3EditPart.VISUAL_ID:
-			return getUseCasePoints_7007SemanticChildren(view);
+			return getUseCasePoints_7014SemanticChildren(view);
+		case ComponentUsecases3EditPart.VISUAL_ID:
+			return getComponentUsecases_7015SemanticChildren(view);
+		case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
+			return getPackagePackageableElementCompartment_7016SemanticChildren(view);
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_1000SemanticChildren(view);
 		}
@@ -102,7 +117,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getUseCasePoints_7002SemanticChildren(View view) {
+	public static List getUseCasePoints_7009SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
 		}
@@ -126,7 +141,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getUseCaseExtensionpoints_7003SemanticChildren(View view) {
+	public static List getUseCaseExtensionpoints_7010SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
 		}
@@ -150,7 +165,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getComponentUsecases_7004SemanticChildren(View view) {
+	public static List getComponentUsecases_7011SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
 		}
@@ -168,13 +183,37 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
+			PackageableElement childElement = (PackageableElement) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Component2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
+			Comment childElement = (Comment) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Comment2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Constraint2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCasePoints_7005SemanticChildren(View view) {
+	public static List getUseCasePoints_7012SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
 		}
@@ -198,7 +237,55 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getPackagePackageableElementCompartment_7008SemanticChildren(View view) {
+	public static List getComponentUsecases_7017SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		Component modelElement = (Component) containerView.getElement();
+		List result = new LinkedList();
+		for (Iterator it = modelElement.getUseCases().iterator(); it.hasNext();) {
+			UseCase childElement = (UseCase) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == UseCase3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
+			PackageableElement childElement = (PackageableElement) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Component2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
+			Comment childElement = (Comment) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Comment2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Constraint2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getPackagePackageableElementCompartment_7013SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
 		}
@@ -208,6 +295,14 @@ public class UMLDiagramUpdater {
 		}
 		Package modelElement = (Package) containerView.getElement();
 		List result = new LinkedList();
+		for (Iterator it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Constraint3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		for (Iterator it = modelElement.getOwnedTypes().iterator(); it.hasNext();) {
 			Type childElement = (Type) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
@@ -219,6 +314,26 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if (visualID == Component3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getNestedPackages().iterator(); it.hasNext();) {
+			Package childElement = (Package) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Package3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
+			Comment childElement = (Comment) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Comment2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		return result;
 	}
@@ -226,7 +341,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getUseCasePoints_7007SemanticChildren(View view) {
+	public static List getUseCasePoints_7014SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
 		}
@@ -240,6 +355,110 @@ public class UMLDiagramUpdater {
 			ExtensionPoint childElement = (ExtensionPoint) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ExtensionPointEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getComponentUsecases_7015SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		Component modelElement = (Component) containerView.getElement();
+		List result = new LinkedList();
+		for (Iterator it = modelElement.getUseCases().iterator(); it.hasNext();) {
+			UseCase childElement = (UseCase) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == UseCase3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
+			PackageableElement childElement = (PackageableElement) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Component2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
+			Comment childElement = (Comment) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Comment2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Constraint2EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getPackagePackageableElementCompartment_7016SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		Package modelElement = (Package) containerView.getElement();
+		List result = new LinkedList();
+		for (Iterator it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Constraint3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedTypes().iterator(); it.hasNext();) {
+			Type childElement = (Type) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Actor3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == UseCase4EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == Component3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getNestedPackages().iterator(); it.hasNext();) {
+			Package childElement = (Package) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Package3EditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
+			Comment childElement = (Comment) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Comment2EditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -283,7 +502,7 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == Package3EditPart.VISUAL_ID) {
+			if (visualID == Package2EditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -311,41 +530,53 @@ public class UMLDiagramUpdater {
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_1000ContainedLinks(view);
 		case ActorEditPart.VISUAL_ID:
-			return getActor_2002ContainedLinks(view);
+			return getActor_2011ContainedLinks(view);
 		case Actor2EditPart.VISUAL_ID:
-			return getActor_2003ContainedLinks(view);
+			return getActor_2012ContainedLinks(view);
 		case UseCaseEditPart.VISUAL_ID:
-			return getUseCase_2004ContainedLinks(view);
+			return getUseCase_2013ContainedLinks(view);
 		case UseCase2EditPart.VISUAL_ID:
-			return getUseCase_2005ContainedLinks(view);
+			return getUseCase_2014ContainedLinks(view);
 		case ComponentEditPart.VISUAL_ID:
-			return getComponent_2006ContainedLinks(view);
-		case Package3EditPart.VISUAL_ID:
-			return getPackage_2009ContainedLinks(view);
+			return getComponent_2015ContainedLinks(view);
+		case Package2EditPart.VISUAL_ID:
+			return getPackage_2016ContainedLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
-			return getConstraint_2008ContainedLinks(view);
+			return getConstraint_2017ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
-			return getComment_2010ContainedLinks(view);
+			return getComment_2018ContainedLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
-			return getExtensionPoint_3002ContainedLinks(view);
+			return getExtensionPoint_3007ContainedLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
-			return getExtensionPoint_3003ContainedLinks(view);
+			return getExtensionPoint_3008ContainedLinks(view);
 		case UseCase3EditPart.VISUAL_ID:
-			return getUseCase_3004ContainedLinks(view);
+			return getUseCase_3009ContainedLinks(view);
+		case Component2EditPart.VISUAL_ID:
+			return getComponent_3016ContainedLinks(view);
+		case Comment2EditPart.VISUAL_ID:
+			return getComment_3015ContainedLinks(view);
+		case Constraint2EditPart.VISUAL_ID:
+			return getConstraint_3017ContainedLinks(view);
+		case Constraint3EditPart.VISUAL_ID:
+			return getConstraint_3010ContainedLinks(view);
 		case Actor3EditPart.VISUAL_ID:
-			return getActor_3005ContainedLinks(view);
+			return getActor_3011ContainedLinks(view);
 		case UseCase4EditPart.VISUAL_ID:
-			return getUseCase_3006ContainedLinks(view);
+			return getUseCase_3012ContainedLinks(view);
+		case Component3EditPart.VISUAL_ID:
+			return getComponent_3013ContainedLinks(view);
+		case Package3EditPart.VISUAL_ID:
+			return getPackage_3014ContainedLinks(view);
 		case IncludeEditPart.VISUAL_ID:
-			return getInclude_4001ContainedLinks(view);
+			return getInclude_4008ContainedLinks(view);
 		case ExtendEditPart.VISUAL_ID:
-			return getExtend_4002ContainedLinks(view);
+			return getExtend_4009ContainedLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
-			return getGeneralization_4003ContainedLinks(view);
+			return getGeneralization_4010ContainedLinks(view);
 		case AssociationEditPart.VISUAL_ID:
-			return getAssociation_4004ContainedLinks(view);
+			return getAssociation_4011ContainedLinks(view);
 		case DependencyEditPart.VISUAL_ID:
-			return getDependency_4006ContainedLinks(view);
+			return getDependency_4013ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -356,41 +587,53 @@ public class UMLDiagramUpdater {
 	public static List getIncomingLinks(View view) {
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
 		case ActorEditPart.VISUAL_ID:
-			return getActor_2002IncomingLinks(view);
+			return getActor_2011IncomingLinks(view);
 		case Actor2EditPart.VISUAL_ID:
-			return getActor_2003IncomingLinks(view);
+			return getActor_2012IncomingLinks(view);
 		case UseCaseEditPart.VISUAL_ID:
-			return getUseCase_2004IncomingLinks(view);
+			return getUseCase_2013IncomingLinks(view);
 		case UseCase2EditPart.VISUAL_ID:
-			return getUseCase_2005IncomingLinks(view);
+			return getUseCase_2014IncomingLinks(view);
 		case ComponentEditPart.VISUAL_ID:
-			return getComponent_2006IncomingLinks(view);
-		case Package3EditPart.VISUAL_ID:
-			return getPackage_2009IncomingLinks(view);
+			return getComponent_2015IncomingLinks(view);
+		case Package2EditPart.VISUAL_ID:
+			return getPackage_2016IncomingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
-			return getConstraint_2008IncomingLinks(view);
+			return getConstraint_2017IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
-			return getComment_2010IncomingLinks(view);
+			return getComment_2018IncomingLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
-			return getExtensionPoint_3002IncomingLinks(view);
+			return getExtensionPoint_3007IncomingLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
-			return getExtensionPoint_3003IncomingLinks(view);
+			return getExtensionPoint_3008IncomingLinks(view);
 		case UseCase3EditPart.VISUAL_ID:
-			return getUseCase_3004IncomingLinks(view);
+			return getUseCase_3009IncomingLinks(view);
+		case Component2EditPart.VISUAL_ID:
+			return getComponent_3016IncomingLinks(view);
+		case Comment2EditPart.VISUAL_ID:
+			return getComment_3015IncomingLinks(view);
+		case Constraint2EditPart.VISUAL_ID:
+			return getConstraint_3017IncomingLinks(view);
+		case Constraint3EditPart.VISUAL_ID:
+			return getConstraint_3010IncomingLinks(view);
 		case Actor3EditPart.VISUAL_ID:
-			return getActor_3005IncomingLinks(view);
+			return getActor_3011IncomingLinks(view);
 		case UseCase4EditPart.VISUAL_ID:
-			return getUseCase_3006IncomingLinks(view);
+			return getUseCase_3012IncomingLinks(view);
+		case Component3EditPart.VISUAL_ID:
+			return getComponent_3013IncomingLinks(view);
+		case Package3EditPart.VISUAL_ID:
+			return getPackage_3014IncomingLinks(view);
 		case IncludeEditPart.VISUAL_ID:
-			return getInclude_4001IncomingLinks(view);
+			return getInclude_4008IncomingLinks(view);
 		case ExtendEditPart.VISUAL_ID:
-			return getExtend_4002IncomingLinks(view);
+			return getExtend_4009IncomingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
-			return getGeneralization_4003IncomingLinks(view);
+			return getGeneralization_4010IncomingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
-			return getAssociation_4004IncomingLinks(view);
+			return getAssociation_4011IncomingLinks(view);
 		case DependencyEditPart.VISUAL_ID:
-			return getDependency_4006IncomingLinks(view);
+			return getDependency_4013IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -401,41 +644,53 @@ public class UMLDiagramUpdater {
 	public static List getOutgoingLinks(View view) {
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
 		case ActorEditPart.VISUAL_ID:
-			return getActor_2002OutgoingLinks(view);
+			return getActor_2011OutgoingLinks(view);
 		case Actor2EditPart.VISUAL_ID:
-			return getActor_2003OutgoingLinks(view);
+			return getActor_2012OutgoingLinks(view);
 		case UseCaseEditPart.VISUAL_ID:
-			return getUseCase_2004OutgoingLinks(view);
+			return getUseCase_2013OutgoingLinks(view);
 		case UseCase2EditPart.VISUAL_ID:
-			return getUseCase_2005OutgoingLinks(view);
+			return getUseCase_2014OutgoingLinks(view);
 		case ComponentEditPart.VISUAL_ID:
-			return getComponent_2006OutgoingLinks(view);
-		case Package3EditPart.VISUAL_ID:
-			return getPackage_2009OutgoingLinks(view);
+			return getComponent_2015OutgoingLinks(view);
+		case Package2EditPart.VISUAL_ID:
+			return getPackage_2016OutgoingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
-			return getConstraint_2008OutgoingLinks(view);
+			return getConstraint_2017OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
-			return getComment_2010OutgoingLinks(view);
+			return getComment_2018OutgoingLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
-			return getExtensionPoint_3002OutgoingLinks(view);
+			return getExtensionPoint_3007OutgoingLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
-			return getExtensionPoint_3003OutgoingLinks(view);
+			return getExtensionPoint_3008OutgoingLinks(view);
 		case UseCase3EditPart.VISUAL_ID:
-			return getUseCase_3004OutgoingLinks(view);
+			return getUseCase_3009OutgoingLinks(view);
+		case Component2EditPart.VISUAL_ID:
+			return getComponent_3016OutgoingLinks(view);
+		case Comment2EditPart.VISUAL_ID:
+			return getComment_3015OutgoingLinks(view);
+		case Constraint2EditPart.VISUAL_ID:
+			return getConstraint_3017OutgoingLinks(view);
+		case Constraint3EditPart.VISUAL_ID:
+			return getConstraint_3010OutgoingLinks(view);
 		case Actor3EditPart.VISUAL_ID:
-			return getActor_3005OutgoingLinks(view);
+			return getActor_3011OutgoingLinks(view);
 		case UseCase4EditPart.VISUAL_ID:
-			return getUseCase_3006OutgoingLinks(view);
+			return getUseCase_3012OutgoingLinks(view);
+		case Component3EditPart.VISUAL_ID:
+			return getComponent_3013OutgoingLinks(view);
+		case Package3EditPart.VISUAL_ID:
+			return getPackage_3014OutgoingLinks(view);
 		case IncludeEditPart.VISUAL_ID:
-			return getInclude_4001OutgoingLinks(view);
+			return getInclude_4008OutgoingLinks(view);
 		case ExtendEditPart.VISUAL_ID:
-			return getExtend_4002OutgoingLinks(view);
+			return getExtend_4009OutgoingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
-			return getGeneralization_4003OutgoingLinks(view);
+			return getGeneralization_4010OutgoingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
-			return getAssociation_4004OutgoingLinks(view);
+			return getAssociation_4011OutgoingLinks(view);
 		case DependencyEditPart.VISUAL_ID:
-			return getDependency_4006OutgoingLinks(view);
+			return getDependency_4013OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -446,630 +701,838 @@ public class UMLDiagramUpdater {
 	public static List getPackage_1000ContainedLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_2002ContainedLinks(View view) {
+	public static List getActor_2011ContainedLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_2003ContainedLinks(View view) {
+	public static List getActor_2012ContainedLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_2004ContainedLinks(View view) {
+	public static List getUseCase_2013ContainedLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Include_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Extend_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Include_4008(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Extend_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_2005ContainedLinks(View view) {
+	public static List getUseCase_2014ContainedLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Include_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Extend_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Include_4008(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Extend_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getComponent_2006ContainedLinks(View view) {
+	public static List getComponent_2015ContainedLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getPackage_2009ContainedLinks(View view) {
+	public static List getPackage_2016ContainedLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraint_2008ContainedLinks(View view) {
+	public static List getConstraint_2017ContainedLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getComment_2010ContainedLinks(View view) {
+	public static List getComment_2018ContainedLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtensionPoint_3002ContainedLinks(View view) {
+	public static List getExtensionPoint_3007ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtensionPoint_3003ContainedLinks(View view) {
+	public static List getExtensionPoint_3008ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_3004ContainedLinks(View view) {
+	public static List getUseCase_3009ContainedLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Include_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Extend_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Include_4008(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Extend_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_3005ContainedLinks(View view) {
+	public static List getComponent_3016ContainedLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getComment_3015ContainedLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConstraint_3017ContainedLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConstraint_3010ContainedLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getActor_3011ContainedLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_3006ContainedLinks(View view) {
+	public static List getUseCase_3012ContainedLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Include_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Extend_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Include_4008(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Extend_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getInclude_4001ContainedLinks(View view) {
+	public static List getComponent_3013ContainedLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getPackage_3014ContainedLinks(View view) {
+		Package modelElement = (Package) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getContainedTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4013(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getInclude_4008ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtend_4002ContainedLinks(View view) {
+	public static List getExtend_4009ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getGeneralization_4003ContainedLinks(View view) {
+	public static List getGeneralization_4010ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getAssociation_4004ContainedLinks(View view) {
+	public static List getAssociation_4011ContainedLinks(View view) {
 		Association modelElement = (Association) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDependency_4006ContainedLinks(View view) {
+	public static List getDependency_4013ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_2002IncomingLinks(View view) {
+	public static List getActor_2011IncomingLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_2003IncomingLinks(View view) {
+	public static List getActor_2012IncomingLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_2004IncomingLinks(View view) {
+	public static List getUseCase_2013IncomingLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Include_4001(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Extend_4002(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_2005IncomingLinks(View view) {
+	public static List getUseCase_2014IncomingLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Include_4001(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Extend_4002(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getComponent_2006IncomingLinks(View view) {
+	public static List getComponent_2015IncomingLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getPackage_2009IncomingLinks(View view) {
+	public static List getPackage_2016IncomingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraint_2008IncomingLinks(View view) {
+	public static List getConstraint_2017IncomingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getComment_2010IncomingLinks(View view) {
+	public static List getComment_2018IncomingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtensionPoint_3002IncomingLinks(View view) {
+	public static List getExtensionPoint_3007IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtensionPoint_3003IncomingLinks(View view) {
+	public static List getExtensionPoint_3008IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_3004IncomingLinks(View view) {
+	public static List getUseCase_3009IncomingLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Include_4001(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Extend_4002(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_3005IncomingLinks(View view) {
+	public static List getComponent_3016IncomingLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getComment_3015IncomingLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConstraint_3017IncomingLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConstraint_3010IncomingLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getActor_3011IncomingLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_3006IncomingLinks(View view) {
+	public static List getUseCase_3012IncomingLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Include_4001(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Extend_4002(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getInclude_4001IncomingLinks(View view) {
+	public static List getComponent_3013IncomingLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getPackage_3014IncomingLinks(View view) {
+		Package modelElement = (Package) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getInclude_4008IncomingLinks(View view) {
 		Include modelElement = (Include) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtend_4002IncomingLinks(View view) {
+	public static List getExtend_4009IncomingLinks(View view) {
 		Extend modelElement = (Extend) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getGeneralization_4003IncomingLinks(View view) {
+	public static List getGeneralization_4010IncomingLinks(View view) {
 		Generalization modelElement = (Generalization) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getAssociation_4004IncomingLinks(View view) {
+	public static List getAssociation_4011IncomingLinks(View view) {
 		Association modelElement = (Association) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDependency_4006IncomingLinks(View view) {
+	public static List getDependency_4013IncomingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_2002OutgoingLinks(View view) {
+	public static List getActor_2011OutgoingLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_2003OutgoingLinks(View view) {
+	public static List getActor_2012OutgoingLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_2004OutgoingLinks(View view) {
+	public static List getUseCase_2013OutgoingLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Include_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Extend_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Include_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Extend_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_2005OutgoingLinks(View view) {
+	public static List getUseCase_2014OutgoingLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Include_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Extend_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Include_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Extend_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getComponent_2006OutgoingLinks(View view) {
+	public static List getComponent_2015OutgoingLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getPackage_2009OutgoingLinks(View view) {
+	public static List getPackage_2016OutgoingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraint_2008OutgoingLinks(View view) {
+	public static List getConstraint_2017OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getComment_2010OutgoingLinks(View view) {
+	public static List getComment_2018OutgoingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtensionPoint_3002OutgoingLinks(View view) {
+	public static List getExtensionPoint_3007OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtensionPoint_3003OutgoingLinks(View view) {
+	public static List getExtensionPoint_3008OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_3004OutgoingLinks(View view) {
+	public static List getUseCase_3009OutgoingLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Include_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Extend_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Include_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Extend_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActor_3005OutgoingLinks(View view) {
+	public static List getComponent_3016OutgoingLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getComment_3015OutgoingLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConstraint_3017OutgoingLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConstraint_3010OutgoingLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getActor_3011OutgoingLinks(View view) {
 		Actor modelElement = (Actor) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUseCase_3006OutgoingLinks(View view) {
+	public static List getUseCase_3012OutgoingLinks(View view) {
 		UseCase modelElement = (UseCase) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Include_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Extend_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Include_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Extend_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getInclude_4001OutgoingLinks(View view) {
+	public static List getComponent_3013OutgoingLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getPackage_3014OutgoingLinks(View view) {
+		Package modelElement = (Package) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getInclude_4008OutgoingLinks(View view) {
 		Include modelElement = (Include) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getExtend_4002OutgoingLinks(View view) {
+	public static List getExtend_4009OutgoingLinks(View view) {
 		Extend modelElement = (Extend) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getGeneralization_4003OutgoingLinks(View view) {
+	public static List getGeneralization_4010OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getAssociation_4004OutgoingLinks(View view) {
+	public static List getAssociation_4011OutgoingLinks(View view) {
 		Association modelElement = (Association) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDependency_4006OutgoingLinks(View view) {
+	public static List getDependency_4013OutgoingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
 		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Include_4001(UseCase container) {
+	private static Collection getContainedTypeModelFacetLinks_Include_4008(UseCase container) {
 		Collection result = new LinkedList();
 		for (Iterator links = container.getIncludes().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -1083,7 +1546,7 @@ public class UMLDiagramUpdater {
 
 			UseCase dst = link.getAddition();
 			UseCase src = link.getIncludingCase();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Include_4001, IncludeEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Include_4008, IncludeEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1092,7 +1555,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Extend_4002(UseCase container) {
+	private static Collection getContainedTypeModelFacetLinks_Extend_4009(UseCase container) {
 		Collection result = new LinkedList();
 		for (Iterator links = container.getExtends().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -1106,7 +1569,7 @@ public class UMLDiagramUpdater {
 
 			UseCase dst = link.getExtendedCase();
 			UseCase src = link.getExtension();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Extend_4002, ExtendEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Extend_4009, ExtendEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1115,7 +1578,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Generalization_4003(Classifier container) {
+	private static Collection getContainedTypeModelFacetLinks_Generalization_4010(Classifier container) {
 		Collection result = new LinkedList();
 		for (Iterator links = container.getGeneralizations().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -1129,7 +1592,7 @@ public class UMLDiagramUpdater {
 
 			Classifier dst = link.getGeneral();
 			Classifier src = link.getSpecific();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_4003, GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_4010, GeneralizationEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1138,7 +1601,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Association_4004(Package container) {
+	private static Collection getContainedTypeModelFacetLinks_Association_4011(Package container) {
 		Collection result = new LinkedList();
 		for (Iterator links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -1150,7 +1613,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			//Papyrus GenCode 
+			// Papyrus GenCode
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Type) {
@@ -1165,7 +1628,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Type src = (Type) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4004, AssociationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4011, AssociationEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1174,7 +1637,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Dependency_4006(Package container) {
+	private static Collection getContainedTypeModelFacetLinks_Dependency_4013(Package container) {
 		Collection result = new LinkedList();
 		for (Iterator links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -1200,7 +1663,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4006, DependencyEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4013, DependencyEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1209,7 +1672,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Include_4001(UseCase target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Include_4008(UseCase target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
@@ -1222,7 +1685,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			UseCase src = link.getIncludingCase();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Include_4001, IncludeEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Include_4008, IncludeEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1230,7 +1693,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Extend_4002(UseCase target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Extend_4009(UseCase target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
@@ -1243,7 +1706,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			UseCase src = link.getExtension();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Extend_4002, ExtendEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Extend_4009, ExtendEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1251,7 +1714,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Generalization_4003(Classifier target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Generalization_4010(Classifier target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
@@ -1264,7 +1727,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Classifier src = link.getSpecific();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Generalization_4003, GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Generalization_4010, GeneralizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1272,7 +1735,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Association_4004(Type target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Association_4011(Type target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
@@ -1292,7 +1755,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Type src = (Type) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Association_4004, AssociationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Association_4011, AssociationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1300,13 +1763,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(Element target, Map crossReferences) {
+	private static Collection getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(Element target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4005, ConstraintConstrainedElementEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4012, ConstraintConstrainedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1315,7 +1778,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Dependency_4006(NamedElement target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Dependency_4013(NamedElement target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
@@ -1335,7 +1798,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_4006, DependencyEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_4013, DependencyEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1343,13 +1806,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(Element target, Map crossReferences) {
+	private static Collection getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(Element target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4007, CommentAnnotatedElementEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4014, CommentAnnotatedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1358,7 +1821,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Include_4001(UseCase source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Include_4008(UseCase source) {
 		UseCase container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -1387,7 +1850,7 @@ public class UMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Include_4001, IncludeEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Include_4008, IncludeEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1396,7 +1859,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Extend_4002(UseCase source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Extend_4009(UseCase source) {
 		UseCase container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -1425,7 +1888,7 @@ public class UMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Extend_4002, ExtendEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Extend_4009, ExtendEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1434,7 +1897,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Generalization_4003(Classifier source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Generalization_4010(Classifier source) {
 		Classifier container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -1463,7 +1926,7 @@ public class UMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_4003, GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_4010, GeneralizationEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1472,7 +1935,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Association_4004(Type source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Association_4011(Type source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -1496,7 +1959,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			//Papyrus GenCode 
+			// Papyrus GenCode
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Type) {
@@ -1514,7 +1977,7 @@ public class UMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4004, AssociationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4011, AssociationEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1523,11 +1986,11 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4005(Constraint source) {
+	private static Collection getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(Constraint source) {
 		Collection result = new LinkedList();
 		for (Iterator destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4005, ConstraintConstrainedElementEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4012, ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1535,7 +1998,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Dependency_4006(NamedElement source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Dependency_4013(NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -1576,7 +2039,7 @@ public class UMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4006, DependencyEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4013, DependencyEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1585,11 +2048,11 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4007(Comment source) {
+	private static Collection getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(Comment source) {
 		Collection result = new LinkedList();
 		for (Iterator destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4007, CommentAnnotatedElementEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4014, CommentAnnotatedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}

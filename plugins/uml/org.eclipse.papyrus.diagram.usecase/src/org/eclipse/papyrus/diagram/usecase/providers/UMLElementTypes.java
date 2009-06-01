@@ -31,9 +31,14 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Component2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Component3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
@@ -42,6 +47,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
@@ -86,102 +92,132 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Actor_2002 = getElementType("org.eclipse.papyrus.diagram.usecase.Actor_2002"); //$NON-NLS-1$
+	public static final IElementType Actor_2011 = getElementType("org.eclipse.papyrus.diagram.usecase.Actor_2011"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Actor_2003 = getElementType("org.eclipse.papyrus.diagram.usecase.Actor_2003"); //$NON-NLS-1$
+	public static final IElementType Actor_2012 = getElementType("org.eclipse.papyrus.diagram.usecase.Actor_2012"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCase_2004 = getElementType("org.eclipse.papyrus.diagram.usecase.UseCase_2004"); //$NON-NLS-1$
+	public static final IElementType UseCase_2013 = getElementType("org.eclipse.papyrus.diagram.usecase.UseCase_2013"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCase_2005 = getElementType("org.eclipse.papyrus.diagram.usecase.UseCase_2005"); //$NON-NLS-1$
+	public static final IElementType UseCase_2014 = getElementType("org.eclipse.papyrus.diagram.usecase.UseCase_2014"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Component_2006 = getElementType("org.eclipse.papyrus.diagram.usecase.Component_2006"); //$NON-NLS-1$
+	public static final IElementType Component_2015 = getElementType("org.eclipse.papyrus.diagram.usecase.Component_2015"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Package_2009 = getElementType("org.eclipse.papyrus.diagram.usecase.Package_2009"); //$NON-NLS-1$
+	public static final IElementType Package_2016 = getElementType("org.eclipse.papyrus.diagram.usecase.Package_2016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_2008 = getElementType("org.eclipse.papyrus.diagram.usecase.Constraint_2008"); //$NON-NLS-1$
+	public static final IElementType Constraint_2017 = getElementType("org.eclipse.papyrus.diagram.usecase.Constraint_2017"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_2010 = getElementType("org.eclipse.papyrus.diagram.usecase.Comment_2010"); //$NON-NLS-1$
+	public static final IElementType Comment_2018 = getElementType("org.eclipse.papyrus.diagram.usecase.Comment_2018"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExtensionPoint_3002 = getElementType("org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3002"); //$NON-NLS-1$
+	public static final IElementType ExtensionPoint_3007 = getElementType("org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExtensionPoint_3003 = getElementType("org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3003"); //$NON-NLS-1$
+	public static final IElementType ExtensionPoint_3008 = getElementType("org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3008"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCase_3004 = getElementType("org.eclipse.papyrus.diagram.usecase.UseCase_3004"); //$NON-NLS-1$
+	public static final IElementType UseCase_3009 = getElementType("org.eclipse.papyrus.diagram.usecase.UseCase_3009"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Actor_3005 = getElementType("org.eclipse.papyrus.diagram.usecase.Actor_3005"); //$NON-NLS-1$
+	public static final IElementType Component_3016 = getElementType("org.eclipse.papyrus.diagram.usecase.Component_3016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCase_3006 = getElementType("org.eclipse.papyrus.diagram.usecase.UseCase_3006"); //$NON-NLS-1$
+	public static final IElementType Comment_3015 = getElementType("org.eclipse.papyrus.diagram.usecase.Comment_3015"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Include_4001 = getElementType("org.eclipse.papyrus.diagram.usecase.Include_4001"); //$NON-NLS-1$
+	public static final IElementType Constraint_3017 = getElementType("org.eclipse.papyrus.diagram.usecase.Constraint_3017"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Extend_4002 = getElementType("org.eclipse.papyrus.diagram.usecase.Extend_4002"); //$NON-NLS-1$
+	public static final IElementType Constraint_3010 = getElementType("org.eclipse.papyrus.diagram.usecase.Constraint_3010"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Generalization_4003 = getElementType("org.eclipse.papyrus.diagram.usecase.Generalization_4003"); //$NON-NLS-1$
+	public static final IElementType Actor_3011 = getElementType("org.eclipse.papyrus.diagram.usecase.Actor_3011"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Association_4004 = getElementType("org.eclipse.papyrus.diagram.usecase.Association_4004"); //$NON-NLS-1$
+	public static final IElementType UseCase_3012 = getElementType("org.eclipse.papyrus.diagram.usecase.UseCase_3012"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConstraintConstrainedElement_4005 = getElementType("org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4005"); //$NON-NLS-1$
+	public static final IElementType Component_3013 = getElementType("org.eclipse.papyrus.diagram.usecase.Component_3013"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_4006 = getElementType("org.eclipse.papyrus.diagram.usecase.Dependency_4006"); //$NON-NLS-1$
+	public static final IElementType Package_3014 = getElementType("org.eclipse.papyrus.diagram.usecase.Package_3014"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CommentAnnotatedElement_4007 = getElementType("org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4007"); //$NON-NLS-1$
+	public static final IElementType Include_4008 = getElementType("org.eclipse.papyrus.diagram.usecase.Include_4008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Extend_4009 = getElementType("org.eclipse.papyrus.diagram.usecase.Extend_4009"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Generalization_4010 = getElementType("org.eclipse.papyrus.diagram.usecase.Generalization_4010"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Association_4011 = getElementType("org.eclipse.papyrus.diagram.usecase.Association_4011"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ConstraintConstrainedElement_4012 = getElementType("org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4012"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Dependency_4013 = getElementType("org.eclipse.papyrus.diagram.usecase.Dependency_4013"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType CommentAnnotatedElement_4014 = getElementType("org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4014"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -291,45 +327,57 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
-			elements.put(Actor_2002, UMLPackage.eINSTANCE.getActor());
+			elements.put(Actor_2011, UMLPackage.eINSTANCE.getActor());
 
-			elements.put(Actor_2003, UMLPackage.eINSTANCE.getActor());
+			elements.put(Actor_2012, UMLPackage.eINSTANCE.getActor());
 
-			elements.put(UseCase_2004, UMLPackage.eINSTANCE.getUseCase());
+			elements.put(UseCase_2013, UMLPackage.eINSTANCE.getUseCase());
 
-			elements.put(UseCase_2005, UMLPackage.eINSTANCE.getUseCase());
+			elements.put(UseCase_2014, UMLPackage.eINSTANCE.getUseCase());
 
-			elements.put(Component_2006, UMLPackage.eINSTANCE.getComponent());
+			elements.put(Component_2015, UMLPackage.eINSTANCE.getComponent());
 
-			elements.put(Package_2009, UMLPackage.eINSTANCE.getPackage());
+			elements.put(Package_2016, UMLPackage.eINSTANCE.getPackage());
 
-			elements.put(Constraint_2008, UMLPackage.eINSTANCE.getConstraint());
+			elements.put(Constraint_2017, UMLPackage.eINSTANCE.getConstraint());
 
-			elements.put(Comment_2010, UMLPackage.eINSTANCE.getComment());
+			elements.put(Comment_2018, UMLPackage.eINSTANCE.getComment());
 
-			elements.put(ExtensionPoint_3002, UMLPackage.eINSTANCE.getExtensionPoint());
+			elements.put(ExtensionPoint_3007, UMLPackage.eINSTANCE.getExtensionPoint());
 
-			elements.put(ExtensionPoint_3003, UMLPackage.eINSTANCE.getExtensionPoint());
+			elements.put(ExtensionPoint_3008, UMLPackage.eINSTANCE.getExtensionPoint());
 
-			elements.put(UseCase_3004, UMLPackage.eINSTANCE.getUseCase());
+			elements.put(UseCase_3009, UMLPackage.eINSTANCE.getUseCase());
 
-			elements.put(Actor_3005, UMLPackage.eINSTANCE.getActor());
+			elements.put(Component_3016, UMLPackage.eINSTANCE.getComponent());
 
-			elements.put(UseCase_3006, UMLPackage.eINSTANCE.getUseCase());
+			elements.put(Comment_3015, UMLPackage.eINSTANCE.getComment());
 
-			elements.put(Include_4001, UMLPackage.eINSTANCE.getInclude());
+			elements.put(Constraint_3017, UMLPackage.eINSTANCE.getConstraint());
 
-			elements.put(Extend_4002, UMLPackage.eINSTANCE.getExtend());
+			elements.put(Constraint_3010, UMLPackage.eINSTANCE.getConstraint());
 
-			elements.put(Generalization_4003, UMLPackage.eINSTANCE.getGeneralization());
+			elements.put(Actor_3011, UMLPackage.eINSTANCE.getActor());
 
-			elements.put(Association_4004, UMLPackage.eINSTANCE.getAssociation());
+			elements.put(UseCase_3012, UMLPackage.eINSTANCE.getUseCase());
 
-			elements.put(ConstraintConstrainedElement_4005, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+			elements.put(Component_3013, UMLPackage.eINSTANCE.getComponent());
 
-			elements.put(Dependency_4006, UMLPackage.eINSTANCE.getDependency());
+			elements.put(Package_3014, UMLPackage.eINSTANCE.getPackage());
 
-			elements.put(CommentAnnotatedElement_4007, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+			elements.put(Include_4008, UMLPackage.eINSTANCE.getInclude());
+
+			elements.put(Extend_4009, UMLPackage.eINSTANCE.getExtend());
+
+			elements.put(Generalization_4010, UMLPackage.eINSTANCE.getGeneralization());
+
+			elements.put(Association_4011, UMLPackage.eINSTANCE.getAssociation());
+
+			elements.put(ConstraintConstrainedElement_4012, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+
+			elements.put(Dependency_4013, UMLPackage.eINSTANCE.getDependency());
+
+			elements.put(CommentAnnotatedElement_4014, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -348,26 +396,32 @@ public class UMLElementTypes extends ElementInitializers {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
-			KNOWN_ELEMENT_TYPES.add(Actor_2002);
-			KNOWN_ELEMENT_TYPES.add(Actor_2003);
-			KNOWN_ELEMENT_TYPES.add(UseCase_2004);
-			KNOWN_ELEMENT_TYPES.add(UseCase_2005);
-			KNOWN_ELEMENT_TYPES.add(Component_2006);
-			KNOWN_ELEMENT_TYPES.add(Package_2009);
-			KNOWN_ELEMENT_TYPES.add(Constraint_2008);
-			KNOWN_ELEMENT_TYPES.add(Comment_2010);
-			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3002);
-			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3003);
-			KNOWN_ELEMENT_TYPES.add(UseCase_3004);
-			KNOWN_ELEMENT_TYPES.add(Actor_3005);
-			KNOWN_ELEMENT_TYPES.add(UseCase_3006);
-			KNOWN_ELEMENT_TYPES.add(Include_4001);
-			KNOWN_ELEMENT_TYPES.add(Extend_4002);
-			KNOWN_ELEMENT_TYPES.add(Generalization_4003);
-			KNOWN_ELEMENT_TYPES.add(Association_4004);
-			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4005);
-			KNOWN_ELEMENT_TYPES.add(Dependency_4006);
-			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4007);
+			KNOWN_ELEMENT_TYPES.add(Actor_2011);
+			KNOWN_ELEMENT_TYPES.add(Actor_2012);
+			KNOWN_ELEMENT_TYPES.add(UseCase_2013);
+			KNOWN_ELEMENT_TYPES.add(UseCase_2014);
+			KNOWN_ELEMENT_TYPES.add(Component_2015);
+			KNOWN_ELEMENT_TYPES.add(Package_2016);
+			KNOWN_ELEMENT_TYPES.add(Constraint_2017);
+			KNOWN_ELEMENT_TYPES.add(Comment_2018);
+			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3007);
+			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3008);
+			KNOWN_ELEMENT_TYPES.add(UseCase_3009);
+			KNOWN_ELEMENT_TYPES.add(Component_3016);
+			KNOWN_ELEMENT_TYPES.add(Comment_3015);
+			KNOWN_ELEMENT_TYPES.add(Constraint_3017);
+			KNOWN_ELEMENT_TYPES.add(Constraint_3010);
+			KNOWN_ELEMENT_TYPES.add(Actor_3011);
+			KNOWN_ELEMENT_TYPES.add(UseCase_3012);
+			KNOWN_ELEMENT_TYPES.add(Component_3013);
+			KNOWN_ELEMENT_TYPES.add(Package_3014);
+			KNOWN_ELEMENT_TYPES.add(Include_4008);
+			KNOWN_ELEMENT_TYPES.add(Extend_4009);
+			KNOWN_ELEMENT_TYPES.add(Generalization_4010);
+			KNOWN_ELEMENT_TYPES.add(Association_4011);
+			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4012);
+			KNOWN_ELEMENT_TYPES.add(Dependency_4013);
+			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4014);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -380,45 +434,57 @@ public class UMLElementTypes extends ElementInitializers {
 		case PackageEditPart.VISUAL_ID:
 			return Package_1000;
 		case ActorEditPart.VISUAL_ID:
-			return Actor_2002;
+			return Actor_2011;
 		case Actor2EditPart.VISUAL_ID:
-			return Actor_2003;
+			return Actor_2012;
 		case UseCaseEditPart.VISUAL_ID:
-			return UseCase_2004;
+			return UseCase_2013;
 		case UseCase2EditPart.VISUAL_ID:
-			return UseCase_2005;
+			return UseCase_2014;
 		case ComponentEditPart.VISUAL_ID:
-			return Component_2006;
-		case Package3EditPart.VISUAL_ID:
-			return Package_2009;
+			return Component_2015;
+		case Package2EditPart.VISUAL_ID:
+			return Package_2016;
 		case ConstraintEditPart.VISUAL_ID:
-			return Constraint_2008;
+			return Constraint_2017;
 		case CommentEditPart.VISUAL_ID:
-			return Comment_2010;
+			return Comment_2018;
 		case ExtensionPointEditPart.VISUAL_ID:
-			return ExtensionPoint_3002;
+			return ExtensionPoint_3007;
 		case ExtensionPoint2EditPart.VISUAL_ID:
-			return ExtensionPoint_3003;
+			return ExtensionPoint_3008;
 		case UseCase3EditPart.VISUAL_ID:
-			return UseCase_3004;
+			return UseCase_3009;
+		case Component2EditPart.VISUAL_ID:
+			return Component_3016;
+		case Comment2EditPart.VISUAL_ID:
+			return Comment_3015;
+		case Constraint2EditPart.VISUAL_ID:
+			return Constraint_3017;
+		case Constraint3EditPart.VISUAL_ID:
+			return Constraint_3010;
 		case Actor3EditPart.VISUAL_ID:
-			return Actor_3005;
+			return Actor_3011;
 		case UseCase4EditPart.VISUAL_ID:
-			return UseCase_3006;
+			return UseCase_3012;
+		case Component3EditPart.VISUAL_ID:
+			return Component_3013;
+		case Package3EditPart.VISUAL_ID:
+			return Package_3014;
 		case IncludeEditPart.VISUAL_ID:
-			return Include_4001;
+			return Include_4008;
 		case ExtendEditPart.VISUAL_ID:
-			return Extend_4002;
+			return Extend_4009;
 		case GeneralizationEditPart.VISUAL_ID:
-			return Generalization_4003;
+			return Generalization_4010;
 		case AssociationEditPart.VISUAL_ID:
-			return Association_4004;
+			return Association_4011;
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return ConstraintConstrainedElement_4005;
+			return ConstraintConstrainedElement_4012;
 		case DependencyEditPart.VISUAL_ID:
-			return Dependency_4006;
+			return Dependency_4013;
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
-			return CommentAnnotatedElement_4007;
+			return CommentAnnotatedElement_4014;
 		}
 		return null;
 	}

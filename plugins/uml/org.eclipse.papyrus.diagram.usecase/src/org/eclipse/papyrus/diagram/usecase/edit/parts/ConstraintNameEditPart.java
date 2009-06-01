@@ -70,7 +70,7 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5011;
+	public static final int VISUAL_ID = 5026;
 
 	/**
 	 * @generated
@@ -306,7 +306,7 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_2008, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_2017, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart.VISUAL_ID));
 		}
 		return parser;
@@ -496,7 +496,7 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View) getModel();
 	}
 
 	/**

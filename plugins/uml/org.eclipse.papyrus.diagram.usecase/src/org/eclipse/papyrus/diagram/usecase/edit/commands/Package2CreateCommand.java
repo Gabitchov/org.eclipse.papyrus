@@ -101,7 +101,7 @@ public class Package2CreateCommand extends EditElementCommand {
 		Package owner = (Package) getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_Package_2009(newElement);
+		UMLElementTypes.init_Package_3014(newElement);
 
 		doConfigure(newElement, monitor, info);
 

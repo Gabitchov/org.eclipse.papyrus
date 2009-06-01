@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.figure;
 
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -29,7 +29,8 @@ public class UseCaseNodeFigure extends DefaultSizeNodeFigure implements IOvalAnc
 	/**
 	 * Instantiates a new use case node figure.
 	 * 
-	 * @param defSize the default size
+	 * @param defSize
+	 *            the default size
 	 */
 	public UseCaseNodeFigure(Dimension defSize) {
 		super(defSize);
@@ -38,8 +39,10 @@ public class UseCaseNodeFigure extends DefaultSizeNodeFigure implements IOvalAnc
 	/**
 	 * Instantiates a new use case node figure.
 	 * 
-	 * @param width the specific width
-	 * @param height the specific height
+	 * @param width
+	 *            the specific width
+	 * @param height
+	 *            the specific height
 	 */
 	public UseCaseNodeFigure(int width, int height) {
 		super(width, height);

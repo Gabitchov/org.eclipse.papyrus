@@ -82,7 +82,7 @@ public class IncludeReorientCommand extends EditElementCommand {
 			return false;
 		}
 		UseCase container = (UseCase) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInclude_4001(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInclude_4008(container, getNewSource(), target);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class IncludeReorientCommand extends EditElementCommand {
 			return false;
 		}
 		UseCase container = (UseCase) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInclude_4001(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInclude_4008(container, source, getNewTarget());
 	}
 
 	/**

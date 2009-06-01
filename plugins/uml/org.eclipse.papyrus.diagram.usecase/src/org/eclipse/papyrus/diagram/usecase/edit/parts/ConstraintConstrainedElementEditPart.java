@@ -30,7 +30,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4005;
+	public static final int VISUAL_ID = 4012;
 
 	/**
 	 * @generated
@@ -75,6 +75,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public DashedLineConnection() {
+			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
 
 		}

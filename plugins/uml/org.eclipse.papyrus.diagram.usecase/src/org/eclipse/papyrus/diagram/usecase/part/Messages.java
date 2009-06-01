@@ -446,12 +446,27 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ComponentUsecases2EditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String PackagePackageableElementCompartmentEditPart_title;
 
 	/**
 	 * @generated
 	 */
 	public static String UseCasePoints3EditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ComponentUsecases3EditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PackagePackageableElementCompartment2EditPart_title;
 
 	/**
 	 * @generated
@@ -466,202 +481,262 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Actor_2002_incominglinks;
+	public static String NavigatorGroupName_Actor_2011_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Actor_2002_outgoinglinks;
+	public static String NavigatorGroupName_Actor_2011_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Actor_2003_incominglinks;
+	public static String NavigatorGroupName_Actor_2012_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Actor_2003_outgoinglinks;
+	public static String NavigatorGroupName_Actor_2012_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_2004_incominglinks;
+	public static String NavigatorGroupName_UseCase_2013_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_2004_outgoinglinks;
+	public static String NavigatorGroupName_UseCase_2013_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_2005_incominglinks;
+	public static String NavigatorGroupName_UseCase_2014_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_2005_outgoinglinks;
+	public static String NavigatorGroupName_UseCase_2014_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Component_2006_incominglinks;
+	public static String NavigatorGroupName_Component_2015_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Component_2006_outgoinglinks;
+	public static String NavigatorGroupName_Component_2015_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Package_2009_incominglinks;
+	public static String NavigatorGroupName_Package_2016_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Package_2009_outgoinglinks;
+	public static String NavigatorGroupName_Package_2016_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Constraint_2008_incominglinks;
+	public static String NavigatorGroupName_Constraint_2017_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Constraint_2008_outgoinglinks;
+	public static String NavigatorGroupName_Constraint_2017_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Comment_2010_incominglinks;
+	public static String NavigatorGroupName_Comment_2018_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Comment_2010_outgoinglinks;
+	public static String NavigatorGroupName_Comment_2018_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ExtensionPoint_3002_incominglinks;
+	public static String NavigatorGroupName_ExtensionPoint_3007_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ExtensionPoint_3002_outgoinglinks;
+	public static String NavigatorGroupName_ExtensionPoint_3007_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ExtensionPoint_3003_incominglinks;
+	public static String NavigatorGroupName_ExtensionPoint_3008_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ExtensionPoint_3003_outgoinglinks;
+	public static String NavigatorGroupName_ExtensionPoint_3008_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_3004_incominglinks;
+	public static String NavigatorGroupName_UseCase_3009_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_3004_outgoinglinks;
+	public static String NavigatorGroupName_UseCase_3009_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Actor_3005_incominglinks;
+	public static String NavigatorGroupName_Component_3016_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Actor_3005_outgoinglinks;
+	public static String NavigatorGroupName_Component_3016_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_3006_incominglinks;
+	public static String NavigatorGroupName_Comment_3015_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_3006_outgoinglinks;
+	public static String NavigatorGroupName_Comment_3015_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Include_4001_target;
+	public static String NavigatorGroupName_Constraint_3017_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Include_4001_source;
+	public static String NavigatorGroupName_Constraint_3017_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Extend_4002_target;
+	public static String NavigatorGroupName_Constraint_3010_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Extend_4002_source;
+	public static String NavigatorGroupName_Constraint_3010_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Generalization_4003_target;
+	public static String NavigatorGroupName_Actor_3011_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Generalization_4003_source;
+	public static String NavigatorGroupName_Actor_3011_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_4004_target;
+	public static String NavigatorGroupName_UseCase_3012_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Association_4004_source;
+	public static String NavigatorGroupName_UseCase_3012_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ConstraintConstrainedElement_4005_target;
+	public static String NavigatorGroupName_Component_3013_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ConstraintConstrainedElement_4005_source;
+	public static String NavigatorGroupName_Component_3013_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Dependency_4006_target;
+	public static String NavigatorGroupName_Package_3014_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Dependency_4006_source;
+	public static String NavigatorGroupName_Package_3014_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_CommentAnnotatedElement_4007_target;
+	public static String NavigatorGroupName_Include_4008_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_CommentAnnotatedElement_4007_source;
+	public static String NavigatorGroupName_Include_4008_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Extend_4009_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Extend_4009_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Generalization_4010_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Generalization_4010_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_4011_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_4011_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ConstraintConstrainedElement_4012_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ConstraintConstrainedElement_4012_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Dependency_4013_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Dependency_4013_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CommentAnnotatedElement_4014_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CommentAnnotatedElement_4014_source;
 
 	/**
 	 * @generated

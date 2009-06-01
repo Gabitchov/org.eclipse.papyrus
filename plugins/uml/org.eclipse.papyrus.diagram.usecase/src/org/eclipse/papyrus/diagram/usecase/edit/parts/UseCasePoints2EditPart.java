@@ -33,7 +33,7 @@ public class UseCasePoints2EditPart extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 7005;
+	public static final int VISUAL_ID = 7012;
 
 	/**
 	 * @generated
@@ -74,8 +74,8 @@ public class UseCasePoints2EditPart extends ListCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePoints2CanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePoints2CanonicalEditPolicy());
 
 	}
 

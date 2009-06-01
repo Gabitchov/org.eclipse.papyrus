@@ -70,7 +70,7 @@ public class UseCaseName2EditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5005;
+	public static final int VISUAL_ID = 5017;
 
 	/**
 	 * @generated
@@ -310,7 +310,7 @@ public class UseCaseName2EditPart extends CompartmentEditPart implements ITextAw
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_2005, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_2014, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart.VISUAL_ID));
 		}
 		return parser;

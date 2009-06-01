@@ -39,7 +39,7 @@ public class ExtendItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	 * @generated
 	 */
 	public ExtendItemSemanticEditPolicy() {
-		super(UMLElementTypes.Extend_4002);
+		super(UMLElementTypes.Extend_4009);
 	}
 
 	/**
@@ -61,13 +61,13 @@ public class ExtendItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.ConstraintConstrainedElement_4005 == req.getElementType()) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
+		if (UMLElementTypes.Dependency_4013 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4007 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -77,13 +77,13 @@ public class ExtendItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.ConstraintConstrainedElement_4005 == req.getElementType()) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
+		if (UMLElementTypes.Dependency_4013 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4007 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;

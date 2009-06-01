@@ -326,8 +326,8 @@
       <viewProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2002,2003,2004,2005,2006,2009,2008,2010,3002,3003,3004,3005,3006"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006,4007"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2016,2017,2018,3007,3008,3009,3016,3015,3017,3010,3011,3012,3013,3014"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4009,4010,4011,4012,4013,4014"/>
       </viewProvider>
    </extension>
 
@@ -339,16 +339,16 @@
             <method name="getType()" value="UseCase"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2002,2003,2004,2005,2006,2009,2008,2010,3002,3003,3004,3005,3006"/>
+            <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,3007,3008,3009,3016,3015,3017,3010,3011,3012,3013,3014"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002,4003,4004,4005,4006,4007"/>
+            <method name="getType()" value="4008,4009,4010,4011,4012,4013,4014"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5002,5003,5004,5005,5007,5012,5011,5013,5006,5008,5009"/>
+            <method name="getType()" value="5014,5015,5016,5017,5019,5025,5026,5027,5018,5030,5028,5029,5020,5021,5022,5023,5024"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7002,7003,7004,7005,7008,7007"/>
+            <method name="getType()" value="7009,7010,7011,7012,7017,7013,7014,7015,7016"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -359,15 +359,15 @@
       <modelingAssistantProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart" id="Package_1000"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart" id="Actor_2002"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart" id="Actor_2003"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart" id="UseCase_2004"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart" id="UseCase_2005"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart" id="Component_2006"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart" id="Package_2009"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart" id="Constraint_2008"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart" id="Comment_2010"/>
-         <context elements="Package_1000,Actor_2002,Actor_2003,UseCase_2004,UseCase_2005,Component_2006,Package_2009,Constraint_2008,Comment_2010"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart" id="Actor_2011"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart" id="Actor_2012"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart" id="UseCase_2013"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart" id="UseCase_2014"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart" id="Component_2015"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart" id="Package_2016"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart" id="Constraint_2017"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart" id="Comment_2018"/>
+         <context elements="Package_1000,Actor_2011,Actor_2012,UseCase_2013,UseCase_2014,Component_2015,Package_2016,Constraint_2017,Comment_2018"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -399,193 +399,247 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Actor_2002"
-               name="%metatype.name.Actor_2002"
+               id="org.eclipse.papyrus.diagram.usecase.Actor_2011"
+               name="%metatype.name.Actor_2011"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Actor"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ActorEditHelper">
-            <param name="semanticHint" value="2002"/>
+            <param name="semanticHint" value="2011"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.Actor_2003"
-               name="%metatype.name.Actor_2003"
+               id="org.eclipse.papyrus.diagram.usecase.Actor_2012"
+               name="%metatype.name.Actor_2012"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.usecase.Actor_2002"/>
-            <param name="semanticHint" value="2003"/>
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Actor_2011"/>
+            <param name="semanticHint" value="2012"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.UseCase_2004"
-               name="%metatype.name.UseCase_2004"
+               id="org.eclipse.papyrus.diagram.usecase.UseCase_2013"
+               name="%metatype.name.UseCase_2013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="UseCase"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.UseCaseEditHelper">
-            <param name="semanticHint" value="2004"/>
+            <param name="semanticHint" value="2013"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.UseCase_2005"
-               name="%metatype.name.UseCase_2005"
+               id="org.eclipse.papyrus.diagram.usecase.UseCase_2014"
+               name="%metatype.name.UseCase_2014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2004"/>
-            <param name="semanticHint" value="2005"/>
+            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2013"/>
+            <param name="semanticHint" value="2014"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Component_2006"
-               name="%metatype.name.Component_2006"
+               id="org.eclipse.papyrus.diagram.usecase.Component_2015"
+               name="%metatype.name.Component_2015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Component"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ComponentEditHelper">
-            <param name="semanticHint" value="2006"/>
+            <param name="semanticHint" value="2015"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.Package_2009"
-               name="%metatype.name.Package_2009"
+               id="org.eclipse.papyrus.diagram.usecase.Package_2016"
+               name="%metatype.name.Package_2016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.diagram.usecase.Package_1000"/>
-            <param name="semanticHint" value="2009"/>
+            <param name="semanticHint" value="2016"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Constraint_2017"
+               name="%metatype.name.Constraint_2017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Constraint_3017"/>
+            <param name="semanticHint" value="2017"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Comment_2018"
+               name="%metatype.name.Comment_2018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Comment_3015"/>
+            <param name="semanticHint" value="2018"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Constraint_2008"
-               name="%metatype.name.Constraint_2008"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Constraint"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ConstraintEditHelper">
-            <param name="semanticHint" value="2008"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Comment_2010"
-               name="%metatype.name.Comment_2010"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Comment"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.CommentEditHelper">
-            <param name="semanticHint" value="2010"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3002"
-               name="%metatype.name.ExtensionPoint_3002"
+               id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3007"
+               name="%metatype.name.ExtensionPoint_3007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ExtensionPoint"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ExtensionPointEditHelper">
-            <param name="semanticHint" value="3002"/>
+            <param name="semanticHint" value="3007"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3003"
-               name="%metatype.name.ExtensionPoint_3003"
+               id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3008"
+               name="%metatype.name.ExtensionPoint_3008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3002"/>
-            <param name="semanticHint" value="3003"/>
+            <specializes id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3007"/>
+            <param name="semanticHint" value="3008"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.UseCase_3004"
-               name="%metatype.name.UseCase_3004"
+               id="org.eclipse.papyrus.diagram.usecase.UseCase_3009"
+               name="%metatype.name.UseCase_3009"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2004"/>
-            <param name="semanticHint" value="3004"/>
+            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2013"/>
+            <param name="semanticHint" value="3009"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.Actor_3005"
-               name="%metatype.name.Actor_3005"
+               id="org.eclipse.papyrus.diagram.usecase.Component_3016"
+               name="%metatype.name.Component_3016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.usecase.Actor_2002"/>
-            <param name="semanticHint" value="3005"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.UseCase_3006"
-               name="%metatype.name.UseCase_3006"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2004"/>
-            <param name="semanticHint" value="3006"/>
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Component_2015"/>
+            <param name="semanticHint" value="3016"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Include_4001"
-               name="%metatype.name.Include_4001"
+               id="org.eclipse.papyrus.diagram.usecase.Comment_3015"
+               name="%metatype.name.Comment_3015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Comment"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.CommentEditHelper">
+            <param name="semanticHint" value="3015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Constraint_3017"
+               name="%metatype.name.Constraint_3017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Constraint"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ConstraintEditHelper">
+            <param name="semanticHint" value="3017"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Constraint_3010"
+               name="%metatype.name.Constraint_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Constraint_3017"/>
+            <param name="semanticHint" value="3010"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Actor_3011"
+               name="%metatype.name.Actor_3011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Actor_2011"/>
+            <param name="semanticHint" value="3011"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.UseCase_3012"
+               name="%metatype.name.UseCase_3012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2013"/>
+            <param name="semanticHint" value="3012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Component_3013"
+               name="%metatype.name.Component_3013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Component_2015"/>
+            <param name="semanticHint" value="3013"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Package_3014"
+               name="%metatype.name.Package_3014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Package_1000"/>
+            <param name="semanticHint" value="3014"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Include_4008"
+               name="%metatype.name.Include_4008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Include"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.IncludeEditHelper">
-            <param name="semanticHint" value="4001"/>
+            <param name="semanticHint" value="4008"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Extend_4002"
-               name="%metatype.name.Extend_4002"
+               id="org.eclipse.papyrus.diagram.usecase.Extend_4009"
+               name="%metatype.name.Extend_4009"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Extend"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ExtendEditHelper">
-            <param name="semanticHint" value="4002"/>
+            <param name="semanticHint" value="4009"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Generalization_4003"
-               name="%metatype.name.Generalization_4003"
+               id="org.eclipse.papyrus.diagram.usecase.Generalization_4010"
+               name="%metatype.name.Generalization_4010"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Generalization"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.GeneralizationEditHelper">
-            <param name="semanticHint" value="4003"/>
+            <param name="semanticHint" value="4010"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Association_4004"
-               name="%metatype.name.Association_4004"
+               id="org.eclipse.papyrus.diagram.usecase.Association_4011"
+               name="%metatype.name.Association_4011"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Association"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.AssociationEditHelper">
-            <param name="semanticHint" value="4004"/>
+            <param name="semanticHint" value="4011"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4005"
-               name="%metatype.name.ConstraintConstrainedElement_4005"
+               id="org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4012"
+               name="%metatype.name.ConstraintConstrainedElement_4012"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4005"/>
+            <param name="semanticHint" value="4012"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.usecase.Dependency_4006"
-               name="%metatype.name.Dependency_4006"
+               id="org.eclipse.papyrus.diagram.usecase.Dependency_4013"
+               name="%metatype.name.Dependency_4013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Dependency"
                edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.DependencyEditHelper">
-            <param name="semanticHint" value="4006"/>
+            <param name="semanticHint" value="4013"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4007"
-               name="%metatype.name.CommentAnnotatedElement_4007"
+               id="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4014"
+               name="%metatype.name.CommentAnnotatedElement_4014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4007"/>
+            <param name="semanticHint" value="4014"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -601,26 +655,32 @@
       </clientContext> 
       <binding context="org.eclipse.papyrus.diagram.usecase.TypeContext">
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_1000"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_2002"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_2003"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_2004"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_2005"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Component_2006"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_2009"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_2008"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Comment_2010"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3002"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3003"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_3004"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_3005"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_3006"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Include_4001"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Extend_4002"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Generalization_4003"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Association_4004"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4005"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Dependency_4006"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4007"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_2011"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_2012"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_2013"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_2014"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Component_2015"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_2016"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_2017"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Comment_2018"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3007"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_3009"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Component_3016"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Comment_3015"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_3017"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_3010"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_3011"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_3012"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Component_3013"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_3014"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Include_4008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Extend_4009"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Generalization_4010"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Association_4011"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4012"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Dependency_4013"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4014"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -819,12 +879,6 @@
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
             category="org.eclipse.uml2.uml.diagram.general"
             class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage">
-      </page>
-      <page
-            id="org.eclipse.uml2.uml.diagram.pathmaps"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.pathmaps"
-            category="org.eclipse.uml2.uml.diagram.general"
-            class="org.eclipse.gmf.runtime.emf.ui.preferences.PathmapsPreferencePage">
       </page>
    </extension>
 

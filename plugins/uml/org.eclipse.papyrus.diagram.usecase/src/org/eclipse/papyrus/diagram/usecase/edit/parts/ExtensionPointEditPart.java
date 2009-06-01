@@ -71,7 +71,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3002;
+	public static final int VISUAL_ID = 3007;
 
 	/**
 	 * @generated
@@ -302,7 +302,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.ExtensionPoint_3002, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.ExtensionPoint_3007, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart.VISUAL_ID));
 		}
 		return parser;

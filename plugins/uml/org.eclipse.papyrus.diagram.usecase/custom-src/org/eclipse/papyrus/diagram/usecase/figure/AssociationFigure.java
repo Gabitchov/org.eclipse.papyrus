@@ -43,7 +43,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 
 	/** The multiplicity target label. */
 	private WrappingLabel fMultiplicityTargetLabel;
-	
+
 	/** The f role source label. */
 	private WrappingLabel fRoleSourceLabel;
 
@@ -90,7 +90,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 		fMultiplicityTargetLabel = new WrappingLabel();
 		fMultiplicityTargetLabel.setText("");
 		this.add(fMultiplicityTargetLabel);
-		
+
 		fRoleSourceLabel = new WrappingLabel();
 		fRoleSourceLabel.setText("");
 		this.add(fRoleSourceLabel);
@@ -179,7 +179,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 	public WrappingLabel getMultiplicityTargetLabel() {
 		return fMultiplicityTargetLabel;
 	}
-	
+
 	/**
 	 * @generated
 	 */

@@ -34,7 +34,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4004;
+	public static final int VISUAL_ID = 4011;
 
 	/**
 	 * @generated
@@ -103,6 +103,10 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof AssociationNameEditPart) {
+			((AssociationNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+			return true;
+		}
 		return false;
 	}
 
@@ -120,6 +124,9 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof AssociationNameEditPart) {
+			return true;
+		}
 		return false;
 	}
 

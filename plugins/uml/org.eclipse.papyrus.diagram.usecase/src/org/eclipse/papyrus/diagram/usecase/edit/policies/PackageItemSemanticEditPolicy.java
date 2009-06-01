@@ -25,7 +25,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.ActorCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ComponentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.Package2CreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCaseCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
@@ -46,28 +46,28 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Actor_2002 == req.getElementType()) {
+		if (UMLElementTypes.Actor_2011 == req.getElementType()) {
 			return getGEFWrapper(new ActorCreateCommand(req));
 		}
-		if (UMLElementTypes.Actor_2003 == req.getElementType()) {
+		if (UMLElementTypes.Actor_2012 == req.getElementType()) {
 			return getGEFWrapper(new Actor2CreateCommand(req));
 		}
-		if (UMLElementTypes.UseCase_2004 == req.getElementType()) {
+		if (UMLElementTypes.UseCase_2013 == req.getElementType()) {
 			return getGEFWrapper(new UseCaseCreateCommand(req));
 		}
-		if (UMLElementTypes.UseCase_2005 == req.getElementType()) {
+		if (UMLElementTypes.UseCase_2014 == req.getElementType()) {
 			return getGEFWrapper(new UseCase2CreateCommand(req));
 		}
-		if (UMLElementTypes.Component_2006 == req.getElementType()) {
+		if (UMLElementTypes.Component_2015 == req.getElementType()) {
 			return getGEFWrapper(new ComponentCreateCommand(req));
 		}
-		if (UMLElementTypes.Package_2009 == req.getElementType()) {
-			return getGEFWrapper(new Package2CreateCommand(req));
+		if (UMLElementTypes.Package_2016 == req.getElementType()) {
+			return getGEFWrapper(new PackageCreateCommand(req));
 		}
-		if (UMLElementTypes.Constraint_2008 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_2017 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintCreateCommand(req));
 		}
-		if (UMLElementTypes.Comment_2010 == req.getElementType()) {
+		if (UMLElementTypes.Comment_2018 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

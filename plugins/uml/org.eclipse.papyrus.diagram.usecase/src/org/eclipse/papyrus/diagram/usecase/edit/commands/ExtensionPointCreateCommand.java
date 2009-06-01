@@ -102,7 +102,7 @@ public class ExtensionPointCreateCommand extends EditElementCommand {
 		UseCase owner = (UseCase) getElementToEdit();
 		owner.getExtensionPoints().add(newElement);
 
-		UMLElementTypes.init_ExtensionPoint_3002(newElement);
+		UMLElementTypes.init_ExtensionPoint_3007(newElement);
 
 		doConfigure(newElement, monitor, info);
 

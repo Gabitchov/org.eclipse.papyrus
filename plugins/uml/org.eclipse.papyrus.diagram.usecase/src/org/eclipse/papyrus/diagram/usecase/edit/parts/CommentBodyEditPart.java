@@ -70,7 +70,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5013;
+	public static final int VISUAL_ID = 5027;
 
 	/**
 	 * @generated
@@ -306,7 +306,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Comment_2010, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.Comment_2018, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPart.VISUAL_ID));
 		}
 		return parser;

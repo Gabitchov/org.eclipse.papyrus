@@ -102,7 +102,7 @@ public class ComponentCreateCommand extends EditElementCommand {
 		Package owner = (Package) getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_Component_2006(newElement);
+		UMLElementTypes.init_Component_2015(newElement);
 
 		doConfigure(newElement, monitor, info);
 

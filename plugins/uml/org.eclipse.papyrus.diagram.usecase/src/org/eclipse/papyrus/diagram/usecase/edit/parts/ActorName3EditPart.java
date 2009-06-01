@@ -67,7 +67,7 @@ public class ActorName3EditPart extends LabelEditPart implements ITextAwareEditP
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5008;
+	public static final int VISUAL_ID = 5021;
 
 	/**
 	 * @generated
@@ -316,7 +316,7 @@ public class ActorName3EditPart extends LabelEditPart implements ITextAwareEditP
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Actor_3005, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.Actor_3011, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart.VISUAL_ID));
 		}
 		return parser;

@@ -16,8 +16,8 @@ package org.eclipse.papyrus.diagram.usecase.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.gef.EditPart;
@@ -36,11 +36,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.ConstraintItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.diagram.common.draw2d.MultilineConstraintFigure;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
@@ -52,7 +55,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2008;
+	public static final int VISUAL_ID = 2017;
 
 	/**
 	 * @generated
@@ -111,15 +114,15 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ConstraintFigure figure = new ConstraintFigure();
+		CornerBentDescriptor figure = new CornerBentDescriptor();
 		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public ConstraintFigure getPrimaryShape() {
-		return (ConstraintFigure) primaryShape;
+	public CornerBentDescriptor getPrimaryShape() {
+		return (CornerBentDescriptor) primaryShape;
 	}
 
 	/**
@@ -128,7 +131,7 @@ ShapeNodeEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 
 		if (childEditPart instanceof ConstraintNameEditPart) {
-			((ConstraintNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureConstraintFigure_Value());
+			((ConstraintNameEditPart) childEditPart).setLabel(getPrimaryShape().getCornerBentContentLabel());
 			return true;
 		}
 
@@ -273,80 +276,113 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
-		types.add(UMLElementTypes.Dependency_4006);
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
+		types.add(UMLElementTypes.Dependency_4013);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if (targetEditPart instanceof ActorEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof Actor2EditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof UseCaseEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof UseCase2EditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof ComponentEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
-		if (targetEditPart instanceof Package3EditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+		if (targetEditPart instanceof Package2EditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof CommentEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof UseCase3EditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
+		}
+		if (targetEditPart instanceof Component2EditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
+		}
+		if (targetEditPart instanceof Comment2EditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
+		}
+		if (targetEditPart instanceof Constraint2EditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
+		}
+		if (targetEditPart instanceof Constraint3EditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof Actor3EditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof UseCase4EditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
-		if (targetEditPart instanceof ActorEditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
-		}
-		if (targetEditPart instanceof Actor2EditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
-		}
-		if (targetEditPart instanceof UseCaseEditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
-		}
-		if (targetEditPart instanceof UseCase2EditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
-		}
-		if (targetEditPart instanceof ComponentEditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
+		if (targetEditPart instanceof Component3EditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
 		}
 		if (targetEditPart instanceof Package3EditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
+		}
+		if (targetEditPart instanceof ActorEditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof Actor2EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof UseCaseEditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof UseCase2EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof ComponentEditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof Package2EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
+			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if (targetEditPart instanceof UseCase3EditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof Component2EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof Constraint2EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof Constraint3EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if (targetEditPart instanceof Actor3EditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
+			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if (targetEditPart instanceof UseCase4EditPart) {
-			types.add(UMLElementTypes.Dependency_4006);
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof Component3EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof Package3EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
 		}
 		return types;
 	}
@@ -354,125 +390,103 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.Actor_2002);
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Actor_2011);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.Actor_2003);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Actor_2012);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.UseCase_2004);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.UseCase_2013);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.UseCase_2005);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.UseCase_2014);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.Component_2006);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Component_2015);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.Package_2009);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Package_2016);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.Constraint_2008);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Constraint_2017);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.Comment_2010);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Comment_2018);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.UseCase_3004);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.UseCase_3009);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.Actor_3005);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Component_3016);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.UseCase_3006);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Comment_3015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Actor_2002);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Constraint_3017);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Actor_2003);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Constraint_3010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.UseCase_2004);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Actor_3011);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.UseCase_2005);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.UseCase_3012);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Component_2006);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Component_3013);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Package_2009);
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Package_3014);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Constraint_2008);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Actor_2011);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.UseCase_3004);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Actor_2012);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Actor_3005);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.UseCase_2013);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.UseCase_3006);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.UseCase_2014);
 		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4005);
-		types.add(UMLElementTypes.Dependency_4006);
-		types.add(UMLElementTypes.CommentAnnotatedElement_4007);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4005) {
-			types.add(UMLElementTypes.Constraint_2008);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Component_2015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Actor_2002);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Package_2016);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Actor_2003);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Constraint_2017);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.UseCase_2004);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.UseCase_3009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.UseCase_2005);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Component_3016);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Component_2006);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Constraint_3017);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Package_2009);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Constraint_3010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Constraint_2008);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Actor_3011);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.UseCase_3004);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.UseCase_3012);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.Actor_3005);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Component_3013);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4006) {
-			types.add(UMLElementTypes.UseCase_3006);
-		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4007) {
-			types.add(UMLElementTypes.Comment_2010);
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Package_3014);
 		}
 		return types;
 	}
@@ -480,18 +494,99 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class ConstraintFigure extends MultilineConstraintFigure {
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
+		types.add(UMLElementTypes.Dependency_4013);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4014);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Constraint_2017);
+		}
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Constraint_3017);
+		}
+		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+			types.add(UMLElementTypes.Constraint_3010);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Actor_2011);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Actor_2012);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.UseCase_2013);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.UseCase_2014);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Component_2015);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Package_2016);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Constraint_2017);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.UseCase_3009);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Component_3016);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Constraint_3017);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Constraint_3010);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Actor_3011);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.UseCase_3012);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Component_3013);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Package_3014);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4014) {
+			types.add(UMLElementTypes.Comment_2018);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4014) {
+			types.add(UMLElementTypes.Comment_3015);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public class CornerBentDescriptor extends CornerBentFigure {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureConstraintFigure_Value;
+		private WrappingLabel fCornerBentContentLabel;
 
 		/**
 		 * @generated
 		 */
-		public ConstraintFigure() {
+		public CornerBentDescriptor() {
 
+			this.setForegroundColor(ColorConstants.black);
+			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
 
@@ -500,12 +595,12 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureConstraintFigure_Value = new WrappingLabel();
-			fFigureConstraintFigure_Value.setText("");
+			fCornerBentContentLabel = new WrappingLabel();
+			fCornerBentContentLabel.setText("");
 
-			fFigureConstraintFigure_Value.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+			fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);
 
-			this.add(fFigureConstraintFigure_Value);
+			this.add(fCornerBentContentLabel);
 
 		}
 
@@ -531,10 +626,20 @@ ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureConstraintFigure_Value() {
-			return fFigureConstraintFigure_Value;
+		public WrappingLabel getCornerBentContentLabel() {
+			return fCornerBentContentLabel;
 		}
 
 	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 248, 249, 214);
+
+	/**
+	 * @generated
+	 */
+	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
 
 }

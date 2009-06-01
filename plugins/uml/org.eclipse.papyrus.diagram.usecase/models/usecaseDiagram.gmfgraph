@@ -57,7 +57,7 @@
           name="UseCaseFigure">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.SplitEllipseLayout"/>
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.SplitEllipseLayout"/>
         <foregroundColor
             xsi:type="gmfgraph:RGBColor"
             red="177"
@@ -91,7 +91,7 @@
               alignment="FILL"/>
           <border
               xsi:type="gmfgraph:CustomBorder"
-              qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.OneLineDashedBorder"/>
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.OneLineDashedBorder"/>
         </children>
       </actualFigure>
       <accessors
@@ -139,29 +139,11 @@
               xsi:type="gmfgraph:LineBorder"/>
           <children
               xsi:type="gmfgraph:Rectangle"
-              name="UseCaseAsClassFigure_StereoContainer"
-              outline="false">
-            <layout
-                xsi:type="gmfgraph:CustomLayout"
-                qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.CenterLayout"/>
-            <children
-                xsi:type="gmfgraph:Label"
-                name="UseCaseAsClassFigure_stereo">
-              <font
-                  xsi:type="gmfgraph:BasicFont"/>
-              <insets
-                  top="5"
-                  left="5"
-                  right="5"/>
-            </children>
-          </children>
-          <children
-              xsi:type="gmfgraph:Rectangle"
               name="UseCaseAsClassFigure_NameContainer"
               outline="false">
             <layout
                 xsi:type="gmfgraph:CustomLayout"
-                qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.CenterLayout"/>
+                qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
             <children
                 xsi:type="gmfgraph:Label"
                 name="UseCaseAsClassFigure_name">
@@ -182,11 +164,8 @@
         </children>
       </actualFigure>
       <accessors
-          accessor="getUseCaseAsClassFigure_stereo"
-          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0/@children.0/@children.0"/>
-      <accessors
           accessor="getUseCaseAsClassFigure_name"
-          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0/@children.1/@children.0"/>
+          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0/@children.0/@children.0"/>
       <accessors
           accessor="getUseCaseAsClass_points"
           figure="//@figures.0/@descriptors.7/@actualFigure/@children.1"/>
@@ -216,7 +195,7 @@
             fill="false">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.CenterLayout"/>
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
           <children
               xsi:type="gmfgraph:Label"
               name="ActorAsRectangleFigure_name"/>
@@ -233,7 +212,7 @@
           name="UseCaseSubjectFigure">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.PileLayout">
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.PileLayout">
           <attributes
               name="stretchBottom"
               value="true"/>
@@ -248,7 +227,7 @@
             name="UseCaseSubjectFigure_header">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.CenterLayout"/>
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
           <children
               xsi:type="gmfgraph:Label"
               name="UseCaseSubjectFigure_name">
@@ -273,6 +252,12 @@
       <accessors
           accessor="getUseCaseSubjectFigure_name"
           figure="//@figures.0/@descriptors.9/@actualFigure/@children.0/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="SharedPureGraphLabel">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="SharedPureGraphLabel"/>
     </descriptors>
   </figures>
   <nodes
@@ -337,7 +322,7 @@
       figure="UseCaseAsClassFigure"
       collapsible="true"
       needsTitle="true"
-      accessor="//@figures.0/@descriptors.7/@accessors.2"/>
+      accessor="//@figures.0/@descriptors.7/@accessors.1"/>
   <compartments
       name="use cases"
       figure="UseCaseSubjectFigure"
@@ -373,11 +358,6 @@
   <labels
       name="UseCaseAsClassNode_name"
       figure="UseCaseAsClassFigure"
-      accessor="//@figures.0/@descriptors.7/@accessors.1"/>
-  <labels
-      name="UseCaseAsClassNode_stereo"
-      figure="UseCaseAsClassFigure"
-      elementIcon="false"
       accessor="//@figures.0/@descriptors.7/@accessors.0"/>
   <labels
       name="ActorAsRectangleNode_name"
@@ -388,5 +368,17 @@
       name="SubjectNode_name"
       figure="UseCaseSubjectFigure"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.9/@accessors.1"/>
+      accessor="//@figures.0/@descriptors.9/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="AuxiliaryPureLabel"
+      figure="SharedPureGraphLabel"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
 </gmfgraph:Canvas>

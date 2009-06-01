@@ -70,7 +70,7 @@ public class ActorName2EditPart extends CompartmentEditPart implements ITextAwar
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5003;
+	public static final int VISUAL_ID = 5015;
 
 	/**
 	 * @generated
@@ -306,7 +306,7 @@ public class ActorName2EditPart extends CompartmentEditPart implements ITextAwar
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Actor_2003, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.Actor_2012, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName2EditPart.VISUAL_ID));
 		}
 		return parser;

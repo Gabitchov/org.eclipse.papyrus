@@ -27,14 +27,14 @@ public class UseCaseExtensionpointsItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated
 	 */
 	public UseCaseExtensionpointsItemSemanticEditPolicy() {
-		super(UMLElementTypes.UseCase_2005);
+		super(UMLElementTypes.UseCase_2014);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.ExtensionPoint_3003 == req.getElementType()) {
+		if (UMLElementTypes.ExtensionPoint_3008 == req.getElementType()) {
 			return getGEFWrapper(new ExtensionPoint2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

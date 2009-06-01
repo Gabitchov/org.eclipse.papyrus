@@ -35,7 +35,7 @@ public class ExtendEditPart extends ConnectionNodeEditPart implements ITreeBranc
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4002;
+	public static final int VISUAL_ID = 4009;
 
 	/**
 	 * @generated
@@ -114,6 +114,7 @@ public class ExtendEditPart extends ConnectionNodeEditPart implements ITreeBranc
 		 * @generated
 		 */
 		public UseCases_WithArrow_Polyline() {
+			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(ColorConstants.black);
 
@@ -125,6 +126,7 @@ public class ExtendEditPart extends ConnectionNodeEditPart implements ITreeBranc
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
+			df.setLineWidth(1);
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(1));
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));

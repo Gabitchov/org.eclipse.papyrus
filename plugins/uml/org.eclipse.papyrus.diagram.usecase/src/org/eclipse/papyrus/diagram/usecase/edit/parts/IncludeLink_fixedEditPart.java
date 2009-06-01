@@ -68,7 +68,7 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6001;
+	public static final int VISUAL_ID = 6006;
 
 	/**
 	 * @generated
@@ -313,7 +313,7 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Include_4001, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.Include_4008, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeLink_fixedEditPart.VISUAL_ID));
 		}
 		return parser;

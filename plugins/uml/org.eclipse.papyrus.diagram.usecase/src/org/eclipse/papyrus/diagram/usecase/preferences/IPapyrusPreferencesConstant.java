@@ -21,162 +21,122 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
-	public static final String ACTOR_2002_PREF_FILL_COLOR = "Actor_2002.fill.color";
+	public static final String COMMENT_PREF_FONT_COLOR = "Comment.font.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String ACTOR_2002_PREF_FONT_COLOR = "Actor_2002.font.color";
+	public static final String COMMENT_PREF_FONT = "Comment.font";
 
 	/**
 	 * @generated
 	 */
-	public static final String ACTOR_2002_PREF_FONT = "Actor_2002.font";
+	public static final String COMMENT_PREF_LINE_COLOR = "Comment.line.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String ACTOR_2002_PREF_LINE_COLOR = "Actor_2002.line.color";
+	public static final String COMMENT_PREF_FILL_COLOR = "Comment.fill.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String ACTOR_2003_PREF_FILL_COLOR = "Actor_2003.fill.color";
+	public static final String USECASE_PREF_FONT_COLOR = "UseCase.font.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String ACTOR_2003_PREF_FONT_COLOR = "Actor_2003.font.color";
+	public static final String USECASE_PREF_FONT = "UseCase.font";
 
 	/**
 	 * @generated
 	 */
-	public static final String ACTOR_2003_PREF_FONT = "Actor_2003.font";
+	public static final String USECASE_PREF_LINE_COLOR = "UseCase.line.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String ACTOR_2003_PREF_LINE_COLOR = "Actor_2003.line.color";
+	public static final String USECASE_PREF_FILL_COLOR = "UseCase.fill.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String USECASE_2004_PREF_FILL_COLOR = "UseCase_2004.fill.color";
+	public static final String COMPONENT_PREF_FONT_COLOR = "Component.font.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String USECASE_2004_PREF_FONT_COLOR = "UseCase_2004.font.color";
+	public static final String COMPONENT_PREF_FONT = "Component.font";
 
 	/**
 	 * @generated
 	 */
-	public static final String USECASE_2004_PREF_FONT = "UseCase_2004.font";
+	public static final String COMPONENT_PREF_LINE_COLOR = "Component.line.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String USECASE_2004_PREF_LINE_COLOR = "UseCase_2004.line.color";
+	public static final String COMPONENT_PREF_FILL_COLOR = "Component.fill.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String USECASE_2005_PREF_FILL_COLOR = "UseCase_2005.fill.color";
+	public static final String CONSTRAINT_PREF_FONT_COLOR = "Constraint.font.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String USECASE_2005_PREF_FONT_COLOR = "UseCase_2005.font.color";
+	public static final String CONSTRAINT_PREF_FONT = "Constraint.font";
 
 	/**
 	 * @generated
 	 */
-	public static final String USECASE_2005_PREF_FONT = "UseCase_2005.font";
+	public static final String CONSTRAINT_PREF_LINE_COLOR = "Constraint.line.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String USECASE_2005_PREF_LINE_COLOR = "UseCase_2005.line.color";
+	public static final String CONSTRAINT_PREF_FILL_COLOR = "Constraint.fill.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String COMPONENT_2006_PREF_FILL_COLOR = "Component_2006.fill.color";
+	public static final String PACKAGE_PREF_FONT_COLOR = "Package.font.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String COMPONENT_2006_PREF_FONT_COLOR = "Component_2006.font.color";
+	public static final String PACKAGE_PREF_FONT = "Package.font";
 
 	/**
 	 * @generated
 	 */
-	public static final String COMPONENT_2006_PREF_FONT = "Component_2006.font";
+	public static final String PACKAGE_PREF_LINE_COLOR = "Package.line.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String COMPONENT_2006_PREF_LINE_COLOR = "Component_2006.line.color";
+	public static final String PACKAGE_PREF_FILL_COLOR = "Package.fill.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String PACKAGE_2009_PREF_FILL_COLOR = "Package_2009.fill.color";
+	public static final String ACTOR_PREF_FONT_COLOR = "Actor.font.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String PACKAGE_2009_PREF_FONT_COLOR = "Package_2009.font.color";
+	public static final String ACTOR_PREF_FONT = "Actor.font";
 
 	/**
 	 * @generated
 	 */
-	public static final String PACKAGE_2009_PREF_FONT = "Package_2009.font";
+	public static final String ACTOR_PREF_LINE_COLOR = "Actor.line.color";
 
 	/**
 	 * @generated
 	 */
-	public static final String PACKAGE_2009_PREF_LINE_COLOR = "Package_2009.line.color";
-
-	/**
-	 * @generated
-	 */
-	public static final String CONSTRAINT_2008_PREF_FILL_COLOR = "Constraint_2008.fill.color";
-
-	/**
-	 * @generated
-	 */
-	public static final String CONSTRAINT_2008_PREF_FONT_COLOR = "Constraint_2008.font.color";
-
-	/**
-	 * @generated
-	 */
-	public static final String CONSTRAINT_2008_PREF_FONT = "Constraint_2008.font";
-
-	/**
-	 * @generated
-	 */
-	public static final String CONSTRAINT_2008_PREF_LINE_COLOR = "Constraint_2008.line.color";
-
-	/**
-	 * @generated
-	 */
-	public static final String COMMENT_2010_PREF_FILL_COLOR = "Comment_2010.fill.color";
-
-	/**
-	 * @generated
-	 */
-	public static final String COMMENT_2010_PREF_FONT_COLOR = "Comment_2010.font.color";
-
-	/**
-	 * @generated
-	 */
-	public static final String COMMENT_2010_PREF_FONT = "Comment_2010.font";
-
-	/**
-	 * @generated
-	 */
-	public static final String COMMENT_2010_PREF_LINE_COLOR = "Comment_2010.line.color";
+	public static final String ACTOR_PREF_FILL_COLOR = "Actor.fill.color";
 
 	/**
 	 * @generated

@@ -104,7 +104,7 @@ public class UseCase3CreateCommand extends EditElementCommand {
 		Classifier childHolder = (Classifier) getElementToEdit();
 		childHolder.getUseCases().add(newElement);
 
-		UMLElementTypes.init_UseCase_3004(newElement);
+		UMLElementTypes.init_UseCase_3009(newElement);
 
 		doConfigure(newElement, monitor, info);
 

@@ -33,7 +33,7 @@ public class GeneralizationEditPart extends ConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4003;
+	public static final int VISUAL_ID = 4010;
 
 	/**
 	 * @generated
@@ -78,6 +78,7 @@ public class GeneralizationEditPart extends ConnectionNodeEditPart implements IT
 		 * @generated
 		 */
 		public SolidLineWDstClosedArrow() {
+			this.setLineWidth(1);
 
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -88,6 +89,7 @@ public class GeneralizationEditPart extends ConnectionNodeEditPart implements IT
 		private RotatableDecoration createTargetDecoration() {
 			PolygonDecoration df = new PolygonDecoration();
 			df.setFill(true);
+			df.setLineWidth(1);
 			df.setBackgroundColor(ColorConstants.white);
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));

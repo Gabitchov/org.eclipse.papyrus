@@ -102,7 +102,7 @@ public class ConstraintCreateCommand extends EditElementCommand {
 		Package owner = (Package) getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_Constraint_2008(newElement);
+		UMLElementTypes.init_Constraint_2017(newElement);
 
 		doConfigure(newElement, monitor, info);
 

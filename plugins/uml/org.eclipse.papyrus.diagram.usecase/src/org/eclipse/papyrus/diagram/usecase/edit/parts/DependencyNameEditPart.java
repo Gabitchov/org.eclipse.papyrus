@@ -68,7 +68,7 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6005;
+	public static final int VISUAL_ID = 6010;
 
 	/**
 	 * @generated
@@ -313,7 +313,7 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Dependency_4006, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.Dependency_4013, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart.VISUAL_ID));
 		}
 		return parser;

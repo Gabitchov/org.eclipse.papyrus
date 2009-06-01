@@ -70,7 +70,7 @@ public class ComponentNameEditPart extends CompartmentEditPart implements ITextA
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5007;
+	public static final int VISUAL_ID = 5019;
 
 	/**
 	 * @generated
@@ -306,7 +306,7 @@ public class ComponentNameEditPart extends CompartmentEditPart implements ITextA
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Component_2006, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.Component_2015, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPart.VISUAL_ID));
 		}
 		return parser;

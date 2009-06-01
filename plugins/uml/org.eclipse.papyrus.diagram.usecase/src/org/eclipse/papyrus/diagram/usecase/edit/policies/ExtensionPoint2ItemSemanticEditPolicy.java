@@ -31,7 +31,7 @@ public class ExtensionPoint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	 * @generated
 	 */
 	public ExtensionPoint2ItemSemanticEditPolicy() {
-		super(UMLElementTypes.ExtensionPoint_3003);
+		super(UMLElementTypes.ExtensionPoint_3008);
 	}
 
 	/**

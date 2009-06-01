@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -36,12 +35,14 @@ public class CreateAssociationSupplement extends SupplementCommand {
 	/**
 	 * this is the constructor of the supplement command for the association.
 	 * 
-	 * @param container the container of the association (package)
-	 * @param source the source of the association (Type)
-	 * @param target the target of the association (Type)
+	 * @param container
+	 *            the container of the association (package)
+	 * @param source
+	 *            the source of the association (Type)
+	 * @param target
+	 *            the target of the association (Type)
 	 */
-	public CreateAssociationSupplement(EObject container, EObject source,
-			EObject target) {
+	public CreateAssociationSupplement(EObject container, EObject source, EObject target) {
 		super(container, source, target);
 	}
 
@@ -66,16 +67,15 @@ public class CreateAssociationSupplement extends SupplementCommand {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public EObject doDefaultElementCreation(TransactionalEditingDomain domain,
-			EObject newElement) {
+	public EObject doDefaultElementCreation(TransactionalEditingDomain domain, EObject newElement) {
 
 		Association association = UMLFactory.eINSTANCE.createAssociation();
-		
+
 		// create source property
 		Property sourceProperty = association.createOwnedEnd(((Type) getSource()).getName().toLowerCase(), (Type) getSource());
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
-		
+
 		// create target property
 		Property targetProperty = association.createOwnedEnd(((Type) getTarget()).getName().toLowerCase(), (Type) getTarget());
 		targetProperty.setLower(1);
@@ -92,9 +92,9 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		} else {
 			association.getMemberEnds().add(1, ((Property) targetProperty));
 		}
-		 
+
 		((Package) getContainer()).getPackagedElements().add(association);
-		UMLElementTypes.init_Association_4004(association);
+		// UMLElementTypes.init_Association_4004(association);
 		return association;
 	}
 }

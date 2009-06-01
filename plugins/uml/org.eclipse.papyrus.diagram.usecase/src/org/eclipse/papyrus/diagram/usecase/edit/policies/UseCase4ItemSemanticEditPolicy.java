@@ -65,7 +65,7 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	public UseCase4ItemSemanticEditPolicy() {
-		super(UMLElementTypes.UseCase_3006);
+		super(UMLElementTypes.UseCase_3012);
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ExtensionPointEditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					}
@@ -202,25 +202,25 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Include_4001 == req.getElementType()) {
+		if (UMLElementTypes.Include_4008 == req.getElementType()) {
 			return getGEFWrapper(new IncludeCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Extend_4002 == req.getElementType()) {
+		if (UMLElementTypes.Extend_4009 == req.getElementType()) {
 			return getGEFWrapper(new ExtendCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Generalization_4003 == req.getElementType()) {
+		if (UMLElementTypes.Generalization_4010 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Association_4004 == req.getElementType()) {
+		if (UMLElementTypes.Association_4011 == req.getElementType()) {
 			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4005 == req.getElementType()) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
+		if (UMLElementTypes.Dependency_4013 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4007 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -230,25 +230,25 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Include_4001 == req.getElementType()) {
+		if (UMLElementTypes.Include_4008 == req.getElementType()) {
 			return getGEFWrapper(new IncludeCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Extend_4002 == req.getElementType()) {
+		if (UMLElementTypes.Extend_4009 == req.getElementType()) {
 			return getGEFWrapper(new ExtendCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Generalization_4003 == req.getElementType()) {
+		if (UMLElementTypes.Generalization_4010 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Association_4004 == req.getElementType()) {
+		if (UMLElementTypes.Association_4011 == req.getElementType()) {
 			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4005 == req.getElementType()) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Dependency_4006 == req.getElementType()) {
+		if (UMLElementTypes.Dependency_4013 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4007 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;

@@ -30,7 +30,7 @@ public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4007;
+	public static final int VISUAL_ID = 4014;
 
 	/**
 	 * @generated
@@ -75,6 +75,7 @@ public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart impl
 		 * @generated
 		 */
 		public CommentLinkDescriptor() {
+			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
 
 		}

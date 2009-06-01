@@ -102,7 +102,7 @@ public class UseCase2CreateCommand extends EditElementCommand {
 		Package owner = (Package) getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_UseCase_2005(newElement);
+		UMLElementTypes.init_UseCase_2014(newElement);
 
 		doConfigure(newElement, monitor, info);
 

@@ -68,7 +68,7 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6003;
+	public static final int VISUAL_ID = 6008;
 
 	/**
 	 * @generated
@@ -94,7 +94,7 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart.VISUAL_ID), new Point(0, 15));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart.VISUAL_ID), new Point(0, 40));
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -309,7 +309,7 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4004, getParserElement(), UMLVisualIDRegistry
+			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4011, getParserElement(), UMLVisualIDRegistry
 					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart.VISUAL_ID));
 		}
 		return parser;
@@ -539,16 +539,8 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		IFigure label = createFigurePrim();
-		defaultText = getLabelTextHelper(label);
-		return label;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		// Parent should assign one using setLabel() method
+		return null;
 	}
 
 }
