@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
@@ -20,7 +21,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final int reorientDirection;
+	private final EObject newEnd;
 
 	/**
 	 * @generated
@@ -30,7 +31,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject newEnd;
+	private final int reorientDirection;
 
 	/**
 	 * @generated
@@ -46,26 +47,34 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+		System.err.println("-->" + getElementToEdit());
 		if (false == getElementToEdit() instanceof Association) {
 			return false;
 		}
+		System.err.println("--> Test on element to edit: ok");
+		System.err.println("--> reorientDirection" + reorientDirection);
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+			System.err.println("--> Test canReorientSource(): "
+					+ canReorientSource());
 			return canReorientSource();
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+			System.err.println("--> Test canReorientTarget(): "
+					+ canReorientTarget());
 			return canReorientTarget();
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
-		if (getLink().getEndTypes().size() != 1) {
+		// if (getLink().getEndTypes().size() != 1) {
+		if (getLink().getEndTypes().size() == 1) {
 			return false;
 		}
 		Type target = (Type) getLink().getEndTypes().get(0);
@@ -78,13 +87,15 @@ public class AssociationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
-		if (getLink().getEndTypes().size() != 1) {
+
+		// if (getLink().getEndTypes().size() != 1) {
+		if (getLink().getEndTypes().size() == 1) {
 			return false;
 		}
 		Type source = (Type) getLink().getEndTypes().get(0);
@@ -117,29 +128,8 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult reorientSource() throws ExecutionException {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult reorientTarget() throws ExecutionException {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * @generated
-	 */
 	protected Association getLink() {
 		return (Association) getElementToEdit();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Type getOldSource() {
-		return (Type) oldEnd;
 	}
 
 	/**
@@ -152,14 +142,38 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Type getOldTarget() {
+	protected Type getNewTarget() {
+		return (Type) newEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Type getOldSource() {
 		return (Type) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Type getNewTarget() {
-		return (Type) newEnd;
+	protected Type getOldTarget() {
+		return (Type) oldEnd;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected CommandResult reorientSource() throws ExecutionException {
+		return AssociationHelper.reconnect(AssociationHelper.source, getLink(),
+				getNewSource());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected CommandResult reorientTarget() throws ExecutionException {
+		return AssociationHelper.reconnect(AssociationHelper.target, getLink(),
+				getNewTarget());
+
 	}
 }
