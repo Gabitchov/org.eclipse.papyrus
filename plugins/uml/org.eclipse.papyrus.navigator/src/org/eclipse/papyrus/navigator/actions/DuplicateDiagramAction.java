@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.EMFCommandOperation;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 

@@ -11,13 +11,12 @@
 package org.eclipse.papyrus.navigator.actions;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.di.DiPackage;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 
@@ -47,10 +46,19 @@ public class RenameDiagramAction extends Action {
 		if (editingDomain != null) {
 			InputDialog dialog = new InputDialog(Activator.getDefault().getWorkbench().getDisplay().getActiveShell(), "Rename an existing diagram", "New name:", diagram.getName(), null);
 			if (dialog.open() == Window.OK) {
-				String name = dialog.getValue();
+				final String name = dialog.getValue();
 				if (name != null && name.length() > 0) {
-					// TODO synchronize with Cedric in order to use DiDiagram.name correctly in backbone
-					Command command = new SetCommand(editingDomain, diagram, DiPackage.eINSTANCE.getDiagram_Name(), dialog.getValue());
+					
+					Command command = new RecordingCommand(editingDomain){
+					
+						@Override
+						protected void doExecute() {
+							diagram.setName(name);
+							
+						}
+					};
+					diagram.setName(name);
+					
 					editingDomain.getCommandStack().execute(command);
 				}
 			}

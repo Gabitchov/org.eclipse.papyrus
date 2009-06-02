@@ -17,7 +17,6 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 
 
 /**
@@ -69,5 +68,12 @@ public interface IPageMngr {
 	 * @return List of registered page identifiers.
 	 */
 	public List<Object> allPages();
+
+	/**
+	 * Return true if a page is open for the specified pageIdentifier.
+	 * @param diagram
+	 * @return
+	 */
+	public boolean isOpen(Object pageIdentifier);
 	
 }

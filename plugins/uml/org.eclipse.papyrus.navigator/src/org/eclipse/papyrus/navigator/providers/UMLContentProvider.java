@@ -21,13 +21,13 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.di.CoreSemanticModelBridge;
-import org.eclipse.papyrus.di.Diagram;
-import org.eclipse.papyrus.di.SemanticModelBridge;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.navigator.internal.AdditionalResources;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.navigator.CommonNavigator;
@@ -44,6 +44,9 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	/** The my editor. */
 	// protected IEditorPart myEditor = null;
 	protected DiResourceSet diResourceSet;
+	
+	/** The list of open pages (diagrams) */
+	protected IPageMngr pageMngr;
 
 	/** <ICommonContentExtensionSite> as given in initialization. */
 	protected ICommonContentExtensionSite contentExtensionSite = null;
@@ -152,6 +155,8 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 
 		if (canPopulateModelNavigator()) {
 			this.diResourceSet = getDiResourceSet();
+			pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
+			
 			Resource modelResource = diResourceSet.getUMLModelResource();
 			List<Object> children = new ArrayList<Object>(modelResource.getContents());
 			AdditionalResources resources = new AdditionalResources(diResourceSet);
@@ -190,20 +195,34 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 */
 	private List<Diagram> findAllExistingDiagrams(Element owner) {
 		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
-		for (Diagram diagram : diResourceSet.getDiagrams()) {
-			SemanticModelBridge semanticModelBridge = diagram.getSemanticModel();
-			if (semanticModelBridge instanceof CoreSemanticModelBridge) {
-				CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge) semanticModelBridge;
-				EObject element = coreSemanticModelBridge.getElement();
-				// TODO break GMF dependency
-				if (element instanceof org.eclipse.gmf.runtime.notation.Diagram) {
-					element = ((org.eclipse.gmf.runtime.notation.Diagram) element).getElement();
-				}
-				if (owner.equals(element)) {
-					diagrams.add(diagram);
-				}
+		
+		// Walk on page (Diagram) references
+		for( Object page : pageMngr.allPages() )
+		{
+			if(! (page instanceof Diagram) )
+				continue;
+			// We have a GMF Diagram
+			Diagram diagram = (Diagram) page;
+			if (owner.equals(diagram.getElement())) {
+				diagrams.add(diagram);
 			}
+			
 		}
+			
+//		for (Diagram diagram : diResourceSet.getDiagrams()) {
+//			SemanticModelBridge semanticModelBridge = diagram.getSemanticModel();
+//			if (semanticModelBridge instanceof CoreSemanticModelBridge) {
+//				CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge) semanticModelBridge;
+//				EObject element = coreSemanticModelBridge.getElement();
+//				// TODO break GMF dependency
+//				if (element instanceof org.eclipse.gmf.runtime.notation.Diagram) {
+//					element = ((org.eclipse.gmf.runtime.notation.Diagram) element).getElement();
+//				}
+//				if (owner.equals(element)) {
+//					diagrams.add(diagram);
+//				}
+//			}
+//		}
 		return diagrams;
 	}
 

@@ -11,10 +11,9 @@
 package org.eclipse.papyrus.navigator.providers;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
-import org.eclipse.papyrus.di.CoreSemanticModelBridge;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.navigator.internal.AdditionalResources;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
@@ -86,10 +85,12 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 
 		if (element instanceof Diagram) {
 			Diagram diagram = (Diagram) element;
-			if (diagram.getSemanticModel() instanceof CoreSemanticModelBridge) {
-				CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge) diagram.getSemanticModel();
-				return super.getText(coreSemanticModelBridge.getElement());
-			}
+			return super.getText(diagram);
+			
+//			if (diagram.getSemanticModel() instanceof CoreSemanticModelBridge) {
+//				CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge) diagram.getSemanticModel();
+//				return super.getText(coreSemanticModelBridge.getElement());
+//			}
 		}
 
 		return super.getText(element);

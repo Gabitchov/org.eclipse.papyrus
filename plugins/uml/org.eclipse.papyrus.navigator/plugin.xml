@@ -123,7 +123,7 @@
             <enablement>
                <or>
                   <adapt
-                        type="org.eclipse.papyrus.di.Diagram">
+                        type="org.eclipse.gmf.runtime.notation.Diagram">
                   </adapt>
                </or>
             </enablement>

@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.navigator.filters;
 
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.di.Diagram;
 /**
  * Filter diagrams elements in navigator in order to hide.
  *

@@ -11,13 +11,16 @@
 package org.eclipse.papyrus.navigator.actions;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
@@ -25,13 +28,18 @@ import org.eclipse.ui.PlatformUI;
  * Action used to delete the given diagram
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author cedric dumoulin
  */
 public class DeleteDiagramAction extends Action {
 
 	Diagram diagram;
 
-	public DeleteDiagramAction(Diagram diagram) {
+	IPageMngr pageMngr;
+
+	public DeleteDiagramAction(IPageMngr pageMngr, Diagram diagram) {
 		this.diagram = diagram;
+		this.pageMngr = pageMngr;
+		
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
 		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
 		setText("Delete");
@@ -47,9 +55,23 @@ public class DeleteDiagramAction extends Action {
 	public void run() {
 		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
 		if (editingDomain != null) {
+			
+			// Create a compound command containing removing of the sash and removing from GMF resource.
+			CompoundCommand command = new CompoundCommand();
+			Command sashRemoveComd = new RecordingCommand(editingDomain){
+			
+				@Override
+				protected void doExecute() {
+					pageMngr.removePage(diagram);
+					
+					
+				}
+			};
+			
 			EList<EObject> diagrams = diagram.eResource().getContents();
 			//TODO : synchronize with Cedric
-			Command command = new RemoveCommand(editingDomain, diagrams, diagram);
+			command.append(sashRemoveComd);
+			command.append(new RemoveCommand(editingDomain, diagrams, diagram) );
 			editingDomain.getCommandStack().execute(command);
 		}
 	}

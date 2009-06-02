@@ -17,9 +17,7 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
-import org.eclipse.papyrus.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 
@@ -101,6 +99,17 @@ public class PageMngrImpl implements IPageMngr {
 		// remove from pageList and from SashModel
 		diSashModel.getPageList().removePage(pageIdentifier);
 		diSashModel.getSashModel().removePage(pageIdentifier);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#isOpen(java.lang.Object)
+	 * @param pageIdentifier
+	 * @return
+	 *
+	 */
+	public boolean isOpen(Object pageIdentifier) {
+		return diSashModel.getSashModel().lookupPage(pageIdentifier) != null;
 	}
 
 }

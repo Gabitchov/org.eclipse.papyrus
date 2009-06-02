@@ -143,4 +143,15 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 		editingDomain.getCommandStack().execute(command);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#isOpen(java.lang.Object)
+	 * @param pageIdentifier
+	 * @return
+	 *
+	 */
+	public boolean isOpen(Object pageIdentifier) {
+		return pageMngr.isOpen(pageIdentifier);
+	}
+
 }
