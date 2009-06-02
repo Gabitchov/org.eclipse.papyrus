@@ -3,15 +3,10 @@
  */
 package org.eclipse.papyrus.sasheditor.eclipsecopy;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.logging.Level;
 
-import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 

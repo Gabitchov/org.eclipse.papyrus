@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorActionBarContributor;
-import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageSelectionProvider;
+import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;

@@ -118,7 +118,7 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 	 * 
 	 * @return the multi-page editor.
 	 */
-	public IMultiPageEditorPart getMultiPageEditor() {
+	protected IMultiPageEditorPart getMultiPageEditor() {
 		return multiPageEditor;
 	}
 

@@ -27,6 +27,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
@@ -73,6 +74,48 @@ public  abstract class MultiPageEditor extends MultiPageEditorPart {
 		super();
 	}
 
+	/**
+	 * This method is called at the end of createPartControl().
+	 * Just intercept the call in order to call activate().
+	 * Create the part controls. {@inheritDoc}
+	 */
+	@Override
+	protected void initializePageSwitching() {
+
+        super.initializePageSwitching();
+		activate();
+	}
+
+	/**
+	 * Method to activate the editor. 
+	 * Called immediately after createPartControl() is complete.
+	 * To be implemented by subclasses. Default implementation do nothing.
+	 */
+	protected void activate() {
+		
+	}
+
+	/**
+	 * Method to deactivate the editor. 
+	 * Called when dispose() is called.
+	 * To be implemented by subclasses. Default implementation do nothing.
+	 */
+	protected void deactivate() {
+		
+	}
+
+	/**
+	 * Dispose the Editor. Also dispose the sashsystem.
+	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		deactivate();
+		super.dispose();
+//		sashContainer.dispose();
+	}
+
 	@Override
 	public Object getAdapter(Class adapter) {
 		
@@ -95,6 +138,15 @@ public  abstract class MultiPageEditor extends MultiPageEditorPart {
 		return pageProvider;
 	}
 	
+	
+	
+	/**
+	 * @param pageProvider the pageProvider to set
+	 */
+	protected void setContentProvider(ISashWindowsContentProvider pageProvider) {
+		this.pageProvider = pageProvider;
+	}
+
 	/**
 	 * Add a page containing the Component described by the provided model.
 	 * @param tabItem
@@ -139,7 +191,7 @@ public  abstract class MultiPageEditor extends MultiPageEditorPart {
 	 */
 	protected void createPages() {
 		// get the page descriptions
-		pageProvider = createPageProvider();
+		pageProvider = getContentProvider();
 		// Get the current tabFolder
 		// 
 		tabFolderModel = lookupFolder();

@@ -62,6 +62,7 @@ import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.papyrus.sasheditor.gef.SelectionSynchronizer;
+import org.eclipse.papyrus.sasheditor.multipage.editor.MultiPageEditor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
@@ -91,7 +92,8 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  *         TODO : remove GMF dependency !
  */
-public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
+public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
+//public class CoreMultiDiagramEditor extends MultiPageEditor  /*AbstractMultiPageSashEditor */ implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
@@ -329,13 +331,13 @@ public class CoreMultiDiagramEditor extends /*MultiPageEditor */ AbstractMultiPa
 
 	/**
 	 * Do nothing as we create the provider before any calls to this method.
+	 * Should not be called by subclasses
 	 * {@inheritDoc}
 	 * @see org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor#createPageProvider()
 	 */
 	@Override
 	protected ISashWindowsContentProvider createPageProvider() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Not implemented. Should not be called as the ContentProvider is already initialized." );
 	}
 
 	/**

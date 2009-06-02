@@ -16,10 +16,9 @@ package org.eclipse.papyrus.sasheditor.editor;
 import java.util.logging.Logger;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.eclipsecopy.IMultiPageEditorPart;
-import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageSelectionProvider;
 import org.eclipse.papyrus.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
+import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
