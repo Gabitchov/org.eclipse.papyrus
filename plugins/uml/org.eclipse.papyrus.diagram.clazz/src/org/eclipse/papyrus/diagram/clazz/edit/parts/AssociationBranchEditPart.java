@@ -45,12 +45,15 @@ public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
 	 * @generated NOT
 	 */
 	protected void addAssociationEndListeners() {
+		if (resolveSemanticElement() instanceof Association) {
+			Property targetEnd = MultiAssociationHelper
+					.getPropertyToListen(((Edge) getModel()),
+							(Association) resolveSemanticElement());
+			if (targetEnd != null) {
+				addListenerFilter(
+						"AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
 
-		Property targetEnd = MultiAssociationHelper.getPropertyToListen(
-				((Edge) getModel()), (Association) resolveSemanticElement());
-		if (targetEnd != null) {
-			addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
-
+			}
 		}
 	}
 
@@ -118,7 +121,7 @@ public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
 		super.handleNotificationEvent(event);
 
 		// set the good ends for the association figure
-		if (resolveSemanticElement() != null) {
+		if (((View) getModel()).isSetElement()) {
 
 			refreshVisuals();
 		}
@@ -128,29 +131,31 @@ public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
 	 * @generated NOT
 	 */
 	protected void refreshVisuals() {
-
-		Property target = MultiAssociationHelper.getPropertyToListen(
-				((Edge) getModel()), (Association) resolveSemanticElement());
-		if (target != null && target.getOwner() != null) {
-			int sourceType = 0;
-			int targetType = 0;
-			// owned?
-			if (target.getOwner().equals(resolveSemanticElement())) {
-				targetType += AssociationFigure.owned;
+		if (resolveSemanticElement() instanceof Association) {
+			Property target = MultiAssociationHelper
+					.getPropertyToListen(((Edge) getModel()),
+							(Association) resolveSemanticElement());
+			if (target != null && target.getOwner() != null) {
+				int sourceType = 0;
+				int targetType = 0;
+				// owned?
+				if (target.getOwner().equals(resolveSemanticElement())) {
+					targetType += AssociationFigure.owned;
+				}
+				// aggregation?
+				if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
+					targetType += AssociationFigure.aggregation;
+				}
+				// composite?
+				if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+					targetType += AssociationFigure.composition;
+				}
+				// navigable?
+				if (target.isNavigable()) {
+					targetType += AssociationFigure.navigable;
+				}
+				getPrimaryShape().setEnd(sourceType, targetType);
 			}
-			// aggregation?
-			if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
-				targetType += AssociationFigure.aggregation;
-			}
-			// composite?
-			if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-				targetType += AssociationFigure.composition;
-			}
-			// navigable?
-			if (target.isNavigable()) {
-				targetType += AssociationFigure.navigable;
-			}
-			getPrimaryShape().setEnd(sourceType, targetType);
 		}
 		super.refreshVisuals();
 	}

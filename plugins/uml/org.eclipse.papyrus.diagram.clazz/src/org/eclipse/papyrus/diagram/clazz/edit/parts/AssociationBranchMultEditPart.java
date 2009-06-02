@@ -263,22 +263,25 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements
 		String text = null;
 		Classifier target = (Classifier) ((Edge) ((View) getModel())
 				.eContainer()).getTarget().getElement();
-		// look for the property that is typed by the classifier
-		Property propertyToDisplay = null;
-		Iterator<Property> propertiesIterator = ((Association) resolveSemanticElement())
-				.getMemberEnds().iterator();
+		if (resolveSemanticElement() instanceof Association) {
+			// look for the property that is typed by the classifier
+			Property propertyToDisplay = null;
+			Iterator<Property> propertiesIterator = ((Association) resolveSemanticElement())
+					.getMemberEnds().iterator();
 
-		while (propertiesIterator.hasNext()) {
-			Property currentProperty = (Property) propertiesIterator.next();
-			if (currentProperty.getType().equals(target)) {
-				propertyToDisplay = currentProperty;
+			while (propertiesIterator.hasNext()) {
+				Property currentProperty = (Property) propertiesIterator.next();
+				if (currentProperty.getType().equals(target)) {
+					propertyToDisplay = currentProperty;
+				}
 			}
+			if (propertyToDisplay != null) {
+				return propertyToDisplay.getLower() + ".."
+						+ propertyToDisplay.getUpper();
+			}
+			return target.getName();
 		}
-		if (propertyToDisplay != null) {
-			return propertyToDisplay.getLower() + ".."
-					+ propertyToDisplay.getUpper();
-		}
-		return target.getName();
+		return "";
 		// EObject parserElement = getParserElement();
 		// if (parserElement != null && getParser() != null) {
 		// text = getParser().getPrintString(
