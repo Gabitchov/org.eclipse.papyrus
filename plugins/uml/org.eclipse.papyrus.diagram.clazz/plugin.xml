@@ -1182,7 +1182,7 @@
                enablesFor="1"
                icon="icons/Delete_16x16.gif"
                id="org.eclipse.papyrus.diagram.clazz.dependencybranchdeletionActionID"
-               label="Delete dependency branch "
+               label="Delete dependency branch  from  model"
                menubarPath="editGroup">
          </action>
       </objectContribution>
@@ -1196,7 +1196,7 @@
                enablesFor="1"
                icon="icons/Delete_16x16.gif"
                id="org.eclipse.papyrus.diagram.clazz.AssociationbranchdeletionActionID"
-               label=" Delete association branch"
+               label=" Delete association branch from  model"
                menubarPath="editGroup">
          </action>
       </objectContribution>
