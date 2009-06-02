@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
 import java.util.ArrayList;
@@ -48,6 +62,12 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
+/**
+ * this class contains method contains method to help the management of
+ * association with multi source and multi target
+ * 
+ * 
+ */
 public class MultiAssociationHelper {
 
 	/**
@@ -90,6 +110,13 @@ public class MultiAssociationHelper {
 		this.editDomain = editDomain;
 	}
 
+	/**
+	 * create a new branch with a new semantic end form the node to the target
+	 * 
+	 * @param associationNodeEditPart
+	 *            node that represents the association
+	 * @return the compoundCommand
+	 */
 	public Command displayAllBranchesCommand(
 			AssociationNodeEditPart associationNodeEditPart) {
 		Command command = new CompoundCommand();
@@ -429,8 +456,6 @@ public class MultiAssociationHelper {
 				newSemanticElement = (NamedElement) ((View) sourceEditPart
 						.getModel()).getElement();
 			}
-			System.err
-					.println("step init, can execute?" + command.canExecute());
 			// 0. add semantic
 			CreateElementRequest request = new CreateElementRequest(
 					getEditingDomain(), association,
@@ -442,8 +467,6 @@ public class MultiAssociationHelper {
 			((CompoundCommand) command).add(new ICommandProxy(
 					propertyCreateCommand));
 
-			System.err.println("0. add semantic, can execute?"
-					+ command.canExecute());
 			// 1. add the branch graphically
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(
 					UMLElementTypes.Association_4019,
@@ -463,8 +486,6 @@ public class MultiAssociationHelper {
 
 			aBranchCommand.setElement(association);
 			((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
-			System.err.println("1. add the branch graphically, can execute?"
-					+ command.canExecute());
 			return command;
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -477,7 +498,7 @@ public class MultiAssociationHelper {
 	 * @param createConnectionViewAndElementRequest
 	 * @param command
 	 *            that will contains subcommands
-	 * @return
+	 * @return the compound command
 	 */
 	public Command getCommand(
 			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,

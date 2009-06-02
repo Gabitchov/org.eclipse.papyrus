@@ -3775,6 +3775,36 @@
               parser="/0/@labelParsers/@implementations.0"/>
         </labels>
       </links>
+      <links
+          visualID="4021"
+          editPartClassName="GeneralizationSetEditPart"
+          itemSemanticEditPolicyClassName="GeneralizationSetItemSemanticEditPolicy"
+          createCommandClassName="GeneralizationSetCreateCommand"
+          reorientCommandClassName="GeneralizationSetReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4021"
+            displayName="GeneralizationSet"
+            editHelperClassName="GeneralizationSetEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <modelFacet
+            xsi:type="gmfgen:TypeLinkModelFacet">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralizationSet"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <sourceMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralizationSet/generalization"/>
+          <targetMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralizationSet/generalization"/>
+        </modelFacet>
+      </links>
       <compartments
           visualID="7034"
           editPartClassName="AssociationClassAttributeCompartmentEditPart"
