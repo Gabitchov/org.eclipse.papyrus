@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.commands.SupplementCommand;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Package;

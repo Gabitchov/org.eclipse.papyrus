@@ -11,7 +11,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.common.edit.policies.DiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
@@ -36,20 +35,6 @@ public class ModelEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
-
-		public boolean isEObjectNode(EObject element) {
-			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
-				return true;
-			}
-			return false;
-		}
-
-		public boolean isEObjectLink(EObject element) {
-			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
-				return true;
-			}
-			return false;
-		}
 
 		public int getEObjectSemanticHint(EObject element) {
 			if (element != null) {
@@ -107,6 +92,20 @@ public class ModelEditPart extends DiagramEditPart {
 			}
 			return null;
 		}
+
+		public boolean isEObjectLink(EObject element) {
+			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
+				return true;
+			}
+			return false;
+		}
+
+		public boolean isEObjectNode(EObject element) {
+			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
+				return true;
+			}
+			return false;
+		}
 	};
 
 	/**
@@ -124,31 +123,17 @@ public class ModelEditPart extends DiagramEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new ModelItemSemanticEditPolicy());
 
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
+		// new
+		// org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
 
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DiagramDragDropEditPolicy(resolver));
+		installEditPolicy(
+				EditPolicyRoles.DRAG_DROP_ROLE,
+				new org.eclipse.papyrus.diagram.clazz.custom.edit.policies.DiagramDragDropEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-
-		super.handleNotificationEvent(event);
-		if (event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
-			if (eAnnotation.getSource() != null
-					&& eAnnotation.getSource().equals(
-							MDTUtil.FilterViewAndLabelsSource)) {
-				//modification form MOSKitt approach, canonical policies are not called
-				MDTUtil.filterDiagramViews(this.getDiagramView());
-			}
-		}
 	}
 
 	/**
@@ -163,6 +148,24 @@ public class ModelEditPart extends DiagramEditPart {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void handleNotificationEvent(Notification event) {
+
+		super.handleNotificationEvent(event);
+		if (event.getNotifier() instanceof EAnnotation) {
+			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
+			if (eAnnotation.getSource() != null
+					&& eAnnotation.getSource().equals(
+							MDTUtil.FilterViewAndLabelsSource)) {
+				// modification form MOSKitt approach, canonical policies are
+				// not called
+				MDTUtil.filterDiagramViews(this.getDiagramView());
+			}
+		}
 	}
 
 }

@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.commands.SupplementCommand;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
