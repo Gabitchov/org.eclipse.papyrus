@@ -29,9 +29,6 @@ import org.eclipse.swt.widgets.Shell;
 
 
 /**
- * @author dumoulin
- */
-/**
  * A class managing tooltips as Part.
  * @author dumoulin
  */
@@ -67,16 +64,46 @@ public class ImageToolTipManager {
 	}
 	
 	/**
-	 * Close the toltip and dispose it.
+	 * Close the tooltip and dispose it.
 	 */
 	public void closeToolTip() {
-		if(tip==null)
-			return;
-
-		tip.dispose();
-		tip = null;
+		if(tip!=null)
+		{
+			tip.dispose();
+			tip = null;
+		}
 		toolTipedControl = null;
 
+	}
+
+	/**
+	 * Disable the tooltip.
+	 * If the tooltip is shown, hide it.
+	 * In the disable state, calls to showTooltip() with the same Control will  not
+	 * show the tooltip again untill another control is proposed.
+	 * A call to closeToolTip() is required to show the same Control again.
+	 */
+	public void disableToolTip() {
+		// Close the tooltip.
+		if(tip!=null)
+		{
+			tip.dispose();
+			tip = null;
+		}
+		// Keep the control for future checking.
+	}
+	
+	/**
+	 * dispose the tooltip and its resources.
+	 * 
+	 */
+	public void dispose() {
+		if(tip!=null)
+		{
+			tip.dispose();
+			tip = null;
+		}
+		toolTipedControl = null;
 	}
 
 	/**

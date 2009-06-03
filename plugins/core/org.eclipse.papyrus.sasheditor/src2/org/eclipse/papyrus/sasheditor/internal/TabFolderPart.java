@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
@@ -34,6 +35,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.internal.DragCursors;
 import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.internal.dnd.IDragOverListener;
@@ -80,10 +82,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 */
 	private MouseHoverTracker mouseHoverTracker;
 	
-	/**
-	 * Tooltip Manager to manage thumbnail images tooltips.
-	 */
-	private ImageToolTipManager toolTipManager;
 
 	/**
 	 * Listener on DragOver event.
@@ -164,8 +162,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	{
 		// Listen to page changes
 		pTabFolder.getEventManager().addListener(cTabFolderEventListener);
-		mouseHoverTracker = new MouseHoverTracker(pTabFolder.getControl());
-		toolTipManager = new ImageToolTipManager();
+		// Create the tracker that will show tooltips on tabs.
+		mouseHoverTracker = new MouseHoverTracker(pTabFolder.getControl(), new ImageToolTipManager());
 	}
 	
 	/**
@@ -175,7 +173,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	private void deactivate()
 	{
 		// Listen to page changes
-		pTabFolder.getEventManager().removeListener(cTabFolderEventListener);		
+		pTabFolder.getEventManager().removeListener(cTabFolderEventListener);	
+		mouseHoverTracker.deactivate();
 	}
 	
 	/**
@@ -986,11 +985,24 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	    
 	}
 
+	/**
+	 * Track the mouse for flying over the tabs and show tooltip.
+	 * Show the tooltip when the mouse stop over a tab.
+	 * Disable the tooltip if mouse is clicked.
+	 * Reenable the tooltip when exiting the tab.
+	 * @author dumoulin
+	 *
+	 */
 	public class MouseHoverTracker {
 		
-		
+		/** 
+		 * Control for which a mouse tracker is requested.
+		 */
 		private Control control;
+		/** Tooltip manager showing tooltip */ 
+		private ImageToolTipManager toolTipManager;
 
+		/** Anonymous mouse tracker */
 		MouseTrackListener mouseTrackListener = new MouseTrackListener(){
 
 			private  int count = 0;
@@ -1026,15 +1038,46 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			}
 			
 		};
+
+		/**
+		 * Listener on mouse clicked.
+		 * Used to disable the current tooltip.
+		 */
+		private Listener mouseClickedListener = new Listener() {
+			private  int count = 0;
+			public void handleEvent(Event event) {
+				switch (event.type) {
+				case SWT.MouseUp:
+					System.out.println("MouseUp()" + count++);
+					toolTipManager.disableToolTip();
+					break;
+			}
+			}
+		};
+
 		
-		public MouseHoverTracker(Control control) {
+		/**
+		 * Build a tracker for the specified control.
+		 * Constructor.
+		 * @param control
+		 */
+		public MouseHoverTracker(Control control, ImageToolTipManager toolTipManager) {
 			this.control = control;
+			this.toolTipManager = toolTipManager;
 			activate();
 		}
 		
 		public void activate()
 		{
 			control.addMouseTrackListener(mouseTrackListener);
+			control.addListener(SWT.MouseUp, mouseClickedListener);
+		}
+		
+		public void deactivate() 
+		{
+			control.removeMouseTrackListener(mouseTrackListener);
+			control.removeListener(SWT.MouseUp, mouseClickedListener);
+			toolTipManager.dispose();
 		}
 	}
 	
