@@ -99,6 +99,7 @@ public class ActivePageTracker {
 	{
 		System.out.println(getClass().getSimpleName()+ ".editorChange('"+ editor.getPartTitle()+"')");
 
+		// TODO: Shouldn't we fire the fireEditorChangeEvent() here rather than in setActiveEditor() ?
 		editor.setFocus();
 	}
 	

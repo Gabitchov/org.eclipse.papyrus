@@ -161,7 +161,7 @@ public class SashWindowsContainer {
 	 * 
 	 * @param propertyId
 	 */
-	public void firePropertyChange(int propertyId) {
+	protected void firePropertyChange(int propertyId) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -241,6 +241,10 @@ public class SashWindowsContainer {
 		  part.setFocus();
 	}
 
+	/**
+	 * Refresh the SashWindows. 
+	 * Synchronize the internal structure with the {@link ISashWindowsContentProvider}.
+	 */
 	public void refreshTabs() {
 		System.out.println("start synchronize2() ------------------------");
 		showTilesStatus();

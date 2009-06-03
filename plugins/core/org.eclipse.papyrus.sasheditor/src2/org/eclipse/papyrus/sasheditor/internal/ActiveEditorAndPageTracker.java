@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorActionBarContributor;
+import org.eclipse.papyrus.sasheditor.editor.IMultiPageEditorActionBarContributor;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
@@ -59,6 +60,7 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 
 	/**
 	 * @param editorManager
+	 * TODO Provide main editor Site only.
 	 */
 	public ActiveEditorAndPageTracker(IMultiEditorManager editorManager) {
 		this.multiEditorManager = editorManager;
@@ -220,7 +222,7 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 	 */
 	private void fireChangeEventToActionBarContributor() {
 		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
-		if (contributor != null && contributor instanceof MultiPageEditorActionBarContributor) {
+		if (contributor != null && contributor instanceof IMultiPageEditorActionBarContributor ) {
 			((MultiPageEditorActionBarContributor) contributor).setActivePage(getActiveIEditorPart());
 		}
 
