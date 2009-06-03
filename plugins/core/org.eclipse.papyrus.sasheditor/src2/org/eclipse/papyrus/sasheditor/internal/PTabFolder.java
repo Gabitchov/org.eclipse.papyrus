@@ -215,7 +215,7 @@ public class PTabFolder {
 		// theControl.addDragDetectListener(dragDetectListener);
 		// Listen on mouse enter event.
 //		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
-		theControl.addListener(SWT.MouseUp, mouseUpListener);
+//		theControl.addListener(SWT.MouseUp, mouseUpListener);
 //		tabFolder.addSelectionListener(selectionListener);
 //		tabFolder.addTraverseListener(traverseListener);
 
@@ -240,7 +240,7 @@ public class PTabFolder {
 		//
 		PresentationUtil.removeDragListener(theControl, dragListener);
 		// theControl.removeDragDetectListener(dragDetectListener);
-		theControl.removeListener(SWT.MouseUp, mouseUpListener);
+//		theControl.removeListener(SWT.MouseUp, mouseUpListener);
 
 		if (recursive && theControl instanceof Composite) {
 			Composite composite = (Composite) theControl;
