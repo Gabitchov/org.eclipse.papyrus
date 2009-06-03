@@ -1,30 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
-/*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
-
 package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
 import java.util.Iterator;
@@ -62,35 +35,15 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
-/**
- * this class contains method contains method to help the management of
- * dependency with multi source and multi target
- * 
- * 
- */
 public class MultiDependencyHelper {
 
 	private TransactionalEditingDomain editDomain;
 
-	/**
-	 * the constructior
-	 * 
-	 * @param editDomain
-	 *            the transactional edit domain
-	 */
 	public MultiDependencyHelper(TransactionalEditingDomain editDomain) {
 		super();
 		this.editDomain = editDomain;
 	}
 
-	/**
-	 * use to create a new branch between the dependency node and the target
-	 * 
-	 * @param createConnectionViewAndElementRequest
-	 * @param command
-	 *            the compound command
-	 * @return the compound commnd that will do the job
-	 */
 	private Command getBranchDepencencyCommand(
 			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
 			Command command) {
@@ -98,7 +51,7 @@ public class MultiDependencyHelper {
 				.getSourceEditPart();
 		EditPart targetEditPart = createConnectionViewAndElementRequest
 				.getTargetEditPart();
-		// 0. add the branch graphically
+		// 0. add the branh graphically
 		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(
 				UMLElementTypes.Dependency_4018,
 				((IHintedType) UMLElementTypes.Dependency_4018)
@@ -146,15 +99,6 @@ public class MultiDependencyHelper {
 		return command;
 	}
 
-	/**
-	 * return commands to transform a binary dependency to n-ary dependency or
-	 * allow adding branches
-	 * 
-	 * @param createConnectionViewAndElementRequest
-	 * @param command
-	 *            that will contains subcommands
-	 * @return the compound command
-	 */
 	public Command getCommand(
 			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
 			Command command) {
@@ -360,10 +304,6 @@ public class MultiDependencyHelper {
 		return null;
 	}
 
-	/**
-	 * 
-	 * @return the transactional editing domain
-	 */
 	private TransactionalEditingDomain getEditingDomain() {
 		return editDomain;
 	}

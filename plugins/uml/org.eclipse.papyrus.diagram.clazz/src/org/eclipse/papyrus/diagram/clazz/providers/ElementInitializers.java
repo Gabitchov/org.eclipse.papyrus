@@ -1,8 +1,8 @@
 package org.eclipse.papyrus.diagram.clazz.providers;
 
+import org.eclipse.papyrus.diagram.clazz.custom.helper.NamedElementHelper;
 import org.eclipse.papyrus.diagram.clazz.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;

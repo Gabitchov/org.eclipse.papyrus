@@ -193,7 +193,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLClassDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,3002,3001,3003,3004,3015,3016,3005,3006,3007,3008,3020,3021,3022,3023,3024,3025,3017,3009,3010,3011,3012,3013,3014,3026,3027,3018,3019,3028,3029"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015"/>
       </viewProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
@@ -207,7 +207,7 @@
             <method name="getType()" value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,3002,3001,3003,3004,3015,3016,3005,3006,3007,3008,3020,3021,3022,3023,3024,3025,3017,3009,3010,3011,3012,3013,3014,3026,3027,3018,3019,3028,3029"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020"/>
+            <method name="getType()" value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5066,5002,5005,5008,5011,5020,5023,5026,5029,5032,5035,5037,5038,5040,5043,5046,5049,5052,5055,5017,5014,5058,5061,5063,5064"/>
@@ -249,7 +249,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -862,16 +862,6 @@
             <param name="semanticHint" value="4015"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"
-               name="%metatype.name.GeneralizationSet_4020"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="GeneralizationSet"
-               edithelper="org.eclipse.papyrus.diagram.clazz.edit.helpers.GeneralizationSetEditHelper">
-            <param name="semanticHint" value="4020"/>
-         </metamodelType>
-      </metamodel>
    </extension>
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
@@ -947,7 +937,6 @@
          <elementType ref="org.eclipse.papyrus.diagram.clazz.CommentAnnotatedElement_4013"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.ConstraintConstrainedElement_4014"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateBinding_4015"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -1317,7 +1306,7 @@
 	<page 	category="org.eclipse.papyrus.preferences.diagrams"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PapyrusUMLClassDiagramDiagramPreferencePage"
 			id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			name="PapyrusUMLClassDiagram Diagram" />
+			name="Class Diagram" />
 
 
 	
@@ -1440,13 +1429,6 @@
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AbstractionPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.AbstractionPreferencePage"
             name="Abstraction" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
-            name="GeneralizationSet" />	
 	
 	
 			<?gmfgen generated="true"?>
