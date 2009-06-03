@@ -35,7 +35,6 @@ import org.eclipse.swt.graphics.RGB;
  * this is the figure to represent a classifier.
  * 
  */
-
 public class ClassifierFigure extends NodeNamedElementFigure {
 
 	private static final int wrappedLabelSize = 18;
@@ -90,7 +89,7 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 			}
 
 			Rectangle elementBound = new Rectangle(contentPane.getBounds());
-			// display Attribtutes
+			// display Attributes
 			Rectangle attributeBound = new Rectangle(elementBound.getTopLeft().x, elementBound.getTopLeft().y, getBounds().width, 10);
 			// getBounds().height-height);
 

@@ -57,7 +57,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 */
 	protected Color borderColor = ColorConstants.black;
 
-	/** the depht of the qualified name **/
+	/** the depth of the qualified name **/
 	private int depth = 0;
 
 	private boolean displayGradient = true;
@@ -126,8 +126,12 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	/**
 	 * Added for stereptypes properties
 	 */
-
 	private RectangleFigure stereotypePropertiesContent;
+
+	/**
+	 * Added for stereotypes properties, displayed in the InBrace location
+	 */
+	private Label stereotypePropertiesInBraceContent;
 
 	/**
 	 * The stereotypes label.
@@ -217,6 +221,21 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		this.stereotypesLabel = label;
 	}
 
+	/**
+	 * this method is used to create the stereotype label.
+	 */
+	protected void createStereotypePropertiesInBraceLabel() {
+		final FontData[] fontdata = { new FontData(this.fontString, fontSize, SWT.NORMAL) };
+		final Font font = Activator.fontManager.get(fontdata);
+		final Label label = new Label();
+		label.setFont(font);
+		label.setOpaque(false);
+		label.setForegroundColor(getFontColor());
+		// Add the stereotype label to the figure at pos 0
+		this.add(label, getStereotypePropertiesLabelPosition());
+		this.stereotypePropertiesInBraceContent = label;
+	}
+
 	protected void createStereotypePropertiesContent() {
 		stereotypePropertiesContent = new StereotypePropertiesCompartment();
 		stereotypePropertiesContent.setFill(false);
@@ -233,10 +252,11 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		StringTokenizer stringTokenizer = new StringTokenizer(stereotypeProperties, ";");
 		while (stringTokenizer.hasMoreElements()) {
 			String tokenStereotype = stringTokenizer.nextToken();
-			tokenStereotype = tokenStereotype.replace("#", "\n	");
-			tokenStereotype = tokenStereotype.replace("|", "\n	");
+			tokenStereotype = tokenStereotype.replace("#", "\n  ");
+			tokenStereotype = tokenStereotype.replace("|", "\n  ");
 			Label label = new Label(tokenStereotype);
 			label.setFont(font);
+			label.setLabelAlignment(PositionConstants.LEFT);
 			label.setForegroundColor(getFontColor());
 			label.setBorder(null);
 			stereotypePropertiesContent.add(label);
@@ -459,8 +479,8 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 * @return
 	 */
 	protected int getQualifiedNameLabelPosition() {
-		int position = getStereotypeLabelPosition();
-		if (this.stereotypesLabel != null) {
+		int position = getStereotypePropertiesLabelPosition();
+		if (this.stereotypePropertiesInBraceContent != null) {
 			position++;
 		}
 		return position;
@@ -474,6 +494,19 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	protected int getStereotypeLabelPosition() {
 		int position = getIconLabelPosition();
 		if ((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
+			position++;
+		}
+		return position;
+	}
+
+	/**
+	 * Returns the position of the stereotype properties location. this is just after stereotype position
+	 * 
+	 * @return the position of the stereotype properties label in the figure
+	 */
+	protected int getStereotypePropertiesLabelPosition() {
+		int position = getStereotypeLabelPosition();
+		if (this.stereotypesLabel != null) {
 			position++;
 		}
 		return position;
@@ -857,6 +890,50 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		}
 	}
 
+	/**
+	 * Sets the stereotypes properties for this figure.
+	 * <p>
+	 * This implementation checks if the specified string is null or not.
+	 * <ul>
+	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes properties with brace.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype properties label if needed and displays the specified string.</li>
+	 * </ul>
+	 * </p>
+	 * 
+	 * @param stereotypeProperties
+	 *            the string representing the stereotype properties to be displayed
+	 */
+	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
+		if (stereotypeProperties == null) {
+			// Remove label if any
+			if (this.stereotypePropertiesInBraceContent != null) {
+				this.remove(this.stereotypePropertiesInBraceContent);
+				this.stereotypePropertiesInBraceContent = null;
+			}
+			return;
+		}
+
+		// Set the stereotype label if it does not already exist
+		if (this.stereotypePropertiesInBraceContent == null) {
+			this.createStereotypePropertiesInBraceLabel();
+		}
+
+		// Set stereotype text on figure
+		if (!"".equals(stereotypeProperties)) {
+			this.stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
+		} else {
+			this.stereotypePropertiesInBraceContent.setText("");
+		}
+	}
+
+	/**
+	 * displays the new string corresponding to the list of stereotypes.
+	 * 
+	 * if the string is <code>null</code>, then the figure that displays the stereotype label is removed from the NodeNamedElementFigure.
+	 * 
+	 * @param stereotypeProperties
+	 *            the string to be displayed.
+	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		if (stereotypeProperties == null) {
 			// remove figure of stereotype properties compartment
@@ -873,14 +950,20 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		}
 
 		fillStereotypePropertiesInCompartment(stereotypeProperties);
-
 	}
 
 	/**
-	 * Sets the stereotypes.
+	 * Sets the stereotypes for this figure.
+	 * <p>
+	 * This implementation checks if the specified string is null or not.
+	 * <ul>
+	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays the specified string.</li>
+	 * </ul>
+	 * </p>
 	 * 
 	 * @param stereotypes
-	 *            the stereotypes
+	 *            the string representing the stereotypes to be displayed
 	 */
 	public void setStereotypes(String stereotypes) {
 		if (stereotypes == null) {
@@ -892,13 +975,13 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 			return;
 		}
 
-		// Set the stereotype label
+		// Set the stereotype label if it does not already exist
 		if (this.stereotypesLabel == null) {
 			this.createStereotypeLabel();
 		}
 
 		// Set stereotype text on figure
-		if (!stereotypes.equals("")) {
+		if (!"".equals(stereotypes)) {
 			this.stereotypesLabel.setText(Activator.ST_LEFT + stereotypes + Activator.ST_RIGHT);
 		} else {
 			this.stereotypesLabel.setText("");

@@ -43,6 +43,27 @@ import org.eclipse.uml2.uml.Element;
 
 public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySection {
 
+	/** constant for stereotype text alignement */
+	private static final String VERTICAL = "Vertical";
+
+	/** constant for stereotype text alignement */
+	private static final String HORIZONTAL = "Horizontal";
+
+	/** constant for stereotype appearance section. Style: text and icon */
+	private static final String TEXT_AND_ICON = "Text and Icon";
+
+	/** constant for stereotype appearance section. Style: shape */
+	private static final String SHAPE = "Shape";
+
+	/** constant for stereotype appearance section. Style: icon */
+	private static final String ICON = "Icon";
+
+	/** constant for stereotype appearance section. Style: text */
+	private static final String TEXT = "Text";
+
+	/** current presentation for stereotype */
+	private String stereotypePlacePresentation = VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
+
 	private EModelElement diagramElement;
 
 	/**
@@ -77,6 +98,12 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 
 	private TransactionalEditingDomain domain;
 
+	private CLabel stereotypeDisplayPlace;
+
+	private CCombo comboStereotypeDisplayPlace;
+
+	private SelectionListener comboStereotypeDisplayListener;
+
 	/**
 	 * Creates the controls.
 	 * 
@@ -91,11 +118,16 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 		Composite composite = getWidgetFactory().createFlatFormComposite(parent);
 		FormData data;
 
-		comboStereotypeAppearance = getWidgetFactory().createCCombo(composite, SWT.BORDER);
-		comboStereotypeAppearance.add("Text");
-		comboStereotypeAppearance.add("Icon");
-		comboStereotypeAppearance.add("Text and Icon");
-		comboStereotypeAppearance.add("Shape");
+		stereotypeAppearance = getWidgetFactory().createCLabel(composite, "Stereotype Display:"); //$NON-NLS-1$
+		data = new FormData();
+		data.left = new FormAttachment(0, 0);
+		stereotypeAppearance.setLayoutData(data);
+
+		comboStereotypeAppearance = getWidgetFactory().createCCombo(composite, SWT.BORDER | SWT.READ_ONLY);
+		comboStereotypeAppearance.add(TEXT);
+		comboStereotypeAppearance.add(ICON);
+		comboStereotypeAppearance.add(TEXT_AND_ICON);
+		comboStereotypeAppearance.add(SHAPE);
 		data = new FormData();
 		data.left = new FormAttachment(0, 135);
 		data.top = new FormAttachment(0, 0);
@@ -111,19 +143,19 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 						boolean hasIcons = ElementUtil.hasIcons(elt);
 						boolean hasShapes = ElementUtil.hasShapes(elt);
 						String appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-						if (comboStereotypeAppearance.getText().equals("Text")) {
+						String stereotypeAppearance = comboStereotypeAppearance.getText();
+						if (stereotypeAppearance.equals(TEXT)) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-						} else if (comboStereotypeAppearance.getText().equals("Icon") && hasIcons) {
+						} else if (stereotypeAppearance.equals(ICON) && hasIcons) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION;
-						} else if (comboStereotypeAppearance.getText().equals("Text and Icon") && hasIcons) {
+						} else if (stereotypeAppearance.equals(TEXT_AND_ICON) && hasIcons) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION;
-						} else if (comboStereotypeAppearance.getText().equals("Shape") && hasShapes) {
+						} else if (stereotypeAppearance.equals(SHAPE) && hasShapes) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION;
 						}
 						String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(diagramElement);
 						RecordingCommand command = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(domain, diagramElement, stereotypetoDisplay, appliedStereotypeKind);
 						domain.getCommandStack().execute(command);
-						refresh();
 						refresh();
 					}
 				}
@@ -140,9 +172,9 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 		data.top = new FormAttachment(comboStereotypeAppearance, 1, SWT.CENTER);
 		stereotypeTextAlignement.setLayoutData(data);
 
-		comboStereotypeAlignement = getWidgetFactory().createCCombo(composite, SWT.BORDER);
-		comboStereotypeAlignement.add("Horizontal");
-		comboStereotypeAlignement.add("Vertical");
+		comboStereotypeAlignement = getWidgetFactory().createCCombo(composite, SWT.BORDER | SWT.READ_ONLY);
+		comboStereotypeAlignement.add(HORIZONTAL);
+		comboStereotypeAlignement.add(VERTICAL);
 		data = new FormData();
 		data.left = new FormAttachment(stereotypeTextAlignement, 0);
 		data.top = new FormAttachment(0, 0);
@@ -155,9 +187,9 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 					if (((View) (diagramElement)).getElement() != null) {
 
 						String appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-						if (comboStereotypeAlignement.getText().equals("Horizontal")) {
+						if (comboStereotypeAlignement.getText().equals(HORIZONTAL)) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-						} else if (comboStereotypeAlignement.getText().equals("Vertical")) {
+						} else if (comboStereotypeAlignement.getText().equals(VERTICAL)) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION;
 						}
 						String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(diagramElement);
@@ -173,16 +205,42 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 		};
 		comboStereotypeAlignement.addSelectionListener(comboStereotypeAlignementListener);
 
-		stereotypeAppearance = getWidgetFactory().createCLabel(composite, "Stereotype Appearance:"); //$NON-NLS-1$
+		// combo for display place choice
+		stereotypeDisplayPlace = getWidgetFactory().createCLabel(composite, "Display Place:");
 		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(comboStereotypeAppearance, 0);
-		data.top = new FormAttachment(comboStereotypeAppearance, 1, SWT.CENTER);
-		stereotypeAppearance.setLayoutData(data);
+		data.left = new FormAttachment(comboStereotypeAlignement, 40);
+		data.top = new FormAttachment(comboStereotypeAlignement, 1, SWT.CENTER);
+		stereotypeDisplayPlace.setLayoutData(data);
+
+		comboStereotypeDisplayPlace = getWidgetFactory().createCCombo(composite, SWT.BORDER | SWT.READ_ONLY);
+		comboStereotypeDisplayPlace.add(VisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION);
+		comboStereotypeDisplayPlace.add(VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
+		comboStereotypeDisplayPlace.add(VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION);
+
+		data = new FormData();
+		data.left = new FormAttachment(stereotypeDisplayPlace, 0);
+		data.top = new FormAttachment(0, 0);
+		comboStereotypeDisplayPlace.setLayoutData(data);
+
+		comboStereotypeDisplayListener = new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				if (diagramElement != null) {
+					stereotypePlacePresentation = comboStereotypeDisplayPlace.getText();
+
+					RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, diagramElement, stereotypePlacePresentation);
+					domain.getCommandStack().execute(command);
+				}
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		};
+		comboStereotypeDisplayPlace.addSelectionListener(comboStereotypeDisplayListener);
+
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -216,18 +274,53 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	}
 
 	/**
-	 * Refresh.
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void refresh() {
-		if ((!comboStereotypeAppearance.isDisposed()) && (!comboStereotypeAlignement.isDisposed())) {
+		refreshStereotypeAppearance();
+		refreshStereotypeAlignment();
+		refreshStereotypeDisplayLocation();
+	}
 
-			comboStereotypeAppearance.removeSelectionListener(comboStereotypeAppearanceListener);
+	private void refreshStereotypeDisplayLocation() {
+		if (comboStereotypeDisplayPlace != null && !comboStereotypeDisplayPlace.isDisposed()) {
+			comboStereotypeDisplayPlace.removeSelectionListener(comboStereotypeDisplayListener);
+
+			if (diagramElement != null) {
+				if (isComboEnabled()) {
+					comboStereotypeDisplayPlace.setEnabled(true);
+					stereotypePlacePresentation = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(diagramElement);
+					comboStereotypeDisplayPlace.setText(stereotypePlacePresentation);
+				} else {
+					comboStereotypeDisplayPlace.setEnabled(false);
+					comboStereotypeDisplayPlace.setText(stereotypePlacePresentation);
+				}
+			}
+			comboStereotypeDisplayPlace.addSelectionListener(comboStereotypeDisplayListener);
+		}
+	}
+
+	/**
+	 * Helper method to indicate whether comboStereotypePropertiesPlace is enabled or not. The combo is enabled only within class and requirement diagram
+	 */
+	private boolean isComboEnabled() {
+		if (!AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(diagramElement).equals("")) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Refresh Stereotype Alignement combo.
+	 */
+	private void refreshStereotypeAlignment() {
+		if (!comboStereotypeAlignement.isDisposed()) {
+
 			comboStereotypeAlignement.removeSelectionListener(comboStereotypeAlignementListener);
 
 			if (diagramElement != null) {
 				if (((View) (diagramElement)).getElement() != null && ((Element) ((View) (diagramElement)).getElement()).getAppliedStereotypes().size() != 0) {
-					comboStereotypeAppearance.setEnabled(true);
 					comboStereotypeAlignement.setEnabled(true);
 
 					final String stereotypePresentation = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
@@ -240,58 +333,94 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 
 						if (stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 							comboStereotypeAlignement.setEnabled(false);
-							comboStereotypeAppearance.setText("Icon");
 						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 							comboStereotypeAlignement.setEnabled(true);
-							comboStereotypeAppearance.setText("Text and Icon");
 						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
 							comboStereotypeAlignement.setEnabled(false);
-							comboStereotypeAppearance.setText("Shape");
 						} else {
 							comboStereotypeAlignement.setEnabled(true);
-							comboStereotypeAppearance.setText("Text");
 						}
 
 						if (stereotypePresentation.equals(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION)) {
-							comboStereotypeAlignement.setText("Horizontal");
+							comboStereotypeAlignement.setText(HORIZONTAL);
 						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION)) {
-							comboStereotypeAlignement.setText("Vertical");
+							comboStereotypeAlignement.setText(VERTICAL);
 						} else {
-							comboStereotypeAlignement.setText("Horizontal");
+							comboStereotypeAlignement.setText(HORIZONTAL);
 						}
 
 					} else {
-						comboStereotypeAppearance.setText("Text");
-						comboStereotypeAlignement.setText("Horizontal");
+						comboStereotypeAlignement.setText(HORIZONTAL);
+					}
+
+				} else {
+					comboStereotypeAlignement.setText("");
+					comboStereotypeAlignement.setEnabled(false);
+				}
+			}
+			comboStereotypeAlignement.addSelectionListener(comboStereotypeAlignementListener);
+		}
+	}
+
+	/**
+	 * Refresh Stereotype appearance combo.
+	 */
+	private void refreshStereotypeAppearance() {
+		if (!comboStereotypeAppearance.isDisposed()) {
+			comboStereotypeAppearance.removeSelectionListener(comboStereotypeAppearanceListener);
+
+			if (diagramElement != null) {
+				if (((View) (diagramElement)).getElement() != null && ((Element) ((View) (diagramElement)).getElement()).getAppliedStereotypes().size() != 0) {
+					comboStereotypeAppearance.setEnabled(true);
+
+					final String stereotypePresentation = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
+
+					if (stereotypePresentation != null) {
+
+						org.eclipse.uml2.uml.Element elt = (Element) ((View) (diagramElement)).getElement();
+						boolean hasIcons = ElementUtil.hasIcons(elt);
+						boolean hasShapes = ElementUtil.hasShapes(elt);
+
+						if (stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
+							comboStereotypeAppearance.setText(ICON);
+						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
+							comboStereotypeAppearance.setText(TEXT_AND_ICON);
+						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
+							comboStereotypeAppearance.setText(SHAPE);
+						} else {
+							comboStereotypeAppearance.setText(TEXT);
+						}
+
+					} else {
+						comboStereotypeAppearance.setText(TEXT);
 					}
 
 				} else {
 					comboStereotypeAppearance.setText("");
 					comboStereotypeAppearance.setEnabled(false);
-					comboStereotypeAlignement.setText("");
-					comboStereotypeAlignement.setEnabled(false);
 				}
 			}
 
 			comboStereotypeAppearance.addSelectionListener(comboStereotypeAppearanceListener);
-			comboStereotypeAlignement.addSelectionListener(comboStereotypeAlignementListener);
-
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.ui.properties.tabbed.PropertyViewSection#dispose()
-	 */
 	/**
-	 * 
+	 * {@inheritDoc}
 	 */
 	public void dispose() {
-		super.dispose();
-		if (comboStereotypeAppearance != null && !comboStereotypeAppearance.isDisposed())
+		if (comboStereotypeAppearance != null && !comboStereotypeAppearance.isDisposed()) {
 			comboStereotypeAppearance.removeSelectionListener(comboStereotypeAppearanceListener);
-		if (comboStereotypeAlignement != null && !comboStereotypeAlignement.isDisposed())
+		}
+		if (comboStereotypeAlignement != null && !comboStereotypeAlignement.isDisposed()) {
 			comboStereotypeAlignement.removeSelectionListener(comboStereotypeAlignementListener);
+		}
+		if (comboStereotypeDisplayPlace != null && !comboStereotypeDisplayPlace.isDisposed()) {
+			comboStereotypeDisplayPlace.removeSelectionListener(comboStereotypeDisplayListener);
+		}
+		if (diagramElement != null) {
+			diagramElement.eAdapters().remove(this);
+		}
+		super.dispose();
 	}
 }

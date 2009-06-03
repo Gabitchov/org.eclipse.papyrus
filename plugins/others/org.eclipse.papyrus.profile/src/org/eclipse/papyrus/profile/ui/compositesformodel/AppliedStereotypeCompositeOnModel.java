@@ -17,6 +17,8 @@ package org.eclipse.papyrus.profile.ui.compositesformodel;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -148,7 +150,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				}
 
 				// Update Stereotype order
-				this.reorderStereotypeApplications(element, newOrderList);
+				// this.reorderStereotypeApplications(element, newOrderList);
 
 				// checkSelection(null);
 				selectionChanged(null);
@@ -280,7 +282,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			treeViewer.setInput(null);
 			treeViewer.refresh();
 			if (element != null) {
-				treeViewer.setInput(new StereotypedElementTreeObject(element));
+				treeViewer.setInput(new StereotypedElementTreeObject(element, getDomain()));
 			}
 			StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) treeViewer.getInput();
 			if (rTO == null) {
@@ -419,7 +421,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * @param st
 	 *            the st
 	 */
-	protected void applyStereotype(final Element elt, final Stereotype st) {
+	public void applyStereotype(final Element elt, final Stereotype st) {
 		try {
 
 			getDomain().runExclusive(new Runnable() {
@@ -470,6 +472,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 								protected void doExecute() {
 									elt.unapplyStereotype(st);
+									elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
 									refresh();
 								}
 							});

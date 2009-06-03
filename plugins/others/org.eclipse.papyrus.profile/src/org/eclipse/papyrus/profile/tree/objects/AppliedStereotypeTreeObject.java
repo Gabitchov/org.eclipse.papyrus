@@ -18,6 +18,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.uml2.uml.Element;
@@ -38,8 +39,8 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	 * @param parent
 	 *            the parent
 	 */
-	public AppliedStereotypeTreeObject(StereotypedElementTreeObject parent, Element stereotype) {
-		super(parent, stereotype);
+	public AppliedStereotypeTreeObject(StereotypedElementTreeObject parent, Element stereotype, TransactionalEditingDomain domain) {
+		super(parent, stereotype, domain);
 	}
 
 	/**
@@ -54,9 +55,9 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 			// if(currentProp.isComposite() || (currentProp.getAssociation() == null)) {
 			if (currentProp.getAssociation() != null) {
 				if (!currentProp.getName().startsWith("base_"))
-					addChild(new AppliedStereotypePropertyTreeObject(this, currentProp));
+					addChild(new AppliedStereotypePropertyTreeObject(this, currentProp, domain));
 			} else {
-				addChild(new AppliedStereotypePropertyTreeObject(this, currentProp));
+				addChild(new AppliedStereotypePropertyTreeObject(this, currentProp, domain));
 			}
 			// }
 		}

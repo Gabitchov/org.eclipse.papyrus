@@ -70,6 +70,5 @@ public class RemoveAppliedStereotypePropertiesToDisplayCommand extends CreateEAn
 		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION, AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(getObject()));
 
 		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), getObject());
-
 	}
 }

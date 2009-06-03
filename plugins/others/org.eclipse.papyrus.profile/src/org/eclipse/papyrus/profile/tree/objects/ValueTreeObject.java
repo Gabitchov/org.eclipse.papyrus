@@ -19,6 +19,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.uml2.uml.DataType;
@@ -53,9 +55,11 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 *            the value
 	 * @param parent
 	 *            the parent
+	 * @param domain
+	 *            editing domain used to modify element values
 	 */
-	public ValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
-		super(parent, null);
+	public ValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
+		super(parent, null, domain);
 		thePropertyTreeObjectParent = parent;
 		this.value = value;
 	}
@@ -224,7 +228,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * 
 	 * @return the value tree object
 	 */
-	public static ValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue) {
+	public static ValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue, TransactionalEditingDomain domain) {
 
 		Property property = parent.getProperty();
 		Type type = property.getType();
@@ -232,22 +236,22 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 
 		/** primitive type **/
 		if (type instanceof PrimitiveType) {
-			newVTO = PrimitiveTypeValueTreeObject.createInstance(parent, newValue);
+			newVTO = PrimitiveTypeValueTreeObject.createInstance(parent, newValue, domain);
 			/** Composite **/
 		} else if ((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
 			//
 			/** Enumeration **/
 		} else if (type instanceof Enumeration) {
-			newVTO = new EnumerationValueTreeObject(parent, newValue);
+			newVTO = new EnumerationValueTreeObject(parent, newValue, domain);
 			/** DataType **/
 		} else if (type instanceof DataType) {
-			newVTO = new DataTypeValueTreeObject(parent, newValue);
+			newVTO = new DataTypeValueTreeObject(parent, newValue, domain);
 			/** Stereotype **/
 		} else if (type instanceof Stereotype) {
-			newVTO = new StereotypeValueTreeObject(parent, newValue);
+			newVTO = new StereotypeValueTreeObject(parent, newValue, domain);
 			/** Metaclass **/
 		} else if (Util.isMetaclass(type)) {
-			newVTO = new MetaclassValueTreeObject(parent, newValue);
+			newVTO = new MetaclassValueTreeObject(parent, newValue, domain);
 		}
 
 		return newVTO;
@@ -259,35 +263,49 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * @param newValue
 	 *            the new value
 	 */
-	protected void updateValue(Object newValue) {
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
-		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).getElement();
+	protected void updateValue(final Object newValue) {
 
-		Property property = pTO.getProperty();
+		// use domain to update the value
+		RecordingCommand command = new RecordingCommand(domain, "Edit Stereotype Property Value") {
 
-		if (newValue != null) {
-			// Affect newValue in UML model
-			if (property.isMultivalued()) {
-				List values = new ArrayList();
-				values.addAll((List) pTO.getValue());
-				List tmpChildren = Arrays.asList(pTO.getChildren());
-				int index = tmpChildren.indexOf(this);
-				if (index == -1) {
-					return;
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			protected void doExecute() {
+				AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
+				Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
+				Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).getElement();
+
+				Property property = pTO.getProperty();
+
+				if (newValue != null) {
+					// Affect newValue in UML model
+					if (property.isMultivalued()) {
+						List values = new ArrayList();
+						values.addAll((List) pTO.getValue());
+						List tmpChildren = Arrays.asList(pTO.getChildren());
+						int index = tmpChildren.indexOf(this);
+						if (index == -1) {
+							return;
+						}
+						// Set newValue in value list
+						values.set(index, newValue);
+						element.setValue(stereotype, property.getName(), values);
+					} else {
+						element.setValue(stereotype, property.getName(), newValue);
+					}
+
+					// Update TreeObject
+					value = newValue;
+
+					// Force model change
+					// Util.touchModel(element);
 				}
-				// Set newValue in value list
-				values.set(index, newValue);
-				element.setValue(stereotype, property.getName(), values);
-			} else {
-				element.setValue(stereotype, property.getName(), newValue);
 			}
+		};
+		domain.getCommandStack().execute(command);
 
-			// Update TreeObject
-			value = newValue;
-			// Force model change
-			Util.touchModel(element);
-		}
 	}
 
 	/**

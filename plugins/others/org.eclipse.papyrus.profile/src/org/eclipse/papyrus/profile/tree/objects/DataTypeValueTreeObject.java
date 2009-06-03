@@ -14,13 +14,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.tree.objects;
 
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 public class DataTypeValueTreeObject extends ValueTreeObject {
 
-	public DataTypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
-		super(parent, value);
+	public DataTypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
+		super(parent, value, domain);
 		this.value = value;
 	}
 

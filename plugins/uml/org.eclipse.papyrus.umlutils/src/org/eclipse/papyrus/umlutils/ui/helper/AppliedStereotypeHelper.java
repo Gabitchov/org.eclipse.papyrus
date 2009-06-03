@@ -28,7 +28,6 @@ import org.eclipse.papyrus.umlutils.ui.command.RemoveAppliedStereotypeToDisplayC
 import org.eclipse.papyrus.umlutils.ui.command.SetAppliedStereotypePropertiesLocalizationCommand;
 import org.eclipse.papyrus.umlutils.ui.command.SetAppliedStereotypeToDisplayCommand;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AppliedStereotypeHelper.
  */
@@ -59,7 +58,7 @@ public class AppliedStereotypeHelper {
 	 * Gets the applied stereotypes properties to display.
 	 * 
 	 * @param view
-	 *            the view
+	 *            the view the view that displays the stereotyped element
 	 * 
 	 * @return the applied stereotypes properties to display
 	 */
@@ -74,6 +73,29 @@ public class AppliedStereotypeHelper {
 			}
 		}
 		return "";
+	}
+
+	/**
+	 * checks if the applied stereotypes properties have to be displayed.
+	 * 
+	 * @param view
+	 *            the view the view that displays the stereotyped element
+	 * @param location
+	 *            the location where the properties have to be displayed.
+	 * 
+	 * @return <code>true</code> if the applied stereotypes properties have to display, <code>false</code> in other case
+	 */
+	public static boolean hasAppliedStereotypesPropertiesToDisplay(EModelElement view, String location) {
+		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+		if (stereotypeDisplayKind != null) {
+			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
+
+			String placeToDisplay = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION);
+			if (placeToDisplay != null && placeToDisplay.equals(location)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

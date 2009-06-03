@@ -159,5 +159,12 @@
             </popupContribution>
          </contributionItemProvider>
       </extension>
+<extension
+      point="org.eclipse.papyrus.core.modelListener">
+   <listener
+         name="StereotypeApplicationListener"
+         realization="org.eclipse.papyrus.diagram.common.editparts.PapyrusStereotypeListener">
+   </listener>
+</extension>
 
 </plugin>

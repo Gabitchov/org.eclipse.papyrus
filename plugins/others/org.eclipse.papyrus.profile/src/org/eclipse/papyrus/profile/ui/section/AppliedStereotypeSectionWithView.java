@@ -91,6 +91,12 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 		if (selection instanceof IStructuredSelection) {
 			Object input = ((IStructuredSelection) selection).getFirstElement();
 
+			if (part instanceof IEditingDomainProvider) {
+				this.editingDomain = (TransactionalEditingDomain) ((IEditingDomainProvider) part).getEditingDomain();
+				appliedStereotypeComposite.setDomain(editingDomain);
+				propertyComposite.setDomain(editingDomain);
+			}
+
 			if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
 				GraphicalEditPart graphicalEditPart = (GraphicalEditPart) input;
 				View view = (View) graphicalEditPart.getModel();
@@ -99,19 +105,13 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 					appliedStereotypeComposite.setDiagramElement(view);
 					propertyComposite.setDiagramElement(view);
 					appliedStereotypeComposite.setElement(UMLElement);
-					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement));
+					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
 				}
 			} else if (input instanceof Element) {
 				Element UMLElement = (Element) input;
 				appliedStereotypeComposite.setDiagramElement(UMLElement);
 				appliedStereotypeComposite.setElement(UMLElement);
-				appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement));
-			}
-
-			if (part instanceof IEditingDomainProvider) {
-				this.editingDomain = (TransactionalEditingDomain) ((IEditingDomainProvider) part).getEditingDomain();
-				appliedStereotypeComposite.setDomain(editingDomain);
-				propertyComposite.setDomain(editingDomain);
+				appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
 			}
 
 		}

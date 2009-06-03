@@ -36,6 +36,18 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class StereotypeUtil {
 
+	protected static final String SPACE_SEPARATOR = "#";
+
+	protected static final String EQUAL_SEPARATOR = "=";
+
+	protected static final String PROPERTY_VALUE_SEPARATOR = "|";
+
+	protected static final String SETREOTYPE_WITH_VALUE_SEPARATOR = ";";
+
+	protected static final String ST_LEFT = String.valueOf("\u00AB");
+
+	protected static final String ST_RIGHT = String.valueOf("\u00BB");
+
 	/**
 	 * Parse the stereotype image and select those that have an "icon" kind (EAnnotation).
 	 * 
@@ -89,13 +101,6 @@ public class StereotypeUtil {
 	 * @return a string withe the following grammar grammar= {'\u00AB'<B>StereotypeName</B>'\u00BB''#'{<B>propertyName</B>'='<B>propertyValue</B>'|'}*';'}*
 	 */
 	public static String getPropertiesValues(String stereotypesPropertiesToDisplay, Element umlElement) {
-		final String SPACE_SEPARATOR = "#";
-		final String EQUAL_SEPARATOR = "=";
-		final String PROPERTY_VALUE_SEPARATOR = "|";
-		final String SETREOTYPE_WITH_VALUE_SEPARATOR = ";";
-		final String ST_LEFT = String.valueOf("\u00AB");
-		final String ST_RIGHT = String.valueOf("\u00BB");
-
 		HashSet<org.eclipse.uml2.uml.Stereotype> stereoSet = new HashSet<org.eclipse.uml2.uml.Stereotype>();
 		ArrayList<String> stPropList = new ArrayList<String>();
 
@@ -108,29 +113,37 @@ public class StereotypeUtil {
 			String propertyQN = propStringTokenizer.nextToken();
 			// stereotype
 			String stereotypeQN = propertyQN.substring(0, propertyQN.indexOf("."));
-			stereoSet.add(umlElement.getAppliedStereotype(stereotypeQN));
+
+			Stereotype stereotype = umlElement.getAppliedStereotype(stereotypeQN);
+			if (stereotype != null) {
+				stereoSet.add(stereotype);
+			}
 			stPropList.add(propertyQN);
 		}
 
 		// Display each stereotype
 		Iterator<org.eclipse.uml2.uml.Stereotype> stereoIter = stereoSet.iterator();
 		while (stereoIter.hasNext()) {
-			org.eclipse.uml2.uml.Stereotype currentSt = stereoIter.next();
+			org.eclipse.uml2.uml.Stereotype stereotype = stereoIter.next();
 			// display the stereotype
-			propValues = propValues + ST_LEFT + currentSt.getName() + ST_RIGHT + SPACE_SEPARATOR;
+			propValues = propValues + ST_LEFT + stereotype.getName() + ST_RIGHT + SPACE_SEPARATOR;
 			// get the set of property to display
-			Iterator<String> stPropIter = getStereoPropertiesToDisplay(currentSt, stPropList).iterator();
+			Iterator<String> stPropIter = getStereoPropertiesToDisplay(stereotype, stPropList).iterator();
 
 			// display each property
 			while (stPropIter.hasNext()) {
 				String stProp = stPropIter.next();
 				// get the property
 				org.eclipse.uml2.uml.Property currentProp = null;
-				Iterator iterPro = currentSt.getAllAttributes().iterator();
+				Iterator<Property> iterPro = stereotype.getAllAttributes().iterator();
 				// from a string look for the property
 				while (iterPro.hasNext()) {
-					org.eclipse.uml2.uml.Property tmpProperty = (org.eclipse.uml2.uml.Property) iterPro.next();
-					if (tmpProperty.getName().equals(stProp)) {
+					org.eclipse.uml2.uml.Property tmpProperty = iterPro.next();
+					String name = "";
+					if (tmpProperty != null) {
+						name = (tmpProperty.getName() != null) ? tmpProperty.getName() : "";
+					}
+					if (name.equals(stProp)) {
 						currentProp = tmpProperty;
 					}
 				}
@@ -143,18 +156,18 @@ public class StereotypeUtil {
 				// property type is an enumeration
 
 				if (propType instanceof org.eclipse.uml2.uml.Enumeration) {
-					propValues = propValues + getPropertyValueForEnumerationType(currentProp, currentSt, umlElement, EQUAL_SEPARATOR, PROPERTY_VALUE_SEPARATOR);
+					propValues = propValues + getPropertyValueForEnumerationType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, PROPERTY_VALUE_SEPARATOR);
 				}
 
 				// property type is a metaclass
 				else if ((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0)
 						&& ((org.eclipse.uml2.uml.Stereotype) propType.getAppliedStereotypes().get(0)).getName().equals("Metaclass")) {
-					propValues = propValues + getPropertyValueForMetaclassType(currentProp, currentSt, umlElement, EQUAL_SEPARATOR, PROPERTY_VALUE_SEPARATOR);
+					propValues = propValues + getPropertyValueForMetaclassType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, PROPERTY_VALUE_SEPARATOR);
 				}
 
 				// property type is a stereotype
 				else if (propType instanceof org.eclipse.uml2.uml.Stereotype) {
-					propValues = propValues + getPropertyValueForStereotypeType(currentProp, currentSt, umlElement, EQUAL_SEPARATOR, PROPERTY_VALUE_SEPARATOR);
+					propValues = propValues + getPropertyValueForStereotypeType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, PROPERTY_VALUE_SEPARATOR);
 				}
 
 				// property is a composite class
@@ -164,7 +177,7 @@ public class StereotypeUtil {
 
 				// otherwise
 				else {
-					propValues = propValues + getPropertyValue(currentProp, currentSt, umlElement, EQUAL_SEPARATOR, PROPERTY_VALUE_SEPARATOR);
+					propValues = propValues + getPropertyValue(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, PROPERTY_VALUE_SEPARATOR);
 				}
 			}// display each property
 			if (propValues.endsWith(PROPERTY_VALUE_SEPARATOR)) {
@@ -172,6 +185,110 @@ public class StereotypeUtil {
 			}
 			propValues = propValues + SETREOTYPE_WITH_VALUE_SEPARATOR;
 		}// end display each property
+
+		return propValues;
+	}
+
+	/**
+	 * return string that contains value of properties of applied stereotype
+	 * 
+	 * @param stereotypesPropertiesToDisplay
+	 *            list of properties of stereotype to display grammar= {<B>stereotypequalifiedName</B>'.'<B>propertyName</B>','}*
+	 * 
+	 * @return a string with the following grammar grammar= {(<B>propertyName</B>'='<B>propertyValue</B>',')* <B>propertyName</B>'='<B>propertyValue</B>'}
+	 */
+	public static String getPropertiesValuesInBrace(String stereotypesPropertiesToDisplay, Element umlElement) {
+		String propertyValues = "";
+
+		HashSet<org.eclipse.uml2.uml.Stereotype> stereoSet = new HashSet<org.eclipse.uml2.uml.Stereotype>();
+		ArrayList<String> stPropList = new ArrayList<String>();
+
+		// fill our data structure in order to generate the string
+		StringTokenizer propStringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, ",");
+		while (propStringTokenizer.hasMoreElements()) {
+			// extract property to display
+			String propertyQN = propStringTokenizer.nextToken();
+			// stereotype
+			String stereotypeQN = propertyQN.substring(0, propertyQN.indexOf("."));
+
+			Stereotype stereotype = umlElement.getAppliedStereotype(stereotypeQN);
+			if (stereotype != null) {
+				stereoSet.add(stereotype);
+			}
+
+			stPropList.add(propertyQN);
+		}
+
+		// Display each stereotype
+		Iterator<org.eclipse.uml2.uml.Stereotype> stereoIter = stereoSet.iterator();
+		while (stereoIter.hasNext()) {
+			Stereotype stereotype = stereoIter.next();
+			if (stereotype != null) {
+				propertyValues += displayPropertyValuesForStereotype(stereotype, stPropList, umlElement);
+			}
+		}
+		return propertyValues;
+	}
+
+	public static String displayPropertyValuesForStereotype(Stereotype stereotype, ArrayList<String> stPropList, Element umlElement) {
+		StringBuffer buffer = new StringBuffer();
+
+		// add stereotype name. For "In Brace", display nothing
+		buffer.append("");
+		// get the set of property to display
+		Iterator<String> stPropIter = getStereoPropertiesToDisplay(stereotype, stPropList).iterator();
+
+		// display each property
+		while (stPropIter.hasNext()) {
+			String stProp = stPropIter.next();
+			// get the property
+			org.eclipse.uml2.uml.Property currentProp = null;
+			Iterator<Property> iterPro = stereotype.getAllAttributes().iterator();
+			// from a string look for the property
+			while (iterPro.hasNext()) {
+				org.eclipse.uml2.uml.Property tmpProperty = iterPro.next();
+				if (stProp.equals(tmpProperty.getName())) {
+					currentProp = tmpProperty;
+				}
+			}
+
+			if (currentProp == null) {
+				return "No value";
+			}
+			org.eclipse.uml2.uml.Type propType = currentProp.getType();
+
+			// property type is an enumeration
+
+			if (propType instanceof org.eclipse.uml2.uml.Enumeration) {
+				buffer.append(getPropertyValueForEnumerationType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ","));
+			}
+
+			// property type is a metaclass
+			else if ((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0)
+					&& ((org.eclipse.uml2.uml.Stereotype) propType.getAppliedStereotypes().get(0)).getName().equals("Metaclass")) {
+				buffer.append(getPropertyValueForMetaclassType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ","));
+			}
+
+			// property type is a stereotype
+			else if (propType instanceof org.eclipse.uml2.uml.Stereotype) {
+				buffer.append(getPropertyValueForStereotypeType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ","));
+			}
+
+			// property is a composite class
+			else if ((propType instanceof org.eclipse.uml2.uml.Class) && !(propType instanceof org.eclipse.uml2.uml.Stereotype) && currentProp.isComposite()) {
+				buffer.append(stProp + EQUAL_SEPARATOR + currentProp.getName() + ",");
+			}
+
+			// otherwise
+			else {
+				buffer.append(getPropertyValue(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ","));
+			}
+		}// display each property
+
+		String propValues = buffer.toString();
+		if (propValues.endsWith(",")) {
+			propValues = propValues.substring(0, propValues.lastIndexOf(","));
+		}
 
 		return propValues;
 	}

@@ -137,7 +137,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 *            the stereotype to add
 	 */
 	@Override
-	protected void applyStereotype(final Element elt, final Stereotype st) {
+	public void applyStereotype(final Element elt, final Stereotype st) {
 		super.applyStereotype(elt, st);
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
 		if (diagramElement == null) {
@@ -152,6 +152,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
+
 							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
 							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getDomain(), diagramElement, st.getQualifiedName(), presentationKind);
 							getDomain().getCommandStack().execute(command);

@@ -239,7 +239,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			}
 
 			// Update tree && Refresh
-			pTO.addChild(ValueTreeObject.createInstance(pTO, newValue));
+			pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
 			if (parentPanel != null)
 				parentPanel.refresh();
 			// Force model change

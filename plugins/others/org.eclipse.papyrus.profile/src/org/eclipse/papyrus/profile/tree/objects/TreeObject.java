@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.profile.tree.objects;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Element;
 
 // TODO: Auto-generated Javadoc
@@ -22,33 +23,45 @@ import org.eclipse.uml2.uml.Element;
  * The Class TreeObject.
  */
 public class TreeObject implements IAdaptable {
-	
+
 	/**
 	 * The parent.
 	 */
 	protected ParentTreeObject parent;
-	
+
 	/**
 	 * The element.
 	 */
 	protected Element element;
-	
+
 	/**
 	 * 
 	 */
 	protected boolean isDisplay = false;
-	
+
+	/**
+	 * Editing domain used to modify the editing domain
+	 */
+	protected TransactionalEditingDomain domain;
+
+	/**
+	 * Editing domain used to modify the given property
+	 */
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param element the element
-	 * @param parent the parent
+	 * @param element
+	 *            the element
+	 * @param parent
+	 *            the parent
 	 */
-	public TreeObject(ParentTreeObject parent, Element element) {
+	public TreeObject(ParentTreeObject parent, Element element, TransactionalEditingDomain domain) {
 		this.parent = parent;
-		this.element= element;
+		this.element = element;
+		this.domain = domain;
 	}
-	
+
 	/**
 	 * Gets the parent.
 	 * 
@@ -61,7 +74,8 @@ public class TreeObject implements IAdaptable {
 	/**
 	 * Gets the adapter.
 	 * 
-	 * @param key the key
+	 * @param key
+	 *            the key
 	 * 
 	 * @return the adapter
 	 */
@@ -69,11 +83,11 @@ public class TreeObject implements IAdaptable {
 		if (key == Element.class) {
 			return getElement();
 		}
-		
+
 		return getElement();
-		//return null;
+		// return null;
 	}
-	
+
 	/**
 	 * Gets the element.
 	 * 
@@ -86,7 +100,7 @@ public class TreeObject implements IAdaptable {
 	/**
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public boolean isDisplay() {
 		return isDisplay;
@@ -95,10 +109,10 @@ public class TreeObject implements IAdaptable {
 	/**
 	 * 
 	 * 
-	 * @param isDisplay 
+	 * @param isDisplay
 	 */
 	public void setDisplay(boolean isDisplay) {
 		this.isDisplay = isDisplay;
 	}
-	
+
 }

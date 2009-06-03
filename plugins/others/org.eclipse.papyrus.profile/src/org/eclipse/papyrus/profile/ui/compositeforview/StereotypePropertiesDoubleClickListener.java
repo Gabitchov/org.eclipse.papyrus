@@ -52,7 +52,8 @@ public class StereotypePropertiesDoubleClickListener extends DoubleClickListener
 	 * @param parent
 	 *            the parent
 	 */
-	public StereotypePropertiesDoubleClickListener(Composite parent, TreeViewer treeViewer, AppliedStereotypeCompositeWithView stereotypeComposite, AppliedStereotypePropertyCompositeWithView propertyComposite) {
+	public StereotypePropertiesDoubleClickListener(Composite parent, TreeViewer treeViewer, AppliedStereotypeCompositeWithView stereotypeComposite,
+			AppliedStereotypePropertyCompositeWithView propertyComposite) {
 		super();
 		this.treeViewer = treeViewer;
 		this.parent = parent;
@@ -71,9 +72,12 @@ public class StereotypePropertiesDoubleClickListener extends DoubleClickListener
 	@Override
 	protected void itemDClicked(TreeItem item, int index) {
 		super.itemDClicked(item, index);
+		// nota: had to place toucheModel before refresh.
+		// In fact, if refresh is done before refresh, there can be a null pointer exception, as the composite input is not clearly defined.
+		// so, in state, it should be better to keep this order.
+		// propertyComposite.touchModel();
 		propertyComposite.refresh();
 		stereotypeComposite.refresh();
-		propertyComposite.touchModel();
 	}
 
 }

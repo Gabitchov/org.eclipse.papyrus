@@ -16,7 +16,9 @@ package org.eclipse.papyrus.umlutils;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -121,5 +123,45 @@ public class Activator extends Plugin {
 	 */
 	public ResourceBundle getResourceBundle() {
 		return resourceBundle;
+	}
+
+	/**
+	 * Logs a warning message in the plugin log
+	 * 
+	 * @param message
+	 *            the message to log
+	 */
+	public static void logWarning(String message) {
+		getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, message));
+	}
+
+	/**
+	 * Logs an error message in the plugin log
+	 * 
+	 * @param message
+	 *            the message to log
+	 */
+	public static void logError(String message) {
+		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, message));
+	}
+
+	/**
+	 * Logs an information message in the plugin log
+	 * 
+	 * @param message
+	 *            the message to log
+	 */
+	public static void logInfo(String message) {
+		getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, message));
+	}
+
+	/**
+	 * Logs an error message in the plugin log
+	 * 
+	 * @param exception
+	 *            the exception to log
+	 */
+	public static void logException(Exception exception) {
+		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, exception.getLocalizedMessage(), exception));
 	}
 }

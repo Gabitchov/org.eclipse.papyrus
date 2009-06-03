@@ -17,6 +17,7 @@ package org.eclipse.papyrus.profile.tree.objects;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -32,8 +33,8 @@ public class StereotypedElementTreeObject extends ParentTreeObject {
 	 * @param parent
 	 *            the parent
 	 */
-	public StereotypedElementTreeObject(Element parent) {
-		super(null, parent);
+	public StereotypedElementTreeObject(Element parent, TransactionalEditingDomain domain) {
+		super(null, parent, domain);
 	}
 
 	/**
@@ -46,7 +47,7 @@ public class StereotypedElementTreeObject extends ParentTreeObject {
 
 		while (stIt.hasNext()) {
 			final Stereotype currentSt = stIt.next();
-			addChild(new AppliedStereotypeTreeObject(this, currentSt));
+			addChild(new AppliedStereotypeTreeObject(this, currentSt, domain));
 		}
 	}
 

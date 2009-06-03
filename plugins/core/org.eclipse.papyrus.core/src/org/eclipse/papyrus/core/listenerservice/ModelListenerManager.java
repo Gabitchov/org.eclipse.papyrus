@@ -30,7 +30,7 @@ public class ModelListenerManager extends EContentAdapter {
 	private Hashtable listenerRegistry;
 
 	// extension point ID
-	private String MODELLISTENERID_EXTENSION_ID = "papyrus.backbone.modellistener";
+	private String MODELLISTENERID_EXTENSION_ID = "org.eclipse.papyrus.core.modelListener";
 
 	private String NAME_ID = "name";
 

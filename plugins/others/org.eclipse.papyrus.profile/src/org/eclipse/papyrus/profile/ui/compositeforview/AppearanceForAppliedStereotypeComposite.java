@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.diagram.common.editparts.IUMLEditPart;
+import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.ImageManager;
 import org.eclipse.papyrus.profile.tree.DisplayedProfileElementLabelProvider;
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
@@ -188,7 +189,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		tree.setLayout(new FormLayout());
 		tree.setVisible(true);
 
-		data = new FormData();
+		data = new FormData(SWT.DEFAULT, 50);
 		data.top = new FormAttachment(displayButton, ITabbedPropertyConstants.VSPACE);
 		data.left = new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
 		data.right = new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
@@ -198,6 +199,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 
 		// Replace label and content providers in treeViewers
 		treeViewer.setContentProvider(new ProfileElementWithDisplayContentProvider(diagramElement));
+		// treeViewer.setLabelProvider(new ProfileElementWithDisplayLabelProvider());
 
 		refresh();
 		return this;
@@ -288,7 +290,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.logException(e);
 		}
 
 	}
@@ -626,7 +628,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.logException(e);
 		}
 
 	}
@@ -645,7 +647,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							String stringToRemove = st.getQualifiedName() + "." + property.getLabel();
+							String stringToRemove = st.getQualifiedName() + "." + property.getName();
 							RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypePropertiesCommand(domain, diagramElement, stringToRemove);
 							getDomain().getCommandStack().execute(command);
 							// refresh();
@@ -655,7 +657,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.logException(e);
 		}
 
 	}
@@ -690,7 +692,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.logException(e);
 		}
 
 	}
@@ -724,7 +726,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.logException(e);
 		}
 
 	}
@@ -758,7 +760,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 				}
 			});
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.logException(e);
 		}
 
 	}

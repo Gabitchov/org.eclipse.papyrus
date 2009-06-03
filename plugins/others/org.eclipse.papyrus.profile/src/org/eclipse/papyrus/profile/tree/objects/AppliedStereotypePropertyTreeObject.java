@@ -17,6 +17,7 @@ package org.eclipse.papyrus.profile.tree.objects;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
@@ -45,8 +46,8 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	 * @param parent
 	 *            the parent
 	 */
-	public AppliedStereotypePropertyTreeObject(AppliedStereotypeTreeObject parent, Property property) {
-		super(parent, property);
+	public AppliedStereotypePropertyTreeObject(AppliedStereotypeTreeObject parent, Property property, TransactionalEditingDomain domain) {
+		super(parent, property, domain);
 		this.property = property;
 	}
 
@@ -79,11 +80,11 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 			Iterator it = values.iterator();
 			while (it.hasNext()) {
 				final Object currentValue = it.next();
-				ValueTreeObject vTO = createValueTreeObject(currentValue);
+				ValueTreeObject vTO = createValueTreeObject(currentValue, domain);
 				addChild(vTO);
 			}
 		} else {
-			ValueTreeObject vTO = createValueTreeObject(value);
+			ValueTreeObject vTO = createValueTreeObject(value, domain);
 			addChild(vTO);
 		}
 	}
@@ -110,34 +111,34 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	 * 
 	 * @return the value tree object
 	 */
-	private ValueTreeObject createValueTreeObject(Object value) {
+	private ValueTreeObject createValueTreeObject(Object value, TransactionalEditingDomain domain) {
 		Type type = property.getType();
 		// Select correct class based on its type
 		ValueTreeObject vTO = null;
 
 		/** Property type is a PrimitiveType */
 		if (type instanceof PrimitiveType) {
-			vTO = PrimitiveTypeValueTreeObject.createInstance(this, value);
+			vTO = PrimitiveTypeValueTreeObject.createInstance(this, value, domain);
 
 			/** Property type is a metaclass */
 		} else if (Util.isMetaclass(type)) {
-			vTO = new MetaclassValueTreeObject(this, value);
+			vTO = new MetaclassValueTreeObject(this, value, domain);
 
 			/** Property type is an Enumeration */
 		} else if (type instanceof Enumeration) {
-			vTO = new EnumerationValueTreeObject(this, value);
+			vTO = new EnumerationValueTreeObject(this, value, domain);
 
 			/** Property is a dataType */
 		} else if (type instanceof DataType) {
-			vTO = new DataTypeValueTreeObject(this, value);
+			vTO = new DataTypeValueTreeObject(this, value, domain);
 
 			/** Property is a stereotype */
 		} else if (type instanceof Stereotype) {
-			vTO = new StereotypeValueTreeObject(this, value);
+			vTO = new StereotypeValueTreeObject(this, value, domain);
 
 			/** property is a composite class */
 		} else if ((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
-			vTO = new CompositeValueTreeObject(this, value);
+			vTO = new CompositeValueTreeObject(this, value, domain);
 		}
 
 		return vTO;

@@ -120,7 +120,7 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 
 		} else if (object instanceof AppliedStereotypePropertyTreeObject) {
 			Property property = ((AppliedStereotypePropertyTreeObject) object).getProperty();
-			String tmpPaht = ((AppliedStereotypePropertyTreeObject) object).getParentStereotype().getQualifiedName() + "." + property.getLabel();
+			String tmpPaht = ((AppliedStereotypePropertyTreeObject) object).getParentStereotype().getQualifiedName() + "." + property.getName();
 			if (displayedProperty.indexOf(tmpPaht) != -1) {
 				return ImageManager.IMG_DISPLAYEDPROPERTY;
 			}

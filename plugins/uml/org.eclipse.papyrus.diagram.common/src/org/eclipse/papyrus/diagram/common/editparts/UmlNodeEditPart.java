@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.common.editparts;
 import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.umlutils.ui.helper.GradientColorHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * this uml edit part can refresh shadow, applied stereotypes, gradient color
@@ -37,12 +39,57 @@ import org.eclipse.uml2.uml.Element;
  */
 public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart implements IUMLEditPart {
 
+	/**
+	 * Creates a new UmlNodeEditPart.
+	 * 
+	 * @param view
+	 *            the view controlled by this edit part
+	 */
 	public UmlNodeEditPart(View view) {
 		super(view);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected NodeFigure createMainFigure() {
 		return createNodeFigure();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void addSemanticListeners() {
+		super.addSemanticListeners();
+
+		// retrieve element
+		final Element element = getUMLElement();
+		if (element == null) {
+			return;
+		}
+
+		// add listener to react to the application and remove of a stereotype
+		addListenerFilter("StereotypableElement", this, resolveSemanticElement());
+
+		// add a lister to each already applied stereotyped
+		for (EObject stereotypeApplication : element.getStereotypeApplications()) {
+			addListenerFilter("StereotypedElement", this, stereotypeApplication);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void removeSemanticListeners() {
+		super.removeSemanticListeners();
+
+		removeListenerFilter("StereotypableElement"); //$NON-NLS-1$
+
+		// remove listeners to react to the application and remove of stereotypes
+		removeListenerFilter("StereotypableElement");
+		removeListenerFilter("StereotypedElement");
 	}
 
 	/**
@@ -53,8 +100,19 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		return new BorderedNodeFigure(createMainFigure());
 	}
 
+	/**
+	 * <p>
+	 * Returns the primary shape being the View of this edit part.
+	 * </p>
+	 * <b>Warning</b> It should never return <code>null</code>
+	 * 
+	 * @return the primary shape associated to this edit part.
+	 */
 	public abstract NodeNamedElementFigure getPrimaryShape();
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Element getUMLElement() {
 		return (Element) resolveSemanticElement();
 	}
@@ -64,6 +122,18 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
+		// NOTA: should check here which element has to be refreshed
+
+		// check if this concerns a stereotype application or unapplication
+		final int eventType = event.getEventType();
+
+		if (eventType == PapyrusStereotypeListener.APPLIED_STEREOTYPE) {
+			// a stereotype was applied to the notifier
+			// then a new listener should be added to the stereotype application
+			addListenerFilter("StereotypedElement", this, (EObject) event.getNewValue());
+		}
+
 		refreshGradient();
 		refreshShadow();
 		// set the figure active when the feature of the of a class is true
@@ -74,35 +144,120 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 	}
 
 	/**
-	 * Refreshes the displayed stereotypes properties for this edit part.
+	 * Refresh the display of stereotypes for this uml node edit part.
 	 */
-	private void refreshAppliedStereotypesProperties() {
-		if ("" != stereotypesPropertiesToDisplay()) {
-			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(stereotypesPropertiesToDisplay());
-		} else {
-			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(null);
-		}
-
-	}
-
 	public void refreshAppliedStereotypes() {
-		if (stereotypesToDisplay() != "") {
-			((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(stereotypesToDisplay());
+		// retrieve the stereotype to be displayed
+		final String stereotypesToDisplay = stereotypesToDisplay();
+
+		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
+		if (stereotypesToDisplay != "") {
+			((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(stereotypesToDisplay);
 		} else {
 			((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(null);
 		}
 	}
 
+	/**
+	 * Refreshes the displayed stereotypes properties for this edit part.
+	 */
+	protected void refreshAppliedStereotypesProperties() {
+		refreshAppliedStereotypesPropertiesInCompartment();
+		refreshAppliedStereotypesPropertiesInBrace();
+	}
+
+	/**
+	 * Refreshes the stereotypes properties displayed in a compartment of this edit part.
+	 */
+	protected void refreshAppliedStereotypesPropertiesInCompartment() {
+		// retrieve the stereotype properties to be displayed
+		final String stereotypesPropertiesToDisplay = stereotypesPropertiesToDisplayInCompartment();
+
+		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
+		if (stereotypesPropertiesToDisplay != "") {
+			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(stereotypesPropertiesToDisplay);
+		} else {
+			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(null);
+		}
+	}
+
+	/**
+	 * return string that contains value of properties of applied stereotype
+	 * 
+	 * @return "" or {'\u00AB'<B>StereotypeName</B>'\u00BB' {<B>propertyName</B>'='<B>propertyValue</B>','}*';'}*
+	 */
+	public String stereotypesPropertiesToDisplayInCompartment() {
+
+		// check if properties have to be displayed in compartment.
+		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View) getModel(), VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
+
+		// if not, return the empty string
+		if (!displayInCompartment) {
+			return "";
+		}
+
+		// it has to be displayed in compartment. Get the string to be displayed
+		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View) getModel());
+		if ("".equals(stereotypesPropertiesToDisplay)) {
+			return stereotypesPropertiesToDisplay;
+		}
+		return StereotypeUtil.getPropertiesValues(stereotypesPropertiesToDisplay, getUMLElement());
+	}
+
+	/**
+	 * Refreshes the stereotypes properties displayed above name of the element in this edit part.
+	 */
+	protected void refreshAppliedStereotypesPropertiesInBrace() {
+		// retrieve the stereotype properties to be displayed
+		final String stereotypesPropertiesToDisplay = stereotypesPropertiesToDisplayInBrace();
+
+		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
+		if (stereotypesPropertiesToDisplay != "") {
+			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(stereotypesPropertiesToDisplay);
+		} else {
+			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(null);
+		}
+	}
+
+	/**
+	 * return string that contains value of properties of applied stereotype
+	 * 
+	 * @return "" or {'\u00AB'<B>StereotypeName</B>'\u00BB' {<B>propertyName</B>'='<B>propertyValue</B>','}*';'}*
+	 */
+	public String stereotypesPropertiesToDisplayInBrace() {
+		// check if properties have to be displayed in braces.
+		final boolean displayInBrace = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View) getModel(), VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION);
+
+		// if not, return the empty string
+		if (!displayInBrace) {
+			return "";
+		}
+
+		// it has to be displayed in braces, so compute the string to display
+		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View) getModel());
+		if ("".equals(stereotypesPropertiesToDisplay)) {
+			return stereotypesPropertiesToDisplay;
+		}
+		return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
+	}
+
+	/**
+	 * Refresh the gradient for this edit part
+	 */
 	protected void refreshGradient() {
 		getPrimaryShape().setDisplayGradient(GradientColorHelper.getGradientColorValue((View) getModel()));
-
 	}
 
+	/**
+	 * Refresh the gradient for this edit part
+	 */
 	protected void refreshShadow() {
 		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View) getModel()));
-
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshAppliedStereotypesProperties();
@@ -160,10 +315,14 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 	}
 
 	/**
-	 * Computes the string that displays the stereotypes for the current element 
-	 * @param separator the separator used to split the string representing the stereotypes. 
-	 * @param stereotypesToDisplay the list of stereotypes displayed
-	 * @param stereotypeWithQualifiedName the list of stereotypes displayed using their qualified names
+	 * Computes the string that displays the stereotypes for the current element
+	 * 
+	 * @param separator
+	 *            the separator used to split the string representing the stereotypes.
+	 * @param stereotypesToDisplay
+	 *            the list of stereotypes displayed
+	 * @param stereotypeWithQualifiedName
+	 *            the list of stereotypes displayed using their qualified names
 	 * @return the string that represent the stereotypes
 	 */
 	public String stereotypesToDisplay(String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName) {
@@ -176,7 +335,7 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		// Get the preference from PreferenceStore. there should be an assert
 		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		assert store != null : "The preference store was not found";
-		if(store == null) {
+		if (store == null) {
 			return "";
 		}
 		String sNameAppearance = store.getString(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
@@ -185,26 +344,36 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		String out = "";
 		while (strQualifiedName.hasMoreElements()) {
 			String currentStereotype = strQualifiedName.nextToken();
-			String name = currentStereotype;
-			if ((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
-				// property value contains qualifiedName ==> extract name from it
-				StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
 
-				while (strToken.hasMoreTokens()) {
-					name = strToken.nextToken();
+			// check if current stereotype is applied
+			final Element umlElement = getUMLElement();
+			Stereotype stereotype = umlElement.getAppliedStereotype(currentStereotype);
+			if (stereotype != null) {
+				String name = currentStereotype;
+				if ((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
+					// property value contains qualifiedName ==> extract name from it
+					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
+
+					while (strToken.hasMoreTokens()) {
+						name = strToken.nextToken();
+					}
 				}
-			}
-			// AL Changes Feb. 07 - Beg
-			// Handling STEREOTYPE_NAME_APPEARANCE preference (from ProfileApplicationPreferencePage)
-			// Previously lowercase forced onto first letter (standard UML)
-			// stereotypesToDisplay = stereotypesToDisplay+name.substring(0, 1).toLowerCase()+name.substring(1, name.length())+","+separator;
+				// AL Changes Feb. 07 - Beg
+				// Handling STEREOTYPE_NAME_APPEARANCE preference (from ProfileApplicationPreferencePage)
+				// Previously lowercase forced onto first letter (standard UML)
+				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0, 1).toLowerCase()+name.substring(1, name.length())+","+separator;
 
-			if (sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
-				out = out + name + separator;
-			} else if (sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM)) {
-				out = out + name.substring(0, 1).toLowerCase() + name.substring(1, name.length()) + separator;
-			} else { // should not happen since radio button are used to set choice
-				out = out + name.substring(0, 1).toLowerCase() + name.substring(1, name.length()) + separator;
+				// check that the name has not already been added to the displayed string
+				if (sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
+					if (out.indexOf(name) == -1) {
+						out = out + name + separator;
+					}
+				} else { // VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM)) {
+					name = name.substring(0, 1).toLowerCase() + name.substring(1, name.length());
+					if (out.indexOf(name) == -1) {
+						out = out + name + separator;
+					}
+				}
 			}
 		}
 		if (out.endsWith(",")) {
@@ -215,18 +384,4 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		}
 		return out;
 	}
-
-	/**
-	 * return string that contains value of properties of applied stereotype
-	 * 
-	 * @return "" or {'\u00AB'<B>StereotypeName</B>'\u00BB' {<B>propertyName</B>'='<B>propertyValue</B>','}*';'}*
-	 */
-	public String stereotypesPropertiesToDisplay() {
-		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View) getModel());
-		if (stereotypesPropertiesToDisplay.equals("")) {
-			return stereotypesPropertiesToDisplay;
-		}
-		return StereotypeUtil.getPropertiesValues(stereotypesPropertiesToDisplay, getUMLElement());
-	}
-
 }
