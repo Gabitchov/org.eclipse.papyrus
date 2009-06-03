@@ -245,7 +245,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		if(newPageIndex<0 || newPageIndex> currentTabItems.size() -1)
 			return;
 		
-		getSashWindowContainer().activeLeafChange(currentTabItems.get(newPageIndex).childPart);
+		getSashWindowContainer().activePageChange(currentTabItems.get(newPageIndex).childPart);
 	}
 
 	/**
@@ -1007,12 +1007,12 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 			private  int count = 0;
 			public void mouseEnter(MouseEvent e) {
-				System.out.println("MouseEnter()" + count++);
+//				System.out.println("MouseEnter()" + count++);
 				
 			}
 
 			public void mouseExit(MouseEvent e) {
-				System.out.println("MouseExit()" + count++);
+//				System.out.println("MouseExit()" + count++);
 				toolTipManager.closeToolTip();
 			}
 
@@ -1029,10 +1029,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				}
 				
 				PagePart part = currentTabItems.get(index).getChildPart();
-				System.out.println("MouseHover(" + e.widget 
-						+ ", part=" + part.getPartTitle()
-						+ ", item=" + item
-						+ ") - " + count++);
+//				System.out.println("MouseHover(" + e.widget 
+//						+ ", part=" + part.getPartTitle()
+//						+ ", item=" + item
+//						+ ") - " + count++);
 				// TODO move it away 
 				toolTipManager.showToolTip(item.getBounds(), part.getControl(), pt);
 			}
@@ -1048,14 +1048,13 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			public void handleEvent(Event event) {
 				switch (event.type) {
 				case SWT.MouseUp:
-					System.out.println("MouseUp()" + count++);
+//					System.out.println("MouseUp()" + count++);
 					toolTipManager.disableToolTip();
 					break;
 			}
 			}
 		};
 
-		
 		/**
 		 * Build a tracker for the specified control.
 		 * Constructor.

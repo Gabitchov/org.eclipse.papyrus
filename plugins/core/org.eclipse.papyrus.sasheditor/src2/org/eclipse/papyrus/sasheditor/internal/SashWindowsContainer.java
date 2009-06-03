@@ -50,7 +50,7 @@ public class SashWindowsContainer {
 	private IMultiEditorManager multiEditorManager;
 	
 	/**
-	 * Tracker tracking the current active page. The tracker also dosconnect last active page and connect 
+	 * Tracker tracking the current active page. The tracker also disconnect last active page and connect 
 	 * the new one.
 	 */
 	private ActivePageTracker activePageTracker;
@@ -142,15 +142,16 @@ public class SashWindowsContainer {
 	}
 
 	/**
-	 * The active leaf part has change. 
-	 * This method is called by inner parts whenever the active leaf part changes.
-	 * Propagate the event.
+	 * Notifies this page container that the specified page has been activated. This method 
+	 * is called when the user selects a different tab.
+	 * 
+	 * This method is called by inner parts whenever the active page part changes (when user selects a different tab).
+	 * Propagate the event to activePageTracker.
 	 * 
 	 * @param childPart
 	 */
-	public void activeLeafChange(PagePart childPart) {
-		// TODO propagate to the ActivePageTracker
-		System.out.println("activeLeafChange("+childPart+")");
+	protected void activePageChange(PagePart childPart) {
+		System.out.println("activePageChange("+childPart+")");
 		activePageTracker.setActiveEditor(childPart);
 	}
 
