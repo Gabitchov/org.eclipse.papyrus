@@ -63,8 +63,6 @@ public class DeleteDiagramAction extends Action {
 				@Override
 				protected void doExecute() {
 					pageMngr.removePage(diagram);
-					
-					
 				}
 			};
 			

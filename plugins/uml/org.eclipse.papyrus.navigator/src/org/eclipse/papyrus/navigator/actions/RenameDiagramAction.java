@@ -57,7 +57,6 @@ public class RenameDiagramAction extends Action {
 							
 						}
 					};
-					diagram.setName(name);
 					
 					editingDomain.getCommandStack().execute(command);
 				}

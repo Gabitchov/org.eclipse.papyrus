@@ -26,8 +26,17 @@ public class OpenDiagramAction extends Action {
 		this.pageMngr = pageMngr;
 		
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		setText("Open");
+		if(pageMngr.isOpen(diagram))
+		{
+			setText("Re Open");
+			setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
+		}
+		else
+		{
+		    setText("Open");
+			setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_BACK));
+		}
+		
 		setEnabled(true);
 	}
 

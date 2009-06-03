@@ -25,7 +25,7 @@ public class CloseDiagramAction extends Action {
 		this.pageMngr = pageMngr
 		;
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
+		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
 		setText("Close");
 		setEnabled( pageMngr.isOpen(diagram) );
 	}
