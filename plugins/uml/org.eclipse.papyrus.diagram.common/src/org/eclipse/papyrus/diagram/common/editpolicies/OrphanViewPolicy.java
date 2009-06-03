@@ -76,7 +76,6 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 		final CompoundCommand cc = new CompoundCommand(DiagramUIMessages.DeleteCommand_Label);
 		while (views.hasNext()) {
 			View view = (View) views.next();
-			System.err.println("Remove view --> " + view);
 			cc.add(getDeleteViewCommand(view));
 		}
 
