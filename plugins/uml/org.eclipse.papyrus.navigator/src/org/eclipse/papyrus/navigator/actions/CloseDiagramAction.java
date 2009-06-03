@@ -22,8 +22,8 @@ public class CloseDiagramAction extends Action {
 
 	public CloseDiagramAction(IPageMngr pageMngr, Diagram diagram) {
 		this.diagram = diagram;
-		this.pageMngr = pageMngr
-		;
+		this.pageMngr = pageMngr;
+		
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
 		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
 		setText("Close");
@@ -39,14 +39,5 @@ public class CloseDiagramAction extends Action {
 	public void run() {
 		
 		pageMngr.closePage(diagram);
-//		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
-//		if (editingDomain != null) {
-//			
-//			
-//			EList<EObject> diagrams = diagram.eResource().getContents();
-//			//TODO : synchronize with Cedric
-//			Command command = new RemoveCommand(editingDomain, diagrams, diagram);
-//			editingDomain.getCommandStack().execute(command);
-//		}
 	}
 }

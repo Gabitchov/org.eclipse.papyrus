@@ -51,7 +51,7 @@ public class DiagramActionProvider extends AbstractSubmenuActionProvider {
 			menu.add(deleteDiagramAction);
 
 			// Create Duplicate Diagram action
-			DuplicateDiagramAction duplicateDiagramAction = new DuplicateDiagramAction(diagram);
+			DuplicateDiagramAction duplicateDiagramAction = new DuplicateDiagramAction(pageMngr, diagram);
 			menu.add(duplicateDiagramAction);
 		}
 	}

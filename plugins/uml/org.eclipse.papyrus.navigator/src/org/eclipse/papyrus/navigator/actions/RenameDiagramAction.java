@@ -54,7 +54,6 @@ public class RenameDiagramAction extends Action {
 						@Override
 						protected void doExecute() {
 							diagram.setName(name);
-							
 						}
 					};
 					
