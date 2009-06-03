@@ -178,6 +178,8 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 				// Ok, this is a gmf diagram
 				// EObject root = ((CoreSemanticModelBridge) di2Diagram.getSemanticModel()).getElement();
 				ImageDescriptor imageDescriptor = desc.getIcon();
+				if(imageDescriptor==null)
+					return null;
 				Image image = imageDescriptor.createImage();
 				return image;
 			}
