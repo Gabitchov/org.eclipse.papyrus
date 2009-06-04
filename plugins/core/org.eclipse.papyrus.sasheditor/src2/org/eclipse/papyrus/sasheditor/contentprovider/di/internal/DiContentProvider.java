@@ -144,6 +144,21 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
+	 * Set the current folder.
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#setCurrentFolder(java.lang.Object)
+	 *
+	 * @param rawModel The object identifying the folder.
+	 */
+	public void setCurrentFolder(Object rawModel) {
+		
+		if(! (rawModel instanceof TabFolder) )
+		{
+			return;
+		}
+		diSashModel.setCurrentSelection((TabFolder)rawModel);
+	}
+
+	/**
 	 * Get the node used as root of the SashWindows.
 	 * For now, this is the first window.
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getRootModel()
@@ -403,4 +418,5 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 			  firePropertyChanged(new ContentEvent(msg.getEventType(), sender, null));
 		}
 	}
+
 }

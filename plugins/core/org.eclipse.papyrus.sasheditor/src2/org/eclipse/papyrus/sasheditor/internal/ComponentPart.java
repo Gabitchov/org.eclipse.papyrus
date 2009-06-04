@@ -65,7 +65,7 @@ public class ComponentPart extends PagePart {
 	 * Parent owning this PagePart. 
 	 * Can be null if the Part is orphaned. Even if it is orphaned, the Item still set.
 	 */
-	protected TabFolderPart parent;
+//	protected TabFolderPart parent;
 
 	/**
 	 * Listen on mouse enter event.

@@ -143,7 +143,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		}
 		IPageModel movedTab = doMoveTab((TabFolderModel)srcFolderModel, sourceIndex, (TabFolderModel)targetFolderModel, targetIndex);
 		removeEmptyFolder((TabFolderModel)srcFolderModel);
-		doSetCurrentFolder(targetFolderModel);
+		doSetCurrentFolder((TabFolderModel)targetFolderModel);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.MOVED, this, movedTab) );	
 	}
 
@@ -159,7 +159,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		List<IPageModel> toMove = srcFolder.doRemoveAll();
 		targetFolder.doAddAllTab(toMove);
 		removeEmptyFolder((TabFolderModel)srcFolderModel);
-		doSetCurrentFolder(targetFolderModel);
+		doSetCurrentFolder((TabFolderModel)targetFolderModel);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.MOVED, this, srcFolderModel) );	
 	}
 	
@@ -167,7 +167,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * Set the Current Folder to the newCurrentFolder.
 	 * @param targetFolderModel
 	 */
-	private void doSetCurrentFolder(ITabFolderModel newCurrentFolder) {
+	private void doSetCurrentFolder(TabFolderModel newCurrentFolder) {
 		currentTabFolder = (TabFolderModel)newCurrentFolder;
 	}
 
@@ -377,6 +377,20 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		return currentTabFolder;
 	}
 	
+	/**
+	 * Set the the current Folder.
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#setCurrentFolder(java.lang.Object)
+	 *
+	 * @param rawModel Object identifying the current folder. In this implementation, the object is the FolderModel.
+	 */
+	public void setCurrentFolder(Object rawModel) {
+		if(! (rawModel instanceof TabFolderModel) )
+		{
+			return;
+		}
+		doSetCurrentFolder((TabFolderModel)rawModel);
+	}
+
 	/**
 	 * A class managing a list of listeners.
 	 * @author dumoulin

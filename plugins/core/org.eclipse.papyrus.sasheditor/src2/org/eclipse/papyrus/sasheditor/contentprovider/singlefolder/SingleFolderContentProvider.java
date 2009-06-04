@@ -177,6 +177,15 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 	
 	/**
+	 * Do nothing as we can't have other folders.
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#setCurrentFolder(java.lang.Object)
+	 *
+	 * @param rawModel
+	 */
+	public void setCurrentFolder(Object rawModel) {
+	}
+
+	/**
 	 * A class managing a list of listeners.
 	 * @author dumoulin
 	 */

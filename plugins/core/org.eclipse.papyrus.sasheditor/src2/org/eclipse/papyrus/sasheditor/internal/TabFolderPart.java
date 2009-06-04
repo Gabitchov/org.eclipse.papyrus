@@ -129,7 +129,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 * @param newPageIndex
 		 */
 		public void pageChangeEvent(int newPageIndex) {
-			pageChange(newPageIndex);
+			pageChangedEvent(newPageIndex);
 		}
 		
 	};
@@ -245,7 +245,22 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		if(newPageIndex<0 || newPageIndex> currentTabItems.size() -1)
 			return;
 		
-		getSashWindowContainer().activePageChange(currentTabItems.get(newPageIndex).childPart);
+		getSashWindowContainer().pageChanged(currentTabItems.get(newPageIndex).childPart);
+	}
+
+	/**
+	 * An event signaling that the selected page is changed has be caught. Propagate the event to 
+	 * the container.
+	 * @param newPageIndex
+	 */
+	protected void pageChangedEvent(int newPageIndex) {
+
+//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
+		// Do nothing if out of range.
+		if(newPageIndex<0 || newPageIndex> currentTabItems.size() -1)
+			return;
+		
+		getSashWindowContainer().pageChangedEvent(currentTabItems.get(newPageIndex).childPart);
 	}
 
 	/**

@@ -88,7 +88,12 @@ public class SashWindowsContainer {
 	 */
 	public SashWindowsContainer(IMultiEditorManager multiEditorManager) {
 		this.multiEditorManager = multiEditorManager;
-		activePageTracker = new ActiveEditorAndPageTracker(multiEditorManager);
+		activePageTracker = new ActivePageTracker();
+
+		// Add listener on activePageChange.
+		// This listener will take in charge editor services switching.
+		activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager.getEditorSite()));
+		
 	}
 	
 	/**
@@ -143,16 +148,43 @@ public class SashWindowsContainer {
 
 	/**
 	 * Notifies this page container that the specified page has been activated. This method 
-	 * is called when the user selects a different tab.
+	 * is called after the current tabs has been changed, either by refreshing the tabs, or by a user
+	 * UI action.
 	 * 
-	 * This method is called by inner parts whenever the active page part changes (when user selects a different tab).
 	 * Propagate the event to activePageTracker.
 	 * 
 	 * @param childPart
 	 */
-	protected void activePageChange(PagePart childPart) {
-		System.out.println("activePageChange("+childPart+")");
+	protected void pageChanged(PagePart childPart) {
+		System.out.println("pageChanged("+childPart+")");
 		activePageTracker.setActiveEditor(childPart);
+	}
+
+	/**
+	 * Notifies this page container that a pageChanged event has been fired by one swt Control.
+	 * This method is usually called after the user selects a different tab.
+	 * 
+	 * The method record the new active folder in the ContentProvider, and calls {@link #pageChanged(PagePart)}.
+	 * 
+	 * @param childPart
+	 */
+	protected void pageChangedEvent(PagePart childPart) {
+		System.out.println("pageChangedEvent("+childPart+")");
+		contentProvider.setCurrentFolder(childPart.getParent().getRawModel());
+		pageChanged(childPart);
+	}
+
+	/**
+	 * Set the active page. The current active page will be the specified page.
+	 * Do not record the new active folder in the ContentProvider
+	 * 
+	 * The method record the new CurrentFolder, and calls {@link #pageChanged(PagePart)}.
+	 * 
+	 * @param childPart
+	 */
+	protected void setActivePage(PagePart childPart) {
+		System.out.println("pageChangedEvent("+childPart+")");
+		pageChanged(childPart);
 	}
 
 	/**

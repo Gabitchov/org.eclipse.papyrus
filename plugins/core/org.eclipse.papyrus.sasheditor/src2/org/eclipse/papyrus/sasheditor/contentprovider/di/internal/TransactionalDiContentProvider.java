@@ -121,6 +121,27 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	}
 
 	/**
+	 * Keep trace of the current folder.
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#setCurrentFolder(java.lang.Object)
+	 *
+	 * @param rawModel
+	 */
+	public void setCurrentFolder(final Object rawModel) {
+		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		
+		RecordingCommand command = new RecordingCommand(editingDomain) {
+
+			@Override
+			protected void doExecute() {
+				diContentProvider.setCurrentFolder(rawModel);
+				
+			}
+		};
+
+		editingDomain.getCommandStack().execute(command);
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getRootModel()
 	 * @return
 	 * 

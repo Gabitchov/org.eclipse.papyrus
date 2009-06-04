@@ -37,7 +37,7 @@ public class ActivePageTracker {
 	Logger log = Logger.getLogger(getClass().getName());
 	
 	/** List of listeners */
-	private List<IActiveEditorChangeListener> activeEditorChangeListeners = new ArrayList<IActiveEditorChangeListener>();
+	private List<IActiveEditorChangedListener> activeEditorChangedListeners = new ArrayList<IActiveEditorChangedListener>();
 
 	/** The currently active editor */
 	protected PagePart activeEditor;
@@ -47,14 +47,14 @@ public class ActivePageTracker {
 	 * @author dumoulin
 	 *
 	 */
-	public interface IActiveEditorChangeListener {
+	public interface IActiveEditorChangedListener {
 		
 		/**
-		 * This method is called whenever the active editor change.
+		 * This method is called whenever the active editor is changed.
 		 * @param oldEditor
 		 * @param newEditor
 		 */
-		public void activeEditorChange(PagePart oldEditor, PagePart newEditor);
+		public void activeEditorChanged(PagePart oldEditor, PagePart newEditor);
 	}
 	
 	
@@ -76,6 +76,7 @@ public class ActivePageTracker {
 	
 	/**
 	 * Set the active editor with the specified editor.
+	 * This will notify all registered listeners
 	 * @param editor
 	 */
 	public void setActiveEditor(PagePart editor)
@@ -86,53 +87,44 @@ public class ActivePageTracker {
 		
 		PagePart oldEditor = activeEditor;
 		activeEditor = editor;
-		editorChange(editor);
 		fireEditorChangeEvent(oldEditor, editor);
 	}
 	
 	/**
-	 * Notifies that the editor has been activated. This method is called when the 
-	 * user selects a different editor.
-	 * @param editor
-	 */
-	protected void editorChange(PagePart editor)
-	{
-		System.out.println(getClass().getSimpleName()+ ".editorChange('"+ editor.getPartTitle()+"')");
-
-		// TODO: Shouldn't we fire the fireEditorChangeEvent() here rather than in setActiveEditor() ?
-		editor.setFocus();
-	}
-	
-	/**
 	 * Add a listener on the activeEditorChange event.
 	 * @param listener
 	 */
-	public void addActiveEditorChangeListener(IActiveEditorChangeListener listener)
+	public void addActiveEditorChangedListener(IActiveEditorChangedListener listener)
 	{
 		// no duplicate
-		if(activeEditorChangeListeners.contains(listener))
+		if(activeEditorChangedListeners.contains(listener))
 			return;
-		activeEditorChangeListeners.add(listener);
+		activeEditorChangedListeners.add(listener);
 	}
 	
 	/**
 	 * Add a listener on the activeEditorChange event.
 	 * @param listener
 	 */
-	public void removeActiveEditorChangeListener(IActiveEditorChangeListener listener)
+	public void removeActiveEditorChangedListener(IActiveEditorChangedListener listener)
 	{
-		activeEditorChangeListeners.remove(listener);
+		activeEditorChangedListeners.remove(listener);
 	}
 	
+	/**
+	 * Notify all listener with event.
+	 * @param oldEditor
+	 * @param newEditor
+	 */
 	private void fireEditorChangeEvent(PagePart oldEditor, PagePart newEditor)
 	{
 		// Fire only if really change
 		if(oldEditor == newEditor)
 			return;
 		
-		for(IActiveEditorChangeListener listener : activeEditorChangeListeners)
+		for(IActiveEditorChangedListener listener : activeEditorChangedListeners)
 		{
-			listener.activeEditorChange(oldEditor, newEditor);
+			listener.activeEditorChanged(oldEditor, newEditor);
 		}
 	}
 	

@@ -113,14 +113,14 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 		}
 	}
 
-	/**
-	 * Returns the multi-page editor.
-	 * 
-	 * @return the multi-page editor.
-	 */
-	protected IMultiPageEditorPart getMultiPageEditor() {
-		return multiPageEditor;
-	}
+//	/**
+//	 * Returns the multi-page editor.
+//	 * 
+//	 * @return the multi-page editor.
+//	 */
+//	private IMultiPageEditorPart getMultiPageEditor() {
+//		return multiPageEditor;
+//	}
 
 	/*
 	 * (non-Javadoc) Method declared on <code>ISelectionProvider</code>.

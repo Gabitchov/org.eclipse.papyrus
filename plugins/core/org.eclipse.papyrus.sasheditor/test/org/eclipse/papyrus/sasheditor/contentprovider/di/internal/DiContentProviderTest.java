@@ -203,6 +203,56 @@ public class DiContentProviderTest extends TestCase {
 		
 		
 	}
+	
+	/**
+	 * Check if {@link DiContentProvider#setCurrentFolder(Object)}.
+	 * Check if the method works and DO NO send any event.
+	 */
+	public void testSetCurrentFolder()
+	{
+		// A listener on change event.
+		ContentChangeListener changeListener = new ContentChangeListener();
+		// Set change listener
+		contentProvider.addContentChangedListener(changeListener);
+
+		// Add pages in the model
+		// Use Object as identifiers.
+		List<Object> identifiers = new ArrayList<Object>();
+		// Add 10 pages
+		for(int i=0; i<5; i++)
+		{
+			// reset change count
+			changeListener.reset();
+			// Add Editor
+			Object id = new Object();
+			identifiers.add(id);
+			contentProvider.addPage(id);
+		}
+		
+		// reset change count
+		changeListener.reset();
+		// create a folder
+		contentProvider.createFolder(folderModel, 3, folderModel, SWT.RIGHT);
+		assertEquals("One event fired", 1, changeListener.getChangeCount());
+
+		
+		// Get the real di implementation of the first folder
+		TabFolder firstFolder = ((TabFolderModel)folderModel).getTabFolder();
+		TabFolder createdDiFolder = contentProvider.getDiSashModel().getCurrentSelection();
+		
+        // Check if the folder has changed
+		assertNotSame("current folder has change", firstFolder, createdDiFolder);
+		// Get the created folder
+		
+		// Try to change the current selection by setting the first folder again
+		changeListener.reset();
+		contentProvider.setCurrentFolder(firstFolder);
+		// Check if really changed
+		assertEquals("current folder set correctly", firstFolder, contentProvider.getDiSashModel().getCurrentSelection());
+		assertEquals("No event fired", 0, changeListener.getChangeCount());
+	}
+	
+	
 	/**
 	 * Listener on ContentChange.
 	 * @author dumoulin

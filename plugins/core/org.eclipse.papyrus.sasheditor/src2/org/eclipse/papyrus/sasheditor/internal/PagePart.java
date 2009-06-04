@@ -43,6 +43,14 @@ public abstract class PagePart extends AbstractPart {
 		this.rawModel = rawModel;
 	}
 
+	
+	/**
+	 * @return the parent
+	 */
+	protected TabFolderPart getParent() {
+		return parent;
+	}
+
 	/**
 	 * Orphan this part.
 	 */

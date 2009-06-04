@@ -98,4 +98,17 @@ public interface ISashWindowsContentProvider {
 	 */
 	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side);
 
+	/**
+	 * Ask the model to keep trace of the Current Folder.
+	 * The notion of Current Folder is used by {@link #addPage(Object)}.
+	 * Calling this method should not fire a Change Event.
+	 * 
+	 * This method is used by the SashSystem when the user select a new folder by clicking on one of 
+	 * the tabs.
+	 * 
+	 * @param rawModel The Raw model identifying the folder. This is the same object as the one 
+	 * returned by {@link ISashPanelModel#getChildren()} when the child denote a folder.
+	 */
+	public void setCurrentFolder(Object rawModel);
+
 }

@@ -14,11 +14,13 @@
 package org.eclipse.papyrus.sasheditor.internal;
 
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorActionBarContributor;
 import org.eclipse.papyrus.sasheditor.editor.IMultiPageEditorActionBarContributor;
+import org.eclipse.papyrus.sasheditor.internal.ActivePageTracker.IActiveEditorChangedListener;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
@@ -32,27 +34,33 @@ import org.eclipse.ui.services.IServiceLocator;
 
 
 /**
- * Instance of this class track the active leaf or editor.
- * When the active editor change, the tracker receive an event, and perform following tasks:
- * - send unselect msg to old active editor
- * - send select msg to new active editor
- * - record the new active editor
- * - fire events to all registered listeners.
+ * This class is used to switch the current Active Editor.
+ * When a new Editor is set active, by calling {@link #setActiveEditor(PagePart)}, following actions are
+ * performed:
+ * <ul>
+ * <li>deactivate services: nested site and keybinding </li>
+ * <li>An event is sent to the ActionBarContributor if it accept it (by implementing {@link IMultiPageEditorActionBarContributor})</li>
+ * <li>Send {@link SelectionChangedEvent} to the main editor. The event contains the current selection of the new
+ * active editor.</li>
+ * <li>Connect the keybinding service to the new Editor.</li>
+ * </ul>
  * 
- * This class allows to set externally the active editor.
- * This class add IEditor switching: when the editor change, it is connected, thanks
- * to the Site, to the SelectionService, KeyboardService, ...
- * 
- * @author dumoulin
+  * 
+ * @author cedric dumoulin
  *
- * @deprecated Not used anymore. Use {@link ActiveEditorServicesSwitcher}
  */
-public class ActiveEditorAndPageTracker extends ActivePageTracker {
+public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListener {
 
+	/** Log object */
+	Logger log = Logger.getLogger(getClass().getName());
+	
+	/** The currently active editor */
+	protected PagePart activeEditor;
+	
 	/**
-	 * The manager used to access main editor properties like site, actionbars, ...
+	 * The {@link IEditorSite} of the outerMost editor (the main editor) ...
 	 */
-	private IMultiEditorManager multiEditorManager;
+	private IEditorSite outerEditorSite;
 
 	/**
 	 * The active service locator. This value may be <code>null</code> if there is no selected page, or if the selected page is a control with no site.
@@ -60,11 +68,11 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 	private INestable activeServiceLocator;
 
 	/**
-	 * @param editorManager
-	 * TODO Provide main editor Site only.
+	 * Constructor.
+	 * @param outerEditorSite {@link IEditorSite} of the main editor.
 	 */
-	public ActiveEditorAndPageTracker(IMultiEditorManager editorManager) {
-		this.multiEditorManager = editorManager;
+	public ActiveEditorServicesSwitcher(IEditorSite outerEditorSite) {
+		this.outerEditorSite = outerEditorSite;
 	}
 
 	/**
@@ -98,40 +106,52 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 	}
 	
 	/**
-	 * Notifies that the editor has been activated. This method is called when the 
-	 * user selects a different editor.
-	 * @param editor
+	 * Called when the active editor is changed. 
+	 * Perform requested operations.
+	 * @param oldEditor
+	 * @param newEditor
 	 */
-	protected void editorChange(PagePart editor)
+	public void activeEditorChanged(PagePart oldEditor, PagePart newEditor)
 	{
-		System.out.println(getClass().getSimpleName()+ ".editorChange('"+ editor.getPartTitle()+"')");
+
+		System.out.println(getClass().getSimpleName()+ ".activeEditorChange('"+ newEditor.getPartTitle()+"')");
+
+		activeEditor = newEditor;
+
 		// Set focus
-		IPartService partService = (IPartService) getEditorSite().getService(IPartService.class);
-		if (partService.getActivePart() == getEditorSite().getPart()) {
-			editor.setFocus();
+		IPartService partService = (IPartService) getOuterEditorSite().getService(IPartService.class);
+		if (partService.getActivePart() == getOuterEditorSite().getPart()) {
+			newEditor.setFocus();
 		}
 
 		// Switch services
 		deactivateServices(false);
 		fireChangeEventToActionBarContributor();
-		propagateSelectionChange(editor);
+		propagateSelectionChanged();
 		activateServices();
+
+		// 
+		newEditor.setFocus();
 	}
-	
+
 	/**
-	 * Propagate the selection change to the outer SelectionProvider.
-	 * @param editor
+	 * Change the current selection of the outermost editor (the main editor).
+	 * Send a {@link SelectionChangedEvent} event to the outerProvider. The event contains the current selection
+	 * of the new activeEditor.
+	 * @param editor The new activeEditor.
 	 */
-	private void propagateSelectionChange(PagePart editor) {
+	private void propagateSelectionChanged() {
 		
 		// Get the IEditor
-		IEditorPart editorPart = getIEditorPart(editor);
+		IEditorPart editorPart = getActiveIEditorPart();
 		
 		// Propagate the selection change event.
+		// Get the selection of the new activeEditor and send an SelectionChangedEvent to the outerProvider (provider of the main 
+		// editor) with the selection.
 		if (editorPart != null) {
 			ISelectionProvider selectionProvider = editorPart.getSite().getSelectionProvider();
 			if (selectionProvider != null) {
-				ISelectionProvider outerProvider = getEditorSite().getSelectionProvider();
+				ISelectionProvider outerProvider = getOuterEditorSite().getSelectionProvider();
 				if (outerProvider instanceof MultiPageSelectionProvider) {
 					SelectionChangedEvent event = new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection());
 
@@ -165,7 +185,7 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 
 
 		// Get the service
-		final IKeyBindingService service = getEditorSite().getKeyBindingService();
+		final IKeyBindingService service = getOuterEditorSite().getKeyBindingService();
 
 		
 		final IEditorPart editor = getActiveIEditorPart();
@@ -204,7 +224,7 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 		}
 
 		final IEditorPart editor = getActiveIEditorPart();
-		final IKeyBindingService service = getEditorSite().getKeyBindingService();
+		final IKeyBindingService service = getOuterEditorSite().getKeyBindingService();
 		if (editor!=null || immediate) {
 			// There is no selected page, so deactivate the active service.
 			if (service instanceof INestableKeyBindingService) {
@@ -221,7 +241,7 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 	 * Send message to the ActionBarContributor, like this it can switch the active editor.
 	 */
 	private void fireChangeEventToActionBarContributor() {
-		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
+		IEditorActionBarContributor contributor = getOuterEditorSite().getActionBarContributor();
 		if (contributor != null && contributor instanceof IMultiPageEditorActionBarContributor ) {
 			((MultiPageEditorActionBarContributor) contributor).setActivePage(getActiveIEditorPart());
 		}
@@ -232,9 +252,9 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 	 * Return the MultipageEditorSite
 	 * @return
 	 */
-	private IEditorSite getEditorSite() {
-		return multiEditorManager.getEditorSite();
+	private IEditorSite getOuterEditorSite() {
+		return outerEditorSite;
 	}
-	
+
 
 }
