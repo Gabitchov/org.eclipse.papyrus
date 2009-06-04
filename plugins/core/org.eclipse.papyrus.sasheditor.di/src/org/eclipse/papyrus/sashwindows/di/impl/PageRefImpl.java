@@ -326,11 +326,9 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 		{
 			setEmfPageIdentifier(null);
 		}
-		else
-		{
-			setObjectPageIdentifier(newPageIdentifier);
-		}
-		
+
+		// By default, consider newPageIdentifier as an Object
+		setObjectPageIdentifier(newPageIdentifier);
 		
 	}
 
