@@ -19,6 +19,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.papyrus.diagram.common.commands.SupplementCommand;
+import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -26,9 +28,9 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * This is the supplement command adapted for association
+ * This is the supplement command adapted for association in use case diagram
  * 
- * @author Patrick Tessier
+ * @author Emilien Perico
  */
 public class CreateAssociationSupplement extends SupplementCommand {
 
@@ -94,7 +96,7 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		}
 
 		((Package) getContainer()).getPackagedElements().add(association);
-		// UMLElementTypes.init_Association_4004(association);
+		UMLElementTypes.init_Association_4011(association);
 		return association;
 	}
 }

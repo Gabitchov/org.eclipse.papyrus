@@ -190,43 +190,30 @@
 			class="org.eclipse.papyrus.diagram.usecase.preferences.UseCaseDiagramPreferencePage"
 			id="org.eclipse.papyrus.preferences.diagrams.usecase"
 			name="UseCase Diagram"/>
-
-
-	
       <page
             category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.Actor_2002PreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.Actor_2002PreferencePage"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
             name="Actor"/>	
       <page
             category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.Actor_2003PreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.Actor_2003PreferencePage"
-            name="Actor"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.UseCase_2004PreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.UseCase_2004PreferencePage"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
             name="UseCase"/>	
       <page
             category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.UseCase_2005PreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.UseCase_2005PreferencePage"
-            name="UseCase"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.Component_2006PreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.Component_2006PreferencePage"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
             name="Component"/>	
       <page
             category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.Package_2009PreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.Package_2009PreferencePage"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
             name="Package"/>	
       <page
             category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.Constraint_2008PreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.Constraint_2008PreferencePage"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
             name="Constraint"/>
 
 	
@@ -914,6 +901,5 @@
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-
 
 </plugin>
