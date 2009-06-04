@@ -21,13 +21,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPar
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.umlutils.ui.helper.GradientColorHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.Element;
@@ -134,7 +134,6 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 			addListenerFilter("StereotypedElement", this, (EObject) event.getNewValue());
 		}
 
-		refreshGradient();
 		refreshShadow();
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
@@ -219,6 +218,15 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		}
 	}
 
+	
+	/**
+	 * Papyrus Node support gradient. 
+	 */
+	@Override
+	public boolean supportsGradient() {
+		 return true;
+	}
+
 	/**
 	 * return string that contains value of properties of applied stereotype
 	 * 
@@ -241,12 +249,6 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 	}
 
-	/**
-	 * Refresh the gradient for this edit part
-	 */
-	protected void refreshGradient() {
-		getPrimaryShape().setDisplayGradient(GradientColorHelper.getGradientColorValue((View) getModel()));
-	}
 
 	/**
 	 * Refresh the gradient for this edit part
@@ -263,10 +265,15 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		refreshAppliedStereotypesProperties();
 		refreshAppliedStereotypes();
 		refreshShadow();
-		refreshGradient();
-
 	}
 
+	/**
+	* Override to set the preferency to the correct figure
+	*/
+	@Override
+	protected void setTransparency(int transp) {
+		getPrimaryShape().setTransparency(transp);
+	}
 	/**
 	 * sets the back ground color of this edit part
 	 * 
@@ -275,6 +282,20 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 	 */
 	protected void setBackgroundColor(Color color) {
 		getPrimaryShape().setBackgroundColor(color);
+	}
+
+	/**
+	* Override to set the gradient data to the correct figure
+	*/
+	@Override
+	protected void setGradient(GradientData gradient) {
+		NodeFigure fig = getPrimaryShape();
+    	if (gradient != null) {    		    		
+    		fig.setIsUsingGradient(true);
+    		fig.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle()); 		
+    	} else {
+    		fig.setIsUsingGradient(false);
+    	}
 	}
 
 	/**

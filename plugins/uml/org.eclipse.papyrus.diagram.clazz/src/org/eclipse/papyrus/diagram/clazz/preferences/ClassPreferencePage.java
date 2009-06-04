@@ -4,11 +4,34 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 
 /**
  * @generated
  */
 public class ClassPreferencePage extends AbstractPapyrusNodePreferencePage {
+
+	/**
+	 * @generated
+	 */
+	public static void initDefaults(IPreferenceStore store) {
+		PreferenceConverter.setDefault(store,
+				IPapyrusPreferencesConstant.CLASS_PREF_FILL_COLOR,
+				new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store,
+				IPapyrusPreferencesConstant.CLASS_PREF_LINE_COLOR,
+				new org.eclipse.swt.graphics.RGB(177, 207, 229));
+
+		// Set the default for the gradient
+		store.setDefault(
+				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_POLICY, true);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+				new org.eclipse.swt.graphics.RGB(255, 255, 255),
+				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
+		store.setDefault(IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_COLOR,
+				gradientPreferenceConverter.getPreferenceValue());
+
+	}
 
 	/**
 	 * @generated
@@ -24,6 +47,14 @@ public class ClassPreferencePage extends AbstractPapyrusNodePreferencePage {
 	@Override
 	protected String getFillColorPreferenceName() {
 		return IPapyrusPreferencesConstant.CLASS_PREF_FILL_COLOR;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected String getFillPolicyPreferenceName() {
+		return IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_POLICY;
 	}
 
 	/**
@@ -46,20 +77,16 @@ public class ClassPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	@Override
-	protected String getLineColorPreferenceName() {
-		return IPapyrusPreferencesConstant.CLASS_PREF_LINE_COLOR;
+	protected String getGradientColorPreferenceName() {
+		return IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_COLOR;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static void initDefaults(IPreferenceStore store) {
-		PreferenceConverter.setDefault(store,
-				IPapyrusPreferencesConstant.CLASS_PREF_FILL_COLOR,
-				new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store,
-				IPapyrusPreferencesConstant.CLASS_PREF_LINE_COLOR,
-				new org.eclipse.swt.graphics.RGB(177, 207, 229));
+	@Override
+	protected String getLineColorPreferenceName() {
+		return IPapyrusPreferencesConstant.CLASS_PREF_LINE_COLOR;
 	}
 
 }

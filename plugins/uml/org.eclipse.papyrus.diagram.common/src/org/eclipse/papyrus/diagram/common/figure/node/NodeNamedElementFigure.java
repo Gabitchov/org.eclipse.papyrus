@@ -19,7 +19,6 @@ import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
@@ -31,7 +30,10 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.SWT;
@@ -45,12 +47,12 @@ import org.eclipse.uml2.uml.Element;
 /**
  * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified nale label + 1 name label
  */
-public class NodeNamedElementFigure extends Figure implements IAbstractElementFigure {
+public class NodeNamedElementFigure extends NodeFigure implements IAbstractElementFigure {
 
 	/**
 	 * The background color.
 	 */
-	protected Color backgroundColor = ColorConstants.lightBlue;
+	protected Color backgroundColor = ColorConstants.lightGreen;
 
 	/**
 	 * The border color.
@@ -59,8 +61,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 
 	/** the depth of the qualified name **/
 	private int depth = 0;
-
-	private boolean displayGradient = true;
 
 	/**
 	 * The font.
@@ -292,10 +292,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return depth;
 	}
 
-	public boolean getDisplayGradient() {
-		return displayGradient;
-	}
-
 	/**
 	 * Getfigure font.
 	 * 
@@ -330,10 +326,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 */
 	public Color getForeGroundColor() {
 		return this.foreGroundColor;
-	}
-
-	public Color getGradientColor() {
-		return getForegroundColor();
 	}
 
 	/**
@@ -560,6 +552,7 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 		return false;
 	}
 
+
 	/**
 	 * Paint figure.
 	 * 
@@ -569,13 +562,9 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	@Override
 	public void paintFigure(Graphics graphics) {
 		super.paintFigure(graphics);
-		graphics.setForegroundColor(this.getGradientColor());
-		graphics.setBackgroundColor(this.backgroundColor);
-		if (getDisplayGradient()) {
-			graphics.fillGradient(getBounds(), true);
-		} else {
-			graphics.fillRectangle(getBounds());
-		}
+		
+		paintBackground(graphics, getBounds());
+		
 		if (this.img != null) {
 			if (this.iconLabel == null) {
 				this.createIconLabel();
@@ -586,7 +575,28 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 			}
 		}
 		shadowborder.setColor(getForegroundColor());
+		
 	}
+
+	/**
+	 * Paint the background of the figure.
+	 * If this figure uses gradient, then it will paint the background with the gradient informations. 
+	 * Otherwise it will use the background color.  
+	 * @param graphics the graphics
+ 	 * @param rectangle the rectangle where the background needs to be fill.
+	 */
+	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
+		if (isUsingGradient()) {
+			applyTransparency(graphics);
+			boolean isVertical = (getGradientStyle()==GradientStyle.VERTICAL)?true:false;
+			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
+			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.fillGradient(rectangle, isVertical);
+		} else {
+			graphics.fillRectangle(rectangle);
+		}
+	}
+	
 
 	/**
 	 * Refresh presentation.
@@ -709,11 +719,6 @@ public class NodeNamedElementFigure extends Figure implements IAbstractElementFi
 	 */
 	public void setDepth(int depth) {
 		this.depth = depth;
-	}
-
-	public void setDisplayGradient(boolean displayGradient) {
-		this.displayGradient = displayGradient;
-		repaint();
 	}
 
 	/**

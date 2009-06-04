@@ -41,6 +41,16 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
+	public static final String COMMENT_PREF_GRADIENT_COLOR = "Comment.gradient.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String COMMENT_PREF_GRADIENT_POLICY = "Comment.gradient.policy";
+
+	/**
+	 * @generated
+	 */
 	public static final String USECASE_PREF_FONT_COLOR = "UseCase.font.color";
 
 	/**
@@ -57,6 +67,16 @@ public interface IPapyrusPreferencesConstant {
 	 * @generated
 	 */
 	public static final String USECASE_PREF_FILL_COLOR = "UseCase.fill.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String USECASE_PREF_GRADIENT_COLOR = "UseCase.gradient.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String USECASE_PREF_GRADIENT_POLICY = "UseCase.gradient.policy";
 
 	/**
 	 * @generated
@@ -81,6 +101,16 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
+	public static final String COMPONENT_PREF_GRADIENT_COLOR = "Component.gradient.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String COMPONENT_PREF_GRADIENT_POLICY = "Component.gradient.policy";
+
+	/**
+	 * @generated
+	 */
 	public static final String CONSTRAINT_PREF_FONT_COLOR = "Constraint.font.color";
 
 	/**
@@ -97,6 +127,16 @@ public interface IPapyrusPreferencesConstant {
 	 * @generated
 	 */
 	public static final String CONSTRAINT_PREF_FILL_COLOR = "Constraint.fill.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String CONSTRAINT_PREF_GRADIENT_COLOR = "Constraint.gradient.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String CONSTRAINT_PREF_GRADIENT_POLICY = "Constraint.gradient.policy";
 
 	/**
 	 * @generated
@@ -121,6 +161,16 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
+	public static final String PACKAGE_PREF_GRADIENT_COLOR = "Package.gradient.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String PACKAGE_PREF_GRADIENT_POLICY = "Package.gradient.policy";
+
+	/**
+	 * @generated
+	 */
 	public static final String ACTOR_PREF_FONT_COLOR = "Actor.font.color";
 
 	/**
@@ -137,6 +187,16 @@ public interface IPapyrusPreferencesConstant {
 	 * @generated
 	 */
 	public static final String ACTOR_PREF_FILL_COLOR = "Actor.fill.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String ACTOR_PREF_GRADIENT_COLOR = "Actor.gradient.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String ACTOR_PREF_GRADIENT_POLICY = "Actor.gradient.policy";
 
 	/**
 	 * @generated

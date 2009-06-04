@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
@@ -41,6 +42,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
@@ -285,8 +287,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_FONT,
 				IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_FONT_COLOR);
 
-		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_FILL_COLOR);
+		initBackgroundFromPrefs(
+				node,
+				prefStore,
+				IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_GRADIENT_POLICY);
 
 		Node AssociationClassName_5066 = createLabel(node, UMLVisualIDRegistry
 				.getType(AssociationClassName2EditPart.VISUAL_ID));
@@ -354,7 +360,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.CLASS_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.CLASS_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.CLASS_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_POLICY);
 
 		Node ClassName_5029 = createLabel(node, UMLVisualIDRegistry
 				.getType(ClassNameEditPart.VISUAL_ID));
@@ -416,7 +424,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.CLASS_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.CLASS_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.CLASS_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_POLICY);
 
 		Node ClassName_5014 = createLabel(node, UMLVisualIDRegistry
 				.getType(ClassNameEditPartCN.VISUAL_ID));
@@ -580,7 +590,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.COMPONENT_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.COMPONENT_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.COMPONENT_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.COMPONENT_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.COMPONENT_PREF_GRADIENT_POLICY);
 
 		Node ComponentName_5005 = createLabel(node, UMLVisualIDRegistry
 				.getType(ComponentNameEditPart.VISUAL_ID));
@@ -620,7 +632,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.COMPONENT_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.COMPONENT_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.COMPONENT_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.COMPONENT_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.COMPONENT_PREF_GRADIENT_POLICY);
 
 		Node ComponentName_5043 = createLabel(node, UMLVisualIDRegistry
 				.getType(ComponentNameEditPartCN.VISUAL_ID));
@@ -744,7 +758,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.DATATYPE_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.DATATYPE_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.DATATYPE_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.DATATYPE_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.DATATYPE_PREF_GRADIENT_POLICY);
 
 		Node DataTypeName_5035 = createLabel(node, UMLVisualIDRegistry
 				.getType(DataTypeNameEditPart.VISUAL_ID));
@@ -777,7 +793,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.DATATYPE_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.DATATYPE_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.DATATYPE_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.DATATYPE_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.DATATYPE_PREF_GRADIENT_POLICY);
 
 		Node DataTypeName_5061 = createLabel(node, UMLVisualIDRegistry
 				.getType(DataTypeNameEditPartCN.VISUAL_ID));
@@ -1086,7 +1104,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.ENUMERATION_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.ENUMERATION_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.ENUMERATION_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.ENUMERATION_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.ENUMERATION_PREF_GRADIENT_POLICY);
 
 		Node EnumerationName_5023 = createLabel(node, UMLVisualIDRegistry
 				.getType(EnumerationNameEditPart.VISUAL_ID));
@@ -1120,7 +1140,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.ENUMERATION_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.ENUMERATION_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.ENUMERATION_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.ENUMERATION_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.ENUMERATION_PREF_GRADIENT_POLICY);
 
 		Node EnumerationName_5055 = createLabel(node, UMLVisualIDRegistry
 				.getType(EnumerationNameEditPartCN.VISUAL_ID));
@@ -1223,7 +1245,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(
 				node,
 				prefStore,
-				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_POLICY);
 
 		Node InstanceSpecificationName_5002 = createLabel(node,
 				UMLVisualIDRegistry
@@ -1262,7 +1286,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(
 				node,
 				prefStore,
-				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_POLICY);
 
 		Node InstanceSpecificationName_5040 = createLabel(node,
 				UMLVisualIDRegistry
@@ -1298,7 +1324,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.INTERFACE_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.INTERFACE_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.INTERFACE_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_POLICY);
 
 		Node InterfaceName_5011 = createLabel(node, UMLVisualIDRegistry
 				.getType(InterfaceNameEditPart.VISUAL_ID));
@@ -1336,7 +1364,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.INTERFACE_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.INTERFACE_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.INTERFACE_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_POLICY);
 
 		Node InterfaceName_5049 = createLabel(node, UMLVisualIDRegistry
 				.getType(InterfaceNameEditPartCN.VISUAL_ID));
@@ -1470,7 +1500,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.MODEL_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.MODEL_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.MODEL_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.MODEL_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.MODEL_PREF_GRADIENT_POLICY);
 
 		Node ModelName_5020 = createLabel(node, UMLVisualIDRegistry
 				.getType(ModelNameEditPartTN.VISUAL_ID));
@@ -1500,7 +1532,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.MODEL_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.MODEL_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.MODEL_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.MODEL_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.MODEL_PREF_GRADIENT_POLICY);
 
 		Node ModelName_5052 = createLabel(node, UMLVisualIDRegistry
 				.getType(ModelNameEditPartCN.VISUAL_ID));
@@ -1741,7 +1775,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PACKAGE_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_POLICY);
 
 		Node PackageName_5026 = createLabel(node, UMLVisualIDRegistry
 				.getType(PackageNameEditPart.VISUAL_ID));
@@ -1773,7 +1809,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PACKAGE_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_POLICY);
 
 		Node PackageName_5017 = createLabel(node, UMLVisualIDRegistry
 				.getType(PackageNameEditPartCN.VISUAL_ID));
@@ -1888,7 +1926,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_GRADIENT_POLICY);
 
 		Node PrimitiveTypeName_5032 = createLabel(node, UMLVisualIDRegistry
 				.getType(PrimitiveTypeNameEditPart.VISUAL_ID));
@@ -1917,7 +1957,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_GRADIENT_POLICY);
 
 		Node PrimitiveTypeName_5058 = createLabel(node, UMLVisualIDRegistry
 				.getType(PrimitiveTypeNameEditPartCN.VISUAL_ID));
@@ -2111,7 +2153,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initBackgroundFromPrefs(
 		// node,
 		// prefStore,
-		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_FILL_COLOR);
+		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_FILL_COLOR,
+		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_GRADIENT_COLOR,
+		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_GRADIENT_POLICY);
 
 		createCompartment(
 				node,
@@ -2146,7 +2190,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.SIGNAL_PREF_FONT_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.SIGNAL_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.SIGNAL_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_POLICY);
 
 		Node SignalName_5008 = createLabel(node, UMLVisualIDRegistry
 				.getType(SignalNameEditPart.VISUAL_ID));
@@ -2176,7 +2222,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.SIGNAL_PREF_LINE_COLOR);
 
 		initBackgroundFromPrefs(node, prefStore,
-				IPapyrusPreferencesConstant.SIGNAL_PREF_FILL_COLOR);
+				IPapyrusPreferencesConstant.SIGNAL_PREF_FILL_COLOR,
+				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_COLOR,
+				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_POLICY);
 
 		Node SignalName_5046 = createLabel(node, UMLVisualIDRegistry
 				.getType(SignalNameEditPartCN.VISUAL_ID));
@@ -2205,12 +2253,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
-		//
+
 		// initForegroundFromPrefs(node, prefStore,
 		// IPapyrusPreferencesConstant.SLOT_PREF_LINE_COLOR);
 		//
 		// initBackgroundFromPrefs(node, prefStore,
-		// IPapyrusPreferencesConstant.SLOT_PREF_FILL_COLOR);
+		// IPapyrusPreferencesConstant.SLOT_PREF_FILL_COLOR,
+		// IPapyrusPreferencesConstant.SLOT_PREF_GRADIENT_COLOR,
+		// IPapyrusPreferencesConstant.SLOT_PREF_GRADIENT_POLICY);
 
 		return node;
 	}
@@ -2394,12 +2444,28 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	private void initBackgroundFromPrefs(View view,
-			final IPreferenceStore store, String fillColorConstant) {
+			final IPreferenceStore store, String fillColorConstant,
+			String gradientColorConstant, String gradientPolicyConstant) {
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
 				store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE
 				.getFillStyle_FillColor(), FigureUtilities
 				.RGBToInteger(fillRGB));
+
+		FillStyle fillStyle = (FillStyle) view
+				.getStyle(NotationPackage.Literals.FILL_STYLE);
+		fillStyle
+				.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
+
+		;
+		if (store.getBoolean(gradientPolicyConstant)) {
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+					store.getString(gradientColorConstant));
+			fillStyle
+					.setGradient(gradientPreferenceConverter.getGradientData());
+			fillStyle.setTransparency(gradientPreferenceConverter
+					.getTransparency());
+		}
 	}
 
 	/**

@@ -4,6 +4,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 
 /**
  * @generated
@@ -24,6 +25,22 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 	@Override
 	protected String getFillColorPreferenceName() {
 		return IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected String getGradientColorPreferenceName() {
+		return IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected String getFillPolicyPreferenceName() {
+		return IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_POLICY;
 	}
 
 	/**
@@ -60,6 +77,17 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 		PreferenceConverter.setDefault(store,
 				IPapyrusPreferencesConstant.PACKAGE_PREF_LINE_COLOR,
 				new org.eclipse.swt.graphics.RGB(177, 207, 229));
+
+		// Set the default for the gradient
+		store.setDefault(
+				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_POLICY, true);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+				new org.eclipse.swt.graphics.RGB(255, 255, 255),
+				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
+		store.setDefault(
+				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR,
+				gradientPreferenceConverter.getPreferenceValue());
+
 	}
 
 }

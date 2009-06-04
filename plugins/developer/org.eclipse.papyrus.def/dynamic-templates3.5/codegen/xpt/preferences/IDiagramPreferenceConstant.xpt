@@ -52,6 +52,12 @@ public interface «getPreferenceConstantFileName()» {
 «DEFINE getNodeConstants FOR String»
 	«EXPAND xpt::Common::generatedClassComment»
 	public static final String «getPreferenceFillColorConstant(self.toUpper())» = "«self».fill.color";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceGradientColorConstant(self.toUpper())» = "«self».gradient.color";
+	
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final String «getPreferenceGradientPolicyConstant(self.toUpper())» = "«self».gradient.policy";
 «ENDDEFINE»
 
 «DEFINE getLinkConstants FOR String»	

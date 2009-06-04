@@ -272,16 +272,10 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	 */
 	@Override
 	public void paint(Graphics graphics) {
-
-		graphics.setForegroundColor(this.getGradientColor());
-		graphics.setBackgroundColor(this.backgroundColor);
-		if (getDisplayGradient()) {
-			graphics.fillGradient(getBounds(), true);
-		} else {
-			graphics.fillRectangle(getBounds());
-		}
-		getGMFAttributeElementContainer().setOpaque(false);
 		super.paint(graphics);
+
+		getGMFAttributeElementContainer().setOpaque(false);
+
 		drawSeparateLine(graphics);
 
 	}

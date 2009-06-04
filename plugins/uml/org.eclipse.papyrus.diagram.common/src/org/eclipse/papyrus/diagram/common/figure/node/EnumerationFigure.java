@@ -235,15 +235,6 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 	public void paint(Graphics graphics) {
 		enumerationContent.setFill(false);
 
-		graphics.setForegroundColor(this.getGradientColor());
-		graphics.setBackgroundColor(this.backgroundColor);
-		if (getDisplayGradient()) {
-			graphics.fillGradient(getBounds(), true);
-		} else {
-			graphics.fillRectangle(getBounds());
-		}
-		getGMFEnumerationElementContainer().setOpaque(false);
-
 		super.paint(graphics);
 		drawSeparateLine(graphics);
 	}

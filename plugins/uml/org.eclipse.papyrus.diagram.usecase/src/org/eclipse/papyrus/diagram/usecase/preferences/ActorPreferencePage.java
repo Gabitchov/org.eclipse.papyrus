@@ -4,6 +4,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 
 /**
  * @generated
@@ -24,6 +25,22 @@ public class ActorPreferencePage extends AbstractPapyrusNodePreferencePage {
 	@Override
 	protected String getFillColorPreferenceName() {
 		return IPapyrusPreferencesConstant.ACTOR_PREF_FILL_COLOR;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected String getGradientColorPreferenceName() {
+		return IPapyrusPreferencesConstant.ACTOR_PREF_GRADIENT_COLOR;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected String getFillPolicyPreferenceName() {
+		return IPapyrusPreferencesConstant.ACTOR_PREF_GRADIENT_POLICY;
 	}
 
 	/**
@@ -54,8 +71,22 @@ public class ActorPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		PreferenceConverter.setDefault(store, IPapyrusPreferencesConstant.ACTOR_PREF_FILL_COLOR, new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store, IPapyrusPreferencesConstant.ACTOR_PREF_LINE_COLOR, new org.eclipse.swt.graphics.RGB(177, 207, 229));
+		PreferenceConverter.setDefault(store,
+				IPapyrusPreferencesConstant.ACTOR_PREF_FILL_COLOR,
+				new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store,
+				IPapyrusPreferencesConstant.ACTOR_PREF_LINE_COLOR,
+				new org.eclipse.swt.graphics.RGB(177, 207, 229));
+
+		// Set the default for the gradient
+		store.setDefault(
+				IPapyrusPreferencesConstant.ACTOR_PREF_GRADIENT_POLICY, true);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+				new org.eclipse.swt.graphics.RGB(255, 255, 255),
+				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
+		store.setDefault(IPapyrusPreferencesConstant.ACTOR_PREF_GRADIENT_COLOR,
+				gradientPreferenceConverter.getPreferenceValue());
+
 	}
 
 }

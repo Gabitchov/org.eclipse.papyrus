@@ -177,22 +177,24 @@ public class PackageFigure extends NodeNamedElementFigure implements IAbstractEl
 
 		// draw header
 		Rectangle containerBound = new Rectangle(getHeader());
-		graphics.setForegroundColor(this.getGradientColor());
-		graphics.setBackgroundColor(this.backgroundColor);
-		if (getDisplayGradient()) {
-			graphics.fillGradient(containerBound, true);
-		} else {
-			graphics.fillRectangle(containerBound);
-		}
+		//graphics.setForegroundColor(this.getGradientColor());
+		//graphics.setBackgroundColor(this.backgroundColor);
+		
+		paintBackground(graphics, containerBound);
+		paintBackground(graphics, getPackageableElementFigure().getBounds());
+//		if (getDisplayGradient()) {
+//			graphics.fillGradient(containerBound, true);
+//		} else {
+//			graphics.fillRectangle(containerBound);
+//		}
 
 		graphics.drawRectangle(containerBound);
 
-		if (getDisplayGradient()) {
-			graphics.fillGradient(getPackageableElementFigure().getBounds(), true);
-		} else {
-			graphics.fillRectangle(getPackageableElementFigure().getBounds());
-		}
-
+//		if (is) {
+//			graphics.fillGradient(getPackageableElementFigure().getBounds(), true);
+//		} else {
+//			graphics.fillRectangle(getPackageableElementFigure().getBounds());
+//		}
 	}
 
 }

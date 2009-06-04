@@ -62,7 +62,7 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 
 		toolbar = new Group(colorsAndFontsGroup, SWT.SHADOW_NONE);
 		toolbar.setText(COLORS_GROUPBOX_LABEL);
-		toolbar.setLayout(new GridLayout(2, true));
+		toolbar.setLayout(new GridLayout(2, false));
 
 		Composite fontColorEditorCompo = getEncapsulatedCompo(toolbar);
 		fontColorEditor = new ColorFieldEditor(getFontColorPreferenceName(), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);

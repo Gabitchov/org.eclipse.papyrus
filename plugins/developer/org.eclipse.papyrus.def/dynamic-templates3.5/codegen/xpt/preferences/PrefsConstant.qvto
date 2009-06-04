@@ -34,6 +34,14 @@ helper getPreferenceConstant() : String{
 return "_PREF_"
 }
 
+helper getPreferenceGradientPolicyConstant(_element: String) : String{
+return _element + getPreferenceConstant() + "GRADIENT_POLICY"
+}
+
+helper getPreferenceGradientColorConstant(_element: String) : String{
+return _element + getPreferenceConstant() + "GRADIENT_COLOR"
+}
+
 helper getPreferenceFillColorConstant(_element: String ) : String{
 return _element + getPreferenceConstant() + "FILL_COLOR"
 }
