@@ -25,6 +25,8 @@ import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.DragDetectEvent;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -108,7 +110,28 @@ public class PTabFolder {
 	private TraverseListener traverseListener = new TraverseListener() {
 
 		public void keyTraversed(TraverseEvent e) {
-			System.out.println("traverseListener(event=" + e + ")");
+//			System.out.println("traverseListener(event=" + e + ")");
+		}
+
+	};
+
+	/**
+	 * 
+	 */
+	private MouseListener mouseListener = new MouseListener() {
+
+		public void mouseDoubleClick(MouseEvent e) {
+//			System.out.println("mouseDoubleClick(event=" + e + ")");
+		}
+
+		public void mouseDown(MouseEvent e) {
+			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
+//			System.out.println("mouseDown(" + globalPos + ", event=" + e + ")");
+			handleFolderReselected(globalPos, e);
+		}
+
+		public void mouseUp(MouseEvent e) {
+//			System.out.println("mousemouseUpListener(event=" + e + ")");
 		}
 
 	};
@@ -202,9 +225,7 @@ public class PTabFolder {
 	/**
 	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.attachListeners(Control, boolean)
 	 */
-	protected void attachListeners(Control theControl, boolean recursive) {
-		
-		ToolTip tip;
+	protected void attachListeners(CTabFolder theControl, boolean recursive) {
 		
 		// Both following methods listen to the same event. 
 		// So use only one of them
@@ -218,17 +239,19 @@ public class PTabFolder {
 //		theControl.addListener(SWT.MouseUp, mouseUpListener);
 //		tabFolder.addSelectionListener(selectionListener);
 //		tabFolder.addTraverseListener(traverseListener);
+		
+		theControl.addMouseListener(mouseListener);
 
-		if (recursive && theControl instanceof Composite) {
-			Composite composite = (Composite) theControl;
-			Control[] children = composite.getChildren();
-
-			for (int i = 0; i < children.length; i++) {
-				Control control = children[i];
-
-				attachListeners(control, recursive);
-			}
-		}
+//		if (recursive && theControl instanceof Composite) {
+//			Composite composite = (Composite) theControl;
+//			Control[] children = composite.getChildren();
+//
+//			for (int i = 0; i < children.length; i++) {
+//				Control control = children[i];
+//
+//				attachListeners(control, recursive);
+//			}
+//		}
 	}
 
 	/**
@@ -241,6 +264,7 @@ public class PTabFolder {
 		PresentationUtil.removeDragListener(theControl, dragListener);
 		// theControl.removeDragDetectListener(dragDetectListener);
 //		theControl.removeListener(SWT.MouseUp, mouseUpListener);
+		theControl.removeMouseListener(mouseListener);
 
 		if (recursive && theControl instanceof Composite) {
 			Composite composite = (Composite) theControl;
@@ -322,6 +346,34 @@ public class PTabFolder {
 		System.out.println(this.getClass().getName() + ".handleMenuDetectStarted() for item=" + tab);
 		// fireEvent(TabFolderEvent.EVENT_DRAG_START, tab, displayPos);
 		listenersManager.fireMenuDetectEvent(tab, e);
+	}
+
+	/**
+	 * Handle folder reselected.
+	 * A folder is reselected by clicking on the active tabs or on the empty tabs area.
+	 * In each case a PageChangeEvent is fired.
+	 * When mouse click happen on the empty area, the last selected tabs is used.
+	 * Used to switch the Active tab when user click on already opened tabs.
+	 * @param displayPos
+	 * @param e
+	 */
+	private void handleFolderReselected(Point displayPos, MouseEvent e) {
+
+//		if (isOnBorder(displayPos)) {
+//			return;
+//		}
+
+//		System.out.println(this.getClass().getName() + ".handleMouseDown() for item=" + getItem(displayPos));
+		
+		int itemIndex = getItemIndex(displayPos);
+		// If click is not from an item, it can come from a click on border.
+		// restore the last selected item
+		if( itemIndex == -1)
+			itemIndex = tabFolder.getSelectionIndex();
+		if( itemIndex == -1)
+			return;
+		
+		listenersManager.firePageChange(itemIndex);
 	}
 
 	/**
