@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.umlutils.ui.helper;
 
+import java.util.StringTokenizer;
+
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
@@ -27,6 +29,8 @@ import org.eclipse.papyrus.umlutils.ui.command.RemoveAppliedStereotypeProperties
 import org.eclipse.papyrus.umlutils.ui.command.RemoveAppliedStereotypeToDisplayCommand;
 import org.eclipse.papyrus.umlutils.ui.command.SetAppliedStereotypePropertiesLocalizationCommand;
 import org.eclipse.papyrus.umlutils.ui.command.SetAppliedStereotypeToDisplayCommand;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * The Class AppliedStereotypeHelper.
@@ -278,5 +282,22 @@ public class AppliedStereotypeHelper {
 	 */
 	public static RecordingCommand getSetAppliedStereotypePropertiesLocalizationCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypePropertiesLocation) {
 		return new SetAppliedStereotypePropertiesLocalizationCommand(domain, view, appliedStereotypePropertiesLocation);
+	}
+
+	/**
+	 * 
+	 * @param model
+	 * @param element
+	 * @return
+	 */
+	public static Stereotype getFirstDisplayedStereotype(EModelElement model, Element element) {
+		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(model);
+		StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
+		if (tokenizer.hasMoreTokens()) {
+			String firstStereotypeName = tokenizer.nextToken();
+			Stereotype stereotype = element.getAppliedStereotype(firstStereotypeName);
+			return stereotype;
+		}
+		return null;
 	}
 }

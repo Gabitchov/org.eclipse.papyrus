@@ -40,6 +40,7 @@ import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 
 public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySection {
 
@@ -140,8 +141,12 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 					if (((View) (diagramElement)).getElement() != null) {
 
 						org.eclipse.uml2.uml.Element elt = (Element) ((View) (diagramElement)).getElement();
-						boolean hasIcons = ElementUtil.hasIcons(elt);
-						boolean hasShapes = ElementUtil.hasShapes(elt);
+
+						// get the first displayed stereotype
+						Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, elt);
+
+						boolean hasIcons = ElementUtil.hasIcons(elt, stereotype);
+						boolean hasShapes = ElementUtil.hasShapes(elt, stereotype);
 						String appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 						String stereotypeAppearance = comboStereotypeAppearance.getText();
 						if (stereotypeAppearance.equals(TEXT)) {
@@ -328,8 +333,11 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 					if (stereotypePresentation != null) {
 
 						org.eclipse.uml2.uml.Element elt = (Element) ((View) (diagramElement)).getElement();
-						boolean hasIcons = ElementUtil.hasIcons(elt);
-						boolean hasShapes = ElementUtil.hasShapes(elt);
+						// get the first displayed stereotype
+						Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, elt);
+
+						boolean hasIcons = ElementUtil.hasIcons(elt, stereotype);
+						boolean hasShapes = ElementUtil.hasShapes(elt, stereotype);
 
 						if (stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 							comboStereotypeAlignement.setEnabled(false);
@@ -378,9 +386,11 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 					if (stereotypePresentation != null) {
 
 						org.eclipse.uml2.uml.Element elt = (Element) ((View) (diagramElement)).getElement();
-						boolean hasIcons = ElementUtil.hasIcons(elt);
-						boolean hasShapes = ElementUtil.hasShapes(elt);
+						// get the first displayed stereotype
+						Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, elt);
 
+						boolean hasIcons = ElementUtil.hasIcons(elt, stereotype);
+						boolean hasShapes = ElementUtil.hasShapes(elt, stereotype);
 						if (stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 							comboStereotypeAppearance.setText(ICON);
 						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {

@@ -40,8 +40,7 @@ public class ElementUtil {
 		Iterator<EObject> stAppIt = elt.getStereotypeApplications().iterator();
 		while (stAppIt.hasNext() && (stereotypeApplication == null)) {
 			EObject stApp = stAppIt.next();
-			if (stApp.eClass().getEAllSuperTypes().contains(stereotypeClass)
-					|| (stApp.eClass().equals(stereotypeClass))) {
+			if (stApp.eClass().getEAllSuperTypes().contains(stereotypeClass) || (stApp.eClass().equals(stereotypeClass))) {
 				stereotypeApplication = stApp;
 			}
 		}
@@ -50,27 +49,22 @@ public class ElementUtil {
 	}
 
 	/**
-	 * Getter to select an image for a stereotyped element (based on 1st applied
-	 * stereotype)
+	 * Getter to select an image for a stereotyped element (based on 1st applied stereotype)
 	 * 
 	 * @param element
-	 *            to check
+	 *            the element for which we are looking the icon
+	 * @param stereotype
+	 *            the stereotype that should have the icon
 	 * @param kind
-	 *            of image ("icon" | "shape")
-	 * @return {@link Image} or null
+	 *            kind of display, should be <code>"icon"</code> or <code>"shape"</code>
+	 * @return the image corresponding to the stereotype or <code>null</code> if no image can be found
 	 */
-	public static Image getStereotypeImage(Element element, String kind) {
-
-		Image image = null;
-
-		// Get first stereotype
-		if (element.getAppliedStereotypes() == null || element.getAppliedStereotypes().isEmpty()) {
-
-			return image; // null
+	public static Image getStereotypeImage(Element element, Stereotype stereotype, String kind) {
+		if (stereotype == null || element.getAppliedStereotypes() == null) {
+			return null;
 		}
 
-		// The image is one of the 1st stereotype
-		Stereotype stereotype = element.getAppliedStereotypes().get(0);
+		Image image = null;
 
 		// Try to retrieve image based on getter implemented in static profile
 		image = ElementUtil.getStereotypeImageFromGetter(element, stereotype, kind);
@@ -97,6 +91,27 @@ public class ElementUtil {
 		}
 
 		return image;
+	}
+
+	/**
+	 * Getter to select an image for a stereotyped element (based on 1st applied stereotype)
+	 * 
+	 * @param element
+	 *            to check
+	 * @param kind
+	 *            of image ("icon" | "shape")
+	 * @return {@link Image} or null
+	 */
+	public static Image getStereotypeImage(Element element, String kind) {
+		// Get first stereotype
+		if (element.getAppliedStereotypes() == null || element.getAppliedStereotypes().isEmpty()) {
+			return null; // null
+		}
+
+		// The image is one of the 1st stereotype
+		Stereotype stereotype = element.getAppliedStereotypes().get(0);
+
+		return getStereotypeImage(element, stereotype, kind);
 	}
 
 	/**
@@ -154,18 +169,44 @@ public class ElementUtil {
 	}
 
 	/**
-	 * Test if the stereotype has icons
+	 * Test if the element has stereotype icons to display
 	 * 
-	 * @param stereotype
-	 * @return true if icons were found
+	 * @param element
+	 *            the element for which icon are searched
+	 * @return <code>true</code> if icons were found
 	 */
 	public static boolean hasIcons(Element element) {
-		boolean hasIcons = false;
 		if (!element.getAppliedStereotypes().isEmpty()) {
-			Stereotype st = element.getAppliedStereotypes().get(0);
-			hasIcons = (!StereotypeUtil.getIcons(st).isEmpty());
+			return hasIcons(element, element.getAppliedStereotypes().get(0));
 		}
-		return hasIcons;
+		return false;
+	}
+
+	/**
+	 * Test if the element has icons for the given stereotype
+	 * 
+	 * @param stereotype
+	 *            the stereotype we check to see if it has icon or not
+	 * @param element
+	 *            the stereotyped element
+	 * @return <code>true</code> if icons were found
+	 */
+	public static boolean hasIcons(Element element, Stereotype stereotype) {
+		return stereotype != null && !StereotypeUtil.getIcons(stereotype).isEmpty();
+	}
+
+	/**
+	 * Test if the element has stereotype shape to display
+	 * 
+	 * @param element
+	 *            the element for which shape are searched
+	 * @return <code>true</code> if shape were found
+	 */
+	public static boolean hasShapes(Element element) {
+		if (!element.getAppliedStereotypes().isEmpty()) {
+			return hasShapes(element, element.getAppliedStereotypes().get(0));
+		}
+		return false;
 	}
 
 	/**
@@ -174,12 +215,7 @@ public class ElementUtil {
 	 * @param stereotype
 	 * @return true if shapes were found
 	 */
-	public static boolean hasShapes(Element element) {
-		boolean hasShapes = false;
-		if (!element.getAppliedStereotypes().isEmpty()) {
-			Stereotype st = element.getAppliedStereotypes().get(0);
-			hasShapes = (!StereotypeUtil.getShapes(st).isEmpty());
-		}
-		return hasShapes;
+	public static boolean hasShapes(Element element, Stereotype stereotype) {
+		return stereotype != null && !StereotypeUtil.getShapes(stereotype).isEmpty();
 	}
 }

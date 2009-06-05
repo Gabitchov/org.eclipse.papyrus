@@ -23,6 +23,7 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.osgi.framework.BundleContext;
@@ -198,6 +199,26 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Image getIconElement(Element elt, boolean withVisibilityDecorator) {
 
+		List<Stereotype> stereotypeList = elt.getAppliedStereotypes();
+		if (stereotypeList == null || stereotypeList.isEmpty()) {
+			return null;
+		}
+		return getIconElement(elt, stereotypeList.get(0), withVisibilityDecorator);
+	}
+
+	/**
+	 * this method returns the icon image that represents the first applied stereotype.
+	 * 
+	 * @param elt
+	 *            the stereotyped element
+	 * @param stereotype
+	 *            the stereotype which icon has to be displayed
+	 * @param kind
+	 *            the kind of display "icon" or "shape"
+	 * @return {@link image} of the icon
+	 */
+	public static Image getIconElement(Element elt, Stereotype stereotype, boolean withVisibilityDecorator) {
+
 		VisibilityKind vis = null;
 		if ((elt instanceof NamedElement) && (withVisibilityDecorator)) {
 
@@ -205,7 +226,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 
 		// getStereotypeImage can return null
-		org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(elt, "icon");
+		org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(elt, stereotype, "icon");
 		if (icon != null) {
 			return getImageInRegistry(icon, vis);
 		} else {

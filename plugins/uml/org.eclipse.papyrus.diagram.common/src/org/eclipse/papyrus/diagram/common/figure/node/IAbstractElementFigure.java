@@ -65,7 +65,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * @param img
 	 *            the icon that we want to display
 	 */
-	public void setIcon(Image img);
+	public void setAppliedStereotypeIcon(Image img);
 
 	/**
 	 * get the font of the figure.

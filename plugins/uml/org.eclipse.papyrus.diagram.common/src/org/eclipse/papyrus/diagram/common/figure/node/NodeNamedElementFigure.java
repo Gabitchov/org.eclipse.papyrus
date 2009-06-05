@@ -42,7 +42,6 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified nale label + 1 name label
@@ -95,7 +94,7 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	/**
 	 * The img.
 	 */
-	protected Image img = null;
+	// protected Image img = null;
 
 	/**
 	 * The line style.
@@ -185,10 +184,10 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 		// Add the label to the figure, at pos 0
 		this.add(label, getIconLabelPosition());
 		this.iconLabel = label;
-		this.iconLabel.setLabelAlignment(PositionConstants.RIGHT);
-		if (this.img != null) {
-			this.iconLabel.setIcon(this.img);
-		}
+		this.iconLabel.setLabelAlignment(PositionConstants.LEFT);
+		// if (this.img != null) {
+		// this.iconLabel.setIcon(this.img);
+		// }
 	}
 
 	/**
@@ -565,15 +564,15 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 		
 		paintBackground(graphics, getBounds());
 		
-		if (this.img != null) {
-			if (this.iconLabel == null) {
-				this.createIconLabel();
-			}
-		} else {
-			if (this.iconLabel != null) {
-				this.remove(this.iconLabel);
-			}
-		}
+		// if (this.img != null) {
+		// if (this.iconLabel == null) {
+		// this.createIconLabel();
+		// }
+		// } else {
+		// if (this.iconLabel != null) {
+		// this.remove(this.iconLabel);
+		// }
+		// }
 		shadowborder.setColor(getForegroundColor());
 		
 	}
@@ -598,53 +597,53 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	}
 	
 
-	/**
-	 * Refresh presentation.
-	 * 
-	 * @param presentation
-	 *            the presentation
-	 * @param selection
-	 *            the selection
-	 */
-	public void refreshPresentation(String presentation, Element selection, Image defaultImage) {
-
-		org.eclipse.swt.graphics.Image icon = Activator.getIconElement(selection);
-
-		/* if the presentation is icon or icon with text, we can set the icon */
-		if ((icon != null)
-				&& ((presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) || presentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
-			this.setIcon(icon);
-			if (iconLabel == null) {
-				createIconLabel();
-			}
-
-			iconLabel.setIcon(icon);
-			iconLabel.repaint();
-			this.add(iconLabel, 0);
-			this.repaint();
-
-		} else {
-			// If a default image (ex: Component standard UML Icon) it is shown
-			// it is shown in the IconLabel
-			// See : ComponentFigure in ClassDiagram for usage example
-			if (defaultImage != null) {
-				this.setIcon(defaultImage);
-				if (iconLabel == null) {
-					createIconLabel();
-				}
-				iconLabel.setIcon(defaultImage);
-				iconLabel.repaint();
-				this.add(iconLabel, 0);
-				this.repaint();
-
-			} else {
-				if ((iconLabel != null) && (iconLabel.getParent() != null)) {
-					this.remove(iconLabel);
-				}
-				this.repaint();
-			}
-		}
-	}
+	// /**
+	// * Refresh presentation.
+	// *
+	// * @param presentation
+	// * the presentation
+	// * @param selection
+	// * the selection
+	// */
+	// public void refreshPresentation(String presentation, Element selection, Image defaultImage) {
+	//
+	// org.eclipse.swt.graphics.Image icon = Activator.getIconElement(selection);
+	//
+	// /* if the presentation is icon or icon with text, we can set the icon */
+	// if ((icon != null)
+	// && ((presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) || presentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
+	// this.setIcon(icon);
+	// if (iconLabel == null) {
+	// createIconLabel();
+	// }
+	//
+	// iconLabel.setIcon(icon);
+	// iconLabel.repaint();
+	// this.add(iconLabel, 0);
+	// this.repaint();
+	//
+	// } else {
+	// // If a default image (ex: Component standard UML Icon) it is shown
+	// // it is shown in the IconLabel
+	// // See : ComponentFigure in ClassDiagram for usage example
+	// if (defaultImage != null) {
+	// this.setIcon(defaultImage);
+	// if (iconLabel == null) {
+	// createIconLabel();
+	// }
+	// iconLabel.setIcon(defaultImage);
+	// iconLabel.repaint();
+	// this.add(iconLabel, 0);
+	// this.repaint();
+	//
+	// } else {
+	// if ((iconLabel != null) && (iconLabel.getParent() != null)) {
+	// this.remove(iconLabel);
+	// }
+	// this.repaint();
+	// }
+	// }
+	// }
 
 	/**
 	 * Refresh stereotypes.
@@ -796,15 +795,15 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 
 	}
 
-	/**
-	 * Sets the icon.
-	 * 
-	 * @param img
-	 *            the img
-	 */
-	public void setIcon(Image img) {
-		this.img = img;
-	}
+	// /**
+	// * Sets the icon.
+	// *
+	// * @param img
+	// * the img
+	// */
+	// public void setIcon(Image img) {
+	// this.img = img;
+	// }
 
 	/**
 	 * Sets the line stle.
@@ -991,6 +990,31 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 		} else {
 			this.stereotypesLabel.setText("");
 		}
+	}
+
+	/**
+	 * Sets the stereotype icon for this figure.
+	 * 
+	 * @param stereotypes
+	 *            the image representing the stereotype
+	 */
+	public void setAppliedStereotypeIcon(Image image) {
+		if (image == null) {
+			// Remove label if any
+			if (this.iconLabel != null) {
+				this.remove(this.iconLabel);
+				this.iconLabel = null;
+			}
+			return;
+		}
+
+		// Set the stereotype label if it does not already exist
+		if (this.iconLabel == null) {
+			this.createIconLabel();
+		}
+
+		// Set stereotype icon on figure
+		this.iconLabel.setIcon(image);
 	}
 
 	private class PropertiesCompatmentLayoutManager extends AbstractLayout {

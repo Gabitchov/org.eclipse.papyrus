@@ -30,6 +30,7 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -155,6 +156,35 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		} else {
 			((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(null);
 		}
+
+		// refresh the icon to be displayed
+		final Image imageToDisplay = stereotypeIconToDisplay();
+		((NodeNamedElementFigure) getPrimaryShape()).setAppliedStereotypeIcon(imageToDisplay);
+	}
+
+	/**
+	 * Returns the image to be displayed for the applied stereotypes.
+	 * 
+	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
+	 */
+	public Image stereotypeIconToDisplay() {
+		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View) getModel());
+		if (stereotypespresentationKind == null) {
+			return null;
+		}
+		if (stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
+				|| stereotypespresentationKind.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+
+			// retrieve the first stereotype in the list of displayed stereotype
+			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getModel());
+			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
+			if (tokenizer.hasMoreTokens()) {
+				String firstStereotypeName = tokenizer.nextToken();
+				Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
+				return Activator.getIconElement(getUMLElement(), stereotype, false);
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -326,6 +356,12 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 	public String stereotypesToDisplay() {
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getModel());
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View) getModel());
+
+		// check the presentation kind. if only icon => do not display stereotypes
+		if (VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
+			return ""; // empty string, so stereotype label should not be displayed
+		}
+
 		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(((View) getModel()));
 		if (VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
 			return stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay, stereotypesToDisplayWithQN);
