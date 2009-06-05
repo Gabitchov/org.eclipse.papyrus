@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.sasheditor.editor.MultiPageEditorActionBarContributor;
+import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.MultiPageEditorActionBarContributor;
 import org.eclipse.papyrus.sasheditor.internal.IPanelParent;
 import org.eclipse.papyrus.sasheditor.internal.AbstractPanelPart;
 import org.eclipse.papyrus.sasheditor.sash.PTabFolder;

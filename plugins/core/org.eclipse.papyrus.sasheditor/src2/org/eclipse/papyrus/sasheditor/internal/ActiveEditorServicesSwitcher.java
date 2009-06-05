@@ -18,8 +18,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorActionBarContributor;
-import org.eclipse.papyrus.sasheditor.editor.IMultiPageEditorActionBarContributor;
+import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.IMultiPageEditorActionBarContributor;
 import org.eclipse.papyrus.sasheditor.internal.ActivePageTracker.IActiveEditorChangedListener;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
 import org.eclipse.ui.IEditorActionBarContributor;
@@ -30,6 +29,7 @@ import org.eclipse.ui.INestableKeyBindingService;
 import org.eclipse.ui.IPartService;
 import org.eclipse.ui.internal.WorkbenchPlugin;
 import org.eclipse.ui.internal.services.INestable;
+import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.services.IServiceLocator;
 
 
@@ -243,6 +243,11 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	private void fireChangeEventToActionBarContributor() {
 		IEditorActionBarContributor contributor = getOuterEditorSite().getActionBarContributor();
 		if (contributor != null && contributor instanceof IMultiPageEditorActionBarContributor ) {
+			((IMultiPageEditorActionBarContributor) contributor).setActivePage(getActiveIEditorPart());
+		}
+
+		// Ensure compatibility with Eclipse MultiPageEditorActionBarContributor
+		else if (contributor != null && contributor instanceof MultiPageEditorActionBarContributor ) {
 			((MultiPageEditorActionBarContributor) contributor).setActivePage(getActiveIEditorPart());
 		}
 

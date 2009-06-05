@@ -18,15 +18,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.sasheditor.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
-import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
-import org.eclipse.papyrus.sasheditor.gef.InstantiationException;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
-import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
@@ -161,6 +154,11 @@ public class EditorPart extends PagePart {
 			// TODO Create a fake Error Page and initialize this part with.
 			editorControl = createErrorPartControl(parent, e);
 		} 
+		catch (Exception e) {
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
+			// TODO Create a fake Error Page and initialize this part with.
+			editorControl = createErrorPartControl(parent, e);
+		} 
 	}
 
 	/**
@@ -168,7 +166,7 @@ public class EditorPart extends PagePart {
 	 * @param parent Parent Control to which the Created Control should be attached
 	 * @param e Exception containing the error.
 	 */
-	private Composite createErrorPartControl(Composite parent, PartInitException e) {
+	private Composite createErrorPartControl(Composite parent, Exception e) {
 		
 		Composite comp = new Composite(parent, SWT.NONE);
 		comp.setLayout(new FillLayout());
@@ -177,7 +175,12 @@ public class EditorPart extends PagePart {
 		diag.setSize (64, 32);
 
 		diag.setText(e.getMessage());
-		diag.append(e.toString());
+		
+		for( StackTraceElement ele : e.getStackTrace())
+		{
+			diag.append("\n");
+			diag.append(ele.toString());
+		}
 		return comp;
 	}
 

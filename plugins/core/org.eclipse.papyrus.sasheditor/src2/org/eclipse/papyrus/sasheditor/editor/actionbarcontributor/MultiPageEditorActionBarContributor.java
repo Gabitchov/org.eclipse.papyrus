@@ -8,10 +8,11 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.sasheditor.editor;
+package org.eclipse.papyrus.sasheditor.editor.actionbarcontributor;
 
 import java.util.logging.Logger;
 
+import org.eclipse.papyrus.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
@@ -25,7 +26,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * <li><code>contributeToStatusLine</code> - reimplement to contribute to status line</li>
  * </ul>
  * </p>
- * @see org.eclipse.ui.part.MultiPageEditorActionBarContributor
+ * This class is copied from {@link org.eclipse.ui.part.MultiPageEditorActionBarContributor}
  */
 public abstract class MultiPageEditorActionBarContributor extends EditorActionBarContributor implements IMultiPageEditorActionBarContributor  {
 

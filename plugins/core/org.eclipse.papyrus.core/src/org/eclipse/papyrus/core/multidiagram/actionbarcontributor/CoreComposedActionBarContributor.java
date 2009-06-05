@@ -9,8 +9,8 @@ import org.eclipse.gef.ui.actions.RedoRetargetAction;
 import org.eclipse.gef.ui.actions.UndoRetargetAction;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.sasheditor.eclipsecopy.ComposedActionBarContributor;
-import org.eclipse.papyrus.sasheditor.editor.IMultiPageEditorActionBarContributor;
+import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.ComposedActionBarContributor;
+import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.IMultiPageEditorActionBarContributor;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -34,6 +34,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 	protected ActionBarContributorRegistry actionBarContributorRegistry;
 	
 	protected List<EditorActionBarContributor> contributors;
+	
 	/**
 	 * Constructor.
 	 * @throws BackboneException 
@@ -64,7 +65,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 
 
 	/**
-     * Dispose all the nested ActionBarContributors.
+     * Dispose all nested ActionBarContributors.
      */
     public void dispose() {
     	
@@ -78,10 +79,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
     }
 
     /**
-     * The <code>EditorActionBarContributor</code> implementation of this 
-     * <code>IEditorActionBarContributor</code> method remembers the page
-     * then forwards the call to <code>init(IActionBars)</code> for
-     * backward compatibility
+     * Call the same method on each registered nested ActionBarContributors.
      */
     public void init(IActionBars bars, IWorkbenchPage page) {
     	

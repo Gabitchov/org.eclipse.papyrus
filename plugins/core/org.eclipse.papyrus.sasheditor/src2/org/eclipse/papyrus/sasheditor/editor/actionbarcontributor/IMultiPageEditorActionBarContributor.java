@@ -11,7 +11,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
   *****************************************************************************/
-package org.eclipse.papyrus.sasheditor.editor;
+package org.eclipse.papyrus.sasheditor.editor.actionbarcontributor;
 
 import org.eclipse.ui.IEditorPart;
 

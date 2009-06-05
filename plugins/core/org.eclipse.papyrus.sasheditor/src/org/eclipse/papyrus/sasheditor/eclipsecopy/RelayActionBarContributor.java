@@ -5,45 +5,28 @@ package org.eclipse.papyrus.sasheditor.eclipsecopy;
 
 import java.util.logging.Level;
 
+import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 
 /**
+ * An ActionBarContributor keeping track of the currently ActiveNestedEditor.
+ * Calls to {@link #setActivePage(IEditorPart)} are propagated to the {@link EditorActionBarContributor#setActiveEditor(IEditorPart)}
+ *  of the activeEditor.
  * 
- * An ActionBarContributor composed of ActionBarContributor from multi editor.
- * This ActionBarContributor switch to the contributor dedicated to the active editor in
- * a MultiPageEditor environement.
- * 
- * @author dumoulin
+ * @author cedric dumoulin
  *
  */
-public class ComposedActionBarContributor extends MultiPageEditorActionBarContributor {
+public class RelayActionBarContributor extends MultiPageEditorActionBarContributor {
 
-//	/**
-//	 * List of contributors.
-//	 */
-//	protected ContributorMap<Class<? extends IEditorPart>, EditorActionBarContributor> contributors = new ContributorMap<Class<? extends IEditorPart>, EditorActionBarContributor>();
-//	
-//	
-//	/**
-//	 * Contributor used as default.
-//	 */
-//	protected EditorActionBarContributor defaultContributor;
-//	
-//	/**
-//	 * The currently active contributor.
-//	 */
-//	protected EditorActionBarContributor activeContributor;
-	
-	
 	/** The currently active nested editor */
 	protected IEditorPart activeNestedEditor;
 	/**
 	 * Constructor.
 	 */
-	public ComposedActionBarContributor() {
+	public RelayActionBarContributor() {
 	}
 	
 	/**
@@ -54,12 +37,12 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 	 * to redirect actions to the given editor (if not already directed to it).
 	 * </p>
 	 * 
-	 * @param activeEditor
+	 * @param newActiveEditor
 	 *            the new active editor, or <code>null</code> if there is no active page, or if the 
 	 *            active page does not have a corresponding editor
 	 */
 	@Override
-	public void setActivePage(IEditorPart activeEditor)
+	public void setActivePage(IEditorPart newActiveEditor)
 	{
 		// Check if we are already initialized
 		// Return if we are not
@@ -67,15 +50,15 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 			return;
 
 		// skip if the activeEditor doesn't change.
-		if(activeEditor == activeNestedEditor)
+		if(newActiveEditor == activeNestedEditor)
 			return;
 		
 		if(log.isLoggable(Level.FINE))
 		{
-			log.fine("setActivePage("+  activeEditor + " "+")" );
+			log.fine("setActivePage("+  newActiveEditor + " "+")" );
 		}
 
-		activeNestedEditor = activeEditor;
+		activeNestedEditor = newActiveEditor;
 		
 //		System.out.println(this.getClass().getSimpleName() 
 //				+ ".setActivePage(" + activeEditor
@@ -85,7 +68,7 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 		// Call setActiveEditor() on nested contributor.
 		IEditorActionBarContributor contributor = getActiveContributor();
 		if(contributor != this && contributor instanceof EditorActionBarContributor)
-			((EditorActionBarContributor)contributor).setActiveEditor(activeEditor);
+			((EditorActionBarContributor)contributor).setActiveEditor(newActiveEditor);
 		
 //		if(contributor != this && contributor instanceof IMultiPageEditorActionBarContributor)
 //			((IMultiPageEditorActionBarContributor)contributor).setActivePage(activeEditor);
