@@ -15,6 +15,36 @@ public class InstanceSpecificationPreferencePage extends
 	/**
 	 * @generated
 	 */
+	public static void initDefaults(IPreferenceStore store) {
+		PreferenceConverter
+				.setDefault(
+						store,
+						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_FILL_COLOR,
+						new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter
+				.setDefault(
+						store,
+						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_LINE_COLOR,
+						new org.eclipse.swt.graphics.RGB(177, 207, 229));
+
+		// Set the default for the gradient
+		store
+				.setDefault(
+						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_POLICY,
+						false);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+				new org.eclipse.swt.graphics.RGB(255, 255, 255),
+				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
+		store
+				.setDefault(
+						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_COLOR,
+						gradientPreferenceConverter.getPreferenceValue());
+
+	}
+
+	/**
+	 * @generated
+	 */
 	@Override
 	protected String getBundleId() {
 		return UMLDiagramEditorPlugin.getInstance().ID;
@@ -26,14 +56,6 @@ public class InstanceSpecificationPreferencePage extends
 	@Override
 	protected String getFillColorPreferenceName() {
 		return IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_FILL_COLOR;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getGradientColorPreferenceName() {
-		return IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_COLOR;
 	}
 
 	/**
@@ -64,38 +86,16 @@ public class InstanceSpecificationPreferencePage extends
 	 * @generated
 	 */
 	@Override
-	protected String getLineColorPreferenceName() {
-		return IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_LINE_COLOR;
+	protected String getGradientColorPreferenceName() {
+		return IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_COLOR;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static void initDefaults(IPreferenceStore store) {
-		PreferenceConverter
-				.setDefault(
-						store,
-						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_FILL_COLOR,
-						new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter
-				.setDefault(
-						store,
-						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_LINE_COLOR,
-						new org.eclipse.swt.graphics.RGB(177, 207, 229));
-
-		// Set the default for the gradient
-		store
-				.setDefault(
-						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_POLICY,
-						true);
-		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-				new org.eclipse.swt.graphics.RGB(255, 255, 255),
-				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
-		store
-				.setDefault(
-						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_COLOR,
-						gradientPreferenceConverter.getPreferenceValue());
-
+	@Override
+	protected String getLineColorPreferenceName() {
+		return IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_LINE_COLOR;
 	}
 
 }
