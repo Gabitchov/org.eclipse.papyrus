@@ -151,7 +151,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 		 */
 		public IEditorPart createIEditorPart() throws PartInitException {
 			try {
-				return new Di2Editor();
+				return new Di2Editor(servicesRegistry);
 			} catch (ServiceException e) {
 				throw new PartInitException("Can't create Di2Editor.", e);
 			} catch (BackboneException e) {

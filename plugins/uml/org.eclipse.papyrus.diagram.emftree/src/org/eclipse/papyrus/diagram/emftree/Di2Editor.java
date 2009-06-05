@@ -32,7 +32,6 @@ import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -56,11 +55,10 @@ public class Di2Editor extends org.eclipse.papyrus.di.presentation.DiEditor impl
 	/**
 	 * 
 	 * Constructor.
-	 * @throws ServiceException 
-	 * @throws BackboneException 
+	 * Create an DiEditor using the {@link ServicesRegistry}.
+	 * @param servicesRegistry
 	 */
-	public Di2Editor() throws ServiceException, BackboneException {
-		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
+	public Di2Editor(ServicesRegistry servicesRegistry) throws ServiceException, BackboneException {
 		IEditorContextRegistry contextRegistry;
 		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
 
@@ -69,7 +67,7 @@ public class Di2Editor extends org.eclipse.papyrus.di.presentation.DiEditor impl
 
 		initEditor(editorContext);
 	}
-	
+
 	/**
 	 * This creates a model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
