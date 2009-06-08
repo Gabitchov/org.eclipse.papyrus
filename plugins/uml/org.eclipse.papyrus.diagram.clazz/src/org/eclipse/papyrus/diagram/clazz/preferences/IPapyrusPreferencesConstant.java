@@ -68,12 +68,6 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
-	// public static final String ASSOCIATION_PREF_LINE_COLOR =
-	// "Association.line.color";
-
-	/**
-	 * @generated
-	 */
 	public static final String ASSOCIATION_PREF_FONT_COLOR = "Association.font.color";
 
 	/**
@@ -190,24 +184,6 @@ public interface IPapyrusPreferencesConstant {
 	 * @generated
 	 */
 	public static final String ASSOCIATIONCLASS_PREF_SMOOTHNESS = "AssociationClass.smoothness";
-
-	/**
-	 * @generated
-	 */
-	// public static final String ASSOCIATIONCLASS_PREF_FONT_COLOR =
-	// "AssociationClass.font.color";
-
-	/**
-	 * @generated
-	 */
-	// public static final String ASSOCIATIONCLASS_PREF_FONT =
-	// "AssociationClass.font";
-
-	/**
-	 * @generated
-	 */
-	// public static final String ASSOCIATIONCLASS_PREF_LINE_COLOR =
-	// "AssociationClass.line.color";
 
 	/**
 	 * @generated
@@ -553,6 +529,56 @@ public interface IPapyrusPreferencesConstant {
 	 * @generated
 	 */
 	public static final String GENERALIZATION_PREF_SMOOTHNESS = "Generalization.smoothness";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_FONT = "GeneralizationSet.font";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_FONT_COLOR = "GeneralizationSet.font.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_JUMPLINK_REVERSE = "GeneralizationSet.jumplink.reverse";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_JUMPLINK_STATUS = "GeneralizationSet.jumplink.status";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_JUMPLINK_TYPE = "GeneralizationSet.jumplink.type";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_LINE_COLOR = "GeneralizationSet.line.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_ROUTING_DISTANCE_POLICY = "GeneralizationSet.routing.distance.policy";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_ROUTING_OBSTRUCTION_POLICY = "GeneralizationSet.routing.obstruction.policy";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_ROUTING_STYLE = "GeneralizationSet.routing.style";
+
+	/**
+	 * @generated
+	 */
+	public static final String GENERALIZATIONSET_PREF_SMOOTHNESS = "GeneralizationSet.smoothness";
 
 	/**
 	 * @generated

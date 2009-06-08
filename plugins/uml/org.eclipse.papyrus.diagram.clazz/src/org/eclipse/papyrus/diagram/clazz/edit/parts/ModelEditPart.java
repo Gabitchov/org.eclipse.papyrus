@@ -37,6 +37,20 @@ public class ModelEditPart extends DiagramEditPart {
 	 */
 	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
 
+		public boolean isEObjectNode(EObject element) {
+			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
+				return true;
+			}
+			return false;
+		}
+
+		public boolean isEObjectLink(EObject element) {
+			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
+				return true;
+			}
+			return false;
+		}
+
 		public int getEObjectSemanticHint(EObject element) {
 			if (element != null) {
 				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element);
@@ -92,20 +106,6 @@ public class ModelEditPart extends DiagramEditPart {
 			}
 			return null;
 		}
-
-		public boolean isEObjectLink(EObject element) {
-			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
-				return true;
-			}
-			return false;
-		}
-
-		public boolean isEObjectNode(EObject element) {
-			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
-				return true;
-			}
-			return false;
-		}
 	};
 
 	/**
@@ -156,8 +156,7 @@ public class ModelEditPart extends DiagramEditPart {
 		if (event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
 			if (eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				// modification form MOSKitt approach, canonical policies are
-				// not called
+				//modification form MOSKitt approach, canonical policies are not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
 		}

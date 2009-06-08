@@ -82,20 +82,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.ABSTRACTION_PREF_FONT,
 				IPapyrusPreferencesConstant.ABSTRACTION_PREF_FONT_COLOR);
 
-		Node AbstractionName_6014 = createLabel(edge, UMLVisualIDRegistry
+		Node label6014 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AbstractionNameEditPart.VISUAL_ID));
-		AbstractionName_6014.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6014.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6014 = (Location) AbstractionName_6014
-				.getLayoutConstraint();
+		Location location6014 = (Location) label6014.getLayoutConstraint();
 		location6014.setX(0);
 		location6014.setY(40);
-		Node AbstractionName_6015 = createLabel(edge, UMLVisualIDRegistry
+		Node label6015 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AppliedStereotypeAbstractionEditPart.VISUAL_ID));
-		AbstractionName_6015.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6015.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6015 = (Location) AbstractionName_6015
-				.getLayoutConstraint();
+		Location location6015 = (Location) label6015.getLayoutConstraint();
 		location6015.setX(0);
 		location6015.setY(60);
 		return edge;
@@ -154,59 +152,50 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
-		initForegroundFromPrefs(edge, prefStore,
-				IPapyrusPreferencesConstant.ASSOCIATION_PREF_LINE_COLOR);
-
 		initFontStyleFromPrefs(edge, prefStore,
 				IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT,
 				IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT_COLOR);
 
-		Node AssociationName_6001 = createLabel(edge, UMLVisualIDRegistry
+		Node label6001 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AppliedStereotypeAssociationEditPart.VISUAL_ID));
-		AssociationName_6001.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6001.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6001 = (Location) AssociationName_6001
-				.getLayoutConstraint();
+		Location location6001 = (Location) label6001.getLayoutConstraint();
 		location6001.setX(0);
 		location6001.setY(-20);
-		Node AssociationName_6002 = createLabel(edge, UMLVisualIDRegistry
+		Node label6002 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName2EditPart.VISUAL_ID));
-		AssociationName_6002.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6002.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6002 = (Location) AssociationName_6002
-				.getLayoutConstraint();
+		Location location6002 = (Location) label6002.getLayoutConstraint();
 		location6002.setX(0);
 		location6002.setY(20);
-		Node AssociationName_6003 = createLabel(edge, UMLVisualIDRegistry
+		Node label6003 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName3EditPart.VISUAL_ID));
-		AssociationName_6003.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6003.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6003 = (Location) AssociationName_6003
-				.getLayoutConstraint();
+		Location location6003 = (Location) label6003.getLayoutConstraint();
 		location6003.setX(0);
 		location6003.setY(-20);
-		Node AssociationName_6004 = createLabel(edge, UMLVisualIDRegistry
+		Node label6004 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName4EditPart.VISUAL_ID));
-		AssociationName_6004.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6004.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6004 = (Location) AssociationName_6004
-				.getLayoutConstraint();
+		Location location6004 = (Location) label6004.getLayoutConstraint();
 		location6004.setX(0);
 		location6004.setY(20);
-		Node AssociationName_6005 = createLabel(edge, UMLVisualIDRegistry
+		Node label6005 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName5EditPart.VISUAL_ID));
-		AssociationName_6005.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6005.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6005 = (Location) AssociationName_6005
-				.getLayoutConstraint();
+		Location location6005 = (Location) label6005.getLayoutConstraint();
 		location6005.setX(0);
 		location6005.setY(20);
-		Node AssociationName_6006 = createLabel(edge, UMLVisualIDRegistry
+		Node label6006 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationName6EditPart.VISUAL_ID));
-		AssociationName_6006.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6006.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6006 = (Location) AssociationName_6006
-				.getLayoutConstraint();
+		Location location6006 = (Location) label6006.getLayoutConstraint();
 		location6006.setX(0);
 		location6006.setY(-20);
 		return edge;
@@ -235,27 +224,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
-		initForegroundFromPrefs(edge, prefStore,
-				IPapyrusPreferencesConstant.ASSOCIATION_PREF_LINE_COLOR);
-
 		initFontStyleFromPrefs(edge, prefStore,
 				IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT,
 				IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT_COLOR);
 
-		Node AssociationName_6024 = createLabel(edge, UMLVisualIDRegistry
+		Node label6024 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationBranchRoleEditPart.VISUAL_ID));
-		AssociationName_6024.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6024.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6024 = (Location) AssociationName_6024
-				.getLayoutConstraint();
+		Location location6024 = (Location) label6024.getLayoutConstraint();
 		location6024.setX(0);
 		location6024.setY(-20);
-		Node AssociationName_6025 = createLabel(edge, UMLVisualIDRegistry
+		Node label6025 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AssociationBranchMultEditPart.VISUAL_ID));
-		AssociationName_6025.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6025.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6025 = (Location) AssociationName_6025
-				.getLayoutConstraint();
+		Location location6025 = (Location) label6025.getLayoutConstraint();
 		location6025.setX(0);
 		location6025.setY(20);
 		return edge;
@@ -294,7 +278,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_GRADIENT_POLICY);
 
-		Node AssociationClassName_5066 = createLabel(node, UMLVisualIDRegistry
+		Node label5066 = createLabel(node, UMLVisualIDRegistry
 				.getType(AssociationClassName2EditPart.VISUAL_ID));
 		createCompartment(
 				node,
@@ -364,7 +348,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_POLICY);
 
-		Node ClassName_5029 = createLabel(node, UMLVisualIDRegistry
+		Node label5029 = createLabel(node, UMLVisualIDRegistry
 				.getType(ClassNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(ClassAttributeCompartment2EditPart.VISUAL_ID), true,
@@ -428,7 +412,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.CLASS_PREF_GRADIENT_POLICY);
 
-		Node ClassName_5014 = createLabel(node, UMLVisualIDRegistry
+		Node label5014 = createLabel(node, UMLVisualIDRegistry
 				.getType(ClassNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(ClassAttributeCompartmentEditPart.VISUAL_ID), true,
@@ -479,7 +463,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.COMMENT_PREF_FONT,
 				IPapyrusPreferencesConstant.COMMENT_PREF_FONT_COLOR);
 
-		Node CommentBody_5038 = createLabel(node, UMLVisualIDRegistry
+		Node label5038 = createLabel(node, UMLVisualIDRegistry
 				.getType(CommentBodyEditPart.VISUAL_ID));
 		return node;
 	}
@@ -502,7 +486,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
-		Node CommentBody_5063 = createLabel(node, UMLVisualIDRegistry
+		Node label5063 = createLabel(node, UMLVisualIDRegistry
 				.getType(CommentBody2EditPart.VISUAL_ID));
 		return node;
 	}
@@ -594,7 +578,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.COMPONENT_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.COMPONENT_PREF_GRADIENT_POLICY);
 
-		Node ComponentName_5005 = createLabel(node, UMLVisualIDRegistry
+		Node label5005 = createLabel(node, UMLVisualIDRegistry
 				.getType(ComponentNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(ComponentAttributeCompartmentEditPart.VISUAL_ID),
@@ -636,7 +620,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.COMPONENT_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.COMPONENT_PREF_GRADIENT_POLICY);
 
-		Node ComponentName_5043 = createLabel(node, UMLVisualIDRegistry
+		Node label5043 = createLabel(node, UMLVisualIDRegistry
 				.getType(ComponentNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(ComponentAttributeCompartment2EditPart.VISUAL_ID),
@@ -677,7 +661,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.CONSTRAINT_PREF_FONT,
 				IPapyrusPreferencesConstant.CONSTRAINT_PREF_FONT_COLOR);
 
-		Node ConstraintName_5037 = createLabel(node, UMLVisualIDRegistry
+		Node label5037 = createLabel(node, UMLVisualIDRegistry
 				.getType(ConstraintNameEditPart.VISUAL_ID));
 		return node;
 	}
@@ -703,7 +687,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
-		Node ConstraintName_5064 = createLabel(node, UMLVisualIDRegistry
+		Node label5064 = createLabel(node, UMLVisualIDRegistry
 				.getType(ConstraintName2EditPart.VISUAL_ID));
 		return node;
 	}
@@ -762,7 +746,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.DATATYPE_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.DATATYPE_PREF_GRADIENT_POLICY);
 
-		Node DataTypeName_5035 = createLabel(node, UMLVisualIDRegistry
+		Node label5035 = createLabel(node, UMLVisualIDRegistry
 				.getType(DataTypeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(DataTypeAttributeCompartmentEditPart.VISUAL_ID), true,
@@ -797,7 +781,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.DATATYPE_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.DATATYPE_PREF_GRADIENT_POLICY);
 
-		Node DataTypeName_5061 = createLabel(node, UMLVisualIDRegistry
+		Node label5061 = createLabel(node, UMLVisualIDRegistry
 				.getType(DataTypeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(DataTypeAttributeCompartment2EditPart.VISUAL_ID),
@@ -867,20 +851,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT,
 				IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT_COLOR);
 
-		Node DependencyName_6026 = createLabel(edge, UMLVisualIDRegistry
+		Node label6026 = createLabel(edge, UMLVisualIDRegistry
 				.getType(DependencyNameEditPart.VISUAL_ID));
-		DependencyName_6026.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6026.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6026 = (Location) DependencyName_6026
-				.getLayoutConstraint();
+		Location location6026 = (Location) label6026.getLayoutConstraint();
 		location6026.setX(0);
 		location6026.setY(40);
-		Node DependencyName_6027 = createLabel(edge, UMLVisualIDRegistry
+		Node label6027 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AppliedStereotypeDependencyEditPart.VISUAL_ID));
-		DependencyName_6027.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6027.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6027 = (Location) DependencyName_6027
-				.getLayoutConstraint();
+		Location location6027 = (Location) label6027.getLayoutConstraint();
 		location6027.setX(0);
 		location6027.setY(60);
 		return edge;
@@ -916,20 +898,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT,
 				IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT_COLOR);
 
-		Node DependencyName_6028 = createLabel(edge, UMLVisualIDRegistry
+		Node label6028 = createLabel(edge, UMLVisualIDRegistry
 				.getType(DependencyName3EditPart.VISUAL_ID));
-		DependencyName_6028.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6028.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6028 = (Location) DependencyName_6028
-				.getLayoutConstraint();
+		Location location6028 = (Location) label6028.getLayoutConstraint();
 		location6028.setX(0);
 		location6028.setY(40);
-		Node DependencyName_6029 = createLabel(edge, UMLVisualIDRegistry
+		Node label6029 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AppliedStereotypeDependency3EditPart.VISUAL_ID));
-		DependencyName_6029.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6029.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6029 = (Location) DependencyName_6029
-				.getLayoutConstraint();
+		Location location6029 = (Location) label6029.getLayoutConstraint();
 		location6029.setX(0);
 		location6029.setY(60);
 		return edge;
@@ -1021,6 +1001,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createTemplateBinding_4015(
 					getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
+		case GeneralizationSetEditPart.VISUAL_ID:
+			return createGeneralizationSet_4020(
+					getSemanticElement(semanticAdapter), containerView, index,
+					persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is
 		// correct
@@ -1057,20 +1041,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.ELEMENTIMPORT_PREF_FONT,
 				IPapyrusPreferencesConstant.ELEMENTIMPORT_PREF_FONT_COLOR);
 
-		Node ElementImportAlias_6020 = createLabel(edge, UMLVisualIDRegistry
+		Node label6020 = createLabel(edge, UMLVisualIDRegistry
 				.getType(ElementImportAliasEditPart.VISUAL_ID));
-		ElementImportAlias_6020.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6020.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6020 = (Location) ElementImportAlias_6020
-				.getLayoutConstraint();
+		Location location6020 = (Location) label6020.getLayoutConstraint();
 		location6020.setX(0);
 		location6020.setY(40);
-		Node ElementImportAlias_6021 = createLabel(edge, UMLVisualIDRegistry
+		Node label6021 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AppliedStereotypeElementImportEditPart.VISUAL_ID));
-		ElementImportAlias_6021.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6021.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6021 = (Location) ElementImportAlias_6021
-				.getLayoutConstraint();
+		Location location6021 = (Location) label6021.getLayoutConstraint();
 		location6021.setX(0);
 		location6021.setY(60);
 		return edge;
@@ -1108,7 +1090,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.ENUMERATION_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.ENUMERATION_PREF_GRADIENT_POLICY);
 
-		Node EnumerationName_5023 = createLabel(node, UMLVisualIDRegistry
+		Node label5023 = createLabel(node, UMLVisualIDRegistry
 				.getType(EnumerationNameEditPart.VISUAL_ID));
 		createCompartment(
 				node,
@@ -1144,7 +1126,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.ENUMERATION_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.ENUMERATION_PREF_GRADIENT_POLICY);
 
-		Node EnumerationName_5055 = createLabel(node, UMLVisualIDRegistry
+		Node label5055 = createLabel(node, UMLVisualIDRegistry
 				.getType(EnumerationNameEditPartCN.VISUAL_ID));
 		createCompartment(
 				node,
@@ -1199,16 +1181,46 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.GENERALIZATION_PREF_FONT,
 				IPapyrusPreferencesConstant.GENERALIZATION_PREF_FONT_COLOR);
 
-		Node GeneralizationIsSubstitutable_6007 = createLabel(
-				edge,
-				UMLVisualIDRegistry
-						.getType(AppliedStereotyperGeneralizationEditPart.VISUAL_ID));
-		GeneralizationIsSubstitutable_6007
-				.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6007 = (Location) GeneralizationIsSubstitutable_6007
-				.getLayoutConstraint();
+		Node label6007 = createLabel(edge, UMLVisualIDRegistry
+				.getType(AppliedStereotyperGeneralizationEditPart.VISUAL_ID));
+		label6007.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6007 = (Location) label6007.getLayoutConstraint();
 		location6007.setX(0);
 		location6007.setY(40);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createGeneralizationSet_4020(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry
+				.getType(GeneralizationSetEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		initForegroundFromPrefs(edge, prefStore,
+				IPapyrusPreferencesConstant.GENERALIZATIONSET_PREF_LINE_COLOR);
+
+		initFontStyleFromPrefs(edge, prefStore,
+				IPapyrusPreferencesConstant.GENERALIZATIONSET_PREF_FONT,
+				IPapyrusPreferencesConstant.GENERALIZATIONSET_PREF_FONT_COLOR);
+
 		return edge;
 	}
 
@@ -1249,9 +1261,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_POLICY);
 
-		Node InstanceSpecificationName_5002 = createLabel(node,
-				UMLVisualIDRegistry
-						.getType(InstanceSpecificationNameEditPart.VISUAL_ID));
+		Node label5002 = createLabel(node, UMLVisualIDRegistry
+				.getType(InstanceSpecificationNameEditPart.VISUAL_ID));
 		createCompartment(
 				node,
 				UMLVisualIDRegistry
@@ -1290,9 +1301,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_POLICY);
 
-		Node InstanceSpecificationName_5040 = createLabel(node,
-				UMLVisualIDRegistry
-						.getType(InstanceSpecificationNameEditPartCN.VISUAL_ID));
+		Node label5040 = createLabel(node, UMLVisualIDRegistry
+				.getType(InstanceSpecificationNameEditPartCN.VISUAL_ID));
 		createCompartment(
 				node,
 				UMLVisualIDRegistry
@@ -1328,7 +1338,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_POLICY);
 
-		Node InterfaceName_5011 = createLabel(node, UMLVisualIDRegistry
+		Node label5011 = createLabel(node, UMLVisualIDRegistry
 				.getType(InterfaceNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID),
@@ -1368,7 +1378,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_POLICY);
 
-		Node InterfaceName_5049 = createLabel(node, UMLVisualIDRegistry
+		Node label5049 = createLabel(node, UMLVisualIDRegistry
 				.getType(InterfaceNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(InterfaceAttributeCompartment2EditPart.VISUAL_ID),
@@ -1418,23 +1428,20 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.INTERFACEREALIZATION_PREF_FONT,
 				IPapyrusPreferencesConstant.INTERFACEREALIZATION_PREF_FONT_COLOR);
 
-		Node InterfaceRealizationName_6008 = createLabel(
+		Node label6008 = createLabel(
 				edge,
 				UMLVisualIDRegistry
 						.getType(AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID));
-		InterfaceRealizationName_6008
-				.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6008 = (Location) InterfaceRealizationName_6008
-				.getLayoutConstraint();
+		label6008.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6008 = (Location) label6008.getLayoutConstraint();
 		location6008.setX(0);
 		location6008.setY(40);
-		Node InterfaceRealizationName_6009 = createLabel(edge,
-				UMLVisualIDRegistry
-						.getType(InterfaceRealizationName2EditPart.VISUAL_ID));
-		InterfaceRealizationName_6009
-				.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6009 = (Location) InterfaceRealizationName_6009
-				.getLayoutConstraint();
+		Node label6009 = createLabel(edge, UMLVisualIDRegistry
+				.getType(InterfaceRealizationName2EditPart.VISUAL_ID));
+		label6009.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6009 = (Location) label6009.getLayoutConstraint();
 		location6009.setX(0);
 		location6009.setY(60);
 		return edge;
@@ -1504,7 +1511,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.MODEL_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.MODEL_PREF_GRADIENT_POLICY);
 
-		Node ModelName_5020 = createLabel(node, UMLVisualIDRegistry
+		Node label5020 = createLabel(node, UMLVisualIDRegistry
 				.getType(ModelNameEditPartTN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(ModelPackageableElementCompartmentEditPart.VISUAL_ID),
@@ -1536,7 +1543,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.MODEL_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.MODEL_PREF_GRADIENT_POLICY);
 
-		Node ModelName_5052 = createLabel(node, UMLVisualIDRegistry
+		Node label5052 = createLabel(node, UMLVisualIDRegistry
 				.getType(ModelNameEditPartCN.VISUAL_ID));
 		createCompartment(
 				node,
@@ -1779,7 +1786,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_POLICY);
 
-		Node PackageName_5026 = createLabel(node, UMLVisualIDRegistry
+		Node label5026 = createLabel(node, UMLVisualIDRegistry
 				.getType(PackageNameEditPart.VISUAL_ID));
 		createCompartment(
 				node,
@@ -1813,7 +1820,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_POLICY);
 
-		Node PackageName_5017 = createLabel(node, UMLVisualIDRegistry
+		Node label5017 = createLabel(node, UMLVisualIDRegistry
 				.getType(PackageNameEditPartCN.VISUAL_ID));
 		createCompartment(
 				node,
@@ -1853,14 +1860,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PACKAGEIMPORT_PREF_FONT,
 				IPapyrusPreferencesConstant.PACKAGEIMPORT_PREF_FONT_COLOR);
 
-		Node PackageImportVisibility_6022 = createLabel(
-				edge,
-				UMLVisualIDRegistry
-						.getType(AppliedStereotypePackageImportEditPart.VISUAL_ID));
-		PackageImportVisibility_6022
-				.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6022 = (Location) PackageImportVisibility_6022
-				.getLayoutConstraint();
+		Node label6022 = createLabel(edge, UMLVisualIDRegistry
+				.getType(AppliedStereotypePackageImportEditPart.VISUAL_ID));
+		label6022.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6022 = (Location) label6022.getLayoutConstraint();
 		location6022.setX(0);
 		location6022.setY(40);
 		return edge;
@@ -1930,7 +1934,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_GRADIENT_POLICY);
 
-		Node PrimitiveTypeName_5032 = createLabel(node, UMLVisualIDRegistry
+		Node label5032 = createLabel(node, UMLVisualIDRegistry
 				.getType(PrimitiveTypeNameEditPart.VISUAL_ID));
 		return node;
 	}
@@ -1961,7 +1965,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.PRIMITIVETYPE_PREF_GRADIENT_POLICY);
 
-		Node PrimitiveTypeName_5058 = createLabel(node, UMLVisualIDRegistry
+		Node label5058 = createLabel(node, UMLVisualIDRegistry
 				.getType(PrimitiveTypeNameEditPartCN.VISUAL_ID));
 		return node;
 	}
@@ -2095,20 +2099,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.REALIZATION_PREF_FONT,
 				IPapyrusPreferencesConstant.REALIZATION_PREF_FONT_COLOR);
 
-		Node RealizationName_6012 = createLabel(edge, UMLVisualIDRegistry
+		Node label6012 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AppliedStereotypeRealizationEditPart.VISUAL_ID));
-		RealizationName_6012.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6012.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6012 = (Location) RealizationName_6012
-				.getLayoutConstraint();
+		Location location6012 = (Location) label6012.getLayoutConstraint();
 		location6012.setX(0);
 		location6012.setY(40);
-		Node RealizationName_6013 = createLabel(edge, UMLVisualIDRegistry
+		Node label6013 = createLabel(edge, UMLVisualIDRegistry
 				.getType(RealizationName2EditPart.VISUAL_ID));
-		RealizationName_6013.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6013.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6013 = (Location) RealizationName_6013
-				.getLayoutConstraint();
+		Location location6013 = (Location) label6013.getLayoutConstraint();
 		location6013.setX(0);
 		location6013.setY(60);
 		return edge;
@@ -2144,18 +2146,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
-
-		// initForegroundFromPrefs(
-		// node,
-		// prefStore,
-		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_LINE_COLOR);
-		//
-		// initBackgroundFromPrefs(
-		// node,
-		// prefStore,
-		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_FILL_COLOR,
-		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_GRADIENT_COLOR,
-		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_GRADIENT_POLICY);
 
 		createCompartment(
 				node,
@@ -2194,7 +2184,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_POLICY);
 
-		Node SignalName_5008 = createLabel(node, UMLVisualIDRegistry
+		Node label5008 = createLabel(node, UMLVisualIDRegistry
 				.getType(SignalNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(SignalAttributeCompartmentEditPart.VISUAL_ID), true,
@@ -2226,7 +2216,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_COLOR,
 				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_POLICY);
 
-		Node SignalName_5046 = createLabel(node, UMLVisualIDRegistry
+		Node label5046 = createLabel(node, UMLVisualIDRegistry
 				.getType(SignalNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
 				.getType(SignalAttributeCompartment2EditPart.VISUAL_ID), true,
@@ -2253,14 +2243,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
-
-		// initForegroundFromPrefs(node, prefStore,
-		// IPapyrusPreferencesConstant.SLOT_PREF_LINE_COLOR);
-		//
-		// initBackgroundFromPrefs(node, prefStore,
-		// IPapyrusPreferencesConstant.SLOT_PREF_FILL_COLOR,
-		// IPapyrusPreferencesConstant.SLOT_PREF_GRADIENT_COLOR,
-		// IPapyrusPreferencesConstant.SLOT_PREF_GRADIENT_POLICY);
 
 		return node;
 	}
@@ -2295,20 +2277,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.SUBSTITUTION_PREF_FONT,
 				IPapyrusPreferencesConstant.SUBSTITUTION_PREF_FONT_COLOR);
 
-		Node SubstitutionName_6010 = createLabel(edge, UMLVisualIDRegistry
+		Node label6010 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AppliedStereotypeSubstitutionEditPart.VISUAL_ID));
-		SubstitutionName_6010.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6010.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6010 = (Location) SubstitutionName_6010
-				.getLayoutConstraint();
+		Location location6010 = (Location) label6010.getLayoutConstraint();
 		location6010.setX(0);
 		location6010.setY(40);
-		Node SubstitutionName_6011 = createLabel(edge, UMLVisualIDRegistry
+		Node label6011 = createLabel(edge, UMLVisualIDRegistry
 				.getType(SubstitutionName2EditPart.VISUAL_ID));
-		SubstitutionName_6011.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6011.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6011 = (Location) SubstitutionName_6011
-				.getLayoutConstraint();
+		Location location6011 = (Location) label6011.getLayoutConstraint();
 		location6011.setX(0);
 		location6011.setY(60);
 		return edge;
@@ -2344,12 +2324,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.TEMPLATEBINDING_PREF_FONT,
 				IPapyrusPreferencesConstant.TEMPLATEBINDING_PREF_FONT_COLOR);
 
-		Node TemplateBindingLabel_6023 = createLabel(edge, UMLVisualIDRegistry
+		Node label6023 = createLabel(edge, UMLVisualIDRegistry
 				.getType(WrappingLabelEditPart.VISUAL_ID));
-		TemplateBindingLabel_6023.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6023.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6023 = (Location) TemplateBindingLabel_6023
-				.getLayoutConstraint();
+		Location location6023 = (Location) label6023.getLayoutConstraint();
 		location6023.setX(0);
 		location6023.setY(40);
 		return edge;
@@ -2398,18 +2377,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.USAGE_PREF_FONT,
 				IPapyrusPreferencesConstant.USAGE_PREF_FONT_COLOR);
 
-		Node UsageName_6016 = createLabel(edge, UMLVisualIDRegistry
+		Node label6016 = createLabel(edge, UMLVisualIDRegistry
 				.getType(UsageNameEditPart.VISUAL_ID));
-		UsageName_6016.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6016.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6016 = (Location) UsageName_6016.getLayoutConstraint();
+		Location location6016 = (Location) label6016.getLayoutConstraint();
 		location6016.setX(0);
 		location6016.setY(40);
-		Node UsageName_6017 = createLabel(edge, UMLVisualIDRegistry
+		Node label6017 = createLabel(edge, UMLVisualIDRegistry
 				.getType(AppliedStereotypeUsageEditPart.VISUAL_ID));
-		UsageName_6017.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6017.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6017 = (Location) UsageName_6017.getLayoutConstraint();
+		Location location6017 = (Location) label6017.getLayoutConstraint();
 		location6017.setX(0);
 		location6017.setY(60);
 		return edge;
@@ -2527,7 +2506,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| (op.getSemanticHint() != null && !elementTypeHint.equals(op
 						.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it
-							// should be the same as in element type
+			// should be the same as in element type
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
@@ -2535,7 +2514,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				&& visualID != UMLVisualIDRegistry
 						.getLinkWithClassVisualID(domainElement)) {
 			return false; // visual id for link EClass should match visual id
-							// from element type
+			// from element type
 		}
 		return true;
 	}
@@ -2573,13 +2552,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 						.getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be
-									// the same as in element type
+					// the same as in element type
 				}
 				if (domainElement != null
 						&& visualID != UMLVisualIDRegistry.getNodeVisualID(op
 								.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match
-									// visual id from element type
+					// visual id from element type
 				}
 			} else {
 				if (!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry
@@ -2635,7 +2614,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(
 									op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match
-										// visual id for domain element
+						// visual id for domain element
 					}
 					break;
 				default:

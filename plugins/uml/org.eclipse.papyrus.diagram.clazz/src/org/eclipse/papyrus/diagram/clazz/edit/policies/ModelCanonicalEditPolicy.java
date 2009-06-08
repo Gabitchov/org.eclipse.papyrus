@@ -34,6 +34,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentLinkDescriptorEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
@@ -225,7 +227,8 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			Edge nextDiagramLink = (Edge) linksIterator.next();
 			int diagramLinkVisualID = UMLVisualIDRegistry
 					.getVisualID(nextDiagramLink);
-			if (diagramLinkVisualID == -1) {
+			if (diagramLinkVisualID == -1
+					|| diagramLinkVisualID == CommentLinkDescriptorEditPart.VISUAL_ID) {
 				if (nextDiagramLink.getSource() != null
 						&& nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
@@ -765,6 +768,17 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater
 						.getTemplateBinding_4015ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case GeneralizationSetEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getGeneralizationSet_4020ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

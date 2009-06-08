@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEnumerationLitera
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartment2EditPart;
@@ -125,6 +126,7 @@ import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.GeneralizationSet;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
@@ -1911,6 +1913,8 @@ public class UMLDiagramUpdater {
 			return getProfileApplication_4012ContainedLinks(view);
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getTemplateBinding_4015ContainedLinks(view);
+		case GeneralizationSetEditPart.VISUAL_ID:
+			return getGeneralizationSet_4020ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -2040,6 +2044,8 @@ public class UMLDiagramUpdater {
 			return getProfileApplication_4012IncomingLinks(view);
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getTemplateBinding_4015IncomingLinks(view);
+		case GeneralizationSetEditPart.VISUAL_ID:
+			return getGeneralizationSet_4020IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -2169,6 +2175,8 @@ public class UMLDiagramUpdater {
 			return getProfileApplication_4012OutgoingLinks(view);
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getTemplateBinding_4015OutgoingLinks(view);
+		case GeneralizationSetEditPart.VISUAL_ID:
+			return getGeneralizationSet_4020OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -2204,6 +2212,8 @@ public class UMLDiagramUpdater {
 				.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result
 				.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result
+				.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
 		return result;
 	}
 
@@ -2351,6 +2361,8 @@ public class UMLDiagramUpdater {
 				.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result
 				.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result
+				.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
 		return result;
 	}
 
@@ -2404,6 +2416,8 @@ public class UMLDiagramUpdater {
 				.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result
 				.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result
+				.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
 		return result;
 	}
 
@@ -2700,6 +2714,8 @@ public class UMLDiagramUpdater {
 				.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result
 				.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result
+				.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
 		return result;
 	}
 
@@ -2760,6 +2776,8 @@ public class UMLDiagramUpdater {
 				.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result
 				.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result
+				.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
 		return result;
 	}
 
@@ -3069,6 +3087,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getTemplateBinding_4015ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getGeneralizationSet_4020ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -4361,6 +4386,8 @@ public class UMLDiagramUpdater {
 						modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(
 				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_GeneralizationSet_4020(
+				modelElement, crossReferences));
 		return result;
 	}
 
@@ -4667,6 +4694,37 @@ public class UMLDiagramUpdater {
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
 				.getResourceSet().getResources());
 		List result = new LinkedList();
+		result
+				.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(
+						modelElement, crossReferences));
+		result
+				.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(
+						modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(
+				modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getGeneralizationSet_4020IncomingLinks(View view) {
+		GeneralizationSet modelElement = (GeneralizationSet) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
+				.getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4006(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4007(modelElement,
+				crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4008(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4018(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_4009(
+				modelElement, crossReferences));
 		result
 				.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(
 						modelElement, crossReferences));
@@ -5702,7 +5760,11 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getGeneralization_4002OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+		Generalization modelElement = (Generalization) view.getElement();
+		List result = new LinkedList();
+		result
+				.addAll(getOutgoingTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
+		return result;
 	}
 
 	/**
@@ -5865,6 +5927,24 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getTemplateBinding_4015OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getGeneralizationSet_4020OutgoingLinks(View view) {
+		GeneralizationSet modelElement = (GeneralizationSet) view.getElement();
+		List result = new LinkedList();
+		result
+				.addAll(getOutgoingTypeModelFacetLinks_Realization_4005(modelElement));
+		result
+				.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
+		result
+				.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
+		result
+				.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		return result;
 	}
 
 	/**
@@ -6416,6 +6496,47 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection getContainedTypeModelFacetLinks_GeneralizationSet_4020(
+			Package container) {
+		Collection result = new LinkedList();
+		for (Iterator links = container.getPackagedElements().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof GeneralizationSet) {
+				continue;
+			}
+			GeneralizationSet link = (GeneralizationSet) linkObject;
+			if (GeneralizationSetEditPart.VISUAL_ID != UMLVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+			//Papyrus GenCode 
+			List targets = link.getGeneralizations();
+			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
+			if (false == theTarget instanceof Generalization) {
+				continue;
+			}
+			Generalization dst = (Generalization) theTarget;
+			List sources = link.getGeneralizations();
+
+			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+
+			if (false == theSource instanceof Generalization) {
+				continue;
+			}
+			Generalization src = (Generalization) theSource;
+			result.add(new UMLLinkDescriptor(src, dst, link,
+					UMLElementTypes.GeneralizationSet_4020,
+					GeneralizationSetEditPart.VISUAL_ID));
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection getIncomingTypeModelFacetLinks_AssociationClass_4017(
 			Type target, Map crossReferences) {
 		Collection result = new LinkedList();
@@ -6942,6 +7063,41 @@ public class UMLDiagramUpdater {
 			result.add(new UMLLinkDescriptor(src, target, link,
 					UMLElementTypes.TemplateBinding_4015,
 					TemplateBindingEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getIncomingTypeModelFacetLinks_GeneralizationSet_4020(
+			Generalization target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
+					.next();
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE
+					.getGeneralizationSet_Generalization()
+					|| false == setting.getEObject() instanceof GeneralizationSet) {
+				continue;
+			}
+			GeneralizationSet link = (GeneralizationSet) setting.getEObject();
+			if (GeneralizationSetEditPart.VISUAL_ID != UMLVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List sources = link.getGeneralizations();
+
+			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+
+			if (false == theSource instanceof Generalization) {
+				continue;
+			}
+			Generalization src = (Generalization) theSource;
+			result.add(new UMLLinkDescriptor(src, target, link,
+					UMLElementTypes.GeneralizationSet_4020,
+					GeneralizationSetEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -7560,6 +7716,63 @@ public class UMLDiagramUpdater {
 			result.add(new UMLLinkDescriptor(src, dst, link,
 					UMLElementTypes.TemplateBinding_4015,
 					TemplateBindingEditPart.VISUAL_ID));
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingTypeModelFacetLinks_GeneralizationSet_4020(
+			Generalization source) {
+		Package container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null && container == null; element = element
+				.eContainer()) {
+			if (element instanceof Package) {
+				container = (Package) element;
+			}
+		}
+		if (container == null) {
+			return Collections.EMPTY_LIST;
+		}
+		Collection result = new LinkedList();
+		for (Iterator links = container.getPackagedElements().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof GeneralizationSet) {
+				continue;
+			}
+			GeneralizationSet link = (GeneralizationSet) linkObject;
+			if (GeneralizationSetEditPart.VISUAL_ID != UMLVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+			//Papyrus GenCode 
+			List targets = link.getGeneralizations();
+			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
+			if (false == theTarget instanceof Generalization) {
+				continue;
+			}
+			Generalization dst = (Generalization) theTarget;
+			List sources = link.getGeneralizations();
+
+			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+
+			if (false == theSource instanceof Generalization) {
+				continue;
+			}
+			Generalization src = (Generalization) theSource;
+			if (src != source) {
+				continue;
+			}
+			result.add(new UMLLinkDescriptor(src, dst, link,
+					UMLElementTypes.GeneralizationSet_4020,
+					GeneralizationSetEditPart.VISUAL_ID));
 
 		}
 		return result;

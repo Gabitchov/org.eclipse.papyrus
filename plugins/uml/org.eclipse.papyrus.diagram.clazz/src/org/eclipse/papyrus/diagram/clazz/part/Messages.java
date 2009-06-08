@@ -593,6 +593,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String GeneralizationSet17CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String GeneralizationSet17CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String Reception1CreationTool_title;
 
 	/**

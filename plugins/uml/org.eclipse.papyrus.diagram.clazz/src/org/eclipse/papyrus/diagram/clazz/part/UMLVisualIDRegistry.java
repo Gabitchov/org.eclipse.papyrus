@@ -1485,6 +1485,10 @@ public class UMLVisualIDRegistry {
 				domainElement.eClass())) {
 			return TemplateBindingEditPart.VISUAL_ID;
 		}
+		if (UMLPackage.eINSTANCE.getGeneralizationSet().isSuperTypeOf(
+				domainElement.eClass())) {
+			return GeneralizationSetEditPart.VISUAL_ID;
+		}
 		return -1;
 	}
 
@@ -1706,6 +1710,9 @@ public class UMLVisualIDRegistry {
 
 		labelInfo = new BaseViewInfo(6023, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4020, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
 

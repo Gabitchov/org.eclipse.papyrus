@@ -8,15 +8,15 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.common.helper.AssociationHelper;
-import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.GeneralizationSet;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * @generated
  */
-public class AssociationReorientCommand extends EditElementCommand {
+public class GeneralizationSetReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -36,7 +36,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public AssociationReorientCommand(ReorientRelationshipRequest request) {
+	public GeneralizationSetReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -47,7 +47,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Association) {
+		if (false == getElementToEdit() instanceof GeneralizationSet) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -60,44 +60,45 @@ public class AssociationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
+		if (!(oldEnd instanceof Generalization && newEnd instanceof Generalization)) {
 			return false;
 		}
-		// if (getLink().getEndTypes().size() != 1) {
-		if (getLink().getEndTypes().size() == 1) {
+		if (getLink().getGeneralizations().size() != 1) {
 			return false;
 		}
-		Type target = (Type) getLink().getEndTypes().get(0);
+		Generalization target = (Generalization) getLink().getGeneralizations()
+				.get(0);
 		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociation_4001(container, getNewSource(), target);
+				.canExistGeneralizationSet_4020(container, getNewSource(),
+						target);
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
+		if (!(oldEnd instanceof Generalization && newEnd instanceof Generalization)) {
 			return false;
 		}
-
-		// if (getLink().getEndTypes().size() != 1) {
-		if (getLink().getEndTypes().size() == 1) {
+		if (getLink().getGeneralizations().size() != 1) {
 			return false;
 		}
-		Type source = (Type) getLink().getEndTypes().get(0);
+		Generalization source = (Generalization) getLink().getGeneralizations()
+				.get(0);
 		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociation_4001(container, source, getNewTarget());
+				.canExistGeneralizationSet_4020(container, source,
+						getNewTarget());
 	}
 
 	/**
@@ -121,52 +122,53 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Association getLink() {
-		return (Association) getElementToEdit();
+	protected GeneralizationSet getLink() {
+		return (GeneralizationSet) getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Type getNewSource() {
-		return (Type) newEnd;
+	protected Generalization getNewSource() {
+		return (Generalization) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Type getNewTarget() {
-		return (Type) newEnd;
+	protected Generalization getNewTarget() {
+		return (Generalization) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Type getOldSource() {
-		return (Type) oldEnd;
+	protected Generalization getOldSource() {
+		return (Generalization) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Type getOldTarget() {
-		return (Type) oldEnd;
+	protected Generalization getOldTarget() {
+		return (Generalization) oldEnd;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		return AssociationHelper.reconnect(AssociationHelper.source, getLink(),
-				getNewSource());
+		getLink().getGeneralizations().remove(getOldSource());
+		getLink().getGeneralizations().add(getNewSource());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		return AssociationHelper.reconnect(AssociationHelper.target, getLink(),
-				getNewTarget());
-
+		getLink().getGeneralizations().remove(getOldTarget());
+		getLink().getGeneralizations().add(getNewTarget());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 }

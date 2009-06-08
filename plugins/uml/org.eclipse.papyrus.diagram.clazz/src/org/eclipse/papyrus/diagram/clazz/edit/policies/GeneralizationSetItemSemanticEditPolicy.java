@@ -6,31 +6,46 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.GeneralizationSetCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.GeneralizationSetReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency2ReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency3CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.DependencyCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.DependencyReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ElementImportCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ElementImportReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.RealizationCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.RealizationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class GeneralizationItemSemanticEditPolicy extends
+public class GeneralizationSetItemSemanticEditPolicy extends
 		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public GeneralizationItemSemanticEditPolicy() {
-		super(UMLElementTypes.Generalization_4002);
+	public GeneralizationSetItemSemanticEditPolicy() {
+		super(UMLElementTypes.GeneralizationSet_4020);
 	}
 
 	/**
@@ -55,6 +70,29 @@ public class GeneralizationItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
+		if (UMLElementTypes.Realization_4005 == req.getElementType()) {
+			return getGEFWrapper(new RealizationCreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Abstraction_4006 == req.getElementType()) {
+			return getGEFWrapper(new AbstractionCreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Usage_4007 == req.getElementType()) {
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(),
+					req.getTarget()));
+		}
+		if (UMLElementTypes.Dependency_4008 == req.getElementType()) {
+			return getGEFWrapper(new DependencyCreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Dependency_4018 == req.getElementType()) {
+			return getGEFWrapper(new Dependency3CreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.ElementImport_4009 == req.getElementType()) {
+			return null;
+		}
 		if (UMLElementTypes.CommentAnnotatedElement_4013 == req
 				.getElementType()) {
 			return null;
@@ -66,10 +104,6 @@ public class GeneralizationItemSemanticEditPolicy extends
 		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationSetCreateCommand(req, req
-					.getSource(), req.getTarget()));
-		}
 		return null;
 	}
 
@@ -78,6 +112,30 @@ public class GeneralizationItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
+		if (UMLElementTypes.Realization_4005 == req.getElementType()) {
+			return getGEFWrapper(new RealizationCreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Abstraction_4006 == req.getElementType()) {
+			return getGEFWrapper(new AbstractionCreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Usage_4007 == req.getElementType()) {
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(),
+					req.getTarget()));
+		}
+		if (UMLElementTypes.Dependency_4008 == req.getElementType()) {
+			return getGEFWrapper(new DependencyCreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Dependency_4018 == req.getElementType()) {
+			return getGEFWrapper(new Dependency3CreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.ElementImport_4009 == req.getElementType()) {
+			return getGEFWrapper(new ElementImportCreateCommand(req, req
+					.getSource(), req.getTarget()));
+		}
 		if (UMLElementTypes.CommentAnnotatedElement_4013 == req
 				.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
@@ -92,10 +150,6 @@ public class GeneralizationItemSemanticEditPolicy extends
 			return getGEFWrapper(new TemplateBindingCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationSetCreateCommand(req, req
-					.getSource(), req.getTarget()));
-		}
 		return null;
 	}
 
@@ -108,10 +162,20 @@ public class GeneralizationItemSemanticEditPolicy extends
 	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
+		case RealizationEditPart.VISUAL_ID:
+			return getGEFWrapper(new RealizationReorientCommand(req));
+		case AbstractionEditPart.VISUAL_ID:
+			return getGEFWrapper(new AbstractionReorientCommand(req));
+		case UsageEditPart.VISUAL_ID:
+			return getGEFWrapper(new UsageReorientCommand(req));
+		case DependencyEditPart.VISUAL_ID:
+			return getGEFWrapper(new DependencyReorientCommand(req));
+		case DependencyBranchEditPart.VISUAL_ID:
+			return getGEFWrapper(new Dependency2ReorientCommand(req));
+		case ElementImportEditPart.VISUAL_ID:
+			return getGEFWrapper(new ElementImportReorientCommand(req));
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getGEFWrapper(new TemplateBindingReorientCommand(req));
-		case GeneralizationSetEditPart.VISUAL_ID:
-			return getGEFWrapper(new GeneralizationSetReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

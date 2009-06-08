@@ -44,6 +44,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
@@ -368,6 +369,11 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType GeneralizationSet_4020 = getElementType("org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -627,6 +633,9 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(TemplateBinding_4015, UMLPackage.eINSTANCE
 					.getTemplateBinding());
+
+			elements.put(GeneralizationSet_4020, UMLPackage.eINSTANCE
+					.getGeneralizationSet());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -708,6 +717,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4013);
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4014);
 			KNOWN_ELEMENT_TYPES.add(TemplateBinding_4015);
+			KNOWN_ELEMENT_TYPES.add(GeneralizationSet_4020);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -845,6 +855,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return ConstraintConstrainedElement_4014;
 		case TemplateBindingEditPart.VISUAL_ID:
 			return TemplateBinding_4015;
+		case GeneralizationSetEditPart.VISUAL_ID:
+			return GeneralizationSet_4020;
 		}
 		return null;
 	}
