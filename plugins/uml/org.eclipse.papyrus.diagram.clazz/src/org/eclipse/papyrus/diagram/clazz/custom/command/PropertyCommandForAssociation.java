@@ -28,11 +28,19 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
+/**
+ * The Class PropertyCommandForAssociation use to create a property into an association (ownedEnd)
+ */
 public class PropertyCommandForAssociation extends PropertyCreateCommand {
 
+	/**
+	 * Instantiates a new property command for association.
+	 * 
+	 * @param req
+	 *            the req to launch the command
+	 */
 	public PropertyCommandForAssociation(CreateElementRequest req) {
 		super(req);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -56,8 +64,10 @@ public class PropertyCommandForAssociation extends PropertyCreateCommand {
 		return newElement;
 	}
 
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	/**
+	 * {@inheritedDoc}
+	 */
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Property newElement = (Property) doDefaultElementCreation();
 
 		((CreateElementRequest) getRequest()).setNewElement(newElement);

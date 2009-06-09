@@ -42,28 +42,30 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
 
 /**
- * Custom class to create the associationClass node
+ * Custom class to create the associationClass node.
  * 
- * @author Patrick Tessier
  */
-public class AssociationClassViewCreateCommand extends
-		AbstractTransactionalCommand {
+public class AssociationClassViewCreateCommand extends AbstractTransactionalCommand {
 
 	/**
-	 * iadapter to send eobjet
-	 * 
-	 * @author Patrick Tessier
+	 * iadapter to send eobjet.
 	 */
 	private class SemanticAdapter implements IAdaptable {
 
+		/** The element. */
 		private EObject element;
 
+		/**
+		 * Instantiates a new semantic adapter.
+		 * 
+		 * @param element
+		 *            the element
+		 */
 		public SemanticAdapter(EObject element) {
 			this.element = element;
 		}
 
 		/**
-		 * 
 		 * {@inheritDoc}
 		 */
 		public Object getAdapter(Class adapter) {
@@ -75,26 +77,35 @@ public class AssociationClassViewCreateCommand extends
 
 	}
 
+	/** The node. */
 	private static View node;
 
+	/** The container view. */
 	private View containerView;
 
+	/** The create connection view and element request. */
 	private CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest;
 
+	/** The element. */
 	private EObject element;
 
+	/** The eobject. */
 	private EObject eobject;
 
+	/** The location. */
 	private Point location;
 
+	/** The preference hint. */
 	private PreferencesHint preferenceHint;
 
+	/** The result. */
 	public EObjectAdapter result;
 
+	/** The viewer. */
 	private EditPartViewer viewer;
 
 	/**
-	 * constructor
+	 * constructor.
 	 * 
 	 * @param createConnectionViewAndElementRequest
 	 *            the request that is used to obtained the associationclass
@@ -109,10 +120,8 @@ public class AssociationClassViewCreateCommand extends
 	 * @param point
 	 *            the location of the future association node
 	 */
-	public AssociationClassViewCreateCommand(
-			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
-			TransactionalEditingDomain domain, View container,
-			EditPartViewer viewer, PreferencesHint preferencesHint, Point point) {
+	public AssociationClassViewCreateCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, TransactionalEditingDomain domain, View container, EditPartViewer viewer,
+			PreferencesHint preferencesHint, Point point) {
 		super(domain, "AssociationClassViewCreateCommand", null); //$NON-NLS-1$
 		this.containerView = container;
 		this.viewer = viewer;
@@ -126,22 +135,17 @@ public class AssociationClassViewCreateCommand extends
 	 * 
 	 * {@inheritDoc}
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// / get the factory of the viewer
 		// AssociationClassViewFactory factory = new
 		// AssociationClassViewFactory();
 
 		// creation of the element
-		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) createConnectionViewAndElementRequest)
-				.getConnectionViewAndElementDescriptor()
+		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) createConnectionViewAndElementRequest).getConnectionViewAndElementDescriptor()
 				.getCreateElementRequestAdapter();
-		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter
-				.getAdapter(CreateRelationshipRequest.class);
+		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createAssociationClass_2013(
-				createElementRequest.getNewElement(), this.containerView, -1,
-				true, preferenceHint);
+		this.node = viewProvider.createAssociationClass_2013(createElementRequest.getNewElement(), this.containerView, -1, true, preferenceHint);
 		// this.node = factory.createView(new
 		// SemanticAdapter(createElementRequest.getNewElement()),
 		// this.containerView, ((IHintedType)
@@ -165,8 +169,7 @@ public class AssociationClassViewCreateCommand extends
 				View view = (View) ((IGraphicalEditPart) editpart).getModel();
 				if (view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
-					return f != null ? Collections.singletonList(f)
-							: Collections.EMPTY_LIST;
+					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
 				}
 			}
 		}
@@ -174,7 +177,7 @@ public class AssociationClassViewCreateCommand extends
 	}
 
 	/**
-	 * used to obtain the created node
+	 * used to obtain the created node.
 	 * 
 	 * @return the created node
 	 */

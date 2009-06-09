@@ -18,7 +18,6 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
  * this class is used to display the figure of GeneralizationSet
- * 
  */
 public class GeneralizationSet extends DashedEdgeFigure {
 

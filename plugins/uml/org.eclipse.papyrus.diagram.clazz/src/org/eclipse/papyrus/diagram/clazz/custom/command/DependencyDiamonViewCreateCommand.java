@@ -40,16 +40,8 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
 /**
  * Custom class to create the associationClass node
  * 
- * @author Patrick Tessier
  */
-public class DependencyDiamonViewCreateCommand extends
-		AbstractTransactionalCommand {
-
-	/**
-	 * iadapter to send eobjet
-	 * 
-	 * @author Patrick Tessier
-	 */
+public class DependencyDiamonViewCreateCommand extends AbstractTransactionalCommand {
 
 	private static View node;
 
@@ -85,10 +77,7 @@ public class DependencyDiamonViewCreateCommand extends
 	 * @param point
 	 *            the location of the future association node
 	 */
-	public DependencyDiamonViewCreateCommand(TransactionalEditingDomain domain,
-			View container, EditPartViewer viewer,
-			PreferencesHint preferencesHint, Point point,
-			SemanticAdapter semanticAdapter) {
+	public DependencyDiamonViewCreateCommand(TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, SemanticAdapter semanticAdapter) {
 		super(domain, "AssociationClassViewCreateCommand", null); //$NON-NLS-1$
 		this.containerView = container;
 		this.viewer = viewer;
@@ -103,8 +92,7 @@ public class DependencyDiamonViewCreateCommand extends
 	 * 
 	 * {@inheritDoc}
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// / get the factory of the viewer
 		// Dependency2ViewFactory factory = new Dependency2ViewFactory();
 		// creation of the element
@@ -112,9 +100,7 @@ public class DependencyDiamonViewCreateCommand extends
 		// ((IHintedType) UMLElementTypes.Dependency_2014)
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createDependency_2014(
-				((EObject) semanticApdater.getAdapter(EObject.class)),
-				this.containerView, -1, true, preferenceHint);
+		this.node = viewProvider.createDependency_2014(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
 
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
@@ -136,8 +122,7 @@ public class DependencyDiamonViewCreateCommand extends
 				View view = (View) ((IGraphicalEditPart) editpart).getModel();
 				if (view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
-					return f != null ? Collections.singletonList(f)
-							: Collections.EMPTY_LIST;
+					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
 				}
 			}
 		}

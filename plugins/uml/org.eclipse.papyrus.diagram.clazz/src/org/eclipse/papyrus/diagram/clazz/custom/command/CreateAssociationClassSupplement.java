@@ -36,7 +36,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * This is the supplement command adapted for association
  * 
- * @author Patrick Tessier
  */
 public class CreateAssociationClassSupplement extends SupplementCommand {
 
@@ -52,8 +51,7 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 	 * @param target
 	 *            the target of the association (Type)
 	 */
-	public CreateAssociationClassSupplement(EObject container, EObject source,
-			EObject target) {
+	public CreateAssociationClassSupplement(EObject container, EObject source, EObject target) {
 		super(container, source, target);
 	}
 
@@ -80,38 +78,30 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public EObject doDefaultElementCreation(TransactionalEditingDomain domain,
-			EObject newElement) {
+	public EObject doDefaultElementCreation(TransactionalEditingDomain domain, EObject newElement) {
 
-		AssociationClass association = UMLFactory.eINSTANCE
-				.createAssociationClass();
+		AssociationClass association = UMLFactory.eINSTANCE.createAssociationClass();
 
 		// create target property
 
-		CreateElementRequest request = new CreateElementRequest(domain,
-				getSource(), UMLElementTypes.Property_3002,
-				UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+		CreateElementRequest request = new CreateElementRequest(domain, getSource(), UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
 		EditElementCommand c = new PropertyCreateCommand(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property targetProperty = (Property) c.getCommandResult()
-				.getReturnValue();
+		Property targetProperty = (Property) c.getCommandResult().getReturnValue();
 		targetProperty.setType((Type) getTarget());
 		targetProperty.setName(((Type) getTarget()).getName().toLowerCase());
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 		// create source property
 
-		request = new CreateElementRequest(domain, association,
-				UMLElementTypes.Property_3002, UMLPackage.eINSTANCE
-						.getAssociation_OwnedEnd());
+		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property sourceProperty = (Property) c.getCommandResult()
-				.getReturnValue();
+		Property sourceProperty = (Property) c.getCommandResult().getReturnValue();
 		sourceProperty.setType((Type) getSource());
 		sourceProperty.setName(((Type) getSource()).getName().toLowerCase());
 		sourceProperty.setLower(1);

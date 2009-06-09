@@ -19,7 +19,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
  * this policy is used to supress orphan node view in GMF view the prolicy to remove orphan connection is more complex. It is dependent of the diagram. see remove OrphanConnectionView policy in
  * clazzdiagram
  * 
- * @author Patrick Tessier
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 

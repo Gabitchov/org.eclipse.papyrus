@@ -43,14 +43,24 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
+/**
+ * The Class AssociationBranchDeletion is used delete a branch
+ */
 public class AssociationBranchDeletion implements IObjectActionDelegate {
 
+	/** The selected element. */
 	private AssociationBranchEditPart selectedElement;
 
+	/**
+	 * Instantiates a new association branch deletion.
+	 */
 	public AssociationBranchDeletion() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void run(IAction action) {
 
 		CompoundCommand command = new CompoundCommand();
@@ -59,10 +69,8 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 		GraphicalEditPart associationNodeEditPart = null;
 
 		// 1. Semantic deletion
-		GraphicalEditPart branchSource = (GraphicalEditPart) selectedElement
-				.getSource();
-		GraphicalEditPart branchtarget = (GraphicalEditPart) selectedElement
-				.getTarget();
+		GraphicalEditPart branchSource = (GraphicalEditPart) selectedElement.getSource();
+		GraphicalEditPart branchtarget = (GraphicalEditPart) selectedElement.getTarget();
 		EStructuralFeature feature = null;
 		ArrayList<NamedElement> newValue = new ArrayList<NamedElement>();
 
@@ -70,8 +78,7 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 		association = (Association) branchSource.resolveSemanticElement();
 		associationNodeEditPart = branchSource;
 		newValue.addAll(association.getMemberEnds());
-		newValue.remove(MultiAssociationHelper.getPropertyToListen(
-				(Edge) selectedElement.getModel(), association));
+		newValue.remove(MultiAssociationHelper.getPropertyToListen((Edge) selectedElement.getModel(), association));
 		feature = UMLPackage.eINSTANCE.getAssociation_OwnedEnd();
 
 		SetRequest setRequest = new SetRequest(association, feature, newValue);
@@ -80,17 +87,13 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 
 		// 2. graphical deletion of the branch
 		View associationBranchView = selectedElement.getNotationView();
-		command.add(new ICommandProxy(new DeleteCommand(domain,
-				associationBranchView)));
+		command.add(new ICommandProxy(new DeleteCommand(domain, associationBranchView)));
 
 		// 3. test if it exists more than 2 branches
-		int branchNumber = associationNodeEditPart.getSourceConnections()
-				.size()
-				+ associationNodeEditPart.getTargetConnections().size();
+		int branchNumber = associationNodeEditPart.getSourceConnections().size() + associationNodeEditPart.getTargetConnections().size();
 		if (branchNumber == 3) {
 			// 4. Graphical deletion of the node
-			command.add(new ICommandProxy(new DeleteCommand(domain,
-					associationNodeEditPart.getNotationView())));
+			command.add(new ICommandProxy(new DeleteCommand(domain, associationNodeEditPart.getNotationView())));
 			// 5. Graphical creation of the binary dependency
 			// 5.1 calculus of the future source and target of the binary
 			// dependency
@@ -101,42 +104,38 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 			targetList.addAll(associationNodeEditPart.getTargetConnections());
 			sourceList.remove(selectedElement);
 			targetList.remove(selectedElement);
-			PreferencesHint preferencesHint = ((GraphicalEditPart) ((ConnectionEditPart) (sourceList
-					.get(0))).getTarget()).getDiagramPreferencesHint();
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(
-					UMLElementTypes.Association_4001,
-					((IHintedType) UMLElementTypes.Association_4001)
-							.getSemanticHint(), preferencesHint);
+			PreferencesHint preferencesHint = ((GraphicalEditPart) ((ConnectionEditPart) (sourceList.get(0))).getTarget()).getDiagramPreferencesHint();
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4001, ((IHintedType) UMLElementTypes.Association_4001).getSemanticHint(),
+					preferencesHint);
 
-			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(
-					domain, ((IHintedType) UMLElementTypes.Association_4001)
-							.getSemanticHint(), new SemanticAdapter(null,
-							(((ConnectionEditPart) (sourceList.get(0)))
-									.getTarget()).getModel()),
-					new SemanticAdapter(null,
-							(((ConnectionEditPart) (sourceList.get(1)))
-									.getTarget()).getModel()), sourceList
-							.get(0).getViewer(), preferencesHint,
-					viewDescriptor, null);
+			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType) UMLElementTypes.Association_4001).getSemanticHint(),
+					new SemanticAdapter(null, (((ConnectionEditPart) (sourceList.get(0))).getTarget()).getModel()), new SemanticAdapter(null, (((ConnectionEditPart) (sourceList.get(1))).getTarget())
+							.getModel()), sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
 			binaryCommand.setElement(association);
 			command.add(new ICommandProxy(binaryCommand));
 		}
 		// 6.command Execution
-		selectedElement.getDiagramEditDomain().getDiagramCommandStack()
-				.execute(command);
+		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 
 	}
 
+	/**
+	 * 
+	 *{@inheritedDoc}
+	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection) selection)
-					.getFirstElement();
+			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
 			if (selectedobject instanceof AssociationBranchEditPart) {
 				selectedElement = (AssociationBranchEditPart) selectedobject;
 			}
 		}
 	}
 
+	/**
+	 * 
+	 *{@inheritedDoc}
+	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
 

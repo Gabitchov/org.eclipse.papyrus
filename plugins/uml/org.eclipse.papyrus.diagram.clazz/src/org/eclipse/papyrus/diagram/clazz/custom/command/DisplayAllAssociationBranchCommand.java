@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.command;
 
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -23,21 +22,15 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * This is the command in charge to supress the association and associated
- * properties
- * 
- * @author Patrick Tessier
+ * This is the command in charge to delete the association and associated properties.
  */
-public class DisplayAllAssociationBranchCommand implements
-		IObjectActionDelegate {
+public class DisplayAllAssociationBranchCommand implements IObjectActionDelegate {
 
+	/** The selected element. */
 	private AssociationNodeEditPart selectedElement;
 
 	/**
-	 * constructor of this command
-	 * 
-	 * @param request
-	 *            see {@link DestroyElementRequest}
+	 * constructor of this command.
 	 */
 	public DisplayAllAssociationBranchCommand() {
 		super();
@@ -48,24 +41,25 @@ public class DisplayAllAssociationBranchCommand implements
 	 * {@inheritDoc}
 	 */
 	public void run(IAction action) {
-		MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(
-				selectedElement.getEditingDomain());
-		selectedElement.getDiagramEditDomain().getDiagramCommandStack()
-				.execute(
-						multiAssociationHelper
-								.displayAllBranchesCommand(selectedElement));
+		MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(selectedElement.getEditingDomain());
+		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(multiAssociationHelper.displayAllBranchesCommand(selectedElement));
 	}
 
+	/**
+	 * {@inheritedDoc}
+	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection) selection)
-					.getFirstElement();
+			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
 			if (selectedobject instanceof AssociationNodeEditPart) {
 				selectedElement = (AssociationNodeEditPart) selectedobject;
 			}
 		}
 	}
 
+	/**
+	 * {@inheritedDoc}
+	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
 

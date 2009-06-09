@@ -28,56 +28,39 @@ import org.eclipse.swt.SWT;
 
 public class AssociationFigure extends PolylineConnectionEx {
 
-	/**
-	 * the end of the association is an aggregation i.e. this a transparent diamond.
-	 */
+	/** the end of the association is an aggregation i.e. this a transparent diamond. */
 	public static final int aggregation = 2;
 
-	/**
-	 * the end of the association is a composition so this a black diamond.
-	 */
+	/** the end of the association is a composition so this a black diamond. */
 	public static final int composition = 4;
 
-	/**
-	 * the end of the association is navigable so this is an arrow.
-	 */
+	/** the end of the association is navigable so this is an arrow. */
 	public static final int navigable = 1;
 
-	/**
-	 * the end of contained the property.
-	 */
+	/** the end of contained the property. */
 	public static final int owned = 8;
 
-	/**
-	 * @generated
-	 */
+	/** The applied stereotype association label. */
 	private WrappingLabel fAppliedStereotypeAssociationLabel;
 
-	/**
-	 * @generated
-	 */
+	/** The association name label. */
 	private WrappingLabel fAssociationNameLabel;
 
-	/**
-	 * @generated
-	 */
+	/** The multiplicity source label. */
 	private WrappingLabel fMultiplicitySourceLabel;
 
-	/**
-	 * @generated
-	 */
+	/** The multiplicity target label. */
 	private WrappingLabel fMultiplicityTargetLabel;
 
-	/**
-	 * @generated
-	 */
+	/** The role source label. */
 	private WrappingLabel fRoleSourceLabel;
 
-	/**
-	 * @generated
-	 */
+	/** The role target label. */
 	private WrappingLabel fRoleTargetLabel;
 
+	/**
+	 * Instantiates a new association figure.
+	 */
 	public AssociationFigure() {
 		super();
 		setAntialias(SWT.ON);
@@ -99,7 +82,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 	}
 
 	/**
-	 * @generated
+	 * Creates the contents.
 	 */
 	private void createContents() {
 
@@ -135,6 +118,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 
 	}
 
+	/**
+	 * Gets the aggregation decoration.
+	 * 
+	 * @return the aggregation decoration
+	 */
 	protected RotatableDecoration getAggregationDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -149,19 +137,28 @@ public class AssociationFigure extends PolylineConnectionEx {
 	}
 
 	/**
-	 * @generated
+	 * Gets the applied stereotype association label.
+	 * 
+	 * @return the applied stereotype association label
 	 */
 	public WrappingLabel getAppliedStereotypeAssociationLabel() {
 		return fAppliedStereotypeAssociationLabel;
 	}
 
 	/**
-	 * @generated
+	 * Gets the association name label.
+	 * 
+	 * @return the association name label
 	 */
 	public WrappingLabel getAssociationNameLabel() {
 		return fAssociationNameLabel;
 	}
 
+	/**
+	 * Gets the composition decoration.
+	 * 
+	 * @return the composition decoration
+	 */
 	protected RotatableDecoration getCompositionDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -174,6 +171,14 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return decoration;
 	}
 
+	/**
+	 * Gets the decoration.
+	 * 
+	 * @param typeDecoration
+	 *            the type decoration
+	 * 
+	 * @return the decoration
+	 */
 	public RotatableDecoration getDecoration(int typeDecoration) {
 		// test if this a owned decoration
 		int ownedValue = typeDecoration / owned;
@@ -233,19 +238,28 @@ public class AssociationFigure extends PolylineConnectionEx {
 	}
 
 	/**
-	 * @generated
+	 * Gets the multiplicity source label.
+	 * 
+	 * @return the multiplicity source label
 	 */
 	public WrappingLabel getMultiplicitySourceLabel() {
 		return fMultiplicitySourceLabel;
 	}
 
 	/**
-	 * @generated
+	 * Gets the multiplicity target label.
+	 * 
+	 * @return the multiplicity target label
 	 */
 	public WrappingLabel getMultiplicityTargetLabel() {
 		return fMultiplicityTargetLabel;
 	}
 
+	/**
+	 * Gets the navigable aggregation decoration.
+	 * 
+	 * @return the navigable aggregation decoration
+	 */
 	protected RotatableDecoration getNavigableAggregationDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -263,6 +277,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return decoration;
 	}
 
+	/**
+	 * Gets the navigable composition decoration.
+	 * 
+	 * @return the navigable composition decoration
+	 */
 	protected RotatableDecoration getNavigableCompositionDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -279,6 +298,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return decoration;
 	}
 
+	/**
+	 * Gets the navigation decoration.
+	 * 
+	 * @return the navigation decoration
+	 */
 	protected RotatableDecoration getNavigationDecoration() {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
@@ -286,6 +310,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return dec;
 	}
 
+	/**
+	 * Gets the owned aggregation decoration.
+	 * 
+	 * @return the owned aggregation decoration
+	 */
 	protected RotatableDecoration getOwnedAggregationDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -321,6 +350,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return decoration;
 	}
 
+	/**
+	 * Gets the owned composition decoration.
+	 * 
+	 * @return the owned composition decoration
+	 */
 	protected RotatableDecoration getOwnedCompositionDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -355,6 +389,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return decoration;
 	}
 
+	/**
+	 * Gets the owned decoration.
+	 * 
+	 * @return the owned decoration
+	 */
 	protected RotatableDecoration getOwnedDecoration() {
 
 		PolygonDecoration decoration = new PolygonDecoration();
@@ -373,6 +412,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return decoration;
 	}
 
+	/**
+	 * Gets the owned navigable aggregation decoration.
+	 * 
+	 * @return the owned navigable aggregation decoration
+	 */
 	protected RotatableDecoration getOwnedNavigableAggregationDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -412,6 +456,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return decoration;
 	}
 
+	/**
+	 * Gets the owned navigable composition decoration.
+	 * 
+	 * @return the owned navigable composition decoration
+	 */
 	protected RotatableDecoration getOwnedNavigableCompositionDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -450,6 +499,11 @@ public class AssociationFigure extends PolylineConnectionEx {
 		return decoration;
 	}
 
+	/**
+	 * Gets the owned navigation decoration.
+	 * 
+	 * @return the owned navigation decoration
+	 */
 	protected RotatableDecoration getOwnedNavigationDecoration() {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
@@ -473,21 +527,25 @@ public class AssociationFigure extends PolylineConnectionEx {
 	}
 
 	/**
-	 * @generated
+	 * Gets the role source label.
+	 * 
+	 * @return the role source label
 	 */
 	public WrappingLabel getRoleSourceLabel() {
 		return fRoleSourceLabel;
 	}
 
 	/**
-	 * @generated
+	 * Gets the role target label.
+	 * 
+	 * @return the role target label
 	 */
 	public WrappingLabel getRoleTargetLabel() {
 		return fRoleTargetLabel;
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritedDoc}
 	 */
 	public void paintFigure(Graphics graphics) {
 		graphics.setAntialias(SWT.ON);
