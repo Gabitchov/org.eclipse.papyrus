@@ -1,12 +1,13 @@
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.figure.GeneralizationSet;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationSetItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
  * @generated
@@ -27,6 +28,28 @@ public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof ConstraintLabelEditPart) {
+			((ConstraintLabelEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getConstraintLabel());
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Creates figure for this edit part.
 	 * 
 	 * Body of this method does not depend on settings in generation model so
@@ -35,7 +58,7 @@ public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new DashedEdgeFigure(false);
+		return new GeneralizationSet();
 	}
 
 	/**
@@ -50,8 +73,28 @@ public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
-	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+	public GeneralizationSet getPrimaryShape() {
+		return (GeneralizationSet) getFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof ConstraintLabelEditPart) {
+			return true;
+		}
+		return false;
 	}
 
 }

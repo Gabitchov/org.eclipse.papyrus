@@ -484,6 +484,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case GeneralizationSetEditPart.VISUAL_ID:
 				return new GeneralizationSetEditPart(view);
 
+			case ConstraintLabelEditPart.VISUAL_ID:
+				return new ConstraintLabelEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

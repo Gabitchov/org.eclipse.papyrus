@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.figure;
 
 import org.eclipse.draw2d.Graphics;
@@ -16,8 +29,7 @@ import org.eclipse.swt.SWT;
 public class AssociationFigure extends PolylineConnectionEx {
 
 	/**
-	 * the end of the association is an aggregation i.e. this a translucide
-	 * diamond.
+	 * the end of the association is an aggregation i.e. this a transparent diamond.
 	 */
 	public static final int aggregation = 2;
 
@@ -25,6 +37,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * the end of the association is a composition so this a black diamond.
 	 */
 	public static final int composition = 4;
+
 	/**
 	 * the end of the association is navigable so this is an arrow.
 	 */
@@ -39,6 +52,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * @generated
 	 */
 	private WrappingLabel fAppliedStereotypeAssociationLabel;
+
 	/**
 	 * @generated
 	 */
@@ -74,11 +88,9 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * create an association figure.
 	 * 
 	 * @param targetType
-	 *            the type of end of the association
-	 *            {@link AssociationFigure#navigable}
+	 *            the type of end of the association {@link AssociationFigure#navigable}
 	 * @param sourceType
-	 *            the type of end of the association
-	 *            {@link AssociationFigure#navigable}
+	 *            the type of end of the association {@link AssociationFigure#navigable}
 	 */
 	public AssociationFigure(int sourceType, int targetType) {
 		super();
@@ -487,11 +499,9 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * used to display end of the association.
 	 * 
 	 * @param targetType
-	 *            the type of end of the association
-	 *            {@link AssociationFigure#navigable}
+	 *            the type of end of the association {@link AssociationFigure#navigable}
 	 * @param sourceType
-	 *            the type of end of the association
-	 *            {@link AssociationFigure#navigable}
+	 *            the type of end of the association {@link AssociationFigure#navigable}
 	 */
 	public void setEnd(int sourceType, int targetType) {
 

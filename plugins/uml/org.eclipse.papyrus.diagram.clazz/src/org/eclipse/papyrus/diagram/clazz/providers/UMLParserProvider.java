@@ -12,6 +12,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAssociationEditPart;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBody2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPart;
@@ -1290,6 +1292,21 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private GeneralizationSetConstraintParser generalizationSetIsCoveringIsDisjoint_5067Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGeneralizationSetIsCoveringIsDisjoint_5067Parser() {
+		if (generalizationSetIsCoveringIsDisjoint_5067Parser == null) {
+			generalizationSetIsCoveringIsDisjoint_5067Parser = new GeneralizationSetConstraintParser();
+		}
+		return generalizationSetIsCoveringIsDisjoint_5067Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case AssociationClassName2EditPart.VISUAL_ID:
@@ -1420,6 +1437,8 @@ public class UMLParserProvider extends AbstractProvider implements
 			return getElementImportAlias_6021Parser();
 		case AppliedStereotypePackageImportEditPart.VISUAL_ID:
 			return getPackageImportVisibility_6022Parser();
+		case ConstraintLabelEditPart.VISUAL_ID:
+			return getGeneralizationSetIsCoveringIsDisjoint_5067Parser();
 		}
 		return null;
 	}

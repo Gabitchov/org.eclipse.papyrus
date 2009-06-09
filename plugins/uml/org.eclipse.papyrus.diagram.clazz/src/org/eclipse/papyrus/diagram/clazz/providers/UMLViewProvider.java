@@ -152,6 +152,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
+		initForegroundFromPrefs(edge, prefStore,
+				IPapyrusPreferencesConstant.ASSOCIATION_PREF_LINE_COLOR);
+
 		initFontStyleFromPrefs(edge, prefStore,
 				IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT,
 				IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT_COLOR);
@@ -223,6 +226,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
+
+		initForegroundFromPrefs(edge, prefStore,
+				IPapyrusPreferencesConstant.ASSOCIATION_PREF_LINE_COLOR);
 
 		initFontStyleFromPrefs(edge, prefStore,
 				IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT,
@@ -1221,6 +1227,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				IPapyrusPreferencesConstant.GENERALIZATIONSET_PREF_FONT,
 				IPapyrusPreferencesConstant.GENERALIZATIONSET_PREF_FONT_COLOR);
 
+		Node label5067 = createLabel(edge, UMLVisualIDRegistry
+				.getType(ConstraintLabelEditPart.VISUAL_ID));
+		label5067.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location5067 = (Location) label5067.getLayoutConstraint();
+		location5067.setX(0);
+		location5067.setY(20);
 		return edge;
 	}
 
@@ -2506,7 +2519,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| (op.getSemanticHint() != null && !elementTypeHint.equals(op
 						.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it
-			// should be the same as in element type
+							// should be the same as in element type
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
@@ -2514,7 +2527,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				&& visualID != UMLVisualIDRegistry
 						.getLinkWithClassVisualID(domainElement)) {
 			return false; // visual id for link EClass should match visual id
-			// from element type
+							// from element type
 		}
 		return true;
 	}
@@ -2552,13 +2565,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 						.getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be
-					// the same as in element type
+									// the same as in element type
 				}
 				if (domainElement != null
 						&& visualID != UMLVisualIDRegistry.getNodeVisualID(op
 								.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match
-					// visual id from element type
+									// visual id from element type
 				}
 			} else {
 				if (!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry
@@ -2614,7 +2627,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(
 									op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match
-						// visual id for domain element
+										// visual id for domain element
 					}
 					break;
 				default:

@@ -1410,6 +1410,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case GeneralizationSetEditPart.VISUAL_ID:
+			if (ConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -1713,6 +1718,9 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(4020, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(5067, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
 

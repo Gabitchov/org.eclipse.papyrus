@@ -25,7 +25,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 		// Set the default for the gradient
 		store.setDefault(
 				IPapyrusPreferencesConstant.INTERFACE_PREF_GRADIENT_POLICY,
-				false);
+				true);
 		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
 				new org.eclipse.swt.graphics.RGB(255, 255, 255),
 				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
