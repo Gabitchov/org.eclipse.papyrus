@@ -53,8 +53,6 @@ import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
  */
 public class DiagramNavigator extends Composite {
 
-	private Diagram diagram;
-
 	private TreeViewer viewer;
 
 	/**
@@ -110,9 +108,8 @@ public class DiagramNavigator extends Composite {
 	 * @param pageSite
 	 *            the site
 	 */
-	public DiagramNavigator(Composite parent, Diagram diagram, IPageSite pageSite) {
+	public DiagramNavigator(Composite parent, IPageSite pageSite) {
 		super(parent, SWT.BORDER);
-		this.diagram = diagram;
 		GridLayout gl = new GridLayout();
 		gl.marginHeight = 0;
 		gl.marginWidth = 0;
@@ -144,7 +141,6 @@ public class DiagramNavigator extends Composite {
 		this.viewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		initProviders();
-		this.viewer.setInput(diagram);
 		refreshViewer();
 	}
 
@@ -174,7 +170,7 @@ public class DiagramNavigator extends Composite {
 	 *            <code>true</code> if the label must be refreshed
 	 */
 	protected final void refreshViewer(final boolean updateLabel) {
-		if ((viewer != null) && !viewer.getTree().isDisposed() /* && diagramViewer.getContents() != null */) {
+		if ((viewer != null) && !viewer.getTree().isDisposed()) {
 			if (Display.getCurrent() != Display.getDefault()) {
 				syncRefreshViewer(updateLabel);
 			} else {

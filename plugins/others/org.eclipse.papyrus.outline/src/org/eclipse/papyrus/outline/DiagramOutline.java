@@ -1,5 +1,5 @@
 /***********************************************************************
- * Copyright (c) 2008, 2009 Anyware Technologies, Obeo
+ * Copyright (c) 2008, 2009 Anyware Technologies, Obeo, CEA LIST
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *    Anyware Technologies - initial API and implementation
  *    Obeo
+ *    CEA LIST - synchronization between selection and outline content
  *
  **********************************************************************/
 package org.eclipse.papyrus.outline;
@@ -17,12 +18,12 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.papyrus.core.contentoutline.IPapyrusContentOutlinePage;
@@ -36,7 +37,8 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.Page;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -47,18 +49,29 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * @author <a href="mailto:david.sciamma@anyware-tech.com">David Sciamma</a>
  * @author <a href="mailto:jacques.lescot@anyware-tech.com">Jacques Lescot</a>
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:yann.tanguy@cea.fr">Yann Tanguy</a>
  */
-public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
-
-	private Diagram diagram;
+public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, ISelectionListener {
 
 	protected EditingDomain editingDomain;
 
-	protected IEditorPart editorPart;
+	private IMultiDiagramEditor multiEditor;
 
 	private SashForm sashComp;
 
 	private DiagramNavigator navigator;
+
+	/** Current selection */
+	private RenderedDiagramRootEditPart root = null;
+
+	private Diagram diagram = null;
+
+	/** Outline mode */
+	public final static int SHOW_TREE = 1;
+
+	public final static int SHOW_OVERVIEW = 2;
+
+	public final static int SHOW_BOTH = 0;
 
 	private Composite overview;
 
@@ -78,8 +91,10 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
 	 */
 	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
 		this.editingDomain = multiEditor.getDefaultContext().getTransactionalEditingDomain();
-		this.diagram = multiEditor.getDefaultContext().getDiagramEditDomain().getDiagramEditorPart().getDiagram();
-		this.editorPart = multiEditor.getActiveEditor();
+		this.multiEditor = multiEditor;
+
+		// Add listener to detect selection change
+		multiEditor.getSite().getPage().addPostSelectionListener(this);
 	}
 
 	/**
@@ -87,31 +102,31 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
 	 */
 	@Override
 	public void createControl(Composite parent) {
-		// SashForm
-			
-			
+
+		// Create SashForm
 		sashComp = new SashForm(parent, SWT.VERTICAL);
 		sashComp.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-		// Set up the thumbnail view if possible
-		if(editorPart != null)
-		{
-			GraphicalViewer viewer = (GraphicalViewer) editorPart.getAdapter(GraphicalViewer.class);
-			RootEditPart rootEditPart = viewer.getRootEditPart();
-			if (rootEditPart instanceof ScalableFreeformRootEditPart) {
-				overview = createOverview(sashComp, (ScalableFreeformRootEditPart) rootEditPart);
-				overview.setLayoutData(new GridData(GridData.FILL_BOTH));
-			}
+		// Update selection (diagram and root edit part in active EditorTile)
+		refreshSelection();
 
+		// Create Overview
+		if (root != null) {
+			overview = createOverview(sashComp, (ScalableFreeformRootEditPart) root);
+			overview.setLayoutData(new GridData(GridData.FILL_BOTH));
 		}
-		
-		// Set up the tree viewer
-		navigator = createNavigator(sashComp, diagram, getSite());
+
+		// Create Navigator
+		navigator = createNavigator(sashComp, getSite());
+		if (diagram != null) {
+			navigator.getTreeViewer().setInput(diagram);
+		}
 
 		// Slip SashForm in two sections
 		if (overview != null) {
 			sashComp.setWeights(new int[] { 30, 70 });
 		}
+
 		createActions();
 	}
 
@@ -144,13 +159,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
 	 *            the outline tool bar manager
 	 */
 	private void createShowOutlineActions(IToolBarManager tbm) {
-		final IPreferenceStore ps = getPreferenceStore();
+
 		// Show Tree action
 		showTreeAction = new Action(Messages.DiagramOutline_ShowNavigator, IAction.AS_RADIO_BUTTON) {
 
 			public void run() {
 				if (navigator != null && !navigator.isDisposed()) {
-					performShowAction(navigator, ps, 1);
+					performShowAction();
 				}
 			}
 		};
@@ -163,7 +178,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
 
 			public void run() {
 				if (overview != null && !overview.isDisposed()) {
-					performShowAction(overview, ps, 2);
+					performShowAction();
 				}
 			}
 		};
@@ -176,7 +191,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
 
 			public void run() {
 				if (sashComp != null && !sashComp.isDisposed()) {
-					performShowAction(null, ps, 0);
+					performShowAction();
 				}
 			}
 		};
@@ -184,45 +199,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
 		showAllAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/all_co.gif")); //$NON-NLS-1$
 		tbm.add(showAllAction);
 
-		//
-		if (ps != null) {
-			int showAction = 0;// TODO restore // ps.getInt(ModelerPreferenceConstants.OUTLINE_SHOW_ACTION_PREF);
-			Control control = null;
-			switch (showAction) {
-			case 1:
-				control = navigator;
-				showTreeAction.setChecked(true);
-				break;
-			case 2:
-				control = overview;
-				showOverviewAction.setChecked(true);
-				break;
-			case 3:
-				control = null;
-				showAllAction.setChecked(true);
-				break;
-			default:
-				control = overview;
-				showOverviewAction.setChecked(true);
-			}
-			performShowAction(control, ps, showAction);
-		} else {
-			showOverviewAction.setChecked(true);
-			performShowAction(overview, ps, 0);
-		}
-
+		// Set overview as default choice
+		showOverviewAction.setChecked(true);
+		performShowAction();
 	}
 
-	private void performShowAction(Control control, IPreferenceStore ps, int pref) {
-		sashComp.setMaximizedControl(control);
-		if (ps != null) {
-			// TODO Restore
-			// ps.setValue(ModelerPreferenceConstants.OUTLINE_SHOW_ACTION_PREF, pref);
-		}
-	}
-
-	private DiagramNavigator createNavigator(Composite parent, Diagram diagram, IPageSite pageSite) {
-		return new DiagramNavigator(parent, diagram, pageSite);
+	private DiagramNavigator createNavigator(Composite parent, IPageSite pageSite) {
+		return new DiagramNavigator(parent, pageSite);
 	}
 
 	@Override
@@ -255,14 +238,125 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage {
 		navigator.getTreeViewer().setSelection(selection);
 	}
 
-	protected IPreferenceStore getPreferenceStore() {
-		return null;
-	}
-
 	@Override
 	public void dispose() {
 		super.dispose();
 		navigator.dispose();
+		overview.dispose();
+
+		// Remove selection change listener
+		multiEditor.getSite().getPage().removePostSelectionListener(this);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+
+		// Update selection (diagram and root edit part in active EditorTile)
+		refreshSelection();
+
+		// Refresh outline contents content with the new selection
+		refresh();
+	}
+
+	/**
+	 * Refresh the selected root edit part and diagram
+	 */
+	private void refreshSelection() {
+
+		if (multiEditor.getActiveEditor() != null) {
+			GraphicalViewer viewer = (GraphicalViewer) multiEditor.getActiveEditor().getAdapter(GraphicalViewer.class);
+			RootEditPart rootEditPart = viewer.getRootEditPart();
+
+			if ((rootEditPart != null) && (rootEditPart instanceof RenderedDiagramRootEditPart)) {
+				root = (RenderedDiagramRootEditPart) rootEditPart;
+				diagram = (Diagram) rootEditPart.getContents().getModel();
+
+			} else {
+				root = null;
+				diagram = null;
+			}
+
+		} else {
+			root = null;
+			diagram = null;
+		}
+	}
+
+	/**
+	 * Refresh the outline view
+	 */
+	private void refresh() {
+
+		// Trash and re-Create Overview
+		if ((overview != null) && !(overview.isDisposed())) {
+			overview.dispose();
+		}
+
+		if (root != null) {
+			overview = createOverview(sashComp, (ScalableFreeformRootEditPart) root);
+			overview.setLayoutData(new GridData(GridData.FILL_BOTH));
+		}
+
+		// Update navigator content
+		if (diagram != null) {
+			navigator.getTreeViewer().setInput(diagram);
+		}
+
+		// Slip SashForm in two sections
+		if ((overview != null) && !(overview.isDisposed())) {
+			sashComp.setWeights(new int[] { 30, 70 });
+		}
+
+		// Refresh outline without changing mode
+		performShowAction();
+	}
+
+	/**
+	 * Show outline in selected mode
+	 */
+	private void performShowAction() {
+
+		// Select the kind of outline to show content
+		Control control = null;
+		control = null;
+		switch (getShowActionMode()) {
+		case SHOW_TREE:
+			control = navigator;
+			break;
+		case SHOW_OVERVIEW:
+			control = overview;
+			break;
+		case SHOW_BOTH:
+			control = null;
+			break;
+		default:
+			control = overview;
+		}
+
+		// Update outline view
+		sashComp.setMaximizedControl(control);
+	}
+
+	/**
+	 * Get current contents representation of the outline
+	 * 
+	 * @return current Outline show mode
+	 */
+	private int getShowActionMode() {
+		int showActionMode = -1;
+
+		if (showTreeAction.isChecked()) {
+			showActionMode = SHOW_TREE;
+		}
+		if (showOverviewAction.isChecked()) {
+			showActionMode = SHOW_OVERVIEW;
+		}
+		if (showAllAction.isChecked()) {
+			showActionMode = SHOW_BOTH;
+		}
+
+		return showActionMode;
+	}
 }
