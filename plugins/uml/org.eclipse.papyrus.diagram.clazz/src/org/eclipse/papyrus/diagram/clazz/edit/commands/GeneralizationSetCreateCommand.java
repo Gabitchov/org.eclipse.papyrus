@@ -24,11 +24,11 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.GeneralizationSetHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.GeneralizationSet;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
@@ -36,8 +36,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class GeneralizationSetCreateCommand extends EditElementCommand {
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance
-	 * of container. Modify with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container. Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */
@@ -45,8 +44,7 @@ public class GeneralizationSetCreateCommand extends EditElementCommand {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null; element = element.eContainer()) {
 			if (element instanceof Package) {
 				return (Package) element;
 			}
@@ -72,8 +70,7 @@ public class GeneralizationSetCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public GeneralizationSetCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public GeneralizationSetCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -100,50 +97,34 @@ public class GeneralizationSetCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateGeneralizationSet_4020(getContainer(), getSource(),
-						getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateGeneralizationSet_4020(getContainer(), getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(GeneralizationSet newElement,
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+	protected void doConfigure(GeneralizationSet newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
-				getSource());
-		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
-				getTarget());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
+		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
+		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
-		GeneralizationSet newElement = UMLFactory.eINSTANCE
-				.createGeneralizationSet();
-		getContainer().getPackagedElements().add(newElement);
-		newElement.getGeneralizations().add(getSource());
-		newElement.getGeneralizations().add(getTarget());
+		GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
+		GeneralizationSet newElement = generalizationSetHelper.createGeneralizationSet(getSource(), getTarget(), container);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

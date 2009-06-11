@@ -20,13 +20,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.figure.GeneralizationSet;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.GeneralizationSetLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationSetItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -55,8 +55,7 @@ public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintLabelEditPart) {
-			((ConstraintLabelEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getConstraintLabel());
+			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
 			return true;
 		}
 		return false;
@@ -65,8 +64,7 @@ public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -79,8 +77,8 @@ public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new GeneralizationSetItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new GeneralizationSetItemSemanticEditPolicy());
+		installEditPolicy("CustomDisplay", new GeneralizationSetLabelDisplayEditPolicy());
 	}
 
 	/**
