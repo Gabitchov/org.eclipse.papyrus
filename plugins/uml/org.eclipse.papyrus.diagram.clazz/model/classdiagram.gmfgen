@@ -3790,6 +3790,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.GeneralizationSet"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;CustomDisplay&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.GeneralizationSetLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass

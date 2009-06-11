@@ -279,7 +279,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -351,7 +351,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -419,7 +419,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ClassEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -474,7 +474,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -502,7 +502,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(Comment2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 		Node label5063 = createLabel(node, UMLVisualIDRegistry
@@ -541,10 +541,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	private Node createCompartment(View owner, String hint,
 			boolean canCollapse, boolean hasTitle, boolean canSort,
 			boolean canFilter) {
-		// SemanticListCompartment rv =
-		// NotationFactory.eINSTANCE.createSemanticListCompartment();
-		// rv.setShowTitle(showTitle);
-		// rv.setCollapsed(isCollapsed);
+		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
+		//rv.setShowTitle(showTitle);
+		//rv.setCollapsed(isCollapsed);
 		Node rv;
 		if (canCollapse) {
 			rv = NotationFactory.eINSTANCE.createBasicCompartment();
@@ -581,7 +580,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -627,7 +626,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 						.getType(ComponentEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -672,7 +671,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -703,7 +702,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 						.getType(Constraint2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 		Node label5064 = createLabel(node, UMLVisualIDRegistry
@@ -749,7 +748,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -788,7 +787,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(DataTypeEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -830,7 +829,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1025,8 +1024,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
 		}
-		// can never happen, provided #provides(CreateEdgeViewOperation) is
-		// correct
+		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
 	}
 
@@ -1093,7 +1091,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1133,7 +1131,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				.getType(EnumerationEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1265,7 +1263,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1311,7 +1309,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				.getType(InstanceSpecificationEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1348,7 +1346,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1392,7 +1390,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 						.getType(InterfaceEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1521,7 +1519,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1557,7 +1555,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ModelEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1796,7 +1794,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1834,7 +1832,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PackageEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1944,7 +1942,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -1979,7 +1977,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				.getType(PrimitiveTypeEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -2169,7 +2167,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				.getType(RedefinableTemplateSignatureEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -2194,7 +2192,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -2230,7 +2228,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(SignalEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -2266,7 +2264,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(SlotEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
@@ -2531,16 +2529,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if (elementTypeHint == null
 				|| (op.getSemanticHint() != null && !elementTypeHint.equals(op
 						.getSemanticHint()))) {
-			return false; // our hint is visual id and must be specified, and it
-							// should be the same as in element type
+			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
 		if (domainElement != null
 				&& visualID != UMLVisualIDRegistry
 						.getLinkWithClassVisualID(domainElement)) {
-			return false; // visual id for link EClass should match visual id
-							// from element type
+			return false; // visual id for link EClass should match visual id from element type
 		}
 		return true;
 	}
@@ -2557,10 +2553,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
 		int visualID;
 		if (op.getSemanticHint() == null) {
-			// Semantic hint is not specified. Can be a result of call from
-			// CanonicalEditPolicy.
-			// In this situation there should be NO elementType, visualID will
-			// be determined
+			// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
+			// In this situation there should be NO elementType, visualID will be determined
 			// by VisualIDRegistry.getNodeVisualID() for domainElement.
 			if (elementType != null || domainElement == null) {
 				return false;
@@ -2577,14 +2571,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				String elementTypeHint = ((IHintedType) elementType)
 						.getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
-					return false; // if semantic hint is specified it should be
-									// the same as in element type
+					return false; // if semantic hint is specified it should be the same as in element type
 				}
 				if (domainElement != null
 						&& visualID != UMLVisualIDRegistry.getNodeVisualID(op
 								.getContainerView(), domainElement)) {
-					return false; // visual id for node EClass should match
-									// visual id from element type
+					return false; // visual id for node EClass should match visual id from element type
 				}
 			} else {
 				if (!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry
@@ -2639,8 +2631,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(
 									op.getContainerView(), domainElement)) {
-						return false; // visual id in semantic hint should match
-										// visual id for domain element
+						return false; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
 				default:
@@ -2699,11 +2690,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 * if (op.getViewKind() == Node.class) return
-		 * getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(),
-		 * op.getSemanticHint()) != null; if (op.getViewKind() == Edge.class)
-		 * return getEdgeViewClass(op.getSemanticAdapter(),
-		 * op.getContainerView(), op.getSemanticHint()) != null;
+		 if (op.getViewKind() == Node.class)
+		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 if (op.getViewKind() == Edge.class)
+		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 		return true;
 	}
