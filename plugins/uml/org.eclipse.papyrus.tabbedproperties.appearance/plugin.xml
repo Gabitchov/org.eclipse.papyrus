@@ -24,17 +24,10 @@
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
          <propertySection
-               afterSection="org.eclipse.papyrus.tabbedproperties.appearance.ShapeColorAndFontPropertySection"
+               afterSection="org.eclipse.papyrus.tabbedproperties.appearance.GradientSection"
                class="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
                id="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
-               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
-         </propertySection>
-         <propertySection
-               afterSection="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
-               class="org.eclipse.papyrus.tabbedproperties.appearance.GradientAppearanceSection"
-               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
-               id="org.eclipse.papyrus.tabbedproperties.appearance.GradientAppearanceSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
          <propertySection
@@ -45,11 +38,18 @@
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
          <propertySection
-               afterSection="org.eclipse.papyrus.tabbedproperties.appearance.GradientAppearanceSection"
+               afterSection="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
                class="org.eclipse.papyrus.tabbedproperties.appearance.LabelNameIconAppearanceSection"
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
                id="org.eclipse.papyrus.tabbedproperties.appearance.LabelNameIconAppearanceSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.papyrus.tabbedproperties.appearance.GradientSection"
+               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               id="org.eclipse.papyrus.tabbedproperties.appearance.GradientSection"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab"
+               afterSection="org.eclipse.papyrus.tabbedproperties.appearance.ShapeColorAndFontPropertySection">
          </propertySection>
       </propertySections>
    </extension>

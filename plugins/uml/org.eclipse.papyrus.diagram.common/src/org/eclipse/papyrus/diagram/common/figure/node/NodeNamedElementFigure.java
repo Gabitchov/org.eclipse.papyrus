@@ -592,6 +592,8 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
 			graphics.fillGradient(rectangle, isVertical);
 		} else {
+			graphics.setBackgroundColor(getBackgroundColor());
+			graphics.setForegroundColor(getForeGroundColor());
 			graphics.fillRectangle(rectangle);
 		}
 	}
