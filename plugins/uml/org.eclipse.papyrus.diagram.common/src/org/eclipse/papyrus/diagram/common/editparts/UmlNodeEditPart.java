@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
@@ -27,6 +28,7 @@ import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -56,11 +58,6 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 	 */
 	protected NodeFigure createMainFigure() {
 		return createNodeFigure();
-	}
-	
-	@Override
-	protected NodeFigure getNodeFigure() {
-		return getPrimaryShape();
 	}
 
 	/**
@@ -297,7 +294,58 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		refreshShadow();
 	}
 
+	/**
+	* Override to set the preferency to the correct figure
+	*/
+	@Override
+	protected void setTransparency(int transp) {
+		getPrimaryShape().setTransparency(transp);
+	}
+	/**
+	 * sets the back ground color of this edit part
+	 * 
+	 * @param color
+	 *            the new value of the back ground color
+	 */
+	protected void setBackgroundColor(Color color) {
+		getPrimaryShape().setBackgroundColor(color);
+		getPrimaryShape().setIsUsingGradient(false);
+		getPrimaryShape().setGradientData(-1, -1, 0);
+	}
 
+	/**
+	* Override to set the gradient data to the correct figure
+	*/
+	@Override
+	protected void setGradient(GradientData gradient) {
+		NodeFigure fig = getPrimaryShape();
+    	if (gradient != null) {    		    		
+    		fig.setIsUsingGradient(true);
+    		fig.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle()); 		
+    	} else {
+    		fig.setIsUsingGradient(false);
+    	}
+	}
+
+	/**
+	 * sets the font color
+	 * 
+	 * @param color
+	 *            the new value of the font color
+	 */
+	protected void setFontColor(Color color) {
+		// NULL implementation
+	}
+
+	/**
+	 * sets the fore ground color of this edit part's figure
+	 * 
+	 * @param color
+	 *            the new value of the foregroundcolor
+	 */
+	protected void setForegroundColor(Color color) {
+		getPrimaryShape().setForegroundColor(color);
+	}
 
 	/**
 	 * get the list of stereotype to display from the eannotation
