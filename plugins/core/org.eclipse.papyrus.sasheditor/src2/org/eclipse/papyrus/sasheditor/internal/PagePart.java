@@ -13,6 +13,7 @@
   *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
+import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -52,9 +53,41 @@ public abstract class PagePart extends AbstractPart {
 	}
 
 	/**
-	 * Orphan this part.
+	 * Orphan this node. The parent is set to null, but control is left unchanged. 
+	 * The node can be reattached with reparent(). Change garbage state to 
+	 * {@link GarbageState.ORPHANED}.
+	 * This method as no effect if the Page has already been reparented.
+	 * 
+	 * @see
+	 * @return the parent
 	 */
-	abstract public void orphan() ;
+	public void orphan() {
+		// orphan only if we are in COLLECTED state
+		if (garbageState == GarbageState.UNVISITED) {
+			garbageState = GarbageState.ORPHANED;
+			parent = null;
+		}
+	}
+
+	/**
+	 * Mark this Page as UNCHANGED.
+	 * The PAge should be in the COLLECTED state.
+	 * 
+	 * @see
+	 * @return the parent
+	 */
+	public void unchanged() {
+		// orphan only if we are in COLLECTED state
+		if (garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED ) {
+			garbageState = GarbageState.UNCHANGED;
+		}
+		else
+		{
+			// Bad state, this is an internal error
+			// TODO : log a warning ?
+			throw new IllegalStateException("Try to change state from "+ garbageState.toString() + " to UNCHANGED. This is forbidden.");
+		}
+	}
 
 	/**
 	 * Visit this part.
@@ -105,7 +138,7 @@ public abstract class PagePart extends AbstractPart {
 	 */
 	public void fillPartMap(PartLists partMap) {
 		partMap.addLeaf(this);
-		garbageState = GarbageState.UNCHANGED;
+		garbageState = GarbageState.UNVISITED;
 	}
 
 	/**
@@ -157,5 +190,6 @@ public abstract class PagePart extends AbstractPart {
 	public boolean isPartFor(Object realModel) {
 		return this.rawModel == realModel;
 	}
+
 
 }

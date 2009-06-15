@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.sasheditor.internal;
 
+import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.internal.dnd.IDropTarget;
@@ -80,7 +81,34 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * {@link GarbageState.ORPHANED}.
 	 * This method as no effect if the Tile has already been reparented.
 	 */
-	abstract public void orphan();
+	public void orphan() {
+		// orphan only if we are in UNCHANGED state
+		if (garbageState == GarbageState.UNVISITED) {
+			garbageState = GarbageState.ORPHANED;
+			parent = null;
+		}
+	}
+
+
+	/**
+	 * Mark this Page as UNCHANGED.
+	 * The PAge should be in the COLLECTED state.
+	 * 
+	 * @see
+	 * @return the parent
+	 */
+	public void unchanged() {
+		// orphan only if we are in COLLECTED state
+		if (garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED ) {
+			garbageState = GarbageState.UNCHANGED;
+		}
+		else
+		{
+			// Bad state, this is an internal error
+			// TODO : log a warning ?
+			throw new IllegalStateException("Try to change state from "+ garbageState.toString() + " to UNCHANGED. This is forbidden.");
+		}
+	}
 
 	/**
 	 * Change the parent of the Part. The parent is changed, and the control is 

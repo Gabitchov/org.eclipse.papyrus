@@ -69,7 +69,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
      */
     public void dispose() {
     	
-    	System.err.println("ActionBarContributor.dispose()" + this);
+    	System.err.println( this.getClass().getSimpleName() + ".dispose()" );
     	// Dispose nested contributors.
     	for(EditorActionBarContributor contributor : contributors )
     	{
@@ -83,7 +83,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
      */
     public void init(IActionBars bars, IWorkbenchPage page) {
     	
-    	System.err.println("ActionBarContributor.init() - " + this);
+    	System.err.println(this.getClass().getSimpleName() + ".init() ");
         super.init(bars, page);
     	buildActions();
         
@@ -91,7 +91,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
      	// init nested contributors.
     	for(EditorActionBarContributor contributor : contributors )
     	{
-    		System.out.println(this.getClass().getSimpleName() + ".init() : " + contributor.getClass().getName());
+    		System.out.println(this.getClass().getSimpleName() + ".init() - addSubContributor: " + contributor.getClass().getName());
     		contributor.init(bars, page);
     	}
 
@@ -109,7 +109,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 
 
     public void setActiveEditor(IEditorPart targetEditor) {
-    	System.err.println("ActionBarContributor.setActiveEditor(" + targetEditor + ") - " + this);
+    	System.err.println( this.getClass().getSimpleName() + ".setActiveEditor(" + targetEditor + ") " );
     	super.setActiveEditor(targetEditor);
     }
 

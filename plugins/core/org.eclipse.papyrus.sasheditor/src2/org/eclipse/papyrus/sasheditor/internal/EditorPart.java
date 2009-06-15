@@ -32,6 +32,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.internal.ErrorEditorPart;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;
@@ -152,6 +153,8 @@ public class EditorPart extends PagePart {
 		} catch (PartInitException e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 			// TODO Create a fake Error Page and initialize this part with.
+//			editorPart = new ErrorEditorPart();
+//			editorControl = createEditorPartControl(parent, editorPart);
 			editorControl = createErrorPartControl(parent, e);
 		} 
 		catch (Exception e) {
@@ -446,24 +449,6 @@ public class EditorPart extends PagePart {
 
 
 	/**
-	 * Orphan this node. The parent is set to null, but control is left unchanged. 
-	 * The node can be reattached with reparent(). Change garbage state to 
-	 * {@link GarbageState.ORPHANED}.
-	 * This method as no effect if the Tile has already been reparented.
-	 * 
-	 * @see
-	 * @return the parent
-	 */
-	public void orphan() {
-		// orphan only if we are in UNCHANGED state
-		if (garbageState == GarbageState.UNCHANGED) {
-			garbageState = GarbageState.ORPHANED;
-			parent = null;
-		}
-	}
-
-
-	/**
 	 * Change the parent of the Tile. The parent is changed, and the control is 
 	 * attached to the parent control. Change garbage state to {@link GarbageState.REPARENTED}.
 	 * Do not detach the Tile from its old parent.
@@ -479,7 +464,19 @@ public class EditorPart extends PagePart {
 		this.parent = newParent;
 		// Change the SWT parent.
 		editorControl.setParent(newParent.getControl());
+		
+		// Change state
+		if(garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED )
+		{
 		garbageState = GarbageState.REPARENTED;
+		}
+		else
+		{
+			// Bad state, this is an internal error
+			// TODO : log a warning ?
+			throw new IllegalStateException("Try to change state from "+ garbageState.toString() + " to REPARENTED. This is forbidden.");
+		}
+			
 	}
 
 

@@ -269,23 +269,6 @@ public class ComponentPart extends PagePart {
 		return null;
 	}
 
-	/**
-	 * Orphan this node. The parent is set to null, but control is left unchanged. 
-	 * The node can be reattached with reparent(). Change garbage state to 
-	 * {@link GarbageState.ORPHANED}.
-	 * This method as no effect if the Tile has already been reparented.
-	 * 
-	 * @see
-	 * @return the parent
-	 */
-	public void orphan() {
-		// orphan only if we are in UNCHANGED state
-		if (garbageState == GarbageState.UNCHANGED) {
-			garbageState = GarbageState.ORPHANED;
-			parent = null;
-		}
-	}
-
 
 	/**
 	 * Change the parent of the Tile. The parent is changed, and the control is 
@@ -303,7 +286,18 @@ public class ComponentPart extends PagePart {
 		this.parent = newParent;
 		// Change the SWT parent.
 		editorControl.setParent(newParent.getControl());
+		
+		// Change state
+		if(garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED )
+		{
 		garbageState = GarbageState.REPARENTED;
+		}
+		else
+		{
+			// Bad state, this is an internal error
+			// TODO : log a warning ?
+			throw new IllegalStateException("Try to change state from "+ garbageState.toString() + " to REPARENTED. This is forbidden.");
+		}
 	}
 
 

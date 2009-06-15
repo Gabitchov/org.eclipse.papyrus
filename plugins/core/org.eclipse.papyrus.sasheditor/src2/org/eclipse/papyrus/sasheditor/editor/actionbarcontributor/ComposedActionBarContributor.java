@@ -77,9 +77,9 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 
 		activeNestedEditor = activeEditor;
 		
-//		System.out.println(this.getClass().getSimpleName() 
-//				+ ".setActivePage(" + activeEditor
-//				+ ") :" + getActiveContributor() );
+		System.out.println(this.getClass().getSimpleName() 
+				+ ".setActivePage(" + activeEditor
+				+ ") :" + getActiveContributor() );
 		
 		// Propagate call if possible
 		// Call setActiveEditor() on nested contributor.

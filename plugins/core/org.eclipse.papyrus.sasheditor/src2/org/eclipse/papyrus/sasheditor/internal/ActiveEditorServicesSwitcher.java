@@ -114,13 +114,13 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	public void activeEditorChanged(PagePart oldEditor, PagePart newEditor)
 	{
 
-		System.out.println(getClass().getSimpleName()+ ".activeEditorChange('"+ newEditor.getPartTitle()+"')");
+		System.out.println(getClass().getSimpleName()+ ".activeEditorChange('"+ (newEditor!=null?newEditor.getPartTitle():"null") +"')");
 
 		activeEditor = newEditor;
 
 		// Set focus
 		IPartService partService = (IPartService) getOuterEditorSite().getService(IPartService.class);
-		if (partService.getActivePart() == getOuterEditorSite().getPart()) {
+		if (newEditor!=null && partService.getActivePart() == getOuterEditorSite().getPart()) {
 			newEditor.setFocus();
 		}
 
@@ -131,7 +131,8 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 		activateServices();
 
 		// 
-		newEditor.setFocus();
+		if (newEditor!=null )
+		  newEditor.setFocus();
 	}
 
 	/**

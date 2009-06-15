@@ -159,7 +159,10 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 		if (child != null) {
 			// If the tile is already for the model, there is nothing to do.
 			if (child.isPartFor(rawModel))
+			{
+				child.unchanged();
 				return;
+			}
 			// The current tile is not for the model: mark it as orphan
 			child.orphan();
 		}
@@ -270,7 +273,7 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getGarbageState()
 	 */
 	public GarbageState getGarbageState() {
-		return GarbageState.UNCHANGED;
+		return GarbageState.UNVISITED;
 	}
 
 	/**

@@ -254,6 +254,95 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * TODO Add method to metamodel
+	 * @generated NOT
+	 */
+	public TabFolder lookupFirstFolder() {
+		
+		// Create appropriate visitor.
+		DiSwitch<TabFolder> visitor = new DiSwitch<TabFolder>( ) {
+			
+			/**
+			 * Iterate over windows
+			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseSashModel(org.eclipse.papyrus.sashwindows.di.SashModel)
+			 *
+			 * @param object
+			 * @return
+			 */
+			public TabFolder caseSashModel(SashModel object) {
+				TabFolder res = null;
+				for( Window window : object.getWindows() )
+				{
+					 res = this.doSwitch(window);
+					 if(res != null)
+						 return res;
+				}
+				
+				return super.caseSashModel(object);
+			}
+			
+			/**
+			 * 
+			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseWindow(org.eclipse.papyrus.sashwindows.di.Window)
+			 *
+			 * @param object
+			 * @return
+			 */
+			public TabFolder caseWindow(Window window) {
+				
+				AbstractPanel panel = window.getPanel();
+				if(panel == null)
+					return null;
+				
+				
+				TabFolder res = this.doSwitch(panel);
+				if(res != null)
+				  return res;
+				
+				return super.caseWindow(window);
+			}
+
+			/**
+			 * Iterate over children
+			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseSashPanel(org.eclipse.papyrus.sashwindows.di.SashPanel)
+			 *
+			 * @param object
+			 * @return
+			 */
+			public TabFolder caseSashPanel(SashPanel object) {
+				TabFolder res = null;
+				for( AbstractPanel panel : object.getChildren() )
+				{
+					 res = this.doSwitch(panel);
+					 if(res != null)
+						 return res;
+				}
+				
+				return super.caseSashPanel(object);
+			}
+			
+			/**
+			 * Iterate over PageRef
+			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseTabFolder(org.eclipse.papyrus.sashwindows.di.TabFolder)
+			 *
+			 * @param object
+			 * @return
+			 */
+			public TabFolder caseTabFolder(TabFolder object) {
+				return object;
+			}
+			
+		};
+		
+		// Do lookup
+		TabFolder res = visitor.doSwitch(this);
+		
+		return res;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder, int targetIndex) {
@@ -353,6 +442,11 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		
 		// Parent is a sash. Ask it to remove the child and itself
 		((SashPanel)parent).delete(folder);
+		// adjust current selection if the old folder was the currentSelection
+		if(getCurrentSelection() == folder)
+		{
+			setCurrentSelection(lookupFirstFolder());
+		}
 	}
 
 	/**

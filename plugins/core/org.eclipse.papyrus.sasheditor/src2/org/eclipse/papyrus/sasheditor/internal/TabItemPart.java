@@ -129,7 +129,7 @@ public class TabItemPart {
 	public void fillPartMap(PartLists partMap) {
 
 		childPart.fillPartMap(partMap);
-		garbageState = GarbageState.UNCHANGED;
+		garbageState = GarbageState.UNVISITED;
 	}
 
 	/**

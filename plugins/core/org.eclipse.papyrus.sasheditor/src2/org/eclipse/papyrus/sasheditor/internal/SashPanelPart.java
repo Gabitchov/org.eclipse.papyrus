@@ -88,7 +88,7 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 		for (AbstractPanelPart child : currentChildParts) {
 			child.fillPartMap(partMap);
 		}
-		garbageState = GarbageState.UNCHANGED;
+		garbageState = GarbageState.UNVISITED;
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	public void orphan() {
 
 		// orphan only if we are in UNCHANGED state
-		if (garbageState == GarbageState.UNCHANGED) {
+		if (garbageState == GarbageState.UNVISITED) {
 			garbageState = GarbageState.ORPHANED;
 			parent = null;
 		}
@@ -397,7 +397,10 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 		if (currentChildPart != null) {
 			// If the tile is already for the model, there is nothing to do.
 			if (currentChildPart.isPartFor(newModel))
+			{
+				currentChildPart.unchanged();
 				return;
+			}
 			// The current tile is not for the model: mark it as orphan
 			currentChildPart.orphan();
 		}

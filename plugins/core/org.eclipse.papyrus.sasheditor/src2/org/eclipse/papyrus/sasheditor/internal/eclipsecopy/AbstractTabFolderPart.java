@@ -137,7 +137,7 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 //	}
 
 	/**
-	 * Returns the index of the currently active page, or -1 if there is no active page.
+	 * Returns the index of the currently active page of this folder, or -1 if there is no active page.
 	 * <p>
 	 * Subclasses should not override this method
 	 * </p>
@@ -438,7 +438,7 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 //	}
 
 	/**
-	 * Sets the currently active page.
+	 * Sets the currently active page for this folder.
 	 * 
 	 * @param pageIndex
 	 *            the index of the page to be activated; the index must be valid

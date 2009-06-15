@@ -184,7 +184,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 */
 	public void fillPartMap(PartLists partMap) {
 		partMap.addPart(this);
-		garbageState = GarbageState.UNCHANGED;
+		garbageState = GarbageState.UNVISITED;
 
 		 for( TabItemPart child : currentTabItems)
 		 {
@@ -214,11 +214,11 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param pageModel
 	 * @param index
 	 */
-	private void addPage(Object pageModel)
-	{
-		int index = currentTabItems.size();
-		createTabItem(pageModel, index);
-	}
+//	private void addPage(Object pageModel)
+//	{
+//		int index = currentTabItems.size();
+//		createTabItem(pageModel, index);
+//	}
 	
 	/**
 	 * Create the control for this Part. Does not create children.
@@ -234,7 +234,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * The page has change. Propagate the event.
+	 * The page has change. Propagate the event to the container.
 	 * @param newPageIndex
 	 */
 	@Override
@@ -585,9 +585,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 */
 	public void orphan() {
 		// orphan only if we are in UNCHANGED state
-		if (garbageState == GarbageState.UNCHANGED) {
+		if (garbageState == GarbageState.UNVISITED) {
 			garbageState = GarbageState.ORPHANED;
 			parent = null;
+			
 		}
 	}
 
@@ -670,6 +671,11 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			// end
 			activePageIndex = index;
 			}
+			else
+			{
+				// Change curTab state
+				curTab.getChildPart().unchanged();
+			}
 		}
 		
 		// Check for extra tabs or extra models
@@ -723,7 +729,20 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		  setActivePage(activePageIndex);
 		}
 		else 
-			System.err.println("Active page not set while synchronizing !");
+		{
+			// Check if there is item in the CTabFolder.
+			// If true, we have a trouble
+			if(getTabFolder().getItemCount()>0)
+			{
+//			  System.err.println("Active page not set while synchronizing !");
+			  // We have items, but none is selected.
+			  // Select the first one.
+			  if( getTabFolder().getSelectionIndex() <0 )
+			  {
+				  setActivePage(0);
+			  }
+			}
+		}
 //		folder.update();
 //		folder.showSelection();
 
@@ -764,6 +783,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		{
 			// No part found, create one
 			modelPart = createChildPart( newModel );
+			existingParts.addCreatedPage(modelPart);
 			// Attach it to the tabItem
 			newTab = new TabItemPart(this, modelPart, index);
 		}
@@ -773,26 +793,26 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 	}
 
-	/**
-	 * Create a new TabItem and associated part corresponding to the specified newModel.
-	 * The TabItem is created at the specified index.
-	 * The associated parts is created.
-	 * 
-	 * @param existingParts List of existing parts.
-	 * @param newModel
-	 * @param index
-	 * @param i
-	 */
-	private void createTabItem(Object newModel, int index) {
-		TabItemPart newTab;
-
-		PagePart modelPart = createChildPart( newModel );
-		// Attach it to the tabItem
-		newTab = new TabItemPart(this, modelPart, index);
-
-		// Add to the list of items.
-		currentTabItems.add(index, newTab);
-	}
+//	/**
+//	 * Create a new TabItem and associated part corresponding to the specified newModel.
+//	 * The TabItem is created at the specified index.
+//	 * The associated parts is created.
+//	 * 
+//	 * @param existingParts List of existing parts.
+//	 * @param newModel
+//	 * @param index
+//	 * @param i
+//	 */
+//	private void createTabItem(Object newModel, int index) {
+//		TabItemPart newTab;
+//
+//		PagePart modelPart = createChildPart( newModel );
+//		// Attach it to the tabItem
+//		newTab = new TabItemPart(this, modelPart, index);
+//
+//		// Add to the list of items.
+//		currentTabItems.add(index, newTab);
+//	}
 
 	/**
 	 * Instruct the specified tabItem to use the new model. Check if a part already exist for the model
@@ -814,6 +834,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		{
 			// No part found, create one
 			modelPart = createChildPart( newModel );
+			existingParts.addCreatedPage(modelPart);
 			// Attach it to the tabItem
 			tabItem.resetChild(modelPart);
 		}

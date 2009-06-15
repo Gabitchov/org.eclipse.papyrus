@@ -183,7 +183,7 @@ public class SashWindowsContainer {
 	 * @param childPart
 	 */
 	protected void setActivePage(PagePart childPart) {
-		System.out.println("pageChangedEvent("+childPart+")");
+//		System.out.println("setActivePage("+childPart+")");
 		pageChanged(childPart);
 	}
 
@@ -281,6 +281,10 @@ public class SashWindowsContainer {
 		System.out.println("start synchronize2() ------------------------");
 		showTilesStatus();
 
+		// Get the currently selected folder
+		PagePart oldActivePage = getActivePage();
+		
+		// Do refresh
 		container.setRedraw(false);
 		// Create map of parts
 //		PartMap<T> partMap = new PartMap<T>();
@@ -294,11 +298,52 @@ public class SashWindowsContainer {
 		// Remove orphaned parts (no more used)
 		garbageMaps.garbage();
 
+		// set active page if needed
+		setActivePage( checkAndGetActivePage(oldActivePage, garbageMaps) );
+		
 		// Reenable SWT and force layout
 		container.setRedraw(true);
 		container.layout(true, true);
 		System.out.println("end synchronize2() ------------------------");
 		showTilesStatus();
+	}
+
+	/**
+	 * Check if the oldActivePage still alive, and set it if needed.
+	 * If the oldActivePage is null, set an active page if one exist.
+	 * If the oldActivePage still alive, let it as the active one. If it is 
+	 * disposed, get arbitrarily an active page if one exist.
+	 * 
+	 * @param oldActivePage
+	 * @param partLists 
+	 * @param garbageMaps
+	 * @return A valid active page or null if none exists.
+	 */
+	private PagePart checkAndGetActivePage(PagePart oldActivePage, PartLists partLists) {
+	
+		// Check if there is a created page
+		PagePart activePage = partLists.getFirstCreatedPage();
+		if(activePage != null)
+			return activePage;
+		
+		// Check oldActivePage validity (in case it has been deleted)
+		if( oldActivePage != null && ! (oldActivePage.isOrphaned() || oldActivePage.isUnchecked() ) )
+			return oldActivePage;
+		
+		// Get an active page if any
+		return lookupFirstValidPage();
+	}
+
+	/**
+	 * Lookup for a valid active Page. Return null if none is found.
+	 * TODO Use a visitor to implements this method.
+	 * @return
+	 */
+	private PagePart lookupFirstValidPage() {
+		// First get a list of active editors
+		PartLists garbageMaps = new PartLists();
+		rootPart.fillPartMap(garbageMaps);
+		return garbageMaps.getFirstValidPage();
 	}
 
 	/**
