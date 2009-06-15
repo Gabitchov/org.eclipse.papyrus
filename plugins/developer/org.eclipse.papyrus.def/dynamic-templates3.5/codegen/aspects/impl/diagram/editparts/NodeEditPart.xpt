@@ -22,6 +22,7 @@
 «EXTENSION xpt::diagram::editparts::Utils»
 «EXTENSION xpt::diagram::Utils»
 «EXTENSION xpt::EMFUtils»
+«EXTENSION xpt::preferences::PrefsConstant»
 
 
 «DEFINE extendsListContents FOR gmfgen::GenNode-»
@@ -687,5 +688,65 @@ new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolic
 			return true;
 		}
 		
+«ENDDEFINE»
+«REM»END PapyrusGencode «ENDREM»
+
+«REM»BEGIN PapyrusGencode «ENDREM»
+«REM» Overwrite an existing method to set the preference value in the editpart«ENDREM»
+«DEFINE genPreferredValue FOR gmfgen::GenNode-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	@Override
+	public Object getPreferredValue(org.eclipse.emf.ecore.EStructuralFeature feature) {
+		org.eclipse.jface.preference.IPreferenceStore preferenceStore = (org.eclipse.jface.preference.IPreferenceStore) getDiagramPreferencesHint()
+				.getPreferenceStore();
+		if (preferenceStore instanceof org.eclipse.jface.preference.IPreferenceStore) {
+			if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+
+				return org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
+						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
+								.getColor(
+										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore,
+										«getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»));
+
+			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFontStyle_FontColor()) {
+
+				return org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
+						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
+								.getColor(
+										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore,
+										«getPreferenceConstantFileName()».«getPreferenceFontColorConstant(elementType.displayName.toUpper())»));
+
+			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFillStyle_FillColor()) {
+
+				return org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
+						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
+								.getColor(
+										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore,
+										«getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())»));
+
+			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFillStyle_Transparency()) {
+				org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
+						preferenceStore
+								.getString(«getPreferenceConstantFileName()».«getPreferenceGradientColorConstant(elementType.displayName.toUpper())»));
+
+				return new Integer(gradientPreferenceConverter
+						.getTransparency());
+			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFillStyle_Gradient()) {
+				org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
+						preferenceStore
+								.getString(«getPreferenceConstantFileName()».«getPreferenceGradientColorConstant(elementType.displayName.toUpper())»));
+
+				return gradientPreferenceConverter.getGradientData();
+			}
+		}
+
+		return getStructuralFeatureValue(feature);
+
+	}
 «ENDDEFINE»
 «REM»END PapyrusGencode «ENDREM»

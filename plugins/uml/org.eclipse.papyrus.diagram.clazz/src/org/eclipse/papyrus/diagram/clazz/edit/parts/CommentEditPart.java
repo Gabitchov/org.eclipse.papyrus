@@ -20,8 +20,7 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -33,17 +32,22 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.CommentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -648,5 +652,61 @@ ShapeNodeEditPart {
 	 */
 	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display
 			.getCurrent(), "Arial", 8, SWT.NORMAL);
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public Object getPreferredValue(EStructuralFeature feature) {
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
+				.getPreferenceStore();
+		if (preferenceStore instanceof IPreferenceStore) {
+			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.COMMENT_PREF_LINE_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFontStyle_FontColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.COMMENT_PREF_FONT_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_FillColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.COMMENT_PREF_FILL_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Transparency()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+						preferenceStore
+								.getString(IPapyrusPreferencesConstant.COMMENT_PREF_GRADIENT_COLOR));
+
+				return new Integer(gradientPreferenceConverter
+						.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Gradient()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+						preferenceStore
+								.getString(IPapyrusPreferencesConstant.COMMENT_PREF_GRADIENT_COLOR));
+
+				return gradientPreferenceConverter.getGradientData();
+			}
+		}
+
+		return getStructuralFeatureValue(feature);
+
+	}
 
 }

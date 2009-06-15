@@ -22,8 +22,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -34,14 +33,19 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.Dependency2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -1605,6 +1609,62 @@ ShapeNodeEditPart {
 		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public Object getPreferredValue(EStructuralFeature feature) {
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
+				.getPreferenceStore();
+		if (preferenceStore instanceof IPreferenceStore) {
+			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.DEPENDENCY_PREF_LINE_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFontStyle_FontColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_FillColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.DEPENDENCY_PREF_FILL_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Transparency()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+						preferenceStore
+								.getString(IPapyrusPreferencesConstant.DEPENDENCY_PREF_GRADIENT_COLOR));
+
+				return new Integer(gradientPreferenceConverter
+						.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Gradient()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+						preferenceStore
+								.getString(IPapyrusPreferencesConstant.DEPENDENCY_PREF_GRADIENT_COLOR));
+
+				return gradientPreferenceConverter.getGradientData();
+			}
+		}
+
+		return getStructuralFeatureValue(feature);
 
 	}
 
