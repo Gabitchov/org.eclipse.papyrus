@@ -112,7 +112,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="PapyrusUMLClassDiagramRender">
+            id="PapyrusNatifUMLClassDiagramRender">
          <Priority name="Lowest"/>
          <ViewId id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -122,6 +122,28 @@
             </ElementType>
          </ViewId>
       </GlobalActionHandlerProvider>
+   <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+         id="PapyrusUMLClassDiagramRender">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <ViewId
+            id="org.eclipse.papyrus.core.papyrusEditor">
+         <ElementType
+               class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+            <GlobalActionId
+                  actionId="cut">
+            </GlobalActionId>
+            <GlobalActionId
+                  actionId="copy">
+            </GlobalActionId>
+            <GlobalActionId
+                  actionId="paste">
+            </GlobalActionId>
+         </ElementType>
+      </ViewId>
+   </GlobalActionHandlerProvider>
    </extension>
 <extension point="org.eclipse.core.runtime.preferences" id="prefs">
       <?gmfgen generated="true"?>
@@ -1148,7 +1170,7 @@
             label="UML Class Diagram">
       </creationCommand>      
       <actionBarContributor
-            id="org.eclipse.papyrus.diagram.clazz.actionBarContributor"
+            id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor"
             implementingClass="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor">
       </actionBarContributor>
    </extension>
