@@ -18,15 +18,10 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gef.ui.actions.ActionRegistry;
-import org.eclipse.gef.ui.actions.RedoAction;
-import org.eclipse.gef.ui.actions.SelectAllAction;
-import org.eclipse.gef.ui.actions.UndoAction;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.l10n.EditorMessages;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -81,6 +76,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 
 	/**
 	 * @generated NOT
+	 * @deprecated Old init method. Now use SashSystem v2
 	 */
 	public UmlClassDiagramForMultiEditor(Diagram diagram, GmfEditorContext context) {
 		super();
@@ -95,13 +91,14 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 
 	/**
 	 * @generated NOT
+	 * @deprecated Old init method. Now use SashSystem v2
 	 */
 	public UmlClassDiagramForMultiEditor(Object diagram, IEditorContext context) {
 		this((Diagram) diagram, (GmfEditorContext) context);
 	}
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved from the ServiceRegistry.
+	 * Constructor. Context and required objects are retrieved from the ServiceRegistry.
 	 * 
 	 * @throws BackboneException
 	 * @throws ServiceException
@@ -138,36 +135,36 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		}
 	}
 
-	/**
-	 * Creates and register actions with the {@link ActionRegistry} for this editor.
-	 */
-	@Override
-	protected void createActions() {
-		ActionRegistry registry = getActionRegistry();
-		IAction action;
+	// /**
+	// * Creates and register actions with the {@link ActionRegistry} for this editor.
+	// */
+	// @Override
+	// protected void createActions() {
+	// ActionRegistry registry = getActionRegistry();
+	// IAction action;
+	//
+	// action = new UndoAction(this);
+	// registry.registerAction(action);
+	// getStackActions().add(action.getId());
+	//
+	// action = new RedoAction(this);
+	// registry.registerAction(action);
+	// getStackActions().add(action.getId());
+	//
+	// action = new SelectAllAction(this);
+	// registry.registerAction(action);
+	//
+	// // action = new DirectEditAction(this);
+	// // registry.registerAction(action);
+	// // getSelectionActions().add(action.getId());
+	// }
 
-		action = new UndoAction(this);
-		registry.registerAction(action);
-		getStackActions().add(action.getId());
-
-		action = new RedoAction(this);
-		registry.registerAction(action);
-		getStackActions().add(action.getId());
-
-		action = new SelectAllAction(this);
-		registry.registerAction(action);
-
-		// action = new DirectEditAction(this);
-		// registry.registerAction(action);
-		// getSelectionActions().add(action.getId());
-	}
-
-	@Override
-	protected void createGraphicalViewer(Composite parent) {
-		System.out.println("store Composite " + parent);
-		splitter = parent;
-		super.createGraphicalViewer(parent);
-	}
+	// @Override
+	// protected void createGraphicalViewer(Composite parent) {
+	// System.out.println("store Composite " + parent);
+	// splitter = parent;
+	// super.createGraphicalViewer(parent);
+	// }
 
 	/**
 	 * @return the diagram
@@ -187,6 +184,15 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		return super.getDocumentProvider(input);
 	}
 
+	/**
+	 * Returns an editing domain id used to retrive an editing domain from the editing domain registry. Clients should override this if they wish to use a shared editing domain for this editor. If
+	 * null is returned then a new editing domain will be created per editor instance.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#getEditingDomainID()
+	 * @return
+	 * 
+	 */
+	@Override
 	public String getEditingDomainID() {
 		return "org.eclipse.uml2.diagram.clazz.EditingDomain";
 	}
@@ -237,6 +243,13 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#selectionChanged(org.eclipse.ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
+	 * @param part
+	 * @param selection
+	 * 
+	 */
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		if (getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
@@ -244,11 +257,16 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 			// If not the active editor, ignore selection changed.
 			if (this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());
+				super.selectionChanged(part, selection);
 			} else {
 				super.selectionChanged(part, selection);
 			}
 		} else {
 			super.selectionChanged(part, selection);
+		}
+		// from org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart, ISelection)
+		if (part == this) {
+			rebuildStatusLine();
 		}
 	}
 
@@ -271,15 +289,15 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		}
 	}
 
-	@Override
-	public void setFocus() {
-
-		// System.out.println("setFocus( " + ((Object)splitter).hashCode() +
-		// "):" + splitter.getChildren());
-		splitter.setFocus();
-
-		super.setFocus();
-	}
+	// @Override
+	// public void setFocus() {
+	//
+	// // System.out.println("setFocus( " + ((Object)splitter).hashCode() +
+	// // "):" + splitter.getChildren());
+	// splitter.setFocus();
+	//
+	// super.setFocus();
+	// }
 
 	/**
 	 * 
