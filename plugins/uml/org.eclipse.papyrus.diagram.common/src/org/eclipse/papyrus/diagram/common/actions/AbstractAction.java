@@ -38,7 +38,8 @@ public abstract class AbstractAction extends Action {
 	private IGraphicalEditPart host;
 
 	/**
-	 * @return the current diagram
+	 * @return the current diagram or null if not found.
+	 * TODO : throw appropriate exception if not found ?
 	 */
 	protected Diagram getCurrentDiagram() {
 		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();

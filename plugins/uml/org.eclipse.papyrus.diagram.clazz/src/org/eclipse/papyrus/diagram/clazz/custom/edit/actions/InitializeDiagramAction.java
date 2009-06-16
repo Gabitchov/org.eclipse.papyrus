@@ -52,7 +52,12 @@ public class InitializeDiagramAction extends AbstractAction {
 	 */
 	@Override
 	public boolean isEnabled() {
-		return getDiagramNotationID().equals(getCurrentDiagram().getType());
+		try {
+			return getDiagramNotationID().equals(getCurrentDiagram().getType());
+		} catch (NullPointerException e) {
+			// thrown by getCurrentDiagram() when no diagram is found.
+			return false;
+		}
 	}
 
 	/**
