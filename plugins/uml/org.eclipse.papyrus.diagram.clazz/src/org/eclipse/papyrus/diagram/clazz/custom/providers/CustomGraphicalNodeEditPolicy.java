@@ -19,6 +19,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -32,8 +33,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.AssociationClassViewCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.GeneralizationSetHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiDependencyHelper;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
@@ -44,58 +47,39 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	/**
-	 * This method is used to produce a set of commands in charge of the
-	 * creation of AssociationClass
+	 * This method is used to produce a set of commands in charge of the creation of AssociationClass
 	 * 
 	 * @param createConnectionViewAndElementRequest
 	 * @param command
 	 *            the command that is used to create the link associationClass
 	 * @return the set of command to create an association Class
 	 */
-	private Command getAssociationClassElementCommand(
-			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
-			Command command) {
+	private Command getAssociationClassElementCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, Command command) {
 		if (command instanceof ICommandProxy) {
-			GraphicalEditPart sourceEditPart = (GraphicalEditPart) createConnectionViewAndElementRequest
-					.getSourceEditPart();
+			GraphicalEditPart sourceEditPart = (GraphicalEditPart) createConnectionViewAndElementRequest.getSourceEditPart();
 
 			// 1. calculus of the position of the associationClass node
-			Point p = sourceEditPart.getFigure().getBounds().getTopRight()
-					.getCopy();
+			Point p = sourceEditPart.getFigure().getBounds().getTopRight().getCopy();
 			sourceEditPart.getFigure().translateToAbsolute(p);
-			int edgeCount = sourceEditPart.getNotationView().getSourceEdges()
-					.size();
+			int edgeCount = sourceEditPart.getNotationView().getSourceEdges().size();
 			int offset = (edgeCount * 50) - 100;
 			p = p.translate(100, offset);
 
 			// 2. creation of the associationClass Node without semantic element
-			GraphicalEditPart parent = (GraphicalEditPart) sourceEditPart
-					.getParent();
-			AssociationClassViewCreateCommand assCommand = new AssociationClassViewCreateCommand(
-					createConnectionViewAndElementRequest, getEditingDomain(),
-					(View) parent.getModel(), (EditPartViewer) sourceEditPart
-							.getViewer(), sourceEditPart
-							.getDiagramPreferencesHint(), p);
+			GraphicalEditPart parent = (GraphicalEditPart) sourceEditPart.getParent();
+			AssociationClassViewCreateCommand assCommand = new AssociationClassViewCreateCommand(createConnectionViewAndElementRequest, getEditingDomain(), (View) parent.getModel(),
+					(EditPartViewer) sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), p);
 			command = command.chain(new ICommandProxy(assCommand));
 
 			// 3. creation of the dashed line between the associationClass link
 			// and associationClass Node
 			// target
-			IAdaptable associationClassLinkViewAdapter = (IAdaptable) (createConnectionViewAndElementRequest
-					.getNewObject());
+			IAdaptable associationClassLinkViewAdapter = (IAdaptable) (createConnectionViewAndElementRequest.getNewObject());
 
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(
-					UMLElementTypes.Link_4016,
-					((INotationType) UMLElementTypes.Link_4016)
-							.getSemanticHint(), sourceEditPart
-							.getDiagramPreferencesHint());
-			ICommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(
-					getEditingDomain(),
-					((IHintedType) UMLElementTypes.Link_4016).getSemanticHint(),
-					associationClassLinkViewAdapter, null, sourceEditPart
-							.getViewer(), sourceEditPart
-							.getDiagramPreferencesHint(), viewDescriptor,
-					assCommand);
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Link_4016, ((INotationType) UMLElementTypes.Link_4016).getSemanticHint(), sourceEditPart
+					.getDiagramPreferencesHint());
+			ICommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Link_4016).getSemanticHint(), associationClassLinkViewAdapter,
+					null, sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), viewDescriptor, assCommand);
 
 			command = command.chain(new ICommandProxy(dashedLineCmd));
 			return command;
@@ -116,32 +100,18 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				Command c = getConnectionAndRelationshipCompleteCommand((CreateConnectionViewAndElementRequest) request);
 
 				// case of associationClass
-				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) request)
-						.getConnectionViewAndElementDescriptor()
-						.getCreateElementRequestAdapter();
-				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter
-						.getAdapter(CreateRelationshipRequest.class);
-				if (UMLElementTypes.AssociationClass_4017
-						.equals(createElementRequest.getElementType())) {
-					return getAssociationClassElementCommand(
-							((CreateConnectionViewAndElementRequest) request),
-							c);
+				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
+				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
+				if (UMLElementTypes.AssociationClass_4017.equals(createElementRequest.getElementType())) {
+					return getAssociationClassElementCommand(((CreateConnectionViewAndElementRequest) request), c);
 
-				} else if (UMLElementTypes.Dependency_4018
-						.equals(createElementRequest.getElementType())) {
-					MultiDependencyHelper multiDependencyHelper = new MultiDependencyHelper(
-							getEditingDomain());
-					return multiDependencyHelper.getCommand(
-							((CreateConnectionViewAndElementRequest) request),
-							c);
+				} else if (UMLElementTypes.Dependency_4018.equals(createElementRequest.getElementType())) {
+					MultiDependencyHelper multiDependencyHelper = new MultiDependencyHelper(getEditingDomain());
+					return multiDependencyHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
 
-				} else if (UMLElementTypes.Association_4019
-						.equals(createElementRequest.getElementType())) {
-					MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(
-							getEditingDomain());
-					return multiAssociationHelper.getCommand(
-							((CreateConnectionViewAndElementRequest) request),
-							c);
+				} else if (UMLElementTypes.Association_4019.equals(createElementRequest.getElementType())) {
+					MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(getEditingDomain());
+					return multiAssociationHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
 
 				} else {
 					return c;
@@ -158,6 +128,24 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 */
 	private TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+	}
+
+	protected Command getReconnectSourceCommand(ReconnectRequest request) {
+
+		if (request.getConnectionEditPart() instanceof GeneralizationSetEditPart) {
+			GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
+			return generalizationSetHelper.getReconnectSourceCommand(request, super.getConnectableEditPart());
+		}
+		return super.getReconnectSourceCommand(request);
+	}
+
+	protected Command getReconnectTargetCommand(ReconnectRequest request) {
+		Command command = super.getReconnectTargetCommand(request);
+		if (request.getConnectionEditPart() instanceof GeneralizationSetEditPart) {
+			GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
+			return generalizationSetHelper.getMoveTarget(request, command, super.getConnectableEditPart(), super.getConnectionTargetAnchor(request));
+		}
+		return command;
 	}
 
 }

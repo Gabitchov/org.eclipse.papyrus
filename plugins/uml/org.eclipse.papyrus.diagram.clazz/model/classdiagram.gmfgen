@@ -16758,7 +16758,8 @@
           qualifiedClassName="org.eclipse.papyrus.diagram.clazz.part.LoadResourceAction"/>
     </contextMenus>
   </gmfgen:GenEditorGenerator>
-  <papyrusgmfgenextension:PapyrusExtensionRootNode>
+  <papyrusgmfgenextension:PapyrusExtensionRootNode
+      comment="">
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenNode"
         comment="Label in charge to display applied stereotypes"

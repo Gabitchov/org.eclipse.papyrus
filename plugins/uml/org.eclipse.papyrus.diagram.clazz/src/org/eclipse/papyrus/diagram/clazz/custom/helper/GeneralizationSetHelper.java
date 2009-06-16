@@ -17,7 +17,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -92,7 +105,7 @@ public class GeneralizationSetHelper {
 			}
 		}
 		if (generalizationSetList.size() > 0) {
-			launchDialog2(generalizationSetList, getEditingDomain());
+			launchDialog(generalizationSetList, getEditingDomain());
 		}
 		if (generalizationSettoCreate == null) {
 			generalizationSettoCreate = UMLFactory.eINSTANCE.createGeneralizationSet();
@@ -117,7 +130,95 @@ public class GeneralizationSetHelper {
 		return editDomain;
 	}
 
-	private void launchDialog2(final ArrayList<GeneralizationSet> generalizationSetList, TransactionalEditingDomain editingDomain) {
+	public org.eclipse.gef.commands.Command getMoveTarget(ReconnectRequest request, org.eclipse.gef.commands.Command command, INodeEditPart node, ConnectionAnchor targetAnchor) {
+		System.err.println("custom reconnection for GeneralizationSet target");
+		org.eclipse.gef.commands.CompoundCommand cc = new org.eclipse.gef.commands.CompoundCommand();
+		// look for all Generalization set connected to the source location that reference the same generalizationSet
+		ArrayList linkList = new ArrayList();
+		linkList.addAll(node.getSourceConnections());
+		linkList.addAll(node.getTargetConnections());
+		// remove reconnected link
+		linkList.remove(request.getConnectionEditPart());
+		// get the link that refer the same model element
+		GeneralizationSetEditPart edgeToMove = null;
+		Iterator iterator = linkList.iterator();
+		while (iterator.hasNext()) {
+			Object currentObject = iterator.next();
+			if (currentObject instanceof GeneralizationSetEditPart) {
+				if (((GeneralizationSetEditPart) request.getConnectionEditPart()).resolveSemanticElement().equals(((GeneralizationSetEditPart) currentObject).resolveSemanticElement())) {
+					edgeToMove = (GeneralizationSetEditPart) currentObject;
+				}
+			}
+		}
+		cc.add(command);
+		if (edgeToMove != null) {
+			SetConnectionAnchorsCommand scaCommandbis = new SetConnectionAnchorsCommand(getEditingDomain(), StringStatics.BLANK);
+			scaCommandbis.setEdgeAdaptor(new EObjectAdapter((View) edgeToMove.getModel()));
+			if (node.getSourceConnections().contains(edgeToMove)) {
+				scaCommandbis.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(targetAnchor));
+			} else {
+				scaCommandbis.setNewTargetTerminal(node.mapConnectionAnchorToTerminal(targetAnchor));
+			}
+			System.err.println("can execute " + scaCommandbis.canExecute());
+			cc.add(new ICommandProxy(scaCommandbis));
+		}
+		return cc;
+	}
+
+	public Command getReconnectSourceCommand(ReconnectRequest request, INodeEditPart node) {
+		System.err.println("custom reconnection for GeneralizationSet source");
+		System.err.println("node--> " + node);
+
+		if (node == null)
+			return null;
+
+		TransactionalEditingDomain editingDomain = getEditingDomain();
+
+		ConnectionAnchor sourceAnchor = node.getSourceConnectionAnchor(request);
+		System.err.println("sourceAnchor--> " + sourceAnchor.getReferencePoint());
+		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
+		sceCommand.setEdgeAdaptor(new EObjectAdapter((View) request.getConnectionEditPart().getModel()));
+		sceCommand.setNewSourceAdaptor(new EObjectAdapter((View) node.getModel()));
+		SetConnectionAnchorsCommand scaCommand = new SetConnectionAnchorsCommand(editingDomain, StringStatics.BLANK);
+		scaCommand.setEdgeAdaptor(new EObjectAdapter((View) request.getConnectionEditPart().getModel()));
+		scaCommand.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(sourceAnchor));
+
+		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_SetConnectionEndsCommand_Source);
+		cc.compose(sceCommand);
+		cc.compose(scaCommand);
+
+		// look for all Generalization set connected to the source location that reference the same generalizationSet
+		ArrayList linkList = new ArrayList();
+		linkList.addAll(node.getSourceConnections());
+		linkList.addAll(node.getTargetConnections());
+		// remove reconnected link
+		linkList.remove(request.getConnectionEditPart());
+		// get the link that refer the same model element
+		GeneralizationSetEditPart edgeToMove = null;
+		Iterator iterator = linkList.iterator();
+		while (iterator.hasNext()) {
+			Object currentObject = iterator.next();
+			if (currentObject instanceof GeneralizationSetEditPart) {
+				if (((GeneralizationSetEditPart) request.getConnectionEditPart()).resolveSemanticElement().equals(((GeneralizationSetEditPart) currentObject).resolveSemanticElement())) {
+					edgeToMove = (GeneralizationSetEditPart) currentObject;
+				}
+			}
+		}
+		if (edgeToMove != null) {
+			SetConnectionAnchorsCommand scaCommandbis = new SetConnectionAnchorsCommand(editingDomain, StringStatics.BLANK);
+			scaCommandbis.setEdgeAdaptor(new EObjectAdapter((View) edgeToMove.getModel()));
+			if (node.getSourceConnections().contains(edgeToMove)) {
+				scaCommandbis.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(sourceAnchor));
+			} else {
+				scaCommandbis.setNewTargetTerminal(node.mapConnectionAnchorToTerminal(sourceAnchor));
+			}
+			cc.compose(scaCommandbis);
+		}
+		return new ICommandProxy(cc);
+
+	}
+
+	private void launchDialog(final ArrayList<GeneralizationSet> generalizationSetList, TransactionalEditingDomain editingDomain) {
 
 		// Thread myThread = new Thread(new Runnable() {
 

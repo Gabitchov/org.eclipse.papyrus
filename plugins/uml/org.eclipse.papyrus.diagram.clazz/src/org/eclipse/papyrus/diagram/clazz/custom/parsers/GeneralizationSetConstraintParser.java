@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.GeneralizationSet;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * The Class GeneralizationSetConstraintParser used to display iternal constraint
+ * The Class GeneralizationSetConstraintParser used to display internal constraint
  */
 public class GeneralizationSetConstraintParser implements IParser {
 
@@ -57,20 +57,22 @@ public class GeneralizationSetConstraintParser implements IParser {
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		if (element instanceof EObjectAdapter) {
-			GeneralizationSet generalizationSet = ((GeneralizationSet) ((EObjectAdapter) element).getRealObject());
-			String out = "{";
-			if (generalizationSet.isCovering()) {
-				out = out + "complete, ";
-			} else {
-				out = out + "incomplete, ";
-			}
+			if (((EObjectAdapter) element).getRealObject() instanceof GeneralizationSet) {
+				GeneralizationSet generalizationSet = ((GeneralizationSet) ((EObjectAdapter) element).getRealObject());
+				String out = "{";
+				if (generalizationSet.isCovering()) {
+					out = out + "complete, ";
+				} else {
+					out = out + "incomplete, ";
+				}
 
-			if (generalizationSet.isDisjoint()) {
-				out = out + "disjoint}";
-			} else {
-				out = out + "overlapping}";
+				if (generalizationSet.isDisjoint()) {
+					out = out + "disjoint}";
+				} else {
+					out = out + "overlapping}";
+				}
+				return out;
 			}
-			return out;
 		}
 		return "";
 	}

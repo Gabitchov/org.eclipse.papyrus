@@ -26,8 +26,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationSetItemSema
 /**
  * @generated
  */
-public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -56,8 +55,7 @@ public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintLabelEditPart) {
-			((ConstraintLabelEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getConstraintLabel());
+			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
 			return true;
 		}
 		return false;
@@ -79,10 +77,8 @@ public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new GeneralizationSetItemSemanticEditPolicy());
-		installEditPolicy(
-				"CustomDisplay", new GeneralizationSetLabelDisplayEditPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new GeneralizationSetItemSemanticEditPolicy());
+		installEditPolicy("CustomDisplay", new GeneralizationSetLabelDisplayEditPolicy()); //$NON-NLS-1$
 	}
 
 	/**
