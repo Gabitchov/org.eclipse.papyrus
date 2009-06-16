@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trace:TraceModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:trace="http://www.eclipse.org/gmf/2006/Trace">
+  <nodeTraces
+      visualID="1001"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'StateMachine') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Package') and _containmentMF_.name = 'packagedElement')">
+    <nodeLabelTraces
+        visualID="4017"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="4018"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2024"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Comment') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Element') and _containmentMF_.name = 'ownedComment')">
+    <nodeLabelTraces
+        visualID="5003"
+        queryText="true"/>
+  </nodeTraces>
+  <childNodeTraces
+      visualID="2001"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'StateMachine') and _containmentMF_.name = 'region')">
+    <compartmentTraces
+        visualID="5001"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2002"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')">
+    <nodeLabelTraces
+        visualID="4001"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="4002"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2003"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')">
+    <nodeLabelTraces
+        visualID="4013"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="4014"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2004"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and _containmentMF_.name = 'region')">
+    <compartmentTraces
+        visualID="5002"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2005"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')">
+    <nodeLabelTraces
+        visualID="4005"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="4006"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2006"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'ConnectionPointReference') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and _containmentMF_.name = 'connection')">
+    <nodeLabelTraces
+        visualID="4003"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2007"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'ConnectionPointReference') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and _containmentMF_.name = 'connection')">
+    <nodeLabelTraces
+        visualID="4004"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2008"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'FinalState') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')"/>
+  <childNodeTraces
+      visualID="2009"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')"/>
+  <childNodeTraces
+      visualID="2010"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')"/>
+  <childNodeTraces
+      visualID="2011"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')"/>
+  <childNodeTraces
+      visualID="2012"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')"/>
+  <childNodeTraces
+      visualID="2013"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')"/>
+  <childNodeTraces
+      visualID="2014"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')"/>
+  <childNodeTraces
+      visualID="2015"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')">
+    <nodeLabelTraces
+        visualID="4021"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2016"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')"/>
+  <childNodeTraces
+      visualID="2017"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Region') and _containmentMF_.name = 'subvertex')">
+    <nodeLabelTraces
+        visualID="4009"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="4010"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2018"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and _containmentMF_.name = 'connectionPoint')">
+    <nodeLabelTraces
+        visualID="4007"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2019"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and _containmentMF_.name = 'connectionPoint')">
+    <nodeLabelTraces
+        visualID="4008"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2020"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and _containmentMF_.name = 'connectionPoint')">
+    <nodeLabelTraces
+        visualID="4011"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2021"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'State') and _containmentMF_.name = 'connectionPoint')">
+    <nodeLabelTraces
+        visualID="4012"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2022"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'StateMachine') and _containmentMF_.name = 'connectionPoint')">
+    <nodeLabelTraces
+        visualID="4015"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="2023"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Pseudostate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'StateMachine') and _containmentMF_.name = 'connectionPoint')">
+    <nodeLabelTraces
+        visualID="4016"
+        queryText="true"/>
+  </childNodeTraces>
+  <linkTraces
+      visualID="3001"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Transition')">
+    <linkLabelTraces
+        visualID="4019"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="4020"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="3002"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Element') and _feature_.name = 'ownedComment')"/>
+  <linkTraces
+      visualID="3003"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/2.1.0/UML' and _eClass_.name = 'Comment') and _feature_.name = 'annotatedElement')"/>
+</trace:TraceModel>
