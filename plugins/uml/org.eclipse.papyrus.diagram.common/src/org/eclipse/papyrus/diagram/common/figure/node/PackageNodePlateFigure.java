@@ -18,14 +18,19 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 
-public class PackageNodeFigure extends DefaultSizeNodeFigure {
+/**
+ * this figure is used to display at the good positionn acnhor on the packageable element 
+ * @author PT202707
+ *
+ */
+public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 
-	public PackageNodeFigure(Dimension defSize) {
+	public PackageNodePlateFigure(Dimension defSize) {
 		super(defSize);
 		// TODO Auto-generated constructor stub
 	}
 
-	public PackageNodeFigure(int width, int height) {
+	public PackageNodePlateFigure(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
 	}
@@ -39,8 +44,8 @@ public class PackageNodeFigure extends DefaultSizeNodeFigure {
 		// get the package figure, this is its soon
 		if (this.getChildren().size() > 0) {
 			// take in account the header of the package
-			if (getChildren().get(0) instanceof CPackageFigure) {
-				CPackageFigure packageFigure = (CPackageFigure) getChildren().get(0);
+			if (getChildren().get(0) instanceof PackageFigure) {
+				PackageFigure packageFigure = (PackageFigure) getChildren().get(0);
 				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y);
 				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y + packageFigure.getHeader().height);
 				points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + packageFigure.getHeader().height);
