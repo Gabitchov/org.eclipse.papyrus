@@ -44,7 +44,7 @@ public class InstanceSpecificationPreferencePage extends
 		store
 				.setDefault(
 						IPapyrusPreferencesConstant.INSTANCESPECIFICATION_PREF_GRADIENT_POLICY,
-						true);
+						false);
 		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
 				new org.eclipse.swt.graphics.RGB(255, 255, 255),
 				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);

@@ -101,11 +101,6 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
-	public static final String ASSOCIATION_PREF_JUMPLINK_STATUS = "Association.jumplink.status";
-
-	/**
-	 * @generated
-	 */
 	public static final String ASSOCIATION_PREF_JUMPLINK_TYPE = "Association.jumplink.type";
 
 	/**

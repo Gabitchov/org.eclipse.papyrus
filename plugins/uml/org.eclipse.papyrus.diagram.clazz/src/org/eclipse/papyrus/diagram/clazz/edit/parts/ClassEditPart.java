@@ -114,8 +114,7 @@ NamedElementEditPart
 
 		if (childEditPart instanceof ClassAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ClassAttributeCompartment2EditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -123,8 +122,7 @@ NamedElementEditPart
 
 		if (childEditPart instanceof ClassOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ClassOperationCompartment2EditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -132,15 +130,14 @@ NamedElementEditPart
 
 		if (childEditPart instanceof ClassNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane
 					.add(((ClassNestedClassifierCompartment2EditPart) childEditPart)
 							.getFigure());
 			return true;
 		}
 
-		// Papyrus Gencode :precise the locator for a template signature
+		//Papyrus Gencode :precise the locator for a template signature
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			BorderItemLocator locator = new TemplateClassifierBorderItemLocator(
 					getMainFigure(), PositionConstants.NORTH);
@@ -165,18 +162,15 @@ NamedElementEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.diagram.clazz.edit.policies.ClassCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ClassCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
 				new OpenDiagramEditPolicy());
 		installEditPolicy(
 				"RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -191,10 +185,9 @@ NamedElementEditPart
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 
-					// done in GMF gen code
-					// return new
-					// org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
-					// done in papyrus gencode to have borderItem resizeable
+					//done in GMF gen code
+					//return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
+					//done in papyrus gencode to have borderItem resizeable
 					return new BorderItemResizableEditPolicy();
 
 				}
@@ -206,11 +199,11 @@ NamedElementEditPart
 				return result;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 		};
@@ -288,25 +281,8 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * gmf
-																							 * .
-																							 * runtime
-																							 * .
-																							 * emf
-																							 * .
-																							 * type
-																							 * .
-																							 * core
-																							 * .
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -327,26 +303,9 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * gmf
-																							 * .
-																							 * runtime
-																							 * .
-																							 * emf
-																							 * .
-																							 * type
-																							 * .
-																							 * core
-																							 * .
-																							 * IElementType
-																							 * >
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.AssociationClass_4017);
 		}
@@ -1163,25 +1122,8 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * gmf
-																							 * .
-																							 * runtime
-																							 * .
-																							 * emf
-																							 * .
-																							 * type
-																							 * .
-																							 * core
-																							 * .
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -1202,26 +1144,9 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
 			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * gmf
-																							 * .
-																							 * runtime
-																							 * .
-																							 * emf
-																							 * .
-																							 * type
-																							 * .
-																							 * core
-																							 * .
-																							 * IElementType
-																							 * >
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.AssociationClass_4017) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
@@ -1990,26 +1915,9 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * .
-																							 * gmf
-																							 * .
-																							 * runtime
-																							 * .
-																							 * emf
-																							 * .
-																							 * type
-																							 * .
-																							 * core
-																							 * .
-																							 * IElementType
-																							 * >
-																							 */();
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.AssociationClass_4017) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
@@ -2932,7 +2840,7 @@ NamedElementEditPart
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
-		// set the figure active when the feature of the of a class is true
+		//set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
 			if (resolveSemanticElement().equals(event.getNotifier())
 					&& (event.getFeature() instanceof EAttribute)
@@ -2966,8 +2874,7 @@ NamedElementEditPart
 
 		if (childEditPart instanceof ClassAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ClassAttributeCompartment2EditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -2975,8 +2882,7 @@ NamedElementEditPart
 
 		if (childEditPart instanceof ClassOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ClassOperationCompartment2EditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -2984,8 +2890,7 @@ NamedElementEditPart
 
 		if (childEditPart instanceof ClassNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane
 					.remove(((ClassNestedClassifierCompartment2EditPart) childEditPart)
 							.getFigure());

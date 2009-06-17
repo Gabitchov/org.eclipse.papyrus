@@ -37,7 +37,7 @@ public class SignalPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 		// Set the default for the gradient
 		store.setDefault(
-				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_POLICY, true);
+				IPapyrusPreferencesConstant.SIGNAL_PREF_GRADIENT_POLICY, false);
 		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
 				new org.eclipse.swt.graphics.RGB(255, 255, 255),
 				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);

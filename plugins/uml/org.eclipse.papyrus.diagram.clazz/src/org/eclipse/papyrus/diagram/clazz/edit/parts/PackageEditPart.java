@@ -105,21 +105,27 @@ NamedElementEditPart
 	protected boolean addFixedChild(EditPart childEditPart) {
 
 		if (childEditPart instanceof PackageNameEditPart) {
-			((PackageNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			((PackageNameEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getNameLabel());
 			return true;
 		}
 
 		if (childEditPart instanceof PackagePackageableElementCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((PackagePackageableElementCompartment2EditPart) childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane
+					.add(((PackagePackageableElementCompartment2EditPart) childEditPart)
+							.getFigure());
 			return true;
 		}
 
-		// Papyrus Gencode :precise the locator for a template signature
+		//Papyrus Gencode :precise the locator for a template signature
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
+			BorderItemLocator locator = new TemplateClassifierBorderItemLocator(
+					getMainFigure(), PositionConstants.NORTH);
+			getBorderedFigure().getBorderItemContainer().add(
+					((RedefinableTemplateSignatureEditPart) childEditPart)
+							.getFigure(), locator);
 			return true;
 		}
 
@@ -130,17 +136,22 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new PackageItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.PackageCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.PackageCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
+		installEditPolicy(
+				"RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -156,24 +167,25 @@ NamedElementEditPart
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 
-					// done in GMF gen code
-					// return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
-					// done in papyrus gencode to have borderItem resizeable
+					//done in GMF gen code
+					//return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
+					//done in papyrus gencode to have borderItem resizeable
 					return new BorderItemResizableEditPolicy();
 
 				}
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 		};
@@ -242,8 +254,8 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UMLElementTypes.Realization_4005);
 		types.add(UMLElementTypes.Abstraction_4006);
 		types.add(UMLElementTypes.Usage_4007);
@@ -259,8 +271,9 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+			IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -843,8 +856,8 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UMLElementTypes.Realization_4005);
 		types.add(UMLElementTypes.Abstraction_4006);
 		types.add(UMLElementTypes.Usage_4007);
@@ -862,8 +875,9 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+			IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
@@ -1464,8 +1478,9 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+			IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
@@ -2050,26 +2065,48 @@ NamedElementEditPart
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
+				.getPreferenceStore();
 		if (preferenceStore instanceof IPreferenceStore) {
 			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 
-				return FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore, IPapyrusPreferencesConstant.PACKAGE_PREF_LINE_COLOR));
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.PACKAGE_PREF_LINE_COLOR));
 
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFontStyle_FontColor()) {
 
-				return FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore, IPapyrusPreferencesConstant.PACKAGE_PREF_FONT_COLOR));
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.PACKAGE_PREF_FONT_COLOR));
 
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_FillColor()) {
 
-				return FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore, IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR));
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR));
 
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
-				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR));
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Transparency()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+						preferenceStore
+								.getString(IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR));
 
-				return new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR));
+				return new Integer(gradientPreferenceConverter
+						.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Gradient()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+						preferenceStore
+								.getString(IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR));
 
 				return gradientPreferenceConverter.getGradientData();
 			}
@@ -2083,7 +2120,8 @@ NamedElementEditPart
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PackageNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry
+				.getType(PackageNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -2124,13 +2162,17 @@ NamedElementEditPart
 
 		if (childEditPart instanceof PackagePackageableElementCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.remove(((PackagePackageableElementCompartment2EditPart) childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane
+					.remove(((PackagePackageableElementCompartment2EditPart) childEditPart)
+							.getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(
+					((RedefinableTemplateSignatureEditPart) childEditPart)
+							.getFigure());
 			return true;
 		}
 		return false;

@@ -4056,6 +4056,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7022"
@@ -4238,6 +4242,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7031"
@@ -4280,6 +4288,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7011"
@@ -4422,6 +4434,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7017"

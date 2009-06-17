@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
@@ -24,12 +25,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
+import org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy;
 
 /**
  * @generated
  */
-public class PackagePackageableElementCompartmentEditPart extends
-		ShapeCompartmentEditPart {
+public class PackagePackageableElementCompartmentEditPart extends ShapeCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -46,16 +47,25 @@ public class PackagePackageableElementCompartmentEditPart extends
 	/**
 	 * @generated
 	 */
-	public String getCompartmentName() {
-		return Messages.PackagePackageableElementCompartmentEditPart_title;
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackagePackageableElementCompartmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new
+		// org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartmentCanonicalEditPolicy());
+
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
 		return result;
 	}
@@ -63,20 +73,8 @@ public class PackagePackageableElementCompartmentEditPart extends
 	/**
 	 * @generated
 	 */
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new PackagePackageableElementCompartmentItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DragDropEditPolicy());
-
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartmentCanonicalEditPolicy());
-
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+	public String getCompartmentName() {
+		return Messages.PackagePackageableElementCompartmentEditPart_title;
 	}
 
 	/**

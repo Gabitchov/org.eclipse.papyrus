@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperatio
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -46,6 +47,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
+import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
@@ -86,6 +88,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.ABSTRACTION_PREF_FONT, IPapyrusPreferencesConstant.ABSTRACTION_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6014 = createLabel(edge, UMLVisualIDRegistry.getType(AbstractionNameEditPart.VISUAL_ID));
 		label6014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6014 = (Location) label6014.getLayoutConstraint();
@@ -142,6 +148,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT, IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6001 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeAssociationEditPart.VISUAL_ID));
 		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6001 = (Location) label6001.getLayoutConstraint();
@@ -197,6 +207,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT, IPapyrusPreferencesConstant.ASSOCIATION_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6024 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationBranchRoleEditPart.VISUAL_ID));
 		label6024.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6024 = (Location) label6024.getLayoutConstraint();
@@ -257,6 +271,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_FONT, IPapyrusPreferencesConstant.ASSOCIATIONCLASS_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		return edge;
 	}
 
@@ -407,6 +425,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		return edge;
 	}
 
@@ -550,6 +572,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		return edge;
 	}
 
@@ -647,6 +673,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT, IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6026 = createLabel(edge, UMLVisualIDRegistry.getType(DependencyNameEditPart.VISUAL_ID));
 		label6026.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6026 = (Location) label6026.getLayoutConstraint();
@@ -682,6 +712,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT, IPapyrusPreferencesConstant.DEPENDENCY_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6028 = createLabel(edge, UMLVisualIDRegistry.getType(DependencyName3EditPart.VISUAL_ID));
 		label6028.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6028 = (Location) label6028.getLayoutConstraint();
@@ -781,6 +815,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.ELEMENTIMPORT_PREF_FONT, IPapyrusPreferencesConstant.ELEMENTIMPORT_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6020 = createLabel(edge, UMLVisualIDRegistry.getType(ElementImportAliasEditPart.VISUAL_ID));
 		label6020.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6020 = (Location) label6020.getLayoutConstraint();
@@ -877,6 +915,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.GENERALIZATION_PREF_FONT, IPapyrusPreferencesConstant.GENERALIZATION_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6007 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotyperGeneralizationEditPart.VISUAL_ID));
 		label6007.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6007 = (Location) label6007.getLayoutConstraint();
@@ -907,6 +949,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.GENERALIZATIONSET_PREF_FONT, IPapyrusPreferencesConstant.GENERALIZATIONSET_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label5067 = createLabel(edge, UMLVisualIDRegistry.getType(ConstraintLabelEditPart.VISUAL_ID));
 		label5067.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5067 = (Location) label5067.getLayoutConstraint();
@@ -1037,6 +1083,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.INTERFACEREALIZATION_PREF_FONT, IPapyrusPreferencesConstant.INTERFACEREALIZATION_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6008 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID));
 		label6008.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6008 = (Location) label6008.getLayoutConstraint();
@@ -1078,6 +1128,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		return edge;
 	}
 
@@ -1354,6 +1408,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.PACKAGEIMPORT_PREF_FONT, IPapyrusPreferencesConstant.PACKAGEIMPORT_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6022 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypePackageImportEditPart.VISUAL_ID));
 		label6022.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6022 = (Location) label6022.getLayoutConstraint();
@@ -1384,6 +1442,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.PACKAGEMERGE_PREF_FONT, IPapyrusPreferencesConstant.PACKAGEMERGE_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		return edge;
 	}
 
@@ -1456,6 +1518,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_FONT, IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		return edge;
 	}
 
@@ -1541,6 +1607,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.REALIZATION_PREF_FONT, IPapyrusPreferencesConstant.REALIZATION_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6012 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeRealizationEditPart.VISUAL_ID));
 		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6012 = (Location) label6012.getLayoutConstraint();
@@ -1673,6 +1743,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.SUBSTITUTION_PREF_FONT, IPapyrusPreferencesConstant.SUBSTITUTION_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6010 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeSubstitutionEditPart.VISUAL_ID));
 		label6010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6010 = (Location) label6010.getLayoutConstraint();
@@ -1708,6 +1782,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.TEMPLATEBINDING_PREF_FONT, IPapyrusPreferencesConstant.TEMPLATEBINDING_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6023 = createLabel(edge, UMLVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
 		label6023.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6023 = (Location) label6023.getLayoutConstraint();
@@ -1750,6 +1828,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(edge, prefStore, IPapyrusPreferencesConstant.USAGE_PREF_FONT, IPapyrusPreferencesConstant.USAGE_PREF_FONT_COLOR);
 
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
 		Node label6016 = createLabel(edge, UMLVisualIDRegistry.getType(UsageNameEditPart.VISUAL_ID));
 		label6016.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6016 = (Location) label6016.getLayoutConstraint();

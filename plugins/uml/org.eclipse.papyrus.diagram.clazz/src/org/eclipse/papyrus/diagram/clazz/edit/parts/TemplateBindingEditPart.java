@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.TemplateBindingItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.edge.CInterfaceRealizationFigure;
 import org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure;
 
 /**
