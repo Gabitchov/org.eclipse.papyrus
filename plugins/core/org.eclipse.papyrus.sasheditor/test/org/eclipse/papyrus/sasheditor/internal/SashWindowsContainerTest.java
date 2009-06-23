@@ -6,16 +6,17 @@ package org.eclipse.papyrus.sasheditor.internal;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.contentprovider.simple.FakePageModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.editor.ShellEditor;
+import org.eclipse.papyrus.sasheditor.editor.MessagePartModel;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-
-import junit.framework.TestCase;
 
 
 /**
@@ -68,7 +69,6 @@ public class SashWindowsContainerTest extends TestCase {
 		
 		//
 		//new ShellEditor(shell);
-		contentProvider = new SimpleSashWindowsContentProvider();
 		SashWindowsContainer sashWindowContainer= new SashWindowsContainer();
 		
 		sashWindowContainer.setContentProvider(contentProvider);
@@ -90,13 +90,14 @@ public class SashWindowsContainerTest extends TestCase {
 		List<IPageModel> models = new ArrayList<IPageModel>();
 		for(int i=0; i<8; i++)
 		{
-			IPageModel newModel = new FakePageModel("model"+i);
+			IPageModel newModel = new MessagePartModel("model"+i);
 			contentProvider.addPage(newModel);
 			models.add(newModel);
 		}
 		
 		return contentProvider;
 	}
+	
 	/**
 	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
 	 */
@@ -114,6 +115,37 @@ public class SashWindowsContainerTest extends TestCase {
 		
 		container.refreshTabs();
 		assertNotNull("container is set", container);
+		
+	}
+
+	/**
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
+	 */
+	public void testRefreshTabs2() {
+		
+		// Test 2 folders, one tab each. Then supress one tabs.
+		// 1 folder with one tab should remain. 
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+
+		// Create pages and add them to the default folder
+		List<IPageModel> models = new ArrayList<IPageModel>();
+		for(int i=0; i<2; i++)
+		{
+			IPageModel newModel = new MessagePartModel("model"+i);
+			contentProvider.addPage(newModel);
+			models.add(newModel);
+		}
+
+		// Create new folder
+		ITabFolderModel folder = contentProvider.getCurrentTabFolder();
+		contentProvider.createFolder(folder, 1, folder, SWT.TOP);
+		
+		// Create the container
+		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
+		container.refreshTabs();
+		assertNotNull("container is set", container);
+		
+
 	}
 
 }
