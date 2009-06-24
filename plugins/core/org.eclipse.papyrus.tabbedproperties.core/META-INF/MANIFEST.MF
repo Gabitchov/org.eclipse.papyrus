@@ -19,5 +19,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.tabbedproperties.core.providers
+Export-Package: org.eclipse.papyrus.tabbedproperties.core,
+ org.eclipse.papyrus.tabbedproperties.core.providers
 Bundle-Vendor: %providerName
+Bundle-Activator: org.eclipse.papyrus.tabbedproperties.core.Activator

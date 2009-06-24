@@ -111,13 +111,6 @@ this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.outline.emftree"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.papyrus.parsers"
          download-size="0"
          install-size="0"
@@ -154,13 +147,6 @@ this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.papyrus.diagram.sequence"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.diagram.emftree"
          download-size="0"
          install-size="0"
          version="0.0.0"

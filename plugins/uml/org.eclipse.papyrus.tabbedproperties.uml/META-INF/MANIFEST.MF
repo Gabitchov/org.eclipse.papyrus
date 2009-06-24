@@ -18,9 +18,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.eef.runtime
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.tabbedproperties.uml.components,
+Export-Package: org.eclipse.papyrus.tabbedproperties.uml,
+ org.eclipse.papyrus.tabbedproperties.uml.components,
  org.eclipse.papyrus.tabbedproperties.uml.parts,
  org.eclipse.papyrus.tabbedproperties.uml.parts.forms,
  org.eclipse.papyrus.tabbedproperties.uml.parts.impl,
  org.eclipse.papyrus.tabbedproperties.uml.properties,
  org.eclipse.papyrus.tabbedproperties.uml.providers
+Bundle-Activator: org.eclipse.papyrus.tabbedproperties.uml.Activator
