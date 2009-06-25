@@ -26,13 +26,13 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	PapyrusgmfgenextensionFactory eINSTANCE = org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Extended Gen Node</em>'.
+	 * Returns a new object of class '<em>Extended Gen View</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Extended Gen Node</em>'.
+	 * @return a new object of class '<em>Extended Gen View</em>'.
 	 * @generated
 	 */
-	ExtendedGenNode createExtendedGenNode();
+	ExtendedGenView createExtendedGenView();
 
 	/**
 	 * Returns a new object of class '<em>Commented Element</em>'.

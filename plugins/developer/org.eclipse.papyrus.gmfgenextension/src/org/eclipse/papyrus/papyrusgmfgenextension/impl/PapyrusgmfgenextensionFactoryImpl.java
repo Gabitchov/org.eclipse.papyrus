@@ -60,7 +60,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_NODE: return createExtendedGenNode();
+			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW: return createExtendedGenView();
 			case PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT: return createCommentedElement();
 			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK: return createPropertyRefreshHook();
 			case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK: return createExternalHook();
@@ -81,9 +81,9 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendedGenNode createExtendedGenNode() {
-		ExtendedGenNodeImpl extendedGenNode = new ExtendedGenNodeImpl();
-		return extendedGenNode;
+	public ExtendedGenView createExtendedGenView() {
+		ExtendedGenViewImpl extendedGenView = new ExtendedGenViewImpl();
+		return extendedGenView;
 	}
 
 	/**

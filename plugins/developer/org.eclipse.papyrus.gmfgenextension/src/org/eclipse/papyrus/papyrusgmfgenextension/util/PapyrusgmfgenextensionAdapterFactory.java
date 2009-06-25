@@ -72,8 +72,8 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	protected PapyrusgmfgenextensionSwitch<Adapter> modelSwitch =
 		new PapyrusgmfgenextensionSwitch<Adapter>() {
 			@Override
-			public Adapter caseExtendedGenNode(ExtendedGenNode object) {
-				return createExtendedGenNodeAdapter();
+			public Adapter caseExtendedGenView(ExtendedGenView object) {
+				return createExtendedGenViewAdapter();
 			}
 			@Override
 			public Adapter caseCommentedElement(CommentedElement object) {
@@ -136,16 +136,16 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode <em>Extended Gen Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
 	 * @generated
 	 */
-	public Adapter createExtendedGenNodeAdapter() {
+	public Adapter createExtendedGenViewAdapter() {
 		return null;
 	}
 

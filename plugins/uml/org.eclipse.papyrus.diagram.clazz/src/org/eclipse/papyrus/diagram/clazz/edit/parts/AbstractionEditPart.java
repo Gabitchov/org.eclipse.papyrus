@@ -20,12 +20,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AbstractionItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
  * @generated
  */
-public class AbstractionEditPart extends ConnectionNodeEditPart implements
+public class AbstractionEditPart extends UMLConnectionNodeEditPart implements
 		ITreeBranchEditPart {
 
 	/**

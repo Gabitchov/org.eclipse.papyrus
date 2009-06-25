@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editparts;
 
+import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -21,6 +22,12 @@ import org.eclipse.uml2.uml.Element;
  */
 public interface IUMLEditPart {
 
+	/** Constant for filters of the {@link DiagramEventBroker} that listen to stereotype application/unapplication */
+	public final String STEREOTYPED_ELEMENT = "StereotypedElement";
+	
+	/** Constant for filters of the {@link DiagramEventBroker} that listen to applied stereotype modifications (property changes, etc.) */
+	public final String STEREOTYPABLE_ELEMENT = "StereotypableElement";
+	
 	/**
 	 * Gets the UML element.
 	 * 

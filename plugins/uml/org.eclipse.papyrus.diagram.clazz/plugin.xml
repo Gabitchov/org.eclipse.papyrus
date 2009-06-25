@@ -112,7 +112,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="PapyrusNatifUMLClassDiagramRender">
+            id="PapyrusUMLClassDiagramRender">
          <Priority name="Lowest"/>
          <ViewId id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -122,28 +122,6 @@
             </ElementType>
          </ViewId>
       </GlobalActionHandlerProvider>
-   <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-         id="PapyrusUMLClassDiagramRender">
-      <Priority
-            name="Lowest">
-      </Priority>
-      <ViewId
-            id="org.eclipse.papyrus.core.papyrusEditor">
-         <ElementType
-               class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-            <GlobalActionId
-                  actionId="cut">
-            </GlobalActionId>
-            <GlobalActionId
-                  actionId="copy">
-            </GlobalActionId>
-            <GlobalActionId
-                  actionId="paste">
-            </GlobalActionId>
-         </ElementType>
-      </ViewId>
-   </GlobalActionHandlerProvider>
    </extension>
 <extension point="org.eclipse.core.runtime.preferences" id="prefs">
       <?gmfgen generated="true"?>
@@ -271,7 +249,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>

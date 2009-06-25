@@ -88,14 +88,14 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	int COMMENTED_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenNodeImpl <em>Extended Gen Node</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl <em>Extended Gen View</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenNodeImpl
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExtendedGenNode()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExtendedGenView()
 	 * @generated
 	 */
-	int EXTENDED_GEN_NODE = 0;
+	int EXTENDED_GEN_VIEW = 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -104,16 +104,16 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE__COMMENT = COMMENTED_ELEMENT__COMMENT;
+	int EXTENDED_GEN_VIEW__COMMENT = COMMENTED_ELEMENT__COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Gen Node</b></em>' reference list.
+	 * The feature id for the '<em><b>Gen View</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE__GEN_NODE = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+	int EXTENDED_GEN_VIEW__GEN_VIEW = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -122,16 +122,16 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE__IS_ABSTRACT = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+	int EXTENDED_GEN_VIEW__IS_ABSTRACT = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Super Gen Nodes</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Gen Views</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE__SUPER_GEN_NODES = COMMENTED_ELEMENT_FEATURE_COUNT + 2;
+	int EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS = COMMENTED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Prop Refresh Hook</b></em>' containment reference.
@@ -140,7 +140,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE__PROP_REFRESH_HOOK = COMMENTED_ELEMENT_FEATURE_COUNT + 3;
+	int EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK = COMMENTED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -149,7 +149,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE__NAME = COMMENTED_ELEMENT_FEATURE_COUNT + 4;
+	int EXTENDED_GEN_VIEW__NAME = COMMENTED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Super Owned Edit Part</b></em>' attribute.
@@ -158,16 +158,16 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART = COMMENTED_ELEMENT_FEATURE_COUNT + 5;
+	int EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART = COMMENTED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the '<em>Extended Gen Node</em>' class.
+	 * The number of structural features of the '<em>Extended Gen View</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_GEN_NODE_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 6;
+	int EXTENDED_GEN_VIEW_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl <em>External Hook</em>}' class.
@@ -586,80 +586,80 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode <em>Extended Gen Node</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Extended Gen Node</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode
+	 * @return the meta object for class '<em>Extended Gen View</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
 	 * @generated
 	 */
-	EClass getExtendedGenNode();
+	EClass getExtendedGenView();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getGenNode <em>Gen Node</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getGenView <em>Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Gen Node</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getGenNode()
-	 * @see #getExtendedGenNode()
+	 * @return the meta object for the reference list '<em>Gen View</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getGenView()
+	 * @see #getExtendedGenView()
 	 * @generated
 	 */
-	EReference getExtendedGenNode_GenNode();
+	EReference getExtendedGenView_GenView();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#isIsAbstract <em>Is Abstract</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#isIsAbstract <em>Is Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Abstract</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#isIsAbstract()
-	 * @see #getExtendedGenNode()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#isIsAbstract()
+	 * @see #getExtendedGenView()
 	 * @generated
 	 */
-	EAttribute getExtendedGenNode_IsAbstract();
+	EAttribute getExtendedGenView_IsAbstract();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperGenNodes <em>Super Gen Nodes</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperGenViews <em>Super Gen Views</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Super Gen Nodes</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperGenNodes()
-	 * @see #getExtendedGenNode()
+	 * @return the meta object for the reference list '<em>Super Gen Views</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperGenViews()
+	 * @see #getExtendedGenView()
 	 * @generated
 	 */
-	EReference getExtendedGenNode_SuperGenNodes();
+	EReference getExtendedGenView_SuperGenViews();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getPropRefreshHook <em>Prop Refresh Hook</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getPropRefreshHook <em>Prop Refresh Hook</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Prop Refresh Hook</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getPropRefreshHook()
-	 * @see #getExtendedGenNode()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getPropRefreshHook()
+	 * @see #getExtendedGenView()
 	 * @generated
 	 */
-	EReference getExtendedGenNode_PropRefreshHook();
+	EReference getExtendedGenView_PropRefreshHook();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getName()
-	 * @see #getExtendedGenNode()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getName()
+	 * @see #getExtendedGenView()
 	 * @generated
 	 */
-	EAttribute getExtendedGenNode_Name();
+	EAttribute getExtendedGenView_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Super Owned Edit Part</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenNode#getSuperOwnedEditPart()
-	 * @see #getExtendedGenNode()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperOwnedEditPart()
+	 * @see #getExtendedGenView()
 	 * @generated
 	 */
-	EAttribute getExtendedGenNode_SuperOwnedEditPart();
+	EAttribute getExtendedGenView_SuperOwnedEditPart();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement <em>Commented Element</em>}'.
@@ -960,22 +960,22 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenNodeImpl <em>Extended Gen Node</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl <em>Extended Gen View</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenNodeImpl
-		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExtendedGenNode()
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExtendedGenView()
 		 * @generated
 		 */
-		EClass EXTENDED_GEN_NODE = eINSTANCE.getExtendedGenNode();
+		EClass EXTENDED_GEN_VIEW = eINSTANCE.getExtendedGenView();
 
 		/**
-		 * The meta object literal for the '<em><b>Gen Node</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Gen View</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTENDED_GEN_NODE__GEN_NODE = eINSTANCE.getExtendedGenNode_GenNode();
+		EReference EXTENDED_GEN_VIEW__GEN_VIEW = eINSTANCE.getExtendedGenView_GenView();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Abstract</b></em>' attribute feature.
@@ -983,15 +983,15 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENDED_GEN_NODE__IS_ABSTRACT = eINSTANCE.getExtendedGenNode_IsAbstract();
+		EAttribute EXTENDED_GEN_VIEW__IS_ABSTRACT = eINSTANCE.getExtendedGenView_IsAbstract();
 
 		/**
-		 * The meta object literal for the '<em><b>Super Gen Nodes</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Super Gen Views</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTENDED_GEN_NODE__SUPER_GEN_NODES = eINSTANCE.getExtendedGenNode_SuperGenNodes();
+		EReference EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS = eINSTANCE.getExtendedGenView_SuperGenViews();
 
 		/**
 		 * The meta object literal for the '<em><b>Prop Refresh Hook</b></em>' containment reference feature.
@@ -999,7 +999,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTENDED_GEN_NODE__PROP_REFRESH_HOOK = eINSTANCE.getExtendedGenNode_PropRefreshHook();
+		EReference EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK = eINSTANCE.getExtendedGenView_PropRefreshHook();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1007,7 +1007,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENDED_GEN_NODE__NAME = eINSTANCE.getExtendedGenNode_Name();
+		EAttribute EXTENDED_GEN_VIEW__NAME = eINSTANCE.getExtendedGenView_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Super Owned Edit Part</b></em>' attribute feature.
@@ -1015,7 +1015,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENDED_GEN_NODE__SUPER_OWNED_EDIT_PART = eINSTANCE.getExtendedGenNode_SuperOwnedEditPart();
+		EAttribute EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART = eINSTANCE.getExtendedGenView_SuperOwnedEditPart();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CommentedElementImpl <em>Commented Element</em>}' class.

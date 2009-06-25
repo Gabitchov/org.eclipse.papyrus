@@ -39,10 +39,6 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart implements IUMLEditPart {
 
-	private static final String STEREOTYPED_ELEMENT = "StereotypedElement";
-	
-	private static final String STEREOTYPABLE_ELEMENT = "StereotypableElement";
-
 	/**
 	 * Creates a new UmlNodeEditPart.
 	 * 
@@ -74,7 +70,7 @@ public abstract class UmlNodeEditPart extends AbstractBorderedShapeEditPart impl
 		}
 
 		// add listener to react to the application and remove of a stereotype
-		addListenerFilter(STEREOTYPABLE_ELEMENT, this, resolveSemanticElement());
+		addListenerFilter(STEREOTYPABLE_ELEMENT, this, element);
 
 		// add a lister to each already applied stereotyped
 		for (EObject stereotypeApplication : element.getStereotypeApplications()) {

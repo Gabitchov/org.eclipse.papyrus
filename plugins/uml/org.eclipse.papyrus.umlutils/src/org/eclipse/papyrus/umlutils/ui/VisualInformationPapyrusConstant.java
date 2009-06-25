@@ -124,4 +124,6 @@ public interface VisualInformationPapyrusConstant {
 	 */
 	public static final String P_STEREOTYPE_NAME_APPEARANCE = "ProfileApplicationPreferenceConstants.stereotype.name.appearance";
 
+	/** Separator for stereotype properties list, i.e. the separator between each properties in the list. It is set to "<code>,</code>" by default */
+	public static final String STEREOTYPE_PROPERTIES_LIST_SEPARATOR = ",";
 }

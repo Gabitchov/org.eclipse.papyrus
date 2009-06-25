@@ -22,12 +22,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.figure.GeneralizationSet;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.GeneralizationSetLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationSetItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 
 /**
  * @generated
  */
-public class GeneralizationSetEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

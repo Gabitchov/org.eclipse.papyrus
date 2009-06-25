@@ -3,15 +3,15 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="papyrusgmfgenextension"
     nsURI="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension" nsPrefix="papyrusgmfgenextension">
-  <eClassifiers xsi:type="ecore:EClass" name="ExtendedGenNode" eSuperTypes="#//CommentedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedGenView" eSuperTypes="#//CommentedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="This element is always linked to a genNode (topLevel, or child)&#xD;&#xA;Used set if an editPart is abstract.&#xD;&#xA;SuperGenNodes is a list of all superEditPart.&#xD;&#xA;&#xD;&#xA;Thanks to this, it is possible to factorize code and to decrease the number of generated classes."/>
+      <details key="documentation" value="This element is always linked to a genView (topLevel, or child)&#xD;&#xA;Used set if an editPart is abstract.&#xD;&#xA;SuperGenViews is a list of all superEditPart.&#xD;&#xA;&#xD;&#xA;Thanks to this, it is possible to factorize code and to decrease the number of generated classes."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="genNode" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genView" ordered="false"
         unique="false" lowerBound="1" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenCommonBase"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superGenNodes" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superGenViews" ordered="false"
         unique="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenCommonBase"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propRefreshHook" ordered="false"
         unique="false" eType="#//PropertyRefreshHook" containment="true"/>
