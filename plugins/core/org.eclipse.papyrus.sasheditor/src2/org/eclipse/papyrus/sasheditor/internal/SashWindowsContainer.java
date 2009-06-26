@@ -18,6 +18,9 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.editor.IPage;
+import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
+import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Point;
@@ -37,7 +40,7 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  * The class require a ContentProvider describing the content to be shown.
  * @author dumoulin
  */
-public class SashWindowsContainer {
+public class SashWindowsContainer implements ISashWindowsContainer {
 
 	/**
 	 * The content provider describing the sashes, folders and tabs.
@@ -237,8 +240,9 @@ public class SashWindowsContainer {
 	}
 
 	/**
-	 * Get the currently active editor, or null if none is active.
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#getActiveEditor()
 	 * @return
+	 * 
 	 */
 	public IEditorPart getActiveEditor() {
 		PagePart pagePart = getActivePage();
@@ -247,14 +251,19 @@ public class SashWindowsContainer {
 		else
 		  return null;
 	}
+	
+	/**
+	 * Get the active page public API.
+	 * @return
+	 */
+	public IPage getActiveSashWindowsPage() {
+		return getActivePage();
+	}
+
 
 	/**
-	 * The <code>AbstractMultiPageSashEditor</code> implementation of this
-	 * <code>IWorkbenchPart</code> method sets focus on the active nested
-	 * editor, if there is one.
-	 * <p>
-	 * Subclasses may extend or reimplement.
-	 * </p>
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#setFocus()
+	 * 
 	 */
 	public void setFocus() {
 		setFocus(getActivePage());
@@ -274,8 +283,8 @@ public class SashWindowsContainer {
 	}
 
 	/**
-	 * Refresh the SashWindows. 
-	 * Synchronize the internal structure with the {@link ISashWindowsContentProvider}.
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#refreshTabs()
+	 * 
 	 */
 	public void refreshTabs() {
 		System.out.println("start synchronize2() ------------------------");
@@ -355,6 +364,8 @@ public class SashWindowsContainer {
 		ShowPartStatusVisitor visitor = new ShowPartStatusVisitor();
 		rootPart.visit(visitor);
 	}
+	
+	
 	
 	/* ***************************************************** */
 	/*    Drag and Drop methods                              */
@@ -630,7 +641,26 @@ public class SashWindowsContainer {
 
 	}
 
+	/**
+	 * Add a listener on pageChanged event.
+	 * This implementation delegates to the internal PageTracker.
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#addPageChangedListener(org.eclipse.papyrus.sasheditor.editor.IPageChangedListener)
+	 * @param pageChangedListener
+	 *
+	 */
+	public void addPageChangedListener(IPageChangedListener pageChangedListener) {
+		activePageTracker.addPageChangedListener(pageChangedListener);		
+	}
 
+	/**
+	 * Remove a listener on pageChanged event.
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#removePageChangedListener(org.eclipse.papyrus.sasheditor.editor.IPageChangedListener)
+	 * @param pageChangedListener
+	 *
+	 */
+	public void removePageChangedListener(IPageChangedListener pageChangedListener) {
+		activePageTracker.removePageChangedListener(pageChangedListener);		
+	}
 
 
 }

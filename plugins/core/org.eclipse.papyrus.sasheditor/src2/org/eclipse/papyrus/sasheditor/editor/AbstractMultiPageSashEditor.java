@@ -176,6 +176,10 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		if (ISashWindowsContentProvider.class == adapter)
 			return getContentProvider();
 
+		// Get the content provider if requested.
+		if (ISashWindowsContainer.class == adapter)
+			return sashContainer;
+
 		// Look in hierarchy
 		Object result = super.getAdapter(adapter);
 		// restrict delegating to the UI thread for bug 144851

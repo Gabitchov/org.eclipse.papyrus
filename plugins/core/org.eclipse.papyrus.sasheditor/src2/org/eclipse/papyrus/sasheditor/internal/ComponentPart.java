@@ -366,7 +366,7 @@ public class ComponentPart extends PagePart {
 //				+ "', " + this);
 		
 		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n" 
-				, editorControl.isDisposed(), (editorControl.isDisposed()?false:editorControl.isVisible()), garbageState, getPartTitle(), this);
+				, editorControl.isDisposed(), (editorControl.isDisposed()?false:editorControl.isVisible()), garbageState, getPageTitle(), this);
 
 	}
 	
@@ -375,7 +375,7 @@ public class ComponentPart extends PagePart {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getPartTitle() {
+	public String getPageTitle() {
 		return partModel.getTabTitle();
 	}
 	
@@ -384,7 +384,7 @@ public class ComponentPart extends PagePart {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Image getPartIcon() {
+	public Image getPageIcon() {
 		return partModel.getTabIcon();
 	}
 }

@@ -13,19 +13,18 @@
   *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-
+import org.eclipse.papyrus.sasheditor.editor.IPage;
 
 /**
  * This class represent a leaf part that is a part containing an editor or a component.
  * 
  * @author dumoulin
  */
-public abstract class PagePart extends AbstractPart {
+public abstract class PagePart extends AbstractPart implements IPage {
 
 	/** Raw model associated to this part. We store it because the PartModel do not provide it */
 	protected Object rawModel;
@@ -145,7 +144,7 @@ public abstract class PagePart extends AbstractPart {
 	 * Get the raw model associated to this Part.
 	 * @return
 	 */
-	protected Object getRawModel() {
+	public Object getRawModel() {
 		return rawModel;
 	}
 
@@ -155,7 +154,7 @@ public abstract class PagePart extends AbstractPart {
 	 * To be implemented by subclasses.
 	 * @return The title or null.
 	 */
-	public String getPartTitle() {
+	public String getPageTitle() {
 		return null;
 	}
 
@@ -166,7 +165,7 @@ public abstract class PagePart extends AbstractPart {
 	 * 
 	 * @return The icon or null.
 	 */
-	public Image getPartIcon() {
+	public Image getPageIcon() {
 		return null;
 	}
 

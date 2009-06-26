@@ -104,7 +104,7 @@ public class ActiveEditorAndPageTracker extends ActivePageTracker {
 	 */
 	protected void editorChange(PagePart editor)
 	{
-		System.out.println(getClass().getSimpleName()+ ".editorChange('"+ editor.getPartTitle()+"')");
+		System.out.println(getClass().getSimpleName()+ ".editorChange('"+ editor.getPageTitle()+"')");
 		// Set focus
 		IPartService partService = (IPartService) getEditorSite().getService(IPartService.class);
 		if (partService.getActivePart() == getEditorSite().getPart()) {

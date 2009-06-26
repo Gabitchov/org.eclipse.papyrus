@@ -110,6 +110,7 @@ public class EditorPart extends PagePart {
 		case SWT.FocusOut : return "FocusOut";
 		case SWT.MouseMove : return "MouseMove";
 		case SWT.MouseUp : return "MouseUp";
+		case SWT.Activate : return "Activate";
 		default : return Integer.toString(eventType);
 		}
 	}
@@ -223,6 +224,8 @@ public class EditorPart extends PagePart {
 					}
 				});
 				
+				// TODO test to be removed
+//				attachListeners(editorParent, false);
 				return editorParent;
 	}
 	
@@ -240,6 +243,7 @@ public class EditorPart extends PagePart {
 		theControl.addListener(SWT.MouseHover, mouseEnterListener);
 		theControl.addListener(SWT.MouseUp, mouseEnterListener);
 		theControl.addListener(SWT.MouseDown, mouseEnterListener);
+		theControl.addListener(SWT.Activate, mouseEnterListener);
 		
 		if (recursive && theControl instanceof Composite) {
 			Composite composite = (Composite) theControl;
@@ -259,6 +263,11 @@ public class EditorPart extends PagePart {
 	private void detachListeners(Control theControl, boolean recursive) {
 		theControl.removeListener(SWT.MouseEnter, mouseEnterListener);
 		theControl.removeListener(SWT.FocusIn, mouseEnterListener);
+		theControl.removeListener(SWT.MouseMove, mouseEnterListener);
+		theControl.removeListener(SWT.MouseHover, mouseEnterListener);
+		theControl.removeListener(SWT.MouseUp, mouseEnterListener);
+		theControl.removeListener(SWT.MouseDown, mouseEnterListener);
+		theControl.removeListener(SWT.Activate, mouseEnterListener);
 		
 		if (recursive && theControl instanceof Composite) {
 			Composite composite = (Composite) theControl;
@@ -554,7 +563,7 @@ public class EditorPart extends PagePart {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getPartTitle() {
+	public String getPageTitle() {
 		return editorModel.getTabTitle();
 	}
 	
@@ -563,7 +572,7 @@ public class EditorPart extends PagePart {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Image getPartIcon() {
+	public Image getPageIcon() {
 		return editorModel.getTabIcon();
 	}
 }

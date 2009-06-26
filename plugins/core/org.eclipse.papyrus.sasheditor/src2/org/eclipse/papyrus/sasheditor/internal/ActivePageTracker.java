@@ -17,15 +17,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
 import org.eclipse.ui.IPartService;
 
 
 /**
  * Instance of this class track the active Page.
  * When the active Page change, the tracker receive an event, and perform following tasks:
- * - call editorChange()
- * - fire events to all registered listeners.
+ * <ul>
+ *  <li>- call editorChange()</li>
+ *  <li>- fire events to all registered listeners.</li>
+ * </ul>
  * 
+ * This class allows to kind of listeners:
+ * 
+ * <ul>
+ *   <li> {@link IActiveEditorChangedListener} for internal use</li>
+ *   <li> {@link IPageChangedListener} for public API use.</li>
+ * </ul>
  * This class allows to set externally the active editor.
  * @author dumoulin
  *
@@ -38,6 +47,8 @@ public class ActivePageTracker {
 	
 	/** List of listeners */
 	private List<IActiveEditorChangedListener> activeEditorChangedListeners = new ArrayList<IActiveEditorChangedListener>();
+	/** List of public listeners */
+	private List<IPageChangedListener> publicPageChangedListeners;
 
 	/** The currently active editor */
 	protected PagePart activeEditor;
@@ -112,6 +123,33 @@ public class ActivePageTracker {
 	}
 	
 	/**
+	 * Add a listener on the activeEditorChange event.
+	 * @param listener
+	 */
+	public void addPageChangedListener(IPageChangedListener listener)
+	{
+		// no duplicate
+		if( publicPageChangedListeners == null)
+			publicPageChangedListeners = new ArrayList<IPageChangedListener>();
+		
+		if(publicPageChangedListeners.contains(listener))
+			return;
+		publicPageChangedListeners.add(listener);
+	}
+	
+	/**
+	 * Add a listener on the activeEditorChange event.
+	 * @param listener
+	 */
+	public void removePageChangedListener(IPageChangedListener listener)
+	{
+		if(publicPageChangedListeners==null)
+			return;
+		
+		publicPageChangedListeners.remove(listener);
+	}
+	
+	/**
 	 * Notify all listener with event.
 	 * @param oldEditor
 	 * @param newEditor
@@ -122,10 +160,21 @@ public class ActivePageTracker {
 		if(oldEditor == newEditor)
 			return;
 		
+		// Fire events to internal listeners
 		for(IActiveEditorChangedListener listener : activeEditorChangedListeners)
 		{
 			listener.activeEditorChanged(oldEditor, newEditor);
 		}
+		
+		// Fire event to public listeners
+		if( publicPageChangedListeners != null)
+		{
+			for(IPageChangedListener listener : publicPageChangedListeners)
+			{
+				listener.pageChanged( newEditor);
+			}
+		}
+
 	}
 	
 }

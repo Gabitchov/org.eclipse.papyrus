@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 
 
 /**
+ * Run as normal test.
  * @author dumoulin
  *
  */

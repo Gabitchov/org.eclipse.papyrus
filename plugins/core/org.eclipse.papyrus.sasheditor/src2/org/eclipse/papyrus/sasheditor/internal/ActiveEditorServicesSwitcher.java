@@ -114,7 +114,7 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	public void activeEditorChanged(PagePart oldEditor, PagePart newEditor)
 	{
 
-		System.out.println(getClass().getSimpleName()+ ".activeEditorChange('"+ (newEditor!=null?newEditor.getPartTitle():"null") +"')");
+		System.out.println(getClass().getSimpleName()+ ".activeEditorChange('"+ (newEditor!=null?newEditor.getPageTitle():"null") +"')");
 
 		activeEditor = newEditor;
 
