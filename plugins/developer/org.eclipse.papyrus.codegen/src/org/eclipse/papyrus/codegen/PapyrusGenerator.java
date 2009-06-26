@@ -48,6 +48,9 @@ public class PapyrusGenerator extends Generator {
 		this.emitters = emitters;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {
 		super.customRun();

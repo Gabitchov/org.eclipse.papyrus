@@ -24,9 +24,13 @@ import org.eclipse.gmf.internal.codegen.popup.actions.ExecuteTemplatesOperation;
  */
 public class PapyrusExecuteTemplatesOperation extends ExecuteTemplatesOperation {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Generator createGenerator() {
 		GenEditorGenerator genModel = getGenModel();
 		return new PapyrusGenerator(genModel, new PapyrusCodegenEmitters(!genModel.isDynamicTemplates(), genModel.getTemplateDirectory(), genModel.getModelAccess() != null));
 	}
+
 }

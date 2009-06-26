@@ -23,6 +23,9 @@ import org.eclipse.papyrus.codegen.PapyrusExecuteTemplatesOperation;
  */
 public class PapyrusExecuteTemplateAction extends ExecuteTemplatesAction {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ExecuteTemplatesOperation createOperation() {
 		return new PapyrusExecuteTemplatesOperation();
