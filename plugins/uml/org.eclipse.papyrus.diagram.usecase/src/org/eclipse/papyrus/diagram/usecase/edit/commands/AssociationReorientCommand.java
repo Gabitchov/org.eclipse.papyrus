@@ -123,21 +123,19 @@ public class AssociationReorientCommand extends EditElementCommand {
 		}
 		throw new IllegalStateException();
 	}
-	
+
 	/**
 	 * @generated NOT
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		return AssociationHelper.reconnect(AssociationHelper.source, getLink(),
-				getNewSource());
+		return AssociationHelper.reconnect(AssociationHelper.source, getLink(), getNewSource());
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		return AssociationHelper.reconnect(AssociationHelper.target, getLink(),
-				getNewTarget());
+		return AssociationHelper.reconnect(AssociationHelper.target, getLink(), getNewTarget());
 
 	}
 

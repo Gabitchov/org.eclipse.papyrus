@@ -22,9 +22,11 @@ import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
@@ -58,10 +60,13 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeLink_fixedEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.Package4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
@@ -212,6 +217,12 @@ public class UMLVisualIDRegistry {
 			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return Constraint2EditPart.VISUAL_ID;
 			}
+			if (UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
+				return Actor4EditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
+				return Package4EditPart.VISUAL_ID;
+			}
 			break;
 		case UseCasePoints2EditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getExtensionPoint().isSuperTypeOf(domainElement.eClass())) {
@@ -231,8 +242,14 @@ public class UMLVisualIDRegistry {
 			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return Constraint2EditPart.VISUAL_ID;
 			}
+			if (UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
+				return Actor4EditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
+				return Package4EditPart.VISUAL_ID;
+			}
 			break;
-		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+		case PackagePackageableElementCompartment3EditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return Constraint3EditPart.VISUAL_ID;
 			}
@@ -270,8 +287,34 @@ public class UMLVisualIDRegistry {
 			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return Constraint2EditPart.VISUAL_ID;
 			}
+			if (UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
+				return Actor4EditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
+				return Package4EditPart.VISUAL_ID;
+			}
 			break;
 		case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return Constraint3EditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
+				return Actor3EditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
+				return UseCase4EditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
+				return Component3EditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
+				return Package3EditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return Comment2EditPart.VISUAL_ID;
+			}
+			break;
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return Constraint3EditPart.VISUAL_ID;
 			}
@@ -418,6 +461,19 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case Actor4EditPart.VISUAL_ID:
+			if (ActorName4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Package4EditPart.VISUAL_ID:
+			if (PackageName3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (PackagePackageableElementCompartment3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case Constraint3EditPart.VISUAL_ID:
 			if (ConstraintName3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -475,6 +531,12 @@ public class UMLVisualIDRegistry {
 			if (Constraint2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (Actor4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Package4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case UseCasePoints2EditPart.VISUAL_ID:
 			if (ExtensionPointEditPart.VISUAL_ID == nodeVisualID) {
@@ -494,8 +556,14 @@ public class UMLVisualIDRegistry {
 			if (Constraint2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (Actor4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Package4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
-		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+		case PackagePackageableElementCompartment3EditPart.VISUAL_ID:
 			if (Constraint3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -533,8 +601,34 @@ public class UMLVisualIDRegistry {
 			if (Constraint2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (Actor4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Package4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
+			if (Constraint3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Actor3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (UseCase4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Component3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Package3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Comment2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			if (Constraint3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -768,19 +862,21 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7017, viewInfo);
 
-		root.addNode(7011, viewInfo);
-
 		root.addNode(7015, viewInfo);
+
+		root.addNode(7011, viewInfo);
 
 		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "Comment");
 
 		root.addNode(7017, viewInfo);
 
-		root.addNode(7011, viewInfo);
-
 		root.addNode(7015, viewInfo);
 
 		root.addNode(7016, viewInfo);
+
+		root.addNode(7018, viewInfo);
+
+		root.addNode(7011, viewInfo);
 
 		root.addNode(7013, viewInfo);
 
@@ -788,37 +884,63 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7017, viewInfo);
 
+		root.addNode(7015, viewInfo);
+
 		root.addNode(7011, viewInfo);
+
+		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "Actor");
+
+		root.addNode(7017, viewInfo);
 
 		root.addNode(7015, viewInfo);
 
+		root.addNode(7011, viewInfo);
+
+		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "Package");
+
+		root.addNode(7015, viewInfo);
+
+		root.addNode(7017, viewInfo);
+
+		root.addNode(7011, viewInfo);
+
 		viewInfo = new BaseViewInfo(3010, ViewInfo.Node, "Constraint");
 
-		root.addNode(7013, viewInfo);
+		root.addNode(7018, viewInfo);
 
 		root.addNode(7016, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Actor");
 
-		root.addNode(7013, viewInfo);
+		root.addNode(7018, viewInfo);
 
 		root.addNode(7016, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "UseCase");
 
-		root.addNode(7013, viewInfo);
+		root.addNode(7018, viewInfo);
 
 		root.addNode(7016, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3013, ViewInfo.Node, "Component");
 
-		root.addNode(7013, viewInfo);
+		root.addNode(7018, viewInfo);
 
 		root.addNode(7016, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3014, ViewInfo.Node, "Package");
 
 		root.addNode(7016, viewInfo);
+
+		root.addNode(7018, viewInfo);
 
 		root.addNode(7013, viewInfo);
 

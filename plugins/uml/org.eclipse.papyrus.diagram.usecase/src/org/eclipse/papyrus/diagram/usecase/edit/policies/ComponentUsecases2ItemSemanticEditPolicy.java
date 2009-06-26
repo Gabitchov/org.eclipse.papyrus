@@ -2,9 +2,11 @@ package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.Actor4CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Comment2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Component2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Constraint2CreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.Package3CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase3CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
@@ -35,6 +37,12 @@ public class ComponentUsecases2ItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		if (UMLElementTypes.Constraint_3017 == req.getElementType()) {
 			return getGEFWrapper(new Constraint2CreateCommand(req));
+		}
+		if (UMLElementTypes.Actor_3018 == req.getElementType()) {
+			return getGEFWrapper(new Actor4CreateCommand(req));
+		}
+		if (UMLElementTypes.Package_3019 == req.getElementType()) {
+			return getGEFWrapper(new Package3CreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

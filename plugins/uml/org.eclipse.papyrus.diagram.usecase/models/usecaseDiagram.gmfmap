@@ -275,8 +275,24 @@
         <childrenFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/ownedRule"/>
       </children>
+      <children
+          compartment="//@nodes.4/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.0/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class/nestedClassifier"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class/nestedClassifier"/>
+      </children>
+      <children
+          compartment="//@nodes.4/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.5/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component/packagedElement"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component/packagedElement"/>
+      </children>
       <compartments
-          children="//@nodes.4/@ownedChild/@children.0 //@nodes.4/@ownedChild/@children.1 //@nodes.4/@ownedChild/@children.2 //@nodes.4/@ownedChild/@children.3">
+          children="//@nodes.4/@ownedChild/@children.0 //@nodes.4/@ownedChild/@children.1 //@nodes.4/@ownedChild/@children.2 //@nodes.4/@ownedChild/@children.3 //@nodes.4/@ownedChild/@children.4 //@nodes.4/@ownedChild/@children.5">
         <compartment
             href="usecaseDiagram.gmfgraph#use cases"/>
       </compartments>

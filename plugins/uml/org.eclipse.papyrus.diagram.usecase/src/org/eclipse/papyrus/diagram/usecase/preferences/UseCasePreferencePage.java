@@ -71,22 +71,14 @@ public class UseCasePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		PreferenceConverter.setDefault(store,
-				IPapyrusPreferencesConstant.USECASE_PREF_FILL_COLOR,
-				new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store,
-				IPapyrusPreferencesConstant.USECASE_PREF_LINE_COLOR,
-				new org.eclipse.swt.graphics.RGB(177, 207, 229));
+		PreferenceConverter.setDefault(store, IPapyrusPreferencesConstant.USECASE_PREF_FILL_COLOR, new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store, IPapyrusPreferencesConstant.USECASE_PREF_LINE_COLOR, new org.eclipse.swt.graphics.RGB(177, 207, 229));
 
 		// Set the default for the gradient
-		store.setDefault(
-				IPapyrusPreferencesConstant.USECASE_PREF_GRADIENT_POLICY, true);
-		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-				new org.eclipse.swt.graphics.RGB(255, 255, 255),
-				new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
-		store.setDefault(
-				IPapyrusPreferencesConstant.USECASE_PREF_GRADIENT_COLOR,
-				gradientPreferenceConverter.getPreferenceValue());
+		store.setDefault(IPapyrusPreferencesConstant.USECASE_PREF_GRADIENT_POLICY, false);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(177, 207, 229), 0,
+				0);
+		store.setDefault(IPapyrusPreferencesConstant.USECASE_PREF_GRADIENT_COLOR, gradientPreferenceConverter.getPreferenceValue());
 
 	}
 

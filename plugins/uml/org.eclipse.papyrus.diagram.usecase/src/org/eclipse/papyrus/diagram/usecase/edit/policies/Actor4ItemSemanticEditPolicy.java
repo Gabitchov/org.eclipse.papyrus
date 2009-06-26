@@ -1,23 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -28,7 +14,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.AssociationCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.AssociationReorientCommand;
@@ -38,34 +23,26 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintConstrainedEl
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyReorientCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.ExtendCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.ExtendReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.GeneralizationReorientCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.IncludeCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.IncludeReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints3EditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class Actor4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public UseCase4ItemSemanticEditPolicy() {
-		super(UMLElementTypes.UseCase_3012);
+	public Actor4ItemSemanticEditPolicy() {
+		super(UMLElementTypes.Actor_3018);
 	}
 
 	/**
@@ -77,18 +54,6 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (UMLVisualIDRegistry.getVisualID(incomingLink) == IncludeEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if (UMLVisualIDRegistry.getVisualID(incomingLink) == ExtendEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
 			if (UMLVisualIDRegistry.getVisualID(incomingLink) == GeneralizationEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -122,18 +87,6 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == IncludeEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == ExtendEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
 			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == GeneralizationEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -156,7 +109,6 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
-			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));
@@ -164,30 +116,6 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
 		return getGEFWrapper(cmd.reduce());
-	}
-
-	/**
-	 * @generated
-	 */
-	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		View view = (View) getHost().getModel();
-		for (Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
-			Node node = (Node) nit.next();
-			switch (UMLVisualIDRegistry.getVisualID(node)) {
-			case UseCasePoints3EditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
-					Node cnode = (Node) cit.next();
-					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
-					case ExtensionPointEditPart.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
-						break;
-					}
-				}
-				break;
-			}
-		}
 	}
 
 	/**
@@ -202,12 +130,6 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Include_4008 == req.getElementType()) {
-			return getGEFWrapper(new IncludeCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if (UMLElementTypes.Extend_4009 == req.getElementType()) {
-			return getGEFWrapper(new ExtendCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if (UMLElementTypes.Generalization_4010 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -230,12 +152,6 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Include_4008 == req.getElementType()) {
-			return getGEFWrapper(new IncludeCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if (UMLElementTypes.Extend_4009 == req.getElementType()) {
-			return getGEFWrapper(new ExtendCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if (UMLElementTypes.Generalization_4010 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -255,16 +171,13 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case IncludeEditPart.VISUAL_ID:
-			return getGEFWrapper(new IncludeReorientCommand(req));
-		case ExtendEditPart.VISUAL_ID:
-			return getGEFWrapper(new ExtendReorientCommand(req));
 		case GeneralizationEditPart.VISUAL_ID:
 			return getGEFWrapper(new GeneralizationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
@@ -276,7 +189,8 @@ public class UseCase4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

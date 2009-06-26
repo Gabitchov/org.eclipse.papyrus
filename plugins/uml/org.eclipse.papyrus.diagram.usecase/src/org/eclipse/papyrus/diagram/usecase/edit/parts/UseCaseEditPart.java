@@ -23,6 +23,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -37,14 +38,23 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.draw2d.OneLineDashedBorder;
+import org.eclipse.papyrus.diagram.common.draw2d.SplitEllipseLayout;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.figure.UseCaseNodeFigure;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.usecase.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -143,7 +153,7 @@ ShapeNodeEditPart {
 
 		if (childEditPart instanceof UseCasePointsEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((UseCasePointsEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -162,7 +172,7 @@ ShapeNodeEditPart {
 
 		if (childEditPart instanceof UseCasePointsEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((UseCasePointsEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -301,8 +311,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UMLElementTypes.Include_4008);
 		types.add(UMLElementTypes.Extend_4009);
 		types.add(UMLElementTypes.Generalization_4010);
@@ -314,8 +324,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
 			types.add(UMLElementTypes.Include_4008);
 		}
@@ -359,6 +369,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
 		if (targetEditPart instanceof Component2EditPart) {
+			types.add(UMLElementTypes.Generalization_4010);
+		}
+		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
 		if (targetEditPart instanceof Actor3EditPart) {
@@ -389,6 +402,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Association_4011);
 		}
 		if (targetEditPart instanceof Component2EditPart) {
+			types.add(UMLElementTypes.Association_4011);
+		}
+		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Association_4011);
 		}
 		if (targetEditPart instanceof Actor3EditPart) {
@@ -430,6 +446,12 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
+		if (targetEditPart instanceof Actor4EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if (targetEditPart instanceof Package4EditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
@@ -451,8 +473,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_2013);
 		}
@@ -497,6 +519,9 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Component_3016);
+		}
+		if (relationshipType == UMLElementTypes.Generalization_4010) {
+			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_3011);
@@ -527,6 +552,9 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Component_3016);
+		}
+		if (relationshipType == UMLElementTypes.Association_4011) {
+			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_3011);
@@ -566,6 +594,12 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3017);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Actor_3018);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3010);
@@ -588,8 +622,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UMLElementTypes.Include_4008);
 		types.add(UMLElementTypes.Extend_4009);
 		types.add(UMLElementTypes.Generalization_4010);
@@ -603,8 +637,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_2013);
 		}
@@ -649,6 +683,9 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Component_3016);
+		}
+		if (relationshipType == UMLElementTypes.Generalization_4010) {
+			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_3011);
@@ -679,6 +716,9 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Component_3016);
+		}
+		if (relationshipType == UMLElementTypes.Association_4011) {
+			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_3011);
@@ -727,6 +767,12 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3017);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Actor_3018);
+		}
+		if (relationshipType == UMLElementTypes.Dependency_4013) {
+			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3010);
@@ -786,7 +832,7 @@ ShapeNodeEditPart {
 		 */
 		public UseCaseFigure() {
 
-			org.eclipse.papyrus.diagram.common.draw2d.SplitEllipseLayout layoutThis = new org.eclipse.papyrus.diagram.common.draw2d.SplitEllipseLayout();
+			SplitEllipseLayout layoutThis = new SplitEllipseLayout();
 
 			this.setLayoutManager(layoutThis);
 
@@ -822,7 +868,7 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		private Border createBorder0() {
-			org.eclipse.papyrus.diagram.common.draw2d.OneLineDashedBorder result = new org.eclipse.papyrus.diagram.common.draw2d.OneLineDashedBorder();
+			OneLineDashedBorder result = new OneLineDashedBorder();
 
 			return result;
 		}
@@ -876,5 +922,39 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	static final Font FUSECASEFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public Object getPreferredValue(EStructuralFeature feature) {
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		if (preferenceStore instanceof IPreferenceStore) {
+			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+
+				return FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore, IPapyrusPreferencesConstant.USECASE_PREF_LINE_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+
+				return FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore, IPapyrusPreferencesConstant.USECASE_PREF_FONT_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+
+				return FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore, IPapyrusPreferencesConstant.USECASE_PREF_FILL_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(IPapyrusPreferencesConstant.USECASE_PREF_GRADIENT_COLOR));
+
+				return new Integer(gradientPreferenceConverter.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(IPapyrusPreferencesConstant.USECASE_PREF_GRADIENT_COLOR));
+
+				return gradientPreferenceConverter.getGradientData();
+			}
+		}
+
+		return getStructuralFeatureValue(feature);
+
+	}
 
 }

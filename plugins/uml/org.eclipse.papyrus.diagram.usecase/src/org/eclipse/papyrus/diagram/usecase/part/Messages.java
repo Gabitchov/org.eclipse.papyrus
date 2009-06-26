@@ -451,6 +451,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String PackagePackageableElementCompartment3EditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String PackagePackageableElementCompartmentEditPart_title;
 
 	/**
@@ -617,6 +622,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Constraint_3017_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Actor_3018_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Actor_3018_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Package_3019_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Package_3019_outgoinglinks;
 
 	/**
 	 * @generated

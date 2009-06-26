@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBody2EditPart;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName3EditPart;
@@ -296,6 +298,40 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser actorName_5031Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActorName_5031Parser() {
+		if (actorName_5031Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			actorName_5031Parser = parser;
+		}
+		return actorName_5031Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser packageName_5032Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPackageName_5032Parser() {
+		if (packageName_5032Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			packageName_5032Parser = parser;
+		}
+		return packageName_5032Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser constraintName_5020Parser;
 
 	/**
@@ -445,6 +481,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getCommentBody_5028Parser();
 		case ConstraintName2EditPart.VISUAL_ID:
 			return getConstraintName_5029Parser();
+		case ActorName4EditPart.VISUAL_ID:
+			return getActorName_5031Parser();
+		case PackageName3EditPart.VISUAL_ID:
+			return getPackageName_5032Parser();
 		case ConstraintName3EditPart.VISUAL_ID:
 			return getConstraintName_5020Parser();
 		case ActorName3EditPart.VISUAL_ID:
