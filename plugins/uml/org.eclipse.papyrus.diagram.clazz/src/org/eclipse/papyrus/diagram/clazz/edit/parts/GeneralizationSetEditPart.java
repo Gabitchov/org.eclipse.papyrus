@@ -23,6 +23,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.figure.GeneralizationSet;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.GeneralizationSetLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationSetItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 
 /**
  * @generated
@@ -84,6 +85,9 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
 				new GeneralizationSetItemSemanticEditPolicy());
 		installEditPolicy(
 				"CustomDisplay", new GeneralizationSetLabelDisplayEditPolicy()); //$NON-NLS-1$
+		installEditPolicy(
+				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLabelDisplayEditPolicy());
 	}
 
 	/**

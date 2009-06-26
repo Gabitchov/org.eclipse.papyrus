@@ -25,7 +25,7 @@ import org.eclipse.swt.graphics.Image;
 public class UMLEdgeFigure extends PolylineConnectionEx {
 
 	/** Child label that displays applied stereotypes string */
-	private WrappingLabel appliedStereotypeLabel;
+	protected WrappingLabel appliedStereotypeLabel;
 
 	/**
 	 * get the applied stereotype label

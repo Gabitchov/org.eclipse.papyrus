@@ -11,7 +11,7 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.diagram.common.editpolicies;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -175,18 +175,18 @@ public class AppliedStereotypeLabelDisplayEditPolicy extends GraphicalEditPolicy
 		final Image imageToDisplay = stereotypeIconToDisplay();
 
 		// if icon is null AND stereotype to display is null, should hide the view
-		if ((stereotypesToDisplay == null || stereotypesToDisplay == "") && imageToDisplay != null) {
-			view.setVisible(false);
-		} else {
-			if (!view.isVisible()) {
-				view.setVisible(true);
-			}
-		}
+		// if ((stereotypesToDisplay == null || stereotypesToDisplay == "") && imageToDisplay == null) {
+		// view.setVisible(false);
+		// } else {
+		// if (!view.isVisible()) {
+		// view.setVisible(true);
+		// }
+		// }
 
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
-		if (stereotypesToDisplay != "" || imageToDisplay != null) {
-			((UMLEdgeFigure) figure).setStereotypeDisplay(stereotypesToDisplay, imageToDisplay);
-		}
+		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
+		((UMLEdgeFigure) figure).setStereotypeDisplay(stereotypesToDisplay, imageToDisplay);
+		// }
 	}
 
 	/**
@@ -322,9 +322,17 @@ public class AppliedStereotypeLabelDisplayEditPolicy extends GraphicalEditPolicy
 		if (VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
 			display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
 		} else {
-			display += Activator.ST_LEFT + stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
-			display += Activator.ST_RIGHT + "\n";
-			display += "{" + StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement()) + "}";
+			final String st = stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
+			if (st != null && !st.equals("")) {
+				display += Activator.ST_LEFT + st + Activator.ST_RIGHT;
+			}
+			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
+			if (propSt != null && !propSt.equals("")) {
+				if (st != null && !st.equals("")) {
+					display += "\n";
+				}
+				display += "{" + propSt + "}";
+			}
 		}
 		return display;
 	}

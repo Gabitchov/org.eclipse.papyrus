@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.PackageImportItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
@@ -48,6 +49,9 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new PackageImportItemSemanticEditPolicy());
+		installEditPolicy(
+				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLabelDisplayEditPolicy());
 	}
 
 	/**

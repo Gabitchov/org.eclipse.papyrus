@@ -2606,6 +2606,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -2645,10 +2649,10 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
+              parser="/0/@labelParsers/@implementations.3"
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -2873,6 +2877,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.GeneralizationFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -2923,6 +2931,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -2959,7 +2971,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -3006,6 +3018,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3044,7 +3060,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -3091,6 +3107,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3129,7 +3149,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -3176,6 +3196,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3237,7 +3261,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -3262,8 +3286,8 @@
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.AppliedStereotypeLabelDisplayEditPolicy"/>
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3325,7 +3349,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -3348,6 +3372,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3409,7 +3437,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -3516,6 +3544,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3575,7 +3607,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -3598,6 +3630,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3626,7 +3662,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -3649,6 +3685,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3677,6 +3717,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3747,6 +3791,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -3798,6 +3846,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;CustomDisplay&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.GeneralizationSetLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -16749,11 +16801,15 @@
           uses="/0/@diagram/@childNodes.5/@labelModelFacet /0/@diagram/@links.18/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.3/@labelModelFacet /0/@diagram/@childNodes.6/@labelModelFacet /0/@diagram/@childNodes.7/@labelModelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.9/@labelModelFacet /0/@diagram/@childNodes.16/@labelModelFacet /0/@diagram/@childNodes.19/@labelModelFacet /0/@diagram/@childNodes.20/@labelModelFacet /0/@diagram/@childNodes.21/@labelModelFacet /0/@diagram/@childNodes.22/@labelModelFacet /0/@diagram/@childNodes.25/@labelModelFacet /0/@diagram/@childNodes.26/@labelModelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.3/@modelFacet /0/@diagram/@links.2/@labels.4/@modelFacet /0/@diagram/@links.2/@labels.5/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.11/@labels.0/@modelFacet /0/@diagram/@links.11/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.3/@labelModelFacet /0/@diagram/@childNodes.6/@labelModelFacet /0/@diagram/@childNodes.7/@labelModelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.9/@labelModelFacet /0/@diagram/@childNodes.16/@labelModelFacet /0/@diagram/@childNodes.19/@labelModelFacet /0/@diagram/@childNodes.20/@labelModelFacet /0/@diagram/@childNodes.21/@labelModelFacet /0/@diagram/@childNodes.22/@labelModelFacet /0/@diagram/@childNodes.25/@labelModelFacet /0/@diagram/@childNodes.26/@labelModelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.3/@modelFacet /0/@diagram/@links.2/@labels.4/@modelFacet /0/@diagram/@links.2/@labels.5/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.11/@labels.0/@modelFacet /0/@diagram/@links.11/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.19/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.AppliedStereotypeParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

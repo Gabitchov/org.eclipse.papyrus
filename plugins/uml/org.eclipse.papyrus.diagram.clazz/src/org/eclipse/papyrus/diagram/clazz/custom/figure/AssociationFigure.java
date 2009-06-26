@@ -18,15 +18,15 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.swt.SWT;
 
 /**
  * this is the figure to display a association figure.
  */
 
-public class AssociationFigure extends PolylineConnectionEx {
+public class AssociationFigure extends UMLEdgeFigure {
 
 	/** the end of the association is an aggregation i.e. this a transparent diamond. */
 	public static final int aggregation = 2;
@@ -39,9 +39,6 @@ public class AssociationFigure extends PolylineConnectionEx {
 
 	/** the end of contained the property. */
 	public static final int owned = 8;
-
-	/** The applied stereotype association label. */
-	private WrappingLabel fAppliedStereotypeAssociationLabel;
 
 	/** The association name label. */
 	private WrappingLabel fAssociationNameLabel;
@@ -84,17 +81,18 @@ public class AssociationFigure extends PolylineConnectionEx {
 	/**
 	 * Creates the contents.
 	 */
-	private void createContents() {
+	protected void createContents() {
+		super.createContents();
 
 		fAssociationNameLabel = new WrappingLabel();
 		fAssociationNameLabel.setText("");
 
 		this.add(fAssociationNameLabel);
 
-		fAppliedStereotypeAssociationLabel = new WrappingLabel();
-		fAppliedStereotypeAssociationLabel.setText("");
-
-		this.add(fAppliedStereotypeAssociationLabel);
+		// fAppliedStereotypeAssociationLabel = new WrappingLabel();
+		// fAppliedStereotypeAssociationLabel.setText("");
+		//
+		// this.add(fAppliedStereotypeAssociationLabel);
 
 		fRoleSourceLabel = new WrappingLabel();
 		fRoleSourceLabel.setText("");
@@ -142,7 +140,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * @return the applied stereotype association label
 	 */
 	public WrappingLabel getAppliedStereotypeAssociationLabel() {
-		return fAppliedStereotypeAssociationLabel;
+		return appliedStereotypeLabel;
 	}
 
 	/**
