@@ -16,5 +16,31 @@
             class="org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage"
             genModel="model/papyrusGmfgenExtension.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+
+            <objectContribution
+            adaptable="true"
+            id="org.eclipse.papyrus.papyrusgmfgenextension.popupactions"
+            objectClass="org.eclipse.emf.ecore.EObject">
+                    <menu
+               id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus"
+               label="Papyrus GMFGen Tools"
+               path="papyrus"/>
+               
+                 <action
+               class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
+               enablesFor="*"
+               id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
+               label="Add CustomBehavior for StereotypeLabelDisplay"
+               menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenLink">
+                       </objectClass>
+                    </enablement>
+         </action>
+      </objectContribution>
+   </extension>
 
 </plugin>
