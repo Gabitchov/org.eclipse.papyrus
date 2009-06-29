@@ -24,9 +24,10 @@
             id="org.eclipse.papyrus.papyrusgmfgenextension.popupactions"
             objectClass="org.eclipse.emf.ecore.EObject">
                     <menu
-               id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus"
-               label="Papyrus GMFGen Tools"
-               path="papyrus"/>
+                          id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus"
+                          label="Papyrus GMFGen Tools"
+                          path="papyrus">
+                    </menu>
                
                  <action
                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
@@ -37,6 +38,18 @@
                     <enablement>
                        <objectClass
                              name="org.eclipse.gmf.codegen.gmfgen.GenLink">
+                       </objectClass>
+                    </enablement>
+         </action>
+                          <action
+               class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.SetVisualIDWithUnusedValue"
+               enablesFor="*"
+               id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.SetVisualIDWithUnusedValue"
+               label="Set VisualID with unused value"
+               menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/SetVisualIDWithUnusedValue">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenCommonBase">
                        </objectClass>
                     </enablement>
          </action>
