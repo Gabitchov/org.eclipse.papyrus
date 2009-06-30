@@ -22,9 +22,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
-import org.eclipse.papyrus.diagram.common.editpolicies.RemoveOrphanViewPolicy;
 
 /**
  * @generated
