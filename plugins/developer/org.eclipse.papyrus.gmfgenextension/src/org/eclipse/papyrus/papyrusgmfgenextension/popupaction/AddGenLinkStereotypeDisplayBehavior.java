@@ -37,31 +37,35 @@ import org.eclipse.ui.IViewPart;
  */
 public class AddGenLinkStereotypeDisplayBehavior extends Action {
 
-	private static String STEREOTYPE_LABEL_POLICY_KEY = "org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"; //$NON-NLS-1$
+	public static final String STEREOTYPE_LABEL_POLICY_KEY = "org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"; //$NON-NLS-1$
 
-	private static String STEREOTYPE_LABEL_POLICY_CLASS = "org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"; //$NON-NLS-1$
+	public static final String STEREOTYPE_LABEL_POLICY_CLASS = "org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy"; //$NON-NLS-1$
 
-	private static String DEFAULT_GETTER_NAME = "getAppliedStereotypeLabel"; //$NON-NLS-1$
+	public static final String DEFAULT_GETTER_NAME = "getAppliedStereotypeLabel"; //$NON-NLS-1$
 
-	private static String DEFAULT_WRAPPING_LABEL_CLASS = "org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"; //$NON-NLS-1$
+	public static final String DEFAULT_EDITPART_NAME_SUFFIX = "AppliedStereotypeEditPart"; //$NON-NLS-1$
 
-	private static int DEFAULT_OFFSET_X = 0;
+	public static final String DEFAULT_EDITPOLICY_NAME_SUFFIX = "AppliedStereotypeItemSemanticEditPolicy"; //$NON-NLS-1$
 
-	private static int DEFAULT_OFFSET_Y = 60;
+	public static final String DEFAULT_WRAPPING_LABEL_CLASS = "org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"; //$NON-NLS-1$
 
-	private static String DEFAULT_PARSER_PATTERN = "<<{0}>>"; //$NON-NLS-1$
+	public static final int DEFAULT_OFFSET_X = 0;
 
-	private static String APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS = "org.eclipse.papyrus.diagram.common.parser.custom.AppliedStereotypeParser"; //$NON-NLS-1$
+	public static final int DEFAULT_OFFSET_Y = 60;
 
-	private static String GEN_CLASS_RT_CLASS = "Node"; //$NON-NLS-1$
+	public static final String DEFAULT_PARSER_PATTERN = "<<{0}>>"; //$NON-NLS-1$
 
-	private static String GEN_CLASS_FACET_META_FEATURE = "NamedElement"; //$NON-NLS-1$
+	public static final String APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS = "org.eclipse.papyrus.diagram.common.parser.custom.AppliedStereotypeParser"; //$NON-NLS-1$
 
-	private static String GEN_FEATURE_FACET_META_FEATURE = "name"; //$NON-NLS-1$
+	public static final String GEN_CLASS_RT_CLASS = "Node"; //$NON-NLS-1$
 
-	private static String URI_NOTATION_GENMODEL = "org.eclipse.gmf.runtime.notation/model/notation.genmodel"; //$NON-NLS-1$
+	public static final String GEN_CLASS_FACET_META_FEATURE = "NamedElement"; //$NON-NLS-1$
 
-	private static String URI_UML_GENMODEL = "org.eclipse.uml2.uml/model/UML.genmodel"; //$NON-NLS-1$
+	public static final String GEN_FEATURE_FACET_META_FEATURE = "name"; //$NON-NLS-1$
+
+	public static final String URI_NOTATION_GENMODEL = "org.eclipse.gmf.runtime.notation/model/notation.genmodel"; //$NON-NLS-1$
+
+	public static final String URI_UML_GENMODEL = "org.eclipse.uml2.uml/model/UML.genmodel"; //$NON-NLS-1$
 
 	/*
 	 * (non-Javadoc)
@@ -149,8 +153,8 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 
 		// Create a GenLinkLabel
 		GenLinkLabel label = GMFGenFactory.eINSTANCE.createGenLinkLabel();
-		label.setEditPartClassName("AppliedStereotype" + genlink.getEditPartClassName());
-		label.setItemSemanticEditPolicyClassName(genlink.getClassNamePrefix() + "ItemSemanticEditPolicy");
+		label.setEditPartClassName(genlink.getClassNamePrefix() + DEFAULT_EDITPART_NAME_SUFFIX);
+		label.setItemSemanticEditPolicyClassName(genlink.getClassNamePrefix() + DEFAULT_EDITPOLICY_NAME_SUFFIX);
 		label.setAlignment(LinkLabelAlignment.MIDDLE_LITERAL);
 		label.setReadOnly(true);
 
@@ -201,7 +205,7 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 	private boolean hasCustomLabel(GenLink genlink) {
 
 		boolean hasCustomLabel = false;
-		String expectedName = "AppliedStereotype" + genlink.getEditPartClassName();
+		String expectedName = genlink.getClassNamePrefix() + DEFAULT_EDITPART_NAME_SUFFIX;
 
 		Iterator<GenLinkLabel> it = genlink.getLabels().iterator();
 		while (it.hasNext() && !(hasCustomLabel)) {
