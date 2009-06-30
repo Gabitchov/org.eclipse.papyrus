@@ -51,7 +51,7 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 
 	private static String DEFAULT_PARSER_PATTERN = "<<{0}>>"; //$NON-NLS-1$
 
-	private static String APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS = ".custom.parsers.AppliedStereotypeParser"; //$NON-NLS-1$
+	private static String APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS = "org.eclipse.papyrus.diagram.common.parser.custom.AppliedStereotypeParser"; //$NON-NLS-1$
 
 	private static String GEN_CLASS_RT_CLASS = "Node"; //$NON-NLS-1$
 
@@ -235,7 +235,7 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 
 			if (parserImpl instanceof CustomParser) {
 				CustomParser current = (CustomParser) parserImpl;
-				if (current.getQualifiedName().endsWith(name)) {
+				if (name.equals(current.getQualifiedName())) {
 					customParser = current;
 				}
 			}
@@ -243,7 +243,7 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 
 		if (customParser == null) {
 			customParser = GMFGenFactory.eINSTANCE.createCustomParser();
-			customParser.setQualifiedName(genEditor.getPackageNamePrefix() + APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS);
+			customParser.setQualifiedName(APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS);
 			customParser.setGenerateBoilerplate(false);
 
 			genEditor.getLabelParsers().getImplementations().add(customParser);
