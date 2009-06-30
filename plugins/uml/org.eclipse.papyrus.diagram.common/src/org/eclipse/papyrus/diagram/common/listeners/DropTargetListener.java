@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.listeners;
+package org.eclipse.papyrus.diagram.common.listeners;
 
 import java.util.ArrayList;
 import java.util.HashSet;

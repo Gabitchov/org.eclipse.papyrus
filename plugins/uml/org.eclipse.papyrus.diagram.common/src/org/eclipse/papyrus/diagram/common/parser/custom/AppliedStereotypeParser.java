@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.parsers;
+package org.eclipse.papyrus.diagram.common.parser.custom;
 
 import java.util.Iterator;
 
