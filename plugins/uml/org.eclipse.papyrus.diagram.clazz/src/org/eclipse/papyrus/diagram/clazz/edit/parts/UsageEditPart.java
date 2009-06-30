@@ -5,6 +5,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.AppliedStereotypeUsageLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UsageItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -76,7 +77,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 				new UsageItemSemanticEditPolicy());
 		installEditPolicy(
 				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLabelDisplayEditPolicy());
+				new AppliedStereotypeUsageLabelDisplayEditPolicy());
 	}
 
 	/**

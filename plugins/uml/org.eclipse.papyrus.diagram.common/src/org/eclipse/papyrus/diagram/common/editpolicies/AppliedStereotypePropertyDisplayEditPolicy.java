@@ -19,57 +19,35 @@ import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.Usage;
 
 /**
  * Specific edit policy for label displaying stereotypes and their properties for edges representing UML elements.
- * <p>
- * It also displays the tag for the links, for example "use" for {@link Usage}.
- * 
  */
-public class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
+public class AppliedStereotypePropertyDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
 
 	/** constant for this edit policy role */
-	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeLabelDisplayEditPolicy";
-
-	/** tag displayed for the UML element */
-	public final String tag;
-
-	/**
-	 * Creates a new AppliedStereotypeLabelDisplayEditPolicy, with the specified tag for the element.
-	 * 
-	 * @param tag
-	 *            the tag for element, for example "use" for {@link Usage}.
-	 */
-	public AppliedStereotypeLabelDisplayEditPolicy(String tag) {
-		super();
-		this.tag = Activator.ST_LEFT + tag + Activator.ST_RIGHT;
-	}
-
-	/**
-	 * Creates a new AppliedStereotypeLabelDisplayEditPolicy, with no tag for the element.
-	 */
-	public AppliedStereotypeLabelDisplayEditPolicy() {
-		super();
-		this.tag = "";
-	}
+	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypePropertyDisplayEditPolicy";
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void refreshDisplay() {
-		refreshStereotypeDisplay();
+		// computes the label to be displayed
+
+		// refreshes the figure representing the property
 	}
 
 	/**
@@ -77,26 +55,38 @@ public class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedSter
 	 */
 	protected void refreshStereotypeDisplay() {
 		IFigure figure = ((GraphicalEditPart) getHost()).getFigure();
-		// View view = (View) getHost().getModel();
 
-		// calculate text and icon to display
-		final String stereotypesToDisplay = stereotypesToDisplay();
+		// calculate text to display
+		final String text = labelToDisplay();
 		// computes the icon to be displayed
 		final Image imageToDisplay = stereotypeIconToDisplay();
 
-		// if icon is null AND stereotype to display is null, should hide the view
-		// if ((stereotypesToDisplay == null || stereotypesToDisplay == "") && imageToDisplay == null) {
-		// view.setVisible(false);
-		// } else {
-		// if (!view.isVisible()) {
-		// view.setVisible(true);
+		// refresh the figure with the new text and icon
+		((WrappingLabel) figure).setIcon(imageToDisplay);
+		((WrappingLabel) figure).setText(text);
 		// }
-		// }
+	}
 
-		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
-		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
-		((UMLEdgeFigure) figure).setStereotypeDisplay(tag + stereotypesToDisplay, imageToDisplay);
-		// }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Property getUMLElement() {
+		return (Property) super.getUMLElement();
+	}
+
+	/**
+	 * Computes the label to be displayed for the property
+	 */
+	protected String labelToDisplay() {
+		StringBuffer buffer = new StringBuffer();
+
+		// computes the label for the stereotype (horizontal presentation)
+
+		// computes the string label to be displayed
+
+		buffer.append(PropertyUtil.getCustomLabel(getUMLElement(), 0));
+		return buffer.toString();
 	}
 
 	/**

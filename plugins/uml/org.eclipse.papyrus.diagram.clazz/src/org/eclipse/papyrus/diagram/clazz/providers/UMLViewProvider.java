@@ -1649,11 +1649,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
-		// initForegroundFromPrefs(node, prefStore, IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_LINE_COLOR);
-		//
-		// initBackgroundFromPrefs(node, prefStore, IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_FILL_COLOR,
-		// IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_GRADIENT_COLOR, IPapyrusPreferencesConstant.REDEFINABLETEMPLATESIGNATURE_PREF_GRADIENT_POLICY);
-
 		createCompartment(node, UMLVisualIDRegistry.getType(RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		return node;
 	}
@@ -1722,14 +1717,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// initForegroundFromPrefs(node, prefStore,
-		// IPapyrusPreferencesConstant.SLOT_PREF_LINE_COLOR);
-		//
-		// initBackgroundFromPrefs(node, prefStore,
-		// IPapyrusPreferencesConstant.SLOT_PREF_FILL_COLOR,
-		// IPapyrusPreferencesConstant.SLOT_PREF_GRADIENT_COLOR,
-		// IPapyrusPreferencesConstant.SLOT_PREF_GRADIENT_POLICY);
 
 		return node;
 	}
