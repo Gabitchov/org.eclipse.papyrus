@@ -41,6 +41,8 @@ public class SashWindowsEventsProvider {
 	 */
 	private IEditorPart lastActiveEditor = null;
 	private ISashWindowsContainer currentContainer = null;
+	/** Currently active page, or null if no container is actif */
+	private IPage activePage = null;
 
 	
 	private IPartListener workbenchPartListener = new IPartListener(){
@@ -87,6 +89,37 @@ public class SashWindowsEventsProvider {
 		
 		registerEditorChangedListener(page);
 		checkActiveEditorChange();
+	}
+	
+	/**
+	 * Return the currently active ISashWindowsContainer or null if none is actif.
+	 * @return
+	 */
+	public ISashWindowsContainer activeSashWindowsContainer()
+	{
+		return currentContainer;
+	}
+	
+	/**
+	 * Return the currently active Editor owning the currently active  ISashWindowsContaineror.
+	 * Return null if no container is actif.
+	 * @return
+	 */
+	public IEditorPart activeSashWindowsContainerOwner()
+	{
+		if(currentContainer == null)
+			return null;
+		return workbenchPage.getActiveEditor();
+	}
+	
+	/**
+	 * Return the currently active page associated to the currently active Container.
+	 * Return null if no container is actif.
+	 * @return
+	 */
+	public IPage activeSashWindowsPage()
+	{
+		return activePage;
 	}
 	
 	/**
@@ -183,7 +216,8 @@ public class SashWindowsEventsProvider {
 	 */
 	private void firePageChanged(IPage newPage) {
 		
-		System.out.println("event mngr firePageChanged("+ newPage +")");		
+		System.out.println("event mngr firePageChanged("+ newPage +")");
+		activePage = newPage;
 		// Propagate to all the listeners
 		pageEventsManager.fireEvent(newPage);
 	}
