@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
+import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -48,28 +49,61 @@ import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.GeneralizationSet;
 import org.eclipse.uml2.uml.UMLFactory;
 
-public class GeneralizationSetHelper {
+/**
+ * The Class GeneralizationSetHelper in charge to manage the creation and the movement of the GeneralizationSet.
+ */
+public class GeneralizationSetHelper extends ElementHelper {
 
+	/**
+	 * The listener interface for receiving dialog events. The class that is interested in processing a dialog event implements this interface, and the object created with that class is registered
+	 * with a component using the component's <code>addDialogListener<code> method. When
+	 * the dialog event occurs, that object's appropriate
+	 * method is invoked.
+	 * 
+	 * @see DialogEvent
+	 */
 	private class DialogListener implements Listener {
 
+		/** The abutton ok. */
 		private Button abuttonOk;
 
+		/** The acombo. */
 		private List acombo;
 
+		/** The ageneralization set. */
 		private GeneralizationSet ageneralizationSet = null;
 
+		/** The ageneralization set list. */
 		private ArrayList<GeneralizationSet> ageneralizationSetList;
 
+		/**
+		 * Instantiates a new dialog listener.
+		 * 
+		 * @param generalizationSetList
+		 *            the generalization set list
+		 * @param combo
+		 *            the combo
+		 * @param buttonOK
+		 *            the button ok
+		 */
 		public DialogListener(ArrayList<GeneralizationSet> generalizationSetList, List combo, Button buttonOK) {
 			this.ageneralizationSetList = generalizationSetList;
 			this.acombo = combo;
 			this.abuttonOk = buttonOK;
 		}
 
+		/**
+		 * Gets the result.
+		 * 
+		 * @return the result
+		 */
 		public GeneralizationSet getResult() {
 			return ageneralizationSet;
 		}
 
+		/**
+		 * {@inheritedDoc}
+		 */
 		public void handleEvent(Event event) {
 			if (event.widget.equals(abuttonOk)) {
 				// look for selected button
@@ -85,15 +119,31 @@ public class GeneralizationSetHelper {
 
 	}
 
-	/** The edit domain. */
-	private TransactionalEditingDomain editDomain;
-
+	/** The generalization setto create. */
 	private GeneralizationSet generalizationSettoCreate;
 
+	/**
+	 * Instantiates a new generalization set helper.
+	 * 
+	 * @param editDomain
+	 *            the edit domain
+	 */
 	public GeneralizationSetHelper(TransactionalEditingDomain editDomain) {
 		this.editDomain = editDomain;
 	}
 
+	/**
+	 * Creates the generalization set.
+	 * 
+	 * @param source
+	 *            the source of the GenralizationSet
+	 * @param target
+	 *            the target the Target of the Generalization
+	 * @param container
+	 *            the container of the GeneralizationSet
+	 * 
+	 * @return the generalization set
+	 */
 	public GeneralizationSet createGeneralizationSet(Generalization source, Generalization target, org.eclipse.uml2.uml.Package container) {
 
 		final ArrayList<GeneralizationSet> generalizationSetList = new ArrayList<GeneralizationSet>(source.getGeneralizationSets());
@@ -122,14 +172,19 @@ public class GeneralizationSetHelper {
 	}
 
 	/**
-	 * Gets the editing domain.
+	 * In change to move anchor of other GeneralizationSet when moving one
 	 * 
-	 * @return the editing domain
+	 * @param request
+	 *            a request ReconnectRequest
+	 * @param command
+	 *            the command that will move anchor of other Generalization that have the same semantic
+	 * @param node
+	 *            the node
+	 * @param targetAnchor
+	 *            the target anchor
+	 * 
+	 * @return the move target
 	 */
-	private TransactionalEditingDomain getEditingDomain() {
-		return editDomain;
-	}
-
 	public org.eclipse.gef.commands.Command getMoveTarget(ReconnectRequest request, org.eclipse.gef.commands.Command command, INodeEditPart node, ConnectionAnchor targetAnchor) {
 		System.err.println("custom reconnection for GeneralizationSet target");
 		org.eclipse.gef.commands.CompoundCommand cc = new org.eclipse.gef.commands.CompoundCommand();
@@ -165,6 +220,16 @@ public class GeneralizationSetHelper {
 		return cc;
 	}
 
+	/**
+	 *this command is used to overload the reconnect source command in order to move other GeneralizationSet that have the same semantic
+	 * 
+	 * @param request
+	 *            the request
+	 * @param node
+	 *            the node
+	 * 
+	 * @return the reconnect source command
+	 */
 	public Command getReconnectSourceCommand(ReconnectRequest request, INodeEditPart node) {
 		System.err.println("custom reconnection for GeneralizationSet source");
 		System.err.println("node--> " + node);
@@ -218,6 +283,14 @@ public class GeneralizationSetHelper {
 
 	}
 
+	/**
+	 * Launch dialog when a GeneralizationSet is created. I ask to the user if he would like to create a new semantic or reuse an existed semantic
+	 * 
+	 * @param generalizationSetList
+	 *            the generalization set list
+	 * @param editingDomain
+	 *            the editing domain
+	 */
 	private void launchDialog(final ArrayList<GeneralizationSet> generalizationSetList, TransactionalEditingDomain editingDomain) {
 
 		// Thread myThread = new Thread(new Runnable() {

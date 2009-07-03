@@ -69,6 +69,7 @@ public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateCon
 			PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
 		this.command = command;
+		setResult(CommandResult.newOKCommandResult(viewDescriptor));
 	}
 
 	/**
@@ -96,6 +97,7 @@ public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateCon
 		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
 		this.viewDescriptor = viewDescriptor;
 		this.command = command;
+		setResult(CommandResult.newOKCommandResult(viewDescriptor));
 	}
 
 	/**

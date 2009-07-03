@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -28,15 +30,24 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.DependencyDiamonViewCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.SemanticAdapter;
@@ -44,6 +55,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateCo
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -51,10 +63,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * The Class MultiDependencyHelper to manage adding branches or transformation of binary of n-ary links
  */
-public class MultiDependencyHelper {
-
-	/** The edit domain. */
-	private TransactionalEditingDomain editDomain;
+public class MultiDependencyHelper extends ElementHelper {
 
 	/**
 	 * Instantiates a new multi dependency helper.
@@ -65,6 +74,100 @@ public class MultiDependencyHelper {
 	public MultiDependencyHelper(TransactionalEditingDomain editDomain) {
 		super();
 		this.editDomain = editDomain;
+	}
+
+	private CompoundCommand constructDependencyEnd(CompoundCommand command, DependencyDiamonViewCreateCommand nodeCreation, Collection<NamedElement> dependencyEnd, Dependency dependency,
+			EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, boolean constructSource) {
+		// 2. for each element create a graphical representation of the type and
+		// finally the branch
+		Iterator<NamedElement> iteratorProp = dependencyEnd.iterator();
+		int index = 0;
+		while (iteratorProp.hasNext()) {
+			index += 1;
+			// source editPart
+			EditPart sourceEditPart = null;
+			// end of the association end
+			NamedElement currentEnd = iteratorProp.next();
+
+			// look for if an editpart exist for this element
+			Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
+			Iterator<EditPart> editPartIterator = editPartSet.iterator();
+
+			while (editPartIterator.hasNext() && sourceEditPart == null) {
+
+				EditPart currentEditPart = editPartIterator.next();
+
+				if ((!(currentEditPart instanceof CompartmentEditPart)) && currentEditPart instanceof GraphicalEditPart
+						&& currentEnd.equals(((GraphicalEditPart) currentEditPart).resolveSemanticElement())) {
+					sourceEditPart = currentEditPart;
+				}
+			}
+			// descriptor for the branch
+			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4018, ((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
+					diagramPreferencesHint);
+
+			// the editpart exist -> only creation of the branch
+			if (sourceEditPart != null) {
+
+				CustomDeferredCreateConnectionViewCommand aBranchCommand = null;
+				if (constructSource) {
+					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(), new SemanticAdapter(null,
+							sourceEditPart.getModel()), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart)
+							.getDiagramPreferencesHint(), viewBranchDescriptor, null);
+				} else {
+					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(), (IAdaptable) nodeCreation
+							.getCommandResult().getReturnValue(), new SemanticAdapter(null, sourceEditPart.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart)
+							.getDiagramPreferencesHint(), viewBranchDescriptor, null);
+
+				}
+				aBranchCommand.setElement(dependency);
+				((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
+			} else {// the editpart does not exist
+
+				// creation of the node
+				IAdaptable elementAdapter = new EObjectAdapter(currentEnd);
+				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
+
+				// get the command and execute it.
+				CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, containerView);
+				((CompoundCommand) command).add(new ICommandProxy(nodeCreationCommand));
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x + 200,
+						location.y + index * 100));
+				((CompoundCommand) command).add(new ICommandProxy(setBoundsCommand));
+				// Creation of the branch
+				CustomDeferredCreateConnectionViewCommand aBranchCommand = null;
+				if (constructSource) {
+					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
+							(IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint,
+							viewBranchDescriptor, null);
+				} else {
+					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(), (IAdaptable) nodeCreation
+							.getCommandResult().getReturnValue(), (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, viewBranchDescriptor, null);
+				}
+				aBranchCommand.setElement(dependency);
+				((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
+				// creation of the link
+			}
+
+		}
+		return command;
+	}
+
+	public Command dropMutliDependency(Dependency dependency, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
+		CompoundCommand command = new CompoundCommand();
+		// 0. Obtain list of property to display
+		ArrayList<NamedElement> endToDisplaySource = new ArrayList(dependency.getClients());
+		ArrayList<NamedElement> endToDisplayTarget = new ArrayList(dependency.getSuppliers());
+		// 1. creation of the diamond of the Dependency
+		DependencyDiamonViewCreateCommand nodeCreation = new DependencyDiamonViewCreateCommand(getEditingDomain(), containerView, viewer, diagramPreferencesHint, location, new SemanticAdapter(
+				dependency, null));
+		command.add(new ICommandProxy(nodeCreation));
+		// 2. for each element create a graphical representation of the type and
+		// finally the branch
+		command = constructDependencyEnd(command, nodeCreation, endToDisplaySource, dependency, viewer, diagramPreferencesHint, location, containerView, true);
+		command = constructDependencyEnd(command, nodeCreation, endToDisplayTarget, dependency, viewer, diagramPreferencesHint, location, containerView, false);
+
+		return command;
 	}
 
 	/**
@@ -260,12 +363,4 @@ public class MultiDependencyHelper {
 		return null;
 	}
 
-	/**
-	 * Gets the editing domain.
-	 * 
-	 * @return the editing domain
-	 */
-	private TransactionalEditingDomain getEditingDomain() {
-		return editDomain;
-	}
 }
