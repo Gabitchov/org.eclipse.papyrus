@@ -154,6 +154,12 @@
                id="CompartmentAppliedStereotypeDisplaySection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
+          <propertySection
+               class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeKindAppearanceSection"
+               filter="org.eclipse.papyrus.profile.filter.CompartmentEditPartPropertySectionFilter"
+               id="CompartmentAppliedStereotypeKindAppearanceSection"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
       </propertySections>
    </extension>
 

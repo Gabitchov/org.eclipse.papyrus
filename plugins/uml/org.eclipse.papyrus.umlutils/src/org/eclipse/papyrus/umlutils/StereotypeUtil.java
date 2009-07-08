@@ -30,7 +30,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-// TODO: Auto-generated Javadoc
 /**
  * Utility class for Stereotypes.
  */

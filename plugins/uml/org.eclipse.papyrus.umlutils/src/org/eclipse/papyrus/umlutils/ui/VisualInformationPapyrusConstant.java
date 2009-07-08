@@ -126,4 +126,7 @@ public interface VisualInformationPapyrusConstant {
 
 	/** Separator for stereotype properties list, i.e. the separator between each properties in the list. It is set to "<code>,</code>" by default */
 	public static final String STEREOTYPE_PROPERTIES_LIST_SEPARATOR = ",";
+
+	/** key for the appearance of properties or other specific display */
+	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
 }
