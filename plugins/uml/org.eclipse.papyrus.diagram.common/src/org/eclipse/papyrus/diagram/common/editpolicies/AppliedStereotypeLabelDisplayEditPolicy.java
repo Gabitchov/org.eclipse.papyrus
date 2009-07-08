@@ -95,7 +95,7 @@ public class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedSter
 
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
-		((UMLEdgeFigure) figure).setStereotypeDisplay(tag + stereotypesToDisplay, imageToDisplay);
+		((UMLEdgeFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay), imageToDisplay);
 		// }
 	}
 

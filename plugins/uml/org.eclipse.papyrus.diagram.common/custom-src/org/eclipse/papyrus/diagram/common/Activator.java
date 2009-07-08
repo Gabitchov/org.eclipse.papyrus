@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.diagram.common;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
@@ -204,6 +205,35 @@ public class Activator extends AbstractUIPlugin {
 			return null;
 		}
 		return getIconElement(elt, stereotypeList.get(0), withVisibilityDecorator);
+	}
+
+	/**
+	 * this method returns the collection of icon images that represents the applied stereotypes.
+	 * 
+	 * @param elt
+	 *            the stereotyped element
+	 * @param stereotypes
+	 *            the collection of stereotypes which icon has to be displayed
+	 * @param kind
+	 *            the kind of display "icon" or "shape"
+	 * @return {@link image} of the icon
+	 */
+	public static Collection<Image> getIconElements(Element elt, Collection<Stereotype> stereotypes, boolean withVisibilityDecorator) {
+		Collection<Image> images = new ArrayList<Image>();
+		VisibilityKind vis = null;
+		if ((elt instanceof NamedElement) && (withVisibilityDecorator)) {
+			vis = ((NamedElement) elt).getVisibility();
+		}
+
+		// look in each stereotype and get the image for each of them
+		for (Stereotype stereotype : stereotypes) {
+			// getStereotypeImage can return null
+			org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(elt, stereotype, "icon");
+			if (icon != null) {
+				images.add(getImageInRegistry(icon, vis));
+			}
+		}
+		return images;
 	}
 
 	/**
