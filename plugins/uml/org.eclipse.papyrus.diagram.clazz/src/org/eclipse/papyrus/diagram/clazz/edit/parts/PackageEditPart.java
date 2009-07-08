@@ -157,6 +157,15 @@ NamedElementEditPart
 	}
 
 	/**
+	 *Papyrus codeGen
+	 *@generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -1478,6 +1487,62 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
+	@Override
+	public Object getPreferredValue(EStructuralFeature feature) {
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
+				.getPreferenceStore();
+		if (preferenceStore instanceof IPreferenceStore) {
+			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.PACKAGE_PREF_LINE_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFontStyle_FontColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.PACKAGE_PREF_FONT_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_FillColor()) {
+
+				return FigureUtilities
+						.RGBToInteger(PreferenceConverter
+								.getColor(
+										(IPreferenceStore) preferenceStore,
+										IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR));
+
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Transparency()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+						preferenceStore
+								.getString(IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR));
+
+				return new Integer(gradientPreferenceConverter
+						.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Gradient()) {
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+						preferenceStore
+								.getString(IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR));
+
+				return gradientPreferenceConverter.getGradientData();
+			}
+		}
+
+		return getStructuralFeatureValue(feature);
+
+	}
+
+	/**
+	 * @generated
+	 */
 	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
 			IElementType relationshipType) {
 		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
@@ -2063,62 +2128,6 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	@Override
-	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
-				.getPreferenceStore();
-		if (preferenceStore instanceof IPreferenceStore) {
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-
-				return FigureUtilities
-						.RGBToInteger(PreferenceConverter
-								.getColor(
-										(IPreferenceStore) preferenceStore,
-										IPapyrusPreferencesConstant.PACKAGE_PREF_LINE_COLOR));
-
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFontStyle_FontColor()) {
-
-				return FigureUtilities
-						.RGBToInteger(PreferenceConverter
-								.getColor(
-										(IPreferenceStore) preferenceStore,
-										IPapyrusPreferencesConstant.PACKAGE_PREF_FONT_COLOR));
-
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()) {
-
-				return FigureUtilities
-						.RGBToInteger(PreferenceConverter
-								.getColor(
-										(IPreferenceStore) preferenceStore,
-										IPapyrusPreferencesConstant.PACKAGE_PREF_FILL_COLOR));
-
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()) {
-				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-						preferenceStore
-								.getString(IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR));
-
-				return new Integer(gradientPreferenceConverter
-						.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
-				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-						preferenceStore
-								.getString(IPapyrusPreferencesConstant.PACKAGE_PREF_GRADIENT_COLOR));
-
-				return gradientPreferenceConverter.getGradientData();
-			}
-		}
-
-		return getStructuralFeatureValue(feature);
-
-	}
-
-	/**
-	 * @generated
-	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry
 				.getType(PackageNameEditPart.VISUAL_ID));
@@ -2129,16 +2138,6 @@ NamedElementEditPart
 	 */
 	public PackageFigure getPrimaryShape() {
 		return (PackageFigure) primaryShape;
-	}
-
-	/**
-	 *Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-
 	}
 
 	/**

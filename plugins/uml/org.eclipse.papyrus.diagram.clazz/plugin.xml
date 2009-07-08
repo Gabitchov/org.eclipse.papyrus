@@ -1296,10 +1296,6 @@
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-<extension point="org.eclipse.core.runtime.preferences">
-		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
-	</extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
       <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLMarkerNavigationProvider">
@@ -1536,6 +1532,20 @@
 
 </extension>
 
-   
+<extension point="org.eclipse.core.runtime.preferences">
+		<?gmfgen generated="true"?>
+		<initializer class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
+	</extension>
+
+
+<!-- added by Remi Schnekenburger-->
+<extension point="org.eclipse.ui.preferencePages">
+	<?gmfgen generated="false"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.custom.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.custom.preferences.PropertyPreferencePage"
+            name="Property" />	
+</extension>	
+ 
 
 </plugin>

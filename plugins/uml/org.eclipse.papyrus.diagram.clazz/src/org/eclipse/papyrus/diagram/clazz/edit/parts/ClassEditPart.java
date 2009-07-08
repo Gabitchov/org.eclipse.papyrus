@@ -175,6 +175,26 @@ NamedElementEditPart
 	}
 
 	/**
+	 *Papyrus codeGen
+	 *@generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+		//set the figure active when the feature of the of a class is true
+		if (resolveSemanticElement() != null) {
+			if (resolveSemanticElement().equals(event.getNotifier())
+					&& (event.getFeature() instanceof EAttribute)
+					&& ((EAttribute) (event.getFeature())).getName().equals(
+							"isActive")) {
+				((ClassifierFigure) getFigure()).setActive(event
+						.getNewBooleanValue());
+				refreshVisuals();
+			}
+		}
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -2734,6 +2754,51 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UMLVisualIDRegistry
+				.getType(ClassNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public ClassifierFigure getPrimaryShape() {
+		return (ClassifierFigure) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getTargetEditPart(Request request) {
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
+					.getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter
+					.getAdapter(IElementType.class);
+			if (type == UMLElementTypes.Property_3012) {
+				return getChildBySemanticHint(UMLVisualIDRegistry
+						.getType(ClassAttributeCompartment2EditPart.VISUAL_ID));
+			}
+			if (type == UMLElementTypes.Reception_3011) {
+				return getChildBySemanticHint(UMLVisualIDRegistry
+						.getType(ClassOperationCompartment2EditPart.VISUAL_ID));
+			}
+			if (type == UMLElementTypes.Operation_3013) {
+				return getChildBySemanticHint(UMLVisualIDRegistry
+						.getType(ClassOperationCompartment2EditPart.VISUAL_ID));
+			}
+			if (type == UMLElementTypes.Class_3014) {
+				return getChildBySemanticHint(UMLVisualIDRegistry
+						.getType(ClassNestedClassifierCompartment2EditPart.VISUAL_ID));
+			}
+		}
+		return super.getTargetEditPart(request);
+	}
+
+	/**
+	 * @generated
+	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
@@ -2785,72 +2850,6 @@ NamedElementEditPart
 
 		return getStructuralFeatureValue(feature);
 
-	}
-
-	/**
-	 * @generated
-	 */
-	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(ClassNameEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public ClassifierFigure getPrimaryShape() {
-		return (ClassifierFigure) primaryShape;
-	}
-
-	/**
-	 * @generated
-	 */
-	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
-					.getViewAndElementDescriptor()
-					.getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter
-					.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Property_3012) {
-				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(ClassAttributeCompartment2EditPart.VISUAL_ID));
-			}
-			if (type == UMLElementTypes.Reception_3011) {
-				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(ClassOperationCompartment2EditPart.VISUAL_ID));
-			}
-			if (type == UMLElementTypes.Operation_3013) {
-				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(ClassOperationCompartment2EditPart.VISUAL_ID));
-			}
-			if (type == UMLElementTypes.Class_3014) {
-				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(ClassNestedClassifierCompartment2EditPart.VISUAL_ID));
-			}
-		}
-		return super.getTargetEditPart(request);
-	}
-
-	/**
-	 *Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-
-		//set the figure active when the feature of the of a class is true
-		if (resolveSemanticElement() != null) {
-			if (resolveSemanticElement().equals(event.getNotifier())
-					&& (event.getFeature() instanceof EAttribute)
-					&& ((EAttribute) (event.getFeature())).getName().equals(
-							"isActive")) {
-				((ClassifierFigure) getFigure()).setActive(event
-						.getNewBooleanValue());
-				refreshVisuals();
-			}
-		}
 	}
 
 	/**

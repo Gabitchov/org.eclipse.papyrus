@@ -168,6 +168,15 @@ NamedElementEditPart
 	}
 
 	/**
+	 *Papyrus codeGen
+	 *@generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -2821,16 +2830,6 @@ NamedElementEditPart
 		}
 
 		return getStructuralFeatureValue(feature);
-
-	}
-
-	/**
-	 *Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
 
 	}
 

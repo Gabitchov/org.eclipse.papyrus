@@ -1520,8 +1520,6 @@ public class UMLVisualIDRegistry {
 		return true;
 	}
 
-	//test
-
 	/**
 	 * @generated
 	 */
@@ -1985,4 +1983,6 @@ public class UMLVisualIDRegistry {
 
 		return root;
 	}
+
+	//test
 }

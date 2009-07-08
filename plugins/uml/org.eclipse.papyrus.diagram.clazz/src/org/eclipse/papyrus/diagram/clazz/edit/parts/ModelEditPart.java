@@ -153,20 +153,6 @@ public class ModelEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public Object getAdapter(Class adapter) {
-		if (adapter != null && adapter.equals(ViewAndFeatureResolver.class)) {
-			return this.resolver;
-		}
-
-		if (adapter != null && adapter.equals(ViewInfo.class)) {
-			return UMLVisualIDRegistry.getDiagramViewInfo();
-		}
-		return super.getAdapter(adapter);
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void handleNotificationEvent(Notification event) {
 
 		super.handleNotificationEvent(event);
@@ -179,6 +165,20 @@ public class ModelEditPart extends DiagramEditPart {
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object getAdapter(Class adapter) {
+		if (adapter != null && adapter.equals(ViewAndFeatureResolver.class)) {
+			return this.resolver;
+		}
+
+		if (adapter != null && adapter.equals(ViewInfo.class)) {
+			return UMLVisualIDRegistry.getDiagramViewInfo();
+		}
+		return super.getAdapter(adapter);
 	}
 
 }

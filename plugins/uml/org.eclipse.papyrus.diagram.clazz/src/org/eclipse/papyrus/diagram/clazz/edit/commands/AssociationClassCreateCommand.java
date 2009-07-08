@@ -38,27 +38,11 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static AssociationClassCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
-		return new AssociationClassCreateCommand(req, eObject);
-	}
-
-	/**
-	 * @generated
-	 */
 	private EClass eClass = null;
-
 	/**
 	 * @generated
 	 */
 	private EObject eObject = null;
-
-	/**
-	 * @generated
-	 */
-	public AssociationClassCreateCommand(CreateElementRequest req) {
-		super(req.getLabel(), null, req);
-	}
 
 	/**
 	 * @generated
@@ -68,6 +52,21 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static AssociationClassCreateCommand create(
+			CreateElementRequest req, EObject eObject) {
+		return new AssociationClassCreateCommand(req, eObject);
+	}
+
+	/**
+	 * @generated
+	 */
+	public AssociationClassCreateCommand(CreateElementRequest req) {
+		super(req.getLabel(), null, req);
 	}
 
 	/**
