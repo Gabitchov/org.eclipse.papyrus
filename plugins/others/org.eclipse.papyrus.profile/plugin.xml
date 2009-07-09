@@ -111,26 +111,26 @@
             contributorId="TreeOutlinePage">
          <propertySection
                class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeKindAppearanceSection"
-               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               filter="org.eclipse.papyrus.profile.utils.UmlElementFilter"
                id="ShapeAppliedStereotypeKindAppearanceSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
          <propertySection
                afterSection="AppliedStereotypeKindAppearanceSection"
                class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeDisplaySection"
-               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               filter="org.eclipse.papyrus.profile.utils.UmlElementFilter"
                id="ShapeAppliedStereotypeDisplaySection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
          <propertySection
                class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeSectionWithView"
-               filter="org.eclipse.papyrus.profile.filter.AppliedStereotypeSectionFilter"
+               filter="org.eclipse.papyrus.profile.utils.UmlElementFilter"
                id="AppliedStereotypeSectionWithView"
                tab="org.eclipse.papyrus.tabbedproperties.profile">
          </propertySection>
          <propertySection
                class="org.eclipse.papyrus.profile.ui.section.AppliedProfileSection"
-               filter="org.eclipse.papyrus.profile.filter.AppliedProfileSectionFilter"
+               filter="org.eclipse.papyrus.profile.utils.UmlElementFilter"
                id="AppliedProfileSection"
                tab="org.eclipse.papyrus.tabbedproperties.profile">
          </propertySection>
