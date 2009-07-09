@@ -26,7 +26,7 @@
          <propertySection
                afterSection="org.eclipse.papyrus.tabbedproperties.appearance.GradientSection"
                class="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
-               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               filter="org.eclipse.papyrus.tabbedproperties.appearance.NodeNamedElementFilter"
                id="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
@@ -40,7 +40,7 @@
          <propertySection
                afterSection="org.eclipse.papyrus.tabbedproperties.appearance.QualifiedNameAppearanceSection"
                class="org.eclipse.papyrus.tabbedproperties.appearance.LabelNameIconAppearanceSection"
-               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               filter="org.eclipse.papyrus.tabbedproperties.appearance.NodeNamedElementFilter"
                id="org.eclipse.papyrus.tabbedproperties.appearance.LabelNameIconAppearanceSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
