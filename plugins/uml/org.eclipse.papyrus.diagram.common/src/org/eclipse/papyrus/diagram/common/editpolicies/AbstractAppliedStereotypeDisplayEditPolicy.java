@@ -60,6 +60,10 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 		// adds a listener on the view and the element controlled by the editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
+
+		if (element == null) {
+			return;
+		}
 		getDiagramEventBroker().addNotificationListener(element, this);
 
 		// adds the listener for stereotype application and applied stereotypes
@@ -84,11 +88,12 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			return;
 		}
 		Element element = getUMLElement();
-		if(element!=null){
-			// remove listeners to applied stereotyped
-			for (EObject stereotypeApplication : element.getStereotypeApplications()) {
-				getDiagramEventBroker().removeNotificationListener(stereotypeApplication, this);
-			}
+		if (element == null) {
+			return;
+		}
+		// remove listeners to applied stereotyped
+		for (EObject stereotypeApplication : element.getStereotypeApplications()) {
+			getDiagramEventBroker().removeNotificationListener(stereotypeApplication, this);
 		}
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
