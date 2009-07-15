@@ -43,6 +43,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		AssociationPreferencePage.initDefaults(store);
 
+		ShortCutDiagramPreferencePage.initDefaults(store);
+
 		InstanceSpecificationPreferencePage.initDefaults(store);
 
 		CommentPreferencePage.initDefaults(store);

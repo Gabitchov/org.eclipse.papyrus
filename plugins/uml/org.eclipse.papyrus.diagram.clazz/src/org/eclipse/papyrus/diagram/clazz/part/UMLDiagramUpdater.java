@@ -22,8 +22,10 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
@@ -1796,7 +1798,27 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		Resource resource = modelElement.eResource();
+		for (Iterator semanticIterator = getPhantomNodesIterator(resource); semanticIterator
+				.hasNext();) {
+			EObject childElement = (EObject) semanticIterator.next();
+			if (childElement == modelElement) {
+				continue;
+			}
+			if (UMLVisualIDRegistry.getNodeVisualID(view, childElement) == ShortCutDiagramEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement,
+						ShortCutDiagramEditPart.VISUAL_ID));
+				continue;
+			}
+		}
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Iterator getPhantomNodesIterator(Resource resource) {
+		return resource.getAllContents();
 	}
 
 	/**
@@ -1836,6 +1858,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2011ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_2012ContainedLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_2016ContainedLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002ContainedLinks(view);
 		case SlotEditPart.VISUAL_ID:
@@ -1967,6 +1991,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2011IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_2012IncomingLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_2016IncomingLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002IncomingLinks(view);
 		case SlotEditPart.VISUAL_ID:
@@ -2098,6 +2124,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2011OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_2012OutgoingLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_2016OutgoingLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002OutgoingLinks(view);
 		case SlotEditPart.VISUAL_ID:
@@ -2513,6 +2541,13 @@ public class UMLDiagramUpdater {
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDiagram_2016ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -3662,6 +3697,13 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(
 				modelElement, crossReferences));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDiagram_2016IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -5183,6 +5225,13 @@ public class UMLDiagramUpdater {
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDiagram_2016OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**

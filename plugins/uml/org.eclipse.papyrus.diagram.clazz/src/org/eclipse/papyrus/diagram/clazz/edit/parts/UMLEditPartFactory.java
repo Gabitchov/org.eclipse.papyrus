@@ -128,6 +128,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case CommentBodyEditPart.VISUAL_ID:
 				return new CommentBodyEditPart(view);
 
+			case ShortCutDiagramEditPart.VISUAL_ID:
+				return new ShortCutDiagramEditPart(view);
+
+			case DiagramNameEditPart.VISUAL_ID:
+				return new DiagramNameEditPart(view);
+
 			case PropertyEditPart.VISUAL_ID:
 				return new PropertyEditPart(view);
 

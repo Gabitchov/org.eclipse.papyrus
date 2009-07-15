@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
@@ -85,6 +86,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
@@ -186,6 +188,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType Comment_2012 = getElementType("org.eclipse.papyrus.diagram.clazz.Comment_2012"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType Diagram_2016 = getElementType("org.eclipse.papyrus.diagram.clazz.Diagram_2016"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -532,6 +539,8 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Comment_2012, UMLPackage.eINSTANCE.getComment());
 
+			elements.put(Diagram_2016, NotationPackage.eINSTANCE.getDiagram());
+
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 
 			elements.put(Slot_3001, UMLPackage.eINSTANCE.getSlot());
@@ -682,6 +691,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(DataType_2010);
 			KNOWN_ELEMENT_TYPES.add(Constraint_2011);
 			KNOWN_ELEMENT_TYPES.add(Comment_2012);
+			KNOWN_ELEMENT_TYPES.add(Diagram_2016);
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
 			KNOWN_ELEMENT_TYPES.add(Slot_3001);
 			KNOWN_ELEMENT_TYPES.add(Operation_3003);
@@ -772,6 +782,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return Constraint_2011;
 		case CommentEditPart.VISUAL_ID:
 			return Comment_2012;
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return Diagram_2016;
 		case PropertyEditPart.VISUAL_ID:
 			return Property_3002;
 		case SlotEditPart.VISUAL_ID:

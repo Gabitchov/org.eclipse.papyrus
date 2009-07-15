@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
@@ -664,6 +665,10 @@ public class UMLVisualIDRegistry {
 					domainElement.eClass())) {
 				return CommentEditPart.VISUAL_ID;
 			}
+			if (NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(
+					domainElement.eClass())) {
+				return ShortCutDiagramEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -824,6 +829,11 @@ public class UMLVisualIDRegistry {
 			break;
 		case CommentEditPart.VISUAL_ID:
 			if (CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			if (DiagramNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1315,6 +1325,9 @@ public class UMLVisualIDRegistry {
 			if (CommentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case AssociationEditPart.VISUAL_ID:
 			if (AppliedStereotypeAssociationEditPart.VISUAL_ID == nodeVisualID) {
@@ -1587,6 +1600,9 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(2012, ViewInfo.Node, "Comment");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(2016, ViewInfo.Node, "Diagram");
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");

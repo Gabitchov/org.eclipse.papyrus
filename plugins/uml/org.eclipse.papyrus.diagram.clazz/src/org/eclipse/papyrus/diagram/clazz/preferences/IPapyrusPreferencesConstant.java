@@ -101,6 +101,11 @@ public interface IPapyrusPreferencesConstant {
 	/**
 	 * @generated
 	 */
+	public static final String ASSOCIATION_PREF_JUMPLINK_STATUS = "Association.jumplink.status";
+
+	/**
+	 * @generated
+	 */
 	public static final String ASSOCIATION_PREF_JUMPLINK_TYPE = "Association.jumplink.type";
 
 	/**
@@ -987,6 +992,36 @@ public interface IPapyrusPreferencesConstant {
 	 * @generated
 	 */
 	public static final String REALIZATION_PREF_SMOOTHNESS = "Realization.smoothness";
+
+	/**
+	 * @generated
+	 */
+	public static final String SHORTCUTDIAGRAM_PREF_FILL_COLOR = "ShortCutDiagram.fill.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String SHORTCUTDIAGRAM_PREF_FONT = "ShortCutDiagram.font";
+
+	/**
+	 * @generated
+	 */
+	public static final String SHORTCUTDIAGRAM_PREF_FONT_COLOR = "ShortCutDiagram.font.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String SHORTCUTDIAGRAM_PREF_GRADIENT_COLOR = "ShortCutDiagram.gradient.color";
+
+	/**
+	 * @generated
+	 */
+	public static final String SHORTCUTDIAGRAM_PREF_GRADIENT_POLICY = "ShortCutDiagram.gradient.policy";
+
+	/**
+	 * @generated
+	 */
+	public static final String SHORTCUTDIAGRAM_PREF_LINE_COLOR = "ShortCutDiagram.line.color";
 
 	/**
 	 * @generated

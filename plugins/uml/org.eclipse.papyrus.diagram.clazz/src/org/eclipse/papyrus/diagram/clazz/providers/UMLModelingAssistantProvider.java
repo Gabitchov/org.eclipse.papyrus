@@ -272,7 +272,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (editPart instanceof ModelEditPart) {
-			ArrayList types = new ArrayList(15);
+			ArrayList types = new ArrayList(16);
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -288,6 +288,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.DataType_2010);
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.Comment_2012);
+			types.add(UMLElementTypes.Diagram_2016);
 			return types;
 		}
 		return Collections.EMPTY_LIST;

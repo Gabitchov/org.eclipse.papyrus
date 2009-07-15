@@ -41,7 +41,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	/** The Constant UML_VIS_ICONS_16x16. */
-	public static final String UML_VIS_ICONS_16x16 = "icons/uml/ovr16/";
+	public static final String UML_VIS_ICONS_16x16 = "icons/obj16/";
 
 	/** Default image. */
 	public static final String DEFAULT_IMAGE = "icons/papyrus/Papyrus.gif";

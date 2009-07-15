@@ -11,6 +11,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionNameEditPart;
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportAliasEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationNameEditPart;
@@ -670,6 +672,24 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser diagramName_0Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDiagramName_0Parser() {
+		if (diagramName_0Parser == null) {
+			EAttribute[] features = new EAttribute[] { NotationPackage.eINSTANCE
+					.getDiagram_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			diagramName_0Parser = parser;
+		}
+		return diagramName_0Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getCommentBody_5063Parser() {
 		if (commentBody_5063Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
@@ -1133,6 +1153,8 @@ public class UMLParserProvider extends AbstractProvider implements
 			return getConstraintName_5037Parser();
 		case CommentBodyEditPart.VISUAL_ID:
 			return getCommentBody_5038Parser();
+		case DiagramNameEditPart.VISUAL_ID:
+			return getDiagramName_0Parser();
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002Parser();
 		case OperationEditPart.VISUAL_ID:

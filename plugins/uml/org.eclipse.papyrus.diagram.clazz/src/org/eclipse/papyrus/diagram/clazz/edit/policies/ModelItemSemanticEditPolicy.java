@@ -34,6 +34,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.InterfaceCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ModelCreateCommandTN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PackageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PrimitiveTypeCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ShortCutDiagramCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.SignalCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
@@ -97,6 +98,9 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		}
 		if (UMLElementTypes.Comment_2012 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommand(req));
+		}
+		if (UMLElementTypes.Diagram_2016 == req.getElementType()) {
+			return getGEFWrapper(new ShortCutDiagramCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

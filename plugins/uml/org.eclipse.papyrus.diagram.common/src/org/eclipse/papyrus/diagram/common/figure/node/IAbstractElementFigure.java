@@ -113,36 +113,8 @@ public interface IAbstractElementFigure extends IFigure {
 	 */
 	public void setForeGroundColor(Color foreGroundColor);
 
-	/**
-	 * get the line style of the figure.
-	 * 
-	 * @return this is line style of the figure
-	 */
 
-	public String getLineStle();
 
-	/**
-	 * set the line style of the figure.
-	 * 
-	 * @param lineStle
-	 *            the line style
-	 */
-	public void setLineStle(String lineStle);
-
-	/**
-	 * get the lien thiknes of the figure.
-	 * 
-	 * @return the thickness of the border
-	 */
-	public int getLineThickness();
-
-	/**
-	 * set the line thickness of the figure.
-	 * 
-	 * @param lineThickness
-	 *            the thickness of the border
-	 */
-	public void setLineThickness(int lineThickness);
 
 	/**
 	 * get the font color of the text in the figure.

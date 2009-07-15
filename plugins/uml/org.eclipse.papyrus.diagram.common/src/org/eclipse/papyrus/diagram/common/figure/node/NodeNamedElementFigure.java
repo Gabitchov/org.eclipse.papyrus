@@ -96,15 +96,8 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	 */
 	// protected Image img = null;
 
-	/**
-	 * The line style.
-	 */
-	protected String lineStle;
 
-	/**
-	 * The Line thickness.
-	 */
-	protected int LineThickness = 1;
+	
 
 	/**
 	 * The name label.
@@ -345,24 +338,9 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 		return 0;
 	}
 
-	/**
-	 * Gets the line stle.
-	 * 
-	 * @return the line stle
-	 */
-	public String getLineStle() {
-		return this.lineStle;
-	}
+	
 
-	/**
-	 * Gets the line thickness.
-	 * 
-	 * @return the line thickness
-	 */
-	public int getLineThickness() {
-		return this.LineThickness;
-	}
-
+	
 	public Dimension getMinimumDimension() {
 		int width = getNameLabel().getTextBounds().width + 10;
 		int height = getNameLabel().getTextBounds().height + 10;
@@ -797,36 +775,8 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 
 	}
 
-	// /**
-	// * Sets the icon.
-	// *
-	// * @param img
-	// * the img
-	// */
-	// public void setIcon(Image img) {
-	// this.img = img;
-	// }
-
-	/**
-	 * Sets the line stle.
-	 * 
-	 * @param lineStle
-	 *            the line stle
-	 */
-	public void setLineStle(String lineStle) {
-
-		this.lineStle = lineStle;
-	}
-
-	/**
-	 * Sets the line thickness.
-	 * 
-	 * @param lineThickness
-	 *            the line thickness
-	 */
-	public void setLineThickness(int lineThickness) {
-		this.LineThickness = lineThickness;
-	}
+	
+	
 
 	/**
 	 * Sets the name.
