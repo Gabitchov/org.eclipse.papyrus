@@ -51,6 +51,12 @@
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab"
                afterSection="org.eclipse.papyrus.tabbedproperties.appearance.ShapeColorAndFontPropertySection">
          </propertySection>
+         <propertySection
+               class="org.eclipse.papyrus.tabbedproperties.appearance.MaskManagedLabelSection"
+               filter="org.eclipse.papyrus.tabbedproperties.appearance.MaskManagedLabelSectionFilter"
+               id="org.eclipse.papyrus.tabbedproperties.appearance.maskManagedLabelSection"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
       </propertySections>
    </extension>
 

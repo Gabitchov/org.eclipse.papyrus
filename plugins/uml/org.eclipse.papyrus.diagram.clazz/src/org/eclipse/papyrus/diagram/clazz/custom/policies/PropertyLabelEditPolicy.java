@@ -1,6 +1,5 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,7 +12,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
+import java.util.Collection;
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
@@ -22,7 +26,15 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusPropertyPreferencesConstant;
+import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.umlutils.ICustomAppearence;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.command.AddMaskManagedLabelDisplayCommand;
+import org.eclipse.papyrus.umlutils.ui.command.RemoveEAnnotationCommand;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -30,9 +42,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Specific edit policy for label displaying stereotypes and their properties for edges representing UML elements.
  */
-public class PropertyLabelEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
-
-	public static final String PROPERTY_LABEL_DISPLAY_POLICY = "PropertyLabelDisplayEditPolicy";
+public class PropertyLabelEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener, IMaskManagedLabelEditPolicy {
 
 	/**
 	 * Creates a new PropertyLabelEditPolicy
@@ -92,6 +102,37 @@ public class PropertyLabelEditPolicy extends GraphicalEditPolicy implements Noti
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public int getCurrentDisplayValue() {
+		EAnnotation propertyDisplay = ((View) getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
+		if (propertyDisplay != null) {
+			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+		} else {
+			// no specific information => look in preferences
+			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+			int displayValueTemp = store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
+			if (displayValueTemp != 0) {
+				displayValue = displayValueTemp;
+			}
+		}
+		return displayValue;
+	}
+
+	/**
+	 * Returns the default display value.
+	 * <p>
+	 * This is used in case of problem, when no preferences are set or there is a problem in the parsing of the annotation on the host edit part
+	 * </p>
+	 * 
+	 * @return {@link ICustomAppearence#DEFAULT_UML_PROPERTY} for this implementation
+	 */
+	public int getDefaultDisplayValue() {
+		return ICustomAppearence.DEFAULT_UML_PROPERTY;
+	}
+
+	/**
 	 * Gets the diagram event broker from the editing domain.
 	 * 
 	 * @return the diagram event broker
@@ -102,6 +143,34 @@ public class PropertyLabelEditPolicy extends GraphicalEditPolicy implements Noti
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getMaskLabel(int value) {
+		return PropertyLabelHelper.getMaskLabel(value);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Collection<String> getMaskLabels() {
+		return PropertyLabelHelper.getMaskLabels();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Map<Integer, String> getMasks() {
+		return PropertyLabelHelper.getMasks();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Collection<Integer> getMaskValues() {
+		return PropertyLabelHelper.getMaskValues();
 	}
 
 	/**
@@ -120,6 +189,52 @@ public class PropertyLabelEditPolicy extends GraphicalEditPolicy implements Noti
 	 */
 	protected View getView() {
 		return (View) getHost().getModel();
+	}
+
+	/**
+	 * Returns <code>true</code> if the specified object is the annotation in charge of the mask managed label.
+	 * 
+	 * @param object
+	 *            the object to be checked
+	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the correct one.
+	 */
+	protected boolean isMaskManagedAnnotation(Object object) {
+		// check the notifier is an annotation
+		if ((object instanceof EAnnotation)) {
+
+			// notifier is the eannotation. Check this is the annotation in charge of the property label display
+			if (VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation) object).getSource())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Returns <code>true</code> if the the annotation in charge of the mask managed label is removed from the given object which should be a View.
+	 * 
+	 * @param object
+	 *            the object to be checked
+	 * @param notification
+	 *            the notification passed to the policy (which is a listener)
+	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the correct one.
+	 */
+	protected boolean isRemovedMaskManagedLabelAnnotation(Object object, Notification notification) {
+		// object is a model element, that means it has EAnnotations
+		if (object instanceof EModelElement) {
+
+			// something was removed.
+			if (notification.getEventType() == Notification.REMOVE) {
+				Object oldValue = notification.getOldValue();
+
+				// this is an annotation which is returned
+				if (oldValue instanceof EAnnotation) {
+					// returns true if the annotation has the correct source
+					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation) oldValue).getSource());
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -142,6 +257,14 @@ public class PropertyLabelEditPolicy extends GraphicalEditPolicy implements Noti
 			notifyPropertyChanged(property, notification);
 		} else if (object.equals(property.getType())) {
 			notifyPropertyTypeChanged(property.getType(), notification);
+		}
+
+		if (isMaskManagedAnnotation(object)) {
+			refreshDisplay();
+		}
+
+		if (isRemovedMaskManagedLabelAnnotation(object, notification)) {
+			refreshDisplay();
 		}
 
 	}
@@ -234,6 +357,31 @@ public class PropertyLabelEditPolicy extends GraphicalEditPolicy implements Noti
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
 		PropertyLabelHelper.refreshEditPartDisplay((GraphicalEditPart) getHost());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setDefaultDisplayValue() {
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		if (editingDomain != null) {
+			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement) getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+		}
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void updateDisplayValue(int newValue) {
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		if (editingDomain != null) {
+			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement) getHost().getModel(), newValue));
+		}
+	}
+
+	public String getPreferencePageID() {
+		return "org.eclipse.papyrus.diagram.clazz.custom.preferences.PropertyPreferencePage";
 	}
 
 }

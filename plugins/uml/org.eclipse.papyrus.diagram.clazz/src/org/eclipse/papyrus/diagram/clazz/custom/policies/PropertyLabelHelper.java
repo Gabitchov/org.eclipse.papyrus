@@ -19,17 +19,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusPropertyPreferencesConstant;
-import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
@@ -44,6 +43,56 @@ import org.eclipse.uml2.uml.Stereotype;
  * Helper for labels displaying {@link Property}
  */
 public class PropertyLabelHelper {
+
+	/** Map for masks */
+	protected static final Map<Integer, String> masks = new HashMap<Integer, String>(7);
+
+	static {
+		// initialize the map
+		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
+		masks.put(ICustomAppearence.DISP_DERIVE, "Is Derived");
+		masks.put(ICustomAppearence.DISP_NAME, "Name");
+		masks.put(ICustomAppearence.DISP_TYPE, "Type");
+		masks.put(ICustomAppearence.DISP_MULTIPLICITY, "Multiplicity");
+		masks.put(ICustomAppearence.DISP_DFLT_VALUE, "Default Value");
+		masks.put(ICustomAppearence.DISP_MOFIFIERS, "Modifiers");
+	}
+
+	/**
+	 * Returns the mask name given the value of the mask
+	 * 
+	 * @return the mask name or <code>null</code> if no masks has been found
+	 */
+	public static String getMaskLabel(int value) {
+		return masks.get(value);
+	}
+
+	/**
+	 * Returns the collection of mask names
+	 * 
+	 * @return the collection of mask names
+	 */
+	public static Collection<String> getMaskLabels() {
+		return masks.values();
+	}
+
+	/**
+	 * Returns the map of masks used to display a {@link Property}
+	 * 
+	 * @return the {@link Map} of masks used to display a {@link Property}
+	 */
+	public static Map<Integer, String> getMasks() {
+		return masks;
+	}
+
+	/**
+	 * Returns the collection of mask values
+	 * 
+	 * @return the collection of mask values
+	 */
+	public static Set<Integer> getMaskValues() {
+		return masks.keySet();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -105,17 +154,22 @@ public class PropertyLabelHelper {
 	 */
 	protected static String propertyLabel(GraphicalEditPart editPart) {
 		// get the current eAnnotation specifying the property display
-		EAnnotation propertyDisplay = ((View) editPart.getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		// EAnnotation propertyDisplay = ((View) editPart.getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
-		if (propertyDisplay != null) {
-			// computes the display for this property
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
-			if (displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
+		// if (propertyDisplay != null) {
+		// // computes the display for this property
+		// } else {
+		// // no specific information => look in preferences
+		// IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		// int displayValueTemp = store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
+		// if (displayValueTemp != 0) {
+		// displayValue = displayValueTemp;
+		// }
+		// }
+
+		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		if (policy != null) {
+			displayValue = policy.getCurrentDisplayValue();
 		}
 		return PropertyUtil.getCustomLabel(getUMLElement(editPart), displayValue);
 	}

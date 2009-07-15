@@ -12,18 +12,37 @@ package org.eclipse.papyrus.tabbedproperties.appearance;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.tabbedproperties.appearance.messages"; //$NON-NLS-1$
+
+	private static final String BUNDLE_NAME = Activator.PLUGIN_ID + ".messages"; //$NON-NLS-1$
+
 	public static String GradientSection_Button_IsGradientUsed;
+
 	public static String GradientSection_Command_Change_Gradient;
+
 	public static String GradientSection_Command_Change_Transparency;
+
 	public static String GradientSection_GradientColor_FirstColor;
+
 	public static String GradientSection_GradientColor_SecondColor;
+
 	public static String GradientSection_Group_Colors;
+
 	public static String GradientSection_Group_Gradient;
+
 	public static String GradientSection_Group_Style;
+
 	public static String GradientSection_Group_Transparency;
+
 	public static String GradientSection_Style_Horizontal;
+
 	public static String GradientSection_Style_Vertical;
+
+	/** label of the set default button in the MaskManagedLabelSection */
+	public static String MaskManagedLabelSection_Button_SetDefault;
+
+	/** label of the view preferences button in the MaskManagedLabelSection */
+	public static String MaskManagedLabelSection_Button_ViewPreference;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

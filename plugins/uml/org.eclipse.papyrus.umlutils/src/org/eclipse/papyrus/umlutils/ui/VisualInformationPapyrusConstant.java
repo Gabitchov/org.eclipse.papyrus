@@ -129,4 +129,7 @@ public interface VisualInformationPapyrusConstant {
 
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
+
+	/** key for the appearance of properties or other specific display */
+	public static final String CUSTOM_APPEARANCE_MASK_VALUE = "CustomAppearance_MaskValue";
 }

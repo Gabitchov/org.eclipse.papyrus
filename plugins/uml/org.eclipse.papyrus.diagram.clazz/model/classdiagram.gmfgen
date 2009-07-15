@@ -1140,7 +1140,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.diagram.clazz.custom.policies.PropertyLabelEditPolicy.PROPERTY_LABEL_DISPLAY_POLICY"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass
