@@ -355,11 +355,6 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser operation_3013Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser operation_3019Parser;
 
 	/**
@@ -1048,19 +1043,6 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser getOperation_3013Parser() {
-		if (operation_3013Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-					.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			operation_3013Parser = parser;
-		}
-		return operation_3013Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getOperation_3019Parser() {
 		if (operation_3019Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
@@ -1189,8 +1171,6 @@ public class UMLParserProvider extends AbstractProvider implements
 			return getClassName_5014Parser();
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011Parser();
-		case Operation3EditPart.VISUAL_ID:
-			return getOperation_3013Parser();
 		case Class5EditPart.VISUAL_ID:
 			return getClass_3014Parser();
 		case PrimitiveTypeNameEditPartCN.VISUAL_ID:

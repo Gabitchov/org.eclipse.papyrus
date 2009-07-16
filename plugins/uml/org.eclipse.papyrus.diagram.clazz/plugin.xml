@@ -1563,7 +1563,13 @@
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.custom.preferences.PropertyPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.custom.preferences.PropertyPreferencePage"
-            name="Property" />	
+            name="Property" />
+ <page
+       category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+       class="org.eclipse.papyrus.diagram.clazz.custom.preferences.OperationPreferencePage"
+       id="org.eclipse.papyrus.diagram.clazz.custom.preferences.OperationPreferencePage"
+       name="Operation">
+ </page>	
 </extension>	
  
 

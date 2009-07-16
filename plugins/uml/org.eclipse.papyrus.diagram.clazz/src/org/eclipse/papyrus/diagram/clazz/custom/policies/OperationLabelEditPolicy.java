@@ -17,15 +17,11 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusPropertyPreferencesConstant;
+import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusOperationPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
@@ -60,14 +56,14 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public int getCurrentDisplayValue() {
-		EAnnotation propertyDisplay = ((View) getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation customeDisplayAnnotation = ((View) getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
-		if (propertyDisplay != null) {
-			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+		if (customeDisplayAnnotation != null) {
+			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
+			int displayValueTemp = store.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
 			if (displayValueTemp != 0) {
 				displayValue = displayValueTemp;
 			}
@@ -79,48 +75,35 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public int getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PROPERTY;
-	}
-
-	/**
-	 * Gets the diagram event broker from the editing domain.
-	 * 
-	 * @return the diagram event broker
-	 */
-	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (theEditingDomain != null) {
-			return DiagramEventBroker.getInstance(theEditingDomain);
-		}
-		return null;
+		return ICustomAppearence.DEFAULT_UML_OPERATION;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public String getMaskLabel(int value) {
-		return PropertyLabelHelper.getMaskLabel(value);
+		return OperationLabelHelper.getMaskLabel(value);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<String> getMaskLabels() {
-		return PropertyLabelHelper.getMaskLabels();
+		return OperationLabelHelper.getMaskLabels();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Map<Integer, String> getMasks() {
-		return PropertyLabelHelper.getMasks();
+		return OperationLabelHelper.getMasks();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<Integer> getMaskValues() {
-		return PropertyLabelHelper.getMaskValues();
+		return OperationLabelHelper.getMaskValues();
 	}
 
 	/**
@@ -137,61 +120,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	public Operation getUMLElement() {
 		return (Operation) getView().getElement();
-	}
-
-	/**
-	 * Returns the view controlled by the host edit part
-	 * 
-	 * @return the view controlled by the host edit part
-	 */
-	protected View getView() {
-		return (View) getHost().getModel();
-	}
-
-	/**
-	 * Returns <code>true</code> if the specified object is the annotation in charge of the mask managed label.
-	 * 
-	 * @param object
-	 *            the object to be checked
-	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the correct one.
-	 */
-	protected boolean isMaskManagedAnnotation(Object object) {
-		// check the notifier is an annotation
-		if ((object instanceof EAnnotation)) {
-
-			// notifier is the eannotation. Check this is the annotation in charge of the property label display
-			if (VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation) object).getSource())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Returns <code>true</code> if the the annotation in charge of the mask managed label is removed from the given object which should be a View.
-	 * 
-	 * @param object
-	 *            the object to be checked
-	 * @param notification
-	 *            the notification passed to the policy (which is a listener)
-	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the correct one.
-	 */
-	protected boolean isRemovedMaskManagedLabelAnnotation(Object object, Notification notification) {
-		// object is a model element, that means it has EAnnotations
-		if (object instanceof EModelElement) {
-
-			// something was removed.
-			if (notification.getEventType() == Notification.REMOVE) {
-				Object oldValue = notification.getOldValue();
-
-				// this is an annotation which is returned
-				if (oldValue instanceof EAnnotation) {
-					// returns true if the annotation has the correct source
-					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation) oldValue).getSource());
-				}
-			}
-		}
-		return false;
 	}
 
 	/**

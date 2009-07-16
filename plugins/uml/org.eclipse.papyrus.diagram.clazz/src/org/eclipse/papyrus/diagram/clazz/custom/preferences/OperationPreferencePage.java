@@ -82,7 +82,7 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	}
 
 	/** buttons to select the display kind for the label of the {@link Operation} */
-	protected Button displVisibility, displDerive, displName, displType, displMutliplicity, displDfltValue, displModifiers;
+	protected Button displVisibility, displName, displParamDirection, displParameterType, displModifiers;
 
 	/** current operation display style */
 	private int operationValue = getPreferenceStore().getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
@@ -125,41 +125,30 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		data.top = new FormAttachment(0, 0);
 		displVisibility.setLayoutData(data);
 
-		displDerive = createCheckButton(group, "Derived", ICustomAppearence.DISP_DERIVE);
-		data = new FormData();
-		data.left = new FormAttachment(displVisibility, 85);
-		data.top = new FormAttachment(0, 0);
-		displDerive.setLayoutData(data);
-
 		displName = createCheckButton(group, "Name", ICustomAppearence.DISP_NAME);
 		data = new FormData();
-		data.left = new FormAttachment(displDerive, 85);
+		data.left = new FormAttachment(displVisibility, 85);
 		data.top = new FormAttachment(0, 0);
 		displName.setLayoutData(data);
 
-		displType = createCheckButton(group, "Type", ICustomAppearence.DISP_TYPE);
+		displParamDirection = createCheckButton(group, "Parameter Direction", ICustomAppearence.DISP_PARAMETER_DIRECTION);
 		data = new FormData();
 		data.left = new FormAttachment(displName, 85);
 		data.top = new FormAttachment(0, 0);
-		displType.setLayoutData(data);
-
-		displMutliplicity = createCheckButton(group, "Multiplicity", ICustomAppearence.DISP_MULTIPLICITY);
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
-		displMutliplicity.setLayoutData(data);
-
-		displDfltValue = createCheckButton(group, "Default Value", ICustomAppearence.DISP_DFLT_VALUE);
-		data = new FormData();
-		data.left = new FormAttachment(displVisibility, 85);
-		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
-		displDfltValue.setLayoutData(data);
+		displParamDirection.setLayoutData(data);
 
 		displModifiers = createCheckButton(group, "Modifiers", ICustomAppearence.DISP_MOFIFIERS);
 		data = new FormData();
-		data.left = new FormAttachment(displDerive, 85);
+		data.left = new FormAttachment(0, 0);
 		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
 		displModifiers.setLayoutData(data);
+
+		displParameterType = createCheckButton(group, "Parameter Type", ICustomAppearence.DISP_PARAMETER_TYPE);
+		data = new FormData();
+		data.left = new FormAttachment(displModifiers, 85);
+		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
+		displParameterType.setLayoutData(data);
+
 	}
 
 	/**
@@ -244,11 +233,9 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		// }
 
 		displVisibility.setSelection((operationValue & ICustomAppearence.DISP_VISIBILITY) == ICustomAppearence.DISP_VISIBILITY);
-		displDerive.setSelection((operationValue & ICustomAppearence.DISP_DERIVE) == ICustomAppearence.DISP_DERIVE);
 		displName.setSelection((operationValue & ICustomAppearence.DISP_NAME) == ICustomAppearence.DISP_NAME);
-		displType.setSelection((operationValue & ICustomAppearence.DISP_TYPE) == ICustomAppearence.DISP_TYPE);
-		displMutliplicity.setSelection((operationValue & ICustomAppearence.DISP_MULTIPLICITY) == ICustomAppearence.DISP_MULTIPLICITY);
-		displDfltValue.setSelection((operationValue & ICustomAppearence.DISP_DFLT_VALUE) == ICustomAppearence.DISP_DFLT_VALUE);
+		displParamDirection.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_DIRECTION) == ICustomAppearence.DISP_PARAMETER_DIRECTION);
+		displParameterType.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_TYPE) == ICustomAppearence.DISP_PARAMETER_TYPE);
 		displModifiers.setSelection((operationValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
 	}
 
