@@ -24,14 +24,15 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
-import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.papyrus.umlutils.OperationUtil;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 
 /**
  * Helper for labels displaying {@link Property}
  */
-public class PropertyLabelHelper extends StereotypedElementLabelHelper {
+public class OperationLabelHelper extends StereotypedElementLabelHelper {
 
 	/** Map for masks */
 	protected static final Map<Integer, String> masks = new HashMap<Integer, String>(7);
@@ -39,11 +40,9 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	static {
 		// initialize the map
 		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
-		masks.put(ICustomAppearence.DISP_DERIVE, "Is Derived");
 		masks.put(ICustomAppearence.DISP_NAME, "Name");
-		masks.put(ICustomAppearence.DISP_TYPE, "Type");
-		masks.put(ICustomAppearence.DISP_MULTIPLICITY, "Multiplicity");
-		masks.put(ICustomAppearence.DISP_DFLT_VALUE, "Default Value");
+		masks.put(ICustomAppearence.DISP_PARAMETER_DIRECTION, "Parameters Direction");
+		masks.put(ICustomAppearence.DISP_PARAMETER_TYPE, "Parameters Type");
 		masks.put(ICustomAppearence.DISP_MOFIFIERS, "Modifiers");
 	}
 
@@ -55,13 +54,13 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * @return the label corresponding to the specific display of the property ("default" display given by preferences or specific display given by eAnnotation).
 	 */
 	protected static String elementLabel(GraphicalEditPart editPart) {
-		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
+		int displayValue = ICustomAppearence.DEFAULT_UML_OPERATION;
 
 		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if (policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
 		}
-		return PropertyUtil.getCustomLabel(getUMLElement(editPart), displayValue);
+		return OperationUtil.getCustomLabel(getUMLElement(editPart), displayValue);
 	}
 
 	/**
@@ -103,8 +102,8 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static Property getUMLElement(GraphicalEditPart editPart) {
-		return (Property) ((View) editPart.getModel()).getElement();
+	protected static Operation getUMLElement(GraphicalEditPart editPart) {
+		return (Operation) ((View) editPart.getModel()).getElement();
 	}
 
 	/**

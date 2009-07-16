@@ -22,9 +22,6 @@ import org.eclipse.uml2.uml.Property;
  */
 public class AppliedStereotypePropertyDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
 
-	/** constant for this edit policy role */
-	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypePropertyDisplayEditPolicy";
-
 	/**
 	 * {@inheritDoc}
 	 */

@@ -37,7 +37,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName6EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
@@ -66,10 +65,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	}
 
 	protected IParser getAssociationBranchRole() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-				.getNamedElement_Name(), };
-		IParser parser = new CustomMessageFormatParser(features,
-				UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		IParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
 		return parser;
 
 	}
@@ -78,8 +75,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationName_6002Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-				.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
 		return parser;
 	}
@@ -88,11 +84,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationSourceMultiplicity() {
-		EAttribute[] features = new EAttribute[] {
-				UMLPackage.eINSTANCE.getMultiplicityElement_Lower(),
-				UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
-		CustomMessageFormatParser parser = new CustomMessageFormatParser(
-				features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getMultiplicityElement_Lower(), UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
+		CustomMessageFormatParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
 		parser.setViewPattern("{0}..{1}");
 		parser.setEditorPattern("{0}..{1}");
 		parser.setEditPattern("{0}..{1}");
@@ -103,10 +96,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationSourceRole() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-				.getNamedElement_Name(), };
-		IParser parser = new CustomMessageFormatParser(features,
-				UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		IParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
 		return parser;
 
 	}
@@ -115,11 +106,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationTargetMultiplicity() {
-		EAttribute[] features = new EAttribute[] {
-				UMLPackage.eINSTANCE.getMultiplicityElement_Lower(),
-				UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
-		CustomMessageFormatParser parser = new CustomMessageFormatParser(
-				features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 1);
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getMultiplicityElement_Lower(), UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
+		CustomMessageFormatParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 1);
 		parser.setViewPattern("{0}..{1}");
 		parser.setEditorPattern("{0}..{1}");
 		parser.setEditPattern("{0}..{1}");
@@ -130,10 +118,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationTargetRole() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-				.getNamedElement_Name(), };
-		IParser parser = new CustomMessageFormatParser(features,
-				UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 1);
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		IParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 1);
 		return parser;
 	}
 
@@ -167,8 +153,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getOperationParser();
 			// case Property4EditPart.VISUAL_ID:
 			// return getCustomPropertyParser();
-		case Operation3EditPart.VISUAL_ID:
-			return getOperationParser();
+			// case Operation3EditPart.VISUAL_ID:
+			// return getOperationParser();
 		case Property5EditPart.VISUAL_ID:
 			return getCustomPropertyParser();
 		case Operation4EditPart.VISUAL_ID:
