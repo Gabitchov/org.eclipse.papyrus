@@ -42,6 +42,12 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
+	/** constant for this edit policy role */
+	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeDisplayEditPolicy";
+
+	/**
+	 * Creates a new AppliedStereotype display edit policy
+	 */
 	public AbstractAppliedStereotypeDisplayEditPolicy() {
 		super();
 	}

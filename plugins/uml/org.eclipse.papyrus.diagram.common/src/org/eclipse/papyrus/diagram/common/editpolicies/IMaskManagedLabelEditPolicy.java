@@ -63,6 +63,13 @@ public interface IMaskManagedLabelEditPolicy {
 	public int getCurrentDisplayValue();
 
 	/**
+	 * Retrieve the default display Value for the current host edit part.
+	 * 
+	 * @return the default display Value for the current host edit part.
+	 */
+	public int getDefaultDisplayValue();
+
+	/**
 	 * Refreshes the display of the edit part
 	 */
 	public void refreshDisplay();
