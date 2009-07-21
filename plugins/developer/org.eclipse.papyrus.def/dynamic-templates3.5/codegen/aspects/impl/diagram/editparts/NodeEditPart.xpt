@@ -700,53 +700,45 @@ new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolic
 	public Object getPreferredValue(org.eclipse.emf.ecore.EStructuralFeature feature) {
 		org.eclipse.jface.preference.IPreferenceStore preferenceStore = (org.eclipse.jface.preference.IPreferenceStore) getDiagramPreferencesHint()
 				.getPreferenceStore();
-		if (preferenceStore instanceof org.eclipse.jface.preference.IPreferenceStore) {
+		Object result = null;
+			
+		if(feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFontStyle_FontColor() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFillStyle_FillColor()){
+			String prefColor = null;
 			if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-
-				return org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
-						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
-								.getColor(
-										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore,
-										«getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»));
-
+				prefColor = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE);
 			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
 					.getFontStyle_FontColor()) {
-
-				return org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
-						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
-								.getColor(
-										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore,
-										«getPreferenceConstantFileName()».«getPreferenceFontColorConstant(elementType.displayName.toUpper())»));
-
+				prefColor = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FONT);
 			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
 					.getFillStyle_FillColor()) {
-
-				return org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
+				prefColor = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL);
+			}
+			result = org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
 						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
 								.getColor(
-										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore,
-										«getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())»));
-
-			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()) {
-				org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
-						preferenceStore
-								.getString(«getPreferenceConstantFileName()».«getPreferenceGradientColorConstant(elementType.displayName.toUpper())»));
-
-				return new Integer(gradientPreferenceConverter
+										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore, prefColor));
+		} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFillStyle_Transparency() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFillStyle_Gradient()) {
+			String prefGradient = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT);
+			org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
+						preferenceStore.getString(prefGradient));
+			if(feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+					.getFillStyle_Transparency()){
+				result = new Integer(gradientPreferenceConverter
 						.getTransparency());
 			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
-				org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
-						preferenceStore
-								.getString(«getPreferenceConstantFileName()».«getPreferenceGradientColorConstant(elementType.displayName.toUpper())»));
-
-				return gradientPreferenceConverter.getGradientData();
+					.getFillStyle_Gradient()){
+				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
-		return getStructuralFeatureValue(feature);
-
+		
+		if(result == null){
+			result = getStructuralFeatureValue(feature);
+		}
+		return result;
 	}
 «ENDDEFINE»
 «REM»END PapyrusGencode «ENDREM»

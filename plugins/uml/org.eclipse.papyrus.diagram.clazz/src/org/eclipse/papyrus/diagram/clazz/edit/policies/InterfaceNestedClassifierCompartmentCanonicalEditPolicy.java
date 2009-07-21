@@ -31,8 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -45,9 +44,8 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getInterfaceNestedClassifierCompartment_7008SemanticChildren(
-						viewObject).iterator(); it.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater.getInterfaceNestedClassifierCompartment_7008SemanticChildren(viewObject)
+				.iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -80,8 +78,7 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getInterface_NestedClassifier());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInterface_NestedClassifier());
 		}
 		return myFeaturesToSynchronize;
 	}

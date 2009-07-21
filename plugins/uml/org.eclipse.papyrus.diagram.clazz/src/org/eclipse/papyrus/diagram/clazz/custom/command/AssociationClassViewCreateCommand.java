@@ -120,8 +120,10 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 	 * @param point
 	 *            the location of the future association node
 	 */
-	public AssociationClassViewCreateCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, TransactionalEditingDomain domain, View container, EditPartViewer viewer,
-			PreferencesHint preferencesHint, Point point) {
+	public AssociationClassViewCreateCommand(
+			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
+			TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint,
+			Point point) {
 		super(domain, "AssociationClassViewCreateCommand", null); //$NON-NLS-1$
 		this.containerView = container;
 		this.viewer = viewer;
@@ -141,11 +143,13 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		// AssociationClassViewFactory();
 
 		// creation of the element
-		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) createConnectionViewAndElementRequest).getConnectionViewAndElementDescriptor()
-				.getCreateElementRequestAdapter();
-		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
+		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) createConnectionViewAndElementRequest)
+				.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
+		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter
+				.getAdapter(CreateRelationshipRequest.class);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createAssociationClass_2013(createElementRequest.getNewElement(), this.containerView, -1, true, preferenceHint);
+		this.node = viewProvider.createAssociationClass_2013(createElementRequest.getNewElement(), this.containerView,
+				-1, true, preferenceHint);
 		// this.node = factory.createView(new
 		// SemanticAdapter(createElementRequest.getNewElement()),
 		// this.containerView, ((IHintedType)

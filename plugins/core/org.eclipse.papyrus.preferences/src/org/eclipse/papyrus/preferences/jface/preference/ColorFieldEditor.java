@@ -35,7 +35,9 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * A field editor that display a button and a small rectangle under it to show the color selected.
  * 
- * This field editor is inspired by the class {@link org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection <em>ColorsAndFontsPropertySection</em>}
+ * This field editor is inspired by the class
+ * {@link org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection
+ * <em>ColorsAndFontsPropertySection</em>}
  * 
  * @author tlandre
  */
@@ -69,7 +71,8 @@ public class ColorFieldEditor extends FieldEditor {
 	public void load() {
 		super.load();
 		Assert.isNotNull(backgroundImage);
-		buttonImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), PreferenceConverter.getColor(getPreferenceStore(), getPreferenceName())).createImage();
+		buttonImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), PreferenceConverter.getColor(
+				getPreferenceStore(), getPreferenceName())).createImage();
 		colorButton.setImage(buttonImage);
 	}
 
@@ -78,7 +81,8 @@ public class ColorFieldEditor extends FieldEditor {
 	 */
 	public void init() {
 		Assert.isNotNull(backgroundImage);
-		buttonImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), PreferenceConverter.getColor(getPreferenceStore(), getPreferenceName())).createImage();
+		buttonImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), PreferenceConverter.getColor(
+				getPreferenceStore(), getPreferenceName())).createImage();
 		colorButton.setImage(buttonImage);
 	}
 

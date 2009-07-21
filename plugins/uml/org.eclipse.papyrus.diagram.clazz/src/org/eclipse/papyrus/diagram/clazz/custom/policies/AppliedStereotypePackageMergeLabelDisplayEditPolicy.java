@@ -20,7 +20,8 @@ import org.eclipse.uml2.uml.PackageMerge;
 /**
  * Edit Policy for Applied Stereotype Label for {@link PackageMerge}.
  * <p>
- * It simply adds a tag "use" to the label. Thanks to GMF, it is not possible to call a cTor with a parameter. So it calls super cTor with the "merge" parameter
+ * It simply adds a tag "use" to the label. Thanks to GMF, it is not possible to call a cTor with a
+ * parameter. So it calls super cTor with the "merge" parameter
  * </p>
  */
 public class AppliedStereotypePackageMergeLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {

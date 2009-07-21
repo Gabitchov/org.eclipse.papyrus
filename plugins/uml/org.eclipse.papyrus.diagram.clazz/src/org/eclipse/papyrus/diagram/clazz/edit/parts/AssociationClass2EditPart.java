@@ -26,8 +26,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.CAssociationFigure;
 /**
  * @generated
  */
-public class AssociationClass2EditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class AssociationClass2EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,15 +45,14 @@ public class AssociationClass2EditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new AssociationClass2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationClass2ItemSemanticEditPolicy());
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove
+	 * <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -79,22 +77,27 @@ public class AssociationClass2EditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		private WrappingLabel fAssociationNameLabel;
+
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fAppliedStereotypeAssociationLabel;
+
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fRoleSourceLabel;
+
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fMultiplicitySourceLabel;
+
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fRoleTargetLabel;
+
 		/**
 		 * @generated
 		 */

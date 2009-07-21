@@ -62,7 +62,8 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 		 * {@inheritDoc}
 		 */
 		public void widgetSelected(SelectionEvent e) {
-			// add or remove the flag to the display property value (invert the current value)
+			// add or remove the flag to the display property value (invert the
+			// current value)
 			propertyValue = propertyValue ^ style;
 
 			// refresh buttons at the end
@@ -78,14 +79,17 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 		// default for Property label display
-		store.setDefault(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE, ICustomAppearence.DEFAULT_UML_PROPERTY);
+		store.setDefault(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE,
+				ICustomAppearence.DEFAULT_UML_PROPERTY);
 	}
 
 	/** buttons to select the display kind for the label of the {@link Property} */
-	protected Button displVisibility, displDerive, displName, displType, displMutliplicity, displDfltValue, displModifiers;
+	protected Button displVisibility, displDerive, displName, displType, displMutliplicity, displDfltValue,
+			displModifiers;
 
 	/** current property display style */
-	private int propertyValue = getPreferenceStore().getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
+	private int propertyValue = getPreferenceStore().getInt(
+			IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
 
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
@@ -184,34 +188,11 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected String getFontColorPreferenceName() {
-		return IPapyrusPropertyPreferencesConstant.PROPERTY_PREF_FONT_COLOR;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected String getFontPreferenceName() {
-		return IPapyrusPropertyPreferencesConstant.PROPERTY_PREF_FONT;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected String getLineColorPreferenceName() {
-		return IPapyrusPropertyPreferencesConstant.PROPERTY_PREF_LINE_COLOR;
-	}
-
-	/**
 	 * Load the default preferences of the fields contained in this page
 	 */
 	protected void loadDefaultPreferences() {
-		propertyValue = getPreferenceStore().getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
+		propertyValue = getPreferenceStore().getInt(
+				IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
 		refreshButtons();
 	}
 
@@ -238,18 +219,23 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	 */
 	protected void refreshButtons() {
 		// IPreferenceStore store = getPreferenceStore();
-		// int displayValue = store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
+		// int displayValue =
+		// store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
 		// if (proper == 0) {
 		// displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
 		// }
 
-		displVisibility.setSelection((propertyValue & ICustomAppearence.DISP_VISIBILITY) == ICustomAppearence.DISP_VISIBILITY);
+		displVisibility
+				.setSelection((propertyValue & ICustomAppearence.DISP_VISIBILITY) == ICustomAppearence.DISP_VISIBILITY);
 		displDerive.setSelection((propertyValue & ICustomAppearence.DISP_DERIVE) == ICustomAppearence.DISP_DERIVE);
 		displName.setSelection((propertyValue & ICustomAppearence.DISP_NAME) == ICustomAppearence.DISP_NAME);
 		displType.setSelection((propertyValue & ICustomAppearence.DISP_TYPE) == ICustomAppearence.DISP_TYPE);
-		displMutliplicity.setSelection((propertyValue & ICustomAppearence.DISP_MULTIPLICITY) == ICustomAppearence.DISP_MULTIPLICITY);
-		displDfltValue.setSelection((propertyValue & ICustomAppearence.DISP_DFLT_VALUE) == ICustomAppearence.DISP_DFLT_VALUE);
-		displModifiers.setSelection((propertyValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
+		displMutliplicity
+				.setSelection((propertyValue & ICustomAppearence.DISP_MULTIPLICITY) == ICustomAppearence.DISP_MULTIPLICITY);
+		displDfltValue
+				.setSelection((propertyValue & ICustomAppearence.DISP_DFLT_VALUE) == ICustomAppearence.DISP_DFLT_VALUE);
+		displModifiers
+				.setSelection((propertyValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
 	}
 
 	/**
@@ -257,7 +243,8 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	 */
 	protected void storePreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		// checks the stored value and the actual one, so does not refresh diagram if it is not needed
+		// checks the stored value and the actual one, so does not refresh
+		// diagram if it is not needed
 		if (propertyValue != store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE)) {
 			store.setValue(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE, propertyValue);
 		}

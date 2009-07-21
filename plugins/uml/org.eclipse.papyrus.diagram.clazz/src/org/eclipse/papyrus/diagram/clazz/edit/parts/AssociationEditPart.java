@@ -31,8 +31,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * @generated
  */
-public class AssociationEditPart extends UMLConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class AssociationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -58,10 +57,8 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated NOT
 	 */
 	protected void addAssociationEndListeners() {
-		EObject sourceEnd = ((Association) resolveSemanticElement())
-				.getMemberEnds().get(0);
-		EObject targetEnd = ((Association) resolveSemanticElement())
-				.getMemberEnds().get(1);
+		EObject sourceEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(0);
+		EObject targetEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(1);
 		addListenerFilter("AssociationEndListenersSource", this, sourceEnd); //$NON-NLS-1$
 		addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
 	}
@@ -81,34 +78,28 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AppliedStereotypeAssociationEditPart) {
-			((AppliedStereotypeAssociationEditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getAppliedStereotypeAssociationLabel());
+			((AppliedStereotypeAssociationEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getAppliedStereotypeAssociationLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName2EditPart) {
-			((AssociationName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAssociationNameLabel());
+			((AssociationName2EditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName3EditPart) {
-			((AssociationName3EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getRoleSourceLabel());
+			((AssociationName3EditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName4EditPart) {
-			((AssociationName4EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			((AssociationName4EditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName5EditPart) {
-			((AssociationName5EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+			((AssociationName5EditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationName6EditPart) {
-			((AssociationName6EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getRoleTargetLabel());
+			((AssociationName6EditPart) childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
 		return false;
@@ -117,8 +108,8 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove
+	 * <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -132,10 +123,8 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new AssociationItemSemanticEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLabelDisplayEditPolicy());
 	}
 
@@ -173,10 +162,8 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated NOT
 	 */
 	protected void refreshVisuals() {
-		Property source = (Property) ((Association) resolveSemanticElement())
-				.getMembers().get(0);
-		Property target = (Property) ((Association) resolveSemanticElement())
-				.getMembers().get(1);
+		Property source = (Property) ((Association) resolveSemanticElement()).getMembers().get(0);
+		Property target = (Property) ((Association) resolveSemanticElement()).getMembers().get(1);
 		int sourceType = 0;
 		int targetType = 0;
 		// owned?

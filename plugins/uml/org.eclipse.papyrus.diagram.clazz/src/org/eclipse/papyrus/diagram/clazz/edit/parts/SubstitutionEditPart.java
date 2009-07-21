@@ -26,8 +26,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 /**
  * @generated
  */
-public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,10 +45,8 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new SubstitutionItemSemanticEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SubstitutionItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLabelDisplayEditPolicy());
 	}
 
@@ -58,13 +55,12 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
-			((AppliedStereotypeSubstitutionEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeSubstitutionEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getAppliedStereotypeLabel());
 			return true;
 		}
 		if (childEditPart instanceof SubstitutionName2EditPart) {
-			((SubstitutionName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getNameLabel());
+			((SubstitutionName2EditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -106,8 +102,8 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove
+	 * <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */

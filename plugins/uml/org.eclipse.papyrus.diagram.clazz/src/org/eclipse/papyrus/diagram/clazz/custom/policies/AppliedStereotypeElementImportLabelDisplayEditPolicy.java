@@ -20,7 +20,8 @@ import org.eclipse.uml2.uml.ElementImport;
 /**
  * Edit Policy for Applied Stereotype Label for {@link ElementImport}.
  * <p>
- * It simply adds a tag "import" to the label. Thanks to GMF, it is not possible to call a cTor with a parameter. So it calls super cTor with the "import" parameter
+ * It simply adds a tag "import" to the label. Thanks to GMF, it is not possible to call a cTor with
+ * a parameter. So it calls super cTor with the "import" parameter
  * </p>
  */
 public class AppliedStereotypeElementImportLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {

@@ -26,8 +26,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure
 /**
  * @generated
  */
-public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -56,13 +55,12 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
-			((AppliedStereotypeInterfaceRealizationEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeInterfaceRealizationEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getAppliedStereotypeLabel());
 			return true;
 		}
 		if (childEditPart instanceof InterfaceRealizationName2EditPart) {
-			((InterfaceRealizationName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getNameLabel());
+			((InterfaceRealizationName2EditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -71,8 +69,8 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove
+	 * <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -86,10 +84,8 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new InterfaceRealizationItemSemanticEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceRealizationItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLabelDisplayEditPolicy());
 	}
 

@@ -31,8 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEditPolicy
-		extends CanonicalEditPolicy {
+public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -46,8 +45,8 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEd
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
 		for (Iterator it = UMLDiagramUpdater
-				.getRedefinableTemplateSignatureTemplateParameterCompartment_7014SemanticChildren(
-						viewObject).iterator(); it.hasNext();) {
+				.getRedefinableTemplateSignatureTemplateParameterCompartment_7014SemanticChildren(viewObject)
+				.iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -80,8 +79,7 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEd
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getTemplateSignature_OwnedParameter());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter());
 		}
 		return myFeaturesToSynchronize;
 	}

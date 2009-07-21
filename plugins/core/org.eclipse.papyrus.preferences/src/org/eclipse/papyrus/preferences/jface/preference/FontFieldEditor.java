@@ -35,7 +35,9 @@ import org.eclipse.swt.widgets.Composite;
  * <li>Bold</li>
  * <li>Italic</li>
  * </ul>
- *This field editor is inspired by the class {@link org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection <em>ColorsAndFontsPropertySection</em>}
+ *This field editor is inspired by the class
+ * {@link org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection
+ * <em>ColorsAndFontsPropertySection</em>}
  * 
  * @author tlandre
  */
@@ -53,7 +55,8 @@ public class FontFieldEditor extends FieldEditor {
 	static protected String VALUE_CHANGED_STRING = DiagramUIPropertiesMessages.AbstractPropertySection_UndoIntervalPropertyString;
 
 	/** properties */
-	protected static final String FONT_COMMAND_NAME = DiagramUIPropertiesMessages.Font_commandText + StringStatics.SPACE + VALUE_CHANGED_STRING;
+	protected static final String FONT_COMMAND_NAME = DiagramUIPropertiesMessages.Font_commandText
+			+ StringStatics.SPACE + VALUE_CHANGED_STRING;
 
 	protected static final String FONTS_AND_COLORS_LABEL = DiagramUIPropertiesMessages.FontAndColor_nameLabel;
 
@@ -81,7 +84,8 @@ public class FontFieldEditor extends FieldEditor {
 	}
 
 	/**
-	 * @see org.eclipse.jface.preference.FieldEditor#doFillIntoGrid(org.eclipse.swt.widgets.Composite, int)
+	 * @see org.eclipse.jface.preference.FieldEditor#doFillIntoGrid(org.eclipse.swt.widgets.Composite,
+	 *      int)
 	 */
 	@Override
 	protected void doFillIntoGrid(Composite parent, int numColumns) {

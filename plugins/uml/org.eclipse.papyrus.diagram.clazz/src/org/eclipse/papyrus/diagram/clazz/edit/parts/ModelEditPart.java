@@ -53,8 +53,7 @@ public class ModelEditPart extends DiagramEditPart {
 
 		public int getEObjectSemanticHint(EObject element) {
 			if (element != null) {
-				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(),
-						element);
+				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element);
 			}
 			return -1;
 		}
@@ -135,20 +134,17 @@ public class ModelEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
 
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
 		// new
 		// org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
 
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DiagramDragDropEditPolicy(resolver));
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DiagramDragDropEditPolicy(resolver));
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new ClassDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
@@ -174,9 +170,7 @@ public class ModelEditPart extends DiagramEditPart {
 		super.handleNotificationEvent(event);
 		if (event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
-			if (eAnnotation.getSource() != null
-					&& eAnnotation.getSource().equals(
-							MDTUtil.FilterViewAndLabelsSource)) {
+			if (eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
 				// modification form MOSKitt approach, canonical policies are
 				// not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());

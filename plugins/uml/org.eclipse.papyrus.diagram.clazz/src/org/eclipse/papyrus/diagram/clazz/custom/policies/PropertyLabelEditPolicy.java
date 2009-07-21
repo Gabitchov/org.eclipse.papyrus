@@ -37,7 +37,8 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * Specific edit policy for label displaying stereotypes and their properties for edges representing UML elements.
+ * Specific edit policy for label displaying stereotypes and their properties for edges representing
+ * UML elements.
  */
 public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
@@ -62,10 +63,12 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public int getCurrentDisplayValue() {
-		EAnnotation propertyDisplay = ((View) getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation propertyDisplay = ((View) getHost().getModel())
+				.getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
 		if (propertyDisplay != null) {
-			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(
+					VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
@@ -148,18 +151,22 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * Returns <code>true</code> if the specified object is the annotation in charge of the mask managed label.
+	 * Returns <code>true</code> if the specified object is the annotation in charge of the mask
+	 * managed label.
 	 * 
 	 * @param object
 	 *            the object to be checked
-	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the correct one.
+	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the
+	 *         correct one.
 	 */
 	protected boolean isMaskManagedAnnotation(Object object) {
 		// check the notifier is an annotation
 		if ((object instanceof EAnnotation)) {
 
-			// notifier is the eannotation. Check this is the annotation in charge of the property label display
-			if (VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation) object).getSource())) {
+			// notifier is the eannotation. Check this is the annotation in charge of the property
+			// label display
+			if (VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
+					.equals(((EAnnotation) object).getSource())) {
 				return true;
 			}
 		}
@@ -167,13 +174,15 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * Returns <code>true</code> if the the annotation in charge of the mask managed label is removed from the given object which should be a View.
+	 * Returns <code>true</code> if the the annotation in charge of the mask managed label is
+	 * removed from the given object which should be a View.
 	 * 
 	 * @param object
 	 *            the object to be checked
 	 * @param notification
 	 *            the notification passed to the policy (which is a listener)
-	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the correct one.
+	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the
+	 *         correct one.
 	 */
 	protected boolean isRemovedMaskManagedLabelAnnotation(Object object, Notification notification) {
 		// object is a model element, that means it has EAnnotations
@@ -186,7 +195,8 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				// this is an annotation which is returned
 				if (oldValue instanceof EAnnotation) {
 					// returns true if the annotation has the correct source
-					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation) oldValue).getSource());
+					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
+							.equals(((EAnnotation) oldValue).getSource());
 				}
 			}
 		}
@@ -198,7 +208,8 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritedDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		// change the label of the figure managed by the host edit part (managed by the parent edit part in general...)
+		// change the label of the figure managed by the host edit part (managed by the parent edit
+		// part in general...)
 		// it must be changed only if:
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
@@ -266,7 +277,8 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
 				refreshDisplay();
 				break;
-			// if it is set, remove the old one and adds the new one. this is the method use when the type is set or removed...
+			// if it is set, remove the old one and adds the new one. this is the method use when
+			// the type is set or removed...
 			case Notification.SET:
 				if (notification.getNewValue() != null) {
 					getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
@@ -330,7 +342,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	public void setDefaultDisplayValue() {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		if (editingDomain != null) {
-			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement) getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+			editingDomain.getCommandStack().execute(
+					new RemoveEAnnotationCommand(editingDomain, (EModelElement) getHost().getModel(),
+							VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
 		}
 
 	}
@@ -341,7 +355,10 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	public void updateDisplayValue(int newValue) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		if (editingDomain != null) {
-			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement) getHost().getModel(), newValue));
+			editingDomain.getCommandStack()
+					.execute(
+							new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement) getHost().getModel(),
+									newValue));
 		}
 	}
 

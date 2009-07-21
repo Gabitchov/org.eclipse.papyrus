@@ -77,7 +77,8 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 	 * @param point
 	 *            the location of the future association node
 	 */
-	public DependencyDiamonViewCreateCommand(TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, SemanticAdapter semanticAdapter) {
+	public DependencyDiamonViewCreateCommand(TransactionalEditingDomain domain, View container, EditPartViewer viewer,
+			PreferencesHint preferencesHint, Point point, SemanticAdapter semanticAdapter) {
 		super(domain, "AssociationClassViewCreateCommand", null); //$NON-NLS-1$
 		this.containerView = container;
 		this.viewer = viewer;
@@ -100,7 +101,8 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 		// ((IHintedType) UMLElementTypes.Dependency_2014)
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createDependency_2014(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
+		this.node = viewProvider.createDependency_2014(((EObject) semanticApdater.getAdapter(EObject.class)),
+				this.containerView, -1, true, preferenceHint);
 
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();

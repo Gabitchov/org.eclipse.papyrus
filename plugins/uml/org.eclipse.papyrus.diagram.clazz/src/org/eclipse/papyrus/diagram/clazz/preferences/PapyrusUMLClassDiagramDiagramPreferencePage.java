@@ -18,8 +18,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusPreferencePage;
 import org.eclipse.swt.widgets.Composite;
 
-public class PapyrusUMLClassDiagramDiagramPreferencePage extends
-		AbstractPapyrusPreferencePage {
+public class PapyrusUMLClassDiagramDiagramPreferencePage extends AbstractPapyrusPreferencePage {
 
 	/**
 	 * @generated

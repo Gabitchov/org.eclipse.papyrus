@@ -37,10 +37,10 @@ import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ShortCutDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShortCutDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.DiagramNodeFigure;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -80,11 +80,9 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void addBorderItem(IFigure borderItemContainer,
-			IBorderItemEditPart borderItemEditPart) {
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof DiagramNameEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
-					PositionConstants.SOUTH);
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -97,25 +95,24 @@ AbstractBorderedShapeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ShortCutDiagramItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ShortCutDiagramItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new ShortCutDiagramEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ShortCutDiagramEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children
+		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
+	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 * 
 	 * @generated NOT
 	 */
 	protected IEditorFactoryRegistry createEditorRegistry() {
-		return new EditorFactoryRegistry(
-				org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		return new EditorFactoryRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 
 	/**
@@ -131,15 +128,13 @@ AbstractBorderedShapeEditPart {
 					return new BorderItemSelectionEditPolicy() {
 
 						protected List createSelectionHandles() {
-							MoveHandle mh = new MoveHandle(
-									(GraphicalEditPart) getHost());
+							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
 					};
 				}
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -160,7 +155,8 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove
+	 * <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -201,7 +197,8 @@ AbstractBorderedShapeEditPart {
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return the singleton eINSTANCE. This method can be subclassed to return another registry.
+	 * Get the EditorRegistry used to create editor instances. This default implementation return
+	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 */
@@ -217,63 +214,49 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
-				.getPreferenceStore();
-		if (preferenceStore instanceof IPreferenceStore) {
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		Object result = null;
+
+		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
+				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
+				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			String prefColor = null;
 			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-
-				return FigureUtilities
-						.RGBToInteger(PreferenceConverter
-								.getColor(
-										(IPreferenceStore) preferenceStore,
-										IPapyrusPreferencesConstant.SHORTCUTDIAGRAM_PREF_LINE_COLOR));
-
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFontStyle_FontColor()) {
-
-				return FigureUtilities
-						.RGBToInteger(PreferenceConverter
-								.getColor(
-										(IPreferenceStore) preferenceStore,
-										IPapyrusPreferencesConstant.SHORTCUTDIAGRAM_PREF_FONT_COLOR));
-
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()) {
-
-				return FigureUtilities
-						.RGBToInteger(PreferenceConverter
-								.getColor(
-										(IPreferenceStore) preferenceStore,
-										IPapyrusPreferencesConstant.SHORTCUTDIAGRAM_PREF_FILL_COLOR));
-
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()) {
-				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-						preferenceStore
-								.getString(IPapyrusPreferencesConstant.SHORTCUTDIAGRAM_PREF_GRADIENT_COLOR));
-
-				return new Integer(gradientPreferenceConverter
-						.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
-				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-						preferenceStore
-								.getString(IPapyrusPreferencesConstant.SHORTCUTDIAGRAM_PREF_GRADIENT_COLOR));
-
-				return gradientPreferenceConverter.getGradientData();
+				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
+						PreferenceConstantHelper.COLOR_LINE);
+			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
+						PreferenceConstantHelper.COLOR_FONT);
+			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
+						PreferenceConstantHelper.COLOR_FILL);
+			}
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore,
+					prefColor));
+		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
+				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
+					PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
+					.getString(prefGradient));
+			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		return getStructuralFeatureValue(feature);
-
+		if (result == null) {
+			result = getStructuralFeatureValue(feature);
+		}
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(DiagramNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -296,22 +279,17 @@ AbstractBorderedShapeEditPart {
 		int width = 34;
 		int height = 20;
 		Dimension size = new Dimension(width, height);
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_Y())).intValue();
+		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this,
-				getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	private void refreshIcons() {
-		getPrimaryShape().setIcon(
-				getEditorRegistry().getEditorIcon(
-						(Diagram) resolveSemanticElement()));
+		getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram) resolveSemanticElement()));
 
 	}
 
@@ -352,7 +330,8 @@ AbstractBorderedShapeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set
+	 * for generated figure.
 	 * 
 	 * @param nodeShape
 	 *            instance of generated figure class

@@ -31,8 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class DataTypeAttributeCompartmentCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class DataTypeAttributeCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -45,9 +44,8 @@ public class DataTypeAttributeCompartmentCanonicalEditPolicy extends
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getDataTypeAttributeCompartment_7020SemanticChildren(
-						viewObject).iterator(); it.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater.getDataTypeAttributeCompartment_7020SemanticChildren(viewObject)
+				.iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -80,8 +78,7 @@ public class DataTypeAttributeCompartmentCanonicalEditPolicy extends
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getDataType_OwnedAttribute());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getDataType_OwnedAttribute());
 		}
 		return myFeaturesToSynchronize;
 	}

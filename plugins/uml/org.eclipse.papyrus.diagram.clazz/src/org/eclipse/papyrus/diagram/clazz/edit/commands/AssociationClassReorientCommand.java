@@ -86,9 +86,8 @@ public class AssociationClassReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociationClass_4017(container, getNewSource(),
-						target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociationClass_4017(container, getNewSource(),
+				target);
 	}
 
 	/**
@@ -106,19 +105,16 @@ public class AssociationClassReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociationClass_4017(container, source,
-						getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociationClass_4017(container, source,
+				getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

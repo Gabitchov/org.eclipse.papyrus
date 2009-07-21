@@ -32,8 +32,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ClassOperationCompartmentCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class ClassOperationCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -46,9 +45,8 @@ public class ClassOperationCompartmentCanonicalEditPolicy extends
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getClassOperationCompartment_7012SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater.getClassOperationCompartment_7012SemanticChildren(viewObject).iterator(); it
+				.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -82,10 +80,8 @@ public class ClassOperationCompartmentCanonicalEditPolicy extends
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getClass_OwnedReception());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getClass_OwnedOperation());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedReception());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedOperation());
 		}
 		return myFeaturesToSynchronize;
 	}

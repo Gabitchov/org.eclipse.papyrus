@@ -18,8 +18,11 @@
 «AROUND additions FOR gmfgen::GenDiagram»
 
 	«EXPAND xpt::Common::generatedMemberComment»
-	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String fontConstant, String fontColorConstant)
+	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName)
 	{
+		String fontConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.FONT);
+		String fontColorConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FONT);
+				
 		org.eclipse.gmf.runtime.notation.FontStyle viewFontStyle = (org.eclipse.gmf.runtime.notation.FontStyle) view.getStyle(org.eclipse.gmf.runtime.notation.NotationPackage.Literals.FONT_STYLE);
 		if (viewFontStyle != null) 
 		{
@@ -35,15 +38,21 @@
 	}
 	
 	«EXPAND xpt::Common::generatedMemberComment»
-	private void initForegroundFromPrefs(View view, final IPreferenceStore store, String lineColorConstant)
+	private void initForegroundFromPrefs(View view, final IPreferenceStore store, String elementName)
 	{
+		String lineColorConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE);
 		org.eclipse.swt.graphics.RGB lineRGB = org.eclipse.jface.preference.PreferenceConverter.getColor(store, lineColorConstant);
 		org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(view, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor(), org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities.RGBToInteger(lineRGB));
 	}
 	
 	«EXPAND xpt::Common::generatedMemberComment»
-	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String fillColorConstant, String gradientColorConstant, String gradientPolicyConstant)
+	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName)
 	{
+		String fillColorConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL);
+		String gradientColorConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT);
+		String gradientPolicyConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY);
+	
+	
 		org.eclipse.swt.graphics.RGB fillRGB = org.eclipse.jface.preference.PreferenceConverter.getColor(store, fillColorConstant);
 		org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(view, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getFillStyle_FillColor(), org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities.RGBToInteger(fillRGB));
 		
@@ -72,7 +81,7 @@
 
 «DEFINE specificInitFontFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode-»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initFontStyleFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFontConstant(elementType.displayName.toUpper())», «getPreferenceConstantFileName()».«getPreferenceFontColorConstant(elementType.displayName.toUpper())»);
+		initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
@@ -81,7 +90,7 @@
 
 «DEFINE specificInitFontFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink-»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initFontStyleFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFontConstant(elementType.displayName.toUpper())», «getPreferenceConstantFileName()».«getPreferenceFontColorConstant(elementType.displayName.toUpper())»);
+		initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
@@ -96,19 +105,19 @@
 
 «DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode-»	
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initForegroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»);
+		initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode-»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initForegroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»);
+		initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink-»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initForegroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceLineColorConstant(elementType.displayName.toUpper())»);
+		initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
@@ -125,19 +134,19 @@
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initBackgroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())», «getPreferenceConstantFileName()».«getPreferenceGradientColorConstant(elementType.displayName.toUpper())»,«getPreferenceConstantFileName()».«getPreferenceGradientPolicyConstant(elementType.displayName.toUpper())»);
+		initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initBackgroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())», «getPreferenceConstantFileName()».«getPreferenceGradientColorConstant(elementType.displayName.toUpper())»,«getPreferenceConstantFileName()».«getPreferenceGradientPolicyConstant(elementType.displayName.toUpper())»);
+		initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initBackgroundFromPrefs(«viewVar», «prefStoreVar», «getPreferenceConstantFileName()».«getPreferenceFillColorConstant(elementType.displayName.toUpper())», «getPreferenceConstantFileName()».«getPreferenceGradientColorConstant(elementType.displayName.toUpper())»,«getPreferenceConstantFileName()».«getPreferenceGradientPolicyConstant(elementType.displayName.toUpper())»);
+		initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 

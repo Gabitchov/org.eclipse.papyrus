@@ -26,7 +26,8 @@ import org.eclipse.gmf.internal.common.codegen.TextEmitter;
  */
 public class PapyrusCodegenEmitters extends CodegenEmitters {
 
-	public PapyrusCodegenEmitters(boolean useBaseTemplatesOnly, String templateDirectory, boolean includeDynamicModelTemplates) {
+	public PapyrusCodegenEmitters(boolean useBaseTemplatesOnly, String templateDirectory,
+			boolean includeDynamicModelTemplates) {
 		super(useBaseTemplatesOnly, templateDirectory, includeDynamicModelTemplates);
 	}
 
@@ -36,10 +37,6 @@ public class PapyrusCodegenEmitters extends CodegenEmitters {
 
 	public TextEmitter getLinkPreferencePageEmitter() {
 		return newXpandEmitter("xpt::preferences::LinkPreferencePage::LinkPreferencePage"); //$NON-NLS-1$
-	}
-
-	public TextEmitter getIDiagramPreferenceConstantEmitter() {
-		return newXpandEmitter("xpt::preferences::IDiagramPreferenceConstant::IDiagramPreferenceConstant"); //$NON-NLS-1$
 	}
 
 	public TextEmitter getDiagramPreferencePageEmitter() {

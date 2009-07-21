@@ -84,8 +84,10 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationSourceMultiplicity() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getMultiplicityElement_Lower(), UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
-		CustomMessageFormatParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getMultiplicityElement_Lower(),
+				UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
+		CustomMessageFormatParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE
+				.getAssociation_MemberEnd(), 0);
 		parser.setViewPattern("{0}..{1}");
 		parser.setEditorPattern("{0}..{1}");
 		parser.setEditPattern("{0}..{1}");
@@ -106,8 +108,10 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationTargetMultiplicity() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getMultiplicityElement_Lower(), UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
-		CustomMessageFormatParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 1);
+		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getMultiplicityElement_Lower(),
+				UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
+		CustomMessageFormatParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE
+				.getAssociation_MemberEnd(), 1);
 		parser.setViewPattern("{0}..{1}");
 		parser.setEditorPattern("{0}..{1}");
 		parser.setEditPattern("{0}..{1}");

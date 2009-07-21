@@ -55,9 +55,6 @@ public class PapyrusGenerator extends Generator {
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {
 		super.customRun();
 
-		// Generate IDiagramPreferenceConstant
-		generateIDiagramPreferenceConstant();
-
 		// Generate DiagramPreferencePage
 		generateDiagramPreferencePage();
 
@@ -77,19 +74,19 @@ public class PapyrusGenerator extends Generator {
 	}
 
 	private void generateDiagramPreferencePage() throws InterruptedException, UnexpectedBehaviourException {
-		doGenerateJavaClass(emitters.getDiagramPreferencePageEmitter(), diagram.getPreferencesPackageName(), PapyrusGenConstants.getDiagramPreferencePageJavaClassName(diagram.getEditorGen()
-				.getModelID()), diagram);
+		doGenerateJavaClass(emitters.getDiagramPreferencePageEmitter(), diagram.getPreferencesPackageName(),
+				PapyrusGenConstants.getDiagramPreferencePageJavaClassName(diagram.getEditorGen().getModelID()), diagram);
 	}
 
-	private void generateIDiagramPreferenceConstant() throws InterruptedException, UnexpectedBehaviourException {
-		doGenerateJavaClass(emitters.getIDiagramPreferenceConstantEmitter(), diagram.getPreferencesPackageName(), PapyrusGenConstants.getIDiagramPreferenceConstantJavaClassName(), diagram);
+	private void generateNodePreferencePage(GenNode node, String elementName) throws InterruptedException,
+			UnexpectedBehaviourException {
+		doGenerateJavaClass(emitters.getNodePreferencePageEmitter(), diagram.getPreferencesPackageName(), elementName
+				+ PREFERENCE_PAGE, node);
 	}
 
-	private void generateNodePreferencePage(GenNode node, String elementName) throws InterruptedException, UnexpectedBehaviourException {
-		doGenerateJavaClass(emitters.getNodePreferencePageEmitter(), diagram.getPreferencesPackageName(), elementName + PREFERENCE_PAGE, node);
-	}
-
-	private void generateLinkPreferencePage(GenLink link, String elementName) throws InterruptedException, UnexpectedBehaviourException {
-		doGenerateJavaClass(emitters.getLinkPreferencePageEmitter(), diagram.getPreferencesPackageName(), elementName + PREFERENCE_PAGE, link);
+	private void generateLinkPreferencePage(GenLink link, String elementName) throws InterruptedException,
+			UnexpectedBehaviourException {
+		doGenerateJavaClass(emitters.getLinkPreferencePageEmitter(), diagram.getPreferencesPackageName(), elementName
+				+ PREFERENCE_PAGE, link);
 	}
 }

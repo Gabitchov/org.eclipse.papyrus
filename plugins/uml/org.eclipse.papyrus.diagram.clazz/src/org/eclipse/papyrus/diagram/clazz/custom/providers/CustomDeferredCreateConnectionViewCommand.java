@@ -65,7 +65,8 @@ public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * @param command
 	 *            the command in which we look for the result for the target (may be null)
 	 */
-	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
+	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element,
+			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
 			PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
 		this.command = command;
@@ -92,7 +93,8 @@ public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * @param command
 	 *            the command in which we look for the result for the target (may be null)
 	 */
-	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
+	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint,
+			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
 			PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
 		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
 		this.viewDescriptor = viewDescriptor;
@@ -104,7 +106,8 @@ public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * 
 	 * {@inheritDoc}
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+			throws ExecutionException {
 		Map epRegistry = viewer.getEditPartRegistry();
 		IGraphicalEditPart sourceEP = (IGraphicalEditPart) epRegistry.get(sourceViewAdapter.getAdapter(View.class));
 		IGraphicalEditPart targetEP = null;

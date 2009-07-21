@@ -20,8 +20,7 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 /**
  * @generated
  */
-public class ProfileApplicationPreferencePage extends
-		AbstractPapyrusLinkPreferencePage {
+public class ProfileApplicationPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated
@@ -29,86 +28,6 @@ public class ProfileApplicationPreferencePage extends
 	@Override
 	protected String getBundleId() {
 		return UMLDiagramEditorPlugin.getInstance().ID;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getJumpLinkReversePreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_JUMPLINK_REVERSE;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getJumpLinkStatusPreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_JUMPLINK_STATUS;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getJumpLinkTypePreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_JUMPLINK_TYPE;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getRoutingDistancePolicyPreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_ROUTING_DISTANCE_POLICY;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getRoutingObstructionPolicyPreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_ROUTING_OBSTRUCTION_POLICY;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getRoutingStylePreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_ROUTING_STYLE;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getSmoothnessPreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_SMOOTHNESS;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getFontColorPreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_SMOOTHNESS;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getFontPreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_FONT;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getLineColorPreferenceName() {
-		return IPapyrusPreferencesConstant.PROFILEAPPLICATION_PREF_LINE_COLOR;
 	}
 
 	/**

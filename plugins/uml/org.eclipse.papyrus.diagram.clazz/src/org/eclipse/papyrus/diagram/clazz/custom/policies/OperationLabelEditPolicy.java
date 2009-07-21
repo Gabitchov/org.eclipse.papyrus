@@ -31,7 +31,8 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * Specific edit policy for label displaying stereotypes and their properties for edges representing UML elements.
+ * Specific edit policy for label displaying stereotypes and their properties for edges representing
+ * UML elements.
  */
 public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
@@ -56,14 +57,17 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public int getCurrentDisplayValue() {
-		EAnnotation customeDisplayAnnotation = ((View) getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation customeDisplayAnnotation = ((View) getHost().getModel())
+				.getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
 		if (customeDisplayAnnotation != null) {
-			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(
+					VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
+			int displayValueTemp = store
+					.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
 			if (displayValueTemp != 0) {
 				displayValue = displayValueTemp;
 			}
@@ -127,7 +131,8 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritedDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		// change the label of the figure managed by the host edit part (managed by the parent edit part in general...)
+		// change the label of the figure managed by the host edit part (managed by the parent edit
+		// part in general...)
 		// it must be changed only if:
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
@@ -188,7 +193,8 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
 				refreshDisplay();
 				break;
-			// if it is set, remove the old one and adds the new one. this is the method use when the type is set or removed...
+			// if it is set, remove the old one and adds the new one. this is the method use when
+			// the type is set or removed...
 			case Notification.SET:
 				if (notification.getNewValue() != null) {
 					getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);

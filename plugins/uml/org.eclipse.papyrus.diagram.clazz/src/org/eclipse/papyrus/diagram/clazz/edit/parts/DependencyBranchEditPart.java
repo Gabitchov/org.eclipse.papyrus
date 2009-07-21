@@ -25,8 +25,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 /**
  * @generated
  */
-public class DependencyBranchEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class DependencyBranchEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,8 +44,7 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new DependencyBranchSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DependencyBranchSemanticEditPolicy());
 	}
 
 	/**
@@ -54,13 +52,12 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof DependencyName3EditPart) {
-			((DependencyName3EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getNameLabel());
+			((DependencyName3EditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeDependency3EditPart) {
-			((AppliedStereotypeDependency3EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeDependency3EditPart) childEditPart).setLabel(getPrimaryShape()
+					.getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -102,8 +99,8 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove
+	 * <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */

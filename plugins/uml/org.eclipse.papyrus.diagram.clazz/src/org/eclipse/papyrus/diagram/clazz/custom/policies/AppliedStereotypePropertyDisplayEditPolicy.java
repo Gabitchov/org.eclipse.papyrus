@@ -18,7 +18,8 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AbstractAppliedStereotype
 import org.eclipse.uml2.uml.Property;
 
 /**
- * Specific edit policy for label displaying stereotypes and their properties for edges representing UML elements.
+ * Specific edit policy for label displaying stereotypes and their properties for edges representing
+ * UML elements.
  */
 public class AppliedStereotypePropertyDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
 

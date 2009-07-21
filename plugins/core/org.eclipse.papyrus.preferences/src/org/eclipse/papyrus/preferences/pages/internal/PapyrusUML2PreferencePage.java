@@ -40,7 +40,8 @@ public class PapyrusUML2PreferencePage extends AbstractPapyrusPreferencePage {
 	}
 
 	/**
-	 * Initialize the fields editor of this preference page. This method is call during the initialization of the preference page.
+	 * Initialize the fields editor of this preference page. This method is call during the
+	 * initialization of the preference page.
 	 * 
 	 * @param store
 	 *            the preference store used

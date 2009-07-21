@@ -55,7 +55,8 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlClassDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
+			.getBundledImageDescriptor(UmlClassDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/**
 	 * The location of diagram icon in the plug-in
@@ -105,7 +106,8 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 * 
 	 * @generated NOT
 	 */
-	public UmlClassDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
+	public UmlClassDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException,
+			ServiceException {
 		super();
 		this.diagram = diagram;
 		// ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
@@ -185,8 +187,9 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	}
 
 	/**
-	 * Returns an editing domain id used to retrive an editing domain from the editing domain registry. Clients should override this if they wish to use a shared editing domain for this editor. If
-	 * null is returned then a new editing domain will be created per editor instance.
+	 * Returns an editing domain id used to retrive an editing domain from the editing domain
+	 * registry. Clients should override this if they wish to use a shared editing domain for this
+	 * editor. If null is returned then a new editing domain will be created per editor instance.
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#getEditingDomainID()
 	 * @return
@@ -228,24 +231,26 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-			@Override
-			protected Object getJavaObject(TransferData data) {
-				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-			}
+					@Override
+					protected Object getJavaObject(TransferData data) {
+						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+					}
 
-			@Override
-			protected TransactionalEditingDomain getTransactionalEditingDomain() {
-				return getEditingDomain();
-			}
-		});
+					@Override
+					protected TransactionalEditingDomain getTransactionalEditingDomain() {
+						return getEditingDomain();
+					}
+				});
 
 	}
 
 	/**
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#selectionChanged(org.eclipse.ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#selectionChanged(org.eclipse.ui.IWorkbenchPart,
+	 *      org.eclipse.jface.viewers.ISelection)
 	 * @param part
 	 * @param selection
 	 * 
@@ -264,7 +269,9 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		} else {
 			super.selectionChanged(part, selection);
 		}
-		// from org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart, ISelection)
+		// from
+		// org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart,
+		// ISelection)
 		if (part == this) {
 			rebuildStatusLine();
 		}

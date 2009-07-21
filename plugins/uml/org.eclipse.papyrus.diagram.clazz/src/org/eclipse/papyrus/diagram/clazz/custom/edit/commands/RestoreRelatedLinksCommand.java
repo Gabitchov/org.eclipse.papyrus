@@ -64,8 +64,10 @@ import org.eclipse.uml2.uml.Type;
 // Inspired from EcoreTools source code
 public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 
-	private final static List<Integer> visualIds = Arrays.asList(ClassEditPart.VISUAL_ID, InstanceSpecificationEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, ComponentEditPart.VISUAL_ID,
-			DataTypeEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID, SignalEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID);
+	private final static List<Integer> visualIds = Arrays.asList(ClassEditPart.VISUAL_ID,
+			InstanceSpecificationEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, ComponentEditPart.VISUAL_ID,
+			DataTypeEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID,
+			SignalEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID);
 
 	protected List<?> adapters;
 
@@ -112,15 +114,20 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 				continue;
 			}
 			UMLLinkDescriptor descriptor = (UMLLinkDescriptor) object;
-			if (descriptor.getModelElement() == umlLinkDescriptor.getModelElement() && descriptor.getSource() == umlLinkDescriptor.getSource()
-					&& descriptor.getDestination() == umlLinkDescriptor.getDestination() && descriptor.getVisualID() == umlLinkDescriptor.getVisualID()) {
+			if (descriptor.getModelElement() == umlLinkDescriptor.getModelElement()
+					&& descriptor.getSource() == umlLinkDescriptor.getSource()
+					&& descriptor.getDestination() == umlLinkDescriptor.getDestination()
+					&& descriptor.getVisualID() == umlLinkDescriptor.getVisualID()) {
 				return true;
 			}
 
 			// prevent duplicate association descriptors
-			// detect fake association due to GMF limitations to compute derived attribute "Association.endType"
-			// it seems GMF Node cannot use two structuralFeature for one graphical Node ... (dixit Patrick)
-			if (descriptor.getModelElement() instanceof Association && umlLinkDescriptor.getModelElement() instanceof Association) {
+			// detect fake association due to GMF limitations to compute derived attribute
+			// "Association.endType"
+			// it seems GMF Node cannot use two structuralFeature for one graphical Node ... (dixit
+			// Patrick)
+			if (descriptor.getModelElement() instanceof Association
+					&& umlLinkDescriptor.getModelElement() instanceof Association) {
 				Association assoc1 = (Association) descriptor.getModelElement();
 				Association assoc2 = (Association) umlLinkDescriptor.getModelElement();
 				if (assoc1.getEndTypes().size() > 1 && assoc2.getEndTypes().size() > 1) {
@@ -146,7 +153,8 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * 
 	 * @return linkdescriptors
 	 */
-	protected Collection<? extends UMLLinkDescriptor> collectPartRelatedLinks(View view, Map<EObject, View> domain2NotationMap) {
+	protected Collection<? extends UMLLinkDescriptor> collectPartRelatedLinks(View view,
+			Map<EObject, View> domain2NotationMap) {
 		Collection<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		if (!domain2NotationMap.containsKey(view.getElement())) {
 			// We must prevent duplicate descriptors
@@ -168,7 +176,8 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * @param linkDescriptors
 	 * @param domain2NotationMap
 	 */
-	protected void createRelatedLinks(Collection<? extends UMLLinkDescriptor> linkDescriptors, Map<EObject, View> domain2NotationMap) {
+	protected void createRelatedLinks(Collection<? extends UMLLinkDescriptor> linkDescriptors,
+			Map<EObject, View> domain2NotationMap) {
 		// map diagram
 		mapModel(diagram, domain2NotationMap);
 
@@ -180,8 +189,9 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
-			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(nextLinkDescriptor.getSemanticAdapter(), null, ViewUtil.APPEND,
-					false, host.getDiagramPreferencesHint());
+			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
+					nextLinkDescriptor.getSemanticAdapter(), null, ViewUtil.APPEND, false, host
+							.getDiagramPreferencesHint());
 			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(descriptor);
 			ccr.setType(RequestConstants.REQ_CONNECTION_START);
 			ccr.setSourceEditPart(sourceEditPart);
@@ -198,7 +208,8 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 *      org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -243,9 +254,11 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * 
 	 * @return linkDescritors
 	 */
-	protected Collection<? extends UMLLinkDescriptor> getLinkDescriptorToProcess(View notationView, Map<EObject, View> domain2NotationMap) {
+	protected Collection<? extends UMLLinkDescriptor> getLinkDescriptorToProcess(View notationView,
+			Map<EObject, View> domain2NotationMap) {
 		// Collect all related link from semantic model
-		Collection<? extends UMLLinkDescriptor> linkDescriptors = collectPartRelatedLinks(notationView, domain2NotationMap);
+		Collection<? extends UMLLinkDescriptor> linkDescriptors = collectPartRelatedLinks(notationView,
+				domain2NotationMap);
 
 		// Collect all related link from graphical model
 		Collection<Edge> existingLinks = new LinkedList<Edge>();
@@ -276,9 +289,12 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			EObject diagramLinkObject = nextDiagramLink.getElement();
 			EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-			for (Iterator<? extends UMLLinkDescriptor> LinkDescriptorsIterator = linkDescriptors.iterator(); LinkDescriptorsIterator.hasNext();) {
+			for (Iterator<? extends UMLLinkDescriptor> LinkDescriptorsIterator = linkDescriptors.iterator(); LinkDescriptorsIterator
+					.hasNext();) {
 				UMLLinkDescriptor nextLinkDescriptor = LinkDescriptorsIterator.next();
-				if (diagramLinkObject == nextLinkDescriptor.getModelElement() && diagramLinkSrc == nextLinkDescriptor.getSource() && diagramLinkDst == nextLinkDescriptor.getDestination()
+				if (diagramLinkObject == nextLinkDescriptor.getModelElement()
+						&& diagramLinkSrc == nextLinkDescriptor.getSource()
+						&& diagramLinkDst == nextLinkDescriptor.getDestination()
 						&& diagramLinkVisualID == nextLinkDescriptor.getVisualID()) {
 					linksIterator.remove();
 					LinkDescriptorsIterator.remove();
@@ -345,7 +361,8 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
 
 		// Create related links
-		Collection<? extends UMLLinkDescriptor> linkDescriptors = getLinkDescriptorToProcess(notationView, domain2NotationMap);
+		Collection<? extends UMLLinkDescriptor> linkDescriptors = getLinkDescriptorToProcess(notationView,
+				domain2NotationMap);
 		createRelatedLinks(linkDescriptors, domain2NotationMap);
 	}
 
@@ -360,7 +377,9 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			if (view.isVisible()) {
 				continue;
 			}
-			SetPropertyCommand cmd = new SetPropertyCommand(host.getEditingDomain(), "Restore related linksCommand show view", new EObjectAdapter(view), Properties.ID_ISVISIBLE, Boolean.TRUE);
+			SetPropertyCommand cmd = new SetPropertyCommand(host.getEditingDomain(),
+					"Restore related linksCommand show view", new EObjectAdapter(view), Properties.ID_ISVISIBLE,
+					Boolean.TRUE);
 			if (cmd != null && cmd.canExecute()) {
 				CommandUtil.executeCommand(new ICommandProxy(cmd), host);
 			}

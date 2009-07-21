@@ -38,6 +38,7 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -46,8 +47,7 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public TemplateParameterCreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public TemplateParameterCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -56,8 +56,7 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static TemplateParameterCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
+	public static TemplateParameterCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new TemplateParameterCreateCommand(req, eObject);
 	}
 
@@ -70,12 +69,12 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -96,10 +95,8 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		TemplateParameter newElement = UMLFactory.eINSTANCE
-				.createTemplateParameter();
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		TemplateParameter newElement = UMLFactory.eINSTANCE.createTemplateParameter();
 
 		TemplateSignature owner = (TemplateSignature) getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
@@ -115,18 +112,13 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(TemplateParameter newElement,
-			IProgressMonitor monitor, IAdaptable info)
+	protected void doConfigure(TemplateParameter newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}

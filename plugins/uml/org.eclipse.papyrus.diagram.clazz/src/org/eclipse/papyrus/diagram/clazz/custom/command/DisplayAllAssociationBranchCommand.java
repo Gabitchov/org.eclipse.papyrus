@@ -42,7 +42,8 @@ public class DisplayAllAssociationBranchCommand implements IObjectActionDelegate
 	 */
 	public void run(IAction action) {
 		MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(selectedElement.getEditingDomain());
-		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(multiAssociationHelper.displayAllBranchesCommand(selectedElement));
+		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(
+				multiAssociationHelper.displayAllBranchesCommand(selectedElement));
 	}
 
 	/**

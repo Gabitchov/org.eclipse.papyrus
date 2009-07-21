@@ -21,8 +21,8 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy
-		extends UMLBaseItemSemanticEditPolicy {
+public class RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

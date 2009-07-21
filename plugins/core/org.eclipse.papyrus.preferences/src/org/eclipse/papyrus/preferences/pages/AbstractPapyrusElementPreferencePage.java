@@ -15,6 +15,7 @@ package org.eclipse.papyrus.preferences.pages;
 import org.eclipse.gmf.runtime.diagram.ui.properties.internal.l10n.DiagramUIPropertiesImages;
 import org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor;
 import org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -27,18 +28,11 @@ import org.eclipse.swt.widgets.Group;
  * </p>
  * <ul>
  * The following editor fields are initialized :
- * <li>{@link org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor} <em>ColorFieldEditor</em></li>
- * <li>{@link org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor} <em>FontFieldEditor</em></li>
+ * <li>{@link org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor}
+ * <em>ColorFieldEditor</em></li>
+ * <li>{@link org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor}
+ * <em>FontFieldEditor</em></li>
  * </ul>
- * 
- * <p>
- * Sub-classes have to implement the following method:
- * <ul>
- * <li><code>getFontPreferenceName()</code> to get the preference name (identifier) to use for the font</li>
- * <li><code>getFontColorPreferenceName()</code> to get the preference name (identifier) to use for the font color</li>
- * <li><code>getLineColorPreferenceName()</code> to get the preference name (identifier) to use for the line color</li>
- * </ul>
- * </p>
  * 
  * @author tlandre
  */
@@ -65,11 +59,13 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 		toolbar.setLayout(new GridLayout(2, false));
 
 		Composite fontColorEditorCompo = getEncapsulatedCompo(toolbar);
-		fontColorEditor = new ColorFieldEditor(getFontColorPreferenceName(), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
+		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT),
+				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
 		addEditorFields(fontColorEditor);
 
 		Composite lineColorEditorCompo = getEncapsulatedCompo(toolbar);
-		lineColorEditor = new ColorFieldEditor(getLineColorPreferenceName(), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
+		lineColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_LINE),
+				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
 		addEditorFields(lineColorEditor);
 
 	}
@@ -84,7 +80,8 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 		Group fontGroup = new Group(colorsAndFontsGroup, SWT.SHADOW_NONE);
 		fontGroup.setLayout(new GridLayout(1, true));
 		fontGroup.setText(FONT_GROUPBOX_LABEL);
-		fontFieldEditor = new FontFieldEditor(getFontPreferenceName(), fontGroup);
+		fontFieldEditor = new FontFieldEditor(PreferenceConstantHelper.getElementConstant(getTitle(),
+				PreferenceConstantHelper.FONT), fontGroup);
 		addEditorFields(fontFieldEditor);
 	}
 
@@ -101,29 +98,20 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 
 	}
 
-	/**
-	 * Get the preference name (identifier) to use for the font
-	 * 
-	 * @return the name of the preference to use
-	 */
-	protected abstract String getFontPreferenceName();
-
-	/**
-	 * Get the preference name (identifier) to use for the font color
-	 * 
-	 * @return the name of the preference to use
-	 */
-	protected abstract String getFontColorPreferenceName();
-
-	/**
-	 * Get the preference name (identifier) to use for the line color
-	 * 
-	 * @return the name of the preference to use
-	 */
-	protected abstract String getLineColorPreferenceName();
-
 	protected Group getToolbar() {
 		return toolbar;
+	}
+
+	/**
+	 * Get the specified preference type associated with this preference page.
+	 * 
+	 * @param preferenceType
+	 *            an int representing the preference type to retrieve. It must be a value defined in
+	 *            {@link PreferenceConstantHelper}
+	 * @return the preference constant used to store the given prefence type.
+	 */
+	protected String getPreferenceConstant(int preferenceType) {
+		return PreferenceConstantHelper.getElementConstant(getTitle(), preferenceType);
 	}
 
 }

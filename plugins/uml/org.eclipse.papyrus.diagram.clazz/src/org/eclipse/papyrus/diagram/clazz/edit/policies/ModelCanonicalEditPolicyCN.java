@@ -44,8 +44,7 @@ public class ModelCanonicalEditPolicyCN extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getModel_3024SemanticChildren(
-				viewObject).iterator(); it.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater.getModel_3024SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -78,8 +77,7 @@ public class ModelCanonicalEditPolicyCN extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getTemplateableElement_OwnedTemplateSignature());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature());
 		}
 		return myFeaturesToSynchronize;
 	}

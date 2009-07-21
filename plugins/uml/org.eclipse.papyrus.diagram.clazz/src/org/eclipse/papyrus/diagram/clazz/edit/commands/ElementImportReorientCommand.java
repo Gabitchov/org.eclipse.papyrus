@@ -79,8 +79,7 @@ public class ElementImportReorientCommand extends EditElementCommand {
 			return false;
 		}
 		PackageableElement target = getLink().getImportedElement();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistElementImport_4009(getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistElementImport_4009(getNewSource(), target);
 	}
 
 	/**
@@ -94,18 +93,15 @@ public class ElementImportReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Namespace source = (Namespace) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistElementImport_4009(source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistElementImport_4009(source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

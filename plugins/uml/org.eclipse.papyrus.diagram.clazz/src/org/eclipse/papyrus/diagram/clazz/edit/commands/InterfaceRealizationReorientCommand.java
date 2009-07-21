@@ -48,8 +48,7 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public InterfaceRealizationReorientCommand(
-			ReorientRelationshipRequest request) {
+	public InterfaceRealizationReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -80,8 +79,7 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interface target = getLink().getContract();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistInterfaceRealization_4003(getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInterfaceRealization_4003(getNewSource(), target);
 	}
 
 	/**
@@ -94,20 +92,16 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 		if (!(getLink().eContainer() instanceof BehavioredClassifier)) {
 			return false;
 		}
-		BehavioredClassifier source = (BehavioredClassifier) getLink()
-				.eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistInterfaceRealization_4003(source, getNewTarget());
+		BehavioredClassifier source = (BehavioredClassifier) getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInterfaceRealization_4003(source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

@@ -49,8 +49,7 @@ public class UMLDiagramUpdateCommand implements IHandler {
 	 * @generated
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ISelection selection = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getSelectionService()
+		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
 				.getSelection();
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
@@ -58,15 +57,12 @@ public class UMLDiagramUpdateCommand implements IHandler {
 				return null;
 			}
 			if (structuredSelection.getFirstElement() instanceof EditPart
-					&& ((EditPart) structuredSelection.getFirstElement())
-							.getModel() instanceof View) {
-				EObject modelElement = ((View) ((EditPart) structuredSelection
-						.getFirstElement()).getModel()).getElement();
-				List editPolicies = CanonicalEditPolicy
-						.getRegisteredEditPolicies(modelElement);
+					&& ((EditPart) structuredSelection.getFirstElement()).getModel() instanceof View) {
+				EObject modelElement = ((View) ((EditPart) structuredSelection.getFirstElement()).getModel())
+						.getElement();
+				List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(modelElement);
 				for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-					CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
-							.next();
+					CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
 					nextEditPolicy.refresh();
 				}
 

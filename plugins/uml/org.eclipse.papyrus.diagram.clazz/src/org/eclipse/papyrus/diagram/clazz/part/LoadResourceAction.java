@@ -26,6 +26,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * @generated
  */
 public class LoadResourceAction extends AbstractHandler {
+
 	/**
 	 * @generated
 	 */
@@ -33,8 +34,7 @@ public class LoadResourceAction extends AbstractHandler {
 		IEditorPart diagramEditor = HandlerUtil.getActiveEditorChecked(event);
 		Shell shell = diagramEditor.getEditorSite().getShell();
 		assert diagramEditor instanceof DiagramEditor;
-		TransactionalEditingDomain editingDomain = ((DiagramEditor) diagramEditor)
-				.getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((DiagramEditor) diagramEditor).getEditingDomain();
 		org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog loadResourceDialog = new org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog(
 				shell, editingDomain);
 		loadResourceDialog.open();

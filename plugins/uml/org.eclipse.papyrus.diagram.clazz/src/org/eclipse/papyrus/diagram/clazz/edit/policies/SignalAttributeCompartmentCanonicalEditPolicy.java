@@ -31,8 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class SignalAttributeCompartmentCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class SignalAttributeCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -45,9 +44,8 @@ public class SignalAttributeCompartmentCanonicalEditPolicy extends
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getSignalAttributeCompartment_7005SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater.getSignalAttributeCompartment_7005SemanticChildren(viewObject).iterator(); it
+				.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
@@ -80,8 +78,7 @@ public class SignalAttributeCompartmentCanonicalEditPolicy extends
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getSignal_OwnedAttribute());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getSignal_OwnedAttribute());
 		}
 		return myFeaturesToSynchronize;
 	}

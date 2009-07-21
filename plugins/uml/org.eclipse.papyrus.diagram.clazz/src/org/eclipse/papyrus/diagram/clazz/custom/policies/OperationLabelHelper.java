@@ -51,12 +51,14 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	 * 
 	 * @param editPart
 	 *            the edit part that controls the {@link Property} to be displayed
-	 * @return the label corresponding to the specific display of the property ("default" display given by preferences or specific display given by eAnnotation).
+	 * @return the label corresponding to the specific display of the property ("default" display
+	 *         given by preferences or specific display given by eAnnotation).
 	 */
 	protected static String elementLabel(GraphicalEditPart editPart) {
 		int displayValue = ICustomAppearence.DEFAULT_UML_OPERATION;
 
-		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart
+				.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if (policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
 		}
@@ -134,9 +136,11 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 		// computes the icon to be displayed
 		final Collection<Image> imageToDisplay = stereotypeIconsToDisplay(editPart);
 
-		// for each element in the list of stereotype icon, adds it to the icons list of the wrapping label
+		// for each element in the list of stereotype icon, adds it to the icons list of the
+		// wrapping label
 		// problem (RS - CEA LIST): more icons were displayed before refresh: has to clean
-		// problem 2 (RS - CEA LIST): no method to know how many icons were displayed => should fix a max number ?!
+		// problem 2 (RS - CEA LIST): no method to know how many icons were displayed => should fix
+		// a max number ?!
 		// solution: set all images to null, and then add the correct icons
 		int i = 0;
 		while (((WrappingLabel) figure).getIcon(i) != null) {

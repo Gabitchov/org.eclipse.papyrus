@@ -29,7 +29,8 @@ public class PapyrusGenConstants {
 	public final static String DiagramPreferencePageCategory = "org.eclipse.papyrus.preferences.diagrams";
 
 	/**
-	 * Get the name of the papyrus preference constant class used to defined the preference constants of a diagram
+	 * Get the name of the papyrus preference constant class used to defined the preference
+	 * constants of a diagram
 	 * 
 	 * @return the name of the class
 	 */

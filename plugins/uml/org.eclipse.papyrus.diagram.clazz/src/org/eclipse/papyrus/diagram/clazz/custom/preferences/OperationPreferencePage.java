@@ -62,7 +62,8 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		 * {@inheritDoc}
 		 */
 		public void widgetSelected(SelectionEvent e) {
-			// add or remove the flag to the display Operation value (invert the current value)
+			// add or remove the flag to the display Operation value (invert the
+			// current value)
 			operationValue = operationValue ^ style;
 
 			// refresh buttons at the end
@@ -78,14 +79,16 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 		// default for Operation label display
-		store.setDefault(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE, ICustomAppearence.DEFAULT_UML_OPERATION);
+		store.setDefault(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE,
+				ICustomAppearence.DEFAULT_UML_OPERATION);
 	}
 
 	/** buttons to select the display kind for the label of the {@link Operation} */
 	protected Button displVisibility, displName, displParamDirection, displParameterType, displModifiers;
 
 	/** current operation display style */
-	private int operationValue = getPreferenceStore().getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
+	private int operationValue = getPreferenceStore().getInt(
+			IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
 
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
@@ -131,7 +134,8 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		data.top = new FormAttachment(0, 0);
 		displName.setLayoutData(data);
 
-		displParamDirection = createCheckButton(group, "Parameter Direction", ICustomAppearence.DISP_PARAMETER_DIRECTION);
+		displParamDirection = createCheckButton(group, "Parameter Direction",
+				ICustomAppearence.DISP_PARAMETER_DIRECTION);
 		data = new FormData();
 		data.left = new FormAttachment(displName, 85);
 		data.top = new FormAttachment(0, 0);
@@ -173,34 +177,11 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected String getFontColorPreferenceName() {
-		return IPapyrusOperationPreferencesConstant.OPERATION_PREF_FONT_COLOR;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected String getFontPreferenceName() {
-		return IPapyrusOperationPreferencesConstant.OPERATION_PREF_FONT;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected String getLineColorPreferenceName() {
-		return IPapyrusOperationPreferencesConstant.OPERATION_PREF_LINE_COLOR;
-	}
-
-	/**
 	 * Load the default preferences of the fields contained in this page
 	 */
 	protected void loadDefaultPreferences() {
-		operationValue = getPreferenceStore().getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
+		operationValue = getPreferenceStore().getInt(
+				IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
 		refreshButtons();
 	}
 
@@ -227,16 +208,21 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	 */
 	protected void refreshButtons() {
 		// IPreferenceStore store = getPreferenceStore();
-		// int displayValue = store.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
+		// int displayValue =
+		// store.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
 		// if (proper == 0) {
 		// displayValue = ICustomAppearence.DEFAULT_UML_OPERATION;
 		// }
 
-		displVisibility.setSelection((operationValue & ICustomAppearence.DISP_VISIBILITY) == ICustomAppearence.DISP_VISIBILITY);
+		displVisibility
+				.setSelection((operationValue & ICustomAppearence.DISP_VISIBILITY) == ICustomAppearence.DISP_VISIBILITY);
 		displName.setSelection((operationValue & ICustomAppearence.DISP_NAME) == ICustomAppearence.DISP_NAME);
-		displParamDirection.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_DIRECTION) == ICustomAppearence.DISP_PARAMETER_DIRECTION);
-		displParameterType.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_TYPE) == ICustomAppearence.DISP_PARAMETER_TYPE);
-		displModifiers.setSelection((operationValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
+		displParamDirection
+				.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_DIRECTION) == ICustomAppearence.DISP_PARAMETER_DIRECTION);
+		displParameterType
+				.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_TYPE) == ICustomAppearence.DISP_PARAMETER_TYPE);
+		displModifiers
+				.setSelection((operationValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
 	}
 
 	/**
@@ -244,7 +230,8 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	 */
 	protected void storePreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		// checks the stored value and the actual one, so does not refresh diagram if it is not needed
+		// checks the stored value and the actual one, so does not refresh
+		// diagram if it is not needed
 		if (operationValue != store.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE)) {
 			store.setValue(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE, operationValue);
 		}

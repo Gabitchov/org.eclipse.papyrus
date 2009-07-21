@@ -82,15 +82,13 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 		if (getLink().getGeneralizations().size() != 1) {
 			return false;
 		}
-		Generalization target = (Generalization) getLink().getGeneralizations()
-				.get(0);
+		Generalization target = (Generalization) getLink().getGeneralizations().get(0);
 		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistGeneralizationSet_4020(container, getNewSource(),
-						target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistGeneralizationSet_4020(container, getNewSource(),
+				target);
 	}
 
 	/**
@@ -103,25 +101,21 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 		if (getLink().getGeneralizations().size() != 1) {
 			return false;
 		}
-		Generalization source = (Generalization) getLink().getGeneralizations()
-				.get(0);
+		Generalization source = (Generalization) getLink().getGeneralizations().get(0);
 		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistGeneralizationSet_4020(container, source,
-						getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistGeneralizationSet_4020(container, source,
+				getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

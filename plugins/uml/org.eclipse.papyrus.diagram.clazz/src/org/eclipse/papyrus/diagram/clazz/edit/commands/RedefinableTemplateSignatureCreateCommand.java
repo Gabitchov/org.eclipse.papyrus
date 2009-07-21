@@ -32,13 +32,13 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class RedefinableTemplateSignatureCreateCommand extends
-		EditElementCommand {
+public class RedefinableTemplateSignatureCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -47,8 +47,7 @@ public class RedefinableTemplateSignatureCreateCommand extends
 	/**
 	 * @generated
 	 */
-	public RedefinableTemplateSignatureCreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public RedefinableTemplateSignatureCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,8 +56,7 @@ public class RedefinableTemplateSignatureCreateCommand extends
 	/**
 	 * @generated
 	 */
-	public static RedefinableTemplateSignatureCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
+	public static RedefinableTemplateSignatureCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new RedefinableTemplateSignatureCreateCommand(req, eObject);
 	}
 
@@ -71,12 +69,12 @@ public class RedefinableTemplateSignatureCreateCommand extends
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -101,10 +99,8 @@ public class RedefinableTemplateSignatureCreateCommand extends
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		RedefinableTemplateSignature newElement = UMLFactory.eINSTANCE
-				.createRedefinableTemplateSignature();
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		RedefinableTemplateSignature newElement = UMLFactory.eINSTANCE.createRedefinableTemplateSignature();
 
 		TemplateableElement owner = (TemplateableElement) getElementToEdit();
 		owner.setOwnedTemplateSignature(newElement);
@@ -118,18 +114,13 @@ public class RedefinableTemplateSignatureCreateCommand extends
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(RedefinableTemplateSignature newElement,
-			IProgressMonitor monitor, IAdaptable info)
+	protected void doConfigure(RedefinableTemplateSignature newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}

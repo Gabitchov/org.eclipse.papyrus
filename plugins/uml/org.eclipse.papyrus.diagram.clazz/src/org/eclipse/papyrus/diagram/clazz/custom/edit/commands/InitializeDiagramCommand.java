@@ -81,9 +81,11 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 		createdViews.addAll(populateSemanticNodes());
 
 		if (createdViews.size() > 0) {
-			RestoreRelatedLinksCommand restoreRelatedLinksCommand = new RestoreRelatedLinksCommand(((DiagramEditPart) getHost()), createdViews);
+			RestoreRelatedLinksCommand restoreRelatedLinksCommand = new RestoreRelatedLinksCommand(
+					((DiagramEditPart) getHost()), createdViews);
 			CommandUtil.executeCommand(new ICommandProxy(restoreRelatedLinksCommand), host());
-			// DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
+			// DeferredLayoutCommand layoutCmd = new
+			// DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			// CommandUtils.executeCommand(new ICommandProxy(layoutCmd), host());
 		}
 
@@ -100,7 +102,8 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	}
 
 	/**
-	 * Forwards the supplied request to its source if the target is <tt>null</tt>; otherwise it is forwarded to the target. Forwards the supplied request to the editpart's <code>host</code>.
+	 * Forwards the supplied request to its source if the target is <tt>null</tt>; otherwise it is
+	 * forwarded to the target. Forwards the supplied request to the editpart's <code>host</code>.
 	 * 
 	 * @param request
 	 *            a <code>CreareConnecgtorViewRequest</code>
@@ -148,7 +151,8 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	}
 
 	/**
-	 * Return a create view request. The request's location is set to {@link ICanonicalShapeCompartmentLayout#UNDEFINED}.
+	 * Return a create view request. The request's location is set to
+	 * {@link ICanonicalShapeCompartmentLayout#UNDEFINED}.
 	 * 
 	 * @param descriptors
 	 *            a {@link CreateViewRequest.ViewDescriptor} list.
@@ -176,7 +180,8 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	}
 
 	/**
-	 * Convenience method to create a view descriptor. Will call {@link #getViewDescriptor(IAdaptable, Class, String, int)}
+	 * Convenience method to create a view descriptor. Will call
+	 * {@link #getViewDescriptor(IAdaptable, Class, String, int)}
 	 * 
 	 * @param element
 	 *            semantic element.
@@ -186,7 +191,8 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 		//
 		// create the view descritor
 		// String factoryHint = getDefaultFactoryHint();
-		IAdaptable elementAdapter = new EObjectAdapter(element);// CanonicalElementAdapter(element, factoryHint);
+		IAdaptable elementAdapter = new EObjectAdapter(element);// CanonicalElementAdapter(element,
+																// factoryHint);
 
 		ViewDescriptor descriptor = getViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND);
 		return descriptor;

@@ -116,11 +116,9 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -170,16 +168,14 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		return AssociationHelper.reconnect(AssociationHelper.source, getLink(),
-				getNewSource());
+		return AssociationHelper.reconnect(AssociationHelper.source, getLink(), getNewSource());
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		return AssociationHelper.reconnect(AssociationHelper.target, getLink(),
-				getNewTarget());
+		return AssociationHelper.reconnect(AssociationHelper.target, getLink(), getNewTarget());
 
 	}
 }

@@ -35,17 +35,21 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
 /**
  * An abstract implementation of a Preference page.
  * 
- * This preference page allows clients to define preference page in the preference of Eclipse, and in the properties of a project in the workspace.
+ * This preference page allows clients to define preference page in the preference of Eclipse, and
+ * in the properties of a project in the workspace.
  * <p>
  * Clients must implement :
  * <ul>
- * <li><code>getBundleId()</code> method in order to define the preference scope (Project or Instance) of the preference page.</li>
- * <li><code>createPageContents()</code> method to populate the preference page with the different field editor. </br>Each field added has to be declared through the
+ * <li><code>getBundleId()</code> method in order to define the preference scope (Project or
+ * Instance) of the preference page.</li>
+ * <li><code>createPageContents()</code> method to populate the preference page with the different
+ * field editor. </br>Each field added has to be declared through the
  * <code>addEditorFields(FieldEditor fe)</code> method</li>
  * </ul>
  * </p>
  */
-public abstract class AbstractPapyrusPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, IWorkbenchPropertyPage {
+public abstract class AbstractPapyrusPreferencePage extends PreferencePage implements IWorkbenchPreferencePage,
+		IWorkbenchPropertyPage {
 
 	private IProject project;
 
@@ -92,7 +96,8 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	}
 
 	/**
-	 * Create the Papyrus preference page and inits the different fields editor contained in the page.
+	 * Create the Papyrus preference page and inits the different fields editor contained in the
+	 * page.
 	 * <p>
 	 * This method shouldn't be overriden by sub-classes
 	 * </p> {@inheritDoc}
@@ -114,7 +119,8 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	/**
 	 * Populate the preference page with the different field editor.
 	 * <p>
-	 * Each field added has to be declared through the <code>addEditorFields(FieldEditor fe)</code> method
+	 * Each field added has to be declared through the <code>addEditorFields(FieldEditor fe)</code>
+	 * method
 	 * </p>
 	 * 
 	 * @param parent

@@ -39,6 +39,7 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -47,8 +48,7 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public AssociationClassCreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public AssociationClassCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,8 +57,7 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static AssociationClassCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
+	public static AssociationClassCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new AssociationClassCreateCommand(req, eObject);
 	}
 
@@ -80,18 +79,13 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(AssociationClass newElement,
-			IProgressMonitor monitor, IAdaptable info)
+	protected void doConfigure(AssociationClass newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
@@ -100,10 +94,8 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated NOT
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		AssociationClass newElement = UMLFactory.eINSTANCE
-				.createAssociationClass();
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		AssociationClass newElement = UMLFactory.eINSTANCE.createAssociationClass();
 
 		Package owner = (Package) getElementToEdit();
 		owner.getPackagedElements().add(newElement);
@@ -123,8 +115,7 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}

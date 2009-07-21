@@ -22,18 +22,24 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
- * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle <em>Routing Style</em>} of a connection view with the properties contained in a preference store
+ * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle <em>Routing Style</em>} of a
+ * connection view with the properties contained in a preference store
  * 
  * <p>
  * The following properties can be initialized :
  * <ul>
  * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getRouting <em>Routing</em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getSmoothness <em>Smoothness</em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isAvoidObstructions <em>Avoid Obstructions</em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isClosestDistance <em>Closest Distance</em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkStatus <em>Jump Link Status</em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkType <em>Jump Link Type</em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isJumpLinksReverse <em>Jump Links Reverse</em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isAvoidObstructions <em>Avoid
+ * Obstructions</em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isClosestDistance <em>Closest Distance
+ * </em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkStatus <em>Jump Link Status
+ * </em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkType <em>Jump Link Type</em>}
+ * </li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isJumpLinksReverse <em>Jump Links
+ * Reverse</em>}</li>
  * </ul>
  * </p>
  * 
@@ -60,7 +66,8 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	}
 
 	/**
-	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#getRouting <em>Routing</em>}
+	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#getRouting
+	 * <em>Routing</em>}
 	 * 
 	 * @param preferenceRoutingName
 	 *            the name of the preference where is stored the value of the Routing
@@ -75,7 +82,8 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	}
 
 	/**
-	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#isAvoidObstructions <em>Avoid Obstructions</em>}
+	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#isAvoidObstructions
+	 * <em>Avoid Obstructions</em>}
 	 * 
 	 * @param preferenceFontName
 	 *            the name of the preference where is stored the value.
@@ -85,7 +93,8 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	}
 
 	/**
-	 * Initialize {@link org.eclipse.gmf.runtime.notation.RoutingStyle#isClosestDistance <em>Closest Distance</em>}
+	 * Initialize {@link org.eclipse.gmf.runtime.notation.RoutingStyle#isClosestDistance
+	 * <em>Closest Distance</em>}
 	 * 
 	 * @param preferenceClosestDistanceName
 	 *            the name of the preference where is stored the value of the closest distance
@@ -95,7 +104,8 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	}
 
 	/**
-	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#isJumpLinksReverse <em>Jump Links Reverse</em>}
+	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#isJumpLinksReverse
+	 * <em>Jump Links Reverse</em>}
 	 * 
 	 * @param preferenceJumpLinkReverseName
 	 *            the name of the preference where is stored the value of the jumplink reverse
@@ -105,7 +115,8 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	}
 
 	/**
-	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkStatus <em>Jump Link Status</em>}
+	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkStatus
+	 * <em>Jump Link Status</em>}
 	 * 
 	 * @param preferenceJumpLinkStatusName
 	 *            the name of the preference where is stored the value of the jumplink status
@@ -118,7 +129,8 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	}
 
 	/**
-	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkType <em>Jump Link Type</em>}
+	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkType
+	 * <em>Jump Link Type</em>}
 	 * 
 	 * @param preferenceJumpLinkTypeName
 	 *            the name of the preference where is stored the value of the jumplink type
@@ -131,7 +143,8 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	}
 
 	/**
-	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#getSmoothness <em>Smoothness</em>}
+	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#getSmoothness
+	 * <em>Smoothness</em>}
 	 * 
 	 * @param preferenceSmoothnessName
 	 *            the name of the preference where is stored the value of the Smoothness

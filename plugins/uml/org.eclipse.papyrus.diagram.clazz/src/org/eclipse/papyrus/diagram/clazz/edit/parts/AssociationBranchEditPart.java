@@ -31,8 +31,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * @generated
  */
-public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class AssociationBranchEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -59,12 +58,10 @@ public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void addAssociationEndListeners() {
 		if (resolveSemanticElement() instanceof Association) {
-			Property targetEnd = MultiAssociationHelper
-					.getPropertyToListen(((Edge) getModel()),
-							(Association) resolveSemanticElement());
+			Property targetEnd = MultiAssociationHelper.getPropertyToListen(((Edge) getModel()),
+					(Association) resolveSemanticElement());
 			if (targetEnd != null) {
-				addListenerFilter(
-						"AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
+				addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
 
 			}
 		}
@@ -85,13 +82,11 @@ public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AssociationBranchRoleEditPart) {
-			((AssociationBranchRoleEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getRoleSourceLabel());
+			((AssociationBranchRoleEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
 		if (childEditPart instanceof AssociationBranchMultEditPart) {
-			((AssociationBranchMultEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			((AssociationBranchMultEditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 			return true;
 		}
 		return false;
@@ -100,8 +95,8 @@ public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove
+	 * <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -115,8 +110,7 @@ public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new AssociationBranchItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationBranchItemSemanticEditPolicy());
 	}
 
 	/**
@@ -145,9 +139,8 @@ public class AssociationBranchEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void refreshVisuals() {
 		if (resolveSemanticElement() instanceof Association) {
-			Property target = MultiAssociationHelper
-					.getPropertyToListen(((Edge) getModel()),
-							(Association) resolveSemanticElement());
+			Property target = MultiAssociationHelper.getPropertyToListen(((Edge) getModel()),
+					(Association) resolveSemanticElement());
 			if (target != null && target.getOwner() != null) {
 				int sourceType = 0;
 				int targetType = 0;

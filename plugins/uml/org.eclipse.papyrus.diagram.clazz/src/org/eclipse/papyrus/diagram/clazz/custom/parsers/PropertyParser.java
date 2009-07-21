@@ -37,7 +37,8 @@ import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * This the parser in charge of editing and displaying properties in Papyrus. For the edition of properties, a dialog box is opened
+ * This the parser in charge of editing and displaying properties in Papyrus. For the edition of
+ * properties, a dialog box is opened
  * 
  * @author Patrick Tessier
  */
@@ -117,10 +118,12 @@ public class PropertyParser implements IParser {
 		final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement.getTransactionalEditingDomain(), "Edit PropertyUtil", (List) null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement
+				.getTransactionalEditingDomain(), "Edit PropertyUtil", (List) null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+					throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {

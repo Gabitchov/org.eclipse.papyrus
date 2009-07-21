@@ -27,8 +27,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class UMLSheetLabelProvider extends BaseLabelProvider implements
-		ILabelProvider {
+public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
 
 	/**
 	 * @generated
@@ -77,15 +76,15 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements
 	 * @generated
 	 */
 	private IElementType getElementType(View view) {
-		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
+		// For intermediate views climb up the containment hierarchy to find the one associated with
+		// an element type.
 		while (view != null) {
 			int vid = UMLVisualIDRegistry.getVisualID(view);
 			IElementType etype = UMLElementTypes.getElementType(vid);
 			if (etype != null) {
 				return etype;
 			}
-			view = view.eContainer() instanceof View ? (View) view.eContainer()
-					: null;
+			view = view.eContainer() instanceof View ? (View) view.eContainer() : null;
 		}
 		return null;
 	}

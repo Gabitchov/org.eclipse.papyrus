@@ -84,7 +84,8 @@ public class GeneralizationSetConstraintParser implements IParser {
 		if (event instanceof org.eclipse.emf.common.notify.Notification) {
 			Object source = ((org.eclipse.emf.common.notify.Notification) event).getFeature();
 			if (source instanceof EAttribute) {
-				if (source.equals(UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering()) || (source.equals(UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint()))) {
+				if (source.equals(UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering())
+						|| (source.equals(UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint()))) {
 					return true;
 				}
 			}
