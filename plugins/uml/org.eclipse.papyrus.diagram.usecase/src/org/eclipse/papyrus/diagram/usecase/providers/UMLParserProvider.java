@@ -25,10 +25,16 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypePackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeRealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBody2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPart;
@@ -44,6 +50,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName4EditPart;
@@ -451,6 +459,117 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser abstractionName_6011Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAbstractionName_6011Parser() {
+		if (abstractionName_6011Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			abstractionName_6011Parser = parser;
+		}
+		return abstractionName_6011Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser abstractionName_6014Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAbstractionName_6014Parser() {
+		if (abstractionName_6014Parser == null) {
+			abstractionName_6014Parser = new AppliedStereotypeParser();
+		}
+		return abstractionName_6014Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser usageName_6012Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getUsageName_6012Parser() {
+		if (usageName_6012Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			usageName_6012Parser = parser;
+		}
+		return usageName_6012Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser usageName_6013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getUsageName_6013Parser() {
+		if (usageName_6013Parser == null) {
+			usageName_6013Parser = new AppliedStereotypeParser();
+		}
+		return usageName_6013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser realizationName_6015Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getRealizationName_6015Parser() {
+		if (realizationName_6015Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			realizationName_6015Parser = parser;
+		}
+		return realizationName_6015Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser realizationName_6016Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getRealizationName_6016Parser() {
+		if (realizationName_6016Parser == null) {
+			realizationName_6016Parser = new AppliedStereotypeParser();
+		}
+		return realizationName_6016Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser packageImportVisibility_6017Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPackageImportVisibility_6017Parser() {
+		if (packageImportVisibility_6017Parser == null) {
+			packageImportVisibility_6017Parser = new AppliedStereotypeParser();
+		}
+		return packageImportVisibility_6017Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case ActorNameEditPart.VISUAL_ID:
@@ -499,6 +618,20 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAssociationName_6008Parser();
 		case DependencyNameEditPart.VISUAL_ID:
 			return getDependencyName_6010Parser();
+		case AbstractionNameEditPart.VISUAL_ID:
+			return getAbstractionName_6011Parser();
+		case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
+			return getAbstractionName_6014Parser();
+		case UsageNameEditPart.VISUAL_ID:
+			return getUsageName_6012Parser();
+		case AppliedStereotypeUsageEditPart.VISUAL_ID:
+			return getUsageName_6013Parser();
+		case RealizationNameEditPart.VISUAL_ID:
+			return getRealizationName_6015Parser();
+		case AppliedStereotypeRealizationEditPart.VISUAL_ID:
+			return getRealizationName_6016Parser();
+		case AppliedStereotypePackageImportEditPart.VISUAL_ID:
+			return getPackageImportVisibility_6017Parser();
 		}
 		return null;
 	}

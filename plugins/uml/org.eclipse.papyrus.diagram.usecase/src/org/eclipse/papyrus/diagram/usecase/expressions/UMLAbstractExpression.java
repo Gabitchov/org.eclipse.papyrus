@@ -44,7 +44,8 @@ public abstract class UMLAbstractExpression {
 		String pluginID = UMLDiagramEditorPlugin.ID;
 		this.status = new Status(severity, pluginID, -1, (message != null) ? message : "", throwable); //$NON-NLS-1$
 		if (!this.status.isOK()) {
-			UMLDiagramEditorPlugin.getInstance().logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
+			UMLDiagramEditorPlugin.getInstance()
+					.logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -114,7 +115,9 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
+	 * Expression may return number value which is not directly compatible with feature type (e.g.
+	 * Double when Integer is expected), or EEnumLiteral meta-object when literal instance is
+	 * expected
 	 * 
 	 * @generated
 	 */

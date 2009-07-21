@@ -65,8 +65,10 @@ public class UseCaseExtensionpointsEditPart extends ListCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseExtensionpointsCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
+		// new
+		// org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseExtensionpointsCanonicalEditPolicy());
 
 	}
 
@@ -75,7 +77,7 @@ public class UseCaseExtensionpointsEditPart extends ListCompartmentEditPart {
 	 */
 	protected void setRatio(Double ratio) {
 		// nothing to do -- parent layout does not accept Double constraints as ratio
-		// super.setRatio(ratio); 
+		// super.setRatio(ratio);
 	}
 
 }

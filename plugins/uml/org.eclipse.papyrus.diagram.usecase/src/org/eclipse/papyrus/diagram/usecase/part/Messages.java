@@ -386,42 +386,92 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Include4CreationTool_title;
+	public static String Abstraction4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Include4CreationTool_desc;
+	public static String Abstraction4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Extend5CreationTool_title;
+	public static String Realization5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Extend5CreationTool_desc;
+	public static String Realization5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstrainedElement6CreationTool_title;
+	public static String Usage6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstrainedElement6CreationTool_desc;
+	public static String Usage6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink7CreationTool_title;
+	public static String PackageMerge7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink7CreationTool_desc;
+	public static String PackageMerge7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String PackageImport8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PackageImport8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Include9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Include9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Extend10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Extend10CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ConstrainedElement11CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ConstrainedElement11CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Commentlink12CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Commentlink12CreationTool_desc;
 
 	/**
 	 * @generated
@@ -762,6 +812,56 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_CommentAnnotatedElement_4014_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Abstraction_4015_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Abstraction_4015_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Usage_4016_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Usage_4016_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Realization_4017_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Realization_4017_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_PackageMerge_4018_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_PackageMerge_4018_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_PackageImport_4019_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_PackageImport_4019_source;
 
 	/**
 	 * @generated

@@ -49,7 +49,8 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
@@ -80,7 +81,8 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the
+	 * domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

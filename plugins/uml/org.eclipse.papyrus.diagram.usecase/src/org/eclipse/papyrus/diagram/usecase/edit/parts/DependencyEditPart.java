@@ -13,18 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.DependencyItemSemanticEditPolicy;
 
 /**
@@ -56,6 +51,10 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof DependencyNameEditPart) {
+			((DependencyNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			return true;
+		}
 		return false;
 	}
 
@@ -73,6 +72,9 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof DependencyNameEditPart) {
+			return true;
+		}
 		return false;
 	}
 
@@ -89,53 +91,21 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove
+	 * <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new Dependency_WithArrow_Polyline();
+		return new DashedEdgeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public Dependency_WithArrow_Polyline getPrimaryShape() {
-		return (Dependency_WithArrow_Polyline) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class Dependency_WithArrow_Polyline extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public Dependency_WithArrow_Polyline() {
-			this.setLineWidth(1);
-			this.setLineStyle(Graphics.LINE_DASH);
-			this.setForegroundColor(ColorConstants.lightGray);
-
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(1);
-			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(1));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(-1));
-			df.setTemplate(pl);
-			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
-			return df;
-		}
-
+	public DashedEdgeFigure getPrimaryShape() {
+		return (DashedEdgeFigure) getFigure();
 	}
 
 }

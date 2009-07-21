@@ -49,6 +49,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Ratio;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor4EditPart;
@@ -70,6 +71,10 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
@@ -134,15 +139,18 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 				final View createdView = (View) ((IAdaptable) createdViews.get(0)).getAdapter(View.class);
 				if (createdView != null) {
 					try {
-						new AbstractEMFOperation(host().getEditingDomain(), StringStatics.BLANK, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE)) {
+						new AbstractEMFOperation(host().getEditingDomain(), StringStatics.BLANK, Collections
+								.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE)) {
 
-							protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+							protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info)
+									throws ExecutionException {
 								populateViewProperties(view, createdView);
 								return Status.OK_STATUS;
 							}
 						}.execute(new NullProgressMonitor(), null);
 					} catch (ExecutionException e) {
-						UMLDiagramEditorPlugin.getInstance().logError("Error while copyign view information to newly created view", e); //$NON-NLS-1$
+						UMLDiagramEditorPlugin.getInstance().logError(
+								"Error while copyign view information to newly created view", e); //$NON-NLS-1$
 					}
 				}
 				deleteViews(Collections.singletonList(view).iterator());
@@ -268,7 +276,9 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
 			for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();) {
 				UMLLinkDescriptor nextLinkDescriptor = (UMLLinkDescriptor) linkDescriptorsIterator.next();
-				if (diagramLinkObject == nextLinkDescriptor.getModelElement() && diagramLinkSrc == nextLinkDescriptor.getSource() && diagramLinkDst == nextLinkDescriptor.getDestination()
+				if (diagramLinkObject == nextLinkDescriptor.getModelElement()
+						&& diagramLinkSrc == nextLinkDescriptor.getSource()
+						&& diagramLinkDst == nextLinkDescriptor.getDestination()
 						&& diagramLinkVisualID == nextLinkDescriptor.getVisualID()) {
 					linksIterator.remove();
 					linkDescriptorsIterator.remove();
@@ -514,6 +524,51 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			}
 			break;
 		}
+		case AbstractionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getAbstraction_4015ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case UsageEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getUsage_4016ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case RealizationEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getRealization_4017ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PackageMergeEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPackageMerge_4018ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PackageImportEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPackageImport_4019ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
 		}
 		for (Iterator children = view.getChildren().iterator(); children.hasNext();) {
 			result.addAll(collectAllLinks((View) children.next(), domain2NotationMap));
@@ -536,8 +591,9 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
-			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(nextLinkDescriptor.getSemanticAdapter(), null, ViewUtil.APPEND,
-					false, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
+			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
+					nextLinkDescriptor.getSemanticAdapter(), null, ViewUtil.APPEND, false,
+					((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
 			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(descriptor);
 			ccr.setType(RequestConstants.REQ_CONNECTION_START);
 			ccr.setSourceEditPart(sourceEditPart);

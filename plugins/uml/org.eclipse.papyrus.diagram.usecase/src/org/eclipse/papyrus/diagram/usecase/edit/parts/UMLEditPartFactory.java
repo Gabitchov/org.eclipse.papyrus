@@ -227,6 +227,42 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
+			case AbstractionEditPart.VISUAL_ID:
+				return new AbstractionEditPart(view);
+
+			case AbstractionNameEditPart.VISUAL_ID:
+				return new AbstractionNameEditPart(view);
+
+			case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
+				return new AppliedStereotypeAbstractionEditPart(view);
+
+			case UsageEditPart.VISUAL_ID:
+				return new UsageEditPart(view);
+
+			case UsageNameEditPart.VISUAL_ID:
+				return new UsageNameEditPart(view);
+
+			case AppliedStereotypeUsageEditPart.VISUAL_ID:
+				return new AppliedStereotypeUsageEditPart(view);
+
+			case RealizationEditPart.VISUAL_ID:
+				return new RealizationEditPart(view);
+
+			case RealizationNameEditPart.VISUAL_ID:
+				return new RealizationNameEditPart(view);
+
+			case AppliedStereotypeRealizationEditPart.VISUAL_ID:
+				return new AppliedStereotypeRealizationEditPart(view);
+
+			case PackageMergeEditPart.VISUAL_ID:
+				return new PackageMergeEditPart(view);
+
+			case PackageImportEditPart.VISUAL_ID:
+				return new PackageImportEditPart(view);
+
+			case AppliedStereotypePackageImportEditPart.VISUAL_ID:
+				return new AppliedStereotypePackageImportEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

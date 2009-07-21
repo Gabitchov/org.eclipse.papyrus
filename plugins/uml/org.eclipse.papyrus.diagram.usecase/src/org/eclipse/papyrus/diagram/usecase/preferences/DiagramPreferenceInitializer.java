@@ -40,13 +40,23 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ActorPreferencePage.initDefaults(store);
 
-		ExtendPreferencePage.initDefaults(store);
-
 		DependencyPreferencePage.initDefaults(store);
 
 		GeneralizationPreferencePage.initDefaults(store);
 
+		UsagePreferencePage.initDefaults(store);
+
 		AssociationPreferencePage.initDefaults(store);
+
+		PackageImportPreferencePage.initDefaults(store);
+
+		PackageMergePreferencePage.initDefaults(store);
+
+		AbstractionPreferencePage.initDefaults(store);
+
+		ExtendPreferencePage.initDefaults(store);
+
+		RealizationPreferencePage.initDefaults(store);
 
 		IncludePreferencePage.initDefaults(store);
 

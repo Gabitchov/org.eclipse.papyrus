@@ -28,6 +28,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.AbstractionCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.AssociationCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.AssociationReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentAnnotatedElementCreateCommand;
@@ -38,11 +40,21 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyCreateCommand
 import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.GeneralizationReorientCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageImportCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageImportReorientCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.RealizationCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.RealizationReorientCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.UsageCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.UsageReorientCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
@@ -80,7 +92,8 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				continue;
 			}
 			if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
@@ -92,8 +105,27 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				continue;
 			}
 			if (UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == AbstractionEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == UsageEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == RealizationEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -118,6 +150,30 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == AbstractionEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == UsageEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RealizationEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == PackageImportEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
@@ -135,7 +191,8 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
@@ -157,6 +214,18 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		}
 		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return null;
+		}
+		if (UMLElementTypes.Abstraction_4015 == req.getElementType()) {
+			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Usage_4016 == req.getElementType()) {
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Realization_4017 == req.getElementType()) {
+			return getGEFWrapper(new RealizationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.PackageImport_4019 == req.getElementType()) {
+			return getGEFWrapper(new PackageImportCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -180,11 +249,24 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Abstraction_4015 == req.getElementType()) {
+			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Usage_4016 == req.getElementType()) {
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Realization_4017 == req.getElementType()) {
+			return getGEFWrapper(new RealizationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.PackageImport_4019 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source should be the domain
+	 * model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -196,12 +278,21 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			return getGEFWrapper(new AssociationReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
+		case AbstractionEditPart.VISUAL_ID:
+			return getGEFWrapper(new AbstractionReorientCommand(req));
+		case UsageEditPart.VISUAL_ID:
+			return getGEFWrapper(new UsageReorientCommand(req));
+		case RealizationEditPart.VISUAL_ID:
+			return getGEFWrapper(new RealizationReorientCommand(req));
+		case PackageImportEditPart.VISUAL_ID:
+			return getGEFWrapper(new PackageImportReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the
+	 * domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

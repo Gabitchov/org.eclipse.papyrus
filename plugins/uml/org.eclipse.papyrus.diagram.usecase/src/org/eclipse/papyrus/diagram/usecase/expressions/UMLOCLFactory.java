@@ -138,7 +138,8 @@ public class UMLOCLFactory {
 			final Query queryToInit = getQuery();
 			final Object extentContext = context;
 			queryToInit.getExtentMap().clear();
-			if (queryToInit.queryText() != null && queryToInit.queryText().indexOf(PredefinedType.ALL_INSTANCES_NAME) >= 0) {
+			if (queryToInit.queryText() != null
+					&& queryToInit.queryText().indexOf(PredefinedType.ALL_INSTANCES_NAME) >= 0) {
 				AbstractVisitor visitior = new AbstractVisitor() {
 
 					private boolean usesAllInstances = false;
@@ -147,7 +148,8 @@ public class UMLOCLFactory {
 						if (!usesAllInstances) {
 							usesAllInstances = PredefinedType.ALL_INSTANCES == oc.getOperationCode();
 							if (usesAllInstances) {
-								queryToInit.getExtentMap().putAll(oclInstance.getEvaluationEnvironment().createExtentMap(extentContext));
+								queryToInit.getExtentMap().putAll(
+										oclInstance.getEvaluationEnvironment().createExtentMap(extentContext));
 							}
 						}
 						return super.visitOperationCallExp(oc);

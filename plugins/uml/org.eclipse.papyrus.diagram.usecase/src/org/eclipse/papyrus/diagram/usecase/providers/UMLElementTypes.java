@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor4EditPart;
@@ -52,6 +53,10 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
@@ -234,6 +239,31 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Abstraction_4015 = getElementType("org.eclipse.papyrus.diagram.usecase.Abstraction_4015"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Usage_4016 = getElementType("org.eclipse.papyrus.diagram.usecase.Usage_4016"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Realization_4017 = getElementType("org.eclipse.papyrus.diagram.usecase.Realization_4017"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType PackageMerge_4018 = getElementType("org.eclipse.papyrus.diagram.usecase.PackageMerge_4018"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType PackageImport_4019 = getElementType("org.eclipse.papyrus.diagram.usecase.PackageImport_4019"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -265,7 +295,8 @@ public class UMLElementTypes extends ElementInitializers {
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(
+						eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -394,6 +425,16 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(Dependency_4013, UMLPackage.eINSTANCE.getDependency());
 
 			elements.put(CommentAnnotatedElement_4014, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+
+			elements.put(Abstraction_4015, UMLPackage.eINSTANCE.getAbstraction());
+
+			elements.put(Usage_4016, UMLPackage.eINSTANCE.getUsage());
+
+			elements.put(Realization_4017, UMLPackage.eINSTANCE.getRealization());
+
+			elements.put(PackageMerge_4018, UMLPackage.eINSTANCE.getPackageMerge());
+
+			elements.put(PackageImport_4019, UMLPackage.eINSTANCE.getPackageImport());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -440,6 +481,11 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4012);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4013);
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4014);
+			KNOWN_ELEMENT_TYPES.add(Abstraction_4015);
+			KNOWN_ELEMENT_TYPES.add(Usage_4016);
+			KNOWN_ELEMENT_TYPES.add(Realization_4017);
+			KNOWN_ELEMENT_TYPES.add(PackageMerge_4018);
+			KNOWN_ELEMENT_TYPES.add(PackageImport_4019);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -507,6 +553,16 @@ public class UMLElementTypes extends ElementInitializers {
 			return Dependency_4013;
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return CommentAnnotatedElement_4014;
+		case AbstractionEditPart.VISUAL_ID:
+			return Abstraction_4015;
+		case UsageEditPart.VISUAL_ID:
+			return Usage_4016;
+		case RealizationEditPart.VISUAL_ID:
+			return Realization_4017;
+		case PackageMergeEditPart.VISUAL_ID:
+			return PackageMerge_4018;
+		case PackageImportEditPart.VISUAL_ID:
+			return PackageImport_4019;
 		}
 		return null;
 	}

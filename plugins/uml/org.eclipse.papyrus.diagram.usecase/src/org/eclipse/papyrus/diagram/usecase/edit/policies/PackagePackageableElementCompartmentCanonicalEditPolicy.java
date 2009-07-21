@@ -49,7 +49,8 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getPackagePackageableElementCompartment_7013SemanticChildren(viewObject).iterator(); it.hasNext();) {
+		for (Iterator it = UMLDiagramUpdater.getPackagePackageableElementCompartment_7013SemanticChildren(viewObject)
+				.iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;

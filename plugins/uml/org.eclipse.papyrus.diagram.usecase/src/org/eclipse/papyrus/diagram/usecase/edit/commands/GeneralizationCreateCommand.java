@@ -79,7 +79,8 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateGeneralization_4010(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateGeneralization_4010(getContainer(), getSource(),
+				getTarget());
 	}
 
 	/**
@@ -103,7 +104,8 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Generalization newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Generalization newElement, IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
@@ -145,7 +147,8 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container. Modify with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
+	 * with appropriate logic.
 	 * 
 	 * @generated
 	 */

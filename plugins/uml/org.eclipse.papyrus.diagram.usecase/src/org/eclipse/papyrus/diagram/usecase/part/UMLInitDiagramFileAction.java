@@ -89,7 +89,8 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 			UMLDiagramEditorPlugin.getInstance().logError("Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
-			MessageDialog.openError(getShell(), Messages.InitDiagramFile_ResourceErrorDialogTitle, Messages.InitDiagramFile_ResourceErrorDialogMessage);
+			MessageDialog.openError(getShell(), Messages.InitDiagramFile_ResourceErrorDialogTitle,
+					Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
 		Wizard wizard = new UMLNewDiagramFileWizard(domainModelURI, diagramRoot, editingDomain);

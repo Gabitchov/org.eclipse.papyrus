@@ -579,15 +579,28 @@
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/constrainedElement"/>
   </links>
-  <links>
+  <links
+      relatedDiagrams="//@diagram">
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
     <domainSpecialization
-        body="(self.oclIsTypeOf(uml::Dependency) or self.oclIsTypeOf(uml::Abstraction) or self.oclIsTypeOf(uml::Substitution) or self.oclIsTypeOf(uml::Usage)) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))"/>
+        body="self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+        <value
+            body="return getName(self);"
+            language="java"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="common_dependencies.gmfgraph#Dependency_name"/>
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
@@ -597,7 +610,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.5"/>
     <diagramLink
-        href="common_dependencies.gmfgraph#BinaryDependencyLink"/>
+        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
@@ -619,6 +632,200 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/annotatedElement"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
+    <domainSpecialization
+        body="self.oclIsTypeOf(uml::Abstraction) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+        <value
+            body="return getName(self);"
+            language="java"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
+      <features
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        readOnly="true"
+        viewPattern="&lt;&lt;{0}>>"
+        editorPattern="&lt;&lt;{0}>>"
+        editPattern="&lt;&lt;{0}>>">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+      <features
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.7"/>
+    <diagramLink
+        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/supplier"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
+    <domainSpecialization
+        body="self.oclIsTypeOf(uml::Usage) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+        <value
+            body="return getName(self);"
+            language="java"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
+      <features
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        readOnly="true"
+        viewPattern="&lt;&lt;{0}>>"
+        editorPattern="&lt;&lt;{0}>>"
+        editPattern="&lt;&lt;{0}>>">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+      <features
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.9"/>
+    <diagramLink
+        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/supplier"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Realization"/>
+    <domainSpecialization
+        body="self.oclIsTypeOf(uml::Realization) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+        <value
+            body="return getName(self);"
+            language="java"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationNameDiagramLabel"/>
+      <features
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        readOnly="true"
+        viewPattern="&lt;&lt;{0}>>"
+        editorPattern="&lt;&lt;{0}>>"
+        editPattern="&lt;&lt;{0}>>">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationAppliedStereotypeDiagramLabel"/>
+      <features
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.8"/>
+    <diagramLink
+        href="../../org.eclipse.papyrus.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationConnection"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/supplier"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge"/>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packageMerge"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.11"/>
+    <diagramLink
+        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge/receivingPackage"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge/mergedPackage"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping"
+        readOnly="true"
+        viewPattern="&lt;&lt;{0}>>"
+        editorPattern="&lt;&lt;{0}>>"
+        editPattern="&lt;&lt;{0}>>">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+      <features
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport/visibility"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/packageImport"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.10"/>
+    <diagramLink
+        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport/importedPackage"/>
   </links>
   <diagram>
     <diagramCanvas

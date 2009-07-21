@@ -215,22 +215,26 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 		final IEditorInput newInput = new FileEditorInput(file);
 		// Check if the editor is already open
 		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor().getEditorMatchingStrategy();
-		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
+		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.getEditorReferences();
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
-				MessageDialog.openWarning(shell, Messages.UMLDiagramEditor_SaveAsErrorTitle, Messages.UMLDiagramEditor_SaveAsErrorMessage);
+				MessageDialog.openWarning(shell, Messages.UMLDiagramEditor_SaveAsErrorTitle,
+						Messages.UMLDiagramEditor_SaveAsErrorMessage);
 				return;
 			}
 		}
 		boolean success = false;
 		try {
 			provider.aboutToChange(newInput);
-			getDocumentProvider(newInput).saveDocument(progressMonitor, newInput, getDocumentProvider().getDocument(getEditorInput()), true);
+			getDocumentProvider(newInput).saveDocument(progressMonitor, newInput,
+					getDocumentProvider().getDocument(getEditorInput()), true);
 			success = true;
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL) {
-				ErrorDialog.openError(shell, Messages.UMLDiagramEditor_SaveErrorTitle, Messages.UMLDiagramEditor_SaveErrorMessage, x.getStatus());
+				ErrorDialog.openError(shell, Messages.UMLDiagramEditor_SaveErrorTitle,
+						Messages.UMLDiagramEditor_SaveErrorMessage, x.getStatus());
 			}
 		} finally {
 			provider.changed(newInput);
@@ -272,7 +276,8 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	 */
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
+				getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}

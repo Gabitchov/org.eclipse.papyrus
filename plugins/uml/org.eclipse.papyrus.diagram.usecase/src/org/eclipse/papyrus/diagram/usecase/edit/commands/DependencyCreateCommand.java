@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -80,7 +81,8 @@ public class DependencyCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateDependency_4013(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateDependency_4013(getContainer(), getSource(),
+				getTarget());
 	}
 
 	/**
@@ -95,6 +97,7 @@ public class DependencyCreateCommand extends EditElementCommand {
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getClients().add(getSource());
 		newElement.getSuppliers().add(getTarget());
+		UMLElementTypes.init_Dependency_4013(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
@@ -104,7 +107,8 @@ public class DependencyCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Dependency newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Dependency newElement, IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
@@ -146,7 +150,8 @@ public class DependencyCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container. Modify with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
+	 * with appropriate logic.
 	 * 
 	 * @generated
 	 */

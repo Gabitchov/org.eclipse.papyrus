@@ -79,7 +79,8 @@ public class ExtendCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateExtend_4009(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateExtend_4009(getContainer(), getSource(),
+				getTarget());
 	}
 
 	/**
@@ -145,7 +146,8 @@ public class ExtendCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container. Modify with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
+	 * with appropriate logic.
 	 * 
 	 * @generated
 	 */

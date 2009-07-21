@@ -15,18 +15,23 @@ package org.eclipse.papyrus.diagram.usecase.providers;
 
 import java.util.Collection;
 
+import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.diagram.usecase.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
+import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.ExtensionPoint;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.UseCase;
 
 /**
@@ -130,8 +135,11 @@ public class ElementInitializers {
 	public static void init_Constraint_2017(Constraint instance) {
 		try {
 			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
+
 			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'", UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
+			;
+			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'",
+					UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
 			if (value_0_0_0 instanceof Collection) {
 				newInstance_0_0.getBodies().clear();
 				newInstance_0_0.getBodies().addAll(((Collection) value_0_0_0));
@@ -234,8 +242,11 @@ public class ElementInitializers {
 	public static void init_Constraint_3017(Constraint instance) {
 		try {
 			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
+
 			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'", UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
+			;
+			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'",
+					UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
 			if (value_0_0_0 instanceof Collection) {
 				newInstance_0_0.getBodies().clear();
 				newInstance_0_0.getBodies().addAll(((Collection) value_0_0_0));
@@ -284,8 +295,11 @@ public class ElementInitializers {
 	public static void init_Constraint_3010(Constraint instance) {
 		try {
 			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
+
 			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'", UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
+			;
+			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'",
+					UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
 			if (value_0_0_0 instanceof Collection) {
 				newInstance_0_0.getBodies().clear();
 				newInstance_0_0.getBodies().addAll(((Collection) value_0_0_0));
@@ -371,6 +385,95 @@ public class ElementInitializers {
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_Dependency_4013(Dependency instance) {
+		try {
+			Object value_0 = name_Dependency_4013(instance);
+			instance.setName((String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_Abstraction_4015(Abstraction instance) {
+		try {
+			Object value_0 = name_Abstraction_4015(instance);
+			instance.setName((String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_Usage_4016(Usage instance) {
+		try {
+			Object value_0 = name_Usage_4016(instance);
+			instance.setName((String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_Realization_4017(Realization instance) {
+		try {
+			Object value_0 = name_Realization_4017(instance);
+			instance.setName((String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static String name_Dependency_4013(Dependency self) {
+		return getName(self);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static String name_Abstraction_4015(Abstraction self) {
+		return getName(self);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static String name_Usage_4016(Usage self) {
+		return getName(self);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static String name_Realization_4017(Realization self) {
+		return getName(self);
+	}
+
+	/**
+	 * Custom code.
+	 * 
+	 * @param self
+	 *            the current object
+	 * 
+	 * @return the element name
+	 */
+	private static String getName(org.eclipse.uml2.uml.Element self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+
 	}
 
 }

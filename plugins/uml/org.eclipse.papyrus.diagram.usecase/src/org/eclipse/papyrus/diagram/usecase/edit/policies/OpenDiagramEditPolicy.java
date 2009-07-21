@@ -86,18 +86,20 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
-			// editing domain is taken for original diagram, 
+			// editing domain is taken for original diagram,
 			// if we open diagram from another file, we should use another editing domain
 			super(TransactionUtil.getEditingDomain(linkStyle), Messages.CommandName_OpenDiagram, null);
 			diagramFacet = linkStyle;
 		}
 
-		// FIXME canExecute if !(readOnly && getDiagramToOpen == null), i.e. open works on ro diagrams only when there's associated diagram already
+		// FIXME canExecute if !(readOnly && getDiagramToOpen == null), i.e. open works on ro
+		// diagrams only when there's associated diagram already
 
 		/**
 		 * @generated
 		 */
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+				throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
 				if (diagram == null) {
@@ -140,9 +142,11 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			try {
 				new WorkspaceModifyOperation() {
 
-					protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
+					protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException,
+							InterruptedException {
 						try {
-							for (Iterator it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it.hasNext();) {
+							for (Iterator it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it
+									.hasNext();) {
 								Resource nextResource = (Resource) it.next();
 								if (nextResource.isLoaded() && !getEditingDomain().isReadOnly(nextResource)) {
 									nextResource.save(UMLDiagramEditorUtil.getSaveOptions());

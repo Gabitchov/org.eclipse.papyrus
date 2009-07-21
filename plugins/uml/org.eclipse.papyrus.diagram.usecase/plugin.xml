@@ -314,7 +314,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2016,2017,2018,3007,3008,3009,3016,3015,3017,3018,3019,3010,3011,3012,3013,3014"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4009,4010,4011,4012,4013,4014"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
       </viewProvider>
    </extension>
 
@@ -329,7 +329,7 @@
             <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,3007,3008,3009,3016,3015,3017,3018,3019,3010,3011,3012,3013,3014"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4008,4009,4010,4011,4012,4013,4014"/>
+            <method name="getType()" value="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5014,5015,5016,5017,5019,5025,5026,5027,5018,5030,5028,5029,5031,5032,5020,5021,5022,5023,5024"/>
@@ -647,6 +647,56 @@
             <param name="semanticHint" value="4014"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Abstraction_4015"
+               name="%metatype.name.Abstraction_4015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Abstraction"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.AbstractionEditHelper">
+            <param name="semanticHint" value="4015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Usage_4016"
+               name="%metatype.name.Usage_4016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Usage"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.UsageEditHelper">
+            <param name="semanticHint" value="4016"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Realization_4017"
+               name="%metatype.name.Realization_4017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Realization"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.RealizationEditHelper">
+            <param name="semanticHint" value="4017"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.PackageMerge_4018"
+               name="%metatype.name.PackageMerge_4018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="PackageMerge"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.PackageMergeEditHelper">
+            <param name="semanticHint" value="4018"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.PackageImport_4019"
+               name="%metatype.name.PackageImport_4019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="PackageImport"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.PackageImportEditHelper">
+            <param name="semanticHint" value="4019"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -688,6 +738,11 @@
          <elementType ref="org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4012"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Dependency_4013"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4014"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Abstraction_4015"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Usage_4016"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Realization_4017"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.PackageMerge_4018"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.PackageImport_4019"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

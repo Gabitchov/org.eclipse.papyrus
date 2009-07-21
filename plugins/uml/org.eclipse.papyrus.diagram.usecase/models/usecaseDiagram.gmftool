@@ -9,7 +9,9 @@
     <tools
         xsi:type="gmftool:ToolGroup"
         title="Nodes"
-        description="Diagram Nodes">
+        description="Diagram Nodes"
+        collapsible="true"
+        stack="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Use Case"
@@ -38,7 +40,9 @@
     <tools
         xsi:type="gmftool:ToolGroup"
         title="Children"
-        description="Child Elements of the Diagram Nodes">
+        description="Child Elements of the Diagram Nodes"
+        collapsible="true"
+        stack="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Extension Point"
@@ -47,7 +51,9 @@
     <tools
         xsi:type="gmftool:ToolGroup"
         title="Links"
-        description="Diagram Links">
+        description="Diagram Links"
+        collapsible="true"
+        stack="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Association"
@@ -76,6 +82,26 @@
           xsi:type="gmftool:CreationTool"
           title="Comment link"
           description="Create Comment Link"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Abstraction"
+          description="Create Abstraction Link"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Realization"
+          description="Create Realization Link"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Usage"
+          description="Create Usage Link"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="PackageImport"
+          description="Create PackageImport Link"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="PackageMerge"
+          description="Create PackageMerge Link"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

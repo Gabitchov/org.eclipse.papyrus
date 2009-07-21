@@ -20,6 +20,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor4EditPart;
@@ -28,6 +30,10 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypePackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeRealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Comment2EditPart;
@@ -62,12 +68,18 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Package4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
@@ -82,13 +94,17 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPart;
 import org.eclipse.papyrus.diagram.usecase.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.usecase.expressions.UMLOCLFactory;
+import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Usage;
 
 /**
- * This registry is used to determine which type of visual object should be created for the corresponding Diagram, Node, ChildNode or Link represented by a domain model object.
+ * This registry is used to determine which type of visual object should be created for the
+ * corresponding Diagram, Node, ChildNode or Link represented by a domain model object.
  * 
  * @generated
  */
@@ -108,6 +124,21 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static UMLAbstractExpression Dependency_4013_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Abstraction_4015_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Usage_4016_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Realization_4017_Constraint;
 
 	/**
 	 * @generated
@@ -146,7 +177,8 @@ public class UMLVisualIDRegistry {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
 			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
+				UMLDiagramEditorPlugin.getInstance()
+						.logError("Unable to parse view type as a visualID number: " + type);
 			}
 		}
 		return -1;
@@ -166,7 +198,8 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package) domainElement)) {
+		if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+				&& isDiagram((Package) domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -179,7 +212,8 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		String containerModelID = org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry
+				.getModelID(containerView);
 		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
@@ -368,7 +402,8 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry
+				.getModelID(containerView);
 		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
@@ -694,6 +729,35 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case AbstractionEditPart.VISUAL_ID:
+			if (AbstractionNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (AppliedStereotypeAbstractionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case UsageEditPart.VISUAL_ID:
+			if (UsageNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (AppliedStereotypeUsageEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RealizationEditPart.VISUAL_ID:
+			if (RealizationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (AppliedStereotypeRealizationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PackageImportEditPart.VISUAL_ID:
+			if (AppliedStereotypePackageImportEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -714,17 +778,38 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass()) && isAssociation_4011((Association) domainElement)) {
+		if (UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())
+				&& isAssociation_4011((Association) domainElement)) {
 			return AssociationEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass()) && isDependency_4013((Dependency) domainElement)) {
+		if (UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
+				&& isDependency_4013((Dependency) domainElement)) {
 			return DependencyEditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass())
+				&& isAbstraction_4015((Abstraction) domainElement)) {
+			return AbstractionEditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())
+				&& isUsage_4016((Usage) domainElement)) {
+			return UsageEditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getRealization().isSuperTypeOf(domainElement.eClass())
+				&& isRealization_4017((Realization) domainElement)) {
+			return RealizationEditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getPackageMerge().isSuperTypeOf(domainElement.eClass())) {
+			return PackageMergeEditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getPackageImport().isSuperTypeOf(domainElement.eClass())) {
+			return PackageImportEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific situations not covered by default logic.
+	 * User can change implementation of this method to handle some specific situations not covered
+	 * by default logic.
 	 * 
 	 * @generated
 	 */
@@ -737,7 +822,8 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isAssociation_4011(Association domainElement) {
 		if (Association_4011_Constraint == null) { // lazy initialization
-			Association_4011_Constraint = UMLOCLFactory.getExpression("not self.oclIsTypeOf(uml::AssociationClass)", UMLPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
+			Association_4011_Constraint = UMLOCLFactory.getExpression(
+					"not self.oclIsTypeOf(uml::AssociationClass)", UMLPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
 		}
 		Object result = Association_4011_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -750,9 +836,48 @@ public class UMLVisualIDRegistry {
 		if (Dependency_4013_Constraint == null) { // lazy initialization
 			Dependency_4013_Constraint = UMLOCLFactory
 					.getExpression(
-							"(self.oclIsTypeOf(uml::Dependency) or self.oclIsTypeOf(uml::Abstraction) or self.oclIsTypeOf(uml::Substitution) or self.oclIsTypeOf(uml::Usage)) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getDependency()); //$NON-NLS-1$
+							"self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getDependency()); //$NON-NLS-1$
 		}
 		Object result = Dependency_4013_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isAbstraction_4015(Abstraction domainElement) {
+		if (Abstraction_4015_Constraint == null) { // lazy initialization
+			Abstraction_4015_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.oclIsTypeOf(uml::Abstraction) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getAbstraction()); //$NON-NLS-1$
+		}
+		Object result = Abstraction_4015_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isUsage_4016(Usage domainElement) {
+		if (Usage_4016_Constraint == null) { // lazy initialization
+			Usage_4016_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.oclIsTypeOf(uml::Usage) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getUsage()); //$NON-NLS-1$
+		}
+		Object result = Usage_4016_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isRealization_4017(Realization domainElement) {
+		if (Realization_4017_Constraint == null) { // lazy initialization
+			Realization_4017_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.oclIsTypeOf(uml::Realization) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getRealization()); //$NON-NLS-1$
+		}
+		Object result = Realization_4017_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -837,6 +962,42 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(4014, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(4015, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4017, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6016, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6017, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ExtensionPoint");
 

@@ -104,7 +104,9 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorItem) obj).getEObject()));
+			return EcoreUtil.getURI(getEObject()).equals(
+					EcoreUtil.getURI(((org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorItem) obj)
+							.getEObject()));
 		}
 		return super.equals(obj);
 	}
