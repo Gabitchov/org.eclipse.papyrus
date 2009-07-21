@@ -20,6 +20,7 @@ import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
@@ -73,7 +74,7 @@ public class UMLPaletteFactory {
 	/**
 	 * Creates "Links" palette tool group
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	private PaletteContainer createLinks3Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Links3Group_title);
@@ -81,17 +82,29 @@ public class UMLPaletteFactory {
 		paletteContainer.setDescription(Messages.Links3Group_desc);
 		paletteContainer.add(createAssociation1CreationTool());
 		paletteContainer.add(createGeneralization2CreationTool());
-		paletteContainer.add(createDependency3CreationTool());
-		paletteContainer.add(createAbstraction4CreationTool());
-		paletteContainer.add(createRealization5CreationTool());
-		paletteContainer.add(createUsage6CreationTool());
-		paletteContainer.add(createPackageMerge7CreationTool());
-		paletteContainer.add(createPackageImport8CreationTool());
+
+		createLinksStack(paletteContainer);
+
 		paletteContainer.add(createInclude9CreationTool());
 		paletteContainer.add(createExtend10CreationTool());
 		paletteContainer.add(createConstrainedElement11CreationTool());
 		paletteContainer.add(createCommentlink12CreationTool());
 		return paletteContainer;
+	}
+
+	/**
+	 * @param paletteContainer
+	 */
+	private void createLinksStack(PaletteDrawer paletteContainer) {
+		PaletteStack stack = new PaletteStack(null, null, null);
+		stack.add(createDependency3CreationTool());
+		stack.add(createAbstraction4CreationTool());
+		stack.add(createRealization5CreationTool());
+		stack.add(createUsage6CreationTool());
+		stack.add(createPackageMerge7CreationTool());
+		stack.add(createPackageImport8CreationTool());
+
+		paletteContainer.add(stack);
 	}
 
 	/**
