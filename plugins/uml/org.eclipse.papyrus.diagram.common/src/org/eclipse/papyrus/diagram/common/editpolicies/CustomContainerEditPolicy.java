@@ -18,8 +18,9 @@ import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ContainerNodeEditPolicy;
 
 /**
- * this class is used in order to trace link between elements even if the element contains a XYlayout. the method ContainerEditPolicy is overloaded the method has to return null in order to select the
- * editpart parent. this policy has to be associated to container XY layout
+ * this class is used in order to trace link between elements even if the element contains a
+ * XYlayout. the method ContainerEditPolicy is overloaded the method has to return null in order to
+ * select the editpart parent. this policy has to be associated to container XY layout
  */
 public class CustomContainerEditPolicy extends ContainerNodeEditPolicy {
 

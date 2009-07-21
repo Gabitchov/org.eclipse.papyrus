@@ -38,9 +38,11 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Specific edit policy for label displaying stereotypes and their properties for edges representing UML elements.
+ * Specific edit policy for label displaying stereotypes and their properties for edges representing
+ * UML elements.
  */
-public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
+public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicy implements
+		NotificationListener, IPapyrusListener {
 
 	/** constant for this edit policy role */
 	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeDisplayEditPolicy";
@@ -143,7 +145,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * {@inheritedDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		// change the label of the figure managed by the host edit part (managed by the parent edit part in general...)
+		// change the label of the figure managed by the host edit part (managed by the parent edit
+		// part in general...)
 		// it must be changed only if:
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
@@ -159,7 +162,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 		// if element that has changed is a stereotype => refresh the label.
 		if (notification.getNotifier() instanceof EAnnotation) {
-			if (VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation) notification.getNotifier()).getSource()) {
+			if (VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation) notification.getNotifier())
+					.getSource()) {
 				// stereotype annotation has changed => refresh label display
 				refreshDisplay();
 			}
@@ -172,18 +176,22 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	public abstract void refreshDisplay();
 
 	/**
-	 * Parses the string containing the complete definition of properties to be displayed, and generates a map.
+	 * Parses the string containing the complete definition of properties to be displayed, and
+	 * generates a map.
 	 * 
 	 * @param stereotypesToDisplay
 	 *            the list of stereotypes to display
 	 * @param stereotypesPropertiesToDisplay
 	 *            the properties of stereotypes to display
-	 * @return a map. The keys are the name of displayed stereotypes, the corresponding data is a collection of its properties to be displayed
+	 * @return a map. The keys are the name of displayed stereotypes, the corresponding data is a
+	 *         collection of its properties to be displayed
 	 */
-	protected Map<String, List<String>> parseStereotypeProperties(String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
+	protected Map<String, List<String>> parseStereotypeProperties(String stereotypesToDisplay,
+			String stereotypesPropertiesToDisplay) {
 		Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
 
-		StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, VisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
+		StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay,
+				VisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
 		while (stringTokenizer.hasMoreTokens()) {
 			String propertyName = stringTokenizer.nextToken();
 			// retrieve the name of the stereotype for this property
@@ -192,7 +200,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 				List<String> propertiesForStereotype = new ArrayList<String>();
 				propertiesMap.put(stereotypeName, propertiesForStereotype);
 			}
-			propertiesMap.get(stereotypeName).add(propertyName.substring(propertyName.lastIndexOf(".") + 1, propertyName.length()));
+			propertiesMap.get(stereotypeName).add(
+					propertyName.substring(propertyName.lastIndexOf(".") + 1, propertyName.length()));
 		}
 		return propertiesMap;
 	}
@@ -200,15 +209,18 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	/**
 	 * Returns the image to be displayed for the applied stereotypes.
 	 * 
-	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
+	 * @return the image that represents the first applied stereotype or <code>null</code> if no
+	 *         image has to be displayed
 	 */
 	public Image stereotypeIconToDisplay() {
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View) getHost().getModel());
+		String stereotypespresentationKind = AppliedStereotypeHelper
+				.getAppliedStereotypePresentationKind((View) getHost().getModel());
 		if (stereotypespresentationKind == null) {
 			return null;
 		}
 		if (stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
-				|| stereotypespresentationKind.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+				|| stereotypespresentationKind
+						.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
 			// retrieve the first stereotype in the list of displayed stereotype
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getHost().getModel());

@@ -37,7 +37,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @author Patrick Tessier
  * 
- *         this class is used to create a resize command for border items and add the {@link BorderItemResizableEditPolicy} on border Item
+ *         this class is used to create a resize command for border items and add the
+ *         {@link BorderItemResizableEditPolicy} on border Item
  */
 public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEditPolicy {
 
@@ -54,7 +55,8 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 
-		ICommand boundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(shapeView), newBounds);
+		ICommand boundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize,
+				new EObjectAdapter(shapeView), newBounds);
 		return new ICommandProxy(boundsCommand);
 	}
 

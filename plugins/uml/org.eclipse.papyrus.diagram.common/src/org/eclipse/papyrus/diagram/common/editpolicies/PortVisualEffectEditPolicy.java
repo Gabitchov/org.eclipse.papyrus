@@ -51,7 +51,8 @@ public class PortVisualEffectEditPolicy extends AbstractVisualEffectEditPolicy {
 		} else {// has type
 			LineStyle style = (LineStyle) editPart.getPrimaryView().getStyle(NotationPackage.Literals.LINE_STYLE);
 			if (style != null) {
-				editPart.getContentPane().setForegroundColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getLineColor())));
+				editPart.getContentPane().setForegroundColor(
+						DiagramColorRegistry.getInstance().getColor(new Integer(style.getLineColor())));
 			}
 		}
 	}

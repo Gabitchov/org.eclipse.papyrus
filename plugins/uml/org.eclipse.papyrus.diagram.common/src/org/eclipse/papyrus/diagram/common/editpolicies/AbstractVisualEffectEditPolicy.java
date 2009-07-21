@@ -54,7 +54,8 @@ public abstract class AbstractVisualEffectEditPolicy extends CanonicalEditPolicy
 	}
 
 	/**
-	 * We are using CanonicalEditPolicy infrastructure for listening to the model, executing commands, etc. However, we are not going to install/remove any new children from view-tree.
+	 * We are using CanonicalEditPolicy infrastructure for listening to the model, executing
+	 * commands, etc. However, we are not going to install/remove any new children from view-tree.
 	 */
 	@Override
 	protected final List getSemanticChildrenList() {
@@ -70,7 +71,8 @@ public abstract class AbstractVisualEffectEditPolicy extends CanonicalEditPolicy
 		Style style = view.getStyle(styleClass);
 		if (style == null) {
 			style = (Style) styleClass.getEPackage().getEFactoryInstance().create(styleClass);
-			SetRequest request = new SetRequest(editPart.getEditingDomain(), view, NotationPackage.eINSTANCE.getView_Styles(), style);
+			SetRequest request = new SetRequest(editPart.getEditingDomain(), view, NotationPackage.eINSTANCE
+					.getView_Styles(), style);
 			executeICommand(new SetValueCommand(request));
 		}
 	}

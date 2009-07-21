@@ -19,13 +19,13 @@
             value="black"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="DependencyNameLabel"/>
+            name="NameLabel"/>
         <children
             xsi:type="gmfgraph:Label"
             name="AppliedStereotypeLabel"/>
       </actualFigure>
       <accessors
-          accessor="getDependencyNameLabel"
+          accessor="getNameLabel"
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
       <accessors
           accessor="getAppliedStereotypeLabel"

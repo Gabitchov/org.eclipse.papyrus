@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Emilien Perico (Atos Origin) - move tags to common
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.part;
@@ -45,20 +46,8 @@ public class Messages extends NLS {
 	 */
 	public static String AbstractParser_WrongStringConversion;
 
-	/** Label to be displayed on {@link org.eclipse.uml2.uml.Abstraction} links */
-	public static String AppliedStereotypeLabel_AbstractionTag;
-
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.ElementImport} links */
 	public static String AppliedStereotypeLabel_ElementImportTag;
-
-	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links */
-	public static String AppliedStereotypeLabel_PackageImportTag;
-
-	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageMerge} links */
-	public static String AppliedStereotypeLabel_PackageMergeTag;
-
-	/** Label to be displayed on {@link org.eclipse.uml2.uml.Usage} links */
-	public static String AppliedStereotypeLabel_UsageTag;
 
 	/**
 	 * @generated

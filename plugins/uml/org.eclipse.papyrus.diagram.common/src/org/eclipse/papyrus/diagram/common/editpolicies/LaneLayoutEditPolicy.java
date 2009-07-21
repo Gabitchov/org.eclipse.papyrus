@@ -64,12 +64,14 @@ public class LaneLayoutEditPolicy extends ConstrainedLayoutEditPolicy {
 	@Override
 	protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
 		Dimension constraintSize = ((Rectangle) constraint).getSize();
-		Dimension newSize = new Dimension(getLaneOrientation() == LaneLayout.HORIZONTAL ? -1 : constraintSize.width, getLaneOrientation() == LaneLayout.VERTICAL ? -1 : constraintSize.height);
+		Dimension newSize = new Dimension(getLaneOrientation() == LaneLayout.HORIZONTAL ? -1 : constraintSize.width,
+				getLaneOrientation() == LaneLayout.VERTICAL ? -1 : constraintSize.height);
 		Rectangle newBounds = new Rectangle(new Point(0, 0), newSize);
 		View shapeView = (View) child.getModel();
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 
-		ICommand boundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(shapeView), newBounds);
+		ICommand boundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize,
+				new EObjectAdapter(shapeView), newBounds);
 		return new ICommandProxy(boundsCommand);
 	}
 

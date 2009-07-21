@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors: Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
+ * Emilien Perico (Atos Origin) - add tags for links with keywords
  *
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.common;
@@ -69,4 +70,16 @@ public class Messages extends NLS {
 
 	private Messages() {
 	}
+	
+	/** Label to be displayed on {@link org.eclipse.uml2.uml.Abstraction} links */
+	public static String AppliedStereotypeLabel_AbstractionTag;
+
+	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links */
+	public static String AppliedStereotypeLabel_PackageImportTag;
+
+	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageMerge} links */
+	public static String AppliedStereotypeLabel_PackageMergeTag;
+
+	/** Label to be displayed on {@link org.eclipse.uml2.uml.Usage} links */
+	public static String AppliedStereotypeLabel_UsageTag;
 }

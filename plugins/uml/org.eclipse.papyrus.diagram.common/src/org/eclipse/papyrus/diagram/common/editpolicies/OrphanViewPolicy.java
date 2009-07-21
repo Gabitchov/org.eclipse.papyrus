@@ -65,11 +65,13 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	}
 
 	/**
-	 * Deletes a list of views. The views will be deleted <tt>iff</tt> their semantic element has also been deleted.
+	 * Deletes a list of views. The views will be deleted <tt>iff</tt> their semantic element has
+	 * also been deleted.
 	 * 
 	 * @param views
 	 *            an iterator on a list of views.
-	 * @return <tt>true</tt> if the host editpart should be refreshed; either one one of the supplied views was deleted or has been reparented.
+	 * @return <tt>true</tt> if the host editpart should be refreshed; either one one of the
+	 *         supplied views was deleted or has been reparented.
 	 */
 	protected final boolean deleteViews(Iterator views) {
 
@@ -107,7 +109,8 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 		if (isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart) getHost(), false, false))
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 
-		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart) getHost()).getEditingDomain(), StringStatics.BLANK, options) {
+		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart) getHost()).getEditingDomain(),
+				StringStatics.BLANK, options) {
 
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -119,8 +122,10 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 		try {
 			operation.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "executeCommand", e); //$NON-NLS-1$
-			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "executeCommand", e); //$NON-NLS-1$
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
+					"executeCommand", e); //$NON-NLS-1$
+			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
+					"executeCommand", e); //$NON-NLS-1$
 		}
 	}
 
@@ -170,7 +175,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 
 	protected boolean isOrphaned(View view) {
 		String semanticHint = view.getType();
-		boolean t=view.isSetElement();
+		boolean t = view.isSetElement();
 		if (notOrphanList.contains(new Integer(semanticHint))) {
 			return false;
 		}

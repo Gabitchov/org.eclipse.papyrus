@@ -11,26 +11,25 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.diagram.common.editpolicies;
 
-import org.eclipse.papyrus.diagram.clazz.part.Messages;
-import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
-import org.eclipse.uml2.uml.Usage;
+import org.eclipse.papyrus.diagram.common.Messages;
+import org.eclipse.uml2.uml.PackageMerge;
 
 /**
- * Edit Policy for Applied Stereotype LAbel for {@link Usage}.
+ * Edit Policy for Applied Stereotype Label for {@link PackageMerge}.
  * <p>
  * It simply adds a tag "use" to the label. Thanks to GMF, it is not possible to call a cTor with a
- * parameter. So it calls super cTor with the "use" parameter
+ * parameter. So it calls super cTor with the "merge" parameter
  * </p>
  */
-public class AppliedStereotypeUsageLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+public class AppliedStereotypePackageMergeLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
 
 	/**
-	 * Creates a new AppliedStereotypeUsageLabelDisplayEditPolicy, with the correct tag.
+	 * Creates a new AppliedStereotypePackageMergeLabelDisplayEditPolicy, with the correct tag.
 	 */
-	public AppliedStereotypeUsageLabelDisplayEditPolicy() {
-		super(Messages.AppliedStereotypeLabel_UsageTag);
+	public AppliedStereotypePackageMergeLabelDisplayEditPolicy() {
+		super(Messages.AppliedStereotypeLabel_PackageMergeTag);
 	}
 
 }

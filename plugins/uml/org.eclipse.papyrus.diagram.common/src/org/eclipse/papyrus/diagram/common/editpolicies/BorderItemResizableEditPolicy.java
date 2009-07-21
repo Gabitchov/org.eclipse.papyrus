@@ -35,13 +35,15 @@ import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * 
- * @author Patrick Tessier Policy that allows resizing border item code comes form {@link BorderItemSelectionEditPolicy} and modify in order to use resize behavior
+ * @author Patrick Tessier Policy that allows resizing border item code comes form
+ *         {@link BorderItemSelectionEditPolicy} and modify in order to use resize behavior
  */
 public class BorderItemResizableEditPolicy extends ResizableShapeEditPolicy {
 
 	@Override
 	public void eraseSourceFeedback(Request request) {
-		if ((REQ_MOVE.equals(request.getType()) && isDragAllowed()) || REQ_CLONE.equals(request.getType()) || REQ_ADD.equals(request.getType()) || RequestConstants.REQ_DROP.equals(request.getType())
+		if ((REQ_MOVE.equals(request.getType()) && isDragAllowed()) || REQ_CLONE.equals(request.getType())
+				|| REQ_ADD.equals(request.getType()) || RequestConstants.REQ_DROP.equals(request.getType())
 				|| REQ_RESIZE.equals(request.getType()))
 			eraseChangeBoundsFeedback((ChangeBoundsRequest) request);
 
@@ -75,7 +77,8 @@ public class BorderItemResizableEditPolicy extends ResizableShapeEditPolicy {
 			// Dimension d = realLocation.getTopLeft().getDifference(parentOrigin);
 			Point location = realLocation.getTopLeft();
 
-			ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View) getHost().getModel()), location);
+			ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(),
+					DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View) getHost().getModel()), location);
 			return new ICommandProxy(moveCommand);
 		}
 		return null;
@@ -111,7 +114,8 @@ public class BorderItemResizableEditPolicy extends ResizableShapeEditPolicy {
 	 */
 	@Override
 	public void showSourceFeedback(Request request) {
-		if ((REQ_MOVE.equals(request.getType()) && isDragAllowed()) || REQ_ADD.equals(request.getType()) || REQ_CLONE.equals(request.getType()) || RequestConstants.REQ_DROP.equals(request.getType())
+		if ((REQ_MOVE.equals(request.getType()) && isDragAllowed()) || REQ_ADD.equals(request.getType())
+				|| REQ_CLONE.equals(request.getType()) || RequestConstants.REQ_DROP.equals(request.getType())
 				|| REQ_RESIZE.equals(request.getType()))
 			showChangeBoundsFeedback((ChangeBoundsRequest) request);
 	}

@@ -16,7 +16,8 @@ import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 /**
  * Effectively NULL EditPolicy.
  * 
- * The only purpose of this class is to use it with gmfgen.GenNode#customBehavior in order to <b>remove</b> some other edit-policy defined for some well-known key.
+ * The only purpose of this class is to use it with gmfgen.GenNode#customBehavior in order to
+ * <b>remove</b> some other edit-policy defined for some well-known key.
  */
 public class DoNothingEditPolicy extends AbstractEditPolicy {
 	//

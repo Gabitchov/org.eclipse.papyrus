@@ -11,10 +11,9 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.diagram.common.editpolicies;
 
-import org.eclipse.papyrus.diagram.clazz.part.Messages;
-import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.uml2.uml.Abstraction;
 
 /**

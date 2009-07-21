@@ -29,7 +29,8 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 
 /**
- * This class is used to open a new diagram when the double click is detected. It is dependent of papyrus environment
+ * This class is used to open a new diagram when the double click is detected. It is dependent of
+ * papyrus environment
  */
 public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 
@@ -58,7 +59,8 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 		 * {@inheritedDoc}
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+				throws ExecutionException {
 			try {
 				IPageMngr pageMngr = EditorUtils.getIPageMngr();
 				pageMngr.openPage(diagramToOpen);
@@ -75,7 +77,8 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 	@Override
 	protected Command getOpenCommand(Request request) {
 		Diagram diagram = (Diagram) ((GraphicalEditPart) getHost()).getNotationView().getElement();
-		OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart) getHost()).getEditingDomain(), diagram);
+		OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart) getHost())
+				.getEditingDomain(), diagram);
 		return new ICommandProxy(openDiagramCommand);
 	}
 
