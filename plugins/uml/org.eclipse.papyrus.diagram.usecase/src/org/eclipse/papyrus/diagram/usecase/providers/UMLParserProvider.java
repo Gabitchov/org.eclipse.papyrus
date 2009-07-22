@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  manage label for package import visibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.providers;
@@ -25,6 +26,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName2EditPart;
@@ -569,18 +571,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	private AppliedStereotypeParser packageImportVisibility_6017Parser;
-
+	//private AppliedStereotypeParser packageImportVisibility_6017Parser;
+	
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private IParser getPackageImportVisibility_6017Parser() {
+		/*
 		if (packageImportVisibility_6017Parser == null) {
 			packageImportVisibility_6017Parser = new AppliedStereotypeParser();
 		}
 		return packageImportVisibility_6017Parser;
+		*/
+		return new PackageImportVisibilityParser();
 	}
 
 	/**

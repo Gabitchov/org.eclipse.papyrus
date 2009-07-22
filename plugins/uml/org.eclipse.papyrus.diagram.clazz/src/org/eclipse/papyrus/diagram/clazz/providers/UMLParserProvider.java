@@ -1,3 +1,7 @@
+/**
+ * contributors:
+ * Emilien Perico (Atos Origin) - manage label for package import visibility
+ */
 package org.eclipse.papyrus.diagram.clazz.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -62,7 +66,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationName2Edi
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPart;
@@ -71,7 +74,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationName2EditPart;
@@ -82,7 +84,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.common.parser.custom.AppliedStereotypeParser;
+import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -267,6 +269,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser diagramName_0Parser;
+
+	/**
+	 * @generated
+	 */
 	private IParser elementImportAlias_6020Parser;
 
 	/**
@@ -355,9 +362,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	private IParser operation_3019Parser;
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser packageImportVisibility_6022Parser;
+	// private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser
+	// packageImportVisibility_6022Parser;
 
 	/**
 	 * @generated
@@ -650,23 +658,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser diagramName_0Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDiagramName_0Parser() {
-		if (diagramName_0Parser == null) {
-			EAttribute[] features = new EAttribute[] { NotationPackage.eINSTANCE.getDiagram_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			diagramName_0Parser = parser;
-		}
-		return diagramName_0Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getCommentBody_5063Parser() {
 		if (commentBody_5063Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getComment_Body() };
@@ -795,6 +786,18 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			dependencyName_6029Parser = parser;
 		}
 		return dependencyName_6029Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser getDiagramName_0Parser() {
+		if (diagramName_0Parser == null) {
+			EAttribute[] features = new EAttribute[] { NotationPackage.eINSTANCE.getDiagram_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			diagramName_0Parser = parser;
+		}
+		return diagramName_0Parser;
 	}
 
 	/**
@@ -1011,13 +1014,15 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private IParser getPackageImportVisibility_6022Parser() {
-		if (packageImportVisibility_6022Parser == null) {
-			packageImportVisibility_6022Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
-		}
-		return packageImportVisibility_6022Parser;
+		/*
+		 * if (packageImportVisibility_6022Parser == null) { packageImportVisibility_6022Parser =
+		 * new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser(); }
+		 * return packageImportVisibility_6022Parser;
+		 */
+		return new PackageImportVisibilityParser();
 	}
 
 	/**
