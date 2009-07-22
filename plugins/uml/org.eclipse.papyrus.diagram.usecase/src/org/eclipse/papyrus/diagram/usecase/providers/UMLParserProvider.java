@@ -33,6 +33,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName4EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypePackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeRealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
@@ -555,6 +556,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser packageMergeLabel_0Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPackageMergeLabel_0Parser() {
+		if (packageMergeLabel_0Parser == null) {
+			packageMergeLabel_0Parser = new AppliedStereotypeParser();
+		}
+		return packageMergeLabel_0Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private AppliedStereotypeParser packageImportVisibility_6017Parser;
 
 	/**
@@ -630,6 +646,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getRealizationName_6015Parser();
 		case AppliedStereotypeRealizationEditPart.VISUAL_ID:
 			return getRealizationName_6016Parser();
+		case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
+			return getPackageMergeLabel_0Parser();
 		case AppliedStereotypePackageImportEditPart.VISUAL_ID:
 			return getPackageImportVisibility_6017Parser();
 		}

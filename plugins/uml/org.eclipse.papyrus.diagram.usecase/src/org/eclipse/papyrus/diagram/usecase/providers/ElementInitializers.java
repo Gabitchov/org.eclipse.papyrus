@@ -135,9 +135,7 @@ public class ElementInitializers {
 	public static void init_Constraint_2017(Constraint instance) {
 		try {
 			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
-
 			instance.setSpecification(newInstance_0_0);
-			;
 			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'",
 					UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
 			if (value_0_0_0 instanceof Collection) {
@@ -242,9 +240,7 @@ public class ElementInitializers {
 	public static void init_Constraint_3017(Constraint instance) {
 		try {
 			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
-
 			instance.setSpecification(newInstance_0_0);
-			;
 			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'",
 					UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
 			if (value_0_0_0 instanceof Collection) {
@@ -295,9 +291,7 @@ public class ElementInitializers {
 	public static void init_Constraint_3010(Constraint instance) {
 		try {
 			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
-
 			instance.setSpecification(newInstance_0_0);
-			;
 			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'",
 					UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
 			if (value_0_0_0 instanceof Collection) {

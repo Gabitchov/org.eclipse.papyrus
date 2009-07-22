@@ -67,9 +67,9 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	 * @generated
 	 */
 	public UMLNewDiagramFileWizard(URI domainModelURI, EObject diagramRoot, TransactionalEditingDomain editingDomain) {
-		assert domainModelURI != null : "Domain model uri must be specified";
-		assert diagramRoot != null : "Doagram root element must be specified";
-		assert editingDomain != null : "Editing domain must be specified";
+		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
+		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
+		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
 
 		myFileCreationPage = new WizardNewFileCreationPage(Messages.UMLNewDiagramFileWizard_CreationPageName,
 				StructuredSelection.EMPTY);

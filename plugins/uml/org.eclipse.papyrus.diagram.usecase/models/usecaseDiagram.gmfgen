@@ -1992,6 +1992,22 @@
         <targetMetaFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageMerge/mergedPackage"/>
       </modelFacet>
+      <labels
+          editPartClassName="AppliedStereotypePackageMergeEditPart"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getAppliedStereotypeLabel"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="40"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.2"/>
+      </labels>
     </links>
     <links
         visualID="4019"
@@ -6076,7 +6092,7 @@
         uses="//@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet"/>
     <implementations
         xsi:type="gmfgen:CustomParser"
-        uses="//@diagram/@links.11/@labels.0/@modelFacet //@diagram/@links.9/@labels.1/@modelFacet //@diagram/@links.8/@labels.1/@modelFacet //@diagram/@links.7/@labels.1/@modelFacet"
+        uses="//@diagram/@links.11/@labels.0/@modelFacet //@diagram/@links.9/@labels.1/@modelFacet //@diagram/@links.8/@labels.1/@modelFacet //@diagram/@links.7/@labels.1/@modelFacet //@diagram/@links.10/@labels.0/@modelFacet"
         qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
   </labelParsers>
   <contextMenus
