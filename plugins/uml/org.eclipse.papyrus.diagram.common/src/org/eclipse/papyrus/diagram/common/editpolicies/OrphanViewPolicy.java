@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -43,6 +45,8 @@ import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 public class OrphanViewPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener {
 
 	private ArrayList notOrphanList = new ArrayList();
+	
+	private static Pattern digit = Pattern.compile("\\d*");
 
 	/**
 	 * 
@@ -176,12 +180,30 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	protected boolean isOrphaned(View view) {
 		String semanticHint = view.getType();
 		boolean t = view.isSetElement();
-		if (notOrphanList.contains(new Integer(semanticHint))) {
+		if (isInteger(semanticHint) && notOrphanList.contains(new Integer(semanticHint))) {
 			return false;
 		}
 		return !view.isSetElement();
 	}
 
+	/**
+	 * Checks if the string is an integer.
+	 * 
+	 * @param s the specified string
+	 * 
+	 * @return true, if is integer
+	 */
+	public static boolean isInteger(String s)
+	{
+		boolean result = false ;
+		Matcher matcher = digit.matcher(s);
+		if (matcher != null)
+		{
+			result = matcher.matches();
+		}
+		return result ;	
+	}
+	
 	/**
 	 * 
 	 * {@inheritDoc}
