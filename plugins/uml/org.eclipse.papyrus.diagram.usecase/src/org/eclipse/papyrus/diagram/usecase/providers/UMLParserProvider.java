@@ -571,21 +571,18 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
-	//private AppliedStereotypeParser packageImportVisibility_6017Parser;
-	
+	private PackageImportVisibilityParser packageImportVisibility_6017Parser;
+
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	private IParser getPackageImportVisibility_6017Parser() {
-		/*
 		if (packageImportVisibility_6017Parser == null) {
-			packageImportVisibility_6017Parser = new AppliedStereotypeParser();
+			packageImportVisibility_6017Parser = new PackageImportVisibilityParser();
 		}
 		return packageImportVisibility_6017Parser;
-		*/
-		return new PackageImportVisibilityParser();
 	}
 
 	/**

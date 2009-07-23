@@ -2057,7 +2057,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="//@labelParsers/@implementations.2"
+            parser="//@labelParsers/@implementations.3"
             viewPattern="&lt;&lt;{0}>>"
             editorPattern="&lt;&lt;{0}>>"
             editPattern="&lt;&lt;{0}>>">
@@ -6092,8 +6092,12 @@
         uses="//@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet"/>
     <implementations
         xsi:type="gmfgen:CustomParser"
-        uses="//@diagram/@links.11/@labels.0/@modelFacet //@diagram/@links.9/@labels.1/@modelFacet //@diagram/@links.8/@labels.1/@modelFacet //@diagram/@links.7/@labels.1/@modelFacet //@diagram/@links.10/@labels.0/@modelFacet"
+        uses="//@diagram/@links.9/@labels.1/@modelFacet //@diagram/@links.8/@labels.1/@modelFacet //@diagram/@links.7/@labels.1/@modelFacet //@diagram/@links.10/@labels.0/@modelFacet"
         qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
+    <implementations
+        xsi:type="gmfgen:CustomParser"
+        uses="//@diagram/@links.11/@labels.0/@modelFacet"
+        qualifiedName="org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser"/>
   </labelParsers>
   <contextMenus
       iD="org.eclipse.papyrus.diagram.usecase.part.LoadResourceAction"
