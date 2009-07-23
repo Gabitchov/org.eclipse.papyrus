@@ -14,10 +14,16 @@
 package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -26,6 +32,10 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public abstract class NamedElementEditPart extends UmlNodeEditPart implements IUMLNamedElementEditPart {
 
+	/**
+	 * Save the fontDescriptor in order to dispose the font later
+	 */
+	private FontDescriptor cachedFontDescriptor;
 	/**
 	 * {@inheritDoc}
 	 */
@@ -71,5 +81,28 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 		refreshIconNamedLabel();
 
 	}
-}
 
+	/**
+	 * Refresh the name label font {@inheritDoc}
+	 */
+	@Override
+	protected void refreshFont() {
+		FontStyle style = (FontStyle) getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (style != null) {
+			// Get the font
+			FontDescriptor fontDescriptor = FontDescriptor.createFrom(new FontData(style.getFontName(), style.getFontHeight(),
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL)));
+			Font newFont = getResourceManager().createFont(fontDescriptor);
+			
+			// Apply the font to the Name Label
+			((NodeNamedElementFigure) getPrimaryShape()).getNameLabel().setFont(newFont);
+			
+			// Dispose previous Font and FontDescriptor
+			if(cachedFontDescriptor!=null)
+			{
+				getResourceManager().destroyFont(cachedFontDescriptor);
+			}
+			cachedFontDescriptor = fontDescriptor;
+		}
+	}
+}

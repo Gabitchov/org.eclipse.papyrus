@@ -28,7 +28,7 @@ import org.eclipse.swt.graphics.RGB;
 /**
  * Figure for a package element
  */
-public class PackageFigure extends NodeNamedElementFigure implements IAbstractElementFigure {
+public class PackageFigure extends NodeNamedElementFigure {
 
 	private static final int wrappedLabelSize = 18;
 

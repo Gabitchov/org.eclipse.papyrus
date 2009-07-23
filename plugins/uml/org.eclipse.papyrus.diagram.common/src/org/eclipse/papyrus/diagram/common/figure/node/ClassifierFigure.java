@@ -371,10 +371,10 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	public void setAbstract(boolean b) {
 
 		if (b) {
-			FontData[] font = { new FontData(getfigureFont(), getFontSize(), SWT.ITALIC | SWT.BOLD) };
+			FontData[] font = { new FontData("Arial", 12, SWT.ITALIC | SWT.BOLD) };
 			this.getNameLabel().setFont(Activator.fontManager.get(font));// italic
 		} else {
-			FontData[] font = { new FontData(getfigureFont(), getFontSize(), SWT.BOLD) };
+			FontData[] font = { new FontData("Arial", 12, SWT.BOLD) };
 			this.getNameLabel().setFont(Activator.fontManager.get(font));
 		}
 	}
@@ -385,11 +385,11 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	 * @param keyword
 	 */
 	protected void createTagLabel(String keyword) {
-		FontData[] fontdata = { new FontData(this.fontString, this.fontSize, SWT.NORMAL) };
+		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
 		Font font = Activator.fontManager.get(fontdata);
 		Label label = new Label();
 		label.setFont(font);
-		label.setForegroundColor(this.fontColor);
+		label.setForegroundColor(getForegroundColor());
 		label.setOpaque(false);
 		label.setText(Activator.ST_LEFT + keyword + Activator.ST_RIGHT);
 		// Add the tag label to the figure at the position 0

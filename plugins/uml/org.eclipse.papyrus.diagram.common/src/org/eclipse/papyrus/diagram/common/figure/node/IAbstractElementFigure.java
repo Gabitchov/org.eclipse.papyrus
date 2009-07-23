@@ -26,6 +26,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Patrick Tessier
  * @since 12 september 2006
+ * @deprecated tlandre : not used anymore. Use GMF mechanism directly instead
  */
 public interface IAbstractElementFigure extends IFigure {
 

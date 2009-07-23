@@ -87,11 +87,11 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 	 * @param keyword
 	 */
 	protected void createTagLabel(String keyword) {
-		FontData[] fontdata = { new FontData(this.fontString, this.fontSize, SWT.NORMAL) };
+		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
 		Font font = Activator.fontManager.get(fontdata);
 		Label label = new Label();
 		label.setFont(font);
-		label.setForegroundColor(this.fontColor);
+		label.setForegroundColor(getForegroundColor());
 		label.setOpaque(false);
 		label.setText(Activator.ST_LEFT + keyword + Activator.ST_RIGHT);
 		// Add the tag label to the figure at the position 0

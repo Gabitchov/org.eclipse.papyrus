@@ -85,13 +85,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	 */
 	public NodeNamedElementFigure() {
 		super();
-		FontData[] fontdata = { new FontData(this.fontString, this.fontSize, SWT.NORMAL) };
-		this.font = Activator.fontManager.get(fontdata);
-		FontData[] fontdata2 = { new FontData("Arial", this.fontSize, SWT.BOLD) };
-		Font font2 = Activator.fontManager.get(fontdata2);
-		setBackgroundColor(Activator.colorManager.get(new RGB(242, 242, 242)));
 
-		setForegroundColor(Activator.colorManager.get(new RGB(204, 204, 204)));
+		FontData[] fontdata2 = { new FontData("Arial", 6, SWT.BOLD) };
+		Font font2 = Activator.fontManager.get(fontdata2);
+
 
 		// creation of the nameLabel
 		this.nameLabel = new WrappingLabel();
@@ -99,8 +96,6 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 		this.nameLabel.setOpaque(false);
 		this.nameLabel.setAlignment(PositionConstants.MIDDLE);
 		this.add(this.nameLabel);
-		shadowborder = new RectangularShadowBorder(3, getForegroundColor());
-		setBorder(shadowborder);
 	}
 
 	/**
@@ -137,11 +132,11 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	 * create the label that contains the qualified name.
 	 */
 	protected void createQualifiedNameLabel() {
-		FontData[] fontdata = { new FontData(this.fontString, this.fontSize, SWT.ITALIC) };
+		FontData[] fontdata = { new FontData("Arial", 12, SWT.ITALIC) };
 		Font font = Activator.fontManager.get(fontdata);
 		Label label = new Label();
 		label.setFont(font);
-		label.setForegroundColor(getFontColor());
+		label.setForegroundColor(getForegroundColor());
 		label.setOpaque(false);
 		// Add the label to the figure, after the name
 		this.add(label, getQualifiedNameLabelPosition());
@@ -152,12 +147,12 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	 * this method is used to create the stereotype label.
 	 */
 	protected void createStereotypeLabel() {
-		FontData[] fontdata = { new FontData(this.fontString, fontSize, SWT.NORMAL) };
+		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
 		Font font = Activator.fontManager.get(fontdata);
 		Label label = new Label();
 		label.setFont(font);
 		label.setOpaque(false);
-		label.setForegroundColor(getFontColor());
+		label.setForegroundColor(getForegroundColor());
 		// Add the stereotype label to the figure at pos 0
 		this.add(label, getStereotypeLabelPosition());
 		this.stereotypesLabel = label;
@@ -167,12 +162,12 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	 * this method is used to create the stereotype label.
 	 */
 	protected void createStereotypePropertiesInBraceLabel() {
-		final FontData[] fontdata = { new FontData(this.fontString, fontSize, SWT.NORMAL) };
+		final FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
 		final Font font = Activator.fontManager.get(fontdata);
 		final Label label = new Label();
 		label.setFont(font);
 		label.setOpaque(false);
-		label.setForegroundColor(getFontColor());
+		label.setForegroundColor(getForegroundColor());
 		// Add the stereotype label to the figure at pos 0
 		this.add(label, getStereotypePropertiesLabelPosition());
 		this.stereotypePropertiesInBraceContent = label;
@@ -188,7 +183,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	}
 
 	private void fillStereotypePropertiesInCompartment(String stereotypeProperties) {
-		FontData[] fontdata = { new FontData(this.fontString, fontSize, SWT.NORMAL) };
+		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
 		Font font = Activator.fontManager.get(fontdata);
 		stereotypePropertiesContent.getChildren().clear();
 		StringTokenizer stringTokenizer = new StringTokenizer(stereotypeProperties, ";");
@@ -199,7 +194,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 			Label label = new Label(tokenStereotype);
 			label.setFont(font);
 			label.setLabelAlignment(PositionConstants.LEFT);
-			label.setForegroundColor(getFontColor());
+			label.setForegroundColor(getForegroundColor());
 			label.setBorder(null);
 			stereotypePropertiesContent.add(label);
 		}
@@ -436,7 +431,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 			graphics.fillGradient(rectangle, isVertical);
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
-			graphics.setForegroundColor(getForeGroundColor());
+			graphics.setForegroundColor(getForegroundColor());
 			graphics.fillRectangle(rectangle);
 		}
 	}
@@ -530,36 +525,36 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-
-	/**
-	 * Sets the font.
-	 * 
-	 * @param f
-	 *            the f
-	 */
-	@Override
-	public void setFont(Font f) {
-		fontSize = f.getFontData()[0].getHeight();
-		fontString = f.getFontData()[0].getName();
-		int fontStyle = f.getFontData()[0].getStyle();
-		this.nameLabel.setFont(Activator.fontManager
-				.get(new FontData[] { new FontData(fontString, fontSize, fontStyle) }));
-
-		if (this.getStereotypesLabel() != null) {
-			if (fontSize > 3) {
-				this.getStereotypesLabel().setFont(
-						Activator.fontManager
-								.get(new FontData[] { new FontData(fontString, fontSize - 2, SWT.NORMAL) }));
-			} else {
-				this.getStereotypesLabel().setFont(
-						Activator.fontManager.get(new FontData[] { new FontData(fontString, 2, SWT.NORMAL) }));
-			}
-		}
-		if (this.getQualifiedNameLabel() != null) {
-			this.getQualifiedNameLabel().setFont(
-					Activator.fontManager.get(new FontData[] { new FontData(fontString, fontSize, SWT.ITALIC) }));
-		}
-	}
+//
+//	/**
+//	 * Sets the font.
+//	 * 
+//	 * @param f
+//	 *            the f
+//	 */
+//	@Override
+//	public void setFont(Font f) {
+//		fontSize = f.getFontData()[0].getHeight();
+//		fontString = f.getFontData()[0].getName();
+//		int fontStyle = f.getFontData()[0].getStyle();
+//		this.nameLabel.setFont(Activator.fontManager
+//				.get(new FontData[] { new FontData(fontString, fontSize, fontStyle) }));
+//
+//		if (this.getStereotypesLabel() != null) {
+//			if (fontSize > 3) {
+//				this.getStereotypesLabel().setFont(
+//						Activator.fontManager
+//								.get(new FontData[] { new FontData(fontString, fontSize - 2, SWT.NORMAL) }));
+//			} else {
+//				this.getStereotypesLabel().setFont(
+//						Activator.fontManager.get(new FontData[] { new FontData(fontString, 2, SWT.NORMAL) }));
+//			}
+//		}
+//		if (this.getQualifiedNameLabel() != null) {
+//			this.getQualifiedNameLabel().setFont(
+//					Activator.fontManager.get(new FontData[] { new FontData(fontString, fontSize, SWT.ITALIC) }));
+//		}
+//	}
 
 	/**
 	 * Sets the name.
