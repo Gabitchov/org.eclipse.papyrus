@@ -1332,7 +1332,16 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getPackageMerge_4011Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.PackageMerge_4011,
+				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
+						.getType(AppliedStereotypePackageMergeEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6030); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
