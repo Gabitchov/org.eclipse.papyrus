@@ -18,12 +18,10 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.AbstractLayout;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -32,72 +30,28 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 
 /**
- * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified nale label + 1 name label
+ * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified
+ * nale label + 1 name label
  */
-public class NodeNamedElementFigure extends NodeFigure implements IAbstractElementFigure {
-
-	/**
-	 * The background color.
-	 */
-	protected Color backgroundColor = ColorConstants.lightGreen;
-
-	/**
-	 * The border color.
-	 */
-	protected Color borderColor = ColorConstants.black;
+public class NodeNamedElementFigure extends PapyrusNodeFigure {
 
 	/** the depth of the qualified name **/
 	private int depth = 0;
 
 	/**
-	 * The font.
-	 */
-	protected Font font = null;
-
-	/**
-	 * The font color.
-	 */
-	protected Color fontColor = ColorConstants.black;
-
-	/**
-	 * The font size.
-	 */
-	protected int fontSize = 10;
-
-	/**
-	 * The font string.
-	 */
-	protected String fontString = "Arial";
-
-	/**
-	 * The fore ground color.
-	 */
-	protected Color foreGroundColor = ColorConstants.black;
-
-	/**
 	 * The icon label.
 	 */
 	protected Label iconLabel;
-
-	/**
-	 * The img.
-	 */
-	// protected Image img = null;
-
-
-	
 
 	/**
 	 * The name label.
@@ -110,10 +64,6 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	 * The qualified label.
 	 */
 	protected Label qualifiedLabel;
-
-	private boolean shadow = true;
-
-	protected RectangularShadowBorder shadowborder;
 
 	/**
 	 * Added for stereptypes properties
@@ -257,67 +207,12 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	}
 
 	/**
-	 * Gets the background color.
-	 * 
-	 * @return the background color
-	 */
-	@Override
-	public Color getBackgroundColor() {
-		return this.backgroundColor;
-	}
-
-	/**
-	 * Gets the border color.
-	 * 
-	 * @return the border color
-	 */
-	public Color getBorderColor() {
-		return this.borderColor;
-	}
-
-	/**
 	 * Gets the depth.
 	 * 
 	 * @return the depth
 	 */
 	public int getDepth() {
 		return depth;
-	}
-
-	/**
-	 * Getfigure font.
-	 * 
-	 * @return the figure font
-	 */
-	public String getfigureFont() {
-		return this.fontString;
-	}
-
-	/**
-	 * Gets the font color.
-	 * 
-	 * @return the font color
-	 */
-	public Color getFontColor() {
-		return this.fontColor;
-	}
-
-	/**
-	 * Gets the font size.
-	 * 
-	 * @return the font size
-	 */
-	public int getFontSize() {
-		return this.fontSize;
-	}
-
-	/**
-	 * Gets the fore ground color.
-	 * 
-	 * @return the fore ground color
-	 */
-	public Color getForeGroundColor() {
-		return this.foreGroundColor;
 	}
 
 	/**
@@ -338,9 +233,6 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 		return 0;
 	}
 
-	
-
-	
 	public Dimension getMinimumDimension() {
 		int width = getNameLabel().getTextBounds().width + 10;
 		int height = getNameLabel().getTextBounds().height + 10;
@@ -469,7 +361,8 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	}
 
 	/**
-	 * Returns the position of the stereotype properties location. this is just after stereotype position
+	 * Returns the position of the stereotype properties location. this is just after stereotype
+	 * position
 	 * 
 	 * @return the position of the stereotype properties label in the figure
 	 */
@@ -504,10 +397,6 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 		return this.stereotypesLabel;
 	}
 
-	public boolean isShadow() {
-		return shadow;
-	}
-
 	/**
 	 * return true inf the label in localized at the point pt.
 	 * 
@@ -529,43 +418,19 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 		return false;
 	}
 
-
 	/**
-	 * Paint figure.
+	 * Paint the background of the figure. If this figure uses gradient, then it will paint the
+	 * background with the gradient informations. Otherwise it will use the background color.
 	 * 
 	 * @param graphics
 	 *            the graphics
-	 */
-	@Override
-	public void paintFigure(Graphics graphics) {
-		super.paintFigure(graphics);
-		
-		paintBackground(graphics, getBounds());
-		
-		// if (this.img != null) {
-		// if (this.iconLabel == null) {
-		// this.createIconLabel();
-		// }
-		// } else {
-		// if (this.iconLabel != null) {
-		// this.remove(this.iconLabel);
-		// }
-		// }
-		shadowborder.setColor(getForegroundColor());
-		
-	}
-
-	/**
-	 * Paint the background of the figure.
-	 * If this figure uses gradient, then it will paint the background with the gradient informations. 
-	 * Otherwise it will use the background color.  
-	 * @param graphics the graphics
- 	 * @param rectangle the rectangle where the background needs to be fill.
+	 * @param rectangle
+	 *            the rectangle where the background needs to be fill.
 	 */
 	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
 		if (isUsingGradient()) {
 			applyTransparency(graphics);
-			boolean isVertical = (getGradientStyle()==GradientStyle.VERTICAL)?true:false;
+			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
 			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
 			graphics.fillGradient(rectangle, isVertical);
@@ -575,7 +440,6 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 			graphics.fillRectangle(rectangle);
 		}
 	}
-	
 
 	// /**
 	// * Refresh presentation.
@@ -591,7 +455,8 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	//
 	// /* if the presentation is icon or icon with text, we can set the icon */
 	// if ((icon != null)
-	// && ((presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) || presentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
+	// && ((presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) ||
+	// presentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
 	// this.setIcon(icon);
 	// if (iconLabel == null) {
 	// createIconLabel();
@@ -657,40 +522,6 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	}
 
 	/**
-	 * Sets the background color.
-	 * 
-	 * @param backgroundColor
-	 *            the background color
-	 */
-	@Override
-	public void setBackgroundColor(Color backgroundColor) {
-		this.backgroundColor = backgroundColor;
-		super.setBackgroundColor(backgroundColor);
-	}
-
-	/**
-	 * Sets the border color.
-	 * 
-	 * @param borderColor
-	 *            the border color
-	 */
-	public void setBorderColor(Color borderColor) {
-		this.borderColor = borderColor;
-		super.setBorder(new LineBorder(borderColor));
-	}
-
-	/**
-	 * Sets the bounds.
-	 * 
-	 * @param rect
-	 *            the rect
-	 */
-	@Override
-	public void setBounds(Rectangle rect) {
-		super.setBounds(rect);
-	}
-
-	/**
 	 * Sets the depth.
 	 * 
 	 * @param depth
@@ -698,20 +529,6 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	 */
 	public void setDepth(int depth) {
 		this.depth = depth;
-	}
-
-	/**
-	 * Setfigure font.
-	 * 
-	 * @param font
-	 *            the font
-	 */
-	public void setfigureFont(String font) {
-
-		this.fontString = font;
-		FontData[] fontdata = { new FontData(font, this.fontSize, SWT.NORMAL) };
-		this.font = Activator.fontManager.get(fontdata);
-		super.setFont(this.font);
 	}
 
 	/**
@@ -725,58 +542,24 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 		fontSize = f.getFontData()[0].getHeight();
 		fontString = f.getFontData()[0].getName();
 		int fontStyle = f.getFontData()[0].getStyle();
-		this.nameLabel.setFont(Activator.fontManager.get(new FontData[] { new FontData(fontString, fontSize, fontStyle) }));
+		this.nameLabel.setFont(Activator.fontManager
+				.get(new FontData[] { new FontData(fontString, fontSize, fontStyle) }));
 
 		if (this.getStereotypesLabel() != null) {
 			if (fontSize > 3) {
-				this.getStereotypesLabel().setFont(Activator.fontManager.get(new FontData[] { new FontData(fontString, fontSize - 2, SWT.NORMAL) }));
+				this.getStereotypesLabel().setFont(
+						Activator.fontManager
+								.get(new FontData[] { new FontData(fontString, fontSize - 2, SWT.NORMAL) }));
 			} else {
-				this.getStereotypesLabel().setFont(Activator.fontManager.get(new FontData[] { new FontData(fontString, 2, SWT.NORMAL) }));
+				this.getStereotypesLabel().setFont(
+						Activator.fontManager.get(new FontData[] { new FontData(fontString, 2, SWT.NORMAL) }));
 			}
 		}
 		if (this.getQualifiedNameLabel() != null) {
-			this.getQualifiedNameLabel().setFont(Activator.fontManager.get(new FontData[] { new FontData(fontString, fontSize, SWT.ITALIC) }));
+			this.getQualifiedNameLabel().setFont(
+					Activator.fontManager.get(new FontData[] { new FontData(fontString, fontSize, SWT.ITALIC) }));
 		}
 	}
-
-	/**
-	 * Sets the font color.
-	 * 
-	 * @param fontColor
-	 *            the font color
-	 */
-	public void setFontColor(Color fontColor) {
-		this.fontColor = fontColor;
-	}
-
-	/**
-	 * Sets the font size.
-	 * 
-	 * @param fontSize
-	 *            the font size
-	 */
-	public void setFontSize(int fontSize) {
-
-		FontData[] fontdata = { new FontData(this.fontString, fontSize, SWT.NORMAL) };
-		this.font = Activator.fontManager.get(fontdata);
-		super.setFont(this.font);
-		this.fontSize = fontSize;
-	}
-
-	/**
-	 * Sets the fore ground color.
-	 * 
-	 * @param foreGroundColor
-	 *            the fore ground color
-	 */
-	public void setForeGroundColor(Color foreGroundColor) {
-		this.foreGroundColor = foreGroundColor;
-		super.setForegroundColor(foreGroundColor);
-
-	}
-
-	
-	
 
 	/**
 	 * Sets the name.
@@ -837,22 +620,15 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 
 	}
 
-	public void setShadow(boolean shadow) {
-		this.shadow = shadow;
-		if (shadow == true) {
-			this.setBorder(shadowborder);
-		} else {
-			this.setBorder(new LineBorder());
-		}
-	}
-
 	/**
 	 * Sets the stereotypes properties for this figure.
 	 * <p>
 	 * This implementation checks if the specified string is null or not.
 	 * <ul>
-	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes properties with brace.</li>
-	 * <li>if this is not <code>null</code>, it creates the stereotype properties label if needed and displays the specified string.</li>
+	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes
+	 * properties with brace.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype properties label if needed
+	 * and displays the specified string.</li>
 	 * </ul>
 	 * </p>
 	 * 
@@ -885,7 +661,8 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	/**
 	 * displays the new string corresponding to the list of stereotypes.
 	 * 
-	 * if the string is <code>null</code>, then the figure that displays the stereotype label is removed from the NodeNamedElementFigure.
+	 * if the string is <code>null</code>, then the figure that displays the stereotype label is
+	 * removed from the NodeNamedElementFigure.
 	 * 
 	 * @param stereotypeProperties
 	 *            the string to be displayed.
@@ -914,7 +691,8 @@ public class NodeNamedElementFigure extends NodeFigure implements IAbstractEleme
 	 * This implementation checks if the specified string is null or not.
 	 * <ul>
 	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes.</li>
-	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays the specified string.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays
+	 * the specified string.</li>
 	 * </ul>
 	 * </p>
 	 * 
