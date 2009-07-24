@@ -452,7 +452,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -470,9 +470,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.Dependency_4013);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
@@ -485,7 +482,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if (targetEditPart instanceof Package3EditPart) {
+		if (targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if (targetEditPart instanceof ActorEditPart) {
@@ -503,7 +500,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -521,9 +518,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.Abstraction_4015);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
@@ -536,7 +530,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if (targetEditPart instanceof Package3EditPart) {
+		if (targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if (targetEditPart instanceof ActorEditPart) {
@@ -554,7 +548,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -572,9 +566,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.Usage_4016);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
@@ -587,7 +578,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if (targetEditPart instanceof Package3EditPart) {
+		if (targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if (targetEditPart instanceof ActorEditPart) {
@@ -605,7 +596,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -623,9 +614,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.Realization_4017);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
@@ -638,16 +626,13 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if (targetEditPart instanceof Package3EditPart) {
+		if (targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.PackageImport_4019);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.PackageImport_4019);
-		}
-		if (targetEditPart instanceof Package3EditPart) {
+		if (targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.PackageImport_4019);
 		}
 		return types;
@@ -793,9 +778,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
@@ -842,9 +824,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if (relationshipType == UMLElementTypes.Abstraction_4015) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_3010);
@@ -895,9 +874,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Usage_4016) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Usage_4016) {
@@ -944,9 +920,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if (relationshipType == UMLElementTypes.Realization_4017) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_3010);
@@ -965,9 +938,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.PackageImport_4019) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if (relationshipType == UMLElementTypes.PackageImport_4019) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.PackageImport_4019) {
 			types.add(UMLElementTypes.Package_3014);
@@ -1152,9 +1122,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
@@ -1209,9 +1176,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4015) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4015) {
@@ -1260,9 +1224,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Usage_4016) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Usage_4016) {
@@ -1309,9 +1270,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if (relationshipType == UMLElementTypes.Realization_4017) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_3010);

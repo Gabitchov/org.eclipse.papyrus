@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -19,7 +32,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class PackageCreateCommand extends EditElementCommand {
+public class PackageCreateCommandCN extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -34,7 +47,7 @@ public class PackageCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public PackageCreateCommand(CreateElementRequest req, EObject eObject) {
+	public PackageCreateCommandCN(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -43,14 +56,14 @@ public class PackageCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static PackageCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new PackageCreateCommand(req, eObject);
+	public static PackageCreateCommandCN create(CreateElementRequest req, EObject eObject) {
+		return new PackageCreateCommandCN(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public PackageCreateCommand(CreateElementRequest req) {
+	public PackageCreateCommandCN(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -88,7 +101,7 @@ public class PackageCreateCommand extends EditElementCommand {
 		Package owner = (Package) getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_Package_2016(newElement);
+		UMLElementTypes.init_Package_3014(newElement);
 
 		doConfigure(newElement, monitor, info);
 

@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
@@ -8,6 +9,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.PackagePackageableElementCompartment2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 
@@ -59,6 +62,8 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 		// new
 		// org.eclipse.papyrus.diagram.usecase.edit.policies.PackagePackageableElementCompartment2CanonicalEditPolicy());
 
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
 	/**

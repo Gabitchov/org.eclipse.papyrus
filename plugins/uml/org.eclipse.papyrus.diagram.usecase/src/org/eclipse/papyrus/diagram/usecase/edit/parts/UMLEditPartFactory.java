@@ -41,8 +41,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			View view = (View) model;
 			switch (UMLVisualIDRegistry.getVisualID(view)) {
 
-			case PackageEditPart.VISUAL_ID:
-				return new PackageEditPart(view);
+			case UseCaseDiagramEditPart.VISUAL_ID:
+				return new UseCaseDiagramEditPart(view);
 
 			case ActorEditPart.VISUAL_ID:
 				return new ActorEditPart(view);
@@ -74,11 +74,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ComponentNameEditPart.VISUAL_ID:
 				return new ComponentNameEditPart(view);
 
-			case Package2EditPart.VISUAL_ID:
-				return new Package2EditPart(view);
+			case PackageEditPartTN.VISUAL_ID:
+				return new PackageEditPartTN(view);
 
-			case PackageNameEditPart.VISUAL_ID:
-				return new PackageNameEditPart(view);
+			case PackageNameEditPartTN.VISUAL_ID:
+				return new PackageNameEditPartTN(view);
 
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);
@@ -128,12 +128,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActorName4EditPart.VISUAL_ID:
 				return new ActorName4EditPart(view);
 
-			case Package4EditPart.VISUAL_ID:
-				return new Package4EditPart(view);
-
-			case PackageName3EditPart.VISUAL_ID:
-				return new PackageName3EditPart(view);
-
 			case Constraint3EditPart.VISUAL_ID:
 				return new Constraint3EditPart(view);
 
@@ -158,11 +152,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ComponentName3EditPart.VISUAL_ID:
 				return new ComponentName3EditPart(view);
 
-			case Package3EditPart.VISUAL_ID:
-				return new Package3EditPart(view);
+			case PackageEditPartCN.VISUAL_ID:
+				return new PackageEditPartCN(view);
 
-			case PackageName2EditPart.VISUAL_ID:
-				return new PackageName2EditPart(view);
+			case PackageNameEditPartCN.VISUAL_ID:
+				return new PackageNameEditPartCN(view);
 
 			case UseCasePointsEditPart.VISUAL_ID:
 				return new UseCasePointsEditPart(view);
@@ -178,9 +172,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ComponentUsecases2EditPart.VISUAL_ID:
 				return new ComponentUsecases2EditPart(view);
-
-			case PackagePackageableElementCompartment3EditPart.VISUAL_ID:
-				return new PackagePackageableElementCompartment3EditPart(view);
 
 			case UseCasePoints3EditPart.VISUAL_ID:
 				return new UseCasePoints3EditPart(view);

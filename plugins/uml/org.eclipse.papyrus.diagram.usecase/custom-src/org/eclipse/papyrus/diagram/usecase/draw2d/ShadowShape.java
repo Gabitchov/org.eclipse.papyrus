@@ -20,7 +20,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * The Class ShadowShape is used to draw StickMan figure. This class comes from org.eclipse.uml2.diagram.usecase.draw2d provided by Eclipse.org
+ * The Class ShadowShape is used to draw StickMan figure. This class comes from
+ * org.eclipse.uml2.diagram.usecase.draw2d provided by Eclipse.org
  */
 public abstract class ShadowShape extends AbstractProportionalShape {
 
@@ -173,10 +174,12 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 			Rectangle rec = getProportionalBounds().getTranslated(SHADOW_SIZE, SHADOW_SIZE);
 			graphics.pushState();
 			graphics.clipRect(rec);
-			// graphics.setClip(new Rectangle(rec.x, rec.y + rec.height - getShift(), rec.width, getShift()));
+			// graphics.setClip(new Rectangle(rec.x, rec.y + rec.height - getShift(), rec.width,
+			// getShift()));
 			fillShape(graphics, rec);
 			graphics.popState();
-			// graphics.setClip(new Rectangle(rec.x + rec.width - getShift(), rec.y, getShift(), rec.height));
+			// graphics.setClip(new Rectangle(rec.x + rec.width - getShift(), rec.y, getShift(),
+			// rec.height));
 			// fillShape(graphics, rec);
 		}
 

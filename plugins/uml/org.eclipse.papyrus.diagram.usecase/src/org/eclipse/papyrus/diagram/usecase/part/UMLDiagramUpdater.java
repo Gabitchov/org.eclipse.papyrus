@@ -49,20 +49,18 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Package4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseExtensionpointsEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints2EditPart;
@@ -114,8 +112,6 @@ public class UMLDiagramUpdater {
 			return getUseCasePoints_7012SemanticChildren(view);
 		case ComponentUsecases2EditPart.VISUAL_ID:
 			return getComponentUsecases_7017SemanticChildren(view);
-		case PackagePackageableElementCompartment3EditPart.VISUAL_ID:
-			return getPackagePackageableElementCompartment_7018SemanticChildren(view);
 		case UseCasePoints3EditPart.VISUAL_ID:
 			return getUseCasePoints_7014SemanticChildren(view);
 		case ComponentUsecases3EditPart.VISUAL_ID:
@@ -124,7 +120,7 @@ public class UMLDiagramUpdater {
 			return getPackagePackageableElementCompartment_7016SemanticChildren(view);
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			return getPackagePackageableElementCompartment_7013SemanticChildren(view);
-		case PackageEditPart.VISUAL_ID:
+		case UseCaseDiagramEditPart.VISUAL_ID:
 			return getPackage_1000SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
@@ -203,10 +199,6 @@ public class UMLDiagramUpdater {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == Component2EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if (visualID == Package4EditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -290,10 +282,6 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == Package4EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
 		}
 		for (Iterator it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment) it.next();
@@ -315,62 +303,6 @@ public class UMLDiagramUpdater {
 			Classifier childElement = (Classifier) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == Actor4EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List getPackagePackageableElementCompartment_7018SemanticChildren(View view) {
-		if (false == view.eContainer() instanceof View) {
-			return Collections.EMPTY_LIST;
-		}
-		View containerView = (View) view.eContainer();
-		if (!containerView.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		Package modelElement = (Package) containerView.getElement();
-		List result = new LinkedList();
-		for (Iterator it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
-			Constraint childElement = (Constraint) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == Constraint3EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for (Iterator it = modelElement.getOwnedTypes().iterator(); it.hasNext();) {
-			Type childElement = (Type) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == Actor3EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if (visualID == UseCase4EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if (visualID == Component3EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for (Iterator it = modelElement.getNestedPackages().iterator(); it.hasNext();) {
-			Package childElement = (Package) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == Package3EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for (Iterator it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
-			Comment childElement = (Comment) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == Comment2EditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -418,7 +350,7 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getNestedPackages().iterator(); it.hasNext();) {
 			Package childElement = (Package) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == Package3EditPart.VISUAL_ID) {
+			if (visualID == PackageEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -483,10 +415,6 @@ public class UMLDiagramUpdater {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == Component2EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if (visualID == Package4EditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -558,7 +486,7 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getNestedPackages().iterator(); it.hasNext();) {
 			Package childElement = (Package) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == Package3EditPart.VISUAL_ID) {
+			if (visualID == PackageEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -610,7 +538,7 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == Package2EditPart.VISUAL_ID) {
+			if (visualID == PackageEditPartTN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -635,7 +563,7 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getContainedLinks(View view) {
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
-		case PackageEditPart.VISUAL_ID:
+		case UseCaseDiagramEditPart.VISUAL_ID:
 			return getPackage_1000ContainedLinks(view);
 		case ActorEditPart.VISUAL_ID:
 			return getActor_2011ContainedLinks(view);
@@ -647,7 +575,7 @@ public class UMLDiagramUpdater {
 			return getUseCase_2014ContainedLinks(view);
 		case ComponentEditPart.VISUAL_ID:
 			return getComponent_2015ContainedLinks(view);
-		case Package2EditPart.VISUAL_ID:
+		case PackageEditPartTN.VISUAL_ID:
 			return getPackage_2016ContainedLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_2017ContainedLinks(view);
@@ -667,8 +595,6 @@ public class UMLDiagramUpdater {
 			return getConstraint_3017ContainedLinks(view);
 		case Actor4EditPart.VISUAL_ID:
 			return getActor_3018ContainedLinks(view);
-		case Package4EditPart.VISUAL_ID:
-			return getPackage_3019ContainedLinks(view);
 		case Constraint3EditPart.VISUAL_ID:
 			return getConstraint_3010ContainedLinks(view);
 		case Actor3EditPart.VISUAL_ID:
@@ -677,7 +603,7 @@ public class UMLDiagramUpdater {
 			return getUseCase_3012ContainedLinks(view);
 		case Component3EditPart.VISUAL_ID:
 			return getComponent_3013ContainedLinks(view);
-		case Package3EditPart.VISUAL_ID:
+		case PackageEditPartCN.VISUAL_ID:
 			return getPackage_3014ContainedLinks(view);
 		case IncludeEditPart.VISUAL_ID:
 			return getInclude_4008ContainedLinks(view);
@@ -718,7 +644,7 @@ public class UMLDiagramUpdater {
 			return getUseCase_2014IncomingLinks(view);
 		case ComponentEditPart.VISUAL_ID:
 			return getComponent_2015IncomingLinks(view);
-		case Package2EditPart.VISUAL_ID:
+		case PackageEditPartTN.VISUAL_ID:
 			return getPackage_2016IncomingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_2017IncomingLinks(view);
@@ -738,8 +664,6 @@ public class UMLDiagramUpdater {
 			return getConstraint_3017IncomingLinks(view);
 		case Actor4EditPart.VISUAL_ID:
 			return getActor_3018IncomingLinks(view);
-		case Package4EditPart.VISUAL_ID:
-			return getPackage_3019IncomingLinks(view);
 		case Constraint3EditPart.VISUAL_ID:
 			return getConstraint_3010IncomingLinks(view);
 		case Actor3EditPart.VISUAL_ID:
@@ -748,7 +672,7 @@ public class UMLDiagramUpdater {
 			return getUseCase_3012IncomingLinks(view);
 		case Component3EditPart.VISUAL_ID:
 			return getComponent_3013IncomingLinks(view);
-		case Package3EditPart.VISUAL_ID:
+		case PackageEditPartCN.VISUAL_ID:
 			return getPackage_3014IncomingLinks(view);
 		case IncludeEditPart.VISUAL_ID:
 			return getInclude_4008IncomingLinks(view);
@@ -789,7 +713,7 @@ public class UMLDiagramUpdater {
 			return getUseCase_2014OutgoingLinks(view);
 		case ComponentEditPart.VISUAL_ID:
 			return getComponent_2015OutgoingLinks(view);
-		case Package2EditPart.VISUAL_ID:
+		case PackageEditPartTN.VISUAL_ID:
 			return getPackage_2016OutgoingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_2017OutgoingLinks(view);
@@ -809,8 +733,6 @@ public class UMLDiagramUpdater {
 			return getConstraint_3017OutgoingLinks(view);
 		case Actor4EditPart.VISUAL_ID:
 			return getActor_3018OutgoingLinks(view);
-		case Package4EditPart.VISUAL_ID:
-			return getPackage_3019OutgoingLinks(view);
 		case Constraint3EditPart.VISUAL_ID:
 			return getConstraint_3010OutgoingLinks(view);
 		case Actor3EditPart.VISUAL_ID:
@@ -819,7 +741,7 @@ public class UMLDiagramUpdater {
 			return getUseCase_3012OutgoingLinks(view);
 		case Component3EditPart.VISUAL_ID:
 			return getComponent_3013OutgoingLinks(view);
-		case Package3EditPart.VISUAL_ID:
+		case PackageEditPartCN.VISUAL_ID:
 			return getPackage_3014OutgoingLinks(view);
 		case IncludeEditPart.VISUAL_ID:
 			return getInclude_4008OutgoingLinks(view);
@@ -1021,22 +943,6 @@ public class UMLDiagramUpdater {
 		Actor modelElement = (Actor) view.getElement();
 		List result = new LinkedList();
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_4010(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4019(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List getPackage_3019ContainedLinks(View view) {
-		Package modelElement = (Package) view.getElement();
-		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_Association_4011(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Abstraction_4015(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Usage_4016(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Realization_4017(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_PackageMerge_4018(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4019(modelElement));
 		return result;
 	}
@@ -1424,25 +1330,6 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List getPackage_3019IncomingLinks(View view) {
-		Package modelElement = (Package) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement,
-				crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_PackageMerge_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_PackageImport_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1908,21 +1795,6 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4015(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4016(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4017(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4019(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List getPackage_3019OutgoingLinks(View view) {
-		Package modelElement = (Package) view.getElement();
-		List result = new LinkedList();
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4015(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4016(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4017(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_4018(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4019(modelElement));
 		return result;
 	}

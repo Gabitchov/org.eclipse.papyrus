@@ -27,7 +27,6 @@ import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Composite;
@@ -53,7 +52,8 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlUseCaseDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
+			.getBundledImageDescriptor(UmlUseCaseDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/**
 	 * The diagram shown by the editor.
@@ -69,17 +69,19 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	private Composite splitter;
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved from the ServiceRegistry.
+	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
+	 * ServiceRegistry.
 	 * 
 	 * @throws BackboneException
 	 * @throws ServiceException
 	 * 
 	 * @generated NOT
 	 */
-	public UmlUseCaseDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
+	public UmlUseCaseDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
+			throws BackboneException, ServiceException {
 		super();
 		this.diagram = diagram;
-//		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
+		// ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
 		IEditorContextRegistry contextRegistry;
 		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
 

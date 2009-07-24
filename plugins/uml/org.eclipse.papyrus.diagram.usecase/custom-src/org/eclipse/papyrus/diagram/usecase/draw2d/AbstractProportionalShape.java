@@ -15,7 +15,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
- * The Class AbstractProportionalShape. This class comes from org.eclipse.uml2.diagram.usecase.draw2d provided by Eclipse.org
+ * The Class AbstractProportionalShape. This class comes from
+ * org.eclipse.uml2.diagram.usecase.draw2d provided by Eclipse.org
  */
 public abstract class AbstractProportionalShape extends Shape {
 
@@ -57,7 +58,8 @@ public abstract class AbstractProportionalShape extends Shape {
 	}
 
 	/**
-	 * If keeping proportions, returns the maximum rectangle that is fully inside the bounds and has the specified proportions. Otherwise, returns the bounds.
+	 * If keeping proportions, returns the maximum rectangle that is fully inside the bounds and has
+	 * the specified proportions. Otherwise, returns the bounds.
 	 */
 	public Rectangle getProportionalBounds() {
 		Rectangle area = getClientArea();
@@ -86,7 +88,8 @@ public abstract class AbstractProportionalShape extends Shape {
 	}
 
 	/**
-	 * If keeping proportions, returns the dimension tweaked by the same factor as the proportional bounds relate to the original bounds. Otherwise, returns the original dimension.
+	 * If keeping proportions, returns the dimension tweaked by the same factor as the proportional
+	 * bounds relate to the original bounds. Otherwise, returns the original dimension.
 	 */
 	public Dimension adjustDimension(Dimension d) {
 		Rectangle area = getClientArea();

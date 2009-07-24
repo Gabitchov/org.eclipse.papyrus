@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,7 +25,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.ActorCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ComponentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageCreateCommandTN;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCaseCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
@@ -33,12 +33,12 @@ import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public PackageItemSemanticEditPolicy() {
+	public UseCaseDiagramItemSemanticEditPolicy() {
 		super(UMLElementTypes.Package_1000);
 	}
 
@@ -62,7 +62,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 			return getGEFWrapper(new ComponentCreateCommand(req));
 		}
 		if (UMLElementTypes.Package_2016 == req.getElementType()) {
-			return getGEFWrapper(new PackageCreateCommand(req));
+			return getGEFWrapper(new PackageCreateCommandTN(req));
 		}
 		if (UMLElementTypes.Constraint_2017 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintCreateCommand(req));

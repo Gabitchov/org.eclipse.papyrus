@@ -26,7 +26,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Component3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.usecase.part.UMLNodeDescriptor;
@@ -66,7 +66,7 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 		case Actor3EditPart.VISUAL_ID:
 		case UseCase4EditPart.VISUAL_ID:
 		case Component3EditPart.VISUAL_ID:
-		case Package3EditPart.VISUAL_ID:
+		case PackageEditPartCN.VISUAL_ID:
 		case Comment2EditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
 				return true;

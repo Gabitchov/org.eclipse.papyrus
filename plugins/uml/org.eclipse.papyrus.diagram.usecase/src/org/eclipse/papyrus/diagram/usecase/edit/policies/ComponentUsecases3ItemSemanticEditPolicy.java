@@ -6,7 +6,6 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.Actor4CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Comment2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Component2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Constraint2CreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.Package3CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase3CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
@@ -40,9 +39,6 @@ public class ComponentUsecases3ItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		if (UMLElementTypes.Actor_3018 == req.getElementType()) {
 			return getGEFWrapper(new Actor4CreateCommand(req));
-		}
-		if (UMLElementTypes.Package_3019 == req.getElementType()) {
-			return getGEFWrapper(new Package3CreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

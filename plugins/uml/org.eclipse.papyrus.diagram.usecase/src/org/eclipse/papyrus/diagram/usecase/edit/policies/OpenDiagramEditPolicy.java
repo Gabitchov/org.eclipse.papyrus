@@ -41,7 +41,7 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
@@ -185,7 +185,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		protected String getDiagramKind() {
-			return PackageEditPart.MODEL_ID;
+			return UseCaseDiagramEditPart.MODEL_ID;
 		}
 
 		/**

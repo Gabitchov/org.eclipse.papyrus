@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -13,14 +26,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class Package3CreateCommand extends EditElementCommand {
+public class PackageCreateCommandTN extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -35,7 +47,7 @@ public class Package3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Package3CreateCommand(CreateElementRequest req, EObject eObject) {
+	public PackageCreateCommandTN(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -44,14 +56,14 @@ public class Package3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Package3CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new Package3CreateCommand(req, eObject);
+	public static PackageCreateCommandTN create(CreateElementRequest req, EObject eObject) {
+		return new PackageCreateCommandTN(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public Package3CreateCommand(CreateElementRequest req) {
+	public PackageCreateCommandTN(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -86,10 +98,10 @@ public class Package3CreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Package newElement = UMLFactory.eINSTANCE.createPackage();
 
-		Component owner = (Component) getElementToEdit();
+		Package owner = (Package) getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_Package_3019(newElement);
+		UMLElementTypes.init_Package_2016(newElement);
 
 		doConfigure(newElement, monitor, info);
 

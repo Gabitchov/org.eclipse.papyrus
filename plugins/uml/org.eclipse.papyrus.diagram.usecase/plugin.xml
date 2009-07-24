@@ -313,7 +313,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2016,2017,2018,3007,3008,3009,3016,3015,3017,3018,3019,3010,3011,3012,3013,3014"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2016,2017,2018,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
       </viewProvider>
    </extension>
@@ -326,16 +326,16 @@
             <method name="getType()" value="UseCase"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,3007,3008,3009,3016,3015,3017,3018,3019,3010,3011,3012,3013,3014"/>
+            <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5014,5015,5016,5017,5019,5025,5026,5027,5018,5030,5028,5029,5031,5032,5020,5021,5022,5023,5024"/>
+            <method name="getType()" value="5014,5015,5016,5017,5019,5025,5026,5027,5018,5030,5028,5029,5031,5020,5021,5022,5023,5024"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7009,7010,7011,7012,7017,7018,7014,7015,7016,7013"/>
+            <method name="getType()" value="7009,7010,7011,7012,7017,7014,7015,7016,7013"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -345,13 +345,13 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart" id="Package_1000"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart" id="Actor_2011"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart" id="Actor_2012"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart" id="UseCase_2013"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart" id="UseCase_2014"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart" id="Component_2015"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart" id="Package_2016"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN" id="Package_2016"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart" id="Constraint_2017"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart" id="Comment_2018"/>
          <context elements="Package_1000,Actor_2011,Actor_2012,UseCase_2013,UseCase_2014,Component_2015,Package_2016,Constraint_2017,Comment_2018"/>
@@ -523,15 +523,6 @@
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.diagram.usecase.Actor_2011"/>
             <param name="semanticHint" value="3018"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.diagram.usecase.Package_3019"
-               name="%metatype.name.Package_3019"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.usecase.Package_1000"/>
-            <param name="semanticHint" value="3019"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -725,7 +716,6 @@
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Comment_3015"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_3017"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_3018"/>
-         <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_3019"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_3010"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_3011"/>
          <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_3012"/>
@@ -956,7 +946,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart"/>
+                     <instanceof value="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>

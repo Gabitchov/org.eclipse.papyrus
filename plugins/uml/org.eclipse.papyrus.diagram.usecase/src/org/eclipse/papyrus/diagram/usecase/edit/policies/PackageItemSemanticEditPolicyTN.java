@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import java.util.Iterator;
@@ -45,10 +58,10 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
@@ -58,13 +71,13 @@ import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class Package4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public Package4ItemSemanticEditPolicy() {
-		super(UMLElementTypes.Package_3019);
+	public PackageItemSemanticEditPolicyTN() {
+		super(UMLElementTypes.Package_2016);
 	}
 
 	/**
@@ -187,7 +200,7 @@ public class Package4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		for (Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node) nit.next();
 			switch (UMLVisualIDRegistry.getVisualID(node)) {
-			case PackagePackageableElementCompartment3EditPart.VISUAL_ID:
+			case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 				for (Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node) cit.next();
 					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
@@ -620,7 +633,7 @@ public class Package4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
 						// cnode));
 						break;
-					case Package3EditPart.VISUAL_ID:
+					case PackageEditPartCN.VISUAL_ID:
 						for (Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge) it.next();
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {

@@ -6,7 +6,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.Actor3CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Comment2CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Component3CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.Constraint3CreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.Package2CreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageCreateCommandCN;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase4CreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
@@ -39,7 +39,7 @@ public class PackagePackageableElementCompartment2ItemSemanticEditPolicy extends
 			return getGEFWrapper(new Component3CreateCommand(req));
 		}
 		if (UMLElementTypes.Package_3014 == req.getElementType()) {
-			return getGEFWrapper(new Package2CreateCommand(req));
+			return getGEFWrapper(new PackageCreateCommandCN(req));
 		}
 		if (UMLElementTypes.Comment_3015 == req.getElementType()) {
 			return getGEFWrapper(new Comment2CreateCommand(req));

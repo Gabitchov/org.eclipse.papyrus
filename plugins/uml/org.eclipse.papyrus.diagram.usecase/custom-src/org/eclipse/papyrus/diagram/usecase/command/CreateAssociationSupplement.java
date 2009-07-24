@@ -74,12 +74,14 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		Association association = UMLFactory.eINSTANCE.createAssociation();
 
 		// create source property
-		Property sourceProperty = association.createOwnedEnd(((Type) getSource()).getName().toLowerCase(), (Type) getSource());
+		Property sourceProperty = association.createOwnedEnd(((Type) getSource()).getName().toLowerCase(),
+				(Type) getSource());
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 
 		// create target property
-		Property targetProperty = association.createOwnedEnd(((Type) getTarget()).getName().toLowerCase(), (Type) getTarget());
+		Property targetProperty = association.createOwnedEnd(((Type) getTarget()).getName().toLowerCase(),
+				(Type) getTarget());
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 

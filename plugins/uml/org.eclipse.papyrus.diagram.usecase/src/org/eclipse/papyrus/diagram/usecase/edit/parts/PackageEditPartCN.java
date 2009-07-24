@@ -10,16 +10,16 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -29,11 +29,9 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -41,24 +39,23 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.figure.node.CPackageFigure;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.PackageFigure;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.diagram.usecase.edit.policies.Package3ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.PackageItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
-public class Package3EditPart extends
+public class PackageEditPartCN extends
 
-ShapeNodeEditPart {
+NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -78,7 +75,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public Package3EditPart(View view) {
+	public PackageEditPartCN(View view) {
 		super(view);
 	}
 
@@ -87,12 +84,23 @@ ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Package3ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 *Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -124,15 +132,14 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		PackageFigureDescriptor figure = new PackageFigureDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new PackageFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PackageFigureDescriptor getPrimaryShape() {
-		return (PackageFigureDescriptor) primaryShape;
+	public PackageFigure getPrimaryShape() {
+		return (PackageFigure) primaryShape;
 	}
 
 	/**
@@ -140,8 +147,8 @@ ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
-		if (childEditPart instanceof PackageName2EditPart) {
-			((PackageName2EditPart) childEditPart).setLabel(getPrimaryShape().getPackageNameLabel());
+		if (childEditPart instanceof PackageNameEditPartCN) {
+			((PackageNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
@@ -161,7 +168,7 @@ ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
-		if (childEditPart instanceof PackageName2EditPart) {
+		if (childEditPart instanceof PackageNameEditPartCN) {
 			return true;
 		}
 
@@ -213,7 +220,7 @@ ShapeNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(150, 150);
 
 		return result;
 	}
@@ -302,7 +309,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PackageName2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PackageNameEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -360,7 +367,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -378,9 +385,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.Dependency_4013);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
@@ -393,7 +397,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart) {
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if (targetEditPart instanceof ActorEditPart) {
@@ -411,7 +415,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -429,9 +433,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.Abstraction_4015);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
@@ -444,7 +445,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart) {
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if (targetEditPart instanceof ActorEditPart) {
@@ -462,7 +463,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -480,9 +481,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.Usage_4016);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
@@ -495,7 +493,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart) {
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if (targetEditPart instanceof ActorEditPart) {
@@ -513,7 +511,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -531,9 +529,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.Realization_4017);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
@@ -546,25 +541,19 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart) {
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.PackageMerge_4018);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.PackageMerge_4018);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart) {
-			types.add(UMLElementTypes.PackageMerge_4018);
-		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.PackageImport_4019);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.PackageImport_4019);
-		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart) {
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.PackageImport_4019);
 		}
 		return types;
@@ -620,9 +609,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
@@ -669,9 +655,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if (relationshipType == UMLElementTypes.Abstraction_4015) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_3010);
@@ -722,9 +705,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Usage_4016) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Usage_4016) {
@@ -771,9 +751,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if (relationshipType == UMLElementTypes.Realization_4017) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_3010);
@@ -792,18 +769,12 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.PackageMerge_4018) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if (relationshipType == UMLElementTypes.PackageMerge_4018) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.PackageMerge_4018) {
 			types.add(UMLElementTypes.Package_3014);
 		}
 		if (relationshipType == UMLElementTypes.PackageImport_4019) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if (relationshipType == UMLElementTypes.PackageImport_4019) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.PackageImport_4019) {
 			types.add(UMLElementTypes.Package_3014);
@@ -896,9 +867,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4013) {
@@ -953,9 +921,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4015) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4015) {
@@ -1002,9 +967,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if (relationshipType == UMLElementTypes.Usage_4016) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_3010);
@@ -1055,9 +1017,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Actor_3018);
 		}
 		if (relationshipType == UMLElementTypes.Realization_4017) {
-			types.add(UMLElementTypes.Package_3019);
-		}
-		if (relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_3010);
 		}
 		if (relationshipType == UMLElementTypes.Realization_4017) {
@@ -1074,9 +1033,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.PackageMerge_4018) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if (relationshipType == UMLElementTypes.PackageMerge_4018) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.PackageMerge_4018) {
 			types.add(UMLElementTypes.Package_3014);
@@ -1107,9 +1063,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.PackageImport_4019) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if (relationshipType == UMLElementTypes.PackageImport_4019) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.PackageImport_4019) {
 			types.add(UMLElementTypes.Actor_3011);
@@ -1125,148 +1078,6 @@ ShapeNodeEditPart {
 		}
 		return types;
 	}
-
-	/**
-	 * @generated
-	 */
-	public class PackageFigureDescriptor extends CPackageFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fPackageNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fPackageableElementFigure;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fPackageQualifiedNameLabel;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fStereotypesLabel;
-
-		/**
-		 * @generated
-		 */
-		public PackageFigureDescriptor() {
-
-			this.setForegroundColor(THIS_FORE);
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fStereotypesLabel = new WrappingLabel();
-			fStereotypesLabel.setText("");
-
-			fStereotypesLabel.setFont(FSTEREOTYPESLABEL_FONT);
-
-			this.add(fStereotypesLabel);
-
-			fPackageNameLabel = new WrappingLabel();
-			fPackageNameLabel.setText("");
-
-			fPackageNameLabel.setFont(FPACKAGENAMELABEL_FONT);
-
-			this.add(fPackageNameLabel);
-
-			fPackageQualifiedNameLabel = new WrappingLabel();
-			fPackageQualifiedNameLabel.setText("");
-
-			fPackageQualifiedNameLabel.setFont(FPACKAGEQUALIFIEDNAMELABEL_FONT);
-
-			this.add(fPackageQualifiedNameLabel);
-
-			fPackageableElementFigure = new RectangleFigure();
-			fPackageableElementFigure.setLineWidth(1);
-
-			this.add(fPackageableElementFigure);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getPackageNameLabel() {
-			return fPackageNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getPackageableElementFigure() {
-			return fPackageableElementFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getPackageQualifiedNameLabel() {
-			return fPackageQualifiedNameLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getStereotypesLabel() {
-			return fStereotypesLabel;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 233, 164, 96);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 255, 199, 143);
-
-	/**
-	 * @generated
-	 */
-	static final Font FSTEREOTYPESLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
-
-	/**
-	 * @generated
-	 */
-	static final Font FPACKAGENAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
-
-	/**
-	 * @generated
-	 */
-	static final Font FPACKAGEQUALIFIEDNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.ITALIC);
 
 	/**
 	 * @generated
@@ -1307,5 +1118,4 @@ ShapeNodeEditPart {
 		}
 		return result;
 	}
-
 }

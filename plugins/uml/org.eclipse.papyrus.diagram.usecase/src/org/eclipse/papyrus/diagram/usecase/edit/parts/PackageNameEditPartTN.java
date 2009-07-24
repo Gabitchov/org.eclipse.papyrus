@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import java.util.ArrayList;
@@ -52,12 +65,12 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class PackageName3EditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class PackageNameEditPartTN extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5032;
+	public static final int VISUAL_ID = 5025;
 
 	/**
 	 * @generated
@@ -82,7 +95,7 @@ public class PackageName3EditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public PackageName3EditPart(View view) {
+	public PackageNameEditPartTN(View view) {
 		super(view);
 	}
 
@@ -298,8 +311,8 @@ public class PackageName3EditPart extends CompartmentEditPart implements ITextAw
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Package_3019, getParserElement(), UMLVisualIDRegistry
-					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName3EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Package_2016, getParserElement(), UMLVisualIDRegistry
+					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN.VISUAL_ID));
 		}
 		return parser;
 	}

@@ -50,9 +50,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartCN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart;
@@ -326,23 +325,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser packageName_5032Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getPackageName_5032Parser() {
-		if (packageName_5032Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			packageName_5032Parser = parser;
-		}
-		return packageName_5032Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser constraintName_5020Parser;
 
 	/**
@@ -600,7 +582,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getUseCaseName_5017Parser();
 		case ComponentNameEditPart.VISUAL_ID:
 			return getComponentName_5019Parser();
-		case PackageNameEditPart.VISUAL_ID:
+		case PackageNameEditPartTN.VISUAL_ID:
 			return getPackageName_5025Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5026Parser();
@@ -620,8 +602,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_5029Parser();
 		case ActorName4EditPart.VISUAL_ID:
 			return getActorName_5031Parser();
-		case PackageName3EditPart.VISUAL_ID:
-			return getPackageName_5032Parser();
 		case ConstraintName3EditPart.VISUAL_ID:
 			return getConstraintName_5020Parser();
 		case ActorName3EditPart.VISUAL_ID:
@@ -630,7 +610,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getUseCaseName_5022Parser();
 		case ComponentName3EditPart.VISUAL_ID:
 			return getComponentName_5023Parser();
-		case PackageName2EditPart.VISUAL_ID:
+		case PackageNameEditPartCN.VISUAL_ID:
 			return getPackageName_5024Parser();
 		case AssociationNameEditPart.VISUAL_ID:
 			return getAssociationName_6008Parser();

@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.diagram.usecase;
 
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 
 /**
  * The editor factory to launch the usecase diagram.
@@ -27,6 +27,6 @@ public class UseCaseDiagramEditorFactory extends GmfEditorFactory {
 	 * Instantiates a new use case diagram editor factory.
 	 */
 	public UseCaseDiagramEditorFactory() {
-		super(UmlUseCaseDiagramForMultiEditor.class, PackageEditPart.MODEL_ID);
+		super(UmlUseCaseDiagramForMultiEditor.class, UseCaseDiagramEditPart.MODEL_ID);
 	}
 }

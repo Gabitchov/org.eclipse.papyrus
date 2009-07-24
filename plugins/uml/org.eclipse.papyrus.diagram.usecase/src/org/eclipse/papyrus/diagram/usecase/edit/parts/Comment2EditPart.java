@@ -322,7 +322,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
-		if (targetEditPart instanceof Package2EditPart) {
+		if (targetEditPart instanceof PackageEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
 		if (targetEditPart instanceof ConstraintEditPart) {
@@ -346,9 +346,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Actor4EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
-		if (targetEditPart instanceof Package4EditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
-		}
 		if (targetEditPart instanceof Constraint3EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
@@ -361,7 +358,7 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof Component3EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
-		if (targetEditPart instanceof Package3EditPart) {
+		if (targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
 		return types;
@@ -421,9 +418,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4014) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4014) {
-			types.add(UMLElementTypes.Package_3019);
 		}
 		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4014) {
 			types.add(UMLElementTypes.Constraint_3010);

@@ -501,11 +501,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String PackagePackageableElementCompartment3EditPart_title;
-
-	/**
-	 * @generated
-	 */
 	public static String PackagePackageableElementCompartmentEditPart_title;
 
 	/**
@@ -527,6 +522,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String CommandName_OpenDiagram;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_File_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_File_outgoinglinks;
 
 	/**
 	 * @generated
@@ -682,16 +687,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Actor_3018_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Package_3019_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Package_3019_outgoinglinks;
 
 	/**
 	 * @generated

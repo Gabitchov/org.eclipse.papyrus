@@ -111,14 +111,13 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createPackage1CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(3);
-		types.add(UMLElementTypes.Package_3019);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
 		types.add(UMLElementTypes.Package_3014);
 		types.add(UMLElementTypes.Package_2016);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Package1CreationTool_title,
 				Messages.Package1CreationTool_desc, types);
 		entry.setId("createPackage1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Package_3019));
+		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Package_3014));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

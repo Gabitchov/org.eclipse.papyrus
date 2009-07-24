@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,14 +25,15 @@ import org.eclipse.papyrus.diagram.common.edit.policies.DiagramDragDropEditPolic
 import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
-import org.eclipse.papyrus.diagram.usecase.edit.policies.PackageItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class PackageEditPart extends DiagramEditPart {
+public class UseCaseDiagramEditPart extends DiagramEditPart {
 
 	/**
 	 * @generated
@@ -102,7 +103,7 @@ public class PackageEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public PackageEditPart(View view) {
+	public UseCaseDiagramEditPart(View view) {
 		super(view);
 	}
 
@@ -111,14 +112,16 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCaseDiagramItemSemanticEditPolicy());
 
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new org.eclipse.papyrus.diagram.usecase.edit.policies.PackageCanonicalEditPolicy());
+		// new
+		// org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseDiagramCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DiagramDragDropEditPolicy(resolver));
 
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

@@ -101,17 +101,13 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeLink_fixedEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Package2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Package3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Package4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartCN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
@@ -120,6 +116,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseExtensionpointsEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart;
@@ -175,7 +172,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
-		return PackageEditPart.MODEL_ID.equals(op.getSemanticHint())
+		return UseCaseDiagramEditPart.MODEL_ID.equals(op.getSemanticHint())
 				&& UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != -1;
 	}
 
@@ -214,7 +211,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 									// type
 				}
 			} else {
-				if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
+				if (!UseCaseDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
 				switch (visualID) {
@@ -226,19 +223,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case Constraint2EditPart.VISUAL_ID:
 				case Actor2EditPart.VISUAL_ID:
 				case UseCase2EditPart.VISUAL_ID:
-				case Package2EditPart.VISUAL_ID:
+				case PackageEditPartTN.VISUAL_ID:
 				case ConstraintEditPart.VISUAL_ID:
 				case CommentEditPart.VISUAL_ID:
 				case ExtensionPoint2EditPart.VISUAL_ID:
 				case UseCase3EditPart.VISUAL_ID:
 				case Component2EditPart.VISUAL_ID:
 				case Actor4EditPart.VISUAL_ID:
-				case Package4EditPart.VISUAL_ID:
 				case Constraint3EditPart.VISUAL_ID:
 				case Actor3EditPart.VISUAL_ID:
 				case UseCase4EditPart.VISUAL_ID:
 				case Component3EditPart.VISUAL_ID:
-				case Package3EditPart.VISUAL_ID:
+				case PackageEditPartCN.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for
@@ -252,15 +248,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		return ActorEditPart.VISUAL_ID == visualID || Actor2EditPart.VISUAL_ID == visualID
 				|| UseCaseEditPart.VISUAL_ID == visualID || UseCase2EditPart.VISUAL_ID == visualID
-				|| ComponentEditPart.VISUAL_ID == visualID || Package2EditPart.VISUAL_ID == visualID
+				|| ComponentEditPart.VISUAL_ID == visualID || PackageEditPartTN.VISUAL_ID == visualID
 				|| ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID
 				|| ExtensionPointEditPart.VISUAL_ID == visualID || ExtensionPoint2EditPart.VISUAL_ID == visualID
 				|| UseCase3EditPart.VISUAL_ID == visualID || Component2EditPart.VISUAL_ID == visualID
 				|| Comment2EditPart.VISUAL_ID == visualID || Constraint2EditPart.VISUAL_ID == visualID
-				|| Actor4EditPart.VISUAL_ID == visualID || Package4EditPart.VISUAL_ID == visualID
-				|| Constraint3EditPart.VISUAL_ID == visualID || Actor3EditPart.VISUAL_ID == visualID
-				|| UseCase4EditPart.VISUAL_ID == visualID || Component3EditPart.VISUAL_ID == visualID
-				|| Package3EditPart.VISUAL_ID == visualID;
+				|| Actor4EditPart.VISUAL_ID == visualID || Constraint3EditPart.VISUAL_ID == visualID
+				|| Actor3EditPart.VISUAL_ID == visualID || UseCase4EditPart.VISUAL_ID == visualID
+				|| Component3EditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -290,7 +285,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	public Diagram createDiagram(IAdaptable semanticAdapter, String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
-		diagram.setType(PackageEditPart.MODEL_ID);
+		diagram.setType(UseCaseDiagramEditPart.MODEL_ID);
 		diagram.setElement(getSemanticElement(semanticAdapter));
 		diagram.setMeasurementUnit(MeasurementUnit.PIXEL_LITERAL);
 		return diagram;
@@ -319,7 +314,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createUseCase_2014(domainElement, containerView, index, persisted, preferencesHint);
 		case ComponentEditPart.VISUAL_ID:
 			return createComponent_2015(domainElement, containerView, index, persisted, preferencesHint);
-		case Package2EditPart.VISUAL_ID:
+		case PackageEditPartTN.VISUAL_ID:
 			return createPackage_2016(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintEditPart.VISUAL_ID:
 			return createConstraint_2017(domainElement, containerView, index, persisted, preferencesHint);
@@ -339,8 +334,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createConstraint_3017(domainElement, containerView, index, persisted, preferencesHint);
 		case Actor4EditPart.VISUAL_ID:
 			return createActor_3018(domainElement, containerView, index, persisted, preferencesHint);
-		case Package4EditPart.VISUAL_ID:
-			return createPackage_3019(domainElement, containerView, index, persisted, preferencesHint);
 		case Constraint3EditPart.VISUAL_ID:
 			return createConstraint_3010(domainElement, containerView, index, persisted, preferencesHint);
 		case Actor3EditPart.VISUAL_ID:
@@ -349,7 +342,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createUseCase_3012(domainElement, containerView, index, persisted, preferencesHint);
 		case Component3EditPart.VISUAL_ID:
 			return createComponent_3013(domainElement, containerView, index, persisted, preferencesHint);
-		case Package3EditPart.VISUAL_ID:
+		case PackageEditPartCN.VISUAL_ID:
 			return createPackage_3014(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -536,21 +529,23 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	public Node createPackage_2016(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(Package2EditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(PackageEditPartTN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
+		initForegroundFromPrefs(node, prefStore, "Package");
+
 		initFontStyleFromPrefs(node, prefStore, "Package");
 
-		Node label5025 = createLabel(node, UMLVisualIDRegistry.getType(PackageNameEditPart.VISUAL_ID));
+		initBackgroundFromPrefs(node, prefStore, "Package");
+
+		Node label5025 = createLabel(node, UMLVisualIDRegistry.getType(PackageNameEditPartTN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartmentEditPart.VISUAL_ID),
 				false, false, false, false);
 		return node;
@@ -735,27 +730,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createPackage_3019(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(Package4EditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-		Node label5032 = createLabel(node, UMLVisualIDRegistry.getType(PackageName3EditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartment3EditPart.VISUAL_ID),
-				false, false, false, false);
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
 	public Node createConstraint_3010(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -844,17 +818,20 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	public Node createPackage_3014(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(Package3EditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(PackageEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-		Node label5024 = createLabel(node, UMLVisualIDRegistry.getType(PackageName2EditPart.VISUAL_ID));
+
+		initForegroundFromPrefs(node, prefStore, "Package");
+
+		initBackgroundFromPrefs(node, prefStore, "Package");
+
+		Node label5024 = createLabel(node, UMLVisualIDRegistry.getType(PackageNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartment2EditPart.VISUAL_ID),
 				false, false, false, false);
 		return node;
@@ -1274,10 +1251,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	private void stampShortcut(View containerView, Node target) {
-		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+		if (!UseCaseDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put("modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", UseCaseDiagramEditPart.MODEL_ID); //$NON-NLS-1$
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}

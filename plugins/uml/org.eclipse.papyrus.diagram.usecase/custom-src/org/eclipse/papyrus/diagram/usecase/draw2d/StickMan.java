@@ -17,7 +17,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * The Class StickMan. This class comes from org.eclipse.uml2.diagram.usecase.draw2d provided by Eclipse.org
+ * The Class StickMan. This class comes from org.eclipse.uml2.diagram.usecase.draw2d provided by
+ * Eclipse.org
  */
 public class StickMan extends ShadowShape {
 

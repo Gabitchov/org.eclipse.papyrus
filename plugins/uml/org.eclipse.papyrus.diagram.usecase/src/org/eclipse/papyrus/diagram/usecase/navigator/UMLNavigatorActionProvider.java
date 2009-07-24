@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
@@ -133,7 +133,7 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 				}
 				if (selectedElement instanceof Diagram) {
 					Diagram diagram = (Diagram) selectedElement;
-					if (PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(diagram))) {
+					if (UseCaseDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(diagram))) {
 						myDiagram = diagram;
 					}
 				}
