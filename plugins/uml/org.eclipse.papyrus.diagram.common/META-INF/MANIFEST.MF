@@ -62,6 +62,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.query.ocl;visibility:=reexport,
  org.eclipse.emf.ocl;visibility:=reexport,
  org.eclipse.draw2d;visibility:=reexport,
+ org.eclipse.papyrus.preferences;bundle-version="0.7.0";visibility:=reexport,
+ org.eclipse.papyrus.ui.toolbox;bundle-version="0.7.0";visibility:=reexport,
+ org.eclipse.papyrus.core;bundle-version="0.7.0";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.emf.common.ui,
  org.eclipse.ui.ide,
@@ -70,15 +73,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui,
  org.eclipse.gmf.runtime.emf.ui.properties;bundle-version="1.1.0",
  org.eclipse.ocl.ecore;bundle-version="1.2.0",
- org.eclipse.papyrus.core;bundle-version="0.7.0",
  org.eclipse.gmf.runtime.diagram.ui.actions;bundle-version="1.1.0",
  org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="1.1.0",
- org.eclipse.papyrus.editor;bundle-version="0.7.0",
- org.eclipse.papyrus.umlutils;bundle-version="0.7.0",
- org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.2.0"
+ org.eclipse.papyrus.editor;bundle-version="0.7.0";visibility:=reexport,
+ org.eclipse.papyrus.umlutils;bundle-version="0.7.0";visibility:=reexport,
+ org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.2.0",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.0";visibility:=reexport
 Created-By: 1.5.0_06-b05 (Sun Microsystems Inc.)
 Ant-Version: Apache Ant 1.7.0
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.emf.edit.ui.provider
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.papyrus.diagram.common.Activator
