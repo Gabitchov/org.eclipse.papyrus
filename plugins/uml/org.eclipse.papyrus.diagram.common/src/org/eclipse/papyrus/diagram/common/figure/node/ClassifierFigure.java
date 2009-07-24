@@ -39,7 +39,6 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 
 	private static final int wrappedLabelSize = 18;
 
-	private Label tagLabel;
 
 	/**
 	 * this is the layout manager in charge to place element in the enumeration
@@ -273,8 +272,11 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	@Override
 	public void paint(Graphics graphics) {
 		super.paint(graphics);
-
-		getGMFAttributeElementContainer().setOpaque(false);
+		
+		if(getGMFAttributeElementContainer() != null)
+		{
+			getGMFAttributeElementContainer().setOpaque(false);
+		}
 
 		drawSeparateLine(graphics);
 
@@ -363,23 +365,6 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	}
 
 	/**
-	 * to display the Class as abstract.
-	 * 
-	 * @param b
-	 *            yes for abstract no other
-	 */
-	public void setAbstract(boolean b) {
-
-		if (b) {
-			FontData[] font = { new FontData("Arial", 12, SWT.ITALIC | SWT.BOLD) };
-			this.getNameLabel().setFont(Activator.fontManager.get(font));// italic
-		} else {
-			FontData[] font = { new FontData("Arial", 12, SWT.BOLD) };
-			this.getNameLabel().setFont(Activator.fontManager.get(font));
-		}
-	}
-
-	/**
 	 * This method is used to create the tag label in the figure.
 	 * 
 	 * @param keyword
@@ -394,7 +379,6 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 		label.setText(Activator.ST_LEFT + keyword + Activator.ST_RIGHT);
 		// Add the tag label to the figure at the position 0
 		this.add(label, 0);
-		this.tagLabel = label;
 	}
 
 	/**

@@ -90,8 +90,7 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 		FontStyle style = (FontStyle) getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (style != null) {
 			// Get the font
-			FontDescriptor fontDescriptor = FontDescriptor.createFrom(new FontData(style.getFontName(), style.getFontHeight(),
-					(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL)));
+			FontDescriptor fontDescriptor = FontDescriptor.createFrom(getFontData(style));
 			Font newFont = getResourceManager().createFont(fontDescriptor);
 			
 			// Apply the font to the Name Label
@@ -104,5 +103,16 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 			}
 			cachedFontDescriptor = fontDescriptor;
 		}
+	}
+	
+	/**
+	 * Update the fontData 
+	 * @param style the font style of the figure
+	 * @return the new font data to use
+	 */
+	protected FontData getFontData(FontStyle style)
+	{
+		return new FontData(style.getFontName(), style.getFontHeight(),
+				(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 	}
 }

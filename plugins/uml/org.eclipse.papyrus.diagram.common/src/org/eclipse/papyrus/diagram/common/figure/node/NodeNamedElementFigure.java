@@ -37,7 +37,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.RGB;
 
 /**
  * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified

@@ -36,7 +36,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 
 	private RectangleFigure shapeCompartment;
 
-	private Rectangle header = new Rectangle();
+//	private Rectangle header = new Rectangle();
 
 	/**
 	 * this is the layout manager in charge to place element in the enumeration
@@ -98,16 +98,6 @@ public class PackageFigure extends NodeNamedElementFigure {
 	}
 
 	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 255, 199, 143);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 233, 164, 96);
-
-	/**
 	 * Creates a new PackageFigure.
 	 */
 	public PackageFigure() {
@@ -155,7 +145,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 			}
 			headerBound.height += currentchild.getPreferredSize().height + 2;
 		}
-		header = headerBound;
+		//header = headerBound;
 		return headerBound;
 	}
 
@@ -177,24 +167,14 @@ public class PackageFigure extends NodeNamedElementFigure {
 
 		// draw header
 		Rectangle containerBound = new Rectangle(getHeader());
-		//graphics.setForegroundColor(this.getGradientColor());
-		//graphics.setBackgroundColor(this.backgroundColor);
+
 		
 		paintBackground(graphics, containerBound);
 		paintBackground(graphics, getPackageableElementFigure().getBounds());
-//		if (getDisplayGradient()) {
-//			graphics.fillGradient(containerBound, true);
-//		} else {
-//			graphics.fillRectangle(containerBound);
-//		}
+
 
 		graphics.drawRectangle(containerBound);
 
-//		if (is) {
-//			graphics.fillGradient(getPackageableElementFigure().getBounds(), true);
-//		} else {
-//			graphics.fillRectangle(getPackageableElementFigure().getBounds());
-//		}
 	}
 
 }

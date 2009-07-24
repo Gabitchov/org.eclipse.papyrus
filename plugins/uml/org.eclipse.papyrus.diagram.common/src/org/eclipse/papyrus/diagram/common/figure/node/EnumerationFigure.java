@@ -131,16 +131,6 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 	protected Figure invisibleContainer;
 
 	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 235, 248, 255);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 177, 207, 229);
-
-	/**
 	 * this the constructor of a class figure.
 	 */
 	public EnumerationFigure() {
@@ -187,17 +177,7 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 		contentPane.add(enumerationContent);
 
 	}
-
-	public void setBackgroundColor(Color backgroundColor) {
-		super.setBackgroundColor(backgroundColor);
-		if (enumerationContent != null) {
-			// propertyContent.setBorder(new LineBorder(backgroundColor));
-			// methodContent.setBorder(new LineBorder(backgroundColor));
-			// nestedClassContent.setBorder(new LineBorder(backgroundColor));
-
-		}
-	}
-
+	
 	/**
 	 * Helper method to calculate the size of compartements inside a ClassifierFigure. This method is subject to redefined in the subclasses.
 	 * 
@@ -277,23 +257,6 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 			n++;
 		}
 
-	}
-
-	/**
-	 * to display the Class as abstract.
-	 * 
-	 * @param b
-	 *            yes for abstract no other
-	 */
-	public void setAbstract(boolean b) {
-
-		if (b) {
-			FontData[] font = { new FontData("Arial", 12, SWT.ITALIC | SWT.BOLD)};
-			this.getNameLabel().setFont(Activator.fontManager.get(font));// italic
-		} else {
-			FontData[] font = { new FontData("Arial", 12, SWT.ITALIC | SWT.BOLD) };
-			this.getNameLabel().setFont(Activator.fontManager.get(font));
-		}
 	}
 
 	/**

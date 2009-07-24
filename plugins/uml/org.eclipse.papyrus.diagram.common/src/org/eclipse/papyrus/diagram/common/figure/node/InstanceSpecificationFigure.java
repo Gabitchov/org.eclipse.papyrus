@@ -125,16 +125,6 @@ public class InstanceSpecificationFigure extends NodeNamedElementFigure {
 	protected Figure invisibleContainer;
 
 	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 235, 248, 255);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 177, 207, 229);
-
-	/**
 	 * this the constructor of a class figure.
 	 */
 	public InstanceSpecificationFigure() {
