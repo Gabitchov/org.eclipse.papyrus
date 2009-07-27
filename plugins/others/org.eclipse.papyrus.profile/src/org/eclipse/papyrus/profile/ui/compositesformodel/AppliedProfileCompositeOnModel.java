@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Emilien Perico (Atos Origin) - fix bug on refresh 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.compositesformodel;
@@ -64,7 +65,6 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Profile;
 
-//TODO: Auto-generated Javadoc
 /**
  * The Class ProfileComposite.
  */
@@ -207,7 +207,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 		}
 
 		ArrayList<Package> importedModels = new ArrayList<Package>();
-		Package package_ = getSelected();
+		Package package_ = getSelectedPackage();
 
 		for (int i = 0; i < dialog.getResult().length; i++) {
 			IFile selectedFile = (IFile) dialog.getResult()[i];
@@ -426,27 +426,30 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	}
 
 	/**
-	 * Gets the selected package
+	 * Gets the selected package.
 	 * 
 	 * @return the selected package or null
 	 */
-	public org.eclipse.uml2.uml.Package getSelected() {
+	public Package getSelectedPackage() {
+		Package selectedPackage = null;
 		Object input = ((IStructuredSelection) selectedElement).getFirstElement();
 		if (input instanceof IUMLEditPart) {
-			if (((IUMLEditPart) input).getUMLElement() instanceof org.eclipse.uml2.uml.Package)
-				return ((org.eclipse.uml2.uml.Package) ((IUMLEditPart) input).getUMLElement());
-			else
-				return null;		
-		} else if(input instanceof DiagramEditPart){
+			if (((IUMLEditPart) input).getUMLElement() instanceof Package) {
+				selectedPackage = (Package) ((IUMLEditPart) input).getUMLElement();				
+			}		
+		} 
+		else if (input instanceof DiagramEditPart) {
 			DiagramEditPart diagramEditPart = (DiagramEditPart)input;
-			if(diagramEditPart.resolveSemanticElement()!=null && diagramEditPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Package){
-				return (org.eclipse.uml2.uml.Package)diagramEditPart.resolveSemanticElement();
+			if (diagramEditPart.resolveSemanticElement()!= null && 
+					diagramEditPart.resolveSemanticElement() instanceof Package){
+				selectedPackage = (Package) diagramEditPart.resolveSemanticElement();
 			}
-		} else if(input instanceof org.eclipse.uml2.uml.Package){
+		} 
+		else if(input instanceof Package){
 			//the selection is provided by the model explorer
-			return (org.eclipse.uml2.uml.Package)input;
+			selectedPackage = (Package) input;
 		}	
-		return null;
+		return selectedPackage;
 	}
 
 	/**
@@ -509,20 +512,11 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	 * refresh the composite
 	 */
 	public void refresh() {
-
-		if (getSelected() == null) {
-			return;
-		}
-
-		// Refresh profiles
-		if (!profiles.isDisposed()) {
+		Package currentPackage = getSelectedPackage();
+		if (currentPackage != null && !profiles.isDisposed()) {
 			profiles.removeAll();
-
-			Package currentPackage = (Package) getSelected();
 			EList<Profile> appliedProfiles = currentPackage.getAllAppliedProfiles();
-
 			for (int i = 0; i < appliedProfiles.size(); i++) {
-
 				Profile currentProfile = (Profile) appliedProfiles.get(i);
 				String currentName = currentProfile.getQualifiedName();
 
@@ -544,12 +538,12 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	 * Button action : open the dialog box for registered profile selection.
 	 */
 	protected void registeredProfileButtonPressed() {
-		RegisteredProfileSelectionDialog profileSelectionDialog = new RegisteredProfileSelectionDialog(getShell(), getSelected());
+		RegisteredProfileSelectionDialog profileSelectionDialog = new RegisteredProfileSelectionDialog(getShell(), getSelectedPackage());
 		java.util.List<Profile> profilestoApply = profileSelectionDialog.run();
 		Iterator<Profile> iterator = profilestoApply.iterator();
 		while (iterator.hasNext()) {
-			if (getSelected() != null) {
-				this.applyProfile(getSelected(), iterator.next(), false);
+			if (getSelectedPackage() != null) {
+				this.applyProfile(getSelectedPackage(), iterator.next(), false);
 			}
 		}
 	}
@@ -627,14 +621,14 @@ public class AppliedProfileCompositeOnModel extends Composite {
 
 			// Allow removal if profile is applied on current package
 			// Not if it is applied from owner package
-			EList appliedProfiles = getSelected().getAppliedProfiles();
+			EList appliedProfiles = getSelectedPackage().getAppliedProfiles();
 			if (appliedProfiles.contains(profileToUnapply)) {
 
 				/**********************************************************************/
 				/** delete imported model libraries and types related to that profile */
 
 				// model libraries handling
-				EList importedPackages = ((Package) getSelected()).getPackageImports();
+				EList importedPackages = ((Package) getSelectedPackage()).getPackageImports();
 				Iterator<PackageImport> iterPI = importedPackages.iterator();
 				ArrayList importedPackagesToRemove = new ArrayList();
 				while (iterPI.hasNext()) {
@@ -652,7 +646,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 					importedPackages.remove(importedPackagesToRemove.get(j));
 				}
 			}
-			unApplyProfile(getSelected(), profileToUnapply);
+			unApplyProfile(getSelectedPackage(), profileToUnapply);
 		}
 
 	}

@@ -10,7 +10,7 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.diagram.common.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;
