@@ -34,7 +34,7 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * this is the figure to represent a classifier.
- * 
+ * @deprecated use of CompartmentFigure instead
  */
 
 public class EnumerationFigure extends NodeNamedElementFigure {

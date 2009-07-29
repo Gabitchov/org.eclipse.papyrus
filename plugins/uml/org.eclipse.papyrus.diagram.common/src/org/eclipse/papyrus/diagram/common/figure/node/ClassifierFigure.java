@@ -33,6 +33,7 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * this is the figure to represent a classifier.
+ * @deprecated use CompartmentFigure instead
  * 
  */
 public class ClassifierFigure extends NodeNamedElementFigure {

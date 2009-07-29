@@ -24,6 +24,7 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * Figure to represent primitive types
+ * @deprecated use CompartmentFigure instead
  */
 public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 

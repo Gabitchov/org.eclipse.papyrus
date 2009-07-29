@@ -83,7 +83,10 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	}
 
 	/**
-	 * Refresh the name label font {@inheritDoc}
+	 * Refresh the font. 
+	 * This method shouldn't be overriden by subclasses. 
+	 * To refresh labels font, the method refreshLabelsFont should be used. 
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void refreshFont() {
@@ -93,8 +96,7 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 			FontDescriptor fontDescriptor = FontDescriptor.createFrom(getFontData(style));
 			Font newFont = getResourceManager().createFont(fontDescriptor);
 			
-			// Apply the font to the Name Label
-			((NodeNamedElementFigure) getPrimaryShape()).getNameLabel().setFont(newFont);
+			refreshLabelsFont(newFont);
 			
 			// Dispose previous Font and FontDescriptor
 			if(cachedFontDescriptor!=null)
@@ -103,6 +105,16 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 			}
 			cachedFontDescriptor = fontDescriptor;
 		}
+	}
+	
+	/**
+	 * A method to specify the labels to be update when the font is refreshed. 
+	 * Subclasses should call super.refreshLabelsFont(font)
+	 * @param font the font to use
+	 */
+	protected void refreshLabelsFont(Font font) {
+		// Apply the font to the Name Label
+		((NodeNamedElementFigure) getPrimaryShape()).getNameLabel().setFont(font);
 	}
 	
 	/**
