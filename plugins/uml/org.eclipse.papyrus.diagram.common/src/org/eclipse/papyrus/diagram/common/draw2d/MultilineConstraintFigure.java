@@ -17,7 +17,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 /**
  * XXX: It is temporary hack.
  * 
- * To be removed when GMF graph will support multiline labels. If it is not achiveable, move this into the generation using custom viewmap attributes.
+ * To be removed when GMF graph will support multiline labels. If it is not achiveable, move this
+ * into the generation using custom viewmap attributes.
  */
 public class MultilineConstraintFigure extends ConstraintFigureBase {
 

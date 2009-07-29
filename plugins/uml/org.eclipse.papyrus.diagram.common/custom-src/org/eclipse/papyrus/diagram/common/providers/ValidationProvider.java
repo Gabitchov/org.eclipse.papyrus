@@ -29,7 +29,8 @@ public class ValidationProvider {
 		if (element != null) {
 			boolean unique = checkUniqueName(element);
 			if (!unique) {
-				status = new Status(IStatus.ERROR, Activator.ID, "An element with name \"" + element.getName() + "\" already exists.");
+				status = new Status(IStatus.ERROR, Activator.ID, "An element with name \"" + element.getName()
+						+ "\" already exists.");
 			} else {
 				status = new Status(IStatus.OK, Activator.ID, "Unique name.");
 			}

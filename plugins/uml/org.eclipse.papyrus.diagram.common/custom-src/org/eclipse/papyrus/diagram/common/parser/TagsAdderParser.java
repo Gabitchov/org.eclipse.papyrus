@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
 public class TagsAdderParser implements ISemanticParser {
 

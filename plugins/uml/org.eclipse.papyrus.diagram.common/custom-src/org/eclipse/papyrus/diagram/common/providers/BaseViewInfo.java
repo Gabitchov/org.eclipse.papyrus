@@ -17,11 +17,10 @@ import java.util.Map;
 
 /**
  * A basic implementation of {@link ViewInfo}. This class is used to parse the
- * 'es.cv.gvcase.mdt.common.viewInfo' extension point. It can handle the
- * additions of child nodes that have parents that have not yet been added;
- * these nodes are stores in a temporary storage. Upon a later addition of a
- * node, nodes in the temporary storage are revisited to put them in their
- * correct place.
+ * 'es.cv.gvcase.mdt.common.viewInfo' extension point. It can handle the additions of child nodes
+ * that have parents that have not yet been added; these nodes are stores in a temporary storage.
+ * Upon a later addition of a node, nodes in the temporary storage are revisited to put them in
+ * their correct place.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @NOT-generated
@@ -59,7 +58,7 @@ public class BaseViewInfo implements ViewInfo {
 
 	/** Pointer to the RootInfo which this ViewInfo belong to. */
 	public RootViewInfo rootViewInfo;
-	
+
 	/** Flag that indicates if this ViewInfo can be selected to be filtered. */
 	public Boolean selectable = true;
 
@@ -100,8 +99,7 @@ public class BaseViewInfo implements ViewInfo {
 	 * @param parent
 	 *            the parent
 	 */
-	public BaseViewInfo(int visualID, int type, String label,
-			Collection<ViewInfo> children, ViewInfo parent) {
+	public BaseViewInfo(int visualID, int type, String label, Collection<ViewInfo> children, ViewInfo parent) {
 		this.visualID = String.valueOf(visualID);
 		this.typeViewInfo = type;
 		this.label = label;
@@ -176,7 +174,7 @@ public class BaseViewInfo implements ViewInfo {
 	public ViewInfo getParent() {
 		return parentViewInfo;
 	}
-	
+
 	/**
 	 * Indicates whether this ViewInfo can be selected to be filtered.
 	 */
@@ -199,8 +197,7 @@ public class BaseViewInfo implements ViewInfo {
 	// // setters
 
 	/**
-	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setChildren(java.util.Collection
-	 *      )
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setChildren(java.util.Collection )
 	 */
 	public void setChildren(Collection<ViewInfo> children) {
 		this.children = children;
@@ -264,9 +261,9 @@ public class BaseViewInfo implements ViewInfo {
 	// // add a node
 
 	/**
-	 * Adds a node in its corresponding place in the hierarchy. The parent node
-	 * needs not exist yet in the hierarchy. Orphan nodes are stored in a
-	 * temporary storage, that is revisited when a new node is added.
+	 * Adds a node in its corresponding place in the hierarchy. The parent node needs not exist yet
+	 * in the hierarchy. Orphan nodes are stored in a temporary storage, that is revisited when a
+	 * new node is added.
 	 * 
 	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#addNode(int,
 	 *      es.cv.gvcase.mdt.common.provider.ViewInfo)
@@ -326,8 +323,8 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Adds a node that was in the temporary storage and its parent node has
-	 * just been added to the hierarchy.
+	 * Adds a node that was in the temporary storage and its parent node has just been added to the
+	 * hierarchy.
 	 * 
 	 * @param parentID
 	 *            the parent id
@@ -345,8 +342,8 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Revise pending nodes in the temporary storage. Nodes whose parent has
-	 * been added will be put in their corresponding in the hierarchy.
+	 * Revise pending nodes in the temporary storage. Nodes whose parent has been added will be put
+	 * in their corresponding in the hierarchy.
 	 * 
 	 * @param info
 	 *            the info
@@ -356,8 +353,7 @@ public class BaseViewInfo implements ViewInfo {
 		Map<Integer, Collection<ViewInfo>> toAdd = getToAdd();
 		if (toAdd.containsKey(parentVisualID)) {
 			for (ViewInfo viewInfo : toAdd.get(parentVisualID)) {
-				if (info.getChildren().contains(viewInfo) == false
-						&& info != viewInfo
+				if (info.getChildren().contains(viewInfo) == false && info != viewInfo
 						&& isAlreadyContained(viewInfo) == false) {
 					info.getChildren().add(viewInfo);
 					if (viewInfo.getParent() == null) {
@@ -410,8 +406,7 @@ public class BaseViewInfo implements ViewInfo {
 	public String toString() {
 		String superString = super.toString();
 		String myString = getVisualID() + ", " + getLabel();
-		superString = superString != null ? superString + " :: " + myString
-				: myString;
+		superString = superString != null ? superString + " :: " + myString : myString;
 		return superString;
 	}
 

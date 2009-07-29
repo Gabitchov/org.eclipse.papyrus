@@ -23,8 +23,9 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 
 /**
- * #235335, we can't call super.relocate() and then tweak the bounds to bisection location, because it fires endless layout loop. While we also can't call private locateOn methods directly, we had to
- * copy-paste them in this class
+ * #235335, we can't call super.relocate() and then tweak the bounds to bisection location, because
+ * it fires endless layout loop. While we also can't call private locateOn methods directly, we had
+ * to copy-paste them in this class
  * 
  * @see BorderItemLocator
  */
@@ -55,7 +56,8 @@ public class BisectionBorderItemLocator extends BorderItemLocator {
 		int closestSide = findClosestSideOfParent(rectSuggested, getParentBorder());
 		setPreferredSideOfParent(closestSide);
 
-		Point ptNewLocation = locateOnBorder(getPreferredLocation(borderItem), getPreferredSideOfParent(), 0, borderItem);
+		Point ptNewLocation = locateOnBorder(getPreferredLocation(borderItem), getPreferredSideOfParent(), 0,
+				borderItem);
 
 		setCurrentSideOfParent(findClosestSideOfParent(new Rectangle(ptNewLocation, size), getParentBorder()));
 
@@ -108,7 +110,9 @@ public class BisectionBorderItemLocator extends BorderItemLocator {
 				do {
 					recommendedLocation.y += borderItemSize.height + vertical_gap;
 				} while (conflicts(recommendedLocation, borderItem));
-				if (recommendedLocation.y > getParentBorder().getBottomLeft().y - borderItemSize.height) { // off the bottom,
+				if (recommendedLocation.y > getParentBorder().getBottomLeft().y - borderItemSize.height) { // off
+																											// the
+																											// bottom,
 					// wrap south
 					return locateOnBorder(recommendedLocation, PositionConstants.SOUTH, circuitCount + 1, borderItem);
 				}
@@ -166,7 +170,8 @@ public class BisectionBorderItemLocator extends BorderItemLocator {
 	}
 
 	/**
-	 * Ensure the suggested location actually lies on the parent boundary. The side takes precendence.
+	 * Ensure the suggested location actually lies on the parent boundary. The side takes
+	 * precendence.
 	 * 
 	 * @param suggestedLocation
 	 * @param suggestedSide

@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.IPopup
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class DeleteFromDiagramPopupMenuContributionPolicy.
@@ -31,7 +30,9 @@ public class DeleteFromDiagramPopupMenuContributionPolicy implements IPopupMenuC
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.IPopupMenuContributionPolicy#appliesTo(org.eclipse.jface.viewers.ISelection,
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.IPopupMenuContributionPolicy
+	 * #appliesTo(org.eclipse.jface.viewers.ISelection,
 	 * org.eclipse.core.runtime.IConfigurationElement)
 	 */
 	public boolean appliesTo(ISelection selection, IConfigurationElement configuration) {

@@ -10,13 +10,14 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.directedit;
 
 import org.eclipse.draw2d.IFigure;
 
 /**
- * Interface for a controler that is used to associate a IFigure to model properties in a lightweight way.
+ * Interface for a controler that is used to associate a IFigure to model properties in a
+ * lightweight way.
  */
 public interface ILabelControler {
 

@@ -76,9 +76,11 @@ public class ViewFiltersPreferencePage extends AbstractPreferencePage {
 	}
 
 	protected void addManageRequiredLinksFields(Composite composite) {
-		myManageRequireds_hideDeriveds = new CheckBoxFieldEditor(UMLPreferencesConstants.PREF_MANAGE_REQUIRED_LINKS_HIDE_DERIVED, HIDE_DERIVED_LABEL, composite);
+		myManageRequireds_hideDeriveds = new CheckBoxFieldEditor(
+				UMLPreferencesConstants.PREF_MANAGE_REQUIRED_LINKS_HIDE_DERIVED, HIDE_DERIVED_LABEL, composite);
 		addField(myManageRequireds_hideDeriveds);
-		myManageRequireds_hideGenuine = new CheckBoxFieldEditor(UMLPreferencesConstants.PREF_MANAGE_REQUIRED_LINKS_HIDE_GENUINE, HIDE_GENUINE_LABEL, composite);
+		myManageRequireds_hideGenuine = new CheckBoxFieldEditor(
+				UMLPreferencesConstants.PREF_MANAGE_REQUIRED_LINKS_HIDE_GENUINE, HIDE_GENUINE_LABEL, composite);
 		addField(myManageRequireds_hideGenuine);
 	}
 

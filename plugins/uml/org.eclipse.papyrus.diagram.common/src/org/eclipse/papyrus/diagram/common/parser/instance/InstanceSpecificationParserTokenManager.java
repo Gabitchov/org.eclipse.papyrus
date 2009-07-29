@@ -542,7 +542,8 @@ public class InstanceSpecificationParserTokenManager implements InstanceSpecific
 		}
 	}
 
-	public static final String[] jjstrLiteralImages = { "", null, null, "\57", "\72", "\75", "\133", "\135", "\173", "\175", "\54", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
+	public static final String[] jjstrLiteralImages = {
+			"", null, null, "\57", "\72", "\75", "\133", "\135", "\173", "\175", "\54", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
 			"\53", "\55", "\43", "\176", "\56", "\52", "\162\145\141\144\117\156\154\171", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 			"\165\156\151\157\156", "\163\165\142\163\145\164\163", "\162\145\144\145\146\151\156\145\163", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			"\157\162\144\145\162\145\144", "\165\156\157\162\144\145\162\145\144", "\165\156\151\161\165\145", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -597,7 +598,8 @@ public class InstanceSpecificationParserTokenManager implements InstanceSpecific
 
 	public void SwitchTo(int lexState) {
 		if (lexState >= 1 || lexState < 0)
-			throw new TokenMgrError("Error: Ignoring invalid lexical state : " + lexState + ". State unchanged.", TokenMgrError.INVALID_LEXICAL_STATE); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new TokenMgrError(
+					"Error: Ignoring invalid lexical state : " + lexState + ". State unchanged.", TokenMgrError.INVALID_LEXICAL_STATE); //$NON-NLS-1$ //$NON-NLS-2$
 		else
 			curLexState = lexState;
 	}
@@ -685,7 +687,8 @@ public class InstanceSpecificationParserTokenManager implements InstanceSpecific
 				input_stream.backup(1);
 				error_after = curPos <= 1 ? "" : input_stream.GetImage(); //$NON-NLS-1$
 			}
-			throw new TokenMgrError(EOFSeen, curLexState, error_line, error_column, error_after, curChar, TokenMgrError.LEXICAL_ERROR);
+			throw new TokenMgrError(EOFSeen, curLexState, error_line, error_column, error_after, curChar,
+					TokenMgrError.LEXICAL_ERROR);
 		}
 	}
 

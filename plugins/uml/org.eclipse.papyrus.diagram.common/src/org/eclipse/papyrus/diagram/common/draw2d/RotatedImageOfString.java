@@ -72,7 +72,8 @@ public class RotatedImageOfString extends ImageFigure {
 		if (text == null) {
 			return null;
 		}
-		Image image = ImageUtilities.createRotatedImageOfString(text, getFont(), getForegroundColor(), getBackgroundColor());
+		Image image = ImageUtilities.createRotatedImageOfString(text, getFont(), getForegroundColor(),
+				getBackgroundColor());
 		super.setImage(image);
 		return image;
 	}

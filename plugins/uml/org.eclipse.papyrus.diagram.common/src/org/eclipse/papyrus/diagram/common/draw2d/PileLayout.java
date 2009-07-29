@@ -11,8 +11,7 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
- * All children are placed on top of each other.
- * Gap may be set between children.
+ * All children are placed on top of each other. Gap may be set between children.
  * 
  * @author dstadnik
  */
@@ -30,8 +29,7 @@ public class PileLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * The last (bottom) figure should be stretched
-	 * to cover the rest of the container client area.
+	 * The last (bottom) figure should be stretched to cover the rest of the container client area.
 	 */
 	public final boolean isStretchBottom() {
 		return myStretchBottom;
@@ -58,21 +56,17 @@ public class PileLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Returns list constraint for specified figure.
-	 * If constraint is null or not list constraint
+	 * Returns list constraint for specified figure. If constraint is null or not list constraint
 	 * returns FILL list constraint by default.
 	 */
 	protected PileConstraint getPileConstraint(IFigure figure) {
 		Object constraint = getConstraint(figure);
-		return constraint instanceof PileConstraint
-				? (PileConstraint) constraint
-				: FILL;
+		return constraint instanceof PileConstraint ? (PileConstraint) constraint : FILL;
 	}
 
-	protected Dimension calculateSize(IFigure container, int wHint, int hHint,
-			SizeExtractor sizeExtractor) {
+	protected Dimension calculateSize(IFigure container, int wHint, int hHint, SizeExtractor sizeExtractor) {
 		int totalWidth = 0; // Width of all components
-		int totalHeight = 0; // Height of all components	
+		int totalHeight = 0; // Height of all components
 
 		List<?> children = container.getChildren();
 		for (int i = 0; i < children.size(); i++) {
@@ -94,13 +88,11 @@ public class PileLayout extends AbstractHintLayout {
 		return new Dimension(totalWidth, totalHeight);
 	}
 
-	protected Dimension calculateMinimumSize(IFigure container, int wHint,
-			int hHint) {
+	protected Dimension calculateMinimumSize(IFigure container, int wHint, int hHint) {
 		return calculateSize(container, wHint, hHint, MIN_SIZE_EXTRACTOR);
 	}
 
-	protected Dimension calculatePreferredSize(IFigure container, int wHint,
-			int hHint) {
+	protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
 		return calculateSize(container, wHint, hHint, PREF_SIZE_EXTRACTOR);
 	}
 
@@ -114,16 +106,13 @@ public class PileLayout extends AbstractHintLayout {
 			Dimension preferred = child.getPreferredSize(clientArea.width, clientArea.height);
 			int height = preferred.height;
 			if (y >= maxY) {
-				Rectangle bounds = new Rectangle(clientArea.x, maxY,
-						clientArea.width, 0);
+				Rectangle bounds = new Rectangle(clientArea.x, maxY, clientArea.width, 0);
 				child.setBounds(bounds);
 				continue;
-			} else if (y + height > maxY
-					|| (isStretchBottom() && i == children.size() - 1)) {
+			} else if (y + height > maxY || (isStretchBottom() && i == children.size() - 1)) {
 				height = maxY - y;
 			}
-			Rectangle bounds = new Rectangle(clientArea.x, y, clientArea.width,
-					height);
+			Rectangle bounds = new Rectangle(clientArea.x, y, clientArea.width, height);
 			getPileConstraint(child).setChildBounds(preferred, bounds);
 			child.setBounds(bounds);
 			y += bounds.height + getGap();
@@ -131,7 +120,9 @@ public class PileLayout extends AbstractHintLayout {
 	}
 
 	private int myGap;
+
 	private Map<IFigure, Object> myConstraints = new HashMap<IFigure, Object>(2);
+
 	private boolean myStretchBottom;
 
 	private static final SizeExtractor MIN_SIZE_EXTRACTOR = new SizeExtractor() {
@@ -159,11 +150,13 @@ public class PileLayout extends AbstractHintLayout {
 	public interface PileConstraint {
 
 		/**
-		 * Changes bounds of child with specified preferred size.
-		 * New bounds should fit in specified bounds.
+		 * Changes bounds of child with specified preferred size. New bounds should fit in specified
+		 * bounds.
 		 * 
-		 * @param preferred	Prefferred size of a child.
-		 * @param bounds	Max child bounds.
+		 * @param preferred
+		 *            Prefferred size of a child.
+		 * @param bounds
+		 *            Max child bounds.
 		 */
 		public void setChildBounds(Dimension preferred, Rectangle bounds);
 	}
@@ -173,7 +166,8 @@ public class PileLayout extends AbstractHintLayout {
 	 */
 	public static final PileConstraint FILL = new PileConstraint() {
 
-		public void setChildBounds(Dimension preferred, Rectangle bounds) {}
+		public void setChildBounds(Dimension preferred, Rectangle bounds) {
+		}
 	};
 
 	public static final PileConstraint ALIGN_LEFT = new PileConstraint() {

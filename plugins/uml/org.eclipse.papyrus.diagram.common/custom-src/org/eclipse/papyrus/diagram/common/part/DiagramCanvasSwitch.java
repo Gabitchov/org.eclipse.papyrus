@@ -17,7 +17,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * Utility methods to "demultiplex" <EClass>es and <EObject>s for different canvas elements.
@@ -40,7 +39,8 @@ public class DiagramCanvasSwitch {
 	}
 
 	/**
-	 * Gets the element to edit in a mutating canvas <Diagram>. By default, it's the canvas semantic <EObject>.
+	 * Gets the element to edit in a mutating canvas <Diagram>. By default, it's the canvas semantic
+	 * <EObject>.
 	 * 
 	 * @param editPolicy
 	 *            the edit policy

@@ -42,8 +42,10 @@ public class RotateAction implements IObjectActionDelegate {
 		int x = (Integer) selectedElement.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X());
 		int y = (Integer) selectedElement.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y());
 
-		Rectangle rectangle = new Rectangle(x + size.width / 2 - size.height / 2, y - size.width / 2 + size.height / 2, size.height, size.width);
-		SetBoundsCommand command = new SetBoundsCommand(selectedElement.getEditingDomain(), Messages.RotateAction_rotate_command, new EObjectAdapter(selectedElement.getNotationView()), rectangle);
+		Rectangle rectangle = new Rectangle(x + size.width / 2 - size.height / 2, y - size.width / 2 + size.height / 2,
+				size.height, size.width);
+		SetBoundsCommand command = new SetBoundsCommand(selectedElement.getEditingDomain(),
+				Messages.RotateAction_rotate_command, new EObjectAdapter(selectedElement.getNotationView()), rectangle);
 		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(command));
 	}
 

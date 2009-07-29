@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class AddEObjectReferencesToDiagram.
@@ -60,7 +59,8 @@ public class AddEObjectReferencesToDiagram extends AbstractTransactionalCommand 
 		this.eObjects = eObjects;
 	}
 
-	public AddEObjectReferencesToDiagram(TransactionalEditingDomain domain, Diagram diagram, List<EObject> eObjects, boolean addContents) {
+	public AddEObjectReferencesToDiagram(TransactionalEditingDomain domain, Diagram diagram, List<EObject> eObjects,
+			boolean addContents) {
 		super(domain, "Add EObject references to Diagram", null);
 		this.diagram = diagram;
 		this.eObjects = eObjects;
@@ -80,7 +80,9 @@ public class AddEObjectReferencesToDiagram extends AbstractTransactionalCommand 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand #doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand
+	 * #doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 * org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

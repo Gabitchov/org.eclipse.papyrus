@@ -26,7 +26,6 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.ui.IWorkbenchPage;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * Contributes the "Open as diagram" action to the context menu.
@@ -41,7 +40,8 @@ public class OpenAsDiagramItemProvider extends AbstractContributionItemProvider 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.AbstractContributionItemProvider#createMenuManager(java.lang.String,
+	 * @seeorg.eclipse.gmf.runtime.common.ui.services.action.contributionitem.
+	 * AbstractContributionItemProvider#createMenuManager(java.lang.String,
 	 * org.eclipse.gmf.runtime.common.ui.util.IWorkbenchPartDescriptor)
 	 */
 	@Override
@@ -79,7 +79,9 @@ public class OpenAsDiagramItemProvider extends AbstractContributionItemProvider 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.jface.action.IMenuListener#menuAboutToShow(org.eclipse.jface.action.IMenuManager)
+		 * @see
+		 * org.eclipse.jface.action.IMenuListener#menuAboutToShow(org.eclipse.jface.action.IMenuManager
+		 * )
 		 */
 		public void menuAboutToShow(IMenuManager manager) {
 			buildMenu(manager);
@@ -95,7 +97,8 @@ public class OpenAsDiagramItemProvider extends AbstractContributionItemProvider 
 			manager.removeAll();
 			GraphicalEditPart selected = (GraphicalEditPart) getSelectedObject(myWorkbenchPart);
 			for (Diagram diagram : getAssociatedDiagramsToElement(selected.getNotationView())) {
-				OpenAsDiagramAction action = new OpenAsDiagramAction(getWorkbenchPage(), selected.getNotationView(), diagram);
+				OpenAsDiagramAction action = new OpenAsDiagramAction(getWorkbenchPage(), selected.getNotationView(),
+						diagram);
 				action.init();
 				manager.add(action);
 			}

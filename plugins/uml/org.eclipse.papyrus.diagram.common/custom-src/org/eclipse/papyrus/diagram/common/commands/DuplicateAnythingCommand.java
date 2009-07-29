@@ -22,34 +22,32 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 
 public class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
-	
+
 	private Diagram diagram;
-	
-	public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain,
-			DuplicateElementsRequest req, Diagram currentDiagram) {
-		
-		super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), 
-				req.getAllDuplicatedElementsMap());
-		
+
+	public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req,
+			Diagram currentDiagram) {
+
+		super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
+
 		this.diagram = currentDiagram;
 	}
-	
+
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor,
-			IAdaptable info) throws ExecutionException {
-		
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+			throws ExecutionException {
+
 		CommandResult result = super.doExecuteWithResult(progressMonitor, info);
-		
+
 		for (Object duplicatedObject : this.getAllDuplicatedObjectsMap().keySet()) {
 			if (duplicatedObject instanceof EObject) {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(diagram, 
-						(EObject) duplicatedObject)) {
-					MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, 
-							(EObject) this.getAllDuplicatedObjectsMap().get(duplicatedObject));
+				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(diagram, (EObject) duplicatedObject)) {
+					MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, (EObject) this
+							.getAllDuplicatedObjectsMap().get(duplicatedObject));
 				}
 			}
 		}
-	
+
 		return result;
 	}
 

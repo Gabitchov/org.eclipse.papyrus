@@ -39,8 +39,10 @@ public abstract class SlotToString extends AbstractToString {
 
 	public static class VIEW extends SlotToString implements WithReferences {
 
-		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getSlot_Value(), UMLPackage.eINSTANCE.getSlot_DefiningFeature(),
-				UMLPackage.eINSTANCE.getExpression_Symbol(), UMLPackage.eINSTANCE.getLiteralString_Value(), UMLPackage.eINSTANCE.getLiteralInteger_Value(), });
+		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+				UMLPackage.eINSTANCE.getSlot_Value(), UMLPackage.eINSTANCE.getSlot_DefiningFeature(),
+				UMLPackage.eINSTANCE.getExpression_Symbol(), UMLPackage.eINSTANCE.getLiteralString_Value(),
+				UMLPackage.eINSTANCE.getLiteralInteger_Value(), });
 
 		public boolean isAffectingFeature(EStructuralFeature feature) {
 			return AFFECTING.contains(feature);
@@ -74,7 +76,8 @@ public abstract class SlotToString extends AbstractToString {
 	}
 
 	/**
-	 * FIXME: It is unclear from the spec how multiple values should be shown. For now assuming only one value
+	 * FIXME: It is unclear from the spec how multiple values should be shown. For now assuming only
+	 * one value
 	 */
 	protected void appendSlotValue(StringBuffer result, Slot slot) {
 		for (Iterator values = slot.getValues().iterator(); values.hasNext();) {

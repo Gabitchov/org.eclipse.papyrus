@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.edge;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
 /**
  * future code of the CGeneralizationFigure
+ * 
  * @deprecated
  * 
  **/

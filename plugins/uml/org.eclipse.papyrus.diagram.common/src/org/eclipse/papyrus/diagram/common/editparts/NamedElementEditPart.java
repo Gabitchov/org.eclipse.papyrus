@@ -36,6 +36,7 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	 * Save the fontDescriptor in order to dispose the font later
 	 */
 	private FontDescriptor cachedFontDescriptor;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -63,15 +64,18 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	}
 
 	private void refreshIconNamedLabel() {
-		((NodeNamedElementFigure) getPrimaryShape()).setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View) getModel()));
+		((NodeNamedElementFigure) getPrimaryShape()).setNameLabelIcon(NameLabelIconHelper
+				.getNameLabelIconValue((View) getModel()));
 	}
 
 	private void refreshQualifiedName() {
-		((NodeNamedElementFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement()).getQualifiedName());
+		((NodeNamedElementFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement())
+				.getQualifiedName());
 	}
 
 	private void refreshQualifiedNameDepth() {
-		((NodeNamedElementFigure) getPrimaryShape()).setDepth(QualifiedNameHelper.getQualifiedNameDepth((View) getModel()));
+		((NodeNamedElementFigure) getPrimaryShape()).setDepth(QualifiedNameHelper
+				.getQualifiedNameDepth((View) getModel()));
 	}
 
 	protected void refreshVisuals() {
@@ -83,10 +87,8 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	}
 
 	/**
-	 * Refresh the font. 
-	 * This method shouldn't be overriden by subclasses. 
-	 * To refresh labels font, the method refreshLabelsFont should be used. 
-	 * {@inheritDoc}
+	 * Refresh the font. This method shouldn't be overriden by subclasses. To refresh labels font,
+	 * the method refreshLabelsFont should be used. {@inheritDoc}
 	 */
 	@Override
 	protected void refreshFont() {
@@ -95,36 +97,38 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 			// Get the font
 			FontDescriptor fontDescriptor = FontDescriptor.createFrom(getFontData(style));
 			Font newFont = getResourceManager().createFont(fontDescriptor);
-			
+
 			refreshLabelsFont(newFont);
-			
+
 			// Dispose previous Font and FontDescriptor
-			if(cachedFontDescriptor!=null)
-			{
+			if (cachedFontDescriptor != null) {
 				getResourceManager().destroyFont(cachedFontDescriptor);
 			}
 			cachedFontDescriptor = fontDescriptor;
 		}
 	}
-	
+
 	/**
-	 * A method to specify the labels to be update when the font is refreshed. 
-	 * Subclasses should call super.refreshLabelsFont(font)
-	 * @param font the font to use
+	 * A method to specify the labels to be update when the font is refreshed. Subclasses should
+	 * call super.refreshLabelsFont(font)
+	 * 
+	 * @param font
+	 *            the font to use
 	 */
 	protected void refreshLabelsFont(Font font) {
 		// Apply the font to the Name Label
 		((NodeNamedElementFigure) getPrimaryShape()).getNameLabel().setFont(font);
 	}
-	
+
 	/**
-	 * Update the fontData 
-	 * @param style the font style of the figure
+	 * Update the fontData
+	 * 
+	 * @param style
+	 *            the font style of the figure
 	 * @return the new font data to use
 	 */
-	protected FontData getFontData(FontStyle style)
-	{
-		return new FontData(style.getFontName(), style.getFontHeight(),
-				(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+	protected FontData getFontData(FontStyle style) {
+		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
+				| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 	}
 }

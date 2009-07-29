@@ -54,7 +54,8 @@ public abstract class ShowPropertyParametersActionBase extends DiagramAction {
 
 	@Override
 	protected Command getCommand() {
-		// return nothing because all functionality is implemented in #doRun(IProgressMonitor) method
+		// return nothing because all functionality is implemented in #doRun(IProgressMonitor)
+		// method
 		return new Command("Fake Manage Property Parameters") {
 		};
 	}

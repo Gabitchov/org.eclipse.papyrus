@@ -36,7 +36,7 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
 public class DeleteFromModelAction extends org.eclipse.gmf.runtime.diagram.ui.actions.DeleteFromModelAction {
 
@@ -77,13 +77,15 @@ public class DeleteFromModelAction extends org.eclipse.gmf.runtime.diagram.ui.ac
 				// diagram
 				EObject container = view.eContainer();
 				element = ViewUtil.resolveSemanticElement(view);
-				if ((element instanceof Diagram) || (view instanceof Diagram && (container == null || !(container instanceof View)))) {
+				if ((element instanceof Diagram)
+						|| (view instanceof Diagram && (container == null || !(container instanceof View)))) {
 					return null;
 				} else if (view instanceof Edge && element == null) {
 					EObject source = getSource(editPart);
 					EObject target = getTarget(editPart);
 					if (source != null && target != null) {
-						return editPart.getCommand(new EditCommandRequestWrapper(new DestroyReferenceRequest(source, null, target, false)));
+						return editPart.getCommand(new EditCommandRequestWrapper(new DestroyReferenceRequest(source,
+								null, target, false)));
 					}
 				}
 			}
@@ -93,7 +95,8 @@ public class DeleteFromModelAction extends org.eclipse.gmf.runtime.diagram.ui.ac
 		}
 
 		if (elementsToDelete.size() > 0) {
-			return new ICommandProxy(new DeleteCommand(getEditingDomain(), "Delete elements", (List) null, elementsToDelete));
+			return new ICommandProxy(new DeleteCommand(getEditingDomain(), "Delete elements", (List) null,
+					elementsToDelete));
 		}
 
 		return UnexecutableCommand.INSTANCE;
@@ -115,7 +118,8 @@ public class DeleteFromModelAction extends org.eclipse.gmf.runtime.diagram.ui.ac
 				EObject source = getSource(ep);
 				EObject target = getTarget(ep);
 				if (source != null && target != null) {
-					Command command = ep.getCommand(new EditCommandRequestWrapper(new DestroyReferenceRequest(source, null, target, false)));
+					Command command = ep.getCommand(new EditCommandRequestWrapper(new DestroyReferenceRequest(source,
+							null, target, false)));
 					if (command != null)
 						enabled = true;
 				}

@@ -142,7 +142,8 @@ public abstract class AddStereotypesNamesAbstractParser implements IParser {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
 		if (values == null) {
-			return new ParserEditStatus("StereotypableElementParser", IParserEditStatus.UNEDITABLE, "Invalid input at " + pos.getErrorIndex());
+			return new ParserEditStatus("StereotypableElementParser", IParserEditStatus.UNEDITABLE, "Invalid input at "
+					+ pos.getErrorIndex());
 		}
 		return validateNewValues(values);
 	}

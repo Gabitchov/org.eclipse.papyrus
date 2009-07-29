@@ -89,7 +89,8 @@ public abstract class AssociationEndToString extends PropertyToString {
 			super(sourceNotTarget);
 		}
 
-		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getNamedElement_Visibility(), UMLPackage.eINSTANCE.getProperty_IsDerived(),
+		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+				UMLPackage.eINSTANCE.getNamedElement_Visibility(), UMLPackage.eINSTANCE.getProperty_IsDerived(),
 				UMLPackage.eINSTANCE.getNamedElement_Name(), });
 
 		public String getToString(EObject object, int flags) {
@@ -119,9 +120,11 @@ public abstract class AssociationEndToString extends PropertyToString {
 			super(sourceNotTarget);
 		}
 
-		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue(),
-				UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue(), UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(), UMLPackage.eINSTANCE.getLiteralInteger_Value(),
-				UMLPackage.eINSTANCE.getLiteralString_Value(), });
+		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+				UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue(),
+				UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue(),
+				UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(),
+				UMLPackage.eINSTANCE.getLiteralInteger_Value(), UMLPackage.eINSTANCE.getLiteralString_Value(), });
 
 		public String getToString(EObject object, int flags) {
 			Property property = asProperty(object);
@@ -156,8 +159,12 @@ public abstract class AssociationEndToString extends PropertyToString {
 			super(sourceNotTarget);
 		}
 
-		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered(), UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique(),
-				UMLPackage.eINSTANCE.getProperty_IsDerivedUnion(), UMLPackage.eINSTANCE.getProperty_SubsettedProperty(), UMLPackage.eINSTANCE.getRedefinableElement_RedefinedElement(),
+		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+				UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered(),
+				UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique(),
+				UMLPackage.eINSTANCE.getProperty_IsDerivedUnion(),
+				UMLPackage.eINSTANCE.getProperty_SubsettedProperty(),
+				UMLPackage.eINSTANCE.getRedefinableElement_RedefinedElement(),
 				UMLPackage.eINSTANCE.getNamedElement_Name(), });
 
 		public boolean isAffectingFeature(EStructuralFeature feature) {

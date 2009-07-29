@@ -41,9 +41,12 @@ public abstract class OperationToString extends AbstractToString {
 
 	public static class VIEW extends OperationToString implements WithReferences {
 
-		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getNamedElement_Visibility(), UMLPackage.eINSTANCE.getNamedElement_Name(),
-				UMLPackage.eINSTANCE.getBehavior_OwnedParameter(), UMLPackage.eINSTANCE.getParameter_Direction(), UMLPackage.eINSTANCE.getTypedElement_Type(),
-				UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue(), UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue(), UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(),
+		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+				UMLPackage.eINSTANCE.getNamedElement_Visibility(), UMLPackage.eINSTANCE.getNamedElement_Name(),
+				UMLPackage.eINSTANCE.getBehavior_OwnedParameter(), UMLPackage.eINSTANCE.getParameter_Direction(),
+				UMLPackage.eINSTANCE.getTypedElement_Type(), UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue(),
+				UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue(),
+				UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(),
 				UMLPackage.eINSTANCE.getLiteralInteger_Value(), });
 
 		public String getToString(EObject object, int flags) {
@@ -145,7 +148,8 @@ public abstract class OperationToString extends AbstractToString {
 			throw new IllegalStateException("Return parameter should not be included into parameters list"); //$NON-NLS-1$
 		}
 
-		throw new IllegalStateException("Unknown parameter direction kind: " + direction + " for parameter: " + parameter); //$NON-NLS-1$ //$NON-NLS-2$
+		throw new IllegalStateException(
+				"Unknown parameter direction kind: " + direction + " for parameter: " + parameter); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	protected Operation asOperation(EObject object) {

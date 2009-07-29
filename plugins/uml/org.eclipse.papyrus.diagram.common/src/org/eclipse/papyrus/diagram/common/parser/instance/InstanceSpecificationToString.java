@@ -72,7 +72,9 @@ public abstract class InstanceSpecificationToString extends AbstractToString {
 
 	public static class VIEW extends InstanceSpecificationToString implements WithReferences {
 
-		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getNamedElement_Name(), UMLPackage.eINSTANCE.getInstanceSpecification_Classifier(), });
+		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+				UMLPackage.eINSTANCE.getNamedElement_Name(),
+				UMLPackage.eINSTANCE.getInstanceSpecification_Classifier(), });
 
 		public boolean isAffectingFeature(EStructuralFeature feature) {
 			return AFFECTING.contains(feature);

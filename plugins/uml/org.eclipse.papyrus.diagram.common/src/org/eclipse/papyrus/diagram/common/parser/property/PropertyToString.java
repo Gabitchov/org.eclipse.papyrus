@@ -53,9 +53,12 @@ public abstract class PropertyToString extends AbstractToString {
 
 	public static class VIEW extends PropertyToString implements WithReferences {
 
-		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getNamedElement_Visibility(), UMLPackage.eINSTANCE.getProperty_IsDerived(),
-				UMLPackage.eINSTANCE.getProperty_DefaultValue(), UMLPackage.eINSTANCE.getNamedElement_Name(), UMLPackage.eINSTANCE.getTypedElement_Type(),
-				UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue(), UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue(), UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(),
+		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+				UMLPackage.eINSTANCE.getNamedElement_Visibility(), UMLPackage.eINSTANCE.getProperty_IsDerived(),
+				UMLPackage.eINSTANCE.getProperty_DefaultValue(), UMLPackage.eINSTANCE.getNamedElement_Name(),
+				UMLPackage.eINSTANCE.getTypedElement_Type(), UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue(),
+				UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue(),
+				UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(),
 				UMLPackage.eINSTANCE.getLiteralInteger_Value(), UMLPackage.eINSTANCE.getLiteralString_Value(), });
 
 		public String getToString(EObject object, int flags) {

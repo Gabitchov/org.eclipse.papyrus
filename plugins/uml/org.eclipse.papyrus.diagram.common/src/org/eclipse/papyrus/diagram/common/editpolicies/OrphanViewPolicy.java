@@ -45,7 +45,7 @@ import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 public class OrphanViewPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener {
 
 	private ArrayList notOrphanList = new ArrayList();
-	
+
 	private static Pattern digit = Pattern.compile("\\d*");
 
 	/**
@@ -189,21 +189,20 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	/**
 	 * Checks if the string is an integer.
 	 * 
-	 * @param s the specified string
+	 * @param s
+	 *            the specified string
 	 * 
 	 * @return true, if is integer
 	 */
-	public static boolean isInteger(String s)
-	{
-		boolean result = false ;
+	public static boolean isInteger(String s) {
+		boolean result = false;
 		Matcher matcher = digit.matcher(s);
-		if (matcher != null)
-		{
+		if (matcher != null) {
 			result = matcher.matches();
 		}
-		return result ;	
+		return result;
 	}
-	
+
 	/**
 	 * 
 	 * {@inheritDoc}

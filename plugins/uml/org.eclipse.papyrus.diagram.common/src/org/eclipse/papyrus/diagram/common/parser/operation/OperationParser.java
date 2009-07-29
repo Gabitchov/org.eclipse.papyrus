@@ -30,7 +30,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
- * JavaCC does not support any "include" construct. This parser shares a lot of delcrations (mainly at the tokens level) with other parsers (see PropertyParser, etc) but we do not yet know how to
+ * JavaCC does not support any "include" construct. This parser shares a lot of delcrations (mainly
+ * at the tokens level) with other parsers (see PropertyParser, etc) but we do not yet know how to
  * avoid duplication of the delarations.
  */
 public class OperationParser extends ExternalParserBase implements OperationParserConstants {
@@ -661,8 +662,9 @@ public class OperationParser extends ExternalParserBase implements OperationPars
 	}
 
 	private static void jj_la1_0() {
-		jj_la1_0 = new int[] { 0x1e000, 0x2e000000, 0x10, 0x100, 0x1000, 0xe000000, 0x10, 0x40, 0x20, 0xe000000, 0x1e000, 0x100, 0x300000, 0xc00000, 0xf00000, 0xc00000, 0x300000, 0x10040000,
-				0x20000000, 0x30000000, 0x1f00000, 0x1f80000, 0x1000, 0x1f80000, };
+		jj_la1_0 = new int[] { 0x1e000, 0x2e000000, 0x10, 0x100, 0x1000, 0xe000000, 0x10, 0x40, 0x20, 0xe000000,
+				0x1e000, 0x100, 0x300000, 0xc00000, 0xf00000, 0xc00000, 0x300000, 0x10040000, 0x20000000, 0x30000000,
+				0x1f00000, 0x1f80000, 0x1000, 0x1f80000, };
 	}
 
 	final private JJCalls[] jj_2_rtns = new JJCalls[1];

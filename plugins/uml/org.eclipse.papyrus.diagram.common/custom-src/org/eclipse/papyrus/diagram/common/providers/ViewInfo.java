@@ -13,12 +13,11 @@ package org.eclipse.papyrus.diagram.common.providers;
 import java.util.Collection;
 
 /**
- * A ViewInfo represents the information to be used in the filtering of views in
- * diagrams. It has information of the IElementType it represents, its visualID
- * in the diagram, its parent figure and label to be shown in the filtering
- * dialog. <br>
- * Having information about the parent figure allows the creation of
- * hierarchical structures of ViewInfo elements.
+ * A ViewInfo represents the information to be used in the filtering of views in diagrams. It has
+ * information of the IElementType it represents, its visualID in the diagram, its parent figure and
+ * label to be shown in the filtering dialog. <br>
+ * Having information about the parent figure allows the creation of hierarchical structures of
+ * ViewInfo elements.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @NOT-generated
@@ -27,22 +26,27 @@ public interface ViewInfo {
 
 	/** The None. */
 	public static int None = -1;
+
 	public static String NONE_LITERAL = "None";
 
 	/** The Head. */
 	public static int Head = 0;
+
 	public static String HEAD_LITERAL = "Head";
 
 	/** The Node. */
 	public static int Node = 2;
+
 	public static String NODE_LITERAL = "Node";
 
 	/** The Edge. */
 	public static int Edge = 3;
+
 	public static String EDGE_LITERAL = "Edge";
 
 	/** The Label. */
 	public static int Label = 4;
+
 	public static String LABEL_LITERAL = "Label";
 
 	/**
@@ -131,7 +135,7 @@ public interface ViewInfo {
 	 * @return true, if successful
 	 */
 	boolean addNode(int parentVisualID, ViewInfo info);
-	
+
 	/**
 	 * True if this view info can be selected to be filtered.
 	 * 

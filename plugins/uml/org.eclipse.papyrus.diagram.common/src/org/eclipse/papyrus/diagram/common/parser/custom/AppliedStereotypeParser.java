@@ -105,7 +105,8 @@ public class AppliedStereotypeParser implements IParser {
 	}
 
 	/**
-	 * get the list of stereotype to display.To modify by taking account preferences of stereotype display
+	 * get the list of stereotype to display.To modify by taking account preferences of stereotype
+	 * display
 	 * 
 	 * @param separator
 	 *            " " or "/n" for example

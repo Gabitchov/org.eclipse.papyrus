@@ -87,7 +87,8 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	}
 
 	/**
-	 * Return the connector end which has the correct property as role, owned by a connector in the interaction
+	 * Return the connector end which has the correct property as role, owned by a connector in the
+	 * interaction
 	 * 
 	 * @param interaction
 	 *            the owning interaction
@@ -121,7 +122,8 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	}
 
 	/**
-	 * Store the old Property associated with the represents property of the Lifeline and then make the redo
+	 * Store the old Property associated with the represents property of the Lifeline and then make
+	 * the redo
 	 * 
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */

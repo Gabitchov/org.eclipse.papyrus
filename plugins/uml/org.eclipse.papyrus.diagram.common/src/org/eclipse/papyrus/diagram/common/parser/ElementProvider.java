@@ -71,7 +71,8 @@ public class ElementProvider {
 	protected void setContext(EObject context) {
 		myContext = context;
 		ResourceSet resourceSet = context.eResource().getResourceSet();
-		if (myIsCaching && myResourceSet != null && myResourceSet.equals(resourceSet) && !moreResourcesWereLoaded(resourceSet)) {
+		if (myIsCaching && myResourceSet != null && myResourceSet.equals(resourceSet)
+				&& !moreResourcesWereLoaded(resourceSet)) {
 			return;
 		}
 

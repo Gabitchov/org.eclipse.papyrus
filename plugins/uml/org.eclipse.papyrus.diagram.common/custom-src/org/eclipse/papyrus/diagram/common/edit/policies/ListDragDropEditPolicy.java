@@ -27,11 +27,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.UpdateDiagramCommand;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 
-
 // TODO: Auto-generated Javadoc
 /**
- * A DragAndDropEditPolicy for list compartment nodes. Checks whether the dropped elements can be shown as views in the compartment and if so, created their views and add their references to the
- * diagram's list of references. Those elements containers are changed to the element represented by the host of the policy.
+ * A DragAndDropEditPolicy for list compartment nodes. Checks whether the dropped elements can be
+ * shown as views in the compartment and if so, created their views and add their references to the
+ * diagram's list of references. Those elements containers are changed to the element represented by
+ * the host of the policy.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
@@ -66,10 +67,14 @@ public class ListDragDropEditPolicy extends DragDropEditPolicy {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy#buildDropCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest, java.util.List, java.util.List, java.util.List)
+	 * @see
+	 * org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy#buildDropCommand(org.
+	 * eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest, java.util.List, java.util.List,
+	 * java.util.List)
 	 */
 	@Override
-	protected Command buildDropCommand(DropObjectsRequest request, List<EObject> nodes, List<ViewDescriptor> views, List<EObject> edges) {
+	protected Command buildDropCommand(DropObjectsRequest request, List<EObject> nodes, List<ViewDescriptor> views,
+			List<EObject> edges) {
 		// build commands that add references to the diagram.
 		Command command = buildAddEObjectsReferencesCommand(nodes);
 		Command edgesCommand = buildAddEObjectsReferencesCommand(edges);

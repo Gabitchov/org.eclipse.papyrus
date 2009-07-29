@@ -27,8 +27,8 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This class is the common base for actions. 
- * It provide helper to access to current diagram and selection.
+ * This class is the common base for actions. It provide helper to access to current diagram and
+ * selection.
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -38,8 +38,8 @@ public abstract class AbstractAction extends Action {
 	private IGraphicalEditPart host;
 
 	/**
-	 * @return the current diagram or null if not found.
-	 * TODO : throw appropriate exception if not found ?
+	 * @return the current diagram or null if not found. TODO : throw appropriate exception if not
+	 *         found ?
 	 */
 	protected Diagram getCurrentDiagram() {
 		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -67,7 +67,8 @@ public abstract class AbstractAction extends Action {
 	 */
 	protected List<View> getSelection() {
 		List<View> viewSelected = new ArrayList<View>();
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
+				.getSelection();
 		if (false == selection instanceof IStructuredSelection) {
 			return Collections.emptyList();
 		}

@@ -18,7 +18,7 @@ import org.eclipse.jface.viewers.ISelection;
 /**
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
 public class DeleteActionMenuContributionPolicy implements IPopupMenuContributionPolicy {
 

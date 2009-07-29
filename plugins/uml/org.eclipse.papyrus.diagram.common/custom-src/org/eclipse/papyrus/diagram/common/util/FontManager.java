@@ -23,7 +23,8 @@ import org.eclipse.swt.graphics.FontData;
  * @author Patrick Tessier
  * @since 21 sept. 06
  * 
- *        this class is a singletion to manage font in the papyrus Application. It is forbidden to create a new font without use this class.
+ *        this class is a singletion to manage font in the papyrus Application. It is forbidden to
+ *        create a new font without use this class.
  */
 public class FontManager extends FontRegistry {
 

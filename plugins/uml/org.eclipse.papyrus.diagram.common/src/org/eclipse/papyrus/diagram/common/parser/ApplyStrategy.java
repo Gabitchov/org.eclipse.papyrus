@@ -22,5 +22,6 @@ public interface ApplyStrategy {
 
 	public List/* 1.5 <ICommand> */apply(EObject modelObject, EObject parsedObject);
 
-	public static final List/* 1.5 <ICommand> */NOT_EXECUTABLE = Collections.singletonList(UnexecutableCommand.INSTANCE);
+	public static final List/* 1.5 <ICommand> */NOT_EXECUTABLE = Collections
+			.singletonList(UnexecutableCommand.INSTANCE);
 }

@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -19,9 +19,10 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 
 /**
- * this figure is used to display at the good positionn acnhor on the packageable element 
+ * this figure is used to display at the good positionn acnhor on the packageable element
+ * 
  * @author PT202707
- *
+ * 
  */
 public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 
@@ -47,8 +48,10 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 			if (getChildren().get(0) instanceof PackageFigure) {
 				PackageFigure packageFigure = (PackageFigure) getChildren().get(0);
 				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y);
-				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y + packageFigure.getHeader().height);
-				points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + packageFigure.getHeader().height);
+				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y
+						+ packageFigure.getHeader().height);
+				points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y
+						+ packageFigure.getHeader().height);
 
 			}// no header
 			else {
@@ -56,7 +59,8 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 			}
 		}
 
-		points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + anchorableRectangle.height);
+		points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y
+				+ anchorableRectangle.height);
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height);
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y);
 		return points;

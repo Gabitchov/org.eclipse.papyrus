@@ -176,12 +176,15 @@ public class PropertyParser extends ExternalParserBase implements PropertyParser
 	}
 
 	/*
-	 * XXX: Parse conflict in case of empty default value void MultiplicityDesignator() : { } { <LCURLY> ( ( MultiplicityUnique() [ MultiplicityOrdered() ] ) | ( MultiplicityOrdered() [
+	 * XXX: Parse conflict in case of empty default value void MultiplicityDesignator() : { } {
+	 * <LCURLY> ( ( MultiplicityUnique() [ MultiplicityOrdered() ] ) | ( MultiplicityOrdered() [
 	 * MultiplicityUnique() ] ) ) <RCURLY> }
 	 * 
-	 * void MultiplicityUnique() : {} { <UNIQUE> { mySubject.setIsUnique(true); } | <NON_UNIQUE> { mySubject.setIsUnique(false); } }
+	 * void MultiplicityUnique() : {} { <UNIQUE> { mySubject.setIsUnique(true); } | <NON_UNIQUE> {
+	 * mySubject.setIsUnique(false); } }
 	 * 
-	 * void MultiplicityOrdered() : {} { <ORDERED> { mySubject.setIsOrdered(true); } | <UNORDERED> { mySubject.setIsOrdered(false); } }
+	 * void MultiplicityOrdered() : {} { <ORDERED> { mySubject.setIsOrdered(true); } | <UNORDERED> {
+	 * mySubject.setIsOrdered(false); } }
 	 */
 
 	/* XXX: ValueSpecification -- how to parse */
@@ -433,7 +436,8 @@ public class PropertyParser extends ExternalParserBase implements PropertyParser
 	}
 
 	private static void jj_la1_0() {
-		jj_la1_0 = new int[] { 0x7800, 0x8, 0x10, 0x40, 0x20, 0x100, 0x7800, 0x2010000, 0x4000000, 0x6000000, 0x1e60000, 0x180000, 0x1fe0000, 0x400, 0x1fe0000, };
+		jj_la1_0 = new int[] { 0x7800, 0x8, 0x10, 0x40, 0x20, 0x100, 0x7800, 0x2010000, 0x4000000, 0x6000000,
+				0x1e60000, 0x180000, 0x1fe0000, 0x400, 0x1fe0000, };
 	}
 
 	final private JJCalls[] jj_2_rtns = new JJCalls[1];

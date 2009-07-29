@@ -41,6 +41,7 @@ class EditParametersTableConstants {
 
 	public static final int IS_UNIQUE_POS = 6;
 
-	public static final String[] COLUMN_PROPERTIES = new String[] { NAME, TYPES, DIRECTION, MULTIPLICITY, DEFAULT_VALUE, IS_ORDERED, IS_UNIQUE };
+	public static final String[] COLUMN_PROPERTIES = new String[] { NAME, TYPES, DIRECTION, MULTIPLICITY,
+			DEFAULT_VALUE, IS_ORDERED, IS_UNIQUE };
 
 }

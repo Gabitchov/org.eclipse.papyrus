@@ -32,7 +32,8 @@ public class ContainerFigure extends NodeNamedElementFigure {
 	public ContainerFigure() {
 		// this only a box
 		// layout:
-		ToolbarLayout layout = new ToolbarLayout(ToolbarLayout.VERTICAL);// to add element vertically
+		ToolbarLayout layout = new ToolbarLayout(ToolbarLayout.VERTICAL);// to add element
+																			// vertically
 		layout.setStretchMinorAxis(true);
 		layout.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
 		int spacing = 0;

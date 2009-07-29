@@ -70,7 +70,7 @@ public class Messages extends NLS {
 
 	private Messages() {
 	}
-	
+
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.Abstraction} links */
 	public static String AppliedStereotypeLabel_AbstractionTag;
 

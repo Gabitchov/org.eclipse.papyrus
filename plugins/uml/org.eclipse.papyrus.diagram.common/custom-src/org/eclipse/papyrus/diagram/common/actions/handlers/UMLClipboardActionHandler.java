@@ -10,8 +10,7 @@ public class UMLClipboardActionHandler extends ClipboardActionHandler {
 	protected void prepareEObject(EObject eObject) {
 		if (eObject instanceof NamedElement) {
 			NamedElement namedElement = (NamedElement) eObject;
-			namedElement.setName(LabelHelper.INSTANCE.findName(eObject
-					.eContainer(), namedElement));
+			namedElement.setName(LabelHelper.INSTANCE.findName(eObject.eContainer(), namedElement));
 		}
 	}
 }

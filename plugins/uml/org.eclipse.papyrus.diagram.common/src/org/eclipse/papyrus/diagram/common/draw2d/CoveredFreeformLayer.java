@@ -119,7 +119,8 @@ public class CoveredFreeformLayer extends BorderItemsAwareFreeFormLayer {
 					int x = area.x == union.x ? -xShift : xShift;
 					int yShift = union.height - area.height;
 					int y = area.y == union.y ? -yShift : yShift;
-					((BorderItemNameLocator) parent.getBorderItemContainer().getLayoutManager().getConstraint(borderItem)).getConstraint().translate(x, y);
+					((BorderItemNameLocator) parent.getBorderItemContainer().getLayoutManager().getConstraint(
+							borderItem)).getConstraint().translate(x, y);
 				}
 			}
 		}

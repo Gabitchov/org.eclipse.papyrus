@@ -36,7 +36,6 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class EditingDomainRegistry.
@@ -130,8 +129,9 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 		}
 		newDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain();
 		newDomain.setID(editorID);
-		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(newDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD))
-				.and(NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
+		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(
+				newDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(
+				NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
 		newDomain.getResourceSet().eAdapters().add(new Adapter() {
 
 			private Notifier myTarget;

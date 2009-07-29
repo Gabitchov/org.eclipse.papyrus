@@ -59,5 +59,4 @@ public class UMLDiagramEditorIDs {
 		return allModelIDs;
 	}
 
-
 }

@@ -70,7 +70,8 @@ public class ElementImportProvider extends ElementProvider {
 			return false;
 		}
 
-		// for now, expliciltly remove metaclasses, too many of them and they seems to be not usefull here
+		// for now, expliciltly remove metaclasses, too many of them and they seems to be not
+		// usefull here
 		if (next instanceof org.eclipse.uml2.uml.Class && ((org.eclipse.uml2.uml.Class) next).isMetaclass()) {
 			return false;
 		}

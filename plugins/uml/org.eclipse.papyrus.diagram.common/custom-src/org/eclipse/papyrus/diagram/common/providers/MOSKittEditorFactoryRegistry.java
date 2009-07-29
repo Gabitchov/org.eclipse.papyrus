@@ -79,20 +79,17 @@ public class MOSKittEditorFactoryRegistry {
 			return null;
 		}
 		// check Diagram
-		Diagram diagram = (Diagram) Platform.getAdapterManager().getAdapter(
-				object, Diagram.class);
+		Diagram diagram = (Diagram) Platform.getAdapterManager().getAdapter(object, Diagram.class);
 		if (diagram != null) {
 			return getEditorForDiagram(diagram);
 		}
 		// check EObject's EClass
-		EObject eObject = (EObject) Platform.getAdapterManager().getAdapter(
-				object, EObject.class);
+		EObject eObject = (EObject) Platform.getAdapterManager().getAdapter(object, EObject.class);
 		if (eObject != null) {
 			return getEditorForEObject(eObject);
 		}
 		// check editorID
-		String editorID = (String) Platform.getAdapterManager().getAdapter(
-				object, String.class);
+		String editorID = (String) Platform.getAdapterManager().getAdapter(object, String.class);
 		if (editorID != null) {
 			return getEditorForEditorID(editorID);
 		}
@@ -106,8 +103,7 @@ public class MOSKittEditorFactoryRegistry {
 		}
 		readExtensionPoint();
 		if (getMapEditorID2Factory().containsKey(editorID)) {
-			IMOSKittEditorFactory factory = getMapEditorID2Factory().get(
-					editorID);
+			IMOSKittEditorFactory factory = getMapEditorID2Factory().get(editorID);
 			if (factory != null) {
 				return factory.createEditorFor(editorID);
 			}
@@ -125,8 +121,7 @@ public class MOSKittEditorFactoryRegistry {
 		// the given object.
 		for (String eClass : getMapEClass2Factory().keySet()) {
 			if (MDTUtil.isOfType(eObjectClass, eClass)) {
-				IMOSKittEditorFactory factory = getMapEClass2Factory().get(
-						eClass);
+				IMOSKittEditorFactory factory = getMapEClass2Factory().get(eClass);
 				if (factory != null) {
 					return factory.createEditorFor(eObject);
 				}
@@ -141,8 +136,7 @@ public class MOSKittEditorFactoryRegistry {
 		}
 		readExtensionPoint();
 		if (getMapModel2Factory().containsKey(diagram.getType())) {
-			IMOSKittEditorFactory factory = getMapModel2Factory().get(
-					diagram.getType());
+			IMOSKittEditorFactory factory = getMapModel2Factory().get(diagram.getType());
 			if (factory != null) {
 				return factory.createEditorFor(diagram);
 			}
@@ -155,8 +149,8 @@ public class MOSKittEditorFactoryRegistry {
 	private static final String ExtensionPointID = "org.eclipse.papyrus.diagram.common.moskittEditorFactory";
 
 	protected void readExtensionPoint() {
-		ExtensionPointParser parser = new ExtensionPointParser(
-				ExtensionPointID, new Class[] { MOSKittEditorFactory.class });
+		ExtensionPointParser parser = new ExtensionPointParser(ExtensionPointID,
+				new Class[] { MOSKittEditorFactory.class });
 		MOSKittEditorFactory factory = null;
 		List<MOSKittEditorFactory> factories = new ArrayList<MOSKittEditorFactory>();
 		// parse extension point
@@ -171,23 +165,17 @@ public class MOSKittEditorFactoryRegistry {
 		for (MOSKittEditorFactory editorFactoryElement : factories) {
 			IMOSKittEditorFactory editorFactory = null;
 			if (editorFactoryElement.factory != null) {
-				editorFactory = (IMOSKittEditorFactory) Platform
-						.getAdapterManager().getAdapter(
-								editorFactoryElement.factory,
-								IMOSKittEditorFactory.class);
+				editorFactory = (IMOSKittEditorFactory) Platform.getAdapterManager().getAdapter(
+						editorFactoryElement.factory, IMOSKittEditorFactory.class);
 				if (editorFactory != null) {
 					if (editorFactoryElement.diagramType != null) {
-						getMapModel2Factory()
-								.put(editorFactoryElement.diagramType,
-										editorFactory);
+						getMapModel2Factory().put(editorFactoryElement.diagramType, editorFactory);
 					}
 					if (editorFactoryElement.eClass != null) {
-						getMapEClass2Factory().put(editorFactoryElement.eClass,
-								editorFactory);
+						getMapEClass2Factory().put(editorFactoryElement.eClass, editorFactory);
 					}
 					if (editorFactoryElement.editorID != null) {
-						getMapEditorID2Factory().put(
-								editorFactoryElement.editorID, editorFactory);
+						getMapEditorID2Factory().put(editorFactoryElement.editorID, editorFactory);
 					}
 				}
 			}

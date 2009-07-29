@@ -17,9 +17,9 @@ import org.eclipse.papyrus.diagram.common.util.PathsUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
-
 /**
- * A registry to store and get <CachedResourceDocumentProvider>s based on <EditingDomain>s and <IEditorInput>s.
+ * A registry to store and get <CachedResourceDocumentProvider>s based on <EditingDomain>s and
+ * <IEditorInput>s.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 
@@ -38,7 +38,8 @@ public class DocumentProviderRegistry extends HashMap<String, CachedResourcesDoc
 
 	@Override
 	public CachedResourcesDocumentProvider get(Object arg0) {
-		throw new UnsupportedOperationException("Operation not supported. Use #get(String domainID, IEditorInput input)");
+		throw new UnsupportedOperationException(
+				"Operation not supported. Use #get(String domainID, IEditorInput input)");
 	}
 
 	public CachedResourcesDocumentProvider get(String domainID, IEditorInput input) {

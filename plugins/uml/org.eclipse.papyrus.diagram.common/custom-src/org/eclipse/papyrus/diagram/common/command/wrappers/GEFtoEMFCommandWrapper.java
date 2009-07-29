@@ -19,7 +19,10 @@ import org.eclipse.gef.commands.Command;
  */
 public class GEFtoEMFCommandWrapper extends AbstractCommand {
 
-	/** The wrapped GEF Command. Package-level visibility so that the command stack wrapper can access the field. */
+	/**
+	 * The wrapped GEF Command. Package-level visibility so that the command stack wrapper can
+	 * access the field.
+	 */
 	private Command gefCommand;
 
 	/**

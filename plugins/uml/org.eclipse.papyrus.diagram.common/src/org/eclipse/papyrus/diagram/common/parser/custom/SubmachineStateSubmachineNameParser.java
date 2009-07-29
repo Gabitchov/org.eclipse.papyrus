@@ -100,7 +100,8 @@ public class SubmachineStateSubmachineNameParser implements ISemanticParser {
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		if (notification instanceof Notification) {
 			Notification noti = (Notification) notification;
-			if (noti.getNotifier() instanceof StateMachine && noti.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
+			if (noti.getNotifier() instanceof StateMachine
+					&& noti.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
 				return true;
 			}
 		}

@@ -46,9 +46,11 @@ public class UMLEdgeFigure extends PolylineConnectionEx {
 	}
 
 	/**
-	 * Creates the contents of the figure, i.e. child node. This basic implementation creates only a new stereotype label.
+	 * Creates the contents of the figure, i.e. child node. This basic implementation creates only a
+	 * new stereotype label.
 	 * <p>
-	 * This method should be called when the parent figure is created, or when the label was removed and a string has to be displayed.
+	 * This method should be called when the parent figure is created, or when the label was removed
+	 * and a string has to be displayed.
 	 * </p>
 	 */
 	protected void createContents() {
@@ -72,7 +74,8 @@ public class UMLEdgeFigure extends PolylineConnectionEx {
 	 * This implementation checks if the specified string is null or not.
 	 * <ul>
 	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes.</li>
-	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays the specified string.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays
+	 * the specified string.</li>
 	 * </ul>
 	 * </p>
 	 * 

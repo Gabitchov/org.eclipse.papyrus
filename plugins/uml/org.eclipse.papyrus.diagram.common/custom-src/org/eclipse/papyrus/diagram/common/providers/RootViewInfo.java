@@ -15,9 +15,8 @@ import java.util.List;
 import org.eclipse.core.runtime.Platform;
 
 /**
- * Root info element for a {@link ViewInfo} structure in a Diagram. It stores
- * the editor identifier for which this is applied and the factory that can
- * provide an image and label provider.
+ * Root info element for a {@link ViewInfo} structure in a Diagram. It stores the editor identifier
+ * for which this is applied and the factory that can provide an image and label provider.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @NOT-generated
@@ -52,16 +51,15 @@ public class RootViewInfo {
 	public ViewInfo headViewInfo;
 
 	/**
-	 * Gets an {@link IModelTypesProvider} via the specified
-	 * {@link IModelTypesProviderFactory} using the defined editorID.
+	 * Gets an {@link IModelTypesProvider} via the specified {@link IModelTypesProviderFactory}
+	 * using the defined editorID.
 	 * 
 	 * @return
 	 */
 	public IModelTypesProvider getModelTypesProvider() {
 		if (editorID != null && modelTypes != null) {
-			IModelTypesProviderFactory factory = (IModelTypesProviderFactory) Platform
-					.getAdapterManager().getAdapter(modelTypes,
-							IModelTypesProviderFactory.class);
+			IModelTypesProviderFactory factory = (IModelTypesProviderFactory) Platform.getAdapterManager().getAdapter(
+					modelTypes, IModelTypesProviderFactory.class);
 			if (factory != null) {
 				return factory.getProviderForEditor(editorID);
 			}

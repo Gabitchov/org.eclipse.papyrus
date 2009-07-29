@@ -30,7 +30,8 @@ public class ChangeAssociationKindCommand extends SetValueCommand {
 		// composition diamond at the side of S (source) represents aggregation = composite
 		// for property end t : T that is placed at target end.
 		public SetAggregationKindRequest(Association association, AggregationKind kind) {
-			super(AssociationEndConvention.getTargetEnd(association), UMLPackage.eINSTANCE.getProperty_Aggregation(), kind);
+			super(AssociationEndConvention.getTargetEnd(association), UMLPackage.eINSTANCE.getProperty_Aggregation(),
+					kind);
 		}
 	}
 

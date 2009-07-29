@@ -100,7 +100,8 @@ public class CPackageFigure extends CNamedElementFigure {
 	 * @return the container figure
 	 */
 	public RectangleFigure getPackageableElementContainer() {
-		if (getSubFigure(packageableContainerIndex) != null && getSubFigure(packageableContainerIndex) instanceof RectangleFigure) {
+		if (getSubFigure(packageableContainerIndex) != null
+				&& getSubFigure(packageableContainerIndex) instanceof RectangleFigure) {
 			return ((RectangleFigure) getSubFigure(packageableContainerIndex));
 		}
 		return null;
@@ -131,7 +132,8 @@ public class CPackageFigure extends CNamedElementFigure {
 		if (getElementName() != null) {
 			getElementName().setOpaque(false);
 			// place at good Position
-			getElementName().setLocation(headerBound.getTopLeft().getCopy().getTranslated(new Dimension(0, headerBound.height)));
+			getElementName().setLocation(
+					headerBound.getTopLeft().getCopy().getTranslated(new Dimension(0, headerBound.height)));
 			if (getElementName().getPreferredSize().width > headerBound.width) {
 				headerBound.width = getElementName().getPreferredSize().width;
 			}
@@ -140,7 +142,8 @@ public class CPackageFigure extends CNamedElementFigure {
 		// qualified Name
 		if (getElementQualifiedName() != null) {
 			getElementQualifiedName().setOpaque(false);
-			getElementQualifiedName().setLocation(headerBound.getTopLeft().getCopy().getTranslated(new Dimension(0, headerBound.height)));
+			getElementQualifiedName().setLocation(
+					headerBound.getTopLeft().getCopy().getTranslated(new Dimension(0, headerBound.height)));
 			if (getElementQualifiedName().getPreferredSize().width > headerBound.width) {
 				headerBound.width = getElementQualifiedName().getPreferredSize().width;
 			}
@@ -176,7 +179,8 @@ public class CPackageFigure extends CNamedElementFigure {
 
 		// display containment
 		if (getPackageableElementContainer() != null) {
-			getPackageableElementContainer().setLocation(headerBound.getTopLeft().getCopy().getTranslated(new Dimension(0, headerBound.height)));
+			getPackageableElementContainer().setLocation(
+					headerBound.getTopLeft().getCopy().getTranslated(new Dimension(0, headerBound.height)));
 			Rectangle container = getPackageableElementContainer().getBounds().getCopy();
 			container.height = this.getBounds().height - headerBound.height;
 

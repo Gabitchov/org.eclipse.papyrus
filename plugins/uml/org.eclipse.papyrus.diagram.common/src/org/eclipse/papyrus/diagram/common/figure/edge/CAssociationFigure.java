@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.edge;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -179,28 +179,43 @@ public class CAssociationFigure extends PolylineConnectionEx {
 // circle
 
 /*
- * PointList decorationPointList = new PointList(); decorationPointList.addPoint(0,1); decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-6,1);
- * decorationPointList.addPoint(-6,-1); decorationPointList.addPoint(-4,-3); decorationPointList.addPoint(-2,-3); decorationPointList.addPoint(0,-1);
+ * PointList decorationPointList = new PointList(); decorationPointList.addPoint(0,1);
+ * decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-4,3);
+ * decorationPointList.addPoint(-6,1); decorationPointList.addPoint(-6,-1);
+ * decorationPointList.addPoint(-4,-3); decorationPointList.addPoint(-2,-3);
+ * decorationPointList.addPoint(0,-1);
  * 
  * decoration.setScale(1, 1);
  */
 // this.setTargetDecoration(decoration);
 // composition+ circle
 /*
- * PointList decorationPointList = new PointList(); decorationPointList.addPoint(0,1); decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-6,1);
- * decorationPointList.addPoint(-6,0); decorationPointList.addPoint(-18,6); decorationPointList.addPoint(-30,0); decorationPointList.addPoint(-18,-6); decorationPointList.addPoint(-6,0);
- * decorationPointList.addPoint(-6,-1); decorationPointList.addPoint(-4,-3); decorationPointList.addPoint(-2,-3); decorationPointList.addPoint(0,-1); //color Point decorationPointList.addPoint(-1,-1);
- * decorationPointList.addPoint(-1,1); decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-2,-3); decorationPointList.addPoint(-3,-3); decorationPointList.addPoint(-3,3);
- * decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-4,-3); decorationPointList.addPoint(-5,-2); decorationPointList.addPoint(-5,2); decorationPointList.addPoint(-6,1);
- * decorationPointList.addPoint(-6,-1);
+ * PointList decorationPointList = new PointList(); decorationPointList.addPoint(0,1);
+ * decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-4,3);
+ * decorationPointList.addPoint(-6,1); decorationPointList.addPoint(-6,0);
+ * decorationPointList.addPoint(-18,6); decorationPointList.addPoint(-30,0);
+ * decorationPointList.addPoint(-18,-6); decorationPointList.addPoint(-6,0);
+ * decorationPointList.addPoint(-6,-1); decorationPointList.addPoint(-4,-3);
+ * decorationPointList.addPoint(-2,-3); decorationPointList.addPoint(0,-1); //color Point
+ * decorationPointList.addPoint(-1,-1); decorationPointList.addPoint(-1,1);
+ * decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-2,-3);
+ * decorationPointList.addPoint(-3,-3); decorationPointList.addPoint(-3,3);
+ * decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-4,-3);
+ * decorationPointList.addPoint(-5,-2); decorationPointList.addPoint(-5,2);
+ * decorationPointList.addPoint(-6,1); decorationPointList.addPoint(-6,-1);
  * 
- * decoration.setScale(1, 1); decoration.setTemplate(decorationPointList); decoration.setBackgroundColor(ColorConstants.white); this.setSourceDecoration(decoration);
+ * decoration.setScale(1, 1); decoration.setTemplate(decorationPointList);
+ * decoration.setBackgroundColor(ColorConstants.white); this.setSourceDecoration(decoration);
  */
 // circle +arrow
 /*
- * PointList decorationPointList = new PointList(); decorationPointList.addPoint(0,1); decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-4,3); decorationPointList.addPoint(-6,1);
- * decorationPointList.addPoint(-6,0); decorationPointList.addPoint(-18,6); decorationPointList.addPoint(-6,0); decorationPointList.addPoint(-18,-6); decorationPointList.addPoint(-6,0);
- * decorationPointList.addPoint(-6,-1); decorationPointList.addPoint(-4,-3); decorationPointList.addPoint(-2,-3); decorationPointList.addPoint(0,-1);
+ * PointList decorationPointList = new PointList(); decorationPointList.addPoint(0,1);
+ * decorationPointList.addPoint(-2,3); decorationPointList.addPoint(-4,3);
+ * decorationPointList.addPoint(-6,1); decorationPointList.addPoint(-6,0);
+ * decorationPointList.addPoint(-18,6); decorationPointList.addPoint(-6,0);
+ * decorationPointList.addPoint(-18,-6); decorationPointList.addPoint(-6,0);
+ * decorationPointList.addPoint(-6,-1); decorationPointList.addPoint(-4,-3);
+ * decorationPointList.addPoint(-2,-3); decorationPointList.addPoint(0,-1);
  * 
  * decoration.setScale(1, 1); decoration.setTemplate(decorationPointList);
  * 

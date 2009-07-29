@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.Type;
 public class AssociationHelper {
 
 	public static int source = 0;
+
 	public static int target = 1;
 
 	/**
@@ -40,8 +41,7 @@ public class AssociationHelper {
 	 *            the new source or the new target
 	 * @return the CommandResult
 	 */
-	public static CommandResult reconnect(int end, Association association,
-			Type newType) {
+	public static CommandResult reconnect(int end, Association association, Type newType) {
 
 		((Property) association.getMemberEnds().get(end)).setType(newType);
 

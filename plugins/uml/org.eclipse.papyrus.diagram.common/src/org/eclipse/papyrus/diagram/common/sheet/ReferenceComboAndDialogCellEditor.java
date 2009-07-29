@@ -51,8 +51,8 @@ public class ReferenceComboAndDialogCellEditor extends ExtendedComboBoxCellEdito
 
 	final private TransactionalEditingDomain myEditingDomain;
 
-	public ReferenceComboAndDialogCellEditor(Composite parent, List<?> list, ILabelProvider labelProvider, boolean sorted, UMLElementChooserDialog chooserDialog,
-			TransactionalEditingDomain editingDomain) {
+	public ReferenceComboAndDialogCellEditor(Composite parent, List<?> list, ILabelProvider labelProvider,
+			boolean sorted, UMLElementChooserDialog chooserDialog, TransactionalEditingDomain editingDomain) {
 		super(parent, list, labelProvider, sorted);
 		myEditingDomain = editingDomain;
 		myElementChooserDialog = chooserDialog;

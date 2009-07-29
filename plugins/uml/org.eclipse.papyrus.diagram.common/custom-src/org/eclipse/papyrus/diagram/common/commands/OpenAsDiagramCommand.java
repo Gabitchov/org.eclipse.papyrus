@@ -28,7 +28,6 @@ import org.eclipse.papyrus.diagram.common.providers.IDiagramInitializer;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class OpenAsDiagramCommand.
@@ -60,7 +59,8 @@ public class OpenAsDiagramCommand extends AbstractTransactionalCommand {
 	private String possibleName = "";
 
 	/**
-	 * The previous dagram. If an undo is done, this Diagram will be opened if this command closed it.
+	 * The previous dagram. If an undo is done, this Diagram will be opened if this command closed
+	 * it.
 	 */
 	private Diagram previousDiagram = null;
 
@@ -150,7 +150,8 @@ public class OpenAsDiagramCommand extends AbstractTransactionalCommand {
 	 * @param initializers
 	 *            the initializers
 	 */
-	public OpenAsDiagramCommand(Resource resource, EObject element, String diagramKind, Map<String, IDiagramInitializer> initializers) {
+	public OpenAsDiagramCommand(Resource resource, EObject element, String diagramKind,
+			Map<String, IDiagramInitializer> initializers) {
 		this(resource, element, diagramKind, "", initializers, false);
 	}
 
@@ -168,7 +169,8 @@ public class OpenAsDiagramCommand extends AbstractTransactionalCommand {
 	 * @param initializer
 	 *            the initializer
 	 */
-	public OpenAsDiagramCommand(Resource resource, EObject element, String diagramKind, String name, IDiagramInitializer initializer) {
+	public OpenAsDiagramCommand(Resource resource, EObject element, String diagramKind, String name,
+			IDiagramInitializer initializer) {
 		this(resource, element, diagramKind, name, singleTonMap(diagramKind, initializer), false);
 	}
 
@@ -188,7 +190,8 @@ public class OpenAsDiagramCommand extends AbstractTransactionalCommand {
 	 * @param closeOld
 	 *            close old diagram
 	 */
-	public OpenAsDiagramCommand(Resource resource, EObject element, String diagramKind, String name, Map<String, IDiagramInitializer> initializers, boolean openInNew) {
+	public OpenAsDiagramCommand(Resource resource, EObject element, String diagramKind, String name,
+			Map<String, IDiagramInitializer> initializers, boolean openInNew) {
 		// editing domain is taken for original diagram,
 		// if we open diagram from another file, we should use another editing
 		// domain
@@ -215,13 +218,16 @@ public class OpenAsDiagramCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		return super.canExecute() && (resource != null) && (element != null) && (MOSKittModelIDs.getAllExtensionModelIDs().contains(getDiagramKind()));
+		return super.canExecute() && (resource != null) && (element != null)
+				&& (MOSKittModelIDs.getAllExtensionModelIDs().contains(getDiagramKind()));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand #doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand
+	 * #doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 * org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -230,9 +236,11 @@ public class OpenAsDiagramCommand extends AbstractTransactionalCommand {
 			Diagram diagram = getDiagramToOpen();
 			if (diagram == null) {
 				if (possibleName != "") {
-					diagram = MultiDiagramUtil.intializeNewDiagram(getDiagramKind(), element, resource, initializers, askName, possibleName);
+					diagram = MultiDiagramUtil.intializeNewDiagram(getDiagramKind(), element, resource, initializers,
+							askName, possibleName);
 				} else {
-					diagram = MultiDiagramUtil.intializeNewDiagram(getDiagramKind(), element, resource, initializers, askName);
+					diagram = MultiDiagramUtil.intializeNewDiagram(getDiagramKind(), element, resource, initializers,
+							askName);
 				}
 				if (diagram == null) {
 					return CommandResult.newCancelledCommandResult();

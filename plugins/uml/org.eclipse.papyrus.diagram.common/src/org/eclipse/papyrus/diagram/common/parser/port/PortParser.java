@@ -151,12 +151,15 @@ public class PortParser extends ExternalParserBase implements PortParserConstant
 	}
 
 	/*
-	 * XXX: Parse conflict in case of empty default value void MultiplicityDesignator() : { } { <LCURLY> ( ( MultiplicityUnique() [ MultiplicityOrdered() ] ) | ( MultiplicityOrdered() [
+	 * XXX: Parse conflict in case of empty default value void MultiplicityDesignator() : { } {
+	 * <LCURLY> ( ( MultiplicityUnique() [ MultiplicityOrdered() ] ) | ( MultiplicityOrdered() [
 	 * MultiplicityUnique() ] ) ) <RCURLY> }
 	 * 
-	 * void MultiplicityUnique() : {} { <UNIQUE> { mySubject.setIsUnique(true); } | <NON_UNIQUE> { mySubject.setIsUnique(false); } }
+	 * void MultiplicityUnique() : {} { <UNIQUE> { mySubject.setIsUnique(true); } | <NON_UNIQUE> {
+	 * mySubject.setIsUnique(false); } }
 	 * 
-	 * void MultiplicityOrdered() : {} { <ORDERED> { mySubject.setIsOrdered(true); } | <UNORDERED> { mySubject.setIsOrdered(false); } }
+	 * void MultiplicityOrdered() : {} { <ORDERED> { mySubject.setIsOrdered(true); } | <UNORDERED> {
+	 * mySubject.setIsOrdered(false); } }
 	 */
 
 	/* XXX: ValueSpecification -- how to parse */

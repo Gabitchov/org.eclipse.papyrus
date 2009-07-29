@@ -109,8 +109,11 @@ public class CreateElementAndInitializeFeatureCommand extends Command {
 	public void execute() {
 
 		/**
-		 * 1) Create element via createElementCommand 2) Retrieve created element via createElementCommand.getNewElement() 3) Create SetValueCommand on newElement with indicated feature and value on
-		 * construction 4) Set feature value via setValueCommand 5) both the createElementCommand and the setValueCommand are stored in a CompoundCommand to undo() and redo() easily
+		 * 1) Create element via createElementCommand 2) Retrieve created element via
+		 * createElementCommand.getNewElement() 3) Create SetValueCommand on newElement with
+		 * indicated feature and value on construction 4) Set feature value via setValueCommand 5)
+		 * both the createElementCommand and the setValueCommand are stored in a CompoundCommand to
+		 * undo() and redo() easily
 		 */
 
 		try {

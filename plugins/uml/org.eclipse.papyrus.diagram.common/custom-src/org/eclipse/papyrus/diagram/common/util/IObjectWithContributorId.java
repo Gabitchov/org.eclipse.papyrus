@@ -29,5 +29,5 @@ public interface IObjectWithContributorId {
 	 * Set the Plugin's ID that made the contribution of this object
 	 */
 	public void setContributorId(String contributorId);
-	
+
 }

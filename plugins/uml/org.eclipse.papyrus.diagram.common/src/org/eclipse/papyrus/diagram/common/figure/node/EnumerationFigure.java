@@ -34,6 +34,7 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * this is the figure to represent a classifier.
+ * 
  * @deprecated use of CompartmentFigure instead
  */
 
@@ -92,14 +93,16 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 
 			Rectangle elementBound = new Rectangle(contentPane.getBounds());
 			// display Attribtutes
-			Rectangle enumerationBound = new Rectangle(elementBound.getTopLeft().x, elementBound.getTopLeft().y, getBounds().width, 10);
+			Rectangle enumerationBound = new Rectangle(elementBound.getTopLeft().x, elementBound.getTopLeft().y,
+					getBounds().width, 10);
 			// getBounds().height-height);
 
 			if (getGMFEnumerationElementContainer() != null) {
 				if (!getGMFEnumerationElementContainer().isExpanded()) {
 					enumerationBound.height = 10;
 				} else {
-					enumerationBound.height = wrappedLabelSize * (getGMFEnumerationElementContainer().getContentPane().getChildren().size() + 1);
+					enumerationBound.height = wrappedLabelSize
+							* (getGMFEnumerationElementContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			// graphics.drawLine(elementBound.getBottomLeft(), elementBound.getBottomRight());
@@ -115,7 +118,8 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 			if (getGMFEnumerationElementContainer() != null) {
 				getGMFEnumerationElementContainer().setBounds(lastRectangle);
 			}
-			contentPane.getBounds().setSize(getBounds().width, getBounds().y + getBounds().height - contentPane.getBounds().y);
+			contentPane.getBounds().setSize(getBounds().width,
+					getBounds().y + getBounds().height - contentPane.getBounds().y);
 		}
 
 	}
@@ -177,9 +181,10 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 		contentPane.add(enumerationContent);
 
 	}
-	
+
 	/**
-	 * Helper method to calculate the size of compartements inside a ClassifierFigure. This method is subject to redefined in the subclasses.
+	 * Helper method to calculate the size of compartements inside a ClassifierFigure. This method
+	 * is subject to redefined in the subclasses.
 	 * 
 	 * @param rect
 	 */
@@ -194,7 +199,9 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 		if (this.getEnumerationLiteralCompartmentFigure() != null) {
 
 			for (int i = 0; i < this.getEnumerationLiteralCompartmentFigure().getChildren().size(); i++) {
-				propertyHeight = propertyHeight + ((IFigure) this.getEnumerationLiteralCompartmentFigure().getChildren().get(i)).getPreferredSize().height;
+				propertyHeight = propertyHeight
+						+ ((IFigure) this.getEnumerationLiteralCompartmentFigure().getChildren().get(i))
+								.getPreferredSize().height;
 			}
 			propertyHeight = propertyHeight + 2;
 			if (propertyHeight < 15) {
@@ -223,8 +230,9 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 	 * {@inheritDoc}
 	 */
 	/**
-	 * Helper method to draw separation lines between name and compartements inside ClassifierFigure. It renders also the ClassifierFigure in case one represent an abstract or active class. This
-	 * method is subject to be redefined in subclasses,
+	 * Helper method to draw separation lines between name and compartements inside
+	 * ClassifierFigure. It renders also the ClassifierFigure in case one represent an abstract or
+	 * active class. This method is subject to be redefined in subclasses,
 	 * 
 	 * @param graphics
 	 */
@@ -238,8 +246,9 @@ public class EnumerationFigure extends NodeNamedElementFigure {
 		fProperty = this.getEnumerationLiteralCompartmentFigure();
 
 		/**
-		 * y is used for store y-axis coordinates of seration lines between properties, methods and nested classes x is the x-axis coordinate of the left point of sepration lines w is the length of
-		 * lines n is the number of lines to be drawn
+		 * y is used for store y-axis coordinates of seration lines between properties, methods and
+		 * nested classes x is the x-axis coordinate of the left point of sepration lines w is the
+		 * length of lines n is the number of lines to be drawn
 		 */
 		int y[] = { 0, 0, 0, 0 }, x = getBounds().x, w = getBounds().width, n = 0;
 

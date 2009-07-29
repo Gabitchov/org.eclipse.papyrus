@@ -30,9 +30,11 @@ import org.eclipse.swt.graphics.Point;
 /**
  * Computes completion proposals for given context EObject.
  * 
- * Intended to be used in case if the whole set of proposals does not depend on the suggested prefix text and only filtering by given string prefix is required to compute the result list.
+ * Intended to be used in case if the whole set of proposals does not depend on the suggested prefix
+ * text and only filtering by given string prefix is required to compute the result list.
  */
-public abstract class EObjectCompletionProcessor implements IContentAssistProcessor, ISubjectControlContentAssistProcessor {
+public abstract class EObjectCompletionProcessor implements IContentAssistProcessor,
+		ISubjectControlContentAssistProcessor {
 
 	private static final ICompletionProposal[] NO_PROPOSALS = new ICompletionProposal[0];
 
@@ -61,13 +63,15 @@ public abstract class EObjectCompletionProcessor implements IContentAssistProces
 			if (next == null || !next.startsWith(prefix)) {
 				continue;
 			}
-			ICompletionProposal proposal = new CompletionProposal(next, selectionStart - prefixLength, selectionLength + prefixLength, next.length(), null, next, null, null);
+			ICompletionProposal proposal = new CompletionProposal(next, selectionStart - prefixLength, selectionLength
+					+ prefixLength, next.length(), null, next, null, null);
 			result.add(proposal);
 		}
 		return result.toArray(NO_PROPOSALS);
 	}
 
-	public IContextInformation[] computeContextInformation(IContentAssistSubjectControl contentAssistSubjectControl, int documentOffset) {
+	public IContextInformation[] computeContextInformation(IContentAssistSubjectControl contentAssistSubjectControl,
+			int documentOffset) {
 		return NO_CONTEXTS;
 	}
 

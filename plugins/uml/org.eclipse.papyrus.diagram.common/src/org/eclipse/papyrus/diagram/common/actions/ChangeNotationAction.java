@@ -115,7 +115,8 @@ public abstract class ChangeNotationAction extends DiagramAction {
 		View view = (View) editPart.getModel();
 		EObject element = view.getElement();
 		String semanticHint = getSemanticHint(editPart);
-		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, semanticHint, getPreferencesHint());
+		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, semanticHint,
+				getPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(viewDescriptor);
 		createViewRequest.setLocation(getLocation(editPart));
 		return createViewRequest;
@@ -149,7 +150,8 @@ public abstract class ChangeNotationAction extends DiagramAction {
 	}
 
 	/**
-	 * Almost copy of standard GMF implementation from org.eclipse.gmf.runtime.diagram.ui.actions.internal.CreateViewAction etc
+	 * Almost copy of standard GMF implementation from
+	 * org.eclipse.gmf.runtime.diagram.ui.actions.internal.CreateViewAction etc
 	 */
 	private void selectAddedObject() {
 		// we use myCreateViewRequest field instead of getRequest()

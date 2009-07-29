@@ -48,7 +48,8 @@ public class ApplicableProfilesItemProvider extends AbstractContributionItemProv
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.AbstractContributionItemProvider#createMenuManager(java.lang.String,
+	 * @seeorg.eclipse.gmf.runtime.common.ui.services.action.contributionitem.
+	 * AbstractContributionItemProvider#createMenuManager(java.lang.String,
 	 * org.eclipse.gmf.runtime.common.ui.util.IWorkbenchPartDescriptor)
 	 */
 	@Override
@@ -86,7 +87,9 @@ public class ApplicableProfilesItemProvider extends AbstractContributionItemProv
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.jface.action.IMenuListener#menuAboutToShow(org.eclipse.jface.action.IMenuManager)
+		 * @see
+		 * org.eclipse.jface.action.IMenuListener#menuAboutToShow(org.eclipse.jface.action.IMenuManager
+		 * )
 		 */
 		public void menuAboutToShow(IMenuManager manager) {
 			buildMenu(manager);
@@ -101,7 +104,8 @@ public class ApplicableProfilesItemProvider extends AbstractContributionItemProv
 		public void buildMenu(IMenuManager manager) {
 			manager.removeAll();
 			GraphicalEditPart selected = (GraphicalEditPart) getSelectedObject(myWorkbenchPart);
-			org.eclipse.uml2.uml.Package package_ = (org.eclipse.uml2.uml.Package) selected.getNotationView().getElement();
+			org.eclipse.uml2.uml.Package package_ = (org.eclipse.uml2.uml.Package) selected.getNotationView()
+					.getElement();
 			List<Profile> profiles = getProfiles(package_);
 			for (Profile profile : profiles) {
 				// no much sense to cache dynamic target specific actions

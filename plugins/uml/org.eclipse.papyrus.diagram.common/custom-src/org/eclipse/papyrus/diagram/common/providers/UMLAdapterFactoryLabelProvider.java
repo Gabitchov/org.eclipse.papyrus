@@ -19,7 +19,7 @@ import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 /**
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
 public class UMLAdapterFactoryLabelProvider extends AdapterFactoryLabelProvider {
 
@@ -30,11 +30,14 @@ public class UMLAdapterFactoryLabelProvider extends AdapterFactoryLabelProvider 
 
 	@Override
 	public String getText(Object object) {
-		IItemQualifiedTextProvider itemQualifiedTextProvider = (IItemQualifiedTextProvider) adapterFactory.adapt(object, IItemQualifiedTextProvider.class);
+		IItemQualifiedTextProvider itemQualifiedTextProvider = (IItemQualifiedTextProvider) adapterFactory.adapt(
+				object, IItemQualifiedTextProvider.class);
 
-		String qualifiedName = itemQualifiedTextProvider != null ? itemQualifiedTextProvider.getQualifiedText(object) : super.getText(object);
+		String qualifiedName = itemQualifiedTextProvider != null ? itemQualifiedTextProvider.getQualifiedText(object)
+				: super.getText(object);
 
-		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(object, IItemLabelProvider.class);
+		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(object,
+				IItemLabelProvider.class);
 
 		String labelName = itemLabelProvider != null ? itemLabelProvider.getText(object) : super.getText(object);
 

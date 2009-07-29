@@ -34,11 +34,11 @@ import org.eclipse.papyrus.diagram.common.commands.AddEObjectReferencesToDiagram
 import org.eclipse.papyrus.diagram.common.commands.UpdateDiagramCommand;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 
-
 // TODO: Auto-generated Javadoc
 /**
- * A DragAndDropEditPolicy for compartment nodes. Checks whether the dropped elements can be shown as views in the compartment and if so, created their views and add their references to the diagram's
- * list of references.
+ * A DragAndDropEditPolicy for compartment nodes. Checks whether the dropped elements can be shown
+ * as views in the compartment and if so, created their views and add their references to the
+ * diagram's list of references.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
@@ -81,7 +81,9 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#getDropCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#getDropCommand(org.eclipse
+	 * .gef.requests.ChangeBoundsRequest)
 	 */
 	@Override
 	protected Command getDropCommand(ChangeBoundsRequest request) {
@@ -101,7 +103,9 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#getDropObjectsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#getDropObjectsCommand(
+	 * org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
 	 */
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
@@ -168,7 +172,8 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 		for (EObject element : elements) {
 			int semanticHint = viewResolver.getEObjectSemanticHint(element);
 			if (semanticHint > -1) {
-				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
+				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String
+						.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
 				viewDescriptors.add(viewDescriptor);
 			}
 		}
@@ -189,7 +194,8 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	 * 
 	 * @return the command
 	 */
-	protected Command buildDropCommand(DropObjectsRequest request, List<EObject> nodes, List<ViewDescriptor> views, List<EObject> edges) {
+	protected Command buildDropCommand(DropObjectsRequest request, List<EObject> nodes, List<ViewDescriptor> views,
+			List<EObject> edges) {
 		// build commands that add references to the diagram.
 		Command command = buildAddEObjectsReferencesCommand(nodes);
 		Command edgesCommand = buildAddEObjectsReferencesCommand(edges);
@@ -229,7 +235,8 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	}
 
 	/**
-	 * createViewsAndArrangeCommand Method to create all the view based on the viewDescriptors list and provide a default arrangement of them.
+	 * createViewsAndArrangeCommand Method to create all the view based on the viewDescriptors list
+	 * and provide a default arrangement of them.
 	 * 
 	 * @param dropRequest
 	 *            the drop request

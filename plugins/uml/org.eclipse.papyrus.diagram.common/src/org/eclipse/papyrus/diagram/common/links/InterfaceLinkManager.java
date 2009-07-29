@@ -47,8 +47,10 @@ public class InterfaceLinkManager<T> {
 	}
 
 	protected void initFilters() {
-		// myLinkManagers.add(new RequiredInterfaceLinkFilter(ourHideDerived, ourHideReferencedGenuine));
-		// myLinkManagers.add(new ProvidedInterfaceLinkFilter(ourHideDerived, ourHideReferencedGenuine));
+		// myLinkManagers.add(new RequiredInterfaceLinkFilter(ourHideDerived,
+		// ourHideReferencedGenuine));
+		// myLinkManagers.add(new ProvidedInterfaceLinkFilter(ourHideDerived,
+		// ourHideReferencedGenuine));
 		// myLinkManagers.add(new RegularLinkFilter(ourHideDerived, ourHideReferencedGenuine));
 	}
 

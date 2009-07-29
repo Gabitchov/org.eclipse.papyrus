@@ -14,9 +14,11 @@ import org.eclipse.draw2d.geometry.Transposer;
 
 // TODO: Auto-generated Javadoc
 /**
- * Arranges figures in a single row or column. Orientation can be set to produce either a row or column layout. This layout tries to fit all children within the parent's client area. To do this, it
- * compresses the children by some amount, but will not compress them smaller than their minimum size. If a child's preferred size is smaller than the row's or column's minor dimension, the layout can
- * be configured to stretch the child.
+ * Arranges figures in a single row or column. Orientation can be set to produce either a row or
+ * column layout. This layout tries to fit all children within the parent's client area. To do this,
+ * it compresses the children by some amount, but will not compress them smaller than their minimum
+ * size. If a child's preferred size is smaller than the row's or column's minor dimension, the
+ * layout can be configured to stretch the child.
  */
 public class LeftToolbarLayout extends AbstractHintLayout {
 
@@ -55,7 +57,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Constructs a vertically oriented ToolbarLayout with child spacing of 0 pixels, matchWidth <code>true</code>, and {@link #ALIGN_TOPLEFT} alignment.
+	 * Constructs a vertically oriented ToolbarLayout with child spacing of 0 pixels, matchWidth
+	 * <code>true</code>, and {@link #ALIGN_TOPLEFT} alignment.
 	 * 
 	 * @since 2.0
 	 */
@@ -67,7 +70,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Constructs a ToolbarLayout with a specified orientation. Default values are: child spacing 0 pixels, matchWidth <code>false</code>, and {@link #ALIGN_TOPLEFT} alignment.
+	 * Constructs a ToolbarLayout with a specified orientation. Default values are: child spacing 0
+	 * pixels, matchWidth <code>false</code>, and {@link #ALIGN_TOPLEFT} alignment.
 	 * 
 	 * @param isHorizontal
 	 *            whether the children are oriented horizontally
@@ -102,7 +106,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		int height = 0, width = 0;
 		for (int i = 0; i < children.size(); i++) {
 			child = (IFigure) children.get(i);
-			childSize = transposer.t(preferred ? child.getPreferredSize(wHint, hHint) : child.getMinimumSize(wHint, hHint));
+			childSize = transposer.t(preferred ? child.getPreferredSize(wHint, hHint) : child.getMinimumSize(wHint,
+					hHint));
 			height += childSize.height;
 			width = Math.max(width, childSize.width);
 		}
@@ -110,9 +115,12 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Calculates the minimum size of the container based on the given hints. If this is a vertically-oriented Toolbar Layout, then only the widthHint is respected (which means that the children can
-	 * be as tall as they desire). In this case, the minimum width is that of the widest child, and the minimum height is the sum of the minimum heights of all children, plus the spacing between them.
-	 * The border and insets of the container figure are also accounted for.
+	 * Calculates the minimum size of the container based on the given hints. If this is a
+	 * vertically-oriented Toolbar Layout, then only the widthHint is respected (which means that
+	 * the children can be as tall as they desire). In this case, the minimum width is that of the
+	 * widest child, and the minimum height is the sum of the minimum heights of all children, plus
+	 * the spacing between them. The border and insets of the container figure are also accounted
+	 * for.
 	 * 
 	 * @param container
 	 *            the figure whose minimum size has to be calculated
@@ -149,13 +157,17 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		}
 
 		minSize.height += Math.max(0, children.size() - 1) * spacing;
-		return transposer.t(minSize).expand(insets.getWidth(), insets.getHeight()).union(getBorderPreferredSize(container));
+		return transposer.t(minSize).expand(insets.getWidth(), insets.getHeight()).union(
+				getBorderPreferredSize(container));
 	}
 
 	/**
-	 * Calculates the preferred size of the container based on the given hints. If this is a vertically-oriented Toolbar Layout, then only the widthHint is respected (which means that the children can
-	 * be as tall as they desire). In this case, the preferred width is that of the widest child, and the preferred height is the sum of the preferred heights of all children, plus the spacing between
-	 * them. The border and insets of the container figure are also accounted for.
+	 * Calculates the preferred size of the container based on the given hints. If this is a
+	 * vertically-oriented Toolbar Layout, then only the widthHint is respected (which means that
+	 * the children can be as tall as they desire). In this case, the preferred width is that of the
+	 * widest child, and the preferred height is the sum of the preferred heights of all children,
+	 * plus the spacing between them. The border and insets of the container figure are also
+	 * accounted for.
 	 * 
 	 * @param container
 	 *            the figure whose preferred size has to be calculated
@@ -192,11 +204,13 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		}
 
 		prefSize.height += Math.max(0, children.size() - 1) * spacing;
-		return transposer.t(prefSize).expand(insets.getWidth(), insets.getHeight()).union(getBorderPreferredSize(container));
+		return transposer.t(prefSize).expand(insets.getWidth(), insets.getHeight()).union(
+				getBorderPreferredSize(container));
 	}
 
 	/**
-	 * Returns the minor aligment of the layout. Minor minor axis is the axis perpindicular to the overall orientation set in the contructor.
+	 * Returns the minor aligment of the layout. Minor minor axis is the axis perpindicular to the
+	 * overall orientation set in the contructor.
 	 * 
 	 * @return the minor aligment
 	 */
@@ -298,10 +312,14 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		}
 
 		/*
-		 * Calculate sum of preferred heights of all children(totalHeight). Calculate sum of minimum heights of all children(minHeight). Cache Preferred Sizes and Minimum Sizes of all children.
+		 * Calculate sum of preferred heights of all children(totalHeight). Calculate sum of minimum
+		 * heights of all children(minHeight). Cache Preferred Sizes and Minimum Sizes of all
+		 * children.
 		 * 
-		 * totalHeight is the sum of the preferred heights of all children totalMinHeight is the sum of the minimum heights of all children prefMinSumHeight is the sum of the difference between all
-		 * children's preferred heights and minimum heights. (This is used as a ratio to calculate how much each child will shrink).
+		 * totalHeight is the sum of the preferred heights of all children totalMinHeight is the sum
+		 * of the minimum heights of all children prefMinSumHeight is the sum of the difference
+		 * between all children's preferred heights and minimum heights. (This is used as a ratio to
+		 * calculate how much each child will shrink).
 		 */
 		IFigure child;
 		int totalHeight = 0;
@@ -321,9 +339,12 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		totalMinHeight += (numChildren - 1) * spacing;
 		prefMinSumHeight = totalHeight - totalMinHeight;
 		/*
-		 * The total amount that the children must be shrunk is the sum of the preferred Heights of the children minus Max(the available area and the sum of the minimum heights of the children).
+		 * The total amount that the children must be shrunk is the sum of the preferred Heights of
+		 * the children minus Max(the available area and the sum of the minimum heights of the
+		 * children).
 		 * 
-		 * amntShrinkHeight is the combined amount that the children must shrink amntShrinkCurrentHeight is the amount each child will shrink respectively
+		 * amntShrinkHeight is the combined amount that the children must shrink
+		 * amntShrinkCurrentHeight is the amount each child will shrink respectively
 		 */
 		int amntShrinkHeight = totalHeight - Math.max(availableHeight, totalMinHeight);
 
@@ -371,7 +392,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Sets the alignment of the children contained in the layout. Possible values are {@link #ALIGN_CENTER}, {@link #ALIGN_BOTTOMRIGHT} and {@link #ALIGN_TOPLEFT}.
+	 * Sets the alignment of the children contained in the layout. Possible values are
+	 * {@link #ALIGN_CENTER}, {@link #ALIGN_BOTTOMRIGHT} and {@link #ALIGN_TOPLEFT}.
 	 * 
 	 * @param align
 	 *            the minor alignment
@@ -395,7 +417,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Sets children's width (if vertically oriented) or height (if horizontally oriented) to stretch with their container.
+	 * Sets children's width (if vertically oriented) or height (if horizontally oriented) to
+	 * stretch with their container.
 	 * 
 	 * @param match
 	 *            whether to stretch children
@@ -409,7 +432,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Causes children that are smaller in the dimension of the minor axis to be stretched to fill the minor axis. The minor axis is the opposite of the orientation.
+	 * Causes children that are smaller in the dimension of the minor axis to be stretched to fill
+	 * the minor axis. The minor axis is the opposite of the orientation.
 	 * 
 	 * @param stretch
 	 *            whether to stretch children

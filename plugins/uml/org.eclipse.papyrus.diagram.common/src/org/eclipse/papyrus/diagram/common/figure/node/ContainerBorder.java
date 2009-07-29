@@ -151,7 +151,8 @@ public class ContainerBorder extends AbstractBorder {
 	}
 
 	/**
-	 * Returns the space used by the border for the figure provided as input. In this border all sides always have equal width.
+	 * Returns the space used by the border for the figure provided as input. In this border all
+	 * sides always have equal width.
 	 * 
 	 * @param figure
 	 *            The figure this border belongs to
@@ -172,7 +173,8 @@ public class ContainerBorder extends AbstractBorder {
 	}
 
 	/**
-	 * Returns <code>true</code> since this border is opaque. Being opaque it is responsible to fill in the area within its boundaries.
+	 * Returns <code>true</code> since this border is opaque. Being opaque it is responsible to fill
+	 * in the area within its boundaries.
 	 * 
 	 * @return <code>true</code> since this border is opaque
 	 */

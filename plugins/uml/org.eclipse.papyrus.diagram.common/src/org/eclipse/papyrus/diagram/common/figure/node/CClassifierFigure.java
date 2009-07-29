@@ -73,7 +73,8 @@ public class CClassifierFigure extends CNamedElementFigure {
 				if (!getGMFAttributeElementContainer().isExpanded()) {
 					minimumHeight += 10;
 				} else {
-					minimumHeight += wrappedLabelSize * (getGMFAttributeElementContainer().getContentPane().getChildren().size() + 1);
+					minimumHeight += wrappedLabelSize
+							* (getGMFAttributeElementContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			if (getAttributeElementContainer() != null) {
@@ -86,7 +87,8 @@ public class CClassifierFigure extends CNamedElementFigure {
 				if (!getGMFOperationElementContainer().isExpanded()) {
 					minimumHeight += 10;
 				} else {
-					minimumHeight += wrappedLabelSize * (getGMFOperationElementContainer().getContentPane().getChildren().size() + 1);
+					minimumHeight += wrappedLabelSize
+							* (getGMFOperationElementContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 
@@ -100,7 +102,8 @@ public class CClassifierFigure extends CNamedElementFigure {
 				if (!getGMFNestedClassifierContainer().isExpanded()) {
 					minimumHeight += 10;
 				} else {
-					minimumHeight += wrappedLabelSize * (getGMFNestedClassifierContainer().getContentPane().getChildren().size() + 1);
+					minimumHeight += wrappedLabelSize
+							* (getGMFNestedClassifierContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			if (getNestedClassifierContainer() != null) {
@@ -147,14 +150,16 @@ public class CClassifierFigure extends CNamedElementFigure {
 				height += elementBound.height;
 			}
 			// display Attribtutes
-			Rectangle attributeBound = new Rectangle(elementBound.getBottomLeft().x, elementBound.getBottomLeft().y - 1, getBounds().width, 10);
+			Rectangle attributeBound = new Rectangle(elementBound.getBottomLeft().x,
+					elementBound.getBottomLeft().y - 1, getBounds().width, 10);
 			// getBounds().height-height);
 
 			if (getGMFAttributeElementContainer() != null) {
 				if (!getGMFAttributeElementContainer().isExpanded()) {
 					attributeBound.height = 10;
 				} else {
-					attributeBound.height = wrappedLabelSize * (getGMFAttributeElementContainer().getContentPane().getChildren().size() + 1);
+					attributeBound.height = wrappedLabelSize
+							* (getGMFAttributeElementContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			if (getAttributeElementContainer() != null) {
@@ -165,13 +170,15 @@ public class CClassifierFigure extends CNamedElementFigure {
 				getGMFAttributeElementContainer().setBounds(attributeBound);
 			}
 			// display Operation
-			Rectangle operationBound = new Rectangle(attributeBound.getBottomLeft().x, attributeBound.getBottomLeft().y - 1, getBounds().width, 10);
+			Rectangle operationBound = new Rectangle(attributeBound.getBottomLeft().x,
+					attributeBound.getBottomLeft().y - 1, getBounds().width, 10);
 
 			if (getGMFOperationElementContainer() != null) {
 				if (!getGMFOperationElementContainer().isExpanded()) {
 					operationBound.height = 10;
 				} else {
-					operationBound.height = wrappedLabelSize * (getGMFOperationElementContainer().getContentPane().getChildren().size() + 1);
+					operationBound.height = wrappedLabelSize
+							* (getGMFOperationElementContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			if (getOperationElementContainer() != null) {
@@ -181,13 +188,15 @@ public class CClassifierFigure extends CNamedElementFigure {
 				getGMFOperationElementContainer().setBounds(operationBound);
 			}
 			// dispalyNestedClassifier
-			Rectangle nestedClassifierBound = new Rectangle(operationBound.getBottomLeft().x, operationBound.getBottomLeft().y - 1, getBounds().width, 10);
+			Rectangle nestedClassifierBound = new Rectangle(operationBound.getBottomLeft().x, operationBound
+					.getBottomLeft().y - 1, getBounds().width, 10);
 
 			if (getGMFNestedClassifierContainer() != null) {
 				if (!getGMFNestedClassifierContainer().isExpanded()) {
 					nestedClassifierBound.height = 10;
 				} else {
-					nestedClassifierBound.height = wrappedLabelSize * (getGMFNestedClassifierContainer().getContentPane().getChildren().size() + 1);
+					nestedClassifierBound.height = wrappedLabelSize
+							* (getGMFNestedClassifierContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			if (getNestedClassifierContainer() != null) {
@@ -201,7 +210,8 @@ public class CClassifierFigure extends CNamedElementFigure {
 			Rectangle lastRectangle = getSubFigure(lastIndex).getBounds();
 			lastRectangle.height = getBounds().y + getBounds().height - lastRectangle.y;
 			getSubFigure(lastIndex).setBounds(lastRectangle);
-			if (getSubFigure(lastIndex).getChildren().size() != 0 && getSubFigure(lastIndex).getChildren().get(0) instanceof ResizableCompartmentFigure) {
+			if (getSubFigure(lastIndex).getChildren().size() != 0
+					&& getSubFigure(lastIndex).getChildren().get(0) instanceof ResizableCompartmentFigure) {
 				((Figure) getSubFigure(lastIndex).getChildren().get(0)).setBounds(lastRectangle);
 			}
 
@@ -241,7 +251,8 @@ public class CClassifierFigure extends CNamedElementFigure {
 	 * @return the container figure
 	 */
 	public RectangleFigure getAttributeElementContainer() {
-		if (getSubFigure(attibuteContainerIndex) != null && getSubFigure(attibuteContainerIndex) instanceof RectangleFigure) {
+		if (getSubFigure(attibuteContainerIndex) != null
+				&& getSubFigure(attibuteContainerIndex) instanceof RectangleFigure) {
 			return ((RectangleFigure) getSubFigure(attibuteContainerIndex));
 		}
 		return null;
@@ -308,7 +319,8 @@ public class CClassifierFigure extends CNamedElementFigure {
 	 * @return the container figure
 	 */
 	public RectangleFigure getNestedClassifierContainer() {
-		if (getSubFigure(nestedClassifierContainerIndex) != null && getSubFigure(nestedClassifierContainerIndex) instanceof RectangleFigure) {
+		if (getSubFigure(nestedClassifierContainerIndex) != null
+				&& getSubFigure(nestedClassifierContainerIndex) instanceof RectangleFigure) {
 			return ((RectangleFigure) getSubFigure(nestedClassifierContainerIndex));
 		}
 		return null;
@@ -320,7 +332,8 @@ public class CClassifierFigure extends CNamedElementFigure {
 	 * @return the container figure
 	 */
 	public RectangleFigure getOperationElementContainer() {
-		if (getSubFigure(operationContainerIndex) != null && getSubFigure(operationContainerIndex) instanceof RectangleFigure) {
+		if (getSubFigure(operationContainerIndex) != null
+				&& getSubFigure(operationContainerIndex) instanceof RectangleFigure) {
 			return ((RectangleFigure) getSubFigure(operationContainerIndex));
 		}
 		return null;
@@ -332,17 +345,22 @@ public class CClassifierFigure extends CNamedElementFigure {
 	 */
 	@Override
 	public void paint(Graphics graphics) {
-		Rectangle ContainerBound = new Rectangle(getBounds().x, getBounds().y, getBounds().width - 1, getBounds().height - 1);
+		Rectangle ContainerBound = new Rectangle(getBounds().x, getBounds().y, getBounds().width - 1,
+				getBounds().height - 1);
 		graphics.setForegroundColor(this.getGradientColor());
 		graphics.setBackgroundColor(this.getBackgroundColor());
 		graphics.fillGradient(ContainerBound, true);
 		if (isActive) {
 			graphics.setLineWidth(2);
-			graphics.drawLine(new Point(getBounds().x + 1, getBounds().y), new Point(getBounds().x + 1, getBounds().y + getBounds().y + getBounds().height));
-			graphics.drawLine(new Point(getBounds().x + getBounds().width - 2, getBounds().y), new Point(getBounds().x + getBounds().width - 2, getBounds().y + getBounds().y + getBounds().height));
+			graphics.drawLine(new Point(getBounds().x + 1, getBounds().y), new Point(getBounds().x + 1, getBounds().y
+					+ getBounds().y + getBounds().height));
+			graphics.drawLine(new Point(getBounds().x + getBounds().width - 2, getBounds().y), new Point(getBounds().x
+					+ getBounds().width - 2, getBounds().y + getBounds().y + getBounds().height));
 
-			graphics.drawLine(new Point(getBounds().x + 5, getBounds().y), new Point(getBounds().x + 5, getBounds().y + getBounds().y + getBounds().height));
-			graphics.drawLine(new Point(getBounds().x + getBounds().width - 6, getBounds().y), new Point(getBounds().x + getBounds().width - 6, getBounds().y + getBounds().y + getBounds().height));
+			graphics.drawLine(new Point(getBounds().x + 5, getBounds().y), new Point(getBounds().x + 5, getBounds().y
+					+ getBounds().y + getBounds().height));
+			graphics.drawLine(new Point(getBounds().x + getBounds().width - 6, getBounds().y), new Point(getBounds().x
+					+ getBounds().width - 6, getBounds().y + getBounds().y + getBounds().height));
 			graphics.setLineWidth(1);
 		}
 		graphics.setForegroundColor(this.getForegroundColor());

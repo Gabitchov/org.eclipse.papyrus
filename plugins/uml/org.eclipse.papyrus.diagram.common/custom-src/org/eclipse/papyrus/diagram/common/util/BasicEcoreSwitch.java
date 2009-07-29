@@ -56,7 +56,6 @@ public abstract class BasicEcoreSwitch<T, I> implements EcoreSwitch<T, I> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 */
 	public void setInfo(I info) {
 		this.info = info;

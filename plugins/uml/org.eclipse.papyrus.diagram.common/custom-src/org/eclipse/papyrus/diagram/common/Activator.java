@@ -90,7 +90,8 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its key.<BR>
-	 * By default, it returns a default image. This image is the image placed in the directory <em>resources/icons/default.gif</em>
+	 * By default, it returns a default image. This image is the image placed in the directory
+	 * <em>resources/icons/default.gif</em>
 	 * 
 	 * @param key
 	 *            the key of the image
@@ -116,7 +117,8 @@ public class Activator extends AbstractUIPlugin {
 			if (!"".equals(visKey)) { // Add visibility overlay
 
 				Image initialImage = desc.createImage();
-				ImageDescriptor visDesc = getDefault().getImageDescriptor(getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visKey + ".gif");
+				ImageDescriptor visDesc = getDefault().getImageDescriptor(
+						getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visKey + ".gif");
 
 				// Overlay custom image over base image
 				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(initialImage, visDesc);
@@ -140,9 +142,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * This method returns an <code>org.eclipse.swt.graphics.Image</code> identified by its pluginId and iconPath.<BR>
+	 * This method returns an <code>org.eclipse.swt.graphics.Image</code> identified by its pluginId
+	 * and iconPath.<BR>
 	 * 
-	 * By default, it returns a default image. This image is the image placed in the directory <em>resources/icons/default.gif</em>
+	 * By default, it returns a default image. This image is the image placed in the directory
+	 * <em>resources/icons/default.gif</em>
 	 * 
 	 * @param pluginId
 	 *            id of plugin
@@ -218,7 +222,8 @@ public class Activator extends AbstractUIPlugin {
 	 *            the kind of display "icon" or "shape"
 	 * @return {@link image} of the icon
 	 */
-	public static Collection<Image> getIconElements(Element elt, Collection<Stereotype> stereotypes, boolean withVisibilityDecorator) {
+	public static Collection<Image> getIconElements(Element elt, Collection<Stereotype> stereotypes,
+			boolean withVisibilityDecorator) {
 		Collection<Image> images = new ArrayList<Image>();
 		VisibilityKind vis = null;
 		if ((elt instanceof NamedElement) && (withVisibilityDecorator)) {
@@ -300,7 +305,8 @@ public class Activator extends AbstractUIPlugin {
 			// Add visibility decorator
 			if (visibility != null) {
 
-				ImageDescriptor visDesc = getDefault().getImageDescriptor(getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visibility.getLiteral() + ".gif");
+				ImageDescriptor visDesc = getDefault().getImageDescriptor(
+						getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visibility.getLiteral() + ".gif");
 
 				// Overlay custom image over base image
 				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(image, visDesc);

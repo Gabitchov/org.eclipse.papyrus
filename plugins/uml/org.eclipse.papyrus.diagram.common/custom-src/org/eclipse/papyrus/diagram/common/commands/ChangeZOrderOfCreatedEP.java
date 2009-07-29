@@ -29,8 +29,9 @@ import org.eclipse.gmf.runtime.notation.View;
 
 // TODO: Auto-generated Javadoc
 /**
- * Command to change the ZOrdering of the new created EditPart. The possible actions are Send to back, Bring to the front, Send backward and Bring forward. Check ZOrderRequest class for the list of
- * strings.
+ * Command to change the ZOrdering of the new created EditPart. The possible actions are Send to
+ * back, Bring to the front, Send backward and Bring forward. Check ZOrderRequest class for the list
+ * of strings.
  * 
  * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
  */
@@ -46,7 +47,8 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 	private String requestString = "";
 
 	/**
-	 * Constructor. If reqString is not a valid ZOrderRequest string, then ZOrderRequest.REQ_SEND_TO_BACK is the default request string.
+	 * Constructor. If reqString is not a valid ZOrderRequest string, then
+	 * ZOrderRequest.REQ_SEND_TO_BACK is the default request string.
 	 * 
 	 * @param domain
 	 *            the domain
@@ -57,7 +59,8 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 	 * @param reqString
 	 *            the req string
 	 */
-	public ChangeZOrderOfCreatedEP(TransactionalEditingDomain domain, ViewDescriptor descriptor, EditPartViewer viewer, String reqString) {
+	public ChangeZOrderOfCreatedEP(TransactionalEditingDomain domain, ViewDescriptor descriptor, EditPartViewer viewer,
+			String reqString) {
 		super(domain, "Change ZOrder of Created Node", null);
 		viewDescriptor = descriptor;
 		this.viewer = viewer;
@@ -90,7 +93,9 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#
+	 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 * org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -115,7 +120,8 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 	 * @param view
 	 *            the view
 	 * 
-	 * @return the appropriate ZOrder command depending on the requestString passed during the constructor of the class.
+	 * @return the appropriate ZOrder command depending on the requestString passed during the
+	 *         constructor of the class.
 	 */
 	private Command getZOrderCommand(View view) {
 		IGraphicalEditPart newElementEP = (IGraphicalEditPart) viewer.getEditPartRegistry().get(view);

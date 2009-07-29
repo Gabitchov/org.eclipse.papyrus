@@ -48,7 +48,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * Complex <Command> that takes an existing <EObject and View> and turns it into another <EObject and View>.
+ * Complex <Command> that takes an existing <EObject and View> and turns it into another <EObject
+ * and View>.
  * 
  * @author <a href="mailto:mgil@prodevelop.es">Marc Gil Sendra</a>
  */
@@ -88,7 +89,8 @@ public abstract class ChangeViewAndElementCommand extends AbstractTransactionalC
 	 * @param newVisualID
 	 *            the new visual id
 	 */
-	public ChangeViewAndElementCommand(GraphicalEditPart oldEditPart, IElementType newIElementType, int newVisualID, boolean copyDiagram) {
+	public ChangeViewAndElementCommand(GraphicalEditPart oldEditPart, IElementType newIElementType, int newVisualID,
+			boolean copyDiagram) {
 		super(oldEditPart.getEditingDomain(), "Mutate an old EObject and View to a new EObject and View", null);
 		this.newIElementType = newIElementType;
 		this.newVisualID = newVisualID;
@@ -109,7 +111,9 @@ public abstract class ChangeViewAndElementCommand extends AbstractTransactionalC
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand #doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand
+	 * #doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 * org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -209,7 +213,8 @@ public abstract class ChangeViewAndElementCommand extends AbstractTransactionalC
 	private CreateViewRequest getCreateViewRequest(GraphicalEditPart oldEditPart, EObject newEObject) {
 
 		String semanticHint = String.valueOf(newVisualID);
-		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(newEObject), Node.class, semanticHint, PreferencesHint.USE_DEFAULTS);
+		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(newEObject), Node.class, semanticHint,
+				PreferencesHint.USE_DEFAULTS);
 
 		CreateViewRequest createViewRequest = new CreateViewRequest(viewDescriptor);
 		createViewRequest.setLocation(getLocation(oldEditPart));
@@ -240,7 +245,8 @@ public abstract class ChangeViewAndElementCommand extends AbstractTransactionalC
 	 * 
 	 * @return the sets the value command
 	 */
-	public static SetValueCommand createSetValueCommandFromFeature(EObject elementToEdit, EStructuralFeature feature, EObject elementToCopy) {
+	public static SetValueCommand createSetValueCommandFromFeature(EObject elementToEdit, EStructuralFeature feature,
+			EObject elementToCopy) {
 		Object value = elementToCopy != null && feature != null ? elementToCopy.eGet(feature, true) : null;
 		if (elementToEdit == null || feature == null || elementToCopy == null) {
 			return null;

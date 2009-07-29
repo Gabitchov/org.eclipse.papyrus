@@ -56,7 +56,8 @@ public class AssociationInstanceParser extends SemanticParserAdapter {
 	protected boolean isAffectingEvent(Object event) {
 		if (event instanceof Notification) {
 			Object feature = ((Notification) event).getFeature();
-			if ((feature instanceof EStructuralFeature) && UMLPackage.eINSTANCE.getSlot_DefiningFeature().equals(feature)) {
+			if ((feature instanceof EStructuralFeature)
+					&& UMLPackage.eINSTANCE.getSlot_DefiningFeature().equals(feature)) {
 				return true;
 			}
 		}

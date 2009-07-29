@@ -98,11 +98,10 @@ public class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedSter
 
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
-		if (figure instanceof UMLEdgeFigure)
-		{
+		if (figure instanceof UMLEdgeFigure) {
 			((UMLEdgeFigure) figure).setStereotypeDisplay(tag
 					+ (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay),
-					imageToDisplay);			
+					imageToDisplay);
 		}
 		// TODO we should manage PapyrusNodeFigure here too (and WrappingLabel ?)
 	}
@@ -197,7 +196,7 @@ public class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedSter
 						out = out + Activator.ST_LEFT + name + Activator.ST_RIGHT + separator;
 					}
 				} else { // VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM))
-							// {
+					// {
 					name = name.substring(0, 1).toLowerCase() + name.substring(1, name.length());
 					if (out.indexOf(name) == -1) {
 						out = out + Activator.ST_LEFT + name + Activator.ST_RIGHT + separator;
@@ -332,7 +331,8 @@ public class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedSter
 					if (out.indexOf(name) == -1) {
 						out = out + name + separator;
 					}
-				} else { // VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM)) {
+				} else { // VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM))
+							// {
 					name = name.substring(0, 1).toLowerCase() + name.substring(1, name.length());
 					if (out.indexOf(name) == -1) {
 						out = out + name + separator;

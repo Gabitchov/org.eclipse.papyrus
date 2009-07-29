@@ -540,7 +540,8 @@ public class OperationParserTokenManager implements OperationParserConstants {
 		}
 	}
 
-	public static final String[] jjstrLiteralImages = { "", null, null, "\57", "\72", "\75", "\133", "\135", "\173", "\175", "\50", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
+	public static final String[] jjstrLiteralImages = {
+			"", null, null, "\57", "\72", "\75", "\133", "\135", "\173", "\175", "\50", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
 			"\51", "\54", "\53", "\55", "\43", "\176", "\56", "\52", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$
 			"\162\145\144\145\146\151\156\145\163", "\157\162\144\145\162\145\144", "\165\156\157\162\144\145\162\145\144", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			"\165\156\151\161\165\145", "\156\157\156\165\156\151\161\165\145", "\161\165\145\162\171", "\151\156", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
@@ -595,7 +596,8 @@ public class OperationParserTokenManager implements OperationParserConstants {
 
 	public void SwitchTo(int lexState) {
 		if (lexState >= 1 || lexState < 0)
-			throw new TokenMgrError("Error: Ignoring invalid lexical state : " + lexState + ". State unchanged.", TokenMgrError.INVALID_LEXICAL_STATE); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new TokenMgrError(
+					"Error: Ignoring invalid lexical state : " + lexState + ". State unchanged.", TokenMgrError.INVALID_LEXICAL_STATE); //$NON-NLS-1$ //$NON-NLS-2$
 		else
 			curLexState = lexState;
 	}
@@ -683,7 +685,8 @@ public class OperationParserTokenManager implements OperationParserConstants {
 				input_stream.backup(1);
 				error_after = curPos <= 1 ? "" : input_stream.GetImage(); //$NON-NLS-1$
 			}
-			throw new TokenMgrError(EOFSeen, curLexState, error_line, error_column, error_after, curChar, TokenMgrError.LEXICAL_ERROR);
+			throw new TokenMgrError(EOFSeen, curLexState, error_line, error_column, error_after, curChar,
+					TokenMgrError.LEXICAL_ERROR);
 		}
 	}
 

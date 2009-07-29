@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -35,12 +35,14 @@ public class AssociationNodeFigure extends DefaultSizeNodeFigure {
 	public PointList getPolygonPoints() {
 		PointList points = new PointList(5);
 		Rectangle anchorableRectangle = getHandleBounds();
-		points.addPoint(anchorableRectangle.x+ (anchorableRectangle.width/2), anchorableRectangle.y);
-		points.addPoint(anchorableRectangle.x+ anchorableRectangle.width, anchorableRectangle.y+anchorableRectangle.height/2);
-		points.addPoint(anchorableRectangle.x+ (anchorableRectangle.width/2), anchorableRectangle.y+anchorableRectangle.height);
-		points.addPoint(anchorableRectangle.x, anchorableRectangle.y+anchorableRectangle.height/2);
-		points.addPoint(anchorableRectangle.x+ (anchorableRectangle.width/2), anchorableRectangle.y);
-		
+		points.addPoint(anchorableRectangle.x + (anchorableRectangle.width / 2), anchorableRectangle.y);
+		points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y
+				+ anchorableRectangle.height / 2);
+		points.addPoint(anchorableRectangle.x + (anchorableRectangle.width / 2), anchorableRectangle.y
+				+ anchorableRectangle.height);
+		points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height / 2);
+		points.addPoint(anchorableRectangle.x + (anchorableRectangle.width / 2), anchorableRectangle.y);
+
 		return points;
 	}
 

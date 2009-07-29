@@ -31,7 +31,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class ApplyStereotypeAction.
@@ -201,17 +200,20 @@ public class ApplyStereotypeAction extends DiagramAction {
 		 *            the request
 		 */
 		protected StereotypeCommand(StereotypeRequest request) {
-			super(request.isApplyNotUnapply() ? CustomMessages.ApplyStereotypeAction_apply_stereotype_command : CustomMessages.ApplyStereotypeAction_annapply_stereotype_command, request.getElement(),
-					request);
+			super(request.isApplyNotUnapply() ? CustomMessages.ApplyStereotypeAction_apply_stereotype_command
+					: CustomMessages.ApplyStereotypeAction_annapply_stereotype_command, request.getElement(), request);
 		}
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+		 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#
+		 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+		 * org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+				throws ExecutionException {
 			StereotypeRequest request = (StereotypeRequest) getRequest();
 			if (request.isApplyNotUnapply()) {
 				request.getElement().applyStereotype(request.getStereotype());
@@ -307,7 +309,8 @@ public class ApplyStereotypeAction extends DiagramAction {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest#getEditHelperContext()
+		 * @see
+		 * org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest#getEditHelperContext()
 		 */
 		public Object getEditHelperContext() {
 			return null;

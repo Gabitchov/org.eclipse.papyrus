@@ -21,7 +21,10 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
  */
 public class GMFtoEMFCommandWrapper extends AbstractCommand {
 
-	/** The wrapped GMF Command. Package-level visibility so that the command stack wrapper can access the field. */
+	/**
+	 * The wrapped GMF Command. Package-level visibility so that the command stack wrapper can
+	 * access the field.
+	 */
 	private ICommand gmfCommand;
 
 	/**

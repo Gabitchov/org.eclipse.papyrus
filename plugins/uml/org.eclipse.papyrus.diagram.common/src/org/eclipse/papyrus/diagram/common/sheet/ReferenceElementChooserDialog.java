@@ -28,7 +28,8 @@ public class ReferenceElementChooserDialog extends UMLElementChooserDialog {
 	/*
 	 * We assume that sourceObject is not null
 	 */
-	public ReferenceElementChooserDialog(Shell parentShell, AdapterFactory itemProvidersAdapterFactory, EObject sourceObject, EStructuralFeature feature) {
+	public ReferenceElementChooserDialog(Shell parentShell, AdapterFactory itemProvidersAdapterFactory,
+			EObject sourceObject, EStructuralFeature feature) {
 		super(parentShell, itemProvidersAdapterFactory);
 		mySourceObject = sourceObject;
 		myFeature = feature;

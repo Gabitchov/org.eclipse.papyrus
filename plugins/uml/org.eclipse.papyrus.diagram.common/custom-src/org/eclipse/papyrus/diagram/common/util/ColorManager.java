@@ -20,7 +20,8 @@ import org.eclipse.swt.graphics.RGB;
  * @author Patrick Tessier
  * @since 20 sept. 06
  * 
- *        this aclass manage all colors of Papyrus. It is forbidden in this application to create a color. SymbolicName is "R"_"G"_"B" where "R" "G" "B" are string that represent color (int)
+ *        this aclass manage all colors of Papyrus. It is forbidden in this application to create a
+ *        color. SymbolicName is "R"_"G"_"B" where "R" "G" "B" are string that represent color (int)
  */
 public class ColorManager extends ColorRegistry {
 

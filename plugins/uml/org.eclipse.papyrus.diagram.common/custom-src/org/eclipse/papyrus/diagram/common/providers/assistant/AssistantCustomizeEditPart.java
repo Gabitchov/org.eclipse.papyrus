@@ -13,8 +13,8 @@ package org.eclipse.papyrus.diagram.common.providers.assistant;
 import java.util.List;
 
 /**
- * An Assitant that customizes the types for an EditPart by Java code. Created
- * for the 'es.cv.gvcase.mdt.common.editorAssistantProvider' extension point.
+ * An Assitant that customizes the types for an EditPart by Java code. Created for the
+ * 'es.cv.gvcase.mdt.common.editorAssistantProvider' extension point.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 

@@ -23,7 +23,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.RemoveEObjectReferencesFromDiagram;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * Component edit policy for child node label edit part.
@@ -59,7 +58,8 @@ public class DeleteOnlyViewListComponentEditPolicy extends ListItemComponentEdit
 	}
 
 	/**
-	 * Will delete the view and remove the EObject's reference from the diagram's list of elements to show.
+	 * Will delete the view and remove the EObject's reference from the diagram's list of elements
+	 * to show.
 	 * 
 	 * @param request
 	 *            the request
@@ -75,7 +75,8 @@ public class DeleteOnlyViewListComponentEditPolicy extends ListItemComponentEdit
 		EObject element = editPart != null ? editPart.resolveSemanticElement() : null;
 		Command command = super.getDeleteCommand(request);
 		if (domain != null && diagram != null && element != null) {
-			command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(domain, diagram, Collections.singletonList(element))));
+			command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(domain, diagram,
+					Collections.singletonList(element))));
 		}
 		return command;
 	}

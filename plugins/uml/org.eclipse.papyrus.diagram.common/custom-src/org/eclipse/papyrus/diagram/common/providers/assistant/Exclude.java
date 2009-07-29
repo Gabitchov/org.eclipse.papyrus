@@ -28,8 +28,7 @@ public class Exclude {
 	public List removeTypes(List types) {
 		if (types != null) {
 			for (ElementType elementType : this.ElementType) {
-				IElementType type = elementType
-						.getElementType(elementType.typeID);
+				IElementType type = elementType.getElementType(elementType.typeID);
 				if (type != null && types.contains(type)) {
 					types.remove(type);
 				}

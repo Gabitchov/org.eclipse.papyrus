@@ -29,7 +29,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Abstract edit part for all connection nodes that control UML elements represented by edges. It then defines basic behavior for Stereotype management. It has facilities to retrieve UML element
+ * Abstract edit part for all connection nodes that control UML elements represented by edges. It
+ * then defines basic behavior for Stereotype management. It has facilities to retrieve UML element
  * controlled by this edit part
  */
 public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart implements IUMLEditPart {
@@ -142,7 +143,8 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	 */
 	public String stereotypesToDisplay() {
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getModel());
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View) getModel());
+		String stereotypespresentationKind = AppliedStereotypeHelper
+				.getAppliedStereotypePresentationKind((View) getModel());
 
 		// check the presentation kind. if only icon => do not display stereotypes
 		if (VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
@@ -151,7 +153,8 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 
 		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(((View) getModel()));
 		if (VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			return stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay, stereotypesToDisplayWithQN);
+			return stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay,
+					stereotypesToDisplayWithQN);
 		} else {
 			return stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
 		}
@@ -160,15 +163,18 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	/**
 	 * Returns the image to be displayed for the applied stereotypes.
 	 * 
-	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
+	 * @return the image that represents the first applied stereotype or <code>null</code> if no
+	 *         image has to be displayed
 	 */
 	public Image stereotypeIconToDisplay() {
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View) getModel());
+		String stereotypespresentationKind = AppliedStereotypeHelper
+				.getAppliedStereotypePresentationKind((View) getModel());
 		if (stereotypespresentationKind == null) {
 			return null;
 		}
 		if (stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
-				|| stereotypespresentationKind.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+				|| stereotypespresentationKind
+						.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
 			// retrieve the first stereotype in the list of displayed stereotype
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getModel());
@@ -197,7 +203,8 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 
 		// AL Changes Feb. 07 - Beg
 		// Style Handling for STEREOTYPE_NAME_APPEARANCE from ProfileApplicationPreferencePage
-		// Stereotype displayed according to UML standard (first letter forced to lower case) - default -
+		// Stereotype displayed according to UML standard (first letter forced to lower case) -
+		// default -
 		// or kept as entered by user (user controlled)
 
 		// Get the preference from PreferenceStore. there should be an assert
@@ -227,16 +234,19 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 					}
 				}
 				// AL Changes Feb. 07 - Beg
-				// Handling STEREOTYPE_NAME_APPEARANCE preference (from ProfileApplicationPreferencePage)
+				// Handling STEREOTYPE_NAME_APPEARANCE preference (from
+				// ProfileApplicationPreferencePage)
 				// Previously lowercase forced onto first letter (standard UML)
-				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0, 1).toLowerCase()+name.substring(1, name.length())+","+separator;
+				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
+				// 1).toLowerCase()+name.substring(1, name.length())+","+separator;
 
 				// check that the name has not already been added to the displayed string
 				if (sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
 					if (out.indexOf(name) == -1) {
 						out = out + name + separator;
 					}
-				} else { // VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM)) {
+				} else { // VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM))
+							// {
 					name = name.substring(0, 1).toLowerCase() + name.substring(1, name.length());
 					if (out.indexOf(name) == -1) {
 						out = out + name + separator;

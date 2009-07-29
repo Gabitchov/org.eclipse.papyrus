@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 /**
  * The Interface IDiagramInitializer.
  * 
- * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a> 
+ * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
 public interface IDiagramInitializer {
 

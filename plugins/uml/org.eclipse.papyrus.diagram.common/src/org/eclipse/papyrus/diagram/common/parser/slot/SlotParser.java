@@ -142,7 +142,8 @@ public class SlotParser extends ExternalParserBase implements SlotParserConstant
 	}
 
 	/**
-	 * FIXME: Actually only integers and strings are supported. Expression will be used as escape if value is neither string nor integer literal
+	 * FIXME: Actually only integers and strings are supported. Expression will be used as escape if
+	 * value is neither string nor integer literal
 	 */
 	final public void SlotValue() throws ParseException {
 		Token t;
@@ -153,18 +154,21 @@ public class SlotParser extends ExternalParserBase implements SlotParserConstant
 			jj_consume_token(29);
 			text = NameWithSpaces();
 			jj_consume_token(29);
-			LiteralString literalString = (LiteralString) mySubject.createValue(null, myOptionalType, UMLPackage.eINSTANCE.getLiteralString());
+			LiteralString literalString = (LiteralString) mySubject.createValue(null, myOptionalType,
+					UMLPackage.eINSTANCE.getLiteralString());
 			literalString.setValue(text);
 			break;
 		case IDENTIFIER:
 			text = NameWithSpaces();
-			Expression expression = (Expression) mySubject.createValue(null, myOptionalType, UMLPackage.eINSTANCE.getExpression());
+			Expression expression = (Expression) mySubject.createValue(null, myOptionalType, UMLPackage.eINSTANCE
+					.getExpression());
 			expression.setSymbol(text);
 			break;
 		case INTEGER_LITERAL:
 			t = jj_consume_token(INTEGER_LITERAL);
 			int value = parseInt(t);
-			LiteralInteger literalInteger = (LiteralInteger) mySubject.createValue(null, myOptionalType, UMLPackage.eINSTANCE.getLiteralInteger());
+			LiteralInteger literalInteger = (LiteralInteger) mySubject.createValue(null, myOptionalType,
+					UMLPackage.eINSTANCE.getLiteralInteger());
 			literalInteger.setValue(value);
 			break;
 		default:

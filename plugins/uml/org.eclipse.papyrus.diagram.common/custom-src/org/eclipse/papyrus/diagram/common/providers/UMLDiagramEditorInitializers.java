@@ -36,7 +36,6 @@ import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * Diagram initializers add initial elements to the diagram.
@@ -78,7 +77,8 @@ public class UMLDiagramEditorInitializers {
 			EObject eObject = diagram.getElement();
 			StateMachine stateMachine = null;
 			if (eObject instanceof Package) {
-				stateMachine = (StateMachine) createAndNameInPackage((Package) eObject, UMLPackage.eINSTANCE.getStateMachine());
+				stateMachine = (StateMachine) createAndNameInPackage((Package) eObject, UMLPackage.eINSTANCE
+						.getStateMachine());
 				stateMachine.createRegion("Region");
 			} else if (eObject instanceof StateMachine) {
 				stateMachine = (StateMachine) eObject;
@@ -111,7 +111,8 @@ public class UMLDiagramEditorInitializers {
 			EObject eObject = diagram.getElement();
 			Interaction interaction = null;
 			if (eObject instanceof Package) {
-				interaction = (Interaction) createAndNameInPackage((Package) eObject, UMLPackage.eINSTANCE.getInteraction());
+				interaction = (Interaction) createAndNameInPackage((Package) eObject, UMLPackage.eINSTANCE
+						.getInteraction());
 			} else if (eObject instanceof Interaction) {
 				interaction = (Interaction) eObject;
 			}
@@ -147,7 +148,8 @@ public class UMLDiagramEditorInitializers {
 		if (eObject != null && eObject instanceof PackageableElement) {
 			LabelHelper.INSTANCE.initName(pakage, eObject);
 			EditingDomain domain = TransactionUtil.getEditingDomain(pakage);
-			domain.getCommandStack().execute(new AddCommand(domain, pakage, UMLPackage.eINSTANCE.getPackage_PackagedElement(), eObject));
+			domain.getCommandStack().execute(
+					new AddCommand(domain, pakage, UMLPackage.eINSTANCE.getPackage_PackagedElement(), eObject));
 		}
 		return eObject;
 	}

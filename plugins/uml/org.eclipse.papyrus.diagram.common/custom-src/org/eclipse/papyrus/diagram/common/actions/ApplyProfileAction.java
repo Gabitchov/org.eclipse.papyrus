@@ -33,7 +33,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class ApplyProfileAction.
@@ -106,10 +105,12 @@ public class ApplyProfileAction extends DiagramAction {
 		};
 		boolean toApply = !isProfileAppliedTo(myPackage, myProfile);
 		if (toApply) {
-			return new ICommandProxy(new ApplyProfileCommand(CustomMessages.ApplyProfileAction_apply_profile_command, myPackage, myProfile, request));
+			return new ICommandProxy(new ApplyProfileCommand(CustomMessages.ApplyProfileAction_apply_profile_command,
+					myPackage, myProfile, request));
 		}
 		CompoundCommand cc = new CompoundCommand("Unapply and refresh");
-		cc.add(new ICommandProxy(new UnapplyProfileCommand(CustomMessages.ApplyProfileAction_unapply_profile_command, myPackage, myProfile, request)));
+		cc.add(new ICommandProxy(new UnapplyProfileCommand(CustomMessages.ApplyProfileAction_unapply_profile_command,
+				myPackage, myProfile, request)));
 		cc.add(new RefreshITextAwareEditPartsCommand(packageEditPart));
 		return cc;
 	}
@@ -229,7 +230,8 @@ public class ApplyProfileAction extends DiagramAction {
 		 * @param request
 		 *            the request
 		 */
-		protected ApplyProfileCommand(String label, org.eclipse.uml2.uml.Package package_, Profile profile, IEditCommandRequest request) {
+		protected ApplyProfileCommand(String label, org.eclipse.uml2.uml.Package package_, Profile profile,
+				IEditCommandRequest request) {
 			super(label, package_, request);
 			myPackage = package_;
 			myProfile = profile;
@@ -238,10 +240,13 @@ public class ApplyProfileAction extends DiagramAction {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+		 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#
+		 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+		 * org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+				throws ExecutionException {
 			myPackage.applyProfile(myProfile);
 			return CommandResult.newOKCommandResult(myProfile);
 		}
@@ -271,7 +276,8 @@ public class ApplyProfileAction extends DiagramAction {
 		 * @param request
 		 *            the request
 		 */
-		protected UnapplyProfileCommand(String label, org.eclipse.uml2.uml.Package package_, Profile profile, IEditCommandRequest request) {
+		protected UnapplyProfileCommand(String label, org.eclipse.uml2.uml.Package package_, Profile profile,
+				IEditCommandRequest request) {
 			super(label, package_, request);
 			myPackage = package_;
 			myProfile = profile;
@@ -280,10 +286,13 @@ public class ApplyProfileAction extends DiagramAction {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+		 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#
+		 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+		 * org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+				throws ExecutionException {
 			myPackage.unapplyProfile(myProfile);
 			return CommandResult.newOKCommandResult(myProfile);
 		}

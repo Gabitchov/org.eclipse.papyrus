@@ -52,7 +52,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	 * @param value
 	 *            the value to remove
 	 */
-	public RemoveValueRequest(TransactionalEditingDomain editingDomain, EObject elementToEdit, EStructuralFeature feature, Object value) {
+	public RemoveValueRequest(TransactionalEditingDomain editingDomain, EObject elementToEdit,
+			EStructuralFeature feature, Object value) {
 
 		super(editingDomain);
 		this.elementToEdit = elementToEdit;
@@ -61,7 +62,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	}
 
 	/**
-	 * Constructs a new request to remove the value of a structural feature in a model element. The editing domain will be derived from the <code>elementToEdit</code>.
+	 * Constructs a new request to remove the value of a structural feature in a model element. The
+	 * editing domain will be derived from the <code>elementToEdit</code>.
 	 * 
 	 * @param elementToEdit
 	 *            the owner of the structural feature
@@ -119,7 +121,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#getEditHelperContext()
+	 * @see
+	 * org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#getEditHelperContext()
 	 */
 	public Object getEditHelperContext() {
 		IClientContext context = getClientContext();

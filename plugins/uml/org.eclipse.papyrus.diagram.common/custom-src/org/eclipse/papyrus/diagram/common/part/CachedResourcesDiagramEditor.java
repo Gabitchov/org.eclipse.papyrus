@@ -53,7 +53,8 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	}
 
 	/**
-	 * We want the EditingDomainRegistry to listen to editors closing. At each initialization we add the EditingDomainRegistry as a PartListener.
+	 * We want the EditingDomainRegistry to listen to editors closing. At each initialization we add
+	 * the EditingDomainRegistry as a PartListener.
 	 * 
 	 * @param site
 	 *            the site
@@ -72,7 +73,9 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#doSetInput(org.eclipse.ui.IEditorInput, boolean)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#doSetInput
+	 * (org.eclipse.ui.IEditorInput, boolean)
 	 */
 	@Override
 	public void doSetInput(IEditorInput input, boolean releaseEditorContents) throws CoreException {
@@ -153,7 +156,9 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#close(boolean)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#close(boolean
+	 * )
 	 */
 	@Override
 	public void close(boolean save) {

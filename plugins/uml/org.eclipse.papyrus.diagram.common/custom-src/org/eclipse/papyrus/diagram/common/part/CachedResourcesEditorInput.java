@@ -18,7 +18,6 @@ import org.eclipse.papyrus.diagram.common.util.PathsUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class CachedResourcesEditorInput.

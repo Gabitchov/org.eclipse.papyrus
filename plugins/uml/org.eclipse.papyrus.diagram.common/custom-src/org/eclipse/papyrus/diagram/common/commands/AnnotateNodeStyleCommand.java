@@ -25,16 +25,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
 /**
- * Command that adds an EAnnotation to the EditPart's Node in order to know
- * which styles have been changed by the user (in respect of the default style).
- * The EAttributes stored within the EAnnotation are taken into account when the
- * EditPart's figure is refreshed.
+ * Command that adds an EAnnotation to the EditPart's Node in order to know which styles have been
+ * changed by the user (in respect of the default style). The EAttributes stored within the
+ * EAnnotation are taken into account when the EditPart's figure is refreshed.
  * 
  * @author gmerin
  * 
  */
-public class AnnotateNodeStyleCommand extends
-		AbstractCommonTransactionalCommmand {
+public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommmand {
 
 	// The command's text label
 	public static final String COMMAND_LABEL = "Annotate Node Style Changes";
@@ -60,8 +58,8 @@ public class AnnotateNodeStyleCommand extends
 	 * @param affectedFiles
 	 *            List of affected files. It may be null.
 	 */
-	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr,
-			TransactionalEditingDomain domain, List affectedFiles) {
+	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain,
+			List affectedFiles) {
 		this(ep, attr, domain, COMMAND_LABEL, affectedFiles);
 	}
 
@@ -79,9 +77,8 @@ public class AnnotateNodeStyleCommand extends
 	 * @param affectedFiles
 	 *            List of affected files. It may be null.
 	 */
-	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr,
-			TransactionalEditingDomain domain, String commandLabel,
-			List affectedFiles) {
+	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain,
+			String commandLabel, List affectedFiles) {
 		super(domain, commandLabel, affectedFiles);
 		setEAttribute(attr);
 		setEditPart(ep);
@@ -91,8 +88,7 @@ public class AnnotateNodeStyleCommand extends
 	 * Execution of the command
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		addChangesToAppearenceEAnnotation(getEAttribute());
 		return CommandResult.newOKCommandResult();
 	}
@@ -103,8 +99,7 @@ public class AnnotateNodeStyleCommand extends
 	 * @return EAnnotation
 	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getEditPart().getPrimaryView().getEAnnotation(
-				APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getEditPart().getPrimaryView().getEAnnotation(APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
 	}
 
@@ -121,8 +116,7 @@ public class AnnotateNodeStyleCommand extends
 	}
 
 	/**
-	 * Adds the new style change to the EAnnotation that stores the changed
-	 * styles
+	 * Adds the new style change to the EAnnotation that stores the changed styles
 	 * 
 	 * @param attribute
 	 */
@@ -140,38 +134,26 @@ public class AnnotateNodeStyleCommand extends
 			return;
 
 		// Background
-		if (NotationPackage.eINSTANCE.getFillStyle_FillColor()
-				.equals(attribute)) {
-			eAnn.getReferences().add(
-					NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
+		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
+			eAnn.getReferences().add(NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
 		}
 
 		// Foreground
-		if (NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				.equals(attribute)) {
-			eAnn.getReferences().add(
-					NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
+		if (NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
+			eAnn.getReferences().add(NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
 		}
 
 		// Font
 		if (NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
-			eAnn.getReferences().add(
-					NotationPackage.Literals.FONT_STYLE__FONT_NAME);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(
-				attribute)) {
-			eAnn.getReferences().add(
-					NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(
-				attribute)) {
-			eAnn.getReferences().add(
-					NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(
-				attribute)) {
+			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_NAME);
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
+			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
+			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
+		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
 			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__BOLD);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(
-				attribute)) {
-			eAnn.getReferences().add(
-					NotationPackage.Literals.FONT_STYLE__ITALIC);
+		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
+			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__ITALIC);
 		}
 	}
 

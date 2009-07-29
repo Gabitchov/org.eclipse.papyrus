@@ -33,13 +33,13 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * this is the figure to represent a classifier.
+ * 
  * @deprecated use CompartmentFigure instead
  * 
  */
 public class ClassifierFigure extends NodeNamedElementFigure {
 
 	private static final int wrappedLabelSize = 18;
-
 
 	/**
 	 * this is the layout manager in charge to place element in the enumeration
@@ -90,14 +90,16 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 
 			Rectangle elementBound = new Rectangle(contentPane.getBounds());
 			// display Attributes
-			Rectangle attributeBound = new Rectangle(elementBound.getTopLeft().x, elementBound.getTopLeft().y, getBounds().width, 10);
+			Rectangle attributeBound = new Rectangle(elementBound.getTopLeft().x, elementBound.getTopLeft().y,
+					getBounds().width, 10);
 			// getBounds().height-height);
 
 			if (getGMFAttributeElementContainer() != null) {
 				if (!getGMFAttributeElementContainer().isExpanded()) {
 					attributeBound.height = 10;
 				} else {
-					attributeBound.height = wrappedLabelSize * (getGMFAttributeElementContainer().getContentPane().getChildren().size() + 1);
+					attributeBound.height = wrappedLabelSize
+							* (getGMFAttributeElementContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			// graphics.drawLine(elementBound.getBottomLeft(), elementBound.getBottomRight());
@@ -106,13 +108,15 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 				getGMFAttributeElementContainer().setBounds(attributeBound);
 			}
 			// display Operation
-			Rectangle operationBound = new Rectangle(attributeBound.getBottomLeft().x, attributeBound.getBottomLeft().y - 1, getBounds().width, 10);
+			Rectangle operationBound = new Rectangle(attributeBound.getBottomLeft().x,
+					attributeBound.getBottomLeft().y - 1, getBounds().width, 10);
 
 			if (getGMFOperationElementContainer() != null) {
 				if (!getGMFOperationElementContainer().isExpanded()) {
 					operationBound.height = 10;
 				} else {
-					operationBound.height = wrappedLabelSize * (getGMFOperationElementContainer().getContentPane().getChildren().size() + 1);
+					operationBound.height = wrappedLabelSize
+							* (getGMFOperationElementContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			methodContent.setBounds(operationBound);
@@ -120,13 +124,15 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 				getGMFOperationElementContainer().setBounds(operationBound);
 			}
 			// dispalyNestedClassifier
-			Rectangle nestedClassifierBound = new Rectangle(operationBound.getBottomLeft().x, operationBound.getBottomLeft().y - 1, getBounds().width, 10);
+			Rectangle nestedClassifierBound = new Rectangle(operationBound.getBottomLeft().x, operationBound
+					.getBottomLeft().y - 1, getBounds().width, 10);
 
 			if (getGMFNestedClassifierContainer() != null) {
 				if (!getGMFNestedClassifierContainer().isExpanded()) {
 					nestedClassifierBound.height = 10;
 				} else {
-					nestedClassifierBound.height = wrappedLabelSize * (getGMFNestedClassifierContainer().getContentPane().getChildren().size() + 1);
+					nestedClassifierBound.height = wrappedLabelSize
+							* (getGMFNestedClassifierContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			nestedClassContent.setBounds(nestedClassifierBound);
@@ -140,7 +146,8 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 			if (getGMFNestedClassifierContainer() != null) {
 				getGMFNestedClassifierContainer().setBounds(lastRectangle);
 			}
-			contentPane.getBounds().setSize(getBounds().width, getBounds().y + getBounds().height - contentPane.getBounds().y);
+			contentPane.getBounds().setSize(getBounds().width,
+					getBounds().y + getBounds().height - contentPane.getBounds().y);
 		}
 
 	}
@@ -273,9 +280,8 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	@Override
 	public void paint(Graphics graphics) {
 		super.paint(graphics);
-		
-		if(getGMFAttributeElementContainer() != null)
-		{
+
+		if (getGMFAttributeElementContainer() != null) {
 			getGMFAttributeElementContainer().setOpaque(false);
 		}
 
@@ -287,8 +293,9 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 	 * {@inheritDoc}
 	 */
 	/**
-	 * Helper method to draw separation lines between name and compartements inside ClassifierFigure. It renders also the ClassifierFigure in case one represent an abstract or active class. This
-	 * method is subject to be redefined in subclasses,
+	 * Helper method to draw separation lines between name and compartements inside
+	 * ClassifierFigure. It renders also the ClassifierFigure in case one represent an abstract or
+	 * active class. This method is subject to be redefined in subclasses,
 	 * 
 	 * @param graphics
 	 */
@@ -303,8 +310,9 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 		fMethod = this.getOperationCompartmentFigure();
 
 		/**
-		 * y is used for store y-axis coordinates of seration lines between properties, methods and nested classes x is the x-axis coordinate of the left point of sepration lines w is the length of
-		 * lines n is the number of lines to be drawn
+		 * y is used for store y-axis coordinates of seration lines between properties, methods and
+		 * nested classes x is the x-axis coordinate of the left point of sepration lines w is the
+		 * length of lines n is the number of lines to be drawn
 		 */
 		int y[] = { 0, 0, 0, 0 }, x = getBounds().x, w = getBounds().width, n = 0;
 
@@ -328,7 +336,8 @@ public class ClassifierFigure extends NodeNamedElementFigure {
 			n++;
 		}
 		/**
-		 * If StereotypePropertiesContainer is present, we need draw a separate line between nestedclass container and StereotypePropertiesContainer
+		 * If StereotypePropertiesContainer is present, we need draw a separate line between
+		 * nestedclass container and StereotypePropertiesContainer
 		 */
 		if (this.getStereotypePropertiesContent() != null) {
 			if (this.getNestedClassifierFigure() != null) {

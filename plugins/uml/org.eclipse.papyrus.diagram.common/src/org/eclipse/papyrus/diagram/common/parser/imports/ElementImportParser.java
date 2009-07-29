@@ -108,7 +108,8 @@ public class ElementImportParser implements ISemanticParser {
 		if (imported.equals(elementImport.getImportedElement())) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		return new SetValueCommand(new SetRequest(elementImport, UMLPackage.eINSTANCE.getElementImport_ImportedElement(), imported));
+		return new SetValueCommand(new SetRequest(elementImport, UMLPackage.eINSTANCE
+				.getElementImport_ImportedElement(), imported));
 	}
 
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
@@ -122,7 +123,8 @@ public class ElementImportParser implements ISemanticParser {
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		PackageableElement imported = findElement(element, editString);
 		if (imported == null) {
-			return new ParserEditStatus(IStatus.ERROR, PLUGIN_ID, IParserEditStatus.UNEDITABLE, "Unknown metaclass: " + editString, null); //$NON-NLS-1$
+			return new ParserEditStatus(IStatus.ERROR, PLUGIN_ID, IParserEditStatus.UNEDITABLE,
+					"Unknown metaclass: " + editString, null); //$NON-NLS-1$
 		}
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
@@ -150,7 +152,8 @@ public class ElementImportParser implements ISemanticParser {
 	private boolean isAffectingEvent(Object notification) {
 		if (notification instanceof Notification) {
 			Object feature = ((Notification) notification).getFeature();
-			return feature == UMLPackage.eINSTANCE.getNamedElement_Name() || feature == UMLPackage.eINSTANCE.getElementImport_Alias()
+			return feature == UMLPackage.eINSTANCE.getNamedElement_Name()
+					|| feature == UMLPackage.eINSTANCE.getElementImport_Alias()
 					|| feature == UMLPackage.eINSTANCE.getElementImport_ImportedElement();
 		}
 		return false;

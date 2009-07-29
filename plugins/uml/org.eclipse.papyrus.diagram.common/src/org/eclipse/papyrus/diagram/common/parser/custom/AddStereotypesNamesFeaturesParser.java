@@ -48,7 +48,8 @@ public class AddStereotypesNamesFeaturesParser extends AddStereotypesNamesAbstra
 			value = getValidValue(feature, value);
 			values.add(value);
 		}
-		return processor.format(values.toArray(new Object[values.size()]), new StringBuffer(), new FieldPosition(0)).toString();
+		return processor.format(values.toArray(new Object[values.size()]), new StringBuffer(), new FieldPosition(0))
+				.toString();
 	}
 
 	/**

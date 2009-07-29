@@ -42,8 +42,7 @@ public class ModelTypesProviderFactory implements IModelTypesProviderFactory {
 		return null;
 	}
 
-	public static void registerModelTypesProvider(String editorID,
-			IModelTypesProvider provider) {
+	public static void registerModelTypesProvider(String editorID, IModelTypesProvider provider) {
 		getMapEditorID2IModelTypesProvider().put(editorID, provider);
 	}
 

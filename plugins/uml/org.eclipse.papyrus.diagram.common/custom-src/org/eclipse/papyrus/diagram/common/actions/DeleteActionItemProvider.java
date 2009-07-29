@@ -26,7 +26,7 @@ import org.eclipse.ui.IWorkbenchPage;
 /**
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
 public class DeleteActionItemProvider extends AbstractContributionItemProvider {
 
@@ -36,7 +36,8 @@ public class DeleteActionItemProvider extends AbstractContributionItemProvider {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.AbstractContributionItemProvider#createAction(java.lang.String,
+	 * @seeorg.eclipse.gmf.runtime.common.ui.services.action.contributionitem.
+	 * AbstractContributionItemProvider#createAction(java.lang.String,
 	 * org.eclipse.gmf.runtime.common.ui.util.IWorkbenchPartDescriptor)
 	 */
 	@Override

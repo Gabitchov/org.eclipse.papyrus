@@ -27,15 +27,16 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.AddEObjectReferencesToDiagram;
 import org.eclipse.papyrus.diagram.common.commands.UpdateDiagramCommand;
 
-
 // TODO: Auto-generated Javadoc
 /**
- * A DragAndDropEditPolicy for <Diagram>s. Checks whether the dropped elements can be shown as views in the canvas and if so, creates their views and add their references to the diagram's list of
+ * A DragAndDropEditPolicy for <Diagram>s. Checks whether the dropped elements can be shown as views
+ * in the canvas and if so, creates their views and add their references to the diagram's list of
  * references.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
-public class DiagramDragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy {
+public class DiagramDragDropEditPolicy extends
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy {
 
 	/** The resolver. */
 	private ViewResolver resolver = null;
@@ -65,7 +66,9 @@ public class DiagramDragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.u
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropObjectsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropObjectsCommand
+	 * (org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
 	 */
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
@@ -147,7 +150,8 @@ public class DiagramDragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.u
 		for (EObject element : elements) {
 			int semanticHint = resolver.getEObjectSemanticHint(element);
 			if (semanticHint > -1) {
-				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
+				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String
+						.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
 				viewDescriptors.add(viewDescriptor);
 			}
 		}

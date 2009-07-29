@@ -71,7 +71,8 @@ public class CEnumeration extends CNamedElementFigure {
 				if (!getGMFLiteralContainer().isExpanded()) {
 					minimumHeight += 10;
 				} else {
-					minimumHeight += wrappedLabelSize * (getGMFLiteralContainer().getContentPane().getChildren().size() + 1);
+					minimumHeight += wrappedLabelSize
+							* (getGMFLiteralContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			if (getLiteralContainer() != null) {
@@ -119,14 +120,16 @@ public class CEnumeration extends CNamedElementFigure {
 			}
 
 			// display Attribtutes
-			Rectangle attributeBound = new Rectangle(elementBound.getBottomLeft().x, elementBound.getBottomLeft().y, getBounds().width, 10);
+			Rectangle attributeBound = new Rectangle(elementBound.getBottomLeft().x, elementBound.getBottomLeft().y,
+					getBounds().width, 10);
 			// getBounds().height-height);
 
 			if (getGMFLiteralContainer() != null) {
 				if (!getGMFLiteralContainer().isExpanded()) {
 					attributeBound.height = 10;
 				} else {
-					attributeBound.height = wrappedLabelSize * (getGMFLiteralContainer().getContentPane().getChildren().size() + 1);
+					attributeBound.height = wrappedLabelSize
+							* (getGMFLiteralContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			if (getLiteralContainer() != null) {
@@ -140,7 +143,8 @@ public class CEnumeration extends CNamedElementFigure {
 			Rectangle lastRectangle = getSubFigure(lastIndex).getBounds();
 			lastRectangle.height = getBounds().y + getBounds().height - lastRectangle.y;
 			getSubFigure(lastIndex).setBounds(lastRectangle);
-			if (getSubFigure(lastIndex).getChildren().size() != 0 && getSubFigure(lastIndex).getChildren().get(0) instanceof ResizableCompartmentFigure) {
+			if (getSubFigure(lastIndex).getChildren().size() != 0
+					&& getSubFigure(lastIndex).getChildren().get(0) instanceof ResizableCompartmentFigure) {
 				((Figure) getSubFigure(lastIndex).getChildren().get(0)).setBounds(lastRectangle);
 			}
 		}
@@ -183,7 +187,8 @@ public class CEnumeration extends CNamedElementFigure {
 	 * @return the container figure
 	 */
 	public RectangleFigure getLiteralContainer() {
-		if (getSubFigure(literalContainerIndex) != null && getSubFigure(literalContainerIndex) instanceof RectangleFigure) {
+		if (getSubFigure(literalContainerIndex) != null
+				&& getSubFigure(literalContainerIndex) instanceof RectangleFigure) {
 			return ((RectangleFigure) getSubFigure(literalContainerIndex));
 		}
 		return null;
@@ -200,7 +205,8 @@ public class CEnumeration extends CNamedElementFigure {
 	public void paint(Graphics graphics) {
 		graphics.setForegroundColor(this.getGradientColor());
 		graphics.setBackgroundColor(this.getBackgroundColor());
-		Rectangle ContainerBound = new Rectangle(getBounds().x, getBounds().y, getBounds().width - 1, getBounds().height - 1);
+		Rectangle ContainerBound = new Rectangle(getBounds().x, getBounds().y, getBounds().width - 1,
+				getBounds().height - 1);
 		graphics.fillGradient(ContainerBound, true);
 		graphics.setForegroundColor(this.getForegroundColor());
 		graphics.drawRectangle(ContainerBound);

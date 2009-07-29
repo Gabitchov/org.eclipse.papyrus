@@ -49,9 +49,8 @@ public class ModelingAssistantRegistry {
 
 	private static final String modelingAssistantExtensionPointID = "org.eclipse.papyrus.diagram.common.editorAssistantProvider";
 
-	private static final Class<Object>[] classes = new Class[] {
-			Assistant.class, AssistedEditPart.class, Include.class,
-			Exclude.class, ElementType.class };
+	private static final Class<Object>[] classes = new Class[] { Assistant.class, AssistedEditPart.class,
+			Include.class, Exclude.class, ElementType.class };
 
 	private static final Map<String, List<Assistant>> mapEditorID2Assistant = new HashMap<String, List<Assistant>>();
 
@@ -76,16 +75,13 @@ public class ModelingAssistantRegistry {
 	public Map<String, List<Assistant>> getMapEditorID2Assistant() {
 		mapEditorID2Assistant.clear();
 
-		ExtensionPointParser parser = new ExtensionPointParser(
-				modelingAssistantExtensionPointID, classes);
+		ExtensionPointParser parser = new ExtensionPointParser(modelingAssistantExtensionPointID, classes);
 		List<Object> extensions = parser.parseExtensionPoint();
 		for (Object object : extensions) {
-			Assistant assistant = (Assistant) Platform.getAdapterManager()
-					.getAdapter(object, Assistant.class);
+			Assistant assistant = (Assistant) Platform.getAdapterManager().getAdapter(object, Assistant.class);
 			if (assistant != null && assistant.editorID != null) {
 				if (!mapEditorID2Assistant.containsKey(assistant.editorID)) {
-					mapEditorID2Assistant.put(assistant.editorID,
-							new ArrayList<Assistant>());
+					mapEditorID2Assistant.put(assistant.editorID, new ArrayList<Assistant>());
 				}
 				mapEditorID2Assistant.get(assistant.editorID).add(assistant);
 			}
@@ -97,16 +93,14 @@ public class ModelingAssistantRegistry {
 	// Types for an EditPart customization
 
 	/**
-	 * Customizes the list of types for an edit part according to the
-	 * extensions.
+	 * Customizes the list of types for an edit part according to the extensions.
 	 * 
 	 * @param editorID
 	 * @param editPart
 	 * @param types
 	 * @return
 	 */
-	public List customizeTypesForEditPart(String editorID, EditPart editPart,
-			List types) {
+	public List customizeTypesForEditPart(String editorID, EditPart editPart, List types) {
 		for (Assistant assistant : getAssistantForEditor(editorID)) {
 			if (assistant != null) {
 				types = assistant.customizeTypesForEditPart(editPart, types);

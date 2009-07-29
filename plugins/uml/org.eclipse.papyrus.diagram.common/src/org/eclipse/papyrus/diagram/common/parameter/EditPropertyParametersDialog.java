@@ -120,7 +120,8 @@ public class EditPropertyParametersDialog extends TrayDialog {
 	}
 
 	private Table buildTable(Composite parent) {
-		Table table = new Table(parent, SWT.SINGLE | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.HIDE_SELECTION);
+		Table table = new Table(parent, SWT.SINGLE | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION
+				| SWT.HIDE_SELECTION);
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
 
@@ -274,14 +275,16 @@ public class EditPropertyParametersDialog extends TrayDialog {
 	private void addCellEditors(Table table, TableViewer viewer) {
 		CellEditor name = new TextCellEditor(table);
 		// CellEditor types = new TypeCellEditor(table, getTypeProposals());
-		CellEditor types = new TypeDialogCellEditor(table, TransactionUtil.getEditingDomain(myOldOperation), myAdapterFactory);
+		CellEditor types = new TypeDialogCellEditor(table, TransactionUtil.getEditingDomain(myOldOperation),
+				myAdapterFactory);
 		CellEditor direction = new DirectionCellEditor(table);
 		CellEditor multiplicity = new PositiveIntegerCellEditor(table);
 		CellEditor defaultValue = new TextCellEditor(table);
 		CellEditor isOrdered = new BooleanCellEditor(table);
 		CellEditor isUnique = new BooleanCellEditor(table);
 
-		CellEditor[] editors = new CellEditor[] { name, types, direction, multiplicity, defaultValue, isOrdered, isUnique };
+		CellEditor[] editors = new CellEditor[] { name, types, direction, multiplicity, defaultValue, isOrdered,
+				isUnique };
 		viewer.setCellEditors(editors);
 	}
 

@@ -27,7 +27,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 
 /**
- * A rectangular figure that supports compartment. 
+ * A rectangular figure that supports compartment.
  */
 public class CompartmentFigure extends NodeNamedElementFigure {
 
@@ -43,6 +43,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param compartmentFigure
 	 */
 	public CompartmentFigure(List<String> compartmentFigure) {
@@ -50,9 +51,12 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	}
 
 	/**
-	 * Constructor with a tagged value. 
-	 * @param compartmentFigure a list of id for the compartment figure
-	 * @param taggedLabelValue the value to display as tagged value
+	 * Constructor with a tagged value.
+	 * 
+	 * @param compartmentFigure
+	 *            a list of id for the compartment figure
+	 * @param taggedLabelValue
+	 *            the value to display as tagged value
 	 */
 	public CompartmentFigure(List<String> compartmentFigure, String taggedLabelValue) {
 		super();
@@ -66,10 +70,12 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 
 	/**
 	 * Create the tag label in the figure. The tag label is created if value is not null.
-	 * @param value the value to use
+	 * 
+	 * @param value
+	 *            the value to use
 	 */
 	protected void initTagLabel(String value) {
-		if(value != null) {
+		if (value != null) {
 			taggedLabel = new Label();
 			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
 			taggedLabel.setText(textToDisplay);
@@ -100,17 +106,19 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 		}
 
 	}
-	
+
 	/**
 	 * Get the label containing the tagged value
+	 * 
 	 * @return
 	 */
-	public Label getTaggedLabel(){
+	public Label getTaggedLabel() {
 		return taggedLabel;
 	}
 
 	/**
-	 * Get the content pane 
+	 * Get the content pane
+	 * 
 	 * @return
 	 */
 	public IFigure getContentPane() {
@@ -118,8 +126,10 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	}
 
 	/**
-	 * Get the RectangleFigure containing the wanted compartment.  
-	 * @param id the id to find the right compartment
+	 * Get the RectangleFigure containing the wanted compartment.
+	 * 
+	 * @param id
+	 *            the id to find the right compartment
 	 * @return the RectangleFigure
 	 */
 	public RectangleFigure getCompartment(String id) {
@@ -164,7 +174,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 				bound.width = getBounds().width;
 				bound.x = getBounds().x;
 				if (i > 0) {
-					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;			
+					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
 				} else {
 					bound.y = getBounds().y;
 				}
@@ -205,7 +215,8 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 			if (rcf.isExpanded()) {
 				dimensionCompartment.height += wrappedLabelSize * (rcf.getContentPane().getChildren().size());
 			}
-			// If it is the last compartment of the figure, get all the available room in the contentPane
+			// If it is the last compartment of the figure, get all the available room in the
+			// contentPane
 			if (index == compartmentID.size() - 1) {
 				dimensionCompartment.height = getBounds().y + getBounds().height - point.y;
 			}

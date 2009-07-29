@@ -64,7 +64,8 @@ public class ParserAdapter implements IParser {
 		this(delegate, applier, viewAndEdit, viewAndEdit);
 	}
 
-	public ParserAdapter(ExternalParserBase delegate, ApplyStrategy applier, ExternalToString view, ExternalToString edit) {
+	public ParserAdapter(ExternalParserBase delegate, ApplyStrategy applier, ExternalToString view,
+			ExternalToString edit) {
 		myDelegate = delegate;
 		myApplier = applier;
 		myView = view;
@@ -152,11 +153,14 @@ public class ParserAdapter implements IParser {
 		List commandList = new LinkedList();
 		if (resolver.canResolve()) {
 			AbstractTransactionalCommand resolveCommand = resolver.getResolveCommand();
-			AbstractTransactionalCommand computeAndApplyCommand = new AbstractTransactionalCommand(editingDomain, "", null) {
+			AbstractTransactionalCommand computeAndApplyCommand = new AbstractTransactionalCommand(editingDomain, "",
+					null) {
 
 				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					for (Iterator applyCommands = myApplier.apply(modelObject, parsed).iterator(); applyCommands.hasNext();) {
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+						throws ExecutionException {
+					for (Iterator applyCommands = myApplier.apply(modelObject, parsed).iterator(); applyCommands
+							.hasNext();) {
 						ICommand next = (ICommand) applyCommands.next();
 						next.execute(monitor, info);
 					}

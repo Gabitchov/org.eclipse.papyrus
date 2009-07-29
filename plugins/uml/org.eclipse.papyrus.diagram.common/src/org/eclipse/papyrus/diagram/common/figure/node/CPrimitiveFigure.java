@@ -44,7 +44,8 @@ public class CPrimitiveFigure extends CNamedElementFigure {
 	 */
 	@Override
 	public void paint(Graphics graphics) {
-		Rectangle ContainerBound = new Rectangle(getBounds().x, getBounds().y, getBounds().width - 1, getBounds().height - 1);
+		Rectangle ContainerBound = new Rectangle(getBounds().x, getBounds().y, getBounds().width - 1,
+				getBounds().height - 1);
 		int height = 0;
 
 		graphics.setForegroundColor(this.getGradientColor());

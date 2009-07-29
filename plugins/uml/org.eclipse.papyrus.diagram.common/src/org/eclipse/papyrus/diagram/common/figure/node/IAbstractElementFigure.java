@@ -61,7 +61,8 @@ public interface IAbstractElementFigure extends IFigure {
 	public void setBorderColor(Color borderColor);
 
 	/**
-	 * in order to set the icon in the figure this method is used in the case where the stereotype has got an image (icon).
+	 * in order to set the icon in the figure this method is used in the case where the stereotype
+	 * has got an image (icon).
 	 * 
 	 * @param img
 	 *            the icon that we want to display
@@ -114,9 +115,6 @@ public interface IAbstractElementFigure extends IFigure {
 	 */
 	public void setForeGroundColor(Color foreGroundColor);
 
-
-
-
 	/**
 	 * get the font color of the text in the figure.
 	 * 
@@ -133,7 +131,8 @@ public interface IAbstractElementFigure extends IFigure {
 	public void setFontColor(Color fontColor);
 
 	/**
-	 * Refresh list of stereotypes of current EditPart if required either with or without the first stereotype.
+	 * Refresh list of stereotypes of current EditPart if required either with or without the first
+	 * stereotype.
 	 * 
 	 * @param presentation
 	 *            type of presentation

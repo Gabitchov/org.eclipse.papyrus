@@ -99,7 +99,7 @@ public class PapyrusNodeFigure extends NodeFigure {
 		shadowborder.setColor(getForegroundColor());
 
 	}
-	
+
 	/**
 	 * Paint the background of the figure. If this figure uses gradient, then it will paint the
 	 * background with the gradient informations. Otherwise it will use the background color.
@@ -121,6 +121,6 @@ public class PapyrusNodeFigure extends NodeFigure {
 			graphics.setForegroundColor(getForegroundColor());
 			graphics.fillRectangle(rectangle);
 		}
-	}	
+	}
 
 }

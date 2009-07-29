@@ -35,14 +35,11 @@ public class URIUtil {
 	public static IFile getFile(URI uri) {
 		String fileName = uri.toFileString();
 		if (fileName != null) {
-			return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(
-					new Path(fileName));
+			return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(fileName));
 		}
 		if (uri.toString().startsWith("platform:/resource")) { //$NON-NLS-1$
-			String path = uri.toString().substring(
-					"platform:/resource".length()); //$NON-NLS-1$
-			IResource workspaceResource = ResourcesPlugin.getWorkspace()
-					.getRoot().findMember(new Path(path));
+			String path = uri.toString().substring("platform:/resource".length()); //$NON-NLS-1$
+			IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
 			if (workspaceResource instanceof IFile) {
 				return (IFile) workspaceResource;
 			}
@@ -69,15 +66,12 @@ public class URIUtil {
 	public static URI getUri(IEditorInput input, String editorID) {
 		String uriString = null;
 		if (input instanceof URIEditorInput) {
-			uriString = PathsUtil
-					.getRelativeWorkspaceFromEditorInputWithFragment(input);
+			uriString = PathsUtil.getRelativeWorkspaceFromEditorInputWithFragment(input);
 		} else {
 			uriString = PathsUtil.getRelativeWorkspaceFromEditorInput(input);
-			String fragment = MDTUtil.getLastOpenedDiagramPropertyForEditor(
-					uriString, editorID);
+			String fragment = MDTUtil.getLastOpenedDiagramPropertyForEditor(uriString, editorID);
 			if (fragment != null) {
-				uriString = URI.createURI(uriString).appendFragment(fragment)
-						.toString();
+				uriString = URI.createURI(uriString).appendFragment(fragment).toString();
 			}
 		}
 		if (input != null) {
@@ -86,9 +80,8 @@ public class URIUtil {
 				return uri;
 			}
 			ResourceSet resourceSet = new ResourceSetImpl();
-			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
-					.put(Resource.Factory.Registry.DEFAULT_EXTENSION,
-							new XMIResourceFactoryImpl());
+			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+					Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 			Resource resource = resourceSet.getResource(uri, true);
 			Diagram diagram = MDTUtil.getFirstDiagramFromResource(resource);
 			if (diagram != null) {

@@ -35,9 +35,12 @@ public class PortToString extends AbstractToString implements WithReferences {
 		return result.toString();
 	}
 
-	private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getNamedElement_Visibility(), UMLPackage.eINSTANCE.getNamedElement_Name(),
-			UMLPackage.eINSTANCE.getTypedElement_Type(), UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue(), UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue(),
-			UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(), UMLPackage.eINSTANCE.getLiteralInteger_Value(), UMLPackage.eINSTANCE.getLiteralString_Value(), });
+	private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+			UMLPackage.eINSTANCE.getNamedElement_Visibility(), UMLPackage.eINSTANCE.getNamedElement_Name(),
+			UMLPackage.eINSTANCE.getTypedElement_Type(), UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue(),
+			UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue(),
+			UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(), UMLPackage.eINSTANCE.getLiteralInteger_Value(),
+			UMLPackage.eINSTANCE.getLiteralString_Value(), });
 
 	public boolean isAffectingFeature(EStructuralFeature feature) {
 		return AFFECTING.contains(feature);

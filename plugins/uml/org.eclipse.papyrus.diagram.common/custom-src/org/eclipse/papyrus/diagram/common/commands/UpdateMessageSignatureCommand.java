@@ -90,7 +90,8 @@ public class UpdateMessageSignatureCommand extends Command {
 	}
 
 	/**
-	 * Store the old Property associated with the represents property of the Lifeline and then make the redo
+	 * Store the old Property associated with the represents property of the Lifeline and then make
+	 * the redo
 	 * 
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
@@ -176,7 +177,8 @@ public class UpdateMessageSignatureCommand extends Command {
 	 * 
 	 * @param signature
 	 *            the Signature
-	 * @return a List containing all the ValueSpecifications that will represent the function signature
+	 * @return a List containing all the ValueSpecifications that will represent the function
+	 *         signature
 	 */
 	private List initializeArguments(NamedElement signature) {
 		List arguments = new ArrayList<ValueSpecification>();
@@ -199,29 +201,37 @@ public class UpdateMessageSignatureCommand extends Command {
 			if (attribute.getType() instanceof PrimitiveType) {
 				if (attribute.getType().getName().equals("Boolean")) {
 					if (attribute instanceof Property) {
-						arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_BOOLEAN));
+						arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute
+								.getType(), UMLPackage.Literals.LITERAL_BOOLEAN));
 					} else if (attribute instanceof Parameter) {
-						arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_BOOLEAN));
+						arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute
+								.getType(), UMLPackage.Literals.LITERAL_BOOLEAN));
 					}
 				} else if (attribute.getType().getName().equals("Integer")) {
 					if (attribute instanceof Property) {
-						arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_INTEGER));
+						arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute
+								.getType(), UMLPackage.Literals.LITERAL_INTEGER));
 					} else if (attribute instanceof Parameter) {
-						arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_INTEGER));
+						arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute
+								.getType(), UMLPackage.Literals.LITERAL_INTEGER));
 					}
 				} else if (attribute.getType().getName().equals("String")) {
 					if (attribute instanceof Property) {
-						arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_STRING));
+						arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute
+								.getType(), UMLPackage.Literals.LITERAL_STRING));
 					} else if (attribute instanceof Parameter) {
-						arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_STRING));
+						arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute
+								.getType(), UMLPackage.Literals.LITERAL_STRING));
 					}
 				}
 				// -RFU- traitement des autres types primitifs comme String Literal
 				else {
 					if (attribute instanceof Property) {
-						arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_STRING));
+						arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute
+								.getType(), UMLPackage.Literals.LITERAL_STRING));
 					} else if (attribute instanceof Parameter) {
-						arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_STRING));
+						arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute
+								.getType(), UMLPackage.Literals.LITERAL_STRING));
 					}
 				}
 			}
@@ -247,10 +257,13 @@ public class UpdateMessageSignatureCommand extends Command {
 			// -RFU- traiter les autres types comme des String Literal
 			else {
 				if (attribute instanceof Property) {
-					// arguments.add(((Property) attribute).createDefaultValue(null, null, UMLPackage.Literals.LITERAL_NULL));
-					arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_STRING));
+					// arguments.add(((Property) attribute).createDefaultValue(null, null,
+					// UMLPackage.Literals.LITERAL_NULL));
+					arguments.add(((Property) attribute).createDefaultValue(attribute.getName(), attribute.getType(),
+							UMLPackage.Literals.LITERAL_STRING));
 				} else if (attribute instanceof Parameter) {
-					arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute.getType(), UMLPackage.Literals.LITERAL_STRING));
+					arguments.add(((Parameter) attribute).createDefaultValue(attribute.getName(), attribute.getType(),
+							UMLPackage.Literals.LITERAL_STRING));
 				}
 			}
 		}
@@ -259,8 +272,9 @@ public class UpdateMessageSignatureCommand extends Command {
 	}
 
 	/**
-	 * Get the MessageEvent associated with a Message. The MessageEvent will be associated with the Signature of the Message. So we first search the SendEvent and then the ReceiveEvent in the case of
-	 * the SendEvent does not exist.
+	 * Get the MessageEvent associated with a Message. The MessageEvent will be associated with the
+	 * Signature of the Message. So we first search the SendEvent and then the ReceiveEvent in the
+	 * case of the SendEvent does not exist.
 	 * 
 	 * @param msg
 	 *            the Message

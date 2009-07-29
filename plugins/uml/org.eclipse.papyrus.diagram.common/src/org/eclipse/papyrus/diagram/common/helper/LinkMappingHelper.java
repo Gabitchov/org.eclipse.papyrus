@@ -19,7 +19,8 @@ import java.util.Collections;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * The Class LinkMappingHelper is used as a declaration of contract. This class is used to express the mapping of link at semantic level. for a semantic what is the source what is the target?
+ * The Class LinkMappingHelper is used as a declaration of contract. This class is used to express
+ * the mapping of link at semantic level. for a semantic what is the source what is the target?
  */
 public class LinkMappingHelper {
 

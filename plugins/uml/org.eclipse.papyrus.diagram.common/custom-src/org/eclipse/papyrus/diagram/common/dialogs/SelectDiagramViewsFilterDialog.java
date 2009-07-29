@@ -31,7 +31,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TreeItem;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class SelectDiagramViewsFilterDialog.
@@ -139,7 +138,8 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	 */
 	protected void buildSelected() {
 		selected = new ArrayList<Integer>();
-		if (getTreeViewer() == null || getTreeViewer().getTree() == null || getTreeViewer().getTree().getItems().length <= 0) {
+		if (getTreeViewer() == null || getTreeViewer().getTree() == null
+				|| getTreeViewer().getTree().getItems().length <= 0) {
 			return;
 		}
 		for (TreeItem item : getTreeViewer().getTree().getItems()) {
@@ -218,7 +218,8 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	 * Populate tree.
 	 */
 	protected void populateTree() {
-		if (getTreeViewer() == null || getTreeViewer().getTree() == null || getViewInfo() == null || getDiagram() == null) {
+		if (getTreeViewer() == null || getTreeViewer().getTree() == null || getViewInfo() == null
+				|| getDiagram() == null) {
 			return;
 		}
 		Diagram diagram = getDiagram();

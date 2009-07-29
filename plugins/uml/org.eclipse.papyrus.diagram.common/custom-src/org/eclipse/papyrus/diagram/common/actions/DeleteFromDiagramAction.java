@@ -30,13 +30,16 @@ import org.eclipse.ui.IWorkbenchPart;
 
 // TODO: Auto-generated Javadoc
 /**
- * An override of the GMF DeleteFromDiagramAction so that it is available in synchronized diagram editors. This <IAction>, when executed, deletes the selected top most <View> of the selected <View>
- * that shares the same <EObject> and removes its reference from the <Diagram>. For example, if a name showing label that is a child of a node is selected, the entire node will be deleted, instead of
- * only the label. It is not meant to be used but in MOSKitt editors.
+ * An override of the GMF DeleteFromDiagramAction so that it is available in synchronized diagram
+ * editors. This <IAction>, when executed, deletes the selected top most <View> of the selected
+ * <View> that shares the same <EObject> and removes its reference from the <Diagram>. For example,
+ * if a name showing label that is a child of a node is selected, the entire node will be deleted,
+ * instead of only the label. It is not meant to be used but in MOSKitt editors.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
-public class DeleteFromDiagramAction extends org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction {
+public class DeleteFromDiagramAction extends
+		org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction {
 
 	/**
 	 * Instantiates a new delete from diagram action.
@@ -61,7 +64,9 @@ public class DeleteFromDiagramAction extends org.eclipse.gmf.runtime.diagram.ui.
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction#createTargetRequest()
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction#createTargetRequest
+	 * ()
 	 */
 	@Override
 	protected Request createTargetRequest() {
@@ -82,7 +87,8 @@ public class DeleteFromDiagramAction extends org.eclipse.gmf.runtime.diagram.ui.
 	}
 
 	/**
-	 * The returned <Command> will delete the top most <View> of the selected <View> that share the same underlying <EObject>.
+	 * The returned <Command> will delete the top most <View> of the selected <View> that share the
+	 * same underlying <EObject>.
 	 * 
 	 * @return the command
 	 */
@@ -98,7 +104,8 @@ public class DeleteFromDiagramAction extends org.eclipse.gmf.runtime.diagram.ui.
 			/* Send the request to the edit part */
 			if (editPart instanceof IGraphicalEditPart) {
 				final View view = getViewToDelete((IGraphicalEditPart) editPart);
-				EditPart editPartToDelete = (EditPart) ((IGraphicalEditPart) editPart).getViewer().getEditPartRegistry().get(view);
+				EditPart editPartToDelete = (EditPart) ((IGraphicalEditPart) editPart).getViewer()
+						.getEditPartRegistry().get(view);
 				Command command = editPartToDelete.getCommand(createDeleteFromDiagramRequest());
 				if (command != null) {
 					deleteCC.add(command);
@@ -118,11 +125,14 @@ public class DeleteFromDiagramAction extends org.eclipse.gmf.runtime.diagram.ui.
 	 */
 	protected View getViewToDelete(IGraphicalEditPart editPart) {
 		IGraphicalEditPart editPartToDelete = editPart;
-		IGraphicalEditPart auxEditPart = editPartToDelete.getParent() instanceof IGraphicalEditPart ? (IGraphicalEditPart) editPartToDelete.getParent() : null;
+		IGraphicalEditPart auxEditPart = editPartToDelete.getParent() instanceof IGraphicalEditPart ? (IGraphicalEditPart) editPartToDelete
+				.getParent()
+				: null;
 
 		while (checkShareSameEObject(auxEditPart, editPartToDelete)) {
 			editPartToDelete = auxEditPart;
-			auxEditPart = auxEditPart.getParent() instanceof IGraphicalEditPart ? (IGraphicalEditPart) auxEditPart.getParent() : null;
+			auxEditPart = auxEditPart.getParent() instanceof IGraphicalEditPart ? (IGraphicalEditPart) auxEditPart
+					.getParent() : null;
 		}
 
 		if (editPartToDelete != null) {
@@ -167,7 +177,8 @@ public class DeleteFromDiagramAction extends org.eclipse.gmf.runtime.diagram.ui.
 	public void refresh() {
 		super.refresh();
 		/*
-		 * Disable the action if any selected editpart returns an unexecutable command for our request
+		 * Disable the action if any selected editpart returns an unexecutable command for our
+		 * request
 		 */
 		Command command = getCommand();
 		if (command != null && command.canExecute() == false) {

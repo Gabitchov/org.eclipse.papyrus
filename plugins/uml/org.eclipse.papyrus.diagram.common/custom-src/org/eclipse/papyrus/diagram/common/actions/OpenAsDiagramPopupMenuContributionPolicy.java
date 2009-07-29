@@ -22,7 +22,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 import org.eclipse.uml2.uml.Package;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class OpenAsDiagramPopupMenuContributionPolicy.
@@ -34,7 +33,9 @@ public class OpenAsDiagramPopupMenuContributionPolicy implements IPopupMenuContr
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.IPopupMenuContributionPolicy#appliesTo(org.eclipse.jface.viewers.ISelection,
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.IPopupMenuContributionPolicy
+	 * #appliesTo(org.eclipse.jface.viewers.ISelection,
 	 * org.eclipse.core.runtime.IConfigurationElement)
 	 */
 	public boolean appliesTo(ISelection selection, IConfigurationElement configuration) {
@@ -48,7 +49,8 @@ public class OpenAsDiagramPopupMenuContributionPolicy implements IPopupMenuContr
 			if (first instanceof IGraphicalEditPart) {
 				EObject element = ((IGraphicalEditPart) first).resolveSemanticElement();
 				View view = ((IGraphicalEditPart) first).getNotationView();
-				if (MultiDiagramUtil.getDiagramsAssociatedToView(view.getDiagram()).size() > 0 && element instanceof Package) {
+				if (MultiDiagramUtil.getDiagramsAssociatedToView(view.getDiagram()).size() > 0
+						&& element instanceof Package) {
 					return true;
 				}
 			}

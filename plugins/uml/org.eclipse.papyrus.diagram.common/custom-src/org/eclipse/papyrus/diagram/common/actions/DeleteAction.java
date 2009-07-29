@@ -27,9 +27,9 @@ import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrappe
 import org.eclipse.papyrus.diagram.common.commands.DeleteCommand;
 import org.eclipse.papyrus.diagram.common.commands.DeleteDiagramCommand;
 
-
 /**
- * An specialization of <DeleteAction> that allows to delete <Diagram>s in the MOSKitt model navigator.
+ * An specialization of <DeleteAction> that allows to delete <Diagram>s in the MOSKitt model
+ * navigator.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 

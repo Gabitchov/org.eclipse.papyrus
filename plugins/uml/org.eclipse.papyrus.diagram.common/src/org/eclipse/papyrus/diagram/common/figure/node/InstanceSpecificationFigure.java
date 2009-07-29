@@ -30,6 +30,7 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * this is the figure to represent a classifier.
+ * 
  * @deprecated use CompartmentFigure instead
  */
 
@@ -86,14 +87,16 @@ public class InstanceSpecificationFigure extends NodeNamedElementFigure {
 
 			Rectangle elementBound = new Rectangle(contentPane.getBounds());
 			// display Attribtutes
-			Rectangle enumerationBound = new Rectangle(elementBound.getTopLeft().x, elementBound.getTopLeft().y, getBounds().width, 10);
+			Rectangle enumerationBound = new Rectangle(elementBound.getTopLeft().x, elementBound.getTopLeft().y,
+					getBounds().width, 10);
 			// getBounds().height-height);
 
 			if (getGMFSlotElementContainer() != null) {
 				if (!getGMFSlotElementContainer().isExpanded()) {
 					enumerationBound.height = 10;
 				} else {
-					enumerationBound.height = wrappedLabelSize * (getGMFSlotElementContainer().getContentPane().getChildren().size() + 1);
+					enumerationBound.height = wrappedLabelSize
+							* (getGMFSlotElementContainer().getContentPane().getChildren().size() + 1);
 				}
 			}
 			// graphics.drawLine(elementBound.getBottomLeft(), elementBound.getBottomRight());
@@ -109,7 +112,8 @@ public class InstanceSpecificationFigure extends NodeNamedElementFigure {
 			if (getGMFSlotElementContainer() != null) {
 				getGMFSlotElementContainer().setBounds(lastRectangle);
 			}
-			contentPane.getBounds().setSize(getBounds().width, getBounds().y + getBounds().height - contentPane.getBounds().y);
+			contentPane.getBounds().setSize(getBounds().width,
+					getBounds().y + getBounds().height - contentPane.getBounds().y);
 		}
 
 	}
@@ -199,8 +203,9 @@ public class InstanceSpecificationFigure extends NodeNamedElementFigure {
 	 * {@inheritDoc}
 	 */
 	/**
-	 * Helper method to draw separation lines between name and compartements inside ClassifierFigure. It renders also the ClassifierFigure in case one represent an abstract or active class. This
-	 * method is subject to be redefined in subclasses,
+	 * Helper method to draw separation lines between name and compartements inside
+	 * ClassifierFigure. It renders also the ClassifierFigure in case one represent an abstract or
+	 * active class. This method is subject to be redefined in subclasses,
 	 * 
 	 * @param graphics
 	 */
@@ -214,8 +219,9 @@ public class InstanceSpecificationFigure extends NodeNamedElementFigure {
 		fProperty = this.getSlotCompartmentFigure();
 
 		/**
-		 * y is used for store y-axis coordinates of seration lines between properties, methods and nested classes x is the x-axis coordinate of the left point of sepration lines w is the length of
-		 * lines n is the number of lines to be drawn
+		 * y is used for store y-axis coordinates of seration lines between properties, methods and
+		 * nested classes x is the x-axis coordinate of the left point of sepration lines w is the
+		 * length of lines n is the number of lines to be drawn
 		 */
 		int y[] = { 0, 0, 0, 0 }, x = getBounds().x, w = getBounds().width, n = 0;
 

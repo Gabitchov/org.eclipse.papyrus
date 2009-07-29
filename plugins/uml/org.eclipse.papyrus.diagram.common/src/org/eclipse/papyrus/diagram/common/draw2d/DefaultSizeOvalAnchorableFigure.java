@@ -21,8 +21,10 @@ import org.eclipse.gmf.runtime.gef.ui.figures.SlidableOvalAnchor;
 
 /**
  * 
- * This figure has advantages of both OvalAnchorableFigure(org.eclipse.gmf.runtime.gef.ui.internal.figures.OvalFigure) and DefaultSizeNodeFigure Figure is created with a specified default size, links
- * are attached to an oval, not to a rectangles.
+ * This figure has advantages of both
+ * OvalAnchorableFigure(org.eclipse.gmf.runtime.gef.ui.internal.figures.OvalFigure) and
+ * DefaultSizeNodeFigure Figure is created with a specified default size, links are attached to an
+ * oval, not to a rectangles.
  * 
  */
 public class DefaultSizeOvalAnchorableFigure extends DefaultSizeNodeFigure implements IOvalAnchorableFigure {
@@ -41,7 +43,8 @@ public class DefaultSizeOvalAnchorableFigure extends DefaultSizeNodeFigure imple
 	}
 
 	/**
-	 * @return Rectangle that bounds the oval that is to be drawn. This may or may not be the same as the bounds of the figure itself.
+	 * @return Rectangle that bounds the oval that is to be drawn. This may or may not be the same
+	 *         as the bounds of the figure itself.
 	 */
 	public Rectangle getOvalBounds() {
 		Rectangle r = getBounds();

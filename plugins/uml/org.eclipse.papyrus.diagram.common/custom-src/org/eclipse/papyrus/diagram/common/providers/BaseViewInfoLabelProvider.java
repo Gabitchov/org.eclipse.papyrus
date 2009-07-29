@@ -50,7 +50,8 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
+	 * @seeorg.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.
+	 * ILabelProviderListener)
 	 */
 	public void addListener(ILabelProviderListener listener) {
 		// nothing to do
@@ -68,7 +69,8 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object,
+	 * java.lang.String)
 	 */
 	public boolean isLabelProperty(Object element, String property) {
 		// TODO Auto-generated method stub
@@ -78,7 +80,8 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
+	 * @seeorg.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.
+	 * ILabelProviderListener)
 	 */
 	public void removeListener(ILabelProviderListener listener) {
 		// nothing to do

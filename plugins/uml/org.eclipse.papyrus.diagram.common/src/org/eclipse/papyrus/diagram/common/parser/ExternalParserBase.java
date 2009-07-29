@@ -104,7 +104,8 @@ public abstract class ExternalParserBase {
 		if (allowedTypes.isEmpty()) {
 			return;
 		}
-		LookupResolveRequest request = new LookupResolveRequest(allowedTypes, UMLPackage.eINSTANCE.getNamedElement_Name(), name);
+		LookupResolveRequest request = new LookupResolveRequest(allowedTypes, UMLPackage.eINSTANCE
+				.getNamedElement_Name(), name);
 		myLookupResolver.addLookupResolveRequest(request, callback);
 	}
 

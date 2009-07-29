@@ -36,7 +36,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 
 	private RectangleFigure shapeCompartment;
 
-//	private Rectangle header = new Rectangle();
+	// private Rectangle header = new Rectangle();
 
 	/**
 	 * this is the layout manager in charge to place element in the enumeration
@@ -76,9 +76,9 @@ public class PackageFigure extends NodeNamedElementFigure {
 				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
 				if (i > 0) {
 					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
-					bound.x = getBounds().x+3;
+					bound.x = getBounds().x + 3;
 				} else {
-					bound.x = getBounds().x+3;
+					bound.x = getBounds().x + 3;
 					bound.y = getBounds().y;
 
 				}
@@ -87,7 +87,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 			// container
 			Rectangle lastRectangle = getPackageableElementFigure().getBounds();
 			lastRectangle.height = getBounds().y + getBounds().height - lastRectangle.y;
-			lastRectangle.x=lastRectangle.x-3;
+			lastRectangle.x = lastRectangle.x - 3;
 			lastRectangle.width = getBounds().width;
 			getPackageableElementFigure().setBounds(lastRectangle);
 			if (getGMFPackageableElementContainer() != null) {
@@ -145,7 +145,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 			}
 			headerBound.height += currentchild.getPreferredSize().height + 2;
 		}
-		//header = headerBound;
+		// header = headerBound;
 		return headerBound;
 	}
 
@@ -168,10 +168,8 @@ public class PackageFigure extends NodeNamedElementFigure {
 		// draw header
 		Rectangle containerBound = new Rectangle(getHeader());
 
-		
 		paintBackground(graphics, containerBound);
 		paintBackground(graphics, getPackageableElementFigure().getBounds());
-
 
 		graphics.drawRectangle(containerBound);
 

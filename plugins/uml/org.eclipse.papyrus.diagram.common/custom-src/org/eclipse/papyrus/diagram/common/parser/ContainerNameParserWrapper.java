@@ -24,11 +24,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 
-
 // TODO: Auto-generated Javadoc
 /**
- * A wrapper parser that adds a new line with the name of the container of the parsed element if the container <View> is not the container element of the model. Must be created over another <IParser>.
- * Will forward most operations to that <IParser>.
+ * A wrapper parser that adds a new line with the name of the container of the parsed element if the
+ * container <View> is not the container element of the model. Must be created over another
+ * <IParser>. Will forward most operations to that <IParser>.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
@@ -62,7 +62,9 @@ public class ContainerNameParserWrapper implements ISemanticParser {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#areSemanticElementsAffected(org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * @see
+	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#areSemanticElementsAffected
+	 * (org.eclipse.emf.ecore.EObject, java.lang.Object)
 	 */
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		if (realParser instanceof ISemanticParser) {
@@ -74,7 +76,9 @@ public class ContainerNameParserWrapper implements ISemanticParser {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#getSemanticElementsBeingParsed(org.eclipse.emf.ecore.EObject)
+	 * @see
+	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#getSemanticElementsBeingParsed
+	 * (org.eclipse.emf.ecore.EObject)
 	 */
 	public List getSemanticElementsBeingParsed(EObject element) {
 		if (realParser instanceof ISemanticParser) {
@@ -86,7 +90,9 @@ public class ContainerNameParserWrapper implements ISemanticParser {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getCompletionProcessor(org.eclipse.core.runtime.IAdaptable)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getCompletionProcessor(org.eclipse
+	 * .core.runtime.IAdaptable)
 	 */
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		if (realParser instanceof ISemanticParser) {
@@ -98,7 +104,9 @@ public class ContainerNameParserWrapper implements ISemanticParser {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getEditString(org.eclipse.core.runtime.IAdaptable, int)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getEditString(org.eclipse.core.
+	 * runtime.IAdaptable, int)
 	 */
 	public String getEditString(IAdaptable element, int flags) {
 		return realParser != null ? realParser.getEditString(element, flags) : NoParserString;
@@ -107,16 +115,21 @@ public class ContainerNameParserWrapper implements ISemanticParser {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getParseCommand(org.eclipse.core.runtime.IAdaptable, java.lang.String, int)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getParseCommand(org.eclipse.core
+	 * .runtime.IAdaptable, java.lang.String, int)
 	 */
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		return realParser != null ? realParser.getParseCommand(element, newString, flags) : UnexecutableCommand.INSTANCE;
+		return realParser != null ? realParser.getParseCommand(element, newString, flags)
+				: UnexecutableCommand.INSTANCE;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getPrintString(org.eclipse.core
+	 * .runtime.IAdaptable, int)
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		String realString = realParser != null ? realParser.getPrintString(element, flags) : NoParserString;
@@ -181,7 +194,9 @@ public class ContainerNameParserWrapper implements ISemanticParser {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isAffectingEvent(java.lang.Object, int)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isAffectingEvent(java.lang.Object,
+	 * int)
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
 		return realParser instanceof IParser ? (realParser).isAffectingEvent(event, flags) : true;
@@ -190,7 +205,9 @@ public class ContainerNameParserWrapper implements ISemanticParser {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isValidEditString(org.eclipse.core.runtime.IAdaptable, java.lang.String)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isValidEditString(org.eclipse.core
+	 * .runtime.IAdaptable, java.lang.String)
 	 */
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return realParser instanceof IParser ? (realParser).isValidEditString(element, editString) : null;

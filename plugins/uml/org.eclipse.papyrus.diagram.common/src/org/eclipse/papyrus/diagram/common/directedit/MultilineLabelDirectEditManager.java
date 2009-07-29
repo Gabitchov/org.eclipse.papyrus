@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.directedit;
 
 import org.eclipse.gef.GraphicalEditPart;
@@ -21,7 +21,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * DirectEdit manager for multi lines label managed by a LabelControlerManager. It is intended to be used in conjunction with LabelDirectEditPolicy and LabelControler.
+ * DirectEdit manager for multi lines label managed by a LabelControlerManager. It is intended to be
+ * used in conjunction with LabelDirectEditPolicy and LabelControler.
  */
 public class MultilineLabelDirectEditManager extends LabelDirectEditManager {
 
@@ -34,14 +35,16 @@ public class MultilineLabelDirectEditManager extends LabelDirectEditManager {
 	 * @param source
 	 *            The EditPart owning the label.
 	 */
-	public MultilineLabelDirectEditManager(GraphicalEditPart source, CellEditorLocator locator, ILabelControler labelCtrl) {
+	public MultilineLabelDirectEditManager(GraphicalEditPart source, CellEditorLocator locator,
+			ILabelControler labelCtrl) {
 		super(source, locator, labelCtrl);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gef.tools.DirectEditManager#createCellEditorOn(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.gef.tools.DirectEditManager#createCellEditorOn(org.eclipse.swt.widgets.Composite)
 	 */
 	/**
 	 * 

@@ -16,8 +16,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * Provides images (icons) and text (labels) for IAdaptable elements. This
- * implementation can handle IElementType elements.
+ * Provides images (icons) and text (labels) for IAdaptable elements. This implementation can handle
+ * IElementType elements.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @NOT-generated
@@ -40,8 +40,7 @@ public class BaseModelTypeProvider implements IModelTypesProvider {
 	 * Returns the display name of the given IElementType
 	 */
 	public String getTextHelper(IAdaptable hint) {
-		IElementType elementType = (IElementType) Platform.getAdapterManager()
-				.getAdapter(hint, IElementType.class);
+		IElementType elementType = (IElementType) Platform.getAdapterManager().getAdapter(hint, IElementType.class);
 		if (elementType != null) {
 			return elementType.getDisplayName();
 		}

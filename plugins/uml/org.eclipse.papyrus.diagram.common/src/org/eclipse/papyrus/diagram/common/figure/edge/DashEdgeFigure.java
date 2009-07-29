@@ -21,8 +21,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * Patrick This is a custom figure to represents a default edge. This code was used in Papyrus 1. This edge figure is painted using dashes. This is the base figure for dependencies, for exempale
- *@deprecated
+ * Patrick This is a custom figure to represents a default edge. This code was used in Papyrus 1.
+ * This edge figure is painted using dashes. This is the base figure for dependencies, for exempale
+ * 
+ * @deprecated
  */
 public class DashEdgeFigure extends PolylineConnectionEx {
 
@@ -68,7 +70,8 @@ public class DashEdgeFigure extends PolylineConnectionEx {
 	}
 
 	/**
-	 * Sets initial Style for the figure. It does not give any special Color for Background and Foreground. This is the style used for classic arrows: ------>
+	 * Sets initial Style for the figure. It does not give any special Color for Background and
+	 * Foreground. This is the style used for classic arrows: ------>
 	 */
 	protected void setStyle() {
 		PolylineDecoration dec = new PolylineDecoration();

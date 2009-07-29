@@ -37,7 +37,8 @@ public class ApplicableStereotypesItemProvider extends AbstractContributionItemP
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.AbstractContributionItemProvider#createMenuManager(java.lang.String,
+	 * @seeorg.eclipse.gmf.runtime.common.ui.services.action.contributionitem.
+	 * AbstractContributionItemProvider#createMenuManager(java.lang.String,
 	 * org.eclipse.gmf.runtime.common.ui.util.IWorkbenchPartDescriptor)
 	 */
 	@Override
@@ -45,7 +46,8 @@ public class ApplicableStereotypesItemProvider extends AbstractContributionItemP
 		if (!MENU_APPLY_STEREOTYPE.equals(menuId)) {
 			return super.createMenuManager(menuId, partDescriptor);
 		}
-		MenuManager menuManager = new MenuManager(CustomMessages.ApplicableStereotypesItemProvider_apply_stereotype_menu_label);
+		MenuManager menuManager = new MenuManager(
+				CustomMessages.ApplicableStereotypesItemProvider_apply_stereotype_menu_label);
 		MenuBuilder builder = new MenuBuilder(partDescriptor);
 		// XXX: build initial content -- otherwise menu is never shown
 		builder.buildMenu(menuManager);
@@ -75,7 +77,9 @@ public class ApplicableStereotypesItemProvider extends AbstractContributionItemP
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.jface.action.IMenuListener#menuAboutToShow(org.eclipse.jface.action.IMenuManager)
+		 * @see
+		 * org.eclipse.jface.action.IMenuListener#menuAboutToShow(org.eclipse.jface.action.IMenuManager
+		 * )
 		 */
 		public void menuAboutToShow(IMenuManager manager) {
 			buildMenu(manager);

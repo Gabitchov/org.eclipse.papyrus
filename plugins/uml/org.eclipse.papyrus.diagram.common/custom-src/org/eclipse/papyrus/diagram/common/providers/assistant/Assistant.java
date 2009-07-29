@@ -16,9 +16,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 
 /**
- * An assistant that can add or remove element types to various EditPart.
- * Created for the 'es.cv.gvcase.mdt.common.editorAssistantProvider' extension
- * point.
+ * An assistant that can add or remove element types to various EditPart. Created for the
+ * 'es.cv.gvcase.mdt.common.editorAssistantProvider' extension point.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 
@@ -39,8 +38,7 @@ public class Assistant {
 	public List customizeTypesForEditPart(EditPart editPart, List types) {
 		for (AssistedEditPart assistedEditPart : this.AssistedEditPart) {
 			if (assistedEditPart.editPartClass != null) {
-				if (MDTUtil.isOfType(editPart.getClass(),
-						assistedEditPart.editPartClass)) {
+				if (MDTUtil.isOfType(editPart.getClass(), assistedEditPart.editPartClass)) {
 					types = assistedEditPart.customizeTypes(types);
 				}
 			}

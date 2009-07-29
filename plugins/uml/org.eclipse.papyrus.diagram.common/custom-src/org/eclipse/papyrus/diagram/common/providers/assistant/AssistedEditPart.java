@@ -15,8 +15,8 @@ import java.util.List;
 import org.eclipse.core.runtime.Platform;
 
 /**
- * A customization to add or remove IElementTypes for an EditPart. Created for
- * the 'es.cv.gvcase.mdt.common.editorAssistantProvider' extension point.
+ * A customization to add or remove IElementTypes for an EditPart. Created for the
+ * 'es.cv.gvcase.mdt.common.editorAssistantProvider' extension point.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 
@@ -40,9 +40,8 @@ public class AssistedEditPart {
 		types = removeTypes(types);
 		types = addTypes(types);
 		if (customizerClass != null) {
-			AssistantCustomizeEditPart assistant = (AssistantCustomizeEditPart) Platform
-					.getAdapterManager().getAdapter(customizerClass,
-							AssistantCustomizeEditPart.class);
+			AssistantCustomizeEditPart assistant = (AssistantCustomizeEditPart) Platform.getAdapterManager()
+					.getAdapter(customizerClass, AssistantCustomizeEditPart.class);
 			if (assistant != null) {
 				types = assistant.customizeTypes(types);
 			}

@@ -22,7 +22,6 @@ import org.eclipse.papyrus.diagram.common.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.ui.IWorkbenchPage;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * "Open as diagram" action for context menu.

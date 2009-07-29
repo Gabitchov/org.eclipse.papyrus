@@ -21,8 +21,7 @@ import org.eclipse.ui.IEditorPart;
 public interface IMOSKittEditorFactory {
 
 	/**
-	 * True if it can provide an {@link IEditorPart} for the given
-	 * {@link Object}.
+	 * True if it can provide an {@link IEditorPart} for the given {@link Object}.
 	 * 
 	 * @param object
 	 * @return

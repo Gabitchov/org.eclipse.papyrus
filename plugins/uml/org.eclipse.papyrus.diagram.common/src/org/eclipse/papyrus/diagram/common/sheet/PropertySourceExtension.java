@@ -22,12 +22,14 @@ public class PropertySourceExtension extends EMFCompositePropertySource {
 
 	private final AdapterFactory myItemProvidersAdapterFactory;
 
-	protected PropertySourceExtension(Object object, IItemPropertySource itemPropertySource, String category, AdapterFactory itemProvidersAdapterFactory) {
+	protected PropertySourceExtension(Object object, IItemPropertySource itemPropertySource, String category,
+			AdapterFactory itemProvidersAdapterFactory) {
 		super(object, itemPropertySource, category);
 		myItemProvidersAdapterFactory = itemProvidersAdapterFactory;
 	}
 
-	public PropertySourceExtension(Object object, IItemPropertySource itemPropertySource, AdapterFactory itemProvidersAdapterFactory) {
+	public PropertySourceExtension(Object object, IItemPropertySource itemPropertySource,
+			AdapterFactory itemProvidersAdapterFactory) {
 		super(object, itemPropertySource);
 		myItemProvidersAdapterFactory = itemProvidersAdapterFactory;
 	}
@@ -35,7 +37,8 @@ public class PropertySourceExtension extends EMFCompositePropertySource {
 	@Override
 	protected IPropertyDescriptor newPropertyDescriptor(IItemPropertyDescriptor itemPropertyDescriptor) {
 		if (itemPropertyDescriptor.getFeature(object) instanceof EReference && !itemPropertyDescriptor.isMany(object)) {
-			return new ReferencePropertyDescriptor(object, itemPropertyDescriptor, getCategory(), myItemProvidersAdapterFactory);
+			return new ReferencePropertyDescriptor(object, itemPropertyDescriptor, getCategory(),
+					myItemProvidersAdapterFactory);
 		}
 		return super.newPropertyDescriptor(itemPropertyDescriptor);
 	}

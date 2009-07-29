@@ -16,7 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Wrapper interface for generated model switches.
  * 
- * @param <T>  *
+ * @param <T>
+ *            *
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
 public interface EcoreSwitch<T, I> {

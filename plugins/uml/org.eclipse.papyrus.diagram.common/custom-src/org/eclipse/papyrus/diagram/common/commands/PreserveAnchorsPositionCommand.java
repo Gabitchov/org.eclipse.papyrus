@@ -33,22 +33,21 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * This class modifies the anchors of the edges connected to the passed element
- * so that they can preserve their position after the resize of the figure. If
- * any of the anchors does not fit in the new size, then no change will be made
- * to the anchors and the command error result will be returned. If everything
- * went OK, then a command OK result will be returned.
+ * This class modifies the anchors of the edges connected to the passed element so that they can
+ * preserve their position after the resize of the figure. If any of the anchors does not fit in the
+ * new size, then no change will be made to the anchors and the command error result will be
+ * returned. If everything went OK, then a command OK result will be returned.
  * 
- * This class allows to preserve the position in the Y axis, in the X axis or in
- * both axis.
+ * This class allows to preserve the position in the Y axis, in the X axis or in both axis.
  * 
  * @author gmerin
  * 
  */
-public class PreserveAnchorsPositionCommand extends
-		AbstractTransactionalCommand {
+public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand {
+
 	// The Shape being resized
 	private ShapeNodeEditPart shapeEP;
+
 	// The size delta aplied to the shape
 	private Dimension sizeDelta;
 
@@ -56,18 +55,20 @@ public class PreserveAnchorsPositionCommand extends
 
 	// Command's label
 	protected final static String COMMAND_LABEL = "Modify Anchors to Preserve Position";
+
 	// Command's error message
 	protected final static String COMMAND_ERROR_MESSAGE = "One of the anchors is left outside of the new figure's size";
 
 	// Constants to describe which axis position should be preserved
 	public final static int PRESERVE_Y = 0;
+
 	public final static int PRESERVE_X = 1;
+
 	public final static int PRESERVE_XY = 2;
 
 	/**
-	 * Constructor. It needs the shape being resized, it's re-size delta and the
-	 * axis where the position should be preserved. The different preserveAxis
-	 * values are the following:
+	 * Constructor. It needs the shape being resized, it's re-size delta and the axis where the
+	 * position should be preserved. The different preserveAxis values are the following:
 	 * <ul>
 	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_Y</li>
 	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_X</li>
@@ -79,11 +80,10 @@ public class PreserveAnchorsPositionCommand extends
 	 * @param sizeDelta
 	 *            the re-size delta
 	 * @param preserveAxis
-	 *            the axis where the position should be preserved. If the given
-	 *            value is not valid, then PRESERVE_Y will be taken as default
+	 *            the axis where the position should be preserved. If the given value is not valid,
+	 *            then PRESERVE_Y will be taken as default
 	 */
-	public PreserveAnchorsPositionCommand(ShapeNodeEditPart shapeEP,
-			Dimension sizeDelta, int preserveAxis) {
+	public PreserveAnchorsPositionCommand(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis) {
 		super(shapeEP.getEditingDomain(), COMMAND_LABEL, null);
 		setShapeEP(shapeEP);
 		setSizeDelta(sizeDelta);
@@ -97,8 +97,7 @@ public class PreserveAnchorsPositionCommand extends
 	 *            the new preserveAxis value
 	 */
 	public void setPreserveAxis(int preserveAxis) {
-		if (preserveAxis != PRESERVE_Y && preserveAxis != PRESERVE_X
-				&& preserveAxis != PRESERVE_XY)
+		if (preserveAxis != PRESERVE_Y && preserveAxis != PRESERVE_X && preserveAxis != PRESERVE_XY)
 			this.preserveAxis = PRESERVE_Y;
 		else
 			this.preserveAxis = preserveAxis;
@@ -172,8 +171,7 @@ public class PreserveAnchorsPositionCommand extends
 	 * Execution of the command
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		View view = getView();
 
@@ -217,9 +215,7 @@ public class PreserveAnchorsPositionCommand extends
 		// error result
 		if (isOk) {
 			for (Entry<IdentityAnchor, String> entry : hashMap.entrySet()) {
-				entry.getKey().eSet(
-						NotationPackage.eINSTANCE.getIdentityAnchor_Id(),
-						entry.getValue());
+				entry.getKey().eSet(NotationPackage.eINSTANCE.getIdentityAnchor_Id(), entry.getValue());
 			}
 			return CommandResult.newOKCommandResult();
 		} else {
@@ -238,18 +234,15 @@ public class PreserveAnchorsPositionCommand extends
 		Dimension sizeDelta = getSizeDelta();
 		Rectangle figureBounds = getFigureBounds();
 
-		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(anchor
-				.getId());
+		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(anchor.getId());
 
 		if (getPreserveAxis() == PRESERVE_Y || getPreserveAxis() == PRESERVE_XY) {
-			int anchorYPos = (int) Math
-					.round(figureBounds.height * pp.preciseY);
+			int anchorYPos = (int) Math.round(figureBounds.height * pp.preciseY);
 
 			if (anchorYPos > (figureBounds.height + sizeDelta.height))
 				return null;
 
-			pp.preciseY = (double) anchorYPos
-					/ (figureBounds.height + sizeDelta.height);
+			pp.preciseY = (double) anchorYPos / (figureBounds.height + sizeDelta.height);
 		}
 
 		if (getPreserveAxis() == PRESERVE_X || getPreserveAxis() == PRESERVE_XY) {
@@ -258,8 +251,7 @@ public class PreserveAnchorsPositionCommand extends
 			if (anchorXPos > (figureBounds.width + sizeDelta.width))
 				return null;
 
-			pp.preciseX = (double) anchorXPos
-					/ (figureBounds.width + sizeDelta.width);
+			pp.preciseX = (double) anchorXPos / (figureBounds.width + sizeDelta.width);
 		}
 
 		String idStr = (new BaseSlidableAnchor(null, pp)).getTerminal();
@@ -267,8 +259,8 @@ public class PreserveAnchorsPositionCommand extends
 	}
 
 	/**
-	 * This operation checks if, after resizing the ShapeNodeEditPart, all links
-	 * anchors will fit inside the figure in case their positions are preserved
+	 * This operation checks if, after resizing the ShapeNodeEditPart, all links anchors will fit
+	 * inside the figure in case their positions are preserved
 	 * 
 	 * @param shapeEP
 	 *            That shape being resized
@@ -278,8 +270,7 @@ public class PreserveAnchorsPositionCommand extends
 	 *            The axisxxx
 	 * @return The new SizeDelta to preserve anchors' positions
 	 */
-	public static Dimension getSizeDeltaToFitAnchors(ShapeNodeEditPart shapeEP,
-			Dimension sizeDelta, int preserveAxis) {
+	public static Dimension getSizeDeltaToFitAnchors(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis) {
 
 		Dimension newSizeDelta = new Dimension(sizeDelta);
 		View view = (View) shapeEP.getModel();
@@ -290,22 +281,19 @@ public class PreserveAnchorsPositionCommand extends
 
 		for (Edge edge : sourceList) {
 			IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
-			modifySizeDeltaToFitAnchor(anchor, newSizeDelta, preserveAxis,
-					figureBounds);
+			modifySizeDeltaToFitAnchor(anchor, newSizeDelta, preserveAxis, figureBounds);
 		}
 		for (Edge edge : targetList) {
 			IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
-			modifySizeDeltaToFitAnchor(anchor, newSizeDelta, preserveAxis,
-					figureBounds);
+			modifySizeDeltaToFitAnchor(anchor, newSizeDelta, preserveAxis, figureBounds);
 		}
 
 		return newSizeDelta;
 	}
 
 	/**
-	 * Used inside the getSizeDeltaToFitAnchors operation. It's goal is to
-	 * modify a SizeDelta in order to keep fitting an anchor within the
-	 * figureBounds
+	 * Used inside the getSizeDeltaToFitAnchors operation. It's goal is to modify a SizeDelta in
+	 * order to keep fitting an anchor within the figureBounds
 	 * 
 	 * @param anchor
 	 *            The anchor whose position will be kept
@@ -313,16 +301,14 @@ public class PreserveAnchorsPositionCommand extends
 	 * @param preserveAxis
 	 * @param figureBounds
 	 */
-	protected static void modifySizeDeltaToFitAnchor(IdentityAnchor anchor,
-			Dimension sizeDelta, int preserveAxis, Rectangle figureBounds) {
-		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(anchor
-				.getId());
+	protected static void modifySizeDeltaToFitAnchor(IdentityAnchor anchor, Dimension sizeDelta, int preserveAxis,
+			Rectangle figureBounds) {
+		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(anchor.getId());
 
 		int margin = 6;
 
 		if (preserveAxis == PRESERVE_Y || preserveAxis == PRESERVE_XY) {
-			int anchorYPos = (int) Math
-					.round(figureBounds.height * pp.preciseY);
+			int anchorYPos = (int) Math.round(figureBounds.height * pp.preciseY);
 
 			int newHeight = figureBounds.height + sizeDelta.height;
 
@@ -341,20 +327,18 @@ public class PreserveAnchorsPositionCommand extends
 	}
 
 	/**
-	 * Creations of a new request in order to have a correct visualization of
-	 * the feedback in order to preserve links's anchors.
+	 * Creations of a new request in order to have a correct visualization of the feedback in order
+	 * to preserve links's anchors.
 	 * 
 	 * @param request
 	 * @param editPart
 	 * @return a replication of the request but with a SizeDelta modification
 	 */
-	public static Request getNewSourceFeedbackRequest(Request request,
-			ShapeNodeEditPart editPart) {
+	public static Request getNewSourceFeedbackRequest(Request request, ShapeNodeEditPart editPart) {
 		if (request instanceof ChangeBoundsRequest) {
 			ChangeBoundsRequest currRequest = (ChangeBoundsRequest) request;
 			Dimension oldDelta = currRequest.getSizeDelta();
-			Dimension newDelta = getSizeDeltaToFitAnchors(editPart, oldDelta,
-					PreserveAnchorsPositionCommand.PRESERVE_Y);
+			Dimension newDelta = getSizeDeltaToFitAnchors(editPart, oldDelta, PreserveAnchorsPositionCommand.PRESERVE_Y);
 			// Information for creating a new ChangeBoundsRequest has been taken
 			// from org.eclipse.gef.editpolicies.ResizableEditPolicy
 			ChangeBoundsRequest newRequest = new ChangeBoundsRequest();

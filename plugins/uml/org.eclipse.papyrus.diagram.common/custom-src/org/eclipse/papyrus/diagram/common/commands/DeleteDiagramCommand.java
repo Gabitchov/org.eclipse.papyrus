@@ -28,7 +28,8 @@ import org.eclipse.ui.PlatformUI;
 
 // TODO: Auto-generated Javadoc
 /**
- * Deletes a <Diagram> from a GMF resource. First all editors showing the <Diagram> are closed, then the <Diagram> is removed from the GMF resource.
+ * Deletes a <Diagram> from a GMF resource. First all editors showing the <Diagram> are closed, then
+ * the <Diagram> is removed from the GMF resource.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
@@ -58,7 +59,8 @@ public class DeleteDiagramCommand extends AbstractCommand {
 	}
 
 	/**
-	 * Will close all open editors that are showing this diagram, then delete the diagram from the GMF resource containing it.
+	 * Will close all open editors that are showing this diagram, then delete the diagram from the
+	 * GMF resource containing it.
 	 */
 	public void execute() {
 		if (diagram == null) {
@@ -77,8 +79,9 @@ public class DeleteDiagramCommand extends AbstractCommand {
 		}
 
 		// The diagram is Ok to be deleted. Ask user confirmation.
-		MessageDialog confirmDialog = new MessageDialog(Display.getCurrent().getActiveShell(), "Delete diagram?", null, "Are oyu sure you want to delete the selected diagram?", MessageDialog.WARNING,
-				new String[] { "Yes", "No" }, 1);
+		MessageDialog confirmDialog = new MessageDialog(Display.getCurrent().getActiveShell(), "Delete diagram?", null,
+				"Are oyu sure you want to delete the selected diagram?", MessageDialog.WARNING, new String[] { "Yes",
+						"No" }, 1);
 		int result = confirmDialog.open();
 		if (result == Window.CANCEL) {
 			return;
@@ -115,7 +118,8 @@ public class DeleteDiagramCommand extends AbstractCommand {
 	 * @return true, if checks if is diagram active
 	 */
 	protected boolean isDiagramActive() {
-		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.getActiveEditor();
 		if (activeEditor instanceof DiagramEditor) {
 			DiagramEditor diagramEditor = (DiagramEditor) activeEditor;
 			Diagram activeDiagram = diagramEditor.getDiagram();

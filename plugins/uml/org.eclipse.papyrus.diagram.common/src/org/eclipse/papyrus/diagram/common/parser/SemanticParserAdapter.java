@@ -20,11 +20,13 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 
 public class SemanticParserAdapter extends ParserAdapter implements ISemanticParser {
 
-	public SemanticParserAdapter(ExternalParserBase delegate, ApplyStrategy applier, ExternalToString.WithReferences view, ExternalToString edit) {
+	public SemanticParserAdapter(ExternalParserBase delegate, ApplyStrategy applier,
+			ExternalToString.WithReferences view, ExternalToString edit) {
 		super(delegate, applier, view, edit);
 	}
 
-	public SemanticParserAdapter(ExternalParserBase delegate, ApplyStrategy applier, ExternalToString.WithReferences viewAndEdit) {
+	public SemanticParserAdapter(ExternalParserBase delegate, ApplyStrategy applier,
+			ExternalToString.WithReferences viewAndEdit) {
 		this(delegate, applier, viewAndEdit, viewAndEdit);
 	}
 
@@ -33,7 +35,8 @@ public class SemanticParserAdapter extends ParserAdapter implements ISemanticPar
 	}
 
 	public List getSemanticElementsBeingParsed(EObject element) {
-		return isValidElement(element) ? getViewToStringImpl().getAdditionalReferencedElements(element) : Collections.EMPTY_LIST;
+		return isValidElement(element) ? getViewToStringImpl().getAdditionalReferencedElements(element)
+				: Collections.EMPTY_LIST;
 	}
 
 	private ExternalToString.WithReferences getViewToStringImpl() {

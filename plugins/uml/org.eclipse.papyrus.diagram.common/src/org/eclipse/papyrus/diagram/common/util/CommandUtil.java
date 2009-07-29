@@ -37,7 +37,7 @@ import org.eclipse.papyrus.core.utils.PapyrusTrace;
 public class CommandUtil {
 
 	/**
-	 * Executes the supplied command inside an <code>unchecked action</code> 
+	 * Executes the supplied command inside an <code>unchecked action</code>
 	 * 
 	 * Taken from the CanonicalEditPolicy class
 	 * 
@@ -59,7 +59,8 @@ public class CommandUtil {
 		if (isActivating || !EditPartUtil.isWriteTransactionInProgress(part, false, false))
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 
-		AbstractEMFOperation operation = new AbstractEMFOperation((part).getEditingDomain(), StringStatics.BLANK, options) {
+		AbstractEMFOperation operation = new AbstractEMFOperation((part).getEditingDomain(), StringStatics.BLANK,
+				options) {
 
 			@Override
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

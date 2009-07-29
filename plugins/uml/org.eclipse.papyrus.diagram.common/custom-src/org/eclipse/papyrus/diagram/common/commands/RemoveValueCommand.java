@@ -55,7 +55,9 @@ public class RemoveValueCommand extends EditElementCommand {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#
+	 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 * org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -84,7 +86,8 @@ public class RemoveValueCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Checks that the feature is a modifiable feature of the element whose value will be removed by this command. Also checks that the value is of the correct type for the feature.
+	 * Checks that the feature is a modifiable feature of the element whose value will be removed by
+	 * this command. Also checks that the value is of the correct type for the feature.
 	 * 
 	 * @return true, if can execute
 	 */

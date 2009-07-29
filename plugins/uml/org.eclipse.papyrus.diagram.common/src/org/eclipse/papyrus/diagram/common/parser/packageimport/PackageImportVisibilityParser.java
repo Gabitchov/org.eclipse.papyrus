@@ -17,11 +17,9 @@ import org.eclipse.papyrus.diagram.common.parser.structural.UMLStructuralFeature
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * Parses PackageImport visibility this way:
- * <li>public             <-> import</li>
- * <li>private            <-> access</li>
- * <li>package, protected  -> access.</li>
- * <br>
+ * Parses PackageImport visibility this way: <li>public <-> import</li> <li>private <-> access</li>
+ * <li>package, protected -> access.</li> <br>
+ * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
 public class PackageImportVisibilityParser extends UMLStructuralFeatureParser {
@@ -29,14 +27,14 @@ public class PackageImportVisibilityParser extends UMLStructuralFeatureParser {
 	protected final String stereoBegin = "\u00AB";
 
 	protected final String stereoEnd = "\u00BB";
-	
+
 	/**
 	 * Instantiates a new package import visibility parser.
 	 */
 	public PackageImportVisibilityParser() {
 		super(UMLPackage.eINSTANCE.getPackageImport_Visibility());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -44,7 +42,7 @@ public class PackageImportVisibilityParser extends UMLStructuralFeatureParser {
 	public String getEditString(IAdaptable adapter, int flags) {
 		return getPrintString(adapter, flags);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -53,10 +51,9 @@ public class PackageImportVisibilityParser extends UMLStructuralFeatureParser {
 		String visibility = super.getPrintString(adapter, flags);
 		if (visibility.toUpperCase().equals("PUBLIC")) {
 			return (stereoBegin + "import" + stereoEnd);
-		}
-		else {
+		} else {
 			return (stereoBegin + "access" + stereoEnd);
 		}
 	}
-	
+
 }

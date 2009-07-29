@@ -33,7 +33,8 @@ public abstract class AssociationNameToString extends AbstractToString {
 
 	public static class VIEW extends AssociationNameToString {
 
-		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] { UMLPackage.eINSTANCE.getAssociation_IsDerived(), UMLPackage.eINSTANCE.getNamedElement_Name(), });
+		private static final List AFFECTING = Arrays.asList(new EStructuralFeature[] {
+				UMLPackage.eINSTANCE.getAssociation_IsDerived(), UMLPackage.eINSTANCE.getNamedElement_Name(), });
 
 		public boolean isAffectingFeature(EStructuralFeature feature) {
 			return AFFECTING.contains(feature);

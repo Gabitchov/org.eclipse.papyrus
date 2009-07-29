@@ -69,7 +69,8 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 	 * @param label
 	 * @param affectedFiles
 	 */
-	public DeleteCommand(TransactionalEditingDomain domain, String label, List affectedFiles, Collection<Object> elementsToDelete) {
+	public DeleteCommand(TransactionalEditingDomain domain, String label, List affectedFiles,
+			Collection<Object> elementsToDelete) {
 		super(domain, label, affectedFiles);
 		this.elementsToDelete = elementsToDelete;
 	}
@@ -112,7 +113,8 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 	}
 
 	/**
-	 * Deletes the selected elements. Checks whether the elements to be deleted have any <Diagram>s associated and deletes those <Diagram>s too.
+	 * Deletes the selected elements. Checks whether the elements to be deleted have any <Diagram>s
+	 * associated and deletes those <Diagram>s too.
 	 * 
 	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
 	 */
@@ -136,7 +138,8 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 		boolean performDelete = true;
 		if (getAffectedDiagrams().size() > 0) {
 			String message = createMessage(getAffectedDiagrams());
-			performDelete = MessageDialog.openConfirm(PlatformUI.getWorkbench().getDisplay().getActiveShell(), "Some diagrams will be deleted", message);
+			performDelete = MessageDialog.openConfirm(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+					"Some diagrams will be deleted", message);
 		}
 		// if the user agrees or there are no affected <Diagram>s, delete all
 		// affected <Diagram>s and perform default delete
@@ -172,7 +175,8 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 					try {
 						MultiDiagramUtil.openDiagram(diagramToOpen);
 					} catch (ExecutionException ex) {
-						IStatus status = new Status(IStatus.ERROR, Activator.ID, "Cannot open diagram: " + ex.getLocalizedMessage());
+						IStatus status = new Status(IStatus.ERROR, Activator.ID, "Cannot open diagram: "
+								+ ex.getLocalizedMessage());
 						Activator.getDefault().getLog().log(status);
 						return CommandResult.newErrorCommandResult("Cannot open diagram");
 					}
@@ -194,7 +198,8 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 					Command command = ((IGraphicalEditPart) object).getCommand(request);
 					cc.add(command);
 				} else if (object instanceof EObject) {
-					Command command = new EMFtoGEFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), Collections.singletonList(object)));
+					Command command = new EMFtoGEFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(
+							getEditingDomain(), Collections.singletonList(object)));
 					cc.add(command);
 				}
 			}
@@ -219,7 +224,8 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 			try {
 				MultiDiagramUtil.openDiagram(getActiveDiagram());
 			} catch (ExecutionException ex) {
-				IStatus logStatus = new Status(IStatus.ERROR, Activator.ID, "Cannot open diagram: " + ex.getLocalizedMessage());
+				IStatus logStatus = new Status(IStatus.ERROR, Activator.ID, "Cannot open diagram: "
+						+ ex.getLocalizedMessage());
 				Activator.getDefault().getLog().log(logStatus);
 			}
 		}
@@ -266,6 +272,7 @@ public class DeleteCommand extends AbstractCommonTransactionalCommmand {
 	 * A message that informs the user that the elements can't be deleted.
 	 */
 	protected void errorActiveDiagram() {
-		MessageDialog.openInformation(PlatformUI.getWorkbench().getDisplay().getActiveShell(), "Cannot delete elements", "A root active Diagram would be deleted");
+		MessageDialog.openInformation(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+				"Cannot delete elements", "A root active Diagram would be deleted");
 	}
 }

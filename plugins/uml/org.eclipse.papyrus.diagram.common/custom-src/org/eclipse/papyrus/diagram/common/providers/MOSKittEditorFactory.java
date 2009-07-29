@@ -11,19 +11,20 @@
 package org.eclipse.papyrus.diagram.common.providers;
 
 /**
- * A MOSKittEditorFactory to parse the 'es.cv.gvcase.mdt.common.moskittEditorFactories' extension point.
+ * A MOSKittEditorFactory to parse the 'es.cv.gvcase.mdt.common.moskittEditorFactories' extension
+ * point.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
 public class MOSKittEditorFactory {
 
 	public Object factory;
-	
+
 	public String editorID;
-	
+
 	public String eClass;
-	
+
 	public String diagramType;
-	
+
 }

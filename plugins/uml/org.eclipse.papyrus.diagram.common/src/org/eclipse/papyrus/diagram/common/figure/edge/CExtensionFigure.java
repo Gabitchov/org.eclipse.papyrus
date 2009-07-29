@@ -10,11 +10,12 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.edge;
 
 /**
  * future code of the extensionFigure
+ * 
  * @deprecated
  **/
 public class CExtensionFigure extends DashEdgeFigure {
