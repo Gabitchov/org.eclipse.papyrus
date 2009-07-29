@@ -111,8 +111,8 @@ public class BisectionBorderItemLocator extends BorderItemLocator {
 					recommendedLocation.y += borderItemSize.height + vertical_gap;
 				} while (conflicts(recommendedLocation, borderItem));
 				if (recommendedLocation.y > getParentBorder().getBottomLeft().y - borderItemSize.height) { // off
-																											// the
-																											// bottom,
+					// the
+					// bottom,
 					// wrap south
 					return locateOnBorder(recommendedLocation, PositionConstants.SOUTH, circuitCount + 1, borderItem);
 				}
