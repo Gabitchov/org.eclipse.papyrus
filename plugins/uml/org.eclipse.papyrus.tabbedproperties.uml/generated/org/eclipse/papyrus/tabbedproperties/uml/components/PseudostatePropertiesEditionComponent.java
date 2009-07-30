@@ -41,6 +41,7 @@ public class PseudostatePropertiesEditionComponent extends ComposedPropertiesEdi
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 
@@ -50,52 +51,57 @@ public class PseudostatePropertiesEditionComponent extends ComposedPropertiesEdi
 	public PseudostatePropertiesEditionComponent(EObject pseudostate, String editing_mode) {
 		super(editing_mode);
 		if (pseudostate instanceof Pseudostate) {
-			pseudostateBasePropertiesEditionComponent = new PseudostateBasePropertiesEditionComponent(pseudostate, editing_mode); 
+			pseudostateBasePropertiesEditionComponent = new PseudostateBasePropertiesEditionComponent(pseudostate,
+					editing_mode);
 			addSubComponent(pseudostateBasePropertiesEditionComponent);
-			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(pseudostate, editing_mode); 	
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(pseudostate, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 *      getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (PseudostatePropertiesEditionPart)pseudostateBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart)basePart;
+			basePart = (PseudostatePropertiesEditionPart) pseudostateBasePropertiesEditionComponent
+					.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart) basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.Pseudostate.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (PseudostatePropertiesEditionPart)propertiesEditionPart;
+			basePart = (PseudostatePropertiesEditionPart) propertiesEditionPart;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.Pseudostate.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-            if (key == UMLViewsRepository.Comments.class) {
-                    super.initPart(key, kind, element, allResource);
-            
-            
-            }
+		if (key == UMLViewsRepository.Comments.class) {
+			super.initPart(key, kind, element, allResource);
+
+		}
 	}
 }
-

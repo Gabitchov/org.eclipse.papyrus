@@ -36,7 +36,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
-import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 
 /**
  * Custom class to create the associationClass node

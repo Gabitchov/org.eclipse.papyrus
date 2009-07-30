@@ -32,7 +32,7 @@ public class DependencyPropertiesEditionProvider implements IPropertiesEditionPr
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Dependency) && (UMLPackage.eINSTANCE.getDependency() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class DependencyPropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class DependencyPropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
-}	
+
+}

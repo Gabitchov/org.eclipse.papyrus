@@ -38,7 +38,8 @@ public abstract class AbstractCommonActionProvider extends CommonActionProvider 
 	}
 
 	/**
-	 * Gets the <MOSKittCommonNavigator> this <MOSKittCommonActionProvider> is associated with, via the viewerID.
+	 * Gets the <MOSKittCommonNavigator> this <MOSKittCommonActionProvider> is associated with, via
+	 * the viewerID.
 	 * 
 	 * @return the common navigator
 	 */

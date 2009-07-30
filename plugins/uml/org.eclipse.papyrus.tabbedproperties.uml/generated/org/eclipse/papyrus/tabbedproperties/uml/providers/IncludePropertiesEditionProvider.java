@@ -32,7 +32,7 @@ public class IncludePropertiesEditionProvider implements IPropertiesEditionProvi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Include) && (UMLPackage.eINSTANCE.getInclude() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class IncludePropertiesEditionProvider implements IPropertiesEditionProvi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class IncludePropertiesEditionProvider implements IPropertiesEditionProvi
 		}
 		return null;
 	}
-	
-}	
+
+}

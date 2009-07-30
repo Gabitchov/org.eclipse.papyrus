@@ -32,7 +32,7 @@ public class LiteralNullPropertiesEditionProvider implements IPropertiesEditionP
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof LiteralNull) && (UMLPackage.eINSTANCE.getLiteralNull() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class LiteralNullPropertiesEditionProvider implements IPropertiesEditionP
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class LiteralNullPropertiesEditionProvider implements IPropertiesEditionP
 		}
 		return null;
 	}
-	
-}	
+
+}

@@ -32,7 +32,7 @@ public class TimeObservationPropertiesEditionProvider implements IPropertiesEdit
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof TimeObservation) && (UMLPackage.eINSTANCE.getTimeObservation() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class TimeObservationPropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class TimeObservationPropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-	
-}	
+
+}

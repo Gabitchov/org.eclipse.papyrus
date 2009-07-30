@@ -32,7 +32,7 @@ public class ControlFlowPropertiesEditionProvider implements IPropertiesEditionP
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof ControlFlow) && (UMLPackage.eINSTANCE.getControlFlow() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ControlFlowPropertiesEditionProvider implements IPropertiesEditionP
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ControlFlowPropertiesEditionProvider implements IPropertiesEditionP
 		}
 		return null;
 	}
-	
-}	
+
+}

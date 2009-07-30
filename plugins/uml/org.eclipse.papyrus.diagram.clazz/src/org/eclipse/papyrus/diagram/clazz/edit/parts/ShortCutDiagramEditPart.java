@@ -37,6 +37,7 @@ import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ShortCutDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShortCutDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.DiagramNodeFigure;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;

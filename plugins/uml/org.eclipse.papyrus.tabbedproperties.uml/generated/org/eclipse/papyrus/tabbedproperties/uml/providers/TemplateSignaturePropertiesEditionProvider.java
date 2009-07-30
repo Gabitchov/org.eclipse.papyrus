@@ -30,9 +30,10 @@ public class TemplateSignaturePropertiesEditionProvider implements IPropertiesEd
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof TemplateSignature) && (UMLPackage.eINSTANCE.getTemplateSignature() == eObject.eClass());
+		return (eObject instanceof TemplateSignature)
+				&& (UMLPackage.eINSTANCE.getTemplateSignature() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class TemplateSignaturePropertiesEditionProvider implements IPropertiesEd
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class TemplateSignaturePropertiesEditionProvider implements IPropertiesEd
 		}
 		return null;
 	}
-	
-}	
+
+}

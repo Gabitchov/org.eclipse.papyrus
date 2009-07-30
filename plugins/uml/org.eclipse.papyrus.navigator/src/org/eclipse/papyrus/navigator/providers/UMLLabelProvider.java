@@ -23,7 +23,10 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICommonLabelProvider/* , IFontProvider */{
+public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICommonLabelProvider/*
+																								 * ,
+																								 * IFontProvider
+																								 */{
 
 	/** Registry to store editor factories */
 	private IEditorFactoryRegistry editorRegistry;
@@ -57,7 +60,8 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	}
 
 	/**
-	 * Returns the platform icon for a file. You can replace with your own icon If not a IFile, then passes to the regular EMF.Edit providers
+	 * Returns the platform icon for a file. You can replace with your own icon If not a IFile, then
+	 * passes to the regular EMF.Edit providers
 	 * 
 	 * {@inheritDoc}
 	 */
@@ -86,18 +90,20 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 		if (element instanceof Diagram) {
 			Diagram diagram = (Diagram) element;
 			return super.getText(diagram);
-			
-//			if (diagram.getSemanticModel() instanceof CoreSemanticModelBridge) {
-//				CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge) diagram.getSemanticModel();
-//				return super.getText(coreSemanticModelBridge.getElement());
-//			}
+
+			// if (diagram.getSemanticModel() instanceof CoreSemanticModelBridge) {
+			// CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge)
+			// diagram.getSemanticModel();
+			// return super.getText(coreSemanticModelBridge.getElement());
+			// }
 		}
 
 		return super.getText(element);
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return the singleton eINSTANCE. This method can be subclassed to return another registry.
+	 * Get the EditorRegistry used to create editor instances. This default implementation return
+	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 */
@@ -109,7 +115,8 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
+	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 */

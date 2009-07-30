@@ -10,69 +10,53 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.parsers.texteditor.completionproposals;
 
 import java.util.List;
 import java.util.Vector;
 
-
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.papyrus.parsers.messages.NFPMessages;
 
-
-
 public class VSL_NumberLiteral_CompletionProposal implements ICompletionProposalComputer {
-	
+
 	/** Text inserted in the editor */
-	final static private String[] TVL_NumberLiteral_Strings = {
-			"",
-			"",
-	};
+	final static private String[] TVL_NumberLiteral_Strings = { "", "", };
 
 	/** Text displayed in the information window */
-	final static private String[] TVL_NumberLiteral_StringsInfo = {
-			NFPMessages.NumberLiteral_Integer_StringsInfo,
-			NFPMessages.NumberLiteral_Real_StringsInfo,
-	}; 
+	final static private String[] TVL_NumberLiteral_StringsInfo = { NFPMessages.NumberLiteral_Integer_StringsInfo,
+			NFPMessages.NumberLiteral_Real_StringsInfo, };
 
 	/** Text displayed in the completion area window */
-	final static private String[] TVL_NumberLiteral_StringName = {
-		NFPMessages.NumberLiteral_Integer_StringName,
-		NFPMessages.NumberLiteral_Real_StringName,
-	};
+	final static private String[] TVL_NumberLiteral_StringName = { NFPMessages.NumberLiteral_Integer_StringName,
+			NFPMessages.NumberLiteral_Real_StringName, };
 
-	
 	/*
 	 * (non-Javadoc)
-	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer#generateCompletionProposals(int, int, java.lang.String)
+	 * 
+	 * @see
+	 * com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer
+	 * #generateCompletionProposals(int, int, java.lang.String)
 	 */
 	public List<ICompletionProposal> generateCompletionProposals(int documentOffset, int selectionRange, String prefix) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-		
+
 		// adds each Completion proposal
 		ICompletionProposal proposal = null;
-		
+
 		// adds all name (static strings...)
-		for(int i=0; i < TVL_NumberLiteral_Strings.length; i++) {
-			if(TVL_NumberLiteral_Strings[i].startsWith(prefix)) {
-				proposal = new CompletionProposal(
-						TVL_NumberLiteral_Strings[i],
-						documentOffset-prefix.length(),
-						prefix.length()+selectionRange,
-						TVL_NumberLiteral_Strings[i].length(),
-						null,
-						TVL_NumberLiteral_StringName[i],
-						null,
-						TVL_NumberLiteral_StringsInfo[i]);
+		for (int i = 0; i < TVL_NumberLiteral_Strings.length; i++) {
+			if (TVL_NumberLiteral_Strings[i].startsWith(prefix)) {
+				proposal = new CompletionProposal(TVL_NumberLiteral_Strings[i], documentOffset - prefix.length(),
+						prefix.length() + selectionRange, TVL_NumberLiteral_Strings[i].length(), null,
+						TVL_NumberLiteral_StringName[i], null, TVL_NumberLiteral_StringsInfo[i]);
 				v.add(proposal);
 			}
 		}
 
-
 		return v;
 	}
 }
-

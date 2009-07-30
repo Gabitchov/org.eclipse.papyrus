@@ -30,9 +30,10 @@ public class AddStructuralFeatureValueActionPropertiesEditionProvider implements
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof AddStructuralFeatureValueAction) && (UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction() == eObject.eClass());
+		return (eObject instanceof AddStructuralFeatureValueAction)
+				&& (UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class AddStructuralFeatureValueActionPropertiesEditionProvider implements
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class AddStructuralFeatureValueActionPropertiesEditionProvider implements
 		}
 		return null;
 	}
-	
-}	
+
+}

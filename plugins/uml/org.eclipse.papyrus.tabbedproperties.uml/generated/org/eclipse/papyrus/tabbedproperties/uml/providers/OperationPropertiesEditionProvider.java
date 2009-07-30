@@ -32,7 +32,7 @@ public class OperationPropertiesEditionProvider implements IPropertiesEditionPro
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Operation) && (UMLPackage.eINSTANCE.getOperation() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class OperationPropertiesEditionProvider implements IPropertiesEditionPro
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class OperationPropertiesEditionProvider implements IPropertiesEditionPro
 		}
 		return null;
 	}
-	
-}	
+
+}

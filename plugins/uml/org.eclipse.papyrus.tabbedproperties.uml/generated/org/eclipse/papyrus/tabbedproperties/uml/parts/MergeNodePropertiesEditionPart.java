@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -59,15 +58,21 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -89,10 +94,6 @@ public interface MergeNodePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the name
 	 */
@@ -100,7 +101,9 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -115,20 +118,21 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the clientDependency to add
@@ -147,15 +151,21 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *            the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -177,10 +187,6 @@ public interface MergeNodePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the isLeaf
 	 */
@@ -188,13 +194,11 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *            the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the outgoing to add
@@ -213,15 +217,21 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Init the outgoing
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOutgoing(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the outgoing
-	 * @param newValue the outgoing to update
+	 * 
+	 * @param newValue
+	 *            the outgoing to update
 	 */
 	public void updateOutgoing(EObject newValue);
 
@@ -243,10 +253,6 @@ public interface MergeNodePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOutgoing(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the incoming to add
 	 */
@@ -264,15 +270,21 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Init the incoming
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initIncoming(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the incoming
-	 * @param newValue the incoming to update
+	 * 
+	 * @param newValue
+	 *            the incoming to update
 	 */
 	public void updateIncoming(EObject newValue);
 
@@ -294,10 +306,6 @@ public interface MergeNodePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToIncoming(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the inPartition to add
 	 */
@@ -315,15 +323,21 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Init the inPartition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInPartition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the inPartition
-	 * @param newValue the inPartition to update
+	 * 
+	 * @param newValue
+	 *            the inPartition to update
 	 */
 	public void updateInPartition(EObject newValue);
 
@@ -345,10 +359,6 @@ public interface MergeNodePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToInPartition(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the inInterruptibleRegion to add
 	 */
@@ -366,15 +376,21 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Init the inInterruptibleRegion
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the inInterruptibleRegion
-	 * @param newValue the inInterruptibleRegion to update
+	 * 
+	 * @param newValue
+	 *            the inInterruptibleRegion to update
 	 */
 	public void updateInInterruptibleRegion(EObject newValue);
 
@@ -396,10 +412,6 @@ public interface MergeNodePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToInInterruptibleRegion(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the redefinedNode to add
 	 */
@@ -417,15 +429,21 @@ public interface MergeNodePropertiesEditionPart {
 
 	/**
 	 * Init the redefinedNode
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRedefinedNode(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedNode
-	 * @param newValue the redefinedNode to update
+	 * 
+	 * @param newValue
+	 *            the redefinedNode to update
 	 */
 	public void updateRedefinedNode(EObject newValue);
 
@@ -447,18 +465,8 @@ public interface MergeNodePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToRedefinedNode(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

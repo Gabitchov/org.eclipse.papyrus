@@ -26,8 +26,7 @@ import org.eclipse.uml2.uml.ParameterDirectionKind;
 public class OperationUtil {
 
 	/**
-	 * return the custom label of the operation, given UML2 specification and a
-	 * custom style.
+	 * return the custom label of the operation, given UML2 specification and a custom style.
 	 * 
 	 * @param style
 	 *            the integer representing the style of the label
@@ -71,8 +70,7 @@ public class OperationUtil {
 	}
 
 	/**
-	 * Returns return parameter label as a string, string parametrized with a
-	 * style mask.
+	 * Returns return parameter label as a string, string parametrized with a style mask.
 	 * 
 	 * @param style
 	 *            the mask that indicates which element to display
@@ -106,8 +104,7 @@ public class OperationUtil {
 	}
 
 	/**
-	 * Returns operation parameters as a string, the label is customized using a
-	 * bit mask
+	 * Returns operation parameters as a string, the label is customized using a bit mask
 	 * 
 	 * @return a string containing all parameters separated by commas
 	 */
@@ -195,8 +192,7 @@ public class OperationUtil {
 	}
 
 	/**
-	 * Gives the return parameter for this operation, or <code>null</code> if
-	 * none exists.
+	 * Gives the return parameter for this operation, or <code>null</code> if none exists.
 	 * 
 	 * @return the return parameter of the operation or <code>null</code>
 	 */

@@ -32,7 +32,7 @@ public class ReadLinkActionPropertiesEditionProvider implements IPropertiesEditi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof ReadLinkAction) && (UMLPackage.eINSTANCE.getReadLinkAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ReadLinkActionPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ReadLinkActionPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
-}	
+
+}

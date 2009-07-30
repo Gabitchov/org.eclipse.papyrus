@@ -86,14 +86,16 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractNotationPropertiesSection#initializeControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractNotationPropertiesSection#
+	 * initializeControls(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	public void initializeControls(Composite parent) {
 		super.initializeControls(parent);
 		GridLayout layout = new GridLayout(2, false);
-		Group gradientGroup = getWidgetFactory().createGroup(composite,
-				Messages.GradientSection_Group_Gradient);
+		Group gradientGroup = getWidgetFactory().createGroup(composite, Messages.GradientSection_Group_Gradient);
 		gradientGroup.setLayout(layout);
 
 		createGradientPolicy(gradientGroup);
@@ -103,13 +105,14 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the GradientPolicy Group. 
-	 * This group contained a SWT.CHECK button to specify if the gradient is used or not.
-	 * @param parent the parent
+	 * Create the GradientPolicy Group. This group contained a SWT.CHECK button to specify if the
+	 * gradient is used or not.
+	 * 
+	 * @param parent
+	 *            the parent
 	 */
 	protected void createGradientPolicy(Composite parent) {
-		Composite gradientPolicyCompo = getWidgetFactory().createComposite(
-				parent);
+		Composite gradientPolicyCompo = getWidgetFactory().createComposite(parent);
 		gradientPolicyCompo.setLayout(new GridLayout(1, false));
 		GridData gd = new GridData();
 		gradientPolicyCompo.setLayoutData(gd);
@@ -126,39 +129,32 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 					transparency = 100;
 				} else {
 					isGradientUsed = true;
-					gradientData = new GradientData(
-							(GradientData) getSingleInput().getPreferredValue(
-									NotationPackage.eINSTANCE
-											.getFillStyle_Gradient()));
-					transparency = (Integer) getSingleInput()
-							.getPreferredValue(
-									NotationPackage.eINSTANCE
-											.getFillStyle_Transparency());
+					gradientData = new GradientData((GradientData) getSingleInput().getPreferredValue(
+							NotationPackage.eINSTANCE.getFillStyle_Gradient()));
+					transparency = (Integer) getSingleInput().getPreferredValue(
+							NotationPackage.eINSTANCE.getFillStyle_Transparency());
 				}
 				updateGradient();
 				updateTransparency();
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				//Do nothing
+				// Do nothing
 			}
 		});
 	}
 
 	/**
-	 * Create the transparency group. This group contained a spinner to select a
-	 * value for the transparency. The transparency value must be contained in
-	 * [0;100]
+	 * Create the transparency group. This group contained a spinner to select a value for the
+	 * transparency. The transparency value must be contained in [0;100]
 	 * 
 	 * @param parent
 	 *            the composite containing the group
 	 */
 	protected void createTransparencyGroup(Composite parent) {
-		transparencyGroup = getWidgetFactory().createGroup(parent,
-				Messages.GradientSection_Group_Transparency);
+		transparencyGroup = getWidgetFactory().createGroup(parent, Messages.GradientSection_Group_Transparency);
 		transparencyGroup.setLayout(new GridLayout(1, false));
-		transparencyGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL
-				| GridData.GRAB_VERTICAL));
+		transparencyGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL | GridData.GRAB_VERTICAL));
 
 		transparencyValueSpinner = new Spinner(transparencyGroup, SWT.BORDER);
 		transparencyValueSpinner.setMinimum(0);
@@ -176,27 +172,27 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the colors group. 
-	 * This group is in charge of selecting the two colors used by the gradient. 
-	 * @param parent the parent composite
+	 * Create the colors group. This group is in charge of selecting the two colors used by the
+	 * gradient.
+	 * 
+	 * @param parent
+	 *            the parent composite
 	 */
 	protected void createColorGroup(Composite parent) {
 		colorGroup = getWidgetFactory().createGroup(parent, Messages.GradientSection_Group_Colors);
 		colorGroup.setLayout(new GridLayout(2, false));
-		colorGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL
-				| GridData.GRAB_VERTICAL));
+		colorGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL | GridData.GRAB_VERTICAL));
 
 		getWidgetFactory().createCLabel(colorGroup, Messages.GradientSection_GradientColor_FirstColor);
 
 		// button for choosing gradientColor1
-		color1Button = getWidgetFactory()
-				.createButton(colorGroup, "", SWT.PUSH); //$NON-NLS-1$ 
+		color1Button = getWidgetFactory().createButton(colorGroup, "", SWT.PUSH); //$NON-NLS-1$ 
 		color1Button.addListener(SWT.Selection, new Listener() {
+
 			public void handleEvent(Event event) {
 				RGB color1 = changeColor(color1Button);
 				if (color1 != null) {
-					gradientData.setGradientColor1(FigureUtilities
-							.RGBToInteger(color1));
+					gradientData.setGradientColor1(FigureUtilities.RGBToInteger(color1));
 					updateGradient();
 				}
 			}
@@ -204,14 +200,13 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 		getWidgetFactory().createCLabel(colorGroup, Messages.GradientSection_GradientColor_SecondColor);
 		// button for choosing gradientColor2
-		color2Button = getWidgetFactory()
-				.createButton(colorGroup, "", SWT.PUSH); //$NON-NLS-1$ 
+		color2Button = getWidgetFactory().createButton(colorGroup, "", SWT.PUSH); //$NON-NLS-1$ 
 		color2Button.addListener(SWT.Selection, new Listener() {
+
 			public void handleEvent(Event event) {
 				RGB color2 = changeColor(color2Button);
 				if (color2 != null) {
-					gradientData.setGradientColor2(FigureUtilities
-							.RGBToInteger(color2));
+					gradientData.setGradientColor2(FigureUtilities.RGBToInteger(color2));
 					updateGradient();
 				}
 			}
@@ -219,24 +214,24 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the style group. 
-	 * This group contained the component in charge of the style of the gradient. 
-	 * Values available are GradientStyle.VERTICAL and GradientStyle.HORIZONTAL.
-	 * @param parent the parent composite
+	 * Create the style group. This group contained the component in charge of the style of the
+	 * gradient. Values available are GradientStyle.VERTICAL and GradientStyle.HORIZONTAL.
+	 * 
+	 * @param parent
+	 *            the parent composite
 	 */
 	protected void createStyleGroup(Composite parent) {
 		styleGroup = getWidgetFactory().createGroup(parent, Messages.GradientSection_Group_Style);
 		GridLayout layout = new GridLayout(1, true);
 		styleGroup.setLayout(layout);
-		styleGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL
-				| GridData.GRAB_VERTICAL));
+		styleGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL | GridData.GRAB_VERTICAL));
 
-		verticalStyle = getWidgetFactory().createButton(styleGroup, Messages.GradientSection_Style_Vertical,
+		verticalStyle = getWidgetFactory().createButton(styleGroup, Messages.GradientSection_Style_Vertical, SWT.RADIO);
+		horizontalStyle = getWidgetFactory().createButton(styleGroup, Messages.GradientSection_Style_Horizontal,
 				SWT.RADIO);
-		horizontalStyle = getWidgetFactory().createButton(styleGroup,
-				Messages.GradientSection_Style_Horizontal, SWT.RADIO);
 
 		SelectionListener selectionListener = new SelectionAdapter() {
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!((Button) e.widget).getSelection()) {
@@ -255,11 +250,12 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 		horizontalStyle.addSelectionListener(selectionListener);
 	}
 
-
-
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractModelerPropertySection#dispose()
+	 * 
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractModelerPropertySection#dispose
+	 * ()
 	 */
 	@Override
 	public void dispose() {
@@ -271,7 +267,9 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 	/**
 	 * Dispose the image associated with the given button
-	 * @param btn the button that contains the image
+	 * 
+	 * @param btn
+	 *            the button that contains the image
 	 */
 	protected void disposeButtonImage(Button btn) {
 		if (btn != null && !btn.isDisposed()) {
@@ -283,8 +281,7 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Sets the image for a color button (square filled with the color that
-	 * button represents)
+	 * Sets the image for a color button (square filled with the color that button represents)
 	 */
 	protected void setButtonImage(Button btn, int intColor) {
 		// First, dispose the current image, if any
@@ -313,13 +310,15 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 	/**
 	 * Allow user to change the color of the given button.
-	 * @param button the button 
+	 * 
+	 * @param button
+	 *            the button
 	 * @return the selected color or null
 	 * @see org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorPalettePopup
 	 */
 	private RGB changeColor(Button button) {
-		ColorPalettePopup popup = new ColorPalettePopup(button.getParent()
-				.getShell(), IDialogConstants.BUTTON_BAR_HEIGHT);
+		ColorPalettePopup popup = new ColorPalettePopup(button.getParent().getShell(),
+				IDialogConstants.BUTTON_BAR_HEIGHT);
 		Rectangle r = button.getBounds();
 		Point location = button.getParent().toDisplay(r.x, r.y);
 		popup.open(new Point(location.x, location.y + r.height));
@@ -331,6 +330,7 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#refresh()
 	 */
 	@Override
@@ -338,7 +338,7 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 		super.refresh();
 		refreshComponent();
 	}
-	
+
 	/**
 	 * Refresh the components and enable/disable them according to the isGradientUsed attribute
 	 */
@@ -349,24 +349,18 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 				transparencyValueSpinner.setSelection(transparency);
 			}
 			if (buttonColors.get(color1Button) == null
-					|| !(buttonColors.get(color1Button).intValue() == gradientData
-							.getGradientColor1())) {
+					|| !(buttonColors.get(color1Button).intValue() == gradientData.getGradientColor1())) {
 				setButtonImage(color1Button, gradientData.getGradientColor1());
 			}
 			if (buttonColors.get(color2Button) == null
-					|| !(buttonColors.get(color2Button).intValue() == gradientData
-							.getGradientColor2())) {
+					|| !(buttonColors.get(color2Button).intValue() == gradientData.getGradientColor2())) {
 				setButtonImage(color2Button, gradientData.getGradientColor2());
 			}
-			if (horizontalStyle.getSelection() != (gradientData
-					.getGradientStyle() == GradientStyle.HORIZONTAL)) {
-				horizontalStyle
-						.setSelection(gradientData.getGradientStyle() == GradientStyle.HORIZONTAL);
+			if (horizontalStyle.getSelection() != (gradientData.getGradientStyle() == GradientStyle.HORIZONTAL)) {
+				horizontalStyle.setSelection(gradientData.getGradientStyle() == GradientStyle.HORIZONTAL);
 			}
-			if (verticalStyle.getSelection() != (gradientData
-					.getGradientStyle() == GradientStyle.VERTICAL)) {
-				verticalStyle
-						.setSelection(gradientData.getGradientStyle() == GradientStyle.VERTICAL);
+			if (verticalStyle.getSelection() != (gradientData.getGradientStyle() == GradientStyle.VERTICAL)) {
+				verticalStyle.setSelection(gradientData.getGradientStyle() == GradientStyle.VERTICAL);
 			}
 		}
 
@@ -388,49 +382,45 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.views.properties.tabbed.ISection#setInput(org.eclipse.
-	 * ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
+	 * @see org.eclipse.ui.views.properties.tabbed.ISection#setInput(org.eclipse. ui.IWorkbenchPart,
+	 * org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
 		executeAsReadAction(new Runnable() {
+
 			public void run() {
 				IGraphicalEditPart ep = getSingleInput();
 				if (ep != null) {
-					gradientData = new GradientData(
-							(GradientData) getSingleInput()
-									.getStructuralFeatureValue(
-											NotationPackage.eINSTANCE
-													.getFillStyle_Gradient()));
-					transparency = (Integer) getSingleInput()
-							.getStructuralFeatureValue(
-									NotationPackage.eINSTANCE
-											.getFillStyle_Transparency());
+					gradientData = new GradientData((GradientData) getSingleInput().getStructuralFeatureValue(
+							NotationPackage.eINSTANCE.getFillStyle_Gradient()));
+					transparency = (Integer) getSingleInput().getStructuralFeatureValue(
+							NotationPackage.eINSTANCE.getFillStyle_Transparency());
 				}
 			}
 		});
-		isGradientUsed = !gradientData.equals(GradientData
-				.getDefaultGradientData());
+		isGradientUsed = !gradientData.equals(GradientData.getDefaultGradientData());
 	}
 
 	/**
 	 * Update the value of the given feature
-	 * @param feature the feature to update
-	 * @param value the new value
-	 * @param commandName the name of the command
+	 * 
+	 * @param feature
+	 *            the feature to update
+	 * @param value
+	 *            the new value
+	 * @param commandName
+	 *            the name of the command
 	 */
-	protected void updateFeature(final EStructuralFeature feature,
-			final Object value, String commandName) {
+	protected void updateFeature(final EStructuralFeature feature, final Object value, String commandName) {
 		List inputs = getInput();
 		List<ICommand> commands = new ArrayList<ICommand>();
 		for (Object input : inputs) {
 			if (input instanceof IGraphicalEditPart) {
 				final IGraphicalEditPart gep = (IGraphicalEditPart) input;
 				if (!(input instanceof ConnectionNodeEditPart)) {
-					commands.add(createCommand(commandName, ((View) gep
-							.getModel()).eResource(), new Runnable() {
+					commands.add(createCommand(commandName, ((View) gep.getModel()).eResource(), new Runnable() {
 
 						public void run() {
 							gep.setStructuralFeatureValue(feature, value);
@@ -446,8 +436,8 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	 * Update transparency feature
 	 */
 	protected void updateTransparency() {
-		updateFeature(NotationPackage.eINSTANCE.getFillStyle_Transparency(),
-				new Integer(transparency), Messages.GradientSection_Command_Change_Transparency);
+		updateFeature(NotationPackage.eINSTANCE.getFillStyle_Transparency(), new Integer(transparency),
+				Messages.GradientSection_Command_Change_Transparency);
 	}
 
 	/**

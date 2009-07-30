@@ -32,7 +32,7 @@ public class ExtendPropertiesEditionProvider implements IPropertiesEditionProvid
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Extend) && (UMLPackage.eINSTANCE.getExtend() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ExtendPropertiesEditionProvider implements IPropertiesEditionProvid
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ExtendPropertiesEditionProvider implements IPropertiesEditionProvid
 		}
 		return null;
 	}
-	
-}	
+
+}

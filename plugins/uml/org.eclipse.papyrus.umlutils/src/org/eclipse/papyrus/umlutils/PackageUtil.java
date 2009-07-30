@@ -40,8 +40,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class PackageUtil {
 
 	/**
-	 * Apply a profile and every subprofiles to a package. Also import types
-	 * defined in profile
+	 * Apply a profile and every subprofiles to a package. Also import types defined in profile
 	 * 
 	 * @param profileToApply
 	 *            profile to apply on package
@@ -187,8 +186,8 @@ public class PackageUtil {
 	 * @param thepackage
 	 *            profile to clean
 	 * @param recursive
-	 *            boolean <code>true</code> if the clean is recursive, i.e.
-	 *            nested profiles must be clean
+	 *            boolean <code>true</code> if the clean is recursive, i.e. nested profiles must be
+	 *            clean
 	 */
 	public static void removeLastDefinition(Package thepackage, boolean recursive) {
 		// he wants to define
@@ -288,10 +287,12 @@ public class PackageUtil {
 
 		return list;
 	}
+
 	/**
 	 * 
 	 * 
-	 * @return returns all nested elements of a package (classes, packages, interfaces, data types, properties, operations) Returned elements are of type org.eclipse.uml2.uml.Element
+	 * @return returns all nested elements of a package (classes, packages, interfaces, data types,
+	 *         properties, operations) Returned elements are of type org.eclipse.uml2.uml.Element
 	 */
 	public static Set<Element> getAllNestedElements(Package thePackage) {
 		Set<org.eclipse.uml2.uml.Element> nestedElements = new HashSet<Element>();

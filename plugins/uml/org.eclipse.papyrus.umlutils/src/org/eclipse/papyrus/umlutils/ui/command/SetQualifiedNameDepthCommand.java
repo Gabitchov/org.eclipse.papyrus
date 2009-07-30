@@ -49,7 +49,8 @@ public class SetQualifiedNameDepthCommand extends CreateEAnnotationCommand {
 	protected void doExecute() {
 		EAnnotation qualifiedNameEAnnotation = createEAnnotation();
 		replaceEannotation(qualifiedNameEAnnotation, getObject());
-		replaceEntry(qualifiedNameEAnnotation, VisualInformationPapyrusConstant.QUALIFIED_NAME_DEPTH, qualifiedNamedepht);
+		replaceEntry(qualifiedNameEAnnotation, VisualInformationPapyrusConstant.QUALIFIED_NAME_DEPTH,
+				qualifiedNamedepht);
 	}
 
 }

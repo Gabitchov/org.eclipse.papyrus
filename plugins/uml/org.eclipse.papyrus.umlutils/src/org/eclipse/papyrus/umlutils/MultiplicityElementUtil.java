@@ -34,8 +34,7 @@ public class MultiplicityElementUtil {
 	}
 
 	/**
-	 * Returns the String corresponding to the multiplicity without square
-	 * brackets
+	 * Returns the String corresponding to the multiplicity without square brackets
 	 * 
 	 * @return the string representing the multiplicity, without square brackets
 	 */

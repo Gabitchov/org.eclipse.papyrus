@@ -19,7 +19,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 
 /**
- * The Class AddAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to display
+ * The Class AddAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to
+ * display
  */
 public class AddMaskManagedLabelDisplayCommand extends CreateEAnnotationCommand {
 
@@ -47,15 +48,18 @@ public class AddMaskManagedLabelDisplayCommand extends CreateEAnnotationCommand 
 	@Override
 	protected void doExecute() {
 
-		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation oldAnnotation = getObject().getEAnnotation(
+				VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
 		if (oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, getObject());
 		}
 		System.err.println(maskValue + " -> " + Integer.toString(maskValue));
-		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE, Integer.toString(maskValue));
+		replaceEntry(oldAnnotation, VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE, Integer
+				.toString(maskValue));
 
-		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION), getObject());
+		replaceEannotation(getObject().getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION),
+				getObject());
 
 	}
 

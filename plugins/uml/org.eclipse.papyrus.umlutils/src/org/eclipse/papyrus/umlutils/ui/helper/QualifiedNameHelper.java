@@ -31,7 +31,8 @@ public class QualifiedNameHelper {
 	 * @return the depth
 	 */
 	public static int getQualifiedNameDepth(EModelElement modelElement) {
-		EAnnotation stereotypeDisplayKind = modelElement.getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
+		EAnnotation stereotypeDisplayKind = modelElement
+				.getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
@@ -58,7 +59,8 @@ public class QualifiedNameHelper {
 	 * 
 	 * @return the sets the qualifed name depth command
 	 */
-	public static RecordingCommand getSetQualifedNameDepthCommand(TransactionalEditingDomain domain, EModelElement view, int depth) {
+	public static RecordingCommand getSetQualifedNameDepthCommand(TransactionalEditingDomain domain,
+			EModelElement view, int depth) {
 		return new SetQualifiedNameDepthCommand(domain, view, depth);
 	}
 

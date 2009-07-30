@@ -32,7 +32,7 @@ public class DataStoreNodePropertiesEditionProvider implements IPropertiesEditio
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof DataStoreNode) && (UMLPackage.eINSTANCE.getDataStoreNode() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class DataStoreNodePropertiesEditionProvider implements IPropertiesEditio
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class DataStoreNodePropertiesEditionProvider implements IPropertiesEditio
 		}
 		return null;
 	}
-	
-}	
+
+}

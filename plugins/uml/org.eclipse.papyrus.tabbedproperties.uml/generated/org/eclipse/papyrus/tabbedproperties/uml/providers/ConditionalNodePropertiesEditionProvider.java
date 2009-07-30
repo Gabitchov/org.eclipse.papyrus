@@ -32,7 +32,7 @@ public class ConditionalNodePropertiesEditionProvider implements IPropertiesEdit
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof ConditionalNode) && (UMLPackage.eINSTANCE.getConditionalNode() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ConditionalNodePropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ConditionalNodePropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-	
-}	
+
+}

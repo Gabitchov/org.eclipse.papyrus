@@ -19,24 +19,22 @@ import org.eclipse.ui.PlatformUI;
 public class OpenDiagramAction extends Action {
 
 	Diagram diagram;
+
 	IPageMngr pageMngr;
 
 	public OpenDiagramAction(IPageMngr pageMngr, Diagram diagram) {
 		this.diagram = diagram;
 		this.pageMngr = pageMngr;
-		
+
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-		if(pageMngr.isOpen(diagram))
-		{
+		if (pageMngr.isOpen(diagram)) {
 			setText("Re Open");
 			setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
-		}
-		else
-		{
-		    setText("Open");
+		} else {
+			setText("Open");
 			setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_BACK));
 		}
-		
+
 		setEnabled(true);
 	}
 
@@ -47,16 +45,17 @@ public class OpenDiagramAction extends Action {
 	 */
 	@Override
 	public void run() {
-		
+
 		pageMngr.openPage(diagram);
-//		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
-//		if (editingDomain != null) {
-//			
-//			
-//			EList<EObject> diagrams = diagram.eResource().getContents();
-//			//TODO : synchronize with Cedric
-//			Command command = new RemoveCommand(editingDomain, diagrams, diagram);
-//			editingDomain.getCommandStack().execute(command);
-//		}
+		// TransactionalEditingDomain editingDomain =
+		// NavigatorUtils.getTransactionalEditingDomain();
+		// if (editingDomain != null) {
+		//			
+		//			
+		// EList<EObject> diagrams = diagram.eResource().getContents();
+		// //TODO : synchronize with Cedric
+		// Command command = new RemoveCommand(editingDomain, diagrams, diagram);
+		// editingDomain.getCommandStack().execute(command);
+		// }
 	}
 }

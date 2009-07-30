@@ -32,7 +32,7 @@ public class CollaborationPropertiesEditionProvider implements IPropertiesEditio
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Collaboration) && (UMLPackage.eINSTANCE.getCollaboration() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class CollaborationPropertiesEditionProvider implements IPropertiesEditio
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class CollaborationPropertiesEditionProvider implements IPropertiesEditio
 		}
 		return null;
 	}
-	
-}	
+
+}

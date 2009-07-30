@@ -102,7 +102,9 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
 						// command creation
 						if (editingDomain != null) {
-							editingDomain.getCommandStack().execute(new SetShadowFigureCommand(editingDomain, ((EModelElement) editPart.getModel()), isChecked));
+							editingDomain.getCommandStack().execute(
+									new SetShadowFigureCommand(editingDomain, ((EModelElement) editPart.getModel()),
+											isChecked));
 						}
 
 						refresh();
@@ -132,7 +134,8 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 			if (editPart != null) {
 
 				if ((editPart.getModel()) != null) {
-					checboxShadowAppearence.setSelection(ShadowFigureHelper.getShadowFigureValue((EModelElement) editPart.getModel()));
+					checboxShadowAppearence.setSelection(ShadowFigureHelper
+							.getShadowFigureValue((EModelElement) editPart.getModel()));
 
 				} else {
 					checboxShadowAppearence.setEnabled(false);
@@ -164,7 +167,8 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 		}
 		// When the selection is computed from the outline, get the associated editor
 		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
+			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part)
+					.getAdapter(IContributedContentsView.class));
 			if (contributedView != null) {
 				part = (IWorkbenchPart) contributedView.getContributingPart();
 			}

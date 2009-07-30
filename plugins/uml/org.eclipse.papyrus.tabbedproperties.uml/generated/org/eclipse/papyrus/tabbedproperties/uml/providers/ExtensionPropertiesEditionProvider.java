@@ -32,7 +32,7 @@ public class ExtensionPropertiesEditionProvider implements IPropertiesEditionPro
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Extension) && (UMLPackage.eINSTANCE.getExtension() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ExtensionPropertiesEditionProvider implements IPropertiesEditionPro
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ExtensionPropertiesEditionProvider implements IPropertiesEditionPro
 		}
 		return null;
 	}
-	
-}	
+
+}

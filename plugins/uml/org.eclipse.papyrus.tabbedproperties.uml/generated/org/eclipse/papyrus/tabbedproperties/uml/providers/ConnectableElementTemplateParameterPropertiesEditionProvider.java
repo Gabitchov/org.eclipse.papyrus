@@ -30,9 +30,10 @@ public class ConnectableElementTemplateParameterPropertiesEditionProvider implem
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ConnectableElementTemplateParameter) && (UMLPackage.eINSTANCE.getConnectableElementTemplateParameter() == eObject.eClass());
+		return (eObject instanceof ConnectableElementTemplateParameter)
+				&& (UMLPackage.eINSTANCE.getConnectableElementTemplateParameter() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class ConnectableElementTemplateParameterPropertiesEditionProvider implem
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class ConnectableElementTemplateParameterPropertiesEditionProvider implem
 		}
 		return null;
 	}
-	
-}	
+
+}

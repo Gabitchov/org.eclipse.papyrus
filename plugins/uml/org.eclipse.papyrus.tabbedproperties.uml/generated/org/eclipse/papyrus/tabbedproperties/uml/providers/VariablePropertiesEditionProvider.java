@@ -32,7 +32,7 @@ public class VariablePropertiesEditionProvider implements IPropertiesEditionProv
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Variable) && (UMLPackage.eINSTANCE.getVariable() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class VariablePropertiesEditionProvider implements IPropertiesEditionProv
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class VariablePropertiesEditionProvider implements IPropertiesEditionProv
 		}
 		return null;
 	}
-	
-}	
+
+}

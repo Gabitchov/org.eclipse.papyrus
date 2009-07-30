@@ -64,7 +64,8 @@ public class LabelEditorDialog extends Dialog {
 	protected SourceViewer viewer;
 
 	/**
-	 * Creates a dialog with OK and Cancel buttons. Note that the dialog will have no visual representation (no widgets) until it is told to open.
+	 * Creates a dialog with OK and Cancel buttons. Note that the dialog will have no visual
+	 * representation (no widgets) until it is told to open.
 	 * <p>
 	 * Note that the <code>open</code> method blocks for input dialogs.
 	 * </p>
@@ -76,7 +77,8 @@ public class LabelEditorDialog extends Dialog {
 	 * @param parentShell
 	 *            the parent shell, or <code>null</code> to create a top-level shell
 	 * @param initialValue
-	 *            the initial input value, or <code>null</code> if none (equivalent to the empty string)
+	 *            the initial input value, or <code>null</code> if none (equivalent to the empty
+	 *            string)
 	 */
 	public LabelEditorDialog(Shell parentShell, String dialogTitle, String initialValue, IInputValidator validator) {
 		super(parentShell);
@@ -164,8 +166,10 @@ public class LabelEditorDialog extends Dialog {
 	/**
 	 * Validates the input.
 	 * <p>
-	 * The default implementation of this framework method delegates the request to the supplied input validator object; if it finds the input invalid, the error message is displayed in the dialog's
-	 * message line. This hook method is called whenever the text changes in the input field.
+	 * The default implementation of this framework method delegates the request to the supplied
+	 * input validator object; if it finds the input invalid, the error message is displayed in the
+	 * dialog's message line. This hook method is called whenever the text changes in the input
+	 * field.
 	 * </p>
 	 */
 	protected void validateInput() {

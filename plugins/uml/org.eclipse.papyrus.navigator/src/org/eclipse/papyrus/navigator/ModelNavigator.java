@@ -16,8 +16,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-//import org.eclipse.emf.eef.runtime.ui.notify.OpenWizardOnDoubleClick;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider; //import org.eclipse.emf.eef.runtime.ui.notify.OpenWizardOnDoubleClick;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
@@ -96,8 +95,10 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 				Notification notification = (Notification) n;
 				// if (notification.getNotifier() instanceof EObject) {
 				// EObject notifier = (EObject) notification.getNotifier();
-				// Iterator<?> it = getNavigatorContentService().findRootContentExtensions(notifier).iterator();
-				Iterator<?> it = getNavigatorContentService().findRootContentExtensions(notification.getNotifier()).iterator();
+				// Iterator<?> it =
+				// getNavigatorContentService().findRootContentExtensions(notifier).iterator();
+				Iterator<?> it = getNavigatorContentService().findRootContentExtensions(notification.getNotifier())
+						.iterator();
 				while (it.hasNext()) {
 					Object obj = it.next();
 					finish = true;
@@ -206,7 +207,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		});
 		page.addSelectionListener(new ISelectionListener() {
 
-			public void selectionChanged(IWorkbenchPart part, ISelection selection) {			
+			public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 				handleSelectionChangedFromDiagramEditor(part, selection);
 			}
 		});
@@ -218,15 +219,21 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		if (multiDiagramEditor != null) {
 			if (propertySheetPage == null) {
 				// An horrible properties view
-//				BasicCommandStack commandStack = new BasicCommandStack();
-//				ComposedAdapterFactory adapterFactory = UMLComposedAdapterFactory.getAdapterFactory();
-//				AdapterFactoryEditingDomain adapterFactoryEditingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
-//				this.propertySheetPage = new ExtendedPropertySheetPage(adapterFactoryEditingDomain);
-//				((ExtendedPropertySheetPage) this.propertySheetPage).setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+				// BasicCommandStack commandStack = new BasicCommandStack();
+				// ComposedAdapterFactory adapterFactory =
+				// UMLComposedAdapterFactory.getAdapterFactory();
+				// AdapterFactoryEditingDomain adapterFactoryEditingDomain = new
+				// AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource,
+				// Boolean>());
+				// this.propertySheetPage = new
+				// ExtendedPropertySheetPage(adapterFactoryEditingDomain);
+				// ((ExtendedPropertySheetPage)
+				// this.propertySheetPage).setPropertySourceProvider(new
+				// AdapterFactoryContentProvider(adapterFactory));
 
 				// An 'EEF' properties view
 				if (multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
-					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor) multiDiagramEditor;						
+					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor) multiDiagramEditor;
 					this.propertySheetPage = new TabbedPropertySheetPage(contributor);
 				}
 			}
@@ -257,14 +264,14 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 			if (part instanceof IEditorPart) {
 				ISelection unwrappedSelection = NavigatorUtils.unwrapSelection(selection);
 				if (!unwrappedSelection.isEmpty()) {
-					getCommonViewer().setSelection(unwrappedSelection, true);					
+					getCommonViewer().setSelection(unwrappedSelection, true);
 				}
 			}
 			this.handlingSelectionChanged = false;
 		}
 	}
 
-	protected void handleSelectionChangedFromCommonViewer(SelectionChangedEvent event) {		
+	protected void handleSelectionChangedFromCommonViewer(SelectionChangedEvent event) {
 		// Handle selection from common viewer
 		if (isLinkingEnabled() && !handlingSelectionChanged) {
 			this.handlingSelectionChanged = true;
@@ -272,11 +279,14 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 			if (editor instanceof IMultiDiagramEditor) {
 				IMultiDiagramEditor multiDiagramEditor = (IMultiDiagramEditor) editor;
 				IEditorPart activeEditor = multiDiagramEditor.getActiveEditor();
-				// TODO break GMF dependency (maybe add a new method in IMultiDiagramEditor) Cedric ?
+				// TODO break GMF dependency (maybe add a new method in IMultiDiagramEditor) Cedric
+				// ?
 				if (activeEditor instanceof DiagramEditor) {
 					// set editor selection and select the EditParts
-					IDiagramGraphicalViewer diagramGraphicalViewer = ((DiagramEditor) activeEditor).getDiagramGraphicalViewer();
-					List<?> editPartsToSelect = NavigatorUtils.getEditPartsFromSelection(event.getSelection(), diagramGraphicalViewer);
+					IDiagramGraphicalViewer diagramGraphicalViewer = ((DiagramEditor) activeEditor)
+							.getDiagramGraphicalViewer();
+					List<?> editPartsToSelect = NavigatorUtils.getEditPartsFromSelection(event.getSelection(),
+							diagramGraphicalViewer);
 					StructuredSelection selectedEditParts = new StructuredSelection(editPartsToSelect);
 					diagramGraphicalViewer.setSelection(selectedEditParts);
 					if (!selectedEditParts.isEmpty()) {
@@ -299,10 +309,11 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 			Object element = selection.getFirstElement();
 			if (element instanceof Diagram) {
 				handleDoubleClickOnDiagram((Diagram) element);
-			} else if (element instanceof EObject) {				
-				//Open SWT EEF Properties UI
-				//OpenWizardOnDoubleClick openWizardOnDoubleClick = new OpenWizardOnDoubleClick(this.editingDomain);
-				//openWizardOnDoubleClick.doubleClick(anEvent);
+			} else if (element instanceof EObject) {
+				// Open SWT EEF Properties UI
+				// OpenWizardOnDoubleClick openWizardOnDoubleClick = new
+				// OpenWizardOnDoubleClick(this.editingDomain);
+				// openWizardOnDoubleClick.doubleClick(anEvent);
 			} else {
 				super.handleDoubleClick(anEvent);
 			}
@@ -312,23 +323,27 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	protected void handleDoubleClickOnDiagram(Diagram diagram) {
 		// BackboneContext backboneContext = NavigatorUtils.getBackboneContext();
 		// Resource diResource = backboneContext.getResourceSet().getDiResource();
-		// TODO synchronize with Cedric in order to understand how to open diagram with the new sash multi editor
+		// TODO synchronize with Cedric in order to understand how to open diagram with the new sash
+		// multi editor
 		// SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
 		// org.eclipse.gmf.runtime.notation.Diagram gmfDiagram=null;
-		// IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		// IWorkbenchPage page =
+		// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		// try {
 		// page.openEditor(getEditorInput(gmfDiagram),getEditorID());
 		// } catch (PartInitException e) {
-		// Activator.getDefault().getLog().log(new Status(IStatus.ERROR,Activator.PLUGIN_ID, "Can't open the Diagram Editor!"));
+		// Activator.getDefault().getLog().log(new Status(IStatus.ERROR,Activator.PLUGIN_ID,
+		// "Can't open the Diagram Editor!"));
 		// }
 		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : " + diagram);
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @return the EditingDomain used by the properties view
 	 */
-	public EditingDomain getEditingDomain() {		
+	public EditingDomain getEditingDomain() {
 		return editingDomain;
 	}
 

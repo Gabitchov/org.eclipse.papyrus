@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -59,15 +58,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -89,10 +94,6 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the name
 	 */
@@ -100,7 +101,9 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -115,20 +118,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the clientDependency to add
@@ -147,15 +151,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *            the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -177,10 +187,6 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the covered to add
 	 */
@@ -198,15 +204,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the covered
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the covered
-	 * @param newValue the covered to update
+	 * 
+	 * @param newValue
+	 *            the covered to update
 	 */
 	public void updateCovered(EObject newValue);
 
@@ -227,10 +239,6 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToCovered(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the generalOrdering to add
@@ -259,15 +267,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the generalOrdering
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalOrdering
-	 * @param newValue the generalOrdering to update
+	 * 
+	 * @param newValue
+	 *            the generalOrdering to update
 	 */
 	public void updateGeneralOrdering(EObject newValue);
 
@@ -289,10 +303,6 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToGeneralOrdering(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the interactionOperator
 	 */
@@ -300,20 +310,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the interactionOperator
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initInteractionOperator(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new interactionOperator
-	 * @param newValue the new interactionOperator to set
+	 * 
+	 * @param newValue
+	 *            the new interactionOperator to set
 	 */
 	public void setInteractionOperator(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the operand to add
@@ -342,15 +353,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the operand
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOperand(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the operand
-	 * @param newValue the operand to update
+	 * 
+	 * @param newValue
+	 *            the operand to update
 	 */
 	public void updateOperand(EObject newValue);
 
@@ -371,10 +388,6 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOperand(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the cfragmentGate to add
@@ -403,15 +416,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the cfragmentGate
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initCfragmentGate(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the cfragmentGate
-	 * @param newValue the cfragmentGate to update
+	 * 
+	 * @param newValue
+	 *            the cfragmentGate to update
 	 */
 	public void updateCfragmentGate(EObject newValue);
 
@@ -433,10 +452,6 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToCfragmentGate(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the message to add
 	 */
@@ -454,15 +469,21 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the message
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initMessage(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the message
-	 * @param newValue the message to update
+	 * 
+	 * @param newValue
+	 *            the message to update
 	 */
 	public void updateMessage(EObject newValue);
 
@@ -484,18 +505,8 @@ public interface ConsiderIgnoreFragmentPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToMessage(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

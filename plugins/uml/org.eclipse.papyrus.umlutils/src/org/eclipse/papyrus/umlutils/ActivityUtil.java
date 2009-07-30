@@ -28,7 +28,8 @@ import org.eclipse.uml2.uml.InitialNode;
 public class ActivityUtil {
 
 	/**
-	 * Returns the uml2Activity's initial node. We consider that there is at most one initial node in an activity.
+	 * Returns the uml2Activity's initial node. We consider that there is at most one initial node
+	 * in an activity.
 	 * 
 	 * @param uml2Activity
 	 *            investigated
@@ -45,8 +46,9 @@ public class ActivityUtil {
 	}
 
 	/**
-	 * Returns the activity node that is connected to uml2ActivityNode by a control flow. We consider that there is at most one outgoing control flow from an activity node (first one found is
-	 * returned).
+	 * Returns the activity node that is connected to uml2ActivityNode by a control flow. We
+	 * consider that there is at most one outgoing control flow from an activity node (first one
+	 * found is returned).
 	 * 
 	 * @param uml2ActivityNode
 	 *            origin node

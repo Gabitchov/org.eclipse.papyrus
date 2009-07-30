@@ -21,9 +21,13 @@ import org.eclipse.uml2.uml.NamedElement;
 public class NamedElementUtil {
 
 	public static final String QUALIFIED_NAME_SEPARATOR = "::";
+
 	private final static String PUBLIC_STRING = "+";
+
 	private final static String PROTECTED_STRING = "#";
+
 	private final static String PRIVATE_STRING = "-";
+
 	private final static String PACKAGE_STRING = "~";
 
 	/**
@@ -36,7 +40,7 @@ public class NamedElementUtil {
 	public static int getQualifiedNameMaxDepth(NamedElement namedElement) {
 		int d = 0;
 		String s = namedElement.getQualifiedName();
-		if(s==null){
+		if (s == null) {
 			return 0;
 		}
 		int n = 0;
@@ -48,11 +52,9 @@ public class NamedElementUtil {
 	}
 
 	/**
-	 * Give the visibility of the {@link NamedElement} as a string, as defined
-	 * in the UML2 standard.
+	 * Give the visibility of the {@link NamedElement} as a string, as defined in the UML2 standard.
 	 * 
-	 * @return A String representing the visibility of the {@link NamedElement}.
-	 *         Possible values:
+	 * @return A String representing the visibility of the {@link NamedElement}. Possible values:
 	 *         <ul>
 	 *         <li>public: <code>"+"</code>
 	 *         <li>private: <code>"-"</code>

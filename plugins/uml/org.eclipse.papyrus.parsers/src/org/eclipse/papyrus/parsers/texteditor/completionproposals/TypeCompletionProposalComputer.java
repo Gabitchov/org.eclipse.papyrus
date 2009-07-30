@@ -80,9 +80,8 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 
 		// first, add <Undefined>
 		if (UNDEFINED_TYPE.startsWith(prefix)) {
-			proposal =
-					new CompletionProposal(UNDEFINED_TYPE, documentOffset - prefix.length(), prefix.length()
-							+ selectionRange, UNDEFINED_TYPE.length(), null, UNDEFINED_TYPE, null, "Undefined Type");
+			proposal = new CompletionProposal(UNDEFINED_TYPE, documentOffset - prefix.length(), prefix.length()
+					+ selectionRange, UNDEFINED_TYPE.length(), null, UNDEFINED_TYPE, null, "Undefined Type");
 			v.add(proposal);
 		}
 
@@ -97,9 +96,8 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 				if (name.startsWith(prefix)) {
 					// create a completion processor for the type if prefix
 					// corresponds
-					proposal =
-							new CompletionProposal(name, documentOffset - prefix.length(), prefix.length()
-									+ selectionRange, name.length(), null, TypeUtil.getInfoString(type), null, "");
+					proposal = new CompletionProposal(name, documentOffset - prefix.length(), prefix.length()
+							+ selectionRange, name.length(), null, TypeUtil.getInfoString(type), null, "");
 					v.add(proposal);
 				}
 			}

@@ -32,7 +32,7 @@ public class AnyReceiveEventPropertiesEditionProvider implements IPropertiesEdit
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof AnyReceiveEvent) && (UMLPackage.eINSTANCE.getAnyReceiveEvent() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class AnyReceiveEventPropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class AnyReceiveEventPropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-	
-}	
+
+}

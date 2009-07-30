@@ -32,7 +32,7 @@ public class ReduceActionPropertiesEditionProvider implements IPropertiesEdition
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof ReduceAction) && (UMLPackage.eINSTANCE.getReduceAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ReduceActionPropertiesEditionProvider implements IPropertiesEdition
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ReduceActionPropertiesEditionProvider implements IPropertiesEdition
 		}
 		return null;
 	}
-	
-}	
+
+}

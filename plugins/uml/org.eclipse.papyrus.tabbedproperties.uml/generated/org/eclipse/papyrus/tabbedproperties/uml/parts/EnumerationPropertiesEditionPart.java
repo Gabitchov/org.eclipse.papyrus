@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -39,7 +38,9 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -54,20 +55,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the isAbstract
@@ -76,13 +78,11 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isAbstract
-	 * @param newValue the new isAbstract to set
+	 * 
+	 * @param newValue
+	 *            the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the isLeaf
@@ -91,13 +91,11 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *            the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the generalization to add
@@ -126,15 +124,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the generalization
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initGeneralization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalization
-	 * @param newValue the generalization to update
+	 * 
+	 * @param newValue
+	 *            the generalization to update
 	 */
 	public void updateGeneralization(EObject newValue);
 
@@ -155,10 +159,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToGeneralization(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the templateBinding to add
@@ -187,15 +187,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the templateBinding
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * @param newValue the templateBinding to update
+	 * 
+	 * @param newValue
+	 *            the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -216,10 +222,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the elementImport to add
@@ -248,15 +250,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *            the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -277,10 +285,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the packageImport to add
@@ -309,15 +313,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *            the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -338,10 +348,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedRule to add
@@ -370,15 +376,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *            the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -400,10 +412,6 @@ public interface EnumerationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the powertypeExtent to add
 	 */
@@ -421,15 +429,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the powertypeExtent
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPowertypeExtent(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the powertypeExtent
-	 * @param newValue the powertypeExtent to update
+	 * 
+	 * @param newValue
+	 *            the powertypeExtent to update
 	 */
 	public void updatePowertypeExtent(EObject newValue);
 
@@ -450,10 +464,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPowertypeExtent(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedAttribute to add
@@ -482,15 +492,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedAttribute
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedAttribute(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedAttribute
-	 * @param newValue the ownedAttribute to update
+	 * 
+	 * @param newValue
+	 *            the ownedAttribute to update
 	 */
 	public void updateOwnedAttribute(EObject newValue);
 
@@ -511,10 +527,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedAttribute(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedOperation to add
@@ -543,15 +555,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedOperation
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedOperation(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedOperation
-	 * @param newValue the ownedOperation to update
+	 * 
+	 * @param newValue
+	 *            the ownedOperation to update
 	 */
 	public void updateOwnedOperation(EObject newValue);
 
@@ -572,10 +590,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedOperation(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedLiteral to add
@@ -604,15 +618,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedLiteral
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedLiteral(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedLiteral
-	 * @param newValue the ownedLiteral to update
+	 * 
+	 * @param newValue
+	 *            the ownedLiteral to update
 	 */
 	public void updateOwnedLiteral(EObject newValue);
 
@@ -634,10 +654,6 @@ public interface EnumerationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedLiteral(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the useCase to add
 	 */
@@ -655,15 +671,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the useCase
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the useCase
-	 * @param newValue the useCase to update
+	 * 
+	 * @param newValue
+	 *            the useCase to update
 	 */
 	public void updateUseCase(EObject newValue);
 
@@ -684,10 +706,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToUseCase(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedUseCase to add
@@ -716,15 +734,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedUseCase
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedUseCase
-	 * @param newValue the ownedUseCase to update
+	 * 
+	 * @param newValue
+	 *            the ownedUseCase to update
 	 */
 	public void updateOwnedUseCase(EObject newValue);
 
@@ -745,10 +769,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedUseCase(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the collaborationUse to add
@@ -777,15 +797,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the collaborationUse
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initCollaborationUse(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the collaborationUse
-	 * @param newValue the collaborationUse to update
+	 * 
+	 * @param newValue
+	 *            the collaborationUse to update
 	 */
 	public void updateCollaborationUse(EObject newValue);
 
@@ -806,10 +832,6 @@ public interface EnumerationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToCollaborationUse(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the substitution to add
@@ -838,15 +860,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the substitution
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initSubstitution(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the substitution
-	 * @param newValue the substitution to update
+	 * 
+	 * @param newValue
+	 *            the substitution to update
 	 */
 	public void updateSubstitution(EObject newValue);
 
@@ -868,10 +896,6 @@ public interface EnumerationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToSubstitution(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the redefinedClassifier to add
 	 */
@@ -889,15 +913,21 @@ public interface EnumerationPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedClassifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRedefinedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedClassifier
-	 * @param newValue the redefinedClassifier to update
+	 * 
+	 * @param newValue
+	 *            the redefinedClassifier to update
 	 */
 	public void updateRedefinedClassifier(EObject newValue);
 
@@ -919,18 +949,8 @@ public interface EnumerationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToRedefinedClassifier(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

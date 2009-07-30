@@ -162,6 +162,7 @@ public class Activator extends Plugin {
 	 *            the exception to log
 	 */
 	public static void logException(Exception exception) {
-		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, exception.getLocalizedMessage(), exception));
+		getDefault().getLog().log(
+				new Status(IStatus.ERROR, Activator.PLUGIN_ID, exception.getLocalizedMessage(), exception));
 	}
 }

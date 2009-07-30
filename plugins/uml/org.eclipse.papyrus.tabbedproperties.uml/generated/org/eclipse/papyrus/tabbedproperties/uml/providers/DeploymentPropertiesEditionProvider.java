@@ -32,7 +32,7 @@ public class DeploymentPropertiesEditionProvider implements IPropertiesEditionPr
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Deployment) && (UMLPackage.eINSTANCE.getDeployment() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class DeploymentPropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class DeploymentPropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
-}	
+
+}

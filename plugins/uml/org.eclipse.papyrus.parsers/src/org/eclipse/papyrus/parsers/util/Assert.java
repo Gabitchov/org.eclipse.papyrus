@@ -16,10 +16,13 @@ package org.eclipse.papyrus.parsers.util;
 import org.eclipse.core.runtime.AssertionFailedException;
 
 /**
- * <code>Assert</code> is useful for for embedding runtime sanity checks in code. The predicate methods all test a condition and throw some type of unchecked exception if the condition does not hold.
+ * <code>Assert</code> is useful for for embedding runtime sanity checks in code. The predicate
+ * methods all test a condition and throw some type of unchecked exception if the condition does not
+ * hold.
  * <p>
- * Assertion failure exceptions, like most runtime exceptions, are thrown when something is misbehaving. Assertion failures are invariably unspecified behavior; consequently, clients should never rely
- * on these being thrown (and certainly should not being catching them specifically).
+ * Assertion failure exceptions, like most runtime exceptions, are thrown when something is
+ * misbehaving. Assertion failures are invariably unspecified behavior; consequently, clients should
+ * never rely on these being thrown (and certainly should not being catching them specifically).
  * </p>
  * <p>
  * This class is not intended to be instantiated or sub-classed by clients.
@@ -36,7 +39,8 @@ public class Assert {
 	}
 
 	/**
-	 * Asserts that the given object is not <code>null</code>. If this is not the case, some kind of unchecked exception is thrown.
+	 * Asserts that the given object is not <code>null</code>. If this is not the case, some kind of
+	 * unchecked exception is thrown.
 	 * 
 	 * @param object
 	 *            the value to test
@@ -46,7 +50,9 @@ public class Assert {
 	}
 
 	/**
-	 * Asserts that the given object is not <code>null</code>. If this is not the case, some kind of unchecked exception is thrown. The given message is included in that exception, to aid debugging.
+	 * Asserts that the given object is not <code>null</code>. If this is not the case, some kind of
+	 * unchecked exception is thrown. The given message is included in that exception, to aid
+	 * debugging.
 	 * 
 	 * @param object
 	 *            the value to test

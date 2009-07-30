@@ -41,6 +41,7 @@ public class PortPropertiesEditionComponent extends ComposedPropertiesEditionCom
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 
@@ -50,52 +51,56 @@ public class PortPropertiesEditionComponent extends ComposedPropertiesEditionCom
 	public PortPropertiesEditionComponent(EObject port, String editing_mode) {
 		super(editing_mode);
 		if (port instanceof Port) {
-			portBasePropertiesEditionComponent = new PortBasePropertiesEditionComponent(port, editing_mode); 
+			portBasePropertiesEditionComponent = new PortBasePropertiesEditionComponent(port, editing_mode);
 			addSubComponent(portBasePropertiesEditionComponent);
-			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(port, editing_mode); 	
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(port, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 *      getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (PortPropertiesEditionPart)portBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart)basePart;
+			basePart = (PortPropertiesEditionPart) portBasePropertiesEditionComponent.getPropertiesEditionPart(kind,
+					key);
+			return (IPropertiesEditionPart) basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.Port.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (PortPropertiesEditionPart)propertiesEditionPart;
+			basePart = (PortPropertiesEditionPart) propertiesEditionPart;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.Port.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-            if (key == UMLViewsRepository.Comments.class) {
-                    super.initPart(key, kind, element, allResource);
-            
-            
-            }
+		if (key == UMLViewsRepository.Comments.class) {
+			super.initPart(key, kind, element, allResource);
+
+		}
 	}
 }
-

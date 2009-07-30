@@ -30,9 +30,10 @@ public class ValueSpecificationActionPropertiesEditionProvider implements IPrope
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ValueSpecificationAction) && (UMLPackage.eINSTANCE.getValueSpecificationAction() == eObject.eClass());
+		return (eObject instanceof ValueSpecificationAction)
+				&& (UMLPackage.eINSTANCE.getValueSpecificationAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class ValueSpecificationActionPropertiesEditionProvider implements IPrope
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class ValueSpecificationActionPropertiesEditionProvider implements IPrope
 		}
 		return null;
 	}
-	
-}	
+
+}

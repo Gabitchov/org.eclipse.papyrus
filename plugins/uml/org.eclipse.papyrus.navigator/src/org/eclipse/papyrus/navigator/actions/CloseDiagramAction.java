@@ -18,16 +18,17 @@ import org.eclipse.ui.PlatformUI;
 public class CloseDiagramAction extends Action {
 
 	Diagram diagram;
+
 	IPageMngr pageMngr;
 
 	public CloseDiagramAction(IPageMngr pageMngr, Diagram diagram) {
 		this.diagram = diagram;
 		this.pageMngr = pageMngr;
-		
+
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
 		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
 		setText("Close");
-		setEnabled( pageMngr.isOpen(diagram) );
+		setEnabled(pageMngr.isOpen(diagram));
 	}
 
 	/**
@@ -37,7 +38,7 @@ public class CloseDiagramAction extends Action {
 	 */
 	@Override
 	public void run() {
-		
+
 		pageMngr.closePage(diagram);
 	}
 }

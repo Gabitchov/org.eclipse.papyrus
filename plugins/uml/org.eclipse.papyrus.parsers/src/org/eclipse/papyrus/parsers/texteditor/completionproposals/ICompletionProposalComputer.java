@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.completionproposals;
 
 import java.util.List;
@@ -27,14 +27,14 @@ public interface ICompletionProposalComputer {
 	/**
 	 * set of text completions text.
 	 * 
-	 * @param selectionRange 
-	 * @param prefix 
-	 * @param documentOffset 
+	 * @param selectionRange
+	 * @param prefix
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
-	
-	// String[] proposals, String[] proposalsInfo, String prefix, 
+
+	// String[] proposals, String[] proposalsInfo, String prefix,
 	public List<ICompletionProposal> generateCompletionProposals(int documentOffset, int selectionRange, String prefix);
-	
+
 }

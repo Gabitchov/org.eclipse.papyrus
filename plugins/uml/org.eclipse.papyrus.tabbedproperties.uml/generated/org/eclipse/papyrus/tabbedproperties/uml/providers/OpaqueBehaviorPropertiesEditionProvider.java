@@ -32,7 +32,7 @@ public class OpaqueBehaviorPropertiesEditionProvider implements IPropertiesEditi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof OpaqueBehavior) && (UMLPackage.eINSTANCE.getOpaqueBehavior() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class OpaqueBehaviorPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class OpaqueBehaviorPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
-}	
+
+}

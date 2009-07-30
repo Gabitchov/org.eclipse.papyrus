@@ -40,7 +40,8 @@ public class ElementUtil {
 		Iterator<EObject> stAppIt = elt.getStereotypeApplications().iterator();
 		while (stAppIt.hasNext() && (stereotypeApplication == null)) {
 			EObject stApp = stAppIt.next();
-			if (stApp.eClass().getEAllSuperTypes().contains(stereotypeClass) || (stApp.eClass().equals(stereotypeClass))) {
+			if (stApp.eClass().getEAllSuperTypes().contains(stereotypeClass)
+					|| (stApp.eClass().equals(stereotypeClass))) {
 				stereotypeApplication = stApp;
 			}
 		}
@@ -57,7 +58,8 @@ public class ElementUtil {
 	 *            the stereotype that should have the icon
 	 * @param kind
 	 *            kind of display, should be <code>"icon"</code> or <code>"shape"</code>
-	 * @return the image corresponding to the stereotype or <code>null</code> if no image can be found
+	 * @return the image corresponding to the stereotype or <code>null</code> if no image can be
+	 *         found
 	 */
 	public static Image getStereotypeImage(Element element, Stereotype stereotype, String kind) {
 		if (stereotype == null || element.getAppliedStereotypes() == null) {

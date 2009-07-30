@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -39,7 +38,9 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -54,20 +55,21 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the slot to add
@@ -96,15 +98,21 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the slot
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initSlot(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the slot
-	 * @param newValue the slot to update
+	 * 
+	 * @param newValue
+	 *            the slot to update
 	 */
 	public void updateSlot(EObject newValue);
 
@@ -126,10 +134,6 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToSlot(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the classifier to add
 	 */
@@ -147,15 +151,21 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the classifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the classifier
-	 * @param newValue the classifier to update
+	 * 
+	 * @param newValue
+	 *            the classifier to update
 	 */
 	public void updateClassifier(EObject newValue);
 
@@ -176,10 +186,6 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClassifier(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the deployment to add
@@ -208,15 +214,21 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the deployment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initDeployment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the deployment
-	 * @param newValue the deployment to update
+	 * 
+	 * @param newValue
+	 *            the deployment to update
 	 */
 	public void updateDeployment(EObject newValue);
 
@@ -238,18 +250,8 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToDeployment(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

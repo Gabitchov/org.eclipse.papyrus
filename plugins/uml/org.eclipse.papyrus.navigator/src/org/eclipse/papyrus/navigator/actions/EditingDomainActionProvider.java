@@ -71,7 +71,8 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		// Create Delete action
 		this.deleteAction = new DeleteAction(editingDomain, true);
 		this.deleteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		this.deleteAction.setDisabledImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
+		this.deleteAction.setDisabledImageDescriptor(sharedImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
 
 		// Create Copy action
 		this.copyAction = new CopyAction(editingDomain);
@@ -118,7 +119,8 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		menu.add(new Separator());
 		menu.add(new ActionContributionItem(cutAction));
 		menu.add(new ActionContributionItem(copyAction));
-		menu.add(new ActionContributionItem(pasteAction));;
+		menu.add(new ActionContributionItem(pasteAction));
+		;
 		menu.add(new ActionContributionItem(deleteAction));
 		menu.add(new Separator());
 		menu.add(new ActionContributionItem(undoAction));
@@ -132,7 +134,8 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 
 	public void update() {
 		ISelection selection = getCommonNavigator().getCommonViewer().getSelection();
-		IStructuredSelection structuredSelection = selection instanceof IStructuredSelection ? (IStructuredSelection) selection : StructuredSelection.EMPTY;
+		IStructuredSelection structuredSelection = selection instanceof IStructuredSelection ? (IStructuredSelection) selection
+				: StructuredSelection.EMPTY;
 
 		deleteAction.updateSelection(structuredSelection);
 		cutAction.updateSelection(structuredSelection);
@@ -156,7 +159,9 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		// controlAction.setActiveWorkbenchPart(activeViewPart);
 		// validateAction.setActiveWorkbenchPart(activeViewPart);
 
-		ISelectionProvider selectionProvider = activeViewPart.getCommonViewer() instanceof ISelectionProvider ? (ISelectionProvider) activeViewPart.getCommonViewer() : null;
+		ISelectionProvider selectionProvider = activeViewPart.getCommonViewer() instanceof ISelectionProvider ? (ISelectionProvider) activeViewPart
+				.getCommonViewer()
+				: null;
 
 		if (selectionProvider != null) {
 			selectionProvider.addSelectionChangedListener(deleteAction);
@@ -183,7 +188,9 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		// controlAction.setActiveWorkbenchPart(null);
 		// validateAction.setActiveWorkbenchPart(null);
 
-		ISelectionProvider selectionProvider = activeViewPart.getCommonViewer() instanceof ISelectionProvider ? (ISelectionProvider) activeViewPart.getCommonViewer() : null;
+		ISelectionProvider selectionProvider = activeViewPart.getCommonViewer() instanceof ISelectionProvider ? (ISelectionProvider) activeViewPart
+				.getCommonViewer()
+				: null;
 
 		if (selectionProvider != null) {
 			selectionProvider.removeSelectionChangedListener(deleteAction);

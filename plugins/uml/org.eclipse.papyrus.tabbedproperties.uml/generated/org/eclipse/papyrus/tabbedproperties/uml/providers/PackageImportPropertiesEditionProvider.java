@@ -32,7 +32,7 @@ public class PackageImportPropertiesEditionProvider implements IPropertiesEditio
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof PackageImport) && (UMLPackage.eINSTANCE.getPackageImport() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class PackageImportPropertiesEditionProvider implements IPropertiesEditio
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class PackageImportPropertiesEditionProvider implements IPropertiesEditio
 		}
 		return null;
 	}
-	
-}	
+
+}

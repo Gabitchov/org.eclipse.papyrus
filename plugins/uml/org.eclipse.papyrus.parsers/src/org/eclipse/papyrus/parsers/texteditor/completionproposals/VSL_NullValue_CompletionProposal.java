@@ -10,66 +10,52 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.parsers.texteditor.completionproposals;
 
 import java.util.List;
 import java.util.Vector;
 
-
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.papyrus.parsers.messages.NFPMessages;
 
-
-
 public class VSL_NullValue_CompletionProposal implements ICompletionProposalComputer {
-	
+
 	/** Text inserted in the editor */
-	final static private String[] TVL_NullValue_Strings = {
-			"null",
-	};
+	final static private String[] TVL_NullValue_Strings = { "null", };
 
 	/** Text displayed in the information window */
-	final static private String[] TVL_NullValue_StringsInfo = {
-			NFPMessages.NullValue_StringsInfo,
-	}; 
+	final static private String[] TVL_NullValue_StringsInfo = { NFPMessages.NullValue_StringsInfo, };
 
 	/** Text displayed in the completion area window */
-	final static private String[] TVL_NullValue_StringName = {
-			NFPMessages.NullValue_StringName,
-	};
+	final static private String[] TVL_NullValue_StringName = { NFPMessages.NullValue_StringName, };
 
-	
 	/*
 	 * (non-Javadoc)
-	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer#generateCompletionProposals(int, int, java.lang.String)
+	 * 
+	 * @see
+	 * com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer
+	 * #generateCompletionProposals(int, int, java.lang.String)
 	 */
 	public List<ICompletionProposal> generateCompletionProposals(int documentOffset, int selectionRange, String prefix) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-		
+
 		// adds each Completion proposal
 		ICompletionProposal proposal = null;
-		
+
 		// adds all name (static strings...)
-		for(int i=0; i < TVL_NullValue_Strings.length; i++) {
-			if(TVL_NullValue_Strings[i].startsWith(prefix)) {
-				proposal = new CompletionProposal(
-						TVL_NullValue_Strings[i],
-						documentOffset-prefix.length(),
-						prefix.length()+selectionRange,
-						TVL_NullValue_Strings[i].length(),
-						null,
-						TVL_NullValue_StringName[i],
-						null,
+		for (int i = 0; i < TVL_NullValue_Strings.length; i++) {
+			if (TVL_NullValue_Strings[i].startsWith(prefix)) {
+				proposal = new CompletionProposal(TVL_NullValue_Strings[i], documentOffset - prefix.length(), prefix
+						.length()
+						+ selectionRange, TVL_NullValue_Strings[i].length(), null, TVL_NullValue_StringName[i], null,
 						TVL_NullValue_StringsInfo[i]);
 				v.add(proposal);
 			}
 		}
 
-
 		return v;
 	}
 }
-

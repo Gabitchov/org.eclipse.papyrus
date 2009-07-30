@@ -32,7 +32,7 @@ public class Interface_PropertiesEditionProvider implements IPropertiesEditionPr
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Interface) && (UMLPackage.eINSTANCE.getInterface() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class Interface_PropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class Interface_PropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
-}	
+
+}

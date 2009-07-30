@@ -32,7 +32,7 @@ public class SendSignalEventPropertiesEditionProvider implements IPropertiesEdit
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof SendSignalEvent) && (UMLPackage.eINSTANCE.getSendSignalEvent() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class SendSignalEventPropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class SendSignalEventPropertiesEditionProvider implements IPropertiesEdit
 		}
 		return null;
 	}
-	
-}	
+
+}

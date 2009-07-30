@@ -32,7 +32,7 @@ public class ExtensionEndPropertiesEditionProvider implements IPropertiesEdition
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof ExtensionEnd) && (UMLPackage.eINSTANCE.getExtensionEnd() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ExtensionEndPropertiesEditionProvider implements IPropertiesEdition
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ExtensionEndPropertiesEditionProvider implements IPropertiesEdition
 		}
 		return null;
 	}
-	
-}	
+
+}

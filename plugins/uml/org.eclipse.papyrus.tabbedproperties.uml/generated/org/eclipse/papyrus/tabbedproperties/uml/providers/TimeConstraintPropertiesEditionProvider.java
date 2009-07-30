@@ -32,7 +32,7 @@ public class TimeConstraintPropertiesEditionProvider implements IPropertiesEditi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof TimeConstraint) && (UMLPackage.eINSTANCE.getTimeConstraint() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class TimeConstraintPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class TimeConstraintPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
-}	
+
+}

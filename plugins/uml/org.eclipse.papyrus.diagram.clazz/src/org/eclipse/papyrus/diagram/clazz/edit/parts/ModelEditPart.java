@@ -138,7 +138,8 @@ public class ModelEditPart extends DiagramEditPart {
 
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
+		// new
+		// org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DiagramDragDropEditPolicy(resolver));
 
@@ -170,7 +171,8 @@ public class ModelEditPart extends DiagramEditPart {
 		if (event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
 			if (eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				// modification form MOSKitt approach, canonical policies are not called
+				// modification form MOSKitt approach, canonical policies are
+				// not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
 		}

@@ -32,7 +32,7 @@ public class LoopNodePropertiesEditionProvider implements IPropertiesEditionProv
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof LoopNode) && (UMLPackage.eINSTANCE.getLoopNode() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class LoopNodePropertiesEditionProvider implements IPropertiesEditionProv
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class LoopNodePropertiesEditionProvider implements IPropertiesEditionProv
 		}
 		return null;
 	}
-	
-}	
+
+}

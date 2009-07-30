@@ -105,7 +105,6 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Dependency;
 
-
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
@@ -113,31 +112,41 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CollaborationUsePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, CollaborationUsePropertiesEditionPart {
+public class CollaborationUsePropertiesEditionPartForm extends CompositePropertiesEditionPart implements
+		IFormPropertiesEditionPart, CollaborationUsePropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<?> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	private EMFListEditUtil clientDependencyEditUtil;
+
 	protected ReferencesTable<?> clientDependency;
+
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil roleBindingEditUtil;
+
 	protected ReferencesTable<?> roleBinding;
+
 	protected List<ViewerFilter> roleBindingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> roleBindingFilters = new ArrayList<ViewerFilter>();
 
-
-
-
-	
 	public CollaborationUsePropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
@@ -148,18 +157,19 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createPropertiesGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
-		
+
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
-		Section propertiesSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		Section propertiesSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE
+				| Section.EXPANDED);
 		propertiesSection.setText(UMLMessages.CollaborationUsePropertiesEditionPart_PropertiesGroupLabel);
 		GridData propertiesSectionData = new GridData(GridData.FILL_HORIZONTAL);
 		propertiesSectionData.horizontalSpan = 3;
@@ -175,24 +185,42 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 		createRoleBindingTableComposition(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.CollaborationUsePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
-		});
-		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CollaborationUse.ownedComment, UMLViewsRepository.FORM_KIND));
+		this.ownedComment = new ReferencesTable<Comment>(
+				UMLMessages.CollaborationUsePropertiesEditionPart_OwnedCommentLabel,
+				new ReferencesTableListener<Comment>() {
+
+					public void handleAdd() {
+						addToOwnedComment();
+					}
+
+					public void handleEdit(Comment element) {
+						editOwnedComment(element);
+					}
+
+					public void handleMove(Comment element, int oldIndex, int newIndex) {
+						moveOwnedComment(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Comment element) {
+						removeFromOwnedComment(element);
+					}
+
+					public void navigateTo(Comment element) {
+					}
+				});
+		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.CollaborationUse.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
 		GridData ownedCommentData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedCommentData.horizontalSpan = 3;
 		this.ownedComment.setLayoutData(ownedCommentData);
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -200,33 +228,39 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToOwnedComment() {
-	
+
 		// Start of user code addToOwnedComment() method body
-		
-		
+
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
+							eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						CollaborationUsePropertiesEditionPartForm.this,
+						UMLViewsRepository.CollaborationUse.ownedComment, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -239,7 +273,9 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -251,24 +287,32 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	protected void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-				 
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						CollaborationUsePropertiesEditionPartForm.this,
+						UMLViewsRepository.CollaborationUse.ownedComment, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
+
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.CollaborationUsePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.CollaborationUse.name, UMLViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.CollaborationUsePropertiesEditionPart_NameLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.CollaborationUse.name,
+						UMLViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -283,9 +327,11 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.name,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 		name.addFocusListener(new FocusAdapter() {
 
@@ -296,7 +342,9 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 			 */
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.name,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
 		});
@@ -310,16 +358,23 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+								CollaborationUsePropertiesEditionPartForm.this,
+								UMLViewsRepository.CollaborationUse.name, PropertiesEditionEvent.COMMIT,
+								PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
-			
+
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.CollaborationUse.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.CollaborationUse.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 
 	}
+
 	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.CollaborationUsePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.CollaborationUse.visibility, UMLViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent,
+				UMLMessages.CollaborationUsePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent
+						.isRequired(UMLViewsRepository.CollaborationUse.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -334,44 +389,68 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							CollaborationUsePropertiesEditionPartForm.this,
+							UMLViewsRepository.CollaborationUse.visibility, PropertiesEditionEvent.COMMIT,
+							PropertiesEditionEvent.SET, null, getVisibility()));
 			}
-			
+
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.CollaborationUse.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.CollaborationUse.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createClientDependencyReferencesTable(FormToolkit widgetFactory, Composite parent) {
-		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.CollaborationUsePropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency()) {
-					@Override
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
-								clientDependencyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.clientDependency,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						clientDependency.refresh();
+		this.clientDependency = new ReferencesTable<Dependency>(
+				UMLMessages.CollaborationUsePropertiesEditionPart_ClientDependencyLabel,
+				new ReferencesTableListener<Dependency>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(
+								resourceSet, clientDependencyFilters, clientDependencyBusinessFilters, "Dependency",
+								UMLPackage.eINSTANCE.getDependency()) {
+
+							@Override
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+										clientDependencyEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											CollaborationUsePropertiesEditionPartForm.this,
+											UMLViewsRepository.CollaborationUse.clientDependency,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								clientDependency.refresh();
+							}
+						};
+						dialog.open();
 					}
-				};
-				dialog.open();
-			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { }
-		});
-		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CollaborationUse.clientDependency, UMLViewsRepository.FORM_KIND));
+
+					public void handleEdit(Dependency element) {
+						editClientDependency(element);
+					}
+
+					public void handleMove(Dependency element, int oldIndex, int newIndex) {
+						moveClientDependency(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Dependency element) {
+						removeFromClientDependency(element);
+					}
+
+					public void navigateTo(Dependency element) {
+					}
+				});
+		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.CollaborationUse.clientDependency, UMLViewsRepository.FORM_KIND));
 		this.clientDependency.createControls(parent, widgetFactory);
 		GridData clientDependencyData = new GridData(GridData.FILL_HORIZONTAL);
 		clientDependencyData.horizontalSpan = 3;
 		this.clientDependency.setLayoutData(clientDependencyData);
 		this.clientDependency.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -379,9 +458,11 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.moveElement(element, oldIndex, newIndex);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.clientDependency,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -392,7 +473,9 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.removeElement(element);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.clientDependency,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -404,40 +487,63 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	protected void editClientDependency(Dependency element) {
 
 		// Start of user code editClientDependency() method body
-		
+
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						CollaborationUsePropertiesEditionPartForm.this,
+						UMLViewsRepository.CollaborationUse.clientDependency, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createRoleBindingTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.roleBinding = new ReferencesTable<Dependency>(UMLMessages.CollaborationUsePropertiesEditionPart_RoleBindingLabel, new ReferencesTableListener<Dependency>() {			
-			public void handleAdd() { addToRoleBinding();}
-			public void handleEdit(Dependency element) { editRoleBinding(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveRoleBinding(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromRoleBinding(element); }
-			public void navigateTo(Dependency element) { }
-		});
-		this.roleBinding.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CollaborationUse.roleBinding, UMLViewsRepository.FORM_KIND));
+		this.roleBinding = new ReferencesTable<Dependency>(
+				UMLMessages.CollaborationUsePropertiesEditionPart_RoleBindingLabel,
+				new ReferencesTableListener<Dependency>() {
+
+					public void handleAdd() {
+						addToRoleBinding();
+					}
+
+					public void handleEdit(Dependency element) {
+						editRoleBinding(element);
+					}
+
+					public void handleMove(Dependency element, int oldIndex, int newIndex) {
+						moveRoleBinding(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Dependency element) {
+						removeFromRoleBinding(element);
+					}
+
+					public void navigateTo(Dependency element) {
+					}
+				});
+		this.roleBinding.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.CollaborationUse.roleBinding, UMLViewsRepository.FORM_KIND));
 		this.roleBinding.createControls(parent, widgetFactory);
 		GridData roleBindingData = new GridData(GridData.FILL_HORIZONTAL);
 		roleBindingData.horizontalSpan = 3;
 		this.roleBinding.setLayoutData(roleBindingData);
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -445,33 +551,39 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 		EObject editedElement = roleBindingEditUtil.foundCorrespondingEObject(element);
 		roleBindingEditUtil.moveElement(element, oldIndex, newIndex);
 		roleBinding.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.roleBinding, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.roleBinding,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	protected void addToRoleBinding() {
-	
+
 		// Start of user code addToRoleBinding() method body
-		
-		
+
 		Dependency eObject = UMLFactory.eINSTANCE.createDependency();
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
+							eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				roleBindingEditUtil.addElement(propertiesEditionObject);
 				roleBinding.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.roleBinding, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						CollaborationUsePropertiesEditionPartForm.this,
+						UMLViewsRepository.CollaborationUse.roleBinding, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-			
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -484,7 +596,9 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 		EObject editedElement = roleBindingEditUtil.foundCorrespondingEObject(element);
 		roleBindingEditUtil.removeElement(element);
 		roleBinding.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.roleBinding, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.roleBinding,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -496,16 +610,21 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	protected void editRoleBinding(Dependency element) {
 
 		// Start of user code editRoleBinding() method body
-				 
+
 		EObject editedElement = roleBindingEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				roleBindingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				roleBinding.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CollaborationUsePropertiesEditionPartForm.this, UMLViewsRepository.CollaborationUse.roleBinding, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						CollaborationUsePropertiesEditionPartForm.this,
+						UMLViewsRepository.CollaborationUse.roleBinding, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
@@ -513,12 +632,11 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 
 	}
 
-	
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -569,7 +687,8 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#initOwnedComment(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -584,10 +703,11 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#updateOwnedComment(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#updateOwnedComment(EObject
+	 *      newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -596,7 +716,8 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentFilters.add(filter);
@@ -605,15 +726,12 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
 	}
-
-
-
-
 
 	/**
 	 * {@inheritDoc}
@@ -627,7 +745,8 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#setName(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#setName(String
+	 *      newValue)
 	 */
 	public void setName(String newValue) {
 		name.setText(newValue);
@@ -654,7 +773,8 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#initVisibility(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -664,15 +784,12 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#setVisibility(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#setVisibility(Enumerator
+	 *      newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
 	}
-
-
-
-
 
 	/**
 	 * {@inheritDoc}
@@ -704,7 +821,8 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#initClientDependency(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -719,10 +837,11 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#updateClientDependency(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#updateClientDependency(EObject
+	 *      newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil!=null){
+		if (clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -731,7 +850,8 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyFilters.add(filter);
@@ -740,15 +860,12 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyBusinessFilters.add(filter);
 	}
-
-
-
-
 
 	/**
 	 * {@inheritDoc}
@@ -798,7 +915,8 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#initRoleBinding(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#initRoleBinding(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initRoleBinding(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -813,10 +931,11 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#updateRoleBinding(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#updateRoleBinding(EObject
+	 *      newValue)
 	 */
 	public void updateRoleBinding(EObject newValue) {
-		if(roleBindingEditUtil!=null){
+		if (roleBindingEditUtil != null) {
 			roleBindingEditUtil.reinit(newValue);
 			roleBinding.refresh();
 		}
@@ -825,7 +944,8 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addFilterRoleBinding(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addFilterRoleBinding(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToRoleBinding(ViewerFilter filter) {
 		roleBindingFilters.add(filter);
@@ -834,25 +954,15 @@ public class CollaborationUsePropertiesEditionPartForm extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addBusinessFilterRoleBinding(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CollaborationUsePropertiesEditionPart#addBusinessFilterRoleBinding(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToRoleBinding(ViewerFilter filter) {
 		roleBindingBusinessFilters.add(filter);
 	}
 
-
-
-
-
-
-
-
-
-
-
-	
 	// Start of user code additional methods
-	
+
 	// End of user code
 
-}	
+}

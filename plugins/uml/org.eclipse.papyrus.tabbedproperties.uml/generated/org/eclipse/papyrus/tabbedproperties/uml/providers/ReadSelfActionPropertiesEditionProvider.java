@@ -32,7 +32,7 @@ public class ReadSelfActionPropertiesEditionProvider implements IPropertiesEditi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof ReadSelfAction) && (UMLPackage.eINSTANCE.getReadSelfAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ReadSelfActionPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ReadSelfActionPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
-}	
+
+}

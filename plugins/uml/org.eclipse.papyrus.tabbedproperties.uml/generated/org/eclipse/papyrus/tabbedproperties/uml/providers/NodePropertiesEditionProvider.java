@@ -32,7 +32,7 @@ public class NodePropertiesEditionProvider implements IPropertiesEditionProvider
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Node) && (UMLPackage.eINSTANCE.getNode() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class NodePropertiesEditionProvider implements IPropertiesEditionProvider
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class NodePropertiesEditionProvider implements IPropertiesEditionProvider
 		}
 		return null;
 	}
-	
-}	
+
+}

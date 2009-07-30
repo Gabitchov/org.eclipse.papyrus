@@ -30,7 +30,8 @@ public class NameLabelIconHelper {
 	 *            the view where is attach the element
 	 */
 	public static boolean getNameLabelIconValue(EModelElement modelElement) {
-		EAnnotation stereotypeDisplayKind = modelElement.getEAnnotation(VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON);
+		EAnnotation stereotypeDisplayKind = modelElement
+				.getEAnnotation(VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
@@ -57,7 +58,8 @@ public class NameLabelIconHelper {
 	 * 
 	 * @return the command to set the gradient to true are false.
 	 */
-	public static RecordingCommand getNameLabelIconCommand(TransactionalEditingDomain domain, EModelElement view, boolean nameLabelIconValue) {
+	public static RecordingCommand getNameLabelIconCommand(TransactionalEditingDomain domain, EModelElement view,
+			boolean nameLabelIconValue) {
 		return new SetNameLabelIconCommand(domain, view, nameLabelIconValue);
 	}
 

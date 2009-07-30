@@ -29,8 +29,8 @@ public class PropertyUtil {
 	public final static String UNDEFINED_TYPE_NAME = "<Undefined>";
 
 	/**
-	 * Get all properties that can be subset by this {@link Property} checks the
-	 * type and the multiplicity.
+	 * Get all properties that can be subset by this {@link Property} checks the type and the
+	 * multiplicity.
 	 * 
 	 * @return all properties that can be subset
 	 */
@@ -146,8 +146,7 @@ public class PropertyUtil {
 	}
 
 	/**
-	 * return the custom label of the property, given UML2 specification and a
-	 * custom style.
+	 * return the custom label of the property, given UML2 specification and a custom style.
 	 * 
 	 * @param style
 	 *            the integer representing the style of the label
@@ -215,14 +214,13 @@ public class PropertyUtil {
 	}
 
 	/**
-	 * Returns the modifier of the property, separated by a comma, as as single
-	 * line if <code>multiline</code> is <code>false</code> or as a multiline
-	 * string if <code>multiline</code> is <code>false</code>.
+	 * Returns the modifier of the property, separated by a comma, as as single line if
+	 * <code>multiline</code> is <code>false</code> or as a multiline string if
+	 * <code>multiline</code> is <code>false</code>.
 	 * 
 	 * @param multiLine
-	 *            boolean that indicates if the string should have several lines
-	 *            when set to <code>true</code> or only one line when set to
-	 *            <code>false</code>.
+	 *            boolean that indicates if the string should have several lines when set to
+	 *            <code>true</code> or only one line when set to <code>false</code>.
 	 * 
 	 * @return a string giving all modifiers for the property
 	 */

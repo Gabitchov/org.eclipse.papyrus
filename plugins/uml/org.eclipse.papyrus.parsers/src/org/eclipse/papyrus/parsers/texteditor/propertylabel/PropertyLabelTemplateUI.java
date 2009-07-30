@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.propertylabel;
 
 import java.io.IOException;
@@ -25,18 +25,15 @@ import org.eclipse.ui.editors.text.templates.ContributionContextTypeRegistry;
 import org.eclipse.ui.editors.text.templates.ContributionTemplateStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-
-
 /**
  * Template management for the text editor.
  */
 public class PropertyLabelTemplateUI {
-	
+
 	/**
 	 * Key to store custom templates.
 	 */
-	private static final String CUSTOM_TEMPLATES_KEY = 
-		"com.cea.accorduml.view.rtaction.texteditor.customtemplates";
+	private static final String CUSTOM_TEMPLATES_KEY = "com.cea.accorduml.view.rtaction.texteditor.customtemplates";
 
 	/**
 	 * The shared instance.
@@ -78,9 +75,8 @@ public class PropertyLabelTemplateUI {
 	 */
 	public TemplateStore getTemplateStore() {
 		if (fStore == null) {
-			fStore = new ContributionTemplateStore(getContextTypeRegistry(),
-			        PapyrusParsersPlugin.getDefault().getPreferenceStore(),
-					CUSTOM_TEMPLATES_KEY);
+			fStore = new ContributionTemplateStore(getContextTypeRegistry(), PapyrusParsersPlugin.getDefault()
+					.getPreferenceStore(), CUSTOM_TEMPLATES_KEY);
 			try {
 				fStore.load();
 			} catch (IOException e) {
@@ -108,28 +104,26 @@ public class PropertyLabelTemplateUI {
 	/**
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public ImageRegistry getImageRegistry() {
 		return PapyrusParsersPlugin.getDefault().getImageRegistry();
 	}
 
 	/**
-	 * Creates and returns the <code>ImageDescriptor</code> for an image from
-	 * a plugin.
+	 * Creates and returns the <code>ImageDescriptor</code> for an image from a plugin.
 	 * 
-	 * @param imageFilePath relative path to the file that stores the image
-	 * @param pluginId the identifier of the plugin
+	 * @param imageFilePath
+	 *            relative path to the file that stores the image
+	 * @param pluginId
+	 *            the identifier of the plugin
 	 * 
 	 * @return the image descriptor
 	 * 
-	 * @see AbstractUIPlugin#imageDescriptorFromPlugin(java.lang.String,
-	 * java.lang.String)
+	 * @see AbstractUIPlugin#imageDescriptorFromPlugin(java.lang.String, java.lang.String)
 	 */
-	public static ImageDescriptor imageDescriptorFromPlugin(String pluginId,
-			String imageFilePath) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin(pluginId,
-				imageFilePath);
+	public static ImageDescriptor imageDescriptorFromPlugin(String pluginId, String imageFilePath) {
+		return AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, imageFilePath);
 	}
 
 	/**
@@ -143,7 +137,6 @@ public class PropertyLabelTemplateUI {
 		return PapyrusParsersPlugin.getDefault().getPreferenceStore();
 	}
 
-	
 	/**
 	 * Save plugin preferences.
 	 * 

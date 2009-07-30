@@ -32,7 +32,7 @@ public class ContinuationPropertiesEditionProvider implements IPropertiesEdition
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Continuation) && (UMLPackage.eINSTANCE.getContinuation() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ContinuationPropertiesEditionProvider implements IPropertiesEdition
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ContinuationPropertiesEditionProvider implements IPropertiesEdition
 		}
 		return null;
 	}
-	
-}	
+
+}

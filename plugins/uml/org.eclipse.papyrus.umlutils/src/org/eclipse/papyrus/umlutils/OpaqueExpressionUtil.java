@@ -47,9 +47,12 @@ public class OpaqueExpressionUtil {
 	/**
 	 * sets the body for an OpaqueExpression for the given language.
 	 * <p>
-	 * If the language was already defined, it replaces the corresponding body. If the language was not already defined, it adds it to the list of languages and adds the corresponding body.
+	 * If the language was already defined, it replaces the corresponding body. If the language was
+	 * not already defined, it adds it to the list of languages and adds the corresponding body.
 	 * <p>
-	 * A utility method, {@link OpaqueExpression#checkAndCorrectLists(org.eclipse.uml2.uml.OpaqueExpression)} is used to correct the language and body lists.
+	 * A utility method,
+	 * {@link OpaqueExpression#checkAndCorrectLists(org.eclipse.uml2.uml.OpaqueExpression)} is used
+	 * to correct the language and body lists.
 	 * 
 	 * @param opaqueExpression
 	 *            the opaque expression to edit.
@@ -58,7 +61,8 @@ public class OpaqueExpressionUtil {
 	 * @param body
 	 *            the body to save
 	 */
-	public static void setBodyForLanguage(org.eclipse.uml2.uml.OpaqueExpression opaqueExpression, String language, String body) {
+	public static void setBodyForLanguage(org.eclipse.uml2.uml.OpaqueExpression opaqueExpression, String language,
+			String body) {
 		// checks both lists by size
 		checkAndCorrectLists(opaqueExpression);
 
@@ -77,12 +81,14 @@ public class OpaqueExpressionUtil {
 	/**
 	 * Checks body and languages list of an opaque expression.
 	 * <p>
-	 * It returns <code>true</code> if both lists have the same size. It returns <code>false</code> if one of the list was bigger than the other one. In this latter case, one of the list was
+	 * It returns <code>true</code> if both lists have the same size. It returns <code>false</code>
+	 * if one of the list was bigger than the other one. In this latter case, one of the list was
 	 * corrected, ie enough elements where added in the list
 	 * 
 	 * @param opaqueExpression
 	 *            the opaque expression to check
-	 * @return <code>true</code> if both lists already had the same size, <code>false</code> in other cases.
+	 * @return <code>true</code> if both lists already had the same size, <code>false</code> in
+	 *         other cases.
 	 */
 	public static boolean checkAndCorrectLists(org.eclipse.uml2.uml.OpaqueExpression opaqueExpression) {
 		// both lists, languages and bodies, should have the same size

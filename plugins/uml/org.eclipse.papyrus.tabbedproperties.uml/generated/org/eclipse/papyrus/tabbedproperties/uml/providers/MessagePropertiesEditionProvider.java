@@ -32,7 +32,7 @@ public class MessagePropertiesEditionProvider implements IPropertiesEditionProvi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Message) && (UMLPackage.eINSTANCE.getMessage() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class MessagePropertiesEditionProvider implements IPropertiesEditionProvi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class MessagePropertiesEditionProvider implements IPropertiesEditionProvi
 		}
 		return null;
 	}
-	
-}	
+
+}

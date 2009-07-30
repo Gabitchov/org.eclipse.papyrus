@@ -32,7 +32,7 @@ public class SlotPropertiesEditionProvider implements IPropertiesEditionProvider
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Slot) && (UMLPackage.eINSTANCE.getSlot() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class SlotPropertiesEditionProvider implements IPropertiesEditionProvider
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class SlotPropertiesEditionProvider implements IPropertiesEditionProvider
 		}
 		return null;
 	}
-	
-}	
+
+}

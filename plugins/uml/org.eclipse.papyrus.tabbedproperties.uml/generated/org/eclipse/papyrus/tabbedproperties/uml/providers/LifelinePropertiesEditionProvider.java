@@ -32,7 +32,7 @@ public class LifelinePropertiesEditionProvider implements IPropertiesEditionProv
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Lifeline) && (UMLPackage.eINSTANCE.getLifeline() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class LifelinePropertiesEditionProvider implements IPropertiesEditionProv
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class LifelinePropertiesEditionProvider implements IPropertiesEditionProv
 		}
 		return null;
 	}
-	
-}	
+
+}

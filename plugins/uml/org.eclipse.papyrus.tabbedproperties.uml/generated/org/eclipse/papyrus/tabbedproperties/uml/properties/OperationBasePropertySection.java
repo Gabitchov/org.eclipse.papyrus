@@ -36,11 +36,12 @@ import org.eclipse.papyrus.tabbedproperties.uml.components.OperationBaseProperti
 public class OperationBasePropertySection extends AbstractPropertySection implements IFilter {
 
 	private Composite parent;
+
 	private IPropertiesEditionComponent propertiesEditionComponent;
 
 	/**
-	 * The current selected object or the first object in the selection when
-	 * multiple objects are selected.
+	 * The current selected object or the first object in the selection when multiple objects are
+	 * selected.
 	 */
 	protected EObject eObject;
 
@@ -64,34 +65,38 @@ public class OperationBasePropertySection extends AbstractPropertySection implem
 	 */
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (!(selection instanceof IStructuredSelection) || 
-				!((part instanceof IEditingDomainProvider) || ((part instanceof IAdaptable) && ((IAdaptable)part).getAdapter(IEditingDomainProvider.class) != null))) {
+		if (!(selection instanceof IStructuredSelection)
+				|| !((part instanceof IEditingDomainProvider) || ((part instanceof IAdaptable) && ((IAdaptable) part)
+						.getAdapter(IEditingDomainProvider.class) != null))) {
 			return;
 		}
 		EObject newEObject = null;
 		Object firstElement = ((IStructuredSelection) selection).getFirstElement();
 		if (firstElement instanceof EObject)
 			newEObject = (EObject) firstElement;
-		else if (firstElement instanceof IAdaptable && ((IAdaptable)firstElement).getAdapter(EObject.class) != null)
-			newEObject = (EObject) ((IAdaptable)firstElement).getAdapter(EObject.class);
+		else if (firstElement instanceof IAdaptable && ((IAdaptable) firstElement).getAdapter(EObject.class) != null)
+			newEObject = (EObject) ((IAdaptable) firstElement).getAdapter(EObject.class);
 		EditingDomain editingDomain = null;
 		if (part instanceof IEditingDomainProvider)
 			editingDomain = ((IEditingDomainProvider) part).getEditingDomain();
-		else if ((part instanceof IAdaptable) && ((IAdaptable)part).getAdapter(IEditingDomainProvider.class) != null)
-			editingDomain = (((IEditingDomainProvider)((IAdaptable)part).getAdapter(IEditingDomainProvider.class))).getEditingDomain();
-		
+		else if ((part instanceof IAdaptable) && ((IAdaptable) part).getAdapter(IEditingDomainProvider.class) != null)
+			editingDomain = (((IEditingDomainProvider) ((IAdaptable) part).getAdapter(IEditingDomainProvider.class)))
+					.getEditingDomain();
+
 		if (editingDomain != null && newEObject != null && newEObject != eObject) {
 			eObject = newEObject;
 			if (eObject != null) {
-				IPropertiesEditionProvider provider = PropertiesEditionComponentService.getInstance().getProvider(eObject);
+				IPropertiesEditionProvider provider = PropertiesEditionComponentService.getInstance().getProvider(
+						eObject);
 				if (this.propertiesEditionComponent != null)
 					this.propertiesEditionComponent.dispose();
-				this.propertiesEditionComponent = provider.getPropertiesEditionComponent(eObject, IPropertiesEditionComponent.LIVE_MODE,
-						OperationBasePropertiesEditionComponent.BASE_PART);
+				this.propertiesEditionComponent = provider.getPropertiesEditionComponent(eObject,
+						IPropertiesEditionComponent.LIVE_MODE, OperationBasePropertiesEditionComponent.BASE_PART);
 				if (this.propertiesEditionComponent != null) {
 					this.propertiesEditionComponent.setLiveEditingDomain(editingDomain);
 					// FIXME: find a better way to define the Form constant
-					this.editionPart = propertiesEditionComponent.getPropertiesEditionPart(1, OperationBasePropertiesEditionComponent.BASE_PART); //$NON-NLS-1$
+					this.editionPart = propertiesEditionComponent.getPropertiesEditionPart(1,
+							OperationBasePropertiesEditionComponent.BASE_PART); //$NON-NLS-1$
 					if (editionPart instanceof IFormPropertiesEditionPart) {
 						for (int i = 0; i < parent.getChildren().length; i++) {
 							Composite child = (Composite) parent.getChildren()[i];
@@ -99,7 +104,8 @@ public class OperationBasePropertySection extends AbstractPropertySection implem
 						}
 						((IFormPropertiesEditionPart) this.editionPart).createFigure(parent, getWidgetFactory());
 						parent.layout();
-						propertiesEditionComponent.initPart(propertiesEditionComponent.translatePart(OperationBasePropertiesEditionComponent.BASE_PART), 1, eObject);
+						propertiesEditionComponent.initPart(propertiesEditionComponent
+								.translatePart(OperationBasePropertiesEditionComponent.BASE_PART), 1, eObject);
 					}
 				}
 			}
@@ -135,4 +141,3 @@ public class OperationBasePropertySection extends AbstractPropertySection implem
 	}
 
 }
-

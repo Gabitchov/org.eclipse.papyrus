@@ -32,7 +32,7 @@ public class CreationEventPropertiesEditionProvider implements IPropertiesEditio
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof CreationEvent) && (UMLPackage.eINSTANCE.getCreationEvent() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class CreationEventPropertiesEditionProvider implements IPropertiesEditio
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class CreationEventPropertiesEditionProvider implements IPropertiesEditio
 		}
 		return null;
 	}
-	
-}	
+
+}

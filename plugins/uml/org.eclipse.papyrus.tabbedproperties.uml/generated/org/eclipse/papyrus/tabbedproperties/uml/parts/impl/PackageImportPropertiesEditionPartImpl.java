@@ -58,14 +58,11 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class PackageImportPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, PackageImportPropertiesEditionPart {
+public class PackageImportPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
+		ISWTPropertiesEditionPart, PackageImportPropertiesEditionPart {
 
 	protected EMFComboViewer visibility;
 
-
-
-
-	
 	public PackageImportPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -75,16 +72,16 @@ public class PackageImportPropertiesEditionPartImpl extends CompositePropertiesE
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
 
 	}
@@ -100,20 +97,23 @@ public class PackageImportPropertiesEditionPartImpl extends CompositePropertiesE
 		generalGroup.setLayout(generalGroupLayout);
 		createVisibilityEMFComboViewer(generalGroup);
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.PackageImportPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.PackageImport.visibility, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.PackageImportPropertiesEditionPart_VisibilityLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.PackageImport.visibility,
+						UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.PackageImport.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.PackageImport.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
 
 	}
@@ -131,7 +131,8 @@ public class PackageImportPropertiesEditionPartImpl extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PackageImportPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PackageImportPropertiesEditionPart#initVisibility(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -141,7 +142,8 @@ public class PackageImportPropertiesEditionPartImpl extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PackageImportPropertiesEditionPart#setVisibility(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.PackageImportPropertiesEditionPart#setVisibility(Enumerator
+	 *      newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
@@ -155,15 +157,8 @@ public class PackageImportPropertiesEditionPartImpl extends CompositePropertiesE
 
 	}
 
-
-
-
-
-
-
-
 	// Start of user code additional methods
-	
+
 	// End of user code
 
 }

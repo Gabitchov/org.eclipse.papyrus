@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.propertylabel;
 
 import org.eclipse.jface.text.rules.IPredicateRule;
@@ -25,13 +25,14 @@ import org.eclipse.jface.text.rules.Token;
  * <ul>
  * <li>RTACTION_STRING</li>
  * <li>Multi line comment</li>
- * </ul>.
+ * </ul>
+ * .
  * 
  * @author Remi SCHNEKENBURGER
  * @see org.eclipse.jface.text.rules.RuleBasedPartitionScanner
  */
 public class PropertyLabelPartitionScanner extends RuleBasedPartitionScanner {
-	
+
 	/**
 	 * 
 	 */
@@ -43,11 +44,8 @@ public class PropertyLabelPartitionScanner extends RuleBasedPartitionScanner {
 	public PropertyLabelPartitionScanner() {
 		IToken tagString = new Token(PROPERTY_MODIFIERS_STRING);
 		IPredicateRule[] rules = new IPredicateRule[1];
-		rules[0] = new MultiLineRule("{", "}", tagString,
-				(char) 0, true);
+		rules[0] = new MultiLineRule("{", "}", tagString, (char) 0, true);
 		setPredicateRules(rules);
 	}
-	
-	
-	
+
 }

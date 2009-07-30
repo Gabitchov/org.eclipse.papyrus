@@ -3,7 +3,6 @@ package org.eclipse.papyrus.extensionpoints.uml2.standard;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * Label provider for elements registered in the platform by Papyrus uml2 extension points
  */
@@ -17,7 +16,7 @@ public class RegisteredElementsLabelProvider extends LabelProvider {
 	}
 
 	/**
-	 * @{inheritedDoc}
+	 * @{inheritedDoc
 	 */
 	@Override
 	public Image getImage(Object element) {
@@ -29,7 +28,7 @@ public class RegisteredElementsLabelProvider extends LabelProvider {
 	}
 
 	/**
-	 * @{inheritedDoc}
+	 * @{inheritedDoc
 	 */
 	@Override
 	public String getText(Object element) {

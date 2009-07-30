@@ -30,9 +30,10 @@ public class ProtocolTransitionPropertiesEditionProvider implements IPropertiesE
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ProtocolTransition) && (UMLPackage.eINSTANCE.getProtocolTransition() == eObject.eClass());
+		return (eObject instanceof ProtocolTransition)
+				&& (UMLPackage.eINSTANCE.getProtocolTransition() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class ProtocolTransitionPropertiesEditionProvider implements IPropertiesE
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class ProtocolTransitionPropertiesEditionProvider implements IPropertiesE
 		}
 		return null;
 	}
-	
-}	
+
+}

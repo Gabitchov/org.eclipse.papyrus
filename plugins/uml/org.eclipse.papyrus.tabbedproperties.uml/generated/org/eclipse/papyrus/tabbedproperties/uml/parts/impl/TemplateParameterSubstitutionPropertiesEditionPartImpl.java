@@ -77,7 +77,6 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ParameterableElement;
 
-
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
@@ -85,25 +84,33 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, TemplateParameterSubstitutionPropertiesEditionPart {
+public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
+		ISWTPropertiesEditionPart, TemplateParameterSubstitutionPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<?> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil actualEditUtil;
+
 	protected ReferencesTable<?> actual;
+
 	protected List<ViewerFilter> actualBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> actualFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil ownedActualEditUtil;
+
 	protected ReferencesTable<?> ownedActual;
+
 	protected List<ViewerFilter> ownedActualBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedActualFilters = new ArrayList<ViewerFilter>();
 
-
-
-
-	
 	public TemplateParameterSubstitutionPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -113,16 +120,16 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
 
 	}
@@ -140,18 +147,36 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 		createActualAdvancedReferencesTable(propertiesGroup);
 		createOwnedActualAdvancedTableComposition(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
-		});
-		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateParameterSubstitution.ownedComment, UMLViewsRepository.SWT_KIND));
+		this.ownedComment = new ReferencesTable<Comment>(
+				UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_OwnedCommentLabel,
+				new ReferencesTableListener<Comment>() {
+
+					public void handleAdd() {
+						addToOwnedComment();
+					}
+
+					public void handleEdit(Comment element) {
+						editOwnedComment(element);
+					}
+
+					public void handleMove(Comment element, int oldIndex, int newIndex) {
+						moveOwnedComment(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Comment element) {
+						removeFromOwnedComment(element);
+					}
+
+					public void navigateTo(Comment element) {
+					}
+				});
+		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.TemplateParameterSubstitution.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
 		GridData ownedCommentData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedCommentData.horizontalSpan = 3;
@@ -162,12 +187,15 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	 * 
 	 */
 	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+				UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
 
 	/**
@@ -177,22 +205,26 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 
 		// Start of user code addToOwnedComment() method body
 
-
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
+							eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+						UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -205,7 +237,10 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+				UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -217,61 +252,85 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	private void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-		
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+						UMLViewsRepository.TemplateParameterSubstitution.ownedComment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-		
+
 		// End of user code
 
 	}
-	protected void createActualAdvancedReferencesTable(Composite parent) {
-		this.actual = new ReferencesTable<ParameterableElement>(UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_ActualLabel, new ReferencesTableListener<ParameterableElement>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<ParameterableElement> dialog = new TabElementTreeSelectionDialog<ParameterableElement>(resourceSet, actualFilters, actualBusinessFilters,
-				"ParameterableElement", UMLPackage.eINSTANCE.getParameterableElement()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!actualEditUtil.getVirtualList().contains(elem))
-								actualEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.actual,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						actual.refresh();
+	protected void createActualAdvancedReferencesTable(Composite parent) {
+		this.actual = new ReferencesTable<ParameterableElement>(
+				UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_ActualLabel,
+				new ReferencesTableListener<ParameterableElement>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<ParameterableElement> dialog = new TabElementTreeSelectionDialog<ParameterableElement>(
+								resourceSet, actualFilters, actualBusinessFilters, "ParameterableElement",
+								UMLPackage.eINSTANCE.getParameterableElement()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!actualEditUtil.getVirtualList().contains(elem))
+										actualEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+											UMLViewsRepository.TemplateParameterSubstitution.actual,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								actual.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(ParameterableElement element) { editActual(element); }
-			public void handleMove(ParameterableElement element, int oldIndex, int newIndex) { moveActual(element, oldIndex, newIndex); }
-			public void handleRemove(ParameterableElement element) { removeFromActual(element); }
-			public void navigateTo(ParameterableElement element) { }
-		});
-		this.actual.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateParameterSubstitution.actual, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(ParameterableElement element) {
+						editActual(element);
+					}
+
+					public void handleMove(ParameterableElement element, int oldIndex, int newIndex) {
+						moveActual(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ParameterableElement element) {
+						removeFromActual(element);
+					}
+
+					public void navigateTo(ParameterableElement element) {
+					}
+				});
+		this.actual.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.TemplateParameterSubstitution.actual, UMLViewsRepository.SWT_KIND));
 		this.actual.createControls(parent);
 		GridData actualData = new GridData(GridData.FILL_HORIZONTAL);
 		actualData.horizontalSpan = 3;
 		this.actual.setLayoutData(actualData);
 		this.actual.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveActual(ParameterableElement element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -282,7 +341,10 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 		EObject editedElement = actualEditUtil.foundCorrespondingEObject(element);
 		actualEditUtil.removeElement(element);
 		actual.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.actual, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+				UMLViewsRepository.TemplateParameterSubstitution.actual, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -294,34 +356,57 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	private void editActual(ParameterableElement element) {
 
 		// Start of user code editActual() method body
-		
+
 		EObject editedElement = actualEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				actualEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				actual.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.actual, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+						UMLViewsRepository.TemplateParameterSubstitution.actual, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedActualAdvancedTableComposition(Composite parent) {
-		this.ownedActual = new ReferencesTable<ParameterableElement>(UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_OwnedActualLabel, new ReferencesTableListener<ParameterableElement>() {			
-			public void handleAdd() { addToOwnedActual();}
-			public void handleEdit(ParameterableElement element) { editOwnedActual(element); }
-			public void handleMove(ParameterableElement element, int oldIndex, int newIndex) { moveOwnedActual(element, oldIndex, newIndex); }
-			public void handleRemove(ParameterableElement element) { removeFromOwnedActual(element); }
-			public void navigateTo(ParameterableElement element) { }
-		});
-		this.ownedActual.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateParameterSubstitution.ownedActual, UMLViewsRepository.SWT_KIND));
+		this.ownedActual = new ReferencesTable<ParameterableElement>(
+				UMLMessages.TemplateParameterSubstitutionPropertiesEditionPart_OwnedActualLabel,
+				new ReferencesTableListener<ParameterableElement>() {
+
+					public void handleAdd() {
+						addToOwnedActual();
+					}
+
+					public void handleEdit(ParameterableElement element) {
+						editOwnedActual(element);
+					}
+
+					public void handleMove(ParameterableElement element, int oldIndex, int newIndex) {
+						moveOwnedActual(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ParameterableElement element) {
+						removeFromOwnedActual(element);
+					}
+
+					public void navigateTo(ParameterableElement element) {
+					}
+				});
+		this.ownedActual.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.TemplateParameterSubstitution.ownedActual, UMLViewsRepository.SWT_KIND));
 		this.ownedActual.createControls(parent);
 		GridData ownedActualData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedActualData.horizontalSpan = 3;
@@ -341,9 +426,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 
 		// Start of user code addToOwnedActual() method body
 
-		
 		// End of user code
-		
+
 	}
 
 	/**
@@ -356,7 +440,10 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 		EObject editedElement = ownedActualEditUtil.foundCorrespondingEObject(element);
 		ownedActualEditUtil.removeElement(element);
 		ownedActual.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedActual, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+				UMLViewsRepository.TemplateParameterSubstitution.ownedActual, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -368,27 +455,31 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	private void editOwnedActual(ParameterableElement element) {
 
 		// Start of user code editOwnedActual() method body
-		
+
 		EObject editedElement = ownedActualEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedActualEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedActual.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateParameterSubstitutionPropertiesEditionPartImpl.this, UMLViewsRepository.TemplateParameterSubstitution.ownedActual, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						TemplateParameterSubstitutionPropertiesEditionPartImpl.this,
+						UMLViewsRepository.TemplateParameterSubstitution.ownedActual, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-		
+
 		// End of user code
 
 	}
 
-
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
 
 	}
@@ -441,7 +532,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initOwnedComment(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -456,10 +548,11 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateOwnedComment(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateOwnedComment(EObject
+	 *      newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -468,7 +561,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentFilters.add(filter);
@@ -477,7 +571,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
@@ -521,7 +616,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initActual(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initActual(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initActual(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -536,10 +632,11 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateActual(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateActual(EObject
+	 *      newValue)
 	 */
 	public void updateActual(EObject newValue) {
-		if(actualEditUtil!=null){
+		if (actualEditUtil != null) {
 			actualEditUtil.reinit(newValue);
 			actual.refresh();
 		}
@@ -548,7 +645,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addFilterActual(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addFilterActual(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToActual(ViewerFilter filter) {
 		actualFilters.add(filter);
@@ -557,7 +655,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addBusinessFilterActual(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addBusinessFilterActual(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToActual(ViewerFilter filter) {
 		actualBusinessFilters.add(filter);
@@ -619,7 +718,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initOwnedActual(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#initOwnedActual(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedActual(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -634,10 +734,11 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateOwnedActual(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#updateOwnedActual(EObject
+	 *      newValue)
 	 */
 	public void updateOwnedActual(EObject newValue) {
-		if(ownedActualEditUtil!=null){
+		if (ownedActualEditUtil != null) {
 			ownedActualEditUtil.reinit(newValue);
 			ownedActual.refresh();
 		}
@@ -646,7 +747,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addFilterOwnedActual(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addFilterOwnedActual(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToOwnedActual(ViewerFilter filter) {
 		ownedActualFilters.add(filter);
@@ -655,7 +757,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addBusinessFilterOwnedActual(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateParameterSubstitutionPropertiesEditionPart#addBusinessFilterOwnedActual(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedActual(ViewerFilter filter) {
 		ownedActualBusinessFilters.add(filter);
@@ -669,15 +772,8 @@ public class TemplateParameterSubstitutionPropertiesEditionPartImpl extends Comp
 
 	}
 
-
-
-
-
-
-
-
 	// Start of user code additional methods
-	
+
 	// End of user code
 
 }

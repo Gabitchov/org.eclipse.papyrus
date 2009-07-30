@@ -65,8 +65,7 @@ public class PropertyRedefineProposal implements ICompletionProposalComputer {
 	 * (non-Javadoc)
 	 * 
 	 * @seecom.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.
-	 * ICompletionProposalComputer#generateCompletionProposals(int, int,
-	 * java.lang.String)
+	 * ICompletionProposalComputer#generateCompletionProposals(int, int, java.lang.String)
 	 */
 	/**
 	 * 

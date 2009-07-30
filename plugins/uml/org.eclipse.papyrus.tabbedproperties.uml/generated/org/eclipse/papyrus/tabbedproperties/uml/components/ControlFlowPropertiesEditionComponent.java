@@ -41,6 +41,7 @@ public class ControlFlowPropertiesEditionComponent extends ComposedPropertiesEdi
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 
@@ -50,52 +51,57 @@ public class ControlFlowPropertiesEditionComponent extends ComposedPropertiesEdi
 	public ControlFlowPropertiesEditionComponent(EObject controlFlow, String editing_mode) {
 		super(editing_mode);
 		if (controlFlow instanceof ControlFlow) {
-			controlFlowBasePropertiesEditionComponent = new ControlFlowBasePropertiesEditionComponent(controlFlow, editing_mode); 
+			controlFlowBasePropertiesEditionComponent = new ControlFlowBasePropertiesEditionComponent(controlFlow,
+					editing_mode);
 			addSubComponent(controlFlowBasePropertiesEditionComponent);
-			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(controlFlow, editing_mode); 	
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(controlFlow, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 *      getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (ControlFlowPropertiesEditionPart)controlFlowBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart)basePart;
+			basePart = (ControlFlowPropertiesEditionPart) controlFlowBasePropertiesEditionComponent
+					.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart) basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.ControlFlow.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (ControlFlowPropertiesEditionPart)propertiesEditionPart;
+			basePart = (ControlFlowPropertiesEditionPart) propertiesEditionPart;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.ControlFlow.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-            if (key == UMLViewsRepository.Comments.class) {
-                    super.initPart(key, kind, element, allResource);
-            
-            
-            }
+		if (key == UMLViewsRepository.Comments.class) {
+			super.initPart(key, kind, element, allResource);
+
+		}
 	}
 }
-

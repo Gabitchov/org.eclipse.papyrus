@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.completionproposals;
 
 import java.util.List;
@@ -18,7 +18,6 @@ import java.util.Vector;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-
 
 /**
  * Completion proposal computer for property modifiers strings.
@@ -30,19 +29,21 @@ public class PropertyModifiersProposal implements ICompletionProposalComputer {
 	 */
 	private static final String EMPTY_MODIFIERS = "{}";
 
-
-
-	/* (non-Javadoc)
-	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer#generateCompletionProposals(int, int, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer
+	 * #generateCompletionProposals(int, int, java.lang.String)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param selectionRange 
-	 * @param prefix 
-	 * @param documentOffset 
+	 * @param selectionRange
+	 * @param prefix
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public List<ICompletionProposal> generateCompletionProposals(int documentOffset, int selectionRange, String prefix) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
@@ -51,8 +52,9 @@ public class PropertyModifiersProposal implements ICompletionProposalComputer {
 		ICompletionProposal proposal = null;
 
 		// first, add [] ans set the cursor after left curly
-		if(EMPTY_MODIFIERS.startsWith(prefix)) {
-			proposal = new CompletionProposal(EMPTY_MODIFIERS, documentOffset-prefix.length(), prefix.length()+selectionRange, 1, null, "{ <PropertyModifiers> }", null, "Property modifiers");
+		if (EMPTY_MODIFIERS.startsWith(prefix)) {
+			proposal = new CompletionProposal(EMPTY_MODIFIERS, documentOffset - prefix.length(), prefix.length()
+					+ selectionRange, 1, null, "{ <PropertyModifiers> }", null, "Property modifiers");
 			v.add(proposal);
 		}
 

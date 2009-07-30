@@ -30,9 +30,10 @@ public class CollaborationUsePropertiesEditionProvider implements IPropertiesEdi
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof CollaborationUse) && (UMLPackage.eINSTANCE.getCollaborationUse() == eObject.eClass());
+		return (eObject instanceof CollaborationUse)
+				&& (UMLPackage.eINSTANCE.getCollaborationUse() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class CollaborationUsePropertiesEditionProvider implements IPropertiesEdi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class CollaborationUsePropertiesEditionProvider implements IPropertiesEdi
 		}
 		return null;
 	}
-	
-}	
+
+}

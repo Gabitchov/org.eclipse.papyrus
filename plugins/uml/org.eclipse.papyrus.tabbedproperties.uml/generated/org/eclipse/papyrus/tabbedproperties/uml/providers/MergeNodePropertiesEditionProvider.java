@@ -32,7 +32,7 @@ public class MergeNodePropertiesEditionProvider implements IPropertiesEditionPro
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof MergeNode) && (UMLPackage.eINSTANCE.getMergeNode() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class MergeNodePropertiesEditionProvider implements IPropertiesEditionPro
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class MergeNodePropertiesEditionProvider implements IPropertiesEditionPro
 		}
 		return null;
 	}
-	
-}	
+
+}

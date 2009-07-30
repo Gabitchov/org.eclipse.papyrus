@@ -32,7 +32,7 @@ public class GatePropertiesEditionProvider implements IPropertiesEditionProvider
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Gate) && (UMLPackage.eINSTANCE.getGate() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class GatePropertiesEditionProvider implements IPropertiesEditionProvider
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class GatePropertiesEditionProvider implements IPropertiesEditionProvider
 		}
 		return null;
 	}
-	
-}	
+
+}

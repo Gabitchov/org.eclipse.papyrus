@@ -10,14 +10,14 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.util;
 
 import org.eclipse.uml2.uml.TemplateableElement;
 
 /**
- * <code>AssertionFailedException</code> is a runtime exception thrown
- * by some of the methods in <code>Assert</code>.
+ * <code>AssertionFailedException</code> is a runtime exception thrown by some of the methods in
+ * <code>Assert</code>.
  * 
  * @see Assert
  */
@@ -25,22 +25,25 @@ public class UnboundTemplateRecognitionException extends RuntimeException {
 
 	/**
 	 * serial ID
+	 * 
 	 * @generated
 	 */
 	private static final long serialVersionUID = -3962411131136049484L;
-	private org.eclipse.uml2.uml.TemplateableElement template ;
-	
+
+	private org.eclipse.uml2.uml.TemplateableElement template;
+
 	/**
 	 * Constructs a new exception with the given message.
 	 * 
-	 * @param detail the message
+	 * @param detail
+	 *            the message
 	 */
 	public UnboundTemplateRecognitionException(String message, TemplateableElement template) {
 		super(message);
-		this.template = template ;
+		this.template = template;
 	}
-	
+
 	public TemplateableElement getTemplate() {
-		return template ;
+		return template;
 	}
 }

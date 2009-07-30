@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.parsers.modelgenerator.PropertyGenerator;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
@@ -58,54 +57,8 @@ public class PropertyParser implements IParser {
 	 */
 	public String getEditString(final IAdaptable element, int flags) {
 		if (element instanceof EObjectAdapter) {
-
-			// // to understand see
-			// http://dev.eclipse.org/newslists/news.eclipse.modeling.gmf/msg08129.html
-			// try {
-			// LookForElement.getTransactionalEditingDomain().runExclusive(new
-			// Runnable() {
-			//
-			// public void run() {
-			// Display.getCurrent().asyncExec(new Runnable() {
-			//
-			// public void run() {
-			// final PropertyUtil property = ((PropertyUtil) ((EObjectAdapter)
-			// element).getRealObject());
-			// org.eclipse.papyrus.umlutils.PropertyUtil utilProperty = new
-			// org.eclipse.papyrus.umlutils.PropertyUtil(property);
-			// final PropertyLabelEditorDialog dialog = new
-			// PropertyLabelEditorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-			// property, utilProperty
-			// .getLabel());
-			// final int code = dialog.open();
-			//
-			// if (code == Window.OK) {
-			// SafeRunnable.run(new SafeRunnable() {
-			//
-			// public void run() {
-			// final PropertyGenerator generator = new
-			// PropertyGenerator(property);
-			// RecordingCommand rc = new
-			// RecordingCommand(LookForElement.getTransactionalEditingDomain())
-			// {
-			//
-			// protected void doExecute() {
-			// generator.parseAndModifyProperty(dialog.getValue());
-			// }
-			// };
-			// LookForElement.getTransactionalEditingDomain().getCommandStack().execute(rc);
-			// }
-			// });
-			// }
-			// }
-			// });
-			// }
-			// });
-			// } catch (Exception e) {
-			// System.err.println(e);
-			// }
 			final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
-			return PropertyUtil.getCustomLabel(property, ICustomAppearence.DEFAULT_UML_PROPERTY);
+			return PropertyUtil.getCustomLabel(property, ICustomAppearence.DISP_NAME);
 		}
 		return "";
 	}
@@ -119,7 +72,7 @@ public class PropertyParser implements IParser {
 		final String result = newString;
 
 		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement
-				.getTransactionalEditingDomain(), "Edit PropertyUtil", (List) null) {
+				.getTransactionalEditingDomain(), "Edit Property", (List) null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
@@ -127,11 +80,10 @@ public class PropertyParser implements IParser {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {
-						final PropertyGenerator generator = new PropertyGenerator(property);
 						RecordingCommand rc = new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
 
 							protected void doExecute() {
-								generator.parseAndModifyProperty(result);
+								property.setName(result);
 							}
 						};
 						LookForElement.getTransactionalEditingDomain().getCommandStack().execute(rc);
@@ -149,11 +101,7 @@ public class PropertyParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			Property property = ((Property) ((EObjectAdapter) element).getRealObject());
-			return PropertyUtil.getCustomLabel(property, ICustomAppearence.DEFAULT_UML_PROPERTY);
-		}
-		return null;
+		return "<default>";
 	}
 
 	/**
@@ -161,7 +109,7 @@ public class PropertyParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
-		return true;
+		return false;
 	}
 
 	/**
@@ -169,16 +117,6 @@ public class PropertyParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		if (element instanceof EObjectAdapter) {
-			Property property = ((Property) ((EObjectAdapter) element).getRealObject());
-			PropertyGenerator generator = new PropertyGenerator(property);
-			String message = generator.parseAndValidateProperty(editString);
-			if (message == null) {
-				return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, "");
-			} else {
-				return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.ERROR, message);
-			}
-		}
 		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, "");
 	}
 }

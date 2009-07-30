@@ -16,22 +16,21 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.AddMaskManagedLabelDisplayCommand;
 import org.eclipse.papyrus.umlutils.ui.command.RemoveEAnnotationCommand;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * Default Abstract implementation of the {@link IMaskManagedLabelEditPolicy}.
  */
-public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicy implements NotificationListener,
+public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyEx implements NotificationListener,
 		IPapyrusListener, IMaskManagedLabelEditPolicy {
 
 	/**
@@ -63,6 +62,15 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicy 
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void refresh() {
+		super.refresh();
+		refreshDisplay();
+	}
+
+	/**
 	 * 
 	 * {@inheritDoc}
 	 */
@@ -72,15 +80,15 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicy 
 		if (view == null) {
 			return;
 		}
-		Property property = (Property) getUMLElement();
+		Element element = (Element) getUMLElement();
 
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
 
-		if (property == null) {
+		if (element == null) {
 			return;
 		}
-		getDiagramEventBroker().removeNotificationListener(property, this);
+		getDiagramEventBroker().removeNotificationListener(element, this);
 
 		removeAdditionalListeners();
 

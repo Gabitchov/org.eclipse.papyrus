@@ -44,19 +44,20 @@ public class RenameDiagramAction extends Action {
 	public void run() {
 		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
 		if (editingDomain != null) {
-			InputDialog dialog = new InputDialog(Activator.getDefault().getWorkbench().getDisplay().getActiveShell(), "Rename an existing diagram", "New name:", diagram.getName(), null);
+			InputDialog dialog = new InputDialog(Activator.getDefault().getWorkbench().getDisplay().getActiveShell(),
+					"Rename an existing diagram", "New name:", diagram.getName(), null);
 			if (dialog.open() == Window.OK) {
 				final String name = dialog.getValue();
 				if (name != null && name.length() > 0) {
-					
-					Command command = new RecordingCommand(editingDomain){
-					
+
+					Command command = new RecordingCommand(editingDomain) {
+
 						@Override
 						protected void doExecute() {
 							diagram.setName(name);
 						}
 					};
-					
+
 					editingDomain.getCommandStack().execute(command);
 				}
 			}

@@ -68,48 +68,49 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * The Class HyperLinkManagerShell is used to display a shell in order to mamange new hyperLinks subdiagrams or attached documents
- * the code was designed from Visual editor
+ * The Class HyperLinkManagerShell is used to display a shell in order to mamange new hyperLinks
+ * subdiagrams or attached documents the code was designed from Visual editor
  **/
 public class HyperLinkManagerShell {
 
 	/**
-	 * The listener interface for receiving diagramCreate events.
-	 * The class that is interested in processing a diagramCreate
-	 * event implements this interface, and the object created
-	 * with that class is registered with a component using the
-	 * component's <code>addDiagramCreateListener<code> method. When
+	 * The listener interface for receiving diagramCreate events. The class that is interested in
+	 * processing a diagramCreate event implements this interface, and the object created with that
+	 * class is registered with a component using the component's
+	 * <code>addDiagramCreateListener<code> method. When
 	 * the diagramCreate event occurs, that object's appropriate
 	 * method is invoked.
 	 * 
 	 * @see DiagramCreateEvent
 	 */
-	public class DiagramCreateListener extends SelectionAdapter{
-		
+	public class DiagramCreateListener extends SelectionAdapter {
+
 		/** The command descriptor. */
 		private CreationCommandDescriptor commandDescriptor;
-		
+
 		/** The backbone context. */
 		private BackboneContext backboneContext;
-		
+
 		/** The container. */
 		private Element container;
-		
+
 		/** The i creation command registry. */
 		private ICreationCommandRegistry iCreationCommandRegistry;
-		
-		
+
 		/**
 		 * {@inheritedDoc}
 		 */
 		public void widgetSelected(SelectionEvent e) {
 			try {
-				ServicesRegistry servicesRegistry=EditorUtils.getServiceRegistry();
-				IEditorContextRegistry contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
+				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
+				IEditorContextRegistry contextRegistry = (IEditorContextRegistry) servicesRegistry
+						.getService(IEditorContextRegistry.class);
 
 				// Get the context by its ID
-				BackboneContext editorContext = (BackboneContext) contextRegistry.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
-				ICreationCommand creationCommand = iCreationCommandRegistry.getCommand(commandDescriptor.getCommandId());
+				BackboneContext editorContext = (BackboneContext) contextRegistry
+						.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
+				ICreationCommand creationCommand = iCreationCommandRegistry
+						.getCommand(commandDescriptor.getCommandId());
 				DiResourceSet diResourceSet = editorContext.getResourceSet();
 				creationCommand.createDiagram(diResourceSet, container, null);
 				diagramTableViewer.setInput(null);
@@ -117,46 +118,48 @@ public class HyperLinkManagerShell {
 			} catch (NotFoundException ex) {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
-			}
-			catch (BackboneException ex) {
+			} catch (BackboneException ex) {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
-			}
-			catch (ServiceException ex) {
+			} catch (ServiceException ex) {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
 			}
 		}
 
-
 		/**
 		 * Instantiates a new diagram create listener.
 		 * 
-		 * @param commandDescriptor the command descriptor
-		 * @param backboneContext the backbone context
-		 * @param container the container
-		 * @param iCreationCommandRegistry the i creation command registry
+		 * @param commandDescriptor
+		 *            the command descriptor
+		 * @param backboneContext
+		 *            the backbone context
+		 * @param container
+		 *            the container
+		 * @param iCreationCommandRegistry
+		 *            the i creation command registry
 		 */
-		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, BackboneContext backboneContext, Element container, ICreationCommandRegistry iCreationCommandRegistry) {
+		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, BackboneContext backboneContext,
+				Element container, ICreationCommandRegistry iCreationCommandRegistry) {
 			super();
 			this.commandDescriptor = commandDescriptor;
 			this.backboneContext = backboneContext;
 			this.container = container;
 			this.iCreationCommandRegistry = iCreationCommandRegistry;
 		}
-		}
-	
+	}
+
 	/**
 	 * The Class DiagramLabelProvider.
 	 */
-	public class DiagramLabelProvider implements ILabelProvider  {
+	public class DiagramLabelProvider implements ILabelProvider {
 
 		/**
 		 * {@inheritedDoc}
 		 */
 		public Image getImage(Object element) {
-			if(element instanceof Diagram){
-				return editorRegistry.getEditorIcon(((Diagram)element));
+			if (element instanceof Diagram) {
+				return editorRegistry.getEditorIcon(((Diagram) element));
 			}
 			return null;
 		}
@@ -165,8 +168,8 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public String getText(Object element) {
-			if(element instanceof Diagram){
-				return((Diagram)element).getName();
+			if (element instanceof Diagram) {
+				return ((Diagram) element).getName();
 			}
 			return null;
 		}
@@ -198,22 +201,21 @@ public class HyperLinkManagerShell {
 			// TODO Auto-generated method stub
 
 		}
-
-
 
 	}
 
 	/**
 	 * The Class HyperlinkLabelProvider.
 	 */
-	public class HyperlinkLabelProvider implements ILabelProvider  {
+	public class HyperlinkLabelProvider implements ILabelProvider {
 
 		/**
 		 * {@inheritedDoc}
 		 */
 		public Image getImage(Object element) {
-			if(element instanceof String){
-				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common","/icons/obj16/hyperlink.gif").createImage();
+			if (element instanceof String) {
+				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+						"/icons/obj16/hyperlink.gif").createImage();
 			}
 			return null;
 		}
@@ -222,8 +224,8 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public String getText(Object element) {
-			if(element instanceof String){
-				return((String)element);
+			if (element instanceof String) {
+				return ((String) element);
 			}
 			return null;
 		}
@@ -255,22 +257,21 @@ public class HyperLinkManagerShell {
 			// TODO Auto-generated method stub
 
 		}
-
-
 
 	}
 
 	/**
 	 * The Class DocumentLabelProvider.
 	 */
-	public class DocumentLabelProvider implements ILabelProvider  {
+	public class DocumentLabelProvider implements ILabelProvider {
 
 		/**
 		 * {@inheritedDoc}
 		 */
 		public Image getImage(Object element) {
-			if(element instanceof String){
-				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common","/icons/obj16/file.gif").createImage();
+			if (element instanceof String) {
+				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+						"/icons/obj16/file.gif").createImage();
 			}
 			return null;
 		}
@@ -279,8 +280,8 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public String getText(Object element) {
-			if(element instanceof String){
-				return((String)element);
+			if (element instanceof String) {
+				return ((String) element);
 			}
 			return null;
 		}
@@ -313,14 +314,12 @@ public class HyperLinkManagerShell {
 
 		}
 
-
-
 	}
-	
+
 	/**
 	 * The Class DiagramContentProvider.
 	 */
-	public class DiagramContentProvider implements IStructuredContentProvider{
+	public class DiagramContentProvider implements IStructuredContentProvider {
 
 		/**
 		 * {@inheritedDoc}
@@ -338,7 +337,7 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
-			if(element!=null){
+			if (element != null) {
 				return getSubDiagrams().toArray();
 			}
 			return null;
@@ -349,7 +348,7 @@ public class HyperLinkManagerShell {
 	/**
 	 * The Class DocumentContentProvider.
 	 */
-	public class DocumentContentProvider implements IStructuredContentProvider{
+	public class DocumentContentProvider implements IStructuredContentProvider {
 
 		/**
 		 * {@inheritedDoc}
@@ -367,18 +366,18 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
-			if(inputElement!=null){
-				return HyperlinkHelper.getAllreferencedDocument((EModelElement)inputElement).toArray();
+			if (inputElement != null) {
+				return HyperlinkHelper.getAllreferencedDocument((EModelElement) inputElement).toArray();
 			}
 			return null;
 		}
 
 	}
-	
+
 	/**
 	 * The Class HyperLinkContentProvider.
 	 */
-	public class HyperLinkContentProvider implements IStructuredContentProvider{
+	public class HyperLinkContentProvider implements IStructuredContentProvider {
 
 		/**
 		 * {@inheritedDoc}
@@ -396,113 +395,118 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
-			if(inputElement!=null){
-				return HyperlinkHelper.getAllHyperLink((EModelElement)inputElement).toArray();
+			if (inputElement != null) {
+				return HyperlinkHelper.getAllHyperLink((EModelElement) inputElement).toArray();
 			}
 			return null;
 		}
 
 	}
-	
+
 	/** The diagram menu button. */
 	private Menu diagramMenuButton;
-	
+
 	/** The element. */
 	private Element element;
-	
+
 	/** The view. */
 	private View view;
-	
+
 	/** The domain. */
 	private TransactionalEditingDomain domain;
 
 	/**
 	 * Instantiates a new hyper link manager shell.
 	 * 
-	 * @param umlElement the uml element
-	 * @param view the view
-	 * @param editorFactoryRegistry the editor factory registry
-	 * @param domain the domain
+	 * @param umlElement
+	 *            the uml element
+	 * @param view
+	 *            the view
+	 * @param editorFactoryRegistry
+	 *            the editor factory registry
+	 * @param domain
+	 *            the domain
 	 */
-	public HyperLinkManagerShell(Element umlElement,View view, IEditorFactoryRegistry editorFactoryRegistry,TransactionalEditingDomain domain) {
-		this.editorRegistry=editorFactoryRegistry;
-		this.element=umlElement;
-		this.view=view;
-		this.domain=domain;
+	public HyperLinkManagerShell(Element umlElement, View view, IEditorFactoryRegistry editorFactoryRegistry,
+			TransactionalEditingDomain domain) {
+		this.editorRegistry = editorFactoryRegistry;
+		this.element = umlElement;
+		this.view = view;
+		this.domain = domain;
 	}
-	
+
 	/** The editor registry. */
 	private IEditorFactoryRegistry editorRegistry;
-	
+
 	/** The s shell. */
-	private Shell sShell = null;  //  @jve:decl-index=0:visual-constraint="-341,38"
-	
+	private Shell sShell = null; // @jve:decl-index=0:visual-constraint="-341,38"
+
 	/** The c tab folder. */
 	private CTabFolder cTabFolder = null;
-	
+
 	/** The hyperlink composite. */
 	private Composite hyperlinkComposite = null;
-	
+
 	/** The textfield1. */
 	private Text textfield1 = null;
-	
+
 	/** The text label. */
 	private Label textLabel = null;
-	
+
 	/** The hyperlink remove button. */
 	private Button hyperlinkRemoveButton = null;
-	
+
 	/** The hyperlinkcreate button. */
 	private Button hyperlinkcreateButton = null;
-	
+
 	/** The document composite. */
 	private Composite documentComposite = null;
-	
+
 	/** The document create button. */
 	private Button documentCreateButton = null;
-	
+
 	/** The document remove button. */
 	private Button documentRemoveButton = null;
-	
+
 	/** The diagram composite. */
 	private Composite diagramComposite = null;
-	
+
 	/** The diagram add button. */
 	private Button diagramAddButton = null;
-	
+
 	/** The diagram remove button. */
 	private Button diagramRemoveButton = null;
-	
+
 	/** The diagram listlabel. */
 	private Label diagramListlabel = null;
-	
+
 	/** The dicument list label. */
 	private Label dicumentListLabel = null;
-	
+
 	/** The hyper link list label. */
 	private Label hyperLinkListLabel = null;
-	
+
 	/** The list viewer. */
 	private ListViewer listViewer = null;
-	
+
 	/** The hyper link table. */
 	private Table hyperLinkTable = null;
-	
+
 	/** The document table. */
 	private Table documentTable = null;
-	
+
 	/** The diagram table. */
 	private Table diagramTable = null;
-	
+
 	/** The diagram table viewer. */
 	private TableViewer diagramTableViewer;
-	
+
 	/** The document table viewer. */
 	private TableViewer documentTableViewer;
-	
+
 	/** The hyper link table viewer. */
 	private TableViewer hyperLinkTableViewer;
-	
+
 	/**
 	 * This method initializes sShell.
 	 */
@@ -516,9 +520,9 @@ public class HyperLinkManagerShell {
 		sShell.open();
 		sShell.setActive();
 		sShell.setFocus();
-		
+
 	}
-	
+
 	/**
 	 * Gets the s shell.
 	 * 
@@ -527,7 +531,7 @@ public class HyperLinkManagerShell {
 	public Shell getsShell() {
 		return sShell;
 	}
-	
+
 	/**
 	 * This method initializes cTabFolder.
 	 */
@@ -548,8 +552,7 @@ public class HyperLinkManagerShell {
 		cTabItem1.setControl(diagramComposite);
 		cTabItem1.setText("Diagram");
 	}
-	
-	
+
 	/**
 	 * This method initializes hyperlinkComposite.
 	 */
@@ -557,7 +560,7 @@ public class HyperLinkManagerShell {
 		GridData gridData16 = new GridData();
 		gridData16.horizontalAlignment = GridData.FILL;
 		gridData16.horizontalSpan = 2;
-		gridData16.heightHint=60;
+		gridData16.heightHint = 60;
 		gridData16.verticalAlignment = GridData.FILL;
 		GridData gridData15 = new GridData();
 		gridData15.widthHint = 50;
@@ -589,16 +592,21 @@ public class HyperLinkManagerShell {
 		textfield1.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
 		textfield1.setLayoutData(gridData2);
 
-
 		hyperlinkcreateButton = new Button(hyperlinkComposite, SWT.NONE);
 		hyperlinkcreateButton.setText("Add");
 		hyperlinkcreateButton.setLayoutData(gridData15);
 		Label filler2 = new Label(hyperlinkComposite, SWT.NONE);
 		hyperlinkcreateButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				if(textfield1.getText()!=null && !textfield1.getText().trim().equals("")){
-					System.out.println("widgetSelected() '"+textfield1.getText().trim()+"'"); // TODO Auto-generated Event stub widgetSelected()
-					domain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkCommand(domain, view, textfield1.getText().trim()));
+				if (textfield1.getText() != null && !textfield1.getText().trim().equals("")) {
+					System.out.println("widgetSelected() '" + textfield1.getText().trim() + "'"); // TODO
+																									// Auto-generated
+																									// Event
+																									// stub
+																									// widgetSelected()
+					domain.getCommandStack().execute(
+							HyperlinkHelper.getAddHyperLinkCommand(domain, view, textfield1.getText().trim()));
 					hyperLinkTableViewer.setInput(null);
 					hyperLinkTableViewer.setInput(view);
 					textfield1.setText("");
@@ -616,26 +624,28 @@ public class HyperLinkManagerShell {
 		hyperLinkTable.setHeaderVisible(false);
 		hyperLinkTable.setLayoutData(gridData16);
 		hyperLinkTable.setLinesVisible(false);
-		hyperLinkTableViewer=new TableViewer(hyperLinkTable);
-		hyperLinkTableViewer.setContentProvider( new HyperLinkContentProvider());
+		hyperLinkTableViewer = new TableViewer(hyperLinkTable);
+		hyperLinkTableViewer.setContentProvider(new HyperLinkContentProvider());
 		hyperLinkTableViewer.setLabelProvider(new HyperlinkLabelProvider());
 		hyperLinkTableViewer.setInput(view);
 		hyperlinkRemoveButton = new Button(hyperlinkComposite, SWT.NONE);
 		hyperlinkRemoveButton.setText("Remove");
 		hyperlinkRemoveButton.setLayoutData(gridData14);
 		hyperlinkRemoveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection=(IStructuredSelection)hyperLinkTableViewer.getSelection();
-				Iterator iterator=iSelection.iterator();
-				while(iterator.hasNext()){
-					domain.getCommandStack().execute(HyperlinkHelper.getRemoveElementCommand(domain, view, ""+iterator.next()));
+				IStructuredSelection iSelection = (IStructuredSelection) hyperLinkTableViewer.getSelection();
+				Iterator iterator = iSelection.iterator();
+				while (iterator.hasNext()) {
+					domain.getCommandStack().execute(
+							HyperlinkHelper.getRemoveElementCommand(domain, view, "" + iterator.next()));
 				}
 				hyperLinkTableViewer.setInput(null);
 				hyperLinkTableViewer.setInput(view);
 			}
 		});
 	}
-	
+
 	/**
 	 * This method initializes documentComposite.
 	 */
@@ -644,7 +654,7 @@ public class HyperLinkManagerShell {
 		gridData1.verticalSpan = 2;
 		gridData1.verticalAlignment = GridData.FILL;
 		gridData1.widthHint = 400;
-		gridData1.heightHint=100;
+		gridData1.heightHint = 100;
 		gridData1.horizontalAlignment = GridData.FILL;
 		GridData gridData8 = new GridData();
 		gridData8.widthHint = 100;
@@ -664,14 +674,15 @@ public class HyperLinkManagerShell {
 		documentTable.setHeaderVisible(false);
 		documentTable.setLayoutData(gridData1);
 		documentTable.setLinesVisible(false);
-		documentTableViewer=new TableViewer(documentTable);
-		documentTableViewer.setContentProvider( new DocumentContentProvider());
+		documentTableViewer = new TableViewer(documentTable);
+		documentTableViewer.setContentProvider(new DocumentContentProvider());
 		documentTableViewer.setLabelProvider(new DocumentLabelProvider());
 		documentTableViewer.setInput(view);
 		documentCreateButton = new Button(documentComposite, SWT.NONE);
 		documentCreateButton.setText("Add Document");
 		documentCreateButton.setLayoutData(gridData8);
-		documentCreateButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter()  {
+		documentCreateButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				FileDialog fd = new FileDialog(sShell, SWT.OPEN);
 				fd.setText("Open");
@@ -682,26 +693,28 @@ public class HyperLinkManagerShell {
 				domain.getCommandStack().execute(HyperlinkHelper.getAddDocumentCommand(domain, view, selected.trim()));
 				documentTableViewer.setInput(null);
 				documentTableViewer.setInput(view);
-				
+
 			}
-			
+
 		});
 		documentRemoveButton = new Button(documentComposite, SWT.NONE);
 		documentRemoveButton.setText("Remove");
 		documentRemoveButton.setLayoutData(gridData7);
 		documentRemoveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection=(IStructuredSelection)documentTableViewer.getSelection();
-				Iterator iterator=iSelection.iterator();
-				while(iterator.hasNext()){
-					domain.getCommandStack().execute(HyperlinkHelper.getRemoveElementCommand(domain, view, ""+iterator.next()));
+				IStructuredSelection iSelection = (IStructuredSelection) documentTableViewer.getSelection();
+				Iterator iterator = iSelection.iterator();
+				while (iterator.hasNext()) {
+					domain.getCommandStack().execute(
+							HyperlinkHelper.getRemoveElementCommand(domain, view, "" + iterator.next()));
 				}
 				documentTableViewer.setInput(null);
 				documentTableViewer.setInput(view);
 			}
 		});
 	}
-	
+
 	/**
 	 * This method initializes diagramComposite.
 	 */
@@ -711,7 +724,7 @@ public class HyperLinkManagerShell {
 		gridData3.horizontalAlignment = GridData.FILL;
 		gridData3.verticalAlignment = GridData.FILL;
 		gridData3.widthHint = 380;
-		gridData3.heightHint=100;
+		gridData3.heightHint = 100;
 		GridData gridData12 = new GridData();
 		gridData12.widthHint = 120;
 		GridData gridData11 = new GridData();
@@ -729,22 +742,24 @@ public class HyperLinkManagerShell {
 		diagramTable.setHeaderVisible(false);
 		diagramTable.setLayoutData(gridData3);
 		diagramTable.setLinesVisible(false);
-		diagramTableViewer=new TableViewer(diagramTable);
-		diagramTableViewer.setContentProvider( new DiagramContentProvider());
+		diagramTableViewer = new TableViewer(diagramTable);
+		diagramTableViewer.setContentProvider(new DiagramContentProvider());
 		diagramTableViewer.setLabelProvider(new DiagramLabelProvider());
 		diagramTableViewer.setInput(element);
 		diagramAddButton = new Button(diagramComposite, SWT.PUSH);
 		diagramAddButton.setText("Add a new Diagram");
 		diagramAddButton.setLayoutData(gridData11);
-		diagramMenuButton= new Menu(diagramAddButton);
+		diagramMenuButton = new Menu(diagramAddButton);
 		diagramAddButton.setMenu(diagramMenuButton);
-		CreationCommandRegistry commandRegistry=new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		CreationCommandRegistry commandRegistry = new CreationCommandRegistry(
+				org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		for (CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
-			MenuItem menuItem= new MenuItem(diagramMenuButton, SWT.PUSH);
-			menuItem.addSelectionListener(new DiagramCreateListener(desc,null, element, commandRegistry));
+			MenuItem menuItem = new MenuItem(diagramMenuButton, SWT.PUSH);
+			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, element, commandRegistry));
 			menuItem.setText(desc.getLabel());
 		}
 		diagramAddButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				diagramMenuButton.setVisible(true);
 			}
@@ -753,12 +768,13 @@ public class HyperLinkManagerShell {
 		diagramRemoveButton.setText("remove");
 		diagramRemoveButton.setLayoutData(gridData12);
 		diagramRemoveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection=(IStructuredSelection)diagramTableViewer.getSelection();
-				Iterator iterator=iSelection.iterator();
-				while(iterator.hasNext()){
+				IStructuredSelection iSelection = (IStructuredSelection) diagramTableViewer.getSelection();
+				Iterator iterator = iSelection.iterator();
+				while (iterator.hasNext()) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr();
-					pageMngr.removePage((Diagram)iterator.next()); 
+					pageMngr.removePage((Diagram) iterator.next());
 				}
 				diagramTableViewer.setInput(null);
 				diagramTableViewer.setInput(view);
@@ -793,6 +809,5 @@ public class HyperLinkManagerShell {
 		}
 		return result;
 	}
-
 
 }

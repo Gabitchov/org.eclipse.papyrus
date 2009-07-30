@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.completionproposals;
 
 import java.util.List;
@@ -19,7 +19,6 @@ import java.util.Vector;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-
 
 /**
  * Completion proposal computer for property modifiers strings.
@@ -30,7 +29,7 @@ public class PropertyModifierProposal implements ICompletionProposalComputer {
 	/**
 	 * 
 	 */
-	public Map<String, Boolean> modifiersUsed; 
+	public Map<String, Boolean> modifiersUsed;
 
 	/**
 	 * 
@@ -44,7 +43,8 @@ public class PropertyModifierProposal implements ICompletionProposalComputer {
 	/**
 	 * 
 	 * 
-	 * @param modifiersUsed the modifiersUsed to set
+	 * @param modifiersUsed
+	 *            the modifiersUsed to set
 	 */
 	public void setModifiersUsed(Map<String, Boolean> modifiersUsed) {
 		this.modifiersUsed = modifiersUsed;
@@ -53,55 +53,40 @@ public class PropertyModifierProposal implements ICompletionProposalComputer {
 	/**
 	 * Text inserted in the editor.
 	 */
-	final static public String[] modifiersStrings = {
-		"readOnly",
-		"union",
-		"ordered",
-		"unique",
-		"nonunique",
-		"subsets ",
-		"redefines ", 
-	};
+	final static public String[] modifiersStrings = { "readOnly", "union", "ordered", "unique", "nonunique",
+			"subsets ", "redefines ", };
 
 	/**
 	 * Text displayed in the information window.
 	 */
 	final static public String[] modifiersStringsInfo = {
-		"ReadOnly property",
-		"Specifies whether the property is derived as\n " +
-		"the union of all of the properties that are\n" +
-		"constrained to subset it. ",
-		"ordered collection property",
-		"No duplicates allowed in the collection",
-		"Duplicates allowed in the collection",
-		"Property subset",
-		"Property redefinition",
-	}; 
+			"ReadOnly property",
+			"Specifies whether the property is derived as\n " + "the union of all of the properties that are\n"
+					+ "constrained to subset it. ", "ordered collection property",
+			"No duplicates allowed in the collection", "Duplicates allowed in the collection", "Property subset",
+			"Property redefinition", };
 
 	/**
 	 * Text displayed in the completion area window.
 	 */
-	final static public String[] modifiersStringsName = {
-		"readOnly",
-		"union",
-		"ordered",
-		"unique",
-		"nonunique",
-		"subsets <PropertyName>",
-		"redefines <PropertyName>",
-	};
+	final static public String[] modifiersStringsName = { "readOnly", "union", "ordered", "unique", "nonunique",
+			"subsets <PropertyName>", "redefines <PropertyName>", };
 
-	/* (non-Javadoc)
-	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer#generateCompletionProposals(int, int, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.cea.papyrus.classdiagram.parsers.texteditor.completionproposals.ICompletionProposalComputer
+	 * #generateCompletionProposals(int, int, java.lang.String)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param selectionRange 
-	 * @param prefix 
-	 * @param documentOffset 
+	 * @param selectionRange
+	 * @param prefix
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public List<ICompletionProposal> generateCompletionProposals(int documentOffset, int selectionRange, String prefix) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
@@ -110,18 +95,13 @@ public class PropertyModifierProposal implements ICompletionProposalComputer {
 		ICompletionProposal proposal = null;
 
 		// adds all standard multiplicities (static strings...)
-		for(int i=0; i < modifiersStrings.length; i++) {
+		for (int i = 0; i < modifiersStrings.length; i++) {
 			// test if this modifier is valid (already used or othe contrary has alreday been used.
-			if(!modifiersUsed.get(modifiersStrings[i])) { 
-				if(modifiersStrings[i].startsWith(prefix)) {
-					proposal = new CompletionProposal(
-							modifiersStrings[i],
-							documentOffset-prefix.length(),
-							prefix.length()+selectionRange,
-							modifiersStrings[i].length(),
-							null,
-							modifiersStringsName[i],
-							null,
+			if (!modifiersUsed.get(modifiersStrings[i])) {
+				if (modifiersStrings[i].startsWith(prefix)) {
+					proposal = new CompletionProposal(modifiersStrings[i], documentOffset - prefix.length(), prefix
+							.length()
+							+ selectionRange, modifiersStrings[i].length(), null, modifiersStringsName[i], null,
 							modifiersStringsInfo[i]);
 					v.add(proposal);
 				}

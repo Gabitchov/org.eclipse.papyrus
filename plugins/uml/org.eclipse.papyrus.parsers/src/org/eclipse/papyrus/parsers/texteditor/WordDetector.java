@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor;
 
 import org.eclipse.jface.text.rules.IWordDetector;
@@ -23,29 +23,33 @@ import org.eclipse.jface.text.rules.IWordDetector;
  */
 public class WordDetector implements IWordDetector {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.text.rules.IWordDetector#isWordPart(char)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param character 
+	 * @param character
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public boolean isWordPart(char character) {
 		return Character.isLetter(character);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.text.rules.IWordDetector#isWordStart(char)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param character 
+	 * @param character
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public boolean isWordStart(char character) {
 		return Character.isLetter(character);

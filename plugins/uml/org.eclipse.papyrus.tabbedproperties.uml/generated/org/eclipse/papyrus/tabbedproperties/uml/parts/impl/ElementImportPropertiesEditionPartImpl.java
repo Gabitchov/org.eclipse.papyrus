@@ -59,15 +59,13 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ElementImportPropertiesEditionPart {
+public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
+		ISWTPropertiesEditionPart, ElementImportPropertiesEditionPart {
 
 	protected EMFComboViewer visibility;
+
 	protected Text alias;
 
-
-
-
-	
 	public ElementImportPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -77,16 +75,16 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
 
 	}
@@ -103,17 +101,24 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 		createVisibilityEMFComboViewer(generalGroup);
 		createAliasText(generalGroup);
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ElementImportPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ElementImportPropertiesEditionPart_VisibilityLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.visibility,
+						UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createAliasText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ElementImportPropertiesEditionPart_AliasLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.alias, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ElementImportPropertiesEditionPart_AliasLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.alias,
+						UMLViewsRepository.SWT_KIND));
 		alias = new Text(parent, SWT.BORDER);
 		GridData aliasData = new GridData(GridData.FILL_HORIZONTAL);
 		alias.setLayoutData(aliasData);
@@ -122,22 +127,25 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see
+			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ElementImportPropertiesEditionPartImpl.this, UMLViewsRepository.ElementImport.alias, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, alias.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							ElementImportPropertiesEditionPartImpl.this, UMLViewsRepository.ElementImport.alias,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, alias.getText()));
 			}
-			
+
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ElementImport.alias, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ElementImport.alias, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
 
 	}
@@ -155,7 +163,8 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#initVisibility(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -165,7 +174,8 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#setVisibility(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#setVisibility(Enumerator
+	 *      newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
@@ -191,7 +201,8 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#setAlias(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#setAlias(String
+	 *      newValue)
 	 */
 	public void setAlias(String newValue) {
 		alias.setText(newValue);
@@ -205,15 +216,8 @@ public class ElementImportPropertiesEditionPartImpl extends CompositePropertiesE
 
 	}
 
-
-
-
-
-
-
-
 	// Start of user code additional methods
-	
+
 	// End of user code
 
 }

@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -59,15 +58,21 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -89,10 +94,6 @@ public interface ConnectorPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the name
 	 */
@@ -100,7 +101,9 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -115,20 +118,21 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the clientDependency to add
@@ -147,15 +151,21 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *            the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -177,10 +187,6 @@ public interface ConnectorPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the isLeaf
 	 */
@@ -188,13 +194,11 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *            the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the isStatic
@@ -203,13 +207,11 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Defines a new isStatic
-	 * @param newValue the new isStatic to set
+	 * 
+	 * @param newValue
+	 *            the new isStatic to set
 	 */
 	public void setIsStatic(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the redefinedConnector to add
@@ -228,15 +230,21 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedConnector
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRedefinedConnector(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedConnector
-	 * @param newValue the redefinedConnector to update
+	 * 
+	 * @param newValue
+	 *            the redefinedConnector to update
 	 */
 	public void updateRedefinedConnector(EObject newValue);
 
@@ -257,10 +265,6 @@ public interface ConnectorPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedConnector(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the end to add
@@ -289,15 +293,21 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Init the end
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initEnd(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the end
-	 * @param newValue the end to update
+	 * 
+	 * @param newValue
+	 *            the end to update
 	 */
 	public void updateEnd(EObject newValue);
 
@@ -319,10 +329,6 @@ public interface ConnectorPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToEnd(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the kind
 	 */
@@ -330,20 +336,21 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Init the kind
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initKind(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new kind
-	 * @param newValue the new kind to set
+	 * 
+	 * @param newValue
+	 *            the new kind to set
 	 */
 	public void setKind(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the contract to add
@@ -362,15 +369,21 @@ public interface ConnectorPropertiesEditionPart {
 
 	/**
 	 * Init the contract
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initContract(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the contract
-	 * @param newValue the contract to update
+	 * 
+	 * @param newValue
+	 *            the contract to update
 	 */
 	public void updateContract(EObject newValue);
 
@@ -392,18 +405,8 @@ public interface ConnectorPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToContract(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

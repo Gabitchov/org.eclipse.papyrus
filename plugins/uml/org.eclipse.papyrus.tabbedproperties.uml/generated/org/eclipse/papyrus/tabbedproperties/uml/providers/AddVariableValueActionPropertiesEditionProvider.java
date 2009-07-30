@@ -30,9 +30,10 @@ public class AddVariableValueActionPropertiesEditionProvider implements IPropert
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof AddVariableValueAction) && (UMLPackage.eINSTANCE.getAddVariableValueAction() == eObject.eClass());
+		return (eObject instanceof AddVariableValueAction)
+				&& (UMLPackage.eINSTANCE.getAddVariableValueAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class AddVariableValueActionPropertiesEditionProvider implements IPropert
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class AddVariableValueActionPropertiesEditionProvider implements IPropert
 		}
 		return null;
 	}
-	
-}	
+
+}

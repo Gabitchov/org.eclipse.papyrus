@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -59,15 +58,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -89,10 +94,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the name
 	 */
@@ -100,7 +101,9 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -115,20 +118,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the clientDependency to add
@@ -147,15 +151,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *            the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -176,10 +186,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the elementImport to add
@@ -208,15 +214,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *            the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -237,10 +249,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the packageImport to add
@@ -269,15 +277,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *            the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -298,10 +312,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedRule to add
@@ -330,15 +340,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *            the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -360,10 +376,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the isLeaf
 	 */
@@ -371,13 +383,11 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *            the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the templateBinding to add
@@ -406,15 +416,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the templateBinding
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * @param newValue the templateBinding to update
+	 * 
+	 * @param newValue
+	 *            the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -436,10 +452,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the isAbstract
 	 */
@@ -447,13 +459,11 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isAbstract
-	 * @param newValue the new isAbstract to set
+	 * 
+	 * @param newValue
+	 *            the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the generalization to add
@@ -482,15 +492,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the generalization
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initGeneralization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalization
-	 * @param newValue the generalization to update
+	 * 
+	 * @param newValue
+	 *            the generalization to update
 	 */
 	public void updateGeneralization(EObject newValue);
 
@@ -512,10 +528,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToGeneralization(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the powertypeExtent to add
 	 */
@@ -533,15 +545,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the powertypeExtent
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPowertypeExtent(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the powertypeExtent
-	 * @param newValue the powertypeExtent to update
+	 * 
+	 * @param newValue
+	 *            the powertypeExtent to update
 	 */
 	public void updatePowertypeExtent(EObject newValue);
 
@@ -563,10 +581,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToPowertypeExtent(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the redefinedClassifier to add
 	 */
@@ -584,15 +598,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedClassifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRedefinedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedClassifier
-	 * @param newValue the redefinedClassifier to update
+	 * 
+	 * @param newValue
+	 *            the redefinedClassifier to update
 	 */
 	public void updateRedefinedClassifier(EObject newValue);
 
@@ -613,10 +633,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedClassifier(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the substitution to add
@@ -645,15 +661,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the substitution
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initSubstitution(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the substitution
-	 * @param newValue the substitution to update
+	 * 
+	 * @param newValue
+	 *            the substitution to update
 	 */
 	public void updateSubstitution(EObject newValue);
 
@@ -674,10 +696,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSubstitution(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the collaborationUse to add
@@ -706,15 +724,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the collaborationUse
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initCollaborationUse(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the collaborationUse
-	 * @param newValue the collaborationUse to update
+	 * 
+	 * @param newValue
+	 *            the collaborationUse to update
 	 */
 	public void updateCollaborationUse(EObject newValue);
 
@@ -735,10 +759,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToCollaborationUse(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedUseCase to add
@@ -767,15 +787,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedUseCase
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedUseCase
-	 * @param newValue the ownedUseCase to update
+	 * 
+	 * @param newValue
+	 *            the ownedUseCase to update
 	 */
 	public void updateOwnedUseCase(EObject newValue);
 
@@ -797,10 +823,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedUseCase(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the useCase to add
 	 */
@@ -818,15 +840,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the useCase
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the useCase
-	 * @param newValue the useCase to update
+	 * 
+	 * @param newValue
+	 *            the useCase to update
 	 */
 	public void updateUseCase(EObject newValue);
 
@@ -847,10 +875,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToUseCase(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedAttribute to add
@@ -879,15 +903,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedAttribute
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedAttribute(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedAttribute
-	 * @param newValue the ownedAttribute to update
+	 * 
+	 * @param newValue
+	 *            the ownedAttribute to update
 	 */
 	public void updateOwnedAttribute(EObject newValue);
 
@@ -908,10 +938,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedAttribute(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedConnector to add
@@ -940,15 +966,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedConnector
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedConnector(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedConnector
-	 * @param newValue the ownedConnector to update
+	 * 
+	 * @param newValue
+	 *            the ownedConnector to update
 	 */
 	public void updateOwnedConnector(EObject newValue);
 
@@ -969,10 +1001,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedConnector(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedBehavior to add
@@ -1001,15 +1029,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedBehavior
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedBehavior(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedBehavior
-	 * @param newValue the ownedBehavior to update
+	 * 
+	 * @param newValue
+	 *            the ownedBehavior to update
 	 */
 	public void updateOwnedBehavior(EObject newValue);
 
@@ -1030,10 +1064,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedBehavior(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the interfaceRealization to add
@@ -1062,15 +1092,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the interfaceRealization
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInterfaceRealization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the interfaceRealization
-	 * @param newValue the interfaceRealization to update
+	 * 
+	 * @param newValue
+	 *            the interfaceRealization to update
 	 */
 	public void updateInterfaceRealization(EObject newValue);
 
@@ -1091,10 +1127,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToInterfaceRealization(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedTrigger to add
@@ -1123,15 +1155,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedTrigger
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedTrigger(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedTrigger
-	 * @param newValue the ownedTrigger to update
+	 * 
+	 * @param newValue
+	 *            the ownedTrigger to update
 	 */
 	public void updateOwnedTrigger(EObject newValue);
 
@@ -1152,10 +1190,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedTrigger(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the nestedClassifier to add
@@ -1184,15 +1218,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the nestedClassifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initNestedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the nestedClassifier
-	 * @param newValue the nestedClassifier to update
+	 * 
+	 * @param newValue
+	 *            the nestedClassifier to update
 	 */
 	public void updateNestedClassifier(EObject newValue);
 
@@ -1213,10 +1253,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToNestedClassifier(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedOperation to add
@@ -1245,15 +1281,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedOperation
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedOperation(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedOperation
-	 * @param newValue the ownedOperation to update
+	 * 
+	 * @param newValue
+	 *            the ownedOperation to update
 	 */
 	public void updateOwnedOperation(EObject newValue);
 
@@ -1275,10 +1317,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedOperation(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the isActive
 	 */
@@ -1286,13 +1324,11 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isActive
-	 * @param newValue the new isActive to set
+	 * 
+	 * @param newValue
+	 *            the new isActive to set
 	 */
 	public void setIsActive(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the ownedReception to add
@@ -1321,15 +1357,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedReception
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedReception(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedReception
-	 * @param newValue the ownedReception to update
+	 * 
+	 * @param newValue
+	 *            the ownedReception to update
 	 */
 	public void updateOwnedReception(EObject newValue);
 
@@ -1351,10 +1393,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedReception(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the isReentrant
 	 */
@@ -1362,13 +1400,11 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isReentrant
-	 * @param newValue the new isReentrant to set
+	 * 
+	 * @param newValue
+	 *            the new isReentrant to set
 	 */
 	public void setIsReentrant(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the redefinedBehavior to add
@@ -1387,15 +1423,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedBehavior
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRedefinedBehavior(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedBehavior
-	 * @param newValue the redefinedBehavior to update
+	 * 
+	 * @param newValue
+	 *            the redefinedBehavior to update
 	 */
 	public void updateRedefinedBehavior(EObject newValue);
 
@@ -1416,10 +1458,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedBehavior(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedParameter to add
@@ -1448,15 +1486,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameter
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * @param newValue the ownedParameter to update
+	 * 
+	 * @param newValue
+	 *            the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
 
@@ -1478,10 +1522,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the precondition to add
 	 */
@@ -1499,15 +1539,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the precondition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPrecondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the precondition
-	 * @param newValue the precondition to update
+	 * 
+	 * @param newValue
+	 *            the precondition to update
 	 */
 	public void updatePrecondition(EObject newValue);
 
@@ -1529,10 +1575,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToPrecondition(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the postcondition to add
 	 */
@@ -1550,15 +1592,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the postcondition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPostcondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the postcondition
-	 * @param newValue the postcondition to update
+	 * 
+	 * @param newValue
+	 *            the postcondition to update
 	 */
 	public void updatePostcondition(EObject newValue);
 
@@ -1579,10 +1627,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPostcondition(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedParameterSet to add
@@ -1611,15 +1655,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameterSet
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedParameterSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameterSet
-	 * @param newValue the ownedParameterSet to update
+	 * 
+	 * @param newValue
+	 *            the ownedParameterSet to update
 	 */
 	public void updateOwnedParameterSet(EObject newValue);
 
@@ -1641,10 +1691,6 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedParameterSet(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the covered to add
 	 */
@@ -1662,15 +1708,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the covered
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the covered
-	 * @param newValue the covered to update
+	 * 
+	 * @param newValue
+	 *            the covered to update
 	 */
 	public void updateCovered(EObject newValue);
 
@@ -1691,10 +1743,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToCovered(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the generalOrdering to add
@@ -1723,15 +1771,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the generalOrdering
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalOrdering
-	 * @param newValue the generalOrdering to update
+	 * 
+	 * @param newValue
+	 *            the generalOrdering to update
 	 */
 	public void updateGeneralOrdering(EObject newValue);
 
@@ -1752,10 +1806,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToGeneralOrdering(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the lifeline to add
@@ -1784,15 +1834,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the lifeline
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initLifeline(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the lifeline
-	 * @param newValue the lifeline to update
+	 * 
+	 * @param newValue
+	 *            the lifeline to update
 	 */
 	public void updateLifeline(EObject newValue);
 
@@ -1813,10 +1869,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToLifeline(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the fragment to add
@@ -1845,15 +1897,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the fragment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initFragment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the fragment
-	 * @param newValue the fragment to update
+	 * 
+	 * @param newValue
+	 *            the fragment to update
 	 */
 	public void updateFragment(EObject newValue);
 
@@ -1874,10 +1932,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToFragment(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the action to add
@@ -1906,15 +1960,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the action
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initAction(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the action
-	 * @param newValue the action to update
+	 * 
+	 * @param newValue
+	 *            the action to update
 	 */
 	public void updateAction(EObject newValue);
 
@@ -1935,10 +1995,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToAction(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the formalGate to add
@@ -1967,15 +2023,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the formalGate
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initFormalGate(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the formalGate
-	 * @param newValue the formalGate to update
+	 * 
+	 * @param newValue
+	 *            the formalGate to update
 	 */
 	public void updateFormalGate(EObject newValue);
 
@@ -1996,10 +2058,6 @@ public interface InteractionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToFormalGate(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the message to add
@@ -2028,15 +2086,21 @@ public interface InteractionPropertiesEditionPart {
 
 	/**
 	 * Init the message
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initMessage(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the message
-	 * @param newValue the message to update
+	 * 
+	 * @param newValue
+	 *            the message to update
 	 */
 	public void updateMessage(EObject newValue);
 
@@ -2058,18 +2122,8 @@ public interface InteractionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToMessage(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

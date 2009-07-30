@@ -50,7 +50,8 @@ public class AdditionalResources {
 		List<Resource> additionnalResources = new ArrayList<Resource>();
 		for (Resource resource : diResourceSet.getResourceSet().getResources()) {
 			// ignore di, notation and domain resources
-			if (resource == diResourceSet.getDiResource() || resource == diResourceSet.getNotationResource() || resource == diResourceSet.getUMLModelResource()) {
+			if (resource == diResourceSet.getDiResource() || resource == diResourceSet.getNotationResource()
+					|| resource == diResourceSet.getUMLModelResource()) {
 				continue;
 			}
 			additionnalResources.add(resource);

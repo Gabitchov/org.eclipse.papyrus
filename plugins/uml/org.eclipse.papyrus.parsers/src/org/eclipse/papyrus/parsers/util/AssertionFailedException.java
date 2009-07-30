@@ -14,7 +14,8 @@
 package org.eclipse.papyrus.parsers.util;
 
 /**
- * <code>AssertionFailedException</code> is a runtime exception thrown by some of the methods in <code>Assert</code>.
+ * <code>AssertionFailedException</code> is a runtime exception thrown by some of the methods in
+ * <code>Assert</code>.
  * 
  * @see Assert
  */

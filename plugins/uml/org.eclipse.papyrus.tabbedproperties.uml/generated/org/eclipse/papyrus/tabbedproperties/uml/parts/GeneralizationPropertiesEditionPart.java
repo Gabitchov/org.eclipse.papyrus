@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -36,13 +35,11 @@ public interface GeneralizationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isSubstitutable
-	 * @param newValue the new isSubstitutable to set
+	 * 
+	 * @param newValue
+	 *            the new isSubstitutable to set
 	 */
 	public void setIsSubstitutable(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the generalizationSet to add
@@ -61,15 +58,21 @@ public interface GeneralizationPropertiesEditionPart {
 
 	/**
 	 * Init the generalizationSet
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initGeneralizationSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalizationSet
-	 * @param newValue the generalizationSet to update
+	 * 
+	 * @param newValue
+	 *            the generalizationSet to update
 	 */
 	public void updateGeneralizationSet(EObject newValue);
 
@@ -91,18 +94,8 @@ public interface GeneralizationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToGeneralizationSet(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

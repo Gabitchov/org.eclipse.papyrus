@@ -32,7 +32,7 @@ public class SignalPropertiesEditionProvider implements IPropertiesEditionProvid
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Signal) && (UMLPackage.eINSTANCE.getSignal() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class SignalPropertiesEditionProvider implements IPropertiesEditionProvid
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class SignalPropertiesEditionProvider implements IPropertiesEditionProvid
 		}
 		return null;
 	}
-	
-}	
+
+}

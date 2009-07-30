@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+      <DirectEditor
+            contributor="CEA LIST"
+            editorConfiguration="org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML"
+            icon="resources/icons/Property.gif"
+            language="UML"
+            objectToEdit="org.eclipse.uml2.uml.Property">
+      </DirectEditor>
+   </extension>
    <!--
    <extension
          point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">

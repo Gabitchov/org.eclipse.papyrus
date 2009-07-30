@@ -27,7 +27,8 @@ public class MaskManagedLabelSectionFilter implements IFilter {
 	public boolean select(Object object) {
 		if (object instanceof IGraphicalEditPart) {
 			// if the edit part is a graphical edit part, it tests if it has the right edit policy
-			return (((IGraphicalEditPart) object).getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY) != null);
+			return (((IGraphicalEditPart) object)
+					.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY) != null);
 		}
 		return false;
 	}

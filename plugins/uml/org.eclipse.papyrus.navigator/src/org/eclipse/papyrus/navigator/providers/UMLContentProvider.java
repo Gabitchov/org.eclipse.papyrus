@@ -44,7 +44,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	/** The my editor. */
 	// protected IEditorPart myEditor = null;
 	protected DiResourceSet diResourceSet;
-	
+
 	/** The list of open pages (diagrams) */
 	protected IPageMngr pageMngr;
 
@@ -118,7 +118,8 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		}
 
 		// 2. and associated diagrams
-		if (parentElement instanceof EObject || parentElement instanceof IWrapperItemProvider || parentElement instanceof FeatureMap.Entry) {
+		if (parentElement instanceof EObject || parentElement instanceof IWrapperItemProvider
+				|| parentElement instanceof FeatureMap.Entry) {
 			Object object = AdapterFactoryEditingDomain.unwrap(parentElement);
 			if (object instanceof Element) {
 				Element owner = (Element) object;
@@ -136,7 +137,8 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	@Override
 	public Object getParent(Object element) {
 		/*
-		 * if (object instanceof IFile) return ((IResource) object).getParent(); return super.getParent(object);
+		 * if (object instanceof IFile) return ((IResource) object).getParent(); return
+		 * super.getParent(object);
 		 */
 
 		// The parent of a diagram is the model object that contains it.
@@ -144,7 +146,8 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		// return ((Diagram) element).getElement();
 		// }
 		// Delegates
-		if (element instanceof IWrapperItemProvider || element instanceof FeatureMap.Entry || element instanceof EObject) {
+		if (element instanceof IWrapperItemProvider || element instanceof FeatureMap.Entry
+				|| element instanceof EObject) {
 			return super.getParent(element);
 		}
 		return null;
@@ -156,7 +159,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		if (canPopulateModelNavigator()) {
 			this.diResourceSet = getDiResourceSet();
 			pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
-			
+
 			Resource modelResource = diResourceSet.getUMLModelResource();
 			List<Object> children = new ArrayList<Object>(modelResource.getContents());
 			AdditionalResources resources = new AdditionalResources(diResourceSet);
@@ -195,34 +198,34 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 */
 	private List<Diagram> findAllExistingDiagrams(Element owner) {
 		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
-		
+
 		// Walk on page (Diagram) references
-		for( Object page : pageMngr.allPages() )
-		{
-			if(! (page instanceof Diagram) )
+		for (Object page : pageMngr.allPages()) {
+			if (!(page instanceof Diagram))
 				continue;
 			// We have a GMF Diagram
 			Diagram diagram = (Diagram) page;
 			if (owner.equals(diagram.getElement())) {
 				diagrams.add(diagram);
 			}
-			
+
 		}
-			
-//		for (Diagram diagram : diResourceSet.getDiagrams()) {
-//			SemanticModelBridge semanticModelBridge = diagram.getSemanticModel();
-//			if (semanticModelBridge instanceof CoreSemanticModelBridge) {
-//				CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge) semanticModelBridge;
-//				EObject element = coreSemanticModelBridge.getElement();
-//				// TODO break GMF dependency
-//				if (element instanceof org.eclipse.gmf.runtime.notation.Diagram) {
-//					element = ((org.eclipse.gmf.runtime.notation.Diagram) element).getElement();
-//				}
-//				if (owner.equals(element)) {
-//					diagrams.add(diagram);
-//				}
-//			}
-//		}
+
+		// for (Diagram diagram : diResourceSet.getDiagrams()) {
+		// SemanticModelBridge semanticModelBridge = diagram.getSemanticModel();
+		// if (semanticModelBridge instanceof CoreSemanticModelBridge) {
+		// CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge)
+		// semanticModelBridge;
+		// EObject element = coreSemanticModelBridge.getElement();
+		// // TODO break GMF dependency
+		// if (element instanceof org.eclipse.gmf.runtime.notation.Diagram) {
+		// element = ((org.eclipse.gmf.runtime.notation.Diagram) element).getElement();
+		// }
+		// if (owner.equals(element)) {
+		// diagrams.add(diagram);
+		// }
+		// }
+		// }
 		return diagrams;
 	}
 

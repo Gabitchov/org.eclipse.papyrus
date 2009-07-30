@@ -32,7 +32,7 @@ public class RegionPropertiesEditionProvider implements IPropertiesEditionProvid
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Region) && (UMLPackage.eINSTANCE.getRegion() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class RegionPropertiesEditionProvider implements IPropertiesEditionProvid
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class RegionPropertiesEditionProvider implements IPropertiesEditionProvid
 		}
 		return null;
 	}
-	
-}	
+
+}

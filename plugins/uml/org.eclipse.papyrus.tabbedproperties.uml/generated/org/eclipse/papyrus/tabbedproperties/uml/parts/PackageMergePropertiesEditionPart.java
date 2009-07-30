@@ -15,8 +15,6 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
- 
-
 // End of user code
 
 /**
@@ -24,14 +22,8 @@ import java.util.Map;
  */
 public interface PackageMergePropertiesEditionPart {
 
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.propertylabel;
 
 import org.eclipse.jface.text.IDocument;
@@ -29,40 +29,42 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * This class bundles the configuration space of the action language source
- * viewer. Instances of this class are passed to the configure method of
- * <code>SourceViewer</code>.
+ * This class bundles the configuration space of the action language source viewer. Instances of
+ * this class are passed to the configure method of <code>SourceViewer</code>.
+ * 
  * @see org.eclipse.jface.text.source.SourceViewerConfiguration
  */
 public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfiguration {
-	
+
 	/** edited PropertyUtil */
 	private Property property;
-	
+
 	/**
 	 * Creates a new PropertyLabelSourceViewerConfiguration
-	 * @param property the property to edit
+	 * 
+	 * @param property
+	 *            the property to edit
 	 */
 	public PropertyLabelSourceViewerConfiguration(Property property) {
 		setProperty(property);
 	}
-	
+
 	/**
 	 * Creates a new PropertyLabelSourceViewerConfiguration
 	 */
 	public PropertyLabelSourceViewerConfiguration() {
 		this(null);
 	}
-	
-    /**
+
+	/**
      * 
      */
-    static class SingleTokenScanner extends BufferedRuleBasedScanner {
-		
+	static class SingleTokenScanner extends BufferedRuleBasedScanner {
+
 		/**
 		 * 
 		 * 
-		 * @param attribute 
+		 * @param attribute
 		 */
 		public SingleTokenScanner(TextAttribute attribute) {
 			setDefaultReturnToken(new Token(attribute));
@@ -73,15 +75,12 @@ public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfigur
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IPresentationReconciler getPresentationReconciler(
-			ISourceViewer sourceViewer) {
+	public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
 		PresentationReconciler reconciler = new PresentationReconciler();
 
 		// creating damager/repairer for single line comments
 		Color colorString = PropertyLabelColorProvider.getDefault().getColor(IPropertyLabelColorConstants.STRING);
-		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(
-				new SingleTokenScanner(
-						new TextAttribute(colorString)));
+		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(new SingleTokenScanner(new TextAttribute(colorString)));
 
 		reconciler.setDamager(dr, PropertyLabelPartitionScanner.PROPERTY_MODIFIERS_STRING);
 		reconciler.setRepairer(dr, PropertyLabelPartitionScanner.PROPERTY_MODIFIERS_STRING);
@@ -102,20 +101,20 @@ public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfigur
 		ContentAssistant assistant = new ContentAssistant();
 
 		IContentAssistProcessor processor = new PropertyLabelCompletionProcessor(property);
-		assistant.setContentAssistProcessor(processor,IDocument.DEFAULT_CONTENT_TYPE);
+		assistant.setContentAssistProcessor(processor, IDocument.DEFAULT_CONTENT_TYPE);
 
 		// IInformationControlCreator
-		assistant.setInformationControlCreator(
-		        getInformationControlCreator(sourceViewer));
-		
+		assistant.setInformationControlCreator(getInformationControlCreator(sourceViewer));
+
 		assistant.enableAutoActivation(true);
 		assistant.setAutoActivationDelay(500);
 
 		return assistant;
 	}
-	
+
 	/**
 	 * Returns the edited PropertyUtil
+	 * 
 	 * @return the property to edit
 	 */
 	public Property getProperty() {
@@ -124,7 +123,9 @@ public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfigur
 
 	/**
 	 * Sets the property to Edit
-	 * @param property the property to edit
+	 * 
+	 * @param property
+	 *            the property to edit
 	 */
 	public void setProperty(Property property) {
 		this.property = property;

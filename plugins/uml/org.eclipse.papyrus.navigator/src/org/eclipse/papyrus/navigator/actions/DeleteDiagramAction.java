@@ -39,7 +39,7 @@ public class DeleteDiagramAction extends Action {
 	public DeleteDiagramAction(IPageMngr pageMngr, Diagram diagram) {
 		this.diagram = diagram;
 		this.pageMngr = pageMngr;
-		
+
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
 		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
 		setText("Delete");
@@ -55,21 +55,22 @@ public class DeleteDiagramAction extends Action {
 	public void run() {
 		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
 		if (editingDomain != null) {
-			
-			// Create a compound command containing removing of the sash and removing from GMF resource.
+
+			// Create a compound command containing removing of the sash and removing from GMF
+			// resource.
 			CompoundCommand command = new CompoundCommand();
-			Command sashRemoveComd = new RecordingCommand(editingDomain){
-			
+			Command sashRemoveComd = new RecordingCommand(editingDomain) {
+
 				@Override
 				protected void doExecute() {
 					pageMngr.removePage(diagram);
 				}
 			};
-			
+
 			EList<EObject> diagrams = diagram.eResource().getContents();
-			//TODO : synchronize with Cedric
+			// TODO : synchronize with Cedric
 			command.append(sashRemoveComd);
-			command.append(new RemoveCommand(editingDomain, diagrams, diagram) );
+			command.append(new RemoveCommand(editingDomain, diagrams, diagram));
 			editingDomain.getCommandStack().execute(command);
 		}
 	}

@@ -56,6 +56,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
@@ -1561,11 +1562,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6030 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypePackageMergeEditPart.VISUAL_ID));
-		label6030.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6030 = (Location) label6030.getLayoutConstraint();
-		location6030.setX(0);
-		location6030.setY(40);
 		return edge;
 	}
 
@@ -2015,51 +2011,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		return (IElementType) semanticAdapter.getAdapter(IElementType.class);
 	}
 
-	private void initBackgroundFromPrefs(Shape node, IPreferenceStore prefStore, String primitivetypePrefFillColor,
-			String primitivetypePrefGradientColor, String primitivetypePrefGradientPolicy) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * @generated
-	 */
-	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fillColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_FILL);
-		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_GRADIENT);
-		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.GRADIENT_POLICY);
-
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
-		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities
-				.RGBToInteger(fillRGB));
-
-		FillStyle fillStyle = (FillStyle) view.getStyle(NotationPackage.Literals.FILL_STYLE);
-		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
-
-		;
-		if (store.getBoolean(gradientPolicyConstant)) {
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store
-					.getString(gradientColorConstant));
-			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
-			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
-		}
-	}
-
-	private void initFontStyleFromPrefs(Connector edge, IPreferenceStore prefStore, String packagemergePrefFont,
-			String packagemergePrefFontColor) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private void initFontStyleFromPrefs(Shape node, IPreferenceStore prefStore, String packagePrefFont,
-			String packagePrefFontColor) {
-		// TODO Auto-generated method stub
-
-	}
-
 	/**
 	 * @generated
 	 */
@@ -2090,6 +2041,33 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(store, lineColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities
 				.RGBToInteger(lineRGB));
+	}
+
+	/**
+	 * @generated
+	 */
+	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		String fillColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.COLOR_FILL);
+		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.COLOR_GRADIENT);
+		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.GRADIENT_POLICY);
+
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities
+				.RGBToInteger(fillRGB));
+
+		FillStyle fillStyle = (FillStyle) view.getStyle(NotationPackage.Literals.FILL_STYLE);
+		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
+
+		;
+		if (store.getBoolean(gradientPolicyConstant)) {
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store
+					.getString(gradientColorConstant));
+			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
+			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
+		}
 	}
 
 	/**

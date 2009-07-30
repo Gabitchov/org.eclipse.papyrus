@@ -38,7 +38,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 
 /**
- * Section for properties view, for label management. More precisely, these labels are manage with masks, to say if, for exammple, the name must be displayed or not.
+ * Section for properties view, for label management. More precisely, these labels are manage with
+ * masks, to say if, for exammple, the name must be displayed or not.
  * 
  * @see PropertyUtil#getCustomLabel(org.eclipse.uml2.uml.Property, int)
  */
@@ -92,7 +93,9 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 
 				Object source = e.getSource();
 				Widget item = e.item;
-				if (source instanceof Table && item instanceof TableItem) { // instanceof check also that table and item are not null
+				if (source instanceof Table && item instanceof TableItem) { // instanceof check also
+																			// that table and item
+																			// are not null
 					int maskValue = (Integer) ((TableItem) item).getData();
 					applyMask(maskValue, ((TableItem) item).getChecked());
 				}
@@ -141,7 +144,8 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				// when selected, open preference page
-				PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(getPart().getSite().getShell(), editPolicy.getPreferencePageID(), null, null);
+				PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(getPart().getSite().getShell(),
+						editPolicy.getPreferencePageID(), null, null);
 				dialog.open();
 			}
 
@@ -195,7 +199,8 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 	 * Refresh the components and enable/disable them according to the isGradientUsed attribute
 	 */
 	protected void refreshTable() {
-		// retrieve the current display masks => either display annotation or preference if no annotation
+		// retrieve the current display masks => either display annotation or preference if no
+		// annotation
 		int displayValue = editPolicy.getCurrentDisplayValue();
 		// refreshes the different buttons
 		for (TableItem item : table.getItems()) {
@@ -219,7 +224,9 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 					editPolicy = getMaskManagedLabelEditPolicy(editPart);
 					if (editPolicy == null) {
 						Activator.getDefault().getLog().log(
-								new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Trying to display the mask managed Section with an element that does not have the correct edit policy: " + editPart));
+								new Status(IStatus.WARNING, Activator.PLUGIN_ID,
+										"Trying to display the mask managed Section with an element that does not have the correct edit policy: "
+												+ editPart));
 					} else {
 						// dispose previous table items if necessary and create new ones
 						manageTableItems();
@@ -263,6 +270,7 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 	 *            the edit part currently selected for which we are displaying the section
 	 */
 	private IMaskManagedLabelEditPolicy getMaskManagedLabelEditPolicy(IGraphicalEditPart ep) {
-		return (IMaskManagedLabelEditPolicy) ep.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		return (IMaskManagedLabelEditPolicy) ep
+				.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 	}
 }

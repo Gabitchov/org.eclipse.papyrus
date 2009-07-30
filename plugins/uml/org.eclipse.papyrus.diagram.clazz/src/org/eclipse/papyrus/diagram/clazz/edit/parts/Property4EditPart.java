@@ -21,7 +21,9 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
@@ -51,8 +53,10 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.PropertyLabelEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.Property4ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -60,7 +64,12 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ExtendedDirectEditionDialog;
+import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
+import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -68,6 +77,8 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * @generated
@@ -101,10 +112,16 @@ public class Property4EditPart extends CompartmentEditPart implements ITextAware
 	 */
 	public static final int VISUAL_ID = 3012;
 
+	/** configuration from a registered edit dialog */
+	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
 	private String defaultText;
+
+	/** direct edition mode (default, undefined, registered editor, etc.) */
+	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * @generated
@@ -149,6 +166,30 @@ public class Property4EditPart extends CompartmentEditPart implements ITextAware
 		} else {
 			super.addSemanticListeners();
 		}
+	}
+
+	/**
+	 * Checks if a default direct edition is available
+	 * 
+	 * @return <code>true</code> if a default direct edition is available
+	 * @generated
+	 */
+	protected boolean checkDefaultEdition() {
+		return (resolveSemanticElement() instanceof NamedElement);
+	}
+
+	/**
+	 * Checks if an extended editor is present.
+	 * 
+	 * @return <code>true</code> if an extended editor is present.
+	 * @generated
+	 */
+	protected boolean checkExtendedEditor() {
+		if (resolveSemanticElement() != null) {
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
+					resolveSemanticElement().eClass().getInstanceClassName());
+		}
+		return false;
 	}
 
 	/**
@@ -211,6 +252,26 @@ public class Property4EditPart extends CompartmentEditPart implements ITextAware
 			return null;
 		}
 		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
+	}
+
+	/**
+	 * Returns the kind of associated editor for direct edition.
+	 * 
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @generated
+	 */
+	public int getDirectEditionType() {
+		if (checkExtendedEditor()) {
+			initExtendedEditorConfiguration();
+			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
+		}
+		if (checkDefaultEdition()) {
+			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
+		}
+
+		// not a named element. no specific editor => do nothing
+		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
 	/**
@@ -337,8 +398,9 @@ public class Property4EditPart extends CompartmentEditPart implements ITextAware
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Property_3012, getParserElement(), UMLVisualIDRegistry
-					.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.Property4EditPart.VISUAL_ID));
+			parser = CustomUMLParserProvider.getParser(UMLElementTypes.Property_3012, getParserElement(),
+					UMLVisualIDRegistry
+							.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.Property4EditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -393,6 +455,18 @@ public class Property4EditPart extends CompartmentEditPart implements ITextAware
 	}
 
 	/**
+	 * Initializes the extended editor configuration
+	 * 
+	 * @generated
+	 */
+	protected void initExtendedEditorConfiguration() {
+		if (configuration == null) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
+					resolveSemanticElement().eClass().getInstanceClassName());
+		}
+	}
+
+	/**
 	 * @generated
 	 */
 	protected boolean isEditable() {
@@ -430,27 +504,63 @@ public class Property4EditPart extends CompartmentEditPart implements ITextAware
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-		final Request theRequest = request;
-		try {
-			getEditingDomain().runExclusive(new Runnable() {
 
-				public void run() {
-					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-							performDirectEdit(editRequest.getLocation());
-						} else {
-							performDirectEdit();
+		final Request theRequest = request;
+
+		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
+			directEditionMode = getDirectEditionType();
+		}
+		switch (directEditionMode) {
+		case IDirectEdition.NO_DIRECT_EDITION:
+			// no direct edition mode => does nothing
+			return;
+		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
+			configuration.preEditAction(resolveSemanticElement());
+			final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
+					.getTextToEdit(resolveSemanticElement()), configuration);
+			if (Window.OK == dialog.open()) {
+				TransactionalEditingDomain domain = getEditingDomain();
+				RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
+
+					@Override
+					protected void doExecute() {
+						configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
+
+					}
+				};
+				domain.getCommandStack().execute(command);
+			}
+			break;
+		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
+
+			// initialize the direct edit manager
+			try {
+				getEditingDomain().runExclusive(new Runnable() {
+
+					public void run() {
+						if (isActive() && isEditable()) {
+							if (theRequest.getExtendedData().get(
+									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+								Character initialChar = (Character) theRequest.getExtendedData().get(
+										RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+								performDirectEdit(initialChar.charValue());
+							} else if ((theRequest instanceof DirectEditRequest)
+									&& (getEditText().equals(getLabelText()))) {
+								DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+								performDirectEdit(editRequest.getLocation());
+							} else {
+								performDirectEdit();
+							}
 						}
 					}
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -471,8 +581,11 @@ public class Property4EditPart extends CompartmentEditPart implements ITextAware
 	 * @generated
 	 */
 	protected void refreshLabel() {
-		setLabelTextHelper(getFigure(), getLabelText());
-		setLabelIconHelper(getFigure(), getLabelIcon());
+		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		if (maskLabelPolicy == null) {
+			setLabelTextHelper(getFigure(), getLabelText());
+			setLabelIconHelper(getFigure(), getLabelIcon());
+		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();

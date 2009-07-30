@@ -30,9 +30,10 @@ public class CreateObjectActionPropertiesEditionProvider implements IPropertiesE
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof CreateObjectAction) && (UMLPackage.eINSTANCE.getCreateObjectAction() == eObject.eClass());
+		return (eObject instanceof CreateObjectAction)
+				&& (UMLPackage.eINSTANCE.getCreateObjectAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class CreateObjectActionPropertiesEditionProvider implements IPropertiesE
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class CreateObjectActionPropertiesEditionProvider implements IPropertiesE
 		}
 		return null;
 	}
-	
-}	
+
+}

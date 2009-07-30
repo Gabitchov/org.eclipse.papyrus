@@ -30,9 +30,10 @@ public class RedefinableTemplateSignaturePropertiesEditionProvider implements IP
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof RedefinableTemplateSignature) && (UMLPackage.eINSTANCE.getRedefinableTemplateSignature() == eObject.eClass());
+		return (eObject instanceof RedefinableTemplateSignature)
+				&& (UMLPackage.eINSTANCE.getRedefinableTemplateSignature() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class RedefinableTemplateSignaturePropertiesEditionProvider implements IP
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class RedefinableTemplateSignaturePropertiesEditionProvider implements IP
 		}
 		return null;
 	}
-	
-}	
+
+}

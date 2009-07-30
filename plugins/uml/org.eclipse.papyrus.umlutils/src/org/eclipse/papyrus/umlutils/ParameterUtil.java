@@ -89,8 +89,8 @@ public class ParameterUtil {
 	 * Returns the default value as a String
 	 * 
 	 * @param equalSign
-	 *            boolean set to <code>true</code> if the label must have the
-	 *            <code>=</code> sign before the default value
+	 *            boolean set to <code>true</code> if the label must have the <code>=</code> sign
+	 *            before the default value
 	 * @return the default value as a String
 	 */
 	private static String getDefaultAsString(Parameter parameter, boolean equalSign) {

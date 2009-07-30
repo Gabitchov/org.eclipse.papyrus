@@ -14,8 +14,11 @@
 package org.eclipse.papyrus.diagram.clazz.custom.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusElementPreferencePage;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -62,8 +65,7 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 		 * {@inheritDoc}
 		 */
 		public void widgetSelected(SelectionEvent e) {
-			// add or remove the flag to the display property value (invert the
-			// current value)
+			// add or remove the flag to the display property value (invert the current value)
 			propertyValue = propertyValue ^ style;
 
 			// refresh buttons at the end
@@ -72,15 +74,28 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	}
 
 	/**
-	 * Initialize the preferences in the preference store.
-	 * 
-	 * @param store
-	 *            the preference store to initialize
+	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		// default for Property label display
+
+		String elementName = "Property";
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(177, 207, 229));
+
+		// Set the default for the gradient
+		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.GRADIENT_POLICY), false);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+				new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+
+		// custom code
 		store.setDefault(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE,
 				ICustomAppearence.DEFAULT_UML_PROPERTY);
+
 	}
 
 	/** buttons to select the display kind for the label of the {@link Property} */
@@ -243,8 +258,8 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	 */
 	protected void storePreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		// checks the stored value and the actual one, so does not refresh
-		// diagram if it is not needed
+		// checks the stored value and the actual one, so does not refresh diagram if it is not
+		// needed
 		if (propertyValue != store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE)) {
 			store.setValue(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE, propertyValue);
 		}

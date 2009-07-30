@@ -37,6 +37,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName6EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
@@ -157,8 +158,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getOperationParser();
 			// case Property4EditPart.VISUAL_ID:
 			// return getCustomPropertyParser();
-			// case Operation3EditPart.VISUAL_ID:
-			// return getOperationParser();
+		case Operation3EditPart.VISUAL_ID:
+			return getOperationParser();
 		case Property5EditPart.VISUAL_ID:
 			return getCustomPropertyParser();
 		case Operation4EditPart.VISUAL_ID:

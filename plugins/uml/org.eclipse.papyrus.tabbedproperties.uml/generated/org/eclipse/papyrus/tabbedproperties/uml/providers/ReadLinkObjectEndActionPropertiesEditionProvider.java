@@ -30,9 +30,10 @@ public class ReadLinkObjectEndActionPropertiesEditionProvider implements IProper
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ReadLinkObjectEndAction) && (UMLPackage.eINSTANCE.getReadLinkObjectEndAction() == eObject.eClass());
+		return (eObject instanceof ReadLinkObjectEndAction)
+				&& (UMLPackage.eINSTANCE.getReadLinkObjectEndAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class ReadLinkObjectEndActionPropertiesEditionProvider implements IProper
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class ReadLinkObjectEndActionPropertiesEditionProvider implements IProper
 		}
 		return null;
 	}
-	
-}	
+
+}

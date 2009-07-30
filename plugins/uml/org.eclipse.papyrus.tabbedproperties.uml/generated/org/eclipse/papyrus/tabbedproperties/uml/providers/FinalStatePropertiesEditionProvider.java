@@ -32,7 +32,7 @@ public class FinalStatePropertiesEditionProvider implements IPropertiesEditionPr
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof FinalState) && (UMLPackage.eINSTANCE.getFinalState() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class FinalStatePropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class FinalStatePropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
-}	
+
+}

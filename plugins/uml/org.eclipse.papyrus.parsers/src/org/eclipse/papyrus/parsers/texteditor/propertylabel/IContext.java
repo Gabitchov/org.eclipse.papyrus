@@ -10,74 +10,74 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.propertylabel;
 
 /**
  * 
  */
 public abstract interface IContext {
-	
+
 	/**
 	 * 
 	 */
 	public static final int DEFAULT = 0;
-	
+
 	/**
 	 * 
 	 */
 	public static final int VISIBILITY = 1;
-	
+
 	/**
 	 * 
 	 */
 	public static final int IS_DERIVED = 2;
-	
+
 	/**
 	 * 
 	 */
 	public static final int NAME = 3;
-	
+
 	/**
 	 * 
 	 */
 	public static final int AFTER_COLON = 4;
-	
+
 	/**
 	 * 
 	 */
 	public static final int PROPERTY_TYPE = 5;
-	
+
 	/**
 	 * 
 	 */
 	public static final int MULTIPLICITY = 6;
-	
+
 	/**
 	 * 
 	 */
 	public static final int DEFAULT_VALUE = 7;
-	
+
 	/**
 	 * 
 	 */
 	public static final int PROPERTY_MODIFIERS = 8;
-	
+
 	/**
 	 * 
 	 */
 	public static final int PROPERTY_MODIFIER = 9;
-	
+
 	/**
 	 * 
 	 */
 	public static final int IN_MULTIPLICITY = 10;
-	
+
 	/**
 	 * 
 	 */
 	public static final int SUBSET_PROPERTY = 11;
-	
+
 	/**
 	 * 
 	 */

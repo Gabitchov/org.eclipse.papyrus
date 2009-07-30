@@ -124,19 +124,23 @@ public interface VisualInformationPapyrusConstant {
 	 */
 	public static final String P_STEREOTYPE_NAME_APPEARANCE = "ProfileApplicationPreferenceConstants.stereotype.name.appearance";
 
-	/** Separator for stereotype properties list, i.e. the separator between each properties in the list. It is set to "<code>,</code>" by default */
+	/**
+	 * Separator for stereotype properties list, i.e. the separator between each properties in the
+	 * list. It is set to "<code>,</code>" by default
+	 */
 	public static final String STEREOTYPE_PROPERTIES_LIST_SEPARATOR = ",";
 
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
 
-	/** this is a key of eannnotation that contains hyperlink or referenced document**/
-	public static final String HYPERLINK="PapyrusHyperLink";
-	
-	/** this is a value of a eannnotation detail that explain the kind of the link**/
-	
-	public static final String HYPERLINK_DOCUMENT="PapyrusHyperLinkDocument";
-	public static final String HYPERLINK_ONLY="PapyrusHyperLinkOnly";
+	/** this is a key of eannnotation that contains hyperlink or referenced document **/
+	public static final String HYPERLINK = "PapyrusHyperLink";
+
+	/** this is a value of a eannnotation detail that explain the kind of the link **/
+
+	public static final String HYPERLINK_DOCUMENT = "PapyrusHyperLinkDocument";
+
+	public static final String HYPERLINK_ONLY = "PapyrusHyperLinkOnly";
 
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARANCE_MASK_VALUE = "CustomAppearance_MaskValue";

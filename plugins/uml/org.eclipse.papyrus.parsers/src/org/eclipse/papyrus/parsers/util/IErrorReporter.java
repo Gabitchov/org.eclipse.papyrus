@@ -14,7 +14,8 @@
 package org.eclipse.papyrus.parsers.util;
 
 /**
- * Interface that should be implemented by parsers and lexers that exports error messages to somewhere else the System out stream.
+ * Interface that should be implemented by parsers and lexers that exports error messages to
+ * somewhere else the System out stream.
  */
 public interface IErrorReporter {
 

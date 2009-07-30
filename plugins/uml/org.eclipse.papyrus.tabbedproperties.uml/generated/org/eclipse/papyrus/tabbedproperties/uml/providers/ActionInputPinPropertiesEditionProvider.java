@@ -32,7 +32,7 @@ public class ActionInputPinPropertiesEditionProvider implements IPropertiesEditi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof ActionInputPin) && (UMLPackage.eINSTANCE.getActionInputPin() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ActionInputPinPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ActionInputPinPropertiesEditionProvider implements IPropertiesEditi
 		}
 		return null;
 	}
-	
-}	
+
+}

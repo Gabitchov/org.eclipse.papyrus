@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor;
 
 import java.util.Collection;
@@ -28,8 +28,7 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 /**
  * Completion processor for action language. <BR>
- * Main class to process the different completions given by the texteditor to
- * its user
+ * Main class to process the different completions given by the texteditor to its user
  * 
  * @author Remi SCHNEKENBURGER
  * @see org.eclipse.jface.text.contentassist.IContentAssistProcessor
@@ -40,7 +39,7 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	/**
 	 * 
 	 */
-	protected Map<String, Boolean> modifiersUsed; 
+	protected Map<String, Boolean> modifiersUsed;
 
 	/**
 	 * 
@@ -48,38 +47,40 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	public LabelCompletionProcessor() {
 		modifiersUsed = new HashMap<String, Boolean>();
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.text.contentassist.IContentAssistProcessor#computeCompletionProposals(org.eclipse.jface.text.ITextViewer,
-	 *      int)
+	 * @see
+	 * org.eclipse.jface.text.contentassist.IContentAssistProcessor#computeCompletionProposals(org
+	 * .eclipse.jface.text.ITextViewer, int)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param viewer 
-	 * @param documentOffset 
+	 * @param viewer
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
-	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer,
-			int documentOffset) {
+	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int documentOffset) {
 		return new ICompletionProposal[0];
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.text.contentassist.IContentAssistProcessor#computeContextInformation(org.eclipse.jface.text.ITextViewer,
-	 *      int)
+	 * @see
+	 * org.eclipse.jface.text.contentassist.IContentAssistProcessor#computeContextInformation(org
+	 * .eclipse.jface.text.ITextViewer, int)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param viewer 
-	 * @param documentOffset 
+	 * @param viewer
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public IContextInformation[] computeContextInformation(ITextViewer viewer, int documentOffset) {
 		return new IContextInformation[0];
@@ -91,7 +92,7 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	/**
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public char[] getCompletionProposalAutoActivationCharacters() {
 		return new char[] { ':' };
@@ -103,7 +104,7 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	/**
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public char[] getContextInformationAutoActivationCharacters() {
 		return new char[] { '#' };
@@ -115,7 +116,7 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	/**
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public IContextInformationValidator getContextInformationValidator() {
 		return null;
@@ -127,20 +128,21 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	/**
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public String getErrorMessage() {
 		return null;
 	}
 
 	/**
-	 * when computing completion proposals, this method retrieves the string on
-	 * which the user is computing proposals it checks recursively if the
-	 * character at the precedent offset is also a part of the string (is a Java
-	 * identifier).
+	 * when computing completion proposals, this method retrieves the string on which the user is
+	 * computing proposals it checks recursively if the character at the precedent offset is also a
+	 * part of the string (is a Java identifier).
 	 * 
-	 * @param viewer the text viewer where the current document is shown
-	 * @param documentOffset the offset on which the end of the calculated string is
+	 * @param viewer
+	 *            the text viewer where the current document is shown
+	 * @param documentOffset
+	 *            the offset on which the end of the calculated string is
 	 * 
 	 * @return the string that will be completed
 	 */
@@ -158,7 +160,7 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 		return "";
 	}
 
-	/**
+/**
 	 * when computing completion proposals, this method retrieves the string on
 	 * which the user is computing proposals it checks recursively if the
 	 * character at the precedent offset is also a part of the string (is a Java
@@ -183,14 +185,13 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 		return "";
 	}
 
-
 	/**
 	 * 
 	 * 
-	 * @param viewer 
-	 * @param documentOffset 
+	 * @param viewer
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public String getPrefixForMultiplicity(ITextViewer viewer, int documentOffset) {
 		try {
@@ -205,80 +206,67 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * 
 	 * 
-	 * @param viewer 
-	 * @param selectionRange 
-	 * @param context 
-	 * @param documentOffset 
+	 * @param viewer
+	 * @param selectionRange
+	 * @param context
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
-	public Collection<ICompletionProposal> computeCompletions(
-			ITextViewer viewer, int context, int documentOffset,
+	public Collection<ICompletionProposal> computeCompletions(ITextViewer viewer, int context, int documentOffset,
 			int selectionRange) {
 		return new Vector<ICompletionProposal>();
 	}
-	
+
 	/**
 	 * 
 	 * 
-	 * @param proposals 
-	 * @param prefix 
-	 * @param proposalsInfo 
-	 * @param documentOffset 
+	 * @param proposals
+	 * @param prefix
+	 * @param proposalsInfo
+	 * @param documentOffset
 	 * 
-	 * @return 
+	 * @return
 	 */
-	public Collection<ICompletionProposal> createCompletionProposals(String[] proposals, String[] proposalsInfo, String prefix, int documentOffset) {
-        Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-        for (int i = 0; i < proposals.length; i++) {
-            // test if the proposal starts with the prefix given in parameter
-            if(proposals[i].startsWith(prefix)) {
-                v.add(new CompletionProposal(
-                        proposals[i], 
-                        documentOffset-prefix.length(), 
-                        prefix.length(),
-                        proposals[i].length(), 
-                        null, 
-                        proposals[i], 
-                        null,
-                        proposalsInfo[i]));
-            }
-        }
-        return v;
-    }
-    
-    /**
-     * 
-     * 
-     * @param proposals 
-     * @param proposalsName 
-     * @param prefix 
-     * @param proposalsInfo 
-     * @param documentOffset 
-     * 
-     * @return 
-     */
-    public Collection<ICompletionProposal> createCompletionProposalsWithDifferentName(String[] proposals, String[] proposalsInfo, String[] proposalsName, String prefix, int documentOffset) {
-        Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-        for (int i = 0; i < proposals.length; i++) {
-            // test if the proposal starts with the prefix given in parameter
-            if(proposals[i].startsWith(prefix)) {
-                
-                v.add(new CompletionProposal(
-                        proposals[i], 
-                        documentOffset-prefix.length(), 
-                        prefix.length(),
-                        proposals[i].length(), 
-                        null, 
-                        proposalsName[i], 
-                        null,
-                        proposalsInfo[i]));
-            }
-        }
-        return v;
-    }
+	public Collection<ICompletionProposal> createCompletionProposals(String[] proposals, String[] proposalsInfo,
+			String prefix, int documentOffset) {
+		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
+		for (int i = 0; i < proposals.length; i++) {
+			// test if the proposal starts with the prefix given in parameter
+			if (proposals[i].startsWith(prefix)) {
+				v.add(new CompletionProposal(proposals[i], documentOffset - prefix.length(), prefix.length(),
+						proposals[i].length(), null, proposals[i], null, proposalsInfo[i]));
+			}
+		}
+		return v;
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param proposals
+	 * @param proposalsName
+	 * @param prefix
+	 * @param proposalsInfo
+	 * @param documentOffset
+	 * 
+	 * @return
+	 */
+	public Collection<ICompletionProposal> createCompletionProposalsWithDifferentName(String[] proposals,
+			String[] proposalsInfo, String[] proposalsName, String prefix, int documentOffset) {
+		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
+		for (int i = 0; i < proposals.length; i++) {
+			// test if the proposal starts with the prefix given in parameter
+			if (proposals[i].startsWith(prefix)) {
+
+				v.add(new CompletionProposal(proposals[i], documentOffset - prefix.length(), prefix.length(),
+						proposals[i].length(), null, proposalsName[i], null, proposalsInfo[i]));
+			}
+		}
+		return v;
+	}
 }

@@ -77,19 +77,17 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class ElementImportPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ElementImportPropertiesEditionPart {
+public class ElementImportPropertiesEditionPartForm extends CompositePropertiesEditionPart implements
+		IFormPropertiesEditionPart, ElementImportPropertiesEditionPart {
 
 	protected EMFComboViewer visibility;
+
 	protected Text alias;
 
-
-
-
-	
 	public ElementImportPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
 		Form form = scrolledForm.getForm();
@@ -100,18 +98,19 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
 		createGeneralGroup(widgetFactory, view);
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
-		
+
 	}
 
 	protected void createGeneralGroup(FormToolkit widgetFactory, final Composite view) {
-		Section generalSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		Section generalSection = widgetFactory.createSection(view, Section.TITLE_BAR | Section.TWISTIE
+				| Section.EXPANDED);
 		generalSection.setText(UMLMessages.ElementImportPropertiesEditionPart_GeneralGroupLabel);
 		GridData generalSectionData = new GridData(GridData.FILL_HORIZONTAL);
 		generalSectionData.horizontalSpan = 3;
@@ -124,8 +123,11 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 		createAliasText(widgetFactory, generalGroup);
 		generalSection.setClient(generalGroup);
 	}
+
 	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ElementImportPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent,
+				UMLMessages.ElementImportPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(
+						UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
@@ -140,14 +142,20 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ElementImportPropertiesEditionPartForm.this, UMLViewsRepository.ElementImport.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							ElementImportPropertiesEditionPartForm.this, UMLViewsRepository.ElementImport.visibility,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
-			
+
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ElementImport.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createAliasText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ElementImportPropertiesEditionPart_AliasLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.alias, UMLViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ElementImportPropertiesEditionPart_AliasLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.ElementImport.alias,
+						UMLViewsRepository.FORM_KIND));
 		alias = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		alias.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -162,9 +170,11 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ElementImportPropertiesEditionPartForm.this, UMLViewsRepository.ElementImport.alias, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, alias.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							ElementImportPropertiesEditionPartForm.this, UMLViewsRepository.ElementImport.alias,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, alias.getText()));
 			}
-			
+
 		});
 		alias.addFocusListener(new FocusAdapter() {
 
@@ -175,7 +185,9 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 			 */
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ElementImportPropertiesEditionPartForm.this, UMLViewsRepository.ElementImport.alias, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, alias.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							ElementImportPropertiesEditionPartForm.this, UMLViewsRepository.ElementImport.alias,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, alias.getText()));
 			}
 
 		});
@@ -189,21 +201,23 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ElementImportPropertiesEditionPartForm.this, UMLViewsRepository.ElementImport.alias, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, alias.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+								ElementImportPropertiesEditionPartForm.this, UMLViewsRepository.ElementImport.alias,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, alias.getText()));
 				}
 			}
-			
+
 		});
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ElementImport.alias, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ElementImport.alias, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 
 	}
 
-	
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -219,7 +233,8 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#initVisibility(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -229,15 +244,12 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#setVisibility(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#setVisibility(Enumerator
+	 *      newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
 	}
-
-
-
-
 
 	/**
 	 * {@inheritDoc}
@@ -251,7 +263,8 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#setAlias(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ElementImportPropertiesEditionPart#setAlias(String
+	 *      newValue)
 	 */
 	public void setAlias(String newValue) {
 		alias.setText(newValue);
@@ -265,15 +278,8 @@ public class ElementImportPropertiesEditionPartForm extends CompositePropertiesE
 		messageManager.removeMessage("Alias_key", alias);
 	}
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
-	
+
 	// End of user code
 
-}	
+}

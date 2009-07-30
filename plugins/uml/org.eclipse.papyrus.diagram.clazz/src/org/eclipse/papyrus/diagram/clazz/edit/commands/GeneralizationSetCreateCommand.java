@@ -29,6 +29,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPo
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.GeneralizationSet;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated

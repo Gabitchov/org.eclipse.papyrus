@@ -31,20 +31,20 @@ public class UMLComposedAdapterFactory {
 			umlCompAdapterFactory = new ComposedAdapterFactory(createFactoryList());
 		return umlCompAdapterFactory;
 	}
-	
-	//TODO maybe use : backboneContext.getResourceSet().getAdapterFactory()
+
+	// TODO maybe use : backboneContext.getResourceSet().getAdapterFactory()
 	private final static ArrayList<AdapterFactory> createFactoryList() {
 		// Common factories
 		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
-		//factories.add(new ReflectiveItemProviderAdapterFactory());
+		// factories.add(new ReflectiveItemProviderAdapterFactory());
 		factories.add(new UMLResourceItemProviderAdapterFactory());
-		//factories.add(new UMLReflectiveItemProviderAdapterFactory());
+		// factories.add(new UMLReflectiveItemProviderAdapterFactory());
 		factories.add(new UMLItemProviderAdapterFactory());
 		// factories.add(new UMLItemDiagramProviderAdapterFactory());
 		// factories.add(new DiagramPackageProviderAdapterFactory());
-		
+
 		// ILabelDecorator labelDecorator = getLabelDecorator();
 		// DecoratingLabelProvider decoratedLabelProvider;
 		// if (labelDecorator != null) {

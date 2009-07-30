@@ -114,7 +114,8 @@ public class CreateChildActionProvider extends AbstractSubmenuActionProvider {
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
 				if (descriptor instanceof CommandParameter) {
-					actions.add(new CreateChildAction(NavigatorUtils.getTransactionalEditingDomain(), selection, descriptor));
+					actions.add(new CreateChildAction(NavigatorUtils.getTransactionalEditingDomain(), selection,
+							descriptor));
 				}
 			}
 		}

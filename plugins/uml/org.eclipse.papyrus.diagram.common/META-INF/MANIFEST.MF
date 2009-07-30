@@ -40,7 +40,6 @@ Export-Package: org.eclipse.papyrus.diagram.common,
  org.eclipse.papyrus.diagram.common.parser.instance,
  org.eclipse.papyrus.diagram.common.parser.lookup,
  org.eclipse.papyrus.diagram.common.parser.operation,
- org.eclipse.papyrus.diagram.common.parser.packageimport,
  org.eclipse.papyrus.diagram.common.parser.port;x-friends:="org.eclipse.uml2.diagram.component,org.eclipse.mdt.uml2.diagram.clazz",
  org.eclipse.papyrus.diagram.common.parser.property,
  org.eclipse.papyrus.diagram.common.parser.slot,
@@ -52,7 +51,6 @@ Export-Package: org.eclipse.papyrus.diagram.common,
  org.eclipse.papyrus.diagram.common.providers,
  org.eclipse.papyrus.diagram.common.providers.assistant,
  org.eclipse.papyrus.diagram.common.sheet,
- org.eclipse.papyrus.diagram.common.ui,
  org.eclipse.papyrus.diagram.common.ui.thumbnail,
  org.eclipse.papyrus.diagram.common.util
 Require-Bundle: org.eclipse.core.runtime,
@@ -76,6 +74,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.ecore;bundle-version="1.2.0",
  org.eclipse.gmf.runtime.diagram.ui.actions;bundle-version="1.1.0",
  org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="1.1.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.7.0",
  org.eclipse.papyrus.editor;bundle-version="0.7.0";visibility:=reexport,
  org.eclipse.papyrus.umlutils;bundle-version="0.7.0";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.2.0",
@@ -83,5 +82,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Created-By: 1.5.0_06-b05 (Sun Microsystems Inc.)
 Ant-Version: Apache Ant 1.7.0
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.edit.ui.provider
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.papyrus.diagram.common.Activator

@@ -60,7 +60,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * The Class HyperLinkPopupBarEditPolicy can be applied on edit part to display shortcuts on sub-diagrams or to associate hyper-link of files
+ * The Class HyperLinkPopupBarEditPolicy can be applied on edit part to display shortcuts on
+ * sub-diagrams or to associate hyper-link of files
  */
 public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
@@ -139,7 +140,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @param event
 		 *            the event
 		 * 
-		 * @see org.eclipse.draw2d.IFigure#handleMouseEntered(org.eclipse.draw2d.MouseEvent) flip myMouseOver bit and repaint
+		 * @see org.eclipse.draw2d.IFigure#handleMouseEntered(org.eclipse.draw2d.MouseEvent) flip
+		 *      myMouseOver bit and repaint
 		 */
 		public void handleMouseEntered(MouseEvent event) {
 
@@ -155,7 +157,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @param event
 		 *            the event
 		 * 
-		 * @see org.eclipse.draw2d.IFigure#handleMouseExited(org.eclipse.draw2d.MouseEvent) flip myMouseOver bit and repaint
+		 * @see org.eclipse.draw2d.IFigure#handleMouseExited(org.eclipse.draw2d.MouseEvent) flip
+		 *      myMouseOver bit and repaint
 		 */
 		public void handleMouseExited(MouseEvent event) {
 
@@ -171,8 +174,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @param event
 		 *            the event
 		 * 
-		 * @see org.eclipse.draw2d.IFigure#handleMousePressed(org.eclipse.draw2d.MouseEvent) set PopupBarEditPolicy.myActionMoveFigure bit so the popup bar is not dismissed after creating an item in
-		 *      the editpart
+		 * @see org.eclipse.draw2d.IFigure#handleMousePressed(org.eclipse.draw2d.MouseEvent) set
+		 *      PopupBarEditPolicy.myActionMoveFigure bit so the popup bar is not dismissed after
+		 *      creating an item in the editpart
 		 */
 		public void handleMousePressed(MouseEvent event) {
 
@@ -189,7 +193,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @param graphics
 		 *            the graphics
 		 * 
-		 * @see org.eclipse.draw2d.Figure#paintBorder(org.eclipse.draw2d.Graphics) paint a focus rectangle for the label if the mouse is inside the label
+		 * @see org.eclipse.draw2d.Figure#paintBorder(org.eclipse.draw2d.Graphics) paint a focus
+		 *      rectangle for the label if the mouse is inside the label
 		 */
 		protected void paintBorder(Graphics graphics) {
 			super.paintBorder(graphics);
@@ -239,13 +244,15 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * Instantiates a new popup bar label plus handle.
 		 */
 		public PopupBarLabelPlusHandle() {
-			super(null, AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Plus.gif").createImage());
+			super(null, AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+					"/icons/obj16/Plus.gif").createImage());
 			// TODO Auto-generated constructor stub
 		}
 	}
 
 	/**
-	 * Listens for mouse key presses so the popup bar can be dismissed if the context menu is displayed.
+	 * Listens for mouse key presses so the popup bar can be dismissed if the context menu is
+	 * displayed.
 	 * 
 	 * @author affrantz@us.ibm.com
 	 */
@@ -268,7 +275,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			{
 				IPageMngr pageMngr = EditorUtils.getIPageMngr();
 				if (me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new HyperLinkManagerShell((Element) ((GraphicalEditPart) getHost()).getNotationView().getElement(), ((GraphicalEditPart) getHost()).getNotationView(),
+					hyperLinkManagerShell = new HyperLinkManagerShell((Element) ((GraphicalEditPart) getHost())
+							.getNotationView().getElement(), ((GraphicalEditPart) getHost()).getNotationView(),
 							getEditorRegistry(), ((GraphicalEditPart) getHost()).getEditingDomain());
 					hyperLinkManagerShell.createShell();
 
@@ -286,10 +294,13 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 							String url = (String) (((PopupBarLabelHandle) me.getSource()).getReferencedObject());
 							// this is an url
 							if (url.startsWith("http")) {
-								PlatformUI.getWorkbench().getBrowserSupport().createBrowser(IWorkbenchBrowserSupport.AS_EXTERNAL, "aCustomId", "url", "url").openURL(new URL(url));
+								PlatformUI.getWorkbench().getBrowserSupport().createBrowser(
+										IWorkbenchBrowserSupport.AS_EXTERNAL, "aCustomId", "url", "url").openURL(
+										new URL(url));
 							} else {
 								// this is a file try to open it
-								IEditorDescriptor eDesc = PlatformUI.getWorkbench().getEditorRegistry().findEditor(IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID);
+								IEditorDescriptor eDesc = PlatformUI.getWorkbench().getEditorRegistry().findEditor(
+										IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID);
 
 								// creation of a phantom workspace
 								IWorkspace ws = ResourcesPlugin.getWorkspace();
@@ -384,11 +395,18 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	private static Image IMAGE_POPUPBAR_PLUS = DiagramUIPluginImages.get(DiagramUIPluginImages.IMG_POPUPBAR_PLUS);
 
 	/** The POPUPBA r_ mov e_ figure. */
-	static private int POPUPBAR_MOVE_FIGURE = 0x02; /* Ignore the first figureMoved event when creating elements inside a shape via a popup bar */
+	static private int POPUPBAR_MOVE_FIGURE = 0x02; /*
+													 * Ignore the first figureMoved event when
+													 * creating elements inside a shape via a popup
+													 * bar
+													 */
 
 	/** The POPUPBA r_ ondiagramactivated. */
 	static private int POPUPBAR_ONDIAGRAMACTIVATED = 0x10; /*
-															 * For popup bars on diagram and machine edit parts, where we POPUPBAR_DISPLAYATMOUSEHOVERLOCATION, don't display popup bar until user
+															 * For popup bars on diagram and machine
+															 * edit parts, where we
+															 * POPUPBAR_DISPLAYATMOUSEHOVERLOCATION,
+															 * don't display popup bar until user
 															 * clicks on surface
 															 */
 
@@ -428,7 +446,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	public int addObjectList(String imageLocation, int positonwidth, List<String> objectList) {
 		for (int i = 0; i < objectList.size(); i++) {
-			PopupBarLabelHandle handle = new PopupBarLabelHandle(objectList.get(i), AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", imageLocation).createImage());
+			PopupBarLabelHandle handle = new PopupBarLabelHandle(objectList.get(i), AbstractUIPlugin
+					.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", imageLocation).createImage());
 
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(positonwidth, 5);
@@ -452,7 +471,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
+	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 * 
@@ -477,7 +497,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 * 
-	 * @generated NOT Get the EditorRegistry used to create editor instances. This default implementation return the singleton eINSTANCE. This method can be subclassed to return another registry.
+	 * @generated NOT Get the EditorRegistry used to create editor instances. This default
+	 *            implementation return the singleton eINSTANCE. This method can be subclassed to
+	 *            return another registry.
 	 */
 	protected IEditorFactoryRegistry getEditorRegistry() {
 		if (editorRegistry == null) {
@@ -588,7 +610,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			for (int i = 0; i < diagramList.size(); i++) {
 
 				// Button b = new Button(theDesc.myButtonIcon);
-				PopupBarLabelHandle handle = new PopupBarLabelHandle(diagramList.get(i), getEditorRegistry().getEditorIcon(diagramList.get(i)));
+				PopupBarLabelHandle handle = new PopupBarLabelHandle(diagramList.get(i), getEditorRegistry()
+						.getEditorIcon(diagramList.get(i)));
 
 				Rectangle r1 = new Rectangle();
 				r1.setLocation(xLoc, 5);
@@ -608,10 +631,12 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 			}
 			// add all hyperlinks
-			List<String> hyperLinkList = HyperlinkHelper.getAllHyperLink(((GraphicalEditPart) getHost()).getNotationView());
+			List<String> hyperLinkList = HyperlinkHelper.getAllHyperLink(((GraphicalEditPart) getHost())
+					.getNotationView());
 			xLoc = addObjectList("/icons/obj16/hyperlink.gif", xLoc, hyperLinkList);
 			// add all documents
-			List<String> documentList = HyperlinkHelper.getAllreferencedDocument(((GraphicalEditPart) getHost()).getNotationView());
+			List<String> documentList = HyperlinkHelper.getAllreferencedDocument(((GraphicalEditPart) getHost())
+					.getNotationView());
 			xLoc = addObjectList("/icons/obj16/file.gif", xLoc, documentList);
 			// add the PLUS button
 			PopupBarLabelHandle handle = new PopupBarLabelPlusHandle();

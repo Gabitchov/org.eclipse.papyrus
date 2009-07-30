@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -57,15 +56,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -87,10 +92,6 @@ public interface ClausePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the test to add
 	 */
@@ -108,15 +109,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the test
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initTest(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the test
-	 * @param newValue the test to update
+	 * 
+	 * @param newValue
+	 *            the test to update
 	 */
 	public void updateTest(EObject newValue);
 
@@ -138,10 +145,6 @@ public interface ClausePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToTest(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the body to add
 	 */
@@ -159,15 +162,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the body
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initBody(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the body
-	 * @param newValue the body to update
+	 * 
+	 * @param newValue
+	 *            the body to update
 	 */
 	public void updateBody(EObject newValue);
 
@@ -189,10 +198,6 @@ public interface ClausePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToBody(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the predecessorClause to add
 	 */
@@ -210,15 +215,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the predecessorClause
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPredecessorClause(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the predecessorClause
-	 * @param newValue the predecessorClause to update
+	 * 
+	 * @param newValue
+	 *            the predecessorClause to update
 	 */
 	public void updatePredecessorClause(EObject newValue);
 
@@ -240,10 +251,6 @@ public interface ClausePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToPredecessorClause(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the successorClause to add
 	 */
@@ -261,15 +268,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the successorClause
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initSuccessorClause(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the successorClause
-	 * @param newValue the successorClause to update
+	 * 
+	 * @param newValue
+	 *            the successorClause to update
 	 */
 	public void updateSuccessorClause(EObject newValue);
 
@@ -291,10 +304,6 @@ public interface ClausePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToSuccessorClause(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the bodyOutput to add
 	 */
@@ -312,15 +321,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the bodyOutput
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initBodyOutput(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the bodyOutput
-	 * @param newValue the bodyOutput to update
+	 * 
+	 * @param newValue
+	 *            the bodyOutput to update
 	 */
 	public void updateBodyOutput(EObject newValue);
 
@@ -342,18 +357,8 @@ public interface ClausePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToBodyOutput(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

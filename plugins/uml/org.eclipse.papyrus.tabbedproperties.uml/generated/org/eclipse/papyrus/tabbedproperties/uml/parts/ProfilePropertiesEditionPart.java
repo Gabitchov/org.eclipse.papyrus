@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -59,15 +58,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -89,10 +94,6 @@ public interface ProfilePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the name
 	 */
@@ -100,7 +101,9 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -115,20 +118,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the clientDependency to add
@@ -147,15 +151,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *            the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -176,10 +186,6 @@ public interface ProfilePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the elementImport to add
@@ -208,15 +214,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *            the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -237,10 +249,6 @@ public interface ProfilePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the packageImport to add
@@ -269,15 +277,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *            the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -298,10 +312,6 @@ public interface ProfilePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the ownedRule to add
@@ -330,15 +340,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *            the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -359,10 +375,6 @@ public interface ProfilePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the templateBinding to add
@@ -391,15 +403,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the templateBinding
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * @param newValue the templateBinding to update
+	 * 
+	 * @param newValue
+	 *            the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -420,10 +438,6 @@ public interface ProfilePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the packageMerge to add
@@ -452,15 +466,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the packageMerge
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPackageMerge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageMerge
-	 * @param newValue the packageMerge to update
+	 * 
+	 * @param newValue
+	 *            the packageMerge to update
 	 */
 	public void updatePackageMerge(EObject newValue);
 
@@ -481,10 +501,6 @@ public interface ProfilePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageMerge(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the packagedElement to add
@@ -513,15 +529,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the packagedElement
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initPackagedElement(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packagedElement
-	 * @param newValue the packagedElement to update
+	 * 
+	 * @param newValue
+	 *            the packagedElement to update
 	 */
 	public void updatePackagedElement(EObject newValue);
 
@@ -542,10 +564,6 @@ public interface ProfilePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackagedElement(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the profileApplication to add
@@ -574,15 +592,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the profileApplication
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initProfileApplication(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the profileApplication
-	 * @param newValue the profileApplication to update
+	 * 
+	 * @param newValue
+	 *            the profileApplication to update
 	 */
 	public void updateProfileApplication(EObject newValue);
 
@@ -604,10 +628,6 @@ public interface ProfilePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToProfileApplication(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the metaclassReference to add
 	 */
@@ -625,15 +645,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the metaclassReference
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initMetaclassReference(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the metaclassReference
-	 * @param newValue the metaclassReference to update
+	 * 
+	 * @param newValue
+	 *            the metaclassReference to update
 	 */
 	public void updateMetaclassReference(EObject newValue);
 
@@ -655,10 +681,6 @@ public interface ProfilePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToMetaclassReference(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the metamodelReference to add
 	 */
@@ -676,15 +698,21 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the metamodelReference
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initMetamodelReference(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the metamodelReference
-	 * @param newValue the metamodelReference to update
+	 * 
+	 * @param newValue
+	 *            the metamodelReference to update
 	 */
 	public void updateMetamodelReference(EObject newValue);
 
@@ -706,18 +734,8 @@ public interface ProfilePropertiesEditionPart {
 	 */
 	public void addBusinessFilterToMetamodelReference(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

@@ -30,7 +30,7 @@ public class CommentPropertiesEditionProvider implements IPropertiesEditionProvi
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Comment) && (UMLPackage.eINSTANCE.getComment() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -43,7 +43,7 @@ public class CommentPropertiesEditionProvider implements IPropertiesEditionProvi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -57,5 +57,5 @@ public class CommentPropertiesEditionProvider implements IPropertiesEditionProvi
 		}
 		return null;
 	}
-	
-}	
+
+}

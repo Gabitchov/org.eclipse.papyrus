@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -57,15 +56,21 @@ public interface ExceptionHandlerPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -87,10 +92,6 @@ public interface ExceptionHandlerPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the exceptionType to add
 	 */
@@ -108,15 +109,21 @@ public interface ExceptionHandlerPropertiesEditionPart {
 
 	/**
 	 * Init the exceptionType
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initExceptionType(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the exceptionType
-	 * @param newValue the exceptionType to update
+	 * 
+	 * @param newValue
+	 *            the exceptionType to update
 	 */
 	public void updateExceptionType(EObject newValue);
 
@@ -138,18 +145,8 @@ public interface ExceptionHandlerPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToExceptionType(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

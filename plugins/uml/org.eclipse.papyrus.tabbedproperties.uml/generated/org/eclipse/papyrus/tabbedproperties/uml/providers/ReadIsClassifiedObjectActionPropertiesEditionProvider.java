@@ -30,9 +30,10 @@ public class ReadIsClassifiedObjectActionPropertiesEditionProvider implements IP
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ReadIsClassifiedObjectAction) && (UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction() == eObject.eClass());
+		return (eObject instanceof ReadIsClassifiedObjectAction)
+				&& (UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class ReadIsClassifiedObjectActionPropertiesEditionProvider implements IP
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class ReadIsClassifiedObjectActionPropertiesEditionProvider implements IP
 		}
 		return null;
 	}
-	
-}	
+
+}

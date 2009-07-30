@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.propertylabel;
 
 import org.eclipse.jface.text.TextAttribute;
@@ -27,12 +27,10 @@ import org.eclipse.papyrus.parsers.texteditor.completionproposals.VisibilityComp
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
-
-
 /**
  * Scanner for the action language.<BR>
- * It implements the interface IALKeywords, which contains the different
- * keywords available in the action language
+ * It implements the interface IALKeywords, which contains the different keywords available in the
+ * action language
  * 
  * @author Remi SCHNEKENBURGER
  * @see org.eclipse.jface.text.rules.RuleBasedScanner
@@ -40,25 +38,24 @@ import org.eclipse.swt.graphics.Color;
  */
 public class PropertyLabelScanner extends RuleBasedScanner implements IPropertyLabelColorConstants {
 
-    // Color for the default token
-    /**
+	// Color for the default token
+	/**
      * 
      */
-    private Color defaultColor;
-    
-    // Color for keywords
-    /**
+	private Color defaultColor;
+
+	// Color for keywords
+	/**
      * 
      */
-    private Color keywordColor;
-    
-    // Color for special chars
-    /**
+	private Color keywordColor;
+
+	// Color for special chars
+	/**
      * 
      */
-    private Color symbolColor;
-    
-    
+	private Color symbolColor;
+
 	/**
 	 * Creates a new rule based scanner.
 	 */
@@ -70,7 +67,7 @@ public class PropertyLabelScanner extends RuleBasedScanner implements IPropertyL
 		IToken other = new Token(new TextAttribute(defaultColor));
 		IToken keyword = new Token(new TextAttribute(keywordColor, null, SWT.BOLD));
 		IToken symbol = new Token(new TextAttribute(symbolColor, null, SWT.BOLD));
-		
+
 		IRule[] rules = new IRule[2];
 
 		WordRule wordRule = new WordRule(new PropertyWordDetector(), other);
@@ -83,7 +80,7 @@ public class PropertyLabelScanner extends RuleBasedScanner implements IPropertyL
 		for (int i = 0; i < PropertyModifierProposal.modifiersStrings.length; i++) {
 			wordRule.addWord(PropertyModifierProposal.modifiersStrings[i], keyword);
 		}
-		
+
 		wordRule.addWord("+", symbol);
 		wordRule.addWord("-", symbol);
 		wordRule.addWord("#", symbol);
@@ -93,26 +90,23 @@ public class PropertyLabelScanner extends RuleBasedScanner implements IPropertyL
 		wordRule.addWord("-/", symbol);
 		wordRule.addWord("#/", symbol);
 		wordRule.addWord(":", symbol);
-		
-		
-		
+
 		rules[0] = wordRule;
 		rules[1] = new WhitespaceRule(new WhitespaceDetector());
-		
 
 		setRules(rules);
 	}
-	
+
 	/**
 	 * returns the word for the scanner, without quotes.
 	 * 
-	 * @param word 
+	 * @param word
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public static String getWordWithoutQuotes(String word) {
-	    String tmp="";
-	    tmp = word.replaceAll("'", "");
-	    return tmp;
+		String tmp = "";
+		tmp = word.replaceAll("'", "");
+		return tmp;
 	}
 }

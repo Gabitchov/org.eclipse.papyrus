@@ -30,9 +30,10 @@ public class DurationObservationPropertiesEditionProvider implements IProperties
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof DurationObservation) && (UMLPackage.eINSTANCE.getDurationObservation() == eObject.eClass());
+		return (eObject instanceof DurationObservation)
+				&& (UMLPackage.eINSTANCE.getDurationObservation() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class DurationObservationPropertiesEditionProvider implements IProperties
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class DurationObservationPropertiesEditionProvider implements IProperties
 		}
 		return null;
 	}
-	
-}	
+
+}

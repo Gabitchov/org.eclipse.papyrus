@@ -40,10 +40,15 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class ImageUtil {
 
-	/** ID of the EAnnotation where "expression" (used to select stereotype icon) is stored on image. */
+	/**
+	 * ID of the EAnnotation where "expression" (used to select stereotype icon) is stored on image.
+	 */
 	public static String IMAGE_PAPYRUS_EA = "image_papyrus";
 
-	/** KEY of the EAnnotation where "expression" (used to select stereotype icon) is stored on image. */
+	/**
+	 * KEY of the EAnnotation where "expression" (used to select stereotype icon) is stored on
+	 * image.
+	 */
 	public static String IMAGE_EXPR_KEY = "image_expr_key";
 
 	/** KEY of the EAnnotation where "kind" (kind = icon/shape) is stored on image. */
@@ -77,7 +82,8 @@ public class ImageUtil {
 			image.setContent(rawImageData);
 
 		} catch (Exception ex) {
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getLocalizedMessage(), ex));
+			Activator.getDefault().getLog().log(
+					new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getLocalizedMessage(), ex));
 		}
 	}
 
@@ -113,13 +119,15 @@ public class ImageUtil {
 			j++;
 		}
 
-		org.eclipse.swt.graphics.Image decodedImage = new org.eclipse.swt.graphics.Image(null, new ByteArrayInputStream(target));
+		org.eclipse.swt.graphics.Image decodedImage = new org.eclipse.swt.graphics.Image(null,
+				new ByteArrayInputStream(target));
 
 		return decodedImage;
 	}
 
 	/**
-	 * Get the image specified by the location property of an {@link Image} as {@link org.eclipse.swt.graphics.Image}
+	 * Get the image specified by the location property of an {@link Image} as
+	 * {@link org.eclipse.swt.graphics.Image}
 	 * 
 	 * @param image
 	 *            the UML {@link Image} to set
@@ -146,7 +154,9 @@ public class ImageUtil {
 				swtImage = imageDescriptor.createImage();
 
 			} catch (Exception e) {
-				Activator.getDefault().getLog().log(new Status(Status.WARNING, Activator.PLUGIN_ID, "Could not create image from location : " + location, e));
+				Activator.getDefault().getLog().log(
+						new Status(Status.WARNING, Activator.PLUGIN_ID, "Could not create image from location : "
+								+ location, e));
 			}
 		}
 
@@ -223,7 +233,8 @@ public class ImageUtil {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_EXPR_KEY, expression);
 		}
 
-		if (!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY)) && !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
+		if (!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY))
+				&& !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
 			ea_Image.setEModelElement(null);
 		}
 	}
@@ -269,7 +280,8 @@ public class ImageUtil {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_KIND_KEY, kind);
 		}
 
-		if (!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY)) && !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
+		if (!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY))
+				&& !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
 			ea_Image.setEModelElement(null);
 		}
 	}

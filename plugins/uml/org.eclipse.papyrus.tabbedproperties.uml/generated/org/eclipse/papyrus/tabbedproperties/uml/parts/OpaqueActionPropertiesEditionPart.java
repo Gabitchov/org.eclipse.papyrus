@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -60,15 +59,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -90,10 +95,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the name
 	 */
@@ -101,7 +102,9 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -116,20 +119,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the clientDependency to add
@@ -148,15 +152,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *            the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -178,10 +188,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the isLeaf
 	 */
@@ -189,13 +195,11 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *            the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
-
-
-
-
 
 	/**
 	 * @return the outgoing to add
@@ -214,15 +218,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the outgoing
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOutgoing(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the outgoing
-	 * @param newValue the outgoing to update
+	 * 
+	 * @param newValue
+	 *            the outgoing to update
 	 */
 	public void updateOutgoing(EObject newValue);
 
@@ -244,10 +254,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOutgoing(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the incoming to add
 	 */
@@ -265,15 +271,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the incoming
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initIncoming(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the incoming
-	 * @param newValue the incoming to update
+	 * 
+	 * @param newValue
+	 *            the incoming to update
 	 */
 	public void updateIncoming(EObject newValue);
 
@@ -295,10 +307,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToIncoming(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the inPartition to add
 	 */
@@ -316,15 +324,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the inPartition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInPartition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the inPartition
-	 * @param newValue the inPartition to update
+	 * 
+	 * @param newValue
+	 *            the inPartition to update
 	 */
 	public void updateInPartition(EObject newValue);
 
@@ -346,10 +360,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToInPartition(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the inInterruptibleRegion to add
 	 */
@@ -367,15 +377,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the inInterruptibleRegion
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the inInterruptibleRegion
-	 * @param newValue the inInterruptibleRegion to update
+	 * 
+	 * @param newValue
+	 *            the inInterruptibleRegion to update
 	 */
 	public void updateInInterruptibleRegion(EObject newValue);
 
@@ -397,10 +413,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToInInterruptibleRegion(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the redefinedNode to add
 	 */
@@ -418,15 +430,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedNode
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRedefinedNode(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedNode
-	 * @param newValue the redefinedNode to update
+	 * 
+	 * @param newValue
+	 *            the redefinedNode to update
 	 */
 	public void updateRedefinedNode(EObject newValue);
 
@@ -447,10 +465,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedNode(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the handler to add
@@ -479,15 +493,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the handler
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initHandler(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the handler
-	 * @param newValue the handler to update
+	 * 
+	 * @param newValue
+	 *            the handler to update
 	 */
 	public void updateHandler(EObject newValue);
 
@@ -508,10 +528,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToHandler(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the localPrecondition to add
@@ -540,15 +556,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the localPrecondition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initLocalPrecondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the localPrecondition
-	 * @param newValue the localPrecondition to update
+	 * 
+	 * @param newValue
+	 *            the localPrecondition to update
 	 */
 	public void updateLocalPrecondition(EObject newValue);
 
@@ -569,10 +591,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToLocalPrecondition(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the localPostcondition to add
@@ -601,15 +619,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the localPostcondition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initLocalPostcondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the localPostcondition
-	 * @param newValue the localPostcondition to update
+	 * 
+	 * @param newValue
+	 *            the localPostcondition to update
 	 */
 	public void updateLocalPostcondition(EObject newValue);
 
@@ -631,10 +655,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToLocalPostcondition(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the body
 	 */
@@ -642,13 +662,11 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Defines a new body
-	 * @param newValue the new body to set
+	 * 
+	 * @param newValue
+	 *            the new body to set
 	 */
 	public void setBody(EList newValue);
-
-
-
-
 
 	/**
 	 * @return the language
@@ -657,13 +675,11 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Defines a new language
-	 * @param newValue the new language to set
+	 * 
+	 * @param newValue
+	 *            the new language to set
 	 */
 	public void setLanguage(EList newValue);
-
-
-
-
 
 	/**
 	 * @return the inputValue to add
@@ -692,15 +708,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the inputValue
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInputValue(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the inputValue
-	 * @param newValue the inputValue to update
+	 * 
+	 * @param newValue
+	 *            the inputValue to update
 	 */
 	public void updateInputValue(EObject newValue);
 
@@ -721,10 +743,6 @@ public interface OpaqueActionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToInputValue(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the outputValue to add
@@ -753,15 +771,21 @@ public interface OpaqueActionPropertiesEditionPart {
 
 	/**
 	 * Init the outputValue
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOutputValue(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the outputValue
-	 * @param newValue the outputValue to update
+	 * 
+	 * @param newValue
+	 *            the outputValue to update
 	 */
 	public void updateOutputValue(EObject newValue);
 
@@ -783,18 +807,8 @@ public interface OpaqueActionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOutputValue(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

@@ -32,7 +32,7 @@ public class ConstraintPropertiesEditionProvider implements IPropertiesEditionPr
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Constraint) && (UMLPackage.eINSTANCE.getConstraint() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ConstraintPropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ConstraintPropertiesEditionProvider implements IPropertiesEditionPr
 		}
 		return null;
 	}
-	
-}	
+
+}

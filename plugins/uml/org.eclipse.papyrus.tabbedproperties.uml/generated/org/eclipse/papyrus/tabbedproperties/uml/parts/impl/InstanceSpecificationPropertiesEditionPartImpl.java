@@ -86,7 +86,6 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Deployment;
 
-
 import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
@@ -95,27 +94,37 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, InstanceSpecificationPropertiesEditionPart {
+public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
+		ISWTPropertiesEditionPart, InstanceSpecificationPropertiesEditionPart {
 
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	protected EMFListEditUtil slotEditUtil;
+
 	protected ReferencesTable<?> slot;
+
 	protected List<ViewerFilter> slotBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> slotFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil classifierEditUtil;
+
 	protected ReferencesTable<?> classifier;
+
 	protected List<ViewerFilter> classifierBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> classifierFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil deploymentEditUtil;
+
 	protected ReferencesTable<?> deployment;
+
 	protected List<ViewerFilter> deploymentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> deploymentFilters = new ArrayList<ViewerFilter>();
 
-
-
-
-	
 	public InstanceSpecificationPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -125,16 +134,16 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
 
 	}
@@ -152,8 +161,11 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 		createVisibilityEMFComboViewer(generalGroup);
 		createGeneralHBox1HBox(generalGroup);
 	}
+
 	protected void createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.InstanceSpecificationPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.InstanceSpecification.name, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.InstanceSpecificationPropertiesEditionPart_NameLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.InstanceSpecification.name,
+						UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -162,55 +174,81 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see
+			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							InstanceSpecificationPropertiesEditionPartImpl.this,
+							UMLViewsRepository.InstanceSpecification.name, PropertiesEditionEvent.CHANGE,
+							PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.InstanceSpecification.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InstanceSpecification.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.InstanceSpecificationPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.InstanceSpecification.visibility, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.InstanceSpecificationPropertiesEditionPart_VisibilityLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.InstanceSpecification.visibility,
+						UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.InstanceSpecification.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InstanceSpecification.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createGeneralHBox1HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan=2;
+		gridData.horizontalSpan = 2;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox1HBox = new HorizontalBox(container);
-		
-		
-		//create sub figures
-				createSlotAdvancedTableComposition(generalHBox1HBox);
-				createClassifierAdvancedReferencesTable(generalHBox1HBox);
-				createDeploymentAdvancedTableComposition(generalHBox1HBox);
-		
+
+		// create sub figures
+		createSlotAdvancedTableComposition(generalHBox1HBox);
+		createClassifierAdvancedReferencesTable(generalHBox1HBox);
+		createDeploymentAdvancedTableComposition(generalHBox1HBox);
+
 		parent.pack();
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createSlotAdvancedTableComposition(Composite parent) {
-		this.slot = new ReferencesTable<Slot>(UMLMessages.InstanceSpecificationPropertiesEditionPart_SlotLabel, new ReferencesTableListener<Slot>() {			
-			public void handleAdd() { addToSlot();}
-			public void handleEdit(Slot element) { editSlot(element); }
-			public void handleMove(Slot element, int oldIndex, int newIndex) { moveSlot(element, oldIndex, newIndex); }
-			public void handleRemove(Slot element) { removeFromSlot(element); }
-			public void navigateTo(Slot element) { }
-		});
-		this.slot.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InstanceSpecification.slot, UMLViewsRepository.SWT_KIND));
+		this.slot = new ReferencesTable<Slot>(UMLMessages.InstanceSpecificationPropertiesEditionPart_SlotLabel,
+				new ReferencesTableListener<Slot>() {
+
+					public void handleAdd() {
+						addToSlot();
+					}
+
+					public void handleEdit(Slot element) {
+						editSlot(element);
+					}
+
+					public void handleMove(Slot element, int oldIndex, int newIndex) {
+						moveSlot(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Slot element) {
+						removeFromSlot(element);
+					}
+
+					public void navigateTo(Slot element) {
+					}
+				});
+		this.slot.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InstanceSpecification.slot,
+				UMLViewsRepository.SWT_KIND));
 		this.slot.createControls(parent);
 		GridData slotData = new GridData(GridData.FILL_HORIZONTAL);
 		slotData.horizontalSpan = 3;
@@ -221,12 +259,14 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	 * 
 	 */
 	private void moveSlot(Slot element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = slotEditUtil.foundCorrespondingEObject(element);
 		slotEditUtil.moveElement(element, oldIndex, newIndex);
 		slot.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.slot, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.slot,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
 
 	/**
@@ -236,22 +276,26 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 
 		// Start of user code addToSlot() method body
 
-
 		Slot eObject = UMLFactory.eINSTANCE.createSlot();
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
+							eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				slotEditUtil.addElement(propertiesEditionObject);
 				slot.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.slot, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InstanceSpecificationPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InstanceSpecification.slot, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -264,7 +308,9 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = slotEditUtil.foundCorrespondingEObject(element);
 		slotEditUtil.removeElement(element);
 		slot.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.slot, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.slot,
+				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -276,61 +322,85 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	private void editSlot(Slot element) {
 
 		// Start of user code editSlot() method body
-		
+
 		EObject editedElement = slotEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				slotEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				slot.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.slot, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InstanceSpecificationPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InstanceSpecification.slot, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-		
+
 		// End of user code
 
 	}
-	protected void createClassifierAdvancedReferencesTable(Composite parent) {
-		this.classifier = new ReferencesTable<Classifier>(UMLMessages.InstanceSpecificationPropertiesEditionPart_ClassifierLabel, new ReferencesTableListener<Classifier>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<Classifier> dialog = new TabElementTreeSelectionDialog<Classifier>(resourceSet, classifierFilters, classifierBusinessFilters,
-				"Classifier", UMLPackage.eINSTANCE.getClassifier()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!classifierEditUtil.getVirtualList().contains(elem))
-								classifierEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.classifier,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						classifier.refresh();
+	protected void createClassifierAdvancedReferencesTable(Composite parent) {
+		this.classifier = new ReferencesTable<Classifier>(
+				UMLMessages.InstanceSpecificationPropertiesEditionPart_ClassifierLabel,
+				new ReferencesTableListener<Classifier>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<Classifier> dialog = new TabElementTreeSelectionDialog<Classifier>(
+								resourceSet, classifierFilters, classifierBusinessFilters, "Classifier",
+								UMLPackage.eINSTANCE.getClassifier()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!classifierEditUtil.getVirtualList().contains(elem))
+										classifierEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InstanceSpecificationPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InstanceSpecification.classifier,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								classifier.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(Classifier element) { editClassifier(element); }
-			public void handleMove(Classifier element, int oldIndex, int newIndex) { moveClassifier(element, oldIndex, newIndex); }
-			public void handleRemove(Classifier element) { removeFromClassifier(element); }
-			public void navigateTo(Classifier element) { }
-		});
-		this.classifier.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InstanceSpecification.classifier, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(Classifier element) {
+						editClassifier(element);
+					}
+
+					public void handleMove(Classifier element, int oldIndex, int newIndex) {
+						moveClassifier(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Classifier element) {
+						removeFromClassifier(element);
+					}
+
+					public void navigateTo(Classifier element) {
+					}
+				});
+		this.classifier.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InstanceSpecification.classifier, UMLViewsRepository.SWT_KIND));
 		this.classifier.createControls(parent);
 		GridData classifierData = new GridData(GridData.FILL_HORIZONTAL);
 		classifierData.horizontalSpan = 3;
 		this.classifier.setLayoutData(classifierData);
 		this.classifier.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveClassifier(Classifier element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -341,7 +411,10 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = classifierEditUtil.foundCorrespondingEObject(element);
 		classifierEditUtil.removeElement(element);
 		classifier.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.classifier, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InstanceSpecificationPropertiesEditionPartImpl.this,
+				UMLViewsRepository.InstanceSpecification.classifier, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -353,34 +426,57 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	private void editClassifier(Classifier element) {
 
 		// Start of user code editClassifier() method body
-		
+
 		EObject editedElement = classifierEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				classifierEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				classifier.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.classifier, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InstanceSpecificationPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InstanceSpecification.classifier, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createDeploymentAdvancedTableComposition(Composite parent) {
-		this.deployment = new ReferencesTable<Deployment>(UMLMessages.InstanceSpecificationPropertiesEditionPart_DeploymentLabel, new ReferencesTableListener<Deployment>() {			
-			public void handleAdd() { addToDeployment();}
-			public void handleEdit(Deployment element) { editDeployment(element); }
-			public void handleMove(Deployment element, int oldIndex, int newIndex) { moveDeployment(element, oldIndex, newIndex); }
-			public void handleRemove(Deployment element) { removeFromDeployment(element); }
-			public void navigateTo(Deployment element) { }
-		});
-		this.deployment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InstanceSpecification.deployment, UMLViewsRepository.SWT_KIND));
+		this.deployment = new ReferencesTable<Deployment>(
+				UMLMessages.InstanceSpecificationPropertiesEditionPart_DeploymentLabel,
+				new ReferencesTableListener<Deployment>() {
+
+					public void handleAdd() {
+						addToDeployment();
+					}
+
+					public void handleEdit(Deployment element) {
+						editDeployment(element);
+					}
+
+					public void handleMove(Deployment element, int oldIndex, int newIndex) {
+						moveDeployment(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Deployment element) {
+						removeFromDeployment(element);
+					}
+
+					public void navigateTo(Deployment element) {
+					}
+				});
+		this.deployment.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InstanceSpecification.deployment, UMLViewsRepository.SWT_KIND));
 		this.deployment.createControls(parent);
 		GridData deploymentData = new GridData(GridData.FILL_HORIZONTAL);
 		deploymentData.horizontalSpan = 3;
@@ -391,12 +487,15 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	 * 
 	 */
 	private void moveDeployment(Deployment element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = deploymentEditUtil.foundCorrespondingEObject(element);
 		deploymentEditUtil.moveElement(element, oldIndex, newIndex);
 		deployment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.deployment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InstanceSpecificationPropertiesEditionPartImpl.this,
+				UMLViewsRepository.InstanceSpecification.deployment, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
 
 	/**
@@ -406,22 +505,26 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 
 		// Start of user code addToDeployment() method body
 
-
 		Deployment eObject = UMLFactory.eINSTANCE.createDeployment();
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
+							eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				deploymentEditUtil.addElement(propertiesEditionObject);
 				deployment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.deployment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InstanceSpecificationPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InstanceSpecification.deployment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -434,7 +537,10 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = deploymentEditUtil.foundCorrespondingEObject(element);
 		deploymentEditUtil.removeElement(element);
 		deployment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.deployment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InstanceSpecificationPropertiesEditionPartImpl.this,
+				UMLViewsRepository.InstanceSpecification.deployment, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -446,27 +552,31 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	private void editDeployment(Deployment element) {
 
 		// Start of user code editDeployment() method body
-		
+
 		EObject editedElement = deploymentEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				deploymentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				deployment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InstanceSpecificationPropertiesEditionPartImpl.this, UMLViewsRepository.InstanceSpecification.deployment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InstanceSpecificationPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InstanceSpecification.deployment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-		
+
 		// End of user code
 
 	}
 
-
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
 
 	}
@@ -483,7 +593,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#setName(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#setName(String
+	 *      newValue)
 	 */
 	public void setName(String newValue) {
 		name.setText(newValue);
@@ -510,7 +621,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#initVisibility(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -520,7 +632,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#setVisibility(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#setVisibility(Enumerator
+	 *      newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
@@ -582,7 +695,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#initSlot(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#initSlot(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initSlot(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -597,10 +711,11 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#updateSlot(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#updateSlot(EObject
+	 *      newValue)
 	 */
 	public void updateSlot(EObject newValue) {
-		if(slotEditUtil!=null){
+		if (slotEditUtil != null) {
 			slotEditUtil.reinit(newValue);
 			slot.refresh();
 		}
@@ -609,7 +724,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addFilterSlot(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addFilterSlot(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToSlot(ViewerFilter filter) {
 		slotFilters.add(filter);
@@ -618,7 +734,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addBusinessFilterSlot(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addBusinessFilterSlot(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToSlot(ViewerFilter filter) {
 		slotBusinessFilters.add(filter);
@@ -662,7 +779,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#initClassifier(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#initClassifier(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initClassifier(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -677,10 +795,11 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#updateClassifier(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#updateClassifier(EObject
+	 *      newValue)
 	 */
 	public void updateClassifier(EObject newValue) {
-		if(classifierEditUtil!=null){
+		if (classifierEditUtil != null) {
 			classifierEditUtil.reinit(newValue);
 			classifier.refresh();
 		}
@@ -689,7 +808,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addFilterClassifier(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addFilterClassifier(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToClassifier(ViewerFilter filter) {
 		classifierFilters.add(filter);
@@ -698,7 +818,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addBusinessFilterClassifier(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addBusinessFilterClassifier(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToClassifier(ViewerFilter filter) {
 		classifierBusinessFilters.add(filter);
@@ -760,7 +881,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#initDeployment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#initDeployment(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initDeployment(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -775,10 +897,11 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#updateDeployment(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#updateDeployment(EObject
+	 *      newValue)
 	 */
 	public void updateDeployment(EObject newValue) {
-		if(deploymentEditUtil!=null){
+		if (deploymentEditUtil != null) {
 			deploymentEditUtil.reinit(newValue);
 			deployment.refresh();
 		}
@@ -787,7 +910,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addFilterDeployment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addFilterDeployment(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToDeployment(ViewerFilter filter) {
 		deploymentFilters.add(filter);
@@ -796,7 +920,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addBusinessFilterDeployment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InstanceSpecificationPropertiesEditionPart#addBusinessFilterDeployment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToDeployment(ViewerFilter filter) {
 		deploymentBusinessFilters.add(filter);
@@ -810,15 +935,8 @@ public class InstanceSpecificationPropertiesEditionPartImpl extends CompositePro
 
 	}
 
-
-
-
-
-
-
-
 	// Start of user code additional methods
-	
+
 	// End of user code
 
 }

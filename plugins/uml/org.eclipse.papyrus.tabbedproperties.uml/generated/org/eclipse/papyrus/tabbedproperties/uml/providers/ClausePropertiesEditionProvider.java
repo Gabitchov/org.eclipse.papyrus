@@ -32,7 +32,7 @@ public class ClausePropertiesEditionProvider implements IPropertiesEditionProvid
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Clause) && (UMLPackage.eINSTANCE.getClause() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ClausePropertiesEditionProvider implements IPropertiesEditionProvid
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ClausePropertiesEditionProvider implements IPropertiesEditionProvid
 		}
 		return null;
 	}
-	
-}	
+
+}

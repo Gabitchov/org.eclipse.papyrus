@@ -23,7 +23,8 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 public class OpaqueBehaviorUtil {
 
 	/**
-	 * Gets the value of the 'Body' attribute for the <code>OpaqueBehavior</code> at the given index.
+	 * Gets the value of the 'Body' attribute for the <code>OpaqueBehavior</code> at the given
+	 * index.
 	 * 
 	 * @param index
 	 * 
@@ -34,7 +35,8 @@ public class OpaqueBehaviorUtil {
 	}
 
 	/**
-	 * Gets the value of the 'Body' attribute for the <code>OpaqueBehavior</code> for a given language.
+	 * Gets the value of the 'Body' attribute for the <code>OpaqueBehavior</code> for a given
+	 * language.
 	 * 
 	 * @param language
 	 *            the language in which the body is written

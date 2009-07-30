@@ -18,34 +18,37 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 
-
 /**
- * The Class CreateHyperLinkCommand. this has in charge to add a new entry  list of hyperlinks
+ * The Class CreateHyperLinkCommand. this has in charge to add a new entry list of hyperlinks
  * 
  */
 public class CreateHyperLinkCommand extends CreateEAnnotationCommand {
 
-	
 	/** The hyperlink kind. */
-	public String hyperlinkKind; 
-	
+	public String hyperlinkKind;
+
 	/** The localization. */
 	public String localization;
-	
+
 	/**
 	 * Instantiates a new creates the hyper link command.
 	 * 
-	 * @param domain the domain 
-	 * @param object the object for example the view
-	 * @param hyperlinkKind the hyperlink kind see {@link VisualInformationPapyrusConstant}
-	 * @param localization the localization
+	 * @param domain
+	 *            the domain
+	 * @param object
+	 *            the object for example the view
+	 * @param hyperlinkKind
+	 *            the hyperlink kind see {@link VisualInformationPapyrusConstant}
+	 * @param localization
+	 *            the localization
 	 */
-	public CreateHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object,String hyperlinkKind, String localization) {
+	public CreateHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, String hyperlinkKind,
+			String localization) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK);
-		this.hyperlinkKind=hyperlinkKind; 
-		this.localization=localization;
+		this.hyperlinkKind = hyperlinkKind;
+		this.localization = localization;
 	}
-	
+
 	/**
 	 * {@inheritedDoc}
 	 */
@@ -55,7 +58,7 @@ public class CreateHyperLinkCommand extends CreateEAnnotationCommand {
 			eAnnotation = createEAnnotation();
 			attachEannotation(eAnnotation, getObject());
 		}
-		addEntry(eAnnotation,localization, hyperlinkKind);
+		addEntry(eAnnotation, localization, hyperlinkKind);
 	}
 
 }

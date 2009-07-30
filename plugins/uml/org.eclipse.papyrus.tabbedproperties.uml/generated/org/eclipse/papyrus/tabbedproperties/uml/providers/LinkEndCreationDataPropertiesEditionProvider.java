@@ -30,9 +30,10 @@ public class LinkEndCreationDataPropertiesEditionProvider implements IProperties
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof LinkEndCreationData) && (UMLPackage.eINSTANCE.getLinkEndCreationData() == eObject.eClass());
+		return (eObject instanceof LinkEndCreationData)
+				&& (UMLPackage.eINSTANCE.getLinkEndCreationData() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class LinkEndCreationDataPropertiesEditionProvider implements IProperties
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class LinkEndCreationDataPropertiesEditionProvider implements IProperties
 		}
 		return null;
 	}
-	
-}	
+
+}

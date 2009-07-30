@@ -43,7 +43,8 @@ public class AppliedStereotypeHelper {
 	 * @param view
 	 *            the view
 	 * 
-	 * @return the list of stereotypes to display separated by a comma. the applied stereotype to display is represented by the qualified name of the stereotype
+	 * @return the list of stereotypes to display separated by a comma. the applied stereotype to
+	 *         display is represented by the qualified name of the stereotype
 	 */
 	public static String getStereotypesToDisplay(EModelElement view) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
@@ -87,7 +88,8 @@ public class AppliedStereotypeHelper {
 	 * @param location
 	 *            the location where the properties have to be displayed.
 	 * 
-	 * @return <code>true</code> if the applied stereotypes properties have to display, <code>false</code> in other case
+	 * @return <code>true</code> if the applied stereotypes properties have to display,
+	 *         <code>false</code> in other case
 	 */
 	public static boolean hasAppliedStereotypesPropertiesToDisplay(EModelElement view, String location) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
@@ -150,15 +152,18 @@ public class AppliedStereotypeHelper {
 	 * @param view
 	 *            that contains the eannotation about the display
 	 * 
-	 * @return VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION, VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION,
-	 *         VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION,
+	 * @return VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION,
+	 *         VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION,
+	 *         VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION,
+	 *         VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION,
 	 *         VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION
 	 */
 	public static String getAppliedStereotypePresentationKind(EModelElement view) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
-			String stereotypespresentationKind = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND);
+			String stereotypespresentationKind = entries
+					.get(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND);
 			if (stereotypespresentationKind != null) {
 				return stereotypespresentationKind;
 			}
@@ -180,7 +185,8 @@ public class AppliedStereotypeHelper {
 	 * 
 	 * @return the applied
 	 */
-	public static RecordingCommand getAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeList, String presentationKind) {
+	public static RecordingCommand getAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain,
+			EModelElement view, String appliedStereotypeList, String presentationKind) {
 		return new SetAppliedStereotypeToDisplayCommand(domain, view, appliedStereotypeList, presentationKind);
 	}
 
@@ -196,7 +202,8 @@ public class AppliedStereotypeHelper {
 	 * 
 	 * @return the command to display it
 	 */
-	public static RecordingCommand getAddAppliedStereotypeToDisplayWithQNCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeList) {
+	public static RecordingCommand getAddAppliedStereotypeToDisplayWithQNCommand(TransactionalEditingDomain domain,
+			EModelElement view, String appliedStereotypeList) {
 		return new AddAppliedQNStereotypeToDisplayCommand(domain, view, appliedStereotypeList);
 	}
 
@@ -214,7 +221,8 @@ public class AppliedStereotypeHelper {
 	 * 
 	 * @return the adds the applied stereotype command
 	 */
-	public static RecordingCommand getAddAppliedStereotypeCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeListToAdd, String presentationKind) {
+	public static RecordingCommand getAddAppliedStereotypeCommand(TransactionalEditingDomain domain,
+			EModelElement view, String appliedStereotypeListToAdd, String presentationKind) {
 		return new AddAppliedStereotypeToDisplayCommand(domain, view, appliedStereotypeListToAdd, presentationKind);
 	}
 
@@ -230,7 +238,8 @@ public class AppliedStereotypeHelper {
 	 * 
 	 * @return the adds the applied stereotype command
 	 */
-	public static RecordingCommand getAddAppliedStereotypePropertiesCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeListToAdd) {
+	public static RecordingCommand getAddAppliedStereotypePropertiesCommand(TransactionalEditingDomain domain,
+			EModelElement view, String appliedStereotypeListToAdd) {
 		return new AddAppliedStereotypePropertiesToDisplayCommand(domain, view, appliedStereotypeListToAdd);
 	}
 
@@ -248,8 +257,10 @@ public class AppliedStereotypeHelper {
 	 * 
 	 * @return the removes the applied stereotype command
 	 */
-	public static RecordingCommand getRemoveAppliedStereotypeCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeListToRemove, String presentationKind) {
-		return new RemoveAppliedStereotypeToDisplayCommand(domain, view, appliedStereotypeListToRemove, presentationKind);
+	public static RecordingCommand getRemoveAppliedStereotypeCommand(TransactionalEditingDomain domain,
+			EModelElement view, String appliedStereotypeListToRemove, String presentationKind) {
+		return new RemoveAppliedStereotypeToDisplayCommand(domain, view, appliedStereotypeListToRemove,
+				presentationKind);
 	}
 
 	/**
@@ -264,7 +275,8 @@ public class AppliedStereotypeHelper {
 	 * 
 	 * @return the removes the applied stereotype properties command
 	 */
-	public static RecordingCommand getRemoveAppliedStereotypePropertiesCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypeListToRemove) {
+	public static RecordingCommand getRemoveAppliedStereotypePropertiesCommand(TransactionalEditingDomain domain,
+			EModelElement view, String appliedStereotypeListToRemove) {
 		return new RemoveAppliedStereotypePropertiesToDisplayCommand(domain, view, appliedStereotypeListToRemove);
 	}
 
@@ -280,7 +292,8 @@ public class AppliedStereotypeHelper {
 	 * 
 	 * @return the sets the applied stereotype properties localization command
 	 */
-	public static RecordingCommand getSetAppliedStereotypePropertiesLocalizationCommand(TransactionalEditingDomain domain, EModelElement view, String appliedStereotypePropertiesLocation) {
+	public static RecordingCommand getSetAppliedStereotypePropertiesLocalizationCommand(
+			TransactionalEditingDomain domain, EModelElement view, String appliedStereotypePropertiesLocation) {
 		return new SetAppliedStereotypePropertiesLocalizationCommand(domain, view, appliedStereotypePropertiesLocation);
 	}
 

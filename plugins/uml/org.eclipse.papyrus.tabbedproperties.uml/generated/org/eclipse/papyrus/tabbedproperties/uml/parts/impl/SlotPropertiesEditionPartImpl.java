@@ -54,7 +54,6 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
@@ -62,17 +61,17 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, SlotPropertiesEditionPart {
+public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart,
+		SlotPropertiesEditionPart {
 
 	protected EMFListEditUtil valueEditUtil;
+
 	protected ReferencesTable<?> value;
+
 	protected List<ViewerFilter> valueBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> valueFilters = new ArrayList<ViewerFilter>();
 
-
-
-
-	
 	public SlotPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -82,16 +81,16 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
 
 	}
@@ -107,18 +106,35 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		generalGroup.setLayout(generalGroupLayout);
 		createValueAdvancedTableComposition(generalGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createValueAdvancedTableComposition(Composite parent) {
-		this.value = new ReferencesTable<ValueSpecification>(UMLMessages.SlotPropertiesEditionPart_ValueLabel, new ReferencesTableListener<ValueSpecification>() {			
-			public void handleAdd() { addToValue();}
-			public void handleEdit(ValueSpecification element) { editValue(element); }
-			public void handleMove(ValueSpecification element, int oldIndex, int newIndex) { moveValue(element, oldIndex, newIndex); }
-			public void handleRemove(ValueSpecification element) { removeFromValue(element); }
-			public void navigateTo(ValueSpecification element) { }
-		});
-		this.value.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Slot.value, UMLViewsRepository.SWT_KIND));
+		this.value = new ReferencesTable<ValueSpecification>(UMLMessages.SlotPropertiesEditionPart_ValueLabel,
+				new ReferencesTableListener<ValueSpecification>() {
+
+					public void handleAdd() {
+						addToValue();
+					}
+
+					public void handleEdit(ValueSpecification element) {
+						editValue(element);
+					}
+
+					public void handleMove(ValueSpecification element, int oldIndex, int newIndex) {
+						moveValue(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ValueSpecification element) {
+						removeFromValue(element);
+					}
+
+					public void navigateTo(ValueSpecification element) {
+					}
+				});
+		this.value.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Slot.value,
+				UMLViewsRepository.SWT_KIND));
 		this.value.createControls(parent);
 		GridData valueData = new GridData(GridData.FILL_HORIZONTAL);
 		valueData.horizontalSpan = 3;
@@ -138,9 +154,8 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 
 		// Start of user code addToValue() method body
 
-		
 		// End of user code
-		
+
 	}
 
 	/**
@@ -153,7 +168,9 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		EObject editedElement = valueEditUtil.foundCorrespondingEObject(element);
 		valueEditUtil.removeElement(element);
 		value.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SlotPropertiesEditionPartImpl.this, UMLViewsRepository.Slot.value, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SlotPropertiesEditionPartImpl.this,
+				UMLViewsRepository.Slot.value, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null,
+				editedElement));
 
 		// End of user code
 
@@ -165,27 +182,31 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	private void editValue(ValueSpecification element) {
 
 		// Start of user code editValue() method body
-		
+
 		EObject editedElement = valueEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				valueEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				value.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SlotPropertiesEditionPartImpl.this, UMLViewsRepository.Slot.value, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						SlotPropertiesEditionPartImpl.this, UMLViewsRepository.Slot.value,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement,
+						propertiesEditionObject));
 			}
 		}
-		
+
 		// End of user code
 
 	}
 
-
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
 
 	}
@@ -238,7 +259,8 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.SlotPropertiesEditionPart#initValue(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.SlotPropertiesEditionPart#initValue(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initValue(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -253,10 +275,11 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.SlotPropertiesEditionPart#updateValue(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.SlotPropertiesEditionPart#updateValue(EObject
+	 *      newValue)
 	 */
 	public void updateValue(EObject newValue) {
-		if(valueEditUtil!=null){
+		if (valueEditUtil != null) {
 			valueEditUtil.reinit(newValue);
 			value.refresh();
 		}
@@ -265,7 +288,8 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.SlotPropertiesEditionPart#addFilterValue(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.SlotPropertiesEditionPart#addFilterValue(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToValue(ViewerFilter filter) {
 		valueFilters.add(filter);
@@ -274,7 +298,8 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.SlotPropertiesEditionPart#addBusinessFilterValue(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.SlotPropertiesEditionPart#addBusinessFilterValue(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToValue(ViewerFilter filter) {
 		valueBusinessFilters.add(filter);
@@ -288,15 +313,8 @@ public class SlotPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 
 	}
 
-
-
-
-
-
-
-
 	// Start of user code additional methods
-	
+
 	// End of user code
 
 }

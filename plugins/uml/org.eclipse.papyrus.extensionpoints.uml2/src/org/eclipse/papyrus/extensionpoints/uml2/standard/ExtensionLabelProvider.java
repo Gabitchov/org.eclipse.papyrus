@@ -1,4 +1,3 @@
-
 /*******************************************************************************
  * Copyright (c) 2007 CEA List.
  * All rights reserved. This program and the accompanying materials
@@ -10,27 +9,25 @@
  *     CEA List - initial API and implementation
  *******************************************************************************/
 
-
 package org.eclipse.papyrus.extensionpoints.uml2.standard;
 
 import org.eclipse.jface.viewers.LabelProvider;
-
 
 /**
  * 
  */
 public class ExtensionLabelProvider extends LabelProvider {
-	
+
 	/**
 	 * 
 	 * 
-	 * @param obj 
+	 * @param obj
 	 * 
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public String getText(Object obj) {
-		
+
 		if (obj instanceof RegisteredElementExtensionPoint) {
 			return ((RegisteredElementExtensionPoint) obj).name;
 		} else {

@@ -65,8 +65,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.uml2.uml.Type;
 
-
-
 import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -98,29 +96,41 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ParameterPropertiesEditionPart {
+public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
+		ISWTPropertiesEditionPart, ParameterPropertiesEditionPart {
 
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	private AdvancedEObjectFlatComboViewer type;
+
 	protected ViewerFilter typeFilter;
+
 	protected EMFComboViewer direction;
+
 	protected EMFComboViewer effect;
+
 	protected Button isOrdered;
+
 	protected Button isUnique;
+
 	protected Button isException;
+
 	protected Button isStream;
+
 	protected Text lower;
+
 	protected Text upper;
+
 	protected EMFListEditUtil parameterSetEditUtil;
+
 	protected ReferencesTable<?> parameterSet;
+
 	protected List<ViewerFilter> parameterSetBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> parameterSetFilters = new ArrayList<ViewerFilter>();
 
-
-
-
-	
 	public ParameterPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -130,16 +140,16 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
 
 	}
@@ -162,8 +172,10 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 		createGeneralHBox2HBox(generalGroup);
 		createParameterSetAdvancedReferencesTable(generalGroup);
 	}
+
 	protected void createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.name, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_NameLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -172,136 +184,170 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see
+			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.name,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.name,
+				UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.visibility, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_VisibilityLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.visibility,
+						UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.Parameter.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	/**
 	 * @param generalGroup
 	 */
 	protected void createTypeAdvancedFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.type, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_TypeLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.type, UMLViewsRepository.SWT_KIND));
 		type = new AdvancedEObjectFlatComboViewer<Type>(UMLMessages.ParameterPropertiesEditionPart_TypeLabel,
-			resourceSet, typeFilter, UMLPackage.eINSTANCE.getType(), new EObjectFlatComboViewerListener<Type>(){
+				resourceSet, typeFilter, UMLPackage.eINSTANCE.getType(), new EObjectFlatComboViewerListener<Type>() {
 
-			public void handleSet(Type element){
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.type, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element)); 
-			}
+					public void handleSet(Type element) {
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+								ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.type,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, element));
+					}
 
-			public void navigateTo(Type element){ }
+					public void navigateTo(Type element) {
+					}
 
-		});
+				});
 		type.createControls(parent);
 		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
 		type.setLayoutData(typeData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.type, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.type,
+				UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createDirectionEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_DirectionLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.direction, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_DirectionLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.direction,
+						UMLViewsRepository.SWT_KIND));
 		direction = new EMFComboViewer(parent);
 		direction.setContentProvider(new ArrayContentProvider());
 		direction.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData directionData = new GridData(GridData.FILL_HORIZONTAL);
 		direction.getCombo().setLayoutData(directionData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.direction, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.Parameter.direction, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createEffectEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_EffectLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.effect, UMLViewsRepository.SWT_KIND));
+		SWTUtils
+				.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_EffectLabel,
+						propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.effect,
+								UMLViewsRepository.SWT_KIND));
 		effect = new EMFComboViewer(parent);
 		effect.setContentProvider(new ArrayContentProvider());
 		effect.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData effectData = new GridData(GridData.FILL_HORIZONTAL);
 		effect.getCombo().setLayoutData(effectData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.effect, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.Parameter.effect, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createGeneralHBox1HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan=2;
+		gridData.horizontalSpan = 2;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox1HBox = new HorizontalBox(container);
-		
-		//Apply constraint for checkbox
+
+		// Apply constraint for checkbox
 		GridData constraint = new GridData(GridData.FILL_HORIZONTAL);
 		constraint.horizontalAlignment = GridData.BEGINNING;
 		generalHBox1HBox.setLayoutData(constraint);
-		
-		//create sub figures
-				createIsOrderedCheckbox(generalHBox1HBox);
-				createIsUniqueCheckbox(generalHBox1HBox);
-				createIsExceptionCheckbox(generalHBox1HBox);
-				createIsStreamCheckbox(generalHBox1HBox);
-		
+
+		// create sub figures
+		createIsOrderedCheckbox(generalHBox1HBox);
+		createIsUniqueCheckbox(generalHBox1HBox);
+		createIsExceptionCheckbox(generalHBox1HBox);
+		createIsStreamCheckbox(generalHBox1HBox);
+
 		parent.pack();
 	}
+
 	protected void createIsOrderedCheckbox(Composite parent) {
 		isOrdered = new Button(parent, SWT.CHECK);
 		isOrdered.setText(UMLMessages.ParameterPropertiesEditionPart_IsOrderedLabel);
 		GridData isOrderedData = new GridData(GridData.FILL_HORIZONTAL);
 		isOrderedData.horizontalSpan = 2;
 		isOrdered.setLayoutData(isOrderedData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.isOrdered, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.Parameter.isOrdered, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsUniqueCheckbox(Composite parent) {
 		isUnique = new Button(parent, SWT.CHECK);
 		isUnique.setText(UMLMessages.ParameterPropertiesEditionPart_IsUniqueLabel);
 		GridData isUniqueData = new GridData(GridData.FILL_HORIZONTAL);
 		isUniqueData.horizontalSpan = 2;
 		isUnique.setLayoutData(isUniqueData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.isUnique, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.Parameter.isUnique, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsExceptionCheckbox(Composite parent) {
 		isException = new Button(parent, SWT.CHECK);
 		isException.setText(UMLMessages.ParameterPropertiesEditionPart_IsExceptionLabel);
 		GridData isExceptionData = new GridData(GridData.FILL_HORIZONTAL);
 		isExceptionData.horizontalSpan = 2;
 		isException.setLayoutData(isExceptionData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.isException, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.Parameter.isException, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsStreamCheckbox(Composite parent) {
 		isStream = new Button(parent, SWT.CHECK);
 		isStream.setText(UMLMessages.ParameterPropertiesEditionPart_IsStreamLabel);
 		GridData isStreamData = new GridData(GridData.FILL_HORIZONTAL);
 		isStreamData.horizontalSpan = 2;
 		isStream.setLayoutData(isStreamData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.isStream, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.Parameter.isStream, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createGeneralHBox2HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan=2;
+		gridData.horizontalSpan = 2;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox2HBox = new HorizontalBox(container);
-		
-		
-		//create sub figures
-				createLowerText(generalHBox2HBox);
-				createUpperText(generalHBox2HBox);
-		
+
+		// create sub figures
+		createLowerText(generalHBox2HBox);
+		createUpperText(generalHBox2HBox);
+
 		parent.pack();
 	}
+
 	protected void createLowerText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_LowerLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.lower, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_LowerLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.lower, UMLViewsRepository.SWT_KIND));
 		lower = new Text(parent, SWT.BORDER);
 		GridData lowerData = new GridData(GridData.FILL_HORIZONTAL);
 		lower.setLayoutData(lowerData);
@@ -310,19 +356,25 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see
+			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.lower, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, lower.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.lower,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, lower.getText()));
 			}
-			
+
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.lower, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.lower,
+				UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createUpperText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_UpperLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.upper, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ParameterPropertiesEditionPart_UpperLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.Parameter.upper, UMLViewsRepository.SWT_KIND));
 		upper = new Text(parent, SWT.BORDER);
 		GridData upperData = new GridData(GridData.FILL_HORIZONTAL);
 		upper.setLayoutData(upperData);
@@ -331,50 +383,73 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see
+			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.upper, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, upper.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.upper,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, upper.getText()));
 			}
-			
+
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.upper, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.upper,
+				UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-	protected void createParameterSetAdvancedReferencesTable(Composite parent) {
-		this.parameterSet = new ReferencesTable<ParameterSet>(UMLMessages.ParameterPropertiesEditionPart_ParameterSetLabel, new ReferencesTableListener<ParameterSet>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<ParameterSet> dialog = new TabElementTreeSelectionDialog<ParameterSet>(resourceSet, parameterSetFilters, parameterSetBusinessFilters,
-				"ParameterSet", UMLPackage.eINSTANCE.getParameterSet()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!parameterSetEditUtil.getVirtualList().contains(elem))
-								parameterSetEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.parameterSet,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						parameterSet.refresh();
+	protected void createParameterSetAdvancedReferencesTable(Composite parent) {
+		this.parameterSet = new ReferencesTable<ParameterSet>(
+				UMLMessages.ParameterPropertiesEditionPart_ParameterSetLabel,
+				new ReferencesTableListener<ParameterSet>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<ParameterSet> dialog = new TabElementTreeSelectionDialog<ParameterSet>(
+								resourceSet, parameterSetFilters, parameterSetBusinessFilters, "ParameterSet",
+								UMLPackage.eINSTANCE.getParameterSet()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!parameterSetEditUtil.getVirtualList().contains(elem))
+										parameterSetEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											ParameterPropertiesEditionPartImpl.this,
+											UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT,
+											PropertiesEditionEvent.ADD, null, elem));
+								}
+								parameterSet.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(ParameterSet element) { editParameterSet(element); }
-			public void handleMove(ParameterSet element, int oldIndex, int newIndex) { moveParameterSet(element, oldIndex, newIndex); }
-			public void handleRemove(ParameterSet element) { removeFromParameterSet(element); }
-			public void navigateTo(ParameterSet element) { }
-		});
-		this.parameterSet.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Parameter.parameterSet, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(ParameterSet element) {
+						editParameterSet(element);
+					}
+
+					public void handleMove(ParameterSet element, int oldIndex, int newIndex) {
+						moveParameterSet(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ParameterSet element) {
+						removeFromParameterSet(element);
+					}
+
+					public void navigateTo(ParameterSet element) {
+					}
+				});
+		this.parameterSet.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.Parameter.parameterSet, UMLViewsRepository.SWT_KIND));
 		this.parameterSet.createControls(parent);
 		GridData parameterSetData = new GridData(GridData.FILL_HORIZONTAL);
 		parameterSetData.horizontalSpan = 3;
 		this.parameterSet.setLayoutData(parameterSetData);
 		this.parameterSet.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -382,9 +457,11 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 		EObject editedElement = parameterSetEditUtil.foundCorrespondingEObject(element);
 		parameterSetEditUtil.moveElement(element, oldIndex, newIndex);
 		parameterSet.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.parameterSet,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -395,7 +472,9 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 		EObject editedElement = parameterSetEditUtil.foundCorrespondingEObject(element);
 		parameterSetEditUtil.removeElement(element);
 		parameterSet.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.parameterSet,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -407,16 +486,21 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	private void editParameterSet(ParameterSet element) {
 
 		// Start of user code editParameterSet() method body
-		
+
 		EObject editedElement = parameterSetEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				parameterSetEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				parameterSet.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.parameterSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ParameterPropertiesEditionPartImpl.this, UMLViewsRepository.Parameter.parameterSet,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement,
+						propertiesEditionObject));
 			}
 		}
 
@@ -424,10 +508,9 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 
 	}
 
-
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
 
 	}
@@ -444,7 +527,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setName(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setName(String
+	 *      newValue)
 	 */
 	public void setName(String newValue) {
 		name.setText(newValue);
@@ -471,7 +555,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initVisibility(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -481,7 +566,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setVisibility(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setVisibility(Enumerator
+	 *      newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
@@ -507,7 +593,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initType(ResourceSet allResources, EObject current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initType(ResourceSet
+	 *      allResources, EObject current)
 	 */
 	public void initType(ResourceSet allResources, EObject current) {
 		type.setInput(allResources);
@@ -518,10 +605,11 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setType(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setType(EObject
+	 *      newValue)
 	 */
 	public void setType(EObject newValue) {
-		if (newValue != null){
+		if (newValue != null) {
 			type.setSelection(newValue);
 		}
 	}
@@ -529,7 +617,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addFilterType(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addFilterType(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToType(ViewerFilter filter) {
 		type.addFilter(filter);
@@ -538,7 +627,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addBusinessFilterType(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addBusinessFilterType(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToType(ViewerFilter filter) {
 		type.addBusinessRuleFilter(filter);
@@ -565,7 +655,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initDirection(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initDirection(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initDirection(EEnum eenum, Enumerator current) {
 		direction.setInput(eenum.getELiterals());
@@ -575,7 +666,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setDirection(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setDirection(Enumerator
+	 *      newValue)
 	 */
 	public void setDirection(Enumerator newValue) {
 		direction.modelUpdating(new StructuredSelection(newValue));
@@ -602,7 +694,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initEffect(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initEffect(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initEffect(EEnum eenum, Enumerator current) {
 		effect.setInput(eenum.getELiterals());
@@ -612,7 +705,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setEffect(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setEffect(Enumerator
+	 *      newValue)
 	 */
 	public void setEffect(Enumerator newValue) {
 		effect.modelUpdating(new StructuredSelection(newValue));
@@ -638,7 +732,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setIsOrdered(Boolean newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setIsOrdered(Boolean
+	 *      newValue)
 	 */
 	public void setIsOrdered(Boolean newValue) {
 		if (newValue != null) {
@@ -668,7 +763,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setIsUnique(Boolean newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setIsUnique(Boolean
+	 *      newValue)
 	 */
 	public void setIsUnique(Boolean newValue) {
 		if (newValue != null) {
@@ -698,7 +794,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setIsException(Boolean newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setIsException(Boolean
+	 *      newValue)
 	 */
 	public void setIsException(Boolean newValue) {
 		if (newValue != null) {
@@ -728,7 +825,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setIsStream(Boolean newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setIsStream(Boolean
+	 *      newValue)
 	 */
 	public void setIsStream(Boolean newValue) {
 		if (newValue != null) {
@@ -758,7 +856,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setLower(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setLower(String
+	 *      newValue)
 	 */
 	public void setLower(String newValue) {
 		lower.setText(newValue);
@@ -784,7 +883,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setUpper(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#setUpper(String
+	 *      newValue)
 	 */
 	public void setUpper(String newValue) {
 		upper.setText(newValue);
@@ -828,7 +928,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initParameterSet(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#initParameterSet(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initParameterSet(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -843,10 +944,11 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#updateParameterSet(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#updateParameterSet(EObject
+	 *      newValue)
 	 */
 	public void updateParameterSet(EObject newValue) {
-		if(parameterSetEditUtil!=null){
+		if (parameterSetEditUtil != null) {
 			parameterSetEditUtil.reinit(newValue);
 			parameterSet.refresh();
 		}
@@ -855,7 +957,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addFilterParameterSet(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addFilterParameterSet(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToParameterSet(ViewerFilter filter) {
 		parameterSetFilters.add(filter);
@@ -864,7 +967,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addBusinessFilterParameterSet(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ParameterPropertiesEditionPart#addBusinessFilterParameterSet(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToParameterSet(ViewerFilter filter) {
 		parameterSetBusinessFilters.add(filter);
@@ -878,15 +982,8 @@ public class ParameterPropertiesEditionPartImpl extends CompositePropertiesEditi
 
 	}
 
-
-
-
-
-
-
-
 	// Start of user code additional methods
-	
+
 	// End of user code
 
 }

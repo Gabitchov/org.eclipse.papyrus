@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -57,15 +56,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -87,10 +92,6 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the node to add
 	 */
@@ -108,15 +109,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 
 	/**
 	 * Init the node
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initNode(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the node
-	 * @param newValue the node to update
+	 * 
+	 * @param newValue
+	 *            the node to update
 	 */
 	public void updateNode(EObject newValue);
 
@@ -138,10 +145,6 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToNode(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the interruptingEdge to add
 	 */
@@ -159,15 +162,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 
 	/**
 	 * Init the interruptingEdge
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInterruptingEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the interruptingEdge
-	 * @param newValue the interruptingEdge to update
+	 * 
+	 * @param newValue
+	 *            the interruptingEdge to update
 	 */
 	public void updateInterruptingEdge(EObject newValue);
 
@@ -189,18 +198,8 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToInterruptingEdge(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

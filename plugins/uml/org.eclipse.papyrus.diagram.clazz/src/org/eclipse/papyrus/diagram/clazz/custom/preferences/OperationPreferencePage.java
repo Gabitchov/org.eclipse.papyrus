@@ -14,8 +14,11 @@
 package org.eclipse.papyrus.diagram.clazz.custom.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusElementPreferencePage;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -62,8 +65,7 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		 * {@inheritDoc}
 		 */
 		public void widgetSelected(SelectionEvent e) {
-			// add or remove the flag to the display Operation value (invert the
-			// current value)
+			// add or remove the flag to the display Operation value (invert the current value)
 			operationValue = operationValue ^ style;
 
 			// refresh buttons at the end
@@ -78,6 +80,20 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	 *            the preference store to initialize
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+		String elementName = "Operation";
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(177, 207, 229));
+
+		// Set the default for the gradient
+		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.GRADIENT_POLICY), false);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+				new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName,
+				PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+
 		// default for Operation label display
 		store.setDefault(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE,
 				ICustomAppearence.DEFAULT_UML_OPERATION);
@@ -176,6 +192,30 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		return UMLDiagramEditorPlugin.ID;
 	}
 
+	// /**
+	// * {@inheritDoc}
+	// */
+	// @Override
+	// protected String getFontColorPreferenceName() {
+	// return IPapyrusOperationPreferencesConstant.OPERATION_PREF_FONT_COLOR;
+	// }
+	//
+	// /**
+	// * {@inheritDoc}
+	// */
+	// @Override
+	// protected String getFontPreferenceName() {
+	// return IPapyrusOperationPreferencesConstant.OPERATION_PREF_FONT;
+	// }
+	//
+	// /**
+	// * {@inheritDoc}
+	// */
+	// @Override
+	// protected String getLineColorPreferenceName() {
+	// return IPapyrusOperationPreferencesConstant.OPERATION_PREF_LINE_COLOR;
+	// }
+
 	/**
 	 * Load the default preferences of the fields contained in this page
 	 */
@@ -230,8 +270,8 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	 */
 	protected void storePreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		// checks the stored value and the actual one, so does not refresh
-		// diagram if it is not needed
+		// checks the stored value and the actual one, so does not refresh diagram if it is not
+		// needed
 		if (operationValue != store.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE)) {
 			store.setValue(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE, operationValue);
 		}

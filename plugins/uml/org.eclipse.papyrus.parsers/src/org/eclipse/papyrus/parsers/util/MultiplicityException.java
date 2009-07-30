@@ -10,9 +10,8 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.util;
-
 
 /**
  * Exception to manage ill-formed multiplicity
@@ -22,10 +21,11 @@ public class MultiplicityException extends RuntimeException {
 	/** Serial ID */
 	private static final long serialVersionUID = -6675171028982908999L;
 
-	
 	/**
-	 * Creates a new MultiplicityException. 
-	 * @param message the message of the exception
+	 * Creates a new MultiplicityException.
+	 * 
+	 * @param message
+	 *            the message of the exception
 	 */
 	public MultiplicityException(String message) {
 		super(message);

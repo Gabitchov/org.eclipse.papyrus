@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -38,7 +37,9 @@ public interface InterfaceRealizationPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -53,20 +54,21 @@ public interface InterfaceRealizationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the client to add
@@ -85,15 +87,21 @@ public interface InterfaceRealizationPropertiesEditionPart {
 
 	/**
 	 * Init the client
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClient(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the client
-	 * @param newValue the client to update
+	 * 
+	 * @param newValue
+	 *            the client to update
 	 */
 	public void updateClient(EObject newValue);
 
@@ -115,10 +123,6 @@ public interface InterfaceRealizationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToClient(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the supplier to add
 	 */
@@ -136,15 +140,21 @@ public interface InterfaceRealizationPropertiesEditionPart {
 
 	/**
 	 * Init the supplier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initSupplier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the supplier
-	 * @param newValue the supplier to update
+	 * 
+	 * @param newValue
+	 *            the supplier to update
 	 */
 	public void updateSupplier(EObject newValue);
 
@@ -166,18 +176,8 @@ public interface InterfaceRealizationPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToSupplier(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

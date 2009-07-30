@@ -32,7 +32,7 @@ public class PinPropertiesEditionProvider implements IPropertiesEditionProvider 
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Pin) && (UMLPackage.eINSTANCE.getPin() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class PinPropertiesEditionProvider implements IPropertiesEditionProvider 
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class PinPropertiesEditionProvider implements IPropertiesEditionProvider 
 		}
 		return null;
 	}
-	
-}	
+
+}

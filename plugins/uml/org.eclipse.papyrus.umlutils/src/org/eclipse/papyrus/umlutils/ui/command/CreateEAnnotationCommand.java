@@ -19,7 +19,8 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
- * The Class CreateEAnnotationCommand. this class contains also all submethods to create or replace eannotation of key value
+ * The Class CreateEAnnotationCommand. this class contains also all submethods to create or replace
+ * eannotation of key value
  */
 public class CreateEAnnotationCommand extends org.eclipse.emf.transaction.RecordingCommand {
 
@@ -94,7 +95,8 @@ public class CreateEAnnotationCommand extends org.eclipse.emf.transaction.Record
 	}
 
 	/**
-	 * Replace existing eannotation with a new eannotation. This repplaced eannotation has the same source.
+	 * Replace existing eannotation with a new eannotation. This repplaced eannotation has the same
+	 * source.
 	 * 
 	 * @param annotation
 	 *            the annotation

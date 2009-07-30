@@ -28,6 +28,14 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 	/**
 	 * @generated
 	 */
+	@Override
+	protected String getBundleId() {
+		return UMLDiagramEditorPlugin.getInstance().ID;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static void initDefaults(IPreferenceStore store) {
 
 		String elementName = "AssociationClass";
@@ -44,14 +52,6 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName,
 				PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
 	}
 
 }

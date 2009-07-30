@@ -24,8 +24,7 @@ import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.MenuManager;
 
 /**
- * Specialization of <AbstractCommonActionProvider> to be used in menu and
- * submenu contributions.
+ * Specialization of <AbstractCommonActionProvider> to be used in menu and submenu contributions.
  * 
  * @author fjcano
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
@@ -35,28 +34,24 @@ public abstract class AbstractSubmenuActionProvider extends AbstractCommonAction
 	/**
 	 * Organizes the given <Collection> of <IActions>.
 	 * 
-	 * @param createActions <Collection> of <IActions> to organize
-	 * @param token <String> that the <StringTokenizer> will use to trim each
-	 * <IAction>'s text.
+	 * @param createActions
+	 *            <Collection> of <IActions> to organize
+	 * @param token
+	 *            <String> that the <StringTokenizer> will use to trim each <IAction>'s text.
 	 * 
 	 * @return a <Map> associating <String>s to <Collection>s of <IAction>s.
 	 */
-	protected Map<String, Collection<IAction>> extractSubmenuActions(
-			Collection<IAction> createActions, String token) {
+	protected Map<String, Collection<IAction>> extractSubmenuActions(Collection<IAction> createActions, String token) {
 		Map<String, Collection<IAction>> createSubmenuActions = new LinkedHashMap<String, Collection<IAction>>();
 		if (createActions != null) {
-			for (Iterator<IAction> actions = createActions.iterator(); actions
-					.hasNext();) {
+			for (Iterator<IAction> actions = createActions.iterator(); actions.hasNext();) {
 				IAction action = actions.next();
-				StringTokenizer st = new StringTokenizer(action.getText(),
-						token);
+				StringTokenizer st = new StringTokenizer(action.getText(), token);
 				if (st.countTokens() == 2) {
 					String text = st.nextToken().trim();
-					Collection<IAction> submenuActions = createSubmenuActions
-							.get(text);
+					Collection<IAction> submenuActions = createSubmenuActions.get(text);
 					if (submenuActions == null) {
-						createSubmenuActions.put(text,
-								submenuActions = new ArrayList<IAction>());
+						createSubmenuActions.put(text, submenuActions = new ArrayList<IAction>());
 					}
 					action.setText(st.nextToken().trim());
 					submenuActions.add(action);
@@ -70,12 +65,15 @@ public abstract class AbstractSubmenuActionProvider extends AbstractCommonAction
 	/**
 	 * Fills a <IContributionManager> with the given <Collection> of <IActions>.
 	 * 
-	 * @param manager the manager
-	 * @param actions the actions
-	 * @param contributionID the contribution id
+	 * @param manager
+	 *            the manager
+	 * @param actions
+	 *            the actions
+	 * @param contributionID
+	 *            the contribution id
 	 */
-	protected void populateManager(IContributionManager manager,
-			Collection<? extends IAction> actions, String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
+			String contributionID) {
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {
@@ -88,19 +86,20 @@ public abstract class AbstractSubmenuActionProvider extends AbstractCommonAction
 	}
 
 	/**
-	 * Fills a <IContributionManager> with two levels of menus, as specified by
-	 * the <Map> of <String>s to <Collection>s of <IAction>s.
+	 * Fills a <IContributionManager> with two levels of menus, as specified by the <Map> of
+	 * <String>s to <Collection>s of <IAction>s.
 	 * 
-	 * @param manager the manager
-	 * @param submenuActions the submenu actions
-	 * @param contributionID the contribution id
+	 * @param manager
+	 *            the manager
+	 * @param submenuActions
+	 *            the submenu actions
+	 * @param contributionID
+	 *            the contribution id
 	 */
-	protected void populateManager(IContributionManager manager,
-			Map<String, Collection<IAction>> submenuActions,
+	protected void populateManager(IContributionManager manager, Map<String, Collection<IAction>> submenuActions,
 			String contributionID) {
 		if (submenuActions != null) {
-			for (Map.Entry<String, Collection<IAction>> entry : submenuActions
-					.entrySet()) {
+			for (Map.Entry<String, Collection<IAction>> entry : submenuActions.entrySet()) {
 				MenuManager submenuManager = new MenuManager(entry.getKey());
 				if (contributionID != null) {
 					manager.insertBefore(contributionID, submenuManager);

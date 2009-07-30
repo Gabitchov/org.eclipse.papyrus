@@ -30,9 +30,10 @@ public class StringExpressionPropertiesEditionProvider implements IPropertiesEdi
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof StringExpression) && (UMLPackage.eINSTANCE.getStringExpression() == eObject.eClass());
+		return (eObject instanceof StringExpression)
+				&& (UMLPackage.eINSTANCE.getStringExpression() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class StringExpressionPropertiesEditionProvider implements IPropertiesEdi
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class StringExpressionPropertiesEditionProvider implements IPropertiesEdi
 		}
 		return null;
 	}
-	
-}	
+
+}

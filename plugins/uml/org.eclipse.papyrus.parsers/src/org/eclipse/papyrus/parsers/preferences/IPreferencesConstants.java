@@ -10,18 +10,17 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.preferences;
 
 import org.eclipse.papyrus.parsers.PapyrusParsersPlugin;
 import org.eclipse.papyrus.parsers.texteditor.propertylabel.IPropertyLabelColorConstants;
 
 /**
- * Defines constants which are used to refer to values in the plugin's
- * preference bundle.
+ * Defines constants which are used to refer to values in the plugin's preference bundle.
  */
 public interface IPreferencesConstants {
-	
+
 	/**
 	 * ui plugin id.
 	 */
@@ -36,17 +35,17 @@ public interface IPreferencesConstants {
 	 * color for basic grammar text.
 	 */
 	String COLOR_DEFAULT = PREFIX_COLOR + IPropertyLabelColorConstants.DEFAULT;
-	
+
 	/**
 	 * color for grammar keyword text.
 	 */
 	String COLOR_KEYWORD = PREFIX_COLOR + IPropertyLabelColorConstants.KEYWORD;
-	
+
 	/**
 	 * color for grammar string text.
 	 */
 	String COLOR_STRING = PREFIX_COLOR + IPropertyLabelColorConstants.STRING;
-	
+
 	/**
 	 * color for grammar symbol text.
 	 */

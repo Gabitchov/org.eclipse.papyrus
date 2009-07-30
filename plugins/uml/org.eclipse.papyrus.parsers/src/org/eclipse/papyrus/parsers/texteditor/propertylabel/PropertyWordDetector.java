@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.propertylabel;
 
 import org.eclipse.jface.text.rules.IWordDetector;
@@ -23,61 +23,64 @@ import org.eclipse.jface.text.rules.IWordDetector;
  */
 public class PropertyWordDetector implements IWordDetector {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.text.rules.IWordDetector#isWordPart(char)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param character 
+	 * @param character
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public boolean isWordPart(char character) {
-		Character ch =  Character.valueOf(character);
-		
-		if(ch.compareTo('+')==0) {
+		Character ch = Character.valueOf(character);
+
+		if (ch.compareTo('+') == 0) {
 			return true;
-		} else if (ch.compareTo('-')==0) {
+		} else if (ch.compareTo('-') == 0) {
 			return true;
-		} else if (ch.compareTo('#')==0) {
+		} else if (ch.compareTo('#') == 0) {
 			return true;
-		} else if (ch.compareTo('~')==0) {
+		} else if (ch.compareTo('~') == 0) {
 			return true;
-		} else if (ch.compareTo('/')==0) {
+		} else if (ch.compareTo('/') == 0) {
 			return true;
-		} else if (ch.compareTo(':')==0) {
+		} else if (ch.compareTo(':') == 0) {
 			return true;
 		}
-		
+
 		return Character.isLetter(character);
 	}
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.text.rules.IWordDetector#isWordStart(char)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param character 
+	 * @param character
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public boolean isWordStart(char character) {
-		Character ch =  Character.valueOf(character);
-		
-		if(ch.compareTo('+')==0) {
+		Character ch = Character.valueOf(character);
+
+		if (ch.compareTo('+') == 0) {
 			return true;
-		} else if (ch.compareTo('-')==0) {
+		} else if (ch.compareTo('-') == 0) {
 			return true;
-		} else if (ch.compareTo('#')==0) {
+		} else if (ch.compareTo('#') == 0) {
 			return true;
-		} else if (ch.compareTo('~')==0) {
+		} else if (ch.compareTo('~') == 0) {
 			return true;
-		} else if (ch.compareTo('/')==0) {
+		} else if (ch.compareTo('/') == 0) {
 			return true;
-		} else if (ch.compareTo(':')==0) {
+		} else if (ch.compareTo(':') == 0) {
 			return true;
 		}
 		return Character.isLetter(character);

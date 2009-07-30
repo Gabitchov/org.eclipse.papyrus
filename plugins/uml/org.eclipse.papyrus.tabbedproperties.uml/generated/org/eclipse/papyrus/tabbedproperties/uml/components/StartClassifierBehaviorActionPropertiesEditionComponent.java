@@ -41,61 +41,69 @@ public class StartClassifierBehaviorActionPropertiesEditionComponent extends Com
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 
 	 * @param startClassifierBehaviorAction
 	 *            the EObject to edit
 	 */
-	public StartClassifierBehaviorActionPropertiesEditionComponent(EObject startClassifierBehaviorAction, String editing_mode) {
+	public StartClassifierBehaviorActionPropertiesEditionComponent(EObject startClassifierBehaviorAction,
+			String editing_mode) {
 		super(editing_mode);
 		if (startClassifierBehaviorAction instanceof StartClassifierBehaviorAction) {
-			startClassifierBehaviorActionBasePropertiesEditionComponent = new StartClassifierBehaviorActionBasePropertiesEditionComponent(startClassifierBehaviorAction, editing_mode); 
+			startClassifierBehaviorActionBasePropertiesEditionComponent = new StartClassifierBehaviorActionBasePropertiesEditionComponent(
+					startClassifierBehaviorAction, editing_mode);
 			addSubComponent(startClassifierBehaviorActionBasePropertiesEditionComponent);
-			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(startClassifierBehaviorAction, editing_mode); 	
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(startClassifierBehaviorAction,
+					editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 *      getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (StartClassifierBehaviorActionPropertiesEditionPart)startClassifierBehaviorActionBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart)basePart;
+			basePart = (StartClassifierBehaviorActionPropertiesEditionPart) startClassifierBehaviorActionBasePropertiesEditionComponent
+					.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart) basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.StartClassifierBehaviorAction.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (StartClassifierBehaviorActionPropertiesEditionPart)propertiesEditionPart;
+			basePart = (StartClassifierBehaviorActionPropertiesEditionPart) propertiesEditionPart;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.StartClassifierBehaviorAction.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-            if (key == UMLViewsRepository.Comments.class) {
-                    super.initPart(key, kind, element, allResource);
-            
-            
-            }
+		if (key == UMLViewsRepository.Comments.class) {
+			super.initPart(key, kind, element, allResource);
+
+		}
 	}
 }
-

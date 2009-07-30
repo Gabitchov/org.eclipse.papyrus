@@ -110,7 +110,8 @@ public class NavigatorUtils {
 	 */
 	public static IViewPart findViewPart(String viewID) {
 		try {
-			IViewReference reference = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findViewReference(viewID);
+			IViewReference reference = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+					.findViewReference(viewID);
 			IWorkbenchPart part = reference.getPart(false);
 			if (part instanceof IViewPart) {
 				return (IViewPart) part;

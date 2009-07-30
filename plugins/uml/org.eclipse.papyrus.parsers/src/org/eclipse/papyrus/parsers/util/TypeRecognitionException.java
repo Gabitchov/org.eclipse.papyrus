@@ -10,12 +10,12 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.util;
 
 /**
- * <code>AssertionFailedException</code> is a runtime exception thrown
- * by some of the methods in <code>Assert</code>.
+ * <code>AssertionFailedException</code> is a runtime exception thrown by some of the methods in
+ * <code>Assert</code>.
  * 
  * @see Assert
  */
@@ -23,24 +23,25 @@ public class TypeRecognitionException extends RuntimeException {
 
 	/**
 	 * serial ID
+	 * 
 	 * @generated
 	 */
 	private static final long serialVersionUID = -8893242382872509656L;
-	
-	
-	private String typeName = null ;
-	
+
+	private String typeName = null;
+
 	/**
 	 * Constructs a new exception with the given message.
 	 * 
-	 * @param detail the message
+	 * @param detail
+	 *            the message
 	 */
 	public TypeRecognitionException(String message, String typeName) {
 		super(message);
-		this.typeName = typeName ;
+		this.typeName = typeName;
 	}
-	
+
 	public String getTypeName() {
-		return typeName ;
+		return typeName;
 	}
 }

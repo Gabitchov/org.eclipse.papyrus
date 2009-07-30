@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -57,15 +56,21 @@ public interface LinkEndDataPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -86,10 +91,6 @@ public interface LinkEndDataPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
-
-
-
-
 
 	/**
 	 * @return the qualifier to add
@@ -118,15 +119,21 @@ public interface LinkEndDataPropertiesEditionPart {
 
 	/**
 	 * Init the qualifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initQualifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the qualifier
-	 * @param newValue the qualifier to update
+	 * 
+	 * @param newValue
+	 *            the qualifier to update
 	 */
 	public void updateQualifier(EObject newValue);
 
@@ -148,18 +155,8 @@ public interface LinkEndDataPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToQualifier(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

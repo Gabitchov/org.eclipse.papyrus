@@ -33,6 +33,7 @@ public class CreateDiagramAction extends Action {
 	CreationCommandDescriptor commandDescriptor;
 
 	ICreationCommandRegistry creationCommandRegistry;
+
 	BackboneContext backboneContext;
 
 	/**
@@ -41,12 +42,13 @@ public class CreateDiagramAction extends Action {
 	 * @param selectedObject
 	 *            the selected Element on which the diagram is to be associated
 	 */
-	public CreateDiagramAction(BackboneContext backboneContext,PackageableElement selectedElement, CreationCommandDescriptor commandDescriptor) {
+	public CreateDiagramAction(BackboneContext backboneContext, PackageableElement selectedElement,
+			CreationCommandDescriptor commandDescriptor) {
 		this.container = selectedElement;
 		this.commandDescriptor = commandDescriptor;
 		setText(commandDescriptor.getLabel());
 		setImageDescriptor(commandDescriptor.getIcon());
-		this.backboneContext=backboneContext;
+		this.backboneContext = backboneContext;
 	}
 
 	/**
@@ -65,7 +67,8 @@ public class CreateDiagramAction extends Action {
 	@Override
 	public void run() {
 		try {
-			ICreationCommand creationCommand = getCreationCommandRegistry().getCommand(commandDescriptor.getCommandId());
+			ICreationCommand creationCommand = getCreationCommandRegistry()
+					.getCommand(commandDescriptor.getCommandId());
 			DiResourceSet diResourceSet = backboneContext.getResourceSet();
 			creationCommand.createDiagram(diResourceSet, container, null);
 		} catch (NotFoundException e) {

@@ -30,16 +30,16 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 
-
 /**
- * Shows a list of registered elements to the user with a text entry field for a string
- * pattern used to filter the list of resources.
+ * Shows a list of registered elements to the user with a text entry field for a string pattern used
+ * to filter the list of resources.
+ * 
  * @since 1.9.0
  */
 public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSelectionDialog {
 
 	/** ID for this dialog preferences section */
-	protected static final String DIALOG_SETTINGS= Activator.PLUGIN_ID+"dialogs.registeredelement";
+	protected static final String DIALOG_SETTINGS = Activator.PLUGIN_ID + "dialogs.registeredelement";
 
 	/** label provider for the table viewer */
 	private RegisteredElementsLabelProvider registeredElementsLabelProvider;
@@ -49,26 +49,31 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 
 	/** all elements that can be selected by the dialog */
 	Object[] totalInput;
-	
+
 	/** elements already selected */
 	Collection<Object> alreadySelected;
-	
+
 	/** list that displays already selected elements */
 	private TableViewer selectedElementList;
-	
+
 	/** Content provider for selected element list */
 	private ArrayContentProvider contentProvider;
-	
+
 	/** title of the extended area */
-	protected String extendedAreaTitle; 
-	
+	protected String extendedAreaTitle;
+
 	/**
 	 * Creates a new instance of the class
-	 * @param shell the parent shell
-	 * @param multi the multiple selection flag
-	 * @param input the input in which selection is done
+	 * 
+	 * @param shell
+	 *            the parent shell
+	 * @param multi
+	 *            the multiple selection flag
+	 * @param input
+	 *            the input in which selection is done
 	 */
-	public FilteredRegisteredElementsSelectionDialog(Shell shell, boolean multi, Object[] input, Collection<Object> alreadySelected, String title, String extendedAreaTitle) {
+	public FilteredRegisteredElementsSelectionDialog(Shell shell, boolean multi, Object[] input,
+			Collection<Object> alreadySelected, String title, String extendedAreaTitle) {
 		super(shell, multi);
 		setTitle(title);
 		setInitialPattern("**");
@@ -79,7 +84,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		registeredElementsDetailsLabelProvider = new RegisteredElementsDetailsLabelProvider();
 		setListLabelProvider(registeredElementsLabelProvider);
 		setDetailsLabelProvider(registeredElementsDetailsLabelProvider);
-		
+
 		contentProvider = new ArrayContentProvider();
 	}
 
@@ -107,10 +112,10 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		layout.marginWidth = 0;
 		layout.marginHeight = 0;
 		content.setLayout(layout);
-		
+
 		// Title of the window
 		createExtendedAreaHeader(content);
-		
+
 		// list of already selected elements
 		selectedElementList = new TableViewer(content, SWT.BORDER | SWT.V_SCROLL | SWT.VIRTUAL);
 		selectedElementList.setContentProvider(contentProvider);
@@ -133,7 +138,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		header.setLayout(layout);
 
 		Label label = new Label(header, SWT.NONE);
-		label.setText(extendedAreaTitle+" (Read-only table)");
+		label.setText(extendedAreaTitle + " (Read-only table)");
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		label.setLayoutData(gd);
 
@@ -147,11 +152,13 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		return registeredElementsLabelProvider.getText(item);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#validateItem(java.lang.Object)
 	 */
 	protected IStatus validateItem(Object item) {
-		return new Status(IStatus.OK, Activator.PLUGIN_ID, ""); 
+		return new Status(IStatus.OK, Activator.PLUGIN_ID, "");
 	}
 
 	/*
@@ -169,8 +176,10 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 */
 	protected Comparator<RegisteredElementExtensionPoint> getItemsComparator() {
 		Comparator<RegisteredElementExtensionPoint> comp = new Comparator<RegisteredElementExtensionPoint>() {
+
 			public int compare(RegisteredElementExtensionPoint o1, RegisteredElementExtensionPoint o2) {
-				return ((RegisteredElementExtensionPoint)o1).getName().compareTo(((RegisteredElementExtensionPoint)o2).getName());
+				return ((RegisteredElementExtensionPoint) o1).getName().compareTo(
+						((RegisteredElementExtensionPoint) o2).getName());
 			}
 		};
 		return comp;
@@ -179,13 +188,14 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	/**
 	 * {@inheritDoc}
 	 */
-	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
+	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter,
+			IProgressMonitor progressMonitor) throws CoreException {
 		if (progressMonitor != null) {
 			progressMonitor.beginTask("Displaying registered elements", totalInput.length);
 		}
 		for (int i = 0; i < totalInput.length; i++) {
 			Object o = totalInput[i];
-			if(!alreadySelected.contains(o)) {
+			if (!alreadySelected.contains(o)) {
 				contentProvider.add(o, itemsFilter);
 			}
 			progressMonitor.worked(1);
@@ -205,7 +215,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		 */
 		@Override
 		public boolean isConsistentItem(Object item) {
-			if(item instanceof RegisteredElementExtensionPoint) {
+			if (item instanceof RegisteredElementExtensionPoint) {
 				return true;
 			}
 			return false;
@@ -216,10 +226,10 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		 */
 		@Override
 		public boolean matchItem(Object item) {
-			if(!(item instanceof RegisteredElementExtensionPoint)) {
+			if (!(item instanceof RegisteredElementExtensionPoint)) {
 				return false;
 			}
-			return matches(registeredElementsLabelProvider.getText((RegisteredElementExtensionPoint)item));
+			return matches(registeredElementsLabelProvider.getText((RegisteredElementExtensionPoint) item));
 		}
 	}
 }

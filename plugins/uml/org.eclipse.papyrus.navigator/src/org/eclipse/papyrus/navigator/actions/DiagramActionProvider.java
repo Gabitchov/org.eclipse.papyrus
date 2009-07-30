@@ -28,7 +28,7 @@ public class DiagramActionProvider extends AbstractSubmenuActionProvider {
 	@Override
 	public void fillContextMenu(IMenuManager menu) {
 		Object selectedElement = getFirstSelectedElement();
-		
+
 		if (selectedElement instanceof Diagram) {
 			Diagram diagram = (Diagram) selectedElement;
 			// Get the Editor IPageMngr. It should be Transactional.

@@ -45,8 +45,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * The Class QualifiedNameAppearanceSection allow users to customize the display
- * of qualified name.
+ * The Class QualifiedNameAppearanceSection allow users to customize the display of qualified name.
  * 
  */
 public class QualifiedNameAppearanceSection extends AbstractPropertySection {
@@ -144,8 +143,8 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	}
 
 	public int getQualifiedNamedepth(View view) {
-		EAnnotation stereotypeDisplayKind =
-				((View) view).getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
+		EAnnotation stereotypeDisplayKind = ((View) view)
+				.getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
@@ -161,9 +160,7 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	}
 
 	/*
-	 * @see
-	 * org.eclipse.ui.views.properties.tabbed.view.ITabbedPropertySection#refresh
-	 * ()
+	 * @see org.eclipse.ui.views.properties.tabbed.view.ITabbedPropertySection#refresh ()
 	 */
 	/**
 	 * Refresh.
@@ -179,8 +176,8 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 				if ((namedElementEditPart.getModel()) != null
 						&& ((View) (namedElementEditPart.getModel())).getElement() != null) {
 
-					org.eclipse.uml2.uml.Element element =
-							(Element) ((View) (namedElementEditPart.getModel())).getElement();
+					org.eclipse.uml2.uml.Element element = (Element) ((View) (namedElementEditPart.getModel()))
+							.getElement();
 
 					if (element instanceof NamedElement) {
 
@@ -201,9 +198,8 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 							comboQualifiedNameAppearance.add("None");
 						}
 
-						int qualifiedNameDepth =
-								QualifiedNameHelper.getQualifiedNameDepth((EModelElement) (namedElementEditPart
-										.getModel()));
+						int qualifiedNameDepth = QualifiedNameHelper
+								.getQualifiedNameDepth((EModelElement) (namedElementEditPart.getModel()));
 
 						if (depth != 0) {
 							if (qualifiedNameDepth == 0)
@@ -252,8 +248,8 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 		// When the selection is computed from the outline, get the associated
 		// editor
 		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView =
-					((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
+			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part)
+					.getAdapter(IContributedContentsView.class));
 			if (contributedView != null) {
 				part = (IWorkbenchPart) contributedView.getContributingPart();
 			}

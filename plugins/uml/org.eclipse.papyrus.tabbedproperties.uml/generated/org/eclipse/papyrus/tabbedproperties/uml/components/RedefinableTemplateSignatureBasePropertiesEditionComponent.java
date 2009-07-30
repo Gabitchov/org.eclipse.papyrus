@@ -55,7 +55,6 @@ import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.VisibilityKind;
 
-
 // End of user code
 
 /**
@@ -65,7 +64,7 @@ public class RedefinableTemplateSignatureBasePropertiesEditionComponent extends 
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -80,9 +79,10 @@ public class RedefinableTemplateSignatureBasePropertiesEditionComponent extends 
 	/**
 	 * Default constructor
 	 */
-	public RedefinableTemplateSignatureBasePropertiesEditionComponent(EObject redefinableTemplateSignature, String editing_mode) {
+	public RedefinableTemplateSignatureBasePropertiesEditionComponent(EObject redefinableTemplateSignature,
+			String editing_mode) {
 		if (redefinableTemplateSignature instanceof RedefinableTemplateSignature) {
-			this.redefinableTemplateSignature = (RedefinableTemplateSignature)redefinableTemplateSignature;
+			this.redefinableTemplateSignature = (RedefinableTemplateSignature) redefinableTemplateSignature;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.redefinableTemplateSignature.eAdapters().add(semanticAdapter);
@@ -109,24 +109,26 @@ public class RedefinableTemplateSignatureBasePropertiesEditionComponent extends 
 					RedefinableTemplateSignatureBasePropertiesEditionComponent.this.dispose();
 				else {
 					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
-						basePart.setName((String)msg.getNewValue());
+						basePart.setName((String) msg.getNewValue());
 
 					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
-						basePart.setVisibility((Enumerator)msg.getNewValue());
+						basePart.setVisibility((Enumerator) msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature()) && basePart != null)
-						basePart.setIsLeaf((Boolean)msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature())
+							&& basePart != null)
+						basePart.setIsLeaf((Boolean) msg.getNewValue());
 
 					if (UMLPackage.eINSTANCE.getTemplateSignature_Parameter().equals(msg.getFeature()))
 						basePart.updateParameter(redefinableTemplateSignature);
-					if (msg.getFeature() != null && 
-							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter()
-							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getTemplateParameter())) {
+					if (msg.getFeature() != null
+							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
+									.getTemplateSignature_OwnedParameter() || ((EStructuralFeature) msg.getFeature())
+									.getEContainingClass() == UMLPackage.eINSTANCE.getTemplateParameter())) {
 						basePart.updateOwnedParameter(redefinableTemplateSignature);
 					}
-					if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature().equals(msg.getFeature()))
+					if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature().equals(
+							msg.getFeature()))
 						basePart.updateExtendedSignature(redefinableTemplateSignature);
-
 
 				}
 			}
@@ -158,18 +160,20 @@ public class RedefinableTemplateSignatureBasePropertiesEditionComponent extends 
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 *      (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (redefinableTemplateSignature != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
+						.getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (RedefinableTemplateSignaturePropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.RedefinableTemplateSignature.class, kind, this);
-					addListener((IPropertiesEditionListener)basePart);
+					basePart = (RedefinableTemplateSignaturePropertiesEditionPart) provider.getPropertiesEditionPart(
+							UMLViewsRepository.RedefinableTemplateSignature.class, kind, this);
+					addListener((IPropertiesEditionListener) basePart);
 				}
 			}
-			return (IPropertiesEditionPart)basePart;
+			return (IPropertiesEditionPart) basePart;
 		}
 		return null;
 	}
@@ -178,7 +182,8 @@ public class RedefinableTemplateSignatureBasePropertiesEditionComponent extends 
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.RedefinableTemplateSignature.class)
@@ -188,34 +193,38 @@ public class RedefinableTemplateSignatureBasePropertiesEditionComponent extends 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
+	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.RedefinableTemplateSignature.class) {
-			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
-			RedefinableTemplateSignature redefinableTemplateSignature = (RedefinableTemplateSignature)elt;
+			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
+			RedefinableTemplateSignature redefinableTemplateSignature = (RedefinableTemplateSignature) elt;
 			// init values
 			if (redefinableTemplateSignature.getName() != null)
 				basePart.setName(redefinableTemplateSignature.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), redefinableTemplateSignature.getVisibility());
-basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
+			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(),
+					redefinableTemplateSignature.getVisibility());
+			basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 
-			basePart.initParameter(redefinableTemplateSignature, null, UMLPackage.eINSTANCE.getTemplateSignature_Parameter());
-			basePart.initOwnedParameter(redefinableTemplateSignature, null, UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter());
-			basePart.initExtendedSignature(redefinableTemplateSignature, null, UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature());
-			
+			basePart.initParameter(redefinableTemplateSignature, null, UMLPackage.eINSTANCE
+					.getTemplateSignature_Parameter());
+			basePart.initOwnedParameter(redefinableTemplateSignature, null, UMLPackage.eINSTANCE
+					.getTemplateSignature_OwnedParameter());
+			basePart.initExtendedSignature(redefinableTemplateSignature, null, UMLPackage.eINSTANCE
+					.getRedefinableTemplateSignature_ExtendedSignature());
+
 			// init filters
-
-
 
 			basePart.addFilterToParameter(new ViewerFilter() {
 
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 * @see
+				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
+				 * java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
@@ -226,30 +235,34 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 			});
 			basePart.addFilterToParameter(new EObjectFilter(UMLPackage.eINSTANCE.getTemplateParameter()));
 			// Start of user code for additional businessfilters for parameter
-			
+
 			// End of user code
 			basePart.addFilterToOwnedParameter(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof TemplateParameter); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see
+				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
+				 * java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof TemplateParameter); //$NON-NLS-1$ 
 
 				}
 
 			});
 			// Start of user code for additional businessfilters for ownedParameter
-			
+
 			// End of user code
 			basePart.addFilterToExtendedSignature(new ViewerFilter() {
 
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 * @see
+				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
+				 * java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
@@ -258,9 +271,10 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 				}
 
 			});
-			basePart.addFilterToExtendedSignature(new EObjectFilter(UMLPackage.eINSTANCE.getRedefinableTemplateSignature()));
+			basePart.addFilterToExtendedSignature(new EObjectFilter(UMLPackage.eINSTANCE
+					.getRedefinableTemplateSignature()));
 			// Start of user code for additional businessfilters for extendedSignature
-			
+
 			// End of user code
 		}
 		// init values for referenced views
@@ -269,76 +283,84 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 
 	}
 
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (redefinableTemplateSignature != null) {
-			cc.append(SetCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
+			cc.append(SetCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+					.getNamedElement_Name(), basePart.getName()));
 
-			cc.append(SetCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
+			cc.append(SetCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+					.getNamedElement_Visibility(), basePart.getVisibility()));
 
-			cc.append(SetCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), basePart.getIsLeaf()));
+			cc.append(SetCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+					.getRedefinableElement_IsLeaf(), basePart.getIsLeaf()));
 
 			List parameterToAddFromParameter = basePart.getParameterToAdd();
 			for (Iterator iter = parameterToAddFromParameter.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateSignature_Parameter(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getTemplateSignature_Parameter(), iter.next()));
 			List parameterToRemoveFromParameter = basePart.getParameterToRemove();
 			for (Iterator iter = parameterToRemoveFromParameter.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateSignature_Parameter(), iter.next()));
-			//List parameterToMoveFromParameter = basePart.getParameterToMove();
-			//for (Iterator iter = parameterToMoveFromParameter.iterator(); iter.hasNext();){
-			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateParameter(), moveElement.getElement(), moveElement.getIndex()));
-			//}
+				cc.append(RemoveCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getTemplateSignature_Parameter(), iter.next()));
+			// List parameterToMoveFromParameter = basePart.getParameterToMove();
+			// for (Iterator iter = parameterToMoveFromParameter.iterator(); iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement =
+			// (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, redefinableTemplateSignature,
+			// UMLPackage.eINSTANCE.getTemplateParameter(), moveElement.getElement(),
+			// moveElement.getIndex()));
+			// }
 			List ownedParameterToAddFromOwnedParameter = basePart.getOwnedParameterToAdd();
 			for (Iterator iter = ownedParameterToAddFromOwnedParameter.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getTemplateSignature_OwnedParameter(), iter.next()));
 			Map ownedParameterToRefreshFromOwnedParameter = basePart.getOwnedParameterToEdit();
 			for (Iterator iter = ownedParameterToRefreshFromOwnedParameter.keySet().iterator(); iter.hasNext();) {
-				
+
 				// Start of user code for ownedParameter reference refreshment from ownedParameter
-				
+
 				TemplateParameter nextElement = (TemplateParameter) iter.next();
-				TemplateParameter ownedParameter = (TemplateParameter) ownedParameterToRefreshFromOwnedParameter.get(nextElement);
-				
+				TemplateParameter ownedParameter = (TemplateParameter) ownedParameterToRefreshFromOwnedParameter
+						.get(nextElement);
+
 				// End of user code
-				
+
 			}
 			List ownedParameterToRemoveFromOwnedParameter = basePart.getOwnedParameterToRemove();
 			for (Iterator iter = ownedParameterToRemoveFromOwnedParameter.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedParameterToMoveFromOwnedParameter = basePart.getOwnedParameterToMove();
-			for (Iterator iter = ownedParameterToMoveFromOwnedParameter.iterator(); iter.hasNext();){
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-				cc.append(MoveCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateParameter(), moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = ownedParameterToMoveFromOwnedParameter.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
+						.next();
+				cc.append(MoveCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getTemplateParameter(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List extendedSignatureToAddFromExtendedSignature = basePart.getExtendedSignatureToAdd();
 			for (Iterator iter = extendedSignatureToAddFromExtendedSignature.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getRedefinableTemplateSignature_ExtendedSignature(), iter.next()));
 			List extendedSignatureToRemoveFromExtendedSignature = basePart.getExtendedSignatureToRemove();
 			for (Iterator iter = extendedSignatureToRemoveFromExtendedSignature.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature(), iter.next()));
-			//List extendedSignatureToMoveFromExtendedSignature = basePart.getExtendedSignatureToMove();
-			//for (Iterator iter = extendedSignatureToMoveFromExtendedSignature.iterator(); iter.hasNext();){
-			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getRedefinableTemplateSignature(), moveElement.getElement(), moveElement.getIndex()));
-			//}
-
+				cc.append(RemoveCommand.create(editingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getRedefinableTemplateSignature_ExtendedSignature(), iter.next()));
+			// List extendedSignatureToMoveFromExtendedSignature =
+			// basePart.getExtendedSignatureToMove();
+			// for (Iterator iter = extendedSignatureToMoveFromExtendedSignature.iterator();
+			// iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement =
+			// (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, redefinableTemplateSignature,
+			// UMLPackage.eINSTANCE.getRedefinableTemplateSignature(), moveElement.getElement(),
+			// moveElement.getIndex()));
+			// }
 
 		}
 		if (!cc.isEmpty())
@@ -354,10 +376,10 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof RedefinableTemplateSignature) {
-			RedefinableTemplateSignature redefinableTemplateSignatureToUpdate = (RedefinableTemplateSignature)source;
+			RedefinableTemplateSignature redefinableTemplateSignatureToUpdate = (RedefinableTemplateSignature) source;
 			redefinableTemplateSignatureToUpdate.setName(basePart.getName());
 
-			redefinableTemplateSignatureToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());	
+			redefinableTemplateSignatureToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
 
 			redefinableTemplateSignatureToUpdate.setIsLeaf(new Boolean(basePart.getIsLeaf()).booleanValue());
 
@@ -365,10 +387,8 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 			redefinableTemplateSignatureToUpdate.getOwnedParameters().addAll(basePart.getOwnedParameterToAdd());
 			redefinableTemplateSignatureToUpdate.getExtendedSignatures().addAll(basePart.getExtendedSignatureToAdd());
 
-
 			return redefinableTemplateSignatureToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -379,51 +399,65 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState()
+				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.RedefinableTemplateSignature.name == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getNamedElement_Name(), event.getNewValue()));
 
 			if (UMLViewsRepository.RedefinableTemplateSignature.visibility == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getNamedElement_Visibility(), event.getNewValue()));
 
 			if (UMLViewsRepository.RedefinableTemplateSignature.isLeaf == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE
+						.getRedefinableElement_IsLeaf(), event.getNewValue()));
 
 			if (UMLViewsRepository.RedefinableTemplateSignature.parameter == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateSignature_Parameter(), event.getNewValue()));
+					command.append(AddCommand.create(liveEditingDomain, redefinableTemplateSignature,
+							UMLPackage.eINSTANCE.getTemplateSignature_Parameter(), event.getNewValue()));
 				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateSignature_Parameter(), event.getNewValue()));
+					command.append(RemoveCommand.create(liveEditingDomain, redefinableTemplateSignature,
+							UMLPackage.eINSTANCE.getTemplateSignature_Parameter(), event.getNewValue()));
 				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateSignature_Parameter(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, redefinableTemplateSignature,
+							UMLPackage.eINSTANCE.getTemplateSignature_Parameter(), event.getNewValue(), event
+									.getNewIndex()));
 			}
 			if (UMLViewsRepository.RedefinableTemplateSignature.ownedParameter == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					TemplateParameter oldValue = (TemplateParameter)event.getOldValue();
-					TemplateParameter newValue = (TemplateParameter)event.getNewValue();
-					
+					TemplateParameter oldValue = (TemplateParameter) event.getOldValue();
+					TemplateParameter newValue = (TemplateParameter) event.getNewValue();
+
 					// Start of user code for ownedParameter live update command
 					// TODO: Complete the redefinableTemplateSignature update command
 					// End of user code
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter(), event.getNewValue()));
+
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, redefinableTemplateSignature,
+							UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getTemplateParameter(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, redefinableTemplateSignature,
+							UMLPackage.eINSTANCE.getTemplateParameter(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.RedefinableTemplateSignature.extendedSignature == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature(), event.getNewValue()));
+					command.append(AddCommand.create(liveEditingDomain, redefinableTemplateSignature,
+							UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature(), event
+									.getNewValue()));
 				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature(), event.getNewValue()));
+					command.append(RemoveCommand.create(liveEditingDomain, redefinableTemplateSignature,
+							UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature(), event
+									.getNewValue()));
 				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, redefinableTemplateSignature, UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, redefinableTemplateSignature,
+							UMLPackage.eINSTANCE.getRedefinableTemplateSignature_ExtendedSignature(), event
+									.getNewValue(), event.getNewIndex()));
 			}
-
 
 			liveEditingDomain.getCommandStack().execute(command);
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
@@ -432,21 +466,9 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 				if (UMLViewsRepository.RedefinableTemplateSignature.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
-
-
-
-
-
-
 			} else {
 				if (UMLViewsRepository.RedefinableTemplateSignature.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
-
-
-
-
-
-
 
 			}
 		}
@@ -455,36 +477,33 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String,
+	 *      int)
 	 */
 	public boolean isRequired(String key, int kind) {
-		return key == UMLViewsRepository.RedefinableTemplateSignature.isLeaf || key == UMLViewsRepository.RedefinableTemplateSignature.parameter;
+		return key == UMLViewsRepository.RedefinableTemplateSignature.isLeaf
+				|| key == UMLViewsRepository.RedefinableTemplateSignature.parameter;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String, int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String,
+	 *      int)
 	 */
 	public String getHelpContent(String key, int kind) {
 		if (key == UMLViewsRepository.RedefinableTemplateSignature.name)
-			return null
-; //$NON-NLS-1$
+			return null; //$NON-NLS-1$
 		if (key == UMLViewsRepository.RedefinableTemplateSignature.visibility)
-			return null
-; //$NON-NLS-1$
+			return null; //$NON-NLS-1$
 		if (key == UMLViewsRepository.RedefinableTemplateSignature.isLeaf)
-			return null
-; //$NON-NLS-1$
+			return null; //$NON-NLS-1$
 		if (key == UMLViewsRepository.RedefinableTemplateSignature.parameter)
-			return null
-; //$NON-NLS-1$
+			return null; //$NON-NLS-1$
 		if (key == UMLViewsRepository.RedefinableTemplateSignature.ownedParameter)
-			return null
-; //$NON-NLS-1$
+			return null; //$NON-NLS-1$
 		if (key == UMLViewsRepository.RedefinableTemplateSignature.extendedSignature)
-			return null
-; //$NON-NLS-1$
+			return null; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
 
@@ -498,16 +517,22 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 		Diagnostic ret = null;
 		try {
 			if (UMLViewsRepository.RedefinableTemplateSignature.name == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
+				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name()
+						.getEAttributeType(), newStringValue);
+				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(),
+						newValue);
 			}
 			if (UMLViewsRepository.RedefinableTemplateSignature.visibility == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
+				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility()
+						.getEAttributeType(), newStringValue);
+				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility()
+						.getEAttributeType(), newValue);
 			}
 			if (UMLViewsRepository.RedefinableTemplateSignature.isLeaf == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().getEAttributeType(), newValue);
+				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf()
+						.getEAttributeType(), newStringValue);
+				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf()
+						.getEAttributeType(), newValue);
 			}
 
 		} catch (IllegalArgumentException iae) {
@@ -526,13 +551,11 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
 			return Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			return Diagnostician.INSTANCE.validate(redefinableTemplateSignature);
 		else
 			return null;
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -545,4 +568,3 @@ basePart.setIsLeaf(redefinableTemplateSignature.isLeaf());
 	}
 
 }
-

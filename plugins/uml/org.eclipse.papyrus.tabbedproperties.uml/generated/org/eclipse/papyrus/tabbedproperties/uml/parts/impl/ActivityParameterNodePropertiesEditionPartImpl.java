@@ -62,8 +62,6 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Comment;
 
-
-
 import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -100,50 +98,83 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ActivityParameterNodePropertiesEditionPart {
+public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
+		ISWTPropertiesEditionPart, ActivityParameterNodePropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<?> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	protected EMFListEditUtil clientDependencyEditUtil;
+
 	protected ReferencesTable<?> clientDependency;
+
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
+
 	protected Button isLeaf;
+
 	protected EMFListEditUtil outgoingEditUtil;
+
 	protected ReferencesTable<?> outgoing;
+
 	protected List<ViewerFilter> outgoingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> outgoingFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil incomingEditUtil;
+
 	protected ReferencesTable<?> incoming;
+
 	protected List<ViewerFilter> incomingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> incomingFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil inPartitionEditUtil;
+
 	protected ReferencesTable<?> inPartition;
+
 	protected List<ViewerFilter> inPartitionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> inPartitionFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil inInterruptibleRegionEditUtil;
+
 	protected ReferencesTable<?> inInterruptibleRegion;
+
 	protected List<ViewerFilter> inInterruptibleRegionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> inInterruptibleRegionFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil redefinedNodeEditUtil;
+
 	protected ReferencesTable<?> redefinedNode;
+
 	protected List<ViewerFilter> redefinedNodeBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> redefinedNodeFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFComboViewer ordering;
+
 	protected Button isControlType;
+
 	protected EMFListEditUtil inStateEditUtil;
+
 	protected ReferencesTable<?> inState;
+
 	protected List<ViewerFilter> inStateBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> inStateFilters = new ArrayList<ViewerFilter>();
 
-
-
-
-	
 	public ActivityParameterNodePropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -153,16 +184,16 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
 
 	}
@@ -190,18 +221,36 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		createIsControlTypeCheckbox(propertiesGroup);
 		createInStateAdvancedReferencesTable(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ActivityParameterNodePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
-		});
-		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.ownedComment, UMLViewsRepository.SWT_KIND));
+		this.ownedComment = new ReferencesTable<Comment>(
+				UMLMessages.ActivityParameterNodePropertiesEditionPart_OwnedCommentLabel,
+				new ReferencesTableListener<Comment>() {
+
+					public void handleAdd() {
+						addToOwnedComment();
+					}
+
+					public void handleEdit(Comment element) {
+						editOwnedComment(element);
+					}
+
+					public void handleMove(Comment element, int oldIndex, int newIndex) {
+						moveOwnedComment(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Comment element) {
+						removeFromOwnedComment(element);
+					}
+
+					public void navigateTo(Comment element) {
+					}
+				});
+		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
 		GridData ownedCommentData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedCommentData.horizontalSpan = 3;
@@ -212,12 +261,15 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	 * 
 	 */
 	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.ownedComment, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
 
 	/**
@@ -227,22 +279,26 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 
 		// Start of user code addToOwnedComment() method body
 
-
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
+							eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.ownedComment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -255,7 +311,10 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.ownedComment, PropertiesEditionEvent.CHANGE,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -267,24 +326,32 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	private void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-		
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.ownedComment, PropertiesEditionEvent.CHANGE,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-		
+
 		// End of user code
 
 	}
+
 	protected void createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ActivityParameterNodePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ActivityParameterNode.name, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ActivityParameterNodePropertiesEditionPart_NameLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.ActivityParameterNode.name,
+						UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -293,59 +360,87 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see
+			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							ActivityParameterNodePropertiesEditionPartImpl.this,
+							UMLViewsRepository.ActivityParameterNode.name, PropertiesEditionEvent.CHANGE,
+							PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ActivityParameterNodePropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ActivityParameterNode.visibility, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ActivityParameterNodePropertiesEditionPart_VisibilityLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.ActivityParameterNode.visibility,
+						UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-	protected void createClientDependencyAdvancedReferencesTable(Composite parent) {
-		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.ActivityParameterNodePropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
-								clientDependencyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.clientDependency,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						clientDependency.refresh();
+	protected void createClientDependencyAdvancedReferencesTable(Composite parent) {
+		this.clientDependency = new ReferencesTable<Dependency>(
+				UMLMessages.ActivityParameterNodePropertiesEditionPart_ClientDependencyLabel,
+				new ReferencesTableListener<Dependency>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(
+								resourceSet, clientDependencyFilters, clientDependencyBusinessFilters, "Dependency",
+								UMLPackage.eINSTANCE.getDependency()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+										clientDependencyEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											ActivityParameterNodePropertiesEditionPartImpl.this,
+											UMLViewsRepository.ActivityParameterNode.clientDependency,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								clientDependency.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { }
-		});
-		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.clientDependency, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(Dependency element) {
+						editClientDependency(element);
+					}
+
+					public void handleMove(Dependency element, int oldIndex, int newIndex) {
+						moveClientDependency(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Dependency element) {
+						removeFromClientDependency(element);
+					}
+
+					public void navigateTo(Dependency element) {
+					}
+				});
+		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.clientDependency, UMLViewsRepository.SWT_KIND));
 		this.clientDependency.createControls(parent);
 		GridData clientDependencyData = new GridData(GridData.FILL_HORIZONTAL);
 		clientDependencyData.horizontalSpan = 3;
 		this.clientDependency.setLayoutData(clientDependencyData);
 		this.clientDependency.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -353,9 +448,12 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.moveElement(element, oldIndex, newIndex);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.clientDependency, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -366,7 +464,10 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.removeElement(element);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.clientDependency, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -378,69 +479,95 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	private void editClientDependency(Dependency element) {
 
 		// Start of user code editClientDependency() method body
-		
+
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.clientDependency, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
+
 	protected void createIsLeafCheckbox(Composite parent) {
 		isLeaf = new Button(parent, SWT.CHECK);
 		isLeaf.setText(UMLMessages.ActivityParameterNodePropertiesEditionPart_IsLeafLabel);
 		GridData isLeafData = new GridData(GridData.FILL_HORIZONTAL);
 		isLeafData.horizontalSpan = 2;
 		isLeaf.setLayoutData(isLeafData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.isLeaf, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.isLeaf, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-	protected void createOutgoingAdvancedReferencesTable(Composite parent) {
-		this.outgoing = new ReferencesTable<ActivityEdge>(UMLMessages.ActivityParameterNodePropertiesEditionPart_OutgoingLabel, new ReferencesTableListener<ActivityEdge>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, outgoingFilters, outgoingBusinessFilters,
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!outgoingEditUtil.getVirtualList().contains(elem))
-								outgoingEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.outgoing,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						outgoing.refresh();
+	protected void createOutgoingAdvancedReferencesTable(Composite parent) {
+		this.outgoing = new ReferencesTable<ActivityEdge>(
+				UMLMessages.ActivityParameterNodePropertiesEditionPart_OutgoingLabel,
+				new ReferencesTableListener<ActivityEdge>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(
+								resourceSet, outgoingFilters, outgoingBusinessFilters, "ActivityEdge",
+								UMLPackage.eINSTANCE.getActivityEdge()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!outgoingEditUtil.getVirtualList().contains(elem))
+										outgoingEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											ActivityParameterNodePropertiesEditionPartImpl.this,
+											UMLViewsRepository.ActivityParameterNode.outgoing,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								outgoing.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(ActivityEdge element) { editOutgoing(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveOutgoing(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromOutgoing(element); }
-			public void navigateTo(ActivityEdge element) { }
-		});
-		this.outgoing.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.outgoing, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(ActivityEdge element) {
+						editOutgoing(element);
+					}
+
+					public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+						moveOutgoing(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ActivityEdge element) {
+						removeFromOutgoing(element);
+					}
+
+					public void navigateTo(ActivityEdge element) {
+					}
+				});
+		this.outgoing.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.outgoing, UMLViewsRepository.SWT_KIND));
 		this.outgoing.createControls(parent);
 		GridData outgoingData = new GridData(GridData.FILL_HORIZONTAL);
 		outgoingData.horizontalSpan = 3;
 		this.outgoing.setLayoutData(outgoingData);
 		this.outgoing.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveOutgoing(ActivityEdge element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -451,7 +578,9 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = outgoingEditUtil.foundCorrespondingEObject(element);
 		outgoingEditUtil.removeElement(element);
 		outgoing.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.outgoing, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.outgoing,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -463,61 +592,85 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	private void editOutgoing(ActivityEdge element) {
 
 		// Start of user code editOutgoing() method body
-		
+
 		EObject editedElement = outgoingEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				outgoingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				outgoing.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.outgoing, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.outgoing, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createIncomingAdvancedReferencesTable(Composite parent) {
-		this.incoming = new ReferencesTable<ActivityEdge>(UMLMessages.ActivityParameterNodePropertiesEditionPart_IncomingLabel, new ReferencesTableListener<ActivityEdge>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, incomingFilters, incomingBusinessFilters,
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!incomingEditUtil.getVirtualList().contains(elem))
-								incomingEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.incoming,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						incoming.refresh();
+	protected void createIncomingAdvancedReferencesTable(Composite parent) {
+		this.incoming = new ReferencesTable<ActivityEdge>(
+				UMLMessages.ActivityParameterNodePropertiesEditionPart_IncomingLabel,
+				new ReferencesTableListener<ActivityEdge>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(
+								resourceSet, incomingFilters, incomingBusinessFilters, "ActivityEdge",
+								UMLPackage.eINSTANCE.getActivityEdge()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!incomingEditUtil.getVirtualList().contains(elem))
+										incomingEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											ActivityParameterNodePropertiesEditionPartImpl.this,
+											UMLViewsRepository.ActivityParameterNode.incoming,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								incoming.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(ActivityEdge element) { editIncoming(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveIncoming(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromIncoming(element); }
-			public void navigateTo(ActivityEdge element) { }
-		});
-		this.incoming.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.incoming, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(ActivityEdge element) {
+						editIncoming(element);
+					}
+
+					public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+						moveIncoming(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ActivityEdge element) {
+						removeFromIncoming(element);
+					}
+
+					public void navigateTo(ActivityEdge element) {
+					}
+				});
+		this.incoming.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.incoming, UMLViewsRepository.SWT_KIND));
 		this.incoming.createControls(parent);
 		GridData incomingData = new GridData(GridData.FILL_HORIZONTAL);
 		incomingData.horizontalSpan = 3;
 		this.incoming.setLayoutData(incomingData);
 		this.incoming.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveIncoming(ActivityEdge element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -528,7 +681,9 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = incomingEditUtil.foundCorrespondingEObject(element);
 		incomingEditUtil.removeElement(element);
 		incoming.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.incoming, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.incoming,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -540,55 +695,79 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	private void editIncoming(ActivityEdge element) {
 
 		// Start of user code editIncoming() method body
-		
+
 		EObject editedElement = incomingEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				incomingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				incoming.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.incoming, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.incoming, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createInPartitionAdvancedReferencesTable(Composite parent) {
-		this.inPartition = new ReferencesTable<ActivityPartition>(UMLMessages.ActivityParameterNodePropertiesEditionPart_InPartitionLabel, new ReferencesTableListener<ActivityPartition>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<ActivityPartition> dialog = new TabElementTreeSelectionDialog<ActivityPartition>(resourceSet, inPartitionFilters, inPartitionBusinessFilters,
-				"ActivityPartition", UMLPackage.eINSTANCE.getActivityPartition()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!inPartitionEditUtil.getVirtualList().contains(elem))
-								inPartitionEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inPartition,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						inPartition.refresh();
+	protected void createInPartitionAdvancedReferencesTable(Composite parent) {
+		this.inPartition = new ReferencesTable<ActivityPartition>(
+				UMLMessages.ActivityParameterNodePropertiesEditionPart_InPartitionLabel,
+				new ReferencesTableListener<ActivityPartition>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<ActivityPartition> dialog = new TabElementTreeSelectionDialog<ActivityPartition>(
+								resourceSet, inPartitionFilters, inPartitionBusinessFilters, "ActivityPartition",
+								UMLPackage.eINSTANCE.getActivityPartition()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!inPartitionEditUtil.getVirtualList().contains(elem))
+										inPartitionEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											ActivityParameterNodePropertiesEditionPartImpl.this,
+											UMLViewsRepository.ActivityParameterNode.inPartition,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								inPartition.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(ActivityPartition element) { editInPartition(element); }
-			public void handleMove(ActivityPartition element, int oldIndex, int newIndex) { moveInPartition(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityPartition element) { removeFromInPartition(element); }
-			public void navigateTo(ActivityPartition element) { }
-		});
-		this.inPartition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.inPartition, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(ActivityPartition element) {
+						editInPartition(element);
+					}
+
+					public void handleMove(ActivityPartition element, int oldIndex, int newIndex) {
+						moveInPartition(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ActivityPartition element) {
+						removeFromInPartition(element);
+					}
+
+					public void navigateTo(ActivityPartition element) {
+					}
+				});
+		this.inPartition.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.inPartition, UMLViewsRepository.SWT_KIND));
 		this.inPartition.createControls(parent);
 		GridData inPartitionData = new GridData(GridData.FILL_HORIZONTAL);
 		inPartitionData.horizontalSpan = 3;
 		this.inPartition.setLayoutData(inPartitionData);
 		this.inPartition.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -596,9 +775,12 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = inPartitionEditUtil.foundCorrespondingEObject(element);
 		inPartitionEditUtil.moveElement(element, oldIndex, newIndex);
 		inPartition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inPartition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.inPartition, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -609,7 +791,10 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = inPartitionEditUtil.foundCorrespondingEObject(element);
 		inPartitionEditUtil.removeElement(element);
 		inPartition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inPartition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.inPartition, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -621,55 +806,79 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	private void editInPartition(ActivityPartition element) {
 
 		// Start of user code editInPartition() method body
-		
+
 		EObject editedElement = inPartitionEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				inPartitionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inPartition.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inPartition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.inPartition, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createInInterruptibleRegionAdvancedReferencesTable(Composite parent) {
-		this.inInterruptibleRegion = new ReferencesTable<InterruptibleActivityRegion>(UMLMessages.ActivityParameterNodePropertiesEditionPart_InInterruptibleRegionLabel, new ReferencesTableListener<InterruptibleActivityRegion>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<InterruptibleActivityRegion> dialog = new TabElementTreeSelectionDialog<InterruptibleActivityRegion>(resourceSet, inInterruptibleRegionFilters, inInterruptibleRegionBusinessFilters,
-				"InterruptibleActivityRegion", UMLPackage.eINSTANCE.getInterruptibleActivityRegion()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!inInterruptibleRegionEditUtil.getVirtualList().contains(elem))
-								inInterruptibleRegionEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						inInterruptibleRegion.refresh();
+	protected void createInInterruptibleRegionAdvancedReferencesTable(Composite parent) {
+		this.inInterruptibleRegion = new ReferencesTable<InterruptibleActivityRegion>(
+				UMLMessages.ActivityParameterNodePropertiesEditionPart_InInterruptibleRegionLabel,
+				new ReferencesTableListener<InterruptibleActivityRegion>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<InterruptibleActivityRegion> dialog = new TabElementTreeSelectionDialog<InterruptibleActivityRegion>(
+								resourceSet, inInterruptibleRegionFilters, inInterruptibleRegionBusinessFilters,
+								"InterruptibleActivityRegion", UMLPackage.eINSTANCE.getInterruptibleActivityRegion()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!inInterruptibleRegionEditUtil.getVirtualList().contains(elem))
+										inInterruptibleRegionEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											ActivityParameterNodePropertiesEditionPartImpl.this,
+											UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								inInterruptibleRegion.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(InterruptibleActivityRegion element) { editInInterruptibleRegion(element); }
-			public void handleMove(InterruptibleActivityRegion element, int oldIndex, int newIndex) { moveInInterruptibleRegion(element, oldIndex, newIndex); }
-			public void handleRemove(InterruptibleActivityRegion element) { removeFromInInterruptibleRegion(element); }
-			public void navigateTo(InterruptibleActivityRegion element) { }
-		});
-		this.inInterruptibleRegion.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(InterruptibleActivityRegion element) {
+						editInInterruptibleRegion(element);
+					}
+
+					public void handleMove(InterruptibleActivityRegion element, int oldIndex, int newIndex) {
+						moveInInterruptibleRegion(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(InterruptibleActivityRegion element) {
+						removeFromInInterruptibleRegion(element);
+					}
+
+					public void navigateTo(InterruptibleActivityRegion element) {
+					}
+				});
+		this.inInterruptibleRegion.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion, UMLViewsRepository.SWT_KIND));
 		this.inInterruptibleRegion.createControls(parent);
 		GridData inInterruptibleRegionData = new GridData(GridData.FILL_HORIZONTAL);
 		inInterruptibleRegionData.horizontalSpan = 3;
 		this.inInterruptibleRegion.setLayoutData(inInterruptibleRegionData);
 		this.inInterruptibleRegion.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -677,9 +886,12 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = inInterruptibleRegionEditUtil.foundCorrespondingEObject(element);
 		inInterruptibleRegionEditUtil.moveElement(element, oldIndex, newIndex);
 		inInterruptibleRegion.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -690,7 +902,10 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = inInterruptibleRegionEditUtil.foundCorrespondingEObject(element);
 		inInterruptibleRegionEditUtil.removeElement(element);
 		inInterruptibleRegion.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -702,61 +917,85 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	private void editInInterruptibleRegion(InterruptibleActivityRegion element) {
 
 		// Start of user code editInInterruptibleRegion() method body
-		
+
 		EObject editedElement = inInterruptibleRegionEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				inInterruptibleRegionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inInterruptibleRegion.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.inInterruptibleRegion, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createRedefinedNodeAdvancedReferencesTable(Composite parent) {
-		this.redefinedNode = new ReferencesTable<ActivityNode>(UMLMessages.ActivityParameterNodePropertiesEditionPart_RedefinedNodeLabel, new ReferencesTableListener<ActivityNode>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<ActivityNode> dialog = new TabElementTreeSelectionDialog<ActivityNode>(resourceSet, redefinedNodeFilters, redefinedNodeBusinessFilters,
-				"ActivityNode", UMLPackage.eINSTANCE.getActivityNode()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!redefinedNodeEditUtil.getVirtualList().contains(elem))
-								redefinedNodeEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.redefinedNode,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						redefinedNode.refresh();
+	protected void createRedefinedNodeAdvancedReferencesTable(Composite parent) {
+		this.redefinedNode = new ReferencesTable<ActivityNode>(
+				UMLMessages.ActivityParameterNodePropertiesEditionPart_RedefinedNodeLabel,
+				new ReferencesTableListener<ActivityNode>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<ActivityNode> dialog = new TabElementTreeSelectionDialog<ActivityNode>(
+								resourceSet, redefinedNodeFilters, redefinedNodeBusinessFilters, "ActivityNode",
+								UMLPackage.eINSTANCE.getActivityNode()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!redefinedNodeEditUtil.getVirtualList().contains(elem))
+										redefinedNodeEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											ActivityParameterNodePropertiesEditionPartImpl.this,
+											UMLViewsRepository.ActivityParameterNode.redefinedNode,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								redefinedNode.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(ActivityNode element) { editRedefinedNode(element); }
-			public void handleMove(ActivityNode element, int oldIndex, int newIndex) { moveRedefinedNode(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityNode element) { removeFromRedefinedNode(element); }
-			public void navigateTo(ActivityNode element) { }
-		});
-		this.redefinedNode.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.redefinedNode, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(ActivityNode element) {
+						editRedefinedNode(element);
+					}
+
+					public void handleMove(ActivityNode element, int oldIndex, int newIndex) {
+						moveRedefinedNode(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ActivityNode element) {
+						removeFromRedefinedNode(element);
+					}
+
+					public void navigateTo(ActivityNode element) {
+					}
+				});
+		this.redefinedNode.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.redefinedNode, UMLViewsRepository.SWT_KIND));
 		this.redefinedNode.createControls(parent);
 		GridData redefinedNodeData = new GridData(GridData.FILL_HORIZONTAL);
 		redefinedNodeData.horizontalSpan = 3;
 		this.redefinedNode.setLayoutData(redefinedNodeData);
 		this.redefinedNode.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveRedefinedNode(ActivityNode element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -767,7 +1006,10 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = redefinedNodeEditUtil.foundCorrespondingEObject(element);
 		redefinedNodeEditUtil.removeElement(element);
 		redefinedNode.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.redefinedNode, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this,
+				UMLViewsRepository.ActivityParameterNode.redefinedNode, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -779,72 +1021,101 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	private void editRedefinedNode(ActivityNode element) {
 
 		// Start of user code editRedefinedNode() method body
-		
+
 		EObject editedElement = redefinedNodeEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				redefinedNodeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				redefinedNode.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.redefinedNode, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.redefinedNode, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
+
 	protected void createOrderingEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ActivityParameterNodePropertiesEditionPart_OrderingLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ActivityParameterNode.ordering, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ActivityParameterNodePropertiesEditionPart_OrderingLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.ActivityParameterNode.ordering,
+						UMLViewsRepository.SWT_KIND));
 		ordering = new EMFComboViewer(parent);
 		ordering.setContentProvider(new ArrayContentProvider());
 		ordering.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData orderingData = new GridData(GridData.FILL_HORIZONTAL);
 		ordering.getCombo().setLayoutData(orderingData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.ordering, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.ordering, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createIsControlTypeCheckbox(Composite parent) {
 		isControlType = new Button(parent, SWT.CHECK);
 		isControlType.setText(UMLMessages.ActivityParameterNodePropertiesEditionPart_IsControlTypeLabel);
 		GridData isControlTypeData = new GridData(GridData.FILL_HORIZONTAL);
 		isControlTypeData.horizontalSpan = 2;
 		isControlType.setLayoutData(isControlTypeData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.isControlType, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.isControlType, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-	protected void createInStateAdvancedReferencesTable(Composite parent) {
-		this.inState = new ReferencesTable<State>(UMLMessages.ActivityParameterNodePropertiesEditionPart_InStateLabel, new ReferencesTableListener<State>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<State> dialog = new TabElementTreeSelectionDialog<State>(resourceSet, inStateFilters, inStateBusinessFilters,
-				"State", UMLPackage.eINSTANCE.getState()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!inStateEditUtil.getVirtualList().contains(elem))
-								inStateEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inState,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						inState.refresh();
+	protected void createInStateAdvancedReferencesTable(Composite parent) {
+		this.inState = new ReferencesTable<State>(UMLMessages.ActivityParameterNodePropertiesEditionPart_InStateLabel,
+				new ReferencesTableListener<State>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<State> dialog = new TabElementTreeSelectionDialog<State>(
+								resourceSet, inStateFilters, inStateBusinessFilters, "State", UMLPackage.eINSTANCE
+										.getState()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!inStateEditUtil.getVirtualList().contains(elem))
+										inStateEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											ActivityParameterNodePropertiesEditionPartImpl.this,
+											UMLViewsRepository.ActivityParameterNode.inState,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								inState.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(State element) { editInState(element); }
-			public void handleMove(State element, int oldIndex, int newIndex) { moveInState(element, oldIndex, newIndex); }
-			public void handleRemove(State element) { removeFromInState(element); }
-			public void navigateTo(State element) { }
-		});
-		this.inState.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ActivityParameterNode.inState, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(State element) {
+						editInState(element);
+					}
+
+					public void handleMove(State element, int oldIndex, int newIndex) {
+						moveInState(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(State element) {
+						removeFromInState(element);
+					}
+
+					public void navigateTo(State element) {
+					}
+				});
+		this.inState.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.ActivityParameterNode.inState, UMLViewsRepository.SWT_KIND));
 		this.inState.createControls(parent);
 		GridData inStateData = new GridData(GridData.FILL_HORIZONTAL);
 		inStateData.horizontalSpan = 3;
 		this.inState.setLayoutData(inStateData);
 		this.inState.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -852,9 +1123,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = inStateEditUtil.foundCorrespondingEObject(element);
 		inStateEditUtil.moveElement(element, oldIndex, newIndex);
 		inState.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inState, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inState,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -865,7 +1138,9 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 		EObject editedElement = inStateEditUtil.foundCorrespondingEObject(element);
 		inStateEditUtil.removeElement(element);
 		inState.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inState, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inState,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -877,16 +1152,21 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	private void editInState(State element) {
 
 		// Start of user code editInState() method body
-		
+
 		EObject editedElement = inStateEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				inStateEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inState.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ActivityParameterNodePropertiesEditionPartImpl.this, UMLViewsRepository.ActivityParameterNode.inState, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						ActivityParameterNodePropertiesEditionPartImpl.this,
+						UMLViewsRepository.ActivityParameterNode.inState, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
@@ -894,10 +1174,9 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 
 	}
 
-
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
 
 	}
@@ -950,7 +1229,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initOwnedComment(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -965,10 +1245,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateOwnedComment(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateOwnedComment(EObject
+	 *      newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -977,7 +1258,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentFilters.add(filter);
@@ -986,7 +1268,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
@@ -1012,7 +1295,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setName(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setName(String
+	 *      newValue)
 	 */
 	public void setName(String newValue) {
 		name.setText(newValue);
@@ -1039,7 +1323,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initVisibility(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -1049,7 +1334,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setVisibility(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setVisibility(Enumerator
+	 *      newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
@@ -1093,7 +1379,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initClientDependency(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1108,10 +1395,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateClientDependency(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateClientDependency(EObject
+	 *      newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil!=null){
+		if (clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -1120,7 +1408,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyFilters.add(filter);
@@ -1129,7 +1418,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyBusinessFilters.add(filter);
@@ -1155,7 +1445,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setIsLeaf(Boolean newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setIsLeaf(Boolean
+	 *      newValue)
 	 */
 	public void setIsLeaf(Boolean newValue) {
 		if (newValue != null) {
@@ -1203,7 +1494,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initOutgoing(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initOutgoing(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initOutgoing(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1218,10 +1510,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateOutgoing(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateOutgoing(EObject
+	 *      newValue)
 	 */
 	public void updateOutgoing(EObject newValue) {
-		if(outgoingEditUtil!=null){
+		if (outgoingEditUtil != null) {
 			outgoingEditUtil.reinit(newValue);
 			outgoing.refresh();
 		}
@@ -1230,7 +1523,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterOutgoing(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterOutgoing(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToOutgoing(ViewerFilter filter) {
 		outgoingFilters.add(filter);
@@ -1239,7 +1533,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterOutgoing(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterOutgoing(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOutgoing(ViewerFilter filter) {
 		outgoingBusinessFilters.add(filter);
@@ -1283,7 +1578,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initIncoming(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initIncoming(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initIncoming(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1298,10 +1594,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateIncoming(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateIncoming(EObject
+	 *      newValue)
 	 */
 	public void updateIncoming(EObject newValue) {
-		if(incomingEditUtil!=null){
+		if (incomingEditUtil != null) {
 			incomingEditUtil.reinit(newValue);
 			incoming.refresh();
 		}
@@ -1310,7 +1607,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterIncoming(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterIncoming(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToIncoming(ViewerFilter filter) {
 		incomingFilters.add(filter);
@@ -1319,7 +1617,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterIncoming(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterIncoming(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToIncoming(ViewerFilter filter) {
 		incomingBusinessFilters.add(filter);
@@ -1363,7 +1662,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initInPartition(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initInPartition(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initInPartition(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1378,10 +1678,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateInPartition(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateInPartition(EObject
+	 *      newValue)
 	 */
 	public void updateInPartition(EObject newValue) {
-		if(inPartitionEditUtil!=null){
+		if (inPartitionEditUtil != null) {
 			inPartitionEditUtil.reinit(newValue);
 			inPartition.refresh();
 		}
@@ -1390,7 +1691,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterInPartition(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterInPartition(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToInPartition(ViewerFilter filter) {
 		inPartitionFilters.add(filter);
@@ -1399,7 +1701,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterInPartition(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterInPartition(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToInPartition(ViewerFilter filter) {
 		inPartitionBusinessFilters.add(filter);
@@ -1443,7 +1746,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initInInterruptibleRegion(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1458,10 +1762,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateInInterruptibleRegion(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateInInterruptibleRegion(EObject
+	 *      newValue)
 	 */
 	public void updateInInterruptibleRegion(EObject newValue) {
-		if(inInterruptibleRegionEditUtil!=null){
+		if (inInterruptibleRegionEditUtil != null) {
 			inInterruptibleRegionEditUtil.reinit(newValue);
 			inInterruptibleRegion.refresh();
 		}
@@ -1470,7 +1775,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterInInterruptibleRegion(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterInInterruptibleRegion(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToInInterruptibleRegion(ViewerFilter filter) {
 		inInterruptibleRegionFilters.add(filter);
@@ -1479,7 +1785,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterInInterruptibleRegion(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterInInterruptibleRegion(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToInInterruptibleRegion(ViewerFilter filter) {
 		inInterruptibleRegionBusinessFilters.add(filter);
@@ -1523,7 +1830,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initRedefinedNode(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initRedefinedNode(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initRedefinedNode(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1538,10 +1846,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateRedefinedNode(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateRedefinedNode(EObject
+	 *      newValue)
 	 */
 	public void updateRedefinedNode(EObject newValue) {
-		if(redefinedNodeEditUtil!=null){
+		if (redefinedNodeEditUtil != null) {
 			redefinedNodeEditUtil.reinit(newValue);
 			redefinedNode.refresh();
 		}
@@ -1550,7 +1859,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterRedefinedNode(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterRedefinedNode(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToRedefinedNode(ViewerFilter filter) {
 		redefinedNodeFilters.add(filter);
@@ -1559,7 +1869,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterRedefinedNode(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterRedefinedNode(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToRedefinedNode(ViewerFilter filter) {
 		redefinedNodeBusinessFilters.add(filter);
@@ -1586,7 +1897,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initOrdering(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initOrdering(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initOrdering(EEnum eenum, Enumerator current) {
 		ordering.setInput(eenum.getELiterals());
@@ -1596,7 +1908,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setOrdering(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setOrdering(Enumerator
+	 *      newValue)
 	 */
 	public void setOrdering(Enumerator newValue) {
 		ordering.modelUpdating(new StructuredSelection(newValue));
@@ -1622,7 +1935,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setIsControlType(Boolean newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#setIsControlType(Boolean
+	 *      newValue)
 	 */
 	public void setIsControlType(Boolean newValue) {
 		if (newValue != null) {
@@ -1670,7 +1984,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initInState(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#initInState(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initInState(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1685,10 +2000,11 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateInState(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#updateInState(EObject
+	 *      newValue)
 	 */
 	public void updateInState(EObject newValue) {
-		if(inStateEditUtil!=null){
+		if (inStateEditUtil != null) {
 			inStateEditUtil.reinit(newValue);
 			inState.refresh();
 		}
@@ -1697,7 +2013,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterInState(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addFilterInState(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToInState(ViewerFilter filter) {
 		inStateFilters.add(filter);
@@ -1706,7 +2023,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterInState(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ActivityParameterNodePropertiesEditionPart#addBusinessFilterInState(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToInState(ViewerFilter filter) {
 		inStateBusinessFilters.add(filter);
@@ -1720,15 +2038,8 @@ public class ActivityParameterNodePropertiesEditionPartImpl extends CompositePro
 
 	}
 
-
-
-
-
-
-
-
 	// Start of user code additional methods
-	
+
 	// End of user code
 
 }

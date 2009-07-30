@@ -32,7 +32,7 @@ public class ImagePropertiesEditionProvider implements IPropertiesEditionProvide
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Image) && (UMLPackage.eINSTANCE.getImage() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ImagePropertiesEditionProvider implements IPropertiesEditionProvide
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ImagePropertiesEditionProvider implements IPropertiesEditionProvide
 		}
 		return null;
 	}
-	
-}	
+
+}

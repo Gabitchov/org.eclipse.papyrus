@@ -57,7 +57,8 @@ public class ShadowFigureHelper {
 	 * 
 	 * @return the command to set the gradient to true are false.
 	 */
-	public static RecordingCommand getGradientColorCommand(TransactionalEditingDomain domain, EModelElement view, boolean shadowFigureValue) {
+	public static RecordingCommand getGradientColorCommand(TransactionalEditingDomain domain, EModelElement view,
+			boolean shadowFigureValue) {
 		return new SetShadowFigureCommand(domain, view, shadowFigureValue);
 	}
 

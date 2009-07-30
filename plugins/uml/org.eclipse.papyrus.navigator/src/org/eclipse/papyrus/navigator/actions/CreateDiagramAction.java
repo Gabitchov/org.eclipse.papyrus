@@ -63,7 +63,8 @@ public class CreateDiagramAction extends Action {
 	@Override
 	public void run() {
 		try {
-			ICreationCommand creationCommand = getCreationCommandRegistry().getCommand(commandDescriptor.getCommandId());
+			ICreationCommand creationCommand = getCreationCommandRegistry()
+					.getCommand(commandDescriptor.getCommandId());
 			BackboneContext backboneContext = NavigatorUtils.getBackboneContext();
 			DiResourceSet diResourceSet = backboneContext.getResourceSet();
 			creationCommand.createDiagram(diResourceSet, container, null);

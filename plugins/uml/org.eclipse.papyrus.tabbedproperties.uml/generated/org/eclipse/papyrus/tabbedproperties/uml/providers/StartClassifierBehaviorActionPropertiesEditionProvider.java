@@ -30,9 +30,10 @@ public class StartClassifierBehaviorActionPropertiesEditionProvider implements I
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof StartClassifierBehaviorAction) && (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction() == eObject.eClass());
+		return (eObject instanceof StartClassifierBehaviorAction)
+				&& (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class StartClassifierBehaviorActionPropertiesEditionProvider implements I
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class StartClassifierBehaviorActionPropertiesEditionProvider implements I
 		}
 		return null;
 	}
-	
-}	
+
+}

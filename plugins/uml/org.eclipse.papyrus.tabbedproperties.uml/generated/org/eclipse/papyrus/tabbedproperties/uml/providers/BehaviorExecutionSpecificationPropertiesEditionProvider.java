@@ -30,9 +30,10 @@ public class BehaviorExecutionSpecificationPropertiesEditionProvider implements 
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof BehaviorExecutionSpecification) && (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification() == eObject.eClass());
+		return (eObject instanceof BehaviorExecutionSpecification)
+				&& (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +46,7 @@ public class BehaviorExecutionSpecificationPropertiesEditionProvider implements 
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +62,5 @@ public class BehaviorExecutionSpecificationPropertiesEditionProvider implements 
 		}
 		return null;
 	}
-	
-}	
+
+}

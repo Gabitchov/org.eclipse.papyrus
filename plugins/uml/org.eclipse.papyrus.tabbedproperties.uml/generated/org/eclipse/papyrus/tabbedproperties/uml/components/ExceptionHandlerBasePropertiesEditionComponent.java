@@ -50,7 +50,6 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ExceptionHandler;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 // End of user code
 
 /**
@@ -60,7 +59,7 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -77,7 +76,7 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	 */
 	public ExceptionHandlerBasePropertiesEditionComponent(EObject exceptionHandler, String editing_mode) {
 		if (exceptionHandler instanceof ExceptionHandler) {
-			this.exceptionHandler = (ExceptionHandler)exceptionHandler;
+			this.exceptionHandler = (ExceptionHandler) exceptionHandler;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.exceptionHandler.eAdapters().add(semanticAdapter);
@@ -103,14 +102,14 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 				if (basePart == null)
 					ExceptionHandlerBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null && 
-							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
-							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+					if (msg.getFeature() != null
+							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
+									.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature())
+									.getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
 						basePart.updateOwnedComment(exceptionHandler);
 					}
 					if (UMLPackage.eINSTANCE.getExceptionHandler_ExceptionType().equals(msg.getFeature()))
 						basePart.updateExceptionType(exceptionHandler);
-
 
 				}
 			}
@@ -142,18 +141,20 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 *      (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (exceptionHandler != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
+						.getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (ExceptionHandlerPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.ExceptionHandler.class, kind, this);
-					addListener((IPropertiesEditionListener)basePart);
+					basePart = (ExceptionHandlerPropertiesEditionPart) provider.getPropertiesEditionPart(
+							UMLViewsRepository.ExceptionHandler.class, kind, this);
+					addListener((IPropertiesEditionListener) basePart);
 				}
 			}
-			return (IPropertiesEditionPart)basePart;
+			return (IPropertiesEditionPart) basePart;
 		}
 		return null;
 	}
@@ -162,7 +163,8 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.ExceptionHandler.class)
@@ -172,40 +174,45 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
+	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.ExceptionHandler.class) {
-			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
-			ExceptionHandler exceptionHandler = (ExceptionHandler)elt;
+			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
+			ExceptionHandler exceptionHandler = (ExceptionHandler) elt;
 			// init values
 			basePart.initOwnedComment(exceptionHandler, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
-			basePart.initExceptionType(exceptionHandler, null, UMLPackage.eINSTANCE.getExceptionHandler_ExceptionType());
-			
+			basePart
+					.initExceptionType(exceptionHandler, null, UMLPackage.eINSTANCE.getExceptionHandler_ExceptionType());
+
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see
+				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
+				 * java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
 			});
 			// Start of user code for additional businessfilters for ownedComment
-			
+
 			// End of user code
 			basePart.addFilterToExceptionType(new ViewerFilter() {
 
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 * @see
+				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
+				 * java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
@@ -216,7 +223,7 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 			});
 			basePart.addFilterToExceptionType(new EObjectFilter(UMLPackage.eINSTANCE.getClassifier()));
 			// Start of user code for additional businessfilters for exceptionType
-			
+
 			// End of user code
 		}
 		// init values for referenced views
@@ -225,55 +232,57 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 
 	}
 
-
-
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (exceptionHandler != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
 			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE
+						.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
 			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-				
+
 				// Start of user code for ownedComment reference refreshment from ownedComment
-				
+
 				Comment nextElement = (Comment) iter.next();
 				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-				
+
 				// End of user code
-				
+
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
 			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-				cc.append(MoveCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
+						.next();
+				cc.append(MoveCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE.getComment(),
+						moveElement.getElement(), moveElement.getIndex()));
 			}
 			List exceptionTypeToAddFromExceptionType = basePart.getExceptionTypeToAdd();
 			for (Iterator iter = exceptionTypeToAddFromExceptionType.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE.getExceptionHandler_ExceptionType(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE
+						.getExceptionHandler_ExceptionType(), iter.next()));
 			List exceptionTypeToRemoveFromExceptionType = basePart.getExceptionTypeToRemove();
 			for (Iterator iter = exceptionTypeToRemoveFromExceptionType.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE.getExceptionHandler_ExceptionType(), iter.next()));
-			//List exceptionTypeToMoveFromExceptionType = basePart.getExceptionTypeToMove();
-			//for (Iterator iter = exceptionTypeToMoveFromExceptionType.iterator(); iter.hasNext();){
-			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			//	cc.append(MoveCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE.getClassifier(), moveElement.getElement(), moveElement.getIndex()));
-			//}
-
+				cc.append(RemoveCommand.create(editingDomain, exceptionHandler, UMLPackage.eINSTANCE
+						.getExceptionHandler_ExceptionType(), iter.next()));
+			// List exceptionTypeToMoveFromExceptionType = basePart.getExceptionTypeToMove();
+			// for (Iterator iter = exceptionTypeToMoveFromExceptionType.iterator();
+			// iter.hasNext();){
+			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement =
+			// (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			// cc.append(MoveCommand.create(editingDomain, exceptionHandler,
+			// UMLPackage.eINSTANCE.getClassifier(), moveElement.getElement(),
+			// moveElement.getIndex()));
+			// }
 
 		}
 		if (!cc.isEmpty())
@@ -289,14 +298,12 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof ExceptionHandler) {
-			ExceptionHandler exceptionHandlerToUpdate = (ExceptionHandler)source;
+			ExceptionHandler exceptionHandlerToUpdate = (ExceptionHandler) source;
 			exceptionHandlerToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			exceptionHandlerToUpdate.getExceptionTypes().addAll(basePart.getExceptionTypeToAdd());
 
-
 			return exceptionHandlerToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -307,47 +314,45 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState()
+				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.ExceptionHandler.ownedComment == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment)event.getOldValue();
-					Comment newValue = (Comment)event.getNewValue();
-					
+					Comment oldValue = (Comment) event.getOldValue();
+					Comment newValue = (Comment) event.getNewValue();
+
 					// Start of user code for ownedComment live update command
 					// TODO: Complete the exceptionHandler update command
 					// End of user code
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
+
+				} else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE
+							.getElement_OwnedComment(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE
+							.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.ExceptionHandler.exceptionType == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE.getExceptionHandler_ExceptionType(), event.getNewValue()));
+					command.append(AddCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE
+							.getExceptionHandler_ExceptionType(), event.getNewValue()));
 				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE.getExceptionHandler_ExceptionType(), event.getNewValue()));
+					command.append(RemoveCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE
+							.getExceptionHandler_ExceptionType(), event.getNewValue()));
 				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE.getExceptionHandler_ExceptionType(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, exceptionHandler, UMLPackage.eINSTANCE
+							.getExceptionHandler_ExceptionType(), event.getNewValue(), event.getNewIndex()));
 			}
-
 
 			liveEditingDomain.getCommandStack().execute(command);
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
 
-
-
-
 			} else {
-
-
-
 
 			}
 		}
@@ -356,7 +361,8 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String,
+	 *      int)
 	 */
 	public boolean isRequired(String key, int kind) {
 		return key == UMLViewsRepository.ExceptionHandler.exceptionType;
@@ -365,15 +371,14 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String, int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String,
+	 *      int)
 	 */
 	public String getHelpContent(String key, int kind) {
 		if (key == UMLViewsRepository.ExceptionHandler.ownedComment)
-			return null
-; //$NON-NLS-1$
+			return null; //$NON-NLS-1$
 		if (key == UMLViewsRepository.ExceptionHandler.exceptionType)
-			return null
-; //$NON-NLS-1$
+			return null; //$NON-NLS-1$
 		return super.getHelpContent(key, kind);
 	}
 
@@ -403,13 +408,11 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
 			return Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			return Diagnostician.INSTANCE.validate(exceptionHandler);
 		else
 			return null;
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -422,4 +425,3 @@ public class ExceptionHandlerBasePropertiesEditionComponent extends StandardProp
 	}
 
 }
-

@@ -32,7 +32,7 @@ public class ActorPropertiesEditionProvider implements IPropertiesEditionProvide
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Actor) && (UMLPackage.eINSTANCE.getActor() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class ActorPropertiesEditionProvider implements IPropertiesEditionProvide
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class ActorPropertiesEditionProvider implements IPropertiesEditionProvide
 		}
 		return null;
 	}
-	
-}	
+
+}

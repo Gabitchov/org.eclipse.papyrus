@@ -27,7 +27,6 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.UMLFactory;
 
-
 /**
  * 
  */
@@ -37,45 +36,44 @@ public class RegisteredMetamodelSelectionDialog extends ElementListSelectionDial
 	 * 
 	 */
 	private EList importedMetamodels;
-	
+
 	/**
 	 * 
 	 */
 	private List<String> importedMetamodelsNames;
-	
+
 	/**
 	 * 
 	 */
 	private RegisteredMetamodel[] regMetamodels;
-	
+
 	/**
 	 * 
 	 */
 	private Package currentModel;
-	
-	
+
 	/**
 	 * 
 	 * 
-	 * @param umlModel 
-	 * @param parent 
+	 * @param umlModel
+	 * @param parent
 	 */
 	public RegisteredMetamodelSelectionDialog(Composite parent, Package umlModel) {
 		super(parent.getShell(), new ExtensionLabelProvider());
-		
-		currentModel			= umlModel;
-		importedMetamodels		= umlModel.getPackageImports();
-		importedMetamodelsNames	= getImportedMetamodelsNames(importedMetamodels);
-		
+
+		currentModel = umlModel;
+		importedMetamodels = umlModel.getPackageImports();
+		importedMetamodelsNames = getImportedMetamodelsNames(importedMetamodels);
+
 		// Retrieve registered Libraries
-		regMetamodels			= RegisteredMetamodel.getRegisteredMetamodels();
+		regMetamodels = RegisteredMetamodel.getRegisteredMetamodels();
 		// remove already applied Libraries from the list
-		regMetamodels			= removeAlreadyImportedFromSelection();
-		
+		regMetamodels = removeAlreadyImportedFromSelection();
+
 		this.setTitle("Import Metamodel from Papyrus repository :");
 		this.setElements(regMetamodels);
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -83,96 +81,94 @@ public class RegisteredMetamodelSelectionDialog extends ElementListSelectionDial
 		this.open();
 		this.treatSelection();
 	}
-	
+
 	/**
 	 * 
 	 * 
-	 * @param appliedLibraries 
+	 * @param appliedLibraries
 	 * 
-	 * @return 
+	 * @return
 	 */
 	private List<String> getImportedMetamodelsNames(EList importedMetamodels) {
-		
+
 		List<String> Metamodels = new ArrayList<String>();
-		Iterator importedIt =  importedMetamodels.iterator();
-		
-		while(importedIt.hasNext()) {
-			org.eclipse.uml2.uml.PackageImport currentImport
-								= (org.eclipse.uml2.uml.PackageImport) importedIt.next();
-			String currentName	= currentImport.getImportedPackage().getName();
+		Iterator importedIt = importedMetamodels.iterator();
+
+		while (importedIt.hasNext()) {
+			org.eclipse.uml2.uml.PackageImport currentImport = (org.eclipse.uml2.uml.PackageImport) importedIt.next();
+			String currentName = currentImport.getImportedPackage().getName();
 			Metamodels.add(currentName);
 		}
-		
+
 		return Metamodels;
 	}
-	
+
 	/**
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
 	private RegisteredMetamodel[] removeAlreadyImportedFromSelection() {
-		
-		List<RegisteredMetamodel> Metamodels = new ArrayList<RegisteredMetamodel>();		
-		
-		for (int i = 0 ; i < regMetamodels.length ; i++) {
-			
+
+		List<RegisteredMetamodel> Metamodels = new ArrayList<RegisteredMetamodel>();
+
+		for (int i = 0; i < regMetamodels.length; i++) {
+
 			String currentName = regMetamodels[i].name;
 			if (!importedMetamodelsNames.contains(currentName)) {
 				Metamodels.add(regMetamodels[i]);
 			}
 		}
-		
+
 		RegisteredMetamodel[] cleanedList;
 		cleanedList = Metamodels.toArray(new RegisteredMetamodel[Metamodels.size()]);
-		
+
 		return cleanedList;
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void treatSelection() {
-		
+
 		// User selection
-		Object[] selection		= this.getResult();
-		
+		Object[] selection = this.getResult();
+
 		if (selection == null) { // Cancel was selected
 			return;
 		}
-		
-		for (int i = 0 ; i < selection.length ; i++) {
-			RegisteredMetamodel currentLibrary	= (RegisteredMetamodel) (selection[i]);
+
+		for (int i = 0; i < selection.length; i++) {
+			RegisteredMetamodel currentLibrary = (RegisteredMetamodel) (selection[i]);
 			URI modelUri = currentLibrary.uri;
 			addModelImportFromURI(currentModel, modelUri);
-			
+
 		}
 	}
-	
+
 	protected boolean addModelImportFromURI(Package currentModel, URI modelUri) {
-		Resource modelResource	= Util.getResourceSet(currentModel).getResource(modelUri,true);
-		
+		Resource modelResource = Util.getResourceSet(currentModel).getResource(modelUri, true);
+
 		if (modelResource.getContents().size() <= 0) {
-			Activator.log("The selected uri ("+ modelUri.toString() +") does not contain any model library !");
+			Activator.log("The selected uri (" + modelUri.toString() + ") does not contain any model library !");
 			return false;
 		}
-		
+
 		// Try to reach model
 		Element root = (Element) modelResource.getContents().get(0);
-		
+
 		if (root instanceof Package) {
-			
+
 			// Import model library
 			Package modelToImport = (Package) (modelResource.getContents().get(0));
 			// create import package
 			PackageImport modelImport = UMLFactory.eINSTANCE.createPackageImport();
 			modelImport.setImportedPackage(modelToImport);
-			
+
 			return currentModel.getPackageImports().add(modelImport);
 		}
-		
-		Activator.log("The selected uri ("+ modelUri.toString() +") does not contain any model library !");
+
+		Activator.log("The selected uri (" + modelUri.toString() + ") does not contain any model library !");
 		return false;
 	}
 }
-

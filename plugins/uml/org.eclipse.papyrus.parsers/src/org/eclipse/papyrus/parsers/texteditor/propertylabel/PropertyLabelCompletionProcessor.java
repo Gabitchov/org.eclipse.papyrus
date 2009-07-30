@@ -41,8 +41,7 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * Completion processor for action language. <BR>
- * Main class to process the different completions given by the texteditor to
- * its user
+ * Main class to process the different completions given by the texteditor to its user
  * 
  * @author Remi SCHNEKENBURGER
  * @see org.eclipse.jface.text.templates.TemplateCompletionProcessor
@@ -73,8 +72,7 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor
+	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor
 	 * #computeCompletionProposals(org.eclipse.jface.text.ITextViewer, int)
 	 */
 	/**
@@ -125,8 +123,7 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor
+	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor
 	 * #computeCompletions(org.eclipse.jface.text.ITextViewer, int, int, int)
 	 */
 	/**
@@ -174,8 +171,8 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 		// NAME: either ':' or ":undefined"
 		case IContext.NAME:
 			v.addAll(createCompletionProposalsWithDifferentName(new String[] { ": ", ": <Undefined>" }, new String[] {
-					"PropertyUtil type", "Undefined property type" }, new String[] { ": <TypeUtil Name>", ": <Undefined>" },
-					"", documentOffset));
+					"PropertyUtil type", "Undefined property type" }, new String[] { ": <TypeUtil Name>",
+					": <Undefined>" }, "", documentOffset));
 			break;
 
 		// PROPERTY TYPE (after ":") model types or undefined

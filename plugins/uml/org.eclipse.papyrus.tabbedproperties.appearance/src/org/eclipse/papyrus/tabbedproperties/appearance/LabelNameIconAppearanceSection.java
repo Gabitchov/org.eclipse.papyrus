@@ -102,7 +102,9 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
 						// command creation
 						if (editingDomain != null) {
-							editingDomain.getCommandStack().execute(new SetNameLabelIconCommand(editingDomain, ((EModelElement) editPart.getModel()), isChecked));
+							editingDomain.getCommandStack().execute(
+									new SetNameLabelIconCommand(editingDomain, ((EModelElement) editPart.getModel()),
+											isChecked));
 						}
 
 						refresh();
@@ -132,7 +134,8 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 			if (editPart != null) {
 
 				if ((editPart.getModel()) != null) {
-					checboxElementIconAppearence.setSelection(NameLabelIconHelper.getNameLabelIconValue((EModelElement) editPart.getModel()));
+					checboxElementIconAppearence.setSelection(NameLabelIconHelper
+							.getNameLabelIconValue((EModelElement) editPart.getModel()));
 
 				} else {
 					checboxElementIconAppearence.setEnabled(false);
@@ -164,7 +167,8 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 		}
 		// When the selection is computed from the outline, get the associated editor
 		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
+			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part)
+					.getAdapter(IContributedContentsView.class));
 			if (contributedView != null) {
 				part = (IWorkbenchPart) contributedView.getContributingPart();
 			}

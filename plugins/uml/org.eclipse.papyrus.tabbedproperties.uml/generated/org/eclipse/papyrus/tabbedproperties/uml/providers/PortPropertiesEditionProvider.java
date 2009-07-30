@@ -32,7 +32,7 @@ public class PortPropertiesEditionProvider implements IPropertiesEditionProvider
 	public boolean provides(EObject eObject) {
 		return (eObject instanceof Port) && (UMLPackage.eINSTANCE.getPort() == eObject.eClass());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -45,7 +45,7 @@ public class PortPropertiesEditionProvider implements IPropertiesEditionProvider
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -61,5 +61,5 @@ public class PortPropertiesEditionProvider implements IPropertiesEditionProvider
 		}
 		return null;
 	}
-	
-}	
+
+}

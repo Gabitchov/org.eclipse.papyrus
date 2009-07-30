@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ViewerFilter;
- 
 
 // End of user code
 
@@ -59,15 +58,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *            the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -89,10 +94,6 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the name
 	 */
@@ -100,7 +101,9 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *            the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -115,20 +118,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *            the enum to manage
+	 * @param current
+	 *            the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *            the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
 
 	/**
 	 * @return the clientDependency to add
@@ -147,15 +151,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *            the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -177,10 +187,6 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the realization to add
 	 */
@@ -198,15 +204,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the realization
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRealization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realization
-	 * @param newValue the realization to update
+	 * 
+	 * @param newValue
+	 *            the realization to update
 	 */
 	public void updateRealization(EObject newValue);
 
@@ -228,10 +240,6 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToRealization(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the conveyed to add
 	 */
@@ -249,15 +257,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the conveyed
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initConveyed(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the conveyed
-	 * @param newValue the conveyed to update
+	 * 
+	 * @param newValue
+	 *            the conveyed to update
 	 */
 	public void updateConveyed(EObject newValue);
 
@@ -279,10 +293,6 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToConveyed(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the informationSource to add
 	 */
@@ -300,15 +310,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the informationSource
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInformationSource(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the informationSource
-	 * @param newValue the informationSource to update
+	 * 
+	 * @param newValue
+	 *            the informationSource to update
 	 */
 	public void updateInformationSource(EObject newValue);
 
@@ -330,10 +346,6 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToInformationSource(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the informationTarget to add
 	 */
@@ -351,15 +363,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the informationTarget
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initInformationTarget(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the informationTarget
-	 * @param newValue the informationTarget to update
+	 * 
+	 * @param newValue
+	 *            the informationTarget to update
 	 */
 	public void updateInformationTarget(EObject newValue);
 
@@ -381,10 +399,6 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToInformationTarget(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the realizingActivityEdge to add
 	 */
@@ -402,15 +416,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the realizingActivityEdge
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRealizingActivityEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingActivityEdge
-	 * @param newValue the realizingActivityEdge to update
+	 * 
+	 * @param newValue
+	 *            the realizingActivityEdge to update
 	 */
 	public void updateRealizingActivityEdge(EObject newValue);
 
@@ -432,10 +452,6 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToRealizingActivityEdge(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the realizingConnector to add
 	 */
@@ -453,15 +469,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the realizingConnector
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRealizingConnector(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingConnector
-	 * @param newValue the realizingConnector to update
+	 * 
+	 * @param newValue
+	 *            the realizingConnector to update
 	 */
 	public void updateRealizingConnector(EObject newValue);
 
@@ -483,10 +505,6 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToRealizingConnector(ViewerFilter filter);
 
-
-
-
-
 	/**
 	 * @return the realizingMessage to add
 	 */
@@ -504,15 +522,21 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the realizingMessage
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *            the current value
+	 * @param containgFeature
+	 *            the feature where to navigate if necessary
+	 * @param feature
+	 *            the feature to manage
 	 */
 	public void initRealizingMessage(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingMessage
-	 * @param newValue the realizingMessage to update
+	 * 
+	 * @param newValue
+	 *            the realizingMessage to update
 	 */
 	public void updateRealizingMessage(EObject newValue);
 
@@ -534,18 +558,8 @@ public interface InformationFlowPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToRealizingMessage(ViewerFilter filter);
 
-
-
-
-
-
-
-
-
-
 	// Start of user code for additional methods
-	
+
 	// End of user code
 
 }
-

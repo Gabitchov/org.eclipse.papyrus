@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.parsers.util;
 
 /**
@@ -20,7 +20,7 @@ public class SimpleStringErrorReporter implements IErrorReporter {
 
 	/** stored message */
 	private String message = null;
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -30,7 +30,9 @@ public class SimpleStringErrorReporter implements IErrorReporter {
 
 	/**
 	 * Sets the error message
-	 * @param message the message to set
+	 * 
+	 * @param message
+	 *            the message to set
 	 */
 	public void setMessage(String message) {
 		this.message = message;
@@ -38,10 +40,11 @@ public class SimpleStringErrorReporter implements IErrorReporter {
 
 	/**
 	 * Returns the error message
+	 * 
 	 * @return the message to return
 	 */
 	public String getMessage() {
 		return message;
 	}
-	
+
 }

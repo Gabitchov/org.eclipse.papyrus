@@ -92,7 +92,6 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Comment;
 
-
 import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 
 // End of user code
@@ -100,51 +99,85 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class InformationFlowPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, InformationFlowPropertiesEditionPart {
+public class InformationFlowPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
+		ISWTPropertiesEditionPart, InformationFlowPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<?> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	protected EMFListEditUtil clientDependencyEditUtil;
+
 	protected ReferencesTable<?> clientDependency;
+
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil realizationEditUtil;
+
 	protected ReferencesTable<?> realization;
+
 	protected List<ViewerFilter> realizationBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> realizationFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil conveyedEditUtil;
+
 	protected ReferencesTable<?> conveyed;
+
 	protected List<ViewerFilter> conveyedBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> conveyedFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil informationSourceEditUtil;
+
 	protected ReferencesTable<?> informationSource;
+
 	protected List<ViewerFilter> informationSourceBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> informationSourceFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil informationTargetEditUtil;
+
 	protected ReferencesTable<?> informationTarget;
+
 	protected List<ViewerFilter> informationTargetBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> informationTargetFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil realizingActivityEdgeEditUtil;
+
 	protected ReferencesTable<?> realizingActivityEdge;
+
 	protected List<ViewerFilter> realizingActivityEdgeBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> realizingActivityEdgeFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil realizingConnectorEditUtil;
+
 	protected ReferencesTable<?> realizingConnector;
+
 	protected List<ViewerFilter> realizingConnectorBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> realizingConnectorFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil realizingMessageEditUtil;
+
 	protected ReferencesTable<?> realizingMessage;
+
 	protected List<ViewerFilter> realizingMessageBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> realizingMessageFilters = new ArrayList<ViewerFilter>();
 
-
-
-
-	
 	public InformationFlowPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
@@ -154,16 +187,16 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
-		
+
 		// End of user code
 
 	}
@@ -189,18 +222,36 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		createRealizingConnectorAdvancedReferencesTable(propertiesGroup);
 		createRealizingMessageAdvancedReferencesTable(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.InformationFlowPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
-		});
-		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.ownedComment, UMLViewsRepository.SWT_KIND));
+		this.ownedComment = new ReferencesTable<Comment>(
+				UMLMessages.InformationFlowPropertiesEditionPart_OwnedCommentLabel,
+				new ReferencesTableListener<Comment>() {
+
+					public void handleAdd() {
+						addToOwnedComment();
+					}
+
+					public void handleEdit(Comment element) {
+						editOwnedComment(element);
+					}
+
+					public void handleMove(Comment element, int oldIndex, int newIndex) {
+						moveOwnedComment(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Comment element) {
+						removeFromOwnedComment(element);
+					}
+
+					public void navigateTo(Comment element) {
+					}
+				});
+		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
 		GridData ownedCommentData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedCommentData.horizontalSpan = 3;
@@ -211,12 +262,14 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	 * 
 	 */
 	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-				
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
-		
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.ownedComment,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+
 	}
 
 	/**
@@ -226,22 +279,25 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 
 		// Start of user code addToOwnedComment() method body
 
-
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(eObject);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent, eObject,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
+							eObject, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.ownedComment,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-		
-		
+
 		// End of user code
-		
+
 	}
 
 	/**
@@ -254,7 +310,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.ownedComment,
+				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -266,24 +324,32 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-		
+
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.ownedComment, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.ownedComment,
+						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, editedElement,
+						propertiesEditionObject));
 			}
 		}
-		
+
 		// End of user code
 
 	}
+
 	protected void createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.InformationFlowPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.InformationFlow.name, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.InformationFlowPropertiesEditionPart_NameLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.InformationFlow.name,
+						UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -292,59 +358,86 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see
+			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.name,
+							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.InformationFlowPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.InformationFlow.visibility, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.InformationFlowPropertiesEditionPart_VisibilityLabel,
+				propertiesEditionComponent.isRequired(UMLViewsRepository.InformationFlow.visibility,
+						UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-	protected void createClientDependencyAdvancedReferencesTable(Composite parent) {
-		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.InformationFlowPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
-								clientDependencyEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.clientDependency,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						clientDependency.refresh();
+	protected void createClientDependencyAdvancedReferencesTable(Composite parent) {
+		this.clientDependency = new ReferencesTable<Dependency>(
+				UMLMessages.InformationFlowPropertiesEditionPart_ClientDependencyLabel,
+				new ReferencesTableListener<Dependency>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(
+								resourceSet, clientDependencyFilters, clientDependencyBusinessFilters, "Dependency",
+								UMLPackage.eINSTANCE.getDependency()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+										clientDependencyEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InformationFlowPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InformationFlow.clientDependency,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								clientDependency.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { }
-		});
-		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.clientDependency, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(Dependency element) {
+						editClientDependency(element);
+					}
+
+					public void handleMove(Dependency element, int oldIndex, int newIndex) {
+						moveClientDependency(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Dependency element) {
+						removeFromClientDependency(element);
+					}
+
+					public void navigateTo(Dependency element) {
+					}
+				});
+		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.clientDependency, UMLViewsRepository.SWT_KIND));
 		this.clientDependency.createControls(parent);
 		GridData clientDependencyData = new GridData(GridData.FILL_HORIZONTAL);
 		clientDependencyData.horizontalSpan = 3;
 		this.clientDependency.setLayoutData(clientDependencyData);
 		this.clientDependency.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -352,9 +445,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.moveElement(element, oldIndex, newIndex);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.clientDependency,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -365,7 +460,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.removeElement(element);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.clientDependency,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -377,61 +474,85 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editClientDependency(Dependency element) {
 
 		// Start of user code editClientDependency() method body
-		
+
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InformationFlow.clientDependency, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createRealizationAdvancedReferencesTable(Composite parent) {
-		this.realization = new ReferencesTable<Relationship>(UMLMessages.InformationFlowPropertiesEditionPart_RealizationLabel, new ReferencesTableListener<Relationship>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<Relationship> dialog = new TabElementTreeSelectionDialog<Relationship>(resourceSet, realizationFilters, realizationBusinessFilters,
-				"Relationship", UMLPackage.eINSTANCE.getRelationship()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!realizationEditUtil.getVirtualList().contains(elem))
-								realizationEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realization,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						realization.refresh();
+	protected void createRealizationAdvancedReferencesTable(Composite parent) {
+		this.realization = new ReferencesTable<Relationship>(
+				UMLMessages.InformationFlowPropertiesEditionPart_RealizationLabel,
+				new ReferencesTableListener<Relationship>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<Relationship> dialog = new TabElementTreeSelectionDialog<Relationship>(
+								resourceSet, realizationFilters, realizationBusinessFilters, "Relationship",
+								UMLPackage.eINSTANCE.getRelationship()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!realizationEditUtil.getVirtualList().contains(elem))
+										realizationEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InformationFlowPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InformationFlow.realization,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								realization.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(Relationship element) { editRealization(element); }
-			public void handleMove(Relationship element, int oldIndex, int newIndex) { moveRealization(element, oldIndex, newIndex); }
-			public void handleRemove(Relationship element) { removeFromRealization(element); }
-			public void navigateTo(Relationship element) { }
-		});
-		this.realization.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.realization, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(Relationship element) {
+						editRealization(element);
+					}
+
+					public void handleMove(Relationship element, int oldIndex, int newIndex) {
+						moveRealization(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Relationship element) {
+						removeFromRealization(element);
+					}
+
+					public void navigateTo(Relationship element) {
+					}
+				});
+		this.realization.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.realization, UMLViewsRepository.SWT_KIND));
 		this.realization.createControls(parent);
 		GridData realizationData = new GridData(GridData.FILL_HORIZONTAL);
 		realizationData.horizontalSpan = 3;
 		this.realization.setLayoutData(realizationData);
 		this.realization.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveRealization(Relationship element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -442,7 +563,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = realizationEditUtil.foundCorrespondingEObject(element);
 		realizationEditUtil.removeElement(element);
 		realization.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realization, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realization,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -454,61 +577,84 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editRealization(Relationship element) {
 
 		// Start of user code editRealization() method body
-		
+
 		EObject editedElement = realizationEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				realizationEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				realization.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realization, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realization,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement,
+						propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createConveyedAdvancedReferencesTable(Composite parent) {
-		this.conveyed = new ReferencesTable<Classifier>(UMLMessages.InformationFlowPropertiesEditionPart_ConveyedLabel, new ReferencesTableListener<Classifier>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<Classifier> dialog = new TabElementTreeSelectionDialog<Classifier>(resourceSet, conveyedFilters, conveyedBusinessFilters,
-				"Classifier", UMLPackage.eINSTANCE.getClassifier()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!conveyedEditUtil.getVirtualList().contains(elem))
-								conveyedEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.conveyed,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						conveyed.refresh();
+	protected void createConveyedAdvancedReferencesTable(Composite parent) {
+		this.conveyed = new ReferencesTable<Classifier>(UMLMessages.InformationFlowPropertiesEditionPart_ConveyedLabel,
+				new ReferencesTableListener<Classifier>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<Classifier> dialog = new TabElementTreeSelectionDialog<Classifier>(
+								resourceSet, conveyedFilters, conveyedBusinessFilters, "Classifier",
+								UMLPackage.eINSTANCE.getClassifier()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!conveyedEditUtil.getVirtualList().contains(elem))
+										conveyedEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InformationFlowPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InformationFlow.conveyed, PropertiesEditionEvent.COMMIT,
+											PropertiesEditionEvent.ADD, null, elem));
+								}
+								conveyed.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(Classifier element) { editConveyed(element); }
-			public void handleMove(Classifier element, int oldIndex, int newIndex) { moveConveyed(element, oldIndex, newIndex); }
-			public void handleRemove(Classifier element) { removeFromConveyed(element); }
-			public void navigateTo(Classifier element) { }
-		});
-		this.conveyed.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.conveyed, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(Classifier element) {
+						editConveyed(element);
+					}
+
+					public void handleMove(Classifier element, int oldIndex, int newIndex) {
+						moveConveyed(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Classifier element) {
+						removeFromConveyed(element);
+					}
+
+					public void navigateTo(Classifier element) {
+					}
+				});
+		this.conveyed.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.conveyed, UMLViewsRepository.SWT_KIND));
 		this.conveyed.createControls(parent);
 		GridData conveyedData = new GridData(GridData.FILL_HORIZONTAL);
 		conveyedData.horizontalSpan = 3;
 		this.conveyed.setLayoutData(conveyedData);
 		this.conveyed.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveConveyed(Classifier element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -519,7 +665,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = conveyedEditUtil.foundCorrespondingEObject(element);
 		conveyedEditUtil.removeElement(element);
 		conveyed.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.conveyed, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.conveyed,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -531,61 +679,85 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editConveyed(Classifier element) {
 
 		// Start of user code editConveyed() method body
-		
+
 		EObject editedElement = conveyedEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				conveyedEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				conveyed.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.conveyed, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.conveyed,
+						PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement,
+						propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createInformationSourceAdvancedReferencesTable(Composite parent) {
-		this.informationSource = new ReferencesTable<NamedElement>(UMLMessages.InformationFlowPropertiesEditionPart_InformationSourceLabel, new ReferencesTableListener<NamedElement>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(resourceSet, informationSourceFilters, informationSourceBusinessFilters,
-				"NamedElement", UMLPackage.eINSTANCE.getNamedElement()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!informationSourceEditUtil.getVirtualList().contains(elem))
-								informationSourceEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.informationSource,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						informationSource.refresh();
+	protected void createInformationSourceAdvancedReferencesTable(Composite parent) {
+		this.informationSource = new ReferencesTable<NamedElement>(
+				UMLMessages.InformationFlowPropertiesEditionPart_InformationSourceLabel,
+				new ReferencesTableListener<NamedElement>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(
+								resourceSet, informationSourceFilters, informationSourceBusinessFilters,
+								"NamedElement", UMLPackage.eINSTANCE.getNamedElement()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!informationSourceEditUtil.getVirtualList().contains(elem))
+										informationSourceEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InformationFlowPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InformationFlow.informationSource,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								informationSource.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(NamedElement element) { editInformationSource(element); }
-			public void handleMove(NamedElement element, int oldIndex, int newIndex) { moveInformationSource(element, oldIndex, newIndex); }
-			public void handleRemove(NamedElement element) { removeFromInformationSource(element); }
-			public void navigateTo(NamedElement element) { }
-		});
-		this.informationSource.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.informationSource, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(NamedElement element) {
+						editInformationSource(element);
+					}
+
+					public void handleMove(NamedElement element, int oldIndex, int newIndex) {
+						moveInformationSource(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(NamedElement element) {
+						removeFromInformationSource(element);
+					}
+
+					public void navigateTo(NamedElement element) {
+					}
+				});
+		this.informationSource.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.informationSource, UMLViewsRepository.SWT_KIND));
 		this.informationSource.createControls(parent);
 		GridData informationSourceData = new GridData(GridData.FILL_HORIZONTAL);
 		informationSourceData.horizontalSpan = 3;
 		this.informationSource.setLayoutData(informationSourceData);
 		this.informationSource.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveInformationSource(NamedElement element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -596,7 +768,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = informationSourceEditUtil.foundCorrespondingEObject(element);
 		informationSourceEditUtil.removeElement(element);
 		informationSource.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.informationSource, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.informationSource,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -608,61 +782,85 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editInformationSource(NamedElement element) {
 
 		// Start of user code editInformationSource() method body
-		
+
 		EObject editedElement = informationSourceEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				informationSourceEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				informationSource.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.informationSource, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InformationFlow.informationSource, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createInformationTargetAdvancedReferencesTable(Composite parent) {
-		this.informationTarget = new ReferencesTable<NamedElement>(UMLMessages.InformationFlowPropertiesEditionPart_InformationTargetLabel, new ReferencesTableListener<NamedElement>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(resourceSet, informationTargetFilters, informationTargetBusinessFilters,
-				"NamedElement", UMLPackage.eINSTANCE.getNamedElement()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!informationTargetEditUtil.getVirtualList().contains(elem))
-								informationTargetEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.informationTarget,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						informationTarget.refresh();
+	protected void createInformationTargetAdvancedReferencesTable(Composite parent) {
+		this.informationTarget = new ReferencesTable<NamedElement>(
+				UMLMessages.InformationFlowPropertiesEditionPart_InformationTargetLabel,
+				new ReferencesTableListener<NamedElement>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(
+								resourceSet, informationTargetFilters, informationTargetBusinessFilters,
+								"NamedElement", UMLPackage.eINSTANCE.getNamedElement()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!informationTargetEditUtil.getVirtualList().contains(elem))
+										informationTargetEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InformationFlowPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InformationFlow.informationTarget,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								informationTarget.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(NamedElement element) { editInformationTarget(element); }
-			public void handleMove(NamedElement element, int oldIndex, int newIndex) { moveInformationTarget(element, oldIndex, newIndex); }
-			public void handleRemove(NamedElement element) { removeFromInformationTarget(element); }
-			public void navigateTo(NamedElement element) { }
-		});
-		this.informationTarget.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.informationTarget, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(NamedElement element) {
+						editInformationTarget(element);
+					}
+
+					public void handleMove(NamedElement element, int oldIndex, int newIndex) {
+						moveInformationTarget(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(NamedElement element) {
+						removeFromInformationTarget(element);
+					}
+
+					public void navigateTo(NamedElement element) {
+					}
+				});
+		this.informationTarget.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.informationTarget, UMLViewsRepository.SWT_KIND));
 		this.informationTarget.createControls(parent);
 		GridData informationTargetData = new GridData(GridData.FILL_HORIZONTAL);
 		informationTargetData.horizontalSpan = 3;
 		this.informationTarget.setLayoutData(informationTargetData);
 		this.informationTarget.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveInformationTarget(NamedElement element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -673,7 +871,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = informationTargetEditUtil.foundCorrespondingEObject(element);
 		informationTargetEditUtil.removeElement(element);
 		informationTarget.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.informationTarget, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.informationTarget,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -685,61 +885,85 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editInformationTarget(NamedElement element) {
 
 		// Start of user code editInformationTarget() method body
-		
+
 		EObject editedElement = informationTargetEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				informationTargetEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				informationTarget.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.informationTarget, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InformationFlow.informationTarget, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createRealizingActivityEdgeAdvancedReferencesTable(Composite parent) {
-		this.realizingActivityEdge = new ReferencesTable<ActivityEdge>(UMLMessages.InformationFlowPropertiesEditionPart_RealizingActivityEdgeLabel, new ReferencesTableListener<ActivityEdge>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, realizingActivityEdgeFilters, realizingActivityEdgeBusinessFilters,
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!realizingActivityEdgeEditUtil.getVirtualList().contains(elem))
-								realizingActivityEdgeEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingActivityEdge,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						realizingActivityEdge.refresh();
+	protected void createRealizingActivityEdgeAdvancedReferencesTable(Composite parent) {
+		this.realizingActivityEdge = new ReferencesTable<ActivityEdge>(
+				UMLMessages.InformationFlowPropertiesEditionPart_RealizingActivityEdgeLabel,
+				new ReferencesTableListener<ActivityEdge>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(
+								resourceSet, realizingActivityEdgeFilters, realizingActivityEdgeBusinessFilters,
+								"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!realizingActivityEdgeEditUtil.getVirtualList().contains(elem))
+										realizingActivityEdgeEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InformationFlowPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InformationFlow.realizingActivityEdge,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								realizingActivityEdge.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(ActivityEdge element) { editRealizingActivityEdge(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveRealizingActivityEdge(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromRealizingActivityEdge(element); }
-			public void navigateTo(ActivityEdge element) { }
-		});
-		this.realizingActivityEdge.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.realizingActivityEdge, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(ActivityEdge element) {
+						editRealizingActivityEdge(element);
+					}
+
+					public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+						moveRealizingActivityEdge(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(ActivityEdge element) {
+						removeFromRealizingActivityEdge(element);
+					}
+
+					public void navigateTo(ActivityEdge element) {
+					}
+				});
+		this.realizingActivityEdge.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.realizingActivityEdge, UMLViewsRepository.SWT_KIND));
 		this.realizingActivityEdge.createControls(parent);
 		GridData realizingActivityEdgeData = new GridData(GridData.FILL_HORIZONTAL);
 		realizingActivityEdgeData.horizontalSpan = 3;
 		this.realizingActivityEdge.setLayoutData(realizingActivityEdgeData);
 		this.realizingActivityEdge.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void moveRealizingActivityEdge(ActivityEdge element, int oldIndex, int newIndex) {
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -750,7 +974,10 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = realizingActivityEdgeEditUtil.foundCorrespondingEObject(element);
 		realizingActivityEdgeEditUtil.removeElement(element);
 		realizingActivityEdge.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingActivityEdge, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this,
+				UMLViewsRepository.InformationFlow.realizingActivityEdge, PropertiesEditionEvent.COMMIT,
+				PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -762,55 +989,79 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editRealizingActivityEdge(ActivityEdge element) {
 
 		// Start of user code editRealizingActivityEdge() method body
-		
+
 		EObject editedElement = realizingActivityEdgeEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				realizingActivityEdgeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				realizingActivityEdge.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingActivityEdge, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InformationFlow.realizingActivityEdge, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createRealizingConnectorAdvancedReferencesTable(Composite parent) {
-		this.realizingConnector = new ReferencesTable<Connector>(UMLMessages.InformationFlowPropertiesEditionPart_RealizingConnectorLabel, new ReferencesTableListener<Connector>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<Connector> dialog = new TabElementTreeSelectionDialog<Connector>(resourceSet, realizingConnectorFilters, realizingConnectorBusinessFilters,
-				"Connector", UMLPackage.eINSTANCE.getConnector()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!realizingConnectorEditUtil.getVirtualList().contains(elem))
-								realizingConnectorEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingConnector,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						realizingConnector.refresh();
+	protected void createRealizingConnectorAdvancedReferencesTable(Composite parent) {
+		this.realizingConnector = new ReferencesTable<Connector>(
+				UMLMessages.InformationFlowPropertiesEditionPart_RealizingConnectorLabel,
+				new ReferencesTableListener<Connector>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<Connector> dialog = new TabElementTreeSelectionDialog<Connector>(
+								resourceSet, realizingConnectorFilters, realizingConnectorBusinessFilters, "Connector",
+								UMLPackage.eINSTANCE.getConnector()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!realizingConnectorEditUtil.getVirtualList().contains(elem))
+										realizingConnectorEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InformationFlowPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InformationFlow.realizingConnector,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								realizingConnector.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(Connector element) { editRealizingConnector(element); }
-			public void handleMove(Connector element, int oldIndex, int newIndex) { moveRealizingConnector(element, oldIndex, newIndex); }
-			public void handleRemove(Connector element) { removeFromRealizingConnector(element); }
-			public void navigateTo(Connector element) { }
-		});
-		this.realizingConnector.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.realizingConnector, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(Connector element) {
+						editRealizingConnector(element);
+					}
+
+					public void handleMove(Connector element, int oldIndex, int newIndex) {
+						moveRealizingConnector(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Connector element) {
+						removeFromRealizingConnector(element);
+					}
+
+					public void navigateTo(Connector element) {
+					}
+				});
+		this.realizingConnector.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.realizingConnector, UMLViewsRepository.SWT_KIND));
 		this.realizingConnector.createControls(parent);
 		GridData realizingConnectorData = new GridData(GridData.FILL_HORIZONTAL);
 		realizingConnectorData.horizontalSpan = 3;
 		this.realizingConnector.setLayoutData(realizingConnectorData);
 		this.realizingConnector.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -818,9 +1069,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = realizingConnectorEditUtil.foundCorrespondingEObject(element);
 		realizingConnectorEditUtil.moveElement(element, oldIndex, newIndex);
 		realizingConnector.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingConnector, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingConnector,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -831,7 +1084,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = realizingConnectorEditUtil.foundCorrespondingEObject(element);
 		realizingConnectorEditUtil.removeElement(element);
 		realizingConnector.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingConnector, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingConnector,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -843,55 +1098,79 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editRealizingConnector(Connector element) {
 
 		// Start of user code editRealizingConnector() method body
-		
+
 		EObject editedElement = realizingConnectorEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				realizingConnectorEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				realizingConnector.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingConnector, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InformationFlow.realizingConnector, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
 		// End of user code
 
 	}
-	protected void createRealizingMessageAdvancedReferencesTable(Composite parent) {
-		this.realizingMessage = new ReferencesTable<Message>(UMLMessages.InformationFlowPropertiesEditionPart_RealizingMessageLabel, new ReferencesTableListener<Message>() {
-			public void handleAdd() {
-				TabElementTreeSelectionDialog<Message> dialog = new TabElementTreeSelectionDialog<Message>(resourceSet, realizingMessageFilters, realizingMessageBusinessFilters,
-				"Message", UMLPackage.eINSTANCE.getMessage()) {
 
-					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!realizingMessageEditUtil.getVirtualList().contains(elem))
-								realizingMessageEditUtil.addElement(elem);
-							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingMessage,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-						}
-						realizingMessage.refresh();
+	protected void createRealizingMessageAdvancedReferencesTable(Composite parent) {
+		this.realizingMessage = new ReferencesTable<Message>(
+				UMLMessages.InformationFlowPropertiesEditionPart_RealizingMessageLabel,
+				new ReferencesTableListener<Message>() {
+
+					public void handleAdd() {
+						TabElementTreeSelectionDialog<Message> dialog = new TabElementTreeSelectionDialog<Message>(
+								resourceSet, realizingMessageFilters, realizingMessageBusinessFilters, "Message",
+								UMLPackage.eINSTANCE.getMessage()) {
+
+							public void process(IStructuredSelection selection) {
+								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+									EObject elem = (EObject) iter.next();
+									if (!realizingMessageEditUtil.getVirtualList().contains(elem))
+										realizingMessageEditUtil.addElement(elem);
+									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+											InformationFlowPropertiesEditionPartImpl.this,
+											UMLViewsRepository.InformationFlow.realizingMessage,
+											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+								}
+								realizingMessage.refresh();
+							}
+
+						};
+						dialog.open();
 					}
 
-				};
-				dialog.open();
-			}
-			public void handleEdit(Message element) { editRealizingMessage(element); }
-			public void handleMove(Message element, int oldIndex, int newIndex) { moveRealizingMessage(element, oldIndex, newIndex); }
-			public void handleRemove(Message element) { removeFromRealizingMessage(element); }
-			public void navigateTo(Message element) { }
-		});
-		this.realizingMessage.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InformationFlow.realizingMessage, UMLViewsRepository.SWT_KIND));
+					public void handleEdit(Message element) {
+						editRealizingMessage(element);
+					}
+
+					public void handleMove(Message element, int oldIndex, int newIndex) {
+						moveRealizingMessage(element, oldIndex, newIndex);
+					}
+
+					public void handleRemove(Message element) {
+						removeFromRealizingMessage(element);
+					}
+
+					public void navigateTo(Message element) {
+					}
+				});
+		this.realizingMessage.setHelpText(propertiesEditionComponent.getHelpContent(
+				UMLViewsRepository.InformationFlow.realizingMessage, UMLViewsRepository.SWT_KIND));
 		this.realizingMessage.createControls(parent);
 		GridData realizingMessageData = new GridData(GridData.FILL_HORIZONTAL);
 		realizingMessageData.horizontalSpan = 3;
 		this.realizingMessage.setLayoutData(realizingMessageData);
 		this.realizingMessage.disableMove();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -899,9 +1178,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = realizingMessageEditUtil.foundCorrespondingEObject(element);
 		realizingMessageEditUtil.moveElement(element, oldIndex, newIndex);
 		realizingMessage.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingMessage, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingMessage,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -912,7 +1193,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 		EObject editedElement = realizingMessageEditUtil.foundCorrespondingEObject(element);
 		realizingMessageEditUtil.removeElement(element);
 		realizingMessage.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingMessage, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+				InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingMessage,
+				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
 
 		// End of user code
 
@@ -924,16 +1207,21 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	private void editRealizingMessage(Message element) {
 
 		// Start of user code editRealizingMessage() method body
-		
+
 		EObject editedElement = realizingMessageEditUtil.foundCorrespondingEObject(element);
-		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance().getProvider(element);
-		IPropertiesEditionPolicy editionPolicy = policyProvider	.getEditionPolicy(editedElement);
+		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
+				.getProvider(element);
+		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
 		if (editionPolicy != null) {
-			EObject propertiesEditionObject = editionPolicy.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element,resourceSet));
+			EObject propertiesEditionObject = editionPolicy
+					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
 			if (propertiesEditionObject != null) {
 				realizingMessageEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				realizingMessage.refresh();
-				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InformationFlowPropertiesEditionPartImpl.this, UMLViewsRepository.InformationFlow.realizingMessage, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+						InformationFlowPropertiesEditionPartImpl.this,
+						UMLViewsRepository.InformationFlow.realizingMessage, PropertiesEditionEvent.COMMIT,
+						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
 
@@ -941,10 +1229,9 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 
 	}
 
-
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
+
 		// End of user code
 
 	}
@@ -997,7 +1284,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initOwnedComment(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1012,10 +1300,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateOwnedComment(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateOwnedComment(EObject
+	 *      newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil!=null){
+		if (ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -1024,7 +1313,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentFilters.add(filter);
@@ -1033,7 +1323,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
@@ -1059,7 +1350,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#setName(String newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#setName(String
+	 *      newValue)
 	 */
 	public void setName(String newValue) {
 		name.setText(newValue);
@@ -1086,7 +1378,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initVisibility(EEnum
+	 *      eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -1096,7 +1389,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#setVisibility(Enumerator newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#setVisibility(Enumerator
+	 *      newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
@@ -1140,7 +1434,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initClientDependency(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1155,10 +1450,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateClientDependency(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateClientDependency(EObject
+	 *      newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil!=null){
+		if (clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -1167,7 +1463,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyFilters.add(filter);
@@ -1176,7 +1473,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyBusinessFilters.add(filter);
@@ -1220,7 +1518,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initRealization(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initRealization(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initRealization(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1235,10 +1534,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateRealization(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateRealization(EObject
+	 *      newValue)
 	 */
 	public void updateRealization(EObject newValue) {
-		if(realizationEditUtil!=null){
+		if (realizationEditUtil != null) {
 			realizationEditUtil.reinit(newValue);
 			realization.refresh();
 		}
@@ -1247,7 +1547,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterRealization(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterRealization(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToRealization(ViewerFilter filter) {
 		realizationFilters.add(filter);
@@ -1256,7 +1557,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterRealization(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterRealization(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToRealization(ViewerFilter filter) {
 		realizationBusinessFilters.add(filter);
@@ -1300,7 +1602,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initConveyed(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initConveyed(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initConveyed(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1315,10 +1618,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateConveyed(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateConveyed(EObject
+	 *      newValue)
 	 */
 	public void updateConveyed(EObject newValue) {
-		if(conveyedEditUtil!=null){
+		if (conveyedEditUtil != null) {
 			conveyedEditUtil.reinit(newValue);
 			conveyed.refresh();
 		}
@@ -1327,7 +1631,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterConveyed(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterConveyed(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToConveyed(ViewerFilter filter) {
 		conveyedFilters.add(filter);
@@ -1336,7 +1641,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterConveyed(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterConveyed(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToConveyed(ViewerFilter filter) {
 		conveyedBusinessFilters.add(filter);
@@ -1380,7 +1686,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initInformationSource(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initInformationSource(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initInformationSource(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1395,10 +1702,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateInformationSource(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateInformationSource(EObject
+	 *      newValue)
 	 */
 	public void updateInformationSource(EObject newValue) {
-		if(informationSourceEditUtil!=null){
+		if (informationSourceEditUtil != null) {
 			informationSourceEditUtil.reinit(newValue);
 			informationSource.refresh();
 		}
@@ -1407,7 +1715,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterInformationSource(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterInformationSource(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToInformationSource(ViewerFilter filter) {
 		informationSourceFilters.add(filter);
@@ -1416,7 +1725,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterInformationSource(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterInformationSource(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToInformationSource(ViewerFilter filter) {
 		informationSourceBusinessFilters.add(filter);
@@ -1460,7 +1770,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initInformationTarget(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initInformationTarget(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initInformationTarget(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1475,10 +1786,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateInformationTarget(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateInformationTarget(EObject
+	 *      newValue)
 	 */
 	public void updateInformationTarget(EObject newValue) {
-		if(informationTargetEditUtil!=null){
+		if (informationTargetEditUtil != null) {
 			informationTargetEditUtil.reinit(newValue);
 			informationTarget.refresh();
 		}
@@ -1487,7 +1799,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterInformationTarget(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterInformationTarget(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToInformationTarget(ViewerFilter filter) {
 		informationTargetFilters.add(filter);
@@ -1496,7 +1809,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterInformationTarget(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterInformationTarget(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToInformationTarget(ViewerFilter filter) {
 		informationTargetBusinessFilters.add(filter);
@@ -1540,7 +1854,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initRealizingActivityEdge(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initRealizingActivityEdge(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initRealizingActivityEdge(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1555,10 +1870,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateRealizingActivityEdge(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateRealizingActivityEdge(EObject
+	 *      newValue)
 	 */
 	public void updateRealizingActivityEdge(EObject newValue) {
-		if(realizingActivityEdgeEditUtil!=null){
+		if (realizingActivityEdgeEditUtil != null) {
 			realizingActivityEdgeEditUtil.reinit(newValue);
 			realizingActivityEdge.refresh();
 		}
@@ -1567,7 +1883,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterRealizingActivityEdge(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterRealizingActivityEdge(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToRealizingActivityEdge(ViewerFilter filter) {
 		realizingActivityEdgeFilters.add(filter);
@@ -1576,7 +1893,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterRealizingActivityEdge(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterRealizingActivityEdge(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToRealizingActivityEdge(ViewerFilter filter) {
 		realizingActivityEdgeBusinessFilters.add(filter);
@@ -1620,7 +1938,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initRealizingConnector(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initRealizingConnector(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initRealizingConnector(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1635,10 +1954,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateRealizingConnector(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateRealizingConnector(EObject
+	 *      newValue)
 	 */
 	public void updateRealizingConnector(EObject newValue) {
-		if(realizingConnectorEditUtil!=null){
+		if (realizingConnectorEditUtil != null) {
 			realizingConnectorEditUtil.reinit(newValue);
 			realizingConnector.refresh();
 		}
@@ -1647,7 +1967,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterRealizingConnector(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterRealizingConnector(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToRealizingConnector(ViewerFilter filter) {
 		realizingConnectorFilters.add(filter);
@@ -1656,7 +1977,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterRealizingConnector(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterRealizingConnector(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToRealizingConnector(ViewerFilter filter) {
 		realizingConnectorBusinessFilters.add(filter);
@@ -1700,7 +2022,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initRealizingMessage(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#initRealizingMessage(EObject
+	 *      current, EReference containingFeature, EReference feature)
 	 */
 	public void initRealizingMessage(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1715,10 +2038,11 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateRealizingMessage(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#updateRealizingMessage(EObject
+	 *      newValue)
 	 */
 	public void updateRealizingMessage(EObject newValue) {
-		if(realizingMessageEditUtil!=null){
+		if (realizingMessageEditUtil != null) {
 			realizingMessageEditUtil.reinit(newValue);
 			realizingMessage.refresh();
 		}
@@ -1727,7 +2051,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterRealizingMessage(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addFilterRealizingMessage(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToRealizingMessage(ViewerFilter filter) {
 		realizingMessageFilters.add(filter);
@@ -1736,7 +2061,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterRealizingMessage(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InformationFlowPropertiesEditionPart#addBusinessFilterRealizingMessage(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToRealizingMessage(ViewerFilter filter) {
 		realizingMessageBusinessFilters.add(filter);
@@ -1750,15 +2076,8 @@ public class InformationFlowPropertiesEditionPartImpl extends CompositePropertie
 
 	}
 
-
-
-
-
-
-
-
 	// Start of user code additional methods
-	
+
 	// End of user code
 
 }
