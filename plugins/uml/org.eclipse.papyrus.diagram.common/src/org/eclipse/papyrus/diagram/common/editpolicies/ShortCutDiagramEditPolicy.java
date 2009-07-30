@@ -63,6 +63,9 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 				throws ExecutionException {
 			try {
 				IPageMngr pageMngr = EditorUtils.getIPageMngr();
+				if (pageMngr.isOpen(diagramToOpen)) {
+					pageMngr.closePage(diagramToOpen);
+				}
 				pageMngr.openPage(diagramToOpen);
 				return CommandResult.newOKCommandResult();
 			} catch (Exception e) {

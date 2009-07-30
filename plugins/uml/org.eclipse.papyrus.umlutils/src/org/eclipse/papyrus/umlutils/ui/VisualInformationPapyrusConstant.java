@@ -130,6 +130,14 @@ public interface VisualInformationPapyrusConstant {
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
 
+	/** this is a key of eannnotation that contains hyperlink or referenced document**/
+	public static final String HYPERLINK="PapyrusHyperLink";
+	
+	/** this is a value of a eannnotation detail that explain the kind of the link**/
+	
+	public static final String HYPERLINK_DOCUMENT="PapyrusHyperLinkDocument";
+	public static final String HYPERLINK_ONLY="PapyrusHyperLinkOnly";
+
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARANCE_MASK_VALUE = "CustomAppearance_MaskValue";
 }

@@ -41,6 +41,18 @@
                        </objectClass>
                     </enablement>
          </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddHyperLinkPopupBarBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction..AddHyperLinkPopupBarBehavior"
+                       label="Ad hyperlink PopupBar Behavior"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
                           <action
                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.SetVisualIDWithUnusedValue"
                enablesFor="*"

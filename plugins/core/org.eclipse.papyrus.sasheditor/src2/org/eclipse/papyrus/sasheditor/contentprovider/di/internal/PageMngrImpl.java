@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
@@ -86,7 +87,16 @@ public class PageMngrImpl implements IPageMngr {
 	 */
 	public void openPage(Object pageIdentifier) {
 		// Add the page to the SashModel and to the PageList
-		diSashModel.getPageList().addPage(pageIdentifier);
+		
+		Iterator<PageRef> iterator=diSashModel.getPageList().getAvailablePage().iterator();
+		boolean found=false;
+		while(iterator.hasNext()&& found==false){
+			if(iterator.next().getPageIdentifier().equals(pageIdentifier)){
+				found=true;
+			}
+		}
+		if (!found){
+		diSashModel.getPageList().addPage(pageIdentifier);}
 		diSashModel.getSashModel().addPage(pageIdentifier);
 	}
 
