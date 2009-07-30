@@ -17029,8 +17029,8 @@
       </providers>
     </expressionProviders>
     <labelParsers
-        packageName="org.eclipse.papyrus.diagram.clazz.custom.providers"
-        className="CustomUMLParserProvider"
+        packageName="org.eclipse.papyrus.diagram.clazz.providers"
+        className="UMLParserProvider"
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:ExternalParser"
