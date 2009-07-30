@@ -55,11 +55,8 @@ public class PapyrusGenerator extends Generator {
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {
 		super.customRun();
 
-		// Generate DiagramPreferencePage
-		generateDiagramPreferencePage();
-
 		// Generate NodePreferencePage
-		for (GenNode node : diagram.getTopLevelNodes()) {
+		for (GenNode node : diagram.getAllNodes()) {
 			generateNodePreferencePage(node, node.getElementType().getDisplayName());
 		}
 
@@ -71,11 +68,6 @@ public class PapyrusGenerator extends Generator {
 			}
 		}
 
-	}
-
-	private void generateDiagramPreferencePage() throws InterruptedException, UnexpectedBehaviourException {
-		doGenerateJavaClass(emitters.getDiagramPreferencePageEmitter(), diagram.getPreferencesPackageName(),
-				PapyrusGenConstants.getDiagramPreferencePageJavaClassName(diagram.getEditorGen().getModelID()), diagram);
 	}
 
 	private void generateNodePreferencePage(GenNode node, String elementName) throws InterruptedException,

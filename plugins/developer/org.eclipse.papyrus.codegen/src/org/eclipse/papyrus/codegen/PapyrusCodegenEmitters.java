@@ -39,10 +39,6 @@ public class PapyrusCodegenEmitters extends CodegenEmitters {
 		return newXpandEmitter("xpt::preferences::LinkPreferencePage::LinkPreferencePage"); //$NON-NLS-1$
 	}
 
-	public TextEmitter getDiagramPreferencePageEmitter() {
-		return newXpandEmitter("xpt::preferences::DiagramPreferencePage::DiagramPreferencePage"); //$NON-NLS-1$
-	}
-
 	/**
 	 * Returns qualified class name defined in template.
 	 */

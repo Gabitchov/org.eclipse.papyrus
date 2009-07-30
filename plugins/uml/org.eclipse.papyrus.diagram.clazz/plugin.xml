@@ -123,10 +123,10 @@
          </ViewId>
       </GlobalActionHandlerProvider>
    </extension>
-<extension point="org.eclipse.core.runtime.preferences" id="prefs">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
-   </extension>
+<extension point="org.eclipse.core.runtime.preferences">
+		<?gmfgen generated="true"?>
+		<initializer class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
+	</extension>
 <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
       <?gmfgen generated="true"?>
       <propertyContributor
@@ -250,7 +250,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -1240,40 +1240,29 @@
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
       <page
-            id="org.eclipse.uml2.uml.diagram.general"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.general"
+            id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+            name="Class Diagram"
+            category="org.eclipse.papyrus.preferences.diagrams"
             class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramGeneralPreferencePage">
       </page>
+      
+
+
       <page
-            id="org.eclipse.uml2.uml.diagram.appearance"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.appearance"
-            category="org.eclipse.uml2.uml.diagram.general"
-            class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramAppearancePreferencePage">
-      </page>
-      <page
-            id="org.eclipse.uml2.uml.diagram.connections"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.connections"
-            category="org.eclipse.uml2.uml.diagram.general"
-            class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramConnectionsPreferencePage">
-      </page>
-      <page
-            id="org.eclipse.uml2.uml.diagram.printing"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-            category="org.eclipse.uml2.uml.diagram.general"
+            category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
             class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPrintingPreferencePage">
       </page>
+
       <page
-            id="org.eclipse.uml2.uml.diagram.rulersAndGrid"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            category="org.eclipse.uml2.uml.diagram.general"
+            category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
             class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramRulersAndGridPreferencePage">
       </page>
-      <page
-            id="org.eclipse.uml2.uml.diagram.pathmaps"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.pathmaps"
-            category="org.eclipse.uml2.uml.diagram.general"
-            class="org.eclipse.gmf.runtime.emf.ui.preferences.PathmapsPreferencePage">
-      </page>
+
+
    </extension>
 
 <extension point="org.eclipse.ui.menus" id="context-menus">
@@ -1322,10 +1311,6 @@
       <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
       <persistent value="true"/>
    </extension><extension point="org.eclipse.ui.preferencePages">
-	<page 	category="org.eclipse.papyrus.preferences.diagrams"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.PapyrusUMLClassDiagramDiagramPreferencePage"
-			id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			name="PapyrusUMLClassDiagram Diagram" />
 
 
 	
@@ -1551,10 +1536,6 @@
 
 </extension>
 
-<extension point="org.eclipse.core.runtime.preferences">
-		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
-	</extension>
 
 
 <!-- added by Remi Schnekenburger-->
