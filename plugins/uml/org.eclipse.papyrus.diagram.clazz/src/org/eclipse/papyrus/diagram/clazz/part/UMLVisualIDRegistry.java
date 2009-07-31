@@ -1312,6 +1312,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case PackageMergeEditPart.VISUAL_ID:
+			if (AppliedStereotypePackageMergeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case TemplateBindingEditPart.VISUAL_ID:
 			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1590,6 +1595,9 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6030, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);

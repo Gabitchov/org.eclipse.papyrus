@@ -56,7 +56,6 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.PropertyLabelEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.Property4ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -398,9 +397,8 @@ public class Property4EditPart extends CompartmentEditPart implements ITextAware
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = CustomUMLParserProvider.getParser(UMLElementTypes.Property_3012, getParserElement(),
-					UMLVisualIDRegistry
-							.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.Property4EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Property_3012, getParserElement(), UMLVisualIDRegistry
+					.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.Property4EditPart.VISUAL_ID));
 		}
 		return parser;
 	}

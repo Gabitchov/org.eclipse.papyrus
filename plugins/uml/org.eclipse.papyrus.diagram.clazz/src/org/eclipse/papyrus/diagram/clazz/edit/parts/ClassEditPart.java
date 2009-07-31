@@ -50,9 +50,8 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ClassItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.ClassifierEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
@@ -66,7 +65,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ClassEditPart extends
 
-NamedElementEditPart
+ClassifierEditPart
 
 {
 
@@ -115,7 +114,7 @@ NamedElementEditPart
 		if (childEditPart instanceof ClassAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((ClassAttributeCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -123,7 +122,7 @@ NamedElementEditPart
 		if (childEditPart instanceof ClassOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((ClassOperationCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -131,7 +130,7 @@ NamedElementEditPart
 		if (childEditPart instanceof ClassNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((ClassNestedClassifierCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -300,7 +299,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -333,7 +333,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1161,7 +1162,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1194,7 +1196,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1975,7 +1978,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2895,7 +2899,7 @@ NamedElementEditPart
 		if (childEditPart instanceof ClassAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((ClassAttributeCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -2903,7 +2907,7 @@ NamedElementEditPart
 		if (childEditPart instanceof ClassOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((ClassOperationCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -2911,7 +2915,7 @@ NamedElementEditPart
 		if (childEditPart instanceof ClassNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((ClassNestedClassifierCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}

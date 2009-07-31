@@ -16,8 +16,6 @@ package org.eclipse.papyrus.diagram.clazz.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -58,7 +56,6 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.AppliedStereotypeOperationDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.OperationLabelEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.Operation3ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -331,7 +328,7 @@ public class Operation3EditPart extends CompartmentEditPart implements ITextAwar
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = CustomUMLParserProvider.getParser(UMLElementTypes.Operation_3013, getParserElement(),
+			parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3013, getParserElement(),
 					UMLVisualIDRegistry
 							.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart.VISUAL_ID));
 		}

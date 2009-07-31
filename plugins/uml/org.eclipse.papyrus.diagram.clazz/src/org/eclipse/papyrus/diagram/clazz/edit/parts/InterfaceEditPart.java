@@ -48,9 +48,8 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.clazz.preferences.IPapyrusPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.ClassifierEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.InterfaceFigure;
 import org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator;
@@ -63,7 +62,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class InterfaceEditPart extends
 
-NamedElementEditPart
+ClassifierEditPart
 
 {
 
@@ -181,7 +180,7 @@ NamedElementEditPart
 		if (childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((InterfaceAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -189,7 +188,7 @@ NamedElementEditPart
 		if (childEditPart instanceof InterfaceOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((InterfaceOperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -197,7 +196,7 @@ NamedElementEditPart
 		if (childEditPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((InterfaceNestedClassifierCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -226,7 +225,7 @@ NamedElementEditPart
 		if (childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((InterfaceAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -234,7 +233,7 @@ NamedElementEditPart
 		if (childEditPart instanceof InterfaceOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((InterfaceOperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -242,7 +241,7 @@ NamedElementEditPart
 		if (childEditPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((InterfaceNestedClassifierCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -405,7 +404,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -437,7 +437,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1260,7 +1261,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2082,7 +2084,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2116,7 +2119,8 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType

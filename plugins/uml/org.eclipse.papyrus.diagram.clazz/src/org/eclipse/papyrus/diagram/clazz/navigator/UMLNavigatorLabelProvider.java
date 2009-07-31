@@ -24,7 +24,6 @@ import org.eclipse.jface.viewers.ITreePathLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
-import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -488,7 +487,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getAssociationClass_2013Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.AssociationClass_2013,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.AssociationClass_2013,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(AssociationClassName2EditPart.VISUAL_ID));
 		if (parser != null) {
@@ -517,9 +516,9 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getInstanceSpecification_2001Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.InstanceSpecification_2001, view
-				.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-				.getType(InstanceSpecificationNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.InstanceSpecification_2001,
+				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
+						.getType(InstanceSpecificationNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -533,9 +532,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComponent_2002Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Component_2002,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(ComponentNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Component_2002, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(ComponentNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -549,9 +547,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getSignal_2003Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Signal_2003,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(SignalNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Signal_2003, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(SignalNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -565,9 +562,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getInterface_2004Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Interface_2004,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(InterfaceNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Interface_2004, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(InterfaceNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -581,7 +577,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getModel_2005Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Model_2005, view.getElement() != null ? view
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Model_2005, view.getElement() != null ? view
 				.getElement() : view, UMLVisualIDRegistry.getType(ModelNameEditPartTN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
@@ -596,9 +592,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getEnumeration_2006Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Enumeration_2006,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(EnumerationNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Enumeration_2006, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(EnumerationNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -612,9 +607,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getPackage_2007Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Package_2007,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(PackageNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Package_2007, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(PackageNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -628,7 +622,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getClass_2008Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Class_2008, view.getElement() != null ? view
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Class_2008, view.getElement() != null ? view
 				.getElement() : view, UMLVisualIDRegistry.getType(ClassNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
@@ -643,7 +637,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getPrimitiveType_2009Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.PrimitiveType_2009,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.PrimitiveType_2009,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(PrimitiveTypeNameEditPart.VISUAL_ID));
 		if (parser != null) {
@@ -659,9 +653,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getDataType_2010Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.DataType_2010,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(DataTypeNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DataType_2010, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(DataTypeNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -675,9 +668,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getConstraint_2011Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Constraint_2011,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(ConstraintNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_2011, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -691,9 +683,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComment_2012Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Comment_2012,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(CommentBodyEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Comment_2012, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -707,9 +698,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getProperty_3002Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Property_3002,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(PropertyEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Property_3002, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(PropertyEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -730,9 +720,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getOperation_3003Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Operation_3003,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(OperationEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3003, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(OperationEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -746,7 +735,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getClass_3004Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Class_3004, view.getElement() != null ? view
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Class_3004, view.getElement() != null ? view
 				.getElement() : view, UMLVisualIDRegistry.getType(Class2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
@@ -774,7 +763,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getTemplateParameter_3016Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.TemplateParameter_3016,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.TemplateParameter_3016,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(TemplateParameterEditPart.VISUAL_ID));
 		if (parser != null) {
@@ -790,9 +779,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getProperty_3005Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Property_3005,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(Property2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Property_3005, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(Property2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -806,9 +794,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getProperty_3006Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Property_3006,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(Property3EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Property_3006, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(Property3EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -822,9 +809,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getOperation_3007Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Operation_3007,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(Operation2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3007, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(Operation2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -838,7 +824,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getClass_3008Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Class_3008, view.getElement() != null ? view
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Class_3008, view.getElement() != null ? view
 				.getElement() : view, UMLVisualIDRegistry.getType(Class3EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
@@ -853,9 +839,9 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getInstanceSpecification_3020Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.InstanceSpecification_3020, view
-				.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-				.getType(InstanceSpecificationNameEditPartCN.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.InstanceSpecification_3020,
+				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
+						.getType(InstanceSpecificationNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -869,9 +855,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComponent_3021Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Component_3021,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(ComponentNameEditPartCN.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Component_3021, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(ComponentNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -885,9 +870,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getSignal_3022Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Signal_3022,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(SignalNameEditPartCN.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Signal_3022, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(SignalNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -901,9 +885,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getInterface_3023Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Interface_3023,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(InterfaceNameEditPartCN.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Interface_3023, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(InterfaceNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -917,7 +900,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getModel_3024Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Model_3024, view.getElement() != null ? view
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Model_3024, view.getElement() != null ? view
 				.getElement() : view, UMLVisualIDRegistry.getType(ModelNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
@@ -932,9 +915,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getEnumeration_3025Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Enumeration_3025,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(EnumerationNameEditPartCN.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Enumeration_3025, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(EnumerationNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -948,7 +930,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getEnumerationLiteral_3017Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.EnumerationLiteral_3017,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.EnumerationLiteral_3017,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(EnumerationLiteralEditPart.VISUAL_ID));
 		if (parser != null) {
@@ -964,9 +946,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getPackage_3009Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Package_3009,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(PackageNameEditPartCN.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Package_3009, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(PackageNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -980,7 +961,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getClass_3010Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Class_3010, view.getElement() != null ? view
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Class_3010, view.getElement() != null ? view
 				.getElement() : view, UMLVisualIDRegistry.getType(ClassNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
@@ -995,9 +976,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getReception_3011Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Reception_3011,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(ReceptionEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Reception_3011, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(ReceptionEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1011,9 +991,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getProperty_3012Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Property_3012,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(Property4EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Property_3012, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(Property4EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1027,9 +1006,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getOperation_3013Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Operation_3013,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(Operation3EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3013, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(Operation3EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1043,7 +1021,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getClass_3014Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Class_3014, view.getElement() != null ? view
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Class_3014, view.getElement() != null ? view
 				.getElement() : view, UMLVisualIDRegistry.getType(Class5EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
@@ -1058,7 +1036,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getPrimitiveType_3026Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.PrimitiveType_3026,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.PrimitiveType_3026,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(PrimitiveTypeNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
@@ -1074,9 +1052,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getDataType_3027Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.DataType_3027,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(DataTypeNameEditPartCN.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DataType_3027, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(DataTypeNameEditPartCN.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1090,9 +1067,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getProperty_3018Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Property_3018,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(Property5EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Property_3018, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(Property5EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1106,9 +1082,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getOperation_3019Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Operation_3019,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(Operation4EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3019, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(Operation4EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1122,9 +1097,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComment_3028Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Comment_3028,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(CommentBody2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Comment_3028, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(CommentBody2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1138,9 +1112,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getConstraint_3029Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Constraint_3029,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(ConstraintName2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3029, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(ConstraintName2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1174,9 +1147,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getAssociation_4001Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Association_4001,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(AppliedStereotypeAssociationEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Association_4001, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(AppliedStereotypeAssociationEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1190,9 +1162,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getAssociation_4019Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Association_4019,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(AssociationBranchRoleEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Association_4019, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(AssociationBranchRoleEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1206,7 +1177,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getGeneralization_4002Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Generalization_4002,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Generalization_4002,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(AppliedStereotyperGeneralizationEditPart.VISUAL_ID));
 		if (parser != null) {
@@ -1222,7 +1193,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getInterfaceRealization_4003Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.InterfaceRealization_4003,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.InterfaceRealization_4003,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID));
 		if (parser != null) {
@@ -1238,7 +1209,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getSubstitution_4004Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Substitution_4004,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Substitution_4004,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(AppliedStereotypeSubstitutionEditPart.VISUAL_ID));
 		if (parser != null) {
@@ -1254,9 +1225,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getRealization_4005Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Realization_4005,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(AppliedStereotypeRealizationEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Realization_4005, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(AppliedStereotypeRealizationEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1270,9 +1240,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getAbstraction_4006Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Abstraction_4006,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(AbstractionNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Abstraction_4006, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(AbstractionNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1286,7 +1255,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getUsage_4007Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Usage_4007, view.getElement() != null ? view
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Usage_4007, view.getElement() != null ? view
 				.getElement() : view, UMLVisualIDRegistry.getType(UsageNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
@@ -1301,9 +1270,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getDependency_4008Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Dependency_4008,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(DependencyNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Dependency_4008, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(DependencyNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1317,9 +1285,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getDependency_4018Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.Dependency_4018,
-				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
-						.getType(DependencyName3EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Dependency_4018, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(DependencyName3EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -1333,7 +1300,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getElementImport_4009Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.ElementImport_4009,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.ElementImport_4009,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(ElementImportAliasEditPart.VISUAL_ID));
 		if (parser != null) {
@@ -1349,7 +1316,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getPackageImport_4010Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.PackageImport_4010,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.PackageImport_4010,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(AppliedStereotypePackageImportEditPart.VISUAL_ID));
 		if (parser != null) {
@@ -1365,7 +1332,16 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getPackageMerge_4011Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.PackageMerge_4011,
+				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
+						.getType(AppliedStereotypePackageMergeEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6030); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
@@ -1399,7 +1375,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getTemplateBinding_4015Text(View view) {
-		IParser parser = CustomUMLParserProvider.getParser(UMLElementTypes.TemplateBinding_4015,
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.TemplateBinding_4015,
 				view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry
 						.getType(WrappingLabelEditPart.VISUAL_ID));
 		if (parser != null) {

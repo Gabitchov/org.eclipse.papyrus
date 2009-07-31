@@ -482,6 +482,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PackageMergeEditPart.VISUAL_ID:
 				return new PackageMergeEditPart(view);
 
+			case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
+				return new AppliedStereotypePackageMergeEditPart(view);
+
 			case ProfileApplicationEditPart.VISUAL_ID:
 				return new ProfileApplicationEditPart(view);
 

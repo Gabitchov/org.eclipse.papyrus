@@ -22,6 +22,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeDependencyE
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeInterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageImportEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
@@ -62,7 +63,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationName2Edi
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPart;
@@ -71,7 +71,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationName2EditPart;
@@ -82,7 +81,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.common.parser.custom.AppliedStereotypeParser;
+import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -357,7 +356,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser packageImportVisibility_6022Parser;
+	private PackageImportVisibilityParser packageImportVisibility_6022Parser;
 
 	/**
 	 * @generated
@@ -1015,9 +1014,24 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getPackageImportVisibility_6022Parser() {
 		if (packageImportVisibility_6022Parser == null) {
-			packageImportVisibility_6022Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			packageImportVisibility_6022Parser = new PackageImportVisibilityParser();
 		}
 		return packageImportVisibility_6022Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser packageMergeLabel_6030Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPackageMergeLabel_6030Parser() {
+		if (packageMergeLabel_6030Parser == null) {
+			packageMergeLabel_6030Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+		}
+		return packageMergeLabel_6030Parser;
 	}
 
 	/**
@@ -1190,6 +1204,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getElementImportAlias_6021Parser();
 		case AppliedStereotypePackageImportEditPart.VISUAL_ID:
 			return getPackageImportVisibility_6022Parser();
+		case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
+			return getPackageMergeLabel_6030Parser();
 		case ConstraintLabelEditPart.VISUAL_ID:
 			return getGeneralizationSetIsCoveringIsDisjoint_5067Parser();
 		}

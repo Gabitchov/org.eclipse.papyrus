@@ -16,8 +16,6 @@ package org.eclipse.papyrus.diagram.clazz.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -55,7 +53,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -332,7 +329,7 @@ public class WrappingLabelEditPart extends LabelEditPart implements ITextAwareEd
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = CustomUMLParserProvider.getParser(UMLElementTypes.TemplateBinding_4015, getParserElement(),
+			parser = UMLParserProvider.getParser(UMLElementTypes.TemplateBinding_4015, getParserElement(),
 					UMLVisualIDRegistry
 							.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.WrappingLabelEditPart.VISUAL_ID));
 		}

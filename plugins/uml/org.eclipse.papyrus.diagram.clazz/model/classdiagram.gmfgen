@@ -17069,13 +17069,19 @@
         comment="Manage the class"
         genView="/0/@diagram/@childNodes.18 /0/@diagram/@topLevelNodes.10"
         name="Extended class editpart"
-        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.ClassifierEditPart">
       <propRefreshHook
           comment="set the figure active when the feature of the of a class is true"
           classpath=""
           triggeringCondition="resolveSemanticElement().equals(event.getNotifier()) &amp;&amp; (event.getFeature() instanceof org.eclipse.emf.ecore.EAttribute)&amp;&amp; ((org.eclipse.emf.ecore.EAttribute) (event.getFeature())).getName().equals(&quot;isActive&quot;)"
           action="((org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure) getFigure()).setActive(event.getNewBooleanValue())"/>
     </extensionNodes>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Elements that inherits Classifier"
+        genView="/0/@diagram/@childNodes.23 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.11 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.15 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.12 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.1"
+        name="Classifier inheritance"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.ClassifierEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="precise the locator for a template signature"
@@ -17084,7 +17090,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="adding to manange otherNamedElement"
-        genView="/0/@diagram/@childNodes.23 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.12 /0/@diagram/@topLevelNodes.1"
+        genView="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.17 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.9"
         name="OtherNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes

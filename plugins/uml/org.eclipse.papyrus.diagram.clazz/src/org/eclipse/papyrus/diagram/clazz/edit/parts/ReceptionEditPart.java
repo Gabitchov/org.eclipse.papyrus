@@ -16,8 +16,6 @@ package org.eclipse.papyrus.diagram.clazz.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -56,7 +54,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomUMLParserProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ReceptionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -327,7 +324,7 @@ public class ReceptionEditPart extends CompartmentEditPart implements ITextAware
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = CustomUMLParserProvider.getParser(UMLElementTypes.Reception_3011, getParserElement(),
+			parser = UMLParserProvider.getParser(UMLElementTypes.Reception_3011, getParserElement(),
 					UMLVisualIDRegistry
 							.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart.VISUAL_ID));
 		}
