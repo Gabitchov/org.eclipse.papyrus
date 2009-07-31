@@ -586,6 +586,53 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl <em>Specific Diagram Updater</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificDiagramUpdater()
+	 * @generated
+	 */
+	int SPECIFIC_DIAGRAM_UPDATER = 11;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_DIAGRAM_UPDATER__COMMENT = EXTERNAL_HOOK__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_DIAGRAM_UPDATER__CLASSPATH = EXTERNAL_HOOK__CLASSPATH;
+
+	/**
+	 * The feature id for the '<em><b>Gen Child Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE = EXTERNAL_HOOK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Specific Diagram Updater</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_DIAGRAM_UPDATER_FEATURE_COUNT = EXTERNAL_HOOK_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -938,6 +985,27 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EAttribute getOwnedEditpart_Name();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater <em>Specific Diagram Updater</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Specific Diagram Updater</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater
+	 * @generated
+	 */
+	EClass getSpecificDiagramUpdater();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenChildNode <em>Gen Child Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Gen Child Node</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenChildNode()
+	 * @see #getSpecificDiagramUpdater()
+	 * @generated
+	 */
+	EReference getSpecificDiagramUpdater_GenChildNode();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1244,6 +1312,24 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OWNED_EDITPART__NAME = eINSTANCE.getOwnedEditpart_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl <em>Specific Diagram Updater</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificDiagramUpdater()
+		 * @generated
+		 */
+		EClass SPECIFIC_DIAGRAM_UPDATER = eINSTANCE.getSpecificDiagramUpdater();
+
+		/**
+		 * The meta object literal for the '<em><b>Gen Child Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE = eINSTANCE.getSpecificDiagramUpdater_GenChildNode();
 
 	}
 

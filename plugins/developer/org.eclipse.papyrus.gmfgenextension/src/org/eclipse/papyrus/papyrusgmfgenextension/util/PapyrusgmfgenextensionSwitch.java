@@ -166,6 +166,14 @@ public class PapyrusgmfgenextensionSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER: {
+				SpecificDiagramUpdater specificDiagramUpdater = (SpecificDiagramUpdater)theEObject;
+				T result = caseSpecificDiagramUpdater(specificDiagramUpdater);
+				if (result == null) result = caseExternalHook(specificDiagramUpdater);
+				if (result == null) result = caseCommentedElement(specificDiagramUpdater);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -332,6 +340,21 @@ public class PapyrusgmfgenextensionSwitch<T> {
 	 * @generated
 	 */
 	public T caseOwnedEditpart(OwnedEditpart object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Specific Diagram Updater</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Specific Diagram Updater</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSpecificDiagramUpdater(SpecificDiagramUpdater object) {
 		return null;
 	}
 

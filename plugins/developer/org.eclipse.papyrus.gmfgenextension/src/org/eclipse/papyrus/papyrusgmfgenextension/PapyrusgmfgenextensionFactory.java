@@ -125,6 +125,15 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	OwnedEditpart createOwnedEditpart();
 
 	/**
+	 * Returns a new object of class '<em>Specific Diagram Updater</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Specific Diagram Updater</em>'.
+	 * @generated
+	 */
+	SpecificDiagramUpdater createSpecificDiagramUpdater();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

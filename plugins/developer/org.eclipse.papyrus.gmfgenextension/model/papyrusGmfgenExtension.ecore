@@ -84,4 +84,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="OwnedEditpart" eSuperTypes="#//ExternalHook">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecificDiagramUpdater" eSuperTypes="#//ExternalHook">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This class is used to precise itw own locator used for the border item, like port or template.&#xD;&#xA;&#xD;&#xA;for example, in the case of templateSignature of ClassEditPart in the method protected boolean addFixedChild(EditPart childEditPart):&#xD;&#xA;replacement of the general BorderItemLocator is needed in order to constrain the movement. &#xD;&#xA;&#xD;&#xA;if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {&#xD;&#xA;   // BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NORTH);&#xD;&#xA;   BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);&#xD;&#xA;   getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);&#xD;&#xA;   return true;&#xD;&#xA;}"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genChildNode" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenChildNode"/>
+  </eClassifiers>
 </ecore:EPackage>

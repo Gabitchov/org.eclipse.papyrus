@@ -71,6 +71,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			case PapyrusgmfgenextensionPackage.ALTERNATE_GEN_LINK: return createAlternateGenLink();
 			case PapyrusgmfgenextensionPackage.MUTATING_CANVAS: return createMutatingCanvas();
 			case PapyrusgmfgenextensionPackage.OWNED_EDITPART: return createOwnedEditpart();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER: return createSpecificDiagramUpdater();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -184,6 +185,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public OwnedEditpart createOwnedEditpart() {
 		OwnedEditpartImpl ownedEditpart = new OwnedEditpartImpl();
 		return ownedEditpart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SpecificDiagramUpdater createSpecificDiagramUpdater() {
+		SpecificDiagramUpdaterImpl specificDiagramUpdater = new SpecificDiagramUpdaterImpl();
+		return specificDiagramUpdater;
 	}
 
 	/**
