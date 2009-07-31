@@ -82,6 +82,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
+import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -136,7 +137,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser abstractionName_6015Parser;
+	private AppliedStereotypeParser abstractionName_6015Parser;
 
 	/**
 	 * @generated
@@ -146,7 +147,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser associationName_6001Parser;
+	private AppliedStereotypeParser associationName_6001Parser;
 
 	/**
 	 * @generated
@@ -251,7 +252,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser dependencyName_6027Parser;
+	private AppliedStereotypeParser dependencyName_6027Parser;
 
 	/**
 	 * @generated
@@ -266,12 +267,17 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser diagramName_0Parser;
+
+	/**
+	 * @generated
+	 */
 	private IParser elementImportAlias_6020Parser;
 
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser elementImportAlias_6021Parser;
+	private AppliedStereotypeParser elementImportAlias_6021Parser;
 
 	/**
 	 * @generated
@@ -321,7 +327,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser interfaceRealizationName_6008Parser;
+	private AppliedStereotypeParser interfaceRealizationName_6008Parser;
 
 	/**
 	 * @generated
@@ -357,6 +363,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private PackageImportVisibilityParser packageImportVisibility_6022Parser;
+
+	/**
+	 * @generated
+	 */
+	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser packageMergeLabel_6030Parser;
 
 	/**
 	 * @generated
@@ -401,7 +412,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser realizationName_6012Parser;
+	private AppliedStereotypeParser realizationName_6012Parser;
 
 	/**
 	 * @generated
@@ -426,7 +437,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser substitutionName_6010Parser;
+	private AppliedStereotypeParser substitutionName_6010Parser;
 
 	/**
 	 * @generated
@@ -441,7 +452,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser usageName_6017Parser;
+	private AppliedStereotypeParser usageName_6017Parser;
 
 	/**
 	 * @generated
@@ -460,7 +471,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAbstractionName_6015Parser() {
 		if (abstractionName_6015Parser == null) {
-			abstractionName_6015Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			abstractionName_6015Parser = new AppliedStereotypeParser();
 		}
 		return abstractionName_6015Parser;
 	}
@@ -482,7 +493,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAssociationName_6001Parser() {
 		if (associationName_6001Parser == null) {
-			associationName_6001Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			associationName_6001Parser = new AppliedStereotypeParser();
 		}
 		return associationName_6001Parser;
 	}
@@ -649,23 +660,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser diagramName_0Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDiagramName_0Parser() {
-		if (diagramName_0Parser == null) {
-			EAttribute[] features = new EAttribute[] { NotationPackage.eINSTANCE.getDiagram_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			diagramName_0Parser = parser;
-		}
-		return diagramName_0Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getCommentBody_5063Parser() {
 		if (commentBody_5063Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getComment_Body() };
@@ -764,7 +758,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDependencyName_6027Parser() {
 		if (dependencyName_6027Parser == null) {
-			dependencyName_6027Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			dependencyName_6027Parser = new AppliedStereotypeParser();
 		}
 		return dependencyName_6027Parser;
 	}
@@ -799,6 +793,18 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser getDiagramName_0Parser() {
+		if (diagramName_0Parser == null) {
+			EAttribute[] features = new EAttribute[] { NotationPackage.eINSTANCE.getDiagram_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			diagramName_0Parser = parser;
+		}
+		return diagramName_0Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getElementImportAlias_6020Parser() {
 		if (elementImportAlias_6020Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getElementImport_Alias() };
@@ -813,7 +819,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getElementImportAlias_6021Parser() {
 		if (elementImportAlias_6021Parser == null) {
-			elementImportAlias_6021Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			elementImportAlias_6021Parser = new AppliedStereotypeParser();
 		}
 		return elementImportAlias_6021Parser;
 	}
@@ -932,7 +938,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInterfaceRealizationName_6008Parser() {
 		if (interfaceRealizationName_6008Parser == null) {
-			interfaceRealizationName_6008Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			interfaceRealizationName_6008Parser = new AppliedStereotypeParser();
 		}
 		return interfaceRealizationName_6008Parser;
 	}
@@ -1018,11 +1024,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return packageImportVisibility_6022Parser;
 	}
-
-	/**
-	 * @generated
-	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser packageMergeLabel_6030Parser;
 
 	/**
 	 * @generated
@@ -1289,7 +1290,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getRealizationName_6012Parser() {
 		if (realizationName_6012Parser == null) {
-			realizationName_6012Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			realizationName_6012Parser = new AppliedStereotypeParser();
 		}
 		return realizationName_6012Parser;
 	}
@@ -1347,7 +1348,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSubstitutionName_6010Parser() {
 		if (substitutionName_6010Parser == null) {
-			substitutionName_6010Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			substitutionName_6010Parser = new AppliedStereotypeParser();
 		}
 		return substitutionName_6010Parser;
 	}
@@ -1381,7 +1382,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getUsageName_6017Parser() {
 		if (usageName_6017Parser == null) {
-			usageName_6017Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			usageName_6017Parser = new AppliedStereotypeParser();
 		}
 		return usageName_6017Parser;
 	}
