@@ -18,7 +18,7 @@
 «AROUND additions FOR gmfgen::GenDiagram»
 
 	«EXPAND xpt::Common::generatedMemberComment»
-	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName)
+	private void initFontStyleFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
 		String fontConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.FONT);
 		String fontColorConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FONT);
@@ -38,7 +38,7 @@
 	}
 	
 	«EXPAND xpt::Common::generatedMemberComment»
-	private void initForegroundFromPrefs(View view, final IPreferenceStore store, String elementName)
+	private void initForegroundFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
 		String lineColorConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE);
 		org.eclipse.swt.graphics.RGB lineRGB = org.eclipse.jface.preference.PreferenceConverter.getColor(store, lineColorConstant);
@@ -46,7 +46,7 @@
 	}
 	
 	«EXPAND xpt::Common::generatedMemberComment»
-	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName)
+	private void initBackgroundFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
 		String fillColorConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL);
 		String gradientColorConstant = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT);
@@ -58,7 +58,7 @@
 		
 
 		org.eclipse.gmf.runtime.notation.FillStyle fillStyle = (org.eclipse.gmf.runtime.notation.FillStyle) view
-				.getStyle(NotationPackage.Literals.FILL_STYLE);
+				.getStyle(org.eclipse.gmf.runtime.notation.NotationPackage.Literals.FILL_STYLE);
 		fillStyle
 				.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
 

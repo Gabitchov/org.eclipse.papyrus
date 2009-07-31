@@ -405,7 +405,7 @@
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected void performDirectEditRequest(org.eclipse.gef.Request request) {
 		
-		final Request theRequest = request;
+		final org.eclipse.gef.Request theRequest = request;
 
 		if (org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
@@ -439,11 +439,11 @@
 
 					public void run() {
 						if (isActive() && isEditable()) {
-							if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							if (theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+								Character initialChar = (Character) theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 								performDirectEdit(initialChar.charValue());
-							} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-								DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+							} else if ((theRequest instanceof org.eclipse.gef.requests.DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+								org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) theRequest;
 								performDirectEdit(editRequest.getLocation());
 							} else {
 								performDirectEdit();
@@ -479,7 +479,7 @@
 «DEFINE refreshLabel(diagram : gmfgen::GenDiagram) FOR gmfgen::GenCommonBase-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected void refreshLabel() {
-		EditPolicy maskLabelPolicy = getEditPolicy(org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		org.eclipse.gef.EditPolicy maskLabelPolicy = getEditPolicy(org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if (maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());
