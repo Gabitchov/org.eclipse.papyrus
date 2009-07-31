@@ -13,31 +13,27 @@
  */
 
  
-«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
-«REM»This template has been modify to allow the drag and drop«ENDREM»
-«REM»and  install the mecanism of "filters views..." view for subelements«ENDREM»
+Â«REMÂ»DOCUMENTATION: PapyrusGencodeÂ«ENDREMÂ»
+Â«REMÂ»This template has been modify to allow the drag and dropÂ«ENDREMÂ»
+Â«REMÂ»and  install the mecanism of "filters views..." view for subelementsÂ«ENDREMÂ»
 
-«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
-«IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
-«EXTENSION xpt::diagram::editparts::Utils»
+Â«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'Â»
+Â«IMPORT 'http://www.eclipse.org/emf/2002/Ecore'Â»
+Â«EXTENSION xpt::diagram::editparts::UtilsÂ»
 
-«DEFINE _constructor FOR gmfgen::GenDiagram-»
-	«EXPAND xpt::Common::generatedMemberComment»
-	public «editPartClassName»(org.eclipse.gmf.runtime.notation.View view) {
+Â«DEFINE _constructor FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
+	public Â«editPartClassNameÂ»(org.eclipse.gmf.runtime.notation.View view) {
 		super(view);
 	}
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE createDefaultEditPoliciesBody FOR gmfgen::GenDiagram-»
+Â«DEFINE createDefaultEditPoliciesBody FOR gmfgen::GenDiagram-Â»
 	super.createDefaultEditPolicies();
-	«EXPAND xpt::diagram::editparts::Common::installSemanticEditPolicy-»
-	«EXPAND xpt::diagram::editparts::Common::installCanonicalEditPolicy-»
+	Â«EXPAND xpt::diagram::editparts::Common::installSemanticEditPolicy-Â»
+	Â«EXPAND xpt::diagram::editparts::Common::installCanonicalEditPolicy-Â»
 	
-	«REM»BEGIN: PapyrusGenCode«ENDREM»
-	«REM»Code to install editpolicy in chage of drag and drop «ENDREM»
-		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE, new org.eclipse.papyrus.diagram.common.edit.policies.DiagramDragDropEditPolicy(resolver));
-	«REM»END: PapyrusGenCode«ENDREM»
-	«IF shouldGenerateDiagramViewmap(self)-»
+	Â«IF shouldGenerateDiagramViewmap(self)-Â»
 		// diagram figure does layout; need to install child editpolicy to show selection feedback
 		installEditPolicy(org.eclipse.gef.EditPolicy.LAYOUT_ROLE, new org.eclipse.gef.editpolicies.LayoutEditPolicy() {
 			protected org.eclipse.gef.EditPolicy createChildEditPolicy(org.eclipse.gef.EditPart child) {
@@ -52,99 +48,61 @@
 				return null;
 			}
 		});
-	«ENDIF-»
-	«EXPAND xpt::diagram::editparts::Common::behaviour FOR self-»
+	Â«ENDIF-Â»
+	Â«EXPAND xpt::diagram::editparts::Common::behaviour FOR self-Â»
 	// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE createFigure FOR gmfgen::GenDiagram-»
-	«IF shouldGenerateDiagramViewmap(self)-»
-		«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE createFigure FOR gmfgen::GenDiagram-Â»
+	Â«IF shouldGenerateDiagramViewmap(self)-Â»
+		Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 		protected org.eclipse.draw2d.IFigure createFigure() {
 			org.eclipse.draw2d.FreeformLayer l = new org.eclipse.draw2d.FreeformLayer();
 			l.setBorder(new org.eclipse.draw2d.MarginBorder(50));
-			«EXPAND initLayout('lm') FOR viewmap.layoutType-»
+			Â«EXPAND initLayout('lm') FOR viewmap.layoutType-Â»
 			l.setLayoutManager(lm);
 			return l;
 		}
-	«ENDIF»
-«ENDDEFINE»
+	Â«ENDIFÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE initLayout(varName : String) FOR gmfgen::ViewmapLayoutType-»
-	«IF self = gmfgen::ViewmapLayoutType::TOOLBAR_LAYOUT-»
-		org.eclipse.draw2d.ToolbarLayout «varName» = new org.eclipse.draw2d.ToolbarLayout();
-		«varName».setSpacing(10);
-	«ELSEIF self = gmfgen::ViewmapLayoutType::FLOW_LAYOUT-»
-		org.eclipse.draw2d.FlowLayout «varName» = new org.eclipse.draw2d.FlowLayout();
-		«varName».setMajorSpacing(10);
-		«varName».setMinorSpacing(10);
-	«ELSE-»
-		org.eclipse.draw2d.LayoutManager «varName» = null; /*FIXME - unknown layout type*/
-	«ENDIF-»
-«ENDDEFINE»
+Â«DEFINE initLayout(varName : String) FOR gmfgen::ViewmapLayoutType-Â»
+	Â«IF self = gmfgen::ViewmapLayoutType::TOOLBAR_LAYOUT-Â»
+		org.eclipse.draw2d.ToolbarLayout Â«varNameÂ» = new org.eclipse.draw2d.ToolbarLayout();
+		Â«varNameÂ».setSpacing(10);
+	Â«ELSEIF self = gmfgen::ViewmapLayoutType::FLOW_LAYOUT-Â»
+		org.eclipse.draw2d.FlowLayout Â«varNameÂ» = new org.eclipse.draw2d.FlowLayout();
+		Â«varNameÂ».setMajorSpacing(10);
+		Â«varNameÂ».setMinorSpacing(10);
+	Â«ELSE-Â»
+		org.eclipse.draw2d.LayoutManager Â«varNameÂ» = null; /*FIXME - unknown layout type*/
+	Â«ENDIF-Â»
+Â«ENDDEFINEÂ»
 
-«REM»BEGIN: PapyrusGenCode«ENDREM»
-«REM»Code to define the adapter to view Info«ENDREM»
-«DEFINE viewResolver FOR gmfgen::GenDiagram-»
-«EXPAND xpt::Common::generatedMemberComment-»
-	private org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver resolver = new org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver() {
 
-		public boolean isEObjectNode(org.eclipse.emf.ecore.EObject element) {
-			if («editorGen.editor.packageName».«visualIDRegistryClassName».getNodeVisualID(getNotationView(),
-					element) > -1) {
-				return true;
-			}
-			return false;
-		}
 
-		public boolean isEObjectLink(org.eclipse.emf.ecore.EObject element) {
-			if («editorGen.editor.packageName».«visualIDRegistryClassName».getLinkWithClassVisualID(element) > -1) {
-				return true;
-			}
-			return false;
-		}
-		
-		public int getEObjectSemanticHint(org.eclipse.emf.ecore.EObject element) {
-			if (element != null) {
-				return «editorGen.editor.packageName».«visualIDRegistryClassName».getNodeVisualID(getNotationView(),
-					element);
-			}
-			return -1;
-		}
-		
-		public org.eclipse.emf.ecore.EStructuralFeature getEStructuralFeatureForEClass(org.eclipse.emf.ecore.EClass class1) {
-			«FOREACH topLevelNodes AS childNode-»
-			«EXPAND featureForMetaclass FOR childNode-»
-			«ENDFOREACH-»
-			return null;
-		}
- 	};
-«ENDDEFINE»
 
-«DEFINE getAdapter FOR gmfgen::GenDiagram»
-«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE getAdapter FOR gmfgen::GenDiagramÂ»
+Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	public Object getAdapter(Class adapter) {
-		if (adapter != null && adapter.equals(org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver.class)) {
-			return this.resolver;
-		}
-		«REM» [ViewInfo] return a ViewInfo with info about the views in this diagram «ENDREM»
+		Â«REMÂ» [ViewInfo] return a ViewInfo with info about the views in this diagram Â«ENDREMÂ»
 		if (adapter != null && adapter.equals(org.eclipse.papyrus.diagram.common.providers.ViewInfo.class)) {
-			return «editorGen.editor.packageName».«visualIDRegistryClassName».getDiagramViewInfo();
+			return Â«editorGen.editor.packageNameÂ».Â«visualIDRegistryClassNameÂ».getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);
 	}
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE featureForMetaclass FOR gmfgen::GenNode-»
-		if («EXPAND MetaModel::MetaClass FOR modelFacet.metaClass».equals(class1)) {
-			return «EXPAND MetaModel::MetaFeature FOR modelFacet.containmentMetaFeature»;
+Â«DEFINE featureForMetaclass FOR gmfgen::GenNode-Â»
+		if (Â«EXPAND MetaModel::MetaClass FOR modelFacet.metaClassÂ».equals(class1)) {
+			return Â«EXPAND MetaModel::MetaFeature FOR modelFacet.containmentMetaFeatureÂ»;
 		}
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE additions FOR gmfgen::GenDiagram»
-«EXPAND xpt::Common::generatedMemberComment-»
+Â«DEFINE additions FOR gmfgen::GenDiagramÂ»
+Â«EXPAND xpt::Common::generatedMemberComment-Â»
 	protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
-	«REM»[ViewInfo] to update the diagram when filtering Views by type «ENDREM»
+	Â«REMÂ»[ViewInfo] to update the diagram when filtering Views by type Â«ENDREMÂ»
 		super.handleNotificationEvent(event);
 		if (event.getNotifier() instanceof org.eclipse.emf.ecore.EAnnotation) {
 			org.eclipse.emf.ecore.EAnnotation eAnnotation = (org.eclipse.emf.ecore.EAnnotation) event.getNotifier();
@@ -157,7 +115,7 @@
 		}
 	}
 	
-	«EXPAND getAdapter FOR self»
+	Â«EXPAND getAdapter FOR selfÂ»
 	
-«ENDDEFINE»
-«REM»END: PapyrusGenCode«ENDREM»
+Â«ENDDEFINEÂ»
+Â«REMÂ»END: PapyrusGenCodeÂ«ENDREMÂ»

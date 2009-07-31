@@ -12,64 +12,61 @@
  *	  modified by Patrick Tessier (CEA LIST)
  */
 
-«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
-«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
-«REM»This template has been modify to allow the drag and drop«ENDREM»
-«REM»and  install the mecanism of "filters views..." view for subelements«ENDREM»
+Â«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'Â»
+Â«REMÂ»DOCUMENTATION: PapyrusGencodeÂ«ENDREMÂ»
+Â«REMÂ»This template has been modify to allow the drag and dropÂ«ENDREMÂ»
+Â«REMÂ»and  install the mecanism of "filters views..." view for subelementsÂ«ENDREMÂ»
 
-«AROUND Main FOR gmfgen::GenDiagram-»
-«EXPAND xpt::Common::copyright FOR editorGen-»
-package «editPartsPackageName»;
+Â«AROUND Main FOR gmfgen::GenDiagram-Â»
+Â«EXPAND xpt::Common::copyright FOR editorGen-Â»
+package Â«editPartsPackageNameÂ»;
 
-«EXPAND xpt::Common::generatedClassComment»
-public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsList» {
+Â«EXPAND xpt::Common::generatedClassCommentÂ»
+public class Â«editPartClassNameÂ» Â«EXPAND extendsListÂ» Â«EXPAND implementsListÂ» {
 
-	«EXPAND attributes-»
+	Â«EXPAND attributes-Â»
 	
-	«EXPAND impl::diagram::editparts::DiagramEditPart::_constructor-»
+	Â«EXPAND impl::diagram::editparts::DiagramEditPart::_constructor-Â»
 	
-	«EXPAND createDefaultEditPolicies-»
+	Â«EXPAND createDefaultEditPolicies-Â»
 	
-	«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-»
+	Â«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-Â»
 
-«REM»BEGIN: PapyrusGenCode«ENDREM»
-«REM»Call the good define additions«ENDREM»
-	«EXPAND impl::diagram::editparts::DiagramEditPart::additions-»
-«REM»BEGIN: PapyrusGenCode«ENDREM»
+Â«REMÂ»BEGIN: PapyrusGenCodeÂ«ENDREMÂ»
+Â«REMÂ»Call the good define additionsÂ«ENDREMÂ»
+	Â«EXPAND impl::diagram::editparts::DiagramEditPart::additions-Â»
+Â«REMÂ»BEGIN: PapyrusGenCodeÂ«ENDREMÂ»
 }
-«ENDAROUND»
+Â«ENDAROUNDÂ»
 
-«DEFINE extendsList FOR gmfgen::GenDiagram»extends org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart«ENDDEFINE»
+Â«DEFINE extendsList FOR gmfgen::GenDiagramÂ»extends org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPartÂ«ENDDEFINEÂ»
 
-«DEFINE implementsList FOR gmfgen::GenDiagram»«ENDDEFINE»
+Â«DEFINE implementsList FOR gmfgen::GenDiagramÂ»Â«ENDDEFINEÂ»
 
-«DEFINE attributes FOR gmfgen::GenDiagram-»
-	«EXPAND xpt::Common::generatedMemberComment»
-	public final static String MODEL_ID = "«editorGen.modelID»"; «EXPAND xpt::Common::nonNLS»
+Â«DEFINE attributes FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
+	public final static String MODEL_ID = "Â«editorGen.modelIDÂ»"; Â«EXPAND xpt::Common::nonNLSÂ»
 	
-	«EXPAND xpt::diagram::editparts::Common::visualIDConstant FOR self-»
+	Â«EXPAND xpt::diagram::editparts::Common::visualIDConstant FOR self-Â»
 		
-	«REM»BEGIN: PapyrusGenCode«ENDREM»
-	«REM»Call the template to generate means to run the popup menu "Filters views"«ENDREM»
-	«EXPAND  impl::diagram::editparts::DiagramEditPart::viewResolver FOR self-»
-	«REM»END: PapyrusGenCode«ENDREM»
-«ENDDEFINE»
+	
+Â«ENDDEFINEÂ»
 
-«DEFINE createDefaultEditPolicies FOR gmfgen::GenDiagram-»
-	«EXPAND xpt::Common::generatedMemberComment»
+Â«DEFINE createDefaultEditPolicies FOR gmfgen::GenDiagram-Â»
+	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
 	protected void createDefaultEditPolicies() {
-		«EXPAND impl::diagram::editparts::DiagramEditPart::createDefaultEditPoliciesBody-»
+		Â«EXPAND impl::diagram::editparts::DiagramEditPart::createDefaultEditPoliciesBody-Â»
 	}
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
+Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
+Â«ENDDEFINEÂ»
 
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
+Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
+Â«ENDDEFINEÂ»
 
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
+Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
+Â«ENDDEFINEÂ»
 
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
+Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
+Â«ENDDEFINEÂ»
