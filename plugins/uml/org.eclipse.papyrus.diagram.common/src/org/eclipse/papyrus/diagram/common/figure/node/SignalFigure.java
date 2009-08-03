@@ -13,34 +13,45 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.swt.graphics.RGB;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.draw2d.IFigure;
 
 /**
- * Figure to represent primitive types.
+ * Represents a signal.
  */
-public class SignalFigure extends ClassifierFigure {
+public class SignalFigure extends CompartmentFigure {
+
+	/** Attribute Compartment */
+	private final static String ATTRIBUTE_COMPARTMENT = "attributeCompartment";
+
+	/** List of compartment */
+	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 4239966810860044927L;
+
+		{
+			add(ATTRIBUTE_COMPARTMENT);
+		}
+	};
 
 	/**
-	 * Instantiates a new component figure.
+	 * Default Constructor
 	 */
 	public SignalFigure() {
-		this("Signal");
+		super(COMPARTMENT, "Signal");
 	}
 
 	/**
-	 * constructor to create a TaggedElementFigure.
+	 * Get the attribute's compartment figure
 	 * 
-	 * @param keyword
-	 *            the keyword
+	 * @return
 	 */
-	public SignalFigure(String keyword) {
-		super();
-		this.createTagLabel(keyword);
-
-		this.setOpaque(true); // non-transparent figure
-		this.setBackgroundColor(Activator.colorManager.get(new RGB(235, 248, 255)));
-		this.setForegroundColor(Activator.colorManager.get(new RGB(177, 207, 229)));
-		// The area accepting inner figures.
+	public IFigure getAttributeCompartmentFigure() {
+		return getCompartment(ATTRIBUTE_COMPARTMENT);
 	}
 }

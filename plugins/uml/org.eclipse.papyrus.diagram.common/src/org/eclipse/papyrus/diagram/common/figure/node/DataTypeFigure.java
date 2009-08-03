@@ -13,31 +13,55 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.swt.graphics.RGB;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.draw2d.IFigure;
 
 /**
- * Figure to represent primitive types
+ * Represents a datatype
  */
-public class DataTypeFigure extends ClassifierFigure {
+public class DataTypeFigure extends CompartmentFigure {
 
+	/** Attribute Compartment */
+	private final static String ATTRIBUTE_COMPARTMENT = "attributeCompartment";
+
+	/** Operation Compartment */
+	private final static String OPERATION_COMPARTMENT = "operationCompartment";
+
+	/** List of compartment */
+	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+
+		private static final long serialVersionUID = -2841645169151618170L;
+
+		{
+			add(ATTRIBUTE_COMPARTMENT);
+			add(OPERATION_COMPARTMENT);
+		}
+	};
+
+	/**
+	 * Default Constructor
+	 */
 	public DataTypeFigure() {
-		this("DataType");
+		super(COMPARTMENT, "DataType");
 	}
 
 	/**
-	 * constructor to create a TaggedElementFigure.
+	 * Get the attribute's compartment figure
 	 * 
-	 * @param keyword
+	 * @return
 	 */
-	public DataTypeFigure(String keyword) {
-		super();
-		this.createTagLabel(keyword);
-
-		this.setOpaque(true); // non-transparent figure
-		this.setBackgroundColor(Activator.colorManager.get(new RGB(235, 248, 255)));
-		this.setForegroundColor(Activator.colorManager.get(new RGB(177, 207, 229)));
-		// The area accepting inner figures.
+	public IFigure getAttributeCompartmentFigure() {
+		return getCompartment(ATTRIBUTE_COMPARTMENT);
 	}
 
+	/**
+	 * Get the operation's compartment figure
+	 * 
+	 * @return
+	 */
+	public IFigure getOperationCompartmentFigure() {
+		return getCompartment(OPERATION_COMPARTMENT);
+	}
 }

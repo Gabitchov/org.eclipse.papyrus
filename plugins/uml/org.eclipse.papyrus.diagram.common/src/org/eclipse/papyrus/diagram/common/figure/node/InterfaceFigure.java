@@ -13,34 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.swt.graphics.RGB;
-
-// TODO: Auto-generated Javadoc
 /**
- * Figure to represent primitive types.
+ * Represents an interface
  */
 public class InterfaceFigure extends ClassifierFigure {
 
 	/**
-	 * Instantiates a new component figure.
+	 * Default Constructor
 	 */
 	public InterfaceFigure() {
-		this("Interface");
-	}
-
-	/**
-	 * constructor to create a TaggedElementFigure.
-	 * 
-	 * @param keyword
-	 *            the keyword
-	 */
-	public InterfaceFigure(String keyword) {
-		super();
-		this.createTagLabel(keyword);
-		this.setOpaque(true); // non-transparent figure
-		this.setBackgroundColor(Activator.colorManager.get(new RGB(235, 248, 255)));
-		this.setForegroundColor(Activator.colorManager.get(new RGB(177, 207, 229)));
-		// The area accepting inner figures.
+		super("Interface");
 	}
 }

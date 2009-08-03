@@ -75,7 +75,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	 *            the value to use
 	 */
 	protected void initTagLabel(String value) {
-		if (value != null) {
+		if (value != null && value.length() > 0) {
 			taggedLabel = new Label();
 			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
 			taggedLabel.setText(textToDisplay);
