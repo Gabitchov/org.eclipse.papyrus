@@ -50,8 +50,8 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityPartitionActiv
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy;
-import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
+import org.eclipse.papyrus.diagram.common.editpolicies.DragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ViewAndFeatureResolver;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.UMLPackage;

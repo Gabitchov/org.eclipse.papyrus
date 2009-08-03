@@ -47,8 +47,8 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import org.eclipse.papyrus.diagram.common.commands.ChangeZOrderOfCreatedEP;
-import org.eclipse.papyrus.diagram.common.edit.policies.DragDropEditPolicy;
-import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
+import org.eclipse.papyrus.diagram.common.editpolicies.DragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ViewAndFeatureResolver;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CreateLifelineAndBESCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;

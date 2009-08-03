@@ -23,8 +23,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.uml2.uml.Interaction;
 
-import org.eclipse.papyrus.diagram.common.edit.policies.DiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.common.edit.policies.ViewResolver;
+import org.eclipse.papyrus.diagram.common.editpolicies.DiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ViewResolver;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.InitializeInteractionViewCommand;
 
 /**

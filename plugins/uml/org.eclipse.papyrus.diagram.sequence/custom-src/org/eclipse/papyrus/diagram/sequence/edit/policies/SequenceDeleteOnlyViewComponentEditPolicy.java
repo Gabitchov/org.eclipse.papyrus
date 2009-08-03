@@ -19,7 +19,7 @@ import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 
-import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.DeleteOnlyViewComponentEditPolicy;
 
 public class SequenceDeleteOnlyViewComponentEditPolicy extends
 		DeleteOnlyViewComponentEditPolicy {

@@ -22,8 +22,8 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import org.eclipse.papyrus.diagram.common.edit.policies.DiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.common.edit.policies.ViewAndFeatureResolver;
+import org.eclipse.papyrus.diagram.common.editpolicies.DiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ViewAndFeatureResolver;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;

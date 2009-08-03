@@ -25,7 +25,7 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 
-import org.eclipse.papyrus.diagram.common.edit.policies.ShowViewEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ShowViewEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**

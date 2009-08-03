@@ -13,7 +13,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.common.edit.policies.ShowViewEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ShowViewEditPolicy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 

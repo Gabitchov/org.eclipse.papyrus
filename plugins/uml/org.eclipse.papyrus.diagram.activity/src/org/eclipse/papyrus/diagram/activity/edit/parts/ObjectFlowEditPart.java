@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.commands.RemoveEObjectReferencesFromDiagram;
-import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;

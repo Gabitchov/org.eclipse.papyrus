@@ -47,9 +47,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import org.eclipse.papyrus.diagram.common.commands.AnnotateNodeStyleCommand;
-import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CommentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceDeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;

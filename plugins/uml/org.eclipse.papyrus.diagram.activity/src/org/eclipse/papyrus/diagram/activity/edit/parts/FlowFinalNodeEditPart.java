@@ -43,8 +43,8 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.FlowFinalNodeItemSeman
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.commands.AnnotateNodeStyleCommand;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
-import org.eclipse.papyrus.diagram.common.edit.policies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.PrimaryShapeEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.DeleteOnlyViewComponentEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.UMLPackage;
