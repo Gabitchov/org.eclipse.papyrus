@@ -7,7 +7,7 @@
             contributor="CEA LIST"
             editorConfiguration="org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML"
             icon="resources/icons/Property.gif"
-            language="UML"
+            language="Papyrus UML"
             objectToEdit="org.eclipse.uml2.uml.Property">
       </DirectEditor>
    </extension>
