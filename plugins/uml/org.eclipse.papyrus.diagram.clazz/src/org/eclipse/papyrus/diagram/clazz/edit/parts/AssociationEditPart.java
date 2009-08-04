@@ -17,6 +17,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
@@ -162,8 +163,25 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated NOT
 	 */
 	protected void refreshVisuals() {
-		Property source = (Property) ((Association) resolveSemanticElement()).getMembers().get(0);
-		Property target = (Property) ((Association) resolveSemanticElement()).getMembers().get(1);
+		if (getSource() == null || getTarget() == null) {
+			return;
+		}
+		if (((GraphicalEditPart) getSource()).resolveSemanticElement() == null
+				|| ((GraphicalEditPart) getTarget()).resolveSemanticElement() == null) {
+			return;
+		}
+
+		Property source = null;
+		Property target = null;
+
+		if (((Property) (((Association) getUMLElement()).getMemberEnds().get(0))).getType().equals(
+				((GraphicalEditPart) getSource()).resolveSemanticElement())) {
+			source = ((Property) (((Association) getUMLElement()).getMemberEnds().get(0)));
+			target = ((Property) (((Association) getUMLElement()).getMemberEnds().get(1)));
+		} else {
+			source = ((Property) (((Association) getUMLElement()).getMemberEnds().get(1)));
+			target = ((Property) (((Association) getUMLElement()).getMemberEnds().get(0)));
+		}
 		int sourceType = 0;
 		int targetType = 0;
 		// owned?
