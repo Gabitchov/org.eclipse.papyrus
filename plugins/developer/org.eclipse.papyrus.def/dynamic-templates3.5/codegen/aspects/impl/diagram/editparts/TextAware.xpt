@@ -119,6 +119,8 @@
 
 	«EXPAND initExtendedEditorConfiguration -»
 	
+	«EXPAND updateExtendedEditorConfiguration -»
+	
 	«REM»END: PapyrusGenCode«ENDREM»
 «ENDDEFINE»
 
@@ -415,8 +417,10 @@
 			// no direct edition mode => does nothing
 			return;
 		case org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition.EXTENDED_DIRECT_EDITOR:
+			updateExtendedEditorConfiguration();
+			assert (configuration != null);
 			configuration.preEditAction(resolveSemanticElement());
-			final org.eclipse.papyrus.diagram.common.editpolicies.ExtendedDirectEditionDialog dialog = new org.eclipse.papyrus.diagram.common.editpolicies.ExtendedDirectEditionDialog(org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
+			final org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog dialog = new org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog(org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
 					.getTextToEdit(resolveSemanticElement()), configuration);
 			if (org.eclipse.jface.window.Window.OK == dialog.open()) {
 				org.eclipse.emf.transaction.TransactionalEditingDomain domain = getEditingDomain();
@@ -630,7 +634,7 @@
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.hasSpecificEditorConfiguration(org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+			return org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
 		}
 		return false;
 	}
@@ -655,10 +659,28 @@
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
-			configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+			final String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			if (languagePreferred != null) {
+				configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+			} else {
+				configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+			}
 		}
 	}
 «ENDDEFINE»
 
+«DEFINE updateExtendedEditorConfiguration FOR gmfgen::GenCommonBase-»
+	/**
+	 * Updates the preference configuration
+	 */
+	protected void updateExtendedEditorConfiguration() {
+		String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(
+				org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != configuration.getLanguage()) {
+			configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
+					.eClass().getInstanceClassName());
+		}
+	}
+«ENDDEFINE»
 «REM»END: PapyrusGenCode«ENDREM»
 
