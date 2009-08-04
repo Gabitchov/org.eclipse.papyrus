@@ -124,17 +124,17 @@
          </propertySection>
          <propertySection
                class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeSectionWithView"
-               filter="org.eclipse.papyrus.profile.utils.UmlElementFilter"
+               filter="org.eclipse.papyrus.profile.filter.AppliedStereotypeSectionFilter"
                id="AppliedStereotypeSectionWithView"
                tab="org.eclipse.papyrus.tabbedproperties.profile">
          </propertySection>
          <propertySection
                class="org.eclipse.papyrus.profile.ui.section.AppliedProfileSection"
-               filter="org.eclipse.papyrus.profile.utils.UmlElementFilter"
+               filter="org.eclipse.papyrus.profile.filter.AppliedProfileSectionFilter"
                id="AppliedProfileSection"
                tab="org.eclipse.papyrus.tabbedproperties.profile">
          </propertySection>
-         <propertySection
+         <!--<propertySection
                class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeKindAppearanceSection"
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter"
                id="ConnectionAppliedStereotypeKindAppearanceSection"
@@ -146,8 +146,8 @@
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter"
                id="ConnectionAppliedStereotypeDisplaySection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
-         </propertySection>
-         <propertySection
+         </propertySection>-->
+         <!--<propertySection
                afterSection="AppliedStereotypeKindAppearanceSection"
                class="org.eclipse.papyrus.profile.ui.section.AppliedStereotypeDisplaySection"
                filter="org.eclipse.papyrus.profile.filter.CompartmentEditPartPropertySectionFilter"
@@ -159,7 +159,7 @@
                filter="org.eclipse.papyrus.profile.filter.CompartmentEditPartPropertySectionFilter"
                id="CompartmentAppliedStereotypeKindAppearanceSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
-         </propertySection>
+         </propertySection>-->
       </propertySections>
    </extension>
 
