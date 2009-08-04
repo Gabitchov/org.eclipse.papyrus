@@ -659,11 +659,11 @@
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
-			final String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			final String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null) {
 				configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
-				configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
 			}
 		}
 	}
