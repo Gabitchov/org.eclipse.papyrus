@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.extensionpoints.editors.configuration;
 

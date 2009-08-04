@@ -71,6 +71,27 @@ public class DirectEditorsUtil {
 	}
 
 	/**
+	 * finds if an editor for specific object is available to edit type
+	 * 
+	 * @param language
+	 *            the language to edit
+	 * @param objectToEdit
+	 *            the type of object to edit
+	 * @return <code>true</code> if an editor exists
+	 */
+	public static boolean hasSpecificEditorConfiguration(String objectToEdit) {
+		DirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getDirectEditorConfigurations();
+		for (DirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
+			final String oToEdit = directEditorExtensionPoint.getObjectToEdit();
+			if (oToEdit.equals(objectToEdit)) {
+				// extension point found!
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * returns the list of languages that are available from extension points
 	 * 
 	 * @return the list of languages that have an extended editor

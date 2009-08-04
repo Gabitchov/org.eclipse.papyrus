@@ -23,6 +23,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
+import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -59,10 +60,6 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 
 	public static final String SIMPLE_DIRECT_EDITOR = "Simple Direct Editor";  //$NON-NLS-1$
 
-	public static final String EDITOR_FOR_ELEMENT = "papyrus.directeditor.";
-
-//     private static final String DATA_FROM_CONTENT_TYPE = "type"; //$NON-NLS-1$
-    
 	protected Table elementTypeTable;
 
     protected Table editorTable;
@@ -220,7 +217,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
         editorTable.removeAll();
         
         String elementType = getSelectedElementType();
-        String preferedLanguage = getPreferenceStore().getString(EDITOR_FOR_ELEMENT+elementType);
+        String preferedLanguage = getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT+elementType);
         boolean simpleEditorPrefered = SIMPLE_DIRECT_EDITOR.equals(preferedLanguage);
         
         List<DirectEditorExtensionPoint> editors = getAssociatedEditors();
@@ -407,7 +404,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
             selectedItems[0].setText(selectedItems[0].getText()+ DEFAULT_EDITOR_LABEL); //$NON-NLS-1$
 
             // retrieve current object to edit name
-            getPreferenceStore().setValue(EDITOR_FOR_ELEMENT+getSelectedElementType(), (extensionPoint!=null) ? extensionPoint.getLanguage() : SIMPLE_DIRECT_EDITOR);
+            getPreferenceStore().setValue(IDirectEditorsIds.EDITOR_FOR_ELEMENT+getSelectedElementType(), (extensionPoint!=null) ? extensionPoint.getLanguage() : SIMPLE_DIRECT_EDITOR);
         }
     }
 

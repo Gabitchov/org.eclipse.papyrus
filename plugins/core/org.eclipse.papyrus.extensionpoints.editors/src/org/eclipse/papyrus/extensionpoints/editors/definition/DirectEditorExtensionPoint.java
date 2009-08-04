@@ -22,6 +22,7 @@ import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.preferences.PapyrusEmbeddedEditorsPreferencePage;
+import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -78,7 +79,7 @@ public class DirectEditorExtensionPoint {
 	 */
 	public static DirectEditorExtensionPoint getDefautDirectEditorConfiguration(String elementType) {
 		//retrieves preference for this element
-		String language = Activator.getDefault().getPreferenceStore().getString(PapyrusEmbeddedEditorsPreferencePage.EDITOR_FOR_ELEMENT+elementType);
+		String language = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT+elementType);
 		if(language==null || PapyrusEmbeddedEditorsPreferencePage.SIMPLE_DIRECT_EDITOR.equals(language)) {
 			return null;
 		}
