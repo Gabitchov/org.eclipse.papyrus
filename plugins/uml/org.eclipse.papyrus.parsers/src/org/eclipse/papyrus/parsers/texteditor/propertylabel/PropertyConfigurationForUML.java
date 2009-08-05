@@ -19,7 +19,6 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.parsers.modelgenerator.PropertyGenerator;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
-import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -86,7 +85,7 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 		return new IInputValidator() {
 
 			public String isValid(String newText) {
-				if (getObjectToEdit() instanceof Port) {
+				if (getObjectToEdit() instanceof Property) {
 					PropertyGenerator generator = new PropertyGenerator(((Property) getObjectToEdit()));
 					return generator.parseAndValidateProperty(newText);
 				}

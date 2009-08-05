@@ -13,23 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.parsers.modelgenerator;
 
-import java.io.StringReader;
-
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.MismatchedTokenException;
+import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.parsers.PapyrusParsersPlugin;
 import org.eclipse.papyrus.parsers.antlr.PropertyLabelLexer;
 import org.eclipse.papyrus.parsers.antlr.PropertyLabelParser;
-import org.eclipse.papyrus.parsers.util.IErrorReporter;
 import org.eclipse.papyrus.parsers.util.SimpleStringErrorReporter;
 import org.eclipse.papyrus.parsers.util.TypeRecognitionException;
 import org.eclipse.papyrus.parsers.util.UnboundTemplateRecognitionException;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TemplateableElement;
-
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
 
 /**
  * 
@@ -97,6 +94,8 @@ public class PropertyGenerator {
 		parser.setValidation(true);
 		try {
 			parser.label();
+		} catch (MismatchedTokenException e) {
+			System.err.println("context:" + parser.getContext());
 		} catch (RecognitionException e) {
 			reporter.setMessage(e.getLocalizedMessage());
 		} catch (RuntimeException e) {

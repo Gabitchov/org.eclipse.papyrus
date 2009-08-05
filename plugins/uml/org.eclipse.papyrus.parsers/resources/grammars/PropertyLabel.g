@@ -356,7 +356,6 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
 }
 }
 
-
 label :
   (WS)*
   (visibility {context = IContext.VISIBILITY; } (WS)* )? 
@@ -406,7 +405,7 @@ property_type
   :
   (WS)*
   ( type |
-    '<Undefined>'
+    UNDEFINED
   )
   ;
   
@@ -770,6 +769,9 @@ UNDERSCORE
   : '_'
   ;
 
+UNDEFINED
+  : '<UNDEFINED>'
+  ;
 
 INTEGER
   : (DIGIT)+
