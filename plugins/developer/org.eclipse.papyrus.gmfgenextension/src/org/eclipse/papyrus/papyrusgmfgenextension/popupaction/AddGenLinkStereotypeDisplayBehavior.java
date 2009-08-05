@@ -55,7 +55,7 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 
 	public static final String DEFAULT_PARSER_PATTERN = "<<{0}>>"; //$NON-NLS-1$
 
-	public static final String APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS = "org.eclipse.papyrus.diagram.common.parser.custom.AppliedStereotypeParser"; //$NON-NLS-1$
+	public static final String APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS = "org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"; //$NON-NLS-1$
 
 	public static final String GEN_CLASS_RT_CLASS = "Node"; //$NON-NLS-1$
 
@@ -103,7 +103,8 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 	}
 
 	/**
-	 * Add the CustomBehavior for Applied Stereotype label display to the GenLink node given as parameter
+	 * Add the CustomBehavior for Applied Stereotype label display to the GenLink node given as
+	 * parameter
 	 * 
 	 * @param genlink
 	 *            where the CustomBehavior is added
@@ -144,7 +145,8 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 	}
 
 	/**
-	 * Add the CustomBehavior for Applied Stereotype label display to the GenLink node given as parameter
+	 * Add the CustomBehavior for Applied Stereotype label display to the GenLink node given as
+	 * parameter
 	 * 
 	 * @param genlink
 	 *            where the CustomBehavior is added
@@ -220,7 +222,8 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 	}
 
 	/**
-	 * Finds the custom parser used for stereotype display. Creates the parser if not already existing
+	 * Finds the custom parser used for stereotype display. Creates the parser if not already
+	 * existing
 	 * 
 	 * 
 	 * @param gmfgen
