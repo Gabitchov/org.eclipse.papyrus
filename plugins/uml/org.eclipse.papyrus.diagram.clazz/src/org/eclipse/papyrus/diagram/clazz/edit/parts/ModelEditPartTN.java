@@ -104,7 +104,6 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof ModelNameEditPartTN) {
 			((ModelNameEditPartTN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
@@ -113,7 +112,7 @@ NamedElementEditPart
 		if (childEditPart instanceof ModelPackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((ModelPackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -173,10 +172,6 @@ NamedElementEditPart
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 
-					// done in GMF gen code
-					// return new
-					// org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
-					// done in papyrus gencode to have borderItem resizeable
 					return new BorderItemResizableEditPolicy();
 
 				}
@@ -247,15 +242,12 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
 		if (editPart instanceof ModelPackageableElementCompartmentEditPart) {
 			return getPrimaryShape().getPackageableElementFigure();
 		}
-
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
-
 		return getContentPane();
 	}
 
@@ -268,8 +260,7 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -297,8 +288,7 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -892,8 +882,7 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -923,8 +912,7 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1577,8 +1565,7 @@ NamedElementEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2191,19 +2178,16 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof ModelNameEditPartTN) {
 			return true;
 		}
-
 		if (childEditPart instanceof ModelPackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((ModelPackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(
 					((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());

@@ -132,10 +132,6 @@ ClassifierEditPart
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 
-					// done in GMF gen code
-					// return new
-					// org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
-					// done in papyrus gencode to have borderItem resizeable
 					return new BorderItemResizableEditPolicy();
 
 				}
@@ -175,7 +171,6 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof SignalNameEditPart) {
 			((SignalNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
@@ -184,7 +179,7 @@ ClassifierEditPart
 		if (childEditPart instanceof SignalAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((SignalAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -205,19 +200,16 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof SignalNameEditPart) {
 			return true;
 		}
-
 		if (childEditPart instanceof SignalAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((SignalAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(
 					((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
@@ -250,15 +242,12 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
 		if (editPart instanceof SignalAttributeCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
-
 		return getContentPane();
 	}
 
@@ -266,9 +255,7 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 100);
-
 		return result;
 	}
 
@@ -368,8 +355,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -401,8 +387,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1225,8 +1210,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2048,8 +2032,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2082,8 +2065,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType

@@ -58,8 +58,6 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 
 	private static final String DATA_EDITOR = "editor"; //$NON-NLS-1$
 
-	public static final String SIMPLE_DIRECT_EDITOR = "Simple Direct Editor";  //$NON-NLS-1$
-
 	protected Table elementTypeTable;
 
     protected Table editorTable;
@@ -218,7 +216,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
         
         String elementType = getSelectedElementType();
         String preferedLanguage = getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT+elementType);
-        boolean simpleEditorPrefered = SIMPLE_DIRECT_EDITOR.equals(preferedLanguage);
+        boolean simpleEditorPrefered = IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(preferedLanguage);
         
         List<DirectEditorExtensionPoint> editors = getAssociatedEditors();
         for(DirectEditorExtensionPoint extensionPoint : editors) {
@@ -245,7 +243,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
      */
     public String getEditorItemName(DirectEditorExtensionPoint extensionPoint) {
     	if(extensionPoint == null) {
-    		return SIMPLE_DIRECT_EDITOR;
+    		return IDirectEditorsIds.SIMPLE_DIRECT_EDITOR;
     	} else {
     		return extensionPoint.getLanguage();
     	}
@@ -393,7 +391,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
     		if(item.getText().endsWith(DEFAULT_EDITOR_LABEL)) {
     			DirectEditorExtensionPoint oldExtensionPoint = (DirectEditorExtensionPoint)item.getData(DATA_EDITOR);
                 // no configuration associated => standard editor
-    			item.setText((oldExtensionPoint!=null) ? oldExtensionPoint.getLanguage() : SIMPLE_DIRECT_EDITOR);
+    			item.setText((oldExtensionPoint!=null) ? oldExtensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
     		}
     	}
         TableItem[] selectedItems = editorTable.getSelection();
@@ -404,7 +402,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
             selectedItems[0].setText(selectedItems[0].getText()+ DEFAULT_EDITOR_LABEL); //$NON-NLS-1$
 
             // retrieve current object to edit name
-            getPreferenceStore().setValue(IDirectEditorsIds.EDITOR_FOR_ELEMENT+getSelectedElementType(), (extensionPoint!=null) ? extensionPoint.getLanguage() : SIMPLE_DIRECT_EDITOR);
+            getPreferenceStore().setValue(IDirectEditorsIds.EDITOR_FOR_ELEMENT+getSelectedElementType(), (extensionPoint!=null) ? extensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
         }
     }
 

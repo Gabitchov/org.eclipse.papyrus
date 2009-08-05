@@ -192,7 +192,7 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 		// create the view descritor
 		// String factoryHint = getDefaultFactoryHint();
 		IAdaptable elementAdapter = new EObjectAdapter(element);// CanonicalElementAdapter(element,
-																// factoryHint);
+		// factoryHint);
 
 		ViewDescriptor descriptor = getViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND);
 		return descriptor;

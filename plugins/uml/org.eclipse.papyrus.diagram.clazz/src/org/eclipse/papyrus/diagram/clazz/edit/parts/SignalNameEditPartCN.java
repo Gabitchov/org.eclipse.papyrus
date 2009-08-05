@@ -61,6 +61,7 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
@@ -394,21 +395,26 @@ public class SignalNameEditPartCN extends CompartmentEditPart implements ITextAw
 			// no direct edition mode => does nothing
 			return;
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
-			configuration.preEditAction(resolveSemanticElement());
-			final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
-					.getTextToEdit(resolveSemanticElement()), configuration);
-			if (Window.OK == dialog.open()) {
-				TransactionalEditingDomain domain = getEditingDomain();
-				RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
+			updateExtendedEditorConfiguration();
+			if (configuration == null || configuration.getLanguage() == null) {
+				performDefaultDirectEditorEdit(theRequest);
+			} else {
+				configuration.preEditAction(resolveSemanticElement());
+				final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
+						.getTextToEdit(resolveSemanticElement()), configuration);
+				if (Window.OK == dialog.open()) {
+					TransactionalEditingDomain domain = getEditingDomain();
+					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
-					@Override
-					protected void doExecute() {
-						configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
+						@Override
+						protected void doExecute() {
+							configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
 
-					}
-				};
-				domain.getCommandStack().execute(command);
+						}
+					};
+					domain.getCommandStack().execute(command);
+				}
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
@@ -592,8 +598,8 @@ public class SignalNameEditPartCN extends CompartmentEditPart implements ITextAw
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
-					resolveSemanticElement().eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass()
+					.getInstanceClassName());
 		}
 		return false;
 	}
@@ -615,8 +621,59 @@ public class SignalNameEditPartCN extends CompartmentEditPart implements ITextAw
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
-					resolveSemanticElement().eClass().getInstanceClassName());
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			if (languagePreferred != null && !languagePreferred.equals("")) {
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
+						.eClass().getInstanceClassName());
+			} else {
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
+						resolveSemanticElement().eClass().getInstanceClassName());
+			}
+		}
+	}
+
+	/**
+	 * Updates the preference configuration
+	 */
+	protected void updateExtendedEditorConfiguration() {
+		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("")
+				&& languagePreferred != configuration.getLanguage()) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
+					.eClass().getInstanceClassName());
+		}
+	}
+
+	/**
+	 * Performs the direct edit usually used by GMF editors.
+	 * 
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 */
+	protected void performDefaultDirectEditorEdit(final Request theRequest) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData().get(
+									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -152,7 +152,6 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof EnumerationNameEditPart) {
 			((EnumerationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
@@ -161,7 +160,7 @@ ClassifierEditPart
 		if (childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((EnumerationEnumerationLiteralCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -173,19 +172,16 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof EnumerationNameEditPart) {
 			return true;
 		}
-
 		if (childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((EnumerationEnumerationLiteralCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -213,11 +209,9 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
 		if (editPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			return getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 		}
-
 		return getContentPane();
 	}
 
@@ -225,9 +219,7 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 100);
-
 		return result;
 	}
 
@@ -327,8 +319,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -360,8 +351,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1184,8 +1174,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2007,8 +1996,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2041,8 +2029,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType

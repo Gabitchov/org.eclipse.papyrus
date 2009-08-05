@@ -20,6 +20,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -154,7 +155,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 		if (childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -175,6 +176,16 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 *Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -223,7 +234,6 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 
 		// FIXME: workaround for #154536
@@ -253,11 +263,9 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
 		if (editPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			return getPrimaryShape().getTemplateParameterRectangle();
 		}
-
 		return getContentPane();
 	}
 
@@ -270,8 +278,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -295,8 +302,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -704,8 +710,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -732,8 +737,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1214,8 +1218,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1694,15 +1697,13 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 

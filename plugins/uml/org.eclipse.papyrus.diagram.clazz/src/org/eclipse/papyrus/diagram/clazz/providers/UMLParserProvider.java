@@ -367,7 +367,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser packageMergeLabel_6030Parser;
+	private AppliedStereotypeParser packageMergeLabel_6030Parser;
 
 	/**
 	 * @generated
@@ -1030,7 +1030,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getPackageMergeLabel_6030Parser() {
 		if (packageMergeLabel_6030Parser == null) {
-			packageMergeLabel_6030Parser = new org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser();
+			packageMergeLabel_6030Parser = new AppliedStereotypeParser();
 		}
 		return packageMergeLabel_6030Parser;
 	}

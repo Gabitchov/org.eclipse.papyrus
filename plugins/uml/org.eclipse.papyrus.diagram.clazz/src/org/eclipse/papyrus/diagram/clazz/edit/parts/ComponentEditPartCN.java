@@ -134,10 +134,6 @@ ClassifierEditPart
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 
-					// done in GMF gen code
-					// return new
-					// org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
-					// done in papyrus gencode to have borderItem resizeable
 					return new BorderItemResizableEditPolicy();
 
 				}
@@ -177,7 +173,6 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof ComponentNameEditPartCN) {
 			((ComponentNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
@@ -186,7 +181,7 @@ ClassifierEditPart
 		if (childEditPart instanceof ComponentAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((ComponentAttributeCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -194,7 +189,7 @@ ClassifierEditPart
 		if (childEditPart instanceof ComponentOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((ComponentOperationCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -202,7 +197,7 @@ ClassifierEditPart
 		if (childEditPart instanceof ComponentNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((ComponentNestedClassifierCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -223,35 +218,30 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof ComponentNameEditPartCN) {
 			return true;
 		}
-
 		if (childEditPart instanceof ComponentAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((ComponentAttributeCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		if (childEditPart instanceof ComponentOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((ComponentOperationCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		if (childEditPart instanceof ComponentNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((ComponentNestedClassifierCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(
 					((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
@@ -284,23 +274,18 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
 		if (editPart instanceof ComponentAttributeCompartment2EditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-
 		if (editPart instanceof ComponentOperationCompartment2EditPart) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-
 		if (editPart instanceof ComponentNestedClassifierCompartment2EditPart) {
 			return getPrimaryShape().getNestedClassifierFigure();
 		}
-
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
-
 		return getContentPane();
 	}
 
@@ -308,9 +293,7 @@ ClassifierEditPart
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 100);
-
 		return result;
 	}
 
@@ -410,8 +393,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -444,8 +426,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1274,8 +1255,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2103,8 +2083,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2137,8 +2116,7 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType

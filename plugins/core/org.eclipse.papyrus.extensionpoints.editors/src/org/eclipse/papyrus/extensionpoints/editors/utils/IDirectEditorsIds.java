@@ -22,6 +22,9 @@ public interface IDirectEditorsIds {
 	/** Constant for the UML language */
 	public final String UML_LANGUAGE = "Papyrus UML";
 
+	/** Constant for the direct editors */
+	public static final String SIMPLE_DIRECT_EDITOR = "Simple Direct Editor"; //$NON-NLS-1$
+
 	/** constant for preferences */
 	public static final String EDITOR_FOR_ELEMENT = "papyrus.directeditor.";
 

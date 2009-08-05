@@ -21,10 +21,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.preferences.PapyrusEmbeddedEditorsPreferencePage;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.graphics.Image;
-
 
 public class DirectEditorExtensionPoint {
 
@@ -40,9 +38,9 @@ public class DirectEditorExtensionPoint {
 	/** value of the editor configuration attribute */
 	private IDirectEditorConfiguration directEditorConfiguration;
 
-
 	/**
 	 * Returns the set of transformations registered in the platform
+	 * 
 	 * @return the set of transformations registered in the platform
 	 */
 	public static DirectEditorExtensionPoint[] getDirectEditorConfigurations() {
@@ -52,41 +50,46 @@ public class DirectEditorExtensionPoint {
 			return configurations;
 		}
 
-		// It was not already computed, 
+		// It was not already computed,
 		// returns the new Collection of DirectEditorExtensionPoint
 		List<DirectEditorExtensionPoint> directEditorExtensionPoints = new ArrayList<DirectEditorExtensionPoint>();
 
 		// Reading data from plug-ins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(IDirectEditorConfigurationIds.DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID);		
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				IDirectEditorConfigurationIds.DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID);
 
 		// Read configuration elements for the current extension
-		for (int j = 0 ; j < configElements.length ; j++) {
+		for (int j = 0; j < configElements.length; j++) {
 			DirectEditorExtensionPoint proxy = parseDirectEditorConfiguration(configElements[j]);
 
 			if (proxy != null) {
 				directEditorExtensionPoints.add(proxy);
 			}
-		} // end of configElements loop	
+		} // end of configElements loop
 
-		configurations = directEditorExtensionPoints.toArray(new DirectEditorExtensionPoint[directEditorExtensionPoints.size()]);
+		configurations = directEditorExtensionPoints.toArray(new DirectEditorExtensionPoint[directEditorExtensionPoints
+				.size()]);
 		return configurations;
 	}
-	
+
 	/**
 	 * Retrieves the preferred editor configuration for the specified type
-	 * @param elementType the element type to be edited
+	 * 
+	 * @param elementType
+	 *            the element type to be edited
 	 * @return the preferred editor configuration for the specified type or <code>null</code>
 	 */
 	public static DirectEditorExtensionPoint getDefautDirectEditorConfiguration(String elementType) {
-		//retrieves preference for this element
-		String language = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT+elementType);
-		if(language==null || PapyrusEmbeddedEditorsPreferencePage.SIMPLE_DIRECT_EDITOR.equals(language)) {
+		// retrieves preference for this element
+		String language = Activator.getDefault().getPreferenceStore().getString(
+				IDirectEditorsIds.EDITOR_FOR_ELEMENT + elementType);
+		if (language == null || IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(language)) {
 			return null;
 		}
 		try {
 			Collection<DirectEditorExtensionPoint> configs = getDirectEditorConfigurations(Class.forName(elementType));
-			for(DirectEditorExtensionPoint configuration : configs) {
-				if(language.equals(configuration.getLanguage())) {
+			for (DirectEditorExtensionPoint configuration : configs) {
+				if (language.equals(configuration.getLanguage())) {
 					return configuration;
 				}
 			}
@@ -97,20 +100,25 @@ public class DirectEditorExtensionPoint {
 	}
 
 	/**
-	 * Returns the set of transformations registered in the platform for the specified kind of element
-	 * @param the type of element to be edited
-	 * @return the set of transformations registered in the platform for the specified kind of element
+	 * Returns the set of transformations registered in the platform for the specified kind of
+	 * element
+	 * 
+	 * @param the
+	 *            type of element to be edited
+	 * @return the set of transformations registered in the platform for the specified kind of
+	 *         element
 	 */
 	public static Collection<DirectEditorExtensionPoint> getDirectEditorConfigurations(Class<?> elementClass) {
-		// list of configuration to be returned. They correspond to configuration to edit the specified type 
-		final ArrayList<DirectEditorExtensionPoint> elementConfigurations = new ArrayList<DirectEditorExtensionPoint>(); 
-		
+		// list of configuration to be returned. They correspond to configuration to edit the
+		// specified type
+		final ArrayList<DirectEditorExtensionPoint> elementConfigurations = new ArrayList<DirectEditorExtensionPoint>();
+
 		// check each configuration in the platform and select corresponding ones.
-		for(DirectEditorExtensionPoint configuration : getDirectEditorConfigurations()) {
+		for (DirectEditorExtensionPoint configuration : getDirectEditorConfigurations()) {
 			try {
 				Class<?> configurationClass = Class.forName(configuration.getObjectToEdit());
 				// both class are compatibles ?
-				if(configurationClass.isAssignableFrom(elementClass)) {
+				if (configurationClass.isAssignableFrom(elementClass)) {
 					elementConfigurations.add(configuration);
 				}
 			} catch (ClassNotFoundException e) {
@@ -122,8 +130,10 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Returns a configuration, given elements from the ConfigurationElement
-	 * @param configElt the element that declares the extension
-	 * @return a new configuration, given the information of the specified configElt 
+	 * 
+	 * @param configElt
+	 *            the element that declares the extension
+	 * @return a new configuration, given the information of the specified configElt
 	 */
 	public static DirectEditorExtensionPoint parseDirectEditorConfiguration(IConfigurationElement configElt) {
 
@@ -131,7 +141,8 @@ public class DirectEditorExtensionPoint {
 		if (!IDirectEditorConfigurationIds.TAG_DIRECT_EDITOR_CONFIGURATION.equals(configElt.getName())) {
 			return null;
 		}
-		// this is a transformation, tries to parse extension, and create the java corresponding class
+		// this is a transformation, tries to parse extension, and create the java corresponding
+		// class
 		try {
 			return new DirectEditorExtensionPoint(configElt);
 		} catch (Exception e) {
@@ -140,52 +151,68 @@ public class DirectEditorExtensionPoint {
 		}
 	}
 
-
 	/**
-	 * Creates a new DirectEditorExtensionPoint, according to the ConfigurationElement 
-	 * @param configElt the configuration element corresponding to the configuration
+	 * Creates a new DirectEditorExtensionPoint, according to the ConfigurationElement
+	 * 
+	 * @param configElt
+	 *            the configuration element corresponding to the configuration
 	 */
 	public DirectEditorExtensionPoint(IConfigurationElement configElt) {
-		language = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_LANGUAGE, "undefined", true);	// should already be a string
-		objectToEdit = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_OBJECT_TO_EDIT, "java.lang.Object", true);	// should already be a string
+		language = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_LANGUAGE, "undefined", true); // should
+																											// already
+																											// be
+																											// a
+																											// string
+		objectToEdit = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_OBJECT_TO_EDIT, "java.lang.Object",
+				true); // should already be a string
 		directEditorConfiguration = getDirectEditorConfigurationClass(configElt);
+		directEditorConfiguration.setLanguage(language);
 	}
 
 	protected static IDirectEditorConfiguration getDirectEditorConfigurationClass(IConfigurationElement configElement) {
 		IDirectEditorConfiguration configuration = null;
 		try {
-			configuration = (IDirectEditorConfiguration)configElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
+			configuration = (IDirectEditorConfiguration) configElement
+					.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
 		} catch (CoreException e) {
 			Activator.log(e);
 			configuration = new DefaultDirectEditorConfiguration();
-		} 
+		}
 		return configuration;
 	}
 
-
 	/**
-	 * Returns the value of the attribute that has the given name, for the given configuration element.
-	 * <p>if the attribute has no value, and if default value is not <code>null</code>, it returns
+	 * Returns the value of the attribute that has the given name, for the given configuration
+	 * element.
+	 * <p>
+	 * if the attribute has no value, and if default value is not <code>null</code>, it returns
 	 * defaultValue.
-	 * <p>if it has no value, no default value, and if the attribute is required, it throws an
-	 * exception. 
-	 * @param defaultValue the default value (if exists) of the attribute 
-	 * @param isRequired boolean that indicates if this attribute is required
-	 * @param configElt configuration element that reflects the content of the extension
-	 * @param name the name of the attribute to read
+	 * <p>
+	 * if it has no value, no default value, and if the attribute is required, it throws an
+	 * exception.
+	 * 
+	 * @param defaultValue
+	 *            the default value (if exists) of the attribute
+	 * @param isRequired
+	 *            boolean that indicates if this attribute is required
+	 * @param configElt
+	 *            configuration element that reflects the content of the extension
+	 * @param name
+	 *            the name of the attribute to read
 	 * @return the attribute value
 	 */
-	protected static String getAttribute (IConfigurationElement configElt, String name, String defaultValue, boolean isRequired) {
+	protected static String getAttribute(IConfigurationElement configElt, String name, String defaultValue,
+			boolean isRequired) {
 		String value = configElt.getAttribute(name);
 
 		if (value != null) {
 			return value;
-		} else if (defaultValue != null){
+		} else if (defaultValue != null) {
 			return defaultValue;
 		}
 
 		if (isRequired) {
-			throw new IllegalArgumentException("Missing "+ name + " attribute");
+			throw new IllegalArgumentException("Missing " + name + " attribute");
 		}
 
 		return null;
@@ -193,12 +220,13 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Icon getter
+	 * 
 	 * @return the icon which path is in extension
 	 */
 	protected Image getImage(String iconPath, IConfigurationElement configElement) {
 
 		// no image associated to this plug-in
-		if(iconPath == null) {
+		if (iconPath == null) {
 			return null;
 		}
 		IExtension extension = configElement.getDeclaringExtension();
@@ -209,6 +237,7 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Returns the language edited by this direct editor
+	 * 
 	 * @return the language edited by this direct editor
 	 */
 	public String getLanguage() {
@@ -217,7 +246,9 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Sets the language edited by this direct editor
-	 * @param language the language edited by this direct editor
+	 * 
+	 * @param language
+	 *            the language edited by this direct editor
 	 */
 	public void setLanguage(String language) {
 		this.language = language;
@@ -225,6 +256,7 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Returns the type of object to edit
+	 * 
 	 * @return the type of object to edit
 	 */
 	public String getObjectToEdit() {
@@ -233,7 +265,9 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Sets the type of object to edit
-	 * @param objectToEdit the type of object to edit
+	 * 
+	 * @param objectToEdit
+	 *            the type of object to edit
 	 */
 	public void setObjectToEdit(String objectToEdit) {
 		this.objectToEdit = objectToEdit;
@@ -241,6 +275,7 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Returns the configuration for the dialog window
+	 * 
 	 * @return the configuration for the dialog window
 	 */
 	public IDirectEditorConfiguration getDirectEditorConfiguration() {
@@ -249,7 +284,9 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Sets the configuration for the dialog window
-	 * @param directEditorConfiguration the configuration for the dialog window
+	 * 
+	 * @param directEditorConfiguration
+	 *            the configuration for the dialog window
 	 */
 	public void setDirectEditorConfiguration(IDirectEditorConfiguration directEditorConfiguration) {
 		this.directEditorConfiguration = directEditorConfiguration;
