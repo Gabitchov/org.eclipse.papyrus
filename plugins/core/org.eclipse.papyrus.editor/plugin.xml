@@ -28,6 +28,14 @@
                id="org.eclipse.papyrus.ui.menu"
                label="Papyrus"
                tooltip="Papyrus Editor Menu">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
          </menu>
       </menuContribution>
    </extension>
