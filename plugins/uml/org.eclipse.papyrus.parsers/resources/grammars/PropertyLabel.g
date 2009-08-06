@@ -305,18 +305,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
    * @return the property found or <code>null</code> if the element was not found.
    */
   private Property findRedefinedPropertyByName(String propertyName, Property property) throws TypeRecognitionException {
-    Property redefinedProperty = null;
-    Iterator it = property.getClass_().getInheritedMembers().iterator();
-    while (it.hasNext()) {
-      NamedElement namedElement = (NamedElement) it.next();
-      if(namedElement instanceof Property) {
-        Property tmpProperty = (Property)namedElement;
-        if(propertyName.equals(tmpProperty.getName())) {
-          redefinedProperty = tmpProperty;
-        }
-      }
-    }
-    
+    Property redefinedProperty = PropertyUtil.findRedefinedPropertyByName(propertyName, property);
     if(redefinedProperty == null) {
       throw new TypeRecognitionException("Property "+propertyName+" has not been found or can not be redefined", property.getName());
     } 
@@ -357,18 +346,15 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
 }
 
 label :
-  (WS)*
-  (visibility {context = IContext.VISIBILITY; } (WS)* )? 
-  (isDerived { context = IContext.IS_DERIVED; }(WS)*)? 
+  (visibility {context = IContext.VISIBILITY; })? 
+  (isDerived { context = IContext.IS_DERIVED; })? 
   name 
-  ( ((WS)+ COLON)
-  |   COLON
-  ) 
+  COLON
   {
     context = IContext.AFTER_COLON;
   } 
-  property_type { context = IContext.PROPERTY_TYPE; } (WS)*  
-  (multiplicity { context = IContext.MULTIPLICITY; } (WS)* )?
+  property_type  { context = IContext.MULTIPLICITY; }
+  (fullMultiplicity { context = IContext.AFTER_MULTIPLICITY; })?
   (defaultValue { context = IContext.DEFAULT_VALUE; })? 
   (propertyModifiers { context = IContext.PROPERTY_MODIFIERS; })?
   {
@@ -402,12 +388,17 @@ name
   ;
 
 property_type
-  :
+  : 
   (WS)*
   ( type |
-    UNDEFINED
+    '<Undefined>'
   )
   ;
+   catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
+  
   
 type
   :
@@ -444,22 +435,24 @@ type
         throw new UnboundTemplateRecognitionException("Parameters of template " + typeName + " are not bound.",
             (TemplateableElement)utilType) ;
       }
-      else
+      else {
         type = utilType;
+      }
     }
   }
   ;
   
-multiplicity
+fullMultiplicity
   :
   LSQUARE
   { context = IContext.IN_MULTIPLICITY; }
-  (
-    lowerMultiplicity POINT_POINT upperMultiplicity {
+  /*(
+    ( lowerMultiplicity POINT_POINT upperMultiplicity {
       if(lowerMultiplicity > upperMultiplicity && upperMultiplicity != -1) {
         throw new MultiplicityException("Lower bound ("+lowerMultiplicity+") is greater than upper bound ("+upperMultiplicity+")");
       }
     }
+  )
   | upperMultiplicity {
       if(upperMultiplicity == -1) {
         lowerMultiplicity = 0;
@@ -467,6 +460,24 @@ multiplicity
         lowerMultiplicity = upperMultiplicity;
       }
     }
+  )*/
+  (
+    ra=RANGE_VALUE { 
+        // retrieving values. text = upper ',' lower
+        String value = $ra.text;
+        upperMultiplicity = Integer.parseInt(value.substring(0, value.lastIndexOf(',')));
+        lowerMultiplicity = Integer.parseInt(value.substring(value.lastIndexOf(',') + 1, value.length()));
+
+        if (lowerMultiplicity > upperMultiplicity && upperMultiplicity != -1) {
+          throw new MultiplicityException("Lower bound (" + lowerMultiplicity
+              + ") is greater than upper bound (" + upperMultiplicity + ")");
+        }
+    
+  }
+  | up=INTEGER {
+        upperMultiplicity = Integer.parseInt($up.text);
+        lowerMultiplicity = upperMultiplicity;
+  }
   )
   RSQUARE
   ;
@@ -533,24 +544,31 @@ propertyModifiers
   )*
   RCURLY
   ;
+  catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
   
 propertyModifier 
   :
-  (WS)*
   (
     'readOnly'  { isReadOnly = true; modifiersUsed.put("readOnly", true);}
   | 'union'   { isDerivedUnion = true; modifiersUsed.put("union", true);  }
   | 'ordered' { isOrdered = true; modifiersUsed.put("ordered", true); }
   | 'unique'  { isUnique = true; modifiersUsed.put("unique", true); modifiersUsed.put("nonunique", true);}
   | 'nonunique' { isUnique = false; modifiersUsed.put("unique", true); modifiersUsed.put("nonunique", true);}
-  | subsetsProperty  
+  | 'subsets' { context = IContext.SUBSET_PROPERTY ; } subsetsProperty  
   | redefinesProperty                                                                                                           
   )
   ;
+  catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
   
 subsetsProperty
   :
-  'subsets' { context = IContext.SUBSET_PROPERTY ; } (WS)+ id=IDENTIFIER
+  id=IDENTIFIER
   {
     // find property by name
     String propertyName = id.getText();
@@ -558,10 +576,14 @@ subsetsProperty
     subsettedProperties.add(tmpProperty); 
   }
   ;
+  catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
   
 redefinesProperty
   :
-  'redefines' { context = IContext.REDEFINE_PROPERTY ; } (WS)* id=IDENTIFIER
+  { context = IContext.REDEFINE_PROPERTY ; } 'redefines' { context = IContext.REDEFINE_PROPERTY ; } id=IDENTIFIER
   {
     // find property by name
     String propertyName = id.getText();
@@ -569,6 +591,10 @@ redefinesProperty
     redefinedProperties.add(tmpProperty); 
   }
   ;
+  catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
 
 NL 
   : ( '\r' '\n' 
@@ -580,13 +606,10 @@ NL
   ;
 
 
-// White spaces
-WS
-  : ( ' '
-    | '\t'   
-    )
+WS 
+  :  (' ' | '\t' | '\f')+ {$channel=HIDDEN;}
   ;
-
+  
 QUESTION_MARK
   : '?'
   ;
@@ -654,7 +677,7 @@ POINT
   : '.'
   ;
 
-POINT_POINT
+RANGE
   : '..'
   ;
 
@@ -753,12 +776,6 @@ CALLOPERATION
   : ':='
   ;
 
-
-DIGIT
-  : '0'..'9'
-  ;
-
-
 ALPHA
   : 'a'..'z' 
   | 'A'..'Z'
@@ -768,21 +785,32 @@ ALPHA
 UNDERSCORE
   : '_'
   ;
-
-UNDEFINED
-  : '<UNDEFINED>'
+  
+RANGE_VALUE
+  : c1=INTEGER {setText("");} '..'
+  ( c2=INTEGER  { setText($c2.text);}
+   |  c2=STAR { setText("-1");})
+   { 
+      setText($text + ","+ $c1.text); 
+   }
   ;
-
-INTEGER
-  : (DIGIT)+
-  ;
-
-
+ 
 REAL
   : INTEGER '.' INTEGER
-  ;
+  ; 
+  
+fragment
+INTEGER_OR_REAL_OR_RANGE !
+  :
+   (INTEGER RANGE) => RANGE_VALUE
+   | (INTEGER POINT) => REAL
+   | (INTEGER) => INTEGER
+   ;
 
+INTEGER
+  : '0'..'9'+;
+    
 IDENTIFIER
-  : (ALPHA|UNDERSCORE)(ALPHA|DIGIT|UNDERSCORE)*
+  : (ALPHA|UNDERSCORE)(ALPHA|'0'..'9'|UNDERSCORE)*
   ;
   

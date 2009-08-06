@@ -74,6 +74,24 @@ public class PropertyUtil {
 	}
 
 	/**
+	 * Find a subsetted property given its name and a context to find it.
+	 * 
+	 * @param name
+	 *            the name of the property
+	 * @return the property found or <code>null</code> if the element was not found.
+	 */
+	public static Property findSusbsettedPropertyByName(String propertyName, Property property) {
+		Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property).iterator();
+		while (it.hasNext()) {
+			Property tmpProperty = it.next();
+			if (propertyName.equals(tmpProperty.getName())) {
+				return tmpProperty;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Get all properties that can be redefined by this {@link Property}.
 	 * 
 	 * @return all properties that can be redefined
@@ -82,18 +100,32 @@ public class PropertyUtil {
 		List<Property> list = new ArrayList<Property>();
 
 		// redefine-able properties:
-		Iterator<NamedElement> it = property.getClass_().getMembers().iterator();
+		Iterator<NamedElement> it = property.getClass_().getInheritedMembers().iterator();
 		while (it.hasNext()) {
 			NamedElement element = it.next();
 			if (element instanceof Property) {
-				Property redefinableProperty = (Property) element;
-				if (!redefinableProperty.equals(property)) {
-					list.add(redefinableProperty);
-				}
+				list.add((Property) element);
 			}
 		}
-
 		return list;
+	}
+
+	/**
+	 * Find a redefined property given its name and a context to find it.
+	 * 
+	 * @param name
+	 *            the name of the property
+	 * @return the property found or <code>null</code> if the element was not found.
+	 */
+	public static Property findRedefinedPropertyByName(String propertyName, Property property) {
+		Iterator<Property> it = PropertyUtil.getRedefinableProperties(property).iterator();
+		while (it.hasNext()) {
+			Property tmpProperty = it.next();
+			if (propertyName.equals(tmpProperty.getName())) {
+				return tmpProperty;
+			}
+		}
+		return null;
 	}
 
 	/**

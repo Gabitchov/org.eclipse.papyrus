@@ -82,4 +82,9 @@ public abstract interface IContext {
 	 * 
 	 */
 	public static final int REDEFINE_PROPERTY = 12;
+
+	/**
+	 * 
+	 */
+	public static final int AFTER_MULTIPLICITY = 13;
 }

@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g 2009-08-05 15:15:58
+// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g 2009-08-06 17:42:37
 
 package org.eclipse.papyrus.parsers.antlr;
 
@@ -31,58 +31,58 @@ import java.util.ArrayList;
 
 public class PropertyLabelParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "WS", "COLON", "PLUS", "MINUS", "SHARP", "TILDE", "DIV", "IDENTIFIER", "UNDEFINED", "LSQUARE", "POINT_POINT", "RSQUARE", "INTEGER", "STAR", "EQ", "LCURLY", "COMMA", "RCURLY", "NL", "QUESTION_MARK", "LNOT", "DOUBLE_QUOTE", "SINGLE_QUOTE", "LPAREN", "RPAREN", "DOUBLE_LCURLY", "DOUBLE_RCURLY", "LOGICAL_AND", "DOUBLE_LOGICAL_AND", "PIPE", "DOUBLE_PIPE", "POINT", "SEMI", "FOUR_POINTS", "RULE_ASSIGN", "ARROW", "ISEQ", "ISNE", "LT", "DOUBLE_LT", "LE", "GT", "DOUBLE_GT", "GE", "INCR", "DECR", "CALLOPERATION", "DIGIT", "ALPHA", "UNDERSCORE", "REAL", "'readOnly'", "'union'", "'ordered'", "'unique'", "'nonunique'", "'subsets'", "'redefines'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "COLON", "PLUS", "MINUS", "SHARP", "TILDE", "DIV", "IDENTIFIER", "WS", "LSQUARE", "RANGE_VALUE", "INTEGER", "RSQUARE", "STAR", "EQ", "LCURLY", "COMMA", "RCURLY", "NL", "QUESTION_MARK", "LNOT", "DOUBLE_QUOTE", "SINGLE_QUOTE", "LPAREN", "RPAREN", "DOUBLE_LCURLY", "DOUBLE_RCURLY", "LOGICAL_AND", "DOUBLE_LOGICAL_AND", "PIPE", "DOUBLE_PIPE", "POINT", "RANGE", "SEMI", "FOUR_POINTS", "RULE_ASSIGN", "ARROW", "ISEQ", "ISNE", "LT", "DOUBLE_LT", "LE", "GT", "DOUBLE_GT", "GE", "INCR", "DECR", "CALLOPERATION", "ALPHA", "UNDERSCORE", "REAL", "INTEGER_OR_REAL_OR_RANGE", "'<Undefined>'", "'readOnly'", "'union'", "'ordered'", "'unique'", "'nonunique'", "'subsets'", "'redefines'"
     };
     public static final int LT=42;
-    public static final int STAR=17;
+    public static final int STAR=16;
     public static final int ISNE=41;
-    public static final int LSQUARE=13;
-    public static final int POINT=35;
-    public static final int DOUBLE_QUOTE=25;
+    public static final int LSQUARE=12;
+    public static final int POINT=34;
+    public static final int DOUBLE_QUOTE=24;
     public static final int FOUR_POINTS=37;
-    public static final int DOUBLE_LCURLY=29;
+    public static final int DOUBLE_LCURLY=28;
     public static final int DOUBLE_LT=43;
     public static final int CALLOPERATION=50;
     public static final int EOF=-1;
-    public static final int LOGICAL_AND=31;
-    public static final int LPAREN=27;
+    public static final int LOGICAL_AND=30;
+    public static final int LPAREN=26;
     public static final int RULE_ASSIGN=38;
-    public static final int DOUBLE_PIPE=34;
-    public static final int LNOT=24;
-    public static final int SINGLE_QUOTE=26;
-    public static final int RPAREN=28;
+    public static final int DOUBLE_PIPE=33;
+    public static final int RANGE_VALUE=13;
+    public static final int LNOT=23;
+    public static final int SINGLE_QUOTE=25;
+    public static final int RPAREN=27;
     public static final int INCR=48;
-    public static final int COMMA=20;
-    public static final int IDENTIFIER=11;
-    public static final int TILDE=9;
-    public static final int QUESTION_MARK=23;
+    public static final int COMMA=19;
+    public static final int IDENTIFIER=10;
+    public static final int INTEGER_OR_REAL_OR_RANGE=54;
+    public static final int TILDE=8;
+    public static final int QUESTION_MARK=22;
     public static final int DOUBLE_GT=46;
-    public static final int PLUS=6;
-    public static final int PIPE=33;
-    public static final int DIGIT=51;
-    public static final int NL=22;
-    public static final int EQ=18;
-    public static final int INTEGER=16;
+    public static final int PLUS=5;
+    public static final int PIPE=32;
+    public static final int NL=21;
+    public static final int EQ=17;
+    public static final int INTEGER=14;
     public static final int GE=47;
-    public static final int SHARP=8;
-    public static final int DOUBLE_RCURLY=30;
-    public static final int UNDERSCORE=53;
-    public static final int LCURLY=19;
+    public static final int SHARP=7;
+    public static final int DOUBLE_RCURLY=29;
+    public static final int RANGE=35;
+    public static final int UNDERSCORE=52;
+    public static final int LCURLY=18;
     public static final int RSQUARE=15;
-    public static final int MINUS=7;
+    public static final int MINUS=6;
     public static final int SEMI=36;
-    public static final int ALPHA=52;
-    public static final int COLON=5;
-    public static final int REAL=54;
-    public static final int UNDEFINED=12;
-    public static final int WS=4;
-    public static final int POINT_POINT=14;
-    public static final int DOUBLE_LOGICAL_AND=32;
-    public static final int RCURLY=21;
+    public static final int ALPHA=51;
+    public static final int COLON=4;
+    public static final int REAL=53;
+    public static final int WS=11;
+    public static final int DOUBLE_LOGICAL_AND=31;
+    public static final int RCURLY=20;
     public static final int DECR=49;
     public static final int GT=45;
     public static final int ARROW=39;
-    public static final int DIV=10;
+    public static final int DIV=9;
     public static final int LE=44;
     public static final int ISEQ=40;
 
@@ -355,18 +355,7 @@ public class PropertyLabelParser extends Parser {
        * @return the property found or <code>null</code> if the element was not found.
        */
       private Property findRedefinedPropertyByName(String propertyName, Property property) throws TypeRecognitionException {
-        Property redefinedProperty = null;
-        Iterator it = property.getClass_().getInheritedMembers().iterator();
-        while (it.hasNext()) {
-          NamedElement namedElement = (NamedElement) it.next();
-          if(namedElement instanceof Property) {
-            Property tmpProperty = (Property)namedElement;
-            if(propertyName.equals(tmpProperty.getName())) {
-              redefinedProperty = tmpProperty;
-            }
-          }
-        }
-        
+        Property redefinedProperty = PropertyUtil.findRedefinedPropertyByName(propertyName, property);
         if(redefinedProperty == null) {
           throw new TypeRecognitionException("Property "+propertyName+" has not been found or can not be redefined", property.getName());
         } 
@@ -408,297 +397,103 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start label
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:359:1: label : ( WS )* ( visibility ( WS )* )? ( isDerived ( WS )* )? name ( ( ( WS )+ COLON ) | COLON ) property_type ( WS )* ( multiplicity ( WS )* )? ( defaultValue )? ( propertyModifiers )? ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:348:1: label : ( visibility )? ( isDerived )? name COLON property_type ( fullMultiplicity )? ( defaultValue )? ( propertyModifiers )? ;
     public final void label() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:359:7: ( ( WS )* ( visibility ( WS )* )? ( isDerived ( WS )* )? name ( ( ( WS )+ COLON ) | COLON ) property_type ( WS )* ( multiplicity ( WS )* )? ( defaultValue )? ( propertyModifiers )? )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:360:3: ( WS )* ( visibility ( WS )* )? ( isDerived ( WS )* )? name ( ( ( WS )+ COLON ) | COLON ) property_type ( WS )* ( multiplicity ( WS )* )? ( defaultValue )? ( propertyModifiers )?
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:348:7: ( ( visibility )? ( isDerived )? name COLON property_type ( fullMultiplicity )? ( defaultValue )? ( propertyModifiers )? )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:349:3: ( visibility )? ( isDerived )? name COLON property_type ( fullMultiplicity )? ( defaultValue )? ( propertyModifiers )?
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:360:3: ( WS )*
-            loop1:
-            do {
-                int alt1=2;
-                int LA1_0 = input.LA(1);
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:349:3: ( visibility )?
+            int alt1=2;
+            int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==WS) ) {
-                    alt1=1;
-                }
-
-
-                switch (alt1) {
-            	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:360:4: WS
-            	    {
-            	    match(input,WS,FOLLOW_WS_in_label46); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop1;
-                }
-            } while (true);
-
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:361:3: ( visibility ( WS )* )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
-
-            if ( ((LA3_0>=PLUS && LA3_0<=TILDE)) ) {
-                alt3=1;
+            if ( ((LA1_0>=PLUS && LA1_0<=TILDE)) ) {
+                alt1=1;
             }
-            switch (alt3) {
+            switch (alt1) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:361:4: visibility ( WS )*
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:349:4: visibility
                     {
-                    pushFollow(FOLLOW_visibility_in_label53);
+                    pushFollow(FOLLOW_visibility_in_label46);
                     visibility();
                     _fsp--;
 
                     context = IContext.VISIBILITY; 
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:361:49: ( WS )*
-                    loop2:
-                    do {
-                        int alt2=2;
-                        int LA2_0 = input.LA(1);
-
-                        if ( (LA2_0==WS) ) {
-                            alt2=1;
-                        }
-
-
-                        switch (alt2) {
-                    	case 1 :
-                    	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:361:50: WS
-                    	    {
-                    	    match(input,WS,FOLLOW_WS_in_label58); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop2;
-                        }
-                    } while (true);
-
 
                     }
                     break;
 
             }
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:362:3: ( isDerived ( WS )* )?
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:350:3: ( isDerived )?
+            int alt2=2;
+            int LA2_0 = input.LA(1);
 
-            if ( (LA5_0==DIV) ) {
-                alt5=1;
+            if ( (LA2_0==DIV) ) {
+                alt2=1;
             }
-            switch (alt5) {
+            switch (alt2) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:362:4: isDerived ( WS )*
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:350:4: isDerived
                     {
-                    pushFollow(FOLLOW_isDerived_in_label69);
+                    pushFollow(FOLLOW_isDerived_in_label56);
                     isDerived();
                     _fsp--;
 
                      context = IContext.IS_DERIVED; 
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:362:48: ( WS )*
-                    loop4:
-                    do {
-                        int alt4=2;
-                        int LA4_0 = input.LA(1);
-
-                        if ( (LA4_0==WS) ) {
-                            alt4=1;
-                        }
-
-
-                        switch (alt4) {
-                    	case 1 :
-                    	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:362:49: WS
-                    	    {
-                    	    match(input,WS,FOLLOW_WS_in_label73); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop4;
-                        }
-                    } while (true);
-
 
                     }
                     break;
 
             }
 
-            pushFollow(FOLLOW_name_in_label82);
+            pushFollow(FOLLOW_name_in_label65);
             name();
             _fsp--;
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:364:3: ( ( ( WS )+ COLON ) | COLON )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
-
-            if ( (LA7_0==WS) ) {
-                alt7=1;
-            }
-            else if ( (LA7_0==COLON) ) {
-                alt7=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("364:3: ( ( ( WS )+ COLON ) | COLON )", 7, 0, input);
-
-                throw nvae;
-            }
-            switch (alt7) {
-                case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:364:5: ( ( WS )+ COLON )
-                    {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:364:5: ( ( WS )+ COLON )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:364:6: ( WS )+ COLON
-                    {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:364:6: ( WS )+
-                    int cnt6=0;
-                    loop6:
-                    do {
-                        int alt6=2;
-                        int LA6_0 = input.LA(1);
-
-                        if ( (LA6_0==WS) ) {
-                            alt6=1;
-                        }
-
-
-                        switch (alt6) {
-                    	case 1 :
-                    	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:364:7: WS
-                    	    {
-                    	    match(input,WS,FOLLOW_WS_in_label91); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt6 >= 1 ) break loop6;
-                                EarlyExitException eee =
-                                    new EarlyExitException(6, input);
-                                throw eee;
-                        }
-                        cnt6++;
-                    } while (true);
-
-                    match(input,COLON,FOLLOW_COLON_in_label95); 
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:365:7: COLON
-                    {
-                    match(input,COLON,FOLLOW_COLON_in_label104); 
-
-                    }
-                    break;
-
-            }
-
+            match(input,COLON,FOLLOW_COLON_in_label70); 
             
                 context = IContext.AFTER_COLON;
               
-            pushFollow(FOLLOW_property_type_in_label118);
+            pushFollow(FOLLOW_property_type_in_label79);
             property_type();
             _fsp--;
 
-             context = IContext.PROPERTY_TYPE; 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:370:55: ( WS )*
-            loop8:
-            do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+             context = IContext.MULTIPLICITY; 
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:357:3: ( fullMultiplicity )?
+            int alt3=2;
+            int LA3_0 = input.LA(1);
 
-                if ( (LA8_0==WS) ) {
-                    alt8=1;
-                }
-
-
-                switch (alt8) {
-            	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:370:56: WS
-            	    {
-            	    match(input,WS,FOLLOW_WS_in_label123); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop8;
-                }
-            } while (true);
-
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:371:3: ( multiplicity ( WS )* )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
-
-            if ( (LA10_0==LSQUARE) ) {
-                alt10=1;
+            if ( (LA3_0==LSQUARE) ) {
+                alt3=1;
             }
-            switch (alt10) {
+            switch (alt3) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:371:4: multiplicity ( WS )*
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:357:4: fullMultiplicity
                     {
-                    pushFollow(FOLLOW_multiplicity_in_label132);
-                    multiplicity();
+                    pushFollow(FOLLOW_fullMultiplicity_in_label87);
+                    fullMultiplicity();
                     _fsp--;
 
-                     context = IContext.MULTIPLICITY; 
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:371:54: ( WS )*
-                    loop9:
-                    do {
-                        int alt9=2;
-                        int LA9_0 = input.LA(1);
-
-                        if ( (LA9_0==WS) ) {
-                            alt9=1;
-                        }
-
-
-                        switch (alt9) {
-                    	case 1 :
-                    	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:371:55: WS
-                    	    {
-                    	    match(input,WS,FOLLOW_WS_in_label137); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop9;
-                        }
-                    } while (true);
-
+                     context = IContext.AFTER_MULTIPLICITY; 
 
                     }
                     break;
 
             }
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:372:3: ( defaultValue )?
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:358:3: ( defaultValue )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-            if ( (LA11_0==EQ) ) {
-                alt11=1;
+            if ( (LA4_0==EQ) ) {
+                alt4=1;
             }
-            switch (alt11) {
+            switch (alt4) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:372:4: defaultValue
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:358:4: defaultValue
                     {
-                    pushFollow(FOLLOW_defaultValue_in_label147);
+                    pushFollow(FOLLOW_defaultValue_in_label96);
                     defaultValue();
                     _fsp--;
 
@@ -709,18 +504,18 @@ public class PropertyLabelParser extends Parser {
 
             }
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:373:3: ( propertyModifiers )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:359:3: ( propertyModifiers )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-            if ( (LA12_0==LCURLY) ) {
-                alt12=1;
+            if ( (LA5_0==LCURLY) ) {
+                alt5=1;
             }
-            switch (alt12) {
+            switch (alt5) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:373:4: propertyModifiers
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:359:4: propertyModifiers
                     {
-                    pushFollow(FOLLOW_propertyModifiers_in_label157);
+                    pushFollow(FOLLOW_propertyModifiers_in_label106);
                     propertyModifiers();
                     _fsp--;
 
@@ -750,50 +545,50 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start visibility
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:379:1: visibility : ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) ) ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:365:1: visibility : ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) ) ;
     public final void visibility() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:380:3: ( ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:381:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:366:3: ( ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) ) )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:367:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:381:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )
-            int alt13=4;
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:367:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )
+            int alt6=4;
             switch ( input.LA(1) ) {
             case PLUS:
                 {
-                alt13=1;
+                alt6=1;
                 }
                 break;
             case MINUS:
                 {
-                alt13=2;
+                alt6=2;
                 }
                 break;
             case SHARP:
                 {
-                alt13=3;
+                alt6=3;
                 }
                 break;
             case TILDE:
                 {
-                alt13=4;
+                alt6=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("381:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )", 13, 0, input);
+                    new NoViableAltException("367:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )", 6, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt13) {
+            switch (alt6) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:382:5: ( PLUS )
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:368:5: ( PLUS )
                     {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:382:5: ( PLUS )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:382:9: PLUS
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:368:5: ( PLUS )
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:368:9: PLUS
                     {
-                    match(input,PLUS,FOLLOW_PLUS_in_visibility193); 
+                    match(input,PLUS,FOLLOW_PLUS_in_visibility142); 
                      visibility = VisibilityKind.PUBLIC_LITERAL; 
 
                     }
@@ -802,12 +597,12 @@ public class PropertyLabelParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:383:5: ( MINUS )
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:369:5: ( MINUS )
                     {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:383:5: ( MINUS )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:383:9: MINUS
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:369:5: ( MINUS )
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:369:9: MINUS
                     {
-                    match(input,MINUS,FOLLOW_MINUS_in_visibility208); 
+                    match(input,MINUS,FOLLOW_MINUS_in_visibility157); 
                      visibility = VisibilityKind.PRIVATE_LITERAL;
 
                     }
@@ -816,12 +611,12 @@ public class PropertyLabelParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:384:5: ( SHARP )
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:370:5: ( SHARP )
                     {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:384:5: ( SHARP )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:384:9: SHARP
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:370:5: ( SHARP )
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:370:9: SHARP
                     {
-                    match(input,SHARP,FOLLOW_SHARP_in_visibility222); 
+                    match(input,SHARP,FOLLOW_SHARP_in_visibility171); 
                      visibility = VisibilityKind.PROTECTED_LITERAL;
 
                     }
@@ -830,12 +625,12 @@ public class PropertyLabelParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:385:5: ( TILDE )
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:371:5: ( TILDE )
                     {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:385:5: ( TILDE )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:385:9: TILDE
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:371:5: ( TILDE )
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:371:9: TILDE
                     {
-                    match(input,TILDE,FOLLOW_TILDE_in_visibility236); 
+                    match(input,TILDE,FOLLOW_TILDE_in_visibility185); 
                      visibility = VisibilityKind.PACKAGE_LITERAL;
 
                     }
@@ -862,13 +657,13 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start isDerived
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:390:1: isDerived : DIV ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:376:1: isDerived : DIV ;
     public final void isDerived() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:391:3: ( DIV )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:392:3: DIV
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:377:3: ( DIV )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:378:3: DIV
             {
-            match(input,DIV,FOLLOW_DIV_in_isDerived260); 
+            match(input,DIV,FOLLOW_DIV_in_isDerived209); 
              isDerived = true; 
 
             }
@@ -886,16 +681,16 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start name
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:395:1: name : id= IDENTIFIER ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:381:1: name : id= IDENTIFIER ;
     public final void name() throws RecognitionException {
         Token id=null;
 
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:396:3: (id= IDENTIFIER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:397:3: id= IDENTIFIER
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:382:3: (id= IDENTIFIER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:383:3: id= IDENTIFIER
             {
             id=(Token)input.LT(1);
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_name281); 
+            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_name230); 
              
                 name = id.getText();
                 context = IContext.NAME;
@@ -916,58 +711,58 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start property_type
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:404:1: property_type : ( WS )* ( type | UNDEFINED ) ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:390:1: property_type : ( WS )* ( type | '<Undefined>' ) ;
     public final void property_type() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:405:3: ( ( WS )* ( type | UNDEFINED ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:406:3: ( WS )* ( type | UNDEFINED )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:391:3: ( ( WS )* ( type | '<Undefined>' ) )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:392:3: ( WS )* ( type | '<Undefined>' )
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:406:3: ( WS )*
-            loop14:
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:392:3: ( WS )*
+            loop7:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( (LA14_0==WS) ) {
-                    alt14=1;
+                if ( (LA7_0==WS) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt7) {
             	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:406:4: WS
+            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:392:4: WS
             	    {
-            	    match(input,WS,FOLLOW_WS_in_property_type302); 
+            	    match(input,WS,FOLLOW_WS_in_property_type252); 
 
             	    }
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop7;
                 }
             } while (true);
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:407:3: ( type | UNDEFINED )
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:393:3: ( type | '<Undefined>' )
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-            if ( (LA15_0==IDENTIFIER) ) {
-                alt15=1;
+            if ( (LA8_0==IDENTIFIER) ) {
+                alt8=1;
             }
-            else if ( (LA15_0==UNDEFINED) ) {
-                alt15=2;
+            else if ( (LA8_0==55) ) {
+                alt8=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("407:3: ( type | UNDEFINED )", 15, 0, input);
+                    new NoViableAltException("393:3: ( type | '<Undefined>' )", 8, 0, input);
 
                 throw nvae;
             }
-            switch (alt15) {
+            switch (alt8) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:407:5: type
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:393:5: type
                     {
-                    pushFollow(FOLLOW_type_in_property_type310);
+                    pushFollow(FOLLOW_type_in_property_type260);
                     type();
                     _fsp--;
 
@@ -975,9 +770,9 @@ public class PropertyLabelParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:408:5: UNDEFINED
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:394:5: '<Undefined>'
                     {
-                    match(input,UNDEFINED,FOLLOW_UNDEFINED_in_property_type318); 
+                    match(input,55,FOLLOW_55_in_property_type268); 
 
                     }
                     break;
@@ -989,8 +784,10 @@ public class PropertyLabelParser extends Parser {
 
         }
         catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+            
+               reportError(re); 
+               throw(re);
+               
         }
         finally {
         }
@@ -1000,16 +797,16 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start type
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:412:1: type : id= IDENTIFIER ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:403:1: type : id= IDENTIFIER ;
     public final void type() throws RecognitionException {
         Token id=null;
 
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:413:3: (id= IDENTIFIER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:414:3: id= IDENTIFIER
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:404:3: (id= IDENTIFIER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:405:3: id= IDENTIFIER
             {
             id=(Token)input.LT(1);
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_type341); 
+            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_type303); 
             
                 String typeName = id.getText() ;
                 Type utilType = PackageUtil.findTypeByName(nearestPackage, typeName);
@@ -1042,8 +839,9 @@ public class PropertyLabelParser extends Parser {
                     throw new UnboundTemplateRecognitionException("Parameters of template " + typeName + " are not bound.",
                         (TemplateableElement)utilType) ;
                   }
-                  else
+                  else {
                     type = utilType;
+                  }
                 }
               
 
@@ -1061,86 +859,71 @@ public class PropertyLabelParser extends Parser {
     // $ANTLR end type
 
 
-    // $ANTLR start multiplicity
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:453:1: multiplicity : LSQUARE ( lowerMultiplicity POINT_POINT upperMultiplicity | upperMultiplicity ) RSQUARE ;
-    public final void multiplicity() throws RecognitionException {
+    // $ANTLR start fullMultiplicity
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:445:1: fullMultiplicity : LSQUARE (ra= RANGE_VALUE | up= INTEGER ) RSQUARE ;
+    public final void fullMultiplicity() throws RecognitionException {
+        Token ra=null;
+        Token up=null;
+
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:454:3: ( LSQUARE ( lowerMultiplicity POINT_POINT upperMultiplicity | upperMultiplicity ) RSQUARE )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:455:3: LSQUARE ( lowerMultiplicity POINT_POINT upperMultiplicity | upperMultiplicity ) RSQUARE
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:446:3: ( LSQUARE (ra= RANGE_VALUE | up= INTEGER ) RSQUARE )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:447:3: LSQUARE (ra= RANGE_VALUE | up= INTEGER ) RSQUARE
             {
-            match(input,LSQUARE,FOLLOW_LSQUARE_in_multiplicity362); 
+            match(input,LSQUARE,FOLLOW_LSQUARE_in_fullMultiplicity324); 
              context = IContext.IN_MULTIPLICITY; 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:457:3: ( lowerMultiplicity POINT_POINT upperMultiplicity | upperMultiplicity )
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:464:3: (ra= RANGE_VALUE | up= INTEGER )
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA16_0==INTEGER) ) {
-                int LA16_1 = input.LA(2);
-
-                if ( (LA16_1==RSQUARE) ) {
-                    alt16=2;
-                }
-                else if ( (LA16_1==POINT_POINT) ) {
-                    alt16=1;
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("457:3: ( lowerMultiplicity POINT_POINT upperMultiplicity | upperMultiplicity )", 16, 1, input);
-
-                    throw nvae;
-                }
+            if ( (LA9_0==RANGE_VALUE) ) {
+                alt9=1;
             }
-            else if ( (LA16_0==STAR) ) {
-                alt16=2;
+            else if ( (LA9_0==INTEGER) ) {
+                alt9=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("457:3: ( lowerMultiplicity POINT_POINT upperMultiplicity | upperMultiplicity )", 16, 0, input);
+                    new NoViableAltException("464:3: (ra= RANGE_VALUE | up= INTEGER )", 9, 0, input);
 
                 throw nvae;
             }
-            switch (alt16) {
+            switch (alt9) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:458:5: lowerMultiplicity POINT_POINT upperMultiplicity
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:465:5: ra= RANGE_VALUE
                     {
-                    pushFollow(FOLLOW_lowerMultiplicity_in_multiplicity376);
-                    lowerMultiplicity();
-                    _fsp--;
-
-                    match(input,POINT_POINT,FOLLOW_POINT_POINT_in_multiplicity378); 
-                    pushFollow(FOLLOW_upperMultiplicity_in_multiplicity380);
-                    upperMultiplicity();
-                    _fsp--;
-
+                    ra=(Token)input.LT(1);
+                    match(input,RANGE_VALUE,FOLLOW_RANGE_VALUE_in_fullMultiplicity344); 
+                     
+                            // retrieving values. text = upper ',' lower
+                            String value = ra.getText();
+                            upperMultiplicity = Integer.parseInt(value.substring(0, value.lastIndexOf(',')));
+                            lowerMultiplicity = Integer.parseInt(value.substring(value.lastIndexOf(',') + 1, value.length()));
                     
-                          if(lowerMultiplicity > upperMultiplicity && upperMultiplicity != -1) {
-                            throw new MultiplicityException("Lower bound ("+lowerMultiplicity+") is greater than upper bound ("+upperMultiplicity+")");
-                          }
+                            if (lowerMultiplicity > upperMultiplicity && upperMultiplicity != -1) {
+                              throw new MultiplicityException("Lower bound (" + lowerMultiplicity
+                                  + ") is greater than upper bound (" + upperMultiplicity + ")");
+                            }
                         
+                      
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:463:5: upperMultiplicity
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:477:5: up= INTEGER
                     {
-                    pushFollow(FOLLOW_upperMultiplicity_in_multiplicity388);
-                    upperMultiplicity();
-                    _fsp--;
-
+                    up=(Token)input.LT(1);
+                    match(input,INTEGER,FOLLOW_INTEGER_in_fullMultiplicity354); 
                     
-                          if(upperMultiplicity == -1) {
-                            lowerMultiplicity = 0;
-                          } else {
+                            upperMultiplicity = Integer.parseInt(up.getText());
                             lowerMultiplicity = upperMultiplicity;
-                          }
-                        
+                      
 
                     }
                     break;
 
             }
 
-            match(input,RSQUARE,FOLLOW_RSQUARE_in_multiplicity398); 
+            match(input,RSQUARE,FOLLOW_RSQUARE_in_fullMultiplicity364); 
 
             }
 
@@ -1153,20 +936,20 @@ public class PropertyLabelParser extends Parser {
         }
         return ;
     }
-    // $ANTLR end multiplicity
+    // $ANTLR end fullMultiplicity
 
 
     // $ANTLR start lowerMultiplicity
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:474:1: lowerMultiplicity : in= INTEGER ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:485:1: lowerMultiplicity : in= INTEGER ;
     public final void lowerMultiplicity() throws RecognitionException {
         Token in=null;
 
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:475:3: (in= INTEGER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:476:3: in= INTEGER
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:486:3: (in= INTEGER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:487:3: in= INTEGER
             {
             in=(Token)input.LT(1);
-            match(input,INTEGER,FOLLOW_INTEGER_in_lowerMultiplicity417); 
+            match(input,INTEGER,FOLLOW_INTEGER_in_lowerMultiplicity383); 
             
                 lowerMultiplicity = Integer.parseInt(in.getText());
               
@@ -1186,16 +969,16 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start upperMultiplicity
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:482:1: upperMultiplicity : um= unlimitedNatural ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:493:1: upperMultiplicity : um= unlimitedNatural ;
     public final void upperMultiplicity() throws RecognitionException {
         int um = 0;
 
 
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:483:3: (um= unlimitedNatural )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:484:3: um= unlimitedNatural
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:494:3: (um= unlimitedNatural )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:495:3: um= unlimitedNatural
             {
-            pushFollow(FOLLOW_unlimitedNatural_in_upperMultiplicity438);
+            pushFollow(FOLLOW_unlimitedNatural_in_upperMultiplicity404);
             um=unlimitedNatural();
             _fsp--;
 
@@ -1218,46 +1001,46 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start unlimitedNatural
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:490:1: unlimitedNatural returns [int value = 0 ] : ( STAR | in= INTEGER ) ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:501:1: unlimitedNatural returns [int value = 0 ] : ( STAR | in= INTEGER ) ;
     public final int unlimitedNatural() throws RecognitionException {
         int value =  0;
 
         Token in=null;
 
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:491:3: ( ( STAR | in= INTEGER ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:492:3: ( STAR | in= INTEGER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:502:3: ( ( STAR | in= INTEGER ) )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:503:3: ( STAR | in= INTEGER )
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:492:3: ( STAR | in= INTEGER )
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:503:3: ( STAR | in= INTEGER )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA17_0==STAR) ) {
-                alt17=1;
+            if ( (LA10_0==STAR) ) {
+                alt10=1;
             }
-            else if ( (LA17_0==INTEGER) ) {
-                alt17=2;
+            else if ( (LA10_0==INTEGER) ) {
+                alt10=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("492:3: ( STAR | in= INTEGER )", 17, 0, input);
+                    new NoViableAltException("503:3: ( STAR | in= INTEGER )", 10, 0, input);
 
                 throw nvae;
             }
-            switch (alt17) {
+            switch (alt10) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:492:5: STAR
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:503:5: STAR
                     {
-                    match(input,STAR,FOLLOW_STAR_in_unlimitedNatural466); 
+                    match(input,STAR,FOLLOW_STAR_in_unlimitedNatural432); 
                      value = -1; 
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:493:5: in= INTEGER
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:504:5: in= INTEGER
                     {
                     in=(Token)input.LT(1);
-                    match(input,INTEGER,FOLLOW_INTEGER_in_unlimitedNatural481); 
+                    match(input,INTEGER,FOLLOW_INTEGER_in_unlimitedNatural447); 
                      value = Integer.parseInt(in.getText()); 
 
                     }
@@ -1281,17 +1064,17 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start defaultValue
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:497:1: defaultValue : EQ dv= expression ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:508:1: defaultValue : EQ dv= expression ;
     public final void defaultValue() throws RecognitionException {
         String dv = null;
 
 
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:498:3: ( EQ dv= expression )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:499:3: EQ dv= expression
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:509:3: ( EQ dv= expression )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:510:3: EQ dv= expression
             {
-            match(input,EQ,FOLLOW_EQ_in_defaultValue507); 
-            pushFollow(FOLLOW_expression_in_defaultValue513);
+            match(input,EQ,FOLLOW_EQ_in_defaultValue473); 
+            pushFollow(FOLLOW_expression_in_defaultValue479);
             dv=expression();
             _fsp--;
 
@@ -1315,7 +1098,7 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start expression
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:506:1: expression returns [String value = \"\"] : ( options {greedy=false; } : id=~ ( LCURLY ) )+ ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:517:1: expression returns [String value = \"\"] : ( options {greedy=false; } : id=~ ( LCURLY ) )+ ;
     public final String expression() throws RecognitionException {
         String value =  "";
 
@@ -1325,37 +1108,37 @@ public class PropertyLabelParser extends Parser {
             StringBuffer buffer = new StringBuffer();
            
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:510:3: ( ( options {greedy=false; } : id=~ ( LCURLY ) )+ )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:511:4: ( options {greedy=false; } : id=~ ( LCURLY ) )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:521:3: ( ( options {greedy=false; } : id=~ ( LCURLY ) )+ )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:522:4: ( options {greedy=false; } : id=~ ( LCURLY ) )+
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:511:4: ( options {greedy=false; } : id=~ ( LCURLY ) )+
-            int cnt18=0;
-            loop18:
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:522:4: ( options {greedy=false; } : id=~ ( LCURLY ) )+
+            int cnt11=0;
+            loop11:
             do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA18_0==EOF||LA18_0==LCURLY) ) {
-                    alt18=2;
+                if ( (LA11_0==EOF||LA11_0==LCURLY) ) {
+                    alt11=2;
                 }
-                else if ( ((LA18_0>=WS && LA18_0<=EQ)||(LA18_0>=COMMA && LA18_0<=61)) ) {
-                    alt18=1;
+                else if ( ((LA11_0>=COLON && LA11_0<=EQ)||(LA11_0>=COMMA && LA11_0<=62)) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt18) {
+                switch (alt11) {
             	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:515:8: id=~ ( LCURLY )
+            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:526:8: id=~ ( LCURLY )
             	    {
             	    id=(Token)input.LT(1);
-            	    if ( (input.LA(1)>=WS && input.LA(1)<=EQ)||(input.LA(1)>=COMMA && input.LA(1)<=61) ) {
+            	    if ( (input.LA(1)>=COLON && input.LA(1)<=EQ)||(input.LA(1)>=COMMA && input.LA(1)<=62) ) {
             	        input.consume();
             	        errorRecovery=false;
             	    }
             	    else {
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_expression585);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_expression551);    throw mse;
             	    }
 
             	    
@@ -1366,12 +1149,12 @@ public class PropertyLabelParser extends Parser {
             	    break;
 
             	default :
-            	    if ( cnt18 >= 1 ) break loop18;
+            	    if ( cnt11 >= 1 ) break loop11;
                         EarlyExitException eee =
-                            new EarlyExitException(18, input);
+                            new EarlyExitException(11, input);
                         throw eee;
                 }
-                cnt18++;
+                cnt11++;
             } while (true);
 
             
@@ -1393,36 +1176,36 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start propertyModifiers
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:525:1: propertyModifiers : LCURLY propertyModifier ( COMMA propertyModifier )* RCURLY ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:536:1: propertyModifiers : LCURLY propertyModifier ( COMMA propertyModifier )* RCURLY ;
     public final void propertyModifiers() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:526:3: ( LCURLY propertyModifier ( COMMA propertyModifier )* RCURLY )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:527:3: LCURLY propertyModifier ( COMMA propertyModifier )* RCURLY
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:537:3: ( LCURLY propertyModifier ( COMMA propertyModifier )* RCURLY )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:538:3: LCURLY propertyModifier ( COMMA propertyModifier )* RCURLY
             {
-            match(input,LCURLY,FOLLOW_LCURLY_in_propertyModifiers620); 
+            match(input,LCURLY,FOLLOW_LCURLY_in_propertyModifiers586); 
              context = IContext.PROPERTY_MODIFIER; 
-            pushFollow(FOLLOW_propertyModifier_in_propertyModifiers629);
+            pushFollow(FOLLOW_propertyModifier_in_propertyModifiers595);
             propertyModifier();
             _fsp--;
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:530:3: ( COMMA propertyModifier )*
-            loop19:
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:541:3: ( COMMA propertyModifier )*
+            loop12:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( (LA19_0==COMMA) ) {
-                    alt19=1;
+                if ( (LA12_0==COMMA) ) {
+                    alt12=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt12) {
             	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:531:5: COMMA propertyModifier
+            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:542:5: COMMA propertyModifier
             	    {
             	     context = IContext.PROPERTY_MODIFIER; 
-            	    match(input,COMMA,FOLLOW_COMMA_in_propertyModifiers646); 
-            	    pushFollow(FOLLOW_propertyModifier_in_propertyModifiers648);
+            	    match(input,COMMA,FOLLOW_COMMA_in_propertyModifiers612); 
+            	    pushFollow(FOLLOW_propertyModifier_in_propertyModifiers614);
             	    propertyModifier();
             	    _fsp--;
 
@@ -1431,18 +1214,20 @@ public class PropertyLabelParser extends Parser {
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop12;
                 }
             } while (true);
 
-            match(input,RCURLY,FOLLOW_RCURLY_in_propertyModifiers658); 
+            match(input,RCURLY,FOLLOW_RCURLY_in_propertyModifiers624); 
 
             }
 
         }
         catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+            
+               reportError(re); 
+               throw(re);
+               
         }
         finally {
         }
@@ -1452,127 +1237,104 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start propertyModifier
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:537:1: propertyModifier : ( WS )* ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | subsetsProperty | redefinesProperty ) ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:552:1: propertyModifier : ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | 'subsets' subsetsProperty | redefinesProperty ) ;
     public final void propertyModifier() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:538:3: ( ( WS )* ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | subsetsProperty | redefinesProperty ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:539:3: ( WS )* ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | subsetsProperty | redefinesProperty )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:553:3: ( ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | 'subsets' subsetsProperty | redefinesProperty ) )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:554:3: ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | 'subsets' subsetsProperty | redefinesProperty )
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:539:3: ( WS )*
-            loop20:
-            do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
-
-                if ( (LA20_0==WS) ) {
-                    alt20=1;
-                }
-
-
-                switch (alt20) {
-            	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:539:4: WS
-            	    {
-            	    match(input,WS,FOLLOW_WS_in_propertyModifier677); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop20;
-                }
-            } while (true);
-
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:540:3: ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | subsetsProperty | redefinesProperty )
-            int alt21=7;
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:554:3: ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | 'subsets' subsetsProperty | redefinesProperty )
+            int alt13=7;
             switch ( input.LA(1) ) {
-            case 55:
-                {
-                alt21=1;
-                }
-                break;
             case 56:
                 {
-                alt21=2;
+                alt13=1;
                 }
                 break;
             case 57:
                 {
-                alt21=3;
+                alt13=2;
                 }
                 break;
             case 58:
                 {
-                alt21=4;
+                alt13=3;
                 }
                 break;
             case 59:
                 {
-                alt21=5;
+                alt13=4;
                 }
                 break;
             case 60:
                 {
-                alt21=6;
+                alt13=5;
                 }
                 break;
             case 61:
                 {
-                alt21=7;
+                alt13=6;
+                }
+                break;
+            case 62:
+                {
+                alt13=7;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("540:3: ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | subsetsProperty | redefinesProperty )", 21, 0, input);
+                    new NoViableAltException("554:3: ( 'readOnly' | 'union' | 'ordered' | 'unique' | 'nonunique' | 'subsets' subsetsProperty | redefinesProperty )", 13, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt21) {
+            switch (alt13) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:541:5: 'readOnly'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:555:5: 'readOnly'
                     {
-                    match(input,55,FOLLOW_55_in_propertyModifier689); 
+                    match(input,56,FOLLOW_56_in_propertyModifier656); 
                      isReadOnly = true; modifiersUsed.put("readOnly", true);
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:542:5: 'union'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:556:5: 'union'
                     {
-                    match(input,56,FOLLOW_56_in_propertyModifier698); 
+                    match(input,57,FOLLOW_57_in_propertyModifier665); 
                      isDerivedUnion = true; modifiersUsed.put("union", true);  
 
                     }
                     break;
                 case 3 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:543:5: 'ordered'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:557:5: 'ordered'
                     {
-                    match(input,57,FOLLOW_57_in_propertyModifier708); 
+                    match(input,58,FOLLOW_58_in_propertyModifier675); 
                      isOrdered = true; modifiersUsed.put("ordered", true); 
 
                     }
                     break;
                 case 4 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:544:5: 'unique'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:558:5: 'unique'
                     {
-                    match(input,58,FOLLOW_58_in_propertyModifier716); 
+                    match(input,59,FOLLOW_59_in_propertyModifier683); 
                      isUnique = true; modifiersUsed.put("unique", true); modifiersUsed.put("nonunique", true);
 
                     }
                     break;
                 case 5 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:545:5: 'nonunique'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:559:5: 'nonunique'
                     {
-                    match(input,59,FOLLOW_59_in_propertyModifier725); 
+                    match(input,60,FOLLOW_60_in_propertyModifier692); 
                      isUnique = false; modifiersUsed.put("unique", true); modifiersUsed.put("nonunique", true);
 
                     }
                     break;
                 case 6 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:546:5: subsetsProperty
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:560:5: 'subsets' subsetsProperty
                     {
-                    pushFollow(FOLLOW_subsetsProperty_in_propertyModifier733);
+                    match(input,61,FOLLOW_61_in_propertyModifier700); 
+                     context = IContext.SUBSET_PROPERTY ; 
+                    pushFollow(FOLLOW_subsetsProperty_in_propertyModifier704);
                     subsetsProperty();
                     _fsp--;
 
@@ -1580,9 +1342,9 @@ public class PropertyLabelParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:547:5: redefinesProperty
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:561:5: redefinesProperty
                     {
-                    pushFollow(FOLLOW_redefinesProperty_in_propertyModifier741);
+                    pushFollow(FOLLOW_redefinesProperty_in_propertyModifier712);
                     redefinesProperty();
                     _fsp--;
 
@@ -1597,8 +1359,10 @@ public class PropertyLabelParser extends Parser {
 
         }
         catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+            
+               reportError(re); 
+               throw(re);
+               
         }
         finally {
         }
@@ -1608,48 +1372,16 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start subsetsProperty
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:551:1: subsetsProperty : 'subsets' ( WS )+ id= IDENTIFIER ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:569:1: subsetsProperty : id= IDENTIFIER ;
     public final void subsetsProperty() throws RecognitionException {
         Token id=null;
 
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:552:3: ( 'subsets' ( WS )+ id= IDENTIFIER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:553:3: 'subsets' ( WS )+ id= IDENTIFIER
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:570:3: (id= IDENTIFIER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:571:3: id= IDENTIFIER
             {
-            match(input,60,FOLLOW_60_in_subsetsProperty869); 
-             context = IContext.SUBSET_PROPERTY ; 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:553:54: ( WS )+
-            int cnt22=0;
-            loop22:
-            do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
-
-                if ( (LA22_0==WS) ) {
-                    alt22=1;
-                }
-
-
-                switch (alt22) {
-            	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:553:55: WS
-            	    {
-            	    match(input,WS,FOLLOW_WS_in_subsetsProperty874); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt22 >= 1 ) break loop22;
-                        EarlyExitException eee =
-                            new EarlyExitException(22, input);
-                        throw eee;
-                }
-                cnt22++;
-            } while (true);
-
             id=(Token)input.LT(1);
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_subsetsProperty880); 
+            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_subsetsProperty850); 
             
                 // find property by name
                 String propertyName = id.getText();
@@ -1661,8 +1393,10 @@ public class PropertyLabelParser extends Parser {
 
         }
         catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+            
+               reportError(re); 
+               throw(re);
+               
         }
         finally {
         }
@@ -1672,43 +1406,19 @@ public class PropertyLabelParser extends Parser {
 
 
     // $ANTLR start redefinesProperty
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:562:1: redefinesProperty : 'redefines' ( WS )* id= IDENTIFIER ;
+    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:584:1: redefinesProperty : 'redefines' id= IDENTIFIER ;
     public final void redefinesProperty() throws RecognitionException {
         Token id=null;
 
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:563:3: ( 'redefines' ( WS )* id= IDENTIFIER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:564:3: 'redefines' ( WS )* id= IDENTIFIER
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:585:3: ( 'redefines' id= IDENTIFIER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:586:3: 'redefines' id= IDENTIFIER
             {
-            match(input,61,FOLLOW_61_in_redefinesProperty901); 
              context = IContext.REDEFINE_PROPERTY ; 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:564:58: ( WS )*
-            loop23:
-            do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
-
-                if ( (LA23_0==WS) ) {
-                    alt23=1;
-                }
-
-
-                switch (alt23) {
-            	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:564:59: WS
-            	    {
-            	    match(input,WS,FOLLOW_WS_in_redefinesProperty906); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop23;
-                }
-            } while (true);
-
+            match(input,62,FOLLOW_62_in_redefinesProperty881); 
+             context = IContext.REDEFINE_PROPERTY ; 
             id=(Token)input.LT(1);
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_redefinesProperty912); 
+            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_redefinesProperty887); 
             
                 // find property by name
                 String propertyName = id.getText();
@@ -1720,8 +1430,10 @@ public class PropertyLabelParser extends Parser {
 
         }
         catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+            
+               reportError(re); 
+               throw(re);
+               
         }
         finally {
         }
@@ -1732,62 +1444,50 @@ public class PropertyLabelParser extends Parser {
 
  
 
-    public static final BitSet FOLLOW_WS_in_label46 = new BitSet(new long[]{0x0000000000000FD0L});
-    public static final BitSet FOLLOW_visibility_in_label53 = new BitSet(new long[]{0x0000000000000C10L});
-    public static final BitSet FOLLOW_WS_in_label58 = new BitSet(new long[]{0x0000000000000C10L});
-    public static final BitSet FOLLOW_isDerived_in_label69 = new BitSet(new long[]{0x0000000000000810L});
-    public static final BitSet FOLLOW_WS_in_label73 = new BitSet(new long[]{0x0000000000000810L});
-    public static final BitSet FOLLOW_name_in_label82 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_WS_in_label91 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_COLON_in_label95 = new BitSet(new long[]{0x0000000000001810L});
-    public static final BitSet FOLLOW_COLON_in_label104 = new BitSet(new long[]{0x0000000000001810L});
-    public static final BitSet FOLLOW_property_type_in_label118 = new BitSet(new long[]{0x00000000000C2012L});
-    public static final BitSet FOLLOW_WS_in_label123 = new BitSet(new long[]{0x00000000000C2012L});
-    public static final BitSet FOLLOW_multiplicity_in_label132 = new BitSet(new long[]{0x00000000000C0012L});
-    public static final BitSet FOLLOW_WS_in_label137 = new BitSet(new long[]{0x00000000000C0012L});
-    public static final BitSet FOLLOW_defaultValue_in_label147 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_propertyModifiers_in_label157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PLUS_in_visibility193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_visibility208 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHARP_in_visibility222 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TILDE_in_visibility236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DIV_in_isDerived260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_name281 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WS_in_property_type302 = new BitSet(new long[]{0x0000000000001810L});
-    public static final BitSet FOLLOW_type_in_property_type310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_UNDEFINED_in_property_type318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_type341 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LSQUARE_in_multiplicity362 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_lowerMultiplicity_in_multiplicity376 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_POINT_POINT_in_multiplicity378 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_upperMultiplicity_in_multiplicity380 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_upperMultiplicity_in_multiplicity388 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RSQUARE_in_multiplicity398 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INTEGER_in_lowerMultiplicity417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unlimitedNatural_in_upperMultiplicity438 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STAR_in_unlimitedNatural466 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INTEGER_in_unlimitedNatural481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQ_in_defaultValue507 = new BitSet(new long[]{0x3FFFFFFFFFF7FFF0L});
-    public static final BitSet FOLLOW_expression_in_defaultValue513 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_expression585 = new BitSet(new long[]{0x3FFFFFFFFFF7FFF2L});
-    public static final BitSet FOLLOW_LCURLY_in_propertyModifiers620 = new BitSet(new long[]{0x3F80000000000010L});
-    public static final BitSet FOLLOW_propertyModifier_in_propertyModifiers629 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_COMMA_in_propertyModifiers646 = new BitSet(new long[]{0x3F80000000000010L});
-    public static final BitSet FOLLOW_propertyModifier_in_propertyModifiers648 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_RCURLY_in_propertyModifiers658 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WS_in_propertyModifier677 = new BitSet(new long[]{0x3F80000000000010L});
-    public static final BitSet FOLLOW_55_in_propertyModifier689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_propertyModifier698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_propertyModifier708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_propertyModifier716 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_propertyModifier725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_subsetsProperty_in_propertyModifier733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_redefinesProperty_in_propertyModifier741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_subsetsProperty869 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_WS_in_subsetsProperty874 = new BitSet(new long[]{0x0000000000000810L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_subsetsProperty880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_redefinesProperty901 = new BitSet(new long[]{0x0000000000000810L});
-    public static final BitSet FOLLOW_WS_in_redefinesProperty906 = new BitSet(new long[]{0x0000000000000810L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_redefinesProperty912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_visibility_in_label46 = new BitSet(new long[]{0x0000000000000600L});
+    public static final BitSet FOLLOW_isDerived_in_label56 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_name_in_label65 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_COLON_in_label70 = new BitSet(new long[]{0x0080000000000C00L});
+    public static final BitSet FOLLOW_property_type_in_label79 = new BitSet(new long[]{0x0000000000061002L});
+    public static final BitSet FOLLOW_fullMultiplicity_in_label87 = new BitSet(new long[]{0x0000000000060002L});
+    public static final BitSet FOLLOW_defaultValue_in_label96 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_propertyModifiers_in_label106 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PLUS_in_visibility142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_visibility157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHARP_in_visibility171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TILDE_in_visibility185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DIV_in_isDerived209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_name230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WS_in_property_type252 = new BitSet(new long[]{0x0080000000000C00L});
+    public static final BitSet FOLLOW_type_in_property_type260 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_property_type268 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_type303 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LSQUARE_in_fullMultiplicity324 = new BitSet(new long[]{0x0000000000006000L});
+    public static final BitSet FOLLOW_RANGE_VALUE_in_fullMultiplicity344 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_INTEGER_in_fullMultiplicity354 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RSQUARE_in_fullMultiplicity364 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTEGER_in_lowerMultiplicity383 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unlimitedNatural_in_upperMultiplicity404 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STAR_in_unlimitedNatural432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTEGER_in_unlimitedNatural447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQ_in_defaultValue473 = new BitSet(new long[]{0x7FFFFFFFFFFBFFF0L});
+    public static final BitSet FOLLOW_expression_in_defaultValue479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_expression551 = new BitSet(new long[]{0x7FFFFFFFFFFBFFF2L});
+    public static final BitSet FOLLOW_LCURLY_in_propertyModifiers586 = new BitSet(new long[]{0x7F00000000000000L});
+    public static final BitSet FOLLOW_propertyModifier_in_propertyModifiers595 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_COMMA_in_propertyModifiers612 = new BitSet(new long[]{0x7F00000000000000L});
+    public static final BitSet FOLLOW_propertyModifier_in_propertyModifiers614 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_RCURLY_in_propertyModifiers624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_propertyModifier656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_propertyModifier665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_propertyModifier675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_propertyModifier683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_propertyModifier692 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_propertyModifier700 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_subsetsProperty_in_propertyModifier704 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_redefinesProperty_in_propertyModifier712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_subsetsProperty850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_redefinesProperty881 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_redefinesProperty887 = new BitSet(new long[]{0x0000000000000002L});
 
 }

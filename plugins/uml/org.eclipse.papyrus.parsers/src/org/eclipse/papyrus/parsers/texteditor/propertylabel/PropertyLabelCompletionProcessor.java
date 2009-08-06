@@ -171,8 +171,8 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 		// NAME: either ':' or ":undefined"
 		case IContext.NAME:
 			v.addAll(createCompletionProposalsWithDifferentName(new String[] { ": ", ": <Undefined>" }, new String[] {
-					"PropertyUtil type", "Undefined property type" }, new String[] { ": <TypeUtil Name>",
-					": <Undefined>" }, "", documentOffset));
+					"Property type", "Undefined property type" }, new String[] { ": <Type Name>", ": <Undefined>" },
+					"", documentOffset));
 			break;
 
 		// PROPERTY TYPE (after ":") model types or undefined
@@ -188,16 +188,27 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 
 		// MULTIPLICITY: multiplicity or default value or property modifiers
 		case IContext.PROPERTY_TYPE:
-			v.addAll(new MultiplicityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
-					prefix));
-			v.addAll(new DefaultValueCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
-					prefix));
-			v.addAll(new PropertyModifiersProposal()
-					.generateCompletionProposals(documentOffset, selectionRange, prefix));
+			// specific prefix for type... ('<' possible at the beginning)
+			prefix = getPrefixForType(viewer, documentOffset);
+			computer = new TypeCompletionProposalComputer();
+			computer.setElement(property);
+			v.addAll(computer.generateCompletionProposals(documentOffset, selectionRange, prefix));
+			// v.addAll(new
+			// MultiplicityCompletionProposal().generateCompletionProposals(documentOffset,
+			// selectionRange,
+			// prefix));
+			// v.addAll(new
+			// DefaultValueCompletionProposal().generateCompletionProposals(documentOffset,
+			// selectionRange,
+			// prefix));
+			// v.addAll(new PropertyModifiersProposal()
+			// .generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
 		// IN_MULTIPLICITY(after '['): does nothing
 		case IContext.MULTIPLICITY:
+			v.addAll(new MultiplicityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
 			v.addAll(new DefaultValueCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
 					prefix));
 			v.addAll(new PropertyModifiersProposal()
@@ -211,6 +222,14 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 					prefix));
 			break;
 
+		// AFTER_MULTIPLICITY(after ']')
+		case IContext.AFTER_MULTIPLICITY:
+			v.addAll(new DefaultValueCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
+					prefix));
+			v.addAll(new PropertyModifiersProposal()
+					.generateCompletionProposals(documentOffset, selectionRange, prefix));
+			break;
+
 		// DEFAULT_VALUE: property modifiers
 		case IContext.DEFAULT_VALUE:
 			v.addAll(new PropertyModifiersProposal()
@@ -218,6 +237,7 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 			break;
 
 		case IContext.PROPERTY_MODIFIERS:
+			v.addAll(modifierProposalComputer.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
 
 		case IContext.PROPERTY_MODIFIER:
