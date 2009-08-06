@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
+import org.eclipse.papyrus.diagram.common.parser.custom.AssociationEndParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -56,6 +57,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author patrick Tessier
  */
 public class CustomUMLParserProvider extends UMLParserProvider {
+
+	private static final int ASSOCIATION_SOURCE = 0;
+
+	private static final int ASSOCIATION_TARGET = 1;
 
 	public CustomUMLParserProvider() {
 		super();
@@ -100,10 +105,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationSourceRole() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
-		IParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
-		return parser;
-
+		return new AssociationEndParser(ASSOCIATION_SOURCE);
 	}
 
 	/**
@@ -124,9 +126,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationTargetRole() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
-		IParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 1);
-		return parser;
+		return new AssociationEndParser(ASSOCIATION_TARGET);
 	}
 
 	/**

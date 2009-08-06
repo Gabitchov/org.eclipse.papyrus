@@ -97,6 +97,17 @@ public class PropertyUtil {
 	}
 
 	/**
+	 * Get the displayed string for the derived attribute of the property.
+	 * 
+	 * @param property
+	 *            the property
+	 * @return If the property is derived, return "/". Otherwise return an empty String
+	 */
+	public static String getDerived(Property property) {
+		return property.isDerived() ? "/" : "";
+	}
+
+	/**
 	 * return the full label of the property, given UML2 specification.
 	 * 
 	 * @return the string corresponding to the label of the property
@@ -108,9 +119,7 @@ public class PropertyUtil {
 		buffer.append(NamedElementUtil.getVisibilityAsSign(property));
 
 		// derived property
-		if (property.isDerived()) {
-			buffer.append("/");
-		}
+		buffer.append(getDerived(property));
 
 		// name
 		buffer.append(" ");
@@ -136,12 +145,8 @@ public class PropertyUtil {
 		}
 
 		// property modifiers
-		String modifiers = PropertyUtil.getModifiersAsString(property, false);
-		if (!modifiers.equals("")) {
-			buffer.append(" {");
-			buffer.append(modifiers);
-			buffer.append("}");
-		}
+		buffer.append(PropertyUtil.getModifiersAsString(property, false));
+
 		return buffer.toString();
 	}
 
@@ -224,10 +229,10 @@ public class PropertyUtil {
 	 * 
 	 * @return a string giving all modifiers for the property
 	 */
-	private static String getModifiersAsString(Property property, boolean multiLine) {
+	public static String getModifiersAsString(Property property, boolean multiLine) {
 		StringBuffer buffer = new StringBuffer();
 		boolean needsComma = false;
-		String NL = (multiLine) ? "\n" : "";
+		String NL = (multiLine) ? "\n" : " ";
 
 		// Return property modifiers
 		if (property.isReadOnly()) {
@@ -235,57 +240,55 @@ public class PropertyUtil {
 			needsComma = true;
 		}
 		if (property.isDerivedUnion()) {
-			if (needsComma) {
-				buffer.append(",");
-				buffer.append(NL);
-			}
-			buffer.append("union");
-			needsComma = true;
+			needsComma = updateModifiersString(buffer, needsComma, NL, "union");
 		}
 		if (property.isOrdered()) {
-			if (needsComma) {
-				buffer.append(",");
-				buffer.append(NL);
-			}
-			buffer.append("ordered");
-			needsComma = true;
+			needsComma = updateModifiersString(buffer, needsComma, NL, "ordered");
+			;
 		}
 		if (property.isUnique()) {
-			if (needsComma) {
-				buffer.append(",");
-				buffer.append(NL);
-			}
-			buffer.append("unique");
-			needsComma = true;
+			needsComma = updateModifiersString(buffer, needsComma, NL, "unique");
 		}
 
 		// is the property redefining another property ?
-		Iterator<org.eclipse.uml2.uml.Property> it;
-		it = property.getRedefinedProperties().iterator();
-		while (it.hasNext()) {
-			org.eclipse.uml2.uml.Property current = it.next();
-			if (needsComma) {
-				buffer.append(",");
-				buffer.append(NL);
-			}
-			buffer.append("redefines ");
+		for (Property current : property.getRedefinedProperties()) {
+			needsComma = updateModifiersString(buffer, needsComma, NL, "redefines ");
 			buffer.append(current.getName());
-			needsComma = true;
 		}
 
 		// is the property subsetting another property ?
-		it = property.getSubsettedProperties().iterator();
-		while (it.hasNext()) {
-			Property current = it.next();
-			if (needsComma) {
-				buffer.append(",");
-				buffer.append(NL);
-			}
-			buffer.append("subsets ");
+		for (Property current : property.getSubsettedProperties()) {
+			needsComma = updateModifiersString(buffer, needsComma, NL, "subsets ");
 			buffer.append(current.getName());
-			needsComma = true;
+		}
+
+		if (buffer.toString() != "") {
+			buffer.insert(0, "{");
+			buffer.append("}");
 		}
 
 		return buffer.toString();
+	}
+
+	/**
+	 * Update the modifiers string
+	 * 
+	 * @param buffer
+	 *            the existing bufferString to append
+	 * @param needsComma
+	 *            if it needs coma
+	 * @param NL
+	 *            if it is multiline
+	 * @param message
+	 *            the message top
+	 * @return true because the modifier string is no more empty
+	 */
+	private static boolean updateModifiersString(StringBuffer buffer, boolean needsComma, String NL, String message) {
+		if (needsComma) {
+			buffer.append(",");
+			buffer.append(NL);
+		}
+		buffer.append(message);
+		return true;
 	}
 }
