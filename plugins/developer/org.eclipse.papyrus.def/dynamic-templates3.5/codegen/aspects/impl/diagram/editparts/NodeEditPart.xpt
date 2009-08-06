@@ -29,9 +29,9 @@
 «IF papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self) and v.superOwnedEditPart<>null)->size()<>0»
 	«FOREACH papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self) and v.superOwnedEditPart<>null) AS extendedObject»«EXPAND specifyInheritance FOR extendedObject»«ENDFOREACH-»
 «REM»END: BEGIN: PapyrusGenCode«ENDREM»
-«ELSE»
-	«IF hasBorderItems(self)»org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart«ELSE»org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart«ENDIF-»
-«ENDIF»
+«ELSE-»
+	«targetDef.proceed()-»
+«ENDIF-»
 «ENDAROUND»
 
 «DEFINE borderItemSelectionEP FOR gmfgen::GenNode-»
