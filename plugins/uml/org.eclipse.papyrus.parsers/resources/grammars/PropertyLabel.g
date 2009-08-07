@@ -256,7 +256,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
    */
   private Property findSubsettedPropertyByName(String propertyName, Property property) throws TypeRecognitionException {
     Property subsettedProperty = null;
-    Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property).iterator();
+    Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property, true).iterator();
     while (it.hasNext()) {
       Property tmpProperty = it.next();
       if(propertyName.equals(tmpProperty.getName())) {

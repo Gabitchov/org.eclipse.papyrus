@@ -32,9 +32,14 @@ public class PropertyUtil {
 	 * Get all properties that can be subset by this {@link Property} checks the type and the
 	 * multiplicity.
 	 * 
+	 * @param property
+	 *            property for which the list of subsettable properties are made
+	 * @param noCheck
+	 *            set this parameter to <code>true</code> if multiplicity and type check should be
+	 *            made for the computation
 	 * @return all properties that can be subset
 	 */
-	public static List<Property> getSubsettablesProperties(Property property) {
+	public static List<Property> getSubsettablesProperties(Property property, boolean noCheck) {
 		List<Property> list = new ArrayList<Property>();
 
 		// subset properties:
@@ -52,17 +57,20 @@ public class PropertyUtil {
 				}
 
 				// check types conformity
-				if (property.getType() != null && subsettableProperty.getType() != null) {
-					if (!property.getType().conformsTo(subsettableProperty.getType())) {
+				if (!noCheck) {
+					if (property.getType() != null && subsettableProperty.getType() != null) {
+						if (!property.getType().conformsTo(subsettableProperty.getType())) {
+							isValid = false;
+						}
+					} else {
 						isValid = false;
 					}
-				} else {
-					isValid = false;
-				}
 
-				// check multiplicity (only upper bound has an OCL rule)
-				if ((subsettableProperty.getUpper() != -1) && (property.getUpper() > subsettableProperty.getUpper())) {
-					isValid = false;
+					// check multiplicity (only upper bound has an OCL rule)
+					if ((subsettableProperty.getUpper() != -1)
+							&& (property.getUpper() > subsettableProperty.getUpper())) {
+						isValid = false;
+					}
 				}
 
 				if (isValid) {
@@ -80,8 +88,8 @@ public class PropertyUtil {
 	 *            the name of the property
 	 * @return the property found or <code>null</code> if the element was not found.
 	 */
-	public static Property findSusbsettedPropertyByName(String propertyName, Property property) {
-		Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property).iterator();
+	public static Property findSusbsettedPropertyByName(String propertyName, Property property, boolean noCheck) {
+		Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property, true).iterator();
 		while (it.hasNext()) {
 			Property tmpProperty = it.next();
 			String tmpPropertyName = tmpProperty.getName();

@@ -79,7 +79,7 @@ public class PropertySubsetsProposal implements ICompletionProposalComputer {
 	public List<ICompletionProposal> generateCompletionProposals(int documentOffset, int selectionRange, String prefix) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
 
-		Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property).iterator();
+		Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property, true).iterator();
 		while (it.hasNext()) {
 			Property prop = it.next();
 			String name = prop.getName();
