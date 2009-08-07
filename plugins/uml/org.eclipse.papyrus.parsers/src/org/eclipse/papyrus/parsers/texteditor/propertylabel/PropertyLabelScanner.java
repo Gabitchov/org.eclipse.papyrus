@@ -78,7 +78,7 @@ public class PropertyLabelScanner extends RuleBasedScanner implements IPropertyL
 			// wordRule.addWord(getWordWithoutQuotes(isDerivedStrings[i]), keyword);
 		}
 		for (int i = 0; i < PropertyModifierProposal.modifiersStrings.length; i++) {
-			wordRule.addWord(PropertyModifierProposal.modifiersStrings[i], keyword);
+			wordRule.addWord(PropertyModifierProposal.modifiersStrings[i].trim(), keyword);
 		}
 
 		wordRule.addWord("+", symbol);

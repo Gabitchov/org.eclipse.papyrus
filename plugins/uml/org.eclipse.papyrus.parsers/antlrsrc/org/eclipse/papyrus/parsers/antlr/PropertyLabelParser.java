@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g 2009-08-06 17:42:37
+// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g 2009-08-07 11:33:37
 
 package org.eclipse.papyrus.parsers.antlr;
 
@@ -315,7 +315,7 @@ public class PropertyLabelParser extends Parser {
         }
         
         if(subsettedProperty == null) {
-          throw new TypeRecognitionException("Property "+propertyName+" has not been found or can not be redefined", property.getName());
+          throw new TypeRecognitionException("Property "+propertyName+" has not been found or can not be subset", property.getName());
         } else {
           // a property has been found. check multiplicity  
           checkProperty(property, subsettedProperty);
@@ -342,7 +342,7 @@ public class PropertyLabelParser extends Parser {
         if( propertyLowerBound < subsettedPropertyLowerBound) {
           throw new MultiplicityException(propertyName+" Lower Bound ("+lowerMultiplicity+") can not be lower than subsetted property Lower Bound ("+subsettedPropertyLowerBound+")");
         } else if(subsettedPropertyUpperBound != -1 && propertyUpperBound > subsettedPropertyUpperBound) {
-          throw new MultiplicityException(propertyName+" Upper Bound ("+upperMultiplicity+") can not be gretater than subsetted property Upper Bound ("+subsettedPropertyUpperBound+")");
+          throw new MultiplicityException(propertyName+" Upper Bound ("+upperMultiplicity+") can not be greater than subsetted property Upper Bound ("+subsettedPropertyUpperBound+")");
         } 
         if(!propertyType.conformsTo(subsettedPropertyType)) {
           throw new TypeRecognitionException(propertyName+" Type ("+propertyType.getName()+") does not conform to subsetted property type", subsettedPropertyType.getName());

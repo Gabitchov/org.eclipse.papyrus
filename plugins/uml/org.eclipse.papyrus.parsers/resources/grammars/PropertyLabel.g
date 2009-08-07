@@ -265,7 +265,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
     }
     
     if(subsettedProperty == null) {
-      throw new TypeRecognitionException("Property "+propertyName+" has not been found or can not be redefined", property.getName());
+      throw new TypeRecognitionException("Property "+propertyName+" has not been found or can not be subset", property.getName());
     } else {
       // a property has been found. check multiplicity  
       checkProperty(property, subsettedProperty);
@@ -292,7 +292,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
     if( propertyLowerBound < subsettedPropertyLowerBound) {
       throw new MultiplicityException(propertyName+" Lower Bound ("+lowerMultiplicity+") can not be lower than subsetted property Lower Bound ("+subsettedPropertyLowerBound+")");
     } else if(subsettedPropertyUpperBound != -1 && propertyUpperBound > subsettedPropertyUpperBound) {
-      throw new MultiplicityException(propertyName+" Upper Bound ("+upperMultiplicity+") can not be gretater than subsetted property Upper Bound ("+subsettedPropertyUpperBound+")");
+      throw new MultiplicityException(propertyName+" Upper Bound ("+upperMultiplicity+") can not be greater than subsetted property Upper Bound ("+subsettedPropertyUpperBound+")");
     } 
     if(!propertyType.conformsTo(subsettedPropertyType)) {
       throw new TypeRecognitionException(propertyName+" Type ("+propertyType.getName()+") does not conform to subsetted property type", subsettedPropertyType.getName());

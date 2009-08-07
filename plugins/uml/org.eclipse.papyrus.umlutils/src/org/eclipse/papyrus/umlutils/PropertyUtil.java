@@ -84,7 +84,8 @@ public class PropertyUtil {
 		Iterator<Property> it = PropertyUtil.getSubsettablesProperties(property).iterator();
 		while (it.hasNext()) {
 			Property tmpProperty = it.next();
-			if (propertyName.equals(tmpProperty.getName())) {
+			String tmpPropertyName = tmpProperty.getName();
+			if (tmpPropertyName != null && propertyName.equals(tmpPropertyName.trim())) {
 				return tmpProperty;
 			}
 		}
@@ -129,7 +130,8 @@ public class PropertyUtil {
 		Iterator<Property> it = PropertyUtil.getRedefinableProperties(property).iterator();
 		while (it.hasNext()) {
 			Property tmpProperty = it.next();
-			if (propertyName.equals(tmpProperty.getName())) {
+			String tmpPropertyName = tmpProperty.getName();
+			if (tmpPropertyName != null && propertyName.equals(tmpPropertyName.trim())) {
 				return tmpProperty;
 			}
 		}
