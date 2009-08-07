@@ -260,9 +260,7 @@ public class PropertyUtil {
 				if (multiLine) {
 					buffer.append("\n");
 				}
-				buffer.append(" {");
 				buffer.append(modifiers);
-				buffer.append("}");
 			}
 		}
 		return buffer.toString();
@@ -312,7 +310,7 @@ public class PropertyUtil {
 			buffer.append(current.getName());
 		}
 
-		if (buffer.toString() != "") {
+		if (!buffer.toString().equals("")) {
 			buffer.insert(0, "{");
 			buffer.append("}");
 		}

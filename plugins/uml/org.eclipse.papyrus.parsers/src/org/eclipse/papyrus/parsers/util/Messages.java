@@ -23,7 +23,7 @@ public class Messages extends NLS {
 	/** name of the bundle */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.parsers.util.messages"; //$NON-NLS-1$
 
-	public static String PropertyLabelParser_96;
+	public static String NameMissing;
 
 	/** initializer */
 	static {

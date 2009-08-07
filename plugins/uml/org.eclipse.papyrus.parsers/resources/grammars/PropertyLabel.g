@@ -360,6 +360,32 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
    public void emitErrorMessage(String msg) {
      errorReporter.reportError(msg);
    }
+   
+    /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void recoverFromMismatchedToken(IntStream arg0, RecognitionException arg1, int arg2, BitSet arg3)
+      throws RecognitionException {
+    // do nothing
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void recover(IntStream arg0, RecognitionException arg1) {
+    // do nothing
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void recoverFromMismatchedSet(IntStream arg0, RecognitionException arg1, BitSet arg2)
+      throws RecognitionException {
+    // do nothing
+  }
 }
 
 label :
@@ -378,10 +404,26 @@ label :
     applyValues();
   }
   ;
-  catch [RecognitionException re] {
-   reportError(re); 
-   throw(re);
-   }
+ catch [MismatchedTokenException mte] {
+      reportError(mte);
+      String text = "[" + mte.index + "] Was waiting for ";
+      String description = mte.getLocalizedMessage();
+      text += description.substring(description.indexOf('('), description.length());
+      text += ". Found " + mte.token.getText() + " instead.";
+      throw new RuntimeException(text);
+    } catch [NoViableAltException noViableAltException] {
+      reportError(noViableAltException);
+      String text = "[" + noViableAltException.index + "] Was waiting for ";
+      String description = noViableAltException.grammarDecisionDescription;
+      text += description.substring(description.indexOf('('), description.length());
+      text += ". Found " + noViableAltException.token.getText() + " instead.";
+      throw new RuntimeException(text);
+    } catch [RecognitionException re] {
+
+      reportError(re);
+      throw (re);
+
+    } 
   
   
 visibility
@@ -393,12 +435,20 @@ visibility
   | (   TILDE { visibility = VisibilityKind.PACKAGE_LITERAL;} )
   )
   ;
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("VisibilityRule"));
+   }
 
 
 isDerived
   :
   DIV   { isDerived = true; }
-  ;
+  ; 
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("IsDerivedRule"));
+   }
 
 name
   :
@@ -410,7 +460,7 @@ name
   ;
   catch [MismatchedTokenException mte] {
       reportError(mte);
-      throw (new RuntimeException(Messages.PropertyLabelParser_96));
+      throw (new RuntimeException(Messages.NameMissing));
    }
     catch [RecognitionException re] {
       reportError(re); 
@@ -425,6 +475,14 @@ property_type
     '<Undefined>'
   )
   ;
+   catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("PropertyTypeRule"));
+   }
+   catch [NoViableAltException noViableAltException] {
+      reportError(noViableAltException);
+      throw new RuntimeException("Waiting for a valid type or <Undefined>");
+    } 
    catch [RecognitionException re] {
    reportError(re); 
    throw(re);
@@ -472,6 +530,15 @@ type
     }
   }
   ;
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("TypeRule"));
+   }
+     catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
+  
   
 fullMultiplicity
   :
@@ -512,6 +579,15 @@ fullMultiplicity
   )
   RSQUARE
   ;
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("FullMultiplicityRule"));
+   }
+     catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
+  
   
 lowerMultiplicity
   :
@@ -544,6 +620,15 @@ defaultValue
     defaultValue = dv.trim();
   }
   ;
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("DefaultValueRule"));
+   }
+     catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
+  
   
 expression returns [String value  = ""]
   @init{
@@ -563,6 +648,15 @@ expression returns [String value  = ""]
     value = buffer.toString();
   }
   ;
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("ExpressionRule"));
+   }
+     catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
+  
   
 propertyModifiers
   :
@@ -575,6 +669,10 @@ propertyModifiers
   )*
   RCURLY
   ;
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("DefaultValueRule"));
+   }
   catch [RecognitionException re] {
    reportError(re); 
    throw(re);
@@ -592,10 +690,15 @@ propertyModifier
   | redefinesProperty                                                                                                           
   )
   ;
-  catch [RecognitionException re] {
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("PropertyModifierRule"));
+   }
+     catch [RecognitionException re] {
    reportError(re); 
    throw(re);
    }
+  
   
 subsetsProperty
   :
@@ -607,6 +710,10 @@ subsetsProperty
     subsettedProperties.add(tmpProperty); 
   }
   ;
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("subsetsPropertyRule"));
+   }
   catch [RecognitionException re] {
    reportError(re); 
    throw(re);
@@ -622,6 +729,10 @@ redefinesProperty
     redefinedProperties.add(tmpProperty); 
   }
   ;
+   catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException("redefinesPropertyRule"));
+   }
   catch [RecognitionException re] {
    reportError(re); 
    throw(re);
@@ -842,6 +953,5 @@ INTEGER
   : '0'..'9'+;
     
 IDENTIFIER
-  : (ALPHA|UNDERSCORE)(ALPHA|'0'..'9'|UNDERSCORE)*
+  : (ALPHA|'0'..'9'|UNDERSCORE)+
   ;
-  
