@@ -107,6 +107,14 @@ public class PropertyUtil {
 				list.add((Property) element);
 			}
 		}
+
+		// adds also already redefined members. In fact, when properties are redefined, they
+		// disappear from the inherited members list
+		Iterator<Property> it2 = property.getRedefinedProperties().iterator();
+		while (it2.hasNext()) {
+			Property element = it2.next();
+			list.add((Property) element);
+		}
 		return list;
 	}
 
