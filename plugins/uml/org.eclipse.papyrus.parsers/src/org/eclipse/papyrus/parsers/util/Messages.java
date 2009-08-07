@@ -25,6 +25,10 @@ public class Messages extends NLS {
 
 	public static String NameMissing;
 
+	public static String MismatchedToken;
+
+	public static String NoViableAltException;
+
 	/** initializer */
 	static {
 		// initialize resource bundle

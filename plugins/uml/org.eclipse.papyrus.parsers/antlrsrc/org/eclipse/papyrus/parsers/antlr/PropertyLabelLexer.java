@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g 2009-08-07 19:59:42
+// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g 2009-08-07 20:23:44
 
 package org.eclipse.papyrus.parsers.antlr;
 
@@ -245,10 +245,10 @@ public class PropertyLabelLexer extends Lexer {
     public final void mNL() throws RecognitionException {
         try {
             int _type = NL;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:742:3: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:742:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:746:3: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:746:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:742:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:746:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt1=4;
             int LA1_0 = input.LA(1);
 
@@ -273,13 +273,13 @@ public class PropertyLabelLexer extends Lexer {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("742:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )", 1, 0, input);
+                    new NoViableAltException("746:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )", 1, 0, input);
 
                 throw nvae;
             }
             switch (alt1) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:742:7: '\\r' '\\n'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:746:7: '\\r' '\\n'
                     {
                     match('\r'); if (failed) return ;
                     match('\n'); if (failed) return ;
@@ -287,7 +287,7 @@ public class PropertyLabelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:743:7: '\\n' '\\r'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:747:7: '\\n' '\\r'
                     {
                     match('\n'); if (failed) return ;
                     match('\r'); if (failed) return ;
@@ -295,14 +295,14 @@ public class PropertyLabelLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:744:7: '\\r'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:748:7: '\\r'
                     {
                     match('\r'); if (failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:745:7: '\\n'
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:749:7: '\\n'
                     {
                     match('\n'); if (failed) return ;
 
@@ -328,10 +328,10 @@ public class PropertyLabelLexer extends Lexer {
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:752:3: ( ( ' ' | '\\t' | '\\f' )+ )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:752:6: ( ' ' | '\\t' | '\\f' )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:756:3: ( ( ' ' | '\\t' | '\\f' )+ )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:756:6: ( ' ' | '\\t' | '\\f' )+
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:752:6: ( ' ' | '\\t' | '\\f' )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:756:6: ( ' ' | '\\t' | '\\f' )+
             int cnt2=0;
             loop2:
             do {
@@ -389,8 +389,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mQUESTION_MARK() throws RecognitionException {
         try {
             int _type = QUESTION_MARK;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:756:3: ( '?' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:756:5: '?'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:760:3: ( '?' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:760:5: '?'
             {
             match('?'); if (failed) return ;
 
@@ -407,8 +407,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mLNOT() throws RecognitionException {
         try {
             int _type = LNOT;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:760:3: ( '!' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:760:5: '!'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:764:3: ( '!' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:764:5: '!'
             {
             match('!'); if (failed) return ;
 
@@ -425,8 +425,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDOUBLE_QUOTE() throws RecognitionException {
         try {
             int _type = DOUBLE_QUOTE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:764:3: ( '\\\"' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:764:5: '\\\"'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:768:3: ( '\\\"' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:768:5: '\\\"'
             {
             match('\"'); if (failed) return ;
 
@@ -443,8 +443,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mSINGLE_QUOTE() throws RecognitionException {
         try {
             int _type = SINGLE_QUOTE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:768:3: ( '\\'' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:768:5: '\\''
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:772:3: ( '\\'' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:772:5: '\\''
             {
             match('\''); if (failed) return ;
 
@@ -461,8 +461,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mLPAREN() throws RecognitionException {
         try {
             int _type = LPAREN;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:772:3: ( '(' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:772:5: '('
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:776:3: ( '(' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:776:5: '('
             {
             match('('); if (failed) return ;
 
@@ -479,8 +479,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mRPAREN() throws RecognitionException {
         try {
             int _type = RPAREN;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:776:3: ( ')' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:776:5: ')'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:780:3: ( ')' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:780:5: ')'
             {
             match(')'); if (failed) return ;
 
@@ -497,8 +497,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mLSQUARE() throws RecognitionException {
         try {
             int _type = LSQUARE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:780:3: ( '[' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:780:5: '['
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:784:3: ( '[' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:784:5: '['
             {
             match('['); if (failed) return ;
 
@@ -515,8 +515,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mRSQUARE() throws RecognitionException {
         try {
             int _type = RSQUARE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:784:3: ( ']' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:784:5: ']'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:788:3: ( ']' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:788:5: ']'
             {
             match(']'); if (failed) return ;
 
@@ -533,8 +533,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mLCURLY() throws RecognitionException {
         try {
             int _type = LCURLY;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:788:3: ( '{' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:788:5: '{'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:792:3: ( '{' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:792:5: '{'
             {
             match('{'); if (failed) return ;
 
@@ -551,8 +551,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDOUBLE_LCURLY() throws RecognitionException {
         try {
             int _type = DOUBLE_LCURLY;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:792:3: ( '{{' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:792:5: '{{'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:796:3: ( '{{' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:796:5: '{{'
             {
             match("{{"); if (failed) return ;
 
@@ -570,8 +570,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mRCURLY() throws RecognitionException {
         try {
             int _type = RCURLY;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:795:3: ( '}' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:795:5: '}'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:799:3: ( '}' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:799:5: '}'
             {
             match('}'); if (failed) return ;
 
@@ -588,8 +588,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDOUBLE_RCURLY() throws RecognitionException {
         try {
             int _type = DOUBLE_RCURLY;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:799:3: ( '}}' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:799:5: '}}'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:803:3: ( '}}' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:803:5: '}}'
             {
             match("}}"); if (failed) return ;
 
@@ -607,8 +607,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mLOGICAL_AND() throws RecognitionException {
         try {
             int _type = LOGICAL_AND;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:803:3: ( '&' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:803:5: '&'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:807:3: ( '&' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:807:5: '&'
             {
             match('&'); if (failed) return ;
 
@@ -625,8 +625,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDOUBLE_LOGICAL_AND() throws RecognitionException {
         try {
             int _type = DOUBLE_LOGICAL_AND;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:807:3: ( '&&' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:807:5: '&&'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:811:3: ( '&&' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:811:5: '&&'
             {
             match("&&"); if (failed) return ;
 
@@ -644,8 +644,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mPIPE() throws RecognitionException {
         try {
             int _type = PIPE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:811:3: ( '|' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:811:5: '|'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:815:3: ( '|' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:815:5: '|'
             {
             match('|'); if (failed) return ;
 
@@ -662,8 +662,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDOUBLE_PIPE() throws RecognitionException {
         try {
             int _type = DOUBLE_PIPE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:815:3: ( '||' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:815:5: '||'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:819:3: ( '||' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:819:5: '||'
             {
             match("||"); if (failed) return ;
 
@@ -681,8 +681,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mPOINT() throws RecognitionException {
         try {
             int _type = POINT;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:819:3: ( '.' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:819:5: '.'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:823:3: ( '.' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:823:5: '.'
             {
             match('.'); if (failed) return ;
 
@@ -699,8 +699,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mRANGE() throws RecognitionException {
         try {
             int _type = RANGE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:823:3: ( '..' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:823:5: '..'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:827:3: ( '..' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:827:5: '..'
             {
             match(".."); if (failed) return ;
 
@@ -718,8 +718,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mCOMMA() throws RecognitionException {
         try {
             int _type = COMMA;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:827:3: ( ',' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:827:5: ','
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:831:3: ( ',' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:831:5: ','
             {
             match(','); if (failed) return ;
 
@@ -736,8 +736,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mSEMI() throws RecognitionException {
         try {
             int _type = SEMI;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:831:3: ( ';' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:831:5: ';'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:835:3: ( ';' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:835:5: ';'
             {
             match(';'); if (failed) return ;
 
@@ -754,8 +754,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mSHARP() throws RecognitionException {
         try {
             int _type = SHARP;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:835:3: ( '#' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:835:5: '#'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:839:3: ( '#' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:839:5: '#'
             {
             match('#'); if (failed) return ;
 
@@ -772,8 +772,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mTILDE() throws RecognitionException {
         try {
             int _type = TILDE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:839:3: ( '~' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:839:5: '~'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:843:3: ( '~' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:843:5: '~'
             {
             match('~'); if (failed) return ;
 
@@ -790,8 +790,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mCOLON() throws RecognitionException {
         try {
             int _type = COLON;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:843:3: ( ':' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:843:5: ':'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:847:3: ( ':' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:847:5: ':'
             {
             match(':'); if (failed) return ;
 
@@ -808,8 +808,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mFOUR_POINTS() throws RecognitionException {
         try {
             int _type = FOUR_POINTS;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:847:3: ( '::' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:847:5: '::'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:851:3: ( '::' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:851:5: '::'
             {
             match("::"); if (failed) return ;
 
@@ -827,8 +827,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mRULE_ASSIGN() throws RecognitionException {
         try {
             int _type = RULE_ASSIGN;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:851:3: ( '::=' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:851:5: '::='
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:855:3: ( '::=' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:855:5: '::='
             {
             match("::="); if (failed) return ;
 
@@ -846,8 +846,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mARROW() throws RecognitionException {
         try {
             int _type = ARROW;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:854:3: ( '->' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:854:5: '->'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:858:3: ( '->' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:858:5: '->'
             {
             match("->"); if (failed) return ;
 
@@ -865,8 +865,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mSTAR() throws RecognitionException {
         try {
             int _type = STAR;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:858:3: ( '*' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:858:5: '*'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:862:3: ( '*' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:862:5: '*'
             {
             match('*'); if (failed) return ;
 
@@ -883,8 +883,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDIV() throws RecognitionException {
         try {
             int _type = DIV;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:862:3: ( '/' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:862:5: '/'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:866:3: ( '/' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:866:5: '/'
             {
             match('/'); if (failed) return ;
 
@@ -901,8 +901,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mPLUS() throws RecognitionException {
         try {
             int _type = PLUS;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:866:3: ( '+' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:866:5: '+'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:870:3: ( '+' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:870:5: '+'
             {
             match('+'); if (failed) return ;
 
@@ -919,8 +919,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mMINUS() throws RecognitionException {
         try {
             int _type = MINUS;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:870:3: ( '-' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:870:5: '-'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:874:3: ( '-' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:874:5: '-'
             {
             match('-'); if (failed) return ;
 
@@ -937,8 +937,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mEQ() throws RecognitionException {
         try {
             int _type = EQ;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:874:3: ( '=' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:874:5: '='
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:878:3: ( '=' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:878:5: '='
             {
             match('='); if (failed) return ;
 
@@ -955,8 +955,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mISEQ() throws RecognitionException {
         try {
             int _type = ISEQ;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:879:3: ( '==' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:879:5: '=='
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:883:3: ( '==' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:883:5: '=='
             {
             match("=="); if (failed) return ;
 
@@ -974,8 +974,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mISNE() throws RecognitionException {
         try {
             int _type = ISNE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:883:3: ( '!=' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:883:5: '!='
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:887:3: ( '!=' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:887:5: '!='
             {
             match("!="); if (failed) return ;
 
@@ -993,8 +993,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mLT() throws RecognitionException {
         try {
             int _type = LT;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:886:4: ( '<' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:886:6: '<'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:890:4: ( '<' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:890:6: '<'
             {
             match('<'); if (failed) return ;
 
@@ -1011,8 +1011,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDOUBLE_LT() throws RecognitionException {
         try {
             int _type = DOUBLE_LT;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:889:3: ( '<<' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:889:5: '<<'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:893:3: ( '<<' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:893:5: '<<'
             {
             match("<<"); if (failed) return ;
 
@@ -1030,8 +1030,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mLE() throws RecognitionException {
         try {
             int _type = LE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:893:3: ( '<=' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:893:5: '<='
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:897:3: ( '<=' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:897:5: '<='
             {
             match("<="); if (failed) return ;
 
@@ -1049,8 +1049,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mGT() throws RecognitionException {
         try {
             int _type = GT;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:897:3: ( '>' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:897:5: '>'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:901:3: ( '>' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:901:5: '>'
             {
             match('>'); if (failed) return ;
 
@@ -1067,8 +1067,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDOUBLE_GT() throws RecognitionException {
         try {
             int _type = DOUBLE_GT;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:901:3: ( '>>' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:901:5: '>>'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:905:3: ( '>>' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:905:5: '>>'
             {
             match(">>"); if (failed) return ;
 
@@ -1086,8 +1086,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mGE() throws RecognitionException {
         try {
             int _type = GE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:905:3: ( '>=' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:905:5: '>='
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:909:3: ( '>=' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:909:5: '>='
             {
             match(">="); if (failed) return ;
 
@@ -1105,8 +1105,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mINCR() throws RecognitionException {
         try {
             int _type = INCR;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:910:3: ( '++' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:910:5: '++'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:914:3: ( '++' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:914:5: '++'
             {
             match("++"); if (failed) return ;
 
@@ -1124,8 +1124,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mDECR() throws RecognitionException {
         try {
             int _type = DECR;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:914:3: ( '--' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:914:5: '--'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:918:3: ( '--' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:918:5: '--'
             {
             match("--"); if (failed) return ;
 
@@ -1143,8 +1143,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mCALLOPERATION() throws RecognitionException {
         try {
             int _type = CALLOPERATION;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:918:3: ( ':=' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:918:5: ':='
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:922:3: ( ':=' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:922:5: ':='
             {
             match(":="); if (failed) return ;
 
@@ -1162,7 +1162,7 @@ public class PropertyLabelLexer extends Lexer {
     public final void mALPHA() throws RecognitionException {
         try {
             int _type = ALPHA;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:922:3: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:926:3: ( 'a' .. 'z' | 'A' .. 'Z' )
             // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -1190,8 +1190,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mUNDERSCORE() throws RecognitionException {
         try {
             int _type = UNDERSCORE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:928:3: ( '_' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:928:5: '_'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:932:3: ( '_' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:932:5: '_'
             {
             match('_'); if (failed) return ;
 
@@ -1211,8 +1211,8 @@ public class PropertyLabelLexer extends Lexer {
             Token c1=null;
             Token c2=null;
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:932:3: (c1= INTEGER '..' (c2= INTEGER | c2= STAR ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:932:5: c1= INTEGER '..' (c2= INTEGER | c2= STAR )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:936:3: (c1= INTEGER '..' (c2= INTEGER | c2= STAR ) )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:936:5: c1= INTEGER '..' (c2= INTEGER | c2= STAR )
             {
             int c1Start824 = getCharIndex();
             mINTEGER(); if (failed) return ;
@@ -1222,7 +1222,7 @@ public class PropertyLabelLexer extends Lexer {
             }
             match(".."); if (failed) return ;
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:933:3: (c2= INTEGER | c2= STAR )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:937:3: (c2= INTEGER | c2= STAR )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1235,13 +1235,13 @@ public class PropertyLabelLexer extends Lexer {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("933:3: (c2= INTEGER | c2= STAR )", 3, 0, input);
+                    new NoViableAltException("937:3: (c2= INTEGER | c2= STAR )", 3, 0, input);
 
                 throw nvae;
             }
             switch (alt3) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:933:5: c2= INTEGER
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:937:5: c2= INTEGER
                     {
                     int c2Start836 = getCharIndex();
                     mINTEGER(); if (failed) return ;
@@ -1253,7 +1253,7 @@ public class PropertyLabelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:934:7: c2= STAR
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:938:7: c2= STAR
                     {
                     int c2Start849 = getCharIndex();
                     mSTAR(); if (failed) return ;
@@ -1286,8 +1286,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mREAL() throws RecognitionException {
         try {
             int _type = REAL;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:941:3: ( INTEGER '.' INTEGER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:941:5: INTEGER '.' INTEGER
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:945:3: ( INTEGER '.' INTEGER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:945:5: INTEGER '.' INTEGER
             {
             mINTEGER(); if (failed) return ;
             match('.'); if (failed) return ;
@@ -1305,26 +1305,26 @@ public class PropertyLabelLexer extends Lexer {
     // $ANTLR start INTEGER_OR_REAL_OR_RANGE
     public final void mINTEGER_OR_REAL_OR_RANGE() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:946:3: ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:950:3: ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER )
             int alt4=3;
             alt4 = dfa4.predict(input);
             switch (alt4) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:947:4: ( INTEGER RANGE )=> RANGE_VALUE
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:951:4: ( INTEGER RANGE )=> RANGE_VALUE
                     {
                     mRANGE_VALUE(); if (failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:948:6: ( INTEGER POINT )=> REAL
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:6: ( INTEGER POINT )=> REAL
                     {
                     mREAL(); if (failed) return ;
 
                     }
                     break;
                 case 3 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:949:6: ( INTEGER )=> INTEGER
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:6: ( INTEGER )=> INTEGER
                     {
                     mINTEGER(); if (failed) return ;
 
@@ -1342,10 +1342,10 @@ public class PropertyLabelLexer extends Lexer {
     public final void mINTEGER() throws RecognitionException {
         try {
             int _type = INTEGER;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:3: ( ( '0' .. '9' )+ )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:5: ( '0' .. '9' )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:957:3: ( ( '0' .. '9' )+ )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:957:5: ( '0' .. '9' )+
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:5: ( '0' .. '9' )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:957:5: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -1359,7 +1359,7 @@ public class PropertyLabelLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:5: '0' .. '9'
+            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:957:5: '0' .. '9'
             	    {
             	    matchRange('0','9'); if (failed) return ;
 
@@ -1390,10 +1390,10 @@ public class PropertyLabelLexer extends Lexer {
     public final void mIDENTIFIER() throws RecognitionException {
         try {
             int _type = IDENTIFIER;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:956:3: ( ( ALPHA | '0' .. '9' | UNDERSCORE )+ )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:956:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:960:3: ( ( ALPHA | '0' .. '9' | UNDERSCORE )+ )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:960:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:956:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:960:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
             int cnt6=0;
             loop6:
             do {
@@ -1862,8 +1862,8 @@ public class PropertyLabelLexer extends Lexer {
 
     // $ANTLR start synpred1
     public final void synpred1_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:947:4: ( INTEGER RANGE )
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:947:5: INTEGER RANGE
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:951:4: ( INTEGER RANGE )
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:951:5: INTEGER RANGE
         {
         mINTEGER(); if (failed) return ;
         mRANGE(); if (failed) return ;
@@ -1874,8 +1874,8 @@ public class PropertyLabelLexer extends Lexer {
 
     // $ANTLR start synpred2
     public final void synpred2_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:948:6: ( INTEGER POINT )
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:948:7: INTEGER POINT
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:6: ( INTEGER POINT )
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:7: INTEGER POINT
         {
         mINTEGER(); if (failed) return ;
         mPOINT(); if (failed) return ;
@@ -1886,8 +1886,8 @@ public class PropertyLabelLexer extends Lexer {
 
     // $ANTLR start synpred3
     public final void synpred3_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:949:6: ( INTEGER )
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:949:7: INTEGER
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:6: ( INTEGER )
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:7: INTEGER
         {
         mINTEGER(); if (failed) return ;
 
@@ -1992,7 +1992,7 @@ public class PropertyLabelLexer extends Lexer {
             this.transition = DFA4_transition;
         }
         public String getDescription() {
-            return "944:1: fragment INTEGER_OR_REAL_OR_RANGE : ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER );";
+            return "948:1: fragment INTEGER_OR_REAL_OR_RANGE : ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER );";
         }
         public int specialStateTransition(int s, IntStream input) throws NoViableAltException {
         	int _s = s;

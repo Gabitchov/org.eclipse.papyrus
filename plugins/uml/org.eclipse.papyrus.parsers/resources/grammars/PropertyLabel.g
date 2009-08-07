@@ -405,19 +405,23 @@ label :
   }
   ;
  catch [MismatchedTokenException mte] {
-      reportError(mte);
-      String text = "[" + mte.index + "] Was waiting for ";
-      String description = mte.getLocalizedMessage();
-      text += description.substring(description.indexOf('('), description.length());
-      text += ". Found " + mte.token.getText() + " instead.";
+     reportError(mte);
+      String index = Integer.toString(mte.index);
+      String description = mte.getLocalizedMessage().substring(mte.getLocalizedMessage().indexOf('('),
+          mte.getLocalizedMessage().length());
+      String tokenText = mte.token.getText();
+      String text = Messages.bind(Messages.MismatchedToken, new String[] { index, description, tokenText });
       throw new RuntimeException(text);
     } catch [NoViableAltException noViableAltException] {
-      reportError(noViableAltException);
-      String text = "[" + noViableAltException.index + "] Was waiting for ";
-      String description = noViableAltException.grammarDecisionDescription;
-      text += description.substring(description.indexOf('('), description.length());
-      text += ". Found " + noViableAltException.token.getText() + " instead.";
+   reportError(noViableAltException);
+      String index = Integer.toString(noViableAltException.index);
+     String description = noViableAltException.grammarDecisionDescription.substring(
+          noViableAltException.grammarDecisionDescription.indexOf('('),
+          noViableAltException.grammarDecisionDescription.length());
+      String tokenText = noViableAltException.token.getText();
+      String text = Messages.bind(Messages.NoViableAltException, new String[] { index, description, tokenText });
       throw new RuntimeException(text);
+
     } catch [RecognitionException re] {
 
       reportError(re);
