@@ -31,14 +31,22 @@
       <menuContribution
             locationURI="menu:org.eclipse.papyrus.ui.menu">
          <menu
-               id="org.eclipse.papyrus.diagram.ui.menu"
-               label="Papyrus II">
+               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+               label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
                   icon="icons/SequenceDiagram.gif"
-                  label="Create Sequence Diagram"
+                  label="Create a new Sequence Diagram"
                   style="push"
-                  tooltip="Create a new Sequence diagram (Papyrus II)">
+                  tooltip="Create a new Sequence Diagram">
+               <visibleWhen>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </visibleWhen>
             </command>
          </menu>
       </menuContribution>
@@ -52,6 +60,14 @@
                   label="Create a new Sequence Diagram"
                   style="push"
                   tooltip="Create a new Sequence Diagram">
+               <visibleWhen>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </visibleWhen>
             </command>
          </toolbar>
       </menuContribution>

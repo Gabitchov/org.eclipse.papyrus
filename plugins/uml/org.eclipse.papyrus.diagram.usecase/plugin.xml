@@ -41,20 +41,36 @@
                   label="Create a new UseCase Diagram"
                   style="push"
                   tooltip="Create a new UseCase Diagram">
+               <visibleWhen>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </visibleWhen>
             </command>
          </toolbar>
       </menuContribution>
       <menuContribution
             locationURI="menu:org.eclipse.papyrus.ui.menu">
          <menu
-               id="org.eclipse.papyrus.diagram.ui.menu"
-               label="Papyrus II">
+               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+               label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
                   icon="icons/UseCaseDiagram.gif"
-                  label="Create UseCase Diagram"
+                  label="Create a new UseCase Diagram"
                   style="push"
-                  tooltip="Create a new UML2 UseCase Diagram  (Papyrus II)">
+                  tooltip="Create a new UseCase Diagram">
+               <visibleWhen>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </visibleWhen>
             </command>
          </menu>
       </menuContribution>
