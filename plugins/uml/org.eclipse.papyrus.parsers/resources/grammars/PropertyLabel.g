@@ -15,9 +15,11 @@ import java.util.Vector;
 
 import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
 import org.eclipse.papyrus.parsers.util.IErrorReporter;
+import org.eclipse.papyrus.parsers.util.NameException;
 import org.eclipse.papyrus.parsers.util.MultiplicityException;
 import org.eclipse.papyrus.parsers.util.TypeRecognitionException;
 import org.eclipse.papyrus.parsers.util.UnboundTemplateRecognitionException;
+import org.eclipse.papyrus.parsers.util.Messages;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.papyrus.umlutils.TemplateSignatureUtil;
@@ -340,9 +342,24 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
         return errorReporter;
     }
     
-    public void emitErrorMessage(String msg) {
-        errorReporter.reportError(msg);
-}
+   /**
+    * {@inheritDoc}
+    */
+   @Override
+   public String getErrorMessage(RecognitionException exception, String[] arg1) {
+     if (exception instanceof NameException) {
+       return "Please enter a correct name for the property";
+     }
+     return super.getErrorMessage(exception, arg1);
+   }
+
+   /**
+    * {@inheritDoc}
+    */
+   @Override
+   public void emitErrorMessage(String msg) {
+     errorReporter.reportError(msg);
+   }
 }
 
 label :
@@ -361,6 +378,11 @@ label :
     applyValues();
   }
   ;
+  catch [RecognitionException re] {
+   reportError(re); 
+   throw(re);
+   }
+  
   
 visibility
   :
@@ -386,6 +408,15 @@ name
     context = IContext.NAME;
   }
   ;
+  catch [MismatchedTokenException mte] {
+      reportError(mte);
+      throw (new RuntimeException(Messages.PropertyLabelParser_96));
+   }
+    catch [RecognitionException re] {
+      reportError(re); 
+      throw(re);
+   }
+   
 
 property_type
   : 

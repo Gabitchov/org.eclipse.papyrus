@@ -14,10 +14,12 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.text.source.SourceViewer;
+import org.eclipse.papyrus.extensionpoints.editors.Activator;
+import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 
 // equivalent au inputDialog (code recopie) mais donne un sourceviewer a la place du label
 /**
@@ -48,7 +50,7 @@ public class LabelEditorDialog extends Dialog {
 	/**
 	 * Error message label widget.
 	 */
-	protected Text errorMessageText;
+	protected CLabel errorMessageText;
 
 	/**
 	 * Error message string.
@@ -190,6 +192,8 @@ public class LabelEditorDialog extends Dialog {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 		if ((errorMessageText != null) && !errorMessageText.isDisposed()) {
+			Image errorImage = Activator.getImage("icons/error.gif");
+			errorMessageText.setImage(errorMessage == null ? null : errorImage);
 			errorMessageText.setText(errorMessage == null ? "" : errorMessage); //$NON-NLS-1$
 			errorMessageText.getParent().update();
 			// Access the ok button by id, in case clients have overridden button creation.
@@ -200,5 +204,4 @@ public class LabelEditorDialog extends Dialog {
 			}
 		}
 	}
-
 }
