@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePointsItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 
@@ -79,6 +80,7 @@ public class UseCasePointsEditPart extends ListCompartmentEditPart {
 		// new
 		// org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePointsCanonicalEditPolicy());
 
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
 	/**

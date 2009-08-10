@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
   *****************************************************************************/
-package org.eclipse.papyrus.diagram.usecase.edit.helpers;
+package org.eclipse.papyrus.diagram.usecase.helper;
 
 import java.util.Collection;
 

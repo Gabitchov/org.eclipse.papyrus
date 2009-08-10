@@ -61,7 +61,7 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 	 * @return the command
 	 */
 	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		Collection endtypes = ClassLinkMappingHelper.getSource(semanticLink);
+		Collection endtypes = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
 		if (endtypes.size() == 2) {
 			Element source = (Element) endtypes.toArray()[0];
 			Element target = (Element) endtypes.toArray()[1];
@@ -110,8 +110,8 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 	 * @return the command
 	 */
 	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		Collection sources = ClassLinkMappingHelper.getSource(semanticLink);
-		Collection targets = ClassLinkMappingHelper.getTarget(semanticLink);
+		Collection sources = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
+		Collection targets = ClassLinkMappingHelper.getInstance().getTarget(semanticLink);
 		if (sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element) sources.toArray()[0];
 			Element target = (Element) targets.toArray()[0];

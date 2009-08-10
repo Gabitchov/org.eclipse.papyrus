@@ -752,10 +752,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RESIZE_BORDER_ITEMS&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
@@ -1142,10 +1138,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RESIZE_BORDER_ITEMS&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
@@ -2032,6 +2024,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseFigure_contents"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
           visualID="7010"
@@ -2048,6 +2044,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseAsClass_points"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
           visualID="7011"
@@ -2067,6 +2067,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseSubjectFigure_contents"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
           visualID="7012"
@@ -2085,6 +2089,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseFigure_contents"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
           visualID="7017"
@@ -2104,6 +2112,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseSubjectFigure_contents"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
           visualID="7014"
@@ -2122,6 +2134,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseFigure_contents"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
           visualID="7015"
@@ -2141,6 +2157,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseSubjectFigure_contents"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
           visualID="7016"

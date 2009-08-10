@@ -126,7 +126,6 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof ComponentName3EditPart) {
 			((ComponentName3EditPart) childEditPart).setLabel(getPrimaryShape().getUseCaseSubjectFigure_name());
 			return true;
@@ -135,7 +134,7 @@ ShapeNodeEditPart {
 		if (childEditPart instanceof ComponentUsecases3EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((ComponentUsecases3EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -147,19 +146,16 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof ComponentName3EditPart) {
 			return true;
 		}
-
 		if (childEditPart instanceof ComponentUsecases3EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((ComponentUsecases3EditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -187,11 +183,9 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
 		if (editPart instanceof ComponentUsecases3EditPart) {
 			return getPrimaryShape().getUseCaseSubjectFigure_contents();
 		}
-
 		return getContentPane();
 	}
 
@@ -199,9 +193,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(200, 400);
-
 		return result;
 	}
 
@@ -301,7 +293,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -327,7 +320,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -610,7 +604,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -892,7 +887,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -919,7 +915,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType

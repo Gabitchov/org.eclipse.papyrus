@@ -9,61 +9,63 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - 
+ *  	refactor common behavior between diagrams, define only specific behavior
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
+import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper;
+import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonSourceUMLSwitch;
+import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.util.UMLSwitch;
 
 /**
  * The Class LinkMappingHelper is specialization of the link mapping helper for the Class diagram
  */
-public class ClassLinkMappingHelper extends LinkMappingHelper {
+public class ClassLinkMappingHelper implements ILinkMappingHelper {
 
 	/**
-	 * Gets the source.
-	 * 
-	 * @param link
-	 *            the link
-	 * 
-	 * @return the source
+	 * SingletonHolder is loaded at the first execution of getInstance() method
 	 */
-	public static Collection<?> getSource(Element link) {
-		return new UMLSwitch<Collection<?>>() {
+	private static class SingletonHolder {
 
-			public java.util.Collection<?> caseAssociation(org.eclipse.uml2.uml.Association object) {
-				return object.getEndTypes();
-			};
+		private final static ClassLinkMappingHelper instance = new ClassLinkMappingHelper();
+	}
+
+	/**
+	 * Gets the single instance of ClassLinkMappingHelper.
+	 * 
+	 * @return single instance of ClassLinkMappingHelper
+	 */
+	public static ClassLinkMappingHelper getInstance() {
+		return SingletonHolder.instance;
+	}
+
+	/**
+	 * private constructor
+	 */
+	private ClassLinkMappingHelper() {
+		// do nothing
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Collection<?> getSource(Element link) {
+		return LinkMappingHelper.getSource(link, new CommonSourceUMLSwitch() {
 
 			public java.util.Collection<?> caseAssociationClass(org.eclipse.uml2.uml.AssociationClass object) {
 				return object.getEndTypes();
 			};
 
-			public java.util.Collection<?> caseComment(org.eclipse.uml2.uml.Comment object) {
-				ArrayList result = new ArrayList();
-				result.add(object);
-				return result;
-			};
-
-			public Collection<?> caseDependency(org.eclipse.uml2.uml.Dependency object) {
-				return object.getClients();
-			};
-
 			public java.util.Collection<?> caseElementImport(org.eclipse.uml2.uml.ElementImport object) {
 				ArrayList result = new ArrayList();
 				result.add(object.getImportingNamespace());
-				return result;
-			};
-
-			public java.util.Collection<?> caseGeneralization(org.eclipse.uml2.uml.Generalization object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getOwner());
 				return result;
 			};
 
@@ -78,12 +80,6 @@ public class ClassLinkMappingHelper extends LinkMappingHelper {
 
 			};
 
-			public java.util.Collection<?> casePackageMerge(org.eclipse.uml2.uml.PackageMerge object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getReceivingPackage());
-				return result;
-			};
-
 			public java.util.Collection<?> caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication object) {
 				ArrayList result = new ArrayList();
 				result.add(object.getApplyingPackage());
@@ -96,48 +92,22 @@ public class ClassLinkMappingHelper extends LinkMappingHelper {
 				return result;
 			};
 
-			public Collection<?> defaultCase(org.eclipse.emf.ecore.EObject object) {
-				return Collections.EMPTY_LIST;
-			};
-		}.doSwitch(link);
+		});
 	}
 
 	/**
-	 * Gets the target.
-	 * 
-	 * @param link
-	 *            the link
-	 * 
-	 * @return the target
+	 * {@inheritDoc}
 	 */
-	public static Collection<?> getTarget(Element link) {
-		return new UMLSwitch<Collection<?>>() {
-
-			public java.util.Collection<?> caseAssociation(org.eclipse.uml2.uml.Association object) {
-				return object.getEndTypes();
-			};
+	public Collection<?> getTarget(Element link) {
+		return LinkMappingHelper.getTarget(link, new CommonTargetUMLSwitch() {
 
 			public java.util.Collection<?> caseAssociationClass(org.eclipse.uml2.uml.AssociationClass object) {
 				return object.getEndTypes();
 			};
 
-			public java.util.Collection<?> caseComment(org.eclipse.uml2.uml.Comment object) {
-				return object.getAnnotatedElements();
-			};
-
-			public Collection<?> caseDependency(org.eclipse.uml2.uml.Dependency object) {
-				return object.getSuppliers();
-			};
-
 			public java.util.Collection<?> caseElementImport(org.eclipse.uml2.uml.ElementImport object) {
 				ArrayList result = new ArrayList();
 				result.add(object.getImportedElement());
-				return result;
-			};
-
-			public java.util.Collection<?> caseGeneralization(org.eclipse.uml2.uml.Generalization object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getGeneral());
 				return result;
 			};
 
@@ -148,13 +118,6 @@ public class ClassLinkMappingHelper extends LinkMappingHelper {
 			public java.util.Collection<?> caseInterfaceRealization(org.eclipse.uml2.uml.InterfaceRealization object) {
 				ArrayList result = new ArrayList();
 				result.add(object.getContract());
-				return result;
-
-			};
-
-			public java.util.Collection<?> casePackageMerge(org.eclipse.uml2.uml.PackageMerge object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getMergedPackage());
 				return result;
 			};
 
@@ -168,9 +131,6 @@ public class ClassLinkMappingHelper extends LinkMappingHelper {
 				return object.getTargets();
 			};
 
-			public Collection<?> defaultCase(org.eclipse.emf.ecore.EObject object) {
-				return Collections.EMPTY_LIST;
-			};
-		}.doSwitch(link);
+		});
 	}
 }

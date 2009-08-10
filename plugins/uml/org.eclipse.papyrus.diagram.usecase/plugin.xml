@@ -41,7 +41,7 @@
                   label="Create a new UseCase Diagram"
                   style="push"
                   tooltip="Create a new UseCase Diagram">
-               <visibleWhen>
+                  <visibleWhen>
                   <with
                         variable="activeEditorId">
                      <equals
@@ -55,22 +55,14 @@
       <menuContribution
             locationURI="menu:org.eclipse.papyrus.ui.menu">
          <menu
-               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
-               label="Diagrams">
+               id="org.eclipse.papyrus.diagram.ui.menu"
+               label="Papyrus II">
             <command
                   commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
                   icon="icons/UseCaseDiagram.gif"
-                  label="Create a new UseCase Diagram"
+                  label="Create UseCase Diagram"
                   style="push"
-                  tooltip="Create a new UseCase Diagram">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
+                  tooltip="Create a new UML2 UseCase Diagram  (Papyrus II)">
             </command>
          </menu>
       </menuContribution>
@@ -912,42 +904,32 @@
 		<?gmfgen generated="true"?>
 		<initializer class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
 	</extension>
-<extension point="org.eclipse.core.runtime.preferences" id="prefs">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
-   </extension>
 
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
       <page
-            id="org.eclipse.uml2.uml.diagram.general"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.general"
+            id="org.eclipse.papyrus.preferences.diagrams.UseCase"
+            name="UseCase Diagram"
+            category="org.eclipse.papyrus.preferences.diagrams"
             class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramGeneralPreferencePage">
       </page>
+      
+
+
       <page
-            id="org.eclipse.uml2.uml.diagram.appearance"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.appearance"
-            category="org.eclipse.uml2.uml.diagram.general"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramAppearancePreferencePage">
-      </page>
-      <page
-            id="org.eclipse.uml2.uml.diagram.connections"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.connections"
-            category="org.eclipse.uml2.uml.diagram.general"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramConnectionsPreferencePage">
-      </page>
-      <page
-            id="org.eclipse.uml2.uml.diagram.printing"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-            category="org.eclipse.uml2.uml.diagram.general"
+            category="org.eclipse.papyrus.preferences.diagrams.UseCase"
             class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage">
       </page>
+
       <page
-            id="org.eclipse.uml2.uml.diagram.rulersAndGrid"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            category="org.eclipse.uml2.uml.diagram.general"
+            category="org.eclipse.papyrus.preferences.diagrams.UseCase"
             class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage">
       </page>
+
    </extension>
 
 <extension point="org.eclipse.ui.menus" id="context-menus">

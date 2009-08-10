@@ -9,6 +9,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.ComponentUsecases3ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 
 /**
@@ -58,6 +59,7 @@ public class ComponentUsecases3EditPart extends ShapeCompartmentEditPart {
 		// new
 		// org.eclipse.papyrus.diagram.usecase.edit.policies.ComponentUsecases3CanonicalEditPolicy());
 
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
 	/**
