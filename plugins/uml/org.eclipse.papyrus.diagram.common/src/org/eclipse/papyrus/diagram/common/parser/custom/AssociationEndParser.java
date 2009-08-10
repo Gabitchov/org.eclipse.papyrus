@@ -9,20 +9,13 @@
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
  *
- *****************************************************************************/
+ ****************************************************************************/
 package org.eclipse.papyrus.diagram.common.parser.custom;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
-import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -31,16 +24,14 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author tlandre
  */
-public class AssociationEndParser implements IParser {
-
-	private final int memberEndIndex;
+public class AssociationEndParser extends AbstractAssociationEndParser {
 
 	/**
 	 * 
 	 * @param index
 	 */
 	public AssociationEndParser(int memberEndIndex) {
-		this.memberEndIndex = memberEndIndex;
+		super(memberEndIndex);
 	}
 
 	/**
@@ -59,14 +50,12 @@ public class AssociationEndParser implements IParser {
 	 * <li>{@link org.eclipse.uml2.uml.UMLPackage#NAMED_ELEMENT__VISIBILITY <em>Visibility</em>}</li>
 	 * <li>{@link org.eclipse.uml2.uml.UMLPackage#STRUCTURAL_FEATURE__IS_READ_ONLY <em>is ReadOnly
 	 * </em>}</li>
-	 * </ul>
-	 * 
-	 * @param feature
-	 *            the feature to test
-	 * @return false if it is not a feature
+	 * </ul> {@inheritDoc}
 	 */
-	private boolean isModelChanged(EStructuralFeature feature) {
-		boolean isModelChanged = false;
+	public boolean isAffectingEvent(Object event, int flags) {
+		EStructuralFeature feature = getEStructuralFeature(event);
+
+		boolean isAffectingEvent = false;
 		if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
 				|| UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature)
 				|| UMLPackage.eINSTANCE.getProperty_SubsettedProperty().equals(feature)
@@ -76,50 +65,10 @@ public class AssociationEndParser implements IParser {
 				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature)
 				|| UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(feature)
 				|| UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly().equals(feature)) {
-			isModelChanged = true;
+			isAffectingEvent = true;
 		}
-		return isModelChanged;
-	}
+		return isAffectingEvent;
 
-	/**
-	 * Get the EStructuralFeature of the given notification
-	 * 
-	 * @param notification
-	 *            the notification
-	 * @return the EStructuralFeature
-	 */
-	private EStructuralFeature getEStructuralFeature(Object notification) {
-		EStructuralFeature featureImpl = null;
-		if (notification instanceof Notification) {
-			Object feature = ((Notification) notification).getFeature();
-			if (feature instanceof EStructuralFeature) {
-				featureImpl = (EStructuralFeature) feature;
-			}
-		}
-		return featureImpl;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getEditString(IAdaptable element, int flags) {
-		return null;
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/**
@@ -135,7 +84,9 @@ public class AssociationEndParser implements IParser {
 			// isDerived
 			displayedString.append(PropertyUtil.getDerived(property));
 			// name
-			displayedString.append(property.getName());
+			if (property.getName() != null) {
+				displayedString.append(property.getName());
+			}
 
 			// modifiers
 			displayedString.append(PropertyUtil.getModifiersAsString(property, false));
@@ -143,39 +94,4 @@ public class AssociationEndParser implements IParser {
 		return displayedString.toString();
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public boolean isAffectingEvent(Object event, int flags) {
-		EStructuralFeature feature = getEStructuralFeature(event);
-		return isModelChanged(feature);
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * Get the property associated with the given IAdaptable and the memberEndIndex .
-	 * 
-	 * @param element
-	 *            the given IAdaptable
-	 * @return the property associated or null if it can't be found.
-	 */
-	private Property doAdapt(IAdaptable element) {
-		Object obj = element.getAdapter(EObject.class);
-		Property property = null;
-		if (obj instanceof Association) {
-			Association association = (Association) obj;
-			if (association.getMemberEnds() != null && association.getMemberEnds().size() > memberEndIndex)
-				property = association.getMemberEnds().get(memberEndIndex);
-		}
-		return property;
-	}
 }

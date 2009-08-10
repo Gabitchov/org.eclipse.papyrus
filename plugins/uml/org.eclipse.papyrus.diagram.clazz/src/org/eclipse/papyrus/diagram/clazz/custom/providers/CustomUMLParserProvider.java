@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.parser.custom.AssociationEndParser;
+import org.eclipse.papyrus.diagram.common.parser.custom.AssociationMultiplicityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -91,14 +92,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationSourceMultiplicity() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getMultiplicityElement_Lower(),
-				UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
-		CustomMessageFormatParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE
-				.getAssociation_MemberEnd(), 0);
-		parser.setViewPattern("{0}..{1}");
-		parser.setEditorPattern("{0}..{1}");
-		parser.setEditPattern("{0}..{1}");
-		return parser;
+		return new AssociationMultiplicityParser(ASSOCIATION_SOURCE);
 	}
 
 	/**
@@ -112,14 +106,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationTargetMultiplicity() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getMultiplicityElement_Lower(),
-				UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), };
-		CustomMessageFormatParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE
-				.getAssociation_MemberEnd(), 1);
-		parser.setViewPattern("{0}..{1}");
-		parser.setEditorPattern("{0}..{1}");
-		parser.setEditPattern("{0}..{1}");
-		return parser;
+		return new AssociationMultiplicityParser(ASSOCIATION_TARGET);
 	}
 
 	/**
