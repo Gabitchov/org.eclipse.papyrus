@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
 
-	   <extension
+	<extension
          point="org.eclipse.ui.commands">
       <command
             description="Create a new UseCase Diagram (Papyrus II)"

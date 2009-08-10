@@ -47,7 +47,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.commands.CustomDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.uml2.uml.Element;
@@ -164,7 +164,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
 		}
 
-		CustomDeferredCreateConnectionViewCommand aLinkCommand = new CustomDeferredCreateConnectionViewCommand(
+		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(
 				getEditingDomain(), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(),
 				sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
 		aLinkCommand.setElement(semanticLink);

@@ -37,12 +37,12 @@ import org.eclipse.gmf.runtime.notation.View;
  * 
  * @author Patrick Tessier
  */
-public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateConnectionViewCommand implements ICommand {
+public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateConnectionViewCommand implements ICommand {
 
-	private ICommand command;
+	protected ICommand command;
 
 	/** the command saved for undo and redo */
-	private Command createConnectionCmd;
+	protected Command createConnectionCmd;
 
 	protected ConnectionViewDescriptor viewDescriptor;
 
@@ -64,7 +64,7 @@ public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * @param command
 	 *            the command in which we look for the result for the target (may be null)
 	 */
-	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element,
+	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element,
 			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
 			PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
@@ -92,7 +92,7 @@ public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * @param command
 	 *            the command in which we look for the result for the target (may be null)
 	 */
-	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint,
+	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint,
 			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
 			PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
 		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
@@ -102,26 +102,36 @@ public class CustomDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
 			throws ExecutionException {
 		Map epRegistry = viewer.getEditPartRegistry();
 		IGraphicalEditPart sourceEP = (IGraphicalEditPart) epRegistry.get(sourceViewAdapter.getAdapter(View.class));
-		IGraphicalEditPart targetEP = null;
-		CreateConnectionViewRequest createRequest = null;
-		targetEP = (IGraphicalEditPart) epRegistry.get(targetViewAdapter.getAdapter(View.class));
+		IGraphicalEditPart targetEP = (IGraphicalEditPart) epRegistry.get(targetViewAdapter.getAdapter(View.class));
 
+		return doExecuteWithResult(progressMonitor, info, sourceEP, targetEP);
+	}
+
+	/**
+	 * Creates a connection view between the source and target. 
+	 * 
+	 * @throws ExecutionException
+	 */
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info,
+			IGraphicalEditPart sourceEditPart, IGraphicalEditPart targetEditPart) throws ExecutionException {
+		
 		// If these are null, then the diagram's editparts may not
 		// have been refreshed yet.
-		Assert.isNotNull(sourceEP);
-		Assert.isNotNull(targetEP);
+		Assert.isNotNull(sourceEditPart);
+		Assert.isNotNull(targetEditPart);
 
 		// use the String semanticHint to create a view
-		// modification in order to fixe the bug
-		createRequest = new CreateConnectionViewRequest(viewDescriptor);
-		createConnectionCmd = CreateConnectionViewRequest.getCreateCommand(createRequest, sourceEP, targetEP);
+		// modification in order to fix the bug
+		CreateConnectionViewRequest createRequest = new CreateConnectionViewRequest(viewDescriptor);
+		createConnectionCmd = CreateConnectionViewRequest.getCreateCommand(createRequest, sourceEditPart,
+				targetEditPart);
 
 		if (createConnectionCmd.canExecute()) {
 			createConnectionCmd.execute();

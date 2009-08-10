@@ -10,13 +10,15 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.helper;
 
 import java.util.Collection;
 
 import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper;
+import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonSourceUMLSwitch;
+import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -49,19 +51,37 @@ public class UseCaseLinkMappingHelper implements ILinkMappingHelper {
 	private UseCaseLinkMappingHelper() {
 		// do nothing
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<?> getSource(Element link) {
-		return LinkMappingHelper.getSource(link);
+		return LinkMappingHelper.getSource(link, new CommonSourceUMLSwitch() {
+
+			public java.util.Collection<?> caseInclude(org.eclipse.uml2.uml.Include object) {
+				return object.getSources();
+			};
+
+			public java.util.Collection<?> caseExtend(org.eclipse.uml2.uml.Extend object) {
+				return object.getSources();
+			};
+		});
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<?> getTarget(Element link) {
-		return LinkMappingHelper.getTarget(link);
+		return LinkMappingHelper.getTarget(link, new CommonTargetUMLSwitch() {
+
+			public java.util.Collection<?> caseInclude(org.eclipse.uml2.uml.Include object) {
+				return object.getTargets();
+			};
+
+			public java.util.Collection<?> caseExtend(org.eclipse.uml2.uml.Extend object) {
+				return object.getTargets();
+			};
+		});
 	}
-	
+
 }
