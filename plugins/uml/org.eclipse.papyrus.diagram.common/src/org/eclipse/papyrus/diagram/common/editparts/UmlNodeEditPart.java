@@ -17,18 +17,20 @@ import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -38,6 +40,11 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  */
 public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPart {
+
+	/**
+	 * Save the fontDescriptor in order to dispose the font later
+	 */
+	private FontDescriptor cachedFontDescriptor;
 
 	/**
 	 * Creates a new UmlNodeEditPart.
@@ -98,6 +105,10 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
+		Object feature = event.getFeature();
+		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
+			refreshFontColor();
+		}
 		// NOTA: should check here which element has to be refreshed
 
 		// check if this concerns a stereotype application or unapplication
@@ -262,6 +273,7 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 		refreshAppliedStereotypesProperties();
 		refreshAppliedStereotypes();
 		refreshShadow();
+		refreshFontColor();
 	}
 
 	/**
@@ -363,4 +375,65 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 		}
 		return out;
 	}
+
+	/**
+	 * Refresh the font. This method shouldn't be overriden by subclasses. To refresh labels font,
+	 * the method refreshLabelsFont should be used. {@inheritDoc}
+	 */
+	@Override
+	protected void refreshFont() {
+		FontStyle style = (FontStyle) getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (style != null) {
+			// Get the font
+			FontDescriptor fontDescriptor = FontDescriptor.createFrom(getFontData(style));
+			Font newFont = getResourceManager().createFont(fontDescriptor);
+
+			refreshLabelsFont(newFont);
+
+			// Dispose previous Font and FontDescriptor
+			if (cachedFontDescriptor != null) {
+				getResourceManager().destroyFont(cachedFontDescriptor);
+			}
+			cachedFontDescriptor = fontDescriptor;
+		}
+	}
+
+	/**
+	 * A method to specify the labels to be update when the font is refreshed. Subclasses should
+	 * call super.refreshLabelsFont(font)
+	 * 
+	 * @param font
+	 *            the font to use
+	 */
+	protected void refreshLabelsFont(Font font) {
+		if (((NodeNamedElementFigure) getPrimaryShape()).getStereotypesLabel() != null) {
+			((NodeNamedElementFigure) getPrimaryShape()).getStereotypesLabel().setFont(font);
+		}
+
+	}
+
+	/**
+	 * Update the fontData
+	 * 
+	 * @param style
+	 *            the font style of the figure
+	 * @return the new font data to use
+	 */
+	protected FontData getFontData(FontStyle style) {
+		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
+				| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void setFontColor(Color color) {
+		super.setFontColor(color);
+		if (((NodeNamedElementFigure) getPrimaryShape()).getStereotypesLabel() != null) {
+			((NodeNamedElementFigure) getPrimaryShape()).getStereotypesLabel().setForegroundColor(color);
+		}
+	}
+
 }

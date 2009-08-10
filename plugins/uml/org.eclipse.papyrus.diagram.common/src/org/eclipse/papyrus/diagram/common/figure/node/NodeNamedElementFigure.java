@@ -33,9 +33,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -85,15 +82,12 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	public NodeNamedElementFigure() {
 		super();
 
-		FontData[] fontdata2 = { new FontData("Arial", 6, SWT.BOLD) };
-		Font font2 = Activator.fontManager.get(fontdata2);
-
 		// creation of the nameLabel
-		this.nameLabel = new WrappingLabel();
-		this.nameLabel.setFont(font2);
-		this.nameLabel.setOpaque(false);
-		this.nameLabel.setAlignment(PositionConstants.MIDDLE);
-		this.add(this.nameLabel);
+		nameLabel = new WrappingLabel();
+
+		nameLabel.setOpaque(false);
+		nameLabel.setAlignment(PositionConstants.MIDDLE);
+		add(nameLabel);
 	}
 
 	/**
@@ -114,61 +108,45 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	 * used to create a label that contains the icon.
 	 */
 	protected void createIconLabel() {
-		Label label = new Label("");
-		label.setFont(nameLabel.getFont());
-
+		iconLabel = new Label();
 		// Add the label to the figure, at pos 0
-		this.add(label, getIconLabelPosition());
-		this.iconLabel = label;
-		this.iconLabel.setLabelAlignment(PositionConstants.LEFT);
-		// if (this.img != null) {
-		// this.iconLabel.setIcon(this.img);
-		// }
+		add(iconLabel, getIconLabelPosition());
+		iconLabel.setLabelAlignment(PositionConstants.LEFT);
 	}
 
 	/**
 	 * create the label that contains the qualified name.
 	 */
 	protected void createQualifiedNameLabel() {
-		FontData[] fontdata = { new FontData("Arial", 12, SWT.ITALIC) };
-		Font font = Activator.fontManager.get(fontdata);
-		Label label = new Label();
-		label.setFont(font);
-		label.setForegroundColor(getForegroundColor());
-		label.setOpaque(false);
+		qualifiedLabel = new Label();
+		qualifiedLabel.setOpaque(false);
+		qualifiedLabel.setFont(getNameLabel().getFont());
+		qualifiedLabel.setForegroundColor(getNameLabel().getForegroundColor());
 		// Add the label to the figure, after the name
-		this.add(label, getQualifiedNameLabelPosition());
-		this.qualifiedLabel = label;
+		this.add(qualifiedLabel, getQualifiedNameLabelPosition());
 	}
 
 	/**
 	 * this method is used to create the stereotype label.
 	 */
 	protected void createStereotypeLabel() {
-		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
-		Font font = Activator.fontManager.get(fontdata);
-		Label label = new Label();
-		label.setFont(font);
-		label.setOpaque(false);
-		label.setForegroundColor(getForegroundColor());
+		stereotypesLabel = new Label();
+		stereotypesLabel.setOpaque(false);
+		stereotypesLabel.setFont(getNameLabel().getFont());
+		stereotypesLabel.setForegroundColor(getNameLabel().getForegroundColor());
 		// Add the stereotype label to the figure at pos 0
-		this.add(label, getStereotypeLabelPosition());
-		this.stereotypesLabel = label;
+		this.add(stereotypesLabel, getStereotypeLabelPosition());
 	}
 
 	/**
 	 * this method is used to create the stereotype label.
 	 */
 	protected void createStereotypePropertiesInBraceLabel() {
-		final FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
-		final Font font = Activator.fontManager.get(fontdata);
-		final Label label = new Label();
-		label.setFont(font);
-		label.setOpaque(false);
-		label.setForegroundColor(getForegroundColor());
+		stereotypePropertiesInBraceContent = new Label();
+		stereotypePropertiesInBraceContent.setOpaque(false);
 		// Add the stereotype label to the figure at pos 0
-		this.add(label, getStereotypePropertiesLabelPosition());
-		this.stereotypePropertiesInBraceContent = label;
+		this.add(stereotypePropertiesInBraceContent, getStereotypePropertiesLabelPosition());
+
 	}
 
 	protected void createStereotypePropertiesContent() {
@@ -181,8 +159,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	}
 
 	private void fillStereotypePropertiesInCompartment(String stereotypeProperties) {
-		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
-		Font font = Activator.fontManager.get(fontdata);
+
 		stereotypePropertiesContent.getChildren().clear();
 		StringTokenizer stringTokenizer = new StringTokenizer(stereotypeProperties, ";");
 		while (stringTokenizer.hasMoreElements()) {
@@ -190,9 +167,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 			tokenStereotype = tokenStereotype.replace("#", "\n  ");
 			tokenStereotype = tokenStereotype.replace("|", "\n  ");
 			Label label = new Label(tokenStereotype);
-			label.setFont(font);
 			label.setLabelAlignment(PositionConstants.LEFT);
-			label.setForegroundColor(getForegroundColor());
 			label.setBorder(null);
 			stereotypePropertiesContent.add(label);
 		}
@@ -434,55 +409,6 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 		}
 	}
 
-	// /**
-	// * Refresh presentation.
-	// *
-	// * @param presentation
-	// * the presentation
-	// * @param selection
-	// * the selection
-	// */
-	// public void refreshPresentation(String presentation, Element selection, Image defaultImage) {
-	//
-	// org.eclipse.swt.graphics.Image icon = Activator.getIconElement(selection);
-	//
-	// /* if the presentation is icon or icon with text, we can set the icon */
-	// if ((icon != null)
-	// && ((presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)) ||
-	// presentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION))) {
-	// this.setIcon(icon);
-	// if (iconLabel == null) {
-	// createIconLabel();
-	// }
-	//
-	// iconLabel.setIcon(icon);
-	// iconLabel.repaint();
-	// this.add(iconLabel, 0);
-	// this.repaint();
-	//
-	// } else {
-	// // If a default image (ex: Component standard UML Icon) it is shown
-	// // it is shown in the IconLabel
-	// // See : ComponentFigure in ClassDiagram for usage example
-	// if (defaultImage != null) {
-	// this.setIcon(defaultImage);
-	// if (iconLabel == null) {
-	// createIconLabel();
-	// }
-	// iconLabel.setIcon(defaultImage);
-	// iconLabel.repaint();
-	// this.add(iconLabel, 0);
-	// this.repaint();
-	//
-	// } else {
-	// if ((iconLabel != null) && (iconLabel.getParent() != null)) {
-	// this.remove(iconLabel);
-	// }
-	// this.repaint();
-	// }
-	// }
-	// }
-
 	/**
 	 * Refresh stereotypes.
 	 * 
@@ -523,38 +449,6 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-
-	//
-	// /**
-	// * Sets the font.
-	// *
-	// * @param f
-	// * the f
-	// */
-	// @Override
-	// public void setFont(Font f) {
-	// fontSize = f.getFontData()[0].getHeight();
-	// fontString = f.getFontData()[0].getName();
-	// int fontStyle = f.getFontData()[0].getStyle();
-	// this.nameLabel.setFont(Activator.fontManager
-	// .get(new FontData[] { new FontData(fontString, fontSize, fontStyle) }));
-	//
-	// if (this.getStereotypesLabel() != null) {
-	// if (fontSize > 3) {
-	// this.getStereotypesLabel().setFont(
-	// Activator.fontManager
-	// .get(new FontData[] { new FontData(fontString, fontSize - 2, SWT.NORMAL) }));
-	// } else {
-	// this.getStereotypesLabel().setFont(
-	// Activator.fontManager.get(new FontData[] { new FontData(fontString, 2, SWT.NORMAL) }));
-	// }
-	// }
-	// if (this.getQualifiedNameLabel() != null) {
-	// this.getQualifiedNameLabel().setFont(
-	// Activator.fontManager.get(new FontData[] { new FontData(fontString, fontSize, SWT.ITALIC)
-	// }));
-	// }
-	// }
 
 	/**
 	 * Sets the name.

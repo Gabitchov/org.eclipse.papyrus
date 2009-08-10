@@ -14,16 +14,12 @@
 package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gmf.runtime.notation.FontStyle;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.resource.FontDescriptor;
-import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
-import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -31,11 +27,6 @@ import org.eclipse.uml2.uml.NamedElement;
  * 
  */
 public abstract class NamedElementEditPart extends UmlNodeEditPart implements IUMLNamedElementEditPart {
-
-	/**
-	 * Save the fontDescriptor in order to dispose the font later
-	 */
-	private FontDescriptor cachedFontDescriptor;
 
 	/**
 	 * {@inheritDoc}
@@ -60,22 +51,22 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 			refreshQualifiedNameDepth();
 			refreshQualifiedName();
 			refreshIconNamedLabel();
+			refreshFontColor();
 		}
 	}
 
 	private void refreshIconNamedLabel() {
-		((NodeNamedElementFigure) getPrimaryShape()).setNameLabelIcon(NameLabelIconHelper
+		((CompartmentFigure) getPrimaryShape()).setNameLabelIcon(NameLabelIconHelper
 				.getNameLabelIconValue((View) getModel()));
 	}
 
 	private void refreshQualifiedName() {
-		((NodeNamedElementFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement())
+		((CompartmentFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement())
 				.getQualifiedName());
 	}
 
 	private void refreshQualifiedNameDepth() {
-		((NodeNamedElementFigure) getPrimaryShape()).setDepth(QualifiedNameHelper
-				.getQualifiedNameDepth((View) getModel()));
+		((CompartmentFigure) getPrimaryShape()).setDepth(QualifiedNameHelper.getQualifiedNameDepth((View) getModel()));
 	}
 
 	protected void refreshVisuals() {
@@ -87,28 +78,6 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	}
 
 	/**
-	 * Refresh the font. This method shouldn't be overriden by subclasses. To refresh labels font,
-	 * the method refreshLabelsFont should be used. {@inheritDoc}
-	 */
-	@Override
-	protected void refreshFont() {
-		FontStyle style = (FontStyle) getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (style != null) {
-			// Get the font
-			FontDescriptor fontDescriptor = FontDescriptor.createFrom(getFontData(style));
-			Font newFont = getResourceManager().createFont(fontDescriptor);
-
-			refreshLabelsFont(newFont);
-
-			// Dispose previous Font and FontDescriptor
-			if (cachedFontDescriptor != null) {
-				getResourceManager().destroyFont(cachedFontDescriptor);
-			}
-			cachedFontDescriptor = fontDescriptor;
-		}
-	}
-
-	/**
 	 * A method to specify the labels to be update when the font is refreshed. Subclasses should
 	 * call super.refreshLabelsFont(font)
 	 * 
@@ -116,19 +85,38 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	 *            the font to use
 	 */
 	protected void refreshLabelsFont(Font font) {
+		super.refreshLabelsFont(font);
 		// Apply the font to the Name Label
-		((NodeNamedElementFigure) getPrimaryShape()).getNameLabel().setFont(font);
+		getCompartmentFigure().getNameLabel().setFont(font);
+		// Apply the font to the Qualified Name
+		if (getCompartmentFigure().getQualifiedNameLabel() != null) {
+			getCompartmentFigure().getQualifiedNameLabel().setFont(font);
+		}
+		// Apply the font to the tagged Label
+		if (getCompartmentFigure().getTaggedLabel() != null) {
+			getCompartmentFigure().getTaggedLabel().setFont(font);
+		}
+	}
+
+	private CompartmentFigure getCompartmentFigure() {
+		return (CompartmentFigure) getPrimaryShape();
 	}
 
 	/**
-	 * Update the fontData
 	 * 
-	 * @param style
-	 *            the font style of the figure
-	 * @return the new font data to use
+	 * {@inheritDoc}
 	 */
-	protected FontData getFontData(FontStyle style) {
-		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
-				| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+	@Override
+	protected void setFontColor(Color color) {
+		super.setFontColor(color);
+		// Qualified Name
+		if (getCompartmentFigure().getQualifiedNameLabel() != null) {
+			getCompartmentFigure().getQualifiedNameLabel().setForegroundColor(color);
+		}
+		// TaggedLabel
+		if (getCompartmentFigure().getTaggedLabel() != null) {
+			getCompartmentFigure().getTaggedLabel().setForegroundColor(color);
+		}
 	}
+
 }

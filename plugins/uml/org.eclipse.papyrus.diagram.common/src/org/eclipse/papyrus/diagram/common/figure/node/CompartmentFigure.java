@@ -79,8 +79,9 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 			taggedLabel = new Label();
 			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
 			taggedLabel.setText(textToDisplay);
-			taggedLabel.setFont(getNameLabel().getFont());
 			taggedLabel.setOpaque(false);
+			taggedLabel.setForegroundColor(getNameLabel().getForegroundColor());
+			taggedLabel.setFont(getNameLabel().getFont());
 			add(taggedLabel, 0);
 		}
 	}
