@@ -10,11 +10,7 @@
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.common.draw2d;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
@@ -56,15 +52,13 @@ public class InteractionFigure extends Shape {
 		Rectangle r = getBounds();
 
 		int labelWidth = -1;
-		// The interaction figure must contain inside a Label
-		List childList = this.getChildren();
-		for (Iterator it = childList.iterator(); it.hasNext();) {
-			Object o = it.next();
-			if (o instanceof WrappingLabel || o instanceof Label || o instanceof WrapLabel) {
-				WrappingLabel wLabel = (WrappingLabel) o;
-				labelWidth = wLabel.getBounds().width;
+		
+		for(Object obj : getChildren())
+		{
+			if (obj instanceof WrappingLabel || obj instanceof WrapLabel) {
+				WrappingLabel wLabel = (WrappingLabel) obj;
+				labelWidth = wLabel.getPreferredSize().width;
 			}
-
 		}
 
 		// case the size of the label is 0 or -1 (no label)
