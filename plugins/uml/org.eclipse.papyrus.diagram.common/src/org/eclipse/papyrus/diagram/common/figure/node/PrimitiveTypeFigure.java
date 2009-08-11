@@ -16,16 +16,10 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.graphics.RGB;
 
 /**
  * Figure to represent primitive types
  * 
- * @deprecated use CompartmentFigure instead
  */
 public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 
@@ -39,26 +33,20 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 	 */
 	private Label tagLabel;
 
-	public PrimitiveTypeFigure() {
-		this("PrimitiveType");
-	}
-
 	/**
 	 * constructor to create a TaggedElementFigure.
 	 * 
 	 * @param keyword
 	 */
-	public PrimitiveTypeFigure(String keyword) {
-		super();
-		this.createTagLabel(keyword);
+	public PrimitiveTypeFigure() {
+		super("PrimitiveType");
 		ToolbarLayout layout = new ToolbarLayout();
 		layout.setStretchMinorAxis(true);
 		this.setLayoutManager(layout);
 
 		this.setOpaque(true); // non-transparent figure
-		this.setBackgroundColor(Activator.colorManager.get(new RGB(242, 242, 242)));
 		// The area accepting inner figures.
-		this.createContentPane(keyword);
+		createContentPane();
 	}
 
 	/**
@@ -73,33 +61,16 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 	/**
 	 * this method is used to create the content figure.
 	 * 
-	 * @param keyword
 	 */
-	protected void createContentPane(String keyword) {
-		this.contentPane = new Figure();
+	protected void createContentPane() {
+		contentPane = new Figure();
 		ToolbarLayout layout = new ToolbarLayout();
 		layout.setVertical(true);
 		this.contentPane.setLayoutManager(layout);
 		this.add(this.contentPane);
 	}
 
-	/**
-	 * This method is used to create the tag label in the figure.
-	 * 
-	 * @param keyword
-	 */
-	protected void createTagLabel(String keyword) {
-		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
-		Font font = Activator.fontManager.get(fontdata);
-		Label label = new Label();
-		label.setFont(font);
-		label.setForegroundColor(getForegroundColor());
-		label.setOpaque(false);
-		label.setText(Activator.ST_LEFT + keyword + Activator.ST_RIGHT);
-		// Add the tag label to the figure at the position 0
-		this.add(label, 0);
-		this.tagLabel = label;
-	}
+
 
 	/*
 	 * (non-Javadoc)

@@ -19,7 +19,6 @@ import java.util.Map;
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -29,9 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 /**
  * A rectangular figure that supports compartment.
  */
-public class CompartmentFigure extends NodeNamedElementFigure {
-
-	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
+public class CompartmentFigure extends NodeNamedElementFigure {	
 
 	private Map<String, RectangleFigure> containerFigures;
 
@@ -39,7 +36,6 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 
 	private IFigure contentPane;
 
-	private Label taggedLabel;
 
 	/**
 	 * Constructor.
@@ -59,32 +55,16 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	 *            the value to display as tagged value
 	 */
 	public CompartmentFigure(List<String> compartmentFigure, String taggedLabelValue) {
-		super();
+		super(taggedLabelValue);
 
 		setLayoutManager(new CompartmentLayoutManager());
 		setOpaque(true);
 		compartmentID = compartmentFigure;
 		createContentPane(compartmentFigure);
-		initTagLabel(taggedLabelValue);
+
 	}
 
-	/**
-	 * Create the tag label in the figure. The tag label is created if value is not null.
-	 * 
-	 * @param value
-	 *            the value to use
-	 */
-	protected void initTagLabel(String value) {
-		if (value != null && value.length() > 0) {
-			taggedLabel = new Label();
-			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
-			taggedLabel.setText(textToDisplay);
-			taggedLabel.setOpaque(false);
-			taggedLabel.setForegroundColor(getNameLabel().getForegroundColor());
-			taggedLabel.setFont(getNameLabel().getFont());
-			add(taggedLabel, 0);
-		}
-	}
+	
 
 	/**
 	 * 
@@ -107,15 +87,6 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 			containerFigures.put(id, newFigure);
 		}
 
-	}
-
-	/**
-	 * Get the label containing the tagged value
-	 * 
-	 * @return
-	 */
-	public Label getTaggedLabel() {
-		return taggedLabel;
 	}
 
 	/**

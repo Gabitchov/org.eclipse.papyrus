@@ -41,6 +41,11 @@ import org.eclipse.swt.graphics.Image;
  */
 public class NodeNamedElementFigure extends PapyrusNodeFigure {
 
+	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
+	
+
+	private Label taggedLabel;
+	
 	/** the depth of the qualified name **/
 	private int depth = 0;
 
@@ -80,6 +85,11 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	 * Create a basic figure.
 	 */
 	public NodeNamedElementFigure() {
+		this(null);
+	}
+	
+	public NodeNamedElementFigure(String taggedLabelValue)
+	{
 		super();
 
 		// creation of the nameLabel
@@ -88,6 +98,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 		nameLabel.setOpaque(false);
 		nameLabel.setAlignment(PositionConstants.MIDDLE);
 		add(nameLabel);
+		
+		initTagLabel(taggedLabelValue);
 	}
 
 	/**
@@ -173,6 +185,15 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 		}
 
 	}
+	
+	/**
+	 * Get the label containing the tagged value
+	 * 
+	 * @return
+	 */
+	public Label getTaggedLabel() {
+		return taggedLabel;
+	}
 
 	/**
 	 * Gets the depth.
@@ -190,6 +211,24 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure {
 	 */
 	public Label getIconLabel() {
 		return this.iconLabel;
+	}
+	
+	/**
+	 * Create the tag label in the figure. The tag label is created if value is not null.
+	 * 
+	 * @param value
+	 *            the value to use
+	 */
+	protected void initTagLabel(String value) {
+		if (value != null && value.length() > 0) {
+			taggedLabel = new Label();
+			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
+			taggedLabel.setText(textToDisplay);
+			taggedLabel.setOpaque(false);
+			taggedLabel.setForegroundColor(getNameLabel().getForegroundColor());
+			taggedLabel.setFont(getNameLabel().getFont());
+			add(taggedLabel, 0);
+		}
 	}
 
 	/**

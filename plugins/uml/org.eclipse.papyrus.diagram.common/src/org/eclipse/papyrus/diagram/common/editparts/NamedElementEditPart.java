@@ -15,7 +15,7 @@ package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
 import org.eclipse.swt.graphics.Color;
@@ -56,17 +56,17 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	}
 
 	private void refreshIconNamedLabel() {
-		((CompartmentFigure) getPrimaryShape()).setNameLabelIcon(NameLabelIconHelper
+		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper
 				.getNameLabelIconValue((View) getModel()));
 	}
 
 	private void refreshQualifiedName() {
-		((CompartmentFigure) getPrimaryShape()).setQualifiedName(((NamedElement) resolveSemanticElement())
+		getNodeNamedElementFigure().setQualifiedName(((NamedElement) resolveSemanticElement())
 				.getQualifiedName());
 	}
 
 	private void refreshQualifiedNameDepth() {
-		((CompartmentFigure) getPrimaryShape()).setDepth(QualifiedNameHelper.getQualifiedNameDepth((View) getModel()));
+		getNodeNamedElementFigure().setDepth(QualifiedNameHelper.getQualifiedNameDepth((View) getModel()));
 	}
 
 	protected void refreshVisuals() {
@@ -74,7 +74,6 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 		refreshQualifiedNameDepth();
 		refreshQualifiedName();
 		refreshIconNamedLabel();
-
 	}
 
 	/**
@@ -87,19 +86,19 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	protected void refreshLabelsFont(Font font) {
 		super.refreshLabelsFont(font);
 		// Apply the font to the Name Label
-		getCompartmentFigure().getNameLabel().setFont(font);
+		getNodeNamedElementFigure().getNameLabel().setFont(font);
 		// Apply the font to the Qualified Name
-		if (getCompartmentFigure().getQualifiedNameLabel() != null) {
-			getCompartmentFigure().getQualifiedNameLabel().setFont(font);
+		if (getNodeNamedElementFigure().getQualifiedNameLabel() != null) {
+			getNodeNamedElementFigure().getQualifiedNameLabel().setFont(font);
 		}
 		// Apply the font to the tagged Label
-		if (getCompartmentFigure().getTaggedLabel() != null) {
-			getCompartmentFigure().getTaggedLabel().setFont(font);
+		if (getNodeNamedElementFigure().getTaggedLabel() != null) {
+			getNodeNamedElementFigure().getTaggedLabel().setFont(font);
 		}
 	}
 
-	private CompartmentFigure getCompartmentFigure() {
-		return (CompartmentFigure) getPrimaryShape();
+	private NodeNamedElementFigure getNodeNamedElementFigure() {
+		return (NodeNamedElementFigure) getPrimaryShape();
 	}
 
 	/**
@@ -110,12 +109,12 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 	protected void setFontColor(Color color) {
 		super.setFontColor(color);
 		// Qualified Name
-		if (getCompartmentFigure().getQualifiedNameLabel() != null) {
-			getCompartmentFigure().getQualifiedNameLabel().setForegroundColor(color);
+		if (getNodeNamedElementFigure().getQualifiedNameLabel() != null) {
+			getNodeNamedElementFigure().getQualifiedNameLabel().setForegroundColor(color);
 		}
 		// TaggedLabel
-		if (getCompartmentFigure().getTaggedLabel() != null) {
-			getCompartmentFigure().getTaggedLabel().setForegroundColor(color);
+		if (getNodeNamedElementFigure().getTaggedLabel() != null) {
+			getNodeNamedElementFigure().getTaggedLabel().setForegroundColor(color);
 		}
 	}
 
