@@ -102,6 +102,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 			RectangleFigure newFigure = new RectangleFigure();
 			newFigure.setFill(false);
 			newFigure.setBorder(null);
+			newFigure.setOutline(false);
 			contentPane.add(newFigure);
 			containerFigures.put(id, newFigure);
 		}
