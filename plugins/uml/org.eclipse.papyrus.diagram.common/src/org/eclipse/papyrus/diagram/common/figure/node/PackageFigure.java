@@ -15,28 +15,19 @@ import java.util.List;
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.RGB;
 
 /**
  * Figure for a package element
  */
 public class PackageFigure extends NodeNamedElementFigure {
 
-	private static final int wrappedLabelSize = 18;
-
-	private Label tagLabel;
 
 	private RectangleFigure shapeCompartment;
-
-	// private Rectangle header = new Rectangle();
 
 	/**
 	 * this is the layout manager in charge to place element in the enumeration
@@ -106,10 +97,9 @@ public class PackageFigure extends NodeNamedElementFigure {
 		setOpaque(false);
 
 		shapeCompartment = new RectangleFigure();
-		this.add(shapeCompartment);
-		this.setBackgroundColor(Activator.colorManager.get(new RGB(255, 199, 143)));
-		this.setForegroundColor(Activator.colorManager.get(new RGB(233, 164, 96)));
-		this.setBorder(null);
+		add(shapeCompartment);
+
+		setBorder(null);
 		getPackageableElementFigure().setFill(false);
 	}
 
@@ -136,16 +126,20 @@ public class PackageFigure extends NodeNamedElementFigure {
 	 */
 	public Rectangle getHeader() {
 		// the index of the shape container
-		int indexShapeContainer = this.getChildren().indexOf(shapeCompartment);
-		Rectangle headerBound = new Rectangle(getBounds().x, getBounds().y, 0, 0);
+		int indexShapeContainer = getChildren().indexOf(shapeCompartment);
+		Rectangle headerBound = new Rectangle(0, 0, 0, 0);
 		for (int i = 0; i < indexShapeContainer; i++) {
 			IFigure currentchild = (IFigure) this.getChildren().get(i);
 			if (currentchild.getPreferredSize().width > headerBound.width) {
 				headerBound.width = currentchild.getPreferredSize().width + 10;
 			}
-			headerBound.height += currentchild.getPreferredSize().height + 2;
+			headerBound.height += currentchild.getPreferredSize().height;
 		}
-		// header = headerBound;
+		headerBound.height += 2; 
+		
+		headerBound.x = getPackageableElementFigure().getBounds().x;
+		headerBound.y = getPackageableElementFigure().getBounds().y - headerBound.height;
+
 		return headerBound;
 	}
 
@@ -154,7 +148,13 @@ public class PackageFigure extends NodeNamedElementFigure {
 	}
 
 	public void setShadow(boolean shadow) {
-
+		// FIXME : set the outline border of the figure ?
+	}
+	
+	@Override
+	protected void paintBorder(Graphics graphics) {
+		graphics.drawRectangle(getHeader());
+		super.paintBorder(graphics);
 	}
 
 	/**
@@ -163,16 +163,9 @@ public class PackageFigure extends NodeNamedElementFigure {
 	 */
 	@Override
 	public void paintFigure(Graphics graphics) {
-		graphics.setAntialias(SWT.ON);
 
-		// draw header
-		Rectangle containerBound = new Rectangle(getHeader());
-
-		paintBackground(graphics, containerBound);
-		paintBackground(graphics, getPackageableElementFigure().getBounds());
-
-		graphics.drawRectangle(containerBound);
-
+		paintBackground(graphics, getHeader());
+		paintBackground(graphics, getPackageableElementFigure().getBounds());	
 	}
 
 }
