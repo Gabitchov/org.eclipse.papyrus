@@ -135,7 +135,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 			}
 			headerBound.height += currentchild.getPreferredSize().height;
 		}
-		headerBound.height += 2; 
+		headerBound.height += 1; 
 		
 		headerBound.x = getPackageableElementFigure().getBounds().x;
 		headerBound.y = getPackageableElementFigure().getBounds().y - headerBound.height;
