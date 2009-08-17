@@ -342,15 +342,6 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void setBackgroundColor(Color color) {
-		if (primaryShape != null) {
-			primaryShape.setBackgroundColor(color);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);

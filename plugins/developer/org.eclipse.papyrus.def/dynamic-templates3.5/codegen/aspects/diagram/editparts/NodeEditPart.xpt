@@ -68,8 +68,6 @@ public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsLis
 
 	«EXPAND impl::diagram::editparts::NodeEditPart::setForegroundColor-»
 
-	«EXPAND impl::diagram::editparts::NodeEditPart::setBackgroundColor-»
-
 	«EXPAND impl::diagram::editparts::NodeEditPart::setLineWidth-»
 
 	«EXPAND impl::diagram::editparts::NodeEditPart::setLineStyle-»

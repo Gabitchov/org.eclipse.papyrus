@@ -362,15 +362,6 @@ ClassifierEditPart
 	/**
 	 * @generated
 	 */
-	protected void setBackgroundColor(Color color) {
-		if (primaryShape != null) {
-			primaryShape.setBackgroundColor(color);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);

@@ -19,6 +19,8 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -162,10 +164,20 @@ public class PackageFigure extends NodeNamedElementFigure {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintFigure(Graphics graphics) {
-
-		paintBackground(graphics, getHeader());
-		paintBackground(graphics, getPackageableElementFigure().getBounds());	
+	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
+		if (isUsingGradient()) {
+			applyTransparency(graphics);
+			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.fillRectangle(getHeader());
+			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
+			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
+			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.fillGradient(getPackageableElementFigure().getBounds(), isVertical);
+		} else {
+			graphics.setBackgroundColor(getBackgroundColor());
+			graphics.setForegroundColor(getForegroundColor());
+			graphics.fillRectangle(getHeader());
+			graphics.fillRectangle(getPackageableElementFigure().getBounds());
+		}
 	}
-
 }
