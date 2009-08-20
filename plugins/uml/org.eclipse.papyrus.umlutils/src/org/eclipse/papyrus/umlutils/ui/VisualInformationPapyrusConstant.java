@@ -134,13 +134,17 @@ public interface VisualInformationPapyrusConstant {
 	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
 
 	/** this is a key of eannnotation that contains hyperlink or referenced document **/
-	public static final String HYPERLINK = "PapyrusHyperLink";
+	public static final String HYPERLINK_DIAGRAM = "PapyrusHyperLink_Diagram";
 
 	/** this is a value of a eannnotation detail that explain the kind of the link **/
 
-	public static final String HYPERLINK_DOCUMENT = "PapyrusHyperLinkDocument";
+	public static final String HYPERLINK_DOCUMENT = "PapyrusHyperLink_Document";
 
-	public static final String HYPERLINK_ONLY = "PapyrusHyperLinkOnly";
+	public static final String HYPERLINK_WEB = "PapyrusHyperLink_web";
+	public static final String HYPERLINK_TOOLTYPE_TEXT = "tooltip_text";
+	public static final String HYPERLINK_DIAGRAM_NAME = "diagram_name";
+	public static final String HYPERLINK_DOCUMENT_LOCALIZATION = "localization";
+	public static final String HYPERLINK_WEB_LINK = "link";
 
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARANCE_MASK_VALUE = "CustomAppearance_MaskValue";

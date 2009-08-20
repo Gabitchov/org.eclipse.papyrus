@@ -34,7 +34,7 @@ Export-Package: org.eclipse.papyrus.diagram.common,
  org.eclipse.papyrus.diagram.common.providers,
  org.eclipse.papyrus.diagram.common.providers.assistant,
  org.eclipse.papyrus.diagram.common.sheet,
- org.eclipse.papyrus.diagram.common.ui,
+ org.eclipse.papyrus.diagram.common.ui.hyperlinkshell,
  org.eclipse.papyrus.diagram.common.ui.thumbnail,
  org.eclipse.papyrus.diagram.common.util
 Require-Bundle: org.eclipse.core.runtime,

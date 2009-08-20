@@ -11,21 +11,22 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.umlutils.ui.command;
+package org.eclipse.papyrus.diagram.common.commands;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.command.CreateEAnnotationCommand;
 
 /**
  * The Class CreateHyperLinkCommand. this has in charge to add a new entry list of hyperlinks
  * 
  */
-public class CreateHyperLinkCommand extends CreateEAnnotationCommand {
+public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 
 	/** The hyperlink kind. */
-	public String hyperlinkKind;
+	public String tooltiptext;
 
 	/** The localization. */
 	public String localization;
@@ -37,15 +38,15 @@ public class CreateHyperLinkCommand extends CreateEAnnotationCommand {
 	 *            the domain
 	 * @param object
 	 *            the object for example the view
-	 * @param hyperlinkKind
+	 * @param tooltiptext
 	 *            the hyperlink kind see {@link VisualInformationPapyrusConstant}
 	 * @param localization
 	 *            the localization
 	 */
-	public CreateHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, String hyperlinkKind,
+	public CreateHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext,
 			String localization) {
-		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK);
-		this.hyperlinkKind = hyperlinkKind;
+		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT);
+		this.tooltiptext = tooltiptext;
 		this.localization = localization;
 	}
 
@@ -53,12 +54,10 @@ public class CreateHyperLinkCommand extends CreateEAnnotationCommand {
 	 * {@inheritedDoc}
 	 */
 	protected void doExecute() {
-		EAnnotation eAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.HYPERLINK);
-		if (eAnnotation == null) {
-			eAnnotation = createEAnnotation();
-			attachEannotation(eAnnotation, getObject());
+		EAnnotation eAnnotation =createEAnnotation();
+		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
+		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION, this.localization);
+		attachEannotation(eAnnotation, getObject());
 		}
-		addEntry(eAnnotation, localization, hyperlinkKind);
-	}
 
 }

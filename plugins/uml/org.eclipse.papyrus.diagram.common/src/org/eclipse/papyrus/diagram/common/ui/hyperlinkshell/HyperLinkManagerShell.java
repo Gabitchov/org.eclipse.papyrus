@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.ui;
+package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -40,8 +40,8 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelper;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
-import org.eclipse.papyrus.umlutils.ui.helper.HyperlinkHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -367,7 +367,7 @@ public class HyperLinkManagerShell {
 		 */
 		public Object[] getElements(Object inputElement) {
 			if (inputElement != null) {
-				return HyperlinkHelper.getAllreferencedDocument((EModelElement) inputElement).toArray();
+			//	return HyperlinkHelper.getAllreferencedDocument((EModelElement) inputElement).toArray();
 			}
 			return null;
 		}
@@ -396,7 +396,7 @@ public class HyperLinkManagerShell {
 		 */
 		public Object[] getElements(Object inputElement) {
 			if (inputElement != null) {
-				return HyperlinkHelper.getAllHyperLink((EModelElement) inputElement).toArray();
+				//return HyperlinkHelper.getAllHyperLink((EModelElement) inputElement).toArray();
 			}
 			return null;
 		}
@@ -605,8 +605,8 @@ public class HyperLinkManagerShell {
 																									// Event
 																									// stub
 																									// widgetSelected()
-					domain.getCommandStack().execute(
-							HyperlinkHelper.getAddHyperLinkCommand(domain, view, textfield1.getText().trim()));
+					//domain.getCommandStack().execute(
+					//		HyperlinkHelper.getAddHyperLinkDocumentCommand(domain, view, textfield1.getText().trim()));
 					hyperLinkTableViewer.setInput(null);
 					hyperLinkTableViewer.setInput(view);
 					textfield1.setText("");
@@ -638,7 +638,7 @@ public class HyperLinkManagerShell {
 				Iterator iterator = iSelection.iterator();
 				while (iterator.hasNext()) {
 					domain.getCommandStack().execute(
-							HyperlinkHelper.getRemoveElementCommand(domain, view, "" + iterator.next()));
+							HyperlinkHelper.getRemoveHyperlinkCommand(domain, view, "" + iterator.next()));
 				}
 				hyperLinkTableViewer.setInput(null);
 				hyperLinkTableViewer.setInput(view);
@@ -690,7 +690,7 @@ public class HyperLinkManagerShell {
 				fd.setFilterExtensions(filterExt);
 				String selected = fd.open();
 				System.out.println(selected);
-				domain.getCommandStack().execute(HyperlinkHelper.getAddDocumentCommand(domain, view, selected.trim()));
+		//		domain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkWebCommand(domain, view, selected.trim()));
 				documentTableViewer.setInput(null);
 				documentTableViewer.setInput(view);
 
@@ -707,7 +707,7 @@ public class HyperLinkManagerShell {
 				Iterator iterator = iSelection.iterator();
 				while (iterator.hasNext()) {
 					domain.getCommandStack().execute(
-							HyperlinkHelper.getRemoveElementCommand(domain, view, "" + iterator.next()));
+							HyperlinkHelper.getRemoveHyperlinkCommand(domain, view, "" + iterator.next()));
 				}
 				documentTableViewer.setInput(null);
 				documentTableViewer.setInput(view);
