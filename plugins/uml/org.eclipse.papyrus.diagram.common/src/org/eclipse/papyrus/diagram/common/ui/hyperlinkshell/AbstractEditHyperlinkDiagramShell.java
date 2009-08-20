@@ -24,6 +24,7 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
 /**
@@ -116,9 +117,13 @@ public class AbstractEditHyperlinkDiagramShell {
 		DiagramLogolabel.setText("Label");
 		DiagramLogolabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		DiagramLogolabel.setLayoutData(gridData37);
-		DiagramLogolabel.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Clause.gif"));
+		//DiagramLogolabel.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Clause.gif"));
+		
+		DiagramLogolabel.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Clause.gif").createImage());
 		chooseDiagramButton = new Button(getEditHyperlinkShell(), SWT.NONE);
-		chooseDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/insp_sbook.gif"));
+		//chooseDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/insp_sbook.gif"));
+		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/insp_sbook.gif").createImage());
+		
 		chooseDiagramButton.setLayoutData(gridData51);
 		chooseDiagramButton.setText("");
 		tooltipInputLabel = new CLabel(editHyperlinkShell, SWT.NONE);

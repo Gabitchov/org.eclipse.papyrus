@@ -24,6 +24,7 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
 // TODO: Auto-generated Javadoc
@@ -109,7 +110,8 @@ public class AbstractEditHyperlinkDocumentShell {
 		ObjectLabeltext.setEditable(true);
 		ObjectLabeltext.setLayoutData(gridData1);
 		chooseDiagramButton = new Button(getEditHyperlinkShell(), SWT.NONE);
-		chooseDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/insp_sbook.gif"));
+		//chooseDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/insp_sbook.gif"));
+		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/insp_sbook.gif").createImage());
 		chooseDiagramButton.setLayoutData(gridData51);
 		chooseDiagramButton.setText("");
 		tooltipInputLabel = new CLabel(editHyperlinkShell, SWT.NONE);
