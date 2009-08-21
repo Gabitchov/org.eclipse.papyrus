@@ -121,6 +121,8 @@
 	
 	«EXPAND updateExtendedEditorConfiguration -»
 	
+	«EXPAND performDefaultDirectEditorEdit-»
+	
 	«REM»END: PapyrusGenCode«ENDREM»
 «ENDDEFINE»
 
@@ -418,21 +420,24 @@
 			return;
 		case org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
-			assert (configuration != null);
-			configuration.preEditAction(resolveSemanticElement());
-			final org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog dialog = new org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog(org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
+			if (configuration == null || configuration.getLanguage() == null) {
+				performDefaultDirectEditorEdit(theRequest);
+			} else {
+				configuration.preEditAction(resolveSemanticElement());
+				final org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog dialog = new org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog(org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
 					.getTextToEdit(resolveSemanticElement()), configuration);
-			if (org.eclipse.jface.window.Window.OK == dialog.open()) {
-				org.eclipse.emf.transaction.TransactionalEditingDomain domain = getEditingDomain();
-				org.eclipse.emf.transaction.RecordingCommand command = new org.eclipse.emf.transaction.RecordingCommand(domain, "Edit Label") {
-
-					@Override
-					protected void doExecute() {
-						configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
-
-					}
-				};
-				domain.getCommandStack().execute(command);
+				if (org.eclipse.jface.window.Window.OK == dialog.open()) {
+					org.eclipse.emf.transaction.TransactionalEditingDomain domain = getEditingDomain();
+					org.eclipse.emf.transaction.RecordingCommand command = new org.eclipse.emf.transaction.RecordingCommand(domain, "Edit Label") {
+	
+						@Override
+						protected void doExecute() {
+							configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
+	
+						}
+					};
+					domain.getCommandStack().execute(command);
+				}
 			}
 			break;
 		case org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition.DEFAULT_DIRECT_EDITOR:
@@ -660,7 +665,7 @@
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
 			final String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if (languagePreferred != null) {
+			if (languagePreferred != null && !languagePreferred.equals("")) {
 				configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
 				configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
@@ -676,9 +681,42 @@
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(
 				org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != configuration.getLanguage()) {
+		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
 			configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 					.eClass().getInstanceClassName());
+		} else if (org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE performDefaultDirectEditorEdit FOR gmfgen::GenCommonBase-»
+	/**
+ 	* Performs the direct edit usually used by GMF editors.
+ 	* @param theRequest the direct edit request that starts the direct edit system
+ 	*/
+	protected void performDefaultDirectEditorEdit(final org.eclipse.gef.Request theRequest) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData().get(
+									org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if ((theRequest instanceof org.eclipse.gef.requests.DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) theRequest;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 «ENDDEFINE»
