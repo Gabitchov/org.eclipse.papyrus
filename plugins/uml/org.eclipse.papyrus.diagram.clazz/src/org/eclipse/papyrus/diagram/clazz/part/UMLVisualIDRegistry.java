@@ -283,11 +283,6 @@ public class UMLVisualIDRegistry {
 				return Constraint2EditPart.VISUAL_ID;
 			}
 			break;
-		case InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getSlot().isSuperTypeOf(domainElement.eClass())) {
-				return SlotEditPart.VISUAL_ID;
-			}
-			break;
 		case ComponentAttributeCompartment2EditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 				return PropertyEditPart.VISUAL_ID;
@@ -501,6 +496,11 @@ public class UMLVisualIDRegistry {
 		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
 				return Operation4EditPart.VISUAL_ID;
+			}
+			break;
+		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getSlot().isSuperTypeOf(domainElement.eClass())) {
+				return SlotEditPart.VISUAL_ID;
 			}
 			break;
 		case ModelEditPart.VISUAL_ID:
@@ -727,7 +727,7 @@ public class UMLVisualIDRegistry {
 			if (InstanceSpecificationNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if (InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -937,11 +937,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (Constraint2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID:
-			if (SlotEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1157,6 +1152,11 @@ public class UMLVisualIDRegistry {
 			break;
 		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
 			if (Operation4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
+			if (SlotEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1620,6 +1620,9 @@ public class UMLVisualIDRegistry {
 		labelInfo = new BaseViewInfo(5067, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+		viewInfo = new BaseViewInfo(4021, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
 
 		root.addNode(7002, viewInfo);
@@ -1627,12 +1630,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7023, viewInfo);
 
 		root.addNode(7034, viewInfo);
-
-		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Slot");
-
-		root.addNode(7001, viewInfo);
-
-		root.addNode(7022, viewInfo);
 
 		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "Operation");
 
@@ -1865,6 +1862,12 @@ public class UMLVisualIDRegistry {
 		root.addNode(7030, viewInfo);
 
 		root.addNode(7016, viewInfo);
+
+		viewInfo = new BaseViewInfo(3030, ViewInfo.Node, "Slot");
+
+		root.addNode(7001, viewInfo);
+
+		root.addNode(7035, viewInfo);
 
 		return root;
 	}

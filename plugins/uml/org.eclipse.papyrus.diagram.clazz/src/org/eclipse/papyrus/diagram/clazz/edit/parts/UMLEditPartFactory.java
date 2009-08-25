@@ -137,9 +137,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PropertyEditPart.VISUAL_ID:
 				return new PropertyEditPart(view);
 
-			case SlotEditPart.VISUAL_ID:
-				return new SlotEditPart(view);
-
 			case OperationEditPart.VISUAL_ID:
 				return new OperationEditPart(view);
 
@@ -257,6 +254,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintName2EditPart.VISUAL_ID:
 				return new ConstraintName2EditPart(view);
 
+			case SlotEditPart.VISUAL_ID:
+				return new SlotEditPart(view);
+
 			case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
 				return new AssociationClassAttributeCompartmentEditPart(view);
 
@@ -289,9 +289,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
 				return new ModelPackageableElementCompartmentEditPart(view);
-
-			case InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID:
-				return new InstanceSpecificationSlotCompartment2EditPart(view);
 
 			case ComponentAttributeCompartment2EditPart.VISUAL_ID:
 				return new ComponentAttributeCompartment2EditPart(view);
@@ -358,6 +355,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DataTypeOperationCompartmentEditPart.VISUAL_ID:
 				return new DataTypeOperationCompartmentEditPart(view);
+
+			case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
+				return new InstanceSpecificationSlotCompartmentEditPartCN(view);
 
 			case CommentLinkDescriptorEditPart.VISUAL_ID:
 				return new CommentLinkDescriptorEditPart(view);
@@ -505,6 +505,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ConstraintLabelEditPart.VISUAL_ID:
 				return new ConstraintLabelEditPart(view);
+
+			case InstanceSpecificationLinkEditPart.VISUAL_ID:
+				return new InstanceSpecificationLinkEditPart(view);
 
 			}
 		}

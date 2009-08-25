@@ -42,6 +42,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.EnumerationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -94,6 +95,7 @@ ClassifierEditPart
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -1110,9 +1112,6 @@ ClassifierEditPart
 		if (targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof SlotEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
 		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
@@ -1932,9 +1931,6 @@ ClassifierEditPart
 		}
 		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Comment_2012);
-		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
-			types.add(UMLElementTypes.Slot_3001);
 		}
 		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);

@@ -133,8 +133,6 @@ public class UMLDiagramUpdater {
 			return getInterfaceNestedClassifierCompartment_7008SemanticChildren(view);
 		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
 			return getModelPackageableElementCompartment_7009SemanticChildren(view);
-		case InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID:
-			return getInstanceSpecificationSlotCompartment_7022SemanticChildren(view);
 		case ComponentAttributeCompartment2EditPart.VISUAL_ID:
 			return getComponentAttributeCompartment_7023SemanticChildren(view);
 		case ComponentOperationCompartment2EditPart.VISUAL_ID:
@@ -179,6 +177,8 @@ public class UMLDiagramUpdater {
 			return getDataTypeAttributeCompartment_7020SemanticChildren(view);
 		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
 			return getDataTypeOperationCompartment_7021SemanticChildren(view);
+		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
+			return getInstanceSpecificationSlotCompartment_7035SemanticChildren(view);
 		case ModelEditPart.VISUAL_ID:
 			return getPackage_1000SemanticChildren(view);
 		}
@@ -756,30 +756,6 @@ public class UMLDiagramUpdater {
 			Comment childElement = (Comment) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == Comment2EditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List getInstanceSpecificationSlotCompartment_7022SemanticChildren(View view) {
-		if (false == view.eContainer() instanceof View) {
-			return Collections.EMPTY_LIST;
-		}
-		View containerView = (View) view.eContainer();
-		if (!containerView.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		InstanceSpecification modelElement = (InstanceSpecification) containerView.getElement();
-		List result = new LinkedList();
-		for (Iterator it = modelElement.getSlots().iterator(); it.hasNext();) {
-			Slot childElement = (Slot) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == SlotEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1478,6 +1454,30 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getInstanceSpecificationSlotCompartment_7035SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		InstanceSpecification modelElement = (InstanceSpecification) containerView.getElement();
+		List result = new LinkedList();
+		for (Iterator it = modelElement.getSlots().iterator(); it.hasNext();) {
+			Slot childElement = (Slot) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == SlotEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getPackage_1000SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
@@ -1614,8 +1614,6 @@ public class UMLDiagramUpdater {
 			return getDiagram_2016ContainedLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002ContainedLinks(view);
-		case SlotEditPart.VISUAL_ID:
-			return getSlot_3001ContainedLinks(view);
 		case OperationEditPart.VISUAL_ID:
 			return getOperation_3003ContainedLinks(view);
 		case Class2EditPart.VISUAL_ID:
@@ -1670,6 +1668,8 @@ public class UMLDiagramUpdater {
 			return getComment_3028ContainedLinks(view);
 		case Constraint2EditPart.VISUAL_ID:
 			return getConstraint_3029ContainedLinks(view);
+		case SlotEditPart.VISUAL_ID:
+			return getSlot_3030ContainedLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
 			return getAssociationClass_4017ContainedLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -1747,8 +1747,6 @@ public class UMLDiagramUpdater {
 			return getDiagram_2016IncomingLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002IncomingLinks(view);
-		case SlotEditPart.VISUAL_ID:
-			return getSlot_3001IncomingLinks(view);
 		case OperationEditPart.VISUAL_ID:
 			return getOperation_3003IncomingLinks(view);
 		case Class2EditPart.VISUAL_ID:
@@ -1803,6 +1801,8 @@ public class UMLDiagramUpdater {
 			return getComment_3028IncomingLinks(view);
 		case Constraint2EditPart.VISUAL_ID:
 			return getConstraint_3029IncomingLinks(view);
+		case SlotEditPart.VISUAL_ID:
+			return getSlot_3030IncomingLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
 			return getAssociationClass_4017IncomingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -1880,8 +1880,6 @@ public class UMLDiagramUpdater {
 			return getDiagram_2016OutgoingLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002OutgoingLinks(view);
-		case SlotEditPart.VISUAL_ID:
-			return getSlot_3001OutgoingLinks(view);
 		case OperationEditPart.VISUAL_ID:
 			return getOperation_3003OutgoingLinks(view);
 		case Class2EditPart.VISUAL_ID:
@@ -1936,6 +1934,8 @@ public class UMLDiagramUpdater {
 			return getComment_3028OutgoingLinks(view);
 		case Constraint2EditPart.VISUAL_ID:
 			return getConstraint_3029OutgoingLinks(view);
+		case SlotEditPart.VISUAL_ID:
+			return getSlot_3030OutgoingLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
 			return getAssociationClass_4017OutgoingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -2217,13 +2217,6 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getProperty_3002ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List getSlot_3001ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -2551,6 +2544,13 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSlot_3030ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -3055,20 +3055,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getSlot_3001IncomingLinks(View view) {
-		Slot modelElement = (Slot) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement,
-				crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List getOperation_3003IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -3455,6 +3441,13 @@ public class UMLDiagramUpdater {
 				crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSlot_3030IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -4086,13 +4079,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getSlot_3001OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List getOperation_3003OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -4433,6 +4419,13 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSlot_3030OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**

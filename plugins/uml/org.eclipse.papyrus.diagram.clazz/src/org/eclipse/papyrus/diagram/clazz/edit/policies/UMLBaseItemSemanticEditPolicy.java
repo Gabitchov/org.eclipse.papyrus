@@ -170,6 +170,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateLink_4021() {
+			return canExistLink_4021();
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canCreateInterfaceRealization_4003(BehavioredClassifier source, Interface target) {
 			return canExistInterfaceRealization_4003(source, target);
 		}
@@ -306,6 +313,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistGeneralizationSet_4020(Package container, Generalization source,
 				Generalization target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistLink_4021() {
 			return true;
 		}
 

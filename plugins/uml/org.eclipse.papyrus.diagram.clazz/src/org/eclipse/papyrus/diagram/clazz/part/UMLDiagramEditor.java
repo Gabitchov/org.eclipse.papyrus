@@ -24,7 +24,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
@@ -33,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocu
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -41,7 +39,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
@@ -259,15 +256,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	 */
 	private ISelection getNavigatorSelection() {
 		IDiagramDocument document = getDiagramDocument();
-		if (document == null) {
-			return StructuredSelection.EMPTY;
-		}
-		Diagram diagram = document.getDiagram();
-		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
-		if (file != null) {
-			UMLNavigatorItem item = new UMLNavigatorItem(diagram, file, false);
-			return new StructuredSelection(item);
-		}
 		return StructuredSelection.EMPTY;
 	}
 

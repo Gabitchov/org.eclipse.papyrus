@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.Collection;
@@ -31,7 +18,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class InstanceSpecificationSlotCompartment2CanonicalEditPolicy extends CanonicalEditPolicy {
+public class InstanceSpecificationSlotCompartmentCanonicalEditPolicyCN extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -44,7 +31,7 @@ public class InstanceSpecificationSlotCompartment2CanonicalEditPolicy extends Ca
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getInstanceSpecificationSlotCompartment_7022SemanticChildren(viewObject)
+		for (Iterator it = UMLDiagramUpdater.getInstanceSpecificationSlotCompartment_7035SemanticChildren(viewObject)
 				.iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}

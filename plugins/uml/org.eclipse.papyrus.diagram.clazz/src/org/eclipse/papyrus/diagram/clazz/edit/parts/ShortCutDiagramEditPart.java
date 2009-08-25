@@ -35,6 +35,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ShortCutDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShortCutDiagramEditPolicy;
@@ -98,6 +99,7 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ShortCutDiagramItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ShortCutDiagramEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);

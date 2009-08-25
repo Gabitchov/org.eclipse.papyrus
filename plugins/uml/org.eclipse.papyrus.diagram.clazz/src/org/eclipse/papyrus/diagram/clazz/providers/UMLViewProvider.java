@@ -584,6 +584,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createSlot_3030(EObject domainElement, View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(SlotEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Edge createConstraintConstrainedElement_4014(View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -869,6 +882,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case GeneralizationSetEditPart.VISUAL_ID:
 			return createGeneralizationSet_4020(getSemanticElement(semanticAdapter), containerView, index, persisted,
 					preferencesHint);
+		case InstanceSpecificationLinkEditPart.VISUAL_ID:
+			return createLink_4021(containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -1054,6 +1069,31 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Edge createLink_4021(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(InstanceSpecificationLinkEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Node createInstanceSpecification_2001(EObject domainElement, View containerView, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -1097,7 +1137,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "InstanceSpecification");
 
 		Node label5040 = createLabel(node, UMLVisualIDRegistry.getType(InstanceSpecificationNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID),
+		createCompartment(node, UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID),
 				true, false, true, true);
 		return node;
 	}
@@ -1333,8 +1373,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createDiagram_2016(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyEditPart.VISUAL_ID:
 			return createProperty_3002(domainElement, containerView, index, persisted, preferencesHint);
-		case SlotEditPart.VISUAL_ID:
-			return createSlot_3001(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationEditPart.VISUAL_ID:
 			return createOperation_3003(domainElement, containerView, index, persisted, preferencesHint);
 		case Class2EditPart.VISUAL_ID:
@@ -1390,6 +1428,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createComment_3028(domainElement, containerView, index, persisted, preferencesHint);
 		case Constraint2EditPart.VISUAL_ID:
 			return createConstraint_3029(domainElement, containerView, index, persisted, preferencesHint);
+		case SlotEditPart.VISUAL_ID:
+			return createSlot_3030(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -1842,30 +1882,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createSlot_3001(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(SlotEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		initForegroundFromPrefs(node, prefStore, "Slot");
-
-		initBackgroundFromPrefs(node, prefStore, "Slot");
-
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
 	public Edge createSubstitution_4004(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -2152,7 +2168,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ModelEditPartTN.VISUAL_ID:
 				case ShortCutDiagramEditPart.VISUAL_ID:
 				case PropertyEditPart.VISUAL_ID:
-				case SlotEditPart.VISUAL_ID:
 				case OperationEditPart.VISUAL_ID:
 				case Class2EditPart.VISUAL_ID:
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
@@ -2164,6 +2179,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case DataTypeEditPartCN.VISUAL_ID:
 				case Comment2EditPart.VISUAL_ID:
 				case Constraint2EditPart.VISUAL_ID:
+				case SlotEditPart.VISUAL_ID:
 				case EnumerationEditPart.VISUAL_ID:
 				case PackageEditPart.VISUAL_ID:
 				case ClassEditPart.VISUAL_ID:
@@ -2206,9 +2222,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| ClassEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID
 				|| DataTypeEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID
 				|| CommentEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID
-				|| PropertyEditPart.VISUAL_ID == visualID || SlotEditPart.VISUAL_ID == visualID
-				|| OperationEditPart.VISUAL_ID == visualID || Class2EditPart.VISUAL_ID == visualID
-				|| RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID
+				|| PropertyEditPart.VISUAL_ID == visualID || OperationEditPart.VISUAL_ID == visualID
+				|| Class2EditPart.VISUAL_ID == visualID || RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID
 				|| TemplateParameterEditPart.VISUAL_ID == visualID || Property2EditPart.VISUAL_ID == visualID
 				|| Property3EditPart.VISUAL_ID == visualID || Operation2EditPart.VISUAL_ID == visualID
 				|| Class3EditPart.VISUAL_ID == visualID || InstanceSpecificationEditPartCN.VISUAL_ID == visualID
@@ -2220,7 +2235,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| Operation3EditPart.VISUAL_ID == visualID || Class5EditPart.VISUAL_ID == visualID
 				|| PrimitiveTypeEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID
 				|| Property5EditPart.VISUAL_ID == visualID || Operation4EditPart.VISUAL_ID == visualID
-				|| Comment2EditPart.VISUAL_ID == visualID || Constraint2EditPart.VISUAL_ID == visualID;
+				|| Comment2EditPart.VISUAL_ID == visualID || Constraint2EditPart.VISUAL_ID == visualID
+				|| SlotEditPart.VISUAL_ID == visualID;
 	}
 
 	/**

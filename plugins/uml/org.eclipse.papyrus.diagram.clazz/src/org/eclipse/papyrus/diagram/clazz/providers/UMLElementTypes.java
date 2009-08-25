@@ -61,6 +61,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
@@ -217,11 +218,6 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Slot_3001 = getElementType("org.eclipse.papyrus.diagram.clazz.Slot_3001"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType Operation_3003 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3003"); //$NON-NLS-1$
 
 	/**
@@ -357,6 +353,11 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Slot_3030 = getElementType("org.eclipse.papyrus.diagram.clazz.Slot_3030"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Link_4016 = getElementType("org.eclipse.papyrus.diagram.clazz.Link_4016"); //$NON-NLS-1$
 
 	/**
@@ -453,6 +454,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType GeneralizationSet_4020 = getElementType("org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Link_4021 = getElementType("org.eclipse.papyrus.diagram.clazz.SlotLink_4021"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -597,8 +603,6 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 
-			elements.put(Slot_3001, UMLPackage.eINSTANCE.getSlot());
-
 			elements.put(Operation_3003, UMLPackage.eINSTANCE.getOperation());
 
 			elements.put(Class_3004, UMLPackage.eINSTANCE.getClass_());
@@ -652,6 +656,8 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(Comment_3028, UMLPackage.eINSTANCE.getComment());
 
 			elements.put(Constraint_3029, UMLPackage.eINSTANCE.getConstraint());
+
+			elements.put(Slot_3030, UMLPackage.eINSTANCE.getSlot());
 
 			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
 
@@ -725,7 +731,6 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Comment_2012);
 			KNOWN_ELEMENT_TYPES.add(Diagram_2016);
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
-			KNOWN_ELEMENT_TYPES.add(Slot_3001);
 			KNOWN_ELEMENT_TYPES.add(Operation_3003);
 			KNOWN_ELEMENT_TYPES.add(Class_3004);
 			KNOWN_ELEMENT_TYPES.add(RedefinableTemplateSignature_3015);
@@ -753,6 +758,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Operation_3019);
 			KNOWN_ELEMENT_TYPES.add(Comment_3028);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3029);
+			KNOWN_ELEMENT_TYPES.add(Slot_3030);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
 			KNOWN_ELEMENT_TYPES.add(Association_4001);
@@ -773,6 +779,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4014);
 			KNOWN_ELEMENT_TYPES.add(TemplateBinding_4015);
 			KNOWN_ELEMENT_TYPES.add(GeneralizationSet_4020);
+			KNOWN_ELEMENT_TYPES.add(Link_4021);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -818,8 +825,6 @@ public class UMLElementTypes extends ElementInitializers {
 			return Diagram_2016;
 		case PropertyEditPart.VISUAL_ID:
 			return Property_3002;
-		case SlotEditPart.VISUAL_ID:
-			return Slot_3001;
 		case OperationEditPart.VISUAL_ID:
 			return Operation_3003;
 		case Class2EditPart.VISUAL_ID:
@@ -874,6 +879,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return Comment_3028;
 		case Constraint2EditPart.VISUAL_ID:
 			return Constraint_3029;
+		case SlotEditPart.VISUAL_ID:
+			return Slot_3030;
 		case CommentLinkDescriptorEditPart.VISUAL_ID:
 			return Link_4016;
 		case AssociationClass2EditPart.VISUAL_ID:
@@ -914,6 +921,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return TemplateBinding_4015;
 		case GeneralizationSetEditPart.VISUAL_ID:
 			return GeneralizationSet_4020;
+		case InstanceSpecificationLinkEditPart.VISUAL_ID:
+			return Link_4021;
 		}
 		return null;
 	}

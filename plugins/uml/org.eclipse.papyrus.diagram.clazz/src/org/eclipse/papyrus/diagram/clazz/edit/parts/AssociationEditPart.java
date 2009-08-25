@@ -191,19 +191,19 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 		if (target.getOwner().equals(resolveSemanticElement())) {
 			targetType += AssociationFigure.owned;
 		}
-		// aggregation?
+		// aggregation? for it the opposite is changed
 		if (source.getAggregation() == AggregationKind.SHARED_LITERAL) {
-			sourceType += AssociationFigure.aggregation;
-		}
-		if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
 			targetType += AssociationFigure.aggregation;
 		}
-		// composite?
+		if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
+			sourceType += AssociationFigure.aggregation;
+		}
+		// composite? for it the opposite is changed
 		if (source.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-			sourceType += AssociationFigure.composition;
+			targetType += AssociationFigure.composition;
 		}
 		if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-			targetType += AssociationFigure.composition;
+			sourceType += AssociationFigure.composition;
 		}
 		// navigable?
 		if (source.isNavigable()) {

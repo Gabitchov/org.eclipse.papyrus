@@ -63,7 +63,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -87,7 +86,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (editPart instanceof InstanceSpecificationEditPart) {
 			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Slot_3001);
+			types.add(UMLElementTypes.Slot_3030);
 			return types;
 		}
 		if (editPart instanceof ComponentEditPart) {
@@ -150,7 +149,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (editPart instanceof InstanceSpecificationEditPartCN) {
 			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Slot_3001);
+			types.add(UMLElementTypes.Slot_3030);
 			return types;
 		}
 		if (editPart instanceof ComponentEditPartCN) {
@@ -435,9 +434,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
-		if (targetEditPart instanceof SlotEditPart) {
-			return ((SlotEditPart) targetEditPart).getMARelTypesOnTarget();
-		}
 		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
@@ -623,9 +619,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart) targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if (targetEditPart instanceof SlotEditPart) {
-			return ((SlotEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart) targetEditPart).getMATypesForSource(relationshipType);

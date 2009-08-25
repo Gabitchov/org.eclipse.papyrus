@@ -64,6 +64,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
@@ -82,7 +83,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignature
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
@@ -234,7 +234,8 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		for (Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = (Edge) linksIterator.next();
 			int diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if (diagramLinkVisualID == -1 || diagramLinkVisualID == CommentLinkDescriptorEditPart.VISUAL_ID) {
+			if (diagramLinkVisualID == -1 || diagramLinkVisualID == CommentLinkDescriptorEditPart.VISUAL_ID
+					|| diagramLinkVisualID == InstanceSpecificationLinkEditPart.VISUAL_ID) {
 				if (nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}
@@ -415,15 +416,6 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		case ShortCutDiagramEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getDiagram_2016ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case SlotEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getSlot_3001ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

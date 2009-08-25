@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.CommentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -90,6 +91,7 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -350,9 +352,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof SlotEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
-		}
 		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
@@ -455,9 +454,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_2012);
-		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
-			types.add(UMLElementTypes.Slot_3001);
 		}
 		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);

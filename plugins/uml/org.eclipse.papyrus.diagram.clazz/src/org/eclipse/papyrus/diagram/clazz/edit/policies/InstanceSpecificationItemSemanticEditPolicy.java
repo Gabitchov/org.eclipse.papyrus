@@ -199,29 +199,6 @@ public class InstanceSpecificationItemSemanticEditPolicy extends UMLBaseItemSema
 					Node cnode = (Node) cit.next();
 					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
 					case SlotEditPart.VISUAL_ID:
-						for (Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
-							Edge incomingLink = (Edge) it.next();
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource()
-										.getElement(), null, incomingLink.getTarget().getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-								continue;
-							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource()
-										.getElement(), null, incomingLink.getTarget().getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-								continue;
-							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == TemplateBindingEditPart.VISUAL_ID) {
-								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-								cmd.add(new DestroyElementCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-								continue;
-							}
-						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
 								.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would

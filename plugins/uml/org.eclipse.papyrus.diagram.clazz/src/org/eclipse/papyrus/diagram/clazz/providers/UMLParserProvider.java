@@ -14,6 +14,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
+import org.eclipse.papyrus.diagram.clazz.custom.parsers.SlotParser;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAssociationEditPart;
@@ -77,6 +78,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
@@ -720,6 +722,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private SlotParser slot_3030Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSlot_3030Parser() {
+		if (slot_3030Parser == null) {
+			slot_3030Parser = new SlotParser();
+		}
+		return slot_3030Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getDataTypeName_5035Parser() {
 		if (dataTypeName_5035Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
@@ -1155,6 +1172,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getCommentBody_5063Parser();
 		case ConstraintName2EditPart.VISUAL_ID:
 			return getConstraintName_5064Parser();
+		case SlotEditPart.VISUAL_ID:
+			return getSlot_3030Parser();
 		case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 			return getAssociationName_6001Parser();
 		case AssociationName2EditPart.VISUAL_ID:

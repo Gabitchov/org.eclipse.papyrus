@@ -42,6 +42,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.InstanceSpecificationItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -92,6 +93,7 @@ NamedElementEditPart
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InstanceSpecificationItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -155,11 +157,11 @@ NamedElementEditPart
 			return true;
 		}
 
-		if (childEditPart instanceof InstanceSpecificationSlotCompartment2EditPart) {
+		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
 									// own way
-			pane.add(((InstanceSpecificationSlotCompartment2EditPart) childEditPart).getFigure());
+			pane.add(((InstanceSpecificationSlotCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 
@@ -173,11 +175,11 @@ NamedElementEditPart
 		if (childEditPart instanceof InstanceSpecificationNameEditPartCN) {
 			return true;
 		}
-		if (childEditPart instanceof InstanceSpecificationSlotCompartment2EditPart) {
+		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
 									// own way
-			pane.remove(((InstanceSpecificationSlotCompartment2EditPart) childEditPart).getFigure());
+			pane.remove(((InstanceSpecificationSlotCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -207,7 +209,7 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof InstanceSpecificationSlotCompartment2EditPart) {
+		if (editPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
 			return getPrimaryShape().getSlotCompartmentFigure();
 		}
 		return getContentPane();
@@ -1716,9 +1718,9 @@ NamedElementEditPart
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
 					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Slot_3001) {
+			if (type == UMLElementTypes.Slot_3030) {
 				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(InstanceSpecificationSlotCompartment2EditPart.VISUAL_ID));
+						.getType(InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
