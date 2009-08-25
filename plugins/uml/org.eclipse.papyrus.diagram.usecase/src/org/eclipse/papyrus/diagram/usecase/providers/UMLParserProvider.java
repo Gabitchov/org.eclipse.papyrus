@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintName2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartCN;
@@ -201,6 +203,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			commentBody_5027Parser = parser;
 		}
 		return commentBody_5027Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser diagramName_5032Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDiagramName_5032Parser() {
+		if (diagramName_5032Parser == null) {
+			EAttribute[] features = new EAttribute[] { NotationPackage.eINSTANCE.getDiagram_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			diagramName_5032Parser = parser;
+		}
+		return diagramName_5032Parser;
 	}
 
 	/**
@@ -588,6 +607,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_5026Parser();
 		case CommentBodyEditPart.VISUAL_ID:
 			return getCommentBody_5027Parser();
+		case DiagramNameEditPart.VISUAL_ID:
+			return getDiagramName_5032Parser();
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007Parser();
 		case ExtensionPoint2EditPart.VISUAL_ID:

@@ -72,6 +72,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
@@ -128,6 +129,7 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalConnectionEditPo
 		case PackageEditPartTN.VISUAL_ID:
 		case ConstraintEditPart.VISUAL_ID:
 		case CommentEditPart.VISUAL_ID:
+		case ShortCutDiagramEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -373,6 +375,15 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalConnectionEditPo
 		case CommentEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getComment_2018ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ShortCutDiagramEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getDiagram_2019ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

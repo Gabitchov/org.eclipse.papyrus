@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
@@ -58,6 +59,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendsLink_fixedEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
@@ -75,6 +77,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementC
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
@@ -362,6 +365,9 @@ public class UMLVisualIDRegistry {
 			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPart.VISUAL_ID;
 			}
+			if (NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())) {
+				return ShortCutDiagramEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -436,6 +442,11 @@ public class UMLVisualIDRegistry {
 			break;
 		case CommentEditPart.VISUAL_ID:
 			if (CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			if (DiagramNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -638,6 +649,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (CommentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -865,6 +879,9 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(2018, ViewInfo.Node, "Comment");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(2019, ViewInfo.Node, "Diagram");
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");

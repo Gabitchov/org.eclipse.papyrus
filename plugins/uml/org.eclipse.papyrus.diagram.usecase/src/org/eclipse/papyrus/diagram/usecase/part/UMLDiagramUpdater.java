@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
@@ -56,6 +57,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
@@ -555,7 +557,25 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		Resource resource = modelElement.eResource();
+		for (Iterator semanticIterator = getPhantomNodesIterator(resource); semanticIterator.hasNext();) {
+			EObject childElement = (EObject) semanticIterator.next();
+			if (childElement == modelElement) {
+				continue;
+			}
+			if (UMLVisualIDRegistry.getNodeVisualID(view, childElement) == ShortCutDiagramEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, ShortCutDiagramEditPart.VISUAL_ID));
+				continue;
+			}
+		}
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Iterator getPhantomNodesIterator(Resource resource) {
+		return resource.getAllContents();
 	}
 
 	/**
@@ -581,6 +601,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2017ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_2018ContainedLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_2019ContainedLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007ContainedLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
@@ -650,6 +672,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2017IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_2018IncomingLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_2019IncomingLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007IncomingLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
@@ -719,6 +743,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2017OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_2018OutgoingLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_2019OutgoingLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007OutgoingLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
@@ -876,6 +902,13 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDiagram_2019ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1228,6 +1261,13 @@ public class UMLDiagramUpdater {
 				crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDiagram_2019IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1709,6 +1749,13 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDiagram_2019OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**

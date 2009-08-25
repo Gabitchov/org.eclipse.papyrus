@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -48,6 +49,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.OneLineDashedBorder;
 import org.eclipse.papyrus.diagram.common.draw2d.SplitEllipseLayout;
+import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCase4ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.figure.UseCaseNodeFigure;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
@@ -96,6 +98,7 @@ ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCase4ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -153,7 +156,7 @@ ShapeNodeEditPart {
 		if (childEditPart instanceof UseCasePoints3EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((UseCasePoints3EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -171,7 +174,7 @@ ShapeNodeEditPart {
 		if (childEditPart instanceof UseCasePoints3EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((UseCasePoints3EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -275,15 +278,6 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void setBackgroundColor(Color color) {
-		if (primaryShape != null) {
-			primaryShape.setBackgroundColor(color);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);
@@ -315,8 +309,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -344,8 +337,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -652,8 +644,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -959,8 +950,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -989,8 +979,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType

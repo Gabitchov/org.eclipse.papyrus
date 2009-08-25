@@ -138,7 +138,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (editPart instanceof UseCaseDiagramEditPart) {
-			ArrayList types = new ArrayList(8);
+			ArrayList types = new ArrayList(9);
 			types.add(UMLElementTypes.Actor_2011);
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
@@ -147,6 +147,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.Comment_2018);
+			types.add(UMLElementTypes.Diagram_2019);
 			return types;
 		}
 		return Collections.EMPTY_LIST;

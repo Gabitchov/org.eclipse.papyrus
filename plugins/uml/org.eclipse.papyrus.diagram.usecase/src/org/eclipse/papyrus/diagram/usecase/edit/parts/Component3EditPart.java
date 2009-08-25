@@ -31,6 +31,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.draw2d.PileLayout;
+import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.Component3ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
@@ -77,6 +78,7 @@ ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Component3ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -134,7 +136,7 @@ ShapeNodeEditPart {
 		if (childEditPart instanceof ComponentUsecases3EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((ComponentUsecases3EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -152,7 +154,7 @@ ShapeNodeEditPart {
 		if (childEditPart instanceof ComponentUsecases3EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((ComponentUsecases3EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -253,15 +255,6 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void setBackgroundColor(Color color) {
-		if (primaryShape != null) {
-			primaryShape.setBackgroundColor(color);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);
@@ -293,8 +286,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -320,8 +312,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -604,8 +595,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -887,8 +877,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -915,8 +904,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType

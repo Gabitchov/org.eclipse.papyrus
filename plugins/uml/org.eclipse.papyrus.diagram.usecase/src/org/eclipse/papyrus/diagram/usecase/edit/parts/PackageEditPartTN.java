@@ -40,6 +40,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageFigure;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.PackageItemSemanticEditPolicyTN;
@@ -86,6 +87,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicyTN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -152,7 +154,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.add(((PackagePackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -170,7 +172,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+									// own way
 			pane.remove(((PackagePackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -271,15 +273,6 @@ public class PackageEditPartTN extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	protected void setBackgroundColor(Color color) {
-		if (primaryShape != null) {
-			primaryShape.setBackgroundColor(color);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);
@@ -311,8 +304,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -337,8 +329,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -561,8 +552,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -784,8 +774,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -812,8 +801,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType

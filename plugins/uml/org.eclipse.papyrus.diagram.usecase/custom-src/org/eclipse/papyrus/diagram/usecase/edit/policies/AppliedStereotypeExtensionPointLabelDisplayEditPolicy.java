@@ -24,9 +24,8 @@ import org.eclipse.uml2.uml.ExtensionPoint;
  * 
  * @author eperico
  */
-public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy 
-{
-	
+public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -34,12 +33,12 @@ public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends Appli
 	protected ExtensionPoint getUMLElement() {
 		return (ExtensionPoint) super.getUMLElement();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void refreshDisplay() {		
+	public void refreshDisplay() {
 		// calls the helper for this edit Part
 		ExtensionPointLabelHelper.refreshEditPartDisplay((GraphicalEditPart) getHost());
 		super.refreshDisplay();

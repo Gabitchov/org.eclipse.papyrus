@@ -94,6 +94,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintName3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendsLink_fixedEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
@@ -111,6 +112,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementC
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
@@ -218,6 +220,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ActorEditPart.VISUAL_ID:
 				case UseCaseEditPart.VISUAL_ID:
 				case ComponentEditPart.VISUAL_ID:
+				case ShortCutDiagramEditPart.VISUAL_ID:
 				case ExtensionPointEditPart.VISUAL_ID:
 				case Comment2EditPart.VISUAL_ID:
 				case Constraint2EditPart.VISUAL_ID:
@@ -250,12 +253,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| UseCaseEditPart.VISUAL_ID == visualID || UseCase2EditPart.VISUAL_ID == visualID
 				|| ComponentEditPart.VISUAL_ID == visualID || PackageEditPartTN.VISUAL_ID == visualID
 				|| ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID
-				|| ExtensionPointEditPart.VISUAL_ID == visualID || ExtensionPoint2EditPart.VISUAL_ID == visualID
-				|| UseCase3EditPart.VISUAL_ID == visualID || Component2EditPart.VISUAL_ID == visualID
-				|| Comment2EditPart.VISUAL_ID == visualID || Constraint2EditPart.VISUAL_ID == visualID
-				|| Actor4EditPart.VISUAL_ID == visualID || Constraint3EditPart.VISUAL_ID == visualID
-				|| Actor3EditPart.VISUAL_ID == visualID || UseCase4EditPart.VISUAL_ID == visualID
-				|| Component3EditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID;
+				|| ShortCutDiagramEditPart.VISUAL_ID == visualID || ExtensionPointEditPart.VISUAL_ID == visualID
+				|| ExtensionPoint2EditPart.VISUAL_ID == visualID || UseCase3EditPart.VISUAL_ID == visualID
+				|| Component2EditPart.VISUAL_ID == visualID || Comment2EditPart.VISUAL_ID == visualID
+				|| Constraint2EditPart.VISUAL_ID == visualID || Actor4EditPart.VISUAL_ID == visualID
+				|| Constraint3EditPart.VISUAL_ID == visualID || Actor3EditPart.VISUAL_ID == visualID
+				|| UseCase4EditPart.VISUAL_ID == visualID || Component3EditPart.VISUAL_ID == visualID
+				|| PackageEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -320,6 +324,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createConstraint_2017(domainElement, containerView, index, persisted, preferencesHint);
 		case CommentEditPart.VISUAL_ID:
 			return createComment_2018(domainElement, containerView, index, persisted, preferencesHint);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return createDiagram_2019(domainElement, containerView, index, persisted, preferencesHint);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return createExtensionPoint_3007(domainElement, containerView, index, persisted, preferencesHint);
 		case ExtensionPoint2EditPart.VISUAL_ID:
@@ -593,6 +599,34 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initFontStyleFromPrefs(node, prefStore, "Comment");
 
 		Node label5027 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDiagram_2019(EObject domainElement, View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ShortCutDiagramEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "ShortCutDiagram");
+
+		initFontStyleFromPrefs(node, prefStore, "ShortCutDiagram");
+
+		initBackgroundFromPrefs(node, prefStore, "ShortCutDiagram");
+
+		Node label5032 = createLabel(node, UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
+		label5032.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5032 = (Location) label5032.getLayoutConstraint();
+		location5032.setX(0);
+		location5032.setY(5);
 		return node;
 	}
 

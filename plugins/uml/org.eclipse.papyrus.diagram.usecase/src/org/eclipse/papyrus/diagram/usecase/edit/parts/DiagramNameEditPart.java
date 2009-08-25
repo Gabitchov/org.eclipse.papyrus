@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,18 +8,18 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -27,22 +27,19 @@ import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.handles.MoveHandle;
-import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -77,12 +74,12 @@ import org.eclipse.uml2.uml.NamedElement;
 /**
  * @generated
  */
-public class ConstraintNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5026;
+	public static final int VISUAL_ID = 5032;
 
 	/**
 	 * @generated
@@ -113,7 +110,15 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	/**
 	 * @generated
 	 */
-	public ConstraintNameEditPart(View view) {
+	static {
+		registerSnapBackPosition(UMLVisualIDRegistry
+				.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.DiagramNameEditPart.VISUAL_ID), new Point(0, 0));
+	}
+
+	/**
+	 * @generated
+	 */
+	public DiagramNameEditPart(View view) {
 		super(view);
 	}
 
@@ -122,25 +127,31 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
+	}
 
-			protected List createSelectionHandles() {
-				List handles = new ArrayList();
-				NonResizableHandleKit.addMoveHandle((GraphicalEditPart) getHost(), handles);
-				((MoveHandle) handles.get(0)).setBorder(null);
-				return handles;
-			}
+	/**
+	 * @generated
+	 */
+	public IBorderItemLocator getBorderItemLocator() {
+		IFigure parentFigure = getFigure().getParent();
+		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
+			Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
+			return (IBorderItemLocator) constraint;
+		}
+		return null;
+	}
 
-			public Command getCommand(Request request) {
-				return null;
-			}
-
-			public boolean understandsRequest(Request request) {
-				return false;
-			}
-		});
+	/**
+	 * @generated
+	 */
+	public void refreshBounds() {
+		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
 	}
 
 	/**
@@ -190,7 +201,7 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -325,9 +336,8 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_2017, getParserElement(),
-					UMLVisualIDRegistry
-							.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Diagram_2019, getParserElement(), UMLVisualIDRegistry
+					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.DiagramNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -564,7 +574,7 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View) getModel();
+		return getPrimaryView();
 	}
 
 	/**
@@ -636,9 +646,12 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != configuration.getLanguage()) {
+		if (languagePreferred != null && !languagePreferred.equals("")
+				&& languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 					.eClass().getInstanceClassName());
+		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
 		}
 	}
 
@@ -671,22 +684,6 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
 
 	/**
@@ -728,8 +725,16 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		// Parent should assign one using setLabel() method
-		return null;
+		IFigure label = createFigurePrim();
+		defaultText = getLabelTextHelper(label);
+		return label;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure createFigurePrim() {
+		return new WrappingLabel();
 	}
 
 }

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
@@ -54,6 +55,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
@@ -134,6 +136,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType Comment_2018 = getElementType("org.eclipse.papyrus.diagram.usecase.Comment_2018"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Diagram_2019 = getElementType("org.eclipse.papyrus.diagram.usecase.Diagram_2019"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -380,6 +387,8 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Comment_2018, UMLPackage.eINSTANCE.getComment());
 
+			elements.put(Diagram_2019, NotationPackage.eINSTANCE.getDiagram());
+
 			elements.put(ExtensionPoint_3007, UMLPackage.eINSTANCE.getExtensionPoint());
 
 			elements.put(ExtensionPoint_3008, UMLPackage.eINSTANCE.getExtensionPoint());
@@ -453,6 +462,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Package_2016);
 			KNOWN_ELEMENT_TYPES.add(Constraint_2017);
 			KNOWN_ELEMENT_TYPES.add(Comment_2018);
+			KNOWN_ELEMENT_TYPES.add(Diagram_2019);
 			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3007);
 			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3008);
 			KNOWN_ELEMENT_TYPES.add(UseCase_3009);
@@ -504,6 +514,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return Constraint_2017;
 		case CommentEditPart.VISUAL_ID:
 			return Comment_2018;
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return Diagram_2019;
 		case ExtensionPointEditPart.VISUAL_ID:
 			return ExtensionPoint_3007;
 		case ExtensionPoint2EditPart.VISUAL_ID:

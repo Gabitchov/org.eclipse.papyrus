@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.helper;
 
 import java.util.Collection;
@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * @author eperico
  */
 public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
-	
+
 	/**
 	 * Refreshes the label of the figure associated to the specified edit part
 	 * 
@@ -58,7 +58,7 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 		}
 		((WrappingLabel) figure).setText(labelToDisplay(editPart));
 	}
-	
+
 	/**
 	 * Computes the label to be displayed for the property
 	 */
@@ -69,7 +69,7 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 		buffer.append(stereotypesToDisplay(editPart));
 
 		// computes the string label to be displayed
-		buffer.append(((NamedElement)getUMLElement(editPart)).getName());
+		buffer.append(((NamedElement) getUMLElement(editPart)).getName());
 
 		return buffer.toString();
 	}
