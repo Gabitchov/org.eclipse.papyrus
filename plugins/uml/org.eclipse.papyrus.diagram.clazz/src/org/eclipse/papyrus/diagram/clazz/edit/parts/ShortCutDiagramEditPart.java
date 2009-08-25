@@ -143,11 +143,11 @@ AbstractBorderedShapeEditPart {
 				return result;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 		};
@@ -201,6 +201,7 @@ AbstractBorderedShapeEditPart {
 	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
+	 *@generated NOT
 	 */
 	protected IEditorFactoryRegistry getEditorRegistry() {
 		if (editorRegistry == null) {
@@ -275,6 +276,9 @@ AbstractBorderedShapeEditPart {
 		super.refresh();
 	}
 
+	/**
+	 * @generated NOT
+	 */
 	protected void refreshBounds() {
 		int width = 34;
 		int height = 20;
