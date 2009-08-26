@@ -75,7 +75,6 @@
       <availablePage>
         <emfPageIdentifier href="SYSML.metamodel.notation#/2"/>
       </availablePage>
-      <availablePage/>
       <availablePage>
         <emfPageIdentifier href="SYSML.metamodel.notation#/8"/>
       </availablePage>
@@ -100,11 +99,9 @@
       <availablePage>
         <emfPageIdentifier href="SYSML.metamodel.notation#/2"/>
       </availablePage>
-      <availablePage/>
       <availablePage>
         <emfPageIdentifier href="SYSML.metamodel.notation#/8"/>
       </availablePage>
-      <availablePage/>
       <availablePage>
         <emfPageIdentifier href="SYSML.metamodel.notation#/6"/>
       </availablePage>
@@ -180,11 +177,9 @@
       <availablePage>
         <emfPageIdentifier href="SYSML.metamodel.notation#/8"/>
       </availablePage>
-      <availablePage/>
       <availablePage>
         <emfPageIdentifier href="SYSML.metamodel.notation#/9"/>
       </availablePage>
-      <availablePage/>
     </pageList>
     <sashModel currentSelection="/1/@sashModel/@windows.0/@children.0">
       <windows>
@@ -224,94 +219,6 @@
           </children>
           <children>
             <emfPageIdentifier href="SYSML.metamodel.notation#/5"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/5"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/5"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/6"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/5"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/0"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/7"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/9"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/3"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/1"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/7"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/1"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/2"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/8"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/4"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/5"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/6"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/9"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/7"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/1"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/0"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/3"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/3"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/9"/>
-          </children>
-          <children/>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/0"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/7"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/7"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/7"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/10"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SYSML.metamodel.notation#/0"/>
           </children>
         </children>
       </windows>
