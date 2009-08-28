@@ -25,6 +25,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.ui.palette.PaletteCustomizer;
+import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
@@ -39,6 +41,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteCustomizer;
+import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
@@ -60,12 +64,12 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID"; //$NON-NLS-1$
+	public static final String CONTEXT_ID = "org.eclipse.papyrus.diagram.clazz.ui.diagramContext"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final String CONTEXT_ID = "org.eclipse.papyrus.diagram.clazz.ui.diagramContext"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -77,8 +81,29 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	/**
 	 * @generated
 	 */
-	protected String getContextID() {
-		return CONTEXT_ID;
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
+				getDiagramGraphicalViewer());
+		getDiagramGraphicalViewer().setContextMenu(provider);
+		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected PaletteViewer constructPaletteViewer() {
+		return new PapyrusPaletteViewer();
+	}
+
+	/**
+	 * Creation factory method for the palette customizer.
+	 * 
+	 * @return a new palette customizer
+	 */
+	protected PaletteCustomizer createPaletteCustomizer() {
+		return new PapyrusPaletteCustomizer(getPreferenceStore());
 	}
 
 	/**
@@ -87,21 +112,17 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
 		new UMLPaletteFactory().fillPalette(root);
+		// RS: reapply customization, otherwise they will not be applied to the palette previously
+		// filled...
+		applyCustomizationsToPalette(root);
 		return root;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected PreferencesHint getPreferencesHint() {
-		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getContributorId() {
-		return UMLDiagramEditorPlugin.ID;
+	public void doSaveAs() {
+		performSaveAs(new NullProgressMonitor());
 	}
 
 	/**
@@ -117,6 +138,20 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 			};
 		}
 		return super.getAdapter(type);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected String getContextID() {
+		return CONTEXT_ID;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getContributorId() {
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
@@ -143,12 +178,23 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	/**
 	 * @generated
 	 */
-	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			setDocumentProvider(UMLDiagramEditorPlugin.getInstance().getDocumentProvider());
-		} else {
-			super.setDocumentProvider(input);
-		}
+	private ISelection getNavigatorSelection() {
+		IDiagramDocument document = getDiagramDocument();
+		return StructuredSelection.EMPTY;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected PreferencesHint getPreferencesHint() {
+		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+	}
+
+	/**
+	 * @generated
+	 */
+	public ShowInContext getShowInContext() {
+		return new ShowInContext(getEditorInput(), getNavigatorSelection());
 	}
 
 	/**
@@ -163,13 +209,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	 */
 	public boolean isSaveAsAllowed() {
 		return true;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void doSaveAs() {
-		performSaveAs(new NullProgressMonitor());
 	}
 
 	/**
@@ -247,27 +286,12 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	/**
 	 * @generated
 	 */
-	public ShowInContext getShowInContext() {
-		return new ShowInContext(getEditorInput(), getNavigatorSelection());
-	}
-
-	/**
-	 * @generated
-	 */
-	private ISelection getNavigatorSelection() {
-		IDiagramDocument document = getDiagramDocument();
-		return StructuredSelection.EMPTY;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void configureGraphicalViewer() {
-		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
-				getDiagramGraphicalViewer());
-		getDiagramGraphicalViewer().setContextMenu(provider);
-		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
+	protected void setDocumentProvider(IEditorInput input) {
+		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+			setDocumentProvider(UMLDiagramEditorPlugin.getInstance().getDocumentProvider());
+		} else {
+			super.setDocumentProvider(input);
+		}
 	}
 
 }

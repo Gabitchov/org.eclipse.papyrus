@@ -82,4 +82,11 @@ public class Messages extends NLS {
 
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.Usage} links */
 	public static String AppliedStereotypeLabel_UsageTag;
+
+	// ///////////////////////// Palette Customisation /////////////////////////////////////
+	/** Tooltip for the add button */
+	public static String PapyrusPaletteCustomizerDialog_AddButtonTooltip;
+
+	/** Tooltip for the remove button */
+	public static String PapyrusPaletteCustomizerDialog_RemoveButtonTooltip;
 }

@@ -35,7 +35,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** The Constant ID. */
-	public static final String ID = "org.eclipse.papyrus.common.diagram.common";
+	public static final String ID = "org.eclipse.papyrus.diagram.common";
 
 	// The shared instance
 	private static Activator plugin;
