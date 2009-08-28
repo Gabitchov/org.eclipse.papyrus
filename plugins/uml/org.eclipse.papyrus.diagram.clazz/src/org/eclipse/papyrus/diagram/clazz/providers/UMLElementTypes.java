@@ -39,6 +39,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
@@ -358,6 +359,11 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType ClassifierTemplateParameter_3031 = getElementType("org.eclipse.papyrus.diagram.clazz.ClassifierTemplateParameter_3031"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Link_4016 = getElementType("org.eclipse.papyrus.diagram.clazz.Link_4016"); //$NON-NLS-1$
 
 	/**
@@ -609,6 +615,8 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(RedefinableTemplateSignature_3015, UMLPackage.eINSTANCE.getRedefinableTemplateSignature());
 
+			elements.put(ClassifierTemplateParameter_3031, UMLPackage.eINSTANCE.getClassifierTemplateParameter());
+
 			elements.put(TemplateParameter_3016, UMLPackage.eINSTANCE.getTemplateParameter());
 
 			elements.put(Property_3005, UMLPackage.eINSTANCE.getProperty());
@@ -734,6 +742,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Operation_3003);
 			KNOWN_ELEMENT_TYPES.add(Class_3004);
 			KNOWN_ELEMENT_TYPES.add(RedefinableTemplateSignature_3015);
+			KNOWN_ELEMENT_TYPES.add(ClassifierTemplateParameter_3031);
 			KNOWN_ELEMENT_TYPES.add(TemplateParameter_3016);
 			KNOWN_ELEMENT_TYPES.add(Property_3005);
 			KNOWN_ELEMENT_TYPES.add(Property_3006);
@@ -831,6 +840,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return Class_3004;
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return RedefinableTemplateSignature_3015;
+		case ClassifierTemplateParameterEditPart.VISUAL_ID:
+			return ClassifierTemplateParameter_3031;
 		case TemplateParameterEditPart.VISUAL_ID:
 			return TemplateParameter_3016;
 		case Property2EditPart.VISUAL_ID:

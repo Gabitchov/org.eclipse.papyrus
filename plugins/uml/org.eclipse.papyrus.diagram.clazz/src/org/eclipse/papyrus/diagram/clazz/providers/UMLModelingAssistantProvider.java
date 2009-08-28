@@ -143,7 +143,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (editPart instanceof RedefinableTemplateSignatureEditPart) {
-			ArrayList types = new ArrayList(1);
+			ArrayList types = new ArrayList(2);
+			types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
 			types.add(UMLElementTypes.TemplateParameter_3016);
 			return types;
 		}

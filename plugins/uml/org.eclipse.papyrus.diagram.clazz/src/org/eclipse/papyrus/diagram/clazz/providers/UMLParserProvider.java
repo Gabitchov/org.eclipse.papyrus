@@ -13,8 +13,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.parsers.ClassifierTemplateParameterParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.SlotParser;
+import org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateParameterParser;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAssociationEditPart;
@@ -40,6 +42,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBody2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPart;
@@ -80,6 +83,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -602,6 +606,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private TemplateParameterParser templateParameter_3016Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTemplateParameter_3016Parser() {
+		if (templateParameter_3016Parser == null) {
+			templateParameter_3016Parser = new TemplateParameterParser();
+		}
+		return templateParameter_3016Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getClass_3008Parser() {
 		if (class_3008Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
@@ -732,6 +751,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			slot_3030Parser = new SlotParser();
 		}
 		return slot_3030Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ClassifierTemplateParameterParser classifierTemplateParameter_3031Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getClassifierTemplateParameter_3031Parser() {
+		if (classifierTemplateParameter_3031Parser == null) {
+			classifierTemplateParameter_3031Parser = new ClassifierTemplateParameterParser();
+		}
+		return classifierTemplateParameter_3031Parser;
 	}
 
 	/**
@@ -1130,6 +1164,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOperation_3003Parser();
 		case Class2EditPart.VISUAL_ID:
 			return getClass_3004Parser();
+		case ClassifierTemplateParameterEditPart.VISUAL_ID:
+			return getClassifierTemplateParameter_3031Parser();
+		case TemplateParameterEditPart.VISUAL_ID:
+			return getTemplateParameter_3016Parser();
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3005Parser();
 		case Property3EditPart.VISUAL_ID:

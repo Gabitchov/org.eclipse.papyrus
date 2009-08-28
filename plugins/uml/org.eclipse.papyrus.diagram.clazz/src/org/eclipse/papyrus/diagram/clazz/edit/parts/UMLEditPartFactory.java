@@ -146,6 +146,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 				return new RedefinableTemplateSignatureEditPart(view);
 
+			case ClassifierTemplateParameterEditPart.VISUAL_ID:
+				return new ClassifierTemplateParameterEditPart(view);
+
 			case TemplateParameterEditPart.VISUAL_ID:
 				return new TemplateParameterEditPart(view);
 

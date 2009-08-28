@@ -708,6 +708,7 @@ public class UMLPaletteFactory {
 		paletteContainer.setDescription(Messages.Template5Group_desc);
 		paletteContainer.add(createRedefinableTemplateSignature1CreationTool());
 		paletteContainer.add(createTemplateParameter2CreationTool());
+		paletteContainer.add(createClassifierTemplateParameter3CreationTool());
 		return paletteContainer;
 	}
 
@@ -735,6 +736,20 @@ public class UMLPaletteFactory {
 				Messages.TemplateParameter2CreationTool_desc, types);
 		entry.setId("createTemplateParameter2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.TemplateParameter_3016));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createClassifierTemplateParameter3CreationTool() {
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
+		NodeToolEntry entry = new NodeToolEntry(Messages.ClassifierTemplateParameter3CreationTool_title,
+				Messages.ClassifierTemplateParameter3CreationTool_desc, types);
+		entry.setId("createClassifierTemplateParameter3CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.ClassifierTemplateParameter_3031));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

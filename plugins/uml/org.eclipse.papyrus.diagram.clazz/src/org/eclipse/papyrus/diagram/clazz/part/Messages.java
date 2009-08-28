@@ -698,6 +698,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ClassifierTemplateParameter3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassifierTemplateParameter3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String TemplateParameter2CreationTool_title;
 
 	/**

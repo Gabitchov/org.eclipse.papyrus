@@ -156,7 +156,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 		if (childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -181,16 +181,6 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	}
 
 	/**
-	 *Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-
-	}
-
-	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -204,11 +194,11 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 				return result;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 		};
@@ -280,7 +270,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -304,7 +295,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -712,7 +704,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -739,7 +732,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1220,7 +1214,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1677,12 +1672,37 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
 					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (type == UMLElementTypes.ClassifierTemplateParameter_3031) {
+				return getChildBySemanticHint(UMLVisualIDRegistry
+						.getType(RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
+			}
 			if (type == UMLElementTypes.TemplateParameter_3016) {
 				return getChildBySemanticHint(UMLVisualIDRegistry
 						.getType(RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
+	}
+
+	/**
+	 *Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	protected void refreshBounds() {
+		super.refreshBounds();
+		// ensure refreshing figures
+		getFigure().getParent().getLayoutManager().layout(getFigure().getParent());
 	}
 
 	/**
@@ -1702,7 +1722,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 		if (childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

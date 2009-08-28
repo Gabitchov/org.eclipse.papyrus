@@ -221,6 +221,9 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getClassifierTemplateParameter().isSuperTypeOf(domainElement.eClass())) {
+				return ClassifierTemplateParameterEditPart.VISUAL_ID;
+			}
 			if (UMLPackage.eINSTANCE.getTemplateParameter().isSuperTypeOf(domainElement.eClass())) {
 				return TemplateParameterEditPart.VISUAL_ID;
 			}
@@ -878,6 +881,9 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+			if (ClassifierTemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if (TemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -1672,6 +1678,10 @@ public class UMLVisualIDRegistry {
 		root.addNode(2008, viewInfo);
 
 		root.addNode(2002, viewInfo);
+
+		viewInfo = new BaseViewInfo(3031, ViewInfo.Node, "ClassifierTemplateParameter");
+
+		root.addNode(7014, viewInfo);
 
 		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "TemplateParameter");
 

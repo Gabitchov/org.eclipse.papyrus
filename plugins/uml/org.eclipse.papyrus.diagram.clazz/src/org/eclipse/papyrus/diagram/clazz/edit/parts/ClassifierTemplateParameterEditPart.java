@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -54,7 +41,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.TemplateParameterItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.ClassifierTemplateParameterItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -80,17 +67,17 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class TemplateParameterEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class ClassifierTemplateParameterEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public class TemplateParameterDescriptor extends WrappingLabel {
+	public class ClassifierTemplateParameterDescriptor extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public TemplateParameterDescriptor() {
+		public ClassifierTemplateParameterDescriptor() {
 			this.setText("<UNDEFINED>");
 		}
 
@@ -101,7 +88,7 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3016;
+	public static final int VISUAL_ID = 3031;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
@@ -132,7 +119,7 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public TemplateParameterEditPart(View view) {
+	public ClassifierTemplateParameterEditPart(View view) {
 		super(view);
 	}
 
@@ -206,7 +193,7 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TemplateParameterItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ClassifierTemplateParameterItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -225,7 +212,7 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new TemplateParameterDescriptor();
+		return new ClassifierTemplateParameterDescriptor();
 	}
 
 	/**
@@ -413,9 +400,12 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.TemplateParameter_3016, getParserElement(),
-					UMLVisualIDRegistry
-							.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart.VISUAL_ID));
+			parser = UMLParserProvider
+					.getParser(
+							UMLElementTypes.ClassifierTemplateParameter_3031,
+							getParserElement(),
+							UMLVisualIDRegistry
+									.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -435,7 +425,7 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
@@ -796,6 +786,8 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 				&& languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 					.eClass().getInstanceClassName());
+		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
 		}
 	}
 

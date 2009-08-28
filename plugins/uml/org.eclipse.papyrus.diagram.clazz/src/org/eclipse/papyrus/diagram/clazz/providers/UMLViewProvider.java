@@ -597,6 +597,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createClassifierTemplateParameter_3031(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(ClassifierTemplateParameterEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Edge createConstraintConstrainedElement_4014(View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -1380,6 +1393,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return createRedefinableTemplateSignature_3015(domainElement, containerView, index, persisted,
 					preferencesHint);
+		case ClassifierTemplateParameterEditPart.VISUAL_ID:
+			return createClassifierTemplateParameter_3031(domainElement, containerView, index, persisted,
+					preferencesHint);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return createTemplateParameter_3016(domainElement, containerView, index, persisted, preferencesHint);
 		case Property2EditPart.VISUAL_ID:
@@ -2109,7 +2125,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same
-							// as in element type
+			// as in element type
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
@@ -2146,12 +2162,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in
-									// element type
+					// element type
 				}
 				if (domainElement != null
 						&& visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element
-									// type
+					// type
 				}
 			} else {
 				if (!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
@@ -2171,6 +2187,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case OperationEditPart.VISUAL_ID:
 				case Class2EditPart.VISUAL_ID:
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+				case ClassifierTemplateParameterEditPart.VISUAL_ID:
 				case TemplateParameterEditPart.VISUAL_ID:
 				case EnumerationEditPartCN.VISUAL_ID:
 				case EnumerationLiteralEditPart.VISUAL_ID:
@@ -2206,7 +2223,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for
-										// domain element
+						// domain element
 					}
 					break;
 				default:
@@ -2224,6 +2241,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| CommentEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID
 				|| PropertyEditPart.VISUAL_ID == visualID || OperationEditPart.VISUAL_ID == visualID
 				|| Class2EditPart.VISUAL_ID == visualID || RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID
+				|| ClassifierTemplateParameterEditPart.VISUAL_ID == visualID
 				|| TemplateParameterEditPart.VISUAL_ID == visualID || Property2EditPart.VISUAL_ID == visualID
 				|| Property3EditPart.VISUAL_ID == visualID || Operation2EditPart.VISUAL_ID == visualID
 				|| Class3EditPart.VISUAL_ID == visualID || InstanceSpecificationEditPartCN.VISUAL_ID == visualID

@@ -38,7 +38,9 @@ public class AdvancedBorderItemLocator extends BorderItemLocator {
 	public AdvancedBorderItemLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}
+	
 
+	
 	/**
 	 * 
 	 * {@inheritDoc}

@@ -587,6 +587,10 @@ public class UMLDiagramUpdater {
 		for (Iterator it = modelElement.getParameters().iterator(); it.hasNext();) {
 			TemplateParameter childElement = (TemplateParameter) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == ClassifierTemplateParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if (visualID == TemplateParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1620,6 +1624,8 @@ public class UMLDiagramUpdater {
 			return getClass_3004ContainedLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015ContainedLinks(view);
+		case ClassifierTemplateParameterEditPart.VISUAL_ID:
+			return getClassifierTemplateParameter_3031ContainedLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016ContainedLinks(view);
 		case Property2EditPart.VISUAL_ID:
@@ -1753,6 +1759,8 @@ public class UMLDiagramUpdater {
 			return getClass_3004IncomingLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015IncomingLinks(view);
+		case ClassifierTemplateParameterEditPart.VISUAL_ID:
+			return getClassifierTemplateParameter_3031IncomingLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016IncomingLinks(view);
 		case Property2EditPart.VISUAL_ID:
@@ -1886,6 +1894,8 @@ public class UMLDiagramUpdater {
 			return getClass_3004OutgoingLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015OutgoingLinks(view);
+		case ClassifierTemplateParameterEditPart.VISUAL_ID:
+			return getClassifierTemplateParameter_3031OutgoingLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016OutgoingLinks(view);
 		case Property2EditPart.VISUAL_ID:
@@ -2550,6 +2560,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getSlot_3030ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getClassifierTemplateParameter_3031ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -3447,6 +3464,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getSlot_3030IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getClassifierTemplateParameter_3031IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -4425,6 +4449,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getSlot_3030OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getClassifierTemplateParameter_3031OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
