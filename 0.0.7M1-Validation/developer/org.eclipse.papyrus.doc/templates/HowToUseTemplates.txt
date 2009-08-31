@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+
+--------------------------
+! Papyrus Code Templates !
+--------------------------
+
+In Eclipse workbench, select "Window" -> "preferences" 
+
+In the opened window, in the left tree, select:
+"Java" -> "Code Style" -> "Code Templates"
+
+On the right, click on the button: "Import..."
+
+Select the place where the file "Papyrus Code Templates.xml" is.
+
+
+-------------------------------------------------------------------------------
+
+--------------------
+! Papyrus Formater !
+--------------------
+
+In Eclipse workbench, select "Window" -> "preferences" 
+
+In the opened window, in the left tree, select:
+"Java" -> "Code Style" -> "Formatter"
+
+On the right, click on the button: "Import..."
+
+Select the place where the file "Papyrus Formatter profile.xml" is.
+
+-------------------------------------------------------------------------------

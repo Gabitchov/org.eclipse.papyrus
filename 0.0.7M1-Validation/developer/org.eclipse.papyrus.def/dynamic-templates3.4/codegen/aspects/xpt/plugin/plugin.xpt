@@ -1,0 +1,103 @@
+/*
+ * Copyright (c) 2008 Atos Origin
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thibault Landre (Atos Origin) - initial API and implementation
+ */
+ 
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+
+«EXTENSION xpt::preferences::PrefsConstant»
+
+«DEFINE category FOR gmfgen::GenDiagram»«getDiagramPreferencePageCategory()».«editorGen.modelID.toLowerCase()»«ENDDEFINE»
+ 
+ «AROUND plugin FOR gmfgen::GenPlugin-»
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+«EXPAND xpt::Common::xcopyright FOR editorGen-»
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+      <fileTypes
+         type="text"
+         extension="«editorGen.diagramFileExtension»">
+      </fileTypes>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+      <parser
+         type="«editorGen.diagramFileExtension»"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+«EXPAND xpt::editor::extensions::extensions FOR editorGen-»
+«EXPAND xpt::plugin::plugin::menu-»
+«EXPAND xpt::plugin::plugin::validation FOR editorGen.diagram-»
+«EXPAND xpt::plugin::plugin::metrics FOR editorGen.metrics-»
+«EXPAND xpt::propsheet::extensions::extensions FOR editorGen.propertySheet-»
+«EXPAND preferencePages FOR editorGen.diagram-»
+«EXPAND preferencePageInitializer FOR editorGen.diagram-»
+«EXPAND xpt::providers::extensions::extensions FOR editorGen.diagram-»
+«EXPAND xpt::navigator::extensions::extensions FOR editorGen.navigator-»
+«EXPAND xpt::application::extensions::extensions FOR editorGen.application-»
+«EXPAND xpt::ConstraintProviders::extensions FOR editorGen-»
+«EXPAND xpt::diagram::updater::extensions::extensions FOR editorGen.diagramUpdater-»
+«EXPAND xpt::plugin::plugin::additions-»
+</plugin>
+«ENDAROUND»
+
+«DEFINE preferencePageInitializer FOR gmfgen::GenDiagram»
+	<extension point="org.eclipse.core.runtime.preferences">
+		«EXPAND xpt::Common::xmlGeneratedTag»
+		<initializer class="«preferencesPackageName».DiagramPreferenceInitializer"/>
+	</extension>
+«ENDDEFINE»
+
+«DEFINE preferencePages FOR gmfgen::GenDiagram»
+«EXPAND xpt::Common::xmlGeneratedTag»
+<extension point="org.eclipse.ui.preferencePages">
+«REM»Generate Diagram Preference Page«ENDREM»
+	<page 
+			category="«getDiagramPreferencePageCategory()»"
+			class="«preferencesPackageName».«getDiagramPreferencePageFileName(editorGen.modelID)»"
+			id="«EXPAND category»"
+			name="«editorGen.modelID» Diagram"/>
+
+«REM»Generate Nodes Preference Pages«ENDREM»
+«FOREACH topLevelNodes AS node -»
+	«EXPAND preferenceExtensionNode FOR node-»
+«ENDFOREACH»
+«REM»Generate Links Preference Pages«ENDREM»
+«FOREACH links AS link -»
+	«EXPAND preferenceExtensionLink(this) FOR link.elementType-»
+«ENDFOREACH»
+
+</extension>
+«ENDDEFINE»
+
+
+«DEFINE preferenceExtensionNode FOR gmfgen::GenNode»
+      <page
+            category="«EXPAND category FOR getDiagram()»"
+            class="«getDiagram().preferencesPackageName».«getUniqueIdentifier()»«getPreferencePageSuffix()»"
+            id="«getDiagram().preferencesPackageName».«getUniqueIdentifier()»«getPreferencePageSuffix()»"
+            name="«elementType.displayName»"/>«ENDDEFINE»
+
+«DEFINE preferenceExtensionLink(gmfgen::GenDiagram diagram) FOR gmfgen::MetamodelType»
+      <page
+            category="«EXPAND category FOR diagram»"
+            class="«diagram.preferencesPackageName».«displayName»«getPreferencePageSuffix()»"
+            id="«diagram.preferencesPackageName».«displayName»«getPreferencePageSuffix()»"
+            name="«displayName»"/>«ENDDEFINE»
+ 
+ «DEFINE preferenceExtensionLink(gmfgen::GenDiagram diagram) FOR gmfgen::ElementType»«ENDDEFINE»
+ 

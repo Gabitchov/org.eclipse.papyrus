@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor"
+            contributorClass="org.eclipse.papyrus.editor.PapyrusActionBarContributor"
+            default="true"
+            extensions="di"
+            icon="icons/papyrus/Papyrus_16x16.gif"
+            id="org.eclipse.papyrus.core.papyrusEditor"
+            name="Papyrus Editor Core">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.perspectives">
+	   <perspective
+	         class="org.eclipse.papyrus.core.perspective.PapyrusPerspective"
+	         icon="icons/papyrus/Papyrus_16x16.gif"
+	         id="org.eclipse.papyrus.core.perspective"
+	         name="Papyrus">
+	   </perspective>
+	</extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=navigate">
+         <menu
+               id="org.eclipse.papyrus.ui.menu"
+               label="Papyrus"
+               tooltip="Papyrus Editor Menu">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+   </extension>
+
+</plugin>

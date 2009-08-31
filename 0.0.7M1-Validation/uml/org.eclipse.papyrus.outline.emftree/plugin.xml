@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.core.papyrusContentOutline">
+      <contentoutline
+            class="org.eclipse.papyrus.outline.emftree.ContentOutline"
+            priority="1">
+      </contentoutline>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <actionBarContributor
+            actionBarContributorClass="org.eclipse.papyrus.di.presentation.DiActionBarContributor"
+            id="DiActionBarContributor"
+            implementingClass="org.eclipse.papyrus.di.presentation.DiActionBarContributor">
+      </actionBarContributor>
+   </extension>
+
+</plugin>

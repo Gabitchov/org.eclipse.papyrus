@@ -1,0 +1,43 @@
+/*
+ * Copyright (c) 2008 Atos Origin
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thibault Landre (Atos Origin) - initial API and implementation
+ */
+ 
+ «IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+ 
+  «EXTENSION xpt::preferences::PrefsConstant»
+
+ 
+ «AROUND additions FOR gmfgen::GenNode»
+ 	«EXPAND initializer»
+ «ENDAROUND»
+ 
+  «DEFINE initializer FOR gmfgen::GenTopLevelNode»
+  «EXPAND xpt::Common::generatedClassComment»
+ 	@Override
+	protected void initializeFromPreferences(org.eclipse.gmf.runtime.notation.View view) {
+	
+		org.eclipse.jface.preference.IPreferenceStore store = (org.eclipse.jface.preference.IPreferenceStore) getPreferencesHint().getPreferenceStore();
+	
+		if (store == null) {
+			return;
+		}
+	
+		org.eclipse.papyrus.preferences.initializer.NodeViewInitializer viewInitializer = new org.eclipse.papyrus.preferences.initializer.NodeViewInitializer(view, store);
+		viewInitializer.initFillColor(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceFillColorConstant(getUniqueIdentifier().toUpperCase())»);
+		viewInitializer.initFont(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceFontConstant(getUniqueIdentifier().toUpperCase())»);
+		viewInitializer.initFontColor(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceFontColorConstant(getUniqueIdentifier().toUpperCase())»);
+		viewInitializer.initLineColor(«getDiagram().preferencesPackageName».«getPreferenceConstantFileName()».«getPreferenceLineColorConstant(getUniqueIdentifier().toUpperCase())»);
+		
+	}
+ «ENDDEFINE»
+ 
+ «DEFINE initializer FOR gmfgen::GenNode»
+ «ENDDEFINE»
