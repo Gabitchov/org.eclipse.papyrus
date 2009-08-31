@@ -74,6 +74,7 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 		refreshQualifiedNameDepth();
 		refreshQualifiedName();
 		refreshIconNamedLabel();
+		refreshFontColor();
 	}
 
 	/**
