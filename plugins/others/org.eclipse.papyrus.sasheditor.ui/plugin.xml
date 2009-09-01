@@ -9,13 +9,6 @@
             id="org.eclipse.papyrus.sasheditor.ui">
       </category>
       <view
-            name="Sash Window View Orig"
-            icon="icons/sample.gif"
-            category="org.eclipse.papyrus.sasheditor.ui"
-            class="org.eclipse.papyrus.sasheditor.ui.views.SashWindowsViewOrig"
-            id="org.eclipse.papyrus.sasheditor.ui.views.SashWindowsViewOrig">
-      </view>
-      <view
             category="org.eclipse.papyrus.sasheditor.ui"
             class="org.eclipse.papyrus.sasheditor.ui.views.SashWindowsViewPart"
             icon="icons/sample.gif"
