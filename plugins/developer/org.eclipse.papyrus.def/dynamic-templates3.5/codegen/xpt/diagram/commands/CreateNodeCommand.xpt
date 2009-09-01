@@ -8,7 +8,7 @@
  *
  * Contributors:
  *    Alexander Shatalin (Borland) - initial API and implementation
-  *   modified by Patrick Tessier (CEA LIST)
+ *   modified by Patrick Tessier (CEA LIST)
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
@@ -71,9 +71,14 @@ protected org.eclipse.emf.ecore.EObject getElementToEdit() {
 		return eObject;
 }
 «ENDDEFINE»
+
+«REM» [AbstractElement] Modified for Abstract domain element «ENDREM»
 «DEFINE doExecuteWithResultMethod FOR gmfgen::GenNode-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
+«REM» [AbstractElement] START «ENDREM»	
+«IF modelFacet.metaClass.ecoreClass.abstract.oclAsType(Boolean) <> true-»
+«REM» [AbstractElement] END   «ENDREM»
 «IF modelFacet.isPhantomElement()-»
 		«EXPAND phantomElementCreation(self, 'newElement') FOR modelFacet»
 «ELSE-»
@@ -86,6 +91,12 @@ protected org.eclipse.emf.ecore.EObject getElementToEdit() {
 		((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(«EXPAND MetaModel::DowncastToEObject('newElement') FOR modelFacet.metaClass»);
 		return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult(newElement);
 	}
+«REM» [AbstractElement] START «ENDREM»	
+«ELSE-»
+		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
+	}
+«ENDIF»
+«REM» [AbstractElement] END   «ENDREM»	
 «ENDDEFINE»
 /*
  * Unlike original CreateElementCommand, we don't keep track of IStatus from configureCommand.execute,
