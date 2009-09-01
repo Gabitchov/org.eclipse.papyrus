@@ -28,7 +28,7 @@ public class «EXPAND className» extends org.eclipse.core.runtime.preferences.A
 	«EXPAND xpt::Common::generatedMemberComment»
 	public void initializeDefaultPreferences() {
 		org.eclipse.jface.preference.IPreferenceStore store = getPreferenceStore();
-		«FOREACH topLevelNodes.elementType.displayName->asSet() AS string -»
+		«FOREACH topLevelNodes.elementType.displayName->asSet()->union(childNodes.elementType.displayName->asSet()) AS string -»
 			«IF "UNDEFINED" <> string.toUpper()»
 				«self.preferencesPackageName».«string»PreferencePage.initDefaults(store);
 			«ENDIF»
