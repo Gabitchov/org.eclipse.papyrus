@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 import org.eclipse.gmf.codegen.gmfgen.GenChildNode;
 
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
@@ -25,7 +26,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl#getGenChildNode <em>Gen Child Node</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl#getGenNode <em>Gen Node</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,15 +34,14 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
  */
 public class SpecificDiagramUpdaterImpl extends ExternalHookImpl implements SpecificDiagramUpdater {
 	/**
-	 * The cached value of the '{@link #getGenChildNode() <em>Gen Child Node</em>}' reference.
+	 * The cached value of the '{@link #getGenNode() <em>Gen Node</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGenChildNode()
+	 * @see #getGenNode()
 	 * @generated
 	 * @ordered
 	 */
-	protected GenChildNode genChildNode;
-
+	protected GenCommonBase genNode;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,16 +66,16 @@ public class SpecificDiagramUpdaterImpl extends ExternalHookImpl implements Spec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GenChildNode getGenChildNode() {
-		if (genChildNode != null && genChildNode.eIsProxy()) {
-			InternalEObject oldGenChildNode = (InternalEObject)genChildNode;
-			genChildNode = (GenChildNode)eResolveProxy(oldGenChildNode);
-			if (genChildNode != oldGenChildNode) {
+	public GenCommonBase getGenNode() {
+		if (genNode != null && genNode.eIsProxy()) {
+			InternalEObject oldGenNode = (InternalEObject)genNode;
+			genNode = (GenCommonBase)eResolveProxy(oldGenNode);
+			if (genNode != oldGenNode) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE, oldGenChildNode, genChildNode));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_NODE, oldGenNode, genNode));
 			}
 		}
-		return genChildNode;
+		return genNode;
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class SpecificDiagramUpdaterImpl extends ExternalHookImpl implements Spec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GenChildNode basicGetGenChildNode() {
-		return genChildNode;
+	public GenCommonBase basicGetGenNode() {
+		return genNode;
 	}
 
 	/**
@@ -92,11 +92,11 @@ public class SpecificDiagramUpdaterImpl extends ExternalHookImpl implements Spec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGenChildNode(GenChildNode newGenChildNode) {
-		GenChildNode oldGenChildNode = genChildNode;
-		genChildNode = newGenChildNode;
+	public void setGenNode(GenCommonBase newGenNode) {
+		GenCommonBase oldGenNode = genNode;
+		genNode = newGenNode;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE, oldGenChildNode, genChildNode));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_NODE, oldGenNode, genNode));
 	}
 
 	/**
@@ -107,9 +107,9 @@ public class SpecificDiagramUpdaterImpl extends ExternalHookImpl implements Spec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE:
-				if (resolve) return getGenChildNode();
-				return basicGetGenChildNode();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_NODE:
+				if (resolve) return getGenNode();
+				return basicGetGenNode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,8 +122,8 @@ public class SpecificDiagramUpdaterImpl extends ExternalHookImpl implements Spec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE:
-				setGenChildNode((GenChildNode)newValue);
+			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_NODE:
+				setGenNode((GenCommonBase)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,8 +137,8 @@ public class SpecificDiagramUpdaterImpl extends ExternalHookImpl implements Spec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE:
-				setGenChildNode((GenChildNode)null);
+			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_NODE:
+				setGenNode((GenCommonBase)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -152,8 +152,8 @@ public class SpecificDiagramUpdaterImpl extends ExternalHookImpl implements Spec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE:
-				return genChildNode != null;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER__GEN_NODE:
+				return genNode != null;
 		}
 		return super.eIsSet(featureID);
 	}

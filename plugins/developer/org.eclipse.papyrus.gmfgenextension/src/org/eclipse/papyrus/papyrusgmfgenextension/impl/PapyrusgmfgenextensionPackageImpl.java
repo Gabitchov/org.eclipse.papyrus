@@ -447,7 +447,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSpecificDiagramUpdater_GenChildNode() {
+	public EReference getSpecificDiagramUpdater_GenNode() {
 		return (EReference)specificDiagramUpdaterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -521,7 +521,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		createEAttribute(ownedEditpartEClass, OWNED_EDITPART__NAME);
 
 		specificDiagramUpdaterEClass = createEClass(SPECIFIC_DIAGRAM_UPDATER);
-		createEReference(specificDiagramUpdaterEClass, SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE);
+		createEReference(specificDiagramUpdaterEClass, SPECIFIC_DIAGRAM_UPDATER__GEN_NODE);
 	}
 
 	/**
@@ -613,7 +613,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEAttribute(getOwnedEditpart_Name(), theEcorePackage.getEString(), "name", null, 0, 1, OwnedEditpart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(specificDiagramUpdaterEClass, SpecificDiagramUpdater.class, "SpecificDiagramUpdater", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpecificDiagramUpdater_GenChildNode(), theGMFGenPackage.getGenChildNode(), null, "genChildNode", null, 0, 1, SpecificDiagramUpdater.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecificDiagramUpdater_GenNode(), theGMFGenPackage.getGenCommonBase(), null, "genNode", null, 0, 1, SpecificDiagramUpdater.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

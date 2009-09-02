@@ -614,13 +614,13 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	int SPECIFIC_DIAGRAM_UPDATER__CLASSPATH = EXTERNAL_HOOK__CLASSPATH;
 
 	/**
-	 * The feature id for the '<em><b>Gen Child Node</b></em>' reference.
+	 * The feature id for the '<em><b>Gen Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE = EXTERNAL_HOOK_FEATURE_COUNT + 0;
+	int SPECIFIC_DIAGRAM_UPDATER__GEN_NODE = EXTERNAL_HOOK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Specific Diagram Updater</em>' class.
@@ -995,15 +995,15 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EClass getSpecificDiagramUpdater();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenChildNode <em>Gen Child Node</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenNode <em>Gen Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Gen Child Node</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenChildNode()
+	 * @return the meta object for the reference '<em>Gen Node</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenNode()
 	 * @see #getSpecificDiagramUpdater()
 	 * @generated
 	 */
-	EReference getSpecificDiagramUpdater_GenChildNode();
+	EReference getSpecificDiagramUpdater_GenNode();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1324,12 +1324,12 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		EClass SPECIFIC_DIAGRAM_UPDATER = eINSTANCE.getSpecificDiagramUpdater();
 
 		/**
-		 * The meta object literal for the '<em><b>Gen Child Node</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Gen Node</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPECIFIC_DIAGRAM_UPDATER__GEN_CHILD_NODE = eINSTANCE.getSpecificDiagramUpdater_GenChildNode();
+		EReference SPECIFIC_DIAGRAM_UPDATER__GEN_NODE = eINSTANCE.getSpecificDiagramUpdater_GenNode();
 
 	}
 

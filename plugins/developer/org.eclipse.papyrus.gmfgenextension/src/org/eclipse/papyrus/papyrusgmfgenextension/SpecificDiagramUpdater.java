@@ -6,6 +6,7 @@
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 import org.eclipse.gmf.codegen.gmfgen.GenChildNode;
 
 /**
@@ -30,7 +31,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenChildNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenChildNode <em>Gen Child Node</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenNode <em>Gen Node</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,29 +41,29 @@ import org.eclipse.gmf.codegen.gmfgen.GenChildNode;
  */
 public interface SpecificDiagramUpdater extends ExternalHook {
 	/**
-	 * Returns the value of the '<em><b>Gen Child Node</b></em>' reference.
+	 * Returns the value of the '<em><b>Gen Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Gen Child Node</em>' reference isn't clear,
+	 * If the meaning of the '<em>Gen Node</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Child Node</em>' reference.
-	 * @see #setGenChildNode(GenChildNode)
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificDiagramUpdater_GenChildNode()
+	 * @return the value of the '<em>Gen Node</em>' reference.
+	 * @see #setGenNode(GenCommonBase)
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificDiagramUpdater_GenNode()
 	 * @model
 	 * @generated
 	 */
-	GenChildNode getGenChildNode();
+	GenCommonBase getGenNode();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenChildNode <em>Gen Child Node</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenNode <em>Gen Node</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Gen Child Node</em>' reference.
-	 * @see #getGenChildNode()
+	 * @param value the new value of the '<em>Gen Node</em>' reference.
+	 * @see #getGenNode()
 	 * @generated
 	 */
-	void setGenChildNode(GenChildNode value);
+	void setGenNode(GenCommonBase value);
 
 } // SpecificDiagramUpdater
