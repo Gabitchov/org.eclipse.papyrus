@@ -315,7 +315,18 @@
          </propertySection>
       </propertySections>
    </extension>
-
+<extension
+	point="org.eclipse.ui.views.properties.tabbed.propertySections">
+	<propertySections contributorId="TreeOutlinePage">
+		<propertySection
+			afterSection=""
+	   		class="org.eclipse.papyrus.diagram.usecase.sheet.UMLPropertySection"
+	  		id="AdvancedProperty"
+	   		tab="advanced">
+	   		<input type="java.lang.Object"/>
+		</propertySection>
+	</propertySections>
+</extension>
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
       <viewProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLViewProvider">
