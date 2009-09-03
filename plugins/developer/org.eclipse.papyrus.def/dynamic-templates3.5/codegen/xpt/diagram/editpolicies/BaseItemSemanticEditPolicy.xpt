@@ -268,6 +268,9 @@ protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(org.ec
 «REM»
 		FIXME need to check constraint's provider to ensure we don't generate a field
 		for e.g. Java (or Literal, which is unlikely, though) expressions
+		
+		[Papyrus Quick Fix] Do not generate field when the expression is provided
+		by a GenJavaExpressionProvider.
 «ENDREM»
 «DEFINE linkConstraints FOR gmfgen::GenDiagram-»
 «EXPAND xpt::Common::generatedClassComment»
@@ -275,6 +278,9 @@ public static class «getLinkCreationConstraintsClassName()» {
 «IF null <> editorGen.expressionProviders-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	private static final String OPPOSITE_END_VAR = "oppositeEnd"; «EXPAND xpt::Common::nonNLS»
+«REM»[Papyrus Quick Fix] START«ENDREM»
+«IF editorGen.expressionProviders.oclIsTypeOf(gmfgen::GenJavaExpressionProvider)-»
+«REM»[Papyrus Quick Fix] END  «ENDREM»
 «FOREACH getValidLinkConstraints(self) AS lc-»
 «IF lc.sourceEnd <> null-»
 	«EXPAND xpt::Common::generatedMemberComment»
@@ -285,6 +291,9 @@ public static class «getLinkCreationConstraintsClassName()» {
 	private static «editorGen.expressionProviders.getAbstractExpressionQualifiedClassName()» «targetConstraintFieldName(lc.link)»;
 «ENDIF-»
 «ENDFOREACH»
+«REM»[Papyrus Quick Fix] START«ENDREM»
+«ENDIF-»
+«REM»[Papyrus Quick Fix] END  «ENDREM»
 «ENDIF-»
 	«EXPAND canCreate FOREACH links-»
 	«EXPAND canExist FOREACH links-»
