@@ -24,6 +24,7 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
@@ -101,7 +102,10 @@ public class AbstractEditHyperlinkDiagramShell {
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 7;
 		gridLayout.makeColumnsEqualWidth = true;
-		editHyperlinkShell = new Shell();
+		//this line has to be commented in order to open with VISUAL EDITOR
+		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+		
+		//editHyperlinkShell = new Shell();
 		editHyperlinkShell.setText("Edit Hyperlink");
 		editHyperlinkShell.setToolTipText("Edition of a hyperlink");
 		editHyperlinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));

@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
@@ -342,7 +343,11 @@ public  abstract class AbstractHyperLinkManagerShell {
 		GridLayout gridLayout2 = new GridLayout();
 		gridLayout2.numColumns = 14;
 		gridLayout2.makeColumnsEqualWidth = true;
-		hyperLinkShell = new Shell();
+		
+		//this line has to be commented in order to open with VISUAL EDITOR
+		hyperLinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+		
+		//hyperLinkShell = new Shell();
 		hyperLinkShell.setText("HyperLink");
 		hyperLinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		createCTabFolder();

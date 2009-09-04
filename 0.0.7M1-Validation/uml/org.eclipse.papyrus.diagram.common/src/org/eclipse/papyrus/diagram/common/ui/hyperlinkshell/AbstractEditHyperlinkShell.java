@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -88,7 +89,10 @@ public abstract class AbstractEditHyperlinkShell {
 		gridLayout.makeColumnsEqualWidth = true;
 		
 		Display display = Display.getCurrent();
-		editHyperlinkShell = new Shell(display, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+		//this line has to be commented in order to open with VISUAL EDITOR
+		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+		
+		//editHyperlinkShell = new Shell(display, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
 		
 		//editHyperlinkShell = new Shell();
 		editHyperlinkShell.setText("Edit Hyperlink");

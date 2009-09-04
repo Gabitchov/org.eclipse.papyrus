@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 
@@ -94,7 +95,10 @@ public class AbstractLookForDiagramShell {
 		GridLayout gridLayout1 = new GridLayout();
 		gridLayout1.numColumns = 5;
 		gridLayout1.makeColumnsEqualWidth = true;
-		lookforShell = new Shell();
+		//this line has to be commented in order to open with VISUAL EDITOR
+		lookforShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+		
+		//lookforShell = new Shell();
 		lookforShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		createCTabFolder();
 		lookforShell.setLayout(gridLayout1);
