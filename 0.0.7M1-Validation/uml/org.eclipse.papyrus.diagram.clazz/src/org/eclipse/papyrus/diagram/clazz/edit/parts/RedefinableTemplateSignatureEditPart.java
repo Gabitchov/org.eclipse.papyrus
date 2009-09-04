@@ -155,8 +155,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 
 		if (childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his
+			// content pane in his own way
 			pane.add(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -175,8 +175,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -194,11 +194,11 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 				return result;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 		};
@@ -266,14 +266,18 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
+																							 * <org
 																							 * .
-																							 * emf.
+																							 * eclipse
+																							 * . gmf
+																							 * .
+																							 * runtime
+																							 * . emf
+																							 * .
 																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -291,14 +295,18 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
+																							 * <org
 																							 * .
-																							 * emf.
+																							 * eclipse
+																							 * . gmf
+																							 * .
+																							 * runtime
+																							 * . emf
+																							 * .
 																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -700,14 +708,18 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
+																							 * <org
 																							 * .
-																							 * emf.
+																							 * eclipse
+																							 * . gmf
+																							 * .
+																							 * runtime
+																							 * . emf
+																							 * .
 																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -728,14 +740,18 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
 			IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
+																							 * <org
 																							 * .
-																							 * emf.
+																							 * eclipse
+																							 * . gmf
+																							 * .
+																							 * runtime
+																							 * . emf
+																							 * .
 																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1210,14 +1226,18 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
 			IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
+																							 * <org
 																							 * .
-																							 * emf.
+																							 * eclipse
+																							 * . gmf
+																							 * .
+																							 * runtime
+																							 * . emf
+																							 * .
 																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1721,8 +1741,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractBorderItemEdit
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his
+			// content pane in his own way
 			pane.remove(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

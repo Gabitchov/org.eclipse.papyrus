@@ -35,11 +35,11 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
+		OperationPreferencePage.initDefaults(store);
+
 		DataTypePreferencePage.initDefaults(store);
 
 		ModelPreferencePage.initDefaults(store);
-
-		SignalPreferencePage.initDefaults(store);
 
 		AssociationPreferencePage.initDefaults(store);
 
@@ -47,25 +47,41 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		InstanceSpecificationPreferencePage.initDefaults(store);
 
-		CommentPreferencePage.initDefaults(store);
-
 		ConstraintPreferencePage.initDefaults(store);
 
-		EnumerationPreferencePage.initDefaults(store);
+		EnumerationLiteralPreferencePage.initDefaults(store);
+
+		PropertyPreferencePage.initDefaults(store);
 
 		DependencyPreferencePage.initDefaults(store);
 
-		InterfacePreferencePage.initDefaults(store);
-
 		PrimitiveTypePreferencePage.initDefaults(store);
 
-		ClassPreferencePage.initDefaults(store);
+		SlotPreferencePage.initDefaults(store);
 
 		AssociationClassPreferencePage.initDefaults(store);
 
 		PackagePreferencePage.initDefaults(store);
 
 		ComponentPreferencePage.initDefaults(store);
+
+		TemplateParameterPreferencePage.initDefaults(store);
+
+		SignalPreferencePage.initDefaults(store);
+
+		CommentPreferencePage.initDefaults(store);
+
+		EnumerationPreferencePage.initDefaults(store);
+
+		InterfacePreferencePage.initDefaults(store);
+
+		ReceptionPreferencePage.initDefaults(store);
+
+		ClassifierTemplateParameterPreferencePage.initDefaults(store);
+
+		ClassPreferencePage.initDefaults(store);
+
+		RedefinableTemplateSignaturePreferencePage.initDefaults(store);
 
 		PackageMergePreferencePage.initDefaults(store);
 

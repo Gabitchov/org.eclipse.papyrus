@@ -105,8 +105,8 @@ NamedElementEditPart
 
 		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			setupContentPane(pane); // FIXME each comparment should handle his
+			// content pane in his own way
 			pane.add(((InstanceSpecificationSlotCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -124,8 +124,8 @@ NamedElementEditPart
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new InstanceSpecificationGraphicalNodeEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -211,13 +211,18 @@ NamedElementEditPart
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
+																							 * <org
+																							 * .
+																							 * eclipse
+																							 * . gmf
+																							 * .
 																							 * runtime
+																							 * . emf
 																							 * .
-																							 * emf.type
+																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -235,13 +240,18 @@ NamedElementEditPart
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
+																							 * <org
+																							 * .
+																							 * eclipse
+																							 * . gmf
+																							 * .
 																							 * runtime
+																							 * . emf
 																							 * .
-																							 * emf.type
+																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -643,13 +653,18 @@ NamedElementEditPart
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
+																							 * <org
+																							 * .
+																							 * eclipse
+																							 * . gmf
+																							 * .
 																							 * runtime
+																							 * . emf
 																							 * .
-																							 * emf.type
+																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -671,13 +686,18 @@ NamedElementEditPart
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
 			IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
+																							 * <org
+																							 * .
+																							 * eclipse
+																							 * . gmf
+																							 * .
 																							 * runtime
+																							 * . emf
 																							 * .
-																							 * emf.type
+																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1212,13 +1232,18 @@ NamedElementEditPart
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
 			IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
+																							 * <org
+																							 * .
+																							 * eclipse
+																							 * . gmf
+																							 * .
 																							 * runtime
+																							 * . emf
 																							 * .
-																							 * emf.type
+																							 * type
 																							 * .
-																							 * core.
+																							 * core
+																							 * .
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1717,8 +1742,8 @@ NamedElementEditPart
 		}
 		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			setupContentPane(pane); // FIXME each comparment should handle his
+			// content pane in his own way
 			pane.remove(((InstanceSpecificationSlotCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

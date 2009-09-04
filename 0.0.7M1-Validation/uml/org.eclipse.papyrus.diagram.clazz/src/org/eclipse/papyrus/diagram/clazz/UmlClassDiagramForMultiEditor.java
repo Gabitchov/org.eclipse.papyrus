@@ -138,7 +138,8 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	}
 
 	// /**
-	// * Creates and register actions with the {@link ActionRegistry} for this editor.
+	// * Creates and register actions with the {@link ActionRegistry} for this
+	// editor.
 	// */
 	// @Override
 	// protected void createActions() {
