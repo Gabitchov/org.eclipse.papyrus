@@ -35,6 +35,8 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	private List<String> compartmentID;
 
 	private IFigure contentPane;
+	
+	private static final int MINIMUM_COMPARTMENT_HEIGHT = 15;
 
 
 	/**
@@ -154,45 +156,52 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 				((IFigure) childrenList.get(i)).setBounds(bound);
 			}
 
+			HashMap<String, Dimension> compartmentsDimension = new HashMap<String, Dimension>(compartmentID.size());
+			for (String compartment : compartmentID) {
+				RectangleFigure rectangleFigure = containerFigures.get(compartment);
+				if (rectangleFigure.getChildren().size() > 0) {
+					ResizableCompartmentFigure rcf = (ResizableCompartmentFigure) rectangleFigure.getChildren().get(0);
+					if (rcf != null) {
+						Dimension dimensionCompartment = getDimension(rcf);
+						compartmentsDimension.put(compartment, dimensionCompartment);
+					}
+				}
+
+			}
+		
+			optimizeCompartmentSize(compartmentsDimension);
+			
 			for (int i = 0; i < compartmentID.size(); i++) {
 				RectangleFigure rectangleFigure = containerFigures.get(compartmentID.get(i));
 				if (rectangleFigure.getChildren().size() > 0) {
 					ResizableCompartmentFigure rcf = (ResizableCompartmentFigure) rectangleFigure.getChildren().get(0);
 					if (rcf != null) {
 						Point point = getPosition(i);
-						Dimension dimensionCompartment = getDimension(i, rcf, point);
-						Rectangle rect = new Rectangle(point, dimensionCompartment);
+						Rectangle rect = new Rectangle(point, compartmentsDimension.get(compartmentID.get(i)));
 						rcf.getParent().setBounds(rect);
 						rcf.setBounds(rect);
 					}
 				}
 
 			}
+			
 			contentPane.getBounds().setSize(getBounds().width,
 					getBounds().y + getBounds().height - contentPane.getBounds().y);
 		}
 
 		/**
-		 * Get the dimension of the compartment depending on its position and its content.
+		 * Get the dimension of the compartment depending on its content.
 		 * 
-		 * @param index
-		 *            the index of the compartment in the containerFigures list
 		 * @param rcf
 		 *            the ResizableCompartmentFigure which will be displayed
-		 * @param point
-		 *            the location of the compartment
 		 * @return the dimension of the compartment
 		 */
-		private Dimension getDimension(int index, ResizableCompartmentFigure rcf, Point point) {
-			Dimension dimensionCompartment = new Dimension(getBounds().width, wrappedLabelSize);
+		private Dimension getDimension(ResizableCompartmentFigure rcf) {
+			Dimension dimensionCompartment = new Dimension(getBounds().width, 0);
 			if (rcf.isExpanded()) {
 				dimensionCompartment.height += wrappedLabelSize * (rcf.getContentPane().getChildren().size());
 			}
-			// If it is the last compartment of the figure, get all the available room in the
-			// contentPane
-			if (index == compartmentID.size() - 1) {
-				dimensionCompartment.height = getBounds().y + getBounds().height - point.y;
-			}
+
 			return dimensionCompartment;
 		}
 
@@ -215,6 +224,41 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 			}
 			return point;
 		}
+		
+		
+		/**
+		 * Optimize the size of each compartment depending on the size of the compartments container, and the size of each compartment. 
+		 * If a compartment is empty, or not expanded, then a default size is applied to this compartment 
+		 * @param compartmentsDimension an hashmap containing each compartment dimension.
+		 */
+		private void optimizeCompartmentSize(HashMap<String, Dimension> compartmentsDimension) {
+			int compartmentsHeight = 0;
 
+			// Calculate the height of all compartments
+			for (Dimension dimension : compartmentsDimension.values()) {
+				if (dimension.height == 0) {
+					compartmentsHeight += MINIMUM_COMPARTMENT_HEIGHT;
+				} else {
+					compartmentsHeight += dimension.height;
+				}
+			}
+
+			if (getContentPane().getBounds().height > 0) {
+				
+				// ratio between the height of all compartments and the size of the compartments container.
+				double ratio = new Integer(compartmentsHeight).doubleValue()
+						/ new Integer(getContentPane().getBounds().height).doubleValue();
+
+				for (Dimension dimension : compartmentsDimension.values()) {
+					dimension.height = (int) (dimension.height / ratio);
+					if (dimension.height == 0) {
+						dimension.height = MINIMUM_COMPARTMENT_HEIGHT;
+					}
+
+				}
+
+			}
+
+		}
 	}
 }
