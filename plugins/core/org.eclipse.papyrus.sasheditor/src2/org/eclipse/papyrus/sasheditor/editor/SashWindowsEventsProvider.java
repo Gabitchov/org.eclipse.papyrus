@@ -19,10 +19,11 @@ import org.eclipse.ui.IWorkbenchPart;
  * <li>- containerChanged - the active editor has changed, and so the currently active container.</li>
  * </ul>
  * 
- * This class require the current page in order to listen on active editor changed.
+ * This class require the current Eclipse page in order to listen on active editor changed.
  * This class connect itself to the Workbench editor changed event. Then, it ask the current editor for a ISashWindowsContainer (using getAdaptor() ). If the editor return a ISashWindowsContainer,
  * this class listen to the pageChanged events. This class takes care to connect itself to the new ISashWindowsContainer when the editor changes.
  * 
+ * @TODO rename as SashWindowsEventsNotifier
  * @author cedric dumoulin
  * 
  */

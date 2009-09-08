@@ -95,6 +95,15 @@ public class PTabFolder {
 		}
 	};
 
+	private Listener activateListener = new Listener() {
+
+		public void handleEvent(Event e) {
+			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
+			System.out.println("activateListener(" + globalPos + ", event=" + e + ")");
+			handleFolderReselected(globalPos, null);
+		}
+	};
+
 	private SelectionListener selectionListener = new SelectionListener() {
 
 		public void widgetDefaultSelected(SelectionEvent e) {
@@ -241,6 +250,7 @@ public class PTabFolder {
 //		tabFolder.addTraverseListener(traverseListener);
 		
 		theControl.addMouseListener(mouseListener);
+		theControl.addListener(SWT.Activate, activateListener);
 
 //		if (recursive && theControl instanceof Composite) {
 //			Composite composite = (Composite) theControl;
@@ -265,6 +275,7 @@ public class PTabFolder {
 		// theControl.removeDragDetectListener(dragDetectListener);
 //		theControl.removeListener(SWT.MouseUp, mouseUpListener);
 		theControl.removeMouseListener(mouseListener);
+		theControl.removeListener(SWT.Activate, activateListener);
 
 		if (recursive && theControl instanceof Composite) {
 			Composite composite = (Composite) theControl;
@@ -350,9 +361,9 @@ public class PTabFolder {
 
 	/**
 	 * Handle folder reselected.
-	 * A folder is reselected by clicking on the active tabs or on the empty tabs area.
+	 * A folder is reselected by clicking on the active tabs, on the page or on the empty tabs area.
 	 * In each case a PageChangeEvent is fired.
-	 * When mouse click happen on the empty area, the last selected tabs is used.
+	 * When mouse click happen on the empty area, or on the page, the last selected tabs is used.
 	 * Used to switch the Active tab when user click on already opened tabs.
 	 * @param displayPos
 	 * @param e

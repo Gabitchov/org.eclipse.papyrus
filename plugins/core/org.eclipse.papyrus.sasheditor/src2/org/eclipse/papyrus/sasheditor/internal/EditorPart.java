@@ -94,7 +94,7 @@ public class EditorPart extends PagePart {
 		 */
 		public void handleEvent(Event event) {
 			Point globalPos = new Point(event.x, event.y);
-			System.out.println("EditorTile.mouseEnterListener(" + eventName(event.type) + ", " + globalPos + ")");
+			System.out.println(this.getClass().getSimpleName() + ".handleEvent(" + eventName(event.type) + ", " + globalPos + ")");
 		}
 	};
 	
@@ -132,10 +132,11 @@ public class EditorPart extends PagePart {
 	 * For a this implementations, also create the children's controls.
 	 * This method forward to {@link createPartControl(Composite)}.
 	 * @param parent
+	 * TODO remove ?
 	 */
-	public void createControl(Composite parent) {
-		createPartControl(parent);
-	}
+//	public void createControl(Composite parent) {
+//		createPartControl(parent);
+//	}
 
 
 	/**
@@ -149,7 +150,7 @@ public class EditorPart extends PagePart {
 			editorPart = createIEditorPart();
 			// Initialize it and create its controls.
 			editorControl = createEditorPartControl(parent, editorPart);
-//			attachListeners(editorControl, true);
+			attachListeners(editorControl, true);
 			
 		} catch (PartInitException e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
@@ -236,49 +237,49 @@ public class EditorPart extends PagePart {
 		
 		// All following methods listen to the same event. 
 		// So use only one of them
-		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
-		
-		theControl.addListener(SWT.FocusIn, mouseEnterListener);
-		theControl.addListener(SWT.MouseMove, mouseEnterListener);
-		theControl.addListener(SWT.MouseHover, mouseEnterListener);
-		theControl.addListener(SWT.MouseUp, mouseEnterListener);
-		theControl.addListener(SWT.MouseDown, mouseEnterListener);
+//		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
+//		
+//		theControl.addListener(SWT.FocusIn, mouseEnterListener);
+//		theControl.addListener(SWT.MouseMove, mouseEnterListener);
+//		theControl.addListener(SWT.MouseHover, mouseEnterListener);
+//		theControl.addListener(SWT.MouseUp, mouseEnterListener);
+//		theControl.addListener(SWT.MouseDown, mouseEnterListener);
 		theControl.addListener(SWT.Activate, mouseEnterListener);
 		
-		if (recursive && theControl instanceof Composite) {
-			Composite composite = (Composite) theControl;
-			Control[] children = composite.getChildren();
-
-			for (int i = 0; i < children.length; i++) {
-				Control control = children[i];
-
-				attachListeners(control, true);
-			}
-		}
+//		if (recursive && theControl instanceof Composite) {
+//			Composite composite = (Composite) theControl;
+//			Control[] children = composite.getChildren();
+//
+//			for (int i = 0; i < children.length; i++) {
+//				Control control = children[i];
+//
+//				attachListeners(control, true);
+//			}
+//		}
 	}
 
 	/**
 	 * Detach SWT listeners
 	 */
 	private void detachListeners(Control theControl, boolean recursive) {
-		theControl.removeListener(SWT.MouseEnter, mouseEnterListener);
-		theControl.removeListener(SWT.FocusIn, mouseEnterListener);
-		theControl.removeListener(SWT.MouseMove, mouseEnterListener);
-		theControl.removeListener(SWT.MouseHover, mouseEnterListener);
-		theControl.removeListener(SWT.MouseUp, mouseEnterListener);
-		theControl.removeListener(SWT.MouseDown, mouseEnterListener);
+//		theControl.removeListener(SWT.MouseEnter, mouseEnterListener);
+//		theControl.removeListener(SWT.FocusIn, mouseEnterListener);
+//		theControl.removeListener(SWT.MouseMove, mouseEnterListener);
+//		theControl.removeListener(SWT.MouseHover, mouseEnterListener);
+//		theControl.removeListener(SWT.MouseUp, mouseEnterListener);
+//		theControl.removeListener(SWT.MouseDown, mouseEnterListener);
 		theControl.removeListener(SWT.Activate, mouseEnterListener);
 		
-		if (recursive && theControl instanceof Composite) {
-			Composite composite = (Composite) theControl;
-			Control[] children = composite.getChildren();
-
-			for (int i = 0; i < children.length; i++) {
-				Control control = children[i];
-
-				detachListeners(control, false);
-			}
-		}
+//		if (recursive && theControl instanceof Composite) {
+//			Composite composite = (Composite) theControl;
+//			Control[] children = composite.getChildren();
+//
+//			for (int i = 0; i < children.length; i++) {
+//				Control control = children[i];
+//
+//				detachListeners(control, false);
+//			}
+//		}
 	}
 
 
@@ -354,7 +355,7 @@ public class EditorPart extends PagePart {
 	 */
 	public void dispose() {
 		
-//		detachListeners(editorControl, true);
+		detachListeners(editorControl, true);
 		// dispose the SWT root control
 		editorControl.dispose();
 		// Dispose the editor.
