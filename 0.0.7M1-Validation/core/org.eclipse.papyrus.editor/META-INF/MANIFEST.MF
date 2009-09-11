@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Editor Plug-in
 Bundle-SymbolicName: org.eclipse.papyrus.editor;singleton:=true
-Bundle-Version: 0.7.0.vqualifier
+Bundle-Version: 0.7.0
 Bundle-Activator: org.eclipse.papyrus.editor.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
