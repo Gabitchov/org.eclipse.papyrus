@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-Name: Papyrus : UML extensions (library and profile)
 Bundle-SymbolicName: org.eclipse.papyrus.extensionpoints.uml2;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.extensionpoints.uml2.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,

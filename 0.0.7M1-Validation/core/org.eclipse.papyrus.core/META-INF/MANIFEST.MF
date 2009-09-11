@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.core;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.core.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.4.0",
