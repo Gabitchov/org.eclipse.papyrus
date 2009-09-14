@@ -112,9 +112,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
 		new UMLPaletteFactory().fillPalette(root);
-		// RS: reapply customization, otherwise they will not be applied to the palette previously
-		// filled...
-		applyCustomizationsToPalette(root);
 		return root;
 	}
 

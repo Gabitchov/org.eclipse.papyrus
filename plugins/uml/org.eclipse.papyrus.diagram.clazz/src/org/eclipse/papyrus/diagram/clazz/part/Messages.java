@@ -48,10 +48,14 @@ public class Messages extends NLS {
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.Abstraction} links */
 	public static String AppliedStereotypeLabel_AbstractionTag;
 
-	/** Label to be displayed on {@link org.eclipse.uml2.uml.ElementImport} links */
+	/**
+	 * Label to be displayed on {@link org.eclipse.uml2.uml.ElementImport} links
+	 */
 	public static String AppliedStereotypeLabel_ElementImportTag;
 
-	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links */
+	/**
+	 * Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links
+	 */
 	public static String AppliedStereotypeLabel_PackageImportTag;
 
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageMerge} links */

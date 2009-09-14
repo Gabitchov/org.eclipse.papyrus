@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.tabbedproperties.core;singleton:=true
-Bundle-Version: 0.7.0.vqualifier
+Bundle-Version: 0.7.0.qualifier
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.views.properties.tabbed,

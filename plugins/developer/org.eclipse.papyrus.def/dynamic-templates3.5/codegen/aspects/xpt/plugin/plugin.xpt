@@ -184,7 +184,7 @@
 			name="«editorGen.modelID» Diagram" />
 
 «REM»Generate Nodes Preference Pages«ENDREM»
-«FOREACH topLevelNodes.elementType.displayName->asSet() AS string -»
+«FOREACH getAllNodes().elementType.displayName->asSet() AS string -»
 	«IF "UNDEFINED" <> string.toUpper()»
 		«EXPAND preferencePageExtension(self) FOR string-»
 	«ENDIF»

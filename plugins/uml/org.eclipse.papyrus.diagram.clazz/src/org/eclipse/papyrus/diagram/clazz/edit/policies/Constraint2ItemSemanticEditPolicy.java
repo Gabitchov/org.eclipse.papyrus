@@ -178,7 +178,8 @@ public class Constraint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));

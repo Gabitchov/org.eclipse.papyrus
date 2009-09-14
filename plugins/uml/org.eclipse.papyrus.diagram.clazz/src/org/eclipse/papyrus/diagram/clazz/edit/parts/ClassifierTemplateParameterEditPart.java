@@ -75,7 +75,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.TemplateParameter;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -85,12 +84,12 @@ public class ClassifierTemplateParameterEditPart extends CompartmentEditPart imp
 	/**
 	 * @generated
 	 */
-	public class ClassifierTemplateParameterDescriptor extends WrappingLabel {
+	public class TemplateParameterDescriptor extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public ClassifierTemplateParameterDescriptor() {
+		public TemplateParameterDescriptor() {
 			this.setText("<UNDEFINED>");
 		}
 
@@ -225,7 +224,7 @@ public class ClassifierTemplateParameterEditPart extends CompartmentEditPart imp
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new ClassifierTemplateParameterDescriptor();
+		return new TemplateParameterDescriptor();
 	}
 
 	/**
@@ -468,16 +467,6 @@ public class ClassifierTemplateParameterEditPart extends CompartmentEditPart imp
 					refreshLabel();
 				}
 			}
-		}
-		if (event.getOldValue() == null
-				&& event.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_OwnedParameteredElement())) {
-			System.err.println("Ajout listener");
-			addOwnedParamListeners();
-		}
-		if (event.getNewValue() == null
-				&& event.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_OwnedParameteredElement())) {
-			System.err.println("remove listener");
-			removeOwnedParamListeners();
 		}
 		super.handleNotificationEvent(event);
 	}
