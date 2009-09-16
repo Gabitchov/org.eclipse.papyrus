@@ -24,7 +24,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** Plugin id */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.tabbedproperties.core";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.tabbedproperties.core"; //$NON-NLS-1$
 
 	/**
 	 * singleton instance of this plugin.
