@@ -24,7 +24,6 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.menus.IWorkbenchContribution;
 import org.eclipse.ui.services.IServiceLocator;
-import org.eclipse.uml2.uml.NamedElement;
 
 
 /**
@@ -108,9 +107,9 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		// create direct item, and then create sub-items
 		subMenuItem = new MenuItem(menu, SWT.CASCADE);
 		String type = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getName() : "");
-		String name = ((businessObject instanceof NamedElement) ? ((NamedElement)businessObject).getName() : "Element");
 
-		subMenuItem.setText("Edit "+type+ " "+name);
+
+		subMenuItem.setText("Edit "+type);
 
 		// submenu 
 		Menu subMenu = new Menu(menu); 
