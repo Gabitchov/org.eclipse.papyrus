@@ -10,14 +10,11 @@
  *******************************************************************************/
 package org.eclipse.papyrus.wizards;
 
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.IPapyrusUIConstants;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * This WizardPage can create an empty .uml2 file for the PapyrusEditor.
@@ -30,6 +27,8 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	protected static int fileCount = 1;
 
 	protected boolean createFromSemanticModel;
+	
+	private static final String DEFAULT_NAME = "model";
 
 	/**
 	 * Create a new wizard page instance.
@@ -54,7 +53,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	public void createControl(Composite parent) {
 		super.createControl(parent);
 		if (getFileName() == null || getFileName().length() == 0) {
-			setFileName("umlModel" + fileCount + "." + IPapyrusUIConstants.MODEL_EXTENSION);
+			setFileName(DEFAULT_NAME + fileCount + "." + IPapyrusUIConstants.MODEL_EXTENSION);
 		}
 		setPageComplete(validatePage());
 	}
@@ -65,21 +64,25 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 * @return <code>true</code> if the file name is valid
 	 */
 	private boolean validateFilename() {
-		if ((getFileName() != null) && getFileName().endsWith("." + IPapyrusUIConstants.MODEL_EXTENSION)) {
-			// check if a semantic model already exist
-			IPath semanticModelPath = Platform.getLocation().append(getContainerFullPath()).append(getFileName()).removeFileExtension().addFileExtension(UMLResource.FILE_EXTENSION);
-			if (!createFromSemanticModel && semanticModelPath.toFile().exists()) {
-				setErrorMessage("'" + semanticModelPath.lastSegment() + "' already exist. " + "Select this and restart this wizard to create a new '" + IPapyrusUIConstants.MODEL_EXTENSION
-						+ "' model " + "from an existing semantic model!");
-			} else {
-				return true;
-			}
-		} else {
-			setErrorMessage("The 'file' name must end with the extension ." + IPapyrusUIConstants.MODEL_EXTENSION);
-		}
-		return false;
+		// TODO validate the fileName to ensure that the given name will not result in overwriting an existing resource.
+		
+//		if ((getFileName() != null) && getFileName().endsWith("." + IPapyrusUIConstants.MODEL_EXTENSION)) {
+//			// check if a semantic model already exist
+//		//	IPath semanticModelPath = Platform.getLocation().append(getContainerFullPath()).append(getFileName()).removeFileExtension().addFileExtension(UMLResource.FILE_EXTENSION);
+//			if (!createFromSemanticModel /*&& semanticModelPath.toFile().exists()*/) {
+//				setErrorMessage("'" + semanticModelPath.lastSegment() + "' already exist. " + "Select this and restart this wizard to create a new '" + IPapyrusUIConstants.MODEL_EXTENSION
+//						+ "' model " + "from an existing semantic model!");
+//			} else {
+//				return true;
+//			}
+//		} else {
+//			setErrorMessage("The 'file' name must end with the extension ." + IPapyrusUIConstants.MODEL_EXTENSION);
+//		}
+//		return false;
+		return true;
 	}
 
+	
 	/**
 	 * {@inheritDoc}
 	 */
