@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="DirectEditor" name="Define a new Direct editor for Papyrus" schema="schema/DirectEditor.exsd"/>
+   <!--
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.papyrus.extensionpoints.editors.GMFDirectEditors"
+            objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart">
+         <menu
+               id="papyrus.DirectEdit"
+               label="Direct Edit"
+               path="additions">
+         </menu>
+         <action
+               class="org.eclipse.papyrus.extensionpoints.editors.ui.GMFEmbeddedEditorActionDelegate"
+               icon="icons/Papyrus.gif"
+               id="org.eclipse.papyrus.extensionpoints.editors.editelement"
+               label="Edit Element"
+               menubarPath="additions/papyrus.DirectEdit">
+         </action>
+         <menu
+               id="org.eclipse.papyrus.extensionpoints.editors.menu2"
+               label="DD"
+               path="additions/papyrus.DirectEdit">
+         </menu>
+      </objectContribution>
+   </extension>
+   -->
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <dynamic
+               class="org.eclipse.papyrus.extensionpoints.editors.ui.DirectEditorsContributionItem"
+               id="org.eclipse.papyrus.extensionpoints.editors.DynamicMenu">
+         </dynamic>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.extensionpoints.editors.preferences.PapyrusEmbeddedEditorsPreferencePage"
+            id="org.eclipse.papyrus.embeddededitors"
+            name="Embedded Editors">
+      </page>
+   </extension>
+   
+   
+</plugin>
