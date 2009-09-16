@@ -20,12 +20,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.graphics.RGB;
 
 /**
  * Common node figure. In charge of background, font, gradient, foreground, border, shadow
@@ -42,10 +37,20 @@ public class PapyrusNodeFigure extends NodeFigure {
 	 */
 	private boolean shadow = true;
 
+	/**
+	 * Table used to draw figure border as dashed line.
+	 */
+	protected int[] dash = new int[10];
+
 	protected RectangularShadowBorder shadowborder;
 
 	public PapyrusNodeFigure() {
 		super();
+
+		// Initialize dash property for dashed border representation.
+		for (int i = 0; i < 10; i++) {
+			dash[i] = 5;
+		}
 
 		shadowborder = new RectangularShadowBorder(3, getForegroundColor());
 		setBorder(shadowborder);
@@ -121,6 +126,24 @@ public class PapyrusNodeFigure extends NodeFigure {
 			graphics.setForegroundColor(getForegroundColor());
 			graphics.fillRectangle(rectangle);
 		}
+	}
+
+	/**
+	 * <pre>
+	 * This figure manages the border representation with dashes Graphics.LINE_DASH is the only
+	 * value managed in this implementation (except the default LINE.SOLID of course).
+	 * 
+	 * Without this {@link NodeFigure} does not manages dashes even if LineStyle is correctly set.
+	 * 
+	 * {@inheritDoc}
+	 * </pre>
+	 */
+	@Override
+	protected void paintBorder(Graphics graphics) {
+		if (getLineStyle() == Graphics.LINE_DASH) {
+			graphics.setLineDash(dash);
+		}
+		super.paintBorder(graphics);
 	}
 
 }
