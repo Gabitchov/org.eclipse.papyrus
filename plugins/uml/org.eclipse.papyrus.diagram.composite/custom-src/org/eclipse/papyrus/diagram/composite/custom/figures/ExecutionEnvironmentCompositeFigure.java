@@ -18,7 +18,7 @@ package org.eclipse.papyrus.diagram.composite.custom.figures;
  */
 public class ExecutionEnvironmentCompositeFigure extends CompositeFigure {
 
-	private static String TAG_LABEL = "ExecutionEnvironment";
+	private static String TAG_LABEL = "ExecutionEnvironment"; //$NON-NLS-1$
 
 	public ExecutionEnvironmentCompositeFigure() {
 		super();

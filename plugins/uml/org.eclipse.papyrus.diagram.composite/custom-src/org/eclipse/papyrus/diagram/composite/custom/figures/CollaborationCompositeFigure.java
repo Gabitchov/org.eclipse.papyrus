@@ -13,17 +13,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.figures;
 
+import org.eclipse.draw2d.Graphics;
+
 /**
  * Figure for Composite representation of Collaboration.
  */
 public class CollaborationCompositeFigure extends CompositeFigure {
 
-	private static String TAG_LABEL = "Collaboration";
+	/**
+	 * Value of the textual tag added to the figure.
+	 */
+	private static String TAG_LABEL = "Collaboration"; //$NON-NLS-1$
 
+	/**
+	 * Creates a new CollaborationCompositeFigure.
+	 */
 	public CollaborationCompositeFigure() {
 		super();
 
 		// Add a "Collaboration" tag on this figure
 		createTagLabel(TAG_LABEL);
+		// Use dashed borders for Collaboration
+		setLineStyle(Graphics.LINE_DASH);
 	}
 }

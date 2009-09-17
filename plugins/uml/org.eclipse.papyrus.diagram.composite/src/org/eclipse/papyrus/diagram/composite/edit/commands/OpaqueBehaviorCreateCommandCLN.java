@@ -97,6 +97,7 @@ public class OpaqueBehaviorCreateCommandCLN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		OpaqueBehavior newElement = UMLFactory.eINSTANCE.createOpaqueBehavior();
 
 		Class owner = (Class) getElementToEdit();

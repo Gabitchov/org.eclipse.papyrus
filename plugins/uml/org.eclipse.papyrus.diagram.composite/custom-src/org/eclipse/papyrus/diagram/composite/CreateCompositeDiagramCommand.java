@@ -28,11 +28,16 @@ import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
 	/**
+	 * Name of the Diagram
+	 */
+	protected static final String CSD_DEFAULT_NAME = "CompositeDiagram"; //$NON-NLS-1$
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected String getDiagramName() {
-		return openDiagramNameDialog("CompositeDiagram");
+		return openDiagramNameDialog(CSD_DEFAULT_NAME);
 	}
 
 	/**

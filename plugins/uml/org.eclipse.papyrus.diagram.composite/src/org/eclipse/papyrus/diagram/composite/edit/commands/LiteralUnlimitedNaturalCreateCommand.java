@@ -97,6 +97,7 @@ public class LiteralUnlimitedNaturalCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		LiteralUnlimitedNatural newElement = UMLFactory.eINSTANCE.createLiteralUnlimitedNatural();
 
 		Package owner = (Package) getElementToEdit();

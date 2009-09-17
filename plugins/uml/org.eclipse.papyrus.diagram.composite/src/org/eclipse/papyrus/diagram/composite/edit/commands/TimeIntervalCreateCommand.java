@@ -97,6 +97,7 @@ public class TimeIntervalCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		TimeInterval newElement = UMLFactory.eINSTANCE.createTimeInterval();
 
 		Package owner = (Package) getElementToEdit();

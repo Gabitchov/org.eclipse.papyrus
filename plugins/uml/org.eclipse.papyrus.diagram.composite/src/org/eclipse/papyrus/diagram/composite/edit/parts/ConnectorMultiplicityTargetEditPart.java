@@ -402,22 +402,25 @@ public class ConnectorMultiplicityTargetEditPart extends LabelEditPart implement
 			return;
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
-			assert (configuration != null);
-			configuration.preEditAction(resolveSemanticElement());
-			final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
-					.getTextToEdit(resolveSemanticElement()), configuration);
-			if (Window.OK == dialog.open()) {
-				TransactionalEditingDomain domain = getEditingDomain();
-				RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
+			if (configuration == null || configuration.getLanguage() == null) {
+				performDefaultDirectEditorEdit(theRequest);
+			} else {
+				configuration.preEditAction(resolveSemanticElement());
+				final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
+						.getTextToEdit(resolveSemanticElement()), configuration);
+				if (Window.OK == dialog.open()) {
+					TransactionalEditingDomain domain = getEditingDomain();
+					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
-					@Override
-					protected void doExecute() {
-						configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
+						@Override
+						protected void doExecute() {
+							configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
 
-					}
-				};
-				domain.getCommandStack().execute(command);
+						}
+					};
+					domain.getCommandStack().execute(command);
+				}
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
@@ -626,7 +629,7 @@ public class ConnectorMultiplicityTargetEditPart extends LabelEditPart implement
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if (languagePreferred != null) {
+			if (languagePreferred != null && !languagePreferred.equals("")) {
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 						.eClass().getInstanceClassName());
 			} else {
@@ -642,9 +645,43 @@ public class ConnectorMultiplicityTargetEditPart extends LabelEditPart implement
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != configuration.getLanguage()) {
+		if (languagePreferred != null && !languagePreferred.equals("")
+				&& languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 					.eClass().getInstanceClassName());
+		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
+		}
+	}
+
+	/**
+	 * Performs the direct edit usually used by GMF editors.
+	 * 
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 */
+	protected void performDefaultDirectEditorEdit(final Request theRequest) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData().get(
+									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 

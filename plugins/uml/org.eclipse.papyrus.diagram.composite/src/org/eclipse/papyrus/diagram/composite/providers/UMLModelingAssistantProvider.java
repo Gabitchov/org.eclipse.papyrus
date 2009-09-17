@@ -121,11 +121,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Class_3114);
 			return types;
 		}
-		if (editPart instanceof CollaborationCompositeEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
 		if (editPart instanceof EnumerationEditPart) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.EnumerationLiteral_3066);
@@ -193,11 +188,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (editPart instanceof ClassCompositeEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if (editPart instanceof CollaborationCompositeEditPartCN) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.Port_3069);
 			return types;
@@ -533,10 +523,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (editPart instanceof CollaborationCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(3);
+			ArrayList types = new ArrayList(4);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.ConnectableElement_3115);
 			return types;
 		}
 		if (editPart instanceof ActivityCompositeCompartmentEditPart) {
@@ -859,9 +850,16 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (editPart instanceof CollaborationCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(3);
+			ArrayList types = new ArrayList(4);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.ConnectableElement_3115);
+			return types;
+		}
+		if (editPart instanceof PropertyPartCompartmentEditPartCN) {
+			ArrayList types = new ArrayList(2);
+			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.Comment_3097);
 			return types;
 		}
@@ -1102,6 +1100,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof PropertyPartEditPartCN) {
 			return ((PropertyPartEditPartCN) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof CollaborationRoleEditPartCN) {
+			return ((CollaborationRoleEditPartCN) sourceEditPart).getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof CollaborationUseEditPartCN) {
 			return ((CollaborationUseEditPartCN) sourceEditPart).getMARelTypesOnSource();
@@ -1356,6 +1357,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof PropertyPartEditPartCN) {
 			return ((PropertyPartEditPartCN) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof CollaborationRoleEditPartCN) {
+			return ((CollaborationRoleEditPartCN) targetEditPart).getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof CollaborationUseEditPartCN) {
 			return ((CollaborationUseEditPartCN) targetEditPart).getMARelTypesOnTarget();
@@ -1614,6 +1618,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof PropertyPartEditPartCN) {
 			return ((PropertyPartEditPartCN) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof CollaborationRoleEditPartCN) {
+			return ((CollaborationRoleEditPartCN) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if (sourceEditPart instanceof CollaborationUseEditPartCN) {
 			return ((CollaborationUseEditPartCN) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -1871,6 +1878,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof PropertyPartEditPartCN) {
 			return ((PropertyPartEditPartCN) targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof CollaborationRoleEditPartCN) {
+			return ((CollaborationRoleEditPartCN) targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if (targetEditPart instanceof CollaborationUseEditPartCN) {
 			return ((CollaborationUseEditPartCN) targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -2124,6 +2134,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof PropertyPartEditPartCN) {
 			return ((PropertyPartEditPartCN) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof CollaborationRoleEditPartCN) {
+			return ((CollaborationRoleEditPartCN) sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof CollaborationUseEditPartCN) {
 			return ((CollaborationUseEditPartCN) sourceEditPart).getMATypesForTarget(relationshipType);

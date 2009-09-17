@@ -71,11 +71,12 @@ public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 	 * 7073 : ClassCompositeCompartmentEditPart
 	 * 7075 : CollaborationCompositeCompartmentEditPart
 	 * 7076 : InterfaceCompartmentEditPart
+	 * 7077 : PropertyPartCompartmentEditPartCN
 	 * </pre>
 	 */
 	public int[] notOrphanNode = { 7033, 7034, 7036, 7037, 7043, 7044, 7045, 7048, 7049, 7050, 7051, 7052, 7053, 7054,
 			7055, 7056, 7057, 7058, 7059, 7060, 7061, 7062, 7063, 7064, 7065, 7066, 7067, 7068, 7069, 7070, 7071, 7072,
-			7073, 7075, 7076 };
+			7073, 7075, 7076, 7077 };
 
 	public RemoveOrphanViewPolicy() {
 		super();

@@ -141,9 +141,14 @@ public class CompositeFigure extends NodeNamedElementFigure {
 	public CompositeFigure() {
 		super();
 		setLayoutManager(new CompositeLayoutManager());
+		setOpaque(true);
 
 		// Add internal Compartment figure
 		compositeCompartment = new RectangleFigure();
+		compositeCompartment.setOpaque(false);
+		compositeCompartment.setFill(false);
+		compositeCompartment.setBorder(null);
+		compositeCompartment.setOutline(false);
 		this.add(compositeCompartment);
 	}
 
@@ -165,7 +170,7 @@ public class CompositeFigure extends NodeNamedElementFigure {
 	protected void createTagLabel(String keyword) {
 
 		// Retrieve current figure font
-		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) };
+		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) }; //$NON-NLS-1$
 		Font font = Activator.fontManager.get(fontdata);
 
 		// Create the TagLabel

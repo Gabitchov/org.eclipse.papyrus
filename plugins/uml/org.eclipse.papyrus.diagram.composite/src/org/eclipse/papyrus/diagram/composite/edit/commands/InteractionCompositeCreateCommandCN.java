@@ -97,6 +97,7 @@ public class InteractionCompositeCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Interaction newElement = UMLFactory.eINSTANCE.createInteraction();
 
 		Class owner = (Class) getElementToEdit();

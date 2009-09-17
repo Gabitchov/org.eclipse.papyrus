@@ -97,6 +97,7 @@ public class DurationIntervalCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		DurationInterval newElement = UMLFactory.eINSTANCE.createDurationInterval();
 
 		Package owner = (Package) getElementToEdit();

@@ -97,6 +97,7 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		DurationObservation newElement = UMLFactory.eINSTANCE.createDurationObservation();
 
 		Package owner = (Package) getElementToEdit();

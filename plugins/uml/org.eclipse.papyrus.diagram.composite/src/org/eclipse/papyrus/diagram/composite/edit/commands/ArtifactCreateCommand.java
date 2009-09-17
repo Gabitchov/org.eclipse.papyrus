@@ -97,6 +97,7 @@ public class ArtifactCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Artifact newElement = UMLFactory.eINSTANCE.createArtifact();
 
 		Package owner = (Package) getElementToEdit();

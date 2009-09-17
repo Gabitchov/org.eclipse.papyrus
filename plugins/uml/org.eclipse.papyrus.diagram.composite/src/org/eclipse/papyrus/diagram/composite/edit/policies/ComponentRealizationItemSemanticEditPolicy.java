@@ -41,6 +41,8 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationCreateCo
 import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationReorientCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.UsageCreateCommand;
@@ -56,6 +58,7 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.InformationFlowEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
@@ -122,6 +125,9 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 		if (UMLElementTypes.Deployment_4009 == req.getElementType()) {
 			return getGEFWrapper(new DeploymentCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		if (UMLElementTypes.Dependency_4010 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -168,6 +174,9 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 		if (UMLElementTypes.Deployment_4009 == req.getElementType()) {
 			return getGEFWrapper(new DeploymentCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		if (UMLElementTypes.Dependency_4010 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -204,6 +213,8 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 			return getGEFWrapper(new UsageReorientCommand(req));
 		case DeploymentEditPart.VISUAL_ID:
 			return getGEFWrapper(new DeploymentReorientCommand(req));
+		case RoleBindingEditPart.VISUAL_ID:
+			return getGEFWrapper(new RoleBindingReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
 		case GeneralizationEditPart.VISUAL_ID:

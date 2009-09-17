@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.ComponentRealization;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.CreationEvent;
@@ -769,6 +770,18 @@ public class ElementInitializers {
 	public static void init_Property_3070(Property instance) {
 		try {
 			Object value_0 = name_Property_3070(instance);
+			instance.setName((String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_ConnectableElement_3115(ConnectableElement instance) {
+		try {
+			Object value_0 = name_ConnectableElement_3115(instance);
 			instance.setName((String) value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -1783,6 +1796,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private static String name_Property_3070(Property self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_ConnectableElement_3115(ConnectableElement self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

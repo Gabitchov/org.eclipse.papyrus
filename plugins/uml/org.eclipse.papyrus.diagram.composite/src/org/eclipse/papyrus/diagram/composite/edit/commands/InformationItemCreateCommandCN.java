@@ -97,6 +97,7 @@ public class InformationItemCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		InformationItem newElement = UMLFactory.eINSTANCE.createInformationItem();
 
 		Class owner = (Class) getElementToEdit();

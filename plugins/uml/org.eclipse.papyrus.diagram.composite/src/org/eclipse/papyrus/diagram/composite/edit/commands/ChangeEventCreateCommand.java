@@ -97,6 +97,7 @@ public class ChangeEventCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		ChangeEvent newElement = UMLFactory.eINSTANCE.createChangeEvent();
 
 		Package owner = (Package) getElementToEdit();

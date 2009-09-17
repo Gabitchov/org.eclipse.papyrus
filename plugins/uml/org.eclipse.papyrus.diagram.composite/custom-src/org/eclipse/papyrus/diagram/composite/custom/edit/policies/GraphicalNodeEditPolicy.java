@@ -41,6 +41,16 @@ import org.eclipse.gmf.runtime.notation.View;
 public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy {
 
 	/**
+	 * The ID for the additional parameter SOURCE_PARENT used in creation request
+	 */
+	public static final String CONNECTOR_CREATE_REQUEST_SOURCE_PARENT = "SOURCE_PARENT"; //$NON-NLS-1$
+
+	/**
+	 * The ID for the additional parameter TARGET_PARENT used in creation request
+	 */
+	public static final String CONNECTOR_CREATE_REQUEST_TARGET_PARENT = "TARGET_PARENT"; //$NON-NLS-1$
+
+	/**
 	 * <pre>
 	 * This method is overridden in order to add information (graphical parent of Port)
 	 * in the CreationRelationshipRequest.
@@ -54,7 +64,6 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 	 */
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
-		// TODO Auto-generated method stub
 		// return super.getConnectionAndRelationshipCompleteCommand(request);
 
 		// get the element descriptor
@@ -85,7 +94,7 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 			sourceParent = sourceParentView;
 		}
 
-		createElementRequest.setParameter("SOURCE_PARENT", sourceParent);
+		createElementRequest.setParameter(CONNECTOR_CREATE_REQUEST_SOURCE_PARENT, sourceParent);
 		createElementRequest.setSource(source);
 
 		// resolve the target
@@ -101,7 +110,7 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 			targetParent = targetParentView;
 		}
 
-		createElementRequest.setParameter("TARGET_PARENT", targetParent);
+		createElementRequest.setParameter(CONNECTOR_CREATE_REQUEST_TARGET_PARENT, targetParent);
 		createElementRequest.setTarget(target);
 
 		// get the create element request based on the elementdescriptor's

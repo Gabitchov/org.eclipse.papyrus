@@ -54,6 +54,8 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationReorient
 import org.eclipse.papyrus.diagram.composite.edit.commands.PortCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationReorientCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.UsageCreateCommand;
@@ -93,6 +95,7 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.StateMachineCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SubstitutionEditPart;
@@ -194,6 +197,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 			if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -258,6 +267,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 				continue;
 			}
 			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -368,6 +383,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 						continue;
 					}
+					if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
 					if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(r));
@@ -432,6 +453,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 						continue;
 					}
 					if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+						DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+						continue;
+					}
+					if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 						DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(r));
 						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -533,6 +560,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -597,6 +630,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -694,6 +733,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -758,6 +803,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -855,6 +906,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -919,6 +976,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -1016,6 +1079,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1080,6 +1149,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -1177,6 +1252,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1241,6 +1322,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -1338,6 +1425,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1402,6 +1495,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -1499,6 +1598,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1563,6 +1668,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -1660,6 +1771,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1724,6 +1841,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -1821,6 +1944,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -1885,6 +2014,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -1982,6 +2117,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2046,6 +2187,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -2143,6 +2290,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2207,6 +2360,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -2304,6 +2463,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2368,6 +2533,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -2465,6 +2636,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2529,6 +2706,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -2626,6 +2809,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2690,6 +2879,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -2787,6 +2982,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -2851,6 +3052,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -2948,6 +3155,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -3012,6 +3225,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -3109,6 +3328,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -3173,6 +3398,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -3270,6 +3501,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -3334,6 +3571,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -3431,6 +3674,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -3495,6 +3744,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -3592,6 +3847,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -3656,6 +3917,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -3753,6 +4020,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -3817,6 +4090,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -3914,6 +4193,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -3978,6 +4263,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -4075,6 +4366,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -4139,6 +4436,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -4236,6 +4539,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -4300,6 +4609,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -4442,6 +4757,9 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 		if (UMLElementTypes.Deployment_4009 == req.getElementType()) {
 			return getGEFWrapper(new DeploymentCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		if (UMLElementTypes.Dependency_4010 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -4488,6 +4806,9 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 		if (UMLElementTypes.Deployment_4009 == req.getElementType()) {
 			return getGEFWrapper(new DeploymentCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		if (UMLElementTypes.Dependency_4010 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -4524,6 +4845,8 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 			return getGEFWrapper(new UsageReorientCommand(req));
 		case DeploymentEditPart.VISUAL_ID:
 			return getGEFWrapper(new DeploymentReorientCommand(req));
+		case RoleBindingEditPart.VISUAL_ID:
+			return getGEFWrapper(new RoleBindingReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
 		case GeneralizationEditPart.VISUAL_ID:

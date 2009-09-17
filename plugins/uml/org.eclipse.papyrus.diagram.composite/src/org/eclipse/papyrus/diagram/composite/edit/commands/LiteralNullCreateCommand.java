@@ -97,6 +97,7 @@ public class LiteralNullCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		LiteralNull newElement = UMLFactory.eINSTANCE.createLiteralNull();
 
 		Package owner = (Package) getElementToEdit();

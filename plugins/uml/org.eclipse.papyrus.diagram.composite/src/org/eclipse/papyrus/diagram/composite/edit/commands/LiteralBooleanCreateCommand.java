@@ -97,6 +97,7 @@ public class LiteralBooleanCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		LiteralBoolean newElement = UMLFactory.eINSTANCE.createLiteralBoolean();
 
 		Package owner = (Package) getElementToEdit();

@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.ConnectorCreateCommand;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.PortCreateCommand;
+import org.eclipse.papyrus.diagram.composite.custom.edit.command.RoleBindingCreateCommand;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 
 /**
@@ -60,6 +61,9 @@ public class PropertyPartItemSemanticEditPolicyCN extends
 		if (UMLElementTypes.Connector_4013 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return super.getStartCreateRelationshipCommand(req);
 	}
 
@@ -75,6 +79,9 @@ public class PropertyPartItemSemanticEditPolicyCN extends
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (UMLElementTypes.Connector_4013 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}

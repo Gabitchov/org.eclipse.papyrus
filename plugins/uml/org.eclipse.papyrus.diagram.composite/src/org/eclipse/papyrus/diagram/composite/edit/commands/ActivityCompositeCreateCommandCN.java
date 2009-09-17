@@ -97,6 +97,7 @@ public class ActivityCompositeCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Activity newElement = UMLFactory.eINSTANCE.createActivity();
 
 		Class owner = (Class) getElementToEdit();

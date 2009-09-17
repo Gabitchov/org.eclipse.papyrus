@@ -97,6 +97,7 @@ public class ProtocolStateMachineCreateCommandCLN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		ProtocolStateMachine newElement = UMLFactory.eINSTANCE.createProtocolStateMachine();
 
 		Class owner = (Class) getElementToEdit();

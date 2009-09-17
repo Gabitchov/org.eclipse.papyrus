@@ -18,7 +18,7 @@ package org.eclipse.papyrus.diagram.composite.custom.figures;
  */
 public class ActivityCompositeFigure extends CompositeFigure {
 
-	private static String TAG_LABEL = "Activity";
+	private static String TAG_LABEL = "Activity"; //$NON-NLS-1$
 
 	public ActivityCompositeFigure() {
 		super();

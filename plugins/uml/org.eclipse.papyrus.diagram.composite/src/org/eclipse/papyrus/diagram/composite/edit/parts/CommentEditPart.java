@@ -246,15 +246,6 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void setBackgroundColor(Color color) {
-		if (primaryShape != null) {
-			primaryShape.setBackgroundColor(color);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);
@@ -286,8 +277,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -309,8 +299,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -487,6 +476,9 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
+		if (targetEditPart instanceof CollaborationRoleEditPartCN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
+		}
 		if (targetEditPart instanceof CollaborationUseEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
@@ -733,6 +725,9 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Generalization_4015);
 		}
+		if (targetEditPart instanceof CollaborationRoleEditPartCN) {
+			types.add(UMLElementTypes.Generalization_4015);
+		}
 		if (targetEditPart instanceof CollaborationUseEditPartCN) {
 			types.add(UMLElementTypes.Generalization_4015);
 		}
@@ -977,6 +972,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InformationFlow_4016);
 		}
 		if (targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4016);
+		}
+		if (targetEditPart instanceof CollaborationRoleEditPartCN) {
 			types.add(UMLElementTypes.InformationFlow_4016);
 		}
 		if (targetEditPart instanceof CollaborationUseEditPartCN) {
@@ -1067,8 +1065,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1246,6 +1243,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4002) {
+			types.add(UMLElementTypes.ConnectableElement_3115);
+		}
+		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4002) {
 			types.add(UMLElementTypes.CollaborationUse_3071);
 		}
 		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4002) {
@@ -1492,6 +1492,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4015) {
+			types.add(UMLElementTypes.ConnectableElement_3115);
+		}
+		if (relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.CollaborationUse_3071);
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4015) {
@@ -1736,6 +1739,9 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Property_3070);
+		}
+		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
+			types.add(UMLElementTypes.ConnectableElement_3115);
 		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -1824,8 +1830,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1848,8 +1853,7 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2049,6 +2053,9 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.Property_3070);
+		}
+		if (relationshipType == UMLElementTypes.Generalization_4015) {
+			types.add(UMLElementTypes.ConnectableElement_3115);
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -2295,6 +2302,9 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Property_3070);
+		}
+		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
+			types.add(UMLElementTypes.ConnectableElement_3115);
 		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.CollaborationUse_3071);

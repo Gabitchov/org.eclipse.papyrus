@@ -46,17 +46,17 @@ public class ConnectorFigure extends UMLEdgeFigure {
 		super.createContents();
 
 		fNameLabel = new WrappingLabel();
-		fNameLabel.setText("");
+		// fNameLabel.setText(""); //$NON-NLS-1$
 
 		this.add(fNameLabel);
 
 		fMultiplicitySourceLabel = new WrappingLabel();
-		fMultiplicitySourceLabel.setText("");
+		// fMultiplicitySourceLabel.setText(""); //$NON-NLS-1$
 
 		this.add(fMultiplicitySourceLabel);
 
 		fMultiplicityTargetLabel = new WrappingLabel();
-		fMultiplicityTargetLabel.setText("");
+		// fMultiplicityTargetLabel.setText(""); //$NON-NLS-1$
 
 		this.add(fMultiplicityTargetLabel);
 	}
@@ -71,9 +71,9 @@ public class ConnectorFigure extends UMLEdgeFigure {
 	}
 
 	/**
-	 * Gets the association name label.
+	 * Gets the Connector name label.
 	 * 
-	 * @return the association name label
+	 * @return the Connector name label
 	 */
 	public WrappingLabel getNameLabel() {
 		return fNameLabel;

@@ -18,7 +18,7 @@ package org.eclipse.papyrus.diagram.composite.custom.figures;
  */
 public class OpaqueBehaviorCompositeFigure extends CompositeFigure {
 
-	private static String TAG_LABEL = "OpaqueBehavior";
+	private static String TAG_LABEL = "OpaqueBehavior"; //$NON-NLS-1$
 
 	public OpaqueBehaviorCompositeFigure() {
 		super();

@@ -97,6 +97,7 @@ public class PortCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Port newElement = UMLFactory.eINSTANCE.createPort();
 
 		StructuredClassifier owner = (StructuredClassifier) getElementToEdit();

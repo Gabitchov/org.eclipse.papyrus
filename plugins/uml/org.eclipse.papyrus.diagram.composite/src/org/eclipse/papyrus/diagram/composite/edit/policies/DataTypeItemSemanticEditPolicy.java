@@ -52,6 +52,8 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationCreateCo
 import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationReorientCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.UsageCreateCommand;
@@ -71,6 +73,7 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.OperationEditPartCLN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyEditPartCLN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -159,6 +162,12 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == RoleBindingEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 			if (UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -223,6 +232,12 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				continue;
 			}
 			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == DeploymentEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == RoleBindingEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -347,6 +362,9 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if (UMLElementTypes.Deployment_4009 == req.getElementType()) {
 			return getGEFWrapper(new DeploymentCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		if (UMLElementTypes.Dependency_4010 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -393,6 +411,9 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if (UMLElementTypes.Deployment_4009 == req.getElementType()) {
 			return getGEFWrapper(new DeploymentCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		if (UMLElementTypes.Dependency_4010 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -429,6 +450,8 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			return getGEFWrapper(new UsageReorientCommand(req));
 		case DeploymentEditPart.VISUAL_ID:
 			return getGEFWrapper(new DeploymentReorientCommand(req));
+		case RoleBindingEditPart.VISUAL_ID:
+			return getGEFWrapper(new RoleBindingReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
 		case GeneralizationEditPart.VISUAL_ID:

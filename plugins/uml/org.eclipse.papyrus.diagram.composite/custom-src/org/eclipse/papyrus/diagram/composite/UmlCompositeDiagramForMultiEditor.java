@@ -67,7 +67,12 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_CompositeStructureDiagram.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_CompositeStructureDiagram.gif"; //$NON-NLS-1$
+
+	/**
+	 * The EditingDomain ID for this diagram
+	 */
+	private static final String CSD_EDITING_DOMAIN_ID = "icons/obj16/Diagram_CompositeStructureDiagram.gif"; //$NON-NLS-1$
 
 	/**
 	 * The image descriptor of the diagram icon
@@ -142,7 +147,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	@Override
 	public String getEditingDomainID() {
-		return "org.eclipse.uml2.diagram.composite.EditingDomain";
+		return CSD_EDITING_DOMAIN_ID;
 	}
 
 	/**
@@ -256,7 +261,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 			// and to set the diagram to the fragment.
 			// First, compute the URI
 			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(diagram));
-			System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")");
+			System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")"); //$NON-NLS-1$
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
 			String title = EditorMessages.Editor_error_setinput_title;

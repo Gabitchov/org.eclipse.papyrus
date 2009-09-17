@@ -97,6 +97,7 @@ public class SendOperationEventCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		SendOperationEvent newElement = UMLFactory.eINSTANCE.createSendOperationEvent();
 
 		Package owner = (Package) getElementToEdit();

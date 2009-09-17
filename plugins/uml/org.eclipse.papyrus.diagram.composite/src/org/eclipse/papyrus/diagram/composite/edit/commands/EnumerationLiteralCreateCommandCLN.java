@@ -97,6 +97,7 @@ public class EnumerationLiteralCreateCommandCLN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		EnumerationLiteral newElement = UMLFactory.eINSTANCE.createEnumerationLiteral();
 
 		Enumeration owner = (Enumeration) getElementToEdit();

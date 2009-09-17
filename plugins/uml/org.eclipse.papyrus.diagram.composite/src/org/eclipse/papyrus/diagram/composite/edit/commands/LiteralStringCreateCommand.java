@@ -97,6 +97,7 @@ public class LiteralStringCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		LiteralString newElement = UMLFactory.eINSTANCE.createLiteralString();
 
 		Package owner = (Package) getElementToEdit();

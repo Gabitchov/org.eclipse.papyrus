@@ -386,6 +386,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PropertyPartNameEditPartCN.VISUAL_ID:
 				return new PropertyPartNameEditPartCN(view);
 
+			case CollaborationRoleEditPartCN.VISUAL_ID:
+				return new CollaborationRoleEditPartCN(view);
+
+			case CollaborationRoleNameEditPartCN.VISUAL_ID:
+				return new CollaborationRoleNameEditPartCN(view);
+
 			case CollaborationUseEditPartCN.VISUAL_ID:
 				return new CollaborationUseEditPartCN(view);
 
@@ -689,6 +695,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterfaceCompartmentEditPart.VISUAL_ID:
 				return new InterfaceCompartmentEditPart(view);
 
+			case PropertyPartCompartmentEditPartCN.VISUAL_ID:
+				return new PropertyPartCompartmentEditPartCN(view);
+
 			case LinkDescriptorEditPart.VISUAL_ID:
 				return new LinkDescriptorEditPart(view);
 
@@ -769,6 +778,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 				return new DeploymentAppliedStereotypeEditPart(view);
+
+			case RoleBindingEditPart.VISUAL_ID:
+				return new RoleBindingEditPart(view);
+
+			case RoleBindingNameEditPart.VISUAL_ID:
+				return new RoleBindingNameEditPart(view);
+
+			case RoleBindingRoleNameEditPart.VISUAL_ID:
+				return new RoleBindingRoleNameEditPart(view);
+
+			case RoleBindingAppliedStereotypeEditPart.VISUAL_ID:
+				return new RoleBindingAppliedStereotypeEditPart(view);
 
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);

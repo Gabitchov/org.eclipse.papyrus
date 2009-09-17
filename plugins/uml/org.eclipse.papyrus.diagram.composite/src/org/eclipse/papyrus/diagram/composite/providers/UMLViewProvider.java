@@ -132,12 +132,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in
-					// element type
+									// element type
 				}
 				if (domainElement != null
 						&& visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element
-					// type
+									// type
 				}
 			} else {
 				if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
@@ -189,6 +189,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case InteractionConstraintEditPart.VISUAL_ID:
 				case ConstraintEditPart.VISUAL_ID:
 				case PortEditPart.VISUAL_ID:
+				case CollaborationRoleEditPartCN.VISUAL_ID:
 				case CollaborationUseEditPartCN.VISUAL_ID:
 				case CollaborationCompositeEditPartCN.VISUAL_ID:
 				case InterfaceEditPartCN.VISUAL_ID:
@@ -245,7 +246,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for
-						// domain element
+										// domain element
 					}
 					break;
 				default:
@@ -285,6 +286,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| IntervalConstraintEditPart.VISUAL_ID == visualID
 				|| InteractionConstraintEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID
 				|| PortEditPart.VISUAL_ID == visualID || PropertyPartEditPartCN.VISUAL_ID == visualID
+				|| CollaborationRoleEditPartCN.VISUAL_ID == visualID
 				|| CollaborationUseEditPartCN.VISUAL_ID == visualID
 				|| ActivityCompositeEditPartCN.VISUAL_ID == visualID
 				|| InteractionCompositeEditPartCN.VISUAL_ID == visualID
@@ -325,7 +327,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same
-			// as in element type
+							// as in element type
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
@@ -474,6 +476,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createPort_3069(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyPartEditPartCN.VISUAL_ID:
 			return createProperty_3070(domainElement, containerView, index, persisted, preferencesHint);
+		case CollaborationRoleEditPartCN.VISUAL_ID:
+			return createConnectableElement_3115(domainElement, containerView, index, persisted, preferencesHint);
 		case CollaborationUseEditPartCN.VISUAL_ID:
 			return createCollaborationUse_3071(domainElement, containerView, index, persisted, preferencesHint);
 		case ActivityCompositeEditPartCN.VISUAL_ID:
@@ -599,6 +603,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case DeploymentEditPart.VISUAL_ID:
 			return createDeployment_4009(getSemanticElement(semanticAdapter), containerView, index, persisted,
 					preferencesHint);
+		case RoleBindingEditPart.VISUAL_ID:
+			return createDependency_4017(getSemanticElement(semanticAdapter), containerView, index, persisted,
+					preferencesHint);
 		case DependencyEditPart.VISUAL_ID:
 			return createDependency_4010(getSemanticElement(semanticAdapter), containerView, index, persisted,
 					preferencesHint);
@@ -637,7 +644,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Activity");
 
 		Node label5112 = createLabel(node, UMLVisualIDRegistry.getType(ActivityCompositeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCompositeCompartmentEditPart.VISUAL_ID), false,
+		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCompositeCompartmentEditPart.VISUAL_ID), true,
 				false, false, false);
 		return node;
 	}
@@ -663,7 +670,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Interaction");
 
 		Node label5113 = createLabel(node, UMLVisualIDRegistry.getType(InteractionCompositeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(InteractionCompositeCompartmentEditPart.VISUAL_ID), false,
+		createCompartment(node, UMLVisualIDRegistry.getType(InteractionCompositeCompartmentEditPart.VISUAL_ID), true,
 				false, false, false);
 		return node;
 	}
@@ -691,7 +698,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5114 = createLabel(node, UMLVisualIDRegistry
 				.getType(ProtocolStateMachineCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node,
-				UMLVisualIDRegistry.getType(ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID), false, false,
+				UMLVisualIDRegistry.getType(ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID), true, false,
 				false, false);
 		return node;
 	}
@@ -717,7 +724,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "StateMachine");
 
 		Node label5115 = createLabel(node, UMLVisualIDRegistry.getType(StateMachineCompositeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(StateMachineCompositeCompartmentEditPart.VISUAL_ID), false,
+		createCompartment(node, UMLVisualIDRegistry.getType(StateMachineCompositeCompartmentEditPart.VISUAL_ID), true,
 				false, false, false);
 		return node;
 	}
@@ -744,7 +751,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5116 = createLabel(node, UMLVisualIDRegistry.getType(FunctionBehaviorCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -770,7 +777,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5117 = createLabel(node, UMLVisualIDRegistry.getType(OpaqueBehaviorCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -795,7 +802,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Component");
 
 		Node label5121 = createLabel(node, UMLVisualIDRegistry.getType(ComponentCompositeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPart.VISUAL_ID), false,
+		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPart.VISUAL_ID), true,
 				false, false, false);
 		return node;
 	}
@@ -821,8 +828,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Device");
 
 		Node label5122 = createLabel(node, UMLVisualIDRegistry.getType(DeviceCompositeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPart.VISUAL_ID), false,
-				false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPart.VISUAL_ID), true, false,
+				false, false);
 		return node;
 	}
 
@@ -849,7 +856,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5123 = createLabel(node, UMLVisualIDRegistry
 				.getType(ExecutionEnvironmentCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node,
-				UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID), false, false,
+				UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID), true, false,
 				false, false);
 		return node;
 	}
@@ -875,7 +882,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Node");
 
 		Node label5124 = createLabel(node, UMLVisualIDRegistry.getType(NodeCompositeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPart.VISUAL_ID), false, false,
+		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPart.VISUAL_ID), true, false,
 				false, false);
 		return node;
 	}
@@ -901,7 +908,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Class");
 
 		Node label5156 = createLabel(node, UMLVisualIDRegistry.getType(ClassCompositeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ClassCompositeCompartmentEditPart.VISUAL_ID), false, false,
+		createCompartment(node, UMLVisualIDRegistry.getType(ClassCompositeCompartmentEditPart.VISUAL_ID), true, false,
 				false, false);
 		return node;
 	}
@@ -957,8 +964,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Collaboration");
 
 		Node label5158 = createLabel(node, UMLVisualIDRegistry.getType(CollaborationCompositeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(CollaborationCompositeCompartmentEditPart.VISUAL_ID),
-				false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(CollaborationCompositeCompartmentEditPart.VISUAL_ID), true,
+				false, false, false);
 		return node;
 	}
 
@@ -983,7 +990,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Interface");
 
 		Node label5159 = createLabel(node, UMLVisualIDRegistry.getType(InterfaceNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceCompartmentEditPart.VISUAL_ID), false, false,
+		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceCompartmentEditPart.VISUAL_ID), true, false,
 				false, false);
 		return node;
 	}
@@ -2060,6 +2067,29 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Property");
 
 		Node label5126 = createLabel(node, UMLVisualIDRegistry.getType(PropertyPartNameEditPartCN.VISUAL_ID));
+		createCompartment(node, UMLVisualIDRegistry.getType(PropertyPartCompartmentEditPartCN.VISUAL_ID), true, false,
+				false, false);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createConnectableElement_3115(EObject domainElement, View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(CollaborationRoleEditPartCN.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "ConnectableElement");
+
+		initBackgroundFromPrefs(node, prefStore, "ConnectableElement");
+
+		Node label5198 = createLabel(node, UMLVisualIDRegistry.getType(CollaborationRoleNameEditPartCN.VISUAL_ID));
 		return node;
 	}
 
@@ -2068,16 +2098,15 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	public Node createCollaborationUse_3071(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CollaborationUseEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "CollaborationUse");
 
 		initBackgroundFromPrefs(node, prefStore, "CollaborationUse");
 
@@ -2103,7 +2132,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Activity");
 
 		Node label5128 = createLabel(node, UMLVisualIDRegistry.getType(ActivityCompositeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCompositeCompartmentEditPartCN.VISUAL_ID), false,
+		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCompositeCompartmentEditPartCN.VISUAL_ID), true,
 				false, false, false);
 		return node;
 	}
@@ -2126,8 +2155,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Interaction");
 
 		Node label5129 = createLabel(node, UMLVisualIDRegistry.getType(InteractionCompositeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(InteractionCompositeCompartmentEditPartCN.VISUAL_ID),
-				false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(InteractionCompositeCompartmentEditPartCN.VISUAL_ID), true,
+				false, false, false);
 		return node;
 	}
 
@@ -2151,7 +2180,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5130 = createLabel(node, UMLVisualIDRegistry
 				.getType(ProtocolStateMachineCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
-				.getType(ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID), false, false, false, false);
+				.getType(ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
 		return node;
 	}
 
@@ -2174,7 +2203,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5131 = createLabel(node, UMLVisualIDRegistry.getType(StateMachineCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(StateMachineCompositeCompartmentEditPartCN.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -2198,7 +2227,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5132 = createLabel(node, UMLVisualIDRegistry
 				.getType(FunctionBehaviorCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -2221,7 +2250,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5133 = createLabel(node, UMLVisualIDRegistry.getType(OpaqueBehaviorCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -2243,7 +2272,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Component");
 
 		Node label5137 = createLabel(node, UMLVisualIDRegistry.getType(ComponentCompositeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPartCN.VISUAL_ID), false,
+		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPartCN.VISUAL_ID), true,
 				false, false, false);
 		return node;
 	}
@@ -2266,7 +2295,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Device");
 
 		Node label5138 = createLabel(node, UMLVisualIDRegistry.getType(DeviceCompositeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPartCN.VISUAL_ID), false,
+		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPartCN.VISUAL_ID), true,
 				false, false, false);
 		return node;
 	}
@@ -2291,7 +2320,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5139 = createLabel(node, UMLVisualIDRegistry
 				.getType(ExecutionEnvironmentCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry
-				.getType(ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID), false, false, false, false);
+				.getType(ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
 		return node;
 	}
 
@@ -2313,8 +2342,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Node");
 
 		Node label5140 = createLabel(node, UMLVisualIDRegistry.getType(NodeCompositeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPartCN.VISUAL_ID), false,
-				false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPartCN.VISUAL_ID), true, false,
+				false, false);
 		return node;
 	}
 
@@ -2336,7 +2365,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Class");
 
 		Node label5155 = createLabel(node, UMLVisualIDRegistry.getType(ClassCompositeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ClassCompositeCompartmentEditPartCN.VISUAL_ID), false,
+		createCompartment(node, UMLVisualIDRegistry.getType(ClassCompositeCompartmentEditPartCN.VISUAL_ID), true,
 				false, false, false);
 		return node;
 	}
@@ -2360,7 +2389,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5141 = createLabel(node, UMLVisualIDRegistry.getType(CollaborationCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(CollaborationCompositeCompartmentEditPartCN.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -2382,7 +2411,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Interface");
 
 		Node label5154 = createLabel(node, UMLVisualIDRegistry.getType(InterfaceNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceCompartmentEditPartCN.VISUAL_ID), false, false,
+		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceCompartmentEditPartCN.VISUAL_ID), true, false,
 				false, false);
 		return node;
 	}
@@ -3236,6 +3265,51 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6022 = (Location) label6022.getLayoutConstraint();
 		location6022.setX(0);
 		location6022.setY(60);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createDependency_4017(EObject domainElement, View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(RoleBindingEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(edge, prefStore, "Dependency");
+
+		initFontStyleFromPrefs(edge, prefStore, "Dependency");
+
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		Node label6026 = createLabel(edge, UMLVisualIDRegistry.getType(RoleBindingNameEditPart.VISUAL_ID));
+		label6026.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6026 = (Location) label6026.getLayoutConstraint();
+		location6026.setX(0);
+		location6026.setY(40);
+		Node label6027 = createLabel(edge, UMLVisualIDRegistry.getType(RoleBindingRoleNameEditPart.VISUAL_ID));
+		label6027.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6027 = (Location) label6027.getLayoutConstraint();
+		location6027.setX(0);
+		location6027.setY(20);
+		Node label6028 = createLabel(edge, UMLVisualIDRegistry.getType(RoleBindingAppliedStereotypeEditPart.VISUAL_ID));
+		label6028.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6028 = (Location) label6028.getLayoutConstraint();
+		location6028.setX(0);
+		location6028.setY(60);
 		return edge;
 	}
 

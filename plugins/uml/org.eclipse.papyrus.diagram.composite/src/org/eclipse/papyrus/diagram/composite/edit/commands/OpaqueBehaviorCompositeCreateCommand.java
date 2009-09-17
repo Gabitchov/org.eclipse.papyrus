@@ -97,6 +97,7 @@ public class OpaqueBehaviorCompositeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		OpaqueBehavior newElement = UMLFactory.eINSTANCE.createOpaqueBehavior();
 
 		Package owner = (Package) getElementToEdit();

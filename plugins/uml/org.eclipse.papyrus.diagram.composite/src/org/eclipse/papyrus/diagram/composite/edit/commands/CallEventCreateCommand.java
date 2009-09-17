@@ -97,6 +97,7 @@ public class CallEventCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		CallEvent newElement = UMLFactory.eINSTANCE.createCallEvent();
 
 		Package owner = (Package) getElementToEdit();

@@ -351,6 +351,11 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType ConnectableElement_3115 = getElementType("org.eclipse.papyrus.diagram.composite.prototype.ConnectableElement_3115"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType CollaborationUse_3071 = getElementType("org.eclipse.papyrus.diagram.composite.CollaborationUse_3071"); //$NON-NLS-1$
 
 	/**
@@ -611,6 +616,11 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Dependency_4017 = getElementType("org.eclipse.papyrus.diagram.composite.Dependency_4017"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Dependency_4010 = getElementType("org.eclipse.papyrus.diagram.composite.Dependency_4010"); //$NON-NLS-1$
 
 	/**
@@ -851,6 +861,8 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Property_3070, UMLPackage.eINSTANCE.getProperty());
 
+			elements.put(ConnectableElement_3115, UMLPackage.eINSTANCE.getConnectableElement());
+
 			elements.put(CollaborationUse_3071, UMLPackage.eINSTANCE.getCollaborationUse());
 
 			elements.put(Activity_3072, UMLPackage.eINSTANCE.getActivity());
@@ -953,6 +965,8 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Deployment_4009, UMLPackage.eINSTANCE.getDeployment());
 
+			elements.put(Dependency_4017, UMLPackage.eINSTANCE.getDependency());
+
 			elements.put(Dependency_4010, UMLPackage.eINSTANCE.getDependency());
 
 			elements.put(Connector_4013, UMLPackage.eINSTANCE.getConnector());
@@ -1035,6 +1049,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Constraint_2114);
 			KNOWN_ELEMENT_TYPES.add(Port_3069);
 			KNOWN_ELEMENT_TYPES.add(Property_3070);
+			KNOWN_ELEMENT_TYPES.add(ConnectableElement_3115);
 			KNOWN_ELEMENT_TYPES.add(CollaborationUse_3071);
 			KNOWN_ELEMENT_TYPES.add(Activity_3072);
 			KNOWN_ELEMENT_TYPES.add(Interaction_3073);
@@ -1087,6 +1102,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Abstraction_4007);
 			KNOWN_ELEMENT_TYPES.add(Usage_4008);
 			KNOWN_ELEMENT_TYPES.add(Deployment_4009);
+			KNOWN_ELEMENT_TYPES.add(Dependency_4017);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4010);
 			KNOWN_ELEMENT_TYPES.add(Connector_4013);
 			KNOWN_ELEMENT_TYPES.add(Generalization_4015);
@@ -1216,6 +1232,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return Port_3069;
 		case PropertyPartEditPartCN.VISUAL_ID:
 			return Property_3070;
+		case CollaborationRoleEditPartCN.VISUAL_ID:
+			return ConnectableElement_3115;
 		case CollaborationUseEditPartCN.VISUAL_ID:
 			return CollaborationUse_3071;
 		case ActivityCompositeEditPartCN.VISUAL_ID:
@@ -1320,6 +1338,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return Usage_4008;
 		case DeploymentEditPart.VISUAL_ID:
 			return Deployment_4009;
+		case RoleBindingEditPart.VISUAL_ID:
+			return Dependency_4017;
 		case DependencyEditPart.VISUAL_ID:
 			return Dependency_4010;
 		case ConnectorEditPart.VISUAL_ID:

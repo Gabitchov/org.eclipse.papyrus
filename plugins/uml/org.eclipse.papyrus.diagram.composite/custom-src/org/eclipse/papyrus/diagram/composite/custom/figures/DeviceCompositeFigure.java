@@ -18,7 +18,7 @@ package org.eclipse.papyrus.diagram.composite.custom.figures;
  */
 public class DeviceCompositeFigure extends CompositeFigure {
 
-	private static String TAG_LABEL = "Device";
+	private static String TAG_LABEL = "Device"; //$NON-NLS-1$
 
 	public DeviceCompositeFigure() {
 		super();

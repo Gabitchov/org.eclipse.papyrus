@@ -18,7 +18,7 @@ package org.eclipse.papyrus.diagram.composite.custom.figures;
  */
 public class StateMachineCompositeFigure extends CompositeFigure {
 
-	private static String TAG_LABEL = "StateMachine";
+	private static String TAG_LABEL = "StateMachine"; //$NON-NLS-1$
 
 	public StateMachineCompositeFigure() {
 		super();

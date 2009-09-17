@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.composite.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.diagram.composite.edit.commands.CollaborationRoleCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CollaborationUseCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.PropertyPartCreateCommandCN;
@@ -44,6 +45,9 @@ public class CollaborationCompositeCompartmentItemSemanticEditPolicyCN extends U
 		}
 		if (UMLElementTypes.Comment_3097 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandCN(req));
+		}
+		if (UMLElementTypes.ConnectableElement_3115 == req.getElementType()) {
+			return getGEFWrapper(new CollaborationRoleCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -97,6 +97,7 @@ public class TimeConstraintCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		TimeConstraint newElement = UMLFactory.eINSTANCE.createTimeConstraint();
 
 		Namespace owner = (Namespace) getElementToEdit();

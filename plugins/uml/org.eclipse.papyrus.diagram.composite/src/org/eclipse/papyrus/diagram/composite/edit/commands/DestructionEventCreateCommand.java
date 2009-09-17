@@ -97,6 +97,7 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		DestructionEvent newElement = UMLFactory.eINSTANCE.createDestructionEvent();
 
 		Package owner = (Package) getElementToEdit();

@@ -18,7 +18,7 @@ package org.eclipse.papyrus.diagram.composite.custom.figures;
  */
 public class InterfaceCompositeFigure extends CompositeFigure {
 
-	private static String TAG_LABEL_INTERFACE = "Interface";
+	private static String TAG_LABEL_INTERFACE = "Interface"; //$NON-NLS-1$
 
 	public InterfaceCompositeFigure() {
 		super();

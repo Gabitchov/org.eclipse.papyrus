@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
+import org.eclipse.papyrus.diagram.composite.custom.parsers.RoleBindingRoleNameParser;
 import org.eclipse.papyrus.diagram.composite.edit.parts.*;
 import org.eclipse.papyrus.diagram.composite.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -1173,6 +1174,26 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser connectableElementName_5198Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectableElementName_5198Parser() {
+		if (connectableElementName_5198Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			connectableElementName_5198Parser = parser;
+		}
+		return connectableElementName_5198Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser collaborationUseName_5127Parser;
 
 	/**
@@ -2246,6 +2267,53 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser dependencyName_6026Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDependencyName_6026Parser() {
+		if (dependencyName_6026Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			dependencyName_6026Parser = parser;
+		}
+		return dependencyName_6026Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private RoleBindingRoleNameParser dependencyName_6027Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDependencyName_6027Parser() {
+		if (dependencyName_6027Parser == null) {
+			dependencyName_6027Parser = new RoleBindingRoleNameParser();
+		}
+		return dependencyName_6027Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser dependencyName_6028Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDependencyName_6028Parser() {
+		if (dependencyName_6028Parser == null) {
+			dependencyName_6028Parser = new AppliedStereotypeParser();
+		}
+		return dependencyName_6028Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser dependencyName_6009Parser;
 
 	/**
@@ -2481,6 +2549,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getPortName_5125Parser();
 		case PropertyPartNameEditPartCN.VISUAL_ID:
 			return getPropertyName_5126Parser();
+		case CollaborationRoleNameEditPartCN.VISUAL_ID:
+			return getConnectableElementName_5198Parser();
 		case CollaborationUseNameEditPart.VISUAL_ID:
 			return getCollaborationUseName_5127Parser();
 		case ActivityCompositeNameEditPartCN.VISUAL_ID:
@@ -2595,6 +2665,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDeploymentName_6008Parser();
 		case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 			return getDeploymentName_6022Parser();
+		case RoleBindingNameEditPart.VISUAL_ID:
+			return getDependencyName_6026Parser();
+		case RoleBindingRoleNameEditPart.VISUAL_ID:
+			return getDependencyName_6027Parser();
+		case RoleBindingAppliedStereotypeEditPart.VISUAL_ID:
+			return getDependencyName_6028Parser();
 		case DependencyNameEditPart.VISUAL_ID:
 			return getDependencyName_6009Parser();
 		case DependencyAppliedStereotypeEditPart.VISUAL_ID:

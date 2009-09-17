@@ -97,6 +97,7 @@ public class CollaborationCompositeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Collaboration newElement = UMLFactory.eINSTANCE.createCollaboration();
 
 		Package owner = (Package) getElementToEdit();

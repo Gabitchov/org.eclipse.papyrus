@@ -97,6 +97,7 @@ public class DeploymentSpecificationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		DeploymentSpecification newElement = UMLFactory.eINSTANCE.createDeploymentSpecification();
 
 		Package owner = (Package) getElementToEdit();

@@ -97,6 +97,7 @@ public class StateMachineCreateCommandCLN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		StateMachine newElement = UMLFactory.eINSTANCE.createStateMachine();
 
 		Class owner = (Class) getElementToEdit();

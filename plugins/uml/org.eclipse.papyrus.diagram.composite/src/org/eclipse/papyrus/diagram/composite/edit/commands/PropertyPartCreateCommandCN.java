@@ -97,6 +97,7 @@ public class PropertyPartCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
 		StructuredClassifier owner = (StructuredClassifier) getElementToEdit();

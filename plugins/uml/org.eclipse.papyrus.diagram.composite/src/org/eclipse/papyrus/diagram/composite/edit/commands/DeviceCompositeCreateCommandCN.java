@@ -97,6 +97,7 @@ public class DeviceCompositeCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Device newElement = UMLFactory.eINSTANCE.createDevice();
 
 		Class owner = (Class) getElementToEdit();

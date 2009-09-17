@@ -13,27 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.figures;
 
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.ToolbarLayout;
-import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
-
 /**
  * Figure for Part (in Composite) representation of Property.
  */
-public class PropertyPartFigure extends NodeNamedElementFigure {
-
-	/**
-	 * Creates a new PropertyPartFigure.
-	 */
-	public PropertyPartFigure() {
-		super();
-
-		setLineStyle(Graphics.LINE_DASH);
-
-		// Set layout (Vertical ToolbarLayout)
-		ToolbarLayout layout = new ToolbarLayout();
-		layout.setVertical(true);
-		setLayoutManager(layout);
-	}
+public class PropertyPartFigure extends CompositeFigure {
 
 }

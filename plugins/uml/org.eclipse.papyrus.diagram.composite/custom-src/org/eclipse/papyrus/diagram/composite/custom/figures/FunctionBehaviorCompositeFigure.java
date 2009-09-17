@@ -18,7 +18,7 @@ package org.eclipse.papyrus.diagram.composite.custom.figures;
  */
 public class FunctionBehaviorCompositeFigure extends CompositeFigure {
 
-	private static String TAG_LABEL = "FunctionBehavior";
+	private static String TAG_LABEL = "FunctionBehavior"; //$NON-NLS-1$
 
 	public FunctionBehaviorCompositeFigure() {
 		super();

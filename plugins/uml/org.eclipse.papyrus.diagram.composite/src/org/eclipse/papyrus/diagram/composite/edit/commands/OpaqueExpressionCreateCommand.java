@@ -97,6 +97,7 @@ public class OpaqueExpressionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		OpaqueExpression newElement = UMLFactory.eINSTANCE.createOpaqueExpression();
 
 		Package owner = (Package) getElementToEdit();

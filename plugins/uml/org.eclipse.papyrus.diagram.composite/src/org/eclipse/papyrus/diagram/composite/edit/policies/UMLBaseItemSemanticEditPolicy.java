@@ -45,10 +45,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.composite.edit.helpers.UMLBaseEditHelper;
+import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
@@ -407,6 +410,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateDependency_4017(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_4017(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canCreateDependency_4010(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_4010(container, source, target);
 		}
@@ -510,6 +520,34 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistDeployment_4009(Package container, NamedElement source, NamedElement target) {
 			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistDependency_4017(Package container, NamedElement source, NamedElement target) {
+			try {
+				// RoleBinding source constraint
+				if ((source != null) && !(source instanceof CollaborationUse)) {
+					return false;
+				}
+				// RoleBinding source has a type
+				if ((source != null) && (((CollaborationUse) source).getType() == null)) {
+					return false;
+				}
+				// RoleBinding target constraint
+				if ((target != null) && !(target instanceof ConnectableElement)) {
+					return false;
+				}
+				// RoleBinding source and target have the same semantic parent
+				if ((source != null) && (target != null) && (source.getOwner() != target.getOwner())) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**

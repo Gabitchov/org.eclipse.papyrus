@@ -23,6 +23,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.messages.Messages;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -76,11 +78,13 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 
 		// Resolve graphical parents of source and target store in request as Parameters
 		// These parameters are added in request by (custom) GraphicalNodeEditPolicy
-		if (req.getParameter("SOURCE_PARENT") instanceof Property) {
-			sourcePartWithPort = (Property) req.getParameter("SOURCE_PARENT");
+		if (req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT) instanceof Property) {
+			sourcePartWithPort = (Property) req
+					.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT);
 		}
-		if (req.getParameter("TARGET_PARENT") instanceof Property) {
-			targetPartWithPort = (Property) req.getParameter("TARGET_PARENT");
+		if (req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT) instanceof Property) {
+			targetPartWithPort = (Property) req
+					.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT);
 		}
 	}
 
@@ -145,7 +149,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(Messages.ConnectorCreateCommand_INVALID_ARGS_MSG);
 		}
 		Connector newElement = UMLFactory.eINSTANCE.createConnector();
 		getContainer().getOwnedConnectors().add(newElement);
@@ -159,7 +163,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 			end0.setRole((ConnectableElement) _getSource());
 
 		} else {
-			throw new ExecutionException("Invalid source in create Connector command"); //$NON-NLS-1$
+			throw new ExecutionException(Messages.ConnectorCreateCommand_INVALID_SOURCE_MSG);
 		}
 
 		ConnectorEnd end1 = UMLFactory.eINSTANCE.createConnectorEnd();
@@ -171,7 +175,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 			end1.setRole((ConnectableElement) _getTarget());
 
 		} else {
-			throw new ExecutionException("Invalid source in create Connector command"); //$NON-NLS-1$
+			throw new ExecutionException(Messages.ConnectorCreateCommand_INVALID_TARGET_MSG);
 		}
 
 		newElement.getEnds().add(end0);
