@@ -33,7 +33,6 @@ public class SashWindowsViewPart extends ViewPart {
 	 */
 	private IModelChangedListener modelChangedListener = new IModelChangedListener() {
 		
-		@Override
 		public void modelChanged(SashWindowsViewModel changedModel) {
 			refreshView();
 		}
