@@ -39,22 +39,16 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.core.multidiagram.SashDiagramModelUtil;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.CoreSemanticModelBridge;
 import org.eclipse.papyrus.di.DiFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.edit.providers.ExecutionOccurrenceSpecificationItemProvider;
 
 /**
  * Command creating a new GMF diagram in Papyrus. This command is intended to be used in eclipse 
@@ -84,10 +78,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			// Bad current editor. Skip
 			throw new ExecutionException("Current editor type not supported.", ex);
 		}
-		Element container = null;
+		EObject container = null;
 		// if editor is open and active
 		if (getMultiDiagramEditor() != null) {
-			container = getSelectedUmlElement();
+			container = getSelectedElement();
 		}
 		runAsTransaction(context, container);
 		return null;
@@ -100,41 +94,40 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @param container
 	 *            The uml element to which the diagram should be attached, if possible.
 	 */
-	protected void runAsTransaction(BackboneContext sharedObjects, Element container) {
+	protected void runAsTransaction(BackboneContext sharedObjects, EObject container) {
 		DiResourceSet diResourceSet = sharedObjects.getResourceSet();
 		runAsTransaction(diResourceSet, container, null);
 	}
 
 	/**
-	 * Create a new class diagram
+	 * Create a new gmf diagram
 	 * 
 	 * @param sharedObjects
 	 * @param container
-	 *            The uml element to which the diagram should be attached, if possible.
+	 *            The eObject to which the diagram should be attached, if possible.
 	 */
-	protected void runAsTransaction(final DiResourceSet diResourceSet, final Element container, String name) {
-		final String diagramName;
-		if (name != null) {
-			diagramName = name;
-		} else {
-			diagramName = getDiagramName();
+	protected void runAsTransaction(final DiResourceSet diResourceSet, final EObject container, String name) {
+		if(name == null)
+		{
+			name = getDefaultDiagramName();
 		}
-		if (diagramName != null) {
+		
+		if (name != null) {
 			// Get the uml element to which the newly created diagram will be attached.
-			final Element umlParent = getUmlParentFromElement(container);
 			// Create the diagram
 			final Resource modelResource = diResourceSet.getUMLModelResource();
 			final Resource diagramResource = diResourceSet.getNotationResource();
 			final Resource diResource = diResourceSet.getDiResource();
+			final String diagramName = name;
 			// TODO: get the appropriate value from diResourceSet
 			TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
 
 			AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
 
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					Element model = umlParent;
+					EObject model = container;
 					if (model == null) {
-						model = getModel(modelResource);
+						model = getRootElement(modelResource);
 						attachModelToResource(model, modelResource);
 					}
 
@@ -167,29 +160,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		
 	}
 
-	/**
-	 * Get the UML parent into which the diagram can be attached.
-	 * 
-	 * @param container
-	 *            The currently selected UML element. Can be used as an hint to find the possible parent.
-	 * @return The suitable UML parent, or null.
-	 */
-	private Element getUmlParentFromElement(Element umlElement) {
-		if (umlElement == null)
-			return null;
-
-		return getSurroundingPackage(umlElement);
-	}
-
-	/**
-	 * Get the nearest surrounding package for the element, or null.
-	 * 
-	 * @param umlElement
-	 * @return the nearest surrounding package for the element, or null.
-	 */
-	private Element getSurroundingPackage(Element umlElement) {
-		return umlElement.getNearestPackage();
-	}
 
 	/**
 	 * Create a di2 diagram referencing the notation diagram.
@@ -211,25 +181,35 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	}
 
 	/**
-	 * Get the instance of domain element associated with canvas.
+	 * Get the root element associated with canvas.
 	 */
-	protected Element getModel(Resource modelResource) {
+	protected EObject getRootElement(Resource modelResource) {
+		EObject rootElement = null;
 		if (modelResource != null && modelResource.getContents() != null) {
 			if (modelResource.getContents().size() > 0) {
 				Object root = modelResource.getContents().get(0);
-				if (root instanceof Element) {
-					return (Element) root;
+				if (root instanceof EObject) {
+					rootElement = (EObject) root;
 				}
 			}
 		}
-		return UMLFactory.eINSTANCE.createModel();
+		else {
+			rootElement = createRootElement();
+		}
+		return rootElement;
 	}
 
 	/**
+	 * Create the root element of an EMF model
+	 * @return the root element
+	 */
+	protected abstract EObject createRootElement(); 
+	
+	/**
 	 * Store model element in the resource.
 	 */
-	protected void attachModelToResource(Element model, Resource resource) {
-		resource.getContents().add(model);
+	protected void attachModelToResource(EObject root, Resource resource) {
+		resource.getContents().add(root);
 	}
 
 	/**
@@ -247,24 +227,23 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * 
 	 * @return
 	 */
-	abstract protected String getDiagramName();
+	abstract protected String getDefaultDiagramName();
 
 	/**
-	 * Get currently selected UML element.
+	 * Get currently selected element.
 	 * 
-	 * @return The currently selected UML element, or null if any.
+	 * @return The currently selected element, or null if any.
 	 */
-	protected NamedElement getSelectedUmlElement() {
-
-		Object selected = getCurrentSelection();
-		if (selected == null)
-			return null;
-		try {
-			return (NamedElement) getDefaultContext().getModelResolver().getBussinessModel(selected);
-		} catch (ClassCastException e) {
-			// The selected element is not a UML element.
-			return null;
+	protected EObject getSelectedElement() {
+		EObject eObject = null;
+		Object selection = getCurrentSelection();
+		if(selection != null){
+			Object businessObject = getDefaultContext().getModelResolver().getBussinessModel(selection);
+			if(businessObject instanceof EObject){
+				eObject = (EObject)businessObject;
+			}
 		}
+		return eObject;
 	}
 
 	/**
@@ -287,29 +266,29 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * 
 	 * @param diagramResource
 	 *            the diagram resource
-	 * @param umlOwner
+	 * @param owner
 	 *            the diagram container
 	 * @param name
 	 *            the diagram name
 	 * @return
 	 */
-	protected Diagram createDiagram(Resource diagramResource, Element umlOwner, String name) {
+	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
 		// create diagram
-		Diagram diagram = ViewService.createDiagram(umlOwner, getDiagramNotationID(), getPreferenceHint());
+		Diagram diagram = ViewService.createDiagram(owner, getDiagramNotationID(), getPreferenceHint());
 		if (diagram != null) {
 			diagram.setName(name);
-			diagram.setElement(umlOwner);
+			diagram.setElement(owner);
 			diagramResource.getContents().add(diagram);
-			initializeModel(umlOwner);
+			initializeModel(owner);
 			initializeDiagram(diagram);
 		}
 		return diagram;
 	}
 
-	protected void initializeModel(Element umlOwner) {
+	protected void initializeModel(EObject owner) {
 	};
 
-	protected void initializeDiagram(Diagram diagram) {
+	protected void initializeDiagram(EObject diagram) {
 	};
 
 	/**
@@ -341,17 +320,16 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @return the entered diagram name
 	 */
 	protected String openDiagramNameDialog(final String defaultValue) {
+		String name = null;
 		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), "Enter a new diagram name", "The new diagram name:", defaultValue, null);
 		int ret = inputDialog.open();
 		if (ret == Window.OK) {
-			String name = inputDialog.getValue();
+			name = inputDialog.getValue();
 			if (name == null || name.length() == 0) {
 				name = defaultValue;
 			}
-			return name;
-		} else {
-			return null;
-		}
+		} 
+		return name;
 	}
 
 	/**
@@ -363,7 +341,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 			@Override
 			protected void doExecute() {
-				runAsTransaction(diResourceSet, (Element) container, name);
+				runAsTransaction(diResourceSet, container, name);
 			}
 		};
 		transactionalEditingDomain.getCommandStack().execute(command);
