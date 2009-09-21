@@ -554,9 +554,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
@@ -795,9 +792,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
@@ -1040,9 +1034,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
@@ -1281,9 +1272,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
@@ -1526,9 +1514,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
@@ -1767,9 +1752,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
@@ -2012,9 +1994,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
@@ -2253,9 +2232,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
@@ -2498,9 +2474,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
@@ -2739,9 +2712,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
@@ -2990,9 +2960,6 @@ ShapeNodeEditPart {
 		if (targetEditPart instanceof CommentEditPartCN) {
 			types.add(UMLElementTypes.Generalization_4015);
 		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
-			types.add(UMLElementTypes.Generalization_4015);
-		}
 		if (targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.InformationFlow_4016);
 		}
@@ -3237,9 +3204,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InformationFlow_4016);
 		}
 		if (targetEditPart instanceof CommentEditPartCN) {
-			types.add(UMLElementTypes.InformationFlow_4016);
-		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
 			types.add(UMLElementTypes.InformationFlow_4016);
 		}
 		return types;
@@ -3501,9 +3465,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.ComponentRealization_4004) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.ComponentRealization_4004) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.InterfaceRealization_4005) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -3743,9 +3704,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.InterfaceRealization_4005) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.InterfaceRealization_4005) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Substitution_4011) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -3987,9 +3945,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Substitution_4011) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.Substitution_4011) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Realization_4006) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -4229,9 +4184,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Realization_4006) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.Realization_4006) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Manifestation_4012) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -4473,9 +4425,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Manifestation_4012) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.Manifestation_4012) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Abstraction_4007) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -4715,9 +4664,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4007) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.Abstraction_4007) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Usage_4008) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -4959,9 +4905,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Usage_4008) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4008) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Deployment_4009) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -5201,9 +5144,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Deployment_4009) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.Deployment_4009) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -5445,9 +5385,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4017) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -5687,9 +5624,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.Dependency_4010) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -5937,9 +5871,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.Comment_3097);
 		}
-		if (relationshipType == UMLElementTypes.Generalization_4015) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -6185,9 +6116,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Comment_3097);
-		}
-		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		return types;
 	}
@@ -6261,9 +6189,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4003) {
 			types.add(UMLElementTypes.Constraint_2114);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4003) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.ComponentRealization_4004) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -6503,9 +6428,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.ComponentRealization_4004) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.ComponentRealization_4004) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.InterfaceRealization_4005) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -6747,9 +6669,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.InterfaceRealization_4005) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.InterfaceRealization_4005) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Substitution_4011) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -6989,9 +6908,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Substitution_4011) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.Substitution_4011) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Realization_4006) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -7233,9 +7149,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Realization_4006) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4006) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Manifestation_4012) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -7475,9 +7388,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Manifestation_4012) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.Manifestation_4012) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Abstraction_4007) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -7719,9 +7629,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Abstraction_4007) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4007) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Usage_4008) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -7961,9 +7868,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Usage_4008) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.Usage_4008) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Deployment_4009) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -8205,9 +8109,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Deployment_4009) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.Deployment_4009) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -8448,9 +8349,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.UseCase_3096);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4017) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -8690,9 +8588,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.UseCase_3096);
-		}
-		if (relationshipType == UMLElementTypes.Dependency_4010) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		if (relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.Activity_2060);
@@ -8940,9 +8835,6 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.Comment_3097);
 		}
-		if (relationshipType == UMLElementTypes.Generalization_4015) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
-		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Activity_2060);
 		}
@@ -9188,9 +9080,6 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Comment_3097);
-		}
-		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
-			types.add(UMLElementTypes.DurationConstraint_3098);
 		}
 		return types;
 	}

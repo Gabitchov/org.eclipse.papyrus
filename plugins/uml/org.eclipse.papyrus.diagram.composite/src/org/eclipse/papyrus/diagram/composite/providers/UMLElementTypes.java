@@ -476,11 +476,6 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_3098 = getElementType("org.eclipse.papyrus.diagram.composite.DurationConstraint_3098"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType Property_3101 = getElementType("org.eclipse.papyrus.diagram.composite.Property_3101"); //$NON-NLS-1$
 
 	/**
@@ -911,8 +906,6 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Comment_3097, UMLPackage.eINSTANCE.getComment());
 
-			elements.put(DurationConstraint_3098, UMLPackage.eINSTANCE.getDurationConstraint());
-
 			elements.put(Property_3101, UMLPackage.eINSTANCE.getProperty());
 
 			elements.put(Operation_3102, UMLPackage.eINSTANCE.getOperation());
@@ -1074,7 +1067,6 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Signal_3095);
 			KNOWN_ELEMENT_TYPES.add(UseCase_3096);
 			KNOWN_ELEMENT_TYPES.add(Comment_3097);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3098);
 			KNOWN_ELEMENT_TYPES.add(Property_3101);
 			KNOWN_ELEMENT_TYPES.add(Operation_3102);
 			KNOWN_ELEMENT_TYPES.add(Reception_3100);
@@ -1282,8 +1274,6 @@ public class UMLElementTypes extends ElementInitializers {
 			return UseCase_3096;
 		case CommentEditPartCN.VISUAL_ID:
 			return Comment_3097;
-		case DurationConstraint2EditPart.VISUAL_ID:
-			return DurationConstraint_3098;
 		case PropertyEditPartCLN.VISUAL_ID:
 			return Property_3101;
 		case OperationEditPartCLN.VISUAL_ID:

@@ -536,12 +536,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case CommentBodyEditPartCN.VISUAL_ID:
 				return new CommentBodyEditPartCN(view);
 
-			case DurationConstraint2EditPart.VISUAL_ID:
-				return new DurationConstraint2EditPart(view);
-
-			case DurationConstraintName2EditPart.VISUAL_ID:
-				return new DurationConstraintName2EditPart(view);
-
 			case PropertyEditPartCLN.VISUAL_ID:
 				return new PropertyEditPartCLN(view);
 

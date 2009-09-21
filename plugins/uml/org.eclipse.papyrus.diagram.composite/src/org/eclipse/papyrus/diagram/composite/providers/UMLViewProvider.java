@@ -200,7 +200,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case SignalEditPartCN.VISUAL_ID:
 				case UseCaseEditPartCN.VISUAL_ID:
 				case CommentEditPartCN.VISUAL_ID:
-				case DurationConstraint2EditPart.VISUAL_ID:
 				case ReceptionEditPartCLN.VISUAL_ID:
 				case EnumerationLiteralEditPartCLN.VISUAL_ID:
 				case ClassClassifierEditPart.VISUAL_ID:
@@ -304,10 +303,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| DeploymentSpecificationEditPartCN.VISUAL_ID == visualID || ArtifactEditPartCN.VISUAL_ID == visualID
 				|| InformationItemEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID
 				|| UseCaseEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID
-				|| DurationConstraint2EditPart.VISUAL_ID == visualID || PropertyEditPartCLN.VISUAL_ID == visualID
-				|| OperationEditPartCLN.VISUAL_ID == visualID || ReceptionEditPartCLN.VISUAL_ID == visualID
-				|| EnumerationLiteralEditPartCLN.VISUAL_ID == visualID || ActivityEditPartCLN.VISUAL_ID == visualID
-				|| InteractionEditPartCLN.VISUAL_ID == visualID
+				|| PropertyEditPartCLN.VISUAL_ID == visualID || OperationEditPartCLN.VISUAL_ID == visualID
+				|| ReceptionEditPartCLN.VISUAL_ID == visualID || EnumerationLiteralEditPartCLN.VISUAL_ID == visualID
+				|| ActivityEditPartCLN.VISUAL_ID == visualID || InteractionEditPartCLN.VISUAL_ID == visualID
 				|| ProtocolStateMachineEditPartCLN.VISUAL_ID == visualID
 				|| StateMachineEditPartCLN.VISUAL_ID == visualID || FunctionBehaviorEditPartCLN.VISUAL_ID == visualID
 				|| OpaqueBehaviorEditPartCLN.VISUAL_ID == visualID || CollaborationEditPartCLN.VISUAL_ID == visualID
@@ -526,8 +524,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createUseCase_3096(domainElement, containerView, index, persisted, preferencesHint);
 		case CommentEditPartCN.VISUAL_ID:
 			return createComment_3097(domainElement, containerView, index, persisted, preferencesHint);
-		case DurationConstraint2EditPart.VISUAL_ID:
-			return createDurationConstraint_3098(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyEditPartCLN.VISUAL_ID:
 			return createProperty_3101(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationEditPartCLN.VISUAL_ID:
@@ -2635,28 +2631,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "Comment");
 
 		Node label5150 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPartCN.VISUAL_ID));
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createDurationConstraint_3098(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(DurationConstraint2EditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		initBackgroundFromPrefs(node, prefStore, "DurationConstraint");
-
-		Node label5151 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintName2EditPart.VISUAL_ID));
 		return node;
 	}
 

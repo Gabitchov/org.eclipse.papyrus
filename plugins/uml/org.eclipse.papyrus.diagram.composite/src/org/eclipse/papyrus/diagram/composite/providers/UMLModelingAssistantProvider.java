@@ -1176,9 +1176,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN) sourceEditPart).getMARelTypesOnSource();
 		}
-		if (sourceEditPart instanceof DurationConstraint2EditPart) {
-			return ((DurationConstraint2EditPart) sourceEditPart).getMARelTypesOnSource();
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -1432,9 +1429,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN) targetEditPart).getMARelTypesOnTarget();
-		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
-			return ((DurationConstraint2EditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1696,9 +1690,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if (sourceEditPart instanceof DurationConstraint2EditPart) {
-			return ((DurationConstraint2EditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -1953,9 +1944,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN) targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if (targetEditPart instanceof DurationConstraint2EditPart) {
-			return ((DurationConstraint2EditPart) targetEditPart).getMATypesForSource(relationshipType);
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -2209,9 +2197,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN) sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof DurationConstraint2EditPart) {
-			return ((DurationConstraint2EditPart) sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

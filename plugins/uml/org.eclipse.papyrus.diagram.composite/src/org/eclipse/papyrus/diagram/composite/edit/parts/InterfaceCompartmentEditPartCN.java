@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditP
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.composite.edit.policies.InterfaceCompartmentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.composite.part.Messages;
@@ -66,6 +67,7 @@ public class InterfaceCompartmentEditPartCN extends ShapeCompartmentEditPart {
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceCompartmentItemSemanticEditPolicyCN());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 	}
 
 	/**

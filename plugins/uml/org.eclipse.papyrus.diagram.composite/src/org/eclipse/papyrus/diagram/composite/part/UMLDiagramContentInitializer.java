@@ -972,15 +972,6 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createDurationConstraint_3098Children(View view) {
-		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.getDurationConstraint_3098OutgoingLinks(view));
-
-	}
-
-	/**
-	 * @generated
-	 */
 	private void createProperty_3101Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getProperty_3101OutgoingLinks(view));
@@ -1770,9 +1761,6 @@ public class UMLDiagramContentInitializer {
 			return;
 		case CommentEditPartCN.VISUAL_ID:
 			createComment_3097Children(node);
-			return;
-		case DurationConstraint2EditPart.VISUAL_ID:
-			createDurationConstraint_3098Children(node);
 			return;
 		case PropertyEditPartCLN.VISUAL_ID:
 			createProperty_3101Children(node);

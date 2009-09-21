@@ -1029,9 +1029,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if (commentBody_5192Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getComment_Body() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			commentBody_5192Parser = parser;
 		}
 		return commentBody_5192Parser;
@@ -1049,9 +1046,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if (durationConstraintName_5193Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			durationConstraintName_5193Parser = parser;
 		}
 		return durationConstraintName_5193Parser;
@@ -1069,9 +1063,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if (timeConstraintName_5194Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			timeConstraintName_5194Parser = parser;
 		}
 		return timeConstraintName_5194Parser;
@@ -1089,9 +1080,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if (intervalConstraintName_5195Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			intervalConstraintName_5195Parser = parser;
 		}
 		return intervalConstraintName_5195Parser;
@@ -1109,9 +1097,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if (interactionConstraintName_5196Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			interactionConstraintName_5196Parser = parser;
 		}
 		return interactionConstraintName_5196Parser;
@@ -1129,9 +1114,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if (constraintName_5197Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			constraintName_5197Parser = parser;
 		}
 		return constraintName_5197Parser;
@@ -1660,32 +1642,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if (commentBody_5150Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getComment_Body() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			commentBody_5150Parser = parser;
 		}
 		return commentBody_5150Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser durationConstraintName_5151Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDurationConstraintName_5151Parser() {
-		if (durationConstraintName_5151Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			durationConstraintName_5151Parser = parser;
-		}
-		return durationConstraintName_5151Parser;
 	}
 
 	/**
@@ -2599,8 +2558,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getUseCaseName_5149Parser();
 		case CommentBodyEditPartCN.VISUAL_ID:
 			return getCommentBody_5150Parser();
-		case DurationConstraintName2EditPart.VISUAL_ID:
-			return getDurationConstraintName_5151Parser();
 		case PropertyEditPartCLN.VISUAL_ID:
 			return getProperty_3101Parser();
 		case OperationEditPartCLN.VISUAL_ID:

@@ -1079,18 +1079,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DurationConstraint_3098(DurationConstraint instance) {
-		try {
-			Object value_0 = name_DurationConstraint_3098(instance);
-			instance.setName((String) value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public static void init_Property_3101(Property instance) {
 		try {
 			Object value_0 = name_Property_3101(instance);
@@ -1972,13 +1960,6 @@ public class ElementInitializers {
 	 */
 	private static String body_Comment_3097(Comment self) {
 		return self.getBody();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static String name_DurationConstraint_3098(DurationConstraint self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
 	/**

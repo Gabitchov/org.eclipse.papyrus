@@ -4149,11 +4149,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case DurationConstraint2EditPart.VISUAL_ID:
-			if (DurationConstraintName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
 			if (PropertyEditPartCLN.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -7915,8 +7910,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7075, viewInfo);
 
 		root.addNode(7077, viewInfo);
-
-		viewInfo = new BaseViewInfo(3098, ViewInfo.Node, "DurationConstraint");
 
 		viewInfo = new BaseViewInfo(3101, ViewInfo.Node, "Property");
 

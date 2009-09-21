@@ -1178,7 +1178,7 @@
           editPartClassName="EnumerationEditPartCN"
           itemSemanticEditPolicyClassName="EnumerationItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="EnumerationCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.31"
+          childNodes="/0/@diagram/@childNodes.30"
           compartments="/0/@diagram/@compartments.8"
           graphicalNodeEditPolicyClassName="EnumerationGraphicalNodeEditPolicyCN"
           createCommandClassName="EnumerationCreateCommandCN"
@@ -1694,11 +1694,12 @@
             editHelperClassName="CommentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="CommentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCommentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCommentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCommentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCommentContentLabel.setFont(FCOMMENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCommentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCommentContentLabel() {&#xA;&#x9;&#x9;return fCommentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCOMMENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -1726,7 +1727,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCommentContentLabel"
+              getterName="getCornerBentContentLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -1735,74 +1736,11 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
-          </modelFacet>
-        </labels>
-      </childNodes>
-      <childNodes
-          visualID="3098"
-          editPartClassName="DurationConstraint2EditPart"
-          itemSemanticEditPolicyClassName="DurationConstraint2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="DurationConstraint2CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="DurationConstraint2GraphicalNodeEditPolicy"
-          createCommandClassName="DurationConstraint2CreateCommand">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="DurationConstraintEditHelper"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CommentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCommentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCommentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCommentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCommentContentLabel.setFont(FCOMMENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCommentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCommentContentLabel() {&#xA;&#x9;&#x9;return fCommentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCOMMENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"/>
-        </viewmap>
-        <modelFacet>
-          <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationConstraint"/>
-          <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
-          <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.0">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
-        </modelFacet>
-        <labels
-            visualID="5151"
-            editPartClassName="DurationConstraintName2EditPart"
-            itemSemanticEditPolicyClassName="DurationConstraintName2ItemSemanticEditPolicy"
-            elementIcon="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCommentContentLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -3453,7 +3391,7 @@
           editPartClassName="EnumerationEditPart"
           itemSemanticEditPolicyClassName="EnumerationItemSemanticEditPolicy"
           canonicalEditPolicyClassName="EnumerationCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.31"
+          childNodes="/0/@diagram/@childNodes.30"
           compartments="/0/@diagram/@compartments.7"
           graphicalNodeEditPolicyClassName="EnumerationGraphicalNodeEditPolicy"
           createCommandClassName="EnumerationCreateCommand">
@@ -5624,11 +5562,12 @@
             metamodelType="/0/@diagram/@childNodes.26/@elementType"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="CommentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCommentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCommentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCommentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCommentContentLabel.setFont(FCOMMENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCommentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCommentContentLabel() {&#xA;&#x9;&#x9;return fCommentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCOMMENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -5656,7 +5595,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCommentContentLabel"
+              getterName="getCornerBentContentLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -5665,9 +5604,9 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
           </modelFacet>
@@ -5683,15 +5622,15 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.27/@elementType"/>
+            xsi:type="gmfgen:SpecializationType"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="CommentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCommentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCommentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCommentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCommentContentLabel.setFont(FCOMMENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCommentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCommentContentLabel() {&#xA;&#x9;&#x9;return fCommentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCOMMENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -5719,7 +5658,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCommentContentLabel"
+              getterName="getCornerBentContentLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -5728,9 +5667,9 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -5750,11 +5689,12 @@
             editHelperClassName="TimeConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="CommentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCommentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCommentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCommentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCommentContentLabel.setFont(FCOMMENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCommentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCommentContentLabel() {&#xA;&#x9;&#x9;return fCommentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCOMMENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -5782,7 +5722,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCommentContentLabel"
+              getterName="getCornerBentContentLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -5791,9 +5731,9 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -5813,11 +5753,12 @@
             editHelperClassName="IntervalConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="CommentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCommentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCommentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCommentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCommentContentLabel.setFont(FCOMMENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCommentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCommentContentLabel() {&#xA;&#x9;&#x9;return fCommentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCOMMENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -5845,7 +5786,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCommentContentLabel"
+              getterName="getCornerBentContentLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -5854,9 +5795,9 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -5876,11 +5817,12 @@
             editHelperClassName="InteractionConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="CommentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCommentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCommentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCommentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCommentContentLabel.setFont(FCOMMENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCommentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCommentContentLabel() {&#xA;&#x9;&#x9;return fCommentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCOMMENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -5908,7 +5850,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCommentContentLabel"
+              getterName="getCornerBentContentLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -5917,9 +5859,9 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -5939,11 +5881,12 @@
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="CommentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCommentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCommentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCommentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCommentContentLabel.setFont(FCOMMENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCommentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCommentContentLabel() {&#xA;&#x9;&#x9;return fCommentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCOMMENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -5971,7 +5914,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCommentContentLabel"
+              getterName="getCornerBentContentLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -5980,9 +5923,9 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -7162,7 +7105,7 @@
           editPartClassName="DataTypeAttributeCompartmentEditPart"
           itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.28"
+          childNodes="/0/@diagram/@childNodes.27"
           title="DataTypeAttributeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.16">
@@ -7182,7 +7125,7 @@
           editPartClassName="DataTypeOperationCompartmentEditPart"
           itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.29"
+          childNodes="/0/@diagram/@childNodes.28"
           title="DataTypeOperationCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.16">
@@ -7202,7 +7145,7 @@
           editPartClassName="DataTypeAttributeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.28"
+          childNodes="/0/@diagram/@childNodes.27"
           title="DataTypeAttributeCompartment"
           needsTitle="false"
           node="/0/@diagram/@childNodes.19">
@@ -7222,7 +7165,7 @@
           editPartClassName="DataTypeOperationCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.29"
+          childNodes="/0/@diagram/@childNodes.28"
           title="DataTypeOperationCompartment"
           needsTitle="false"
           node="/0/@diagram/@childNodes.19">
@@ -7242,7 +7185,7 @@
           editPartClassName="ClassAttributeCompartmentEditPart"
           itemSemanticEditPolicyClassName="ClassAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassAttributeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.28"
+          childNodes="/0/@diagram/@childNodes.27"
           title="ClassAttributeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.11">
@@ -7262,7 +7205,7 @@
           editPartClassName="ClassOperationCompartmentEditPart"
           itemSemanticEditPolicyClassName="ClassOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassOperationCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.30 /0/@diagram/@childNodes.29"
+          childNodes="/0/@diagram/@childNodes.29 /0/@diagram/@childNodes.28"
           title="ClassOperationCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.11">
@@ -7282,7 +7225,7 @@
           editPartClassName="ClassNestedClassifierCompartmentEditPart"
           itemSemanticEditPolicyClassName="ClassNestedClassifierCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassNestedClassifierCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43"
+          childNodes="/0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42"
           title="ClassNestedClassifierCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.11">
@@ -7302,7 +7245,7 @@
           editPartClassName="EnumerationEnumerationLiteralCompartmentEditPart"
           itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.31"
+          childNodes="/0/@diagram/@childNodes.30"
           title="EnumerationEnumerationLiteralCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.15">
@@ -7322,7 +7265,7 @@
           editPartClassName="EnumerationEnumerationLiteralCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.31"
+          childNodes="/0/@diagram/@childNodes.30"
           title="EnumerationEnumerationLiteralCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.18">
@@ -7357,6 +7300,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7051"
@@ -7378,6 +7325,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7052"
@@ -7399,6 +7350,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7053"
@@ -7420,6 +7375,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7054"
@@ -7441,6 +7400,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7055"
@@ -7462,6 +7425,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7056"
@@ -7483,6 +7450,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7057"
@@ -7504,6 +7475,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7058"
@@ -7525,6 +7500,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7059"
@@ -7546,6 +7525,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7060"
@@ -7567,6 +7550,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7061"
@@ -7592,6 +7579,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CollaborationCompositeCompartmentItemSemanticEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7062"
@@ -7612,6 +7603,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7063"
@@ -7633,6 +7628,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7064"
@@ -7654,6 +7653,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7065"
@@ -7675,6 +7678,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7066"
@@ -7696,6 +7703,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7067"
@@ -7717,6 +7728,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7068"
@@ -7738,6 +7753,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7069"
@@ -7759,6 +7778,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7070"
@@ -7780,6 +7803,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7071"
@@ -7801,6 +7828,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7072"
@@ -7822,6 +7853,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7073"
@@ -7843,6 +7878,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7075"
@@ -7868,6 +7907,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CollaborationCompositeCompartmentItemSemanticEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7076"
@@ -7888,6 +7931,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7077"
@@ -7913,6 +7960,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PropertyPartCompartmentItemSemanticEditPolicyCN"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <palette>
         <groups
@@ -7970,6 +8021,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Link"
               description="Create new Link (Comment / Constraint)"
+              largeIconPath="icons/obj16/Link.gif"
+              smallIconPath="icons/obj16/Link.gif"
               genLinks="/0/@diagram/@links.1 /0/@diagram/@links.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -8102,7 +8155,7 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labelModelFacet /0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labelModelFacet /0/@diagram/@childNodes.28/@labelModelFacet /0/@diagram/@childNodes.29/@labelModelFacet /0/@diagram/@childNodes.32/@labelModelFacet /0/@diagram/@childNodes.33/@labelModelFacet /0/@diagram/@childNodes.34/@labelModelFacet /0/@diagram/@childNodes.35/@labelModelFacet /0/@diagram/@childNodes.36/@labelModelFacet /0/@diagram/@childNodes.37/@labelModelFacet /0/@diagram/@childNodes.38/@labelModelFacet /0/@diagram/@childNodes.39/@labelModelFacet /0/@diagram/@childNodes.40/@labelModelFacet /0/@diagram/@childNodes.41/@labelModelFacet /0/@diagram/@childNodes.42/@labelModelFacet /0/@diagram/@childNodes.43/@labelModelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.20/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.21/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.22/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.23/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.24/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.25/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.26/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.27/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.29/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.30/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.31/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.32/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.33/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.34/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.35/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.36/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.37/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.38/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.39/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.40/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.41/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.42/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.43/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.44/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.45/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.46/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.47/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.48/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.49/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.50/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.51/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.52/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.53/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.54/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.2/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@links.11/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labelModelFacet /0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labelModelFacet /0/@diagram/@childNodes.27/@labelModelFacet /0/@diagram/@childNodes.28/@labelModelFacet /0/@diagram/@childNodes.31/@labelModelFacet /0/@diagram/@childNodes.32/@labelModelFacet /0/@diagram/@childNodes.33/@labelModelFacet /0/@diagram/@childNodes.34/@labelModelFacet /0/@diagram/@childNodes.35/@labelModelFacet /0/@diagram/@childNodes.36/@labelModelFacet /0/@diagram/@childNodes.37/@labelModelFacet /0/@diagram/@childNodes.38/@labelModelFacet /0/@diagram/@childNodes.39/@labelModelFacet /0/@diagram/@childNodes.40/@labelModelFacet /0/@diagram/@childNodes.41/@labelModelFacet /0/@diagram/@childNodes.42/@labelModelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.20/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.21/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.22/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.23/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.24/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.25/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.26/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.27/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.29/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.30/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.31/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.32/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.33/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.34/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.35/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.36/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.37/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.38/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.39/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.40/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.41/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.42/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.43/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.44/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.45/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.46/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.47/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.48/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.49/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.50/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.51/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.52/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.53/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.54/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.2/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@links.11/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.3/@modelFacet /0/@diagram/@links.11/@labels.2/@modelFacet"

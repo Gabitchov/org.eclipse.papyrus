@@ -204,8 +204,8 @@ public class UMLPaletteFactory {
 		LinkToolEntry entry = new LinkToolEntry(Messages.Link1CreationTool_title, Messages.Link1CreationTool_desc,
 				types);
 		entry.setId("createLink1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.CommentAnnotatedElement_4002));
-		entry.setLargeIcon(entry.getSmallIcon());
+		entry.setSmallIcon(UMLDiagramEditorPlugin.findImageDescriptor("icons/obj16/Link.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(UMLDiagramEditorPlugin.findImageDescriptor("icons/obj16/Link.gif")); //$NON-NLS-1$
 		return entry;
 	}
 

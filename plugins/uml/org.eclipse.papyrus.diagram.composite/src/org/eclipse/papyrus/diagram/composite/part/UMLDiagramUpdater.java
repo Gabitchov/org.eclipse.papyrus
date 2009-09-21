@@ -4417,8 +4417,6 @@ public class UMLDiagramUpdater {
 			return getUseCase_3096ContainedLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3097ContainedLinks(view);
-		case DurationConstraint2EditPart.VISUAL_ID:
-			return getDurationConstraint_3098ContainedLinks(view);
 		case PropertyEditPartCLN.VISUAL_ID:
 			return getProperty_3101ContainedLinks(view);
 		case OperationEditPartCLN.VISUAL_ID:
@@ -4650,8 +4648,6 @@ public class UMLDiagramUpdater {
 			return getUseCase_3096IncomingLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3097IncomingLinks(view);
-		case DurationConstraint2EditPart.VISUAL_ID:
-			return getDurationConstraint_3098IncomingLinks(view);
 		case PropertyEditPartCLN.VISUAL_ID:
 			return getProperty_3101IncomingLinks(view);
 		case OperationEditPartCLN.VISUAL_ID:
@@ -4883,8 +4879,6 @@ public class UMLDiagramUpdater {
 			return getUseCase_3096OutgoingLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3097OutgoingLinks(view);
-		case DurationConstraint2EditPart.VISUAL_ID:
-			return getDurationConstraint_3098OutgoingLinks(view);
 		case PropertyEditPartCLN.VISUAL_ID:
 			return getProperty_3101OutgoingLinks(view);
 		case OperationEditPartCLN.VISUAL_ID:
@@ -5719,16 +5713,6 @@ public class UMLDiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List getDurationConstraint_3098ContainedLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement));
 		return result;
 	}
 
@@ -8012,31 +7996,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getDurationConstraint_3098IncomingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement,
-				crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4004(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4011(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4006(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4007(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List getProperty_3101IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -10165,28 +10124,6 @@ public class UMLDiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4015(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4016(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List getDurationConstraint_3098OutgoingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4011(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4015(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4016(modelElement));
 		return result;
