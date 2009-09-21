@@ -45,7 +45,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	/** New model file page for the file */
 	private NewModelFilePage newModelFilePage;
 
-	/** Select kinf of new diagram the wizard must create */
+	/** Select kind of new diagram the wizard must create */
 	private SelectDiagramKindPage selectDiagramKindPage;
 
 	/** Select the root element containing the new diagram */
