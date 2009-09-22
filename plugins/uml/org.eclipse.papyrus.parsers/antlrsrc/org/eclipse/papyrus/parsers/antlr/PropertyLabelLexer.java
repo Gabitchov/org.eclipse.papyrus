@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g 2009-08-07 20:23:44
+// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g 2009-09-22 18:22:04
 
 package org.eclipse.papyrus.parsers.antlr;
 
@@ -1161,8 +1161,7 @@ public class PropertyLabelLexer extends Lexer {
     // $ANTLR start ALPHA
     public final void mALPHA() throws RecognitionException {
         try {
-            int _type = ALPHA;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:926:3: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:927:3: ( 'a' .. 'z' | 'A' .. 'Z' )
             // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -1179,7 +1178,6 @@ public class PropertyLabelLexer extends Lexer {
 
             }
 
-            this.type = _type;
         }
         finally {
         }
@@ -1190,8 +1188,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mUNDERSCORE() throws RecognitionException {
         try {
             int _type = UNDERSCORE;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:932:3: ( '_' )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:932:5: '_'
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:933:3: ( '_' )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:933:5: '_'
             {
             match('_'); if (failed) return ;
 
@@ -1211,18 +1209,18 @@ public class PropertyLabelLexer extends Lexer {
             Token c1=null;
             Token c2=null;
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:936:3: (c1= INTEGER '..' (c2= INTEGER | c2= STAR ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:936:5: c1= INTEGER '..' (c2= INTEGER | c2= STAR )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:937:3: (c1= INTEGER '..' (c2= INTEGER | c2= STAR ) )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:937:5: c1= INTEGER '..' (c2= INTEGER | c2= STAR )
             {
-            int c1Start824 = getCharIndex();
+            int c1Start826 = getCharIndex();
             mINTEGER(); if (failed) return ;
-            c1 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c1Start824, getCharIndex()-1);
+            c1 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c1Start826, getCharIndex()-1);
             if ( backtracking==0 ) {
               setText("");
             }
             match(".."); if (failed) return ;
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:937:3: (c2= INTEGER | c2= STAR )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:938:3: (c2= INTEGER | c2= STAR )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1235,17 +1233,17 @@ public class PropertyLabelLexer extends Lexer {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("937:3: (c2= INTEGER | c2= STAR )", 3, 0, input);
+                    new NoViableAltException("938:3: (c2= INTEGER | c2= STAR )", 3, 0, input);
 
                 throw nvae;
             }
             switch (alt3) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:937:5: c2= INTEGER
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:938:5: c2= INTEGER
                     {
-                    int c2Start836 = getCharIndex();
+                    int c2Start838 = getCharIndex();
                     mINTEGER(); if (failed) return ;
-                    c2 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c2Start836, getCharIndex()-1);
+                    c2 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c2Start838, getCharIndex()-1);
                     if ( backtracking==0 ) {
                        setText(c2.getText());
                     }
@@ -1253,11 +1251,11 @@ public class PropertyLabelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:938:7: c2= STAR
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:939:7: c2= STAR
                     {
-                    int c2Start849 = getCharIndex();
+                    int c2Start851 = getCharIndex();
                     mSTAR(); if (failed) return ;
-                    c2 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c2Start849, getCharIndex()-1);
+                    c2 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c2Start851, getCharIndex()-1);
                     if ( backtracking==0 ) {
                        setText("-1");
                     }
@@ -1286,8 +1284,8 @@ public class PropertyLabelLexer extends Lexer {
     public final void mREAL() throws RecognitionException {
         try {
             int _type = REAL;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:945:3: ( INTEGER '.' INTEGER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:945:5: INTEGER '.' INTEGER
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:946:3: ( INTEGER '.' INTEGER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:946:5: INTEGER '.' INTEGER
             {
             mINTEGER(); if (failed) return ;
             match('.'); if (failed) return ;
@@ -1305,26 +1303,26 @@ public class PropertyLabelLexer extends Lexer {
     // $ANTLR start INTEGER_OR_REAL_OR_RANGE
     public final void mINTEGER_OR_REAL_OR_RANGE() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:950:3: ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:951:3: ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER )
             int alt4=3;
             alt4 = dfa4.predict(input);
             switch (alt4) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:951:4: ( INTEGER RANGE )=> RANGE_VALUE
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:4: ( INTEGER RANGE )=> RANGE_VALUE
                     {
                     mRANGE_VALUE(); if (failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:6: ( INTEGER POINT )=> REAL
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:6: ( INTEGER POINT )=> REAL
                     {
                     mREAL(); if (failed) return ;
 
                     }
                     break;
                 case 3 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:6: ( INTEGER )=> INTEGER
+                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:954:6: ( INTEGER )=> INTEGER
                     {
                     mINTEGER(); if (failed) return ;
 
@@ -1342,10 +1340,10 @@ public class PropertyLabelLexer extends Lexer {
     public final void mINTEGER() throws RecognitionException {
         try {
             int _type = INTEGER;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:957:3: ( ( '0' .. '9' )+ )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:957:5: ( '0' .. '9' )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:958:3: ( ( '0' .. '9' )+ )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:958:5: ( '0' .. '9' )+
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:957:5: ( '0' .. '9' )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:958:5: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -1359,7 +1357,7 @@ public class PropertyLabelLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:957:5: '0' .. '9'
+            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:958:5: '0' .. '9'
             	    {
             	    matchRange('0','9'); if (failed) return ;
 
@@ -1390,10 +1388,10 @@ public class PropertyLabelLexer extends Lexer {
     public final void mIDENTIFIER() throws RecognitionException {
         try {
             int _type = IDENTIFIER;
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:960:3: ( ( ALPHA | '0' .. '9' | UNDERSCORE )+ )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:960:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:961:3: ( ( ALPHA | '0' .. '9' | UNDERSCORE )+ )
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:961:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:960:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
+            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:961:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
             int cnt6=0;
             loop6:
             do {
@@ -1445,8 +1443,8 @@ public class PropertyLabelLexer extends Lexer {
     // $ANTLR end IDENTIFIER
 
     public void mTokens() throws RecognitionException {
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:8: ( T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | NL | WS | QUESTION_MARK | LNOT | DOUBLE_QUOTE | SINGLE_QUOTE | LPAREN | RPAREN | LSQUARE | RSQUARE | LCURLY | DOUBLE_LCURLY | RCURLY | DOUBLE_RCURLY | LOGICAL_AND | DOUBLE_LOGICAL_AND | PIPE | DOUBLE_PIPE | POINT | RANGE | COMMA | SEMI | SHARP | TILDE | COLON | FOUR_POINTS | RULE_ASSIGN | ARROW | STAR | DIV | PLUS | MINUS | EQ | ISEQ | ISNE | LT | DOUBLE_LT | LE | GT | DOUBLE_GT | GE | INCR | DECR | CALLOPERATION | ALPHA | UNDERSCORE | RANGE_VALUE | REAL | INTEGER | IDENTIFIER )
-        int alt7=58;
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:8: ( T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | NL | WS | QUESTION_MARK | LNOT | DOUBLE_QUOTE | SINGLE_QUOTE | LPAREN | RPAREN | LSQUARE | RSQUARE | LCURLY | DOUBLE_LCURLY | RCURLY | DOUBLE_RCURLY | LOGICAL_AND | DOUBLE_LOGICAL_AND | PIPE | DOUBLE_PIPE | POINT | RANGE | COMMA | SEMI | SHARP | TILDE | COLON | FOUR_POINTS | RULE_ASSIGN | ARROW | STAR | DIV | PLUS | MINUS | EQ | ISEQ | ISNE | LT | DOUBLE_LT | LE | GT | DOUBLE_GT | GE | INCR | DECR | CALLOPERATION | UNDERSCORE | RANGE_VALUE | REAL | INTEGER | IDENTIFIER )
+        int alt7=57;
         alt7 = dfa7.predict(input);
         switch (alt7) {
             case 1 :
@@ -1814,42 +1812,35 @@ public class PropertyLabelLexer extends Lexer {
                 }
                 break;
             case 53 :
-                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:373: ALPHA
-                {
-                mALPHA(); if (failed) return ;
-
-                }
-                break;
-            case 54 :
-                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:379: UNDERSCORE
+                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:373: UNDERSCORE
                 {
                 mUNDERSCORE(); if (failed) return ;
 
                 }
                 break;
-            case 55 :
-                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:390: RANGE_VALUE
+            case 54 :
+                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:384: RANGE_VALUE
                 {
                 mRANGE_VALUE(); if (failed) return ;
 
                 }
                 break;
-            case 56 :
-                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:402: REAL
+            case 55 :
+                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:396: REAL
                 {
                 mREAL(); if (failed) return ;
 
                 }
                 break;
-            case 57 :
-                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:407: INTEGER
+            case 56 :
+                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:401: INTEGER
                 {
                 mINTEGER(); if (failed) return ;
 
                 }
                 break;
-            case 58 :
-                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:415: IDENTIFIER
+            case 57 :
+                // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:1:409: IDENTIFIER
                 {
                 mIDENTIFIER(); if (failed) return ;
 
@@ -1862,8 +1853,8 @@ public class PropertyLabelLexer extends Lexer {
 
     // $ANTLR start synpred1
     public final void synpred1_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:951:4: ( INTEGER RANGE )
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:951:5: INTEGER RANGE
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:4: ( INTEGER RANGE )
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:5: INTEGER RANGE
         {
         mINTEGER(); if (failed) return ;
         mRANGE(); if (failed) return ;
@@ -1874,8 +1865,8 @@ public class PropertyLabelLexer extends Lexer {
 
     // $ANTLR start synpred2
     public final void synpred2_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:6: ( INTEGER POINT )
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:952:7: INTEGER POINT
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:6: ( INTEGER POINT )
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:7: INTEGER POINT
         {
         mINTEGER(); if (failed) return ;
         mPOINT(); if (failed) return ;
@@ -1886,8 +1877,8 @@ public class PropertyLabelLexer extends Lexer {
 
     // $ANTLR start synpred3
     public final void synpred3_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:6: ( INTEGER )
-        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:953:7: INTEGER
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:954:6: ( INTEGER )
+        // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:954:7: INTEGER
         {
         mINTEGER(); if (failed) return ;
 
@@ -1992,7 +1983,7 @@ public class PropertyLabelLexer extends Lexer {
             this.transition = DFA4_transition;
         }
         public String getDescription() {
-            return "948:1: fragment INTEGER_OR_REAL_OR_RANGE : ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER );";
+            return "949:1: fragment INTEGER_OR_REAL_OR_RANGE : ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER );";
         }
         public int specialStateTransition(int s, IntStream input) throws NoViableAltException {
         	int _s = s;
@@ -2038,104 +2029,102 @@ public class PropertyLabelLexer extends Lexer {
         }
     }
     static final String DFA7_eotS =
-        "\1\uffff\1\47\5\51\3\uffff\1\60\6\uffff\1\62\1\64\1\66\1\70\1\72"+
-        "\4\uffff\1\75\1\100\2\uffff\1\102\1\104\1\107\1\51\1\110\1\111\4"+
-        "\uffff\1\52\2\uffff\4\52\14\uffff\1\122\17\uffff\6\52\4\uffff\11"+
-        "\52\1\145\6\52\1\uffff\1\154\5\52\1\uffff\1\162\1\52\1\164\1\52"+
-        "\1\166\1\uffff\1\52\1\uffff\1\170\1\uffff\1\171\2\uffff";
+        "\1\uffff\1\47\5\43\3\uffff\1\56\6\uffff\1\60\1\62\1\64\1\66\1\70"+
+        "\4\uffff\1\73\1\76\2\uffff\1\100\1\102\1\105\1\106\1\107\5\uffff"+
+        "\5\43\14\uffff\1\120\17\uffff\6\43\4\uffff\11\43\1\143\6\43\1\uffff"+
+        "\1\152\5\43\1\uffff\1\160\1\43\1\162\1\163\1\43\1\uffff\1\43\2\uffff"+
+        "\1\166\1\167\2\uffff";
     static final String DFA7_eofS =
-        "\172\uffff";
+        "\170\uffff";
     static final String DFA7_minS =
-        "\1\11\1\74\5\60\3\uffff\1\75\6\uffff\1\173\1\175\1\46\1\174\1\56"+
-        "\4\uffff\1\72\1\55\2\uffff\1\53\2\75\2\60\1\56\4\uffff\1\141\2\uffff"+
-        "\1\151\1\144\1\156\1\142\14\uffff\1\75\16\uffff\1\56\1\145\1\144"+
-        "\1\157\1\145\1\165\1\163\4\uffff\1\146\1\117\1\156\1\165\1\162\1"+
-        "\156\1\145\1\151\1\156\1\60\2\145\1\151\1\164\1\156\1\154\1\uffff"+
-        "\1\60\1\144\1\161\1\163\1\145\1\171\1\uffff\1\60\1\165\1\60\1\163"+
-        "\1\60\1\uffff\1\145\1\uffff\1\60\1\uffff\1\60\2\uffff";
+        "\1\11\1\74\1\145\1\156\1\162\1\157\1\165\3\uffff\1\75\6\uffff\1"+
+        "\173\1\175\1\46\1\174\1\56\4\uffff\1\72\1\55\2\uffff\1\53\2\75\1"+
+        "\60\1\56\5\uffff\1\141\1\151\1\144\1\156\1\142\14\uffff\1\75\16"+
+        "\uffff\1\56\1\144\1\145\1\157\1\145\1\165\1\163\4\uffff\1\117\1"+
+        "\146\1\156\1\165\1\162\1\156\1\145\1\156\1\151\1\60\2\145\1\151"+
+        "\1\164\1\154\1\156\1\uffff\1\60\1\144\1\161\1\163\1\171\1\145\1"+
+        "\uffff\1\60\1\165\2\60\1\163\1\uffff\1\145\2\uffff\2\60\2\uffff";
     static final String DFA7_maxS =
-        "\1\176\1\125\5\172\3\uffff\1\75\6\uffff\1\173\1\175\1\46\1\174\1"+
-        "\56\4\uffff\1\75\1\76\2\uffff\1\53\1\75\1\76\3\172\4\uffff\1\144"+
-        "\2\uffff\1\151\1\144\1\156\1\142\14\uffff\1\75\16\uffff\1\71\1\145"+
-        "\1\144\1\161\1\145\1\165\1\163\4\uffff\1\146\1\117\1\156\1\165\1"+
-        "\162\1\156\1\145\1\151\1\156\1\172\2\145\1\151\1\164\1\156\1\154"+
-        "\1\uffff\1\172\1\144\1\161\1\163\1\145\1\171\1\uffff\1\172\1\165"+
-        "\1\172\1\163\1\172\1\uffff\1\145\1\uffff\1\172\1\uffff\1\172\2\uffff";
+        "\1\176\1\125\1\145\1\156\1\162\1\157\1\165\3\uffff\1\75\6\uffff"+
+        "\1\173\1\175\1\46\1\174\1\56\4\uffff\1\75\1\76\2\uffff\1\53\1\75"+
+        "\1\76\2\172\5\uffff\1\144\1\151\1\144\1\156\1\142\14\uffff\1\75"+
+        "\16\uffff\1\71\1\144\1\145\1\161\1\145\1\165\1\163\4\uffff\1\117"+
+        "\1\146\1\156\1\165\1\162\1\156\1\145\1\156\1\151\1\172\2\145\1\151"+
+        "\1\164\1\154\1\156\1\uffff\1\172\1\144\1\161\1\163\1\171\1\145\1"+
+        "\uffff\1\172\1\165\2\172\1\163\1\uffff\1\145\2\uffff\2\172\2\uffff";
     static final String DFA7_acceptS =
         "\7\uffff\1\11\1\12\1\13\1\uffff\1\15\1\16\1\17\1\20\1\21\1\22\5"+
-        "\uffff\1\35\1\36\1\37\1\40\2\uffff\1\45\1\46\6\uffff\1\1\1\56\1"+
-        "\55\1\54\1\uffff\1\65\1\72\4\uffff\1\53\1\14\1\24\1\23\1\26\1\25"+
-        "\1\30\1\27\1\32\1\31\1\34\1\33\1\uffff\1\64\1\41\1\44\1\63\1\50"+
-        "\1\62\1\47\1\52\1\51\1\61\1\60\1\57\1\66\1\71\7\uffff\1\43\1\42"+
-        "\1\67\1\70\20\uffff\1\3\6\uffff\1\5\5\uffff\1\4\1\uffff\1\7\1\uffff"+
-        "\1\2\1\uffff\1\10\1\6";
+        "\uffff\1\35\1\36\1\37\1\40\2\uffff\1\45\1\46\5\uffff\1\71\1\1\1"+
+        "\56\1\55\1\54\5\uffff\1\53\1\14\1\24\1\23\1\26\1\25\1\30\1\27\1"+
+        "\32\1\31\1\34\1\33\1\uffff\1\64\1\41\1\44\1\63\1\50\1\62\1\47\1"+
+        "\52\1\51\1\61\1\60\1\57\1\65\1\70\7\uffff\1\43\1\42\1\66\1\67\20"+
+        "\uffff\1\3\6\uffff\1\5\5\uffff\1\4\1\uffff\1\7\1\2\2\uffff\1\10"+
+        "\1\6";
     static final String DFA7_specialS =
-        "\172\uffff}>";
+        "\170\uffff}>";
     static final String[] DFA7_transitionS = {
             "\1\10\1\7\1\uffff\1\10\1\7\22\uffff\1\10\1\12\1\13\1\30\2\uffff"+
-            "\1\23\1\14\1\15\1\16\1\34\1\36\1\26\1\33\1\25\1\35\12\43\1\32"+
-            "\1\27\1\1\1\37\1\40\1\11\1\uffff\32\41\1\17\1\uffff\1\20\1\uffff"+
-            "\1\42\1\uffff\15\41\1\5\1\4\2\41\1\2\1\6\1\41\1\3\5\41\1\21"+
+            "\1\23\1\14\1\15\1\16\1\34\1\36\1\26\1\33\1\25\1\35\12\42\1\32"+
+            "\1\27\1\1\1\37\1\40\1\11\1\uffff\32\43\1\17\1\uffff\1\20\1\uffff"+
+            "\1\41\1\uffff\15\43\1\5\1\4\2\43\1\2\1\6\1\43\1\3\5\43\1\21"+
             "\1\24\1\22\1\31",
             "\1\46\1\45\27\uffff\1\44",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\4\52\1\50\25\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\15\52\1\53\14\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\21\52\1\54\10\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\16\52\1\55\13\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\24\52\1\56\5\52",
+            "\1\50",
+            "\1\51",
+            "\1\52",
+            "\1\53",
+            "\1\54",
+            "",
+            "",
+            "",
+            "\1\55",
+            "",
+            "",
+            "",
             "",
             "",
             "",
             "\1\57",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\61",
             "\1\63",
             "\1\65",
             "\1\67",
-            "\1\71",
             "",
             "",
             "",
             "",
-            "\1\73\2\uffff\1\74",
-            "\1\77\20\uffff\1\76",
+            "\1\71\2\uffff\1\72",
+            "\1\75\20\uffff\1\74",
             "",
             "",
+            "\1\77",
             "\1\101",
-            "\1\103",
-            "\1\105\1\106",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\112\1\uffff\12\43\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\103\1\104",
+            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "\1\110\1\uffff\12\42\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
             "",
             "",
             "",
             "",
-            "\1\114\2\uffff\1\113",
             "",
-            "",
+            "\1\111\2\uffff\1\112",
+            "\1\113",
+            "\1\114",
             "\1\115",
             "\1\116",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\117",
-            "\1\120",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\121",
             "",
             "",
             "",
@@ -2150,17 +2139,19 @@ public class PropertyLabelLexer extends Lexer {
             "",
             "",
             "",
-            "\1\123\1\uffff\12\124",
-            "\1\125",
-            "\1\126",
-            "\1\127\1\uffff\1\130",
+            "\1\121\1\uffff\12\122",
+            "\1\123",
+            "\1\124",
+            "\1\125\1\uffff\1\126",
+            "\1\127",
+            "\1\130",
             "\1\131",
+            "",
+            "",
+            "",
+            "",
             "\1\132",
             "\1\133",
-            "",
-            "",
-            "",
-            "",
             "\1\134",
             "\1\135",
             "\1\136",
@@ -2168,34 +2159,32 @@ public class PropertyLabelLexer extends Lexer {
             "\1\140",
             "\1\141",
             "\1\142",
-            "\1\143",
+            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
             "\1\144",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\145",
             "\1\146",
             "\1\147",
             "\1\150",
             "\1\151",
-            "\1\152",
-            "\1\153",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "\1\153",
+            "\1\154",
             "\1\155",
             "\1\156",
             "\1\157",
-            "\1\160",
+            "",
+            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
             "\1\161",
+            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "\1\164",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\163",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\165",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "",
-            "\1\167",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
             "",
             ""
     };
@@ -2230,7 +2219,7 @@ public class PropertyLabelLexer extends Lexer {
             this.transition = DFA7_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | NL | WS | QUESTION_MARK | LNOT | DOUBLE_QUOTE | SINGLE_QUOTE | LPAREN | RPAREN | LSQUARE | RSQUARE | LCURLY | DOUBLE_LCURLY | RCURLY | DOUBLE_RCURLY | LOGICAL_AND | DOUBLE_LOGICAL_AND | PIPE | DOUBLE_PIPE | POINT | RANGE | COMMA | SEMI | SHARP | TILDE | COLON | FOUR_POINTS | RULE_ASSIGN | ARROW | STAR | DIV | PLUS | MINUS | EQ | ISEQ | ISNE | LT | DOUBLE_LT | LE | GT | DOUBLE_GT | GE | INCR | DECR | CALLOPERATION | ALPHA | UNDERSCORE | RANGE_VALUE | REAL | INTEGER | IDENTIFIER );";
+            return "1:1: Tokens : ( T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | NL | WS | QUESTION_MARK | LNOT | DOUBLE_QUOTE | SINGLE_QUOTE | LPAREN | RPAREN | LSQUARE | RSQUARE | LCURLY | DOUBLE_LCURLY | RCURLY | DOUBLE_RCURLY | LOGICAL_AND | DOUBLE_LOGICAL_AND | PIPE | DOUBLE_PIPE | POINT | RANGE | COMMA | SEMI | SHARP | TILDE | COLON | FOUR_POINTS | RULE_ASSIGN | ARROW | STAR | DIV | PLUS | MINUS | EQ | ISEQ | ISNE | LT | DOUBLE_LT | LE | GT | DOUBLE_GT | GE | INCR | DECR | CALLOPERATION | UNDERSCORE | RANGE_VALUE | REAL | INTEGER | IDENTIFIER );";
         }
     }
  

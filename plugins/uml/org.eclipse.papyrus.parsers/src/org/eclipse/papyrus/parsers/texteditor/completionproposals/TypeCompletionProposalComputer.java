@@ -14,10 +14,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.parsers.texteditor.completionproposals;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
@@ -87,7 +88,7 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 
 		if (element != null) {
 			// then, all accessible types, by alphabetic order...
-			List<Type> types = computeAccessibleTypeList(element);
+			Set<Type> types = computeAccessibleTypeList(element);
 			// generate the list of types, in alphabetical order
 			Iterator<Type> it = types.iterator();
 			while (it.hasNext()) {
@@ -112,10 +113,9 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 	 * 
 	 * @return
 	 */
-	public List<Type> computeAccessibleTypeList(Element element) {
-		List<Type> list = new Vector<Type>();
-
-		// get the list in alphabetical order.
+	public Set<Type> computeAccessibleTypeList(Element element) {
+		LinkedHashSet<Type> list = new LinkedHashSet<Type>();
+		// adds directly accessible elements
 		list.addAll(PackageUtil.getAccessibleTypes(element.getNearestPackage()));
 
 		// In the context where element is owned by a template,
@@ -127,17 +127,10 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 			}
 		}
 
-		orderByName(list);
-		return list;
-	}
+		// adds all elements
+		list.addAll(PackageUtil.getAllTypes(element.getNearestPackage()));
 
-	/**
-	 * 
-	 * 
-	 * @param types
-	 */
-	private void orderByName(List<Type> types) {
-		Collections.sort(types, new TypeNameComparator());
+		return list;
 	}
 
 	/**

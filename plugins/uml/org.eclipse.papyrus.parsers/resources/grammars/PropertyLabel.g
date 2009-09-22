@@ -922,6 +922,7 @@ CALLOPERATION
   : ':='
   ;
 
+fragment
 ALPHA
   : 'a'..'z' 
   | 'A'..'Z'

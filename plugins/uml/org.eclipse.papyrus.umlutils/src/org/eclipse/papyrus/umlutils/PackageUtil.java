@@ -15,14 +15,21 @@
 package org.eclipse.papyrus.umlutils;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -30,7 +37,6 @@ import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
-import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -226,47 +232,113 @@ public class PackageUtil {
 	 * Retrieve a type accessible in this Package, given its name.
 	 * 
 	 * @param name
-	 *            the name of the type to find
+	 *            the name of the type to find, which must not be <code>null</code>
 	 * 
 	 * @return the type found or <code>null</code> if not found.
 	 */
 	public static Type findTypeByName(Package pack, String name) {
-		Type type = null;
-		boolean isFound = false;
+		assert name != null : "Type Name should not be null";
 
-		Iterator<Type> it = PackageUtil.getAccessibleTypes(pack).iterator();
-		while (!isFound && it.hasNext()) {
+		// update method to find a type by its name
+		// 1. find the direct accessible types (in the package and the imported elements)
+		// 2. find in the subpackages and their import
+		// 3. find in all resources
+
+		Iterator<Type> it = getAccessibleTypes(pack).iterator();
+		while (it.hasNext()) {
 			Type t = it.next();
-			if (t.getName().equals(name)) {
-				isFound = true;
-				type = t;
+			if (name.equals(t.getName())) {
+				return t;
 			}
 		}
 
-		return type;
+		Resource resource = pack.eResource();
+		ResourceSet resourceSet = null;
+		if (resource != null) {
+			resourceSet = resource.getResourceSet();
+		}
+
+		if (resourceSet != null) {
+			return findTypeByName(resourceSet, name);
+		}
+		return null;
+	}
+
+	/**
+	 * Returns a type given its name from a resource set.
+	 * 
+	 * @param resourceSet
+	 *            the resource Set
+	 * @param name
+	 *            the name of the type to find. It must not be <code>null</code>
+	 * @return the found type or <code>null</code> if the type was not found
+	 */
+	private static Type findTypeByName(ResourceSet resourceSet, String name) {
+		TreeIterator<Notifier> iterator = resourceSet.getAllContents();
+
+		while (iterator.hasNext()) {
+			Notifier notifier = iterator.next();
+			if (notifier instanceof Type) {
+				Type type = ((Type) notifier);
+				if (name.equals(type.getName())) {
+					return type;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns all accessible types in the model
+	 * 
+	 * @param element
+	 *            the element from which all resources can be accessed
+	 * @return the list of Types accessible in the model
+	 */
+	public static Set<Type> getAllTypes(Element element) {
+		SortedSet<Type> set = new TreeSet<Type>(new TypeNameComparator());
+
+		Resource resource = element.eResource();
+		ResourceSet resourceSet = null;
+		if (resource != null) {
+			resourceSet = resource.getResourceSet();
+		}
+
+		if (resourceSet != null) {
+			TreeIterator<Notifier> iterator = resourceSet.getAllContents();
+
+			while (iterator.hasNext()) {
+				Notifier notifier = iterator.next();
+				if (notifier instanceof Type && ((Type) notifier).getName() != null) {
+					set.add(((Type) notifier));
+				}
+			}
+		}
+		return set;
 	}
 
 	/**
 	 * Get all possible types for an element owned by this package.
 	 * 
-	 * @return a list of all available Types
+	 * @return a set of all available Types
 	 */
-	public static Set<Type> getAccessibleTypes(Package pack) {
-		Set<Type> list = new HashSet<Type>();
+	public static TreeSet<Type> getAccessibleTypes(Package pack) {
+		TreeSet<Type> set = new TreeSet<Type>(new TypeNameComparator());
 		// umlTypeList is used to detect type listed twice in the proposed list
 		// this may occurs for example with indirect import of UMLPrimitiveTypes
-		Set<String> umlTypeQNames = new HashSet<String>();
+		// Set<String> umlTypeQNames = new HashSet<String>();
 
 		Iterator<NamedElement> it = pack.getMembers().iterator();
 		// get direct members
 		while (it.hasNext()) {
 			NamedElement element = it.next();
-			if ((element instanceof Type) && (!(element instanceof Relationship))) {
+			if ((element instanceof Type) /* && (!(element instanceof Relationship)) */) {
 				// Check for redundant type
-				if (!umlTypeQNames.contains(element.getQualifiedName())) {
-					umlTypeQNames.add(element.getQualifiedName());
-					list.add((Type) element);
-				}
+				// if (!umlTypeQNames.contains(element.getQualifiedName())) {
+				// /umlTypeQNames.add(element.getQualifiedName());
+				// set.add((Type) element);
+				// }
+				set.add((Type) element);
 			}
 		}
 
@@ -276,16 +348,17 @@ public class PackageUtil {
 			Iterator<Type> itParent = PackageUtil.getAccessibleTypes(pack.getNestingPackage()).iterator();
 
 			while (itParent.hasNext()) {
-				Type currentType = itParent.next();
+				set.add(itParent.next());
+				// Type currentType = itParent.next();
 
-				if (!umlTypeQNames.contains(currentType.getQualifiedName())) {
-					umlTypeQNames.add(currentType.getQualifiedName());
-					list.add(currentType);
-				}
+				// if (!umlTypeQNames.contains(currentType.getQualifiedName())) {
+				// umlTypeQNames.add(currentType.getQualifiedName());
+				// set.add(currentType);
+				// }
 			}
 		}
 
-		return list;
+		return set;
 	}
 
 	/**
@@ -311,5 +384,21 @@ public class PackageUtil {
 			}
 		}
 		return nestedElements;
+	}
+
+	/**
+	 * Comparator using type names
+	 */
+	static class TypeNameComparator implements Comparator<Type> {
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public int compare(Type o1, Type o2) {
+			final String o1Name = ((o1.getName() != null) ? o1.getName() : "");
+			final String o2Name = ((o2.getName() != null) ? o2.getName() : "");
+			return o1Name.compareTo(o2Name);
+		}
+
 	}
 }

@@ -207,6 +207,13 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 
 		// IN_MULTIPLICITY(after '['): does nothing
 		case IContext.MULTIPLICITY:
+			// create properties visible in the model
+			// specific prefix for type... ('<' possible at the beginning)
+			prefix = getPrefixForType(viewer, documentOffset);
+			// generate completion for TypeUtil
+			computer = new TypeCompletionProposalComputer();
+			computer.setElement(property);
+			v.addAll(computer.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			v.addAll(new MultiplicityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
 					prefix));
 			v.addAll(new DefaultValueCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
