@@ -100,6 +100,7 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		RedefinableTemplateSignature newElement = UMLFactory.eINSTANCE.createRedefinableTemplateSignature();
 
 		TemplateableElement owner = (TemplateableElement) getElementToEdit();

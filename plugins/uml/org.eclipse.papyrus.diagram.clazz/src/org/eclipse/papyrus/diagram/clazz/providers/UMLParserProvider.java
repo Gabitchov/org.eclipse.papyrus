@@ -43,7 +43,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeRealization
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMultEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
@@ -192,11 +191,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser associationName_6006Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser associationName_6025Parser;
 
 	/**
 	 * @generated
@@ -587,21 +581,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			associationName_6006Parser = parser;
 		}
 		return associationName_6006Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getAssociationName_6025Parser() {
-		if (associationName_6025Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("srcMul{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("srcMul{0}"); //$NON-NLS-1$
-			parser.setEditPattern("srcMul{0}"); //$NON-NLS-1$
-			associationName_6025Parser = parser;
-		}
-		return associationName_6025Parser;
 	}
 
 	/**
@@ -1237,8 +1216,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAssociationName_6005Parser();
 		case AssociationName6EditPart.VISUAL_ID:
 			return getAssociationName_6006Parser();
-		case AssociationBranchMultEditPart.VISUAL_ID:
-			return getAssociationName_6025Parser();
 		case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_6007Parser();
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:

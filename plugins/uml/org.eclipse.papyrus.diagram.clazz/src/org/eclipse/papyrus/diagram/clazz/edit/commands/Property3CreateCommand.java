@@ -97,6 +97,7 @@ public class Property3CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
 		Interface owner = (Interface) getElementToEdit();

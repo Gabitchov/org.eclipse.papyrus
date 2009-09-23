@@ -257,8 +257,7 @@ public class UMLDiagramEditorUtil {
 
 		String elementID = EMFCoreUtil.getProxyID(element);
 		List associatedParts = viewer.findEditPartsForElement(elementID, IGraphicalEditPart.class);
-		// perform the possible hierarchy disjoint -> take the top-most parts
-		// only
+		// perform the possible hierarchy disjoint -> take the top-most parts only
 		for (Iterator editPartIt = associatedParts.iterator(); editPartIt.hasNext();) {
 			EditPart nextPart = (EditPart) editPartIt.next();
 			EditPart parentPart = nextPart.getParent();
@@ -343,18 +342,15 @@ public class UMLDiagramEditorUtil {
 		public final Map getElement2ViewMap() {
 			if (element2ViewMap == null) {
 				element2ViewMap = new HashMap();
-				// map possible notation elements to itself as these can't be
-				// found by view.getElement()
+				// map possible notation elements to itself as these can't be found by
+				// view.getElement()
 				for (Iterator it = elementSet.iterator(); it.hasNext();) {
 					EObject element = (EObject) it.next();
 					if (element instanceof View) {
 						View view = (View) element;
 						if (view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, element); // take only
-							// those
-							// that part
-							// of our
-							// diagram
+							element2ViewMap.put(element, element); // take only those that part of
+																	// our diagram
 						}
 					}
 				}

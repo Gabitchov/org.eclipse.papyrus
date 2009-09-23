@@ -74,7 +74,6 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.TemplateParameter;
 
 /**
  * @generated
@@ -94,8 +93,6 @@ public class ClassifierTemplateParameterEditPart extends CompartmentEditPart imp
 		}
 
 	}
-
-	private static final String LISTEN_OWNED_PARAM = "ListenOwnedParam";
 
 	/**
 	 * @generated
@@ -136,29 +133,11 @@ public class ClassifierTemplateParameterEditPart extends CompartmentEditPart imp
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	public void activate() {
-		super.activate();
-		addOwnedParamListeners();
-	}
-
-	/**
 	 * @generated
 	 */
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void addOwnedParamListeners() {
-		EObject ownedParam = ((TemplateParameter) resolveSemanticElement()).getOwnedParameteredElement();
-		if (ownedParam != null) {
-			addListenerFilter(LISTEN_OWNED_PARAM, this, ownedParam);
-		}
 	}
 
 	/**
@@ -225,15 +204,6 @@ public class ClassifierTemplateParameterEditPart extends CompartmentEditPart imp
 	 */
 	protected IFigure createFigurePrim() {
 		return new TemplateParameterDescriptor();
-	}
-
-	/**
-	 * @generated NOT
-	 */
-
-	public void deactivate() {
-		removeOwnedParamListeners();
-		super.deactivate();
 	}
 
 	/**
@@ -694,13 +664,6 @@ public class ClassifierTemplateParameterEditPart extends CompartmentEditPart imp
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void removeOwnedParamListeners() {
-		removeListenerFilter(LISTEN_OWNED_PARAM);
 	}
 
 	/**

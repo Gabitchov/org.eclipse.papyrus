@@ -97,6 +97,7 @@ public class Property5CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
 		DataType owner = (DataType) getElementToEdit();

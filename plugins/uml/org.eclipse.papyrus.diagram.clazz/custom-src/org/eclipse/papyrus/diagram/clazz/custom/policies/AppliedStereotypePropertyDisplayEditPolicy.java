@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.uml2.uml.Property;
 
@@ -37,7 +38,7 @@ public class AppliedStereotypePropertyDisplayEditPolicy extends AbstractAppliedS
 	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		PropertyLabelHelper.refreshEditPartDisplay((GraphicalEditPart) getHost());
+		PropertyLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
 	}
 
 }

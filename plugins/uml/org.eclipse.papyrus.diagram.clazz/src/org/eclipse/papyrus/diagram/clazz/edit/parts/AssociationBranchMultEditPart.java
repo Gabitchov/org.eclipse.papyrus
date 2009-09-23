@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionLocator;
@@ -48,7 +47,6 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -72,10 +70,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * @generated
@@ -96,6 +91,9 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 				new Point(0, 20));
 	}
 
+	/** configuration from a registered edit dialog */
+	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -103,9 +101,6 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
-
-	/** configuration from a registered edit dialog */
-	protected IDirectEditorConfiguration configuration;
 
 	/**
 	 * @generated
@@ -145,6 +140,30 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 	}
 
 	/**
+	 * Checks if a default direct edition is available
+	 * 
+	 * @return <code>true</code> if a default direct edition is available
+	 * @generated
+	 */
+	protected boolean checkDefaultEdition() {
+		return (resolveSemanticElement() instanceof NamedElement);
+	}
+
+	/**
+	 * Checks if an extended editor is present.
+	 * 
+	 * @return <code>true</code> if an extended editor is present.
+	 * @generated
+	 */
+	protected boolean checkExtendedEditor() {
+		if (resolveSemanticElement() != null) {
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass()
+					.getInstanceClassName());
+		}
+		return false;
+	}
+
+	/**
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
@@ -159,6 +178,8 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 				return Collections.singletonList(mh);
 			}
 		});
+		// installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY,
+		// new DisplayAssociationBranchEditPolicy());
 	}
 
 	/**
@@ -199,6 +220,26 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 			return null;
 		}
 		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
+	}
+
+	/**
+	 * Returns the kind of associated editor for direct edition.
+	 * 
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @generated
+	 */
+	public int getDirectEditionType() {
+		if (checkExtendedEditor()) {
+			initExtendedEditorConfiguration();
+			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
+		}
+		if (checkDefaultEdition()) {
+			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
+		}
+
+		// not a named element. no specific editor => do nothing
+		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
 	/**
@@ -249,113 +290,6 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 	}
 
 	/**
-	 * Returns the kind of associated editor for direct edition.
-	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
-	 * @generated
-	 */
-	public int getDirectEditionType() {
-		if (checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if (checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
-		return IDirectEdition.NO_DIRECT_EDITION;
-	}
-
-	/**
-	 * Checks if an extended editor is present.
-	 * 
-	 * @return <code>true</code> if an extended editor is present.
-	 * @generated
-	 */
-	protected boolean checkExtendedEditor() {
-		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass()
-					.getInstanceClassName());
-		}
-		return false;
-	}
-
-	/**
-	 * Checks if a default direct edition is available
-	 * 
-	 * @return <code>true</code> if a default direct edition is available
-	 * @generated
-	 */
-	protected boolean checkDefaultEdition() {
-		return (resolveSemanticElement() instanceof NamedElement);
-	}
-
-	/**
-	 * Initializes the extended editor configuration
-	 * 
-	 * @generated
-	 */
-	protected void initExtendedEditorConfiguration() {
-		if (configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
-					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
-						.eClass().getInstanceClassName());
-			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
-						resolveSemanticElement().eClass().getInstanceClassName());
-			}
-		}
-	}
-
-	/**
-	 * Updates the preference configuration
-	 */
-	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
-				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("")
-				&& languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
-					.eClass().getInstanceClassName());
-		}
-	}
-
-	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 */
-	protected void performDefaultDirectEditorEdit(final Request theRequest) {
-		// initialize the direct edit manager
-		try {
-			getEditingDomain().runExclusive(new Runnable() {
-
-				public void run() {
-					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-							performDirectEdit(editRequest.getLocation());
-						} else {
-							performDirectEdit();
-						}
-					}
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * @generated
 	 */
 	public int getKeyPoint() {
@@ -381,38 +315,18 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected String getLabelText() {
 		String text = null;
-		Classifier target = (Classifier) ((Edge) ((View) getModel()).eContainer()).getTarget().getElement();
-		if (resolveSemanticElement() instanceof Association) {
-			// look for the property that is typed by the classifier
-			Property propertyToDisplay = null;
-			Iterator<Property> propertiesIterator = ((Association) resolveSemanticElement()).getMemberEnds().iterator();
-
-			while (propertiesIterator.hasNext()) {
-				Property currentProperty = (Property) propertiesIterator.next();
-				if (currentProperty.getType().equals(target)) {
-					propertyToDisplay = currentProperty;
-				}
-			}
-			if (propertyToDisplay != null) {
-				return propertyToDisplay.getLower() + ".." + propertyToDisplay.getUpper();
-			}
-			return target.getName();
+		EObject parserElement = getParserElement();
+		if (parserElement != null && getParser() != null) {
+			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
 		}
-		return "";
-		// EObject parserElement = getParserElement();
-		// if (parserElement != null && getParser() != null) {
-		// text = getParser().getPrintString(
-		// new EObjectAdapter(parserElement),
-		// getParserOptions().intValue());
-		// }
-		// if (text == null || text.length() == 0) {
-		// text = defaultText;
-		// }
-		// return text;
+		if (text == null || text.length() == 0) {
+			text = defaultText;
+		}
+		return text;
 	}
 
 	/**
@@ -509,10 +423,60 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 	}
 
 	/**
+	 * Initializes the extended editor configuration
+	 * 
+	 * @generated
+	 */
+	protected void initExtendedEditorConfiguration() {
+		if (configuration == null) {
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			if (languagePreferred != null && !languagePreferred.equals("")) {
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
+						.eClass().getInstanceClassName());
+			} else {
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
+						resolveSemanticElement().eClass().getInstanceClassName());
+			}
+		}
+	}
+
+	/**
 	 * @generated
 	 */
 	protected boolean isEditable() {
 		return false;
+	}
+
+	/**
+	 * Performs the direct edit usually used by GMF editors.
+	 * 
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 */
+	protected void performDefaultDirectEditorEdit(final Request theRequest) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData().get(
+									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -748,6 +712,19 @@ public class AssociationBranchMultEditPart extends LabelEditPart implements ITex
 	 */
 	protected void setManager(DirectEditManager manager) {
 		this.manager = manager;
+	}
+
+	/**
+	 * Updates the preference configuration
+	 */
+	protected void updateExtendedEditorConfiguration() {
+		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("")
+				&& languagePreferred != configuration.getLanguage()) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
+					.eClass().getInstanceClassName());
+		}
 	}
 
 }

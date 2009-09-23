@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
-import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -54,6 +53,8 @@ import org.eclipse.uml2.uml.UMLFactory;
  * GeneralizationSet.
  */
 public class GeneralizationSetHelper extends ElementHelper {
+
+	protected static final String CHOOSE_A_FOLLOWING_GENERALIZATION_SET_TO_CONNECT = "Choose a following generalizationSet to connect:";
 
 	/**
 	 * The listener interface for receiving dialog events. The class that is interested in
@@ -121,6 +122,8 @@ public class GeneralizationSetHelper extends ElementHelper {
 		}
 
 	}
+
+	protected static final String WOULD_YOU_LIKE_TO_CREATE_A_NEW_GENERALIZATION = "Would you like to create a new Generalization?";
 
 	/** The generalization setto create. */
 	private GeneralizationSet generalizationSettoCreate;
@@ -327,7 +330,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 
 				// Line1: Proposition of a new GeneralizationSet
 				Label text = new Label(dialog, SWT.CENTER);
-				text.setText(Messages.GeneralizationSetHelperNew);
+				text.setText(WOULD_YOU_LIKE_TO_CREATE_A_NEW_GENERALIZATION);
 				text.setBackground(ColorConstants.white);
 				GridData gridData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 				gridData.horizontalSpan = 1;
@@ -342,7 +345,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 				// Line2:
 				text = new Label(dialog, SWT.CENTER);
 				text.setBackground(ColorConstants.white);
-				text.setText(Messages.GeneralizationSetTextInformation);
+				text.setText(CHOOSE_A_FOLLOWING_GENERALIZATION_SET_TO_CONNECT);
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 				gridData.horizontalSpan = 1;
 				text.setLayoutData(gridData);

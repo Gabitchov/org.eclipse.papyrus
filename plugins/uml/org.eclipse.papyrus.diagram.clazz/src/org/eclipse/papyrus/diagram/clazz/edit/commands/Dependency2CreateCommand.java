@@ -96,6 +96,7 @@ public class Dependency2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Dependency newElement = UMLFactory.eINSTANCE.createDependency();
 
 		Package owner = (Package) getElementToEdit();

@@ -74,8 +74,6 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.TemplateParameter;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -95,8 +93,6 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 		}
 
 	}
-
-	private static final String LISTEN_OWNED_PARAM = "ListenOwnedParam";
 
 	/**
 	 * @generated
@@ -137,29 +133,11 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	public void activate() {
-		super.activate();
-		addOwnedParamListeners();
-	}
-
-	/**
 	 * @generated
 	 */
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void addOwnedParamListeners() {
-		EObject ownedParam = ((TemplateParameter) resolveSemanticElement()).getOwnedParameteredElement();
-		if (ownedParam != null) {
-			addListenerFilter(LISTEN_OWNED_PARAM, this, ownedParam);
-		}
 	}
 
 	/**
@@ -226,15 +204,6 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	 */
 	protected IFigure createFigurePrim() {
 		return new TemplateParameterDescriptor();
-	}
-
-	/**
-	 * @generated NOT
-	 */
-
-	public void deactivate() {
-		removeOwnedParamListeners();
-		super.deactivate();
 	}
 
 	/**
@@ -435,7 +404,7 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
@@ -465,16 +434,6 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 					refreshLabel();
 				}
 			}
-		}
-		if (event.getOldValue() == null
-				&& event.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_OwnedParameteredElement())) {
-			System.err.println("Ajout listener");
-			addOwnedParamListeners();
-		}
-		if (event.getNewValue() == null
-				&& event.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_OwnedParameteredElement())) {
-			System.err.println("remove listener");
-			removeOwnedParamListeners();
 		}
 		super.handleNotificationEvent(event);
 	}
@@ -702,13 +661,6 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void removeOwnedParamListeners() {
-		removeListenerFilter(LISTEN_OWNED_PARAM);
 	}
 
 	/**

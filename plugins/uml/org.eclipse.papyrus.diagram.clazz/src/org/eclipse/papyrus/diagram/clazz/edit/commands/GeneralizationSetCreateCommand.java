@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.diagram.clazz.custom.helper.GeneralizationSetHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.GeneralizationSet;
@@ -93,8 +92,7 @@ public class GeneralizationSetCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined
-			// yet
+			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
 		if (getContainer() == null) {
@@ -122,15 +120,17 @@ public class GeneralizationSetCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
-		GeneralizationSet newElement = generalizationSetHelper.createGeneralizationSet(getSource(), getTarget(),
-				container);
+
+		GeneralizationSet newElement = UMLFactory.eINSTANCE.createGeneralizationSet();
+		getContainer().getPackagedElements().add(newElement);
+		newElement.getGeneralizations().add(getSource());
+		newElement.getGeneralizations().add(getTarget());
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

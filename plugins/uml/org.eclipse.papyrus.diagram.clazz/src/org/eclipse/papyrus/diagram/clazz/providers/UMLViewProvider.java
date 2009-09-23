@@ -220,11 +220,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6024 = (Location) label6024.getLayoutConstraint();
 		location6024.setX(0);
 		location6024.setY(-20);
-		Node label6025 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationBranchMultEditPart.VISUAL_ID));
-		label6025.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6025 = (Location) label6025.getLayoutConstraint();
-		location6025.setX(0);
-		location6025.setY(20);
 		return edge;
 	}
 
@@ -455,8 +450,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	private Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort,
 			boolean canFilter) {
-		// SemanticListCompartment rv =
-		// NotationFactory.eINSTANCE.createSemanticListCompartment();
+		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		// rv.setShowTitle(showTitle);
 		// rv.setCollapsed(isCollapsed);
 		Node rv;
@@ -899,8 +893,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case InstanceSpecificationLinkEditPart.VISUAL_ID:
 			return createLink_4021(containerView, index, persisted, preferencesHint);
 		}
-		// can never happen, provided #provides(CreateEdgeViewOperation) is
-		// correct
+		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
 	}
 
@@ -2126,14 +2119,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
-			return false; // our hint is visual id and must be specified, and it
-			// should be the same as in element type
+			return false; // our hint is visual id and must be specified, and it should be the same
+							// as in element type
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
 		if (domainElement != null && visualID != UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
-			return false; // visual id for link EClass should match visual id
-			// from element type
+			return false; // visual id for link EClass should match visual id from element type
 		}
 		return true;
 	}
@@ -2149,10 +2141,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
 		int visualID;
 		if (op.getSemanticHint() == null) {
-			// Semantic hint is not specified. Can be a result of call from
-			// CanonicalEditPolicy.
-			// In this situation there should be NO elementType, visualID will
-			// be determined
+			// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
+			// In this situation there should be NO elementType, visualID will be determined
 			// by VisualIDRegistry.getNodeVisualID() for domainElement.
 			if (elementType != null || domainElement == null) {
 				return false;
@@ -2166,13 +2156,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
-					return false; // if semantic hint is specified it should be
-					// the same as in element type
+					return false; // if semantic hint is specified it should be the same as in
+									// element type
 				}
 				if (domainElement != null
 						&& visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-					return false; // visual id for node EClass should match
-					// visual id from element type
+					return false; // visual id for node EClass should match visual id from element
+									// type
 				}
 			} else {
 				if (!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
@@ -2227,8 +2217,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case Operation4EditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-						return false; // visual id in semantic hint should match
-						// visual id for domain element
+						return false; // visual id in semantic hint should match visual id for
+										// domain element
 					}
 					break;
 				default:

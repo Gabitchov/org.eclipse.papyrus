@@ -16,9 +16,11 @@ package org.eclipse.papyrus.diagram.clazz.custom.helper;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
@@ -38,21 +40,79 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.AssociationClassViewCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.PropertyCommandForAssociation;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
+import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.AssociationClass;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * The Class AssociationClassHelper has in charge to create command to display or to drop an
  * associationclass
  */
 public class AssociationClassHelper extends ElementHelper {
+
+	public static EObject createAssociationClass(TransactionalEditingDomain domain, Type source, Type target,
+			Package container) {
+
+		AssociationClass association = UMLFactory.eINSTANCE.createAssociationClass();
+
+		// create target property
+
+		CreateElementRequest request = new CreateElementRequest(domain, source, UMLElementTypes.Property_3002,
+				UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+		EditElementCommand c = new PropertyCreateCommand(request);
+		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		assert (c.getCommandResult() == null);
+		assert (c.getCommandResult().getReturnValue() == null);
+		Property targetProperty = (Property) c.getCommandResult().getReturnValue();
+		targetProperty.setType(target);
+		targetProperty.setName(target.getName().toLowerCase());
+		targetProperty.setLower(1);
+		targetProperty.setUpper(1);
+		// create source property
+
+		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE
+				.getAssociation_OwnedEnd());
+		c = new PropertyCommandForAssociation(request);
+		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		assert (c.getCommandResult() == null);
+		assert (c.getCommandResult().getReturnValue() == null);
+		Property sourceProperty = (Property) c.getCommandResult().getReturnValue();
+		sourceProperty.setType(source);
+		sourceProperty.setName(source.getName().toLowerCase());
+		sourceProperty.setLower(1);
+		sourceProperty.setUpper(1);
+		List<Property> memberEnds = association.getMemberEnds();
+		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, ((Property) sourceProperty));
+		} else {
+			association.getMemberEnds().add(0, ((Property) sourceProperty));
+		}
+		if ((memberEnds.indexOf(((Property) targetProperty)) >= 0)) {
+			association.getMemberEnds().move(1, ((Property) targetProperty));
+		} else {
+			association.getMemberEnds().add(1, ((Property) targetProperty));
+		}
+
+		container.getPackagedElements().add(association);
+		UMLElementTypes.init_AssociationClass_2013(association);
+		// ////////////////////////////////////////////////////////////////////
+		return association;
+	}
 
 	/**
 	 * Instantiates a new association class helper.

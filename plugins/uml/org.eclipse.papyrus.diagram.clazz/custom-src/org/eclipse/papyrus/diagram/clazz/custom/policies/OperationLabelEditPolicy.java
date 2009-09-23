@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.OperationLabelHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusOperationPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
@@ -86,28 +87,28 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public String getMaskLabel(int value) {
-		return OperationLabelHelper.getMaskLabel(value);
+		return OperationLabelHelper.getInstance().getMaskLabel(value);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<String> getMaskLabels() {
-		return OperationLabelHelper.getMaskLabels();
+		return OperationLabelHelper.getInstance().getMaskLabels();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Map<Integer, String> getMasks() {
-		return OperationLabelHelper.getMasks();
+		return OperationLabelHelper.getInstance().getMasks();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<Integer> getMaskValues() {
-		return OperationLabelHelper.getMaskValues();
+		return OperationLabelHelper.getInstance().getMaskValues();
 	}
 
 	/**
@@ -221,7 +222,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		OperationLabelHelper.refreshEditPartDisplay((GraphicalEditPart) getHost());
+		OperationLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
 	}
 
 	/**

@@ -43,6 +43,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationClassItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationClassItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -103,8 +104,8 @@ ClassifierEditPart {
 
 		if (childEditPart instanceof AssociationClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-			// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
+									// own way
 			pane.add(((AssociationClassAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -122,19 +123,10 @@ ClassifierEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationClassItemSemanticEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children
+		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 *Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -219,18 +211,13 @@ ClassifierEditPart {
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -257,18 +244,13 @@ ClassifierEditPart {
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1087,18 +1069,13 @@ ClassifierEditPart {
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1125,18 +1102,13 @@ ClassifierEditPart {
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
 			IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1911,18 +1883,13 @@ ClassifierEditPart {
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
 			IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -2739,36 +2706,6 @@ ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassName2EditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public ClassifierFigure getPrimaryShape() {
-		return (ClassifierFigure) primaryShape;
-	}
-
-	/**
-	 * @generated
-	 */
-	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
-					.getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Property_3002) {
-				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(AssociationClassAttributeCompartmentEditPart.VISUAL_ID));
-			}
-		}
-		return super.getTargetEditPart(request);
-	}
-
-	/**
-	 * @generated
-	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
@@ -2812,6 +2749,46 @@ ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassName2EditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public ClassifierFigure getPrimaryShape() {
+		return (ClassifierFigure) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getTargetEditPart(Request request) {
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (type == UMLElementTypes.Property_3002) {
+				return getChildBySemanticHint(UMLVisualIDRegistry
+						.getType(AssociationClassAttributeCompartmentEditPart.VISUAL_ID));
+			}
+		}
+		return super.getTargetEditPart(request);
+	}
+
+	/**
+	 *Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -2828,8 +2805,8 @@ ClassifierEditPart {
 		}
 		if (childEditPart instanceof AssociationClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-			// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
+									// own way
 			pane.remove(((AssociationClassAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

@@ -96,6 +96,7 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		ClassifierTemplateParameter newElement = UMLFactory.eINSTANCE.createClassifierTemplateParameter();
 
 		TemplateSignature owner = (TemplateSignature) getElementToEdit();

@@ -96,6 +96,7 @@ public class PackageCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Package newElement = UMLFactory.eINSTANCE.createPackage();
 
 		Package owner = (Package) getElementToEdit();

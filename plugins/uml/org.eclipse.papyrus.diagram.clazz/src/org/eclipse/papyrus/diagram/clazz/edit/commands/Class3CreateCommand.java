@@ -97,6 +97,7 @@ public class Class3CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Class newElement = UMLFactory.eINSTANCE.createClass();
 
 		Interface owner = (Interface) getElementToEdit();

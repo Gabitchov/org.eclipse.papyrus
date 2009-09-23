@@ -115,18 +115,6 @@
       </contributionItemProvider>
    </extension -->
    
-      <extension
-            point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-         <clientContext
-               id="com.cea.papyrus.gmf.editor.context">
-            <enablement>
-               <test
-                     property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-                     value="org.eclipse.uml2.diagram.clazz.EditingDomain">
-               </test>
-            </enablement>
-         </clientContext>
-      </extension>
       
       <extension point="org.eclipse.ui.views">
    <category 

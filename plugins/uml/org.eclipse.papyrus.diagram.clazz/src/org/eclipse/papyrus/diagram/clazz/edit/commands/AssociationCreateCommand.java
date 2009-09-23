@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.diagram.clazz.custom.command.CreateAssociationSupplement;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
@@ -92,8 +91,7 @@ public class AssociationCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined
-			// yet
+			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
 		if (getContainer() == null) {
@@ -121,17 +119,15 @@ public class AssociationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		CreateAssociationSupplement cacs = new CreateAssociationSupplement(container, source, target);
-		Association newElement = (Association) cacs.doDefaultElementCreation(getEditingDomain(), null);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
+		throw new UnsupportedOperationException();
+
 	}
 
 	/**

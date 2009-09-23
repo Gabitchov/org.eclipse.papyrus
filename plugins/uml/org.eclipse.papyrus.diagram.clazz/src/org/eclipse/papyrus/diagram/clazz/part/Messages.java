@@ -132,6 +132,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ClassifierTemplateParameter3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassifierTemplateParameter3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String ClassNestedClassifierCompartment2EditPart_title;
 
 	/**
@@ -267,11 +277,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InstanceSpecificationSlotCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
 	public static String Dependency5CreationTool_desc;
 
 	/**
@@ -357,27 +362,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InstanceSpecification18CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InstanceSpecification18CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
 	public static String GeneralizationSet17CreationTool_title;
-
-	/**
-	 * @generated NOT
-	 */
-	public static String GeneralizationSetHelperNew;
-
-	/**
-	 * @generated NOT
-	 */
-	public static String GeneralizationSetTextInformation;
 
 	/**
 	 * @generated
@@ -402,6 +387,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String InstanceSpecification18CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String InstanceSpecification18CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String InstanceSpecification8CreationTool_desc;
 
 	/**
@@ -413,6 +408,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String InstanceSpecificationSlotCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InstanceSpecificationSlotCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
@@ -698,16 +698,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String TemplateParameter2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassifierTemplateParameter3CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassifierTemplateParameter3CreationTool_desc;
 
 	/**
 	 * @generated

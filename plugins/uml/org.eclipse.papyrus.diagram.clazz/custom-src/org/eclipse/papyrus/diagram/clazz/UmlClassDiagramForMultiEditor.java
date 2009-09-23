@@ -76,7 +76,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	Composite splitter;
 
 	/**
-	 * @generated NOT
+	 * 
 	 * @deprecated Old init method. Now use SashSystem v2
 	 */
 	public UmlClassDiagramForMultiEditor(Diagram diagram, GmfEditorContext context) {
@@ -91,7 +91,6 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	}
 
 	/**
-	 * @generated NOT
 	 * @deprecated Old init method. Now use SashSystem v2
 	 */
 	public UmlClassDiagramForMultiEditor(Object diagram, IEditorContext context) {
@@ -104,7 +103,6 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 * @throws BackboneException
 	 * @throws ServiceException
 	 * 
-	 * @generated NOT
 	 */
 	public UmlClassDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException,
 			ServiceException {

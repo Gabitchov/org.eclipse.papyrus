@@ -38,6 +38,13 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	public static AssociationClassCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new AssociationClassCreateCommand(req, eObject);
+	}
+
+	/**
+	 * @generated
+	 */
 	private EClass eClass = null;
 
 	/**
@@ -48,24 +55,17 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	public AssociationClassCreateCommand(CreateElementRequest req) {
+		super(req.getLabel(), null, req);
+	}
+
+	/**
+	 * @generated
+	 */
 	public AssociationClassCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static AssociationClassCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new AssociationClassCreateCommand(req, eObject);
-	}
-
-	/**
-	 * @generated
-	 */
-	public AssociationClassCreateCommand(CreateElementRequest req) {
-		super(req.getLabel(), null, req);
 	}
 
 	/**
@@ -92,9 +92,10 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		AssociationClass newElement = UMLFactory.eINSTANCE.createAssociationClass();
 
 		Package owner = (Package) getElementToEdit();

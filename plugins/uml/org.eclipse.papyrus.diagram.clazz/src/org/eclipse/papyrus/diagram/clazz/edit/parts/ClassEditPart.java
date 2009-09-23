@@ -48,6 +48,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomClassItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ClassItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -114,24 +115,24 @@ ClassifierEditPart
 
 		if (childEditPart instanceof ClassAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-			// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
+									// own way
 			pane.add(((ClassAttributeCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof ClassOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-			// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
+									// own way
 			pane.add(((ClassOperationCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof ClassNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-			// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
+									// own way
 			pane.add(((ClassNestedClassifierCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -159,16 +160,16 @@ ClassifierEditPart
 
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.diagram.clazz.edit.policies.ClassCanonicalEditPolicy());
+		// new org.eclipse.papyrus.diagram.clazz.edit.policies.ClassCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomClassItemSemanticEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children
+		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -288,18 +289,13 @@ ClassifierEditPart
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -326,18 +322,13 @@ ClassifierEditPart
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1156,18 +1147,13 @@ ClassifierEditPart
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1194,18 +1180,13 @@ ClassifierEditPart
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
 			IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -1980,18 +1961,13 @@ ClassifierEditPart
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
 			IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org
-																							 * .
-																							 * eclipse
-																							 * . gmf
-																							 * .
+																							 * <org.eclipse
+																							 * .gmf.
 																							 * runtime
-																							 * . emf
 																							 * .
-																							 * type
+																							 * emf.type
 																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
@@ -2903,22 +2879,22 @@ ClassifierEditPart
 		}
 		if (childEditPart instanceof ClassAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-			// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
+									// own way
 			pane.remove(((ClassAttributeCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ClassOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-			// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
+									// own way
 			pane.remove(((ClassOperationCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ClassNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-			// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
+									// own way
 			pane.remove(((ClassNestedClassifierCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}

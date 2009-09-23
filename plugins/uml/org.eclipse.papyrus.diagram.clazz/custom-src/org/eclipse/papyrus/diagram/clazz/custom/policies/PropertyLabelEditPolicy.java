@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusPropertyPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
@@ -104,28 +105,28 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public String getMaskLabel(int value) {
-		return PropertyLabelHelper.getMaskLabel(value);
+		return PropertyLabelHelper.getInstance().getMaskLabel(value);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<String> getMaskLabels() {
-		return PropertyLabelHelper.getMaskLabels();
+		return PropertyLabelHelper.getInstance().getMaskLabels();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Map<Integer, String> getMasks() {
-		return PropertyLabelHelper.getMasks();
+		return PropertyLabelHelper.getInstance().getMasks();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<Integer> getMaskValues() {
-		return PropertyLabelHelper.getMaskValues();
+		return PropertyLabelHelper.getInstance().getMaskValues();
 	}
 
 	public String getPreferencePageID() {
@@ -324,7 +325,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		PropertyLabelHelper.refreshEditPartDisplay((GraphicalEditPart) getHost());
+		PropertyLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
 	}
 
 	/**

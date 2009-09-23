@@ -14,25 +14,20 @@
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractAssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
-import org.eclipse.uml2.uml.AggregationKind;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * @generated
  */
-public class AssociationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -44,24 +39,6 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	public AssociationEditPart(View view) {
 		super(view);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void activate() {
-		super.activate();
-		addAssociationEndListeners();
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void addAssociationEndListeners() {
-		EObject sourceEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(0);
-		EObject targetEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(1);
-		addListenerFilter("AssociationEndListenersSource", this, sourceEnd); //$NON-NLS-1$
-		addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
 	}
 
 	/**
@@ -127,15 +104,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLabelDisplayEditPolicy());
-	}
-
-	/**
-	 * @generated NOT
-	 */
-
-	public void deactivate() {
-		removeAssociationEndListeners();
-		super.deactivate();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationItemSemanticEditPolicy());
 	}
 
 	/**
@@ -143,86 +112,6 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure) getFigure();
-	}
-
-	/**
-	 * @generated NOT
-	 */
-
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-
-		// set the good ends for the association figure
-		if (resolveSemanticElement() != null) {
-
-			refreshVisuals();
-		}
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void refreshVisuals() {
-		if (getSource() == null || getTarget() == null) {
-			return;
-		}
-		if (((GraphicalEditPart) getSource()).resolveSemanticElement() == null
-				|| ((GraphicalEditPart) getTarget()).resolveSemanticElement() == null) {
-			return;
-		}
-
-		Property source = null;
-		Property target = null;
-
-		if (((Property) (((Association) getUMLElement()).getMemberEnds().get(0))).getType().equals(
-				((GraphicalEditPart) getSource()).resolveSemanticElement())) {
-			source = ((Property) (((Association) getUMLElement()).getMemberEnds().get(0)));
-			target = ((Property) (((Association) getUMLElement()).getMemberEnds().get(1)));
-		} else {
-			source = ((Property) (((Association) getUMLElement()).getMemberEnds().get(1)));
-			target = ((Property) (((Association) getUMLElement()).getMemberEnds().get(0)));
-		}
-		int sourceType = 0;
-		int targetType = 0;
-		// owned?
-		if (source.getOwner().equals(resolveSemanticElement())) {
-			sourceType += AssociationFigure.owned;
-		}
-		if (target.getOwner().equals(resolveSemanticElement())) {
-			targetType += AssociationFigure.owned;
-		}
-		// aggregation? for it the opposite is changed
-		if (source.getAggregation() == AggregationKind.SHARED_LITERAL) {
-			targetType += AssociationFigure.aggregation;
-		}
-		if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
-			sourceType += AssociationFigure.aggregation;
-		}
-		// composite? for it the opposite is changed
-		if (source.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-			targetType += AssociationFigure.composition;
-		}
-		if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-			sourceType += AssociationFigure.composition;
-		}
-		// navigable?
-		if (source.isNavigable()) {
-			sourceType += AssociationFigure.navigable;
-		}
-		if (target.isNavigable()) {
-			targetType += AssociationFigure.navigable;
-		}
-		getPrimaryShape().setEnd(sourceType, targetType);
-		super.refreshVisuals();
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void removeAssociationEndListeners() {
-		removeListenerFilter("AssociationEndListenersSource");
-		removeListenerFilter("AssociationEndListenersTarget");
-
 	}
 
 	/**

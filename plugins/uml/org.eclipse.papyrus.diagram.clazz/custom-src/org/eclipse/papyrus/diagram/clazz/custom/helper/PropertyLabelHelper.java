@@ -11,7 +11,7 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,6 +22,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
@@ -33,10 +34,20 @@ import org.eclipse.uml2.uml.Property;
  */
 public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 
-	/** Map for masks */
-	protected static final Map<Integer, String> masks = new HashMap<Integer, String>(7);
+	// Einstance
+	private static PropertyLabelHelper labelHelper;
 
-	static {
+	public static PropertyLabelHelper getInstance() {
+		if (labelHelper == null) {
+			labelHelper = new PropertyLabelHelper();
+		}
+		return labelHelper;
+	}
+
+	/** Map for masks */
+	protected final Map<Integer, String> masks = new HashMap<Integer, String>(7);
+
+	protected PropertyLabelHelper() {
 		// initialize the map
 		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
 		masks.put(ICustomAppearence.DISP_DERIVE, "Is Derived");
@@ -55,7 +66,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * @return the label corresponding to the specific display of the property ("default" display
 	 *         given by preferences or specific display given by eAnnotation).
 	 */
-	protected static String elementLabel(GraphicalEditPart editPart) {
+	protected String elementLabel(GraphicalEditPart editPart) {
 		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
 
 		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart
@@ -63,7 +74,11 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 		if (policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
 		}
-		return PropertyUtil.getCustomLabel(getUMLElement(editPart), displayValue);
+		Property elem = getUMLElement(editPart);
+		if (elem != null) {
+			return PropertyUtil.getCustomLabel(elem, displayValue);
+		}
+		return "";
 	}
 
 	/**
@@ -71,7 +86,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * 
 	 * @return the mask name or <code>null</code> if no masks has been found
 	 */
-	public static String getMaskLabel(int value) {
+	public String getMaskLabel(int value) {
 		return masks.get(value);
 	}
 
@@ -80,7 +95,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * 
 	 * @return the collection of mask names
 	 */
-	public static Collection<String> getMaskLabels() {
+	public Collection<String> getMaskLabels() {
 		return masks.values();
 	}
 
@@ -89,7 +104,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * 
 	 * @return the {@link Map} of masks used to display a {@link Property}
 	 */
-	public static Map<Integer, String> getMasks() {
+	public Map<Integer, String> getMasks() {
 		return masks;
 	}
 
@@ -98,21 +113,21 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * 
 	 * @return the collection of mask values
 	 */
-	public static Set<Integer> getMaskValues() {
+	public Set<Integer> getMaskValues() {
 		return masks.keySet();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static Property getUMLElement(GraphicalEditPart editPart) {
+	public Property getUMLElement(GraphicalEditPart editPart) {
 		return (Property) ((View) editPart.getModel()).getElement();
 	}
 
 	/**
 	 * Computes the label to be displayed for the property
 	 */
-	protected static String labelToDisplay(GraphicalEditPart editPart) {
+	protected String labelToDisplay(GraphicalEditPart editPart) {
 		StringBuffer buffer = new StringBuffer();
 
 		// computes the label for the stereotype (horizontal presentation)
@@ -131,7 +146,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * @param editPart
 	 *            the edit part managing the refreshed figure
 	 */
-	public static void refreshEditPartDisplay(GraphicalEditPart editPart) {
+	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
 		IFigure figure = editPart.getFigure();
 
 		// computes the icon to be displayed

@@ -96,6 +96,7 @@ public class AssociationNodeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Association newElement = UMLFactory.eINSTANCE.createAssociation();
 
 		Package owner = (Package) getElementToEdit();

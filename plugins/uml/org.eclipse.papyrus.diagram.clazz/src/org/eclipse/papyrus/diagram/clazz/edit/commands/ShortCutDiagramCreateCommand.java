@@ -95,6 +95,7 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		// Uncomment to put "phantom" objects into the diagram file.
 		// org.eclipse.emf.ecore.resource.Resource resource =
 		// ((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)

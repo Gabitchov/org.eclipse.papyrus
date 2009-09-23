@@ -97,6 +97,7 @@ public class Comment2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Comment newElement = UMLFactory.eINSTANCE.createComment();
 
 		Element owner = (Element) getElementToEdit();

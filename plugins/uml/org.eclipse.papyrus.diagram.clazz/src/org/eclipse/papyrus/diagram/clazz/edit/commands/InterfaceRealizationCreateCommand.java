@@ -69,8 +69,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined
-			// yet
+			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateInterfaceRealization_4003(getSource(),

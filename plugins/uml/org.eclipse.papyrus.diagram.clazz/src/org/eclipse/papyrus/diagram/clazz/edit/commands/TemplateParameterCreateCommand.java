@@ -96,6 +96,7 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		TemplateParameter newElement = UMLFactory.eINSTANCE.createTemplateParameter();
 
 		TemplateSignature owner = (TemplateSignature) getElementToEdit();

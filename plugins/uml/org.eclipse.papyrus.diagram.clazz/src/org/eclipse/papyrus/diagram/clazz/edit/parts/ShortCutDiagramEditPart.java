@@ -21,8 +21,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -33,7 +32,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -41,16 +39,14 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ShortCutDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.editparts.AbstractShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShortCutDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.DiagramNodeFigure;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -62,7 +58,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ShortCutDiagramEditPart extends
 
-AbstractBorderedShapeEditPart {
+AbstractShortCutDiagramEditPart {
 
 	/**
 	 * @generated
@@ -73,11 +69,6 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure contentPane;
-
-	/**
-	 * @generated NOT
-	 */
-	private IEditorFactoryRegistry editorRegistry;
 
 	/**
 	 * @generated
@@ -113,21 +104,19 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ShortCutDiagramEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children
+		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
-	 * method in order to return the registry associated to the extension point namespace.
+	 *Papyrus codeGen
 	 * 
-	 * @return the EditorRegistry for nested editor descriptors
-	 * 
-	 * @generated NOT
-	 */
-	protected IEditorFactoryRegistry createEditorRegistry() {
-		return new EditorFactoryRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -210,20 +199,6 @@ AbstractBorderedShapeEditPart {
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return
-	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
-	 * 
-	 * @return the singleton eINSTANCE of editor registry
-	 *@generated NOT
-	 */
-	protected IEditorFactoryRegistry getEditorRegistry() {
-		if (editorRegistry == null) {
-			editorRegistry = createEditorRegistry();
-		}
-		return editorRegistry;
-	}
-
-	/**
 	 * @generated
 	 */
 	@Override
@@ -278,36 +253,6 @@ AbstractBorderedShapeEditPart {
 	 */
 	public DiagramNodeFigure getPrimaryShape() {
 		return (DiagramNodeFigure) primaryShape;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void refresh() {
-
-		refreshIcons();
-		super.refresh();
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void refreshBounds() {
-		int width = 34;
-		int height = 20;
-		Dimension size = new Dimension(width, height);
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	private void refreshIcons() {
-		getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram) resolveSemanticElement()));
-
 	}
 
 	/**

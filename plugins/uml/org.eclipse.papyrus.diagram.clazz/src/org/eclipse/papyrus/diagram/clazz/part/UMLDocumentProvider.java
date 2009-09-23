@@ -304,11 +304,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
-																						 * <org .
-																						 * eclipse .
-																						 * core .
+																						 * <org.eclipse
+																						 * .core.
 																						 * resources
-																						 * . IFile >
+																						 * .IFile>
 																						 */();
 			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
@@ -421,16 +420,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org
+																							 * <org.eclipse
 																							 * .
-																							 * eclipse
-																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * runtime
 																							 * .
-																							 * jobs
-																							 * .
+																							 * jobs.
 																							 * ISchedulingRule
 																							 * >
 																							 */();
@@ -454,16 +449,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org
+																							 * <org.eclipse
 																							 * .
-																							 * eclipse
-																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * runtime
 																							 * .
-																							 * jobs
-																							 * .
+																							 * jobs.
 																							 * ISchedulingRule
 																							 * >
 																							 */();
@@ -487,16 +478,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org
+																							 * <org.eclipse
 																							 * .
-																							 * eclipse
-																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * runtime
 																							 * .
-																							 * jobs
-																							 * .
+																							 * jobs.
 																							 * ISchedulingRule
 																							 * >
 																							 */();
@@ -520,16 +507,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
-																							 * <org
+																							 * <org.eclipse
 																							 * .
-																							 * eclipse
-																							 * .
-																							 * core
-																							 * .
+																							 * core.
 																							 * runtime
 																							 * .
-																							 * jobs
-																							 * .
+																							 * jobs.
 																							 * ISchedulingRule
 																							 * >
 																							 */();

@@ -96,6 +96,7 @@ public class SlotCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Slot newElement = UMLFactory.eINSTANCE.createSlot();
 
 		InstanceSpecification owner = (InstanceSpecification) getElementToEdit();

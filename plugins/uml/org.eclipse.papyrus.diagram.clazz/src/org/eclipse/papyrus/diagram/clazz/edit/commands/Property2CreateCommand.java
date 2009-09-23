@@ -97,6 +97,7 @@ public class Property2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
 		Signal owner = (Signal) getElementToEdit();
