@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.factory;
 
 import org.eclipse.gef.EditPart;
@@ -17,6 +30,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 
+/**
+ * this is custom editpart factory to create our own editpart
+ */
 public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 
 	public EditPart createEditPart(EditPart context, Object model) {

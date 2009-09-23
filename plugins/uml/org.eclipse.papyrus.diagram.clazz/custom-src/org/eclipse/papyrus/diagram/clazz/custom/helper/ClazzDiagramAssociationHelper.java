@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
 import java.util.List;
@@ -17,6 +30,9 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
+/**
+ * this is an helper that is specific for the class diagram
+ */
 public class ClazzDiagramAssociationHelper {
 
 	public static EObject createAssociation(TransactionalEditingDomain domain, Type source, Type target,

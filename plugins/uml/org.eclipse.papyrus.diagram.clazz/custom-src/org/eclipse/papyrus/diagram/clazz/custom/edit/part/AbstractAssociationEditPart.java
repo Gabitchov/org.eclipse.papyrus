@@ -23,6 +23,9 @@ import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 
+/**
+ * this a abstract editpart use to add listeners
+ */
 public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditPart {
 
 	protected static final String ASSOCIATION_END_LISTENERS_SOURCE = "AssociationEndListenersSource";
