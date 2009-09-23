@@ -7,7 +7,7 @@
             contributorClass="org.eclipse.papyrus.editor.PapyrusActionBarContributor"
             default="true"
             extensions="di"
-            icon="icons/papyrus/Papyrus_16x16.gif"
+            icon="icons/papyrus/PapyrusLogo16x16.gif"
             id="org.eclipse.papyrus.core.papyrusEditor"
             name="Papyrus Editor Core">
       </editor>
@@ -15,7 +15,7 @@
    <extension point="org.eclipse.ui.perspectives">
 	   <perspective
 	         class="org.eclipse.papyrus.core.perspective.PapyrusPerspective"
-	         icon="icons/papyrus/Papyrus_16x16.gif"
+	         icon="icons/papyrus/PapyrusLogo16x16.gif"
 	         id="org.eclipse.papyrus.core.perspective"
 	         name="Papyrus">
 	   </perspective>

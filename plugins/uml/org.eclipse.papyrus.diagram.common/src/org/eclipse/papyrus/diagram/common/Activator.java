@@ -57,7 +57,7 @@ public class Activator extends AbstractUIPlugin {
 	public static final String UML_VIS_ICONS_16x16 = "icons/obj16/";
 
 	/** Default image. */
-	public static final String DEFAULT_IMAGE = "icons/papyrus/Papyrus.gif";
+	public static final String DEFAULT_IMAGE = "icons/papyrus/PapyrusLogo16x16.gif";
 
 	/** Color manager. */
 	public static ColorManager colorManager = new ColorManager();

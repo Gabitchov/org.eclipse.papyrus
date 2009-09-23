@@ -10,7 +10,7 @@
     		category="org.eclipse.papyrus.wizards.category"
     		class="org.eclipse.papyrus.wizards.CreateModelWizard"
     		finalPerspective="org.eclipse.papyrus.core.perspective"
-    		icon="icons/papyrus/Papyrus_16x16.gif"
+    		icon="icons/papyrus/PapyrusLogo16x16.gif"
     		id="org.eclipse.papyrus.wizards.createmodel"
     		name="Create a new model">
  			<selection class="org.eclipse.core.resources.IResource" />
