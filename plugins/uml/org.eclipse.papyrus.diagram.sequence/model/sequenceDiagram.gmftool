@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmftool:ToolRegistry xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="umlPalette">
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="uml">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Interaction"
+          description="Create new Interaction">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Objects"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Lifeline"
+          description="Create a Lifeline"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Execution Action"
+          description="Create an Execution Action"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Execution Behaviour"
+          description="Create an Execution Behaviour"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="InteractionUse"
+          description="Create InteractionUse"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Combined Fragment"
+          description="Create Combined Fragment"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Interaction Operand"
+          description="Create Interaction Operand"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Message"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="MessageSync"
+          description="Create  MessageSync"/>
+    </tools>
+  </palette>
+</gmftool:ToolRegistry>
