@@ -51,38 +51,42 @@ import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectio
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 
 /**
- * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes and binary links.
+ * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
+ * and binary links.
  */
 public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
 	/** The specific drop. */
 	private ArrayList specificDrop = new ArrayList();
-	
+
 	/** The specified link mapping helper dependeing on the diagram */
 	private ILinkMappingHelper linkmappingHelper;
-	
+
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy.
 	 * 
-	 * @param mappingHelper the mapping helper
+	 * @param mappingHelper
+	 *            the mapping helper
 	 */
 	public CommonDiagramDragDropEditPolicy(ILinkMappingHelper mappingHelper) {
 		linkmappingHelper = mappingHelper;
 	}
-	
+
 	/**
 	 * Gets the UML element type for the specified
 	 * 
-	 * @param elementID the element id
+	 * @param elementID
+	 *            the element id
 	 * 
 	 * @return the uML element type
 	 */
 	public abstract IElementType getUMLElementType(int elementID);
-	
+
 	public abstract int getNodeVisualID(View containerView, EObject domainElement);
-	
+
 	public abstract int getLinkWithClassVisualID(EObject domainElement);
 
 	/**
@@ -123,7 +127,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 		// descriptor of the link
 		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
-				getUMLElementType(linkVISUALID), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
+				getUMLElementType(linkVISUALID), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(),
+				getDiagramPreferencesHint());
 
 		IAdaptable sourceAdapter = null;
 		IAdaptable targetAdapter = null;
@@ -165,14 +170,14 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		}
 
 		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(
-				getEditingDomain(), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(),
-				sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+				getEditingDomain(), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter,
+				targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
 		aLinkCommand.setElement(semanticLink);
 		cc.compose(aLinkCommand);
 		return cc;
 
 	}
-	
+
 	/**
 	 * Gets the diagram preferences hint.
 	 * 
@@ -199,40 +204,76 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		((GraphicalEditPart) getHost()).getContentPane().translateFromParent(location);
 		location.translate(((GraphicalEditPart) getHost()).getContentPane().getClientArea().getLocation().getNegated());
 		while (iter.hasNext()) {
-			EObject dropObject = (EObject) iter.next();
-			int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart) getHost()).getNotationView(),
-					dropObject);
-			int linkVISUALID = getLinkWithClassVisualID(dropObject);
+			EObject droppedObject = (EObject) iter.next();
+			int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart) getHost()).getNotationView(), droppedObject);
+			int linkVISUALID = getLinkWithClassVisualID(droppedObject);
 			if (specificDrop.contains(nodeVISUALID) || specificDrop.contains(linkVISUALID)) {
-				return getSpecificDropCommand(dropRequest, (Element) dropObject, nodeVISUALID, linkVISUALID);
+				return getSpecificDropCommand(dropRequest, (Element) droppedObject, nodeVISUALID, linkVISUALID);
 			}
-			IAdaptable elementAdapter = new EObjectAdapter(dropObject);
-			if (linkVISUALID == -1 && nodeVISUALID != -1) {
-				// this is a node
-				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class,
-						((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(),
-						ViewUtil.APPEND, false, getDiagramPreferencesHint());
-				CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View) (getHost()
-						.getModel())));
-				cc.compose(createCommand);
 
-				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move",
-						(IAdaptable) createCommand.getCommandResult().getReturnValue(), location);
-				cc.compose(setBoundsCommand);
+			if (linkVISUALID == -1 && nodeVISUALID != -1) {
+				// The element to drop is a node
+				// Retrieve it's expected graphical parent
+				EObject graphicalParent = ((GraphicalEditPart) getHost()).resolveSemanticElement();
+
+				// Restrict the default node creation to the following cases:
+				// . Take the containment relationship into consideration
+				// . Release the constraint when GraphicalParent is a Package (Canvas for most
+				// diagrams)
+				if (graphicalParent instanceof Package) {
+					cc = getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+
+				} else if ((graphicalParent instanceof Element)
+						&& ((Element) graphicalParent).getOwnedElements().contains(droppedObject)) {
+					cc = getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+
+				} else {
+					return UnexecutableCommand.INSTANCE;
+				}
+
 			} else if (linkVISUALID != -1) {
-				Collection sources = linkmappingHelper.getSource((Element) dropObject);
-				Collection targets = linkmappingHelper.getTarget((Element) dropObject);
+				Collection sources = linkmappingHelper.getSource((Element) droppedObject);
+				Collection targets = linkmappingHelper.getTarget((Element) droppedObject);
 				if (sources.size() == 0 || targets.size() == 0) {
 					return UnexecutableCommand.INSTANCE;
 				}
 				// binary association
 				Element source = (Element) sources.toArray()[0];
 				Element target = (Element) targets.toArray()[0];
-				cc = dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element) dropObject);
-
+				cc = dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(),
+						(Element) droppedObject);
 			}
 		}
 		return new ICommandProxy(cc);
+	}
+
+	/**
+	 * This method returns the default drop command for node. Default here means the no
+	 * consideration is made regarding the semantic elements, the expected figure is basically
+	 * created where expected.
+	 * 
+	 * @param nodeVISUALID
+	 *            the node visual identifier
+	 * @param location
+	 *            the drop location
+	 * @param droppedObject
+	 *            the object to drop
+	 * @return a CompositeCommand for Drop
+	 */
+	protected CompositeCommand getDefaultDropNodeCommand(int nodeVISUALID, Point location, EObject droppedObject) {
+		CompositeCommand cc = new CompositeCommand("Drop");
+		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
+
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class,
+				((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false,
+				getDiagramPreferencesHint());
+		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View) (getHost().getModel())));
+		cc.compose(createCommand);
+
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable) createCommand
+				.getCommandResult().getReturnValue(), location);
+		cc.compose(setBoundsCommand);
+		return cc;
 	}
 
 	/**
@@ -309,5 +350,5 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		}
 		return existedEditPart;
 	}
-	
+
 }
