@@ -16,6 +16,42 @@
 package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
 import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ClassAttributeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ClassNestedClassifierCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ClassOperationCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CollaborationCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CollaborationCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ComponentCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ComponentCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeAttributeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeAttributeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeOperationCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeOperationCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DeviceCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DeviceCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.EnumerationEnumerationLiteralCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ExecutionEnvironmentCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ExecutionEnvironmentCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.FunctionBehaviorCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.FunctionBehaviorCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InteractionCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InteractionCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InterfaceCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InterfaceCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.NodeCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.NodeCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueBehaviorCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueBehaviorCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.StateMachineCompositeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.StateMachineCompositeCompartmentEditPartCN;
 
 /**
  * <pre>
@@ -31,52 +67,31 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
 	/**
-	 * <pre>
-	 * 7033 : DataTypeAttributeCompartmentEditPart
-	 * 7034 : DataTypeOperationCompartmentEditPart
-	 * 7036 : DataTypeAttributeCompartmentEditPartCN
-	 * 7037 : DataTypeOperationCompartmentEditPartCN
-	 * 
-	 * 7043 : ClassAttributeCompartmentEditPart
-	 * 7044 : ClassOperationCompartmentEditPart
-	 * 7045 : ClassNestedClassifierCompartmentEditPart
-	 * 
-	 * 7048 : EnumerationEnumerationLiteralCompartmentEditPart
-	 * 7049 : EnumerationEnumerationLiteralCompartmentEditPartCN
-	 * 
-	 * 7050 : ActivityCompositeCompartmentEditPartCN
-	 * 7051 : InteractionCompositeCompartmentEditPartCN
-	 * 7052 : ProtocolStateMachineCompositeCompartmentEditPartCN
-	 * 7053 : StateMachineCompositeCompartmentEditPartCN
-	 * 7054 : FunctionBehaviorCompositeCompartmentEditPartCN
-	 * 7055 : OpaqueBehaviorCompositeCompartmentEditPartCN
-	 * 7056 : ComponentCompositeCompartmentEditPartCN
-	 * 7057 : DeviceCompositeCompartmentEditPartCN
-	 * 7058 : ExecutionEnvironmentCompositeCompartmentEditPartCN
-	 * 7059 : NodeCompositeCompartmentEditPartCN
-	 * 7060 : ClassCompositeCompartmentEditPartCN
-	 * 7061 : CollaborationCompositeCompartmentEditPartCN
-	 * 7062 : InterfaceCompartmentEditPartCN
-	 * 
-	 * 7063 : ActivityCompositeCompartmentEditPart
-	 * 7064 : InteractionCompositeCompartmentEditPart
-	 * 7065 : ProtocolStateMachineCompositeCompartmentEditPart
-	 * 7066 : StateMachineCompositeCompartmentEditPart
-	 * 7067 : FunctionBehaviorCompositeCompartmentEditPart
-	 * 7068 : OpaqueBehaviorCompositeCompartmentEditPart
-	 * 7069 : ComponentCompositeCompartmentEditPart
-	 * 7070 : DeviceCompositeCompartmentEditPart
-	 * 7071 : ExecutionEnvironmentCompositeCompartmentEditPart
-	 * 7072 : NodeCompositeCompartmentEditPart
-	 * 7073 : ClassCompositeCompartmentEditPart
-	 * 7075 : CollaborationCompositeCompartmentEditPart
-	 * 7076 : InterfaceCompartmentEditPart
-	 * 7077 : PropertyPartCompartmentEditPartCN
-	 * </pre>
+	 * List of EditPart from Composite Structure Diagram for the RemoveOrphanViewPolicy
 	 */
-	public int[] notOrphanNode = { 7033, 7034, 7036, 7037, 7043, 7044, 7045, 7048, 7049, 7050, 7051, 7052, 7053, 7054,
-			7055, 7056, 7057, 7058, 7059, 7060, 7061, 7062, 7063, 7064, 7065, 7066, 7067, 7068, 7069, 7070, 7071, 7072,
-			7073, 7075, 7076, 7077 };
+	public int[] notOrphanNode = { DataTypeAttributeCompartmentEditPart.VISUAL_ID,
+			DataTypeOperationCompartmentEditPart.VISUAL_ID, DataTypeAttributeCompartmentEditPartCN.VISUAL_ID,
+			DataTypeOperationCompartmentEditPartCN.VISUAL_ID, ClassAttributeCompartmentEditPart.VISUAL_ID,
+			ClassOperationCompartmentEditPart.VISUAL_ID, ClassNestedClassifierCompartmentEditPart.VISUAL_ID,
+			EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID,
+			EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID,
+			ActivityCompositeCompartmentEditPartCN.VISUAL_ID, InteractionCompositeCompartmentEditPartCN.VISUAL_ID,
+			ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID,
+			StateMachineCompositeCompartmentEditPartCN.VISUAL_ID,
+			FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID,
+			OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID, ComponentCompositeCompartmentEditPartCN.VISUAL_ID,
+			DeviceCompositeCompartmentEditPartCN.VISUAL_ID,
+			ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID, NodeCompositeCompartmentEditPartCN.VISUAL_ID,
+			ClassCompositeCompartmentEditPartCN.VISUAL_ID, CollaborationCompositeCompartmentEditPartCN.VISUAL_ID,
+			InterfaceCompartmentEditPartCN.VISUAL_ID, ActivityCompositeCompartmentEditPart.VISUAL_ID,
+			InteractionCompositeCompartmentEditPart.VISUAL_ID,
+			ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID,
+			StateMachineCompositeCompartmentEditPart.VISUAL_ID, FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID,
+			OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID, ComponentCompositeCompartmentEditPart.VISUAL_ID,
+			DeviceCompositeCompartmentEditPart.VISUAL_ID, ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID,
+			NodeCompositeCompartmentEditPart.VISUAL_ID, ClassCompositeCompartmentEditPart.VISUAL_ID,
+			CollaborationCompositeCompartmentEditPart.VISUAL_ID, InterfaceCompartmentEditPart.VISUAL_ID,
+			PropertyPartCompartmentEditPartCN.VISUAL_ID };
 
 	public RemoveOrphanViewPolicy() {
 		super();
