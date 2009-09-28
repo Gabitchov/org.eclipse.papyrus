@@ -39,7 +39,7 @@ import org.eclipse.swt.graphics.Image;
  * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified
  * nale label + 1 name label
  */
-public class NodeNamedElementFigure extends PapyrusNodeFigure {
+public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure{
 
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 	

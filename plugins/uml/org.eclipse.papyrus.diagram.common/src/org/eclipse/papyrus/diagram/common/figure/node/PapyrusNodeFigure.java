@@ -25,7 +25,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * Common node figure. In charge of background, font, gradient, foreground, border, shadow
  */
-public class PapyrusNodeFigure extends NodeFigure {
+public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure {
 
 	/**
 	 * The border color.

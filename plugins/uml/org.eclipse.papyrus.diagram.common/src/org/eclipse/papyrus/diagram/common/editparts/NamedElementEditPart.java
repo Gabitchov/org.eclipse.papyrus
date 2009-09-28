@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
@@ -26,7 +27,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * this editpart manage the display of qualifiedName
  * 
  */
-public abstract class NamedElementEditPart extends UmlNodeEditPart implements IUMLNamedElementEditPart {
+public abstract class NamedElementEditPart extends UMLNodeEditPart implements IUMLNamedElementEditPart {
 
 	/**
 	 * {@inheritDoc}
@@ -98,8 +99,8 @@ public abstract class NamedElementEditPart extends UmlNodeEditPart implements IU
 		}
 	}
 
-	private NodeNamedElementFigure getNodeNamedElementFigure() {
-		return (NodeNamedElementFigure) getPrimaryShape();
+	private IPapyrusNodeNamedElementFigure getNodeNamedElementFigure() {
+		return (IPapyrusNodeNamedElementFigure) getPrimaryShape();
 	}
 
 	/**

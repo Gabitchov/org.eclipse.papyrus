@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPar
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
+import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
 import org.eclipse.swt.graphics.Color;
@@ -45,7 +46,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart {
 	 * 
 	 * @return the primary shape associated to this edit part.
 	 */
-	public abstract PapyrusNodeFigure getPrimaryShape();
+	public abstract IPapyrusNodeFigure getPrimaryShape();
 
 	/**
 	 * {@inheritDoc}
@@ -80,7 +81,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void setGradient(GradientData gradient) {
-		NodeFigure fig = getPrimaryShape();
+		IPapyrusNodeFigure fig = getPrimaryShape();
 		if (gradient != null) {
 			fig.setIsUsingGradient(true);
 			fig

@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
@@ -36,10 +37,10 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * this uml edit part can applied stereotypes
+ * this uml edit part where can be applied stereotypes
  * 
  */
-public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPart {
+public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPart {
 
 	/**
 	 * Save the fontDescriptor in order to dispose the font later
@@ -52,7 +53,7 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * @param view
 	 *            the view controlled by this edit part
 	 */
-	public UmlNodeEditPart(View view) {
+	public UMLNodeEditPart(View view) {
 		super(view);
 	}
 
@@ -137,14 +138,14 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		if (stereotypesToDisplay != "") {
-			((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(stereotypesToDisplay);
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypes(stereotypesToDisplay);
 		} else {
-			((NodeNamedElementFigure) getPrimaryShape()).setStereotypes(null);
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypes(null);
 		}
 
 		// refresh the icon to be displayed
 		final Image imageToDisplay = stereotypeIconToDisplay();
-		((NodeNamedElementFigure) getPrimaryShape()).setAppliedStereotypeIcon(imageToDisplay);
+		((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setAppliedStereotypeIcon(imageToDisplay);
 	}
 
 	/**
@@ -192,10 +193,10 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		if (stereotypesPropertiesToDisplay != "") {
-			((NodeNamedElementFigure) getPrimaryShape())
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape())
 					.setStereotypePropertiesInCompartment(stereotypesPropertiesToDisplay);
 		} else {
-			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(null);
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(null);
 		}
 	}
 
@@ -234,9 +235,9 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		if (stereotypesPropertiesToDisplay != "") {
-			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(stereotypesPropertiesToDisplay);
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(stereotypesPropertiesToDisplay);
 		} else {
-			((NodeNamedElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(null);
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(null);
 		}
 	}
 
@@ -406,8 +407,8 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 *            the font to use
 	 */
 	protected void refreshLabelsFont(Font font) {
-		if (((NodeNamedElementFigure) getPrimaryShape()).getStereotypesLabel() != null) {
-			((NodeNamedElementFigure) getPrimaryShape()).getStereotypesLabel().setFont(font);
+		if (((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel() != null) {
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel().setFont(font);
 		}
 
 	}
@@ -431,8 +432,8 @@ public abstract class UmlNodeEditPart extends NodeEditPart implements IUMLEditPa
 	@Override
 	protected void setFontColor(Color color) {
 		super.setFontColor(color);
-		if (((NodeNamedElementFigure) getPrimaryShape()).getStereotypesLabel() != null) {
-			((NodeNamedElementFigure) getPrimaryShape()).getStereotypesLabel().setForegroundColor(color);
+		if (((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel() != null) {
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel().setForegroundColor(color);
 		}
 	}
 
