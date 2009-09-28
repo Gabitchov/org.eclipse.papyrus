@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
-<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<provider id="org.eclipse.team.svn.core.svnnature">
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/org.eclipse.papyrus.codegen,org.eclipse.papyrus.codegen"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.core,org.eclipse.papyrus.core"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.core.adaptor.emf,org.eclipse.papyrus.core.adaptor.emf"/>

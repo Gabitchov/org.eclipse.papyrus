@@ -697,6 +697,7 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
+		refreshLabel();
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
@@ -734,6 +735,41 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+
+	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
+	/**
+	 * @generated
+	 */
+	public void activate() {
+		super.activate();
+		addOwnerElementListeners();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addOwnerElementListeners() {
+		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent().getModel())); //$NON-NLS-1$
+
+	}
+
+	/**
+	 * @generated
+	 */
+	public void deactivate() {
+		removeOwnerElementListeners();
+		super.deactivate();
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeOwnerElementListeners() {
+		removeListenerFilter(ADD_PARENT_MODEL);
+
 	}
 
 }

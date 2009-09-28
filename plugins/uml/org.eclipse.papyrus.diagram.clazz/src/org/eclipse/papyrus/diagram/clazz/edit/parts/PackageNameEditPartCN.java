@@ -66,6 +66,7 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorCo
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -223,11 +224,19 @@ public class PackageNameEditPartCN extends CompartmentEditPart implements ITextA
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
+
+		// can we display icon?
+		if (getParent() != null && NameLabelIconHelper.getNameLabelIconValue((View) getParent().getModel())) {
+
+			EObject parserElement = getParserElement();
+			if (parserElement == null) {
+				return null;
+			}
+			return UMLElementTypes.getImage(parserElement.eClass());
+
 		}
-		return UMLElementTypes.getImage(parserElement.eClass());
+		return null;
+
 	}
 
 	/**
@@ -697,6 +706,7 @@ public class PackageNameEditPartCN extends CompartmentEditPart implements ITextA
 	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
+		refreshLabel();
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
@@ -734,6 +744,41 @@ public class PackageNameEditPartCN extends CompartmentEditPart implements ITextA
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+
+	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
+	/**
+	 * @generated
+	 */
+	public void activate() {
+		super.activate();
+		addOwnerElementListeners();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addOwnerElementListeners() {
+		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent().getModel())); //$NON-NLS-1$
+
+	}
+
+	/**
+	 * @generated
+	 */
+	public void deactivate() {
+		removeOwnerElementListeners();
+		super.deactivate();
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeOwnerElementListeners() {
+		removeListenerFilter(ADD_PARENT_MODEL);
+
 	}
 
 }

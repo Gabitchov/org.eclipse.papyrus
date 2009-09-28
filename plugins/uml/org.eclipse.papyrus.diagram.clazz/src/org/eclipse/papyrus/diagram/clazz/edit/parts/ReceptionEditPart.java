@@ -67,6 +67,7 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorCo
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -219,11 +220,19 @@ public class ReceptionEditPart extends CompartmentEditPart implements ITextAware
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
+
+		// can we display icon?
+		if (getParent() != null && NameLabelIconHelper.getNameLabelIconValue((View) getParent().getModel())) {
+
+			EObject parserElement = getParserElement();
+			if (parserElement == null) {
+				return null;
+			}
+			return UMLElementTypes.getImage(parserElement.eClass());
+
 		}
-		return UMLElementTypes.getImage(parserElement.eClass());
+		return null;
+
 	}
 
 	/**
