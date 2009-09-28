@@ -13,7 +13,6 @@
   *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
-import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.services.ServicesRegistry;

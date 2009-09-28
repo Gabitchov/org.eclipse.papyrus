@@ -62,7 +62,6 @@ import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
 import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.papyrus.sasheditor.gef.SelectionSynchronizer;
-import org.eclipse.papyrus.sasheditor.multipage.editor.MultiPageEditor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;

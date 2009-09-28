@@ -19,11 +19,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.di.CoreSemanticModelBridge;
-import org.eclipse.papyrus.di.DiFactory;
-import org.eclipse.papyrus.di.Diagram;
-import org.eclipse.papyrus.di.DiagramElement;
 import org.eclipse.swt.SWT;
 
 /**
@@ -210,7 +209,7 @@ public class SashDiagramModelUtil {
 	 * Create a node representing the specified type.
 	 */
 	protected static Diagram createTypedNode(String type) {
-		Diagram node = DiFactory.eINSTANCE.createDiagram();
+		Diagram node = NotationFactory.eINSTANCE.createDiagram();
 		node.setType(type);
 		node.setName(type);
 		return node;
@@ -224,10 +223,7 @@ public class SashDiagramModelUtil {
 	 */
 	protected static Diagram createTabItemNode(EObject diagramReference) {
 		Diagram node = createTypedNode(TABITEM_WINDOW);
-		// Create bridge
-		CoreSemanticModelBridge bridge = DiFactory.eINSTANCE.createCoreSemanticModelBridge();
-		bridge.setElement(diagramReference);
-		node.setSemanticModel(bridge);
+		node.setElement(diagramReference);
 		return node;
 	}
 
@@ -251,20 +247,20 @@ public class SashDiagramModelUtil {
 			sashType = SASHV_WINDOW;
 
 		// Get the parent
-		Diagram parentNode = (Diagram) relativeNode.getContainer();
+		//Diagram parentNode = (Diagram) relativeNode.get;
 		Diagram node = createTypedNode(sashType);
 		// Attach to parent.
 		// Parent can be null if we are at the top of hierarchy
-		if (parentNode != null) {
-			// Insert the new sash in the parent, at the right place
-			List<DiagramElement> contained = parentNode.getContained();
-			int positionInParent = contained.indexOf(relativeNode);
-			contained.set(positionInParent, node);
-		} else { // Attach to resource, at the same place than the old node.
+//		if (parentNode != null) {
+//			// Insert the new sash in the parent, at the right place
+//			List<DiagramElement> contained = parentNode.getContained();
+//			int positionInParent = contained.indexOf(relativeNode);
+//			contained.set(positionInParent, node);
+//		} else { // Attach to resource, at the same place than the old node.
 			List<EObject> contents = relativeNode.eResource().getContents();
 			int positionInParent = contents.indexOf(relativeNode);
 			contents.set(positionInParent, node);
-		}
+//		}
 
 		// insert left or right ?
 		if (side == SWT.LEFT || side == SWT.TOP)
@@ -284,16 +280,16 @@ public class SashDiagramModelUtil {
 	 * @param relativeNode
 	 */
 	private static void populateSashNode(Diagram sashNode, Diagram leftNode, Diagram rightNode) {
-		List<DiagramElement> list = sashNode.getContained();
+		List<View> list = sashNode.getChildren();
 		if (list.size() == 0) {
-			list.add(leftNode);
-			list.add(rightNode);
+			sashNode.insertChild(leftNode);
+			sashNode.insertChild(rightNode);
 		} else if (list.size() == 2) {
-			list.set(0, leftNode);
-			list.set(1, rightNode);
+			sashNode.insertChildAt(leftNode,0);
+			sashNode.insertChildAt(rightNode, 1);
 		} else { // size == 1
-			list.set(0, leftNode);
-			list.add(rightNode);
+			sashNode.insertChildAt(leftNode, 1);
+			sashNode.insertChild(rightNode);
 		}
 
 	}
@@ -308,7 +304,7 @@ public class SashDiagramModelUtil {
 		if (!isFolderNode(node))
 			return;
 
-		removeNodeFromParent(node);
+	//	removeNodeFromParent(node);
 		
 //		// Get the parent
 //		Diagram parentNode = (Diagram) node.getContainer();
@@ -354,31 +350,31 @@ public class SashDiagramModelUtil {
 //
 	}
 
-	/**
-	 * Remove the specified node from its parent. Also remove the parents that are not needed anymore.
-	 * Check the node's type and call the appropriate method.
-	 * @param node
-	 */
-	public static void removeNodeFromParent(Diagram diagram)
-	{
-		// Get the parent
-		Diagram parent = (Diagram)diagram.getContainer();
-		
-		if(parent== null)
-		{ 
-			// We are the root node. This should not happen.
-			// do nothing as we can't be removed.
-			return;
-		}
-		else if(isFolderNode(parent))
-		  removeNodeFromTabFolder(parent, diagram);
-		else if( isSashDiagramNode(parent))
-			removeNodeFromSashDiagramNode(parent, diagram);
-		else if(isSashDiagramRootNode(diagram))
-		{
-			removeNodeFromRootNode(parent, diagram);
-		}
-	}
+//	/**
+//	 * Remove the specified node from its parent. Also remove the parents that are not needed anymore.
+//	 * Check the node's type and call the appropriate method.
+//	 * @param node
+//	 */
+//	public static void removeNodeFromParent(Diagram diagram)
+//	{
+//		// Get the parent
+//		Diagram parent = diagram.getDiagram();
+//		
+//		if(parent== null)
+//		{ 
+//			// We are the root node. This should not happen.
+//			// do nothing as we can't be removed.
+//			return;
+//		}
+//		else if(isFolderNode(parent))
+//		  removeNodeFromTabFolder(parent, diagram);
+//	//	else if( isSashDiagramNode(parent))
+//		//	removeNodeFromSashDiagramNode(parent, diagram);
+//		else if(isSashDiagramRootNode(diagram))
+//		{
+//			removeNodeFromRootNode(parent, diagram);
+//		}
+//	}
 	
 	/**
 	 * Remove the child node from its parent which should be of type RootNode.
@@ -392,26 +388,26 @@ public class SashDiagramModelUtil {
 		System.err.println("Forbiden action: Try to remove childNode from the RootNode. Skip it.");
 	}
 
-	/**
-	 * Remove the specified node from its parent sashNode. 
-	 * As a consequence, the parent sashNode is also removed, because it is not needed anymore.
-	 * The parent's of the parent sashNode is modified in order to replace the parent sashNode with the remaining child.
-	 * 
-	 * @param parent
-	 * @param diagram
-	 */
-	private static void removeNodeFromSashDiagramNode(Diagram sashNode, Diagram childNode) {
-		// Get the other child of the sash
-		// neighbour: the neighbour of the node to be remove
-		List<DiagramElement> contained = sashNode.getContained();
-		int positionInParent = contained.indexOf(childNode);
-		Diagram neighbour = (Diagram) contained.get((positionInParent == 0 ? 1 : 0));
-		Diagram parentNode = (Diagram) sashNode.getContainer();
-		
-		// Replace the sashNode by the remaining child int the sashNode parent.
-		replaceChildNodeInParentNode(parentNode, sashNode, neighbour);
-		
-	}
+//	/**
+//	 * Remove the specified node from its parent sashNode. 
+//	 * As a consequence, the parent sashNode is also removed, because it is not needed anymore.
+//	 * The parent's of the parent sashNode is modified in order to replace the parent sashNode with the remaining child.
+//	 * 
+//	 * @param parent
+//	 * @param diagram
+//	 */
+//	private static void removeNodeFromSashDiagramNode(Diagram sashNode, Diagram childNode) {
+//		// Get the other child of the sash
+//		// neighbour: the neighbour of the node to be remove
+//		List<DiagramElement> contained = sashNode.getContained();
+//		int positionInParent = contained.indexOf(childNode);
+//		Diagram neighbour = (Diagram) contained.get((positionInParent == 0 ? 1 : 0));
+//		Diagram parentNode = (Diagram) sashNode.getContainer();
+//		
+//		// Replace the sashNode by the remaining child int the sashNode parent.
+//		replaceChildNodeInParentNode(parentNode, sashNode, neighbour);
+//		
+//	}
 
 	/**
 	 * Remove the specified diagram from its parent tabFolder. 
@@ -423,14 +419,13 @@ public class SashDiagramModelUtil {
 	private static void removeNodeFromTabFolder(Diagram tabFolder, Diagram diagram) {
 		// We are in a TabFolder
 		// Remove the child
-		EList<DiagramElement> contained = tabFolder.getContained();
-		contained.remove(diagram);
+		tabFolder.removeChild(diagram);
 		// Check if the TabFolder is empty
-		if(contained.size()==0)
-		{
-			// Empty tabFolder : remove it
-			removeNodeFromParent(tabFolder);
-		}
+//		if(contained.size()==0)
+//		{
+//			// Empty tabFolder : remove it
+//		//	removeNodeFromParent(tabFolder);
+//		}
 		
 	}
 
@@ -441,20 +436,20 @@ public class SashDiagramModelUtil {
 	 * @param tabFolder The parent tabFolder
 	 * @param diagram The node to be removed.
 	 */
-	public static Diagram removeNodeFromTabFolder(Diagram tabFolder, int diagramIndex) {
-		// We are in a TabFolder
-		// Remove the child
-		EList<DiagramElement> contained = tabFolder.getContained();
-		Diagram removed = (Diagram)contained.remove(diagramIndex);
-		// Check if the TabFolder is empty
-		if(contained.size()==0)
-		{
-			// Empty tabFolder : remove it
-			removeNodeFromParent(tabFolder);
-		}
-		
-		return removed;
-	}
+//	public static Diagram removeNodeFromTabFolder(Diagram tabFolder, int diagramIndex) {
+//		// We are in a TabFolder
+//		// Remove the child
+//		EList<DiagramElement> contained = tabFolder.getContained();
+//		Diagram removed = (Diagram)contained.remove(diagramIndex);
+//		// Check if the TabFolder is empty
+//		if(contained.size()==0)
+//		{
+//			// Empty tabFolder : remove it
+//			removeNodeFromParent(tabFolder);
+//		}
+//		
+//		return removed;
+//	}
 
 	/**
 	 * Replace the childNode by the newNode in the parentNode.
@@ -482,14 +477,14 @@ public class SashDiagramModelUtil {
 	{
 		// the neighbour become the root of the diagram nodes
 		// set the resource as its container, and remove old parent from resource
-		newNode.setContainer(null);
+//		newNode.setContainer(null);
 //		Resource resource = nodeToBeReplaced.eResource();
 //		resource.eSetDeliver(false);
 		
 		EList<EObject> resourceContents = nodeToBeReplaced.eResource().getContents();
 		resourceContents.add(newNode);
 		// Clear the removed parent
-		nodeToBeReplaced.getContained().clear();
+//		nodeToBeReplaced.getContained().clear();
 		EcoreUtil.remove(nodeToBeReplaced);
 //		resource.eSetDeliver(true);
 	}
@@ -504,11 +499,11 @@ public class SashDiagramModelUtil {
 	private static void replaceChildNodeInRootNode(Diagram rootNode, Diagram nodeToBeReplaced, Diagram newNode) {
 		assert(isSashDiagramRootNode(rootNode));
 		
-		List<DiagramElement> contained = rootNode.getContained();
+		List<View> contained = rootNode.getChildren();
 		// RootNode contains only one child
 		assert(contained.size()==1);
 		int nodeToBeReplaceIndex = contained.indexOf(nodeToBeReplaced);	
-		contained.set(nodeToBeReplaceIndex, newNode);
+		rootNode.insertChildAt(newNode,nodeToBeReplaceIndex);
 	}
 
 	/**
@@ -520,11 +515,11 @@ public class SashDiagramModelUtil {
 	private static void replaceChildNodeInSashDiagramNode(Diagram sashNode, Diagram nodeToBeReplaced, Diagram newNode) {
 		assert(isSashDiagramNode(sashNode));
 		
-		List<DiagramElement> contained = sashNode.getContained();
+		List<View> contained = sashNode.getChildren();
 		// RootNode contains only one child
 		assert(contained.size()==2);
 		int nodeToBeReplaceIndex = contained.indexOf(nodeToBeReplaced);	
-		contained.set(nodeToBeReplaceIndex, newNode);
+		sashNode.insertChildAt(newNode,nodeToBeReplaceIndex);
 	}
 
 	/**
@@ -535,9 +530,9 @@ public class SashDiagramModelUtil {
 	 */
 	private static void replaceChildNodeInTabFolder(Diagram folderNode, Diagram nodeToBeReplaced, Diagram newNode) {
 		assert(isFolderNode(folderNode));
-		EList<DiagramElement> contained = folderNode.getContained();
+		EList<View> contained = folderNode.getChildren();
 		int index = contained.indexOf(nodeToBeReplaced);
-		contained.set(index, newNode);
+		folderNode.insertChildAt(nodeToBeReplaced, index);
 	}
 
 	/**
@@ -614,9 +609,9 @@ public class SashDiagramModelUtil {
 		if (TAB_FOLDER_WINDOW.equals(nodeType))
 			return node;
 		else if (isSashDiagramNode(node)) {
-			return findFirstTabFolder((Diagram) node.getContained().get(0));
+			return findFirstTabFolder((Diagram) node.getChildren().get(0));
 		} else if (isSashDiagramRootNode(node)) {
-			return findFirstTabFolder((Diagram) node.getContained().get(0));
+			return findFirstTabFolder((Diagram) node.getChildren().get(0));
 		}
 
 		return null;

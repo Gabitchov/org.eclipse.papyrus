@@ -4,10 +4,8 @@
 package org.eclipse.papyrus.core.utils;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;

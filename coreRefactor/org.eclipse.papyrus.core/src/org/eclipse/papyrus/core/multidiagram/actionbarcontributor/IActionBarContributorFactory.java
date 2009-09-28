@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.core.multidiagram.actionbarcontributor;
 
-import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.ui.part.EditorActionBarContributor;
 

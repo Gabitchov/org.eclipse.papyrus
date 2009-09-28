@@ -16,6 +16,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.IPapyrusUIConstants;
@@ -111,8 +112,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 					diModelFileName += "." + IPapyrusUIConstants.MODEL_EXTENSION;
 					this.newModelFilePage.setFileName(diModelFileName);
 
-					diResourceSet.loadUMLResource(domainModelURI);
-					Resource resource = diResourceSet.getUMLModelResource();
+					diResourceSet.loadModelResource(domainModelURI);
+					Resource resource = diResourceSet.getModelResource();
 					EObject diagramRoot = resource.getContents().get(0);
 					this.selectRootElementPage = new SelectRootElementPage("Select the root element", diagramRoot);
 				}
@@ -132,16 +133,41 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public boolean performFinish() {
+		try{
 		// create a new file, result != null if successful
-		IFile newFile = newModelFilePage.createNewFile();
+		final IFile newFile = newModelFilePage.createNewFile();
 		NewModelFilePage.fileCount++;
 
+		RecordingCommand command = new RecordingCommand(diResourceSet.getTransactionalEditingDomain()) {
+		
+						@Override
+						protected void doExecute() {
+							// Create Model Resource, Notation Resource, DI Resource
+							diResourceSet.createModelResources(newFile, getModelContentType());
+							
+							// Initialize Model Resource
+							Resource modelResource = diResourceSet.getModelResource();
+							if(modelResource != null){
+								initializeModelResource(modelResource, newFile.getName());	
+							}
+						}
+					};
+					diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
+			
+//		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+//			@Override
+//			protected void execute(IProgressMonitor progressMonitor) {
+//			
+//			}
+//		};
+//		
+//		getContainer().run(false, false, operation);
+		
 		// open newly created file in the editor
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
 		if ((newFile != null) && (page != null)) {
-			// Create needed object
-			diResourceSet.transactionalCreateModelResources(newFile);
-
+		
+			
 			String diagramName = selectDiagramKindPage.getDiagramName();
 			ICreationCommand creationCommand = selectDiagramKindPage.getCreationCommand();
 
@@ -176,7 +202,19 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 				return false;
 			}
 		}
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
 		return true;
 	}
 
+	protected String getModelContentType(){
+		return "";
+	}
+	
+	protected void initializeModelResource(Resource resource, String rootElementName){
+		
+	}
 }

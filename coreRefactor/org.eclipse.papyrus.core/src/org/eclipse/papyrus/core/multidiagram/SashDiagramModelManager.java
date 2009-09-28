@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.multidiagram.commands.MoveTabFromFolderToFolderCommand;
 import org.eclipse.papyrus.core.multidiagram.commands.MoveTabInsideFolderCommand;
 import org.eclipse.papyrus.core.multidiagram.commands.MoveTabToFolderSideCommand;
 import org.eclipse.papyrus.core.multidiagram.commands.RemoveTabFromFolderCommand;
-import org.eclipse.papyrus.di.Diagram;
 
 /**
  * Manage the model representation of the diagrams organized in sash windows. Possible moves are:

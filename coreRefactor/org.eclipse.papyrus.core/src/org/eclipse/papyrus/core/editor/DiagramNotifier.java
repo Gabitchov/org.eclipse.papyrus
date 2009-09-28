@@ -20,7 +20,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.di.Diagram;
+import org.eclipse.gmf.runtime.notation.Diagram;
 
 /**
  * Class notifying event when a diagram is added/moved/removed from the graphical model

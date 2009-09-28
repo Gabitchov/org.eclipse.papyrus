@@ -13,13 +13,10 @@
   *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Remi Schnekenburger

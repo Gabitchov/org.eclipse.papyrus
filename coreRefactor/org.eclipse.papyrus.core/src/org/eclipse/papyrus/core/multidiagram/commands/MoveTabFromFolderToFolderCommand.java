@@ -17,9 +17,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.multidiagram.SashDiagramModelUtil;
-import org.eclipse.papyrus.di.Diagram;
-import org.eclipse.papyrus.di.DiagramElement;
 
 /**
  * Move a tab from a folder to another folder.
@@ -66,8 +66,8 @@ public class MoveTabFromFolderToFolderCommand extends RecordingCommand {
 		if (srcFolder == targetFolder && srcTabIndex == targetTabIndex)
 			return;
 
-		EList<DiagramElement> srcTabList = srcFolder.getContained();
-		EList<DiagramElement> targetTabList = targetFolder.getContained();
+		EList<View> srcTabList = srcFolder.getChildren();
+		EList<View> targetTabList = targetFolder.getChildren();
 
 		// Adjust target index
 		if (targetTabIndex < 0 || targetTabIndex > targetTabList.size())
@@ -85,7 +85,7 @@ public class MoveTabFromFolderToFolderCommand extends RecordingCommand {
 			SashDiagramModelUtil.removeTabFolderNode(srcFolder);
 		} else {
 			// Do move one tab : attach the node to the target folder
-			DiagramElement srcTab = srcTabList.remove(srcTabIndex);
+			View srcTab = srcTabList.remove(srcTabIndex);
 			targetTabList.add(targetTabIndex, srcTab);
 			if (srcTabList.size() == 0)
 				SashDiagramModelUtil.removeTabFolderNode(srcFolder);

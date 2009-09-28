@@ -15,7 +15,8 @@ package org.eclipse.papyrus.core.multidiagram.commands;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.di.Diagram;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * Move a tab inside the same folder.
@@ -53,12 +54,12 @@ public class RemoveTabFromFolderCommand extends RecordingCommand {
 	 */
 	protected void doExecute() {
 		
-		if (srcTabIndex <0 || srcTabIndex >= srcfolder.getContained().size())
+		if (srcTabIndex <0 || srcTabIndex >= srcfolder.getChildren().size())
 		{
 			return;
 		}
-
-		srcfolder.getContained().remove(srcTabIndex);
+		View view = (View)srcfolder.getChildren().get(srcTabIndex);
+		srcfolder.removeChild(view);
 		
 	}
 

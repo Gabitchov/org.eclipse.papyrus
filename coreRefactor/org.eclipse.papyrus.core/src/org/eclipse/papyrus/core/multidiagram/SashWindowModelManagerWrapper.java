@@ -24,9 +24,7 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
-import org.eclipse.papyrus.di.CoreSemanticModelBridge;
-import org.eclipse.papyrus.di.Diagram;
-import org.eclipse.papyrus.di.DiagramElement;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.sasheditor.sash.SashWindowsModelManagerImpl;
 import org.eclipse.papyrus.sasheditor.sash.ITilePart.IListener;
 import org.eclipse.papyrus.sasheditor.sash.ITilePart.ITilePartNodeModel;
@@ -317,16 +315,16 @@ public class SashWindowModelManagerWrapper extends SashWindowsModelManagerImpl<D
 		 */
 		public List<Object> getChildModels() {
 			List<Object> res = new ArrayList<Object>();
-			for (DiagramElement cur : node.getContained()) {
-				try {
-					// The real diagram is in a nested bridge
-					Diagram diagram = (Diagram) cur;
-					res.add(((CoreSemanticModelBridge) diagram.getSemanticModel()).getElement());
-				} catch (ClassCastException e) {
-					// error
-					log.severe("Bad nested element inside a TabFolder element in the di2.");
-				}
-			}
+//			for (View cur : node.getChildren()) {
+//				try {
+//					// The real diagram is in a nested bridge
+//					Diagram diagram = (Diagram) cur;
+//					res.add(((CoreSemanticModelBridge) diagram.getSemanticModel()).getElement());
+//				} catch (ClassCastException e) {
+//					// error
+//					log.severe("Bad nested element inside a TabFolder element in the di2.");
+//				}
+//			}
 			return res;
 		}
 
@@ -357,10 +355,9 @@ public class SashWindowModelManagerWrapper extends SashWindowsModelManagerImpl<D
 		 * @see org.eclipse.papyrus.sasheditor.sash.SashPart.ISashModel#getChildModels()
 		 */
 		public List<Diagram> getChildModels() {
-			List<?> res = node.getContained();
 			// The list only contains Diagram, because we only add diagrams inside.
 			// But there is no way to enforce this law :-(
-			return (List<Diagram>)res;
+			return (List<Diagram>)node.getChildren();
 		}
 
 		/**

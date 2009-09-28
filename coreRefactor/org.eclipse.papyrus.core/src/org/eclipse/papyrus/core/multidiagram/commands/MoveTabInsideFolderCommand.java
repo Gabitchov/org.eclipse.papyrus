@@ -16,8 +16,8 @@ package org.eclipse.papyrus.core.multidiagram.commands;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.di.Diagram;
-import org.eclipse.papyrus.di.DiagramElement;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * Move a tab inside the same folder.
@@ -59,7 +59,7 @@ public class MoveTabInsideFolderCommand extends RecordingCommand {
 		if (srcTabIndex == targetTabIndex)
 			return;
 
-		EList<DiagramElement> list = srcfolder.getContained();
+		EList<View> list = srcfolder.getChildren();
 		if(list.size() == 0)
 			return;
 		

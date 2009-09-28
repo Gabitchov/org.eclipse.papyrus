@@ -24,7 +24,6 @@ import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.di.CoreSemanticModelBridge;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.swt.graphics.Image;
@@ -60,19 +59,6 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 */
 	@Override
 	public boolean isEditorFor(Object root) {
-
-		// TODO Change next to remove dependency on di2.
-		// Retrieve GMF diagram, if any.
-		if (root instanceof org.eclipse.papyrus.di.Diagram) {
-			org.eclipse.papyrus.di.Diagram di2Diagram = (org.eclipse.papyrus.di.Diagram) root;
-			//FIXME set the correct type in backbone
-			//if (!GMF_DIAGRAM.equals(di2Diagram.getType()))
-			//	return false;
- 			// Ok, this is a gmf diagram
-			if(di2Diagram.getSemanticModel() instanceof CoreSemanticModelBridge){
-				root = ((CoreSemanticModelBridge) di2Diagram.getSemanticModel()).getElement();
-			}
-		}
 		
 		if (root instanceof Diagram) {
 			Diagram diagram = (Diagram) root;
@@ -107,12 +93,12 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 
 		// TODO Change next to remove dependency on di2.
 		// Retrieve GMF diagram, if any.
-		if (root instanceof org.eclipse.papyrus.di.Diagram) {
-			org.eclipse.papyrus.di.Diagram di2Diagram = (org.eclipse.papyrus.di.Diagram) root;
-			if (!GMF_DIAGRAM.equals(di2Diagram.getType()))
+		if (root instanceof Diagram) {
+			Diagram diagram = (Diagram) root;
+			if (!GMF_DIAGRAM.equals(diagram.getType()))
 				throw new BackboneException("Problem retrieving GMF Diagram.");
 			// Ok, this is a gmf diagram
-			root = ((CoreSemanticModelBridge) di2Diagram.getSemanticModel()).getElement();
+			root = diagram.getElement();
 		}
 
 		try {

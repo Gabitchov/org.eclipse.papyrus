@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.core.editor;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
@@ -87,13 +86,6 @@ public class BackboneContext extends AbstractEditorContext {
 	 */
 	public void saveAs(IPath path) throws IOException {
 		resourceSet.saveAs(path);
-	}
-
-	/**
-	 * @return Object
-	 */
-	public List<?> getModels() {
-		return resourceSet.getVisibleDiagrams();
 	}
 
 	/**

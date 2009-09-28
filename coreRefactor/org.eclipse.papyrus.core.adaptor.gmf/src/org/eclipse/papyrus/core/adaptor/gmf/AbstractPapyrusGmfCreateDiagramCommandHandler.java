@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -42,8 +43,6 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.di.CoreSemanticModelBridge;
-import org.eclipse.papyrus.di.DiFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -115,7 +114,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		if (name != null) {
 			// Get the uml element to which the newly created diagram will be attached.
 			// Create the diagram
-			final Resource modelResource = diResourceSet.getUMLModelResource();
+			final Resource modelResource = diResourceSet.getModelResource();
 			final Resource diagramResource = diResourceSet.getNotationResource();
 			final Resource diResource = diResourceSet.getDiResource();
 			final String diagramName = name;
@@ -167,17 +166,15 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @param notationDiagram
 	 * @return
 	 */
-	protected org.eclipse.papyrus.di.Diagram createDi2GmfDiagram(Diagram notationDiagram) {
-		org.eclipse.papyrus.di.Diagram diDiagram = DiFactory.eINSTANCE.createDiagram();
-		CoreSemanticModelBridge bridge = DiFactory.eINSTANCE.createCoreSemanticModelBridge();
-		bridge.setElement(notationDiagram);
+	protected Diagram createNotationDiagram(Diagram notationDiagram) {
+		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
+		
+		diagram.setName(notationDiagram.getName());
+		diagram.setElement(notationDiagram);
+		diagram.setType(GmfEditorFactory.GMF_DIAGRAM);
+		diagram.setVisible(true);
 
-		diDiagram.setName(notationDiagram.getName());
-		diDiagram.setSemanticModel(bridge);
-		diDiagram.setType(GmfEditorFactory.GMF_DIAGRAM);
-		diDiagram.setIsVisible(true);
-
-		return diDiagram;
+		return diagram;
 	}
 
 	/**

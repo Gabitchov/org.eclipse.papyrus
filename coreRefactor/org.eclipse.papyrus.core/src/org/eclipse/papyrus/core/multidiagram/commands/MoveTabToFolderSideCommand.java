@@ -16,8 +16,8 @@ package org.eclipse.papyrus.core.multidiagram.commands;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.multidiagram.SashDiagramModelUtil;
-import org.eclipse.papyrus.di.Diagram;
 
 /**
  * Create a folder containing the srcTab, at the specified position of the targetFolder.
@@ -56,10 +56,10 @@ public class MoveTabToFolderSideCommand extends RecordingCommand {
 		
 		// Get node to move
 //		Diagram movedTab = (Diagram) srcfolder.getContained().remove(srcTabIndex);
-		Diagram movedTab = SashDiagramModelUtil.removeNodeFromTabFolder(srcfolder, srcTabIndex);
+	//	Diagram movedTab = SashDiagramModelUtil.removeNodeFromTabFolder(srcfolder, srcTabIndex);
 		// Create a folder and insert the movedTab
 		Diagram createdFolder = SashDiagramModelUtil.createTabFolderNode();
-		createdFolder.getContained().add(movedTab);
+	//	createdFolder.getChildren().add(movedTab);
 
 		// insert it in the specified position relative to targetNode
 		SashDiagramModelUtil.insertNode(createdFolder, targetfolder, position);

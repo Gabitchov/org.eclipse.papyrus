@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
 import org.eclipse.papyrus.core.multidiagram.SashDiagramModelUtil;
-import org.eclipse.papyrus.di.DiFactory;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -63,8 +63,8 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 */
 	protected void addNewDiagram(String name, String type, EObject diagram) {
 		// create di2node 
-		Diagram di2Diagram = DiFactory.eINSTANCE.createDiagram();
-		di2Diagram.setIsVisible(true);
+		Diagram di2Diagram = NotationFactory.eINSTANCE.createDiagram();
+		di2Diagram.setVisible(true);
 		di2Diagram.setType(type);
 		if (name != null)
 			di2Diagram.setName(name);
