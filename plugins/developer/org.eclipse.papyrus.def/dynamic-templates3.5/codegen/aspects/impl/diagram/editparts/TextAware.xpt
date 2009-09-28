@@ -235,11 +235,19 @@
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.swt.graphics.Image getLabelIcon() {
 		«IF useElementIcon-»
+		«REM»BEGIN: PapyrusGenCode«ENDREM»
+		//can we display icon?
+		if (getParent()!=null && org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper.getNameLabelIconValue((View) getParent().getModel())) {
+		«REM»END: PapyrusGenCode«ENDREM»
 		org.eclipse.emf.ecore.EObject parserElement = getParserElement();
 		if (parserElement == null) {
 			return null;
 		}
 		return «diagram.getElementTypesQualifiedClassName()».getImage(parserElement.eClass());
+			«REM»BEGIN: PapyrusGenCode«ENDREM»
+		}
+		return null;
+			«REM»END: PapyrusGenCode«ENDREM»
 		«ELSE-»
 		return null;
 		«ENDIF-»
@@ -721,4 +729,3 @@
 	}
 «ENDDEFINE»
 «REM»END: PapyrusGenCode«ENDREM»
-
