@@ -29,13 +29,22 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 
+	private static ExtensionPointLabelHelper labelHelper;
+
+	public static ExtensionPointLabelHelper getInstance() {
+		if (labelHelper == null) {
+			labelHelper = new ExtensionPointLabelHelper();
+		}
+		return labelHelper;
+	}
+
 	/**
 	 * Refreshes the label of the figure associated to the specified edit part
 	 * 
 	 * @param editPart
 	 *            the edit part managing the refreshed figure
 	 */
-	public static void refreshEditPartDisplay(GraphicalEditPart editPart) {
+	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
 		IFigure figure = editPart.getFigure();
 
 		// computes the icon to be displayed
@@ -62,7 +71,7 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 	/**
 	 * Computes the label to be displayed for the property
 	 */
-	protected static String labelToDisplay(GraphicalEditPart editPart) {
+	protected String labelToDisplay(GraphicalEditPart editPart) {
 		StringBuffer buffer = new StringBuffer();
 
 		// computes the label for the stereotype (horizontal presentation)

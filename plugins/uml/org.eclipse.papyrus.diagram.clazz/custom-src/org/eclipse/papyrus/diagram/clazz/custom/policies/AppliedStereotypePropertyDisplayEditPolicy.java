@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.papyrus.diagram.clazz.custom.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.uml2.uml.Property;
 
 /**

@@ -40,7 +40,7 @@ public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends Appli
 	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		ExtensionPointLabelHelper.refreshEditPartDisplay((GraphicalEditPart) getHost());
+		ExtensionPointLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
 		super.refreshDisplay();
 	}
 

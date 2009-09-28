@@ -39,7 +39,7 @@ public abstract class StereotypedElementLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static Element getUMLElement(GraphicalEditPart editPart) {
+	public Element getUMLElement(GraphicalEditPart editPart) {
 		return (Element) ((View) editPart.getModel()).getElement();
 	}
 
@@ -56,7 +56,7 @@ public abstract class StereotypedElementLabelHelper {
 	 * @return a map. The keys are the name of displayed stereotypes, the corresponding data is a
 	 *         collection of its properties to be displayed
 	 */
-	protected static Map<String, List<String>> parseStereotypeProperties(GraphicalEditPart editPart,
+	protected Map<String, List<String>> parseStereotypeProperties(GraphicalEditPart editPart,
 			String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
 		Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
 
@@ -82,7 +82,7 @@ public abstract class StereotypedElementLabelHelper {
 	 * @return the image that represents the first applied stereotype or <code>null</code> if no
 	 *         image has to be displayed
 	 */
-	public static Collection<Image> stereotypeIconsToDisplay(GraphicalEditPart editPart) {
+	public Collection<Image> stereotypeIconsToDisplay(GraphicalEditPart editPart) {
 		String stereotypespresentationKind = AppliedStereotypeHelper
 				.getAppliedStereotypePresentationKind((View) editPart.getModel());
 		if (stereotypespresentationKind == null) {
@@ -122,7 +122,7 @@ public abstract class StereotypedElementLabelHelper {
 	 * @return a string that displays stereotypes (using their simple name or their qualified name)
 	 *         and their properties
 	 */
-	public static String stereotypesAndPropertiesToDisplay(GraphicalEditPart editPart, String separator,
+	public String stereotypesAndPropertiesToDisplay(GraphicalEditPart editPart, String separator,
 			String stereotypesToDisplay, String stereotypeWithQualifiedName, String stereotypesPropertiesToDisplay) {
 		// Get the preference from PreferenceStore. there should be an assert
 		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
@@ -202,7 +202,7 @@ public abstract class StereotypedElementLabelHelper {
 	 * 
 	 * @return the list of stereotypes to display
 	 */
-	public static String stereotypesToDisplay(GraphicalEditPart editPart) {
+	public String stereotypesToDisplay(GraphicalEditPart editPart) {
 		View view = (View) editPart.getModel();
 		// retrieve all stereotypes to be displayed
 
@@ -255,8 +255,8 @@ public abstract class StereotypedElementLabelHelper {
 	 *            the list of stereotypes displayed using their qualified names
 	 * @return the string that represent the stereotypes
 	 */
-	public static String stereotypesToDisplay(GraphicalEditPart editPart, String separator,
-			String stereotypesToDisplay, String stereotypeWithQualifiedName) {
+	public String stereotypesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay,
+			String stereotypeWithQualifiedName) {
 
 		// AL Changes Feb. 07 - Beg
 		// Style Handling for STEREOTYPE_NAME_APPEARANCE from ProfileApplicationPreferencePage

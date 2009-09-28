@@ -11,7 +11,7 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.helper;
+package org.eclipse.papyrus.diagram.common.helper;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,24 +22,24 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
-import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.papyrus.umlutils.OperationUtil;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 
 /**
  * Helper for labels displaying {@link Property}
  */
-public class PropertyLabelHelper extends StereotypedElementLabelHelper {
+public class OperationLabelHelper extends StereotypedElementLabelHelper {
 
-	// Einstance
-	private static PropertyLabelHelper labelHelper;
+	private static OperationLabelHelper labelHelper;
 
-	public static PropertyLabelHelper getInstance() {
+	public static OperationLabelHelper getInstance() {
 		if (labelHelper == null) {
-			labelHelper = new PropertyLabelHelper();
+			labelHelper = new OperationLabelHelper();
 		}
 		return labelHelper;
 	}
@@ -47,14 +47,12 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	/** Map for masks */
 	protected final Map<Integer, String> masks = new HashMap<Integer, String>(7);
 
-	protected PropertyLabelHelper() {
+	protected OperationLabelHelper() {
 		// initialize the map
 		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
-		masks.put(ICustomAppearence.DISP_DERIVE, "Is Derived");
 		masks.put(ICustomAppearence.DISP_NAME, "Name");
-		masks.put(ICustomAppearence.DISP_TYPE, "Type");
-		masks.put(ICustomAppearence.DISP_MULTIPLICITY, "Multiplicity");
-		masks.put(ICustomAppearence.DISP_DFLT_VALUE, "Default Value");
+		masks.put(ICustomAppearence.DISP_PARAMETER_DIRECTION, "Parameters Direction");
+		masks.put(ICustomAppearence.DISP_PARAMETER_TYPE, "Parameters Type");
 		masks.put(ICustomAppearence.DISP_MOFIFIERS, "Modifiers");
 	}
 
@@ -67,18 +65,14 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 *         given by preferences or specific display given by eAnnotation).
 	 */
 	protected String elementLabel(GraphicalEditPart editPart) {
-		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
+		int displayValue = ICustomAppearence.DEFAULT_UML_OPERATION;
 
 		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart
 				.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if (policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
 		}
-		Property elem = getUMLElement(editPart);
-		if (elem != null) {
-			return PropertyUtil.getCustomLabel(elem, displayValue);
-		}
-		return "";
+		return OperationUtil.getCustomLabel(getUMLElement(editPart), displayValue);
 	}
 
 	/**
@@ -120,8 +114,8 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Property getUMLElement(GraphicalEditPart editPart) {
-		return (Property) ((View) editPart.getModel()).getElement();
+	public Operation getUMLElement(GraphicalEditPart editPart) {
+		return (Operation) ((View) editPart.getModel()).getElement();
 	}
 
 	/**
