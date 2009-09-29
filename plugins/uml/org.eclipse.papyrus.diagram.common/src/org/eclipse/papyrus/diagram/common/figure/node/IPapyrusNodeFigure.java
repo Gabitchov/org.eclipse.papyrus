@@ -14,36 +14,44 @@
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.papyrus.diagram.common.editparts.NodeEditPart;
 import org.eclipse.swt.graphics.Color;
 
 /**
  * Figure associated to {@link NodeEditPart}
  */
-public interface IPapyrusNodeFigure extends IFigure{
+public interface IPapyrusNodeFigure extends IFigure {
+
 	/**
 	 * get the color of the border
+	 * 
 	 * @return the color
 	 */
 	public Color getBorderColor();
+
 	/**
 	 * 
 	 * @return true is the figure is in the mode shadow
 	 */
 	public boolean isShadow();
+
 	/**
 	 * set the color for the border
-	 * @param borderColor color
+	 * 
+	 * @param borderColor
+	 *            color
 	 */
-	public void setBorderColor(Color borderColor) ;
-	
+	public void setBorderColor(Color borderColor);
+
 	/**
 	 * set the shadow
-	 * @param shadow a boolean true if we want to display the shadow
+	 * 
+	 * @param shadow
+	 *            a boolean true if we want to display the shadow
 	 */
 	public void setShadow(boolean shadow);
-	
-	
+
 	/**
 	 * Comes from GMF
 	 * <p>
@@ -54,11 +62,9 @@ public interface IPapyrusNodeFigure extends IFigure{
 	 * @return the primary shape associated to this edit part.
 	 */
 	public void setTransparency(int transparency);
-	
-	
+
 	/**
-	 * Comes from GMF
-	 * Sets values defining gradient data.
+	 * Comes from GMF Sets values defining gradient data.
 	 * 
 	 * @param gradientColor1
 	 * @param gradientColor2
@@ -68,12 +74,27 @@ public interface IPapyrusNodeFigure extends IFigure{
 	public void setGradientData(int gradientColor1, int gradientColor2, int gradientStyle);
 
 	/**
-	 * Comes from GMF
-	 * Sets the value of isUsingGradient
+	 * Comes from GMF Sets the value of isUsingGradient
 	 * 
-	 * @param b value for isUsingGradient
+	 * @param b
+	 *            value for isUsingGradient
 	 * @since 1.2
 	 */
 	public void setIsUsingGradient(boolean b);
-	
+
+	/**
+	 * Comes from GMF {@link NodeFigure#setLineStyle}
+	 * 
+	 * @param s
+	 *            new line style
+	 * @since 1.2
+	 */
+	public void setLineStyle(int s);
+
+	/**
+	 * Comes from GMF {@link NodeFigure#getLineStyle}
+	 * 
+	 * @since 1.2
+	 */
+	public int getLineStyle();
 }
