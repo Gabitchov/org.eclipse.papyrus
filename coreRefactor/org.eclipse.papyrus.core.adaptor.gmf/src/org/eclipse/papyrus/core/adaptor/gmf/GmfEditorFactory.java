@@ -96,7 +96,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		if (root instanceof Diagram) {
 			Diagram diagram = (Diagram) root;
 			if (!GMF_DIAGRAM.equals(diagram.getType()))
-				throw new BackboneException("Problem retrieving GMF Diagram.");
+				throw new BackboneException(Messages.GmfEditorFactory_ErrorRetrievingDiagram);
 			// Ok, this is a gmf diagram
 			root = diagram.getElement();
 		}
@@ -187,7 +187,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 
 			} catch (Exception e) {
 				// Lets propagate. This is an implementation problem that should be solved by programmer.
-				throw new PartInitException("Can't create IEditorPart for gmf.Diagram " + diagram, e);
+				throw new PartInitException(Messages.GmfEditorFactory_ErrorCreatingEditorPart + diagram, e);
 			}
 
 		}

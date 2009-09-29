@@ -134,7 +134,7 @@ public class ModelManagerEditor {
 			{
 				Object newValue = notification.getNewValue();
 				if(newValue==null)
-					System.out.println( getClass().getName() + "- Warning: can't get removed object.");
+					System.out.println( getClass().getName() + "- Warning: can't get removed object."); //$NON-NLS-1$
 				
 				if(newValue instanceof Diagram)
 				  diagramListListener.firePropertyChange(DIAGRAM_REMOVED, null, newValue);
@@ -176,7 +176,7 @@ public class ModelManagerEditor {
 	 * @cdm
 	 */
 	public void setInput(IEditorInput input) {
-		System.out.println(this + ".setInput(IEditorInput input)");
+		System.out.println(this + ".setInput(IEditorInput input)"); //$NON-NLS-1$
 	}
 
 	/**
@@ -435,7 +435,7 @@ public class ModelManagerEditor {
 			return;
 		}
 		if (provider.isDeleted(input) && original != null) {
-			String message = NLS.bind(Messages.UMLDiagramEditor_SavingDeletedFile, original.getName());
+			String message = NLS.bind(Messages.ModelManagerEditor_SavingDeletedFile, original.getName());
 			dialog.setErrorMessage(null);
 			dialog.setMessage(message, IMessageProvider.WARNING);
 		}
@@ -460,7 +460,7 @@ public class ModelManagerEditor {
 		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
-				MessageDialog.openWarning(shell, Messages.UMLDiagramEditor_SaveAsErrorTitle, Messages.UMLDiagramEditor_SaveAsErrorMessage);
+				MessageDialog.openWarning(shell, Messages.ModelManagerEditor_SaveAsErrorTitle, Messages.ModelManagerEditor_SaveAsErrorMessage);
 				return;
 			}
 		}
@@ -473,7 +473,7 @@ public class ModelManagerEditor {
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL) {
-				ErrorDialog.openError(shell, Messages.UMLDiagramEditor_SaveErrorTitle, Messages.UMLDiagramEditor_SaveErrorMessage, x.getStatus());
+				ErrorDialog.openError(shell, Messages.ModelManagerEditor_SaveErrorTitle, Messages.ModelManagerEditor_SaveErrorMessage, x.getStatus());
 			}
 		} finally {
 			provider.changed(newInput);

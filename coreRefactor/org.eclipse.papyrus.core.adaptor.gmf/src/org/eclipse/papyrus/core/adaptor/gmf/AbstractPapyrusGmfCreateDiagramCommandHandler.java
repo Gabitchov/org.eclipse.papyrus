@@ -75,7 +75,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			context = getDefaultContext();
 		} catch (ClassCastException ex) {
 			// Bad current editor. Skip
-			throw new ExecutionException("Current editor type not supported.", ex);
+			throw new ExecutionException(Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NotSupportedEditor, ex);
 		}
 		EObject container = null;
 		// if editor is open and active
@@ -121,7 +121,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			// TODO: get the appropriate value from diResourceSet
 			TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
 
-			AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
+			AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
 
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					EObject model = container;
@@ -142,7 +142,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
 				e.printStackTrace();
-				Activator.getInstance().logError("Unable to create model and diagram", e);
+				Activator.getInstance().logError(Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram, e);
 			}
 		}
 	}
@@ -318,7 +318,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected String openDiagramNameDialog(final String defaultValue) {
 		String name = null;
-		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), "Enter a new diagram name", "The new diagram name:", defaultValue, null);
+		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null);
 		int ret = inputDialog.open();
 		if (ret == Window.OK) {
 			name = inputDialog.getValue();

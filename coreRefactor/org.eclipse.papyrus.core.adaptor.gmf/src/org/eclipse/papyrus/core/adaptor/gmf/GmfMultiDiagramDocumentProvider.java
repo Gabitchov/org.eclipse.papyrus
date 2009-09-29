@@ -75,7 +75,7 @@ import org.eclipse.ui.part.FileEditorInput;
 public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider, IEditingDomainProvider {
 
 	// public static String EditingDomainID = "org.eclipse.uml2.diagram.clazz.EditingDomain";
-	public static String EditingDomainID = "com.cea.papyrus.core.PapyrusEditingDomainID";
+	public static String EditingDomainID = "com.cea.papyrus.core.PapyrusEditingDomainID"; //$NON-NLS-1$
 
 	/**
 	 * The shared ResourceSet.
@@ -116,7 +116,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 */
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 		}
@@ -134,7 +134,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 */
 	protected IDocument createDocument(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 		}
@@ -195,7 +195,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		// Check if edit domain exist
 		if (sharedEditingDomain != null) { // Already initialized
 			editingDomain = sharedEditingDomain;
-			System.out.println(this.getClass().getSimpleName() + ".createEditingDomain() - got EditingDomain from previous call (" + editingDomain + ")");
+			System.out.println(this.getClass().getSimpleName() + ".createEditingDomain() - got EditingDomain from previous call (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 			return editingDomain;
 		}
 
@@ -206,7 +206,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		if (editingDomain != null) {
 			// got it
 			sharedEditingDomain = editingDomain;
-			System.out.println(this.getClass().getSimpleName() + ".createEditingDomain() - got EditingDomain from REGISTRY (" + editingDomain + ")");
+			System.out.println(this.getClass().getSimpleName() + ".createEditingDomain() - got EditingDomain from REGISTRY (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 			return editingDomain;
 		}
 
@@ -218,7 +218,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		}
 		sharedEditingDomain = editingDomain;
 		editingDomain.setID(EditingDomainID); //$NON-NLS-1$
-		System.out.println(this.getClass().getSimpleName() + ".createEditingDomain() - create a new EditingDomain (" + editingDomain + ")");
+		System.out.println(this.getClass().getSimpleName() + ".createEditingDomain() - create a new EditingDomain (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		configureEditingDomain(editingDomain);
 
@@ -306,19 +306,19 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 						}
 					}
 				}
-				throw new RuntimeException(Messages.UMLDocumentProvider_NoDiagramInResourceError);
+				throw new RuntimeException(Messages.GmfMultiDiagramDocumentProvider_NoDiagramInResourceError);
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
 				if (e instanceof CoreException) {
 					thrownExcp = (CoreException) e;
 				} else {
 					String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, msg != null ? msg : Messages.UMLDocumentProvider_DiagramLoadingError, e));
+					thrownExcp = new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, msg != null ? msg : Messages.GmfMultiDiagramDocumentProvider_DiagramLoadingError, e));
 				}
 				throw thrownExcp;
 			}
 		} else {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 		}
@@ -398,7 +398,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					Activator.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
+					Activator.getInstance().logError(Messages.GmfMultiDiagramDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
@@ -422,7 +422,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					Activator.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
+					Activator.getInstance().logError(Messages.GmfMultiDiagramDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
@@ -591,16 +591,16 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			if (!overwrite && !info.isSynchronized()) {
-				throw new CoreException(new Status(IStatus.ERROR, Activator.ID, IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.UMLDocumentProvider_UnsynchronizedFileSaveError, null));
+				throw new CoreException(new Status(IStatus.ERROR, Activator.ID, IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.GmfMultiDiagramDocumentProvider_UnsynchronizedFileSaveError, null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			List resources = info.getResourceSet().getResources();
 			try {
-				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, resources.size() + 1); // "Saving diagram"
+				monitor.beginTask(Messages.GmfMultiDiagramDocumentProvider_SaveDiagramTask, resources.size() + 1); // "Saving diagram"
 				for (Iterator it = resources.iterator(); it.hasNext();) {
 					Resource nextResource = (Resource) it.next();
-					monitor.setTaskName(NLS.bind(Messages.UMLDocumentProvider_SaveNextResourceTask, nextResource.getURI()));
+					monitor.setTaskName(NLS.bind(Messages.GmfMultiDiagramDocumentProvider_SaveNextResourceTask, nextResource.getURI()));
 					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 						try {
 							nextResource.save(UMLDiagramEditorUtil.getSaveOptions());
@@ -630,7 +630,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 				newResoruceURI = ((URIEditorInput) element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
+				throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[] { element,
 						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 						null));
 			}
@@ -643,7 +643,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(newResoruceURI);
 			final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
 			try {
-				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(Messages.UMLDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
+				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(Messages.GmfMultiDiagramDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
 
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
@@ -671,7 +671,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
-				Activator.getInstance().logError(Messages.UMLDocumentProvider_handleElementContentChanged, ex);
+				Activator.getInstance().logError(Messages.GmfMultiDiagramDocumentProvider_handleElementContentChanged, ex);
 				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
@@ -1073,6 +1073,6 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	public static String getEditingDomainID() {
-		return "org.eclipse.uml2.diagram.clazz.EditingDomain";
+		return "org.eclipse.uml2.diagram.clazz.EditingDomain"; //$NON-NLS-1$
 	}
 }

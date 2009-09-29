@@ -149,7 +149,7 @@ public class MultiPagesEditorActionBarContributor extends MultiDiagramActionBarC
 	@Override
 	public void contributeToMenu(IMenuManager menubar) {
 		super.contributeToMenu(menubar);
-		MenuManager viewMenu = new MenuManager("Papyrus Menu");
+		MenuManager viewMenu = new MenuManager(Messages.MultiPagesEditorActionBarContributor_PapyrusMenu);
 		viewMenu.add(getAction(GEFActionConstants.ZOOM_IN));
 		viewMenu.add(getAction(GEFActionConstants.ZOOM_OUT));
 		viewMenu.add(new Separator());

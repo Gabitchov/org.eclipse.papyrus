@@ -36,81 +36,49 @@ public class Messages extends NLS {
 	
 
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDiagramEditorUtil_CreateDiagramCommandLabel;
+	public static String MultiPagesEditorActionBarContributor_PapyrusMenu;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_isModifiable;
+	public static String AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_handleElementContentChanged;
+	public static String AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_IncorrectInputError;
+	public static String AbstractPapyrusGmfCreateDiagramCommandHandler_NotSupportedEditor;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_NoDiagramInResourceError;
+	public static String AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_DiagramLoadingError;
+	public static String AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_UnsynchronizedFileSaveError;
+	public static String GmfEditorFactory_ErrorCreatingEditorPart;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_SaveDiagramTask;
+	public static String GmfEditorFactory_ErrorRetrievingDiagram;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_SaveNextResourceTask;
+	public static String GmfMultiDiagramDocumentProvider_isModifiable;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDocumentProvider_SaveAsOperation;
+	public static String GmfMultiDiagramDocumentProvider_handleElementContentChanged;
 
-	
-	/**
-	 * @generated
-	 */
-	public static String UMLDiagramEditor_SavingDeletedFile;
+	public static String GmfMultiDiagramDocumentProvider_IncorrectInputError;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDiagramEditor_SaveAsErrorTitle;
+	public static String GmfMultiDiagramDocumentProvider_NoDiagramInResourceError;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDiagramEditor_SaveAsErrorMessage;
+	public static String GmfMultiDiagramDocumentProvider_DiagramLoadingError;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDiagramEditor_SaveErrorTitle;
+	public static String GmfMultiDiagramDocumentProvider_UnsynchronizedFileSaveError;
 
-	/**
-	 * @generated
-	 */
-	public static String UMLDiagramEditor_SaveErrorMessage;
+	public static String GmfMultiDiagramDocumentProvider_SaveDiagramTask;
+
+	public static String GmfMultiDiagramDocumentProvider_SaveNextResourceTask;
+
+	public static String GmfMultiDiagramDocumentProvider_SaveAsOperation;
+
+	public static String ModelManagerEditor_SavingDeletedFile;
+
+	public static String ModelManagerEditor_SaveAsErrorTitle;
+
+	public static String ModelManagerEditor_SaveAsErrorMessage;
+
+	public static String ModelManagerEditor_SaveErrorTitle;
+
+	public static String ModelManagerEditor_SaveErrorMessage;
 
 	
 }
