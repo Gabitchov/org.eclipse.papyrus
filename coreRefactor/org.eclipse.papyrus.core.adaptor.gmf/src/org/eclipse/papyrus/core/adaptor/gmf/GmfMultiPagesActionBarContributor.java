@@ -20,15 +20,14 @@ import org.eclipse.gmf.runtime.common.ui.util.WorkbenchPartDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.papyrus.sasheditor.extension.MultiDiagramActionBarContributor;
-import org.eclipse.papyrus.sasheditor.gef.GefMultiPagesActionBarContributor;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.activities.ActivityManagerEvent;
 import org.eclipse.ui.activities.IActivityManagerListener;
 
 /**
- * GMF based multi diagram action bar contributor. GMF based multi diagram
- * editors should subclass this action bar contributor. This class is based on
+ * GMF based multi diagram action bar contributor. GMF based multi diagram editors should subclass
+ * this action bar contributor. This class is based on
  * {@link org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor}
  * 
  * @author dumoulin and original authors from gmf.
@@ -72,14 +71,16 @@ public abstract class GmfMultiPagesActionBarContributor extends MultiDiagramActi
 			// }
 			// });
 		} catch (Exception e) {
-			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "init()", //$NON-NLS-1$
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
+					"init()", //$NON-NLS-1$
 					e);
 		}
 
 		bars.updateActionBars();
 
 		activityManagerListener = new ActivityManagerListener();
-		PlatformUI.getWorkbench().getActivitySupport().getActivityManager().addActivityManagerListener(activityManagerListener);
+		PlatformUI.getWorkbench().getActivitySupport().getActivityManager().addActivityManagerListener(
+				activityManagerListener);
 	}
 
 	/**
@@ -90,7 +91,8 @@ public abstract class GmfMultiPagesActionBarContributor extends MultiDiagramActi
 		descriptor = null;
 
 		if (activityManagerListener != null) {
-			PlatformUI.getWorkbench().getActivitySupport().getActivityManager().removeActivityManagerListener(activityManagerListener);
+			PlatformUI.getWorkbench().getActivitySupport().getActivityManager().removeActivityManagerListener(
+					activityManagerListener);
 		}
 		activityManagerListener = null;
 

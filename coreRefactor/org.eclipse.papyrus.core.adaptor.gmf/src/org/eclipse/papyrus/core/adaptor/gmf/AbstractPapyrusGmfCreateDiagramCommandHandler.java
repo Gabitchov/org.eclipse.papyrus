@@ -50,20 +50,20 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Command creating a new GMF diagram in Papyrus. This command is intended to be used in eclipse 
+ * Command creating a new GMF diagram in Papyrus. This command is intended to be used in eclipse
  * extensions. This command is to be used with Editors using Context.
  * 
- * Commands to create a GMF Diagram can subclass this class.
- * There is two kinds of commands:
- * - Eclipse handlers issuing commands (toolbar, menu, ...). This commands can find the active editor 
- * by using the Worbench.getActivePArt(). The entry point is {@link #execute(ExecutionEvent)}.
- * - Commands called during editor initializing (like wizard).  This commands require the 
- * diResourceSet to work. The entry point is {@link #createDiagram(DiResourceSet, EObject, String)}
+ * Commands to create a GMF Diagram can subclass this class. There is two kinds of commands: -
+ * Eclipse handlers issuing commands (toolbar, menu, ...). This commands can find the active editor
+ * by using the Worbench.getActivePArt(). The entry point is {@link #execute(ExecutionEvent)}. -
+ * Commands called during editor initializing (like wizard). This commands require the diResourceSet
+ * to work. The entry point is {@link #createDiagram(DiResourceSet, EObject, String)}
  * 
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends AbstractHandler implements IHandler, ICreationCommand {
+public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends AbstractHandler implements IHandler,
+		ICreationCommand {
 
 	/**
 	 * Method called when the command is invoked.
@@ -106,11 +106,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 *            The eObject to which the diagram should be attached, if possible.
 	 */
 	protected void runAsTransaction(final DiResourceSet diResourceSet, final EObject container, String name) {
-		if(name == null)
-		{
+		if (name == null) {
 			name = getDefaultDiagramName();
 		}
-		
+
 		if (name != null) {
 			// Get the uml element to which the newly created diagram will be attached.
 			// Create the diagram
@@ -121,9 +120,12 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			// TODO: get the appropriate value from diResourceSet
 			TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
 
-			AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
+			AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
+					Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel,
+					Collections.EMPTY_LIST) {
 
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+						throws ExecutionException {
 					EObject model = container;
 					if (model == null) {
 						model = getRootElement(modelResource);
@@ -133,7 +135,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					Diagram diagram = createDiagram(diagramResource, model, diagramName);
 
 					openDiagram(diResource, diagram);
-//					SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
+					// SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
 
 					return CommandResult.newOKCommandResult();
 				}
@@ -142,23 +144,24 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
 				e.printStackTrace();
-				Activator.getInstance().logError(Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram, e);
+				Activator.getInstance().logError(
+						Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram, e);
 			}
 		}
 	}
 
 	/**
 	 * Open the specified diagram.
+	 * 
 	 * @param diResource
 	 * @param diagram
 	 */
 	protected void openDiagram(Resource diResource, Diagram diagram) {
 		// Lookup Editor ContentProvider
-		
-		EditorUtils.getIPageMngr(diResource).openPage(diagram);
-		
-	}
 
+		EditorUtils.getIPageMngr(diResource).openPage(diagram);
+
+	}
 
 	/**
 	 * Create a di2 diagram referencing the notation diagram.
@@ -168,7 +171,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected Diagram createNotationDiagram(Diagram notationDiagram) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
-		
+
 		diagram.setName(notationDiagram.getName());
 		diagram.setElement(notationDiagram);
 		diagram.setType(GmfEditorFactory.GMF_DIAGRAM);
@@ -189,8 +192,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					rootElement = (EObject) root;
 				}
 			}
-		}
-		else {
+		} else {
 			rootElement = createRootElement();
 		}
 		return rootElement;
@@ -198,10 +200,11 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/**
 	 * Create the root element of an EMF model
+	 * 
 	 * @return the root element
 	 */
-	protected abstract EObject createRootElement(); 
-	
+	protected abstract EObject createRootElement();
+
 	/**
 	 * Store model element in the resource.
 	 */
@@ -234,10 +237,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	protected EObject getSelectedElement() {
 		EObject eObject = null;
 		Object selection = getCurrentSelection();
-		if(selection != null){
+		if (selection != null) {
 			Object businessObject = getDefaultContext().getModelResolver().getBussinessModel(selection);
-			if(businessObject instanceof EObject){
-				eObject = (EObject)businessObject;
+			if (businessObject instanceof EObject) {
+				eObject = (EObject) businessObject;
 			}
 		}
 		return eObject;
@@ -249,7 +252,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @return the selected element or null.
 	 */
 	private Object getCurrentSelection() {
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
+				.getSelection();
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			return structuredSelection.getFirstElement();
@@ -318,14 +322,16 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected String openDiagramNameDialog(final String defaultValue) {
 		String name = null;
-		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null);
+		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(),
+				Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName,
+				Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null);
 		int ret = inputDialog.open();
 		if (ret == Window.OK) {
 			name = inputDialog.getValue();
 			if (name == null || name.length() == 0) {
 				name = defaultValue;
 			}
-		} 
+		}
 		return name;
 	}
 
@@ -346,6 +352,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/**
 	 * Get the ServiceRegistry of the main editor.
+	 * 
 	 * @return
 	 */
 	protected ServicesRegistry getServiceRegistry() {
@@ -354,12 +361,12 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/**
 	 * Get the ISashWindowsContentProvider from the main editor.
+	 * 
 	 * @return
 	 */
 	protected ISashWindowsContentProvider getISashWindowsContentProvider() {
-			return EditorUtils.getISashWindowsContentProvider();
+		return EditorUtils.getISashWindowsContentProvider();
 
 	}
-
 
 }

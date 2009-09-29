@@ -33,23 +33,21 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.RetargetAction;
 
-
-
 /**
- * Contributes actions to a toolbar.
- * This class is tied to the editor in the definition of editor-extension (see plugin.xml).
+ * Contributes actions to a toolbar. This class is tied to the editor in the definition of
+ * editor-extension (see plugin.xml).
  */
 public class MultiPagesEditorActionBarContributor extends MultiDiagramActionBarContributor {
 
 	/**
-	 * Return the EditorRegistry loading the extension points accepted by this editor.
-	 * Should set the namespace.
+	 * Return the EditorRegistry loading the extension points accepted by this editor. Should set
+	 * the namespace.
 	 */
 	protected EditorFactoryRegistry getEditorRegistry() {
-//	      return new EditorFactoryRegistry(org.eclipse.papyrus.diagram.common.scribe.PapyrusPlugin.PLUGIN_ID);
-	      return null;
-    }
-	
+		// return new
+		// EditorFactoryRegistry(org.eclipse.papyrus.diagram.common.scribe.PapyrusPlugin.PLUGIN_ID);
+		return null;
+	}
 
 	/**
 	 * Create actions managed by this contributor.
@@ -59,9 +57,9 @@ public class MultiPagesEditorActionBarContributor extends MultiDiagramActionBarC
 	@Override
 	protected void buildActions() {
 		super.buildActions();
-//		addRetargetAction(new UndoRetargetAction());
-//		addRetargetAction(new RedoRetargetAction());
-//		addRetargetAction(new DeleteRetargetAction());
+		// addRetargetAction(new UndoRetargetAction());
+		// addRetargetAction(new RedoRetargetAction());
+		// addRetargetAction(new DeleteRetargetAction());
 
 		addRetargetAction(new CopyRetargetAction());
 		addRetargetAction(new PasteRetargetAction());
@@ -69,9 +67,9 @@ public class MultiPagesEditorActionBarContributor extends MultiDiagramActionBarC
 		addRetargetAction(new ZoomInRetargetAction());
 		addRetargetAction(new ZoomOutRetargetAction());
 
-//		addRetargetAction(new CreateDiagramRetargetAction());
-//		addRetargetAction(new DeleteDiagramRetargetAction());
-//		addRetargetAction(new CreateDeploymentDiagramRetargetAction());
+		// addRetargetAction(new CreateDiagramRetargetAction());
+		// addRetargetAction(new DeleteDiagramRetargetAction());
+		// addRetargetAction(new CreateDeploymentDiagramRetargetAction());
 
 		addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
 		addRetargetAction(new AlignmentRetargetAction(PositionConstants.CENTER));
@@ -83,38 +81,35 @@ public class MultiPagesEditorActionBarContributor extends MultiDiagramActionBarC
 		addRetargetAction(new MatchWidthRetargetAction());
 		addRetargetAction(new MatchHeightRetargetAction());
 
-		addRetargetAction(new RetargetAction(
-				GEFActionConstants.TOGGLE_RULER_VISIBILITY, 
+		addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_RULER_VISIBILITY,
 				GEFMessages.ToggleRulerVisibility_Label, IAction.AS_CHECK_BOX));
 
-		addRetargetAction(new RetargetAction(
-				GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, 
+		addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY,
 				GEFMessages.ToggleSnapToGeometry_Label, IAction.AS_CHECK_BOX));
 
-		addRetargetAction(new RetargetAction(
-				GEFActionConstants.TOGGLE_GRID_VISIBILITY, 
-				GEFMessages.ToggleGrid_Label, IAction.AS_CHECK_BOX));
+		addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, GEFMessages.ToggleGrid_Label,
+				IAction.AS_CHECK_BOX));
 	}
 
 	/**
 	 * Add actions to the given toolbar.
 	 * 
-	 * @param toolBarManager 
+	 * @param toolBarManager
 	 * 
 	 * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToToolBar(org.eclipse.jface.action.IToolBarManager)
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		super.contributeToToolBar(toolBarManager);
-//		toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
-//		toolBarManager.add(getAction(ActionFactory.REDO.getId()));
-//		toolBarManager.add(getAction(ActionFactory.COPY.getId()));
-//		toolBarManager.add(getAction(ActionFactory.PASTE.getId()));
-//		toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
-		//toolBarManager.add(getAction(CreateDiagramAction.CREATE_DIAGRAM));
-		//toolBarManager.add(getAction(DeleteDiagramAction.DELETE_DIAGRAM));
-		//toolBarManager.add(getAction(CreateDeploymentDiagramAction.CREATE_DIAGRAM));
-		//toolBarManager.add(getAction(DeleteDiagramAction.DELETE_DIAGRAM));	
+		// toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
+		// toolBarManager.add(getAction(ActionFactory.REDO.getId()));
+		// toolBarManager.add(getAction(ActionFactory.COPY.getId()));
+		// toolBarManager.add(getAction(ActionFactory.PASTE.getId()));
+		// toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
+		// toolBarManager.add(getAction(CreateDiagramAction.CREATE_DIAGRAM));
+		// toolBarManager.add(getAction(DeleteDiagramAction.DELETE_DIAGRAM));
+		// toolBarManager.add(getAction(CreateDeploymentDiagramAction.CREATE_DIAGRAM));
+		// toolBarManager.add(getAction(DeleteDiagramAction.DELETE_DIAGRAM));
 
 		toolBarManager.add(new Separator());
 		toolBarManager.add(getAction(GEFActionConstants.ALIGN_LEFT));
@@ -123,28 +118,29 @@ public class MultiPagesEditorActionBarContributor extends MultiDiagramActionBarC
 		toolBarManager.add(new Separator());
 		toolBarManager.add(getAction(GEFActionConstants.ALIGN_TOP));
 		toolBarManager.add(getAction(GEFActionConstants.ALIGN_MIDDLE));
-		toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));	
-		toolBarManager.add(new Separator());	
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));
+		toolBarManager.add(new Separator());
 		toolBarManager.add(getAction(GEFActionConstants.MATCH_WIDTH));
 		toolBarManager.add(getAction(GEFActionConstants.MATCH_HEIGHT));
 
-		toolBarManager.add(new Separator());	
-		String[] zoomStrings = new String[] {	ZoomManager.FIT_ALL, 
-				ZoomManager.FIT_HEIGHT, 
-				ZoomManager.FIT_WIDTH	};
+		toolBarManager.add(new Separator());
+		String[] zoomStrings = new String[] { ZoomManager.FIT_ALL, ZoomManager.FIT_HEIGHT, ZoomManager.FIT_WIDTH };
 		toolBarManager.add(new ZoomComboContributionItem(getPage(), zoomStrings));
 
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToMenu(org.eclipse.jface.action.IMenuManager)
+	 * 
+	 * @see
+	 * org.eclipse.ui.part.EditorActionBarContributor#contributeToMenu(org.eclipse.jface.action.
+	 * IMenuManager)
 	 */
 
 	/**
 	 * 
 	 * 
-	 * @param menubar 
+	 * @param menubar
 	 */
 	@Override
 	public void contributeToMenu(IMenuManager menubar) {
@@ -161,9 +157,9 @@ public class MultiPagesEditorActionBarContributor extends MultiDiagramActionBarC
 		menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
 	}
 
-
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.gef.ui.actions.ActionBarContributor#declareGlobalActionKeys()
 	 */
 	/**

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.adaptor.gmf;
 
 import java.util.HashMap;
@@ -18,7 +18,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-
 
 /**
  * @generated

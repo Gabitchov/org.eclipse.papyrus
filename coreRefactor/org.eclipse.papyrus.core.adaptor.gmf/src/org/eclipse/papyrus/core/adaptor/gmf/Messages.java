@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.adaptor.gmf;
 
 import org.eclipse.osgi.util.NLS;
@@ -32,9 +32,6 @@ public class Messages extends NLS {
 	 */
 	private Messages() {
 	}
-
-	
-
 
 	public static String MultiPagesEditorActionBarContributor_PapyrusMenu;
 
@@ -80,5 +77,4 @@ public class Messages extends NLS {
 
 	public static String ModelManagerEditor_SaveErrorMessage;
 
-	
 }
