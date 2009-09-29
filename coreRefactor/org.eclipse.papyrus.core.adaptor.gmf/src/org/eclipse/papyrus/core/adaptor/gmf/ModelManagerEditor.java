@@ -67,11 +67,11 @@ import org.osgi.framework.Bundle;
  */
 public class ModelManagerEditor {
 
-	public static final String DIAGRAM_ADDED = "DIAGRAM_ADDED";
+	public static final String DIAGRAM_ADDED = "DIAGRAM_ADDED"; //$NON-NLS-1$
 
-	public static final String DIAGRAM_MOVED = "DIAGRAM_MOVED";
+	public static final String DIAGRAM_MOVED = "DIAGRAM_MOVED"; //$NON-NLS-1$
 
-	public static final String DIAGRAM_REMOVED = "DIAGRAM_REMOVED";
+	public static final String DIAGRAM_REMOVED = "DIAGRAM_REMOVED"; //$NON-NLS-1$
 	
 	/**
 	 * The underlying document provider.

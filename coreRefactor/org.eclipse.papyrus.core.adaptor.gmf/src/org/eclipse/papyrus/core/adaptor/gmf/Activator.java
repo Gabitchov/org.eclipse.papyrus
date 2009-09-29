@@ -60,10 +60,6 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	private ComposedAdapterFactory adapterFactory;
 
-	/**
-	 * @generated
-	 */
-	private GmfMultiDiagramDocumentProvider documentProvider;
 
 	/**
 	 * @generated
@@ -199,16 +195,6 @@ public class Activator extends AbstractUIPlugin {
 		return image;
 	}
 
-	/**
-	 * @generated
-	 */
-	public GmfMultiDiagramDocumentProvider getDocumentProvider() {
-		throw new UnsupportedOperationException("Try to get DocumentProvider from plugin !!! - use shared object instead.");
-//		if (documentProvider == null) {
-//			documentProvider = new GmfMultiDiagramDocumentProvider();
-//		}
-//		return documentProvider;
-	}
 
 	/**
 	 * @generated

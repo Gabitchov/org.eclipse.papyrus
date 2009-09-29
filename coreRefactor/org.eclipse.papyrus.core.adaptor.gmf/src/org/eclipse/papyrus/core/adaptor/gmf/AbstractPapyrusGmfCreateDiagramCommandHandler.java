@@ -142,7 +142,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
 				e.printStackTrace();
-				Activator.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
+				Activator.getInstance().logError("Unable to create model and diagram", e);
 			}
 		}
 	}

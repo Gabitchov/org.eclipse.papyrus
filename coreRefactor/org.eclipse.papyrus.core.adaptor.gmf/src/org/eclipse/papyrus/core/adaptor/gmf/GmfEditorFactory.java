@@ -40,7 +40,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  */
 public class GmfEditorFactory extends AbstractEditorFactory {
 
-	public static final String GMF_DIAGRAM = "diagram.gmf";
+	public static final String GMF_DIAGRAM = "diagram.gmf"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new GmfEditorFactory.
@@ -187,7 +187,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 
 			} catch (Exception e) {
 				// Lets propagate. This is an implementation problem that should be solved by programmer.
-				throw new PartInitException("Can't create IEditorPart for gmf.Diagram '" + diagram + "'.", e);
+				throw new PartInitException("Can't create IEditorPart for gmf.Diagram " + diagram, e);
 			}
 
 		}
