@@ -41,6 +41,7 @@ import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.core.extension.diagrameditor.MultiDiagramException;
 import org.eclipse.papyrus.core.extension.editorcontext.EditorContextRegistry;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
@@ -55,10 +56,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
-import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
-import org.eclipse.papyrus.sasheditor.gef.SelectionSynchronizer;
+import org.eclipse.papyrus.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
@@ -205,7 +203,6 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	/**
 	 * Get the EditorActionBarContributor that should be associated with the editor of the specified model.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.IMultiEditorNestedPartManager#getActionBarContributor(java.lang.Object)
 	 * @param editorModel
 	 * @return
 	 * @throws MultiDiagramException
@@ -454,10 +451,10 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 			return gefAdaptorDelegate.getActionRegistry();
 		}
 
-		// GEF diagram requirements
-		if (adapter == SelectionSynchronizer.class) {
-			return gefAdaptorDelegate.getSelectionSynchronizer();
-		}
+//		// GEF diagram requirements
+//		if (adapter == SelectionSynchronizer.class) {
+//			return gefAdaptorDelegate.getSelectionSynchronizer();
+//		}
 
 		// TODO : following code is GMF dependant. It should be moved to adapter
 		// Do we really need it? Who use it ?
@@ -512,6 +509,8 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		
 		// Create ContentProvider
 		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
+		// TODO : create appropriate Resource for the contentProvider, and pass it here.
+		// This will allow to remove the old sash stuff.
 		setContentProvider( createPageProvider(pageModelRegistry, defaultContext.getResourceSet().getDiResource(), defaultContext.getTransactionalEditingDomain()));
 		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
 		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());

@@ -143,7 +143,6 @@ public class SashDiagramModelManager extends SashDiagramModelUtil {
 	 * @param targetTabIndex
 	 *            Index where the tab will be placed. Other tabs are moved upward.
 	 * 
-	 * @see org.eclipse.papyrus.core.multidiagram.SashDiagramModelManager.MoveTabToFolderSideCommand
 	 */
 	public void doMoveTabToFolderSide(Diagram srcfolder, int srcTabIndex, Diagram targetfolder, int position) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();

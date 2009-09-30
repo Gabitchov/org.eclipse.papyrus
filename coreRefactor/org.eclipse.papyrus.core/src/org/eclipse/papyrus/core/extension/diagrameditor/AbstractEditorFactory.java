@@ -13,7 +13,6 @@
   *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.ui.IEditorPart;
@@ -77,17 +76,9 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 
 	/**
 	 * {@inheritDoc}
+	 * This method should be implemented by subclasses
 	 */
-	public boolean isEditorFor(Object root) {
-		if (root instanceof Diagram) {
-			Diagram diagram = (Diagram) root;
-			final String type = diagram.getType();
-			return expectedType.equals(type);
-		}
-		// no
-		return false;
-	}
-
+	abstract public boolean isEditorFor(Object root);
 	
 	/**
 	 * @return the editorDescriptor

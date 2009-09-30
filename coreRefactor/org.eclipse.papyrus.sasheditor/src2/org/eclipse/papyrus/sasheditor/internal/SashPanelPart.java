@@ -107,7 +107,6 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	/**
 	 * Create local control. Does not create children.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	protected void createControl(Composite parent) {
 		// container = new SashForm(parent, sashDirection);
@@ -168,8 +167,10 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 
 
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getControl()
+	 * Get the sash container.
+	 * @see org.eclipse.papyrus.sasheditor.internal.AbstractPanelPart#getControl()
+	 *
+	 * @return
 	 */
 	public Composite getControl() {
 		return container;
@@ -178,7 +179,6 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	/**
 	 * Change the parent of this method. Reparent the Tile and the control. Normally, the control already exists.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#reparent(org.eclipse.papyrus.sasheditor.sash.ITilePart)
 	 */
 	@Override
 	public void reparent(IPanelParent newParent, Composite swtParent) {
@@ -216,7 +216,6 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	 * 
 	 * @param isRecursive
 	 *            If true, also dispose children.
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#dispose()
 	 */
 	public void dispose(boolean isRecursive) {
 
@@ -329,7 +328,6 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 
 	/**
 	 * SashPanelPart can't be a DropTarget. Do nothing.
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object, org.eclipse.swt.graphics.Point)
 	 */
 	public IDropTarget getDropTarget(Object draggedObject, TabFolderPart sourcePart, Point position) {
 		return null;
@@ -354,7 +352,10 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#synchronize2(org.eclipse.papyrus.sasheditor.sash.PartMap)
+	 * Synchronize the sash.
+	 * @see org.eclipse.papyrus.sasheditor.internal.AbstractPanelPart#synchronize2(org.eclipse.papyrus.sasheditor.internal.PartLists)
+	 *
+	 * @param partMap
 	 */
 	public void synchronize2(PartLists partMap) {
 

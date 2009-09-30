@@ -223,7 +223,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * Create the control for this Part. Does not create children.
 	 * This method is called by the parent after this folder is created.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
 		PTabFolder res = new PTabFolder();
@@ -342,7 +341,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * Return the part containing specified point. Normally return this part, because the caller has 
 	 * already determine that this contain the part.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#findPart(org.eclipse.swt.graphics.Point)
 	 */
 	@Override
 	public AbstractPart findPart(Point toFind) {
@@ -393,7 +391,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	/**
 	 * Find the part associated to the provided control.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#findPart(org.eclipse.swt.widgets.Control)
 	 */
 	@Override
 	public AbstractPanelPart findPart(Object control) {
@@ -408,9 +405,15 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		return null;
 	}
 
+
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object, org.eclipse.swt.graphics.Point)
+	 * @see org.eclipse.papyrus.sasheditor.internal.AbstractPanelPart#getDropTarget(java.lang.Object, org.eclipse.papyrus.sasheditor.internal.TabFolderPart, org.eclipse.swt.graphics.Point)
+	 *
+	 * @param draggedObject
+	 * @param sourcePart
+	 * @param position
+	 * @return
 	 */
 	public IDropTarget getDropTarget(Object draggedObject, TabFolderPart sourcePart, Point position) {
 		// see org.eclipse.ui.internal.presentations.util.ReplaceDragHandler
@@ -592,7 +595,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getGarbageState()
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.internal.AbstractPart#getGarbageState()
+	 *
+	 * @return
 	 */
 	public GarbageState getGarbageState() {
 		return garbageState;

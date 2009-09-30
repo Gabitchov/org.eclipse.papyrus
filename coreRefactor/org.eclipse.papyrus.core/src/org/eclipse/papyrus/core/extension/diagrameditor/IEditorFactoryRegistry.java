@@ -16,8 +16,6 @@ package org.eclipse.papyrus.core.extension.diagrameditor;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
-import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 
