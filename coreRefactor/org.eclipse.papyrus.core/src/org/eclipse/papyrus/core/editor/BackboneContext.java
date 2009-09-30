@@ -111,14 +111,4 @@ public class BackboneContext extends AbstractEditorContext {
 		return resourceSet.getTransactionalEditingDomain();
 	}
 
-	/**
-	 * Create a new {@link DiagramNotifier} listening to the graphical model containing the diagram roots.
-	 * 
-	 * @TODO move diagram roots related stuff to appropriate service (to be defined)
-	 * @return
-	 */
-	public DiagramNotifier createDiagramNotifier() {
-		return new DiagramNotifier(resourceSet.getDiResource());
-	}
-
 }

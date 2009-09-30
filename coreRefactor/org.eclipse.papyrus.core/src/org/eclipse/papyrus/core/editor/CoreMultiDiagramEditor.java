@@ -124,10 +124,6 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	 */
 	private BackboneContext defaultContext;
 
-	/**
-	 * Diagram notifier notifying diagram CRUD events.
-	 */
-	private DiagramNotifier diagramNotifier;
 
 	/**
 	 * 
@@ -504,7 +500,6 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		// Load resources
 		IFile file = ((IFileEditorInput) input).getFile();
 		defaultContext.getResourceSet().loadResources(file);
-		diagramNotifier = defaultContext.createDiagramNotifier();
 
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
@@ -539,8 +534,6 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	@Override
 	protected void activate() {
 		super.activate();
-		// Start listening on diagram CRUD
-		diagramNotifier.addListener(diagramChangeListener);
 
 		// Show the model Explorer View
 		// TODO Use the extension mechanism ?
@@ -561,8 +554,6 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 
 	@Override
 	protected void deactivate() {
-		// Stop listening on diagrams CRUD
-		diagramNotifier.removeListener(diagramChangeListener);
 		super.deactivate();
 	}
 
