@@ -11,7 +11,6 @@
 package org.eclipse.papyrus.wizards;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.IPapyrusUIConstants;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
@@ -53,7 +52,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	public void createControl(Composite parent) {
 		super.createControl(parent);
 		if (getFileName() == null || getFileName().length() == 0) {
-			setFileName(DEFAULT_NAME + fileCount + "." + IPapyrusUIConstants.MODEL_EXTENSION);
+			setFileName(DEFAULT_NAME + fileCount + ".di");
 		}
 		setPageComplete(validatePage());
 	}

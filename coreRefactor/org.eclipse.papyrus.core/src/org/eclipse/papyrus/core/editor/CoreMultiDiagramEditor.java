@@ -25,8 +25,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -40,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.Activator;
-import org.eclipse.papyrus.core.IPapyrusUIConstants;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
@@ -68,9 +65,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.EditorActionBarContributor;
@@ -537,18 +532,18 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 
 		// Show the model Explorer View
 		// TODO Use the extension mechanism ?
-		try {
-			if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
-				if (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null) {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
-				}
-			}
-		} catch (PartInitException e) {
-			String message = "Error while  showing the Model Explorer view." + e.getMessage();
-			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
-			Activator.getDefault().getLog().log(status);
-//			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
-		}
+//		try {
+//			if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
+//				if (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null) {
+//					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+//				}
+//			}
+//		} catch (PartInitException e) {
+//			String message = "Error while  showing the Model Explorer view." + e.getMessage();
+//			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
+//			Activator.getDefault().getLog().log(status);
+////			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
+//		}
 
 	}
 

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.core.IPapyrusUIConstants;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
@@ -39,9 +38,6 @@ import org.eclipse.ui.ide.IDE;
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class CreateModelWizard extends Wizard implements INewWizard {
-
-	/** ID of this wizard */
-	public static final String WIZARD_ID = IPapyrusUIConstants.WIZARD_ID + ".createmodel";
 
 	/** New model file page for the file */
 	private NewModelFilePage newModelFilePage;
@@ -109,7 +105,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 					this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new Papyrus model from an existing semantic model", selection, true);
 					String diModelFileName = (file.getLocation().removeFileExtension().lastSegment());
-					diModelFileName += "." + IPapyrusUIConstants.MODEL_EXTENSION;
+					diModelFileName += ".di";
 					this.newModelFilePage.setFileName(diModelFileName);
 
 					diResourceSet.loadModelResource(domainModelURI);
