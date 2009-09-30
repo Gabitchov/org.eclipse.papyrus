@@ -13,12 +13,11 @@
 package org.eclipse.papyrus.outline;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
-import org.eclipse.papyrus.di.CoreSemanticModelBridge;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -55,10 +54,7 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	public String getText(Object element) {
 		if (element instanceof Diagram) {
 			Diagram diagram = (Diagram) element;
-			if (diagram.getSemanticModel() instanceof CoreSemanticModelBridge) {
-				CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge) diagram.getSemanticModel();
-				return myAdapterFactoryLabelProvider.getText(coreSemanticModelBridge.getElement());
-			}
+			return myAdapterFactoryLabelProvider.getText(diagram.getElement());
 		}
 
 		return myAdapterFactoryLabelProvider.getText(element);
