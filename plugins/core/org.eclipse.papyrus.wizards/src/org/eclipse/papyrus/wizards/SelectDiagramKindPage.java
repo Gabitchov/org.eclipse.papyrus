@@ -31,30 +31,30 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * This WizardPage to select the kind of Papyrus Diagram.
- * List all kind of diagrams registered with creationCommand attribute in PapyrusDiagram Eclipse extension.
+ * This WizardPage to select the kind of Papyrus Diagram. List all kind of diagrams registered with
+ * creationCommand attribute in PapyrusDiagram Eclipse extension.
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class SelectDiagramKindPage extends WizardPage {
 
-	private final static String DIAGRAM_KIND_ID="diagramKindId";
-	
+	private final static String DIAGRAM_KIND_ID = "diagramKindId";
+
 	/**
 	 * The previous page containing the model fileName
 	 */
 	NewModelFilePage modelFilePage;
-	
+
 	/**
 	 * The creation command registry
 	 */
 	ICreationCommandRegistry creationCommandRegistry;
-	
+
 	/**
 	 * The selected creation command
 	 */
 	private ICreationCommand creationCommand;
-	
+
 	/**
 	 * The diagram name text field
 	 */
@@ -63,10 +63,10 @@ public class SelectDiagramKindPage extends WizardPage {
 	/**
 	 * @return the new diagram name
 	 */
-	protected String getDiagramName(){
+	protected String getDiagramName() {
 		return nameText.getText();
 	}
-	
+
 	/**
 	 * @return the creation command
 	 */
@@ -78,12 +78,12 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * The list containing all registered diagram kind
 	 */
 	private CCombo diagramList = null;
-	
+
 	protected SelectDiagramKindPage(String pageName, NewModelFilePage modelFilePage) {
 		super(pageName);
 		setTitle("Select a new Diagram");
 		setDescription("Select a new Diagram");
-		this.modelFilePage=modelFilePage;
+		this.modelFilePage = modelFilePage;
 	}
 
 	/**
@@ -95,13 +95,13 @@ public class SelectDiagramKindPage extends WizardPage {
 		root.setLayout(gridLayout);
 		Group composite = new Group(root, 0);
 		composite.setText("Initialization information");
-		
+
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		gridLayout = new GridLayout(2, false);
 		gridLayout.marginWidth = 10;
 		composite.setLayout(gridLayout);
 		createDialogArea(composite);
-		
+
 		setControl(root);
 	}
 
@@ -109,97 +109,104 @@ public class SelectDiagramKindPage extends WizardPage {
 		createDiagramKindForm(composite);
 		createNameForm(composite);
 	}
-	
+
 	private void createDiagramKindForm(Composite composite) {
-		//create label
+		// create label
 		Label label = new Label(composite, SWT.TRAIL);
 		GridData data = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 		label.setLayoutData(data);
 		label.setText("Select diagram kind:");
-		
-		//create list of diagrams kind
+
+		// create list of diagrams kind
 		diagramList = new CCombo(composite, SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		diagramList.setLayoutData(data);
 		fillList(diagramList);
 		diagramList.addSelectionListener(new SelectionListener() {
-			public void widgetDefaultSelected(SelectionEvent e) {}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
 
 			public void widgetSelected(SelectionEvent e) {
 				handleListSelected();
 			}
 		});
 	}
-	
-	private void createNameForm(Composite composite){
+
+	private void createNameForm(Composite composite) {
 		Label label = new Label(composite, SWT.TRAIL);
 		GridData data = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
 		label.setLayoutData(data);
 		label.setText("Diagram Name:");
-		
+
 		nameText = new Text(composite, SWT.BORDER);
 		data = new GridData(GridData.FILL_HORIZONTAL);
 		nameText.setLayoutData(data);
 		nameText.setText("NewDiagram");
 		nameText.addModifyListener(new ModifyListener() {
-	            public void modifyText(ModifyEvent e) {
-	            	dialogChanged();
-	            }
-	        });
+
+			public void modifyText(ModifyEvent e) {
+				dialogChanged();
+			}
+		});
 		dialogChanged();
 	}
-	
+
 	/**
-     * Validate the changes on the page.
-     */
-    private void dialogChanged() {
-    	if ((nameText.getText() == null) || nameText.getText().length()==0) {
+	 * Validate the changes on the page.
+	 */
+	private void dialogChanged() {
+		if ((nameText.getText() == null) || nameText.getText().length() == 0) {
 			updateStatus("The diagram name must entered");
 			return;
-		}    
-    	updateStatus(null);
+		}
+		updateStatus(null);
 	}
-	
+
 	private void fillList(CCombo list) {
-		for(CreationCommandDescriptor desc:getCreationCommandRegistry().getCommandDescriptors()){
+		int defaultItem = 0;
+		for (CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
 			list.add(desc.getLabel());
-			list.setData(DIAGRAM_KIND_ID+list.getItemCount(), desc.getCommandId() );
+			list.setData(DIAGRAM_KIND_ID + list.getItemCount(), desc.getCommandId());
+
+			// If Class Diagram is registered select it as default
+			// else select first item as default
+			if (desc.getCommandId().equals("org.eclipse.papyrus.diagram.clazz.action.CreationCommand")) {
+				defaultItem = list.getItemCount() - 1;
+			}
 		}
 		if (diagramList.getItemCount() > 0) {
-			diagramList.select(0);
-			// Uncomment next if we always want a default diagram.
-			// Ensure that this is the ClassDiagram !!
-//			handleListSelected();
+			diagramList.select(defaultItem);
+			handleListSelected();
 		}
 	}
-	
+
 	private void handleListSelected() {
 		int i = diagramList.getSelectionIndex();
-		String diagramKindId = (String)diagramList.getData(DIAGRAM_KIND_ID+(i+1));
+		String diagramKindId = (String) diagramList.getData(DIAGRAM_KIND_ID + (i + 1));
 		try {
 			this.creationCommand = getCreationCommandRegistry().getCommand(diagramKindId);
 		} catch (NotFoundException e) {
 			PapyrusTrace.log(e);
 		}
 	}
-	
-	private ICreationCommandRegistry getCreationCommandRegistry(){
-		if(creationCommandRegistry==null){
+
+	private ICreationCommandRegistry getCreationCommandRegistry() {
+		if (creationCommandRegistry == null) {
 			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		}
 		return creationCommandRegistry;
 	}
-	
-    /**
-     * Update page status.
-     * 
-     * @param message
-     *            is the error message.
-     */
-    private void updateStatus(String message) {
-        setErrorMessage(message);
-        setPageComplete(message == null);
-    }
 
-	
+	/**
+	 * Update page status.
+	 * 
+	 * @param message
+	 *            is the error message.
+	 */
+	private void updateStatus(String message) {
+		setErrorMessage(message);
+		setPageComplete(message == null);
+	}
+
 }
