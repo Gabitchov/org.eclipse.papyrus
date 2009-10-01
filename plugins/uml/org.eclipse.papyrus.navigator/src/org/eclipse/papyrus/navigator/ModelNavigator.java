@@ -41,6 +41,7 @@ import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.navigator.actions.GroupChildrenAction;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.navigator.providers.IContentProvider;
+import org.eclipse.papyrus.navigator.providers.ToEditorSaveable;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
@@ -53,6 +54,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.Saveable;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.ICommonActionConstants;
@@ -79,6 +81,69 @@ public class ModelNavigator extends CommonNavigator implements
 	IEditorPart editorPart = null;
 
 	IPropertySheetPage propertySheetPage = null;
+
+	// //
+	// fjcano #290424 :: allow saving from the Model Explorer
+	// //
+	private ToEditorSaveable toEditorSaveable = new ToEditorSaveable(null, this);
+
+	private Saveable[] toEditorSaveableArray = new Saveable[] { toEditorSaveable };
+
+	public ToEditorSaveable getToEditorSaveable() {
+		// fjcano #290424 :: allow saving from the Model Explorer
+		return toEditorSaveable;
+	}
+
+	/**
+	 * Due to the NavigatorSaveablesService not updating correctly the Saveables
+	 * available via the ContentProviders, a new and direct way of getting the
+	 * Saveables is implemented here.
+	 * 
+	 * @author fjcano
+	 */
+	@Override
+	public Saveable[] getSaveables() {
+		// fjcano #290424 :: allow saving from the Model Explorer
+		// return a Saveable that targets the doSave action to the Active
+		// Editor.
+		return toEditorSaveableArray;
+	}
+
+	/**
+	 * Due to the NavigatorSaveablesService not updating correctly the Saveables
+	 * available via the ContentProviders, a new and direct way of getting the
+	 * Saveables is implemented here.
+	 * 
+	 * @author fjcano
+	 */
+	@Override
+	public Saveable[] getActiveSaveables() {
+		// fjcano #290424 :: allow saving from the Model Explorer
+		// return a Saveable that targets the doSave action to the Active
+		// Editor.
+		return toEditorSaveableArray;
+	}
+
+	/**
+	 * An update for subclasses to implement. Is called after activate() and
+	 * deactivate().
+	 * 
+	 */
+	public void doUpdate() {
+		// fjcano #290424 :: allow saving from the Model Explorer
+		if (getToEditorSaveable() != null) {
+			getToEditorSaveable().setEditor(getEditorPart());
+		}
+	}
+
+	/**
+	 * Gets the active {@link IEditorPart}.
+	 * 
+	 * @return the editor part
+	 */
+	public IEditorPart getEditorPart() {
+		return editorPart;
+	}
 
 	// //
 	// fjcano #290422 :: grouping children by type
@@ -215,6 +280,8 @@ public class ModelNavigator extends CommonNavigator implements
 			editingDomain.addResourceSetListener(resourceSetListener);
 		}
 		refreshViewer();
+		// fjcano #290424 :: allow saving from the Model Explorer
+		doUpdate();
 	}
 
 	public void deactivate() {
@@ -226,6 +293,8 @@ public class ModelNavigator extends CommonNavigator implements
 		// propertySheet.dispose();
 		// }
 		refreshViewer();
+		// fjcano #290424 :: allow saving from the Model Explorer
+		doUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
