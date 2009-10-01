@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2009 Obeo.
+
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +8,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Francisco Javier Cano Muñoz (Prodevelop) - bugs solving, features implementation
  *******************************************************************************/
 package org.eclipse.papyrus.navigator;
 
@@ -25,15 +27,18 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.Diagram;
+import org.eclipse.papyrus.navigator.actions.GroupChildrenAction;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.navigator.providers.IContentProvider;
 import org.eclipse.swt.widgets.Composite;
@@ -41,11 +46,13 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.ICommonActionConstants;
@@ -58,19 +65,85 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * This class define a view used to navigate in UML model and resource
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
 public class ModelNavigator extends CommonNavigator implements
 		IEditingDomainProvider {
 
 	IWorkbenchPage page = null;
 
-	/** <EditingDomain> used to perform actions and commands. */
+	/** {@link TransactionalEditingDomain} used to perform actions and commands. */
 	TransactionalEditingDomain editingDomain = null;
 
-	/** Active <IEditorPart>. */
+	/** Active {@link IEditorPart}. */
 	IEditorPart editorPart = null;
 
 	IPropertySheetPage propertySheetPage = null;
+
+	// //
+	// fjcano #290422 :: grouping children by type
+	// //
+	public static final String PROPERTY_GROUPCHILDS = "org.eclipse.papyrus.navigator.view.groupchilds";
+
+	private boolean isGroupingChildsEnabled = false;
+
+	public static final int IS_GROUPINGCHILDS_ENABLED_PROPERTY = 987;
+
+	/**
+	 * Sets the grouping of children by type. Fires a property change that makes
+	 * the model explorer to refresh.
+	 * 
+	 * @param toGroupChilds
+	 */
+	public final void setGroupChildsEnabled(boolean toGroupChilds) {
+		// fjcano :: #290422
+		isGroupingChildsEnabled = toGroupChilds;
+		firePropertyChange(IS_GROUPINGCHILDS_ENABLED_PROPERTY);
+		ISelection sel = this.getCommonViewer().getSelection();
+		if (sel instanceof ITreeSelection
+				&& ((ITreeSelection) sel).getFirstElement() != null) {
+			IStructuredSelection s = new StructuredSelection(
+					((ITreeSelection) sel).getFirstElement());
+			this.getCommonViewer().setSelection(s, true);
+		}
+		this.refreshViewer();
+	}
+
+	/**
+	 * Retrieves the value of the grouping children flag.
+	 * 
+	 * @return
+	 */
+	public boolean isGroupingChildsEnabled() {
+		// fjcano :: #290422
+		return this.isGroupingChildsEnabled;
+	}
+
+	/**
+	 * Retrieves the grouping of children action.
+	 * 
+	 * @return
+	 */
+	public IAction getGroupChildrenAction() {
+		// fjcano :: #290422
+		IAction groupChildsAction = new GroupChildrenAction(this);
+		ImageDescriptor folderIcon = PlatformUI.getWorkbench()
+				.getSharedImages().getImageDescriptor(
+						ISharedImages.IMG_OBJ_FOLDER);
+		groupChildsAction.setImageDescriptor(folderIcon);
+		groupChildsAction.setHoverImageDescriptor(folderIcon);
+		return groupChildsAction;
+	}
+
+	/**
+	 * Add the "Group children" action.
+	 */
+	public void createPartControl(Composite aParent) {
+		super.createPartControl(aParent);
+		// fjcano #290422 :: add "Group children" action
+		getViewSite().getActionBars().getToolBarManager().add(
+				getGroupChildrenAction());
+	};
 
 	/**
 	 * <ResourseSetListener> to listen and react to changes in the resource set.
@@ -353,6 +426,7 @@ public class ModelNavigator extends CommonNavigator implements
 		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
 				+ diagram);
 		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
+			// open the diagram if not already open
 			EditorUtils.getIPageMngr().openPage(diagram);
 		}
 	}
@@ -368,6 +442,7 @@ public class ModelNavigator extends CommonNavigator implements
 		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
 				+ diagram);
 		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
+			// open the diagram if not already open
 			EditorUtils.getIPageMngr().openPage(diagram);
 		}
 	}

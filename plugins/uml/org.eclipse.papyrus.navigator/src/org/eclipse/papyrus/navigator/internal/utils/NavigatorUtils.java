@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.navigator.internal.utils;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -12,6 +14,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
@@ -19,6 +22,8 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
@@ -53,7 +58,8 @@ public class NavigatorUtils {
 	public static BackboneContext getBackboneContext() {
 		IMultiDiagramEditor multiDiagramEditor = getMultiDiagramEditor();
 		if (multiDiagramEditor != null) {
-			BackboneContext backboneContext = multiDiagramEditor.getDefaultContext();
+			BackboneContext backboneContext = multiDiagramEditor
+					.getDefaultContext();
 			return backboneContext;
 		}
 		return null;
@@ -110,7 +116,8 @@ public class NavigatorUtils {
 	 */
 	public static IViewPart findViewPart(String viewID) {
 		try {
-			IViewReference reference = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+			IViewReference reference = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getActivePage()
 					.findViewReference(viewID);
 			IWorkbenchPart part = reference.getPart(false);
 			if (part instanceof IViewPart) {
@@ -124,7 +131,8 @@ public class NavigatorUtils {
 	}
 
 	/**
-	 * Unwraps selection. Gets <EObject>s from <EditPart>s, from <View>s or from <EObject>s
+	 * Unwraps selection. Gets <EObject>s from <EditPart>s, from <View>s or from
+	 * <EObject>s
 	 * 
 	 * @param selection
 	 *            the selection
@@ -135,7 +143,8 @@ public class NavigatorUtils {
 		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
 			List<EObject> selectionList = new ArrayList<EObject>();
 			StructuredSelection structuredSelection = (StructuredSelection) selection;
-			for (Iterator<?> iterator = structuredSelection.iterator(); iterator.hasNext();) {
+			for (Iterator<?> iterator = structuredSelection.iterator(); iterator
+					.hasNext();) {
 				Object next = iterator.next();
 				if (next instanceof EditPart) {
 					Object model = ((EditPart) next).getModel();
@@ -172,7 +181,8 @@ public class NavigatorUtils {
 	 * 
 	 * @return the edits the parts from selection
 	 */
-	public static List<EditPart> getEditPartsFromSelection(ISelection selection, IDiagramGraphicalViewer viewer) {
+	public static List<EditPart> getEditPartsFromSelection(
+			ISelection selection, IDiagramGraphicalViewer viewer) {
 		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
 			StructuredSelection structuredSelection = (StructuredSelection) selection;
 			// look for Views of the EObjects in the selection
@@ -214,10 +224,84 @@ public class NavigatorUtils {
 	public static List<Object> getEObjectViews(EObject element) {
 		List<Object> views = new ArrayList<Object>();
 		if (element != null) {
-			EReference[] features = { NotationPackage.eINSTANCE.getView_Element() };
-			Collection<?> referencers = EMFCoreUtil.getReferencers(element, features);
+			EReference[] features = { NotationPackage.eINSTANCE
+					.getView_Element() };
+			Collection<?> referencers = EMFCoreUtil.getReferencers(element,
+					features);
 			views.addAll(referencers);
 		}
 		return views;
+	}
+
+	// //
+	// get an object name
+	// //
+
+	/**
+	 * Gets the object name or empty string.
+	 * 
+	 * @param object
+	 *            the object
+	 * 
+	 * @return the object name or empty string
+	 */
+	public static String getObjectNameOrEmptyString(Object object) {
+		String name = getObjectName(object);
+		return name == null ? "" : name;
+	}
+
+	/** The Constant getNameNames. */
+	private static final String[] getNameNames = { "getName", "getname" };
+
+	/**
+	 * Gets the object name.
+	 * 
+	 * @param object
+	 *            the object
+	 * 
+	 * @return the object name
+	 */
+	public static String getObjectName(Object object) {
+		if (object == null) {
+			return null;
+		}
+		Method method = null;
+		Object o = null;
+		for (String methodName : getNameNames) {
+			try {
+				method = object.getClass()
+						.getMethod(methodName, (Class[]) null);
+			} catch (NoSuchMethodException e) {
+				method = null;
+			}
+			if (method != null) {
+				break;
+			}
+		}
+		if (method != null) {
+			try {
+				o = method.invoke(object, (Object[]) null);
+			} catch (IllegalAccessException ex) {
+				return null;
+			} catch (InvocationTargetException ex) {
+				return null;
+			}
+			if (o instanceof String) {
+				return (String) o;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Opens a {@link Diagram} in the sash editor.
+	 * 
+	 * @param diagram
+	 */
+	public static void openDiagram(Diagram diagram) {
+		IPageMngr pageManager = EditorUtils.getIPageMngr();
+		if (pageManager != null) {
+			pageManager.openPage(diagram);
+		}
 	}
 }

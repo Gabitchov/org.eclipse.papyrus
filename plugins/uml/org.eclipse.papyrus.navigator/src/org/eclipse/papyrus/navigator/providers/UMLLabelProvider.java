@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Francisco Javier Cano Muñoz (Prodevelop) - bug #290422
  *******************************************************************************/
 package org.eclipse.papyrus.navigator.providers;
 
@@ -21,12 +22,17 @@ import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 
 /**
+ * An {@link ICommonLabelProvider} for the Papyrus Model Explorer-
+ * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
+ * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug
+ *      #290422</a>
  */
-public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICommonLabelProvider/*
-																								 * ,
-																								 * IFontProvider
-																								 */{
+public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
+		ICommonLabelProvider/*
+							 * , IFontProvider
+							 */{
 
 	/** Registry to store editor factories */
 	private IEditorFactoryRegistry editorRegistry;
@@ -60,17 +66,19 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	}
 
 	/**
-	 * Returns the platform icon for a file. You can replace with your own icon If not a IFile, then
-	 * passes to the regular EMF.Edit providers
+	 * Returns the platform icon for a file. You can replace with your own icon
+	 * If not a IFile, then passes to the regular EMF.Edit providers
 	 * 
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Image getImage(Object element) {
-		// if (object instanceof IFile)
-		// return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FILE);
 		if (element instanceof Diagram) {
 			return getEditorRegistry().getEditorIcon(element);
+		}
+		// fjcano #290422 :: grouping of children by type
+		if (element instanceof PackagingNode) {
+			return new GroupableLabelProvider().getImage(element);
 		}
 		return super.getImage(element);
 	}
@@ -91,19 +99,27 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 			Diagram diagram = (Diagram) element;
 			return super.getText(diagram);
 
-			// if (diagram.getSemanticModel() instanceof CoreSemanticModelBridge) {
-			// CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge)
+			// if (diagram.getSemanticModel() instanceof
+			// CoreSemanticModelBridge) {
+			// CoreSemanticModelBridge coreSemanticModelBridge =
+			// (CoreSemanticModelBridge)
 			// diagram.getSemanticModel();
 			// return super.getText(coreSemanticModelBridge.getElement());
 			// }
+		}
+
+		// fjcano #290422 :: grouping of children by type
+		if (element instanceof PackagingNode) {
+			return new GroupableLabelProvider().getText(element);
 		}
 
 		return super.getText(element);
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return
-	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
+	 * Get the EditorRegistry used to create editor instances. This default
+	 * implementation return the singleton eINSTANCE. This method can be
+	 * subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 */
@@ -115,13 +131,15 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
-	 * method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should
+	 * implements this method in order to return the registry associated to the
+	 * extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 */
 	protected IEditorFactoryRegistry createEditorRegistry() {
-		return new EditorFactoryRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		return new EditorFactoryRegistry(
+				org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 
 	// @Override
@@ -137,11 +155,13 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	// if (this.diagramFont == null){
 	// //Display display = getSite().getShell().getDisplay();
 	// //Display display = Display.getCurrent();
-	// //FontData[] datas = currentViewer.getControl().getFont().getFontData().clone();
+	// //FontData[] datas =
+	// currentViewer.getControl().getFont().getFontData().clone();
 	// //FontData[] datas = getDefaultFont().getFontData().clone();
 	// //datas[0].setStyle(SWT.BOLD);
 	// //this.diagramFont = new Font(display, datas);
-	// this.diagramFont = JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);
+	// this.diagramFont =
+	// JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);
 	// }
 	// return this.diagramFont;
 	// }
