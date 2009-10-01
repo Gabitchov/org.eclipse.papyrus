@@ -722,8 +722,10 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 			return ((DiagramEditor) activeEditor).getDiagramEditPart();
 		} else {
 			// This case should never happen.
-			throw new UnsupportedOperationException("Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from " + activeEditor.getTitle() + ", "
-					+ activeEditor);
+//			throw new UnsupportedOperationException("Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from " + activeEditor.getTitle() + ", "
+//					+ activeEditor);
+			// Return null, as the GMF runtime now support it (since 093009)
+			return null;
 		}
 	}
 

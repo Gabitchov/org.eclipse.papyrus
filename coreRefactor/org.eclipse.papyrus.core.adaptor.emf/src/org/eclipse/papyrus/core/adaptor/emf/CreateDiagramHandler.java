@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
-import org.eclipse.papyrus.core.multidiagram.SashDiagramModelUtil;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -62,6 +62,11 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 *            The diagram to add to graphical model. This will be the diagram provided to {@link IEditorFactory#createEditorFor(org.eclipse.papyrus.backbone.IEditorContext, Object)}
 	 */
 	protected void addNewDiagram(String name, String type, EObject diagram) {
+		
+		// TODO Create a special node inside the sash model (di) instead of introducing 
+		// a dependence on notation.
+		// This implies to change the factory also.
+		// The special node creation should be done by methods from sash
 		// create di2node 
 		Diagram di2Diagram = NotationFactory.eINSTANCE.createDiagram();
 		di2Diagram.setVisible(true);
@@ -73,7 +78,8 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 		getDiResource().getContents().add(di2Diagram);
 
 		// Attach to sash in order to show it
-		SashDiagramModelUtil.openDiagramInCurrentFolder(getDiResource(), di2Diagram);
+		// Add the diagram as a page to the current sash folder
+		EditorUtils.getISashWindowsContentProvider().addPage(di2Diagram);
 	}
 
 	/**

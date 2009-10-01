@@ -35,7 +35,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
-import org.eclipse.papyrus.core.multidiagram.SashDiagramModelUtil;
 
 /**
  * ResourceSet Manager for UML and DI files, and also other loaded models.
@@ -201,11 +200,11 @@ public class DiResourceSet {
 		
 		// create the di resource URI
 		URI diUri =  getPlatformURI(newFile.getFullPath());
-		// Create the di Resource
+		// Create the di Resource for the sashcontainer
+		// The model will be automatically initialized by the SashContainer if needed (if it is empty).
+		// Normally the resource should contains models set by previous use from the SashContainer 
 		diResource = getResourceSet().createResource(diUri);
 
-		// Add the diagram to the opened diagrams
-		SashDiagramModelUtil.createSimpleSashWindowsRootModel(diResource);
 
 		IPath filenameWithoutExtension = newFile.getFullPath().removeFileExtension();
 		// if the uml model is not loaded, create resource
