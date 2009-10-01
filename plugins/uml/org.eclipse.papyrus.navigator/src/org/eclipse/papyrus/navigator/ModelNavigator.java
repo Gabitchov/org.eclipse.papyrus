@@ -32,6 +32,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.navigator.providers.IContentProvider;
@@ -326,7 +327,11 @@ public class ModelNavigator extends CommonNavigator implements
 					.getSelection();
 			Object element = selection.getFirstElement();
 			if (element instanceof Diagram) {
+				// fjcano #287943 :: handle a double click on a papyrus Diagram
 				handleDoubleClickOnDiagram((Diagram) element);
+			} else if (element instanceof org.eclipse.gmf.runtime.notation.Diagram) {
+				// fjcano #287943 :: handle a double click on a gmf Diagram
+				handleDoubleClickOnDiagram((org.eclipse.gmf.runtime.notation.Diagram) element);
 			} else if (element instanceof EObject) {
 				// Open SWT EEF Properties UI
 				// OpenWizardOnDoubleClick openWizardOnDoubleClick = new
@@ -338,27 +343,33 @@ public class ModelNavigator extends CommonNavigator implements
 		}
 	}
 
+	/**
+	 * Handle double click on a Papyrus Diagram.
+	 * 
+	 * @param diagram
+	 */
 	protected void handleDoubleClickOnDiagram(Diagram diagram) {
-		// BackboneContext backboneContext =
-		// NavigatorUtils.getBackboneContext();
-		// Resource diResource =
-		// backboneContext.getResourceSet().getDiResource();
-		// TODO synchronize with Cedric in order to understand how to open
-		// diagram with the new sash
-		// multi editor
-		// SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
-		// org.eclipse.gmf.runtime.notation.Diagram gmfDiagram=null;
-		// IWorkbenchPage page =
-		// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		// try {
-		// page.openEditor(getEditorInput(gmfDiagram),getEditorID());
-		// } catch (PartInitException e) {
-		// Activator.getDefault().getLog().log(new
-		// Status(IStatus.ERROR,Activator.PLUGIN_ID,
-		// "Can't open the Diagram Editor!"));
-		// }
+		// fjcano #287943 :: handle double click on a papyrus diagram
 		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
 				+ diagram);
+		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
+			EditorUtils.getIPageMngr().openPage(diagram);
+		}
+	}
+
+	/**
+	 * Handle double click on a GMF Diagram.
+	 * 
+	 * @param diagram
+	 */
+	protected void handleDoubleClickOnDiagram(
+			org.eclipse.gmf.runtime.notation.Diagram diagram) {
+		// fjcano #287943 :: handle double click on a gmf diagram
+		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
+				+ diagram);
+		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
+			EditorUtils.getIPageMngr().openPage(diagram);
+		}
 	}
 
 	/**
