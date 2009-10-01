@@ -21,12 +21,9 @@ import org.eclipse.draw2d.RectangleFigure;
 /**
  * A rectangular figure that supports compartment.
  */
-public class CompartmentFigure extends NodeNamedElementFigure {	
+public class CompartmentFigure extends NodeNamedElementFigure {
 
 	private Map<String, RectangleFigure> containerFigures;
-
-	private List<String> compartmentID;
-
 
 	/**
 	 * Constructor.
@@ -50,20 +47,15 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 
 		setLayoutManager(new CompartmentLayoutManager());
 		setOpaque(true);
-		compartmentID = compartmentFigure;
 		createContentPane(compartmentFigure);
 
 	}
-
-
 
 	/**
 	 * 
 	 * @param compartmentFigure
 	 */
 	protected void createContentPane(List<String> compartmentFigure) {
-
-
 		containerFigures = new HashMap<String, RectangleFigure>();
 
 		for (String id : compartmentFigure) {
@@ -77,7 +69,6 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 
 	}
 
-
 	/**
 	 * Get the RectangleFigure containing the wanted compartment.
 	 * 
@@ -89,5 +80,4 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 		return containerFigures.get(id);
 	}
 
-	
 }

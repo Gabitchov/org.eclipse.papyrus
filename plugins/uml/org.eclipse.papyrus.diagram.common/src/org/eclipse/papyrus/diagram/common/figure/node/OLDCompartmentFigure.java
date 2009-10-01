@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 
 /**
  * A rectangular figure that supports compartment.
+ * @deprecated use CompartmentFigure instead.
  */
 public class OLDCompartmentFigure extends NodeNamedElementFigure {	
 
