@@ -13,6 +13,8 @@ package org.eclipse.papyrus.wizards;
 import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -144,7 +146,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 							// Initialize Model Resource
 							Resource modelResource = diResourceSet.getModelResource();
 							if(modelResource != null){
-								initializeModelResource(modelResource, newFile.getName());	
+								IPath path = new Path(newFile.getName());
+								initializeModelResource(modelResource, path.removeFileExtension().toString());	
 							}
 						}
 					};
