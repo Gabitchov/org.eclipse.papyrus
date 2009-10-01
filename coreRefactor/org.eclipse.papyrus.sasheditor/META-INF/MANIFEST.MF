@@ -16,7 +16,6 @@ Export-Package: org.eclipse.papyrus.sasheditor.contentprovider,
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.sasheditor.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
  org.eclipse.gef,
  org.junit,
  org.eclipse.papyrus.sasheditor.di;bundle-version="0.7.0",
