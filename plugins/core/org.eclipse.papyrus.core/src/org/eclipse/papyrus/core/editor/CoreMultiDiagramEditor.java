@@ -507,6 +507,9 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
 		servicesRegistry.add(IEditorContextRegistry.class, 1, editorContextRegistry);
 		
+		// Add EditingDomain as service
+		servicesRegistry.add(TransactionalEditingDomain.class, 1, defaultContext.getTransactionalEditingDomain());
+		
 		// Create ContentProvider
 		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
 		// TODO : create appropriate Resource for the contentProvider, and pass it here.

@@ -179,6 +179,15 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		// Get the content provider if requested.
 		if (ISashWindowsContainer.class == adapter)
 			return sashContainer;
+		
+		// Get the content provider if requested.
+		if (DeveloperDebug.class == adapter)
+		{
+			if( developerDebug == null)
+				developerDebug = new DeveloperDebug();
+			
+			return developerDebug;
+		}
 
 		// Look in hierarchy
 		Object result = super.getAdapter(adapter);
@@ -209,5 +218,20 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	public void setFocus() {
 		sashContainer.setFocus();
 
+	}
+	
+	private DeveloperDebug developerDebug;
+	/**
+	 * A hack to be able to print the internal structure of SashContainer.
+	 * @author dumoulin
+	 *
+	 */
+	public class DeveloperDebug {
+		public void showSashWindowInfo() {
+			if(sashContainer instanceof SashWindowsContainer)
+			{
+			  ((SashWindowsContainer)sashContainer).showTilesStatus();
+			}
+		}
 	}
 }

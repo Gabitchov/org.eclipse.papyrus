@@ -330,7 +330,7 @@ public class SashWindowsEventsProvider {
 	{
 
 		/**
-		 * Call the appropriate methid on the listener.
+		 * Call the appropriate method on the listener.
 		 * @see org.eclipse.papyrus.sasheditor.editor.SashWindowsEventsProvider.ListenersList#propertyChanged(java.lang.Object, java.lang.Object)
 		 * @param listener
 		 * @param newPage
@@ -338,7 +338,14 @@ public class SashWindowsEventsProvider {
 		 */
 		@Override
 		public void propertyChanged(IPageChangedListener listener, IPage newPage) {
-			listener.pageChanged(newPage);
+			
+			try {
+				listener.pageChanged(newPage);
+			} catch (Exception e) {
+				// catch error in case a listener send an exception.
+				// Still show the exception for debug purpose
+				e.printStackTrace();
+			}
 			
 		}
 		

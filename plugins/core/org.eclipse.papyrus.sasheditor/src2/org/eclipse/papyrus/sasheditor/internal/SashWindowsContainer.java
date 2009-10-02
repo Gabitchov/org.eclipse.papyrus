@@ -359,7 +359,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Show the status of the different Tiles composing the sash system.
 	 * Used for debug purpose.
 	 */
-	protected void showTilesStatus()
+	public void showTilesStatus()
 	{
 		ShowPartStatusVisitor visitor = new ShowPartStatusVisitor();
 		rootPart.visit(visitor);
