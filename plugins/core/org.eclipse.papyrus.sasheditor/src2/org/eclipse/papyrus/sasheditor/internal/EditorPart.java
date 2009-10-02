@@ -80,21 +80,15 @@ public class EditorPart extends PagePart {
 //	protected TabFolderPart parent;
 
 	/**
-	 * Listen on mouse enter event.
-	 * Try to get an event indicating that the mouse enter over the editor.
-	 * This can be used to switch the active editor.
-	 * TODO This doesn't work yet.
+	 * Listener on editorPart IWorkbenchPartConstants.PROP_DIRTY changes.
+	 * 
 	 */
-	private Listener mouseEnterListener = new Listener() {
-
-		/**
-		 * (non-Javadoc)
-		 * 
-		 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
-		 */
-		public void handleEvent(Event event) {
-			Point globalPos = new Point(event.x, event.y);
-			System.out.println(this.getClass().getSimpleName() + ".handleEvent(" + eventName(event.type) + ", " + globalPos + ")");
+	private IPropertyListener editorPartListener = new IPropertyListener() {
+		
+		public void propertyChanged(Object source, int propId) {
+//			if( propId == IWorkbenchPartConstants.PROP_DIRTY)
+			// propagate the change (PROP_DIRTY generally). 
+			handlePropertyChange(propId);
 		}
 	};
 	
@@ -218,15 +212,8 @@ public class EditorPart extends PagePart {
 				Composite editorParent = new Composite(parentControl, getOrientation(editor));
 				editorParent.setLayout(new FillLayout());
 				editor.createPartControl(editorParent);
-				editor.addPropertyListener(new IPropertyListener() {
-
-					public void propertyChanged(Object source, int propertyId) {
-						EditorPart.this.handlePropertyChange(propertyId);
-					}
-				});
-				
-				// TODO test to be removed
-//				attachListeners(editorParent, false);
+				// attach listeners
+				attachListeners(editorParent, false);
 				return editorParent;
 	}
 	
@@ -244,7 +231,7 @@ public class EditorPart extends PagePart {
 //		theControl.addListener(SWT.MouseHover, mouseEnterListener);
 //		theControl.addListener(SWT.MouseUp, mouseEnterListener);
 //		theControl.addListener(SWT.MouseDown, mouseEnterListener);
-		theControl.addListener(SWT.Activate, mouseEnterListener);
+//		theControl.addListener(SWT.Activate, mouseEnterListener);
 		
 //		if (recursive && theControl instanceof Composite) {
 //			Composite composite = (Composite) theControl;
@@ -256,6 +243,8 @@ public class EditorPart extends PagePart {
 //				attachListeners(control, true);
 //			}
 //		}
+		// Listen on editor name change
+		editorPart.addPropertyListener(editorPartListener);
 	}
 
 	/**
@@ -268,7 +257,7 @@ public class EditorPart extends PagePart {
 //		theControl.removeListener(SWT.MouseHover, mouseEnterListener);
 //		theControl.removeListener(SWT.MouseUp, mouseEnterListener);
 //		theControl.removeListener(SWT.MouseDown, mouseEnterListener);
-		theControl.removeListener(SWT.Activate, mouseEnterListener);
+//		theControl.removeListener(SWT.Activate, mouseEnterListener);
 		
 //		if (recursive && theControl instanceof Composite) {
 //			Composite composite = (Composite) theControl;
@@ -280,6 +269,8 @@ public class EditorPart extends PagePart {
 //				detachListeners(control, false);
 //			}
 //		}
+		// Stop listening on editor name change
+		editorPart.removePropertyListener(editorPartListener);
 	}
 
 
@@ -298,7 +289,7 @@ public class EditorPart extends PagePart {
 	 *            the id of the property that changed
 	 */
 	private void handlePropertyChange(int propertyId) {
-		getSashWindowContainer().firePropertyChange(propertyId);
+		getSashWindowContainer().firePropertyChange(propertyId, editorPart, editorModel);
 	}
 
 	/**
