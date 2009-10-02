@@ -149,22 +149,6 @@
                id="org.eclipse.papyrus.navigator.dnd.dropAssistant">
             <possibleDropTargets></possibleDropTargets>
          </dropAssistant>
-         <actionProvider
-               class="org.eclipse.papyrus.navigator.actions.ElementInDiagramsActionProvider"
-               id="org.eclipse.papyrus.navigator.actions.ElementInDiagramsActionID">
-            <enablement>
-               <and>
-                  <adapt
-                        type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
-                  <not>
-                     <adapt
-                           type="org.eclipse.gmf.runtime.notation.View">
-                     </adapt>
-                  </not>
-               </and>
-            </enablement>
-         </actionProvider>
       </navigatorContent>
       <commonFilter
             activeByDefault="false"
