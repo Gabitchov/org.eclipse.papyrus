@@ -45,6 +45,11 @@ public class DiagramActionProvider extends AbstractSubmenuActionProvider {
 			// Create Delete Diagram action
 			CloseDiagramAction closeDiagramAction = new CloseDiagramAction(pageMngr, diagram);
 			menu.add(closeDiagramAction);
+			
+			// Create Close all diagrams action
+			// fjcano #287948 :: close all diagrams action
+			CloseAllDiagramsAction closeAllDiagramsAction = new CloseAllDiagramsAction(pageMngr);
+			menu.add(closeAllDiagramsAction);
 
 			// Create Delete Diagram action
 			DeleteDiagramAction deleteDiagramAction = new DeleteDiagramAction(pageMngr, diagram);
