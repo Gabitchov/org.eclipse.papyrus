@@ -80,6 +80,9 @@ public class ModelNavigator extends CommonNavigator implements
 	/** Active {@link IEditorPart}. */
 	IEditorPart editorPart = null;
 
+	/**
+	 * The {@link IPropertySheetPage} this model exploer will use.
+	 */
 	IPropertySheetPage propertySheetPage = null;
 
 	// //
@@ -99,7 +102,8 @@ public class ModelNavigator extends CommonNavigator implements
 	 * available via the ContentProviders, a new and direct way of getting the
 	 * Saveables is implemented here.
 	 * 
-	 * @author fjcano
+	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano
+	 *         Muñoz</a>
 	 */
 	@Override
 	public Saveable[] getSaveables() {
@@ -114,7 +118,8 @@ public class ModelNavigator extends CommonNavigator implements
 	 * available via the ContentProviders, a new and direct way of getting the
 	 * Saveables is implemented here.
 	 * 
-	 * @author fjcano
+	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano
+	 *         Muñoz</a>
 	 */
 	@Override
 	public Saveable[] getActiveSaveables() {
@@ -125,9 +130,7 @@ public class ModelNavigator extends CommonNavigator implements
 	}
 
 	/**
-	 * An update for subclasses to implement. Is called after activate() and
-	 * deactivate().
-	 * 
+	 * Method to perform all necessary updates.
 	 */
 	public void doUpdate() {
 		// fjcano #290424 :: allow saving from the Model Explorer
@@ -211,7 +214,8 @@ public class ModelNavigator extends CommonNavigator implements
 	};
 
 	/**
-	 * <ResourseSetListener> to listen and react to changes in the resource set.
+	 * {@link ResourceSetListener} to listen and react to changes in the
+	 * resource set.
 	 */
 	ResourceSetListener resourceSetListener = new ResourceSetListenerImpl() {
 
@@ -225,7 +229,6 @@ public class ModelNavigator extends CommonNavigator implements
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
 		// Refresh global viewer
 		refreshViewer();
-
 		// Notify all content providers
 		List<Notification> notifications = event.getNotifications();
 		int i = 0;
@@ -234,10 +237,6 @@ public class ModelNavigator extends CommonNavigator implements
 			Object n = notifications.get(i);
 			if (n instanceof Notification) {
 				Notification notification = (Notification) n;
-				// if (notification.getNotifier() instanceof EObject) {
-				// EObject notifier = (EObject) notification.getNotifier();
-				// Iterator<?> it =
-				// getNavigatorContentService().findRootContentExtensions(notifier).iterator();
 				Iterator<?> it = getNavigatorContentService()
 						.findRootContentExtensions(notification.getNotifier())
 						.iterator();
@@ -253,12 +252,16 @@ public class ModelNavigator extends CommonNavigator implements
 						}
 					}
 				}
-				// }
 			}
 			i++;
 		}
 	}
 
+	/**
+	 * A new {@link IWorkbenchPart} has been activated, refresh.
+	 * 
+	 * @param partRef
+	 */
 	private void handlePartActivated(IWorkbenchPartReference partRef) {
 		IWorkbenchPart part = partRef.getPart(false);
 		if (part instanceof IEditorPart) {
@@ -266,6 +269,11 @@ public class ModelNavigator extends CommonNavigator implements
 		}
 	}
 
+	/**
+	 * An {@link IWorkbenchPart} has been deactivated, refresh.
+	 * 
+	 * @param partRef
+	 */
 	private void handlePartDeactivated(IWorkbenchPartReference partRef) {
 		IWorkbenchPart part = partRef.getPart(false);
 		if (editorPart != null && editorPart.equals(part)) {
@@ -273,6 +281,9 @@ public class ModelNavigator extends CommonNavigator implements
 		}
 	}
 
+	/**
+	 * Activate the Model Explorer.
+	 */
 	public void activate() {
 		this.editorPart = NavigatorUtils.getMultiDiagramEditor();
 		this.editingDomain = NavigatorUtils.getTransactionalEditingDomain();
@@ -284,6 +295,9 @@ public class ModelNavigator extends CommonNavigator implements
 		doUpdate();
 	}
 
+	/**
+	 * Deactivate the Model Explorer.
+	 */
 	public void deactivate() {
 		editorPart = null;
 		if (editingDomain != null) {
@@ -297,6 +311,10 @@ public class ModelNavigator extends CommonNavigator implements
 		doUpdate();
 	}
 
+	/**
+	 * Adapts to {@link IPropertySheetPage}. Other adaptations are handled by
+	 * superclasses.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Object getAdapter(Class adapter) {
@@ -316,10 +334,14 @@ public class ModelNavigator extends CommonNavigator implements
 		}
 	}
 
+	/**
+	 * Adds an {@link IPartListener2} and an {@link ISelectionListener}.
+	 */
 	@Override
 	public void init(IViewSite site) throws PartInitException {
 		super.init(site);
 		page = site.getPage();
+		// IPartListener to listen to IWorkbenchParts' life cycle.
 		page.addPartListener(new IPartListener2() {
 
 			public void partActivated(IWorkbenchPartReference partRef) {
@@ -352,8 +374,8 @@ public class ModelNavigator extends CommonNavigator implements
 			}
 
 		});
+		// an ISelectionListener to react to workbench selection changes.
 		page.addSelectionListener(new ISelectionListener() {
-
 			public void selectionChanged(IWorkbenchPart part,
 					ISelection selection) {
 				handleSelectionChangedFromDiagramEditor(part, selection);
@@ -362,25 +384,16 @@ public class ModelNavigator extends CommonNavigator implements
 		activate();
 	}
 
+	/**
+	 * Retrieves the {@link IPropertySheetPage} that his Model Explorer uses.
+	 * 
+	 * @return
+	 */
 	private IPropertySheetPage getPropertySheetPage() {
 		final IMultiDiagramEditor multiDiagramEditor = NavigatorUtils
 				.getMultiDiagramEditor();
 		if (multiDiagramEditor != null) {
 			if (propertySheetPage == null) {
-				// An horrible properties view
-				// BasicCommandStack commandStack = new BasicCommandStack();
-				// ComposedAdapterFactory adapterFactory =
-				// UMLComposedAdapterFactory.getAdapterFactory();
-				// AdapterFactoryEditingDomain adapterFactoryEditingDomain = new
-				// AdapterFactoryEditingDomain(adapterFactory, commandStack, new
-				// HashMap<Resource,
-				// Boolean>());
-				// this.propertySheetPage = new
-				// ExtendedPropertySheetPage(adapterFactoryEditingDomain);
-				// ((ExtendedPropertySheetPage)
-				// this.propertySheetPage).setPropertySourceProvider(new
-				// AdapterFactoryContentProvider(adapterFactory));
-
 				// An 'EEF' properties view
 				if (multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
 					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor) multiDiagramEditor;
@@ -393,6 +406,10 @@ public class ModelNavigator extends CommonNavigator implements
 		return null;
 	}
 
+	/**
+	 * Adds an {@link ISelectionChangedListener} to this Model Explorer's viewer
+	 * to react to selection changes in the Model Explorer.
+	 */
 	@Override
 	protected CommonViewer createCommonViewer(Composite parent) {
 		CommonViewer commonViewer = super.createCommonViewer(parent);
@@ -409,6 +426,12 @@ public class ModelNavigator extends CommonNavigator implements
 	// optimize selection handling
 	private boolean handlingSelectionChanged = false;
 
+	/**
+	 * Handle a selection change in the editor.
+	 * 
+	 * @param part
+	 * @param selection
+	 */
 	protected void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part,
 			ISelection selection) {
 		// Handle selection from diagram editor
@@ -425,6 +448,11 @@ public class ModelNavigator extends CommonNavigator implements
 		}
 	}
 
+	/**
+	 * Handle a selection change in the Model Explorer's viewer.
+	 * 
+	 * @param event
+	 */
 	protected void handleSelectionChangedFromCommonViewer(
 			SelectionChangedEvent event) {
 		// Handle selection from common viewer
@@ -458,6 +486,9 @@ public class ModelNavigator extends CommonNavigator implements
 		}
 	}
 
+	/**
+	 * Handle a double click on an element in the Model Explorer
+	 */
 	@Override
 	protected void handleDoubleClick(DoubleClickEvent anEvent) {
 		IAction openHandler = getViewSite().getActionBars()
