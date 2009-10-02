@@ -12,11 +12,12 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.activity;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.diagram.activity.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -31,7 +32,7 @@ public class CreateActivityDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected String getDiagramName() {
+	protected String getDefaultDiagramName() {
 		return openDiagramNameDialog("ActivityDiagram");
 	}
 
@@ -55,10 +56,15 @@ public class CreateActivityDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void initializeModel(Element umlOwner) {
+	protected void initializeModel(EObject umlOwner) {
 		if (umlOwner instanceof Package) {
 			((org.eclipse.uml2.uml.Package) umlOwner).createPackagedElement("Activity", UMLPackage.eINSTANCE.getActivity());
 		}
+	}
+
+	@Override
+	protected EObject createRootElement() {
+		return UMLFactory.eINSTANCE.createModel();
 	}
 
 }
