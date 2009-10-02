@@ -31,12 +31,14 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 /**
  * Utility method for Model Navigator.
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  **/
 public class NavigatorUtils {
 
@@ -303,5 +305,29 @@ public class NavigatorUtils {
 		if (pageManager != null) {
 			pageManager.openPage(diagram);
 		}
+	}
+
+	/**
+	 * Opens a view part in the workbench with the specified ID.
+	 * 
+	 * @param viewPartID
+	 */
+	public static void openViewPart(String viewPartID) {
+		if (viewPartID == null) {
+			return;
+		}
+		try {
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+					.getActivePage().showView(viewPartID);
+		} catch (PartInitException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Opens the property sheets view.
+	 */
+	public static void openPropertySheetsView() {
+		openViewPart("org.eclipse.ui.views.PropertySheet");
 	}
 }

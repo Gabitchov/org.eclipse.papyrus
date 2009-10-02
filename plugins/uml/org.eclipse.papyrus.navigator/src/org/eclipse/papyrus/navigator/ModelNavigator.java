@@ -507,9 +507,7 @@ public class ModelNavigator extends CommonNavigator implements
 				handleDoubleClickOnDiagram((org.eclipse.gmf.runtime.notation.Diagram) element);
 			} else if (element instanceof EObject) {
 				// Open SWT EEF Properties UI
-				// OpenWizardOnDoubleClick openWizardOnDoubleClick = new
-				// OpenWizardOnDoubleClick(this.editingDomain);
-				// openWizardOnDoubleClick.doubleClick(anEvent);
+				NavigatorUtils.openPropertySheetsView();
 			} else {
 				super.handleDoubleClick(anEvent);
 			}
