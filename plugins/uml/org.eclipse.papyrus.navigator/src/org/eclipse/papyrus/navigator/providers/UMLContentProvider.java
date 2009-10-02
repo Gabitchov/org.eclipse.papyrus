@@ -183,7 +183,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 			this.diResourceSet = getDiResourceSet();
 			pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
 
-			Resource modelResource = diResourceSet.getUMLModelResource();
+			Resource modelResource = diResourceSet.getModelResource();
 			List<Object> children = new ArrayList<Object>(modelResource
 					.getContents());
 			AdditionalResources resources = new AdditionalResources(

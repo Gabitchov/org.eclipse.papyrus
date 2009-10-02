@@ -51,7 +51,7 @@ public class AdditionalResources {
 		for (Resource resource : diResourceSet.getResourceSet().getResources()) {
 			// ignore di, notation and domain resources
 			if (resource == diResourceSet.getDiResource() || resource == diResourceSet.getNotationResource()
-					|| resource == diResourceSet.getUMLModelResource()) {
+					|| resource == diResourceSet.getModelResource()) {
 				continue;
 			}
 			additionnalResources.add(resource);

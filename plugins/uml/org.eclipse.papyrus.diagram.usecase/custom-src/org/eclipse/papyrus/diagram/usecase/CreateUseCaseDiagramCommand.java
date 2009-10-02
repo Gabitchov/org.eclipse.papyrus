@@ -10,10 +10,12 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.usecase;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Define a command to create a new UseCase Diagram. This command is used by all UI (toolbar,
@@ -34,8 +36,13 @@ public class CreateUseCaseDiagramCommand extends AbstractPapyrusGmfCreateDiagram
 	}
 
 	@Override
-	protected String getDiagramName() {
+	protected String getDefaultDiagramName() {
 		return super.openDiagramNameDialog("UseCaseDiagram");
+	}
+
+	@Override
+	protected EObject createRootElement() {
+		return UMLFactory.eINSTANCE.createModel();
 	}
 
 }

@@ -72,6 +72,8 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 public class ModelNavigator extends CommonNavigator implements
 		IEditingDomainProvider {
 
+	public final static String ID_MODELNAVIGATOR = "org.eclipse.papyrus.navigator.modelExplorer"; 
+	
 	IWorkbenchPage page = null;
 
 	/** {@link TransactionalEditingDomain} used to perform actions and commands. */

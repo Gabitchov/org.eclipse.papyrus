@@ -154,5 +154,19 @@
          realization="org.eclipse.papyrus.diagram.common.editparts.PapyrusStereotypeListener">
    </listener>
 </extension>
+<extension
+      point="org.eclipse.ui.newWizards">
+   <wizard
+         category="org.eclipse.papyrus.wizards.category"
+         class="org.eclipse.papyrus.diagram.common.wizards.CreateUMLModelWizard"
+         finalPerspective="org.eclipse.papyrus.core.perspective"
+         icon="icons/papyrus/PapyrusLogo16x16.gif"
+         id="org.eclipse.papyrus.wizards.createumlmodel"
+         name="Create a new model">
+      <selection
+            class="org.eclipse.core.resources.IResource">
+      </selection>
+   </wizard>
+</extension>
 
 </plugin>

@@ -14,9 +14,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Define a command to create a new Class Diagram. This command is used by all UI (toolbar, outline,
@@ -27,11 +29,14 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
  */
 public class CreateClassDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected String getDiagramName() {
+	protected EObject createRootElement() {
+		return UMLFactory.eINSTANCE.createModel();
+
+	}
+
+	@Override
+	protected String getDefaultDiagramName() {
 		return openDiagramNameDialog("ClassDiagram");
 	}
 
