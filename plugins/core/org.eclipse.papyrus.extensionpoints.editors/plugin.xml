@@ -16,7 +16,7 @@
          </menu>
          <action
                class="org.eclipse.papyrus.extensionpoints.editors.ui.GMFEmbeddedEditorActionDelegate"
-               icon="icons/PapyrusLogo16x16.gif"
+               icon="icons/Papyrus.gif"
                id="org.eclipse.papyrus.extensionpoints.editors.editelement"
                label="Edit Element"
                menubarPath="additions/papyrus.DirectEdit">

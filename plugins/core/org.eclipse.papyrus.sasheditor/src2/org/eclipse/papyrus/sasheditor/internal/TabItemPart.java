@@ -26,7 +26,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * A controller associated to a tabitem in a tabfolder. This controller contains a reference to
  * a PagePart.
- * This class is used exclusively by the TabFolderPart. It should be not used from elsewhere.
+ * This class is used exclusively by the TabFolderPart. It shoulb be not used from elsewhere.
  * 
  * @author dumoulin
  * 
@@ -39,7 +39,7 @@ public class TabItemPart {
 //	protected Object model;
 
 	/**
-	 * The child associated to this tabitem. The child is rendered by the tabitem.
+	 * The child assocciated to this tabitem. The child is rendered by the tabitem.
 	 */
 	protected PagePart childPart;
 

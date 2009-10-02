@@ -45,9 +45,7 @@ public class SashWindowsEventsProvider {
 	/** Currently active page, or null if no container is actif */
 	private IPage activePage = null;
 
-	/**
-	 * Listener on Eclipse Part changes
-	 */
+	
 	private IPartListener workbenchPartListener = new IPartListener(){
 	
 		public void partOpened(IWorkbenchPart part) {
@@ -60,11 +58,11 @@ public class SashWindowsEventsProvider {
 		}
 	
 		public void partClosed(IWorkbenchPart part) {
-//			System.out.println("partClosed("+ part +")");
+//			System.out.println("("+ part +")");
 		}
 	
 		public void partBroughtToTop(IWorkbenchPart part) {
-//			System.out.println("partBroughtToTop("+ part +")");
+//			System.out.println("partClosed("+ part +")");
 		}
 	
 		public void partActivated(IWorkbenchPart part) {
@@ -148,8 +146,8 @@ public class SashWindowsEventsProvider {
 	}
 	
 	/**
-	 * Register a listener listening on editor change.
-	 * Page can be acquired with : 
+	 * Register a listener listeneing on editor change.
+	 * Page can be acuired with : 
 	 * IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 	 */
 	private void registerEditorChangedListener(IWorkbenchPage page) {

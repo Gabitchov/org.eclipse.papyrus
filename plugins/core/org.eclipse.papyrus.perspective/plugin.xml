@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.eclipse.papyrus.perspective.PapyrusPerspective"
+            icon="icons/PapyrusLogo16x16.gif"
+            id="org.eclipse.papyrus.core.perspective"
+            name="Papyrus">
+      </perspective>
+   </extension>
+
+</plugin>

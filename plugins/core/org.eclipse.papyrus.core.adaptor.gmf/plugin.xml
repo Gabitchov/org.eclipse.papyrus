@@ -3,11 +3,6 @@
 
 <plugin>
    <extension-point id="nestedEditor" name="NestedEditor" schema="schema/nestedEditor.exsd"/>
-   
-   <extension point="org.eclipse.core.runtime.preferences">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.uml2.diagram.clazz.preferences.DiagramPreferenceInitializer"/>
-   </extension>
 
    <extension point="org.eclipse.team.core.fileTypes">
       <?gmfgen generated="true"?>
@@ -25,21 +20,7 @@
       </parser>
    </extension>
 
-   <extension point="org.eclipse.ui.editors">
-      <?gmfgen generated="true"?>
-   </extension>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <?gmfgen generated="true"?>
-  	  <wizard
-  	     name="%newWizardName"
-  	     icon="icons/obj16/UMLDiagramFile.gif"
-  	     category="org.eclipse.ui.Examples"
-  	     class="org.eclipse.uml2.diagram.clazz.part.UMLCreationWizard"
-  	     id="org.eclipse.uml2.diagram.clazz.part.UMLCreationWizardID">
-  	  	 <description>%newWizardDesc</description>  
-      </wizard>
-   </extension>
 <extension
       point="org.eclipse.papyrus.core.papyrusDiagram">
    <editorContext

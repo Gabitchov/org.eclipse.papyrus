@@ -155,11 +155,7 @@ public class SelectRootElementPage extends WizardPage {
 	}
 
 	protected boolean validatePage() {
-		if (selectedModelElement == null) {
-			return false;
-		} else {
-			return true;
-		}
+		return selectedModelElement != null;
 	}
 
 	protected ComposedAdapterFactory createAdapterFactory() {

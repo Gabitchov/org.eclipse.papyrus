@@ -17,8 +17,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.papyrus.core.extension.BadNameExtensionException;
 import org.eclipse.papyrus.core.extension.DescriptorExtensionFactory;
 import org.eclipse.papyrus.core.extension.ExtensionException;
-import org.eclipse.papyrus.core.utils.IDebugChannel;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**

@@ -4,26 +4,20 @@
 package org.eclipse.papyrus.core.utils;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
-import org.eclipse.papyrus.sasheditor.editor.IPage;
-import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
 
 /**
- * Set of utility methods for the CoreEditor.
+ * St of utility methods for the CoreEditor.
  * @author dumoulin
  */
 public class EditorUtils {
@@ -76,24 +70,23 @@ public class EditorUtils {
 	 * @return
 	 * @throws IllegalStateException If there is no ActiveEditor (generally during editor initializing).
 	 */
-	static public IEditorPart getWorkbenchActiveEditor() throws IllegalStateException {
+	static private IEditorPart getWorkbenchActiveEditor() throws IllegalStateException {
 		// Lookup ServiceRegistry
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		if(page==null)
-			throw new IllegalStateException("No Active Page can be found.");
+			throw new IllegalStateException("No Active Page can be found. So no Service Registry can be returned.");
 		IEditorPart editorPart = page.getActiveEditor();
 		if(editorPart==null)
-			throw new IllegalStateException("No Active Editor can be found.");
+			throw new IllegalStateException("No Active Editor can be found. So no Service Registry can be returned.");
 		if( ! (editorPart instanceof CoreMultiDiagramEditor) )
-			throw new IllegalStateException("No CoreMultiDiagramEditor can be found.");
+			throw new IllegalStateException("No CoreMultiDiagramEditor  can be found. So no Service Registry can be returned.");
 			
 		return editorPart;
 		
 	}
 
 	/**
-	 * Create an instance of IPageMngr acting on the provided resource.
-	 * This instance is suitable to add, remove, close or open diagrams.	 
+	 * Lookup the IPageMngr from the provided resource. Create it if not found.
 	 * @param diResource
 	 * @return The non transactional implementation of IPageMngr
 	 */
@@ -102,8 +95,7 @@ public class EditorUtils {
 	}
 
 	/**
-	 * Create an instance of IPageMngr acting on the provided resource.
-	 * This instance is suitable to add, remove, close or open diagrams.	 
+	 * Lookup the IPageMngr from the provided resource. Create it if not found.
 	 * @param diResource
 	 * @return The transactional implementation of IPageMngr
 	 */
@@ -112,74 +104,4 @@ public class EditorUtils {
 		
 	}
 
-	/**
-	 * Lookup the currently active Diagram from the Papyrus editor. Return the current Diagram
-	 * or null if none is active.
-	 * TODO This method introduce dependency on GMF. It can be moved to a GMF plugin.
-	 * @return
-	 */
-	public static Diagram lookupEditorActiveDiagram()
-	{
-		// First, lookup the main editor. 
-        IEditorPart editorPart = getWorkbenchActiveEditor();
-        // Get the sashwindow container
-        ISashWindowsContainer container = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
- 
-        // Get the active page within the sashcontainer
-        IEditorPart activeEditor = container.getActiveEditor();
-        // Check if it is a GMF DiagramEditor
-        if( activeEditor instanceof DiagramEditor)
-        {
-        	DiagramEditor editor = (DiagramEditor)activeEditor;
-        	return editor.getDiagram();
-        }
-        
-        // Not found
-        return null;
-		
-	}
-	
-	/**
-	 * Lookup the currently active IEditor in the SashSystem. 
-	 * If the currently eclipse active editor doesn't contains a {@link ISashWindowsContainer}, return null.
-	 * If the current SashSystem page is not a IEditor, return null.
-	 * @return
-	 * TODO : move in a SashUtils class inside Sash ?
-	 */
-	public static IEditorPart lookupSashSystemActiveIEditor()
-	{
-		// First, lookup the main editor. 
-        IEditorPart editorPart = getWorkbenchActiveEditor();
-        if(editorPart == null)
-        	return null;
-        // Get the sashwindow container
-        ISashWindowsContainer container = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
-        if( container == null)
-        	return null;
-        
-        // Get the active page within the sashcontainer
-        return container.getActiveEditor();
-	}
-	
-	/**
-	 * Lookup the currently active {@link IPage} in the SashSystem. 
-	 * If the currently eclipse active editor doesn't contains a {@link ISashWindowsContainer}, return null.
-	 * If the current SashSystem page is not a IEditor, return null.
-	 * @return
-	 * TODO : move in a SashUtils class inside Sash ?
-	 */
-	public static IPage lookupSashSystemActivePage()
-	{
-		// First, lookup the main editor. 
-        IEditorPart editorPart = getWorkbenchActiveEditor();
-        if(editorPart == null)
-        	return null;
-        // Get the sashwindow container
-        ISashWindowsContainer container = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
-        if( container == null)
-        	return null;
-        
-        // Get the active page within the sashcontainer
-        return container.getActiveSashWindowsPage();
-	}
 }

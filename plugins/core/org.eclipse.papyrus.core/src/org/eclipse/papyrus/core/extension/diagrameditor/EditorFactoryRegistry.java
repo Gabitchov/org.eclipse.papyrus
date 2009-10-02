@@ -28,9 +28,6 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
-import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 

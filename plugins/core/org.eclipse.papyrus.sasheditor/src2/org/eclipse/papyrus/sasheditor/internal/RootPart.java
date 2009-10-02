@@ -66,7 +66,7 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#dispose()
+	 * Dispose this part.
 	 */
 	public void dispose() {
 		if(child != null)
@@ -74,7 +74,7 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getControl()
+	 * Get control associated to this part.
 	 */
 	public Composite getControl() {
 		return container;
@@ -129,9 +129,8 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 	}
 
 	/**
-	 * Synchronize the
-	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#synchronize2(org.eclipse.papyrus.sasheditor.sash.PartMap)
+	 * Synchronize the part and its children.
+	 * @param partMap
 	 */
 	public void synchronize2(PartLists partMap) {
 
@@ -202,7 +201,8 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#fillPartMap(org.eclipse.papyrus.sasheditor.sash.PartMap)
+	 * Fill partMap with the children.
+	 * @param partMap
 	 */
 	public void fillPartMap(PartLists partMap) {
 		if(child != null)
@@ -212,7 +212,6 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 
 	/**
 	 * Find The AbstractPart under the specified position.
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#findPart(org.eclipse.swt.graphics.Point)
 	 */
 	public AbstractPart findPart(Point toFind) {
 		if(child != null)
@@ -237,7 +236,7 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 //	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#findPart(java.lang.Object)
+	 * 
 	 */
 	public AbstractPart findPart(Object control) {
 		if(child!=null)
@@ -256,21 +255,26 @@ public class RootPart extends AbstractPart implements IPanelParent  {
 	/**
 	 * Do nothing. This node can't be orphaned
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#orphan()
 	 */
 	public void orphan() {
 		// Do nothing. This node can't be orphaned
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#isOrphaned()
+	 * Always return false. This Part can't be orphaned.
+	 * @see org.eclipse.papyrus.sasheditor.internal.AbstractPart#isOrphaned()
+	 *
+	 * @return
 	 */
 	public boolean isOrphaned() {
 		return false;
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getGarbageState()
+	 * Get the Garbage state.
+	 * @see org.eclipse.papyrus.sasheditor.internal.AbstractPart#getGarbageState()
+	 *
+	 * @return
 	 */
 	public GarbageState getGarbageState() {
 		return GarbageState.UNVISITED;

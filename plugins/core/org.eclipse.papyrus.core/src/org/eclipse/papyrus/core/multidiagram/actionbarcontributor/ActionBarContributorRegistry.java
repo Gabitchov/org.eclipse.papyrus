@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.core.multidiagram.actionbarcontributor;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,16 +24,14 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
-import org.eclipse.papyrus.sasheditor.Activator;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**

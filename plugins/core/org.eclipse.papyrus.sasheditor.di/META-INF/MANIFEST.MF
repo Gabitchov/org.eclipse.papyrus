@@ -10,7 +10,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.sashwindows.di,
  org.eclipse.papyrus.sashwindows.di.impl,
  org.eclipse.papyrus.sashwindows.di.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.swt;bundle-version="3.5.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy

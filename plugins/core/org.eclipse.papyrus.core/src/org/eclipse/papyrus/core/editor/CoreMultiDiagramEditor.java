@@ -25,8 +25,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -40,10 +38,10 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.Activator;
-import org.eclipse.papyrus.core.IPapyrusUIConstants;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.core.extension.diagrameditor.MultiDiagramException;
 import org.eclipse.papyrus.core.extension.editorcontext.EditorContextRegistry;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
@@ -58,20 +56,14 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
-import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramEditorGefDelegate;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
-import org.eclipse.papyrus.sasheditor.gef.SelectionSynchronizer;
-import org.eclipse.papyrus.sasheditor.multipage.editor.MultiPageEditor;
+import org.eclipse.papyrus.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.EditorActionBarContributor;
@@ -125,10 +117,6 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	 */
 	private BackboneContext defaultContext;
 
-	/**
-	 * Diagram notifier notifying diagram CRUD events.
-	 */
-	private DiagramNotifier diagramNotifier;
 
 	/**
 	 * 
@@ -215,7 +203,6 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	/**
 	 * Get the EditorActionBarContributor that should be associated with the editor of the specified model.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.IMultiEditorNestedPartManager#getActionBarContributor(java.lang.Object)
 	 * @param editorModel
 	 * @return
 	 * @throws MultiDiagramException
@@ -464,10 +451,10 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 			return gefAdaptorDelegate.getActionRegistry();
 		}
 
-		// GEF diagram requirements
-		if (adapter == SelectionSynchronizer.class) {
-			return gefAdaptorDelegate.getSelectionSynchronizer();
-		}
+//		// GEF diagram requirements
+//		if (adapter == SelectionSynchronizer.class) {
+//			return gefAdaptorDelegate.getSelectionSynchronizer();
+//		}
 
 		// TODO : following code is GMF dependant. It should be moved to adapter
 		// Do we really need it? Who use it ?
@@ -505,7 +492,6 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		// Load resources
 		IFile file = ((IFileEditorInput) input).getFile();
 		defaultContext.getResourceSet().loadResources(file);
-		diagramNotifier = defaultContext.createDiagramNotifier();
 
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
@@ -523,6 +509,8 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		
 		// Create ContentProvider
 		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
+		// TODO : create appropriate Resource for the contentProvider, and pass it here.
+		// This will allow to remove the old sash stuff.
 		setContentProvider( createPageProvider(pageModelRegistry, defaultContext.getResourceSet().getDiResource(), defaultContext.getTransactionalEditingDomain()));
 		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
 		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
@@ -540,30 +528,26 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	@Override
 	protected void activate() {
 		super.activate();
-		// Start listening on diagram CRUD
-		diagramNotifier.addListener(diagramChangeListener);
 
 		// Show the model Explorer View
 		// TODO Use the extension mechanism ?
-		try {
-			if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
-				if (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null) {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
-				}
-			}
-		} catch (PartInitException e) {
-			String message = "Error while  showing the Model Explorer view." + e.getMessage();
-			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
-			Activator.getDefault().getLog().log(status);
-//			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
-		}
+//		try {
+//			if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
+//				if (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null) {
+//					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+//				}
+//			}
+//		} catch (PartInitException e) {
+//			String message = "Error while  showing the Model Explorer view." + e.getMessage();
+//			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
+//			Activator.getDefault().getLog().log(status);
+////			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
+//		}
 
 	}
 
 	@Override
 	protected void deactivate() {
-		// Stop listening on diagrams CRUD
-		diagramNotifier.removeListener(diagramChangeListener);
 		super.deactivate();
 	}
 
@@ -738,8 +722,10 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 			return ((DiagramEditor) activeEditor).getDiagramEditPart();
 		} else {
 			// This case should never happen.
-			throw new UnsupportedOperationException("Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from " + activeEditor.getTitle() + ", "
-					+ activeEditor);
+//			throw new UnsupportedOperationException("Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from " + activeEditor.getTitle() + ", "
+//					+ activeEditor);
+			// Return null, as the GMF runtime now support it (since 093009)
+			return null;
 		}
 	}
 

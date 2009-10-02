@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.ExtensionException;
@@ -28,7 +29,6 @@ import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
-import org.eclipse.papyrus.sasheditor.Activator;
 
 /**
  * Registry containing registered EditorContext. EditorContexts can be registered by using Eclipse extension.

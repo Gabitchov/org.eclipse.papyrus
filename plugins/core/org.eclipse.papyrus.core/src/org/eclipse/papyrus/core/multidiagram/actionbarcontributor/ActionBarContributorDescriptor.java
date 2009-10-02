@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.core.multidiagram.actionbarcontributor;
 
 import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**

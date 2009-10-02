@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.adaptor.gmf;
 
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
@@ -28,11 +28,12 @@ import org.eclipse.ui.IEditorInput;
  */
 public class GmfEditorContext extends AbstractEditorContext {
 
-	/** ID used to identify the GmfContext. This ID is used to retrieve the context from
-	 * the factory, and to register it in the factory (from extension point in plugin.xml).
+	/**
+	 * ID used to identify the GmfContext. This ID is used to retrieve the context from the factory,
+	 * and to register it in the factory (from extension point in plugin.xml).
 	 */
-	static public String GMF_CONTEXT_ID = "com.cea.papyrus.gmf.editor.context";
-	
+	static public String GMF_CONTEXT_ID = "com.cea.papyrus.gmf.editor.context"; //$NON-NLS-1$
+
 	/**
 	 * The document provider used by GMF.
 	 */
@@ -43,7 +44,8 @@ public class GmfEditorContext extends AbstractEditorContext {
 	 */
 	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
 		super.init(multiEditor);
-		documentProvider = new GmfMultiDiagramDocumentProvider(multiEditor.getDefaultContext().getTransactionalEditingDomain());
+		documentProvider = new GmfMultiDiagramDocumentProvider(multiEditor.getDefaultContext()
+				.getTransactionalEditingDomain());
 	}
 
 	/**

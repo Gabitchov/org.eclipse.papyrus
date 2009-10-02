@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.adaptor.gmf;
 
 import java.util.ArrayList;
@@ -32,9 +32,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.osgi.framework.BundleContext;
-
 
 /**
  * @generated
@@ -60,11 +58,6 @@ public class Activator extends AbstractUIPlugin {
 	 * @generated
 	 */
 	private ComposedAdapterFactory adapterFactory;
-
-	/**
-	 * @generated
-	 */
-	private GmfMultiDiagramDocumentProvider documentProvider;
 
 	/**
 	 * @generated
@@ -104,7 +97,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
 		List factories = new ArrayList();
-//		fillItemProviderFactories(factories);
+		// fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
 
@@ -112,7 +105,6 @@ public class Activator extends AbstractUIPlugin {
 	 * @generated
 	 */
 	protected void fillItemProviderFactoriesGen(List factories) {
-		factories.add(new UMLItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());
@@ -120,13 +112,14 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Use alternative UMLItemProviderAdapterFactory insteadof UMLItemProviderAdapterFactory
+	 * 
 	 * @see org.eclipse.emf.edit.provider.ComposedAdapterFactory#getFactoryForTypes(java.util.Collection)
 	 * @generated NOT
 	 */
-//	protected void fillItemProviderFactories(List factories) {
-//		factories.add(new AlternativeUMLItemProviderAdapterFactory(getPreferenceStore()));
-//		fillItemProviderFactoriesGen(factories);
-//	}
+	// protected void fillItemProviderFactories(List factories) {
+	// factories.add(new AlternativeUMLItemProviderAdapterFactory(getPreferenceStore()));
+	// fillItemProviderFactoriesGen(factories);
+	// }
 
 	/**
 	 * @generated
@@ -147,11 +140,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
+	 * Returns an image descriptor for the image file at the given plug-in relative path.
+	 * 
 	 * @generated
-	 * @param path the path
+	 * @param path
+	 *            the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -159,18 +152,21 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Respects images residing in any plug-in. If path is relative,
-	 * then this bundle is looked up for the image, otherwise, for absolute 
-	 * path, first segment is taken as id of plug-in with image
-	 *
+	 * Respects images residing in any plug-in. If path is relative, then this bundle is looked up
+	 * for the image, otherwise, for absolute path, first segment is taken as id of plug-in with
+	 * image
+	 * 
 	 * @generated
-	 * @param path the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
+	 * @param path
+	 *            the path to image, either absolute (with plug-in id as first segment), or relative
+	 *            for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute()
+					.toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -178,6 +174,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns string from plug-in's resource bundle
+	 * 
 	 * @generated
 	 */
 	public static String getString(String key) {
@@ -185,11 +182,12 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image for the image file at the given plug-in relative path.
-	 * Client do not need to dispose this image. Images will be disposed automatically.
-	 *
+	 * Returns an image for the image file at the given plug-in relative path. Client do not need to
+	 * dispose this image. Images will be disposed automatically.
+	 * 
 	 * @generated
-	 * @param path the path
+	 * @param path
+	 *            the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {
@@ -204,23 +202,13 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public GmfMultiDiagramDocumentProvider getDocumentProvider() {
-		throw new UnsupportedOperationException("Try to get DocumentProvider from plugin !!! - use shared object instead.");
-//		if (documentProvider == null) {
-//			documentProvider = new GmfMultiDiagramDocumentProvider();
-//		}
-//		return documentProvider;
-	}
-
-	/**
-	 * @generated
-	 */
 	public void logError(String error) {
 		logError(error, null);
 	}
 
 	/**
-	 * @param throwable actual error or null could be passed
+	 * @param throwable
+	 *            actual error or null could be passed
 	 * @generated
 	 */
 	public void logError(String error, Throwable throwable) {
@@ -239,7 +227,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @param throwable actual error or null could be passed
+	 * @param throwable
+	 *            actual error or null could be passed
 	 * @generated
 	 */
 	public void logInfo(String message, Throwable throwable) {
@@ -266,10 +255,10 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
+	 * Returns an image descriptor for the image file at the given plug-in relative path.
 	 * 
-	 * @param path the path
+	 * @param path
+	 *            the path
 	 * 
 	 * @return the image descriptor
 	 */
@@ -277,5 +266,4 @@ public class Activator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(ID, path);
 	}
 
-	
 }

@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.core.editor;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
@@ -90,13 +89,6 @@ public class BackboneContext extends AbstractEditorContext {
 	}
 
 	/**
-	 * @return Object
-	 */
-	public List<?> getModels() {
-		return resourceSet.getVisibleDiagrams();
-	}
-
-	/**
      * 
      */
 	public boolean isSaveAsAllowed() {
@@ -117,16 +109,6 @@ public class BackboneContext extends AbstractEditorContext {
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
 		return resourceSet.getTransactionalEditingDomain();
-	}
-
-	/**
-	 * Create a new {@link DiagramNotifier} listening to the graphical model containing the diagram roots.
-	 * 
-	 * @TODO move diagram roots related stuff to appropriate service (to be defined)
-	 * @return
-	 */
-	public DiagramNotifier createDiagramNotifier() {
-		return new DiagramNotifier(resourceSet.getDiResource());
 	}
 
 }

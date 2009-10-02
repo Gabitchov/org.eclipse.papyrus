@@ -193,14 +193,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	/**
 	 * A change has happen in one of the inner parts. Relay the event.
 	 * This method is called by inner parts whenever the event happen in one of the part.
-	 * This method is used to relay the IWorkbenchPartConstants.PROP_* events from
-	 * inner parts.
 	 * 
-	 * @param propertyId The event fired (one of IWorkbenchPartConstants.PROP_*)
-	 * @param editorPart The nested IEditorPart firing the event.
-	 * @param editorModel The IEditorModel used to create the IEditorPart.
+	 * @param propertyId
 	 */
-	protected void firePropertyChange(int propertyId, IEditorPart editorPart, IEditorModel editorModel) {
+	protected void firePropertyChange(int propertyId) {
 		// TODO Auto-generated method stub
 		
 	}

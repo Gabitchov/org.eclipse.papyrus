@@ -16,12 +16,7 @@ package org.eclipse.papyrus.core.utils;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.di.CoreSemanticModelBridge;
-import org.eclipse.papyrus.di.GraphElement;
-import org.eclipse.papyrus.di.SemanticModelBridge;
-import org.eclipse.papyrus.di.Uml1SemanticModelBridge;
 
-//import com.cea.papyrus.core.treeeditpart.ElementTreeEditPart;
 
 /**
  * This class allows to retrieve the bussiness object from an object representing a graphical artefact in a diagram. Each diagram can register its resolver which will be added to the list of
@@ -45,22 +40,15 @@ public class BusinessModelResolver {
 	 * @return Object
 	 */
 	public Object getBussinessModel(Object object) {
-		// if( object instanceof ElementTreeEditPart)
-		// {
-		// return ((ElementTreeEditPart)object).getModel();
-		// }
-		// else
 		if (object instanceof EditPart) {
 			// Check model. It can be a GraphNode.
 			Object model = ((EditPart) object).getModel();
-			if (model instanceof GraphElement) { // DI2
-				return getBusinessElement((GraphElement) ((EditPart) object).getModel());
-			} else if (model instanceof View) { // Notation / GMF
+			if (model instanceof View) { // Notation / GMF
 				return getBusinessElement((View) ((EditPart) object).getModel());
 			} else
 				return model;
-		} else if (object instanceof GraphElement) {
-			return getBusinessElement((GraphElement) object);
+		} else if (object instanceof View) {
+			return ((View)object).getElement();
 		}
 
 		else
@@ -68,25 +56,6 @@ public class BusinessModelResolver {
 
 	}
 
-	/**
-	 * Get the business object from a GraphElement.
-	 * 
-	 * @param object
-	 * @return
-	 */
-	protected Object getBusinessElement(GraphElement object) {
-		try {
-			SemanticModelBridge bridge = object.getSemanticModel();
-			if (bridge instanceof CoreSemanticModelBridge)
-				return ((CoreSemanticModelBridge) object.getSemanticModel()).getElement();
-			else
-				/* if( bridge instanceof Uml1SemanticModelBridge) */
-				return ((Uml1SemanticModelBridge) object.getSemanticModel()).getElement();
-		} catch (NullPointerException e) {
-			// no bussiness element
-			return null;
-		}
-	}
 
 	/**
 	 * Get the business object from a GraphElement.

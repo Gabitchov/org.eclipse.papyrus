@@ -4,7 +4,7 @@
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor 
             contributorId="TreeOutlinePage"
-            labelProvider="org.eclipse.papyrus.tabbedproperties.core.providers.UMLObjectLabelProvider">
+            labelProvider="org.eclipse.papyrus.tabbedproperties.core.providers.EMFObjectLabelProvider">
          <propertyCategory category="org.eclipse.papyrus"/>
       </propertyContributor>
    </extension>
