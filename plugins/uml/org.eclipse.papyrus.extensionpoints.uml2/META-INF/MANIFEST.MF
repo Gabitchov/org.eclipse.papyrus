@@ -7,9 +7,6 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml,
  org.eclipse.ui.views.properties.tabbed,
- org.eclipse.ui.ide,
- org.eclipse.jface.text,
- com.ibm.icu,
  org.eclipse.emf.mapping.ecore2xml
 Eclipse-LazyStart: true
 Provide-Package: org.eclipse.papyrus.extensionpoints.uml2,
