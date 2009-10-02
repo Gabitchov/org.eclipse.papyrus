@@ -165,7 +165,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
      * @return
      */
     private Resource getUmlResource() {
-        Resource umlResource = getDefaultContext().getResourceSet().getUMLModelResource();
+        Resource umlResource = getDefaultContext().getResourceSet().getModelResource();
         return umlResource;
 	}
     

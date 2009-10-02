@@ -15,10 +15,12 @@
 
 package org.eclipse.papyrus.diagram.composite;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Define a command to create a new Composite Diagram. This command is used by all UI (toolbar,
@@ -36,7 +38,7 @@ public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected String getDiagramName() {
+	protected String getDefaultDiagramName() {
 		return openDiagramNameDialog(CSD_DEFAULT_NAME);
 	}
 
@@ -54,6 +56,11 @@ public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	@Override
 	protected PreferencesHint getPreferenceHint() {
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+	}
+
+	@Override
+	protected EObject createRootElement() {
+		return UMLFactory.eINSTANCE.createModel();
 	}
 
 }
