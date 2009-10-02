@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.emftree;
 
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.BackboneException;
@@ -20,7 +21,6 @@ import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.swt.graphics.Image;
@@ -74,7 +74,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 * Create our editor. We do direct instanciation.
 	 */
 	public IEditorPart createEditorFor(BackboneContext context, Object root) {
-		return new Di2Editor(context);
+		return new UMLEditor(context);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 		 */
 		public IEditorPart createIEditorPart() throws PartInitException {
 			try {
-				return new Di2Editor(servicesRegistry);
+				return new UMLEditor(servicesRegistry);
 			} catch (ServiceException e) {
 				throw new PartInitException("Can't create Di2Editor.", e);
 			} catch (BackboneException e) {

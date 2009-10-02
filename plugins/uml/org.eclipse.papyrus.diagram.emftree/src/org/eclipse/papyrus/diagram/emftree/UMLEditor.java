@@ -40,11 +40,11 @@ import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 
 /**
- * This is an example of a Di2 model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is an example of a EMF UML model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class Di2Editor extends org.eclipse.papyrus.di.presentation.DiEditor implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
+public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEditor implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 
 	/**
 	 * Object shared between all Papyrus plugin.
@@ -58,7 +58,7 @@ public class Di2Editor extends org.eclipse.papyrus.di.presentation.DiEditor impl
 	 * Create an DiEditor using the {@link ServicesRegistry}.
 	 * @param servicesRegistry
 	 */
-	public Di2Editor(ServicesRegistry servicesRegistry) throws ServiceException, BackboneException {
+	public UMLEditor(ServicesRegistry servicesRegistry) throws ServiceException, BackboneException {
 		IEditorContextRegistry contextRegistry;
 		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
 
@@ -73,7 +73,7 @@ public class Di2Editor extends org.eclipse.papyrus.di.presentation.DiEditor impl
 	 * 
 	 * @generated
 	 */
-	public Di2Editor(BackboneContext editorContext) {
+	public UMLEditor(BackboneContext editorContext) {
 		super();
 
 		initEditor(editorContext);
