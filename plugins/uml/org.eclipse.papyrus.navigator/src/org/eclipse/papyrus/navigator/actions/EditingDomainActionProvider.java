@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
@@ -39,6 +40,9 @@ import org.eclipse.ui.navigator.ICommonActionExtensionSite;
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
+
+	// fjcano #290514 :: command to rename elements in the model explorer
+	protected RenameNamedElementAction renameNamedElementAction;
 
 	protected DeleteAction deleteAction;
 
@@ -65,34 +69,49 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		super.init(site);
 		this.activeViewPart = getCommonNavigator();
 
-		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
+		ISharedImages sharedImages = PlatformUI.getWorkbench()
+				.getSharedImages();
+		TransactionalEditingDomain editingDomain = NavigatorUtils
+				.getTransactionalEditingDomain();
+
+		// Rename NamedElement action
+		// fjcano #290514 :: command to rename elements in the model explorer
+		this.renameNamedElementAction = new RenameNamedElementAction(
+				editingDomain);
+		this.renameNamedElementAction.setImageDescriptor(Activator
+				.getImageDescriptor("icons/etool16/rename.gif"));
 
 		// Create Delete action
 		this.deleteAction = new DeleteAction(editingDomain, true);
-		this.deleteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
+		this.deleteAction.setImageDescriptor(sharedImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
 		this.deleteAction.setDisabledImageDescriptor(sharedImages
 				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
 
 		// Create Copy action
 		this.copyAction = new CopyAction(editingDomain);
-		this.copyAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_COPY));
+		this.copyAction.setImageDescriptor(sharedImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_COPY));
 
 		// Create Cut action
 		this.cutAction = new CutAction(editingDomain);
-		this.cutAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
+		this.cutAction.setImageDescriptor(sharedImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
 
 		// Create Paste action
 		this.pasteAction = new PasteAction(editingDomain);
-		this.pasteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_PASTE));
+		this.pasteAction.setImageDescriptor(sharedImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_PASTE));
 
 		// Undo action
 		this.undoAction = new UndoAction();
-		this.undoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
+		this.undoAction.setImageDescriptor(sharedImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
 
 		// Redo action
 		this.redoAction = new RedoAction();
-		this.redoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
+		this.redoAction.setImageDescriptor(sharedImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
 
 		// Load Resource action
 		this.loadResourceAction = new LoadResourceAction(editingDomain);
@@ -101,12 +120,20 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	@Override
 	public void fillActionBars(IActionBars actionBars) {
 		super.fillActionBars(actionBars);
-		actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(), deleteAction);
+		// fjcano #290514 :: command to rename elements in the model explorer
+		actionBars.setGlobalActionHandler(ActionFactory.RENAME.getId(),
+				renameNamedElementAction);
+		actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(),
+				deleteAction);
 		actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(), cutAction);
-		actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(), copyAction);
-		actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(), pasteAction);
-		actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(), undoAction);
-		actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoAction);
+		actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(),
+				copyAction);
+		actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(),
+				pasteAction);
+		actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(),
+				undoAction);
+		actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(),
+				redoAction);
 	}
 
 	/**
@@ -117,6 +144,8 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		update();
 		// Add the edit menu actions.
 		menu.add(new Separator());
+		// fjcano #290514 :: command to rename elements in the model explorer
+		menu.add(new ActionContributionItem(renameNamedElementAction));
 		menu.add(new ActionContributionItem(cutAction));
 		menu.add(new ActionContributionItem(copyAction));
 		menu.add(new ActionContributionItem(pasteAction));
@@ -133,22 +162,27 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	}
 
 	public void update() {
-		ISelection selection = getCommonNavigator().getCommonViewer().getSelection();
+		ISelection selection = getCommonNavigator().getCommonViewer()
+				.getSelection();
 		IStructuredSelection structuredSelection = selection instanceof IStructuredSelection ? (IStructuredSelection) selection
 				: StructuredSelection.EMPTY;
-
+		// fjcano #290514 :: command to rename elements in the model explorer
+		renameNamedElementAction.updateSelection(structuredSelection);
 		deleteAction.updateSelection(structuredSelection);
 		cutAction.updateSelection(structuredSelection);
 		copyAction.updateSelection(structuredSelection);
 		pasteAction.updateSelection(structuredSelection);
 		// validateAction.updateSelection(structuredSelection);
 		// controlAction.updateSelection(structuredSelection);
-		TransactionalEditingDomain domain = NavigatorUtils.getTransactionalEditingDomain();
+		TransactionalEditingDomain domain = NavigatorUtils
+				.getTransactionalEditingDomain();
 		loadResourceAction.setEditingDomain(domain);
 		loadResourceAction.update();
 	}
 
 	public void activate() {
+		// fjcano #290514 :: command to rename elements in the model explorer
+		renameNamedElementAction.setActiveWorkbenchPart(activeViewPart);
 		deleteAction.setActiveWorkbenchPart(activeViewPart);
 		cutAction.setActiveWorkbenchPart(activeViewPart);
 		copyAction.setActiveWorkbenchPart(activeViewPart);
@@ -164,6 +198,10 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 				: null;
 
 		if (selectionProvider != null) {
+			// fjcano #290514 :: command to rename elements in the model
+			// explorer
+			selectionProvider
+					.addSelectionChangedListener(renameNamedElementAction);
 			selectionProvider.addSelectionChangedListener(deleteAction);
 			selectionProvider.addSelectionChangedListener(cutAction);
 			selectionProvider.addSelectionChangedListener(copyAction);
@@ -178,6 +216,8 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	 * Deactivate.
 	 */
 	public void deactivate() {
+		// fjcano #290514 :: command to rename elements in the model explorer
+		renameNamedElementAction.setActiveWorkbenchPart(null);
 		deleteAction.setActiveWorkbenchPart(null);
 		cutAction.setActiveWorkbenchPart(null);
 		copyAction.setActiveWorkbenchPart(null);
@@ -193,6 +233,10 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 				: null;
 
 		if (selectionProvider != null) {
+			// fjcano #290514 :: command to rename elements in the model
+			// explorer
+			selectionProvider
+					.removeSelectionChangedListener(renameNamedElementAction);
 			selectionProvider.removeSelectionChangedListener(deleteAction);
 			selectionProvider.removeSelectionChangedListener(cutAction);
 			selectionProvider.removeSelectionChangedListener(copyAction);
