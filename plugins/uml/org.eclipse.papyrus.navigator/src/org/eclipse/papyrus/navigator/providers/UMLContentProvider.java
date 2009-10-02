@@ -50,16 +50,17 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 
 	private static final Object[] EMPTY_ARRAY = new Object[0];
 
-	/** The my editor. */
-	// protected IEditorPart myEditor = null;
 	protected DiResourceSet diResourceSet;
 
 	/** The list of open pages (diagrams) */
 	protected IPageMngr pageMngr;
 
-	/** <ICommonContentExtensionSite> as given in initialization. */
+	/** {@link ICommonContentExtensionSite} as given in initialization. */
 	protected ICommonContentExtensionSite contentExtensionSite = null;
 
+	/**
+	 * {@link ComposedAdapterFactory} used to get the adapters to content providers.
+	 */
 	protected static ComposedAdapterFactory umlComposedAdapterFactory = UMLComposedAdapterFactory
 			.getAdapterFactory();
 
@@ -69,12 +70,8 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	protected static GroupableAdapterFactory groupableFactory = new GroupableAdapterFactory(
 			umlComposedAdapterFactory);
 
-	// private ResourceSet resourceSet;
-
 	public UMLContentProvider() {
 		super(umlComposedAdapterFactory);
-		// super(UMLComposedAdapterFactory.getAdapterFactory());
-		// this.resourceSet = new ResourceSetImpl();
 	}
 
 	public void init(ICommonContentExtensionSite config) {
@@ -82,12 +79,11 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	}
 
 	public void restoreState(IMemento memento) {
-		// TODO Auto-generated method stub
-
+		// TODO
 	}
 
 	public void saveState(IMemento memento) {
-		// TODO Auto-generated method stub
+		// TODO
 	}
 
 	/**
@@ -95,10 +91,6 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 */
 	@Override
 	public boolean hasChildren(Object element) {
-		// if (object instanceof IFile)
-		// return true;
-		// return super.hasChildren(object);
-
 		if (element instanceof Diagram) {
 			return false;
 		}
@@ -110,14 +102,6 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 */
 	@Override
 	public Object[] getChildren(Object parentElement) {
-		// System.out.println("UMLContentProvider.getChildren : "+parentElement);
-		// if (object instanceof IFile) {
-		// String path = ((IFile) object).getFullPath().toString();
-		// URI uri = URI.createPlatformResourceURI(path);
-		// object = resourceSet.getResource(uri, true);
-		// }
-		// return super.getChildren(object);
-
 		// Only display diagram (no graphNodes or graphEdges)
 		if (parentElement instanceof Diagram) {
 			return EMPTY_ARRAY;
@@ -173,7 +157,6 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		 * if (object instanceof IFile) return ((IResource) object).getParent();
 		 * return super.getParent(object);
 		 */
-
 		if (getModelNavigator() != null
 				&& getModelNavigator().isGroupingChildsEnabled()
 				&& groupableFactory
@@ -183,10 +166,6 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 			return provider == null ? null : provider.getParent(element);
 		}
 
-		// The parent of a diagram is the model object that contains it.
-		// if (element instanceof Diagram) {
-		// return ((Diagram) element).getElement();
-		// }
 		// Delegates
 		if (element instanceof IWrapperItemProvider
 				|| element instanceof FeatureMap.Entry
@@ -214,14 +193,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 			return children.toArray();
 		}
 		// TODO check //WorkspaceRoot for physical representation
-		// if (object instanceof IFile) {
-		// String path = ((IFile) object).getFullPath().toString();
-		// URI uri = URI.createPlatformResourceURI(path);
-		// object = resourceSet.getResource(uri, true);
-		// }
 		return EMPTY_ARRAY;
-
-		// return super.getElements(object);
 	}
 
 	/**
@@ -229,14 +201,8 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 */
 	public void dispose() {
 		// Dispose objects
-		// adapterFactoryContentProvider.dispose();
 		super.dispose();
 	}
-
-	// public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
-	// {
-	// myAdapterFactoryContentProvider.inputChanged(viewer, oldInput, newInput);
-	// }
 
 	/**
 	 * @param owner
@@ -258,23 +224,6 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 
 		}
 
-		// for (Diagram diagram : diResourceSet.getDiagrams()) {
-		// SemanticModelBridge semanticModelBridge = diagram.getSemanticModel();
-		// if (semanticModelBridge instanceof CoreSemanticModelBridge) {
-		// CoreSemanticModelBridge coreSemanticModelBridge =
-		// (CoreSemanticModelBridge)
-		// semanticModelBridge;
-		// EObject element = coreSemanticModelBridge.getElement();
-		// // TODO break GMF dependency
-		// if (element instanceof org.eclipse.gmf.runtime.notation.Diagram) {
-		// element = ((org.eclipse.gmf.runtime.notation.Diagram)
-		// element).getElement();
-		// }
-		// if (owner.equals(element)) {
-		// diagrams.add(diagram);
-		// }
-		// }
-		// }
 		return diagrams;
 	}
 
