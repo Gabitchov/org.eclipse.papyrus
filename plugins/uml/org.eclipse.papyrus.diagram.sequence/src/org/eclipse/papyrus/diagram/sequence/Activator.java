@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;

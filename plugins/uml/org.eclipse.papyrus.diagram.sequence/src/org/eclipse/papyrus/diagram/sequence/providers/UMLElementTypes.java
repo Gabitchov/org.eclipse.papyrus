@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.providers;
 
 import java.util.HashSet;
@@ -34,6 +34,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -110,6 +111,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType Message_4003 = getElementType("org.eclipse.papyrus.diagram.sequence.Message_4003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Message_4004 = getElementType("org.eclipse.papyrus.diagram.sequence.Message_4004"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -235,6 +241,8 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
 
 			elements.put(Message_4003, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_4004, UMLPackage.eINSTANCE.getMessage());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -261,6 +269,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3004);
 			KNOWN_ELEMENT_TYPES.add(InteractionOperand_3005);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
+			KNOWN_ELEMENT_TYPES.add(Message_4004);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -288,6 +297,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return InteractionOperand_3005;
 		case MessageEditPart.VISUAL_ID:
 			return Message_4003;
+		case Message2EditPart.VISUAL_ID:
+			return Message_4004;
 		}
 		return null;
 	}

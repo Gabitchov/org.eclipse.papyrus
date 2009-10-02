@@ -10,10 +10,11 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -85,4 +86,17 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 		}
 	}
 
+	/**
+	 * Generated not for send to back CombinedFragment and InteractionUse {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	// TODO Use transparency instead of send to back method
+	@Override
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (childEditPart instanceof CombinedFragmentEditPart || childEditPart instanceof InteractionUseEditPart) {
+			index = 0;
+		}
+		super.addChildVisual(childEditPart, index);
+	}
 }

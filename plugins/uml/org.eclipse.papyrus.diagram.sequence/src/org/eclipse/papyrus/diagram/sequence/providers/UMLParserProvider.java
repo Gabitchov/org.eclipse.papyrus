@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -30,6 +30,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.LifelineCustomParsers;
@@ -151,6 +152,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser messageName_6002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageName_6002Parser() {
+		if (messageName_6002Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			messageName_6002Parser = parser;
+		}
+		return messageName_6002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
@@ -165,6 +183,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInteractionUseName_5004Parser();
 		case MessageNameEditPart.VISUAL_ID:
 			return getMessageName_6001Parser();
+		case MessageName2EditPart.VISUAL_ID:
+			return getMessageName_6002Parser();
 		}
 		return null;
 	}

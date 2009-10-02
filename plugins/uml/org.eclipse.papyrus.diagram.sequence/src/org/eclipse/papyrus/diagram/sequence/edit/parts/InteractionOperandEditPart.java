@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
@@ -28,14 +28,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -172,46 +166,6 @@ ShapeNodeEditPart {
 				}
 				return result;
 			}
-
-			/**
-			 * Not generated for handle operand resizement {@inheritDoc}
-			 * 
-			 * @generated NOT
-			 */
-			@Override
-			public Command getCommand(Request request) {
-				if (request instanceof ChangeBoundsRequest && request.getType().equals(REQ_RESIZE)) {
-					CompoundCommand compoundCmd = new CompoundCommand();
-					compoundCmd.setLabel("Resize of a InteractionOperand EditPart");
-					compoundCmd.setDebugLabel("Debug: Resize of a InteractionOperand EditPart");
-
-					ChangeBoundsRequest cbr = (ChangeBoundsRequest) request;
-					List<?> editParts = cbr.getEditParts();
-					if (editParts != null && editParts.size() == 1) {
-						// Lifeline's figure where the child is drawn
-						ShapeNodeEditPart shapeNodeEditPart = (ShapeNodeEditPart) editParts.get(0);
-						Rectangle rDotLine = shapeNodeEditPart.getFigure().getParent().getBounds();
-
-						// The new bounds will be calculated from the current bounds
-						Rectangle newBounds = shapeNodeEditPart.getFigure().getBounds().getCopy();
-						// System.err.println(newBounds.height);
-						// Apply SizeDelta to the children
-						newBounds.height += Math.round((float) cbr.getSizeDelta().height / (float) 2);
-						// System.err.println(newBounds.height);
-
-						// Convert to relative
-						newBounds.x -= rDotLine.x;
-						newBounds.y -= rDotLine.y;
-
-						SetBoundsCommand setBoundsCmd = new SetBoundsCommand(shapeNodeEditPart.getEditingDomain(),
-								"Re-location of a InteractionOperand", shapeNodeEditPart, newBounds);
-						compoundCmd.add(new ICommandProxy(setBoundsCmd));
-
-						return compoundCmd;
-					}
-				}
-				return super.getCommand(request);
-			}
 		};
 		return lep;
 	}
@@ -246,8 +200,7 @@ ShapeNodeEditPart {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
 			ResizableEditPolicy ep = (ResizableEditPolicy) result;
-			ep.setResizeDirections(PositionConstants.NORTH | PositionConstants.SOUTH);
-			ep.setDragAllowed(false);
+			ep.setResizeDirections(PositionConstants.SOUTH);
 		}
 		return result;
 	}
@@ -485,13 +438,14 @@ ShapeNodeEditPart {
 		Object feature = notification.getFeature();
 		InteractionOperand interactionOperand = (InteractionOperand) resolveSemanticElement();
 
+		Object newValue = notification.getNewValue();
 		if (UMLPackage.eINSTANCE.getInteractionOperand_Guard().equals(feature)) {
 			// Case of add, change or delete guard
 			if (notification.getOldValue() instanceof InteractionConstraint) {
 				notifier.unlistenEObject((InteractionConstraint) notification.getOldValue());
 			}
-			if (notification.getNewValue() instanceof InteractionConstraint) {
-				notifier.listenEObject((InteractionConstraint) notification.getNewValue());
+			if (newValue instanceof InteractionConstraint) {
+				notifier.listenEObject((InteractionConstraint) newValue);
 			}
 		} else if (UMLPackage.eINSTANCE.getConstraint_Specification().equals(feature)) {
 			// Case of add, change or delete Specification
@@ -499,10 +453,10 @@ ShapeNodeEditPart {
 			if (notification.getOldValue() instanceof ValueSpecification) {
 				notifier.unlistenEObject((ValueSpecification) notification.getOldValue());
 			}
-			if (notification.getNewValue() instanceof ValueSpecification) {
-				ValueSpecification newValue = (ValueSpecification) notification.getNewValue();
-				notifier.listenEObject(newValue);
-				specValue = newValue.stringValue();
+			if (newValue instanceof ValueSpecification) {
+				ValueSpecification newStringValue = (ValueSpecification) newValue;
+				notifier.listenEObject(newStringValue);
+				specValue = newStringValue.stringValue();
 			}
 			getPrimaryShape().updateConstraintLabel();
 		} else if (UMLPackage.eINSTANCE.getInteractionConstraint_Minint().equals(feature)) {
@@ -511,22 +465,21 @@ ShapeNodeEditPart {
 			if (notification.getOldValue() instanceof LiteralInteger) {
 				notifier.unlistenEObject((LiteralInteger) notification.getOldValue());
 			}
-			if (notification.getNewValue() instanceof LiteralInteger) {
-				if (InteractionOperatorKind.LOOP_LITERAL.equals(getInteractionOperator())) {
-					LiteralInteger newValue = (LiteralInteger) notification.getNewValue();
-					notifier.listenEObject(newValue);
-					if (newValue.getValue() < 0) {
-						newValue.setValue(0);
-					}
-					// If Maxint exist, min can't be greater than max
-					else if (maxValue != DEFAULT_INT_VALUE && maxValue < newValue.getValue()) {
-						newValue.setValue(maxValue);
-					}
-					newValue.setName("min");
-					minValue = newValue.getValue();
-				} else {
-					interactionOperand.getGuard().setMinint(null);
+			if (newValue instanceof LiteralInteger
+					&& InteractionOperatorKind.LOOP_LITERAL.equals(getInteractionOperator())) {
+				LiteralInteger newIntegerValue = (LiteralInteger) newValue;
+				notifier.listenEObject(newIntegerValue);
+				if (newIntegerValue.getValue() < 0) {
+					newIntegerValue.setValue(0);
 				}
+				// If Maxint exist, min can't be greater than max
+				else if (maxValue != DEFAULT_INT_VALUE && maxValue < newIntegerValue.getValue()) {
+					newIntegerValue.setValue(maxValue);
+				}
+				newIntegerValue.setName("min");
+				minValue = newIntegerValue.getValue();
+			} else if (newValue != null) {
+				interactionOperand.getGuard().setMinint(null);
 			}
 			getPrimaryShape().updateConstraintLabel();
 		} else if (UMLPackage.eINSTANCE.getInteractionConstraint_Maxint().equals(feature)) {
@@ -535,38 +488,37 @@ ShapeNodeEditPart {
 			if (notification.getOldValue() instanceof LiteralInteger) {
 				notifier.unlistenEObject((LiteralInteger) notification.getOldValue());
 			}
-			if (notification.getNewValue() instanceof LiteralInteger) {
-				if (InteractionOperatorKind.LOOP_LITERAL.equals(getInteractionOperator())) {
-					LiteralInteger newValue = (LiteralInteger) notification.getNewValue();
-					notifier.listenEObject(newValue);
+			if (newValue instanceof LiteralInteger
+					&& InteractionOperatorKind.LOOP_LITERAL.equals(getInteractionOperator())) {
+				LiteralInteger newIntegerValue = (LiteralInteger) newValue;
+				notifier.listenEObject(newIntegerValue);
 
-					maxValue = newValue.getValue();
-					maxValue = maxValue > minValue ? maxValue : minValue;
-					newValue.setValue(maxValue);
+				maxValue = newIntegerValue.getValue();
+				maxValue = maxValue > minValue ? maxValue : minValue;
+				newIntegerValue.setValue(maxValue);
 
-					newValue.setName("max");
+				newIntegerValue.setName("max");
 
-					// If Minint doesn't exist, creates it
-					if (interactionOperand.getGuard().getMinint() == null) {
-						LiteralInteger minint = UMLFactory.eINSTANCE.createLiteralInteger();
-						minint.setValue(0);
-						interactionOperand.getGuard().setMinint(minint);
-					}
-				} else {
-					interactionOperand.getGuard().setMaxint(null);
+				// If Minint doesn't exist, creates it
+				if (interactionOperand.getGuard().getMinint() == null) {
+					LiteralInteger minint = UMLFactory.eINSTANCE.createLiteralInteger();
+					minint.setValue(0);
+					interactionOperand.getGuard().setMinint(minint);
 				}
+			} else if (newValue != null) {
+				interactionOperand.getGuard().setMaxint(null);
 			}
 			getPrimaryShape().updateConstraintLabel();
 		} else if (UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(feature)
 				&& interactionOperand.getGuard() != null) {
 			// Case of add, change or delete Maxint
 			if (notification.getNotifier().equals(interactionOperand.getGuard().getMinint())
-					&& notification.getNewValue() instanceof Integer && notification.getNewIntValue() > maxValue
+					&& newValue instanceof Integer && notification.getNewIntValue() > maxValue
 					&& maxValue != DEFAULT_INT_VALUE) {
 				minValue = maxValue;
 				((LiteralInteger) interactionOperand.getGuard().getMinint()).setValue(minValue);
 			} else if (notification.getNotifier().equals(interactionOperand.getGuard().getMaxint())
-					&& notification.getNewValue() instanceof Integer && notification.getNewIntValue() < minValue) {
+					&& newValue instanceof Integer && notification.getNewIntValue() < minValue) {
 				maxValue = minValue;
 				((LiteralInteger) interactionOperand.getGuard().getMaxint()).setValue(maxValue);
 			}
@@ -705,6 +657,7 @@ ShapeNodeEditPart {
 																							 * >
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_4004);
 		return types;
 	}
 
@@ -745,6 +698,27 @@ ShapeNodeEditPart {
 		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4003);
+		}
+		if (targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4004);
 		}
 		return types;
 	}
@@ -787,6 +761,27 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
 		return types;
 	}
 
@@ -807,6 +802,7 @@ ShapeNodeEditPart {
 																							 * >
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_4004);
 		return types;
 	}
 
@@ -846,6 +842,27 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		return types;

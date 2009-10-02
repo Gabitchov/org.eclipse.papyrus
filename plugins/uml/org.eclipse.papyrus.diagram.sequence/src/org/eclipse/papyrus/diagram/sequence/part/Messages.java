@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.part;
 
 import org.eclipse.osgi.util.NLS;
@@ -256,27 +256,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Uml1Group_title;
+	public static String Objects1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Objects2Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Message3Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Interaction1CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Interaction1CreationTool_desc;
+	public static String Message2Group_title;
 
 	/**
 	 * @generated
@@ -347,6 +332,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String MessageSync1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageAsync2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageAsync2CreationTool_desc;
 
 	/**
 	 * @generated
@@ -447,6 +442,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Message_4003_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4004_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4004_source;
 
 	/**
 	 * @generated

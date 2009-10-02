@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -101,6 +102,8 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 
 		Interaction owner = (Interaction) getElementToEdit();
 		owner.getFragments().add(newElement);
+
+		UMLElementTypes.init_InteractionUse_3002(newElement);
 
 		doConfigure(newElement, monitor, info);
 

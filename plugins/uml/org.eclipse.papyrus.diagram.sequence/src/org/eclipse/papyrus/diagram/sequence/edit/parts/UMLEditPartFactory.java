@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.FigureUtilities;
@@ -91,6 +91,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case MessageNameEditPart.VISUAL_ID:
 				return new MessageNameEditPart(view);
+
+			case Message2EditPart.VISUAL_ID:
+				return new Message2EditPart(view);
+
+			case MessageName2EditPart.VISUAL_ID:
+				return new MessageName2EditPart(view);
 
 			}
 		}

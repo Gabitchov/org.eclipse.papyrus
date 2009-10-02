@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.Collections;
@@ -322,6 +322,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateMessage_4004(Interaction container, Element source, Element target) {
+			return canExistMessage_4004(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistMessage_4003(Interaction container, Element source, Element target) {
 			try {
 				if (target == null) {
@@ -343,6 +350,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistMessage_4004(Interaction container, Element source, Element target) {
+			return true;
 		}
 	}
 }

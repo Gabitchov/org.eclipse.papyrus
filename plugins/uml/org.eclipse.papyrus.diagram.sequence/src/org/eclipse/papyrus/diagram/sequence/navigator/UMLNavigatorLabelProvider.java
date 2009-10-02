@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.navigator;
 
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -35,7 +35,9 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -130,6 +132,9 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		case MessageEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Message", UMLElementTypes.Message_4003); //$NON-NLS-1$
+		case Message2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Message", UMLElementTypes.Message_4004); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -198,6 +203,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getInteractionOperand_3005Text(view);
 		case MessageEditPart.VISUAL_ID:
 			return getMessage_4003Text(view);
+		case Message2EditPart.VISUAL_ID:
+			return getMessage_4004Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -327,6 +334,21 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 					ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getMessage_4004Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Message_4004, view.getElement() != null ? view
+				.getElement() : view, UMLVisualIDRegistry.getType(MessageName2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

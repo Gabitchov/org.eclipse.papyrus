@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
@@ -24,6 +24,8 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -34,6 +36,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -60,6 +63,7 @@ import org.eclipse.papyrus.diagram.sequence.util.Notifier;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -332,13 +336,15 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_4004);
 		return types;
 	}
 
@@ -352,7 +358,8 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -379,6 +386,27 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if (targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		return types;
 	}
 
@@ -392,7 +420,8 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -419,6 +448,27 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
 		return types;
 	}
 
@@ -431,13 +481,15 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
 																							 * >
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_4004);
 		return types;
 	}
 
@@ -451,7 +503,8 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -476,6 +529,27 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		return types;
@@ -713,6 +787,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 
 		super.handleNotificationEvent(notification);
+
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)) {
+			autoResize();
+
+		}
+
 	}
 
 	// TODO need to be refactored in super class
@@ -776,20 +856,21 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	public void activate() {
 		super.activate();
 		notifier.listenEObject(getRepresentsTypeElement());
-		if (getModelEObject() != null) {
+		if (getModelEObject() != null && getModelEObject() instanceof Lifeline) {
 			notifier.listenEObject(((Lifeline) (getModelEObject())).getRepresents());
 		}
 
 	}
 
 	public void deactivate() {
-		super.deactivate();
 
 		notifier.listenEObject(getRepresentsTypeElement());// activate the listener on
 		// the typed object in the repesent
-		if (getModelEObject() != null) {
+		if (getModelEObject() != null && getModelEObject() instanceof Lifeline) {
 			notifier.unlistenEObject((((Lifeline) (getModelEObject())).getRepresents()));
 		}
+
+		super.deactivate();
 
 	}
 
@@ -815,11 +896,28 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 
 		} else {
 			sb.append("");
+
 		}
 
 		getPrimaryShape().getFigureLifelineLabelFigure().setText(sb.toString());
 		refresh();
 
+	}
+
+	protected void autoResize() {
+
+		Font font = getPrimaryShape().getFigureLifelineLabelFigure().getFont();
+		String text = getPrimaryShape().getFigureLifelineLabelFigure().getText();
+
+		Dimension d = FigureUtilities.getTextExtents(text, font);
+
+		int newSize = d.width + 2;
+
+		Dimension size = new Dimension(newSize, getFigure().getBounds().height);
+
+		Point loc = new Point(getFigure().getBounds().x, getFigure().getBounds().y);
+
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 }

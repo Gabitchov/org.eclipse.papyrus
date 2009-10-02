@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
@@ -42,8 +42,10 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentItemComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.CombinedFragmentFigure;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
@@ -51,6 +53,7 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
@@ -65,6 +68,16 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 3004;
+
+	/**
+	 * @generated NOT
+	 */
+	private static final String BLOCK_OPERATOR_MODIFICATION_TITLE = "Action interdite";
+
+	/**
+	 * @generated NOT
+	 */
+	private static final String BLOCK_OPERATOR_MODIFICATION_MSG = "Il est impossible de changer le type de l'opérateur du fragment combiné\nétant donnée que le fragment combiné a plus d'un opérande";
 
 	/**
 	 * @generated
@@ -91,6 +104,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new CombinedFragmentItemComponentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -364,15 +378,25 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 
 		if (UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator().equals(feature)) {
 			CombinedFragment combinedFragment = (CombinedFragment) resolveSemanticElement();
-			EList<InteractionOperand> operands = combinedFragment.getOperands();
-			// If CombinedFragment have no operand, we can change the OperatorKind
-			if (operands == null || operands.isEmpty()) {
-				getPrimaryShape().setOperatorKindValue(notification.getNewStringValue());
-			} else if (notification.getOldValue() instanceof InteractionOperatorKind
-					&& !notification.getNewStringValue().equals(
-							getPrimaryShape().getFigureInteractionLabelFigure().getText())) {
-				// TODO Improve cancelation method
+			String newStringValue = notification.getNewStringValue();
+			if (notification.getOldValue() instanceof InteractionOperatorKind
+					&& (InteractionOperatorKind.CONSIDER_LITERAL.getLiteral().equals(newStringValue) || InteractionOperatorKind.IGNORE_LITERAL
+							.getLiteral().equals(newStringValue))) {
 				combinedFragment.setInteractionOperator((InteractionOperatorKind) notification.getOldValue());
+				return;
+			}
+			EList<InteractionOperand> operands = combinedFragment.getOperands();
+			if (operands == null || operands.size() <= 1) {
+				// If CombinedFragment have no operand, we can change the OperatorKind
+				getPrimaryShape().setOperatorKindValue(newStringValue);
+			} else if (notification.getOldValue() instanceof InteractionOperatorKind
+					&& !newStringValue.equals(getPrimaryShape().getFigureInteractionLabelFigure().getText())) {
+				// TODO Improve cancelation method
+				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_OPERATOR_MODIFICATION_TITLE,
+						BLOCK_OPERATOR_MODIFICATION_MSG);
+
+				combinedFragment.setInteractionOperator((InteractionOperatorKind) notification.getOldValue());
+				return;
 			}
 		} else if (UMLPackage.eINSTANCE.getCombinedFragment_Operand().equals(feature)) {
 			CombinedFragment combinedFragment = (CombinedFragment) resolveSemanticElement();
@@ -445,7 +469,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart) {
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if (targetEditPart instanceof InteractionUseEditPart) {

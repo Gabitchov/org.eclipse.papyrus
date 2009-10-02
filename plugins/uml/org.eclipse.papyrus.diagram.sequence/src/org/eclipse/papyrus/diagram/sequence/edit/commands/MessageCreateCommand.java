@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -133,7 +133,8 @@ public class MessageCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * the Method create a MessageOccurenceSpecification when a message is created
+	 * the Method create a MessageOccurenceSpecification and the call event when a message is
+	 * created
 	 * 
 	 * @generated-not
 	 */
@@ -181,8 +182,10 @@ public class MessageCreateCommand extends EditElementCommand {
 			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationStart);
 			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationEnd);
 
-			Lifeline sourceLL = start.getCovereds().get(0);
-			Lifeline targetLL = end.getCovereds().get(0);
+			Lifeline sourceLL = start.getCovereds().get(0);// get the lifeline which contain
+															// BehaviorExecutionSpecification
+			Lifeline targetLL = end.getCovereds().get(0);// get the lifeline which
+															// BehaviorExecutionSpecification
 
 			setupBehaviorSpec(start, msgOccurenceInvocationStart, msgOccurenceInvocationEnd, sourceLL);
 			setupBehaviorSpec(end, msgOccurenceInvocationEnd, msgOccurenceInvocationStart, targetLL);
@@ -192,11 +195,13 @@ public class MessageCreateCommand extends EditElementCommand {
 
 			if (domainSource != null && domainTarget != null) {
 				newElement = interaction.createMessage("");
-				interaction.getMessages().add(newElement);
+				interaction.getMessages().add(newElement);// add the message to the interaction
 				newElement.setSendEvent(domainSource);
 				newElement.setReceiveEvent(domainTarget);
 
-				domainSource.setMessage(newElement);
+				domainSource.setMessage(newElement);// built the relationship
+													// messsageoccurencespecification and the
+													// message
 				domainTarget.setMessage(newElement);
 			}
 

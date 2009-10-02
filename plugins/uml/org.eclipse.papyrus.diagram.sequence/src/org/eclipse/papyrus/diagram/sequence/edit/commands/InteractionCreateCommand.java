@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -29,6 +29,7 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UseCase;
 
 /**
  * @generated
@@ -102,18 +103,15 @@ public class InteractionCreateCommand extends EditElementCommand {
 
 		EObject elementToEdit = getElementToEdit();
 
-		Package owner = null;
-
-		if (elementToEdit instanceof Interaction) {
-			if (((Interaction) elementToEdit).getOwner() instanceof Package) {
-				owner = (Package) ((Interaction) elementToEdit).getOwner();
+		if (elementToEdit instanceof Package) {
+			if (((Package) elementToEdit).getPackagedElements() != null) {
+				((Package) elementToEdit).getPackagedElements().add(newElement);
 			}
-		} else if (elementToEdit instanceof Package) {
 
-			owner = (Package) elementToEdit;
+		} else if (elementToEdit instanceof UseCase) {// the interaction will be created in a
+			// Usecase
+			((UseCase) elementToEdit).setClassifierBehavior(newElement);
 		}
-
-		owner.getPackagedElements().add(newElement);
 
 		UMLElementTypes.init_Interaction_2001(newElement);
 

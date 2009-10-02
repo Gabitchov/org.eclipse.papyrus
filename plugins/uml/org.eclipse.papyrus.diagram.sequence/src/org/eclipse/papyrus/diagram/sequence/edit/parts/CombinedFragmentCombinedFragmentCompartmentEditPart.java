@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.List;
@@ -18,7 +18,6 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
@@ -30,9 +29,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
-import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.InteractionOperatorKind;
 
 /**
  * @generated
@@ -158,25 +154,6 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 								InteractionOperandEditPart secondOperandChild = (InteractionOperandEditPart) children
 										.get(1);
 								secondOperandChild.setFirstOperand(true);
-							}
-						}
-					}
-				} else if (event.getEventType() == Notification.ADD) {
-					CombinedFragment combinedFragment = (CombinedFragment) ((CombinedFragmentEditPart) getParent())
-							.resolveSemanticElement();
-					InteractionOperatorKind interactionOperator = combinedFragment.getInteractionOperator();
-					View newValue = (View) event.getNewValue();
-					if (interactionOperator != null && newValue != null) {
-						if (InteractionOperatorKind.OPT_LITERAL.equals(interactionOperator)
-								|| InteractionOperatorKind.LOOP_LITERAL.equals(interactionOperator)
-								|| InteractionOperatorKind.BREAK_LITERAL.equals(interactionOperator)
-								|| InteractionOperatorKind.NEG_LITERAL.equals(interactionOperator)) {
-							EList<InteractionOperand> operands = combinedFragment.getOperands();
-							if (operands != null && !operands.contains(newValue.getElement())) {
-								// Case if the Operand added is not in the operands list of
-								// CombinedFragment
-								// To nothing visually
-								return;
 							}
 						}
 					}

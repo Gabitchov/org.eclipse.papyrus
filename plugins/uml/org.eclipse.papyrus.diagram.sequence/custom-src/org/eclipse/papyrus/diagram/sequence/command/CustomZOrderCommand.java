@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.command;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -45,6 +45,7 @@ public class CustomZOrderCommand extends AbstractTransactionalCommand {
 		this.view = view;
 		this.index = index;
 		containerView = ViewUtil.getContainerView(view);
+
 	}
 
 	@Override

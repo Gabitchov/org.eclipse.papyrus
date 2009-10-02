@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.providers;
 
 import java.util.ArrayList;
@@ -67,14 +67,20 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseName2EditPa
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
@@ -262,6 +268,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case MessageEditPart.VISUAL_ID:
 			return createMessage_4003(getSemanticElement(semanticAdapter), containerView, index, persisted,
 					preferencesHint);
+		case Message2EditPart.VISUAL_ID:
+			return createMessage_4004(getSemanticElement(semanticAdapter), containerView, index, persisted,
+					preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -381,7 +390,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
+	 * Generated not for always have an InteractionOperand on a CombinedFragment
+	 * 
+	 * @generated NOT
 	 */
 	public Node createCombinedFragment_3004(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
@@ -397,8 +408,15 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
 
-		createCompartment(node, UMLVisualIDRegistry
+		Node compartment = createCompartment(node, UMLVisualIDRegistry
 				.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false, false, true, true);
+
+		// Add by default an InteractionOperand
+		InteractionOperand createInteractionOperand = UMLFactory.eINSTANCE.createInteractionOperand();
+		((CombinedFragment) domainElement).getOperands().add(createInteractionOperand);
+		createInteractionOperand_3005(createInteractionOperand, compartment, -1, true,
+				UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+
 		return node;
 	}
 
@@ -453,6 +471,40 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6001 = (Location) label6001.getLayoutConstraint();
 		location6001.setX(1);
 		location6001.setY(-13);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createMessage_4004(EObject domainElement, View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Edge edge = NotationFactory.eINSTANCE.createEdge();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(Message2EditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		initFontStyleFromPrefs(edge, prefStore, "Message");
+
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		Node label6002 = createLabel(edge, UMLVisualIDRegistry.getType(MessageName2EditPart.VISUAL_ID));
+		label6002.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6002 = (Location) label6002.getLayoutConstraint();
+		location6002.setX(1);
+		location6002.setY(-13);
 		return edge;
 	}
 

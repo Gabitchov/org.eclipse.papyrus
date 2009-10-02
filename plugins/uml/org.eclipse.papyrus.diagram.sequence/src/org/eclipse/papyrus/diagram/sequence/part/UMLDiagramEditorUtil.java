@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.part;
 
 import java.io.IOException;
@@ -351,7 +351,7 @@ public class UMLDiagramEditorUtil {
 						View view = (View) element;
 						if (view.getDiagram() == scope.getDiagram()) {
 							element2ViewMap.put(element, element); // take only those that part of
-																	// our diagram
+							// our diagram
 						}
 					}
 				}

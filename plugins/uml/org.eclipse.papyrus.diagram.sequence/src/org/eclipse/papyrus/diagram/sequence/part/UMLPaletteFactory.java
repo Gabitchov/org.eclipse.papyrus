@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.part;
 
 import java.util.ArrayList;
@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
-import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
@@ -35,21 +34,8 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
-		paletteRoot.add(createUml1Group());
-		paletteRoot.add(createObjects2Group());
-		paletteRoot.add(createMessage3Group());
-	}
-
-	/**
-	 * Creates "uml" palette tool group
-	 * 
-	 * @generated
-	 */
-	private PaletteContainer createUml1Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(Messages.Uml1Group_title);
-		paletteContainer.setId("createUml1Group"); //$NON-NLS-1$
-		paletteContainer.add(createInteraction1CreationTool());
-		return paletteContainer;
+		paletteRoot.add(createObjects1Group());
+		paletteRoot.add(createMessage2Group());
 	}
 
 	/**
@@ -57,9 +43,9 @@ public class UMLPaletteFactory {
 	 * 
 	 * @generated
 	 */
-	private PaletteContainer createObjects2Group() {
-		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Objects2Group_title);
-		paletteContainer.setId("createObjects2Group"); //$NON-NLS-1$
+	private PaletteContainer createObjects1Group() {
+		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Objects1Group_title);
+		paletteContainer.setId("createObjects1Group"); //$NON-NLS-1$
 		paletteContainer.add(createLifeline1CreationTool());
 		paletteContainer.add(createExecutionAction2CreationTool());
 		paletteContainer.add(createExecutionBehaviour3CreationTool());
@@ -74,25 +60,12 @@ public class UMLPaletteFactory {
 	 * 
 	 * @generated
 	 */
-	private PaletteContainer createMessage3Group() {
-		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Message3Group_title);
-		paletteContainer.setId("createMessage3Group"); //$NON-NLS-1$
+	private PaletteContainer createMessage2Group() {
+		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Message2Group_title);
+		paletteContainer.setId("createMessage2Group"); //$NON-NLS-1$
 		paletteContainer.add(createMessageSync1CreationTool());
+		paletteContainer.add(createMessageAsync2CreationTool());
 		return paletteContainer;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createInteraction1CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
-		types.add(UMLElementTypes.Interaction_2001);
-		NodeToolEntry entry = new NodeToolEntry(Messages.Interaction1CreationTool_title,
-				Messages.Interaction1CreationTool_desc, types);
-		entry.setId("createInteraction1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Interaction_2001));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
 	}
 
 	/**
@@ -189,6 +162,20 @@ public class UMLPaletteFactory {
 				Messages.MessageSync1CreationTool_desc, types);
 		entry.setId("createMessageSync1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Message_4003));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createMessageAsync2CreationTool() {
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(UMLElementTypes.Message_4004);
+		LinkToolEntry entry = new LinkToolEntry(Messages.MessageAsync2CreationTool_title,
+				Messages.MessageAsync2CreationTool_desc, types);
+		entry.setId("createMessageAsync2CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Message_4004));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

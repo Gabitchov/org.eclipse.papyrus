@@ -263,6 +263,25 @@
       <accessors
           figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="MessageAsync">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          targetDecoration="//@figures.0/@figures.0">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MessageAsyncLabelFigure">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="SANS"/>
+        </children>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
+    </descriptors>
   </figures>
   <nodes
       name="InteractionNode"
@@ -296,10 +315,13 @@
   <nodes
       name="InteractionOperandNode"
       figure="CustomInteractionOperandFigure"
-      resizeConstraint="NORTH_SOUTH"/>
+      resizeConstraint="SOUTH"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>
+  <connections
+      name="CallAsyncLink"
+      figure="MessageAsync"/>
   <compartments
       name="InteractionCompartment"
       figure="CustomInteractionRectangleFigure"
@@ -342,6 +364,17 @@
       figure="MessageSync"
       elementIcon="false"
       accessor="//@figures.0/@descriptors.7/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-13"/>
+  </labels>
+  <labels
+      name="MessageAsyncLabel"
+      accessor="//@figures.0/@descriptors.8/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>

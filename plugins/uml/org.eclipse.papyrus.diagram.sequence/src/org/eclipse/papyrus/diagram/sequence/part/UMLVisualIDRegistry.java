@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -34,7 +34,9 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseName2EditPa
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLAbstractExpression;
@@ -60,6 +62,11 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static UMLAbstractExpression Message_4003_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Message_4004_Constraint;
 
 	/**
 	 * @generated
@@ -282,6 +289,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case Message2EditPart.VISUAL_ID:
+			if (MessageName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -299,6 +311,13 @@ public class UMLVisualIDRegistry {
 
 		) {
 			return MessageEditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+
+		&& isMessage_4004((Message) domainElement)
+
+		) {
+			return Message2EditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -322,6 +341,18 @@ public class UMLVisualIDRegistry {
 					"self.messageSort=MessageSort::synchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4003_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isMessage_4004(Message domainElement) {
+		if (Message_4004_Constraint == null) { // lazy initialization
+			Message_4004_Constraint = UMLOCLFactory.getExpression(
+					"self.messageSort=MessageSort::asynchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		}
+		Object result = Message_4004_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -357,6 +388,12 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Lifeline");

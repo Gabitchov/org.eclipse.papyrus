@@ -10,7 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
@@ -235,7 +235,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * Body of this method does not depend on settings in generation model so you may safely remove
 	 * <i>generated</i> tag and modify it.
 	 * 
-	 * @generated
+	 * @generated-Not
 	 */
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
@@ -254,6 +254,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 *            instance of generated figure class
 	 * @generated
 	 */
+
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -297,6 +298,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	protected void setLineType(int style) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineStyle(style);
+
 		}
 	}
 
