@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.navigator.sorters;
 
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
-import org.eclipse.papyrus.di.Diagram;
 
 /**
  * This class sort elements in Model Navigator.

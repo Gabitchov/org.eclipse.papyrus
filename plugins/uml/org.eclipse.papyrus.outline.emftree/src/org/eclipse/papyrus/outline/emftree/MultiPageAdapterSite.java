@@ -5,7 +5,6 @@ package org.eclipse.papyrus.outline.emftree;
 
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorActionBarContributor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorActionBarContributor;
@@ -13,11 +12,9 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IKeyBindingService;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.internal.services.INestable;
 import org.eclipse.ui.part.EditorActionBarContributor;
-import org.eclipse.ui.part.MultiPageEditorSite;
 
 
 /**

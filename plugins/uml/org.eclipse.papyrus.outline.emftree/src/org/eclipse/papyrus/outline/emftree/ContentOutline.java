@@ -37,8 +37,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.core.contentoutline.IPapyrusContentOutlinePage;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.di.presentation.DiActionBarContributor;
-import org.eclipse.papyrus.di.provider.DiItemProviderAdapterFactory;
 import org.eclipse.papyrus.outline.emftree.internal.OutlineDragAdapter;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -233,7 +231,6 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new DiItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UMLItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());

@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -37,7 +38,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.di.Diagram;
 import org.eclipse.papyrus.navigator.actions.GroupChildrenAction;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.navigator.providers.IContentProvider;
@@ -516,20 +516,20 @@ public class ModelNavigator extends CommonNavigator implements
 		}
 	}
 
-	/**
-	 * Handle double click on a Papyrus Diagram.
-	 * 
-	 * @param diagram
-	 */
-	protected void handleDoubleClickOnDiagram(Diagram diagram) {
-		// fjcano #287943 :: handle double click on a papyrus diagram
-		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
-				+ diagram);
-		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
-			// open the diagram if not already open
-			EditorUtils.getIPageMngr().openPage(diagram);
-		}
-	}
+//	/**
+//	 * Handle double click on a Papyrus Diagram.
+//	 * 
+//	 * @param diagram
+//	 */
+//	protected void handleDoubleClickOnDiagram(Diagram diagram) {
+//		// fjcano #287943 :: handle double click on a papyrus diagram
+//		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
+//				+ diagram);
+//		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
+//			// open the diagram if not already open
+//			EditorUtils.getIPageMngr().openPage(diagram);
+//		}
+//	}
 
 	/**
 	 * Handle double click on a GMF Diagram.
@@ -537,7 +537,7 @@ public class ModelNavigator extends CommonNavigator implements
 	 * @param diagram
 	 */
 	protected void handleDoubleClickOnDiagram(
-			org.eclipse.gmf.runtime.notation.Diagram diagram) {
+			Diagram diagram) {
 		// fjcano #287943 :: handle double click on a gmf diagram
 		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
 				+ diagram);
