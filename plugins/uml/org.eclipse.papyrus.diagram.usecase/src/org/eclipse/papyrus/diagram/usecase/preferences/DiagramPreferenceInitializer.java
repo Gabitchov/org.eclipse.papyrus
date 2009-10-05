@@ -28,37 +28,39 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		UseCasePreferencePage.initDefaults(store);
-
-		ActorPreferencePage.initDefaults(store);
-
-		ShortCutDiagramPreferencePage.initDefaults(store);
-
 		CommentPreferencePage.initDefaults(store);
+
+		ComponentPreferencePage.initDefaults(store);
 
 		ConstraintPreferencePage.initDefaults(store);
 
 		PackagePreferencePage.initDefaults(store);
 
-		ComponentPreferencePage.initDefaults(store);
+		ActorPreferencePage.initDefaults(store);
 
-		ExtendPreferencePage.initDefaults(store);
+		ExtensionPointPreferencePage.initDefaults(store);
+
+		UseCasePreferencePage.initDefaults(store);
+
+		ShortCutDiagramPreferencePage.initDefaults(store);
+
+		DependencyPreferencePage.initDefaults(store);
+
+		GeneralizationPreferencePage.initDefaults(store);
+
+		UsagePreferencePage.initDefaults(store);
+
+		AssociationPreferencePage.initDefaults(store);
+
+		PackageImportPreferencePage.initDefaults(store);
 
 		PackageMergePreferencePage.initDefaults(store);
 
 		AbstractionPreferencePage.initDefaults(store);
 
-		AssociationPreferencePage.initDefaults(store);
-
-		GeneralizationPreferencePage.initDefaults(store);
+		ExtendPreferencePage.initDefaults(store);
 
 		RealizationPreferencePage.initDefaults(store);
-
-		DependencyPreferencePage.initDefaults(store);
-
-		UsagePreferencePage.initDefaults(store);
-
-		PackageImportPreferencePage.initDefaults(store);
 
 		IncludePreferencePage.initDefaults(store);
 
