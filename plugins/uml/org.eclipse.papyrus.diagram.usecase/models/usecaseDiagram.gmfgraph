@@ -333,7 +333,8 @@
       accessor="//@figures.0/@descriptors.4/@accessors.0"/>
   <labels
       name="ExtendsLink_FixedLabel"
-      figure="ExtendsLink_fixed">
+      figure="ExtendsLink_fixed"
+      elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -343,7 +344,8 @@
   </labels>
   <labels
       name="IncludeLink_FixedLabel"
-      figure="IncludeLink_fixed">
+      figure="IncludeLink_fixed"
+      elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>

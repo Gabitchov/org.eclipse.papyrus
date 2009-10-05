@@ -228,11 +228,7 @@ public class ExtendsLink_fixedEditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
-		}
-		return UMLElementTypes.getImage(parserElement.eClass());
+		return null;
 	}
 
 	/**

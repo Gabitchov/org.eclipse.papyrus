@@ -315,7 +315,7 @@
          </propertySection>
       </propertySections>
    </extension>
-<extension
+<extension
 	point="org.eclipse.ui.views.properties.tabbed.propertySections">
 	<propertySections contributorId="TreeOutlinePage">
 		<propertySection

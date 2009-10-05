@@ -67,6 +67,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2019;
+
 	/**
 	 * @generated NOT
 	 */
@@ -94,8 +95,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
-				new ShortCutDiagramItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ShortCutDiagramItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ShortCutDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
@@ -240,6 +240,7 @@ AbstractBorderedShapeEditPart {
 		refreshIcons();
 		super.refresh();
 	}
+
 	/**
 	 * Get the EditorRegistry used to create editor instances. This default implementation return
 	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
@@ -253,6 +254,7 @@ AbstractBorderedShapeEditPart {
 		}
 		return editorRegistry;
 	}
+
 	/**
 	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
 	 * method in order to return the registry associated to the extension point namespace.
@@ -264,6 +266,7 @@ AbstractBorderedShapeEditPart {
 	protected IEditorFactoryRegistry createEditorRegistry() {
 		return new EditorFactoryRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
+
 	/**
 	 * @generated NOT
 	 */
@@ -284,6 +287,7 @@ AbstractBorderedShapeEditPart {
 		getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram) resolveSemanticElement()));
 
 	}
+
 	/**
 	 * @generated
 	 */

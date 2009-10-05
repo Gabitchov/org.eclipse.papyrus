@@ -1472,8 +1472,7 @@
             editPartClassName="IncludeLink_fixedEditPart"
             itemSemanticEditPolicyClassName="IncludeLink_fixedItemSemanticEditPolicy"
             notationViewFactoryClassName="IncludeLink_fixedViewFactory"
-            readOnly="true"
-            elementIcon="true">
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1526,8 +1525,7 @@
             editPartClassName="ExtendsLink_fixedEditPart"
             itemSemanticEditPolicyClassName="ExtendsLink_fixedItemSemanticEditPolicy"
             notationViewFactoryClassName="ExtendsLink_fixedViewFactory"
-            readOnly="true"
-            elementIcon="true">
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
