@@ -15,23 +15,15 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = Activator.PLUGIN_ID + ".messages"; //$NON-NLS-1$
 
-	public static String GradientSection_Button_IsGradientUsed;
+	public static String GradientSection_Button_ActivateGradient;
 
-	public static String GradientSection_Command_Change_Gradient;
-
-	public static String GradientSection_Command_Change_Transparency;
-
-	public static String GradientSection_GradientColor_FirstColor;
-
-	public static String GradientSection_GradientColor_SecondColor;
-
-	public static String GradientSection_Group_Colors;
+	public static String GradientSection_Label_FirstColor;
 
 	public static String GradientSection_Group_Gradient;
 
-	public static String GradientSection_Group_Style;
+	public static String GradientSection_Label_Style;
 
-	public static String GradientSection_Group_Transparency;
+	public static String GradientSection_Label_Transparency;
 
 	public static String GradientSection_Style_Horizontal;
 

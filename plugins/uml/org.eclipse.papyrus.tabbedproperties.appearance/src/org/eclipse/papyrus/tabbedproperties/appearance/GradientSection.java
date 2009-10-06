@@ -13,9 +13,7 @@
 package org.eclipse.papyrus.tabbedproperties.appearance;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -42,7 +40,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -60,11 +57,7 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 	private Button policyButton;
 
-	private Group transparencyGroup;
-
-	private Group colorGroup;
-
-	private Group styleGroup;
+	private Composite styleCompo;
 
 	private Spinner transparencyValueSpinner;
 
@@ -72,17 +65,13 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 	private Button horizontalStyle;
 
-	private Button color1Button;
-
-	private Button color2Button;
+	private Button colorButton;
 
 	private GradientData gradientData = GradientData.getDefaultGradientData();
 
 	private int transparency = -1;
 
 	private boolean isGradientUsed = false;
-
-	private Map<Button, Integer> buttonColors = new HashMap<Button, Integer>();
 
 	/*
 	 * (non-Javadoc)
@@ -99,26 +88,28 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 		gradientGroup.setLayout(layout);
 
 		createGradientPolicy(gradientGroup);
-		createTransparencyGroup(gradientGroup);
 		createColorGroup(gradientGroup);
 		createStyleGroup(gradientGroup);
+		createTransparencyGroup(gradientGroup);
 	}
 
 	/**
-	 * Create the GradientPolicy Group. This group contained a SWT.CHECK button to specify if the
-	 * gradient is used or not.
+	 * Create the GradientPolicy Group. It contained a SWT.CHECK button to specify if the
+	 * gradient is used or not and a label.
 	 * 
 	 * @param parent
 	 *            the parent
 	 */
 	protected void createGradientPolicy(Composite parent) {
-		Composite gradientPolicyCompo = getWidgetFactory().createComposite(parent);
-		gradientPolicyCompo.setLayout(new GridLayout(1, false));
-		GridData gd = new GridData();
-		gradientPolicyCompo.setLayoutData(gd);
-		policyButton = getWidgetFactory().createButton(gradientPolicyCompo,
-				Messages.GradientSection_Button_IsGradientUsed, SWT.CHECK);
 
+		// Create a label
+		getWidgetFactory().createCLabel(parent, Messages.GradientSection_Button_ActivateGradient);
+		
+		// Create the check button
+		policyButton = getWidgetFactory().createButton(parent,
+				"", SWT.CHECK); //$NON-NLS-1$
+
+		
 		policyButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
@@ -145,18 +136,19 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the transparency group. This group contained a spinner to select a value for the
+	 * Create the transparency. It contained a label and a spinner to select a value for the
 	 * transparency. The transparency value must be contained in [0;100]
 	 * 
 	 * @param parent
-	 *            the composite containing the group
+	 *            the composite containing the widgets
 	 */
 	protected void createTransparencyGroup(Composite parent) {
-		transparencyGroup = getWidgetFactory().createGroup(parent, Messages.GradientSection_Group_Transparency);
-		transparencyGroup.setLayout(new GridLayout(1, false));
-		transparencyGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL | GridData.GRAB_VERTICAL));
 
-		transparencyValueSpinner = new Spinner(transparencyGroup, SWT.BORDER);
+		// Create the label
+		getWidgetFactory().createCLabel(parent, Messages.GradientSection_Label_Transparency);
+		
+		// Create the Spinner
+		transparencyValueSpinner = new Spinner(parent, SWT.BORDER);
 		transparencyValueSpinner.setMinimum(0);
 		transparencyValueSpinner.setMaximum(100);
 		transparencyValueSpinner.setIncrement(1);
@@ -172,41 +164,25 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the colors group. This group is in charge of selecting the two colors used by the
-	 * gradient.
+	 * Create the color.  It is in charge of selecting the color used by the
+	 * gradient. It contained a label and the color button
 	 * 
 	 * @param parent
 	 *            the parent composite
 	 */
 	protected void createColorGroup(Composite parent) {
-		colorGroup = getWidgetFactory().createGroup(parent, Messages.GradientSection_Group_Colors);
-		colorGroup.setLayout(new GridLayout(2, false));
-		colorGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL | GridData.GRAB_VERTICAL));
 
-		getWidgetFactory().createCLabel(colorGroup, Messages.GradientSection_GradientColor_FirstColor);
+		// Create the label
+		getWidgetFactory().createCLabel(parent, Messages.GradientSection_Label_FirstColor);
 
-		// button for choosing gradientColor1
-		color1Button = getWidgetFactory().createButton(colorGroup, "", SWT.PUSH); //$NON-NLS-1$ 
-		color1Button.addListener(SWT.Selection, new Listener() {
+		// Create the color button
+		colorButton = getWidgetFactory().createButton(parent, "", SWT.PUSH); //$NON-NLS-1$ 
+		colorButton.addListener(SWT.Selection, new Listener() {
 
 			public void handleEvent(Event event) {
-				RGB color1 = changeColor(color1Button);
+				RGB color1 = changeColor(colorButton);
 				if (color1 != null) {
 					gradientData.setGradientColor1(FigureUtilities.RGBToInteger(color1));
-					updateGradient();
-				}
-			}
-		});
-
-		getWidgetFactory().createCLabel(colorGroup, Messages.GradientSection_GradientColor_SecondColor);
-		// button for choosing gradientColor2
-		color2Button = getWidgetFactory().createButton(colorGroup, "", SWT.PUSH); //$NON-NLS-1$ 
-		color2Button.addListener(SWT.Selection, new Listener() {
-
-			public void handleEvent(Event event) {
-				RGB color2 = changeColor(color2Button);
-				if (color2 != null) {
-					gradientData.setGradientColor2(FigureUtilities.RGBToInteger(color2));
 					updateGradient();
 				}
 			}
@@ -214,20 +190,24 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the style group. This group contained the component in charge of the style of the
+	 * Create the style. It contained the component in charge of the style of the
 	 * gradient. Values available are GradientStyle.VERTICAL and GradientStyle.HORIZONTAL.
 	 * 
 	 * @param parent
 	 *            the parent composite
 	 */
 	protected void createStyleGroup(Composite parent) {
-		styleGroup = getWidgetFactory().createGroup(parent, Messages.GradientSection_Group_Style);
-		GridLayout layout = new GridLayout(1, true);
-		styleGroup.setLayout(layout);
-		styleGroup.setLayoutData(new GridData(GridData.FILL_VERTICAL | GridData.GRAB_VERTICAL));
 
-		verticalStyle = getWidgetFactory().createButton(styleGroup, Messages.GradientSection_Style_Vertical, SWT.RADIO);
-		horizontalStyle = getWidgetFactory().createButton(styleGroup, Messages.GradientSection_Style_Horizontal,
+		// Create the label
+		getWidgetFactory().createCLabel(parent, Messages.GradientSection_Label_Style);
+
+		// Create the style composite
+		styleCompo = getWidgetFactory().createComposite(parent, SWT.NULL);
+		GridLayout layout = new GridLayout(1, true);
+		layout.marginWidth = 0;
+		styleCompo.setLayout(layout);
+		verticalStyle = getWidgetFactory().createButton(styleCompo, Messages.GradientSection_Style_Vertical, SWT.RADIO);
+		horizontalStyle = getWidgetFactory().createButton(styleCompo, Messages.GradientSection_Style_Horizontal,
 				SWT.RADIO);
 
 		SelectionListener selectionListener = new SelectionAdapter() {
@@ -259,9 +239,7 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	 */
 	@Override
 	public void dispose() {
-		disposeButtonImage(color1Button);
-		disposeButtonImage(color2Button);
-
+		disposeButtonImage(colorButton);
 		super.dispose();
 	}
 
@@ -289,8 +267,6 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 		if (image != null) {
 			image.dispose();
 		}
-		// Store the color and the button for the refresh mechanism
-		buttonColors.put(btn, new Integer(intColor));
 
 		Display display = btn.getParent().getShell().getDisplay();
 		RGB rgbColor = FigureUtilities.integerToRGB(intColor);
@@ -348,14 +324,9 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 			if (transparency != transparencyValueSpinner.getSelection()) {
 				transparencyValueSpinner.setSelection(transparency);
 			}
-			if (buttonColors.get(color1Button) == null
-					|| !(buttonColors.get(color1Button).intValue() == gradientData.getGradientColor1())) {
-				setButtonImage(color1Button, gradientData.getGradientColor1());
-			}
-			if (buttonColors.get(color2Button) == null
-					|| !(buttonColors.get(color2Button).intValue() == gradientData.getGradientColor2())) {
-				setButtonImage(color2Button, gradientData.getGradientColor2());
-			}
+		
+			setButtonImage(colorButton, gradientData.getGradientColor1());
+
 			if (horizontalStyle.getSelection() != (gradientData.getGradientStyle() == GradientStyle.HORIZONTAL)) {
 				horizontalStyle.setSelection(gradientData.getGradientStyle() == GradientStyle.HORIZONTAL);
 			}
@@ -366,16 +337,13 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 		policyButton.setSelection(isGradientUsed);
 		// Groups
-		transparencyGroup.setEnabled(isGradientUsed);
-		styleGroup.setEnabled(isGradientUsed);
-		colorGroup.setEnabled(isGradientUsed);
+		styleCompo.setEnabled(isGradientUsed);
 
 		// Others
 		transparencyValueSpinner.setEnabled(isGradientUsed);
 		verticalStyle.setEnabled(isGradientUsed);
 		horizontalStyle.setEnabled(isGradientUsed);
-		color1Button.setEnabled(isGradientUsed);
-		color2Button.setEnabled(isGradientUsed);
+		colorButton.setEnabled(isGradientUsed);
 
 	}
 
@@ -437,7 +405,7 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	 */
 	protected void updateTransparency() {
 		updateFeature(NotationPackage.eINSTANCE.getFillStyle_Transparency(), new Integer(transparency),
-				Messages.GradientSection_Command_Change_Transparency);
+				"Change Transparency command");//$NON-NLS-1$
 	}
 
 	/**
@@ -449,6 +417,6 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 			value = new GradientData(gradientData);
 		}
 		updateFeature(NotationPackage.eINSTANCE.getFillStyle_Gradient(), value,
-				Messages.GradientSection_Command_Change_Gradient);
+				"Change Gradient command"); //$NON-NLS-1$
 	}
 }
