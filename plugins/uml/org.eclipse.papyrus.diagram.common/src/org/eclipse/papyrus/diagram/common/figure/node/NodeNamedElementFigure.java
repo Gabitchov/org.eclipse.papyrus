@@ -426,29 +426,6 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Paint the background of the figure. If this figure uses gradient, then it will paint the
-	 * background with the gradient informations. Otherwise it will use the background color.
-	 * 
-	 * @param graphics
-	 *            the graphics
-	 * @param rectangle
-	 *            the rectangle where the background needs to be fill.
-	 */
-	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
-		if (isUsingGradient()) {
-			applyTransparency(graphics);
-			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-			graphics.fillGradient(rectangle, isVertical);
-		} else {
-			graphics.setBackgroundColor(getBackgroundColor());
-			graphics.setForegroundColor(getForegroundColor());
-			graphics.fillRectangle(rectangle);
-		}
-	}
-
-	/**
 	 * Refresh stereotypes.
 	 * 
 	 * @param presentation

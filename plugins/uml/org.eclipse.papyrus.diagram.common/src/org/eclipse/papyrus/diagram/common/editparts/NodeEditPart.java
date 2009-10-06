@@ -15,10 +15,11 @@ package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeFigure;
-import org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
 import org.eclipse.swt.graphics.Color;
 
@@ -82,10 +83,12 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart {
 	@Override
 	protected void setGradient(GradientData gradient) {
 		IPapyrusNodeFigure fig = getPrimaryShape();
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if (gradient != null) {
 			fig.setIsUsingGradient(true);
+			;
 			fig
-					.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient
+					.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient
 							.getGradientStyle());
 		} else {
 			fig.setIsUsingGradient(false);
