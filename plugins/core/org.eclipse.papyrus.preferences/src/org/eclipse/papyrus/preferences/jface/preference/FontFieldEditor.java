@@ -71,7 +71,7 @@ public class FontFieldEditor extends FieldEditor {
 	 *            the parent composite in which this field editor will be placed.
 	 */
 	public FontFieldEditor(String preferenceName, Composite parent) {
-		super(preferenceName, "", parent);
+		super(preferenceName, "", parent); //$NON-NLS-1$
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class FontFieldEditor extends FieldEditor {
 		// Name Combo
 		fontNameCombo.setText(fontData.getName());
 		// Size combo
-		fontSizeCombo.setText("" + fontData.getHeight());
+		fontSizeCombo.setText("" + fontData.getHeight()); //$NON-NLS-1$
 
 		int style = fontData.getStyle();
 		// Bold Button

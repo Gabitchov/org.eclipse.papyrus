@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.preferences.pages;
 
 import org.eclipse.gmf.runtime.diagram.ui.properties.internal.l10n.DiagramUIPropertiesImages;
+import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor;
 import org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -20,6 +21,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Layout;
 
 /**
  * An abstract implementation of a Papyrus Preference Page.
@@ -38,9 +40,9 @@ import org.eclipse.swt.widgets.Group;
  */
 public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyrusPreferencePage {
 
-	private static final String COLORS_GROUPBOX_LABEL = "Colors";
+	private static final String COLORS_GROUPBOX_LABEL = Messages.AbstractPapyrusElementPreferencePage_Colors;
 
-	private static final String FONT_GROUPBOX_LABEL = "Font";
+	private static final String FONT_GROUPBOX_LABEL = Messages.AbstractPapyrusElementPreferencePage_Font;
 
 	private ColorFieldEditor fontColorEditor = null;
 
@@ -56,7 +58,7 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 
 		toolbar = new Group(colorsAndFontsGroup, SWT.SHADOW_NONE);
 		toolbar.setText(COLORS_GROUPBOX_LABEL);
-		toolbar.setLayout(new GridLayout(2, false));
+		toolbar.setLayout(getToolbarLayout());
 
 		Composite fontColorEditorCompo = getEncapsulatedCompo(toolbar);
 		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT),
@@ -68,6 +70,10 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
 		addEditorFields(lineColorEditor);
 
+	}
+
+	protected Layout getToolbarLayout() {
+		return new GridLayout(2, false);
 	}
 
 	protected Composite getEncapsulatedCompo(Composite parent) {

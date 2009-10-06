@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.ComboFieldEditor;
+import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -47,41 +48,41 @@ import org.eclipse.swt.widgets.Group;
  */
 public abstract class AbstractPapyrusLinkPreferencePage extends AbstractPapyrusElementPreferencePage {
 
-	private static final String CONNECTION_GROUPBOX_LABEL = "Connection";
+	private static final String CONNECTION_GROUPBOX_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Connection;
 
-	private static final String JUMP_LINKS_GROUPBOX_LABEL = "Jump Links";
+	private static final String JUMP_LINKS_GROUPBOX_LABEL = Messages.AbstractPapyrusLinkPreferencePage_JUMPLINKS;
 
-	private static final String ROUTING_GROUPBOX_LABEL = "Routing";
+	private static final String ROUTING_GROUPBOX_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Routing;
 
-	private static final String SMOOTHNESS_COMBOFIELDEDITOR_LABEL = "Smoothness";
+	private static final String SMOOTHNESS_COMBOFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Smoothness;
 
-	private static final String JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL = "Status";
+	private static final String JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Status;
 
-	private static final String JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL = "Type";
+	private static final String JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Type;
 
-	private static final String JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL = "Reverse jump links";
+	private static final String JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_ReverseJumpLinks;
 
-	private static final String ROUTING_STYLES_COMBOFIELDEDITOR_LABEL = "Styles";
+	private static final String ROUTING_STYLES_COMBOFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Styles;
 
-	private static final String ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL = "Avoid Obstructions";
+	private static final String ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_AvoidObstructions;
 
-	private static final String ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL = "Closest Distance";
+	private static final String ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_ClosestDistance;
 
-	private static final String[][] SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES = { { "None", "" + Smoothness.NONE },
-			{ "Less", "" + Smoothness.LESS }, { "Normal", "" + Smoothness.NORMAL }, { "More", "" + Smoothness.MORE } };
+	private static final String[][] SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES = { { Messages.AbstractPapyrusLinkPreferencePage_None, "" + Smoothness.NONE }, //$NON-NLS-2$
+			{ Messages.AbstractPapyrusLinkPreferencePage_Less, "" + Smoothness.LESS }, { Messages.AbstractPapyrusLinkPreferencePage_Normal, "" + Smoothness.NORMAL }, { Messages.AbstractPapyrusLinkPreferencePage_More, "" + Smoothness.MORE } }; //$NON-NLS-2$ //$NON-NLS-4$ //$NON-NLS-6$
 
 	private static final String[][] JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
-			{ "None", "" + JumpLinkStatus.NONE }, { "Below", "" + JumpLinkStatus.BELOW },
-			{ "All", "" + JumpLinkStatus.ALL }, { "Above", "" + JumpLinkStatus.ABOVE } };
+			{ Messages.AbstractPapyrusLinkPreferencePage_None, "" + JumpLinkStatus.NONE }, { Messages.AbstractPapyrusLinkPreferencePage_Below, "" + JumpLinkStatus.BELOW }, //$NON-NLS-2$ //$NON-NLS-4$
+			{ Messages.AbstractPapyrusLinkPreferencePage_All, "" + JumpLinkStatus.ALL }, { Messages.AbstractPapyrusLinkPreferencePage_Above, "" + JumpLinkStatus.ABOVE } }; //$NON-NLS-2$ //$NON-NLS-4$
 
 	private static final String[][] JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
-			{ "Semi-Circle", "" + JumpLinkType.SEMICIRCLE }, { "Square", "" + JumpLinkType.SQUARE },
-			{ "Chamfered", "" + JumpLinkType.CHAMFERED } };
+			{ Messages.AbstractPapyrusLinkPreferencePage_SemiCircle, "" + JumpLinkType.SEMICIRCLE }, { Messages.AbstractPapyrusLinkPreferencePage_Square, "" + JumpLinkType.SQUARE }, //$NON-NLS-2$ //$NON-NLS-4$
+			{ Messages.AbstractPapyrusLinkPreferencePage_Chamfered, "" + JumpLinkType.CHAMFERED } }; //$NON-NLS-2$
 
 	// TODO : check if Tree is always a valid possibility
 	private static final String[][] ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
-			{ "Oblique", "" + Routing.MANUAL }, { "Rectilinear", "" + Routing.RECTILINEAR },
-			{ "Tree", "" + Routing.TREE } };
+			{ Messages.AbstractPapyrusLinkPreferencePage_Oblique, "" + Routing.MANUAL }, { Messages.AbstractPapyrusLinkPreferencePage_Rectilinear, "" + Routing.RECTILINEAR }, //$NON-NLS-2$ //$NON-NLS-4$
+			{ Messages.AbstractPapyrusLinkPreferencePage_Tree, "" + Routing.TREE } }; //$NON-NLS-2$
 
 	@Override
 	protected void createPageContents(Composite parent) {

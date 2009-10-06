@@ -12,7 +12,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.jface.preference;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorPalettePopup;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -70,17 +69,7 @@ public class ColorFieldEditor extends FieldEditor {
 	@Override
 	public void load() {
 		super.load();
-		Assert.isNotNull(backgroundImage);
-		buttonImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), PreferenceConverter.getColor(
-				getPreferenceStore(), getPreferenceName())).createImage();
-		colorButton.setImage(buttonImage);
-	}
 
-	/**
-	 * Initialize the button with the background image.
-	 */
-	public void init() {
-		Assert.isNotNull(backgroundImage);
 		buttonImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), PreferenceConverter.getColor(
 				getPreferenceStore(), getPreferenceName())).createImage();
 		colorButton.setImage(buttonImage);

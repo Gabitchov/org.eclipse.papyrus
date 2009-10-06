@@ -98,7 +98,7 @@ public class GradientPreferenceConverter {
 	}
 
 	private void initFieldFromPreference(String pPreference) {
-		String[] values = pPreference.split(";");
+		String[] values = pPreference.split(";"); //$NON-NLS-1$
 		if (values.length == 4) {
 			fColor1 = getRGBColor(values[GRADIENT_COLOR1]);
 			fColor2 = getRGBColor(values[GRADIENT_COLOR2]);
@@ -176,7 +176,7 @@ public class GradientPreferenceConverter {
 	 * @return the corresponding color
 	 */
 	private static RGB getRGBColor(String string) {
-		StringTokenizer st = new StringTokenizer(string, "RGB ,{}");
+		StringTokenizer st = new StringTokenizer(string, "RGB ,{}"); //$NON-NLS-1$
 		int red = Integer.parseInt(st.nextToken());
 		int green = Integer.parseInt(st.nextToken());
 		int blue = Integer.parseInt(st.nextToken());
@@ -194,11 +194,11 @@ public class GradientPreferenceConverter {
 	public String getPreferenceValue() {
 		StringBuffer sb = new StringBuffer(30);
 		sb.append(fColor1.toString());
-		sb.append(";");
+		sb.append(";"); //$NON-NLS-1$
 		sb.append(fColor2.toString());
-		sb.append(";");
+		sb.append(";"); //$NON-NLS-1$
 		sb.append(fStyle);
-		sb.append(";");
+		sb.append(";"); //$NON-NLS-1$
 		sb.append(fTransparency);
 		return sb.toString().trim();
 	}

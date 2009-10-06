@@ -41,43 +41,43 @@ package org.eclipse.papyrus.preferences.utils;
  */
 public class PreferenceConstantHelper {
 
-	private final static String COLOR = "color.";
+	private final static String COLOR = "color."; //$NON-NLS-1$
 
-	private final static String GRADIENT = "gradient";
+	private final static String GRADIENT = "gradient"; //$NON-NLS-1$
 
-	private final static String POLICY = ".policy";
+	private final static String POLICY = ".policy"; //$NON-NLS-1$
 
-	private final static String JUMPLINK = "jumplink.";
+	private final static String JUMPLINK = "jumplink."; //$NON-NLS-1$
 
-	private final static String ROUTING = "routing";
+	private final static String ROUTING = "routing"; //$NON-NLS-1$
 
 	private final static String ROUTING_POLICY = ROUTING + POLICY;
 
-	private final static String COLOR_FILL_CONSTANT = COLOR + "fill";
+	private final static String COLOR_FILL_CONSTANT = COLOR + "fill"; //$NON-NLS-1$
 
-	private final static String FONT_CONSTANT = "font";
+	private final static String FONT_CONSTANT = "font"; //$NON-NLS-1$
 
 	private final static String COLOR_FONT_CONSTANT = COLOR + FONT_CONSTANT;
 
-	private final static String COLOR_LINE_CONSTANT = COLOR + "line";
+	private final static String COLOR_LINE_CONSTANT = COLOR + "line"; //$NON-NLS-1$
 
 	private final static String COLOR_GRADIENT_CONSTANT = COLOR + GRADIENT;
 
 	private final static String GRADIENT_POLICY_CONSTANT = GRADIENT + POLICY;
 
-	private final static String JUMPLINK_STATUS_CONSTANT = JUMPLINK + "status";
+	private final static String JUMPLINK_STATUS_CONSTANT = JUMPLINK + "status"; //$NON-NLS-1$
 
-	private final static String JUMPLINK_REVERSE_CONSTANT = JUMPLINK + "reverse";
+	private final static String JUMPLINK_REVERSE_CONSTANT = JUMPLINK + "reverse"; //$NON-NLS-1$
 
-	private final static String JUMPLINK_TYPE_CONSTANT = JUMPLINK + "type";
+	private final static String JUMPLINK_TYPE_CONSTANT = JUMPLINK + "type"; //$NON-NLS-1$
 
-	private final static String ROUTING_POLICY_DISTANCE_CONSTANT = ROUTING_POLICY + ".distance";
+	private final static String ROUTING_POLICY_DISTANCE_CONSTANT = ROUTING_POLICY + ".distance"; //$NON-NLS-1$
 
-	private final static String ROUTING_POLICY_OBSTRUCTION_CONSTANT = ROUTING_POLICY + ".obstruction";
+	private final static String ROUTING_POLICY_OBSTRUCTION_CONSTANT = ROUTING_POLICY + ".obstruction"; //$NON-NLS-1$
 
-	private final static String ROUTING_STYLE_CONSTANT = ROUTING + ".style";
+	private final static String ROUTING_STYLE_CONSTANT = ROUTING + ".style"; //$NON-NLS-1$
 
-	private final static String SMOOTHNESS_CONSTANT = "smoothness";
+	private final static String SMOOTHNESS_CONSTANT = "smoothness"; //$NON-NLS-1$
 
 	/**
 	 * A preference of type COLOR FILL
@@ -157,7 +157,7 @@ public class PreferenceConstantHelper {
 	public static String getElementConstant(String elementName, int preferenceType) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(elementName);
-		sb.append(".");
+		sb.append("."); //$NON-NLS-1$
 
 		switch (preferenceType) {
 		case COLOR_FILL:
