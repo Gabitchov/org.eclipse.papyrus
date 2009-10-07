@@ -30,8 +30,7 @@ public class DestroyObjectActionPropertiesEditionProvider implements IProperties
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof DestroyObjectAction)
-				&& (UMLPackage.eINSTANCE.getDestroyObjectAction() == eObject.eClass());
+		return (eObject instanceof DestroyObjectAction) && (UMLPackage.eINSTANCE.getDestroyObjectAction() == eObject.eClass());
 	}
 
 	/**

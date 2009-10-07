@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -52,27 +49,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -95,15 +86,22 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -118,21 +116,20 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -145,27 +142,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -188,6 +179,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the elementImport to add
 	 */
 	public List getElementImportToAdd();
@@ -208,27 +208,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getElementImportToEdit();
 
 	/**
-	 * @return the current elementImport
+	 * @return the current elementImport table
 	 */
 	public List getElementImportTable();
 
 	/**
 	 * Init the elementImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * 
-	 * @param newValue
-	 *            the elementImport to update
+	 * @param newValue the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -251,6 +245,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the elementImport table
+	 */
+	public boolean isContainedInElementImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packageImport to add
 	 */
 	public List getPackageImportToAdd();
@@ -271,27 +274,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getPackageImportToEdit();
 
 	/**
-	 * @return the current packageImport
+	 * @return the current packageImport table
 	 */
 	public List getPackageImportTable();
 
 	/**
 	 * Init the packageImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * 
-	 * @param newValue
-	 *            the packageImport to update
+	 * @param newValue the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -314,6 +311,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packageImport table
+	 */
+	public boolean isContainedInPackageImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedRule to add
 	 */
 	public List getOwnedRuleToAdd();
@@ -334,27 +340,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getOwnedRuleToEdit();
 
 	/**
-	 * @return the current ownedRule
+	 * @return the current ownedRule table
 	 */
 	public List getOwnedRuleTable();
 
 	/**
 	 * Init the ownedRule
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * 
-	 * @param newValue
-	 *            the ownedRule to update
+	 * @param newValue the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -377,17 +377,28 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedRule table
+	 */
+	public boolean isContainedInOwnedRuleTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the isLeaf
 	 */
 	public Boolean getIsLeaf();
 
 	/**
 	 * Defines a new isLeaf
-	 * 
-	 * @param newValue
-	 *            the new isLeaf to set
+	 * @param newValue the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the templateBinding to add
@@ -410,27 +421,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getTemplateBindingToEdit();
 
 	/**
-	 * @return the current templateBinding
+	 * @return the current templateBinding table
 	 */
 	public List getTemplateBindingTable();
 
 	/**
 	 * Init the templateBinding
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * 
-	 * @param newValue
-	 *            the templateBinding to update
+	 * @param newValue the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -453,17 +458,28 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the templateBinding table
+	 */
+	public boolean isContainedInTemplateBindingTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the isAbstract
 	 */
 	public Boolean getIsAbstract();
 
 	/**
 	 * Defines a new isAbstract
-	 * 
-	 * @param newValue
-	 *            the new isAbstract to set
+	 * @param newValue the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the generalization to add
@@ -486,27 +502,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getGeneralizationToEdit();
 
 	/**
-	 * @return the current generalization
+	 * @return the current generalization table
 	 */
 	public List getGeneralizationTable();
 
 	/**
 	 * Init the generalization
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initGeneralization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalization
-	 * 
-	 * @param newValue
-	 *            the generalization to update
+	 * @param newValue the generalization to update
 	 */
 	public void updateGeneralization(EObject newValue);
 
@@ -529,6 +539,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToGeneralization(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the generalization table
+	 */
+	public boolean isContainedInGeneralizationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the powertypeExtent to add
 	 */
 	public List getPowertypeExtentToAdd();
@@ -539,27 +558,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public List getPowertypeExtentToRemove();
 
 	/**
-	 * @return the current powertypeExtent
+	 * @return the current powertypeExtent table
 	 */
 	public List getPowertypeExtentTable();
 
 	/**
 	 * Init the powertypeExtent
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPowertypeExtent(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the powertypeExtent
-	 * 
-	 * @param newValue
-	 *            the powertypeExtent to update
+	 * @param newValue the powertypeExtent to update
 	 */
 	public void updatePowertypeExtent(EObject newValue);
 
@@ -582,6 +595,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToPowertypeExtent(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the powertypeExtent table
+	 */
+	public boolean isContainedInPowertypeExtentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the redefinedClassifier to add
 	 */
 	public List getRedefinedClassifierToAdd();
@@ -592,27 +614,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public List getRedefinedClassifierToRemove();
 
 	/**
-	 * @return the current redefinedClassifier
+	 * @return the current redefinedClassifier table
 	 */
 	public List getRedefinedClassifierTable();
 
 	/**
 	 * Init the redefinedClassifier
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRedefinedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedClassifier
-	 * 
-	 * @param newValue
-	 *            the redefinedClassifier to update
+	 * @param newValue the redefinedClassifier to update
 	 */
 	public void updateRedefinedClassifier(EObject newValue);
 
@@ -635,6 +651,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToRedefinedClassifier(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the redefinedClassifier table
+	 */
+	public boolean isContainedInRedefinedClassifierTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the substitution to add
 	 */
 	public List getSubstitutionToAdd();
@@ -655,27 +680,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getSubstitutionToEdit();
 
 	/**
-	 * @return the current substitution
+	 * @return the current substitution table
 	 */
 	public List getSubstitutionTable();
 
 	/**
 	 * Init the substitution
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initSubstitution(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the substitution
-	 * 
-	 * @param newValue
-	 *            the substitution to update
+	 * @param newValue the substitution to update
 	 */
 	public void updateSubstitution(EObject newValue);
 
@@ -698,6 +717,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToSubstitution(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the substitution table
+	 */
+	public boolean isContainedInSubstitutionTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the collaborationUse to add
 	 */
 	public List getCollaborationUseToAdd();
@@ -718,27 +746,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getCollaborationUseToEdit();
 
 	/**
-	 * @return the current collaborationUse
+	 * @return the current collaborationUse table
 	 */
 	public List getCollaborationUseTable();
 
 	/**
 	 * Init the collaborationUse
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initCollaborationUse(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the collaborationUse
-	 * 
-	 * @param newValue
-	 *            the collaborationUse to update
+	 * @param newValue the collaborationUse to update
 	 */
 	public void updateCollaborationUse(EObject newValue);
 
@@ -761,6 +783,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToCollaborationUse(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the collaborationUse table
+	 */
+	public boolean isContainedInCollaborationUseTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedUseCase to add
 	 */
 	public List getOwnedUseCaseToAdd();
@@ -781,27 +812,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getOwnedUseCaseToEdit();
 
 	/**
-	 * @return the current ownedUseCase
+	 * @return the current ownedUseCase table
 	 */
 	public List getOwnedUseCaseTable();
 
 	/**
 	 * Init the ownedUseCase
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedUseCase
-	 * 
-	 * @param newValue
-	 *            the ownedUseCase to update
+	 * @param newValue the ownedUseCase to update
 	 */
 	public void updateOwnedUseCase(EObject newValue);
 
@@ -824,6 +849,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedUseCase(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedUseCase table
+	 */
+	public boolean isContainedInOwnedUseCaseTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the useCase to add
 	 */
 	public List getUseCaseToAdd();
@@ -834,27 +868,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public List getUseCaseToRemove();
 
 	/**
-	 * @return the current useCase
+	 * @return the current useCase table
 	 */
 	public List getUseCaseTable();
 
 	/**
 	 * Init the useCase
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the useCase
-	 * 
-	 * @param newValue
-	 *            the useCase to update
+	 * @param newValue the useCase to update
 	 */
 	public void updateUseCase(EObject newValue);
 
@@ -877,15 +905,22 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToUseCase(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the useCase table
+	 */
+	public boolean isContainedInUseCaseTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the fileName
 	 */
 	public String getFileName();
 
 	/**
 	 * Defines a new fileName
-	 * 
-	 * @param newValue
-	 *            the new fileName to set
+	 * @param newValue the new fileName to set
 	 */
 	public void setFileName(String newValue);
 
@@ -914,27 +949,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getNestedArtifactToEdit();
 
 	/**
-	 * @return the current nestedArtifact
+	 * @return the current nestedArtifact table
 	 */
 	public List getNestedArtifactTable();
 
 	/**
 	 * Init the nestedArtifact
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initNestedArtifact(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the nestedArtifact
-	 * 
-	 * @param newValue
-	 *            the nestedArtifact to update
+	 * @param newValue the nestedArtifact to update
 	 */
 	public void updateNestedArtifact(EObject newValue);
 
@@ -957,6 +986,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToNestedArtifact(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the nestedArtifact table
+	 */
+	public boolean isContainedInNestedArtifactTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the manifestation to add
 	 */
 	public List getManifestationToAdd();
@@ -977,27 +1015,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getManifestationToEdit();
 
 	/**
-	 * @return the current manifestation
+	 * @return the current manifestation table
 	 */
 	public List getManifestationTable();
 
 	/**
 	 * Init the manifestation
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initManifestation(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the manifestation
-	 * 
-	 * @param newValue
-	 *            the manifestation to update
+	 * @param newValue the manifestation to update
 	 */
 	public void updateManifestation(EObject newValue);
 
@@ -1020,6 +1052,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToManifestation(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the manifestation table
+	 */
+	public boolean isContainedInManifestationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedOperation to add
 	 */
 	public List getOwnedOperationToAdd();
@@ -1040,27 +1081,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getOwnedOperationToEdit();
 
 	/**
-	 * @return the current ownedOperation
+	 * @return the current ownedOperation table
 	 */
 	public List getOwnedOperationTable();
 
 	/**
 	 * Init the ownedOperation
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedOperation(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedOperation
-	 * 
-	 * @param newValue
-	 *            the ownedOperation to update
+	 * @param newValue the ownedOperation to update
 	 */
 	public void updateOwnedOperation(EObject newValue);
 
@@ -1083,6 +1118,15 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedOperation(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedOperation table
+	 */
+	public boolean isContainedInOwnedOperationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedAttribute to add
 	 */
 	public List getOwnedAttributeToAdd();
@@ -1103,27 +1147,21 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public Map getOwnedAttributeToEdit();
 
 	/**
-	 * @return the current ownedAttribute
+	 * @return the current ownedAttribute table
 	 */
 	public List getOwnedAttributeTable();
 
 	/**
 	 * Init the ownedAttribute
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedAttribute(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedAttribute
-	 * 
-	 * @param newValue
-	 *            the ownedAttribute to update
+	 * @param newValue the ownedAttribute to update
 	 */
 	public void updateOwnedAttribute(EObject newValue);
 
@@ -1146,15 +1184,22 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedAttribute(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedAttribute table
+	 */
+	public boolean isContainedInOwnedAttributeTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the deploymentLocation
 	 */
 	public String getDeploymentLocation();
 
 	/**
 	 * Defines a new deploymentLocation
-	 * 
-	 * @param newValue
-	 *            the new deploymentLocation to set
+	 * @param newValue the new deploymentLocation to set
 	 */
 	public void setDeploymentLocation(String newValue);
 
@@ -1169,15 +1214,18 @@ public interface DeploymentSpecificationPropertiesEditionPart {
 
 	/**
 	 * Defines a new executionLocation
-	 * 
-	 * @param newValue
-	 *            the new executionLocation to set
+	 * @param newValue the new executionLocation to set
 	 */
 	public void setExecutionLocation(String newValue);
 
 	public void setMessageForExecutionLocation(String msg, int msgLevel);
 
 	public void unsetMessageForExecutionLocation();
+
+
+
+
+
 
 	// Start of user code for additional methods
 

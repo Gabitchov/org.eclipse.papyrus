@@ -30,8 +30,7 @@ public class UnmarshallActionPropertiesEditionProvider implements IPropertiesEdi
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof UnmarshallAction)
-				&& (UMLPackage.eINSTANCE.getUnmarshallAction() == eObject.eClass());
+		return (eObject instanceof UnmarshallAction) && (UMLPackage.eINSTANCE.getUnmarshallAction() == eObject.eClass());
 	}
 
 	/**

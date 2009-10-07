@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -52,27 +49,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -95,15 +86,22 @@ public interface InformationFlowPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -118,21 +116,20 @@ public interface InformationFlowPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -145,27 +142,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -188,6 +179,15 @@ public interface InformationFlowPropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the realization to add
 	 */
 	public List getRealizationToAdd();
@@ -198,27 +198,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getRealizationToRemove();
 
 	/**
-	 * @return the current realization
+	 * @return the current realization table
 	 */
 	public List getRealizationTable();
 
 	/**
 	 * Init the realization
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRealization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realization
-	 * 
-	 * @param newValue
-	 *            the realization to update
+	 * @param newValue the realization to update
 	 */
 	public void updateRealization(EObject newValue);
 
@@ -241,6 +235,15 @@ public interface InformationFlowPropertiesEditionPart {
 	public void addBusinessFilterToRealization(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the realization table
+	 */
+	public boolean isContainedInRealizationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the conveyed to add
 	 */
 	public List getConveyedToAdd();
@@ -251,27 +254,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getConveyedToRemove();
 
 	/**
-	 * @return the current conveyed
+	 * @return the current conveyed table
 	 */
 	public List getConveyedTable();
 
 	/**
 	 * Init the conveyed
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initConveyed(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the conveyed
-	 * 
-	 * @param newValue
-	 *            the conveyed to update
+	 * @param newValue the conveyed to update
 	 */
 	public void updateConveyed(EObject newValue);
 
@@ -294,6 +291,15 @@ public interface InformationFlowPropertiesEditionPart {
 	public void addBusinessFilterToConveyed(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the conveyed table
+	 */
+	public boolean isContainedInConveyedTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the informationSource to add
 	 */
 	public List getInformationSourceToAdd();
@@ -304,27 +310,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getInformationSourceToRemove();
 
 	/**
-	 * @return the current informationSource
+	 * @return the current informationSource table
 	 */
 	public List getInformationSourceTable();
 
 	/**
 	 * Init the informationSource
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initInformationSource(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the informationSource
-	 * 
-	 * @param newValue
-	 *            the informationSource to update
+	 * @param newValue the informationSource to update
 	 */
 	public void updateInformationSource(EObject newValue);
 
@@ -347,6 +347,15 @@ public interface InformationFlowPropertiesEditionPart {
 	public void addBusinessFilterToInformationSource(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the informationSource table
+	 */
+	public boolean isContainedInInformationSourceTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the informationTarget to add
 	 */
 	public List getInformationTargetToAdd();
@@ -357,27 +366,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getInformationTargetToRemove();
 
 	/**
-	 * @return the current informationTarget
+	 * @return the current informationTarget table
 	 */
 	public List getInformationTargetTable();
 
 	/**
 	 * Init the informationTarget
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initInformationTarget(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the informationTarget
-	 * 
-	 * @param newValue
-	 *            the informationTarget to update
+	 * @param newValue the informationTarget to update
 	 */
 	public void updateInformationTarget(EObject newValue);
 
@@ -400,6 +403,15 @@ public interface InformationFlowPropertiesEditionPart {
 	public void addBusinessFilterToInformationTarget(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the informationTarget table
+	 */
+	public boolean isContainedInInformationTargetTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the realizingActivityEdge to add
 	 */
 	public List getRealizingActivityEdgeToAdd();
@@ -410,27 +422,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getRealizingActivityEdgeToRemove();
 
 	/**
-	 * @return the current realizingActivityEdge
+	 * @return the current realizingActivityEdge table
 	 */
 	public List getRealizingActivityEdgeTable();
 
 	/**
 	 * Init the realizingActivityEdge
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRealizingActivityEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingActivityEdge
-	 * 
-	 * @param newValue
-	 *            the realizingActivityEdge to update
+	 * @param newValue the realizingActivityEdge to update
 	 */
 	public void updateRealizingActivityEdge(EObject newValue);
 
@@ -453,6 +459,15 @@ public interface InformationFlowPropertiesEditionPart {
 	public void addBusinessFilterToRealizingActivityEdge(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the realizingActivityEdge table
+	 */
+	public boolean isContainedInRealizingActivityEdgeTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the realizingConnector to add
 	 */
 	public List getRealizingConnectorToAdd();
@@ -463,27 +478,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getRealizingConnectorToRemove();
 
 	/**
-	 * @return the current realizingConnector
+	 * @return the current realizingConnector table
 	 */
 	public List getRealizingConnectorTable();
 
 	/**
 	 * Init the realizingConnector
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRealizingConnector(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingConnector
-	 * 
-	 * @param newValue
-	 *            the realizingConnector to update
+	 * @param newValue the realizingConnector to update
 	 */
 	public void updateRealizingConnector(EObject newValue);
 
@@ -506,6 +515,15 @@ public interface InformationFlowPropertiesEditionPart {
 	public void addBusinessFilterToRealizingConnector(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the realizingConnector table
+	 */
+	public boolean isContainedInRealizingConnectorTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the realizingMessage to add
 	 */
 	public List getRealizingMessageToAdd();
@@ -516,27 +534,21 @@ public interface InformationFlowPropertiesEditionPart {
 	public List getRealizingMessageToRemove();
 
 	/**
-	 * @return the current realizingMessage
+	 * @return the current realizingMessage table
 	 */
 	public List getRealizingMessageTable();
 
 	/**
 	 * Init the realizingMessage
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRealizingMessage(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the realizingMessage
-	 * 
-	 * @param newValue
-	 *            the realizingMessage to update
+	 * @param newValue the realizingMessage to update
 	 */
 	public void updateRealizingMessage(EObject newValue);
 
@@ -557,6 +569,20 @@ public interface InformationFlowPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRealizingMessage(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the realizingMessage table
+	 */
+	public boolean isContainedInRealizingMessageTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

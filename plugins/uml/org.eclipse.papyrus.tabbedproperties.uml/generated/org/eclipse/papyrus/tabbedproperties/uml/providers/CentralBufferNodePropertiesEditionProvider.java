@@ -30,8 +30,7 @@ public class CentralBufferNodePropertiesEditionProvider implements IPropertiesEd
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof CentralBufferNode)
-				&& (UMLPackage.eINSTANCE.getCentralBufferNode() == eObject.eClass());
+		return (eObject instanceof CentralBufferNode) && (UMLPackage.eINSTANCE.getCentralBufferNode() == eObject.eClass());
 	}
 
 	/**

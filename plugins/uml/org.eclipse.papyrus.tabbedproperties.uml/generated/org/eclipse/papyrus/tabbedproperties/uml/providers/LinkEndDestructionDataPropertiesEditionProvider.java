@@ -30,8 +30,7 @@ public class LinkEndDestructionDataPropertiesEditionProvider implements IPropert
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof LinkEndDestructionData)
-				&& (UMLPackage.eINSTANCE.getLinkEndDestructionData() == eObject.eClass());
+		return (eObject instanceof LinkEndDestructionData) && (UMLPackage.eINSTANCE.getLinkEndDestructionData() == eObject.eClass());
 	}
 
 	/**

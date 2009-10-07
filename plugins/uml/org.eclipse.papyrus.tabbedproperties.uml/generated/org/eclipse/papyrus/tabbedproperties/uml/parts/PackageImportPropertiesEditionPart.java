@@ -12,11 +12,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 
 // Start of user code for imports
 
-import java.util.List;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 
 // End of user code
 
@@ -32,21 +29,25 @@ public interface PackageImportPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

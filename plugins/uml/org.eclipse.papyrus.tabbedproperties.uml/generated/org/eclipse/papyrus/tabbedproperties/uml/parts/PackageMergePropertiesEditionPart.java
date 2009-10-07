@@ -12,15 +12,17 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 
 // Start of user code for imports
 
-import java.util.List;
-import java.util.Map;
-
 // End of user code
 
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public interface PackageMergePropertiesEditionPart {
+
+
+
+
+
 
 	// Start of user code for additional methods
 

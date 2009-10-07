@@ -16,7 +16,6 @@ import org.eclipse.osgi.util.NLS;
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class UMLMessages extends NLS {
-
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.tabbedproperties.uml.providers.uMLMessages"; //$NON-NLS-1$
 
 	public static String Class_PropertiesEditionPart_GeneralGroupLabel;
@@ -5245,6 +5244,6 @@ public class UMLMessages extends NLS {
 	}
 
 	private UMLMessages() {
-		// protect instanciation
+		//protect instanciation
 	}
 }

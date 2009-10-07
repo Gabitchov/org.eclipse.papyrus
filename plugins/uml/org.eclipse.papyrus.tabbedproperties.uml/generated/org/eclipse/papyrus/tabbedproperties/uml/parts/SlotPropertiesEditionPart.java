@@ -15,11 +15,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -50,27 +47,21 @@ public interface SlotPropertiesEditionPart {
 	public Map getValueToEdit();
 
 	/**
-	 * @return the current value
+	 * @return the current value table
 	 */
 	public List getValueTable();
 
 	/**
 	 * Init the value
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initValue(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the value
-	 * 
-	 * @param newValue
-	 *            the value to update
+	 * @param newValue the value to update
 	 */
 	public void updateValue(EObject newValue);
 
@@ -91,6 +82,20 @@ public interface SlotPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToValue(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the value table
+	 */
+	public boolean isContainedInValueTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

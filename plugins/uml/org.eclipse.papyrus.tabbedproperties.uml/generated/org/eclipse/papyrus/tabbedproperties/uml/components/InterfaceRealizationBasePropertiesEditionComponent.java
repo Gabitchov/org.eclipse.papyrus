@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -33,6 +34,7 @@ import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.eef.runtime.EMFPropertiesRuntime;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -60,7 +62,7 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -77,7 +79,7 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	 */
 	public InterfaceRealizationBasePropertiesEditionComponent(EObject interfaceRealization, String editing_mode) {
 		if (interfaceRealization instanceof InterfaceRealization) {
-			this.interfaceRealization = (InterfaceRealization) interfaceRealization;
+			this.interfaceRealization = (InterfaceRealization)interfaceRealization;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.interfaceRealization.eAdapters().add(semanticAdapter);
@@ -103,16 +105,19 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 				if (basePart == null)
 					InterfaceRealizationBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
-						basePart.setName((String) msg.getNewValue());
-
+					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
+					if(msg.getNewValue()!=null){
+						basePart.setName((String)msg.getNewValue());
+}
+						else{basePart.setName("");}}
 					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
-						basePart.setVisibility((Enumerator) msg.getNewValue());
+						basePart.setVisibility((Enumerator)msg.getNewValue());
 
 					if (UMLPackage.eINSTANCE.getDependency_Supplier().equals(msg.getFeature()))
 						basePart.updateSupplier(interfaceRealization);
 					if (UMLPackage.eINSTANCE.getDependency_Client().equals(msg.getFeature()))
 						basePart.updateClient(interfaceRealization);
+
 
 				}
 			}
@@ -144,20 +149,18 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *      (java.lang.String, java.lang.String)
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (interfaceRealization != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
-						.getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (InterfaceRealizationPropertiesEditionPart) provider.getPropertiesEditionPart(
-							UMLViewsRepository.InterfaceRealization.class, kind, this);
-					addListener((IPropertiesEditionListener) basePart);
+					basePart = (InterfaceRealizationPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.InterfaceRealization.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -166,8 +169,7 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.InterfaceRealization.class)
@@ -177,37 +179,35 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
-	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.InterfaceRealization.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			InterfaceRealization interfaceRealization = (InterfaceRealization) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			final InterfaceRealization interfaceRealization = (InterfaceRealization)elt;
 			// init values
 			if (interfaceRealization.getName() != null)
 				basePart.setName(interfaceRealization.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(),
-					interfaceRealization.getVisibility());
+			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), interfaceRealization.getVisibility());
 			basePart.initSupplier(interfaceRealization, null, UMLPackage.eINSTANCE.getDependency_Supplier());
 			basePart.initClient(interfaceRealization, null, UMLPackage.eINSTANCE.getDependency_Client());
-
+			
 			// init filters
+
 
 			basePart.addFilterToSupplier(new ViewerFilter() {
 
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
-						return (!basePart.getSupplierTable().contains(element));
-					return false;
+						return (!basePart.isContainedInSupplierTable((EObject)element));
+					return element instanceof Resource;
 				}
 
 			});
@@ -220,14 +220,12 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
-						return (!basePart.getClientTable().contains(element));
-					return false;
+						return (!basePart.isContainedInClientTable((EObject)element));
+					return element instanceof Resource;
 				}
 
 			});
@@ -242,53 +240,49 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 
 	}
 
+
+
+
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *      (org.eclipse.emf.edit.domain.EditingDomain)
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (interfaceRealization != null) {
-			cc.append(SetCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE
-					.getNamedElement_Name(), basePart.getName()));
+			cc.append(SetCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
 
-			cc.append(SetCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE
-					.getNamedElement_Visibility(), basePart.getVisibility()));
+			cc.append(SetCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List supplierToAddFromSupplier = basePart.getSupplierToAdd();
 			for (Iterator iter = supplierToAddFromSupplier.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE
-						.getDependency_Supplier(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Supplier(), iter.next()));
 			List supplierToRemoveFromSupplier = basePart.getSupplierToRemove();
 			for (Iterator iter = supplierToRemoveFromSupplier.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE
-						.getDependency_Supplier(), iter.next()));
-			// List supplierToMoveFromSupplier = basePart.getSupplierToMove();
-			// for (Iterator iter = supplierToMoveFromSupplier.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement =
-			// (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, interfaceRealization,
-			// UMLPackage.eINSTANCE.getNamedElement(), moveElement.getElement(),
-			// moveElement.getIndex()));
-			// }
+				cc.append(RemoveCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Supplier(), iter.next()));
+			//List supplierToMoveFromSupplier = basePart.getSupplierToMove();
+			//for (Iterator iter = supplierToMoveFromSupplier.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE.getNamedElement(), moveElement.getElement(), moveElement.getIndex()));
+			//}
 			List clientToAddFromClient = basePart.getClientToAdd();
 			for (Iterator iter = clientToAddFromClient.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE
-						.getDependency_Client(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Client(), iter.next()));
 			List clientToRemoveFromClient = basePart.getClientToRemove();
 			for (Iterator iter = clientToRemoveFromClient.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE
-						.getDependency_Client(), iter.next()));
-			// List clientToMoveFromClient = basePart.getClientToMove();
-			// for (Iterator iter = clientToMoveFromClient.iterator(); iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement =
-			// (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, interfaceRealization,
-			// UMLPackage.eINSTANCE.getNamedElement(), moveElement.getElement(),
-			// moveElement.getIndex()));
-			// }
+				cc.append(RemoveCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Client(), iter.next()));
+			//List clientToMoveFromClient = basePart.getClientToMove();
+			//for (Iterator iter = clientToMoveFromClient.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, interfaceRealization, UMLPackage.eINSTANCE.getNamedElement(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+
 
 		}
 		if (!cc.isEmpty())
@@ -304,16 +298,18 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof InterfaceRealization) {
-			InterfaceRealization interfaceRealizationToUpdate = (InterfaceRealization) source;
+			InterfaceRealization interfaceRealizationToUpdate = (InterfaceRealization)source;
 			interfaceRealizationToUpdate.setName(basePart.getName());
 
-			interfaceRealizationToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
+			interfaceRealizationToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());
 
 			interfaceRealizationToUpdate.getSuppliers().addAll(basePart.getSupplierToAdd());
 			interfaceRealizationToUpdate.getClients().addAll(basePart.getClientToAdd());
 
+
 			return interfaceRealizationToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -324,50 +320,54 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState()
-				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.InterfaceRealization.name == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE
-						.getNamedElement_Name(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
 			if (UMLViewsRepository.InterfaceRealization.visibility == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE
-						.getNamedElement_Visibility(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
 			if (UMLViewsRepository.InterfaceRealization.supplier == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE
-							.getDependency_Supplier(), event.getNewValue()));
+					command.append(AddCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue()));
 				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE
-							.getDependency_Supplier(), event.getNewValue()));
+					command.append(RemoveCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue()));
 				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE
-							.getDependency_Supplier(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.InterfaceRealization.client == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE
-							.getDependency_Client(), event.getNewValue()));
+					command.append(AddCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue()));
 				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE
-							.getDependency_Client(), event.getNewValue()));
+					command.append(RemoveCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue()));
 				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE
-							.getDependency_Client(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, interfaceRealization, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue(), event.getNewIndex()));
 			}
 
-			liveEditingDomain.getCommandStack().execute(command);
+
+			if (!command.isEmpty() && !command.canExecute()) {
+				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
+			} else {
+				liveEditingDomain.getCommandStack().execute(command);
+			}
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
 				if (UMLViewsRepository.InterfaceRealization.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
+
+
+
+
 			} else {
 				if (UMLViewsRepository.InterfaceRealization.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
+
+
+
+
 
 			}
 		}
@@ -376,30 +376,10 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String,
-	 *      int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
 	 */
 	public boolean isRequired(String key, int kind) {
-		return key == UMLViewsRepository.InterfaceRealization.supplier
-				|| key == UMLViewsRepository.InterfaceRealization.client;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String,
-	 *      int)
-	 */
-	public String getHelpContent(String key, int kind) {
-		if (key == UMLViewsRepository.InterfaceRealization.name)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.InterfaceRealization.visibility)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.InterfaceRealization.supplier)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.InterfaceRealization.client)
-			return null; //$NON-NLS-1$
-		return super.getHelpContent(key, kind);
+		return key == UMLViewsRepository.InterfaceRealization.supplier || key == UMLViewsRepository.InterfaceRealization.client;
 	}
 
 	/**
@@ -408,24 +388,22 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
-		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
-		try {
-			if (UMLViewsRepository.InterfaceRealization.name == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(),
-						newValue);
-			}
-			if (UMLViewsRepository.InterfaceRealization.visibility == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility()
-						.getEAttributeType(), newValue);
-			}
+		if (event.getNewValue() != null) {
+			String newStringValue = event.getNewValue().toString();
+			try {
+				if (UMLViewsRepository.InterfaceRealization.name == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
+				}
+				if (UMLViewsRepository.InterfaceRealization.visibility == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
+				}
 
-		} catch (IllegalArgumentException iae) {
-			ret = BasicDiagnostic.toDiagnostic(iae);
+			} catch (IllegalArgumentException iae) {
+				ret = BasicDiagnostic.toDiagnostic(iae);
+			}
 		}
 		return ret;
 	}
@@ -436,15 +414,21 @@ public class InterfaceRealizationBasePropertiesEditionComponent extends Standard
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
+		Diagnostic validate = null;
 		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			return Diagnostician.INSTANCE.validate(interfaceRealization);
-		else
-			return null;
+			validate =  Diagnostician.INSTANCE.validate(copy);
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(interfaceRealization);
+		// Start of user code for custom validation check
+
+		// End of user code
+
+		return validate;
 	}
+
 
 	/**
 	 * {@inheritDoc}

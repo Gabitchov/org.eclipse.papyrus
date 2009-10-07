@@ -30,8 +30,7 @@ public class LiteralUnlimitedNaturalPropertiesEditionProvider implements IProper
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof LiteralUnlimitedNatural)
-				&& (UMLPackage.eINSTANCE.getLiteralUnlimitedNatural() == eObject.eClass());
+		return (eObject instanceof LiteralUnlimitedNatural) && (UMLPackage.eINSTANCE.getLiteralUnlimitedNatural() == eObject.eClass());
 	}
 
 	/**

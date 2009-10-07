@@ -13,16 +13,38 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.impl;
 // Start of user code for imports
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -31,118 +53,70 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-
-import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart;
-
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.jface.viewers.StructuredSelection;
-import java.util.Iterator;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFModelViewerDialog;
-import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Generalization;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
-import java.util.Map;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.Comment;
-
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.uml2.uml.UMLPackage;
 
 // End of user code
 
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
-		ISWTPropertiesEditionPart, GeneralizationSetPropertiesEditionPart {
+public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, GeneralizationSetPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
-
-	protected ReferencesTable<?> ownedComment;
-
+	protected ReferencesTable<? extends EObject> ownedComment;
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
-
 	protected Text name;
-
 	protected EMFComboViewer visibility;
-
 	protected EMFListEditUtil clientDependencyEditUtil;
-
-	protected ReferencesTable<?> clientDependency;
-
+	protected ReferencesTable<? extends EObject> clientDependency;
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
-
 	protected Button isCovering;
-
 	protected Button isDisjoint;
-
 	protected EMFListEditUtil generalizationEditUtil;
-
-	protected ReferencesTable<?> generalization;
-
+	protected ReferencesTable<? extends EObject> generalization;
 	protected List<ViewerFilter> generalizationBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> generalizationFilters = new ArrayList<ViewerFilter>();
 
+
+
+
+	
+	/**
+	 * Default constructor
+	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 */
 	public GeneralizationSetPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-
+		
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) {
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 */
+	public void createControls(Composite view) { 
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
@@ -168,36 +142,18 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 		createIsDisjointCheckbox(propertiesGroup);
 		createGeneralizationAdvancedReferencesTable(propertiesGroup);
 	}
-
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(
-				UMLMessages.GeneralizationSetPropertiesEditionPart_OwnedCommentLabel,
-				new ReferencesTableListener<Comment>() {
-
-					public void handleAdd() {
-						addToOwnedComment();
-					}
-
-					public void handleEdit(Comment element) {
-						editOwnedComment(element);
-					}
-
-					public void handleMove(Comment element, int oldIndex, int newIndex) {
-						moveOwnedComment(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(Comment element) {
-						removeFromOwnedComment(element);
-					}
-
-					public void navigateTo(Comment element) {
-					}
-				});
-		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.GeneralizationSet.ownedComment, UMLViewsRepository.SWT_KIND));
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.GeneralizationSetPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
+			public void handleAdd() { addToOwnedComment();}
+			public void handleEdit(Comment element) { editOwnedComment(element); }
+			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
+			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
+			public void navigateTo(Comment element) { }
+		});
+		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.GeneralizationSet.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
 		GridData ownedCommentData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedCommentData.horizontalSpan = 3;
@@ -207,15 +163,11 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * 
 	 */
-	private void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
-
+	protected void moveOwnedComment(Comment element, int oldIndex, int newIndex) {
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-				GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.ownedComment,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
 	}
 
 	/**
@@ -224,7 +176,6 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	protected void addToOwnedComment() {
 
 		// Start of user code addToOwnedComment() method body
-
 		Comment eObject = UMLFactory.eINSTANCE.createComment();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
@@ -242,7 +193,6 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 						PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
@@ -250,17 +200,15 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * 
 	 */
-	private void removeFromOwnedComment(Comment element) {
+	protected void removeFromOwnedComment(Comment element) {
 
 		// Start of user code removeFromOwnedComment() method body
-
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.removeElement(element);
 		ownedComment.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.ownedComment,
 				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -268,10 +216,9 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * 
 	 */
-	private void editOwnedComment(Comment element) {
+	protected void editOwnedComment(Comment element) {
 
 		// Start of user code editOwnedComment() method body
-
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -288,15 +235,11 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
-
 	protected void createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.GeneralizationSetPropertiesEditionPart_NameLabel,
-				propertiesEditionComponent.isRequired(UMLViewsRepository.GeneralizationSet.name,
-						UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.GeneralizationSetPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.GeneralizationSet.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -305,79 +248,52 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see
-			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-							GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.name,
-							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-
+			
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.GeneralizationSet.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.GeneralizationSet.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createVisibilityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.GeneralizationSetPropertiesEditionPart_VisibilityLabel,
-				propertiesEditionComponent.isRequired(UMLViewsRepository.GeneralizationSet.visibility,
-						UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.GeneralizationSetPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.GeneralizationSet.visibility, UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.GeneralizationSet.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.GeneralizationSet.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createClientDependencyAdvancedReferencesTable(Composite parent) {
-		this.clientDependency = new ReferencesTable<Dependency>(
-				UMLMessages.GeneralizationSetPropertiesEditionPart_ClientDependencyLabel,
-				new ReferencesTableListener<Dependency>() {
+		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.GeneralizationSetPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
+			public void handleAdd() {
+				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
+				"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
 
-					public void handleAdd() {
-						TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(
-								resourceSet, clientDependencyFilters, clientDependencyBusinessFilters, "Dependency",
-								UMLPackage.eINSTANCE.getDependency()) {
-
-							public void process(IStructuredSelection selection) {
-								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-									EObject elem = (EObject) iter.next();
-									if (!clientDependencyEditUtil.getVirtualList().contains(elem))
-										clientDependencyEditUtil.addElement(elem);
-									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-											GeneralizationSetPropertiesEditionPartImpl.this,
-											UMLViewsRepository.GeneralizationSet.clientDependency,
-											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-								}
-								clientDependency.refresh();
-							}
-
-						};
-						dialog.open();
+					public void process(IStructuredSelection selection) {
+						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject) iter.next();
+							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+								clientDependencyEditUtil.addElement(elem);
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.clientDependency,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+						}
+						clientDependency.refresh();
 					}
 
-					public void handleEdit(Dependency element) {
-						editClientDependency(element);
-					}
-
-					public void handleMove(Dependency element, int oldIndex, int newIndex) {
-						moveClientDependency(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(Dependency element) {
-						removeFromClientDependency(element);
-					}
-
-					public void navigateTo(Dependency element) {
-					}
-				});
-		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.GeneralizationSet.clientDependency, UMLViewsRepository.SWT_KIND));
+				};
+				dialog.open();
+			}
+			public void handleEdit(Dependency element) { editClientDependency(element); }
+			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
+			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
+			public void navigateTo(Dependency element) { }
+		});
+		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.GeneralizationSet.clientDependency, UMLViewsRepository.SWT_KIND));
 		this.clientDependency.createControls(parent);
 		GridData clientDependencyData = new GridData(GridData.FILL_HORIZONTAL);
 		clientDependencyData.horizontalSpan = 3;
@@ -388,29 +304,25 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * 
 	 */
-	private void moveClientDependency(Dependency element, int oldIndex, int newIndex) {
+	protected void moveClientDependency(Dependency element, int oldIndex, int newIndex) {
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.moveElement(element, oldIndex, newIndex);
 		clientDependency.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-				GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.clientDependency,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.clientDependency, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
 	 * 
 	 */
-	private void removeFromClientDependency(Dependency element) {
+	protected void removeFromClientDependency(Dependency element) {
 
 		// Start of user code removeFromClientDependency() method body
-
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		clientDependencyEditUtil.removeElement(element);
 		clientDependency.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.clientDependency,
 				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -418,10 +330,9 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * 
 	 */
-	private void editClientDependency(Dependency element) {
+	protected void editClientDependency(Dependency element) {
 
 		// Start of user code editClientDependency() method body
-
 		EObject editedElement = clientDependencyEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -438,75 +349,51 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
-
 	protected void createIsCoveringCheckbox(Composite parent) {
 		isCovering = new Button(parent, SWT.CHECK);
 		isCovering.setText(UMLMessages.GeneralizationSetPropertiesEditionPart_IsCoveringLabel);
 		GridData isCoveringData = new GridData(GridData.FILL_HORIZONTAL);
 		isCoveringData.horizontalSpan = 2;
 		isCovering.setLayoutData(isCoveringData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.GeneralizationSet.isCovering, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.GeneralizationSet.isCovering, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createIsDisjointCheckbox(Composite parent) {
 		isDisjoint = new Button(parent, SWT.CHECK);
 		isDisjoint.setText(UMLMessages.GeneralizationSetPropertiesEditionPart_IsDisjointLabel);
 		GridData isDisjointData = new GridData(GridData.FILL_HORIZONTAL);
 		isDisjointData.horizontalSpan = 2;
 		isDisjoint.setLayoutData(isDisjointData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.GeneralizationSet.isDisjoint, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.GeneralizationSet.isDisjoint, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createGeneralizationAdvancedReferencesTable(Composite parent) {
-		this.generalization = new ReferencesTable<Generalization>(
-				UMLMessages.GeneralizationSetPropertiesEditionPart_GeneralizationLabel,
-				new ReferencesTableListener<Generalization>() {
+		this.generalization = new ReferencesTable<Generalization>(UMLMessages.GeneralizationSetPropertiesEditionPart_GeneralizationLabel, new ReferencesTableListener<Generalization>() {
+			public void handleAdd() {
+				TabElementTreeSelectionDialog<Generalization> dialog = new TabElementTreeSelectionDialog<Generalization>(resourceSet, generalizationFilters, generalizationBusinessFilters,
+				"Generalization", UMLPackage.eINSTANCE.getGeneralization(), current.eResource()) {
 
-					public void handleAdd() {
-						TabElementTreeSelectionDialog<Generalization> dialog = new TabElementTreeSelectionDialog<Generalization>(
-								resourceSet, generalizationFilters, generalizationBusinessFilters, "Generalization",
-								UMLPackage.eINSTANCE.getGeneralization()) {
-
-							public void process(IStructuredSelection selection) {
-								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-									EObject elem = (EObject) iter.next();
-									if (!generalizationEditUtil.getVirtualList().contains(elem))
-										generalizationEditUtil.addElement(elem);
-									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-											GeneralizationSetPropertiesEditionPartImpl.this,
-											UMLViewsRepository.GeneralizationSet.generalization,
-											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-								}
-								generalization.refresh();
-							}
-
-						};
-						dialog.open();
+					public void process(IStructuredSelection selection) {
+						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject) iter.next();
+							if (!generalizationEditUtil.getVirtualList().contains(elem))
+								generalizationEditUtil.addElement(elem);
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.generalization,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+						}
+						generalization.refresh();
 					}
 
-					public void handleEdit(Generalization element) {
-						editGeneralization(element);
-					}
-
-					public void handleMove(Generalization element, int oldIndex, int newIndex) {
-						moveGeneralization(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(Generalization element) {
-						removeFromGeneralization(element);
-					}
-
-					public void navigateTo(Generalization element) {
-					}
-				});
-		this.generalization.setHelpText(propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.GeneralizationSet.generalization, UMLViewsRepository.SWT_KIND));
+				};
+				dialog.open();
+			}
+			public void handleEdit(Generalization element) { editGeneralization(element); }
+			public void handleMove(Generalization element, int oldIndex, int newIndex) { moveGeneralization(element, oldIndex, newIndex); }
+			public void handleRemove(Generalization element) { removeFromGeneralization(element); }
+			public void navigateTo(Generalization element) { }
+		});
+		this.generalization.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.GeneralizationSet.generalization, UMLViewsRepository.SWT_KIND));
 		this.generalization.createControls(parent);
 		GridData generalizationData = new GridData(GridData.FILL_HORIZONTAL);
 		generalizationData.horizontalSpan = 3;
@@ -517,29 +404,25 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * 
 	 */
-	private void moveGeneralization(Generalization element, int oldIndex, int newIndex) {
+	protected void moveGeneralization(Generalization element, int oldIndex, int newIndex) {
 		EObject editedElement = generalizationEditUtil.foundCorrespondingEObject(element);
 		generalizationEditUtil.moveElement(element, oldIndex, newIndex);
 		generalization.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-				GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.generalization,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.generalization, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
 	 * 
 	 */
-	private void removeFromGeneralization(Generalization element) {
+	protected void removeFromGeneralization(Generalization element) {
 
 		// Start of user code removeFromGeneralization() method body
-
 		EObject editedElement = generalizationEditUtil.foundCorrespondingEObject(element);
 		generalizationEditUtil.removeElement(element);
 		generalization.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				GeneralizationSetPropertiesEditionPartImpl.this, UMLViewsRepository.GeneralizationSet.generalization,
 				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -547,10 +430,9 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * 
 	 */
-	private void editGeneralization(Generalization element) {
+	protected void editGeneralization(Generalization element) {
 
 		// Start of user code editGeneralization() method body
-
 		EObject editedElement = generalizationEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -567,10 +449,10 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 						PropertiesEditionEvent.SET, editedElement, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
+
 
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
@@ -627,8 +509,7 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#initOwnedComment(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -643,11 +524,10 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#updateOwnedComment(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if (ownedCommentEditUtil != null) {
+		if(ownedCommentEditUtil != null){
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -656,8 +536,7 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addFilterOwnedComment(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addFilterOwnedComment(ViewerFilter filter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentFilters.add(filter);
@@ -666,11 +545,19 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#isContainedInOwnedCommentTable(EObject element)
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element) {
+		return ownedCommentEditUtil.contains(element);
 	}
 
 	public void setMessageForOwnedComment(String msg, int msgLevel) {
@@ -693,11 +580,14 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#setName(String
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		name.setText(newValue);
+		if (newValue != null) {
+			name.setText(newValue);
+		} else {
+			name.setText("");  //$NON-NLS-1$
+		}
 	}
 
 	public void setMessageForName(String msg, int msgLevel) {
@@ -721,8 +611,7 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#initVisibility(EEnum
-	 *      eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -732,8 +621,7 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#setVisibility(Enumerator
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#setVisibility(Enumerator newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
@@ -774,11 +662,11 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 		return clientDependencyEditUtil.getVirtualList();
 	}
 
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#initClientDependency(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -793,11 +681,10 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#updateClientDependency(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if (clientDependencyEditUtil != null) {
+		if(clientDependencyEditUtil != null){
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -806,8 +693,7 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addFilterClientDependency(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addFilterClientDependency(ViewerFilter filter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyFilters.add(filter);
@@ -816,11 +702,19 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#isContainedInClientDependencyTable(EObject element)
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element) {
+		return clientDependencyEditUtil.contains(element);
 	}
 
 	public void setMessageForClientDependency(String msg, int msgLevel) {
@@ -843,8 +737,7 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#setIsCovering(Boolean
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#setIsCovering(Boolean newValue)
 	 */
 	public void setIsCovering(Boolean newValue) {
 		if (newValue != null) {
@@ -874,8 +767,7 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#setIsDisjoint(Boolean
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#setIsDisjoint(Boolean newValue)
 	 */
 	public void setIsDisjoint(Boolean newValue) {
 		if (newValue != null) {
@@ -920,11 +812,11 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 		return generalizationEditUtil.getVirtualList();
 	}
 
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#initGeneralization(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#initGeneralization(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initGeneralization(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -939,11 +831,10 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#updateGeneralization(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#updateGeneralization(EObject newValue)
 	 */
 	public void updateGeneralization(EObject newValue) {
-		if (generalizationEditUtil != null) {
+		if(generalizationEditUtil != null){
 			generalizationEditUtil.reinit(newValue);
 			generalization.refresh();
 		}
@@ -952,8 +843,7 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addFilterGeneralization(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addFilterGeneralization(ViewerFilter filter)
 	 */
 	public void addFilterToGeneralization(ViewerFilter filter) {
 		generalizationFilters.add(filter);
@@ -962,11 +852,19 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addBusinessFilterGeneralization(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#addBusinessFilterGeneralization(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToGeneralization(ViewerFilter filter) {
 		generalizationBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationSetPropertiesEditionPart#isContainedInGeneralizationTable(EObject element)
+	 */
+	public boolean isContainedInGeneralizationTable(EObject element) {
+		return generalizationEditUtil.contains(element);
 	}
 
 	public void setMessageForGeneralization(String msg, int msgLevel) {
@@ -976,6 +874,13 @@ public class GeneralizationSetPropertiesEditionPartImpl extends CompositePropert
 	public void unsetMessageForGeneralization() {
 
 	}
+
+
+
+
+
+
+
 
 	// Start of user code additional methods
 

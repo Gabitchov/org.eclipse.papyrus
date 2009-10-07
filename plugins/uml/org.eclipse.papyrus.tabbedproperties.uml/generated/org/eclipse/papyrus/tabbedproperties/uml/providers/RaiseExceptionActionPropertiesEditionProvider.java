@@ -30,8 +30,7 @@ public class RaiseExceptionActionPropertiesEditionProvider implements IPropertie
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof RaiseExceptionAction)
-				&& (UMLPackage.eINSTANCE.getRaiseExceptionAction() == eObject.eClass());
+		return (eObject instanceof RaiseExceptionAction) && (UMLPackage.eINSTANCE.getRaiseExceptionAction() == eObject.eClass());
 	}
 
 	/**

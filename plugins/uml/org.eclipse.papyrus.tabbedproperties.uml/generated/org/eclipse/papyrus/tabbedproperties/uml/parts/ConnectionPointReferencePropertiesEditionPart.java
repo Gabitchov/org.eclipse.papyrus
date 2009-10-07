@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -52,27 +49,21 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -95,15 +86,22 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -118,21 +116,20 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -145,27 +142,21 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -188,6 +179,15 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the entry to add
 	 */
 	public List getEntryToAdd();
@@ -198,27 +198,21 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 	public List getEntryToRemove();
 
 	/**
-	 * @return the current entry
+	 * @return the current entry table
 	 */
 	public List getEntryTable();
 
 	/**
 	 * Init the entry
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initEntry(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the entry
-	 * 
-	 * @param newValue
-	 *            the entry to update
+	 * @param newValue the entry to update
 	 */
 	public void updateEntry(EObject newValue);
 
@@ -241,6 +235,15 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 	public void addBusinessFilterToEntry(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the entry table
+	 */
+	public boolean isContainedInEntryTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the exit to add
 	 */
 	public List getExitToAdd();
@@ -251,27 +254,21 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 	public List getExitToRemove();
 
 	/**
-	 * @return the current exit
+	 * @return the current exit table
 	 */
 	public List getExitTable();
 
 	/**
 	 * Init the exit
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initExit(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the exit
-	 * 
-	 * @param newValue
-	 *            the exit to update
+	 * @param newValue the exit to update
 	 */
 	public void updateExit(EObject newValue);
 
@@ -292,6 +289,20 @@ public interface ConnectionPointReferencePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToExit(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the exit table
+	 */
+	public boolean isContainedInExitTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

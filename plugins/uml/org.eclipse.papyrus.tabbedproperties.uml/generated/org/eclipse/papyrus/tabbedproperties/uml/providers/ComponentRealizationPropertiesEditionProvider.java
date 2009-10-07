@@ -30,8 +30,7 @@ public class ComponentRealizationPropertiesEditionProvider implements IPropertie
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ComponentRealization)
-				&& (UMLPackage.eINSTANCE.getComponentRealization() == eObject.eClass());
+		return (eObject instanceof ComponentRealization) && (UMLPackage.eINSTANCE.getComponentRealization() == eObject.eClass());
 	}
 
 	/**

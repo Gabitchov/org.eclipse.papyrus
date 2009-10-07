@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -52,27 +49,21 @@ public interface RegionPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -95,15 +86,22 @@ public interface RegionPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -118,21 +116,20 @@ public interface RegionPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -145,27 +142,21 @@ public interface RegionPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -188,6 +179,15 @@ public interface RegionPropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the elementImport to add
 	 */
 	public List getElementImportToAdd();
@@ -208,27 +208,21 @@ public interface RegionPropertiesEditionPart {
 	public Map getElementImportToEdit();
 
 	/**
-	 * @return the current elementImport
+	 * @return the current elementImport table
 	 */
 	public List getElementImportTable();
 
 	/**
 	 * Init the elementImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * 
-	 * @param newValue
-	 *            the elementImport to update
+	 * @param newValue the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -251,6 +245,15 @@ public interface RegionPropertiesEditionPart {
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the elementImport table
+	 */
+	public boolean isContainedInElementImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packageImport to add
 	 */
 	public List getPackageImportToAdd();
@@ -271,27 +274,21 @@ public interface RegionPropertiesEditionPart {
 	public Map getPackageImportToEdit();
 
 	/**
-	 * @return the current packageImport
+	 * @return the current packageImport table
 	 */
 	public List getPackageImportTable();
 
 	/**
 	 * Init the packageImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * 
-	 * @param newValue
-	 *            the packageImport to update
+	 * @param newValue the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -314,6 +311,15 @@ public interface RegionPropertiesEditionPart {
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packageImport table
+	 */
+	public boolean isContainedInPackageImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedRule to add
 	 */
 	public List getOwnedRuleToAdd();
@@ -334,27 +340,21 @@ public interface RegionPropertiesEditionPart {
 	public Map getOwnedRuleToEdit();
 
 	/**
-	 * @return the current ownedRule
+	 * @return the current ownedRule table
 	 */
 	public List getOwnedRuleTable();
 
 	/**
 	 * Init the ownedRule
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * 
-	 * @param newValue
-	 *            the ownedRule to update
+	 * @param newValue the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -377,17 +377,28 @@ public interface RegionPropertiesEditionPart {
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedRule table
+	 */
+	public boolean isContainedInOwnedRuleTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the isLeaf
 	 */
 	public Boolean getIsLeaf();
 
 	/**
 	 * Defines a new isLeaf
-	 * 
-	 * @param newValue
-	 *            the new isLeaf to set
+	 * @param newValue the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the subvertex to add
@@ -410,27 +421,21 @@ public interface RegionPropertiesEditionPart {
 	public Map getSubvertexToEdit();
 
 	/**
-	 * @return the current subvertex
+	 * @return the current subvertex table
 	 */
 	public List getSubvertexTable();
 
 	/**
 	 * Init the subvertex
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initSubvertex(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the subvertex
-	 * 
-	 * @param newValue
-	 *            the subvertex to update
+	 * @param newValue the subvertex to update
 	 */
 	public void updateSubvertex(EObject newValue);
 
@@ -453,6 +458,15 @@ public interface RegionPropertiesEditionPart {
 	public void addBusinessFilterToSubvertex(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the subvertex table
+	 */
+	public boolean isContainedInSubvertexTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the transition to add
 	 */
 	public List getTransitionToAdd();
@@ -473,27 +487,21 @@ public interface RegionPropertiesEditionPart {
 	public Map getTransitionToEdit();
 
 	/**
-	 * @return the current transition
+	 * @return the current transition table
 	 */
 	public List getTransitionTable();
 
 	/**
 	 * Init the transition
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initTransition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the transition
-	 * 
-	 * @param newValue
-	 *            the transition to update
+	 * @param newValue the transition to update
 	 */
 	public void updateTransition(EObject newValue);
 
@@ -514,6 +522,20 @@ public interface RegionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTransition(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the transition table
+	 */
+	public boolean isContainedInTransitionTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

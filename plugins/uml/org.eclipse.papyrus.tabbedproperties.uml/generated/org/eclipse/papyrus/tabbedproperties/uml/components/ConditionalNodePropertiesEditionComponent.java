@@ -41,7 +41,6 @@ public class ConditionalNodePropertiesEditionComponent extends ComposedPropertie
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
-
 	/**
 	 * Parameterized constructor
 	 * 
@@ -51,57 +50,50 @@ public class ConditionalNodePropertiesEditionComponent extends ComposedPropertie
 	public ConditionalNodePropertiesEditionComponent(EObject conditionalNode, String editing_mode) {
 		super(editing_mode);
 		if (conditionalNode instanceof ConditionalNode) {
-			conditionalNodeBasePropertiesEditionComponent = new ConditionalNodeBasePropertiesEditionComponent(
-					conditionalNode, editing_mode);
+			conditionalNodeBasePropertiesEditionComponent = new ConditionalNodeBasePropertiesEditionComponent(conditionalNode, editing_mode); 
 			addSubComponent(conditionalNodeBasePropertiesEditionComponent);
 			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(conditionalNode, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-
+	
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      getPropertiesEditionPart(int, java.lang.String)
+	 * 		getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (ConditionalNodePropertiesEditionPart) conditionalNodeBasePropertiesEditionComponent
-					.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart) basePart;
+			basePart = (ConditionalNodePropertiesEditionPart)conditionalNodeBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.ConditionalNode.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (ConditionalNodePropertiesEditionPart) propertiesEditionPart;
+			basePart = (ConditionalNodePropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.ConditionalNode.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-		if (key == UMLViewsRepository.Comments.class) {
-			super.initPart(key, kind, element, allResource);
-
-		}
+			if (key == UMLViewsRepository.Comments.class) {
+				super.initPart(key, kind, element, allResource);
+			
+			}
 	}
 }

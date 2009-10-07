@@ -222,9 +222,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 		append(createStereotypePropertiesEditionProvider());
 		append(createElementPropertiesEditionProvider());
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Class instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Class instances.
 	 */
 	protected Class_PropertiesEditionProvider class_PropertiesEditionProvider;
 
@@ -236,10 +237,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			class_PropertiesEditionProvider = new Class_PropertiesEditionProvider();
 		return class_PropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all AssociationClass
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * AssociationClass instances.
 	 */
 	protected AssociationClassPropertiesEditionProvider associationClassPropertiesEditionProvider;
 
@@ -251,10 +252,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			associationClassPropertiesEditionProvider = new AssociationClassPropertiesEditionProvider();
 		return associationClassPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LiteralUnlimitedNatural
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LiteralUnlimitedNatural instances.
 	 */
 	protected LiteralUnlimitedNaturalPropertiesEditionProvider literalUnlimitedNaturalPropertiesEditionProvider;
 
@@ -266,9 +267,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			literalUnlimitedNaturalPropertiesEditionProvider = new LiteralUnlimitedNaturalPropertiesEditionProvider();
 		return literalUnlimitedNaturalPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InstanceValue instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InstanceValue instances.
 	 */
 	protected InstanceValuePropertiesEditionProvider instanceValuePropertiesEditionProvider;
 
@@ -280,9 +282,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			instanceValuePropertiesEditionProvider = new InstanceValuePropertiesEditionProvider();
 		return instanceValuePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LiteralNull instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LiteralNull instances.
 	 */
 	protected LiteralNullPropertiesEditionProvider literalNullPropertiesEditionProvider;
 
@@ -294,9 +297,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			literalNullPropertiesEditionProvider = new LiteralNullPropertiesEditionProvider();
 		return literalNullPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LiteralBoolean instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LiteralBoolean instances.
 	 */
 	protected LiteralBooleanPropertiesEditionProvider literalBooleanPropertiesEditionProvider;
 
@@ -308,9 +312,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			literalBooleanPropertiesEditionProvider = new LiteralBooleanPropertiesEditionProvider();
 		return literalBooleanPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LiteralString instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LiteralString instances.
 	 */
 	protected LiteralStringPropertiesEditionProvider literalStringPropertiesEditionProvider;
 
@@ -322,9 +327,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			literalStringPropertiesEditionProvider = new LiteralStringPropertiesEditionProvider();
 		return literalStringPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LiteralInteger instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LiteralInteger instances.
 	 */
 	protected LiteralIntegerPropertiesEditionProvider literalIntegerPropertiesEditionProvider;
 
@@ -336,9 +342,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			literalIntegerPropertiesEditionProvider = new LiteralIntegerPropertiesEditionProvider();
 		return literalIntegerPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all PrimitiveType instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * PrimitiveType instances.
 	 */
 	protected PrimitiveTypePropertiesEditionProvider primitiveTypePropertiesEditionProvider;
 
@@ -350,10 +357,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			primitiveTypePropertiesEditionProvider = new PrimitiveTypePropertiesEditionProvider();
 		return primitiveTypePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InstanceSpecification
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InstanceSpecification instances.
 	 */
 	protected InstanceSpecificationPropertiesEditionProvider instanceSpecificationPropertiesEditionProvider;
 
@@ -365,9 +372,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			instanceSpecificationPropertiesEditionProvider = new InstanceSpecificationPropertiesEditionProvider();
 		return instanceSpecificationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Slot instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Slot instances.
 	 */
 	protected SlotPropertiesEditionProvider slotPropertiesEditionProvider;
 
@@ -379,10 +387,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			slotPropertiesEditionProvider = new SlotPropertiesEditionProvider();
 		return slotPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all EnumerationLiteral
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * EnumerationLiteral instances.
 	 */
 	protected EnumerationLiteralPropertiesEditionProvider enumerationLiteralPropertiesEditionProvider;
 
@@ -394,9 +402,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			enumerationLiteralPropertiesEditionProvider = new EnumerationLiteralPropertiesEditionProvider();
 		return enumerationLiteralPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Enumeration instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Enumeration instances.
 	 */
 	protected EnumerationPropertiesEditionProvider enumerationPropertiesEditionProvider;
 
@@ -408,9 +417,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			enumerationPropertiesEditionProvider = new EnumerationPropertiesEditionProvider();
 		return enumerationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all PackageMerge instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * PackageMerge instances.
 	 */
 	protected PackageMergePropertiesEditionProvider packageMergePropertiesEditionProvider;
 
@@ -422,9 +432,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			packageMergePropertiesEditionProvider = new PackageMergePropertiesEditionProvider();
 		return packageMergePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Usage instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Usage instances.
 	 */
 	protected UsagePropertiesEditionProvider usagePropertiesEditionProvider;
 
@@ -436,9 +447,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			usagePropertiesEditionProvider = new UsagePropertiesEditionProvider();
 		return usagePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Expression instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Expression instances.
 	 */
 	protected ExpressionPropertiesEditionProvider expressionPropertiesEditionProvider;
 
@@ -450,10 +462,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			expressionPropertiesEditionProvider = new ExpressionPropertiesEditionProvider();
 		return expressionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all StringExpression
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * StringExpression instances.
 	 */
 	protected StringExpressionPropertiesEditionProvider stringExpressionPropertiesEditionProvider;
 
@@ -465,10 +477,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			stringExpressionPropertiesEditionProvider = new StringExpressionPropertiesEditionProvider();
 		return stringExpressionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InterfaceRealization
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InterfaceRealization instances.
 	 */
 	protected InterfaceRealizationPropertiesEditionProvider interfaceRealizationPropertiesEditionProvider;
 
@@ -480,9 +492,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			interfaceRealizationPropertiesEditionProvider = new InterfaceRealizationPropertiesEditionProvider();
 		return interfaceRealizationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Operation instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Operation instances.
 	 */
 	protected OperationPropertiesEditionProvider operationPropertiesEditionProvider;
 
@@ -494,9 +507,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			operationPropertiesEditionProvider = new OperationPropertiesEditionProvider();
 		return operationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Property instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Property instances.
 	 */
 	protected PropertyPropertiesEditionProvider propertyPropertiesEditionProvider;
 
@@ -508,9 +522,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			propertyPropertiesEditionProvider = new PropertyPropertiesEditionProvider();
 		return propertyPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Parameter instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Parameter instances.
 	 */
 	protected ParameterPropertiesEditionProvider parameterPropertiesEditionProvider;
 
@@ -522,10 +537,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			parameterPropertiesEditionProvider = new ParameterPropertiesEditionProvider();
 		return parameterPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all OpaqueExpression
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * OpaqueExpression instances.
 	 */
 	protected OpaqueExpressionPropertiesEditionProvider opaqueExpressionPropertiesEditionProvider;
 
@@ -537,9 +552,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			opaqueExpressionPropertiesEditionProvider = new OpaqueExpressionPropertiesEditionProvider();
 		return opaqueExpressionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Generalization instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Generalization instances.
 	 */
 	protected GeneralizationPropertiesEditionProvider generalizationPropertiesEditionProvider;
 
@@ -551,10 +567,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			generalizationPropertiesEditionProvider = new GeneralizationPropertiesEditionProvider();
 		return generalizationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all GeneralizationSet
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * GeneralizationSet instances.
 	 */
 	protected GeneralizationSetPropertiesEditionProvider generalizationSetPropertiesEditionProvider;
 
@@ -566,9 +582,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			generalizationSetPropertiesEditionProvider = new GeneralizationSetPropertiesEditionProvider();
 		return generalizationSetPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Substitution instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Substitution instances.
 	 */
 	protected SubstitutionPropertiesEditionProvider substitutionPropertiesEditionProvider;
 
@@ -580,9 +597,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			substitutionPropertiesEditionProvider = new SubstitutionPropertiesEditionProvider();
 		return substitutionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Realization instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Realization instances.
 	 */
 	protected RealizationPropertiesEditionProvider realizationPropertiesEditionProvider;
 
@@ -594,9 +612,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			realizationPropertiesEditionProvider = new RealizationPropertiesEditionProvider();
 		return realizationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Abstraction instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Abstraction instances.
 	 */
 	protected AbstractionPropertiesEditionProvider abstractionPropertiesEditionProvider;
 
@@ -608,9 +627,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			abstractionPropertiesEditionProvider = new AbstractionPropertiesEditionProvider();
 		return abstractionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Comment instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Comment instances.
 	 */
 	protected CommentPropertiesEditionProvider commentPropertiesEditionProvider;
 
@@ -622,9 +642,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			commentPropertiesEditionProvider = new CommentPropertiesEditionProvider();
 		return commentPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Package instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Package instances.
 	 */
 	protected Package_PropertiesEditionProvider package_PropertiesEditionProvider;
 
@@ -636,9 +657,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			package_PropertiesEditionProvider = new Package_PropertiesEditionProvider();
 		return package_PropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Dependency instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Dependency instances.
 	 */
 	protected DependencyPropertiesEditionProvider dependencyPropertiesEditionProvider;
 
@@ -650,9 +672,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			dependencyPropertiesEditionProvider = new DependencyPropertiesEditionProvider();
 		return dependencyPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ElementImport instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ElementImport instances.
 	 */
 	protected ElementImportPropertiesEditionProvider elementImportPropertiesEditionProvider;
 
@@ -664,9 +687,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			elementImportPropertiesEditionProvider = new ElementImportPropertiesEditionProvider();
 		return elementImportPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all PackageImport instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * PackageImport instances.
 	 */
 	protected PackageImportPropertiesEditionProvider packageImportPropertiesEditionProvider;
 
@@ -678,9 +702,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			packageImportPropertiesEditionProvider = new PackageImportPropertiesEditionProvider();
 		return packageImportPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Constraint instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Constraint instances.
 	 */
 	protected ConstraintPropertiesEditionProvider constraintPropertiesEditionProvider;
 
@@ -692,9 +717,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			constraintPropertiesEditionProvider = new ConstraintPropertiesEditionProvider();
 		return constraintPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Association instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Association instances.
 	 */
 	protected AssociationPropertiesEditionProvider associationPropertiesEditionProvider;
 
@@ -706,9 +732,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			associationPropertiesEditionProvider = new AssociationPropertiesEditionProvider();
 		return associationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Component instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Component instances.
 	 */
 	protected ComponentPropertiesEditionProvider componentPropertiesEditionProvider;
 
@@ -720,10 +747,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			componentPropertiesEditionProvider = new ComponentPropertiesEditionProvider();
 		return componentPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ComponentRealization
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ComponentRealization instances.
 	 */
 	protected ComponentRealizationPropertiesEditionProvider componentRealizationPropertiesEditionProvider;
 
@@ -735,9 +762,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			componentRealizationPropertiesEditionProvider = new ComponentRealizationPropertiesEditionProvider();
 		return componentRealizationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Connector instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Connector instances.
 	 */
 	protected ConnectorPropertiesEditionProvider connectorPropertiesEditionProvider;
 
@@ -749,9 +777,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			connectorPropertiesEditionProvider = new ConnectorPropertiesEditionProvider();
 		return connectorPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Port instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Port instances.
 	 */
 	protected PortPropertiesEditionProvider portPropertiesEditionProvider;
 
@@ -763,9 +792,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			portPropertiesEditionProvider = new PortPropertiesEditionProvider();
 		return portPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Trigger instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Trigger instances.
 	 */
 	protected TriggerPropertiesEditionProvider triggerPropertiesEditionProvider;
 
@@ -777,9 +807,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			triggerPropertiesEditionProvider = new TriggerPropertiesEditionProvider();
 		return triggerPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ConnectorEnd instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ConnectorEnd instances.
 	 */
 	protected ConnectorEndPropertiesEditionProvider connectorEndPropertiesEditionProvider;
 
@@ -791,10 +822,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			connectorEndPropertiesEditionProvider = new ConnectorEndPropertiesEditionProvider();
 		return connectorEndPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ExecutionEnvironment
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ExecutionEnvironment instances.
 	 */
 	protected ExecutionEnvironmentPropertiesEditionProvider executionEnvironmentPropertiesEditionProvider;
 
@@ -806,9 +837,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			executionEnvironmentPropertiesEditionProvider = new ExecutionEnvironmentPropertiesEditionProvider();
 		return executionEnvironmentPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Device instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Device instances.
 	 */
 	protected DevicePropertiesEditionProvider devicePropertiesEditionProvider;
 
@@ -820,10 +852,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			devicePropertiesEditionProvider = new DevicePropertiesEditionProvider();
 		return devicePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CommunicationPath
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CommunicationPath instances.
 	 */
 	protected CommunicationPathPropertiesEditionProvider communicationPathPropertiesEditionProvider;
 
@@ -835,9 +867,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			communicationPathPropertiesEditionProvider = new CommunicationPathPropertiesEditionProvider();
 		return communicationPathPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Node instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Node instances.
 	 */
 	protected NodePropertiesEditionProvider nodePropertiesEditionProvider;
 
@@ -849,9 +882,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			nodePropertiesEditionProvider = new NodePropertiesEditionProvider();
 		return nodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Deployment instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Deployment instances.
 	 */
 	protected DeploymentPropertiesEditionProvider deploymentPropertiesEditionProvider;
 
@@ -863,10 +897,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			deploymentPropertiesEditionProvider = new DeploymentPropertiesEditionProvider();
 		return deploymentPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DeploymentSpecification
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DeploymentSpecification instances.
 	 */
 	protected DeploymentSpecificationPropertiesEditionProvider deploymentSpecificationPropertiesEditionProvider;
 
@@ -878,9 +912,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			deploymentSpecificationPropertiesEditionProvider = new DeploymentSpecificationPropertiesEditionProvider();
 		return deploymentSpecificationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Artifact instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Artifact instances.
 	 */
 	protected ArtifactPropertiesEditionProvider artifactPropertiesEditionProvider;
 
@@ -892,9 +927,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			artifactPropertiesEditionProvider = new ArtifactPropertiesEditionProvider();
 		return artifactPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Manifestation instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Manifestation instances.
 	 */
 	protected ManifestationPropertiesEditionProvider manifestationPropertiesEditionProvider;
 
@@ -906,9 +942,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			manifestationPropertiesEditionProvider = new ManifestationPropertiesEditionProvider();
 		return manifestationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReduceAction instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReduceAction instances.
 	 */
 	protected ReduceActionPropertiesEditionProvider reduceActionPropertiesEditionProvider;
 
@@ -920,10 +957,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			reduceActionPropertiesEditionProvider = new ReduceActionPropertiesEditionProvider();
 		return reduceActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all UnmarshallAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * UnmarshallAction instances.
 	 */
 	protected UnmarshallActionPropertiesEditionProvider unmarshallActionPropertiesEditionProvider;
 
@@ -935,10 +972,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			unmarshallActionPropertiesEditionProvider = new UnmarshallActionPropertiesEditionProvider();
 		return unmarshallActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all AcceptCallAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * AcceptCallAction instances.
 	 */
 	protected AcceptCallActionPropertiesEditionProvider acceptCallActionPropertiesEditionProvider;
 
@@ -950,9 +987,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			acceptCallActionPropertiesEditionProvider = new AcceptCallActionPropertiesEditionProvider();
 		return acceptCallActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReplyAction instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReplyAction instances.
 	 */
 	protected ReplyActionPropertiesEditionProvider replyActionPropertiesEditionProvider;
 
@@ -964,10 +1002,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			replyActionPropertiesEditionProvider = new ReplyActionPropertiesEditionProvider();
 		return replyActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all AcceptEventAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * AcceptEventAction instances.
 	 */
 	protected AcceptEventActionPropertiesEditionProvider acceptEventActionPropertiesEditionProvider;
 
@@ -979,10 +1017,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			acceptEventActionPropertiesEditionProvider = new AcceptEventActionPropertiesEditionProvider();
 		return acceptEventActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CreateLinkObjectAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CreateLinkObjectAction instances.
 	 */
 	protected CreateLinkObjectActionPropertiesEditionProvider createLinkObjectActionPropertiesEditionProvider;
 
@@ -994,7 +1032,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			createLinkObjectActionPropertiesEditionProvider = new CreateLinkObjectActionPropertiesEditionProvider();
 		return createLinkObjectActionPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * ReadLinkObjectEndQualifierAction instances.
@@ -1009,10 +1047,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			readLinkObjectEndQualifierActionPropertiesEditionProvider = new ReadLinkObjectEndQualifierActionPropertiesEditionProvider();
 		return readLinkObjectEndQualifierActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReadLinkObjectEndAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReadLinkObjectEndAction instances.
 	 */
 	protected ReadLinkObjectEndActionPropertiesEditionProvider readLinkObjectEndActionPropertiesEditionProvider;
 
@@ -1024,7 +1062,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			readLinkObjectEndActionPropertiesEditionProvider = new ReadLinkObjectEndActionPropertiesEditionProvider();
 		return readLinkObjectEndActionPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * StartClassifierBehaviorAction instances.
@@ -1039,7 +1077,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			startClassifierBehaviorActionPropertiesEditionProvider = new StartClassifierBehaviorActionPropertiesEditionProvider();
 		return startClassifierBehaviorActionPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * ReadIsClassifiedObjectAction instances.
@@ -1054,10 +1092,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			readIsClassifiedObjectActionPropertiesEditionProvider = new ReadIsClassifiedObjectActionPropertiesEditionProvider();
 		return readIsClassifiedObjectActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReclassifyObjectAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReclassifyObjectAction instances.
 	 */
 	protected ReclassifyObjectActionPropertiesEditionProvider reclassifyObjectActionPropertiesEditionProvider;
 
@@ -1069,10 +1107,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			reclassifyObjectActionPropertiesEditionProvider = new ReclassifyObjectActionPropertiesEditionProvider();
 		return reclassifyObjectActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReadExtentAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReadExtentAction instances.
 	 */
 	protected ReadExtentActionPropertiesEditionProvider readExtentActionPropertiesEditionProvider;
 
@@ -1084,10 +1122,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			readExtentActionPropertiesEditionProvider = new ReadExtentActionPropertiesEditionProvider();
 		return readExtentActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all RaiseExceptionAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * RaiseExceptionAction instances.
 	 */
 	protected RaiseExceptionActionPropertiesEditionProvider raiseExceptionActionPropertiesEditionProvider;
 
@@ -1099,10 +1137,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			raiseExceptionActionPropertiesEditionProvider = new RaiseExceptionActionPropertiesEditionProvider();
 		return raiseExceptionActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all RemoveVariableValueAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * RemoveVariableValueAction instances.
 	 */
 	protected RemoveVariableValueActionPropertiesEditionProvider removeVariableValueActionPropertiesEditionProvider;
 
@@ -1114,10 +1152,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			removeVariableValueActionPropertiesEditionProvider = new RemoveVariableValueActionPropertiesEditionProvider();
 		return removeVariableValueActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all AddVariableValueAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * AddVariableValueAction instances.
 	 */
 	protected AddVariableValueActionPropertiesEditionProvider addVariableValueActionPropertiesEditionProvider;
 
@@ -1129,10 +1167,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			addVariableValueActionPropertiesEditionProvider = new AddVariableValueActionPropertiesEditionProvider();
 		return addVariableValueActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ClearVariableAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ClearVariableAction instances.
 	 */
 	protected ClearVariableActionPropertiesEditionProvider clearVariableActionPropertiesEditionProvider;
 
@@ -1144,10 +1182,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			clearVariableActionPropertiesEditionProvider = new ClearVariableActionPropertiesEditionProvider();
 		return clearVariableActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReadVariableAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReadVariableAction instances.
 	 */
 	protected ReadVariableActionPropertiesEditionProvider readVariableActionPropertiesEditionProvider;
 
@@ -1159,10 +1197,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			readVariableActionPropertiesEditionProvider = new ReadVariableActionPropertiesEditionProvider();
 		return readVariableActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ValueSpecificationAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ValueSpecificationAction instances.
 	 */
 	protected ValueSpecificationActionPropertiesEditionProvider valueSpecificationActionPropertiesEditionProvider;
 
@@ -1174,10 +1212,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			valueSpecificationActionPropertiesEditionProvider = new ValueSpecificationActionPropertiesEditionProvider();
 		return valueSpecificationActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CreateObjectAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CreateObjectAction instances.
 	 */
 	protected CreateObjectActionPropertiesEditionProvider createObjectActionPropertiesEditionProvider;
 
@@ -1189,10 +1227,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			createObjectActionPropertiesEditionProvider = new CreateObjectActionPropertiesEditionProvider();
 		return createObjectActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DestroyObjectAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DestroyObjectAction instances.
 	 */
 	protected DestroyObjectActionPropertiesEditionProvider destroyObjectActionPropertiesEditionProvider;
 
@@ -1204,10 +1242,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			destroyObjectActionPropertiesEditionProvider = new DestroyObjectActionPropertiesEditionProvider();
 		return destroyObjectActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TestIdentityAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TestIdentityAction instances.
 	 */
 	protected TestIdentityActionPropertiesEditionProvider testIdentityActionPropertiesEditionProvider;
 
@@ -1219,9 +1257,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			testIdentityActionPropertiesEditionProvider = new TestIdentityActionPropertiesEditionProvider();
 		return testIdentityActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReadSelfAction instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReadSelfAction instances.
 	 */
 	protected ReadSelfActionPropertiesEditionProvider readSelfActionPropertiesEditionProvider;
 
@@ -1233,7 +1272,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			readSelfActionPropertiesEditionProvider = new ReadSelfActionPropertiesEditionProvider();
 		return readSelfActionPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * ReadStructuralFeatureAction instances.
@@ -1248,7 +1287,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			readStructuralFeatureActionPropertiesEditionProvider = new ReadStructuralFeatureActionPropertiesEditionProvider();
 		return readStructuralFeatureActionPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * ClearStructuralFeatureAction instances.
@@ -1263,7 +1302,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			clearStructuralFeatureActionPropertiesEditionProvider = new ClearStructuralFeatureActionPropertiesEditionProvider();
 		return clearStructuralFeatureActionPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * RemoveStructuralFeatureValueAction instances.
@@ -1278,7 +1317,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			removeStructuralFeatureValueActionPropertiesEditionProvider = new RemoveStructuralFeatureValueActionPropertiesEditionProvider();
 		return removeStructuralFeatureValueActionPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * AddStructuralFeatureValueAction instances.
@@ -1293,9 +1332,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			addStructuralFeatureValueActionPropertiesEditionProvider = new AddStructuralFeatureValueActionPropertiesEditionProvider();
 		return addStructuralFeatureValueActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LinkEndData instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LinkEndData instances.
 	 */
 	protected LinkEndDataPropertiesEditionProvider linkEndDataPropertiesEditionProvider;
 
@@ -1307,9 +1347,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			linkEndDataPropertiesEditionProvider = new LinkEndDataPropertiesEditionProvider();
 		return linkEndDataPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all QualifierValue instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * QualifierValue instances.
 	 */
 	protected QualifierValuePropertiesEditionProvider qualifierValuePropertiesEditionProvider;
 
@@ -1321,9 +1362,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			qualifierValuePropertiesEditionProvider = new QualifierValuePropertiesEditionProvider();
 		return qualifierValuePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReadLinkAction instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReadLinkAction instances.
 	 */
 	protected ReadLinkActionPropertiesEditionProvider readLinkActionPropertiesEditionProvider;
 
@@ -1335,10 +1377,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			readLinkActionPropertiesEditionProvider = new ReadLinkActionPropertiesEditionProvider();
 		return readLinkActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LinkEndCreationData
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LinkEndCreationData instances.
 	 */
 	protected LinkEndCreationDataPropertiesEditionProvider linkEndCreationDataPropertiesEditionProvider;
 
@@ -1350,10 +1392,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			linkEndCreationDataPropertiesEditionProvider = new LinkEndCreationDataPropertiesEditionProvider();
 		return linkEndCreationDataPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CreateLinkAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CreateLinkAction instances.
 	 */
 	protected CreateLinkActionPropertiesEditionProvider createLinkActionPropertiesEditionProvider;
 
@@ -1365,10 +1407,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			createLinkActionPropertiesEditionProvider = new CreateLinkActionPropertiesEditionProvider();
 		return createLinkActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DestroyLinkAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DestroyLinkAction instances.
 	 */
 	protected DestroyLinkActionPropertiesEditionProvider destroyLinkActionPropertiesEditionProvider;
 
@@ -1380,10 +1422,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			destroyLinkActionPropertiesEditionProvider = new DestroyLinkActionPropertiesEditionProvider();
 		return destroyLinkActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LinkEndDestructionData
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LinkEndDestructionData instances.
 	 */
 	protected LinkEndDestructionDataPropertiesEditionProvider linkEndDestructionDataPropertiesEditionProvider;
 
@@ -1395,10 +1437,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			linkEndDestructionDataPropertiesEditionProvider = new LinkEndDestructionDataPropertiesEditionProvider();
 		return linkEndDestructionDataPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ClearAssociationAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ClearAssociationAction instances.
 	 */
 	protected ClearAssociationActionPropertiesEditionProvider clearAssociationActionPropertiesEditionProvider;
 
@@ -1410,10 +1452,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			clearAssociationActionPropertiesEditionProvider = new ClearAssociationActionPropertiesEditionProvider();
 		return clearAssociationActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all BroadcastSignalAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * BroadcastSignalAction instances.
 	 */
 	protected BroadcastSignalActionPropertiesEditionProvider broadcastSignalActionPropertiesEditionProvider;
 
@@ -1425,10 +1467,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			broadcastSignalActionPropertiesEditionProvider = new BroadcastSignalActionPropertiesEditionProvider();
 		return broadcastSignalActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all SendObjectAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * SendObjectAction instances.
 	 */
 	protected SendObjectActionPropertiesEditionProvider sendObjectActionPropertiesEditionProvider;
 
@@ -1440,9 +1482,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			sendObjectActionPropertiesEditionProvider = new SendObjectActionPropertiesEditionProvider();
 		return sendObjectActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ValuePin instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ValuePin instances.
 	 */
 	protected ValuePinPropertiesEditionProvider valuePinPropertiesEditionProvider;
 
@@ -1454,10 +1497,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			valuePinPropertiesEditionProvider = new ValuePinPropertiesEditionProvider();
 		return valuePinPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CallBehaviorAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CallBehaviorAction instances.
 	 */
 	protected CallBehaviorActionPropertiesEditionProvider callBehaviorActionPropertiesEditionProvider;
 
@@ -1469,10 +1512,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			callBehaviorActionPropertiesEditionProvider = new CallBehaviorActionPropertiesEditionProvider();
 		return callBehaviorActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CallOperationAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CallOperationAction instances.
 	 */
 	protected CallOperationActionPropertiesEditionProvider callOperationActionPropertiesEditionProvider;
 
@@ -1484,10 +1527,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			callOperationActionPropertiesEditionProvider = new CallOperationActionPropertiesEditionProvider();
 		return callOperationActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all SendSignalAction
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * SendSignalAction instances.
 	 */
 	protected SendSignalActionPropertiesEditionProvider sendSignalActionPropertiesEditionProvider;
 
@@ -1499,9 +1542,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			sendSignalActionPropertiesEditionProvider = new SendSignalActionPropertiesEditionProvider();
 		return sendSignalActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all OpaqueAction instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * OpaqueAction instances.
 	 */
 	protected OpaqueActionPropertiesEditionProvider opaqueActionPropertiesEditionProvider;
 
@@ -1513,9 +1557,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			opaqueActionPropertiesEditionProvider = new OpaqueActionPropertiesEditionProvider();
 		return opaqueActionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ExpansionRegion instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ExpansionRegion instances.
 	 */
 	protected ExpansionRegionPropertiesEditionProvider expansionRegionPropertiesEditionProvider;
 
@@ -1527,9 +1572,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			expansionRegionPropertiesEditionProvider = new ExpansionRegionPropertiesEditionProvider();
 		return expansionRegionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ExpansionNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ExpansionNode instances.
 	 */
 	protected ExpansionNodePropertiesEditionProvider expansionNodePropertiesEditionProvider;
 
@@ -1541,9 +1587,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			expansionNodePropertiesEditionProvider = new ExpansionNodePropertiesEditionProvider();
 		return expansionNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all LoopNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * LoopNode instances.
 	 */
 	protected LoopNodePropertiesEditionProvider loopNodePropertiesEditionProvider;
 
@@ -1555,9 +1602,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			loopNodePropertiesEditionProvider = new LoopNodePropertiesEditionProvider();
 		return loopNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Clause instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Clause instances.
 	 */
 	protected ClausePropertiesEditionProvider clausePropertiesEditionProvider;
 
@@ -1569,9 +1617,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			clausePropertiesEditionProvider = new ClausePropertiesEditionProvider();
 		return clausePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ConditionalNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ConditionalNode instances.
 	 */
 	protected ConditionalNodePropertiesEditionProvider conditionalNodePropertiesEditionProvider;
 
@@ -1583,9 +1632,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			conditionalNodePropertiesEditionProvider = new ConditionalNodePropertiesEditionProvider();
 		return conditionalNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ObjectFlow instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ObjectFlow instances.
 	 */
 	protected ObjectFlowPropertiesEditionProvider objectFlowPropertiesEditionProvider;
 
@@ -1597,9 +1647,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			objectFlowPropertiesEditionProvider = new ObjectFlowPropertiesEditionProvider();
 		return objectFlowPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DataStoreNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DataStoreNode instances.
 	 */
 	protected DataStoreNodePropertiesEditionProvider dataStoreNodePropertiesEditionProvider;
 
@@ -1611,9 +1662,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			dataStoreNodePropertiesEditionProvider = new DataStoreNodePropertiesEditionProvider();
 		return dataStoreNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all JoinNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * JoinNode instances.
 	 */
 	protected JoinNodePropertiesEditionProvider joinNodePropertiesEditionProvider;
 
@@ -1625,9 +1677,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			joinNodePropertiesEditionProvider = new JoinNodePropertiesEditionProvider();
 		return joinNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ActionInputPin instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ActionInputPin instances.
 	 */
 	protected ActionInputPinPropertiesEditionProvider actionInputPinPropertiesEditionProvider;
 
@@ -1639,10 +1692,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			actionInputPinPropertiesEditionProvider = new ActionInputPinPropertiesEditionProvider();
 		return actionInputPinPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ActivityFinalNode
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ActivityFinalNode instances.
 	 */
 	protected ActivityFinalNodePropertiesEditionProvider activityFinalNodePropertiesEditionProvider;
 
@@ -1654,9 +1707,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			activityFinalNodePropertiesEditionProvider = new ActivityFinalNodePropertiesEditionProvider();
 		return activityFinalNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DecisionNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DecisionNode instances.
 	 */
 	protected DecisionNodePropertiesEditionProvider decisionNodePropertiesEditionProvider;
 
@@ -1668,9 +1722,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			decisionNodePropertiesEditionProvider = new DecisionNodePropertiesEditionProvider();
 		return decisionNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all MergeNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * MergeNode instances.
 	 */
 	protected MergeNodePropertiesEditionProvider mergeNodePropertiesEditionProvider;
 
@@ -1682,10 +1737,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			mergeNodePropertiesEditionProvider = new MergeNodePropertiesEditionProvider();
 		return mergeNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CentralBufferNode
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CentralBufferNode instances.
 	 */
 	protected CentralBufferNodePropertiesEditionProvider centralBufferNodePropertiesEditionProvider;
 
@@ -1697,9 +1752,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			centralBufferNodePropertiesEditionProvider = new CentralBufferNodePropertiesEditionProvider();
 		return centralBufferNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all FlowFinalNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * FlowFinalNode instances.
 	 */
 	protected FlowFinalNodePropertiesEditionProvider flowFinalNodePropertiesEditionProvider;
 
@@ -1711,9 +1767,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			flowFinalNodePropertiesEditionProvider = new FlowFinalNodePropertiesEditionProvider();
 		return flowFinalNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ForkNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ForkNode instances.
 	 */
 	protected ForkNodePropertiesEditionProvider forkNodePropertiesEditionProvider;
 
@@ -1725,9 +1782,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			forkNodePropertiesEditionProvider = new ForkNodePropertiesEditionProvider();
 		return forkNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all AnyReceiveEvent instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * AnyReceiveEvent instances.
 	 */
 	protected AnyReceiveEventPropertiesEditionProvider anyReceiveEventPropertiesEditionProvider;
 
@@ -1739,10 +1797,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			anyReceiveEventPropertiesEditionProvider = new AnyReceiveEventPropertiesEditionProvider();
 		return anyReceiveEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ActivityParameterNode
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ActivityParameterNode instances.
 	 */
 	protected ActivityParameterNodePropertiesEditionProvider activityParameterNodePropertiesEditionProvider;
 
@@ -1754,9 +1812,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			activityParameterNodePropertiesEditionProvider = new ActivityParameterNodePropertiesEditionProvider();
 		return activityParameterNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InitialNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InitialNode instances.
 	 */
 	protected InitialNodePropertiesEditionProvider initialNodePropertiesEditionProvider;
 
@@ -1768,9 +1827,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			initialNodePropertiesEditionProvider = new InitialNodePropertiesEditionProvider();
 		return initialNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ControlFlow instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ControlFlow instances.
 	 */
 	protected ControlFlowPropertiesEditionProvider controlFlowPropertiesEditionProvider;
 
@@ -1782,9 +1842,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			controlFlowPropertiesEditionProvider = new ControlFlowPropertiesEditionProvider();
 		return controlFlowPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all SequenceNode instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * SequenceNode instances.
 	 */
 	protected SequenceNodePropertiesEditionProvider sequenceNodePropertiesEditionProvider;
 
@@ -1796,9 +1857,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			sequenceNodePropertiesEditionProvider = new SequenceNodePropertiesEditionProvider();
 		return sequenceNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InputPin instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InputPin instances.
 	 */
 	protected InputPinPropertiesEditionProvider inputPinPropertiesEditionProvider;
 
@@ -1810,9 +1872,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			inputPinPropertiesEditionProvider = new InputPinPropertiesEditionProvider();
 		return inputPinPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Pin instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Pin instances.
 	 */
 	protected PinPropertiesEditionProvider pinPropertiesEditionProvider;
 
@@ -1824,9 +1887,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			pinPropertiesEditionProvider = new PinPropertiesEditionProvider();
 		return pinPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all OutputPin instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * OutputPin instances.
 	 */
 	protected OutputPinPropertiesEditionProvider outputPinPropertiesEditionProvider;
 
@@ -1838,10 +1902,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			outputPinPropertiesEditionProvider = new OutputPinPropertiesEditionProvider();
 		return outputPinPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ExceptionHandler
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ExceptionHandler instances.
 	 */
 	protected ExceptionHandlerPropertiesEditionProvider exceptionHandlerPropertiesEditionProvider;
 
@@ -1853,7 +1917,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			exceptionHandlerPropertiesEditionProvider = new ExceptionHandlerPropertiesEditionProvider();
 		return exceptionHandlerPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * InterruptibleActivityRegion instances.
@@ -1868,10 +1932,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			interruptibleActivityRegionPropertiesEditionProvider = new InterruptibleActivityRegionPropertiesEditionProvider();
 		return interruptibleActivityRegionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ActivityPartition
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ActivityPartition instances.
 	 */
 	protected ActivityPartitionPropertiesEditionProvider activityPartitionPropertiesEditionProvider;
 
@@ -1883,9 +1947,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			activityPartitionPropertiesEditionProvider = new ActivityPartitionPropertiesEditionProvider();
 		return activityPartitionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Variable instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Variable instances.
 	 */
 	protected VariablePropertiesEditionProvider variablePropertiesEditionProvider;
 
@@ -1897,9 +1962,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			variablePropertiesEditionProvider = new VariablePropertiesEditionProvider();
 		return variablePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Activity instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Activity instances.
 	 */
 	protected ActivityPropertiesEditionProvider activityPropertiesEditionProvider;
 
@@ -1911,10 +1977,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			activityPropertiesEditionProvider = new ActivityPropertiesEditionProvider();
 		return activityPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all StructuredActivityNode
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * StructuredActivityNode instances.
 	 */
 	protected StructuredActivityNodePropertiesEditionProvider structuredActivityNodePropertiesEditionProvider;
 
@@ -1926,9 +1992,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			structuredActivityNodePropertiesEditionProvider = new StructuredActivityNodePropertiesEditionProvider();
 		return structuredActivityNodePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DataType instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DataType instances.
 	 */
 	protected DataTypePropertiesEditionProvider dataTypePropertiesEditionProvider;
 
@@ -1940,9 +2007,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			dataTypePropertiesEditionProvider = new DataTypePropertiesEditionProvider();
 		return dataTypePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ParameterSet instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ParameterSet instances.
 	 */
 	protected ParameterSetPropertiesEditionProvider parameterSetPropertiesEditionProvider;
 
@@ -1954,10 +2022,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			parameterSetPropertiesEditionProvider = new ParameterSetPropertiesEditionProvider();
 		return parameterSetPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DurationObservation
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DurationObservation instances.
 	 */
 	protected DurationObservationPropertiesEditionProvider durationObservationPropertiesEditionProvider;
 
@@ -1969,9 +2037,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			durationObservationPropertiesEditionProvider = new DurationObservationPropertiesEditionProvider();
 		return durationObservationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TimeObservation instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TimeObservation instances.
 	 */
 	protected TimeObservationPropertiesEditionProvider timeObservationPropertiesEditionProvider;
 
@@ -1983,10 +2052,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			timeObservationPropertiesEditionProvider = new TimeObservationPropertiesEditionProvider();
 		return timeObservationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DurationConstraint
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DurationConstraint instances.
 	 */
 	protected DurationConstraintPropertiesEditionProvider durationConstraintPropertiesEditionProvider;
 
@@ -1998,9 +2067,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			durationConstraintPropertiesEditionProvider = new DurationConstraintPropertiesEditionProvider();
 		return durationConstraintPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TimeInterval instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TimeInterval instances.
 	 */
 	protected TimeIntervalPropertiesEditionProvider timeIntervalPropertiesEditionProvider;
 
@@ -2012,10 +2082,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			timeIntervalPropertiesEditionProvider = new TimeIntervalPropertiesEditionProvider();
 		return timeIntervalPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all IntervalConstraint
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * IntervalConstraint instances.
 	 */
 	protected IntervalConstraintPropertiesEditionProvider intervalConstraintPropertiesEditionProvider;
 
@@ -2027,9 +2097,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			intervalConstraintPropertiesEditionProvider = new IntervalConstraintPropertiesEditionProvider();
 		return intervalConstraintPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TimeConstraint instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TimeConstraint instances.
 	 */
 	protected TimeConstraintPropertiesEditionProvider timeConstraintPropertiesEditionProvider;
 
@@ -2041,9 +2112,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			timeConstraintPropertiesEditionProvider = new TimeConstraintPropertiesEditionProvider();
 		return timeConstraintPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Interval instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Interval instances.
 	 */
 	protected IntervalPropertiesEditionProvider intervalPropertiesEditionProvider;
 
@@ -2055,10 +2127,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			intervalPropertiesEditionProvider = new IntervalPropertiesEditionProvider();
 		return intervalPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DurationInterval
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DurationInterval instances.
 	 */
 	protected DurationIntervalPropertiesEditionProvider durationIntervalPropertiesEditionProvider;
 
@@ -2070,9 +2142,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			durationIntervalPropertiesEditionProvider = new DurationIntervalPropertiesEditionProvider();
 		return durationIntervalPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Duration instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Duration instances.
 	 */
 	protected DurationPropertiesEditionProvider durationPropertiesEditionProvider;
 
@@ -2084,9 +2157,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			durationPropertiesEditionProvider = new DurationPropertiesEditionProvider();
 		return durationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TimeExpression instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TimeExpression instances.
 	 */
 	protected TimeExpressionPropertiesEditionProvider timeExpressionPropertiesEditionProvider;
 
@@ -2098,9 +2172,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			timeExpressionPropertiesEditionProvider = new TimeExpressionPropertiesEditionProvider();
 		return timeExpressionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all SignalEvent instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * SignalEvent instances.
 	 */
 	protected SignalEventPropertiesEditionProvider signalEventPropertiesEditionProvider;
 
@@ -2112,9 +2187,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			signalEventPropertiesEditionProvider = new SignalEventPropertiesEditionProvider();
 		return signalEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ChangeEvent instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ChangeEvent instances.
 	 */
 	protected ChangeEventPropertiesEditionProvider changeEventPropertiesEditionProvider;
 
@@ -2126,9 +2202,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			changeEventPropertiesEditionProvider = new ChangeEventPropertiesEditionProvider();
 		return changeEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CallEvent instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CallEvent instances.
 	 */
 	protected CallEventPropertiesEditionProvider callEventPropertiesEditionProvider;
 
@@ -2140,10 +2217,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			callEventPropertiesEditionProvider = new CallEventPropertiesEditionProvider();
 		return callEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all FunctionBehavior
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * FunctionBehavior instances.
 	 */
 	protected FunctionBehaviorPropertiesEditionProvider functionBehaviorPropertiesEditionProvider;
 
@@ -2155,9 +2232,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			functionBehaviorPropertiesEditionProvider = new FunctionBehaviorPropertiesEditionProvider();
 		return functionBehaviorPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all OpaqueBehavior instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * OpaqueBehavior instances.
 	 */
 	protected OpaqueBehaviorPropertiesEditionProvider opaqueBehaviorPropertiesEditionProvider;
 
@@ -2169,9 +2247,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			opaqueBehaviorPropertiesEditionProvider = new OpaqueBehaviorPropertiesEditionProvider();
 		return opaqueBehaviorPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Signal instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Signal instances.
 	 */
 	protected SignalPropertiesEditionProvider signalPropertiesEditionProvider;
 
@@ -2183,9 +2262,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			signalPropertiesEditionProvider = new SignalPropertiesEditionProvider();
 		return signalPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Reception instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Reception instances.
 	 */
 	protected ReceptionPropertiesEditionProvider receptionPropertiesEditionProvider;
 
@@ -2197,9 +2277,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			receptionPropertiesEditionProvider = new ReceptionPropertiesEditionProvider();
 		return receptionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Interface instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Interface instances.
 	 */
 	protected Interface_PropertiesEditionProvider interface_PropertiesEditionProvider;
 
@@ -2211,10 +2292,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			interface_PropertiesEditionProvider = new Interface_PropertiesEditionProvider();
 		return interface_PropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ConsiderIgnoreFragment
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ConsiderIgnoreFragment instances.
 	 */
 	protected ConsiderIgnoreFragmentPropertiesEditionProvider considerIgnoreFragmentPropertiesEditionProvider;
 
@@ -2226,9 +2307,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			considerIgnoreFragmentPropertiesEditionProvider = new ConsiderIgnoreFragmentPropertiesEditionProvider();
 		return considerIgnoreFragmentPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Continuation instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Continuation instances.
 	 */
 	protected ContinuationPropertiesEditionProvider continuationPropertiesEditionProvider;
 
@@ -2240,10 +2322,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			continuationPropertiesEditionProvider = new ContinuationPropertiesEditionProvider();
 		return continuationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CombinedFragment
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CombinedFragment instances.
 	 */
 	protected CombinedFragmentPropertiesEditionProvider combinedFragmentPropertiesEditionProvider;
 
@@ -2255,10 +2337,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			combinedFragmentPropertiesEditionProvider = new CombinedFragmentPropertiesEditionProvider();
 		return combinedFragmentPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReceiveSignalEvent
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReceiveSignalEvent instances.
 	 */
 	protected ReceiveSignalEventPropertiesEditionProvider receiveSignalEventPropertiesEditionProvider;
 
@@ -2270,10 +2352,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			receiveSignalEventPropertiesEditionProvider = new ReceiveSignalEventPropertiesEditionProvider();
 		return receiveSignalEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ReceiveOperationEvent
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ReceiveOperationEvent instances.
 	 */
 	protected ReceiveOperationEventPropertiesEditionProvider receiveOperationEventPropertiesEditionProvider;
 
@@ -2285,7 +2367,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			receiveOperationEventPropertiesEditionProvider = new ReceiveOperationEventPropertiesEditionProvider();
 		return receiveOperationEventPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * ExecutionOccurrenceSpecification instances.
@@ -2300,7 +2382,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			executionOccurrenceSpecificationPropertiesEditionProvider = new ExecutionOccurrenceSpecificationPropertiesEditionProvider();
 		return executionOccurrenceSpecificationPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * MessageOccurrenceSpecification instances.
@@ -2315,9 +2397,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			messageOccurrenceSpecificationPropertiesEditionProvider = new MessageOccurrenceSpecificationPropertiesEditionProvider();
 		return messageOccurrenceSpecificationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all SendSignalEvent instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * SendSignalEvent instances.
 	 */
 	protected SendSignalEventPropertiesEditionProvider sendSignalEventPropertiesEditionProvider;
 
@@ -2329,10 +2412,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			sendSignalEventPropertiesEditionProvider = new SendSignalEventPropertiesEditionProvider();
 		return sendSignalEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all SendOperationEvent
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * SendOperationEvent instances.
 	 */
 	protected SendOperationEventPropertiesEditionProvider sendOperationEventPropertiesEditionProvider;
 
@@ -2344,10 +2427,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			sendOperationEventPropertiesEditionProvider = new SendOperationEventPropertiesEditionProvider();
 		return sendOperationEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all DestructionEvent
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * DestructionEvent instances.
 	 */
 	protected DestructionEventPropertiesEditionProvider destructionEventPropertiesEditionProvider;
 
@@ -2359,9 +2442,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			destructionEventPropertiesEditionProvider = new DestructionEventPropertiesEditionProvider();
 		return destructionEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CreationEvent instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CreationEvent instances.
 	 */
 	protected CreationEventPropertiesEditionProvider creationEventPropertiesEditionProvider;
 
@@ -2373,9 +2457,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			creationEventPropertiesEditionProvider = new CreationEventPropertiesEditionProvider();
 		return creationEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ExecutionEvent instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ExecutionEvent instances.
 	 */
 	protected ExecutionEventPropertiesEditionProvider executionEventPropertiesEditionProvider;
 
@@ -2387,7 +2472,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			executionEventPropertiesEditionProvider = new ExecutionEventPropertiesEditionProvider();
 		return executionEventPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * BehaviorExecutionSpecification instances.
@@ -2402,7 +2487,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			behaviorExecutionSpecificationPropertiesEditionProvider = new BehaviorExecutionSpecificationPropertiesEditionProvider();
 		return behaviorExecutionSpecificationPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * ActionExecutionSpecification instances.
@@ -2417,9 +2502,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			actionExecutionSpecificationPropertiesEditionProvider = new ActionExecutionSpecificationPropertiesEditionProvider();
 		return actionExecutionSpecificationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all StateInvariant instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * StateInvariant instances.
 	 */
 	protected StateInvariantPropertiesEditionProvider stateInvariantPropertiesEditionProvider;
 
@@ -2431,10 +2517,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			stateInvariantPropertiesEditionProvider = new StateInvariantPropertiesEditionProvider();
 		return stateInvariantPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InteractionConstraint
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InteractionConstraint instances.
 	 */
 	protected InteractionConstraintPropertiesEditionProvider interactionConstraintPropertiesEditionProvider;
 
@@ -2446,10 +2532,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			interactionConstraintPropertiesEditionProvider = new InteractionConstraintPropertiesEditionProvider();
 		return interactionConstraintPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InteractionOperand
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InteractionOperand instances.
 	 */
 	protected InteractionOperandPropertiesEditionProvider interactionOperandPropertiesEditionProvider;
 
@@ -2461,10 +2547,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			interactionOperandPropertiesEditionProvider = new InteractionOperandPropertiesEditionProvider();
 		return interactionOperandPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all OccurrenceSpecification
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * OccurrenceSpecification instances.
 	 */
 	protected OccurrenceSpecificationPropertiesEditionProvider occurrenceSpecificationPropertiesEditionProvider;
 
@@ -2476,9 +2562,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			occurrenceSpecificationPropertiesEditionProvider = new OccurrenceSpecificationPropertiesEditionProvider();
 		return occurrenceSpecificationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all GeneralOrdering instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * GeneralOrdering instances.
 	 */
 	protected GeneralOrderingPropertiesEditionProvider generalOrderingPropertiesEditionProvider;
 
@@ -2490,9 +2577,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			generalOrderingPropertiesEditionProvider = new GeneralOrderingPropertiesEditionProvider();
 		return generalOrderingPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Gate instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Gate instances.
 	 */
 	protected GatePropertiesEditionProvider gatePropertiesEditionProvider;
 
@@ -2504,9 +2592,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			gatePropertiesEditionProvider = new GatePropertiesEditionProvider();
 		return gatePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InteractionUse instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InteractionUse instances.
 	 */
 	protected InteractionUsePropertiesEditionProvider interactionUsePropertiesEditionProvider;
 
@@ -2518,10 +2607,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			interactionUsePropertiesEditionProvider = new InteractionUsePropertiesEditionProvider();
 		return interactionUsePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all PartDecomposition
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * PartDecomposition instances.
 	 */
 	protected PartDecompositionPropertiesEditionProvider partDecompositionPropertiesEditionProvider;
 
@@ -2533,9 +2622,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			partDecompositionPropertiesEditionProvider = new PartDecompositionPropertiesEditionProvider();
 		return partDecompositionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Lifeline instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Lifeline instances.
 	 */
 	protected LifelinePropertiesEditionProvider lifelinePropertiesEditionProvider;
 
@@ -2547,9 +2637,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			lifelinePropertiesEditionProvider = new LifelinePropertiesEditionProvider();
 		return lifelinePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Interaction instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Interaction instances.
 	 */
 	protected InteractionPropertiesEditionProvider interactionPropertiesEditionProvider;
 
@@ -2561,9 +2652,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			interactionPropertiesEditionProvider = new InteractionPropertiesEditionProvider();
 		return interactionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Message instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Message instances.
 	 */
 	protected MessagePropertiesEditionProvider messagePropertiesEditionProvider;
 
@@ -2575,10 +2667,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			messagePropertiesEditionProvider = new MessagePropertiesEditionProvider();
 		return messagePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ProtocolTransition
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ProtocolTransition instances.
 	 */
 	protected ProtocolTransitionPropertiesEditionProvider protocolTransitionPropertiesEditionProvider;
 
@@ -2590,9 +2682,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			protocolTransitionPropertiesEditionProvider = new ProtocolTransitionPropertiesEditionProvider();
 		return protocolTransitionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TimeEvent instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TimeEvent instances.
 	 */
 	protected TimeEventPropertiesEditionProvider timeEventPropertiesEditionProvider;
 
@@ -2604,9 +2697,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			timeEventPropertiesEditionProvider = new TimeEventPropertiesEditionProvider();
 		return timeEventPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all FinalState instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * FinalState instances.
 	 */
 	protected FinalStatePropertiesEditionProvider finalStatePropertiesEditionProvider;
 
@@ -2618,10 +2712,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			finalStatePropertiesEditionProvider = new FinalStatePropertiesEditionProvider();
 		return finalStatePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ProtocolConformance
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ProtocolConformance instances.
 	 */
 	protected ProtocolConformancePropertiesEditionProvider protocolConformancePropertiesEditionProvider;
 
@@ -2633,9 +2727,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			protocolConformancePropertiesEditionProvider = new ProtocolConformancePropertiesEditionProvider();
 		return protocolConformancePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all State instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * State instances.
 	 */
 	protected StatePropertiesEditionProvider statePropertiesEditionProvider;
 
@@ -2647,10 +2742,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			statePropertiesEditionProvider = new StatePropertiesEditionProvider();
 		return statePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ConnectionPointReference
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ConnectionPointReference instances.
 	 */
 	protected ConnectionPointReferencePropertiesEditionProvider connectionPointReferencePropertiesEditionProvider;
 
@@ -2662,9 +2757,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			connectionPointReferencePropertiesEditionProvider = new ConnectionPointReferencePropertiesEditionProvider();
 		return connectionPointReferencePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Pseudostate instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Pseudostate instances.
 	 */
 	protected PseudostatePropertiesEditionProvider pseudostatePropertiesEditionProvider;
 
@@ -2676,10 +2772,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			pseudostatePropertiesEditionProvider = new PseudostatePropertiesEditionProvider();
 		return pseudostatePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ProtocolStateMachine
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ProtocolStateMachine instances.
 	 */
 	protected ProtocolStateMachinePropertiesEditionProvider protocolStateMachinePropertiesEditionProvider;
 
@@ -2691,9 +2787,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			protocolStateMachinePropertiesEditionProvider = new ProtocolStateMachinePropertiesEditionProvider();
 		return protocolStateMachinePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all StateMachine instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * StateMachine instances.
 	 */
 	protected StateMachinePropertiesEditionProvider stateMachinePropertiesEditionProvider;
 
@@ -2705,9 +2802,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			stateMachinePropertiesEditionProvider = new StateMachinePropertiesEditionProvider();
 		return stateMachinePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Region instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Region instances.
 	 */
 	protected RegionPropertiesEditionProvider regionPropertiesEditionProvider;
 
@@ -2719,9 +2817,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			regionPropertiesEditionProvider = new RegionPropertiesEditionProvider();
 		return regionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Transition instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Transition instances.
 	 */
 	protected TransitionPropertiesEditionProvider transitionPropertiesEditionProvider;
 
@@ -2733,9 +2832,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			transitionPropertiesEditionProvider = new TransitionPropertiesEditionProvider();
 		return transitionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Actor instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Actor instances.
 	 */
 	protected ActorPropertiesEditionProvider actorPropertiesEditionProvider;
 
@@ -2747,9 +2847,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			actorPropertiesEditionProvider = new ActorPropertiesEditionProvider();
 		return actorPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ExtensionPoint instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ExtensionPoint instances.
 	 */
 	protected ExtensionPointPropertiesEditionProvider extensionPointPropertiesEditionProvider;
 
@@ -2761,10 +2862,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			extensionPointPropertiesEditionProvider = new ExtensionPointPropertiesEditionProvider();
 		return extensionPointPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all CollaborationUse
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * CollaborationUse instances.
 	 */
 	protected CollaborationUsePropertiesEditionProvider collaborationUsePropertiesEditionProvider;
 
@@ -2776,9 +2877,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			collaborationUsePropertiesEditionProvider = new CollaborationUsePropertiesEditionProvider();
 		return collaborationUsePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Collaboration instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Collaboration instances.
 	 */
 	protected CollaborationPropertiesEditionProvider collaborationPropertiesEditionProvider;
 
@@ -2790,9 +2892,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			collaborationPropertiesEditionProvider = new CollaborationPropertiesEditionProvider();
 		return collaborationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all UseCase instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * UseCase instances.
 	 */
 	protected UseCasePropertiesEditionProvider useCasePropertiesEditionProvider;
 
@@ -2804,9 +2907,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			useCasePropertiesEditionProvider = new UseCasePropertiesEditionProvider();
 		return useCasePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Include instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Include instances.
 	 */
 	protected IncludePropertiesEditionProvider includePropertiesEditionProvider;
 
@@ -2818,9 +2922,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			includePropertiesEditionProvider = new IncludePropertiesEditionProvider();
 		return includePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Extend instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Extend instances.
 	 */
 	protected ExtendPropertiesEditionProvider extendPropertiesEditionProvider;
 
@@ -2832,9 +2937,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			extendPropertiesEditionProvider = new ExtendPropertiesEditionProvider();
 		return extendPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InformationFlow instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InformationFlow instances.
 	 */
 	protected InformationFlowPropertiesEditionProvider informationFlowPropertiesEditionProvider;
 
@@ -2846,9 +2952,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			informationFlowPropertiesEditionProvider = new InformationFlowPropertiesEditionProvider();
 		return informationFlowPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all InformationItem instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * InformationItem instances.
 	 */
 	protected InformationItemPropertiesEditionProvider informationItemPropertiesEditionProvider;
 
@@ -2860,7 +2967,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			informationItemPropertiesEditionProvider = new InformationItemPropertiesEditionProvider();
 		return informationItemPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * ClassifierTemplateParameter instances.
@@ -2875,7 +2982,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			classifierTemplateParameterPropertiesEditionProvider = new ClassifierTemplateParameterPropertiesEditionProvider();
 		return classifierTemplateParameterPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * RedefinableTemplateSignature instances.
@@ -2890,10 +2997,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			redefinableTemplateSignaturePropertiesEditionProvider = new RedefinableTemplateSignaturePropertiesEditionProvider();
 		return redefinableTemplateSignaturePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all OperationTemplateParameter
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * OperationTemplateParameter instances.
 	 */
 	protected OperationTemplateParameterPropertiesEditionProvider operationTemplateParameterPropertiesEditionProvider;
 
@@ -2905,9 +3012,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			operationTemplateParameterPropertiesEditionProvider = new OperationTemplateParameterPropertiesEditionProvider();
 		return operationTemplateParameterPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Model instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Model instances.
 	 */
 	protected ModelPropertiesEditionProvider modelPropertiesEditionProvider;
 
@@ -2919,7 +3027,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			modelPropertiesEditionProvider = new ModelPropertiesEditionProvider();
 		return modelPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * ConnectableElementTemplateParameter instances.
@@ -2934,9 +3042,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			connectableElementTemplateParameterPropertiesEditionProvider = new ConnectableElementTemplateParameterPropertiesEditionProvider();
 		return connectableElementTemplateParameterPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TemplateBinding instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TemplateBinding instances.
 	 */
 	protected TemplateBindingPropertiesEditionProvider templateBindingPropertiesEditionProvider;
 
@@ -2948,10 +3057,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			templateBindingPropertiesEditionProvider = new TemplateBindingPropertiesEditionProvider();
 		return templateBindingPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TemplateSignature
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TemplateSignature instances.
 	 */
 	protected TemplateSignaturePropertiesEditionProvider templateSignaturePropertiesEditionProvider;
 
@@ -2963,10 +3072,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			templateSignaturePropertiesEditionProvider = new TemplateSignaturePropertiesEditionProvider();
 		return templateSignaturePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all TemplateParameter
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * TemplateParameter instances.
 	 */
 	protected TemplateParameterPropertiesEditionProvider templateParameterPropertiesEditionProvider;
 
@@ -2978,7 +3087,7 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			templateParameterPropertiesEditionProvider = new TemplateParameterPropertiesEditionProvider();
 		return templateParameterPropertiesEditionProvider;
 	}
-
+	
 	/**
 	 * This keeps track of the one PropertiesEditionProvider used for all
 	 * TemplateParameterSubstitution instances.
@@ -2993,10 +3102,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			templateParameterSubstitutionPropertiesEditionProvider = new TemplateParameterSubstitutionPropertiesEditionProvider();
 		return templateParameterSubstitutionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ProfileApplication
-	 * instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ProfileApplication instances.
 	 */
 	protected ProfileApplicationPropertiesEditionProvider profileApplicationPropertiesEditionProvider;
 
@@ -3008,9 +3117,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			profileApplicationPropertiesEditionProvider = new ProfileApplicationPropertiesEditionProvider();
 		return profileApplicationPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Profile instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Profile instances.
 	 */
 	protected ProfilePropertiesEditionProvider profilePropertiesEditionProvider;
 
@@ -3022,9 +3132,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			profilePropertiesEditionProvider = new ProfilePropertiesEditionProvider();
 		return profilePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Image instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Image instances.
 	 */
 	protected ImagePropertiesEditionProvider imagePropertiesEditionProvider;
 
@@ -3036,9 +3147,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			imagePropertiesEditionProvider = new ImagePropertiesEditionProvider();
 		return imagePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Extension instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Extension instances.
 	 */
 	protected ExtensionPropertiesEditionProvider extensionPropertiesEditionProvider;
 
@@ -3050,9 +3162,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			extensionPropertiesEditionProvider = new ExtensionPropertiesEditionProvider();
 		return extensionPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all ExtensionEnd instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * ExtensionEnd instances.
 	 */
 	protected ExtensionEndPropertiesEditionProvider extensionEndPropertiesEditionProvider;
 
@@ -3064,9 +3177,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			extensionEndPropertiesEditionProvider = new ExtensionEndPropertiesEditionProvider();
 		return extensionEndPropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Stereotype instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Stereotype instances.
 	 */
 	protected StereotypePropertiesEditionProvider stereotypePropertiesEditionProvider;
 
@@ -3078,9 +3192,10 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			stereotypePropertiesEditionProvider = new StereotypePropertiesEditionProvider();
 		return stereotypePropertiesEditionProvider;
 	}
-
+	
 	/**
-	 * This keeps track of the one PropertiesEditionProvider used for all Element instances.
+	 * This keeps track of the one PropertiesEditionProvider used for all
+	 * Element instances.
 	 */
 	protected ElementPropertiesEditionProvider elementPropertiesEditionProvider;
 
@@ -3092,5 +3207,5 @@ public class UmlPackagePropertiesEditionProvider extends ComposedPropertiesEditi
 			elementPropertiesEditionProvider = new ElementPropertiesEditionProvider();
 		return elementPropertiesEditionProvider;
 	}
-
-}
+	
+}	

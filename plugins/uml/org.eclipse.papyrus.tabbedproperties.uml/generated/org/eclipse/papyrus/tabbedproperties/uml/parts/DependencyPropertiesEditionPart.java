@@ -13,14 +13,11 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 // Start of user code for imports
 
 import java.util.List;
-import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -37,9 +34,7 @@ public interface DependencyPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -54,21 +49,20 @@ public interface DependencyPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the client to add
@@ -81,27 +75,21 @@ public interface DependencyPropertiesEditionPart {
 	public List getClientToRemove();
 
 	/**
-	 * @return the current client
+	 * @return the current client table
 	 */
 	public List getClientTable();
 
 	/**
 	 * Init the client
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClient(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the client
-	 * 
-	 * @param newValue
-	 *            the client to update
+	 * @param newValue the client to update
 	 */
 	public void updateClient(EObject newValue);
 
@@ -124,6 +112,15 @@ public interface DependencyPropertiesEditionPart {
 	public void addBusinessFilterToClient(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the client table
+	 */
+	public boolean isContainedInClientTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the supplier to add
 	 */
 	public List getSupplierToAdd();
@@ -134,27 +131,21 @@ public interface DependencyPropertiesEditionPart {
 	public List getSupplierToRemove();
 
 	/**
-	 * @return the current supplier
+	 * @return the current supplier table
 	 */
 	public List getSupplierTable();
 
 	/**
 	 * Init the supplier
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initSupplier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the supplier
-	 * 
-	 * @param newValue
-	 *            the supplier to update
+	 * @param newValue the supplier to update
 	 */
 	public void updateSupplier(EObject newValue);
 
@@ -175,6 +166,20 @@ public interface DependencyPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSupplier(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the supplier table
+	 */
+	public boolean isContainedInSupplierTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

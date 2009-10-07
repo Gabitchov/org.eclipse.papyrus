@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.eef.runtime.EMFPropertiesRuntime;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -51,7 +52,7 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -68,7 +69,7 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	 */
 	public ElementImportBasePropertiesEditionComponent(EObject elementImport, String editing_mode) {
 		if (elementImport instanceof ElementImport) {
-			this.elementImport = (ElementImport) elementImport;
+			this.elementImport = (ElementImport)elementImport;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.elementImport.eAdapters().add(semanticAdapter);
@@ -95,10 +96,14 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 					ElementImportBasePropertiesEditionComponent.this.dispose();
 				else {
 					if (UMLPackage.eINSTANCE.getElementImport_Visibility().equals(msg.getFeature()) && basePart != null)
-						basePart.setVisibility((Enumerator) msg.getNewValue());
+						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getElementImport_Alias().equals(msg.getFeature()) && basePart != null)
-						basePart.setAlias((String) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getElementImport_Alias().equals(msg.getFeature()) && basePart != null){
+					if(msg.getNewValue()!=null){
+						basePart.setAlias((String)msg.getNewValue());
+}
+						else{basePart.setAlias("");}}
+
 
 				}
 			}
@@ -130,20 +135,18 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *      (java.lang.String, java.lang.String)
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (elementImport != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
-						.getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (ElementImportPropertiesEditionPart) provider.getPropertiesEditionPart(
-							UMLViewsRepository.ElementImport.class, kind, this);
-					addListener((IPropertiesEditionListener) basePart);
+					basePart = (ElementImportPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.ElementImport.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -152,8 +155,7 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.ElementImport.class)
@@ -163,20 +165,21 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
-	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.ElementImport.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			ElementImport elementImport = (ElementImport) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			final ElementImport elementImport = (ElementImport)elt;
 			// init values
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getElementImport_Visibility().getEType(),
-					elementImport.getVisibility());
+			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getElementImport_Visibility().getEType(), elementImport.getVisibility());
 			if (elementImport.getAlias() != null)
 				basePart.setAlias(elementImport.getAlias());
 
+			
 			// init filters
+
 
 		}
 		// init values for referenced views
@@ -185,20 +188,25 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 
 	}
 
+
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *      (org.eclipse.emf.edit.domain.EditingDomain)
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (elementImport != null) {
-			cc.append(SetCommand.create(editingDomain, elementImport, UMLPackage.eINSTANCE
-					.getElementImport_Visibility(), basePart.getVisibility()));
+			cc.append(SetCommand.create(editingDomain, elementImport, UMLPackage.eINSTANCE.getElementImport_Visibility(), basePart.getVisibility()));
 
-			cc.append(SetCommand.create(editingDomain, elementImport, UMLPackage.eINSTANCE.getElementImport_Alias(),
-					basePart.getAlias()));
+			cc.append(SetCommand.create(editingDomain, elementImport, UMLPackage.eINSTANCE.getElementImport_Alias(), basePart.getAlias()));
+
+
 
 		}
 		if (!cc.isEmpty())
@@ -214,13 +222,16 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof ElementImport) {
-			ElementImport elementImportToUpdate = (ElementImport) source;
-			elementImportToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
+			ElementImport elementImportToUpdate = (ElementImport)source;
+			elementImportToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());
 
 			elementImportToUpdate.setAlias(basePart.getAlias());
 
+
+
 			return elementImportToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -231,18 +242,21 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState()
-				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.ElementImport.visibility == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, elementImport, UMLPackage.eINSTANCE
-						.getElementImport_Visibility(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, elementImport, UMLPackage.eINSTANCE.getElementImport_Visibility(), event.getNewValue()));
 
 			if (UMLViewsRepository.ElementImport.alias == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, elementImport, UMLPackage.eINSTANCE
-						.getElementImport_Alias(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, elementImport, UMLPackage.eINSTANCE.getElementImport_Alias(), event.getNewValue()));
 
-			liveEditingDomain.getCommandStack().execute(command);
+
+
+			if (!command.isEmpty() && !command.canExecute()) {
+				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
+			} else {
+				liveEditingDomain.getCommandStack().execute(command);
+			}
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
@@ -250,10 +264,12 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 				if (UMLViewsRepository.ElementImport.alias == event.getAffectedEditor())
 					basePart.setMessageForAlias(diag.getMessage(), IMessageProvider.ERROR);
 
+
 			} else {
 
 				if (UMLViewsRepository.ElementImport.alias == event.getAffectedEditor())
 					basePart.unsetMessageForAlias();
+
 
 			}
 		}
@@ -262,8 +278,7 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String,
-	 *      int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
 	 */
 	public boolean isRequired(String key, int kind) {
 		return key == UMLViewsRepository.ElementImport.visibility;
@@ -272,41 +287,25 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String,
-	 *      int)
-	 */
-	public String getHelpContent(String key, int kind) {
-		if (key == UMLViewsRepository.ElementImport.visibility)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.ElementImport.alias)
-			return null; //$NON-NLS-1$
-		return super.getHelpContent(key, kind);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
-		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
-		try {
-			if (UMLViewsRepository.ElementImport.visibility == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getElementImport_Visibility()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getElementImport_Visibility()
-						.getEAttributeType(), newValue);
-			}
-			if (UMLViewsRepository.ElementImport.alias == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getElementImport_Alias()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(
-						UMLPackage.eINSTANCE.getElementImport_Alias().getEAttributeType(), newValue);
-			}
+		if (event.getNewValue() != null) {
+			String newStringValue = event.getNewValue().toString();
+			try {
+				if (UMLViewsRepository.ElementImport.visibility == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getElementImport_Visibility().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getElementImport_Visibility().getEAttributeType(), newValue);
+				}
+				if (UMLViewsRepository.ElementImport.alias == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getElementImport_Alias().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getElementImport_Alias().getEAttributeType(), newValue);
+				}
 
-		} catch (IllegalArgumentException iae) {
-			ret = BasicDiagnostic.toDiagnostic(iae);
+			} catch (IllegalArgumentException iae) {
+				ret = BasicDiagnostic.toDiagnostic(iae);
+			}
 		}
 		return ret;
 	}
@@ -317,15 +316,21 @@ public class ElementImportBasePropertiesEditionComponent extends StandardPropert
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
+		Diagnostic validate = null;
 		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			return Diagnostician.INSTANCE.validate(elementImport);
-		else
-			return null;
+			validate =  Diagnostician.INSTANCE.validate(copy);
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(elementImport);
+		// Start of user code for custom validation check
+
+		// End of user code
+
+		return validate;
 	}
+
 
 	/**
 	 * {@inheritDoc}

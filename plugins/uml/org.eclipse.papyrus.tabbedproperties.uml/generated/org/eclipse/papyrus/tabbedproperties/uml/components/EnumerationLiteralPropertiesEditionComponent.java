@@ -41,7 +41,6 @@ public class EnumerationLiteralPropertiesEditionComponent extends ComposedProper
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
-
 	/**
 	 * Parameterized constructor
 	 * 
@@ -51,57 +50,50 @@ public class EnumerationLiteralPropertiesEditionComponent extends ComposedProper
 	public EnumerationLiteralPropertiesEditionComponent(EObject enumerationLiteral, String editing_mode) {
 		super(editing_mode);
 		if (enumerationLiteral instanceof EnumerationLiteral) {
-			enumerationLiteralBasePropertiesEditionComponent = new EnumerationLiteralBasePropertiesEditionComponent(
-					enumerationLiteral, editing_mode);
+			enumerationLiteralBasePropertiesEditionComponent = new EnumerationLiteralBasePropertiesEditionComponent(enumerationLiteral, editing_mode); 
 			addSubComponent(enumerationLiteralBasePropertiesEditionComponent);
 			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(enumerationLiteral, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-
+	
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      getPropertiesEditionPart(int, java.lang.String)
+	 * 		getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (EnumerationLiteralPropertiesEditionPart) enumerationLiteralBasePropertiesEditionComponent
-					.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart) basePart;
+			basePart = (EnumerationLiteralPropertiesEditionPart)enumerationLiteralBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.EnumerationLiteral.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (EnumerationLiteralPropertiesEditionPart) propertiesEditionPart;
+			basePart = (EnumerationLiteralPropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.EnumerationLiteral.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-		if (key == UMLViewsRepository.Comments.class) {
-			super.initPart(key, kind, element, allResource);
-
-		}
+			if (key == UMLViewsRepository.Comments.class) {
+				super.initPart(key, kind, element, allResource);
+			
+			}
 	}
 }

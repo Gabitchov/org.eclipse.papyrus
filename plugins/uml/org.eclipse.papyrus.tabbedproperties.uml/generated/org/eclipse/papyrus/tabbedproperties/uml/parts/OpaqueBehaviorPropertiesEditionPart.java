@@ -15,14 +15,11 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -53,27 +50,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -96,15 +87,22 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -119,21 +117,20 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -146,27 +143,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -189,6 +180,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the elementImport to add
 	 */
 	public List getElementImportToAdd();
@@ -209,27 +209,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getElementImportToEdit();
 
 	/**
-	 * @return the current elementImport
+	 * @return the current elementImport table
 	 */
 	public List getElementImportTable();
 
 	/**
 	 * Init the elementImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * 
-	 * @param newValue
-	 *            the elementImport to update
+	 * @param newValue the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -252,6 +246,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the elementImport table
+	 */
+	public boolean isContainedInElementImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packageImport to add
 	 */
 	public List getPackageImportToAdd();
@@ -272,27 +275,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getPackageImportToEdit();
 
 	/**
-	 * @return the current packageImport
+	 * @return the current packageImport table
 	 */
 	public List getPackageImportTable();
 
 	/**
 	 * Init the packageImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * 
-	 * @param newValue
-	 *            the packageImport to update
+	 * @param newValue the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -315,6 +312,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packageImport table
+	 */
+	public boolean isContainedInPackageImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedRule to add
 	 */
 	public List getOwnedRuleToAdd();
@@ -335,27 +341,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedRuleToEdit();
 
 	/**
-	 * @return the current ownedRule
+	 * @return the current ownedRule table
 	 */
 	public List getOwnedRuleTable();
 
 	/**
 	 * Init the ownedRule
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * 
-	 * @param newValue
-	 *            the ownedRule to update
+	 * @param newValue the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -378,17 +378,28 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedRule table
+	 */
+	public boolean isContainedInOwnedRuleTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the isLeaf
 	 */
 	public Boolean getIsLeaf();
 
 	/**
 	 * Defines a new isLeaf
-	 * 
-	 * @param newValue
-	 *            the new isLeaf to set
+	 * @param newValue the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the templateBinding to add
@@ -411,27 +422,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getTemplateBindingToEdit();
 
 	/**
-	 * @return the current templateBinding
+	 * @return the current templateBinding table
 	 */
 	public List getTemplateBindingTable();
 
 	/**
 	 * Init the templateBinding
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * 
-	 * @param newValue
-	 *            the templateBinding to update
+	 * @param newValue the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -454,17 +459,28 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the templateBinding table
+	 */
+	public boolean isContainedInTemplateBindingTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the isAbstract
 	 */
 	public Boolean getIsAbstract();
 
 	/**
 	 * Defines a new isAbstract
-	 * 
-	 * @param newValue
-	 *            the new isAbstract to set
+	 * @param newValue the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the generalization to add
@@ -487,27 +503,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getGeneralizationToEdit();
 
 	/**
-	 * @return the current generalization
+	 * @return the current generalization table
 	 */
 	public List getGeneralizationTable();
 
 	/**
 	 * Init the generalization
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initGeneralization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalization
-	 * 
-	 * @param newValue
-	 *            the generalization to update
+	 * @param newValue the generalization to update
 	 */
 	public void updateGeneralization(EObject newValue);
 
@@ -530,6 +540,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToGeneralization(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the generalization table
+	 */
+	public boolean isContainedInGeneralizationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the powertypeExtent to add
 	 */
 	public List getPowertypeExtentToAdd();
@@ -540,27 +559,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getPowertypeExtentToRemove();
 
 	/**
-	 * @return the current powertypeExtent
+	 * @return the current powertypeExtent table
 	 */
 	public List getPowertypeExtentTable();
 
 	/**
 	 * Init the powertypeExtent
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPowertypeExtent(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the powertypeExtent
-	 * 
-	 * @param newValue
-	 *            the powertypeExtent to update
+	 * @param newValue the powertypeExtent to update
 	 */
 	public void updatePowertypeExtent(EObject newValue);
 
@@ -583,6 +596,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToPowertypeExtent(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the powertypeExtent table
+	 */
+	public boolean isContainedInPowertypeExtentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the redefinedClassifier to add
 	 */
 	public List getRedefinedClassifierToAdd();
@@ -593,27 +615,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getRedefinedClassifierToRemove();
 
 	/**
-	 * @return the current redefinedClassifier
+	 * @return the current redefinedClassifier table
 	 */
 	public List getRedefinedClassifierTable();
 
 	/**
 	 * Init the redefinedClassifier
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRedefinedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedClassifier
-	 * 
-	 * @param newValue
-	 *            the redefinedClassifier to update
+	 * @param newValue the redefinedClassifier to update
 	 */
 	public void updateRedefinedClassifier(EObject newValue);
 
@@ -636,6 +652,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToRedefinedClassifier(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the redefinedClassifier table
+	 */
+	public boolean isContainedInRedefinedClassifierTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the substitution to add
 	 */
 	public List getSubstitutionToAdd();
@@ -656,27 +681,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getSubstitutionToEdit();
 
 	/**
-	 * @return the current substitution
+	 * @return the current substitution table
 	 */
 	public List getSubstitutionTable();
 
 	/**
 	 * Init the substitution
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initSubstitution(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the substitution
-	 * 
-	 * @param newValue
-	 *            the substitution to update
+	 * @param newValue the substitution to update
 	 */
 	public void updateSubstitution(EObject newValue);
 
@@ -699,6 +718,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToSubstitution(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the substitution table
+	 */
+	public boolean isContainedInSubstitutionTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the collaborationUse to add
 	 */
 	public List getCollaborationUseToAdd();
@@ -719,27 +747,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getCollaborationUseToEdit();
 
 	/**
-	 * @return the current collaborationUse
+	 * @return the current collaborationUse table
 	 */
 	public List getCollaborationUseTable();
 
 	/**
 	 * Init the collaborationUse
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initCollaborationUse(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the collaborationUse
-	 * 
-	 * @param newValue
-	 *            the collaborationUse to update
+	 * @param newValue the collaborationUse to update
 	 */
 	public void updateCollaborationUse(EObject newValue);
 
@@ -762,6 +784,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToCollaborationUse(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the collaborationUse table
+	 */
+	public boolean isContainedInCollaborationUseTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedUseCase to add
 	 */
 	public List getOwnedUseCaseToAdd();
@@ -782,27 +813,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedUseCaseToEdit();
 
 	/**
-	 * @return the current ownedUseCase
+	 * @return the current ownedUseCase table
 	 */
 	public List getOwnedUseCaseTable();
 
 	/**
 	 * Init the ownedUseCase
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedUseCase
-	 * 
-	 * @param newValue
-	 *            the ownedUseCase to update
+	 * @param newValue the ownedUseCase to update
 	 */
 	public void updateOwnedUseCase(EObject newValue);
 
@@ -825,6 +850,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedUseCase(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedUseCase table
+	 */
+	public boolean isContainedInOwnedUseCaseTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the useCase to add
 	 */
 	public List getUseCaseToAdd();
@@ -835,27 +869,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getUseCaseToRemove();
 
 	/**
-	 * @return the current useCase
+	 * @return the current useCase table
 	 */
 	public List getUseCaseTable();
 
 	/**
 	 * Init the useCase
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the useCase
-	 * 
-	 * @param newValue
-	 *            the useCase to update
+	 * @param newValue the useCase to update
 	 */
 	public void updateUseCase(EObject newValue);
 
@@ -878,6 +906,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToUseCase(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the useCase table
+	 */
+	public boolean isContainedInUseCaseTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedAttribute to add
 	 */
 	public List getOwnedAttributeToAdd();
@@ -898,27 +935,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedAttributeToEdit();
 
 	/**
-	 * @return the current ownedAttribute
+	 * @return the current ownedAttribute table
 	 */
 	public List getOwnedAttributeTable();
 
 	/**
 	 * Init the ownedAttribute
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedAttribute(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedAttribute
-	 * 
-	 * @param newValue
-	 *            the ownedAttribute to update
+	 * @param newValue the ownedAttribute to update
 	 */
 	public void updateOwnedAttribute(EObject newValue);
 
@@ -941,6 +972,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedAttribute(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedAttribute table
+	 */
+	public boolean isContainedInOwnedAttributeTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedConnector to add
 	 */
 	public List getOwnedConnectorToAdd();
@@ -961,27 +1001,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedConnectorToEdit();
 
 	/**
-	 * @return the current ownedConnector
+	 * @return the current ownedConnector table
 	 */
 	public List getOwnedConnectorTable();
 
 	/**
 	 * Init the ownedConnector
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedConnector(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedConnector
-	 * 
-	 * @param newValue
-	 *            the ownedConnector to update
+	 * @param newValue the ownedConnector to update
 	 */
 	public void updateOwnedConnector(EObject newValue);
 
@@ -1004,6 +1038,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedConnector(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedConnector table
+	 */
+	public boolean isContainedInOwnedConnectorTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedBehavior to add
 	 */
 	public List getOwnedBehaviorToAdd();
@@ -1024,27 +1067,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedBehaviorToEdit();
 
 	/**
-	 * @return the current ownedBehavior
+	 * @return the current ownedBehavior table
 	 */
 	public List getOwnedBehaviorTable();
 
 	/**
 	 * Init the ownedBehavior
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedBehavior(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedBehavior
-	 * 
-	 * @param newValue
-	 *            the ownedBehavior to update
+	 * @param newValue the ownedBehavior to update
 	 */
 	public void updateOwnedBehavior(EObject newValue);
 
@@ -1067,6 +1104,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedBehavior(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedBehavior table
+	 */
+	public boolean isContainedInOwnedBehaviorTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the interfaceRealization to add
 	 */
 	public List getInterfaceRealizationToAdd();
@@ -1087,27 +1133,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getInterfaceRealizationToEdit();
 
 	/**
-	 * @return the current interfaceRealization
+	 * @return the current interfaceRealization table
 	 */
 	public List getInterfaceRealizationTable();
 
 	/**
 	 * Init the interfaceRealization
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initInterfaceRealization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the interfaceRealization
-	 * 
-	 * @param newValue
-	 *            the interfaceRealization to update
+	 * @param newValue the interfaceRealization to update
 	 */
 	public void updateInterfaceRealization(EObject newValue);
 
@@ -1130,6 +1170,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToInterfaceRealization(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the interfaceRealization table
+	 */
+	public boolean isContainedInInterfaceRealizationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedTrigger to add
 	 */
 	public List getOwnedTriggerToAdd();
@@ -1150,27 +1199,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedTriggerToEdit();
 
 	/**
-	 * @return the current ownedTrigger
+	 * @return the current ownedTrigger table
 	 */
 	public List getOwnedTriggerTable();
 
 	/**
 	 * Init the ownedTrigger
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedTrigger(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedTrigger
-	 * 
-	 * @param newValue
-	 *            the ownedTrigger to update
+	 * @param newValue the ownedTrigger to update
 	 */
 	public void updateOwnedTrigger(EObject newValue);
 
@@ -1193,6 +1236,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedTrigger(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedTrigger table
+	 */
+	public boolean isContainedInOwnedTriggerTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the nestedClassifier to add
 	 */
 	public List getNestedClassifierToAdd();
@@ -1213,27 +1265,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getNestedClassifierToEdit();
 
 	/**
-	 * @return the current nestedClassifier
+	 * @return the current nestedClassifier table
 	 */
 	public List getNestedClassifierTable();
 
 	/**
 	 * Init the nestedClassifier
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initNestedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the nestedClassifier
-	 * 
-	 * @param newValue
-	 *            the nestedClassifier to update
+	 * @param newValue the nestedClassifier to update
 	 */
 	public void updateNestedClassifier(EObject newValue);
 
@@ -1256,6 +1302,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToNestedClassifier(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the nestedClassifier table
+	 */
+	public boolean isContainedInNestedClassifierTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedOperation to add
 	 */
 	public List getOwnedOperationToAdd();
@@ -1276,27 +1331,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedOperationToEdit();
 
 	/**
-	 * @return the current ownedOperation
+	 * @return the current ownedOperation table
 	 */
 	public List getOwnedOperationTable();
 
 	/**
 	 * Init the ownedOperation
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedOperation(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedOperation
-	 * 
-	 * @param newValue
-	 *            the ownedOperation to update
+	 * @param newValue the ownedOperation to update
 	 */
 	public void updateOwnedOperation(EObject newValue);
 
@@ -1319,17 +1368,28 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedOperation(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedOperation table
+	 */
+	public boolean isContainedInOwnedOperationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the isActive
 	 */
 	public Boolean getIsActive();
 
 	/**
 	 * Defines a new isActive
-	 * 
-	 * @param newValue
-	 *            the new isActive to set
+	 * @param newValue the new isActive to set
 	 */
 	public void setIsActive(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the ownedReception to add
@@ -1352,27 +1412,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedReceptionToEdit();
 
 	/**
-	 * @return the current ownedReception
+	 * @return the current ownedReception table
 	 */
 	public List getOwnedReceptionTable();
 
 	/**
 	 * Init the ownedReception
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedReception(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedReception
-	 * 
-	 * @param newValue
-	 *            the ownedReception to update
+	 * @param newValue the ownedReception to update
 	 */
 	public void updateOwnedReception(EObject newValue);
 
@@ -1395,17 +1449,28 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedReception(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedReception table
+	 */
+	public boolean isContainedInOwnedReceptionTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the isReentrant
 	 */
 	public Boolean getIsReentrant();
 
 	/**
 	 * Defines a new isReentrant
-	 * 
-	 * @param newValue
-	 *            the new isReentrant to set
+	 * @param newValue the new isReentrant to set
 	 */
 	public void setIsReentrant(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the redefinedBehavior to add
@@ -1418,27 +1483,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getRedefinedBehaviorToRemove();
 
 	/**
-	 * @return the current redefinedBehavior
+	 * @return the current redefinedBehavior table
 	 */
 	public List getRedefinedBehaviorTable();
 
 	/**
 	 * Init the redefinedBehavior
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRedefinedBehavior(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedBehavior
-	 * 
-	 * @param newValue
-	 *            the redefinedBehavior to update
+	 * @param newValue the redefinedBehavior to update
 	 */
 	public void updateRedefinedBehavior(EObject newValue);
 
@@ -1461,6 +1520,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToRedefinedBehavior(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the redefinedBehavior table
+	 */
+	public boolean isContainedInRedefinedBehaviorTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedParameter to add
 	 */
 	public List getOwnedParameterToAdd();
@@ -1481,27 +1549,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedParameterToEdit();
 
 	/**
-	 * @return the current ownedParameter
+	 * @return the current ownedParameter table
 	 */
 	public List getOwnedParameterTable();
 
 	/**
 	 * Init the ownedParameter
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * 
-	 * @param newValue
-	 *            the ownedParameter to update
+	 * @param newValue the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
 
@@ -1524,6 +1586,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedParameter table
+	 */
+	public boolean isContainedInOwnedParameterTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the precondition to add
 	 */
 	public List getPreconditionToAdd();
@@ -1534,27 +1605,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getPreconditionToRemove();
 
 	/**
-	 * @return the current precondition
+	 * @return the current precondition table
 	 */
 	public List getPreconditionTable();
 
 	/**
 	 * Init the precondition
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPrecondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the precondition
-	 * 
-	 * @param newValue
-	 *            the precondition to update
+	 * @param newValue the precondition to update
 	 */
 	public void updatePrecondition(EObject newValue);
 
@@ -1577,6 +1642,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToPrecondition(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the precondition table
+	 */
+	public boolean isContainedInPreconditionTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the postcondition to add
 	 */
 	public List getPostconditionToAdd();
@@ -1587,27 +1661,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public List getPostconditionToRemove();
 
 	/**
-	 * @return the current postcondition
+	 * @return the current postcondition table
 	 */
 	public List getPostconditionTable();
 
 	/**
 	 * Init the postcondition
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPostcondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the postcondition
-	 * 
-	 * @param newValue
-	 *            the postcondition to update
+	 * @param newValue the postcondition to update
 	 */
 	public void updatePostcondition(EObject newValue);
 
@@ -1630,6 +1698,15 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToPostcondition(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the postcondition table
+	 */
+	public boolean isContainedInPostconditionTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedParameterSet to add
 	 */
 	public List getOwnedParameterSetToAdd();
@@ -1650,27 +1727,21 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public Map getOwnedParameterSetToEdit();
 
 	/**
-	 * @return the current ownedParameterSet
+	 * @return the current ownedParameterSet table
 	 */
 	public List getOwnedParameterSetTable();
 
 	/**
 	 * Init the ownedParameterSet
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameterSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameterSet
-	 * 
-	 * @param newValue
-	 *            the ownedParameterSet to update
+	 * @param newValue the ownedParameterSet to update
 	 */
 	public void updateOwnedParameterSet(EObject newValue);
 
@@ -1693,17 +1764,28 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 	public void addBusinessFilterToOwnedParameterSet(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedParameterSet table
+	 */
+	public boolean isContainedInOwnedParameterSetTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the body
 	 */
 	public EList getBody();
 
 	/**
 	 * Defines a new body
-	 * 
-	 * @param newValue
-	 *            the new body to set
+	 * @param newValue the new body to set
 	 */
 	public void setBody(EList newValue);
+
+
+
+
 
 	/**
 	 * @return the language
@@ -1712,11 +1794,18 @@ public interface OpaqueBehaviorPropertiesEditionPart {
 
 	/**
 	 * Defines a new language
-	 * 
-	 * @param newValue
-	 *            the new language to set
+	 * @param newValue the new language to set
 	 */
 	public void setLanguage(EList newValue);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

@@ -25,7 +25,9 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -36,6 +38,7 @@ import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.eef.runtime.EMFPropertiesRuntime;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -64,7 +67,7 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -81,7 +84,7 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	 */
 	public GeneralizationSetBasePropertiesEditionComponent(EObject generalizationSet, String editing_mode) {
 		if (generalizationSet instanceof GeneralizationSet) {
-			this.generalizationSet = (GeneralizationSet) generalizationSet;
+			this.generalizationSet = (GeneralizationSet)generalizationSet;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.generalizationSet.eAdapters().add(semanticAdapter);
@@ -107,30 +110,30 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 				if (basePart == null)
 					GeneralizationSetBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
-									.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature())
-									.getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElement_OwnedComment())) {
 						basePart.updateOwnedComment(generalizationSet);
 					}
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
-						basePart.setName((String) msg.getNewValue());
-
+					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
+					if(msg.getNewValue()!=null){
+						basePart.setName((String)msg.getNewValue());
+}
+						else{basePart.setName("");}}
 					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
-						basePart.setVisibility((Enumerator) msg.getNewValue());
+						basePart.setVisibility((Enumerator)msg.getNewValue());
 
 					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
 						basePart.updateClientDependency(generalizationSet);
-					if (UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering().equals(msg.getFeature())
-							&& basePart != null)
-						basePart.setIsCovering((Boolean) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering().equals(msg.getFeature()) && basePart != null)
+						basePart.setIsCovering((Boolean)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint().equals(msg.getFeature())
-							&& basePart != null)
-						basePart.setIsDisjoint((Boolean) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint().equals(msg.getFeature()) && basePart != null)
+						basePart.setIsDisjoint((Boolean)msg.getNewValue());
 
 					if (UMLPackage.eINSTANCE.getGeneralizationSet_Generalization().equals(msg.getFeature()))
 						basePart.updateGeneralization(generalizationSet);
+
 
 				}
 			}
@@ -162,20 +165,18 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *      (java.lang.String, java.lang.String)
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (generalizationSet != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
-						.getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (GeneralizationSetPropertiesEditionPart) provider.getPropertiesEditionPart(
-							UMLViewsRepository.GeneralizationSet.class, kind, this);
-					addListener((IPropertiesEditionListener) basePart);
+					basePart = (GeneralizationSetPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.GeneralizationSet.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -184,8 +185,7 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.GeneralizationSet.class)
@@ -195,41 +195,36 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
-	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.GeneralizationSet.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			GeneralizationSet generalizationSet = (GeneralizationSet) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			final GeneralizationSet generalizationSet = (GeneralizationSet)elt;
 			// init values
 			basePart.initOwnedComment(generalizationSet, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
 			if (generalizationSet.getName() != null)
 				basePart.setName(generalizationSet.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(),
-					generalizationSet.getVisibility());
-			basePart.initClientDependency(generalizationSet, null, UMLPackage.eINSTANCE
-					.getNamedElement_ClientDependency());
-			basePart.setIsCovering(generalizationSet.isCovering());
+			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), generalizationSet.getVisibility());
+			basePart.initClientDependency(generalizationSet, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
+basePart.setIsCovering(generalizationSet.isCovering());
 
-			basePart.setIsDisjoint(generalizationSet.isDisjoint());
+basePart.setIsDisjoint(generalizationSet.isDisjoint());
 
-			basePart.initGeneralization(generalizationSet, null, UMLPackage.eINSTANCE
-					.getGeneralizationSet_Generalization());
-
+			basePart.initGeneralization(generalizationSet, null, UMLPackage.eINSTANCE.getGeneralizationSet_Generalization());
+			
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
@@ -238,19 +233,18 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 
 			// End of user code
 
+
 			basePart.addFilterToClientDependency(new ViewerFilter() {
 
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
-						return (!basePart.getClientDependencyTable().contains(element));
-					return false;
+						return (!basePart.isContainedInClientDependencyTable((EObject)element));
+					return element instanceof Resource;
 				}
 
 			});
@@ -259,19 +253,18 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 
 			// End of user code
 
+
 			basePart.addFilterToGeneralization(new ViewerFilter() {
 
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
-						return (!basePart.getGeneralizationTable().contains(element));
-					return false;
+						return (!basePart.isContainedInGeneralizationTable((EObject)element));
+					return element instanceof Resource;
 				}
 
 			});
@@ -286,87 +279,84 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 
 	}
 
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *      (org.eclipse.emf.edit.domain.EditingDomain)
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (generalizationSet != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
 			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getElement_OwnedComment(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
 			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for ownedComment reference refreshment from ownedComment
-
+				
+				
+				
 				Comment nextElement = (Comment) iter.next();
 				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedComment.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
 			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getComment(),
-						moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			cc.append(SetCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_Name(),
-					basePart.getName()));
+			cc.append(SetCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
 
-			cc.append(SetCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE
-					.getNamedElement_Visibility(), basePart.getVisibility()));
+			cc.append(SetCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
 			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getNamedElement_ClientDependency(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
 			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getNamedElement_ClientDependency(), iter.next()));
-			// List clientDependencyToMoveFromClientDependency =
-			// basePart.getClientDependencyToMove();
-			// for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator();
-			// iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement =
-			// (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, generalizationSet,
-			// UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(),
-			// moveElement.getIndex()));
-			// }
-			cc.append(SetCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE
-					.getGeneralizationSet_IsCovering(), basePart.getIsCovering()));
+				cc.append(RemoveCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
+			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
+			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+			cc.append(SetCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering(), basePart.getIsCovering()));
 
-			cc.append(SetCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE
-					.getGeneralizationSet_IsDisjoint(), basePart.getIsDisjoint()));
+			cc.append(SetCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint(), basePart.getIsDisjoint()));
 
 			List generalizationToAddFromGeneralization = basePart.getGeneralizationToAdd();
 			for (Iterator iter = generalizationToAddFromGeneralization.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getGeneralizationSet_Generalization(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_Generalization(), iter.next()));
 			List generalizationToRemoveFromGeneralization = basePart.getGeneralizationToRemove();
 			for (Iterator iter = generalizationToRemoveFromGeneralization.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getGeneralizationSet_Generalization(), iter.next()));
-			// List generalizationToMoveFromGeneralization = basePart.getGeneralizationToMove();
-			// for (Iterator iter = generalizationToMoveFromGeneralization.iterator();
-			// iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement =
-			// (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, generalizationSet,
-			// UMLPackage.eINSTANCE.getGeneralization(), moveElement.getElement(),
-			// moveElement.getIndex()));
-			// }
+				cc.append(RemoveCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_Generalization(), iter.next()));
+			//List generalizationToMoveFromGeneralization = basePart.getGeneralizationToMove();
+			//for (Iterator iter = generalizationToMoveFromGeneralization.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralization(), moveElement.getElement(), moveElement.getIndex()));
+			//}
+
 
 		}
 		if (!cc.isEmpty())
@@ -382,11 +372,11 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof GeneralizationSet) {
-			GeneralizationSet generalizationSetToUpdate = (GeneralizationSet) source;
+			GeneralizationSet generalizationSetToUpdate = (GeneralizationSet)source;
 			generalizationSetToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			generalizationSetToUpdate.setName(basePart.getName());
 
-			generalizationSetToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
+			generalizationSetToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());
 
 			generalizationSetToUpdate.getClientDependencies().addAll(basePart.getClientDependencyToAdd());
 			generalizationSetToUpdate.setIsCovering(new Boolean(basePart.getIsCovering()).booleanValue());
@@ -395,8 +385,10 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 
 			generalizationSetToUpdate.getGeneralizations().addAll(basePart.getGeneralizationToAdd());
 
+
 			return generalizationSetToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -407,67 +399,65 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState()
-				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.GeneralizationSet.ownedComment == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment) event.getOldValue();
-					Comment newValue = (Comment) event.getNewValue();
-
-					// Start of user code for ownedComment live update command
+					Comment oldValue = (Comment)event.getOldValue();
+					Comment newValue = (Comment)event.getNewValue();
+					
+					
 					// TODO: Complete the generalizationSet update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-							.getElement_OwnedComment(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-							.getComment(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.GeneralizationSet.name == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getNamedElement_Name(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
 			if (UMLViewsRepository.GeneralizationSet.visibility == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getNamedElement_Visibility(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
 			if (UMLViewsRepository.GeneralizationSet.clientDependency == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-							.getNamedElement_ClientDependency(), event.getNewValue()));
+					command.append(AddCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
 				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-							.getNamedElement_ClientDependency(), event.getNewValue()));
+					command.append(RemoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
 				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-							.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.GeneralizationSet.isCovering == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getGeneralizationSet_IsCovering(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering(), event.getNewValue()));
 
 			if (UMLViewsRepository.GeneralizationSet.isDisjoint == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-						.getGeneralizationSet_IsDisjoint(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint(), event.getNewValue()));
 
 			if (UMLViewsRepository.GeneralizationSet.generalization == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-							.getGeneralizationSet_Generalization(), event.getNewValue()));
+					command.append(AddCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_Generalization(), event.getNewValue()));
 				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-							.getGeneralizationSet_Generalization(), event.getNewValue()));
+					command.append(RemoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_Generalization(), event.getNewValue()));
 				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE
-							.getGeneralizationSet_Generalization(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, generalizationSet, UMLPackage.eINSTANCE.getGeneralizationSet_Generalization(), event.getNewValue(), event.getNewIndex()));
 			}
 
-			liveEditingDomain.getCommandStack().execute(command);
+
+			if (!command.isEmpty() && !command.canExecute()) {
+				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
+			} else {
+				liveEditingDomain.getCommandStack().execute(command);
+			}
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
@@ -475,10 +465,22 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 				if (UMLViewsRepository.GeneralizationSet.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
+
+
+
+
+
+
 			} else {
 
 				if (UMLViewsRepository.GeneralizationSet.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
+
+
+
+
+
+
 
 			}
 		}
@@ -487,36 +489,10 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String,
-	 *      int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
 	 */
 	public boolean isRequired(String key, int kind) {
-		return key == UMLViewsRepository.GeneralizationSet.isCovering
-				|| key == UMLViewsRepository.GeneralizationSet.isDisjoint;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String,
-	 *      int)
-	 */
-	public String getHelpContent(String key, int kind) {
-		if (key == UMLViewsRepository.GeneralizationSet.ownedComment)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.GeneralizationSet.name)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.GeneralizationSet.visibility)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.GeneralizationSet.clientDependency)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.GeneralizationSet.isCovering)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.GeneralizationSet.isDisjoint)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.GeneralizationSet.generalization)
-			return null; //$NON-NLS-1$
-		return super.getHelpContent(key, kind);
+		return key == UMLViewsRepository.GeneralizationSet.isCovering || key == UMLViewsRepository.GeneralizationSet.isDisjoint;
 	}
 
 	/**
@@ -525,36 +501,30 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
-		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
-		try {
-			if (UMLViewsRepository.GeneralizationSet.name == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(),
-						newValue);
-			}
-			if (UMLViewsRepository.GeneralizationSet.visibility == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility()
-						.getEAttributeType(), newValue);
-			}
-			if (UMLViewsRepository.GeneralizationSet.isCovering == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering()
-						.getEAttributeType(), newValue);
-			}
-			if (UMLViewsRepository.GeneralizationSet.isDisjoint == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint()
-						.getEAttributeType(), newValue);
-			}
+		if (event.getNewValue() != null) {
+			String newStringValue = event.getNewValue().toString();
+			try {
+				if (UMLViewsRepository.GeneralizationSet.name == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
+				}
+				if (UMLViewsRepository.GeneralizationSet.visibility == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
+				}
+				if (UMLViewsRepository.GeneralizationSet.isCovering == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering().getEAttributeType(), newValue);
+				}
+				if (UMLViewsRepository.GeneralizationSet.isDisjoint == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint().getEAttributeType(), newValue);
+				}
 
-		} catch (IllegalArgumentException iae) {
-			ret = BasicDiagnostic.toDiagnostic(iae);
+			} catch (IllegalArgumentException iae) {
+				ret = BasicDiagnostic.toDiagnostic(iae);
+			}
 		}
 		return ret;
 	}
@@ -565,15 +535,21 @@ public class GeneralizationSetBasePropertiesEditionComponent extends StandardPro
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
+		Diagnostic validate = null;
 		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			return Diagnostician.INSTANCE.validate(generalizationSet);
-		else
-			return null;
+			validate =  Diagnostician.INSTANCE.validate(copy);
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(generalizationSet);
+		// Start of user code for custom validation check
+
+		// End of user code
+
+		return validate;
 	}
+
 
 	/**
 	 * {@inheritDoc}

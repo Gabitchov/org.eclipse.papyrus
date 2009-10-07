@@ -23,6 +23,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -31,7 +32,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.MoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.eef.runtime.EMFPropertiesRuntime;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -57,7 +60,7 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -74,7 +77,7 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 	 */
 	public SlotBasePropertiesEditionComponent(EObject slot, String editing_mode) {
 		if (slot instanceof Slot) {
-			this.slot = (Slot) slot;
+			this.slot = (Slot)slot;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.slot.eAdapters().add(semanticAdapter);
@@ -100,12 +103,12 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 				if (basePart == null)
 					SlotBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getSlot_Value() || ((EStructuralFeature) msg
-									.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-									.getValueSpecification())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getSlot_Value()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getSlot_Value())) {
 						basePart.updateValue(slot);
 					}
+
 
 				}
 			}
@@ -137,20 +140,18 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *      (java.lang.String, java.lang.String)
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (slot != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
-						.getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (SlotPropertiesEditionPart) provider.getPropertiesEditionPart(
-							UMLViewsRepository.Slot.class, kind, this);
-					addListener((IPropertiesEditionListener) basePart);
+					basePart = (SlotPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Slot.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -159,8 +160,7 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.Slot.class)
@@ -170,28 +170,26 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
-	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.Slot.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			Slot slot = (Slot) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			final Slot slot = (Slot)elt;
 			// init values
 			basePart.initValue(slot, null, UMLPackage.eINSTANCE.getSlot_Value());
-
+			
 			// init filters
 			basePart.addFilterToValue(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof ValueSpecification); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof ValueSpecification); //$NON-NLS-1$ 
 
 				}
 
@@ -206,11 +204,15 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 
 	}
 
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *      (org.eclipse.emf.edit.domain.EditingDomain)
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
@@ -220,25 +222,30 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 				cc.append(AddCommand.create(editingDomain, slot, UMLPackage.eINSTANCE.getSlot_Value(), iter.next()));
 			Map valueToRefreshFromValue = basePart.getValueToEdit();
 			for (Iterator iter = valueToRefreshFromValue.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for value reference refreshment from value
-
+				
+				
+				
 				ValueSpecification nextElement = (ValueSpecification) iter.next();
 				ValueSpecification value = (ValueSpecification) valueToRefreshFromValue.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, value.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List valueToRemoveFromValue = basePart.getValueToRemove();
 			for (Iterator iter = valueToRemoveFromValue.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List valueToMoveFromValue = basePart.getValueToMove();
-			for (Iterator iter = valueToMoveFromValue.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, slot, UMLPackage.eINSTANCE.getValueSpecification(),
-						moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = valueToMoveFromValue.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, slot, UMLPackage.eINSTANCE.getValueSpecification(), moveElement.getElement(), moveElement.getIndex()));
 			}
+
 
 		}
 		if (!cc.isEmpty())
@@ -254,11 +261,13 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof Slot) {
-			Slot slotToUpdate = (Slot) source;
+			Slot slotToUpdate = (Slot)source;
 			slotToUpdate.getValues().addAll(basePart.getValueToAdd());
 
+
 			return slotToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -269,34 +278,46 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState()
-				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.Slot.value == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					ValueSpecification oldValue = (ValueSpecification) event.getOldValue();
-					ValueSpecification newValue = (ValueSpecification) event.getNewValue();
-
-					// Start of user code for value live update command
+					ValueSpecification oldValue = (ValueSpecification)event.getOldValue();
+					ValueSpecification newValue = (ValueSpecification)event.getNewValue();
+					
+					
 					// TODO: Complete the slot update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, slot, UMLPackage.eINSTANCE.getSlot_Value(),
-							event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, slot, UMLPackage.eINSTANCE.getSlot_Value(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, slot, UMLPackage.eINSTANCE
-							.getValueSpecification(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, slot, UMLPackage.eINSTANCE.getValueSpecification(), event.getNewValue(), event.getNewIndex()));
 			}
 
-			liveEditingDomain.getCommandStack().execute(command);
+
+			if (!command.isEmpty() && !command.canExecute()) {
+				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
+			} else {
+				liveEditingDomain.getCommandStack().execute(command);
+			}
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
 
+
+
 			} else {
+
+
 
 			}
 		}
@@ -305,27 +326,17 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String,
-	 *      int)
-	 */
-	public String getHelpContent(String key, int kind) {
-		if (key == UMLViewsRepository.Slot.value)
-			return null; //$NON-NLS-1$
-		return super.getHelpContent(key, kind);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
-		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
-		try {
+		if (event.getNewValue() != null) {
+			String newStringValue = event.getNewValue().toString();
+			try {
 
-		} catch (IllegalArgumentException iae) {
-			ret = BasicDiagnostic.toDiagnostic(iae);
+			} catch (IllegalArgumentException iae) {
+				ret = BasicDiagnostic.toDiagnostic(iae);
+			}
 		}
 		return ret;
 	}
@@ -336,15 +347,21 @@ public class SlotBasePropertiesEditionComponent extends StandardPropertiesEditio
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
+		Diagnostic validate = null;
 		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			return Diagnostician.INSTANCE.validate(slot);
-		else
-			return null;
+			validate =  Diagnostician.INSTANCE.validate(copy);
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(slot);
+		// Start of user code for custom validation check
+
+		// End of user code
+
+		return validate;
 	}
+
 
 	/**
 	 * {@inheritDoc}

@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -52,27 +49,21 @@ public interface ProfilePropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -95,15 +86,22 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -118,21 +116,20 @@ public interface ProfilePropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -145,27 +142,21 @@ public interface ProfilePropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -188,6 +179,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the elementImport to add
 	 */
 	public List getElementImportToAdd();
@@ -208,27 +208,21 @@ public interface ProfilePropertiesEditionPart {
 	public Map getElementImportToEdit();
 
 	/**
-	 * @return the current elementImport
+	 * @return the current elementImport table
 	 */
 	public List getElementImportTable();
 
 	/**
 	 * Init the elementImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * 
-	 * @param newValue
-	 *            the elementImport to update
+	 * @param newValue the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -251,6 +245,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the elementImport table
+	 */
+	public boolean isContainedInElementImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packageImport to add
 	 */
 	public List getPackageImportToAdd();
@@ -271,27 +274,21 @@ public interface ProfilePropertiesEditionPart {
 	public Map getPackageImportToEdit();
 
 	/**
-	 * @return the current packageImport
+	 * @return the current packageImport table
 	 */
 	public List getPackageImportTable();
 
 	/**
 	 * Init the packageImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * 
-	 * @param newValue
-	 *            the packageImport to update
+	 * @param newValue the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -314,6 +311,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packageImport table
+	 */
+	public boolean isContainedInPackageImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedRule to add
 	 */
 	public List getOwnedRuleToAdd();
@@ -334,27 +340,21 @@ public interface ProfilePropertiesEditionPart {
 	public Map getOwnedRuleToEdit();
 
 	/**
-	 * @return the current ownedRule
+	 * @return the current ownedRule table
 	 */
 	public List getOwnedRuleTable();
 
 	/**
 	 * Init the ownedRule
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * 
-	 * @param newValue
-	 *            the ownedRule to update
+	 * @param newValue the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -377,6 +377,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedRule table
+	 */
+	public boolean isContainedInOwnedRuleTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the templateBinding to add
 	 */
 	public List getTemplateBindingToAdd();
@@ -397,27 +406,21 @@ public interface ProfilePropertiesEditionPart {
 	public Map getTemplateBindingToEdit();
 
 	/**
-	 * @return the current templateBinding
+	 * @return the current templateBinding table
 	 */
 	public List getTemplateBindingTable();
 
 	/**
 	 * Init the templateBinding
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * 
-	 * @param newValue
-	 *            the templateBinding to update
+	 * @param newValue the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -440,6 +443,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the templateBinding table
+	 */
+	public boolean isContainedInTemplateBindingTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packageMerge to add
 	 */
 	public List getPackageMergeToAdd();
@@ -460,27 +472,21 @@ public interface ProfilePropertiesEditionPart {
 	public Map getPackageMergeToEdit();
 
 	/**
-	 * @return the current packageMerge
+	 * @return the current packageMerge table
 	 */
 	public List getPackageMergeTable();
 
 	/**
 	 * Init the packageMerge
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageMerge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageMerge
-	 * 
-	 * @param newValue
-	 *            the packageMerge to update
+	 * @param newValue the packageMerge to update
 	 */
 	public void updatePackageMerge(EObject newValue);
 
@@ -503,6 +509,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToPackageMerge(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packageMerge table
+	 */
+	public boolean isContainedInPackageMergeTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packagedElement to add
 	 */
 	public List getPackagedElementToAdd();
@@ -523,27 +538,21 @@ public interface ProfilePropertiesEditionPart {
 	public Map getPackagedElementToEdit();
 
 	/**
-	 * @return the current packagedElement
+	 * @return the current packagedElement table
 	 */
 	public List getPackagedElementTable();
 
 	/**
 	 * Init the packagedElement
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackagedElement(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packagedElement
-	 * 
-	 * @param newValue
-	 *            the packagedElement to update
+	 * @param newValue the packagedElement to update
 	 */
 	public void updatePackagedElement(EObject newValue);
 
@@ -566,6 +575,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToPackagedElement(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packagedElement table
+	 */
+	public boolean isContainedInPackagedElementTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the profileApplication to add
 	 */
 	public List getProfileApplicationToAdd();
@@ -586,27 +604,21 @@ public interface ProfilePropertiesEditionPart {
 	public Map getProfileApplicationToEdit();
 
 	/**
-	 * @return the current profileApplication
+	 * @return the current profileApplication table
 	 */
 	public List getProfileApplicationTable();
 
 	/**
 	 * Init the profileApplication
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initProfileApplication(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the profileApplication
-	 * 
-	 * @param newValue
-	 *            the profileApplication to update
+	 * @param newValue the profileApplication to update
 	 */
 	public void updateProfileApplication(EObject newValue);
 
@@ -629,6 +641,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToProfileApplication(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the profileApplication table
+	 */
+	public boolean isContainedInProfileApplicationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the metaclassReference to add
 	 */
 	public List getMetaclassReferenceToAdd();
@@ -639,27 +660,21 @@ public interface ProfilePropertiesEditionPart {
 	public List getMetaclassReferenceToRemove();
 
 	/**
-	 * @return the current metaclassReference
+	 * @return the current metaclassReference table
 	 */
 	public List getMetaclassReferenceTable();
 
 	/**
 	 * Init the metaclassReference
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initMetaclassReference(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the metaclassReference
-	 * 
-	 * @param newValue
-	 *            the metaclassReference to update
+	 * @param newValue the metaclassReference to update
 	 */
 	public void updateMetaclassReference(EObject newValue);
 
@@ -682,6 +697,15 @@ public interface ProfilePropertiesEditionPart {
 	public void addBusinessFilterToMetaclassReference(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the metaclassReference table
+	 */
+	public boolean isContainedInMetaclassReferenceTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the metamodelReference to add
 	 */
 	public List getMetamodelReferenceToAdd();
@@ -692,27 +716,21 @@ public interface ProfilePropertiesEditionPart {
 	public List getMetamodelReferenceToRemove();
 
 	/**
-	 * @return the current metamodelReference
+	 * @return the current metamodelReference table
 	 */
 	public List getMetamodelReferenceTable();
 
 	/**
 	 * Init the metamodelReference
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initMetamodelReference(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the metamodelReference
-	 * 
-	 * @param newValue
-	 *            the metamodelReference to update
+	 * @param newValue the metamodelReference to update
 	 */
 	public void updateMetamodelReference(EObject newValue);
 
@@ -733,6 +751,20 @@ public interface ProfilePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToMetamodelReference(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the metamodelReference table
+	 */
+	public boolean isContainedInMetamodelReferenceTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

@@ -25,7 +25,9 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -36,6 +38,7 @@ import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.eef.runtime.EMFPropertiesRuntime;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -71,7 +74,7 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -88,7 +91,7 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	 */
 	public FinalStateBasePropertiesEditionComponent(EObject finalState, String editing_mode) {
 		if (finalState instanceof FinalState) {
-			this.finalState = (FinalState) finalState;
+			this.finalState = (FinalState)finalState;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.finalState.eAdapters().add(semanticAdapter);
@@ -114,65 +117,60 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 				if (basePart == null)
 					FinalStateBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
-									.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature())
-									.getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElement_OwnedComment())) {
 						basePart.updateOwnedComment(finalState);
 					}
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null)
-						basePart.setName((String) msg.getNewValue());
-
+					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
+					if(msg.getNewValue()!=null){
+						basePart.setName((String)msg.getNewValue());
+}
+						else{basePart.setName("");}}
 					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
-						basePart.setVisibility((Enumerator) msg.getNewValue());
+						basePart.setVisibility((Enumerator)msg.getNewValue());
 
 					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
 						basePart.updateClientDependency(finalState);
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
-									.getNamespace_ElementImport() || ((EStructuralFeature) msg.getFeature())
-									.getEContainingClass() == UMLPackage.eINSTANCE.getElementImport())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_ElementImport()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getNamespace_ElementImport())) {
 						basePart.updateElementImport(finalState);
 					}
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
-									.getNamespace_PackageImport() || ((EStructuralFeature) msg.getFeature())
-									.getEContainingClass() == UMLPackage.eINSTANCE.getPackageImport())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_PackageImport()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getNamespace_PackageImport())) {
 						basePart.updatePackageImport(finalState);
 					}
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
-									.getNamespace_OwnedRule() || ((EStructuralFeature) msg.getFeature())
-									.getEContainingClass() == UMLPackage.eINSTANCE.getConstraint())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_OwnedRule()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getNamespace_OwnedRule())) {
 						basePart.updateOwnedRule(finalState);
 					}
-					if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature())
-							&& basePart != null)
-						basePart.setIsLeaf((Boolean) msg.getNewValue());
+					if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature()) && basePart != null)
+						basePart.setIsLeaf((Boolean)msg.getNewValue());
 
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getState_Connection() || ((EStructuralFeature) msg
-									.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE
-									.getConnectionPointReference())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getState_Connection()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getState_Connection())) {
 						basePart.updateConnection(finalState);
 					}
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
-									.getState_ConnectionPoint() || ((EStructuralFeature) msg.getFeature())
-									.getEContainingClass() == UMLPackage.eINSTANCE.getPseudostate())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getState_ConnectionPoint()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getState_ConnectionPoint())) {
 						basePart.updateConnectionPoint(finalState);
 					}
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
-									.getState_DeferrableTrigger() || ((EStructuralFeature) msg.getFeature())
-									.getEContainingClass() == UMLPackage.eINSTANCE.getTrigger())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getState_DeferrableTrigger()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getState_DeferrableTrigger())) {
 						basePart.updateDeferrableTrigger(finalState);
 					}
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE.getState_Region() || ((EStructuralFeature) msg
-									.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getRegion())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getState_Region()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getState_Region())) {
 						basePart.updateRegion(finalState);
 					}
+
 
 				}
 			}
@@ -204,20 +202,18 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *      (java.lang.String, java.lang.String)
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (finalState != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
-						.getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (FinalStatePropertiesEditionPart) provider.getPropertiesEditionPart(
-							UMLViewsRepository.FinalState.class, kind, this);
-					addListener((IPropertiesEditionListener) basePart);
+					basePart = (FinalStatePropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.FinalState.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -226,8 +222,7 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.FinalState.class)
@@ -237,43 +232,40 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
-	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.FinalState.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			FinalState finalState = (FinalState) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			final FinalState finalState = (FinalState)elt;
 			// init values
 			basePart.initOwnedComment(finalState, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
 			if (finalState.getName() != null)
 				basePart.setName(finalState.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), finalState
-					.getVisibility());
+			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), finalState.getVisibility());
 			basePart.initClientDependency(finalState, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
 			basePart.initElementImport(finalState, null, UMLPackage.eINSTANCE.getNamespace_ElementImport());
 			basePart.initPackageImport(finalState, null, UMLPackage.eINSTANCE.getNamespace_PackageImport());
 			basePart.initOwnedRule(finalState, null, UMLPackage.eINSTANCE.getNamespace_OwnedRule());
-			basePart.setIsLeaf(finalState.isLeaf());
+basePart.setIsLeaf(finalState.isLeaf());
 
 			basePart.initConnection(finalState, null, UMLPackage.eINSTANCE.getState_Connection());
 			basePart.initConnectionPoint(finalState, null, UMLPackage.eINSTANCE.getState_ConnectionPoint());
 			basePart.initDeferrableTrigger(finalState, null, UMLPackage.eINSTANCE.getState_DeferrableTrigger());
 			basePart.initRegion(finalState, null, UMLPackage.eINSTANCE.getState_Region());
-
+			
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
@@ -282,19 +274,18 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 
 			// End of user code
 
+
 			basePart.addFilterToClientDependency(new ViewerFilter() {
 
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
-						return (!basePart.getClientDependencyTable().contains(element));
-					return false;
+						return (!basePart.isContainedInClientDependencyTable((EObject)element));
+					return element instanceof Resource;
 				}
 
 			});
@@ -304,15 +295,13 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 			// End of user code
 			basePart.addFilterToElementImport(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof ElementImport); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof ElementImport); //$NON-NLS-1$ 
 
 				}
 
@@ -322,15 +311,13 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 			// End of user code
 			basePart.addFilterToPackageImport(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof PackageImport); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof PackageImport); //$NON-NLS-1$ 
 
 				}
 
@@ -340,15 +327,13 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 			// End of user code
 			basePart.addFilterToOwnedRule(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
 
 				}
 
@@ -359,15 +344,13 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 
 			basePart.addFilterToConnection(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof ConnectionPointReference); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof ConnectionPointReference); //$NON-NLS-1$ 
 
 				}
 
@@ -377,15 +360,13 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 			// End of user code
 			basePart.addFilterToConnectionPoint(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof Pseudostate); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Pseudostate); //$NON-NLS-1$ 
 
 				}
 
@@ -395,15 +376,13 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 			// End of user code
 			basePart.addFilterToDeferrableTrigger(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof Trigger); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Trigger); //$NON-NLS-1$ 
 
 				}
 
@@ -413,15 +392,13 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 			// End of user code
 			basePart.addFilterToRegion(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof Region); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Region); //$NON-NLS-1$ 
 
 				}
 
@@ -436,245 +413,272 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *      (org.eclipse.emf.edit.domain.EditingDomain)
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (finalState != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
 			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getElement_OwnedComment(),
-						iter.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
 			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for ownedComment reference refreshment from ownedComment
-
+				
+				
+				
 				Comment nextElement = (Comment) iter.next();
 				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedComment.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
 			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getComment(), moveElement
-						.getElement(), moveElement.getIndex()));
+			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			cc.append(SetCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_Name(),
-					basePart.getName()));
+			cc.append(SetCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
 
-			cc.append(SetCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_Visibility(),
-					basePart.getVisibility()));
+			cc.append(SetCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
 			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE
-						.getNamedElement_ClientDependency(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
 			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
-				cc.append(RemoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE
-						.getNamedElement_ClientDependency(), iter.next()));
-			// List clientDependencyToMoveFromClientDependency =
-			// basePart.getClientDependencyToMove();
-			// for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator();
-			// iter.hasNext();){
-			// org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement =
-			// (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
-			// cc.append(MoveCommand.create(editingDomain, finalState,
-			// UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(),
-			// moveElement.getIndex()));
-			// }
+				cc.append(RemoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
+			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
+			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
+			//	org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+			//	cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
+			//}
 			List elementImportToAddFromElementImport = basePart.getElementImportToAdd();
 			for (Iterator iter = elementImportToAddFromElementImport.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE
-						.getNamespace_ElementImport(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamespace_ElementImport(), iter.next()));
 			Map elementImportToRefreshFromElementImport = basePart.getElementImportToEdit();
 			for (Iterator iter = elementImportToRefreshFromElementImport.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for elementImport reference refreshment from elementImport
-
+				
+				
+				
 				ElementImport nextElement = (ElementImport) iter.next();
 				ElementImport elementImport = (ElementImport) elementImportToRefreshFromElementImport.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, elementImport.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List elementImportToRemoveFromElementImport = basePart.getElementImportToRemove();
 			for (Iterator iter = elementImportToRemoveFromElementImport.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List elementImportToMoveFromElementImport = basePart.getElementImportToMove();
-			for (Iterator iter = elementImportToMoveFromElementImport.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getElementImport(),
-						moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = elementImportToMoveFromElementImport.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getElementImport(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List packageImportToAddFromPackageImport = basePart.getPackageImportToAdd();
 			for (Iterator iter = packageImportToAddFromPackageImport.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE
-						.getNamespace_PackageImport(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamespace_PackageImport(), iter.next()));
 			Map packageImportToRefreshFromPackageImport = basePart.getPackageImportToEdit();
 			for (Iterator iter = packageImportToRefreshFromPackageImport.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for packageImport reference refreshment from packageImport
-
+				
+				
+				
 				PackageImport nextElement = (PackageImport) iter.next();
 				PackageImport packageImport = (PackageImport) packageImportToRefreshFromPackageImport.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, packageImport.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List packageImportToRemoveFromPackageImport = basePart.getPackageImportToRemove();
 			for (Iterator iter = packageImportToRemoveFromPackageImport.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List packageImportToMoveFromPackageImport = basePart.getPackageImportToMove();
-			for (Iterator iter = packageImportToMoveFromPackageImport.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getPackageImport(),
-						moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = packageImportToMoveFromPackageImport.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getPackageImport(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List ownedRuleToAddFromOwnedRule = basePart.getOwnedRuleToAdd();
 			for (Iterator iter = ownedRuleToAddFromOwnedRule.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamespace_OwnedRule(),
-						iter.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), iter.next()));
 			Map ownedRuleToRefreshFromOwnedRule = basePart.getOwnedRuleToEdit();
 			for (Iterator iter = ownedRuleToRefreshFromOwnedRule.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for ownedRule reference refreshment from ownedRule
-
+				
+				
+				
 				Constraint nextElement = (Constraint) iter.next();
 				Constraint ownedRule = (Constraint) ownedRuleToRefreshFromOwnedRule.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedRule.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List ownedRuleToRemoveFromOwnedRule = basePart.getOwnedRuleToRemove();
 			for (Iterator iter = ownedRuleToRemoveFromOwnedRule.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedRuleToMoveFromOwnedRule = basePart.getOwnedRuleToMove();
-			for (Iterator iter = ownedRuleToMoveFromOwnedRule.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getConstraint(),
-						moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = ownedRuleToMoveFromOwnedRule.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			cc.append(SetCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(),
-					basePart.getIsLeaf()));
+			cc.append(SetCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), basePart.getIsLeaf()));
 
 			List connectionToAddFromConnection = basePart.getConnectionToAdd();
 			for (Iterator iter = connectionToAddFromConnection.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getState_Connection(), iter
-						.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getState_Connection(), iter.next()));
 			Map connectionToRefreshFromConnection = basePart.getConnectionToEdit();
 			for (Iterator iter = connectionToRefreshFromConnection.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for connection reference refreshment from connection
-
+				
+				
+				
 				ConnectionPointReference nextElement = (ConnectionPointReference) iter.next();
-				ConnectionPointReference connection = (ConnectionPointReference) connectionToRefreshFromConnection
-						.get(nextElement);
-
-				// End of user code
-
+				ConnectionPointReference connection = (ConnectionPointReference) connectionToRefreshFromConnection.get(nextElement);
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, connection.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List connectionToRemoveFromConnection = basePart.getConnectionToRemove();
 			for (Iterator iter = connectionToRemoveFromConnection.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List connectionToMoveFromConnection = basePart.getConnectionToMove();
-			for (Iterator iter = connectionToMoveFromConnection.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE
-						.getConnectionPointReference(), moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = connectionToMoveFromConnection.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getConnectionPointReference(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List connectionPointToAddFromConnectionPoint = basePart.getConnectionPointToAdd();
 			for (Iterator iter = connectionPointToAddFromConnectionPoint.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getState_ConnectionPoint(),
-						iter.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getState_ConnectionPoint(), iter.next()));
 			Map connectionPointToRefreshFromConnectionPoint = basePart.getConnectionPointToEdit();
 			for (Iterator iter = connectionPointToRefreshFromConnectionPoint.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for connectionPoint reference refreshment from connectionPoint
-
+				
+				
+				
 				Pseudostate nextElement = (Pseudostate) iter.next();
-				Pseudostate connectionPoint = (Pseudostate) connectionPointToRefreshFromConnectionPoint
-						.get(nextElement);
-
-				// End of user code
-
+				Pseudostate connectionPoint = (Pseudostate) connectionPointToRefreshFromConnectionPoint.get(nextElement);
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, connectionPoint.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List connectionPointToRemoveFromConnectionPoint = basePart.getConnectionPointToRemove();
 			for (Iterator iter = connectionPointToRemoveFromConnectionPoint.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List connectionPointToMoveFromConnectionPoint = basePart.getConnectionPointToMove();
-			for (Iterator iter = connectionPointToMoveFromConnectionPoint.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getPseudostate(),
-						moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = connectionPointToMoveFromConnectionPoint.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getPseudostate(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List deferrableTriggerToAddFromDeferrableTrigger = basePart.getDeferrableTriggerToAdd();
 			for (Iterator iter = deferrableTriggerToAddFromDeferrableTrigger.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE
-						.getState_DeferrableTrigger(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getState_DeferrableTrigger(), iter.next()));
 			Map deferrableTriggerToRefreshFromDeferrableTrigger = basePart.getDeferrableTriggerToEdit();
 			for (Iterator iter = deferrableTriggerToRefreshFromDeferrableTrigger.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for deferrableTrigger reference refreshment from
-				// deferrableTrigger
-
+				
+				
+				
 				Trigger nextElement = (Trigger) iter.next();
 				Trigger deferrableTrigger = (Trigger) deferrableTriggerToRefreshFromDeferrableTrigger.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, deferrableTrigger.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List deferrableTriggerToRemoveFromDeferrableTrigger = basePart.getDeferrableTriggerToRemove();
 			for (Iterator iter = deferrableTriggerToRemoveFromDeferrableTrigger.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List deferrableTriggerToMoveFromDeferrableTrigger = basePart.getDeferrableTriggerToMove();
-			for (Iterator iter = deferrableTriggerToMoveFromDeferrableTrigger.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getTrigger(), moveElement
-						.getElement(), moveElement.getIndex()));
+			for (Iterator iter = deferrableTriggerToMoveFromDeferrableTrigger.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getTrigger(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List regionToAddFromRegion = basePart.getRegionToAdd();
 			for (Iterator iter = regionToAddFromRegion.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getState_Region(), iter
-						.next()));
+				cc.append(AddCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getState_Region(), iter.next()));
 			Map regionToRefreshFromRegion = basePart.getRegionToEdit();
 			for (Iterator iter = regionToRefreshFromRegion.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for region reference refreshment from region
-
+				
+				
+				
 				Region nextElement = (Region) iter.next();
 				Region region = (Region) regionToRefreshFromRegion.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, region.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List regionToRemoveFromRegion = basePart.getRegionToRemove();
 			for (Iterator iter = regionToRemoveFromRegion.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List regionToMoveFromRegion = basePart.getRegionToMove();
-			for (Iterator iter = regionToMoveFromRegion.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getRegion(), moveElement
-						.getElement(), moveElement.getIndex()));
+			for (Iterator iter = regionToMoveFromRegion.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, finalState, UMLPackage.eINSTANCE.getRegion(), moveElement.getElement(), moveElement.getIndex()));
 			}
+
 
 		}
 		if (!cc.isEmpty())
@@ -690,11 +694,11 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof FinalState) {
-			FinalState finalStateToUpdate = (FinalState) source;
+			FinalState finalStateToUpdate = (FinalState)source;
 			finalStateToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			finalStateToUpdate.setName(basePart.getName());
 
-			finalStateToUpdate.setVisibility((VisibilityKind) basePart.getVisibility());
+			finalStateToUpdate.setVisibility((VisibilityKind)basePart.getVisibility());
 
 			finalStateToUpdate.getClientDependencies().addAll(basePart.getClientDependencyToAdd());
 			finalStateToUpdate.getElementImports().addAll(basePart.getElementImportToAdd());
@@ -707,8 +711,10 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 			finalStateToUpdate.getDeferrableTriggers().addAll(basePart.getDeferrableTriggerToAdd());
 			finalStateToUpdate.getRegions().addAll(basePart.getRegionToAdd());
 
+
 			return finalStateToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -719,178 +725,208 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState()
-				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.FinalState.ownedComment == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment) event.getOldValue();
-					Comment newValue = (Comment) event.getNewValue();
-
-					// Start of user code for ownedComment live update command
+					Comment oldValue = (Comment)event.getOldValue();
+					Comment newValue = (Comment)event.getNewValue();
+					
+					
 					// TODO: Complete the finalState update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getElement_OwnedComment(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getComment(),
-							event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.FinalState.name == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-						.getNamedElement_Name(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
 			if (UMLViewsRepository.FinalState.visibility == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-						.getNamedElement_Visibility(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
 			if (UMLViewsRepository.FinalState.clientDependency == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getNamedElement_ClientDependency(), event.getNewValue()));
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
 				if (PropertiesEditionEvent.REMOVE == event.getKind())
-					command.append(RemoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getNamedElement_ClientDependency(), event.getNewValue()));
+					command.append(RemoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
 				if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.FinalState.elementImport == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					ElementImport oldValue = (ElementImport) event.getOldValue();
-					ElementImport newValue = (ElementImport) event.getNewValue();
-
-					// Start of user code for elementImport live update command
+					ElementImport oldValue = (ElementImport)event.getOldValue();
+					ElementImport newValue = (ElementImport)event.getNewValue();
+					
+					
 					// TODO: Complete the finalState update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getNamespace_ElementImport(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getNamespace_ElementImport(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getElementImport(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getElementImport(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.FinalState.packageImport == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					PackageImport oldValue = (PackageImport) event.getOldValue();
-					PackageImport newValue = (PackageImport) event.getNewValue();
-
-					// Start of user code for packageImport live update command
+					PackageImport oldValue = (PackageImport)event.getOldValue();
+					PackageImport newValue = (PackageImport)event.getNewValue();
+					
+					
 					// TODO: Complete the finalState update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getNamespace_PackageImport(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getNamespace_PackageImport(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getPackageImport(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getPackageImport(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.FinalState.ownedRule == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Constraint oldValue = (Constraint) event.getOldValue();
-					Constraint newValue = (Constraint) event.getNewValue();
-
-					// Start of user code for ownedRule live update command
+					Constraint oldValue = (Constraint)event.getOldValue();
+					Constraint newValue = (Constraint)event.getNewValue();
+					
+					
 					// TODO: Complete the finalState update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getNamespace_OwnedRule(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getConstraint(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getConstraint(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.FinalState.isLeaf == event.getAffectedEditor())
-				command.append(SetCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-						.getRedefinableElement_IsLeaf(), event.getNewValue()));
+				command.append(SetCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), event.getNewValue()));
 
 			if (UMLViewsRepository.FinalState.connection == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					ConnectionPointReference oldValue = (ConnectionPointReference) event.getOldValue();
-					ConnectionPointReference newValue = (ConnectionPointReference) event.getNewValue();
-
-					// Start of user code for connection live update command
+					ConnectionPointReference oldValue = (ConnectionPointReference)event.getOldValue();
+					ConnectionPointReference newValue = (ConnectionPointReference)event.getNewValue();
+					
+					
 					// TODO: Complete the finalState update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getState_Connection(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getState_Connection(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getConnectionPointReference(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getConnectionPointReference(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.FinalState.connectionPoint == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Pseudostate oldValue = (Pseudostate) event.getOldValue();
-					Pseudostate newValue = (Pseudostate) event.getNewValue();
-
-					// Start of user code for connectionPoint live update command
+					Pseudostate oldValue = (Pseudostate)event.getOldValue();
+					Pseudostate newValue = (Pseudostate)event.getNewValue();
+					
+					
 					// TODO: Complete the finalState update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getState_ConnectionPoint(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getState_ConnectionPoint(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getPseudostate(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getPseudostate(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.FinalState.deferrableTrigger == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Trigger oldValue = (Trigger) event.getOldValue();
-					Trigger newValue = (Trigger) event.getNewValue();
-
-					// Start of user code for deferrableTrigger live update command
+					Trigger oldValue = (Trigger)event.getOldValue();
+					Trigger newValue = (Trigger)event.getNewValue();
+					
+					
 					// TODO: Complete the finalState update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getState_DeferrableTrigger(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getState_DeferrableTrigger(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getTrigger(),
-							event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getTrigger(), event.getNewValue(), event.getNewIndex()));
 			}
 			if (UMLViewsRepository.FinalState.region == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Region oldValue = (Region) event.getOldValue();
-					Region newValue = (Region) event.getNewValue();
-
-					// Start of user code for region live update command
+					Region oldValue = (Region)event.getOldValue();
+					Region newValue = (Region)event.getNewValue();
+					
+					
 					// TODO: Complete the finalState update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE
-							.getState_Region(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getState_Region(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getRegion(),
-							event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, finalState, UMLPackage.eINSTANCE.getRegion(), event.getNewValue(), event.getNewIndex()));
 			}
 
-			liveEditingDomain.getCommandStack().execute(command);
+
+			if (!command.isEmpty() && !command.canExecute()) {
+				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
+			} else {
+				liveEditingDomain.getCommandStack().execute(command);
+			}
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
@@ -898,10 +934,32 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 				if (UMLViewsRepository.FinalState.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
+
+
+
+
+
+
+
+
+
+
+
 			} else {
 
 				if (UMLViewsRepository.FinalState.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
+
+
+
+
+
+
+
+
+
+
+
 
 			}
 		}
@@ -910,8 +968,7 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String,
-	 *      int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
 	 */
 	public boolean isRequired(String key, int kind) {
 		return key == UMLViewsRepository.FinalState.isLeaf;
@@ -920,67 +977,29 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String,
-	 *      int)
-	 */
-	public String getHelpContent(String key, int kind) {
-		if (key == UMLViewsRepository.FinalState.ownedComment)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.name)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.visibility)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.clientDependency)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.elementImport)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.packageImport)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.ownedRule)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.isLeaf)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.connection)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.connectionPoint)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.deferrableTrigger)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.FinalState.region)
-			return null; //$NON-NLS-1$
-		return super.getHelpContent(key, kind);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
-		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
-		try {
-			if (UMLViewsRepository.FinalState.name == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(),
-						newValue);
-			}
-			if (UMLViewsRepository.FinalState.visibility == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility()
-						.getEAttributeType(), newValue);
-			}
-			if (UMLViewsRepository.FinalState.isLeaf == event.getAffectedEditor()) {
-				Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf()
-						.getEAttributeType(), newStringValue);
-				ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf()
-						.getEAttributeType(), newValue);
-			}
+		if (event.getNewValue() != null) {
+			String newStringValue = event.getNewValue().toString();
+			try {
+				if (UMLViewsRepository.FinalState.name == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
+				}
+				if (UMLViewsRepository.FinalState.visibility == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
+				}
+				if (UMLViewsRepository.FinalState.isLeaf == event.getAffectedEditor()) {
+					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().getEAttributeType(), newStringValue);
+					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().getEAttributeType(), newValue);
+				}
 
-		} catch (IllegalArgumentException iae) {
-			ret = BasicDiagnostic.toDiagnostic(iae);
+			} catch (IllegalArgumentException iae) {
+				ret = BasicDiagnostic.toDiagnostic(iae);
+			}
 		}
 		return ret;
 	}
@@ -991,15 +1010,21 @@ public class FinalStateBasePropertiesEditionComponent extends StandardProperties
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
+		Diagnostic validate = null;
 		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			return Diagnostician.INSTANCE.validate(finalState);
-		else
-			return null;
+			validate =  Diagnostician.INSTANCE.validate(copy);
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(finalState);
+		// Start of user code for custom validation check
+
+		// End of user code
+
+		return validate;
 	}
+
 
 	/**
 	 * {@inheritDoc}

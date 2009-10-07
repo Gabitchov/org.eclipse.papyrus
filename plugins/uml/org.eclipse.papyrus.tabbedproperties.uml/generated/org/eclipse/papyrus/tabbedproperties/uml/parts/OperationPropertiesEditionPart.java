@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -38,9 +35,7 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -55,21 +50,20 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the concurrency
@@ -78,21 +72,20 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the concurrency
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initConcurrency(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new concurrency
-	 * 
-	 * @param newValue
-	 *            the new concurrency to set
+	 * @param newValue the new concurrency to set
 	 */
 	public void setConcurrency(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the isAbstract
@@ -101,11 +94,13 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isAbstract
-	 * 
-	 * @param newValue
-	 *            the new isAbstract to set
+	 * @param newValue the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isStatic
@@ -114,11 +109,13 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isStatic
-	 * 
-	 * @param newValue
-	 *            the new isStatic to set
+	 * @param newValue the new isStatic to set
 	 */
 	public void setIsStatic(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isLeaf
@@ -127,11 +124,13 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * 
-	 * @param newValue
-	 *            the new isLeaf to set
+	 * @param newValue the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isQuery
@@ -140,11 +139,13 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isQuery
-	 * 
-	 * @param newValue
-	 *            the new isQuery to set
+	 * @param newValue the new isQuery to set
 	 */
 	public void setIsQuery(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the ownedParameter to add
@@ -167,27 +168,21 @@ public interface OperationPropertiesEditionPart {
 	public Map getOwnedParameterToEdit();
 
 	/**
-	 * @return the current ownedParameter
+	 * @return the current ownedParameter table
 	 */
 	public List getOwnedParameterTable();
 
 	/**
 	 * Init the ownedParameter
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * 
-	 * @param newValue
-	 *            the ownedParameter to update
+	 * @param newValue the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
 
@@ -210,6 +205,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedParameter table
+	 */
+	public boolean isContainedInOwnedParameterTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the raisedException to add
 	 */
 	public List getRaisedExceptionToAdd();
@@ -220,27 +224,21 @@ public interface OperationPropertiesEditionPart {
 	public List getRaisedExceptionToRemove();
 
 	/**
-	 * @return the current raisedException
+	 * @return the current raisedException table
 	 */
 	public List getRaisedExceptionTable();
 
 	/**
 	 * Init the raisedException
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRaisedException(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the raisedException
-	 * 
-	 * @param newValue
-	 *            the raisedException to update
+	 * @param newValue the raisedException to update
 	 */
 	public void updateRaisedException(EObject newValue);
 
@@ -263,6 +261,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToRaisedException(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the raisedException table
+	 */
+	public boolean isContainedInRaisedExceptionTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the method to add
 	 */
 	public List getMethodToAdd();
@@ -273,27 +280,21 @@ public interface OperationPropertiesEditionPart {
 	public List getMethodToRemove();
 
 	/**
-	 * @return the current method
+	 * @return the current method table
 	 */
 	public List getMethodTable();
 
 	/**
 	 * Init the method
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initMethod(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the method
-	 * 
-	 * @param newValue
-	 *            the method to update
+	 * @param newValue the method to update
 	 */
 	public void updateMethod(EObject newValue);
 
@@ -316,6 +317,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToMethod(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the method table
+	 */
+	public boolean isContainedInMethodTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the templateBinding to add
 	 */
 	public List getTemplateBindingToAdd();
@@ -336,27 +346,21 @@ public interface OperationPropertiesEditionPart {
 	public Map getTemplateBindingToEdit();
 
 	/**
-	 * @return the current templateBinding
+	 * @return the current templateBinding table
 	 */
 	public List getTemplateBindingTable();
 
 	/**
 	 * Init the templateBinding
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * 
-	 * @param newValue
-	 *            the templateBinding to update
+	 * @param newValue the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -379,6 +383,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the templateBinding table
+	 */
+	public boolean isContainedInTemplateBindingTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedParameterSet to add
 	 */
 	public List getOwnedParameterSetToAdd();
@@ -399,27 +412,21 @@ public interface OperationPropertiesEditionPart {
 	public Map getOwnedParameterSetToEdit();
 
 	/**
-	 * @return the current ownedParameterSet
+	 * @return the current ownedParameterSet table
 	 */
 	public List getOwnedParameterSetTable();
 
 	/**
 	 * Init the ownedParameterSet
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameterSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameterSet
-	 * 
-	 * @param newValue
-	 *            the ownedParameterSet to update
+	 * @param newValue the ownedParameterSet to update
 	 */
 	public void updateOwnedParameterSet(EObject newValue);
 
@@ -442,6 +449,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedParameterSet(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedParameterSet table
+	 */
+	public boolean isContainedInOwnedParameterSetTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the precondition to add
 	 */
 	public List getPreconditionToAdd();
@@ -452,27 +468,21 @@ public interface OperationPropertiesEditionPart {
 	public List getPreconditionToRemove();
 
 	/**
-	 * @return the current precondition
+	 * @return the current precondition table
 	 */
 	public List getPreconditionTable();
 
 	/**
 	 * Init the precondition
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPrecondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the precondition
-	 * 
-	 * @param newValue
-	 *            the precondition to update
+	 * @param newValue the precondition to update
 	 */
 	public void updatePrecondition(EObject newValue);
 
@@ -495,6 +505,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToPrecondition(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the precondition table
+	 */
+	public boolean isContainedInPreconditionTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the postcondition to add
 	 */
 	public List getPostconditionToAdd();
@@ -505,27 +524,21 @@ public interface OperationPropertiesEditionPart {
 	public List getPostconditionToRemove();
 
 	/**
-	 * @return the current postcondition
+	 * @return the current postcondition table
 	 */
 	public List getPostconditionTable();
 
 	/**
 	 * Init the postcondition
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPostcondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the postcondition
-	 * 
-	 * @param newValue
-	 *            the postcondition to update
+	 * @param newValue the postcondition to update
 	 */
 	public void updatePostcondition(EObject newValue);
 
@@ -548,6 +561,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToPostcondition(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the postcondition table
+	 */
+	public boolean isContainedInPostconditionTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the redefinedOperation to add
 	 */
 	public List getRedefinedOperationToAdd();
@@ -558,27 +580,21 @@ public interface OperationPropertiesEditionPart {
 	public List getRedefinedOperationToRemove();
 
 	/**
-	 * @return the current redefinedOperation
+	 * @return the current redefinedOperation table
 	 */
 	public List getRedefinedOperationTable();
 
 	/**
 	 * Init the redefinedOperation
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initRedefinedOperation(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedOperation
-	 * 
-	 * @param newValue
-	 *            the redefinedOperation to update
+	 * @param newValue the redefinedOperation to update
 	 */
 	public void updateRedefinedOperation(EObject newValue);
 
@@ -601,6 +617,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToRedefinedOperation(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the redefinedOperation table
+	 */
+	public boolean isContainedInRedefinedOperationTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedRule to add
 	 */
 	public List getOwnedRuleToAdd();
@@ -621,27 +646,21 @@ public interface OperationPropertiesEditionPart {
 	public Map getOwnedRuleToEdit();
 
 	/**
-	 * @return the current ownedRule
+	 * @return the current ownedRule table
 	 */
 	public List getOwnedRuleTable();
 
 	/**
 	 * Init the ownedRule
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * 
-	 * @param newValue
-	 *            the ownedRule to update
+	 * @param newValue the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -664,6 +683,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedRule table
+	 */
+	public boolean isContainedInOwnedRuleTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packageImport to add
 	 */
 	public List getPackageImportToAdd();
@@ -684,27 +712,21 @@ public interface OperationPropertiesEditionPart {
 	public Map getPackageImportToEdit();
 
 	/**
-	 * @return the current packageImport
+	 * @return the current packageImport table
 	 */
 	public List getPackageImportTable();
 
 	/**
 	 * Init the packageImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * 
-	 * @param newValue
-	 *            the packageImport to update
+	 * @param newValue the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -727,6 +749,15 @@ public interface OperationPropertiesEditionPart {
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packageImport table
+	 */
+	public boolean isContainedInPackageImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the elementImport to add
 	 */
 	public List getElementImportToAdd();
@@ -747,27 +778,21 @@ public interface OperationPropertiesEditionPart {
 	public Map getElementImportToEdit();
 
 	/**
-	 * @return the current elementImport
+	 * @return the current elementImport table
 	 */
 	public List getElementImportTable();
 
 	/**
 	 * Init the elementImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * 
-	 * @param newValue
-	 *            the elementImport to update
+	 * @param newValue the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -788,6 +813,20 @@ public interface OperationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the elementImport table
+	 */
+	public boolean isContainedInElementImportTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

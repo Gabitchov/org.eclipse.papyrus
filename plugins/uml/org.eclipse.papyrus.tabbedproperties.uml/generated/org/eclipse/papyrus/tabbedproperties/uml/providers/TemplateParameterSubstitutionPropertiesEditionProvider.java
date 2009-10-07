@@ -30,8 +30,7 @@ public class TemplateParameterSubstitutionPropertiesEditionProvider implements I
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof TemplateParameterSubstitution)
-				&& (UMLPackage.eINSTANCE.getTemplateParameterSubstitution() == eObject.eClass());
+		return (eObject instanceof TemplateParameterSubstitution) && (UMLPackage.eINSTANCE.getTemplateParameterSubstitution() == eObject.eClass());
 	}
 
 	/**

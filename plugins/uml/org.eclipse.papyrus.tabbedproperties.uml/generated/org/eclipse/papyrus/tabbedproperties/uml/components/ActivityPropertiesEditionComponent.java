@@ -41,7 +41,6 @@ public class ActivityPropertiesEditionComponent extends ComposedPropertiesEditio
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
-
 	/**
 	 * Parameterized constructor
 	 * 
@@ -51,56 +50,50 @@ public class ActivityPropertiesEditionComponent extends ComposedPropertiesEditio
 	public ActivityPropertiesEditionComponent(EObject activity, String editing_mode) {
 		super(editing_mode);
 		if (activity instanceof Activity) {
-			activityBasePropertiesEditionComponent = new ActivityBasePropertiesEditionComponent(activity, editing_mode);
+			activityBasePropertiesEditionComponent = new ActivityBasePropertiesEditionComponent(activity, editing_mode); 
 			addSubComponent(activityBasePropertiesEditionComponent);
 			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(activity, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-
+	
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      getPropertiesEditionPart(int, java.lang.String)
+	 * 		getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (ActivityPropertiesEditionPart) activityBasePropertiesEditionComponent.getPropertiesEditionPart(
-					kind, key);
-			return (IPropertiesEditionPart) basePart;
+			basePart = (ActivityPropertiesEditionPart)activityBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.Activity.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (ActivityPropertiesEditionPart) propertiesEditionPart;
+			basePart = (ActivityPropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.Activity.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-		if (key == UMLViewsRepository.Comments.class) {
-			super.initPart(key, kind, element, allResource);
-
-		}
+			if (key == UMLViewsRepository.Comments.class) {
+				super.initPart(key, kind, element, allResource);
+			
+			}
 	}
 }

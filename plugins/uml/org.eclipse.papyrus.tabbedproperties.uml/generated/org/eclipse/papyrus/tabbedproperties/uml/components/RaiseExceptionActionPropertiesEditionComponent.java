@@ -41,7 +41,6 @@ public class RaiseExceptionActionPropertiesEditionComponent extends ComposedProp
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
-
 	/**
 	 * Parameterized constructor
 	 * 
@@ -51,58 +50,50 @@ public class RaiseExceptionActionPropertiesEditionComponent extends ComposedProp
 	public RaiseExceptionActionPropertiesEditionComponent(EObject raiseExceptionAction, String editing_mode) {
 		super(editing_mode);
 		if (raiseExceptionAction instanceof RaiseExceptionAction) {
-			raiseExceptionActionBasePropertiesEditionComponent = new RaiseExceptionActionBasePropertiesEditionComponent(
-					raiseExceptionAction, editing_mode);
+			raiseExceptionActionBasePropertiesEditionComponent = new RaiseExceptionActionBasePropertiesEditionComponent(raiseExceptionAction, editing_mode); 
 			addSubComponent(raiseExceptionActionBasePropertiesEditionComponent);
-			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(raiseExceptionAction,
-					editing_mode);
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(raiseExceptionAction, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-
+	
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      getPropertiesEditionPart(int, java.lang.String)
+	 * 		getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (RaiseExceptionActionPropertiesEditionPart) raiseExceptionActionBasePropertiesEditionComponent
-					.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart) basePart;
+			basePart = (RaiseExceptionActionPropertiesEditionPart)raiseExceptionActionBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.RaiseExceptionAction.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (RaiseExceptionActionPropertiesEditionPart) propertiesEditionPart;
+			basePart = (RaiseExceptionActionPropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.RaiseExceptionAction.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-		if (key == UMLViewsRepository.Comments.class) {
-			super.initPart(key, kind, element, allResource);
-
-		}
+			if (key == UMLViewsRepository.Comments.class) {
+				super.initPart(key, kind, element, allResource);
+			
+			}
 	}
 }

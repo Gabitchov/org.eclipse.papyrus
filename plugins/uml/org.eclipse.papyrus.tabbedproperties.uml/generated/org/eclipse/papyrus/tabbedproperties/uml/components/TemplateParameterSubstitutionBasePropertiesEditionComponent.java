@@ -23,6 +23,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -31,7 +32,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.MoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.eef.runtime.EMFPropertiesRuntime;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -57,7 +60,7 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -72,10 +75,9 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	/**
 	 * Default constructor
 	 */
-	public TemplateParameterSubstitutionBasePropertiesEditionComponent(EObject templateParameterSubstitution,
-			String editing_mode) {
+	public TemplateParameterSubstitutionBasePropertiesEditionComponent(EObject templateParameterSubstitution, String editing_mode) {
 		if (templateParameterSubstitution instanceof TemplateParameterSubstitution) {
-			this.templateParameterSubstitution = (TemplateParameterSubstitution) templateParameterSubstitution;
+			this.templateParameterSubstitution = (TemplateParameterSubstitution)templateParameterSubstitution;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.templateParameterSubstitution.eAdapters().add(semanticAdapter);
@@ -101,20 +103,14 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 				if (basePart == null)
 					TemplateParameterSubstitutionBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null
-							&& (((EStructuralFeature) msg.getFeature()) == UMLPackage.eINSTANCE
-									.getElement_OwnedComment() || ((EStructuralFeature) msg.getFeature())
-									.getEContainingClass() == UMLPackage.eINSTANCE.getComment())) {
+					if (msg.getFeature() != null && 
+							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
+							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElement_OwnedComment())) {
 						basePart.updateOwnedComment(templateParameterSubstitution);
 					}
-					// FIXME INVALID CASE INTO template public liveUpdater(editionElement :
-					// PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in
-					// componentUtils.mtl module, with the values : actual,
-					// TemplateParameterSubstitution, TemplateParameterSubstitution.
-					// FIXME INVALID CASE INTO template public liveUpdater(editionElement :
-					// PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in
-					// componentUtils.mtl module, with the values : ownedActual,
-					// TemplateParameterSubstitution, TemplateParameterSubstitution.
+// FIXME INVALID CASE INTO template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in componentUtils.mtl module, with the values : actual, TemplateParameterSubstitution, TemplateParameterSubstitution.
+// FIXME INVALID CASE INTO template public liveUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in componentUtils.mtl module, with the values : ownedActual, TemplateParameterSubstitution, TemplateParameterSubstitution.
+
 
 				}
 			}
@@ -146,20 +142,18 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *      (java.lang.String, java.lang.String)
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (templateParameterSubstitution != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
-						.getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (TemplateParameterSubstitutionPropertiesEditionPart) provider.getPropertiesEditionPart(
-							UMLViewsRepository.TemplateParameterSubstitution.class, kind, this);
-					addListener((IPropertiesEditionListener) basePart);
+					basePart = (TemplateParameterSubstitutionPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.TemplateParameterSubstitution.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -168,8 +162,7 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.TemplateParameterSubstitution.class)
@@ -179,33 +172,28 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
-	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.TemplateParameterSubstitution.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			TemplateParameterSubstitution templateParameterSubstitution = (TemplateParameterSubstitution) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			final TemplateParameterSubstitution templateParameterSubstitution = (TemplateParameterSubstitution)elt;
 			// init values
-			basePart.initOwnedComment(templateParameterSubstitution, null, UMLPackage.eINSTANCE
-					.getElement_OwnedComment());
-			basePart.initActual(templateParameterSubstitution, null, UMLPackage.eINSTANCE
-					.getTemplateParameterSubstitution_Actual());
-			basePart.initOwnedActual(templateParameterSubstitution, null, UMLPackage.eINSTANCE
-					.getTemplateParameterSubstitution_OwnedActual());
-
+			basePart.initOwnedComment(templateParameterSubstitution, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
+// FIXME NO VALID CASE INTO template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in viewCommon.mtl module, with the values : actual, TemplateParameterSubstitution, TemplateParameterSubstitution.
+// FIXME NO VALID CASE INTO template public updater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in viewCommon.mtl module, with the values : ownedActual, TemplateParameterSubstitution, TemplateParameterSubstitution.
+			
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see
-				 * org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-				 * java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
@@ -213,14 +201,8 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 			// Start of user code for additional businessfilters for ownedComment
 
 			// End of user code
-			// FIXME NO VALID CASE INTO template public filterUpdater(editionElement :
-			// PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in
-			// viewCommon.mtl module, with the values : actual, TemplateParameterSubstitution,
-			// TemplateParameterSubstitution.
-			// FIXME NO VALID CASE INTO template public filterUpdater(editionElement :
-			// PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in
-			// viewCommon.mtl module, with the values : ownedActual, TemplateParameterSubstitution,
-			// TemplateParameterSubstitution.
+// FIXME NO VALID CASE INTO template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in viewCommon.mtl module, with the values : actual, TemplateParameterSubstitution, TemplateParameterSubstitution.
+// FIXME NO VALID CASE INTO template public filterUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in viewCommon.mtl module, with the values : ownedActual, TemplateParameterSubstitution, TemplateParameterSubstitution.
 		}
 		// init values for referenced views
 
@@ -228,50 +210,52 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 
 	}
 
+
+
+
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *      (org.eclipse.emf.edit.domain.EditingDomain)
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (templateParameterSubstitution != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
 			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
-				cc.append(AddCommand.create(editingDomain, templateParameterSubstitution, UMLPackage.eINSTANCE
-						.getElement_OwnedComment(), iter.next()));
+				cc.append(AddCommand.create(editingDomain, templateParameterSubstitution, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
 			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-
-				// Start of user code for ownedComment reference refreshment from ownedComment
-
+				
+				
+				
 				Comment nextElement = (Comment) iter.next();
 				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-
-				// End of user code
-
+				
+				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedComment.eGet(feature)));
+					}
+				}
+				
+				
+				
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
 			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
-				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement) iter
-						.next();
-				cc.append(MoveCommand.create(editingDomain, templateParameterSubstitution, UMLPackage.eINSTANCE
-						.getComment(), moveElement.getElement(), moveElement.getIndex()));
+			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
+				cc.append(MoveCommand.create(editingDomain, templateParameterSubstitution, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
-			// FIXME INVALID CASE INTO template public commandUpdater(editionElement :
-			// PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName :
-			// String) in componentUtils.mtl module, with the values : actual,
-			// TemplateParameterSubstitution, TemplateParameterSubstitution,
-			// templateParameterSubstitution.
-			// FIXME INVALID CASE INTO template public commandUpdater(editionElement :
-			// PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName :
-			// String) in componentUtils.mtl module, with the values : ownedActual,
-			// TemplateParameterSubstitution, TemplateParameterSubstitution,
-			// templateParameterSubstitution.
+// FIXME INVALID CASE INTO template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) in componentUtils.mtl module, with the values : actual, TemplateParameterSubstitution, TemplateParameterSubstitution, templateParameterSubstitution.
+// FIXME INVALID CASE INTO template public commandUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent, modelName : String) in componentUtils.mtl module, with the values : ownedActual, TemplateParameterSubstitution, TemplateParameterSubstitution, templateParameterSubstitution.
+
 
 		}
 		if (!cc.isEmpty())
@@ -287,20 +271,15 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof TemplateParameterSubstitution) {
-			TemplateParameterSubstitution templateParameterSubstitutionToUpdate = (TemplateParameterSubstitution) source;
+			TemplateParameterSubstitution templateParameterSubstitutionToUpdate = (TemplateParameterSubstitution)source;
 			templateParameterSubstitutionToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
-			// FIXME INVALID CASE INTO template public partUpdater(editionElement :
-			// PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in
-			// componentUtils.mtl module, with the values : actual, TemplateParameterSubstitution,
-			// TemplateParameterSubstitution, templateParameterSubstitution.
-			// FIXME INVALID CASE INTO template public partUpdater(editionElement :
-			// PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in
-			// componentUtils.mtl module, with the values : ownedActual,
-			// TemplateParameterSubstitution, TemplateParameterSubstitution,
-			// templateParameterSubstitution.
+// FIXME INVALID CASE INTO template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in componentUtils.mtl module, with the values : actual, TemplateParameterSubstitution, TemplateParameterSubstitution, templateParameterSubstitution.
+// FIXME INVALID CASE INTO template public partUpdater(editionElement : PropertiesEditionElement, view : View, pec : PropertiesEditionComponent) in componentUtils.mtl module, with the values : ownedActual, TemplateParameterSubstitution, TemplateParameterSubstitution, templateParameterSubstitution.
+
 
 			return templateParameterSubstitutionToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -311,42 +290,52 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState()
-				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 			if (UMLViewsRepository.TemplateParameterSubstitution.ownedComment == event.getAffectedEditor()) {
 				if (PropertiesEditionEvent.SET == event.getKind()) {
-					Comment oldValue = (Comment) event.getOldValue();
-					Comment newValue = (Comment) event.getNewValue();
-
-					// Start of user code for ownedComment live update command
+					Comment oldValue = (Comment)event.getOldValue();
+					Comment newValue = (Comment)event.getNewValue();
+					
+					
 					// TODO: Complete the templateParameterSubstitution update command
-					// End of user code
-
-				} else if (PropertiesEditionEvent.ADD == event.getKind())
-					command.append(AddCommand.create(liveEditingDomain, templateParameterSubstitution,
-							UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
+					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
+						}
+					}
+					
+					
+				}
+				else if (PropertiesEditionEvent.ADD == event.getKind())
+					command.append(AddCommand.create(liveEditingDomain, templateParameterSubstitution, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
 				else if (PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
 				else if (PropertiesEditionEvent.MOVE == event.getKind())
-					command.append(MoveCommand.create(liveEditingDomain, templateParameterSubstitution,
-							UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
+					command.append(MoveCommand.create(liveEditingDomain, templateParameterSubstitution, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
-			// FIXME INVALID CASE INTO template public liveCommandUpdater(editionElement :
-			// PropertiesEditionElement, view : View, modelName : String) in componentUtils.mtl
-			// module, with the values : actual, TemplateParameterSubstitution,
-			// templateParameterSubstitution.
-			// FIXME INVALID CASE INTO template public liveCommandUpdater(editionElement :
-			// PropertiesEditionElement, view : View, modelName : String) in componentUtils.mtl
-			// module, with the values : ownedActual, TemplateParameterSubstitution,
-			// templateParameterSubstitution.
+// FIXME INVALID CASE INTO template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) in componentUtils.mtl module, with the values : actual, TemplateParameterSubstitution, templateParameterSubstitution.
+// FIXME INVALID CASE INTO template public liveCommandUpdater(editionElement : PropertiesEditionElement, view : View, modelName : String) in componentUtils.mtl module, with the values : ownedActual, TemplateParameterSubstitution, templateParameterSubstitution.
 
-			liveEditingDomain.getCommandStack().execute(command);
+
+			if (!command.isEmpty() && !command.canExecute()) {
+				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
+			} else {
+				liveEditingDomain.getCommandStack().execute(command);
+			}
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
 
+
+
+
+
 			} else {
+
+
+
+
 
 			}
 		}
@@ -355,8 +344,7 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String,
-	 *      int)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.String, int)
 	 */
 	public boolean isRequired(String key, int kind) {
 		return key == UMLViewsRepository.TemplateParameterSubstitution.actual;
@@ -365,31 +353,17 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#getHelpContent(java.lang.String,
-	 *      int)
-	 */
-	public String getHelpContent(String key, int kind) {
-		if (key == UMLViewsRepository.TemplateParameterSubstitution.ownedComment)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.TemplateParameterSubstitution.actual)
-			return null; //$NON-NLS-1$
-		if (key == UMLViewsRepository.TemplateParameterSubstitution.ownedActual)
-			return null; //$NON-NLS-1$
-		return super.getHelpContent(key, kind);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
-		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
-		try {
+		if (event.getNewValue() != null) {
+			String newStringValue = event.getNewValue().toString();
+			try {
 
-		} catch (IllegalArgumentException iae) {
-			ret = BasicDiagnostic.toDiagnostic(iae);
+			} catch (IllegalArgumentException iae) {
+				ret = BasicDiagnostic.toDiagnostic(iae);
+			}
 		}
 		return ret;
 	}
@@ -400,15 +374,21 @@ public class TemplateParameterSubstitutionBasePropertiesEditionComponent extends
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
+		Diagnostic validate = null;
 		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			return Diagnostician.INSTANCE.validate(templateParameterSubstitution);
-		else
-			return null;
+			validate =  Diagnostician.INSTANCE.validate(copy);
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(templateParameterSubstitution);
+		// Start of user code for custom validation check
+
+		// End of user code
+
+		return validate;
 	}
+
 
 	/**
 	 * {@inheritDoc}

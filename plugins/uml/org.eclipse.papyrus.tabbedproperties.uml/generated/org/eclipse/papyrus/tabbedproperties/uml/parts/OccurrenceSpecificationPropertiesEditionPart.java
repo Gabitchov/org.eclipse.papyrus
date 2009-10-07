@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -52,27 +49,21 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -95,15 +86,22 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -118,21 +116,20 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -145,27 +142,21 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -188,6 +179,15 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the covered to add
 	 */
 	public List getCoveredToAdd();
@@ -198,27 +198,21 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public List getCoveredToRemove();
 
 	/**
-	 * @return the current covered
+	 * @return the current covered table
 	 */
 	public List getCoveredTable();
 
 	/**
 	 * Init the covered
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the covered
-	 * 
-	 * @param newValue
-	 *            the covered to update
+	 * @param newValue the covered to update
 	 */
 	public void updateCovered(EObject newValue);
 
@@ -241,6 +235,15 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToCovered(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the covered table
+	 */
+	public boolean isContainedInCoveredTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the generalOrdering to add
 	 */
 	public List getGeneralOrderingToAdd();
@@ -261,27 +264,21 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public Map getGeneralOrderingToEdit();
 
 	/**
-	 * @return the current generalOrdering
+	 * @return the current generalOrdering table
 	 */
 	public List getGeneralOrderingTable();
 
 	/**
 	 * Init the generalOrdering
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalOrdering
-	 * 
-	 * @param newValue
-	 *            the generalOrdering to update
+	 * @param newValue the generalOrdering to update
 	 */
 	public void updateGeneralOrdering(EObject newValue);
 
@@ -304,6 +301,15 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToGeneralOrdering(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the generalOrdering table
+	 */
+	public boolean isContainedInGeneralOrderingTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the toBefore to add
 	 */
 	public List getToBeforeToAdd();
@@ -314,27 +320,21 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public List getToBeforeToRemove();
 
 	/**
-	 * @return the current toBefore
+	 * @return the current toBefore table
 	 */
 	public List getToBeforeTable();
 
 	/**
 	 * Init the toBefore
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initToBefore(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the toBefore
-	 * 
-	 * @param newValue
-	 *            the toBefore to update
+	 * @param newValue the toBefore to update
 	 */
 	public void updateToBefore(EObject newValue);
 
@@ -357,6 +357,15 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public void addBusinessFilterToToBefore(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the toBefore table
+	 */
+	public boolean isContainedInToBeforeTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the toAfter to add
 	 */
 	public List getToAfterToAdd();
@@ -367,27 +376,21 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	public List getToAfterToRemove();
 
 	/**
-	 * @return the current toAfter
+	 * @return the current toAfter table
 	 */
 	public List getToAfterTable();
 
 	/**
 	 * Init the toAfter
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initToAfter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the toAfter
-	 * 
-	 * @param newValue
-	 *            the toAfter to update
+	 * @param newValue the toAfter to update
 	 */
 	public void updateToAfter(EObject newValue);
 
@@ -408,6 +411,20 @@ public interface OccurrenceSpecificationPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToToAfter(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the toAfter table
+	 */
+	public boolean isContainedInToAfterTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

@@ -30,8 +30,7 @@ public class ReadVariableActionPropertiesEditionProvider implements IPropertiesE
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ReadVariableAction)
-				&& (UMLPackage.eINSTANCE.getReadVariableAction() == eObject.eClass());
+		return (eObject instanceof ReadVariableAction) && (UMLPackage.eINSTANCE.getReadVariableAction() == eObject.eClass());
 	}
 
 	/**

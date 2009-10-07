@@ -30,8 +30,7 @@ public class ExecutionEnvironmentPropertiesEditionProvider implements IPropertie
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ExecutionEnvironment)
-				&& (UMLPackage.eINSTANCE.getExecutionEnvironment() == eObject.eClass());
+		return (eObject instanceof ExecutionEnvironment) && (UMLPackage.eINSTANCE.getExecutionEnvironment() == eObject.eClass());
 	}
 
 	/**

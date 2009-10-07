@@ -25,7 +25,7 @@ public class UmlPackagePropertiesEditionPolicyProvider extends StandardPropertie
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return UMLPackage.eINSTANCE.equals(eObject.eClass().getEPackage());
+		return UMLPackage.eINSTANCE.equals(eObject.eClass().getEPackage()) || UMLPackage.eINSTANCE.getESubpackages().contains(eObject.eClass().getEPackage());
 	}
 
 }

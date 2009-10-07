@@ -41,69 +41,59 @@ public class ReadLinkObjectEndQualifierActionPropertiesEditionComponent extends 
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
-
 	/**
 	 * Parameterized constructor
 	 * 
 	 * @param readLinkObjectEndQualifierAction
 	 *            the EObject to edit
 	 */
-	public ReadLinkObjectEndQualifierActionPropertiesEditionComponent(EObject readLinkObjectEndQualifierAction,
-			String editing_mode) {
+	public ReadLinkObjectEndQualifierActionPropertiesEditionComponent(EObject readLinkObjectEndQualifierAction, String editing_mode) {
 		super(editing_mode);
 		if (readLinkObjectEndQualifierAction instanceof ReadLinkObjectEndQualifierAction) {
-			readLinkObjectEndQualifierActionBasePropertiesEditionComponent = new ReadLinkObjectEndQualifierActionBasePropertiesEditionComponent(
-					readLinkObjectEndQualifierAction, editing_mode);
+			readLinkObjectEndQualifierActionBasePropertiesEditionComponent = new ReadLinkObjectEndQualifierActionBasePropertiesEditionComponent(readLinkObjectEndQualifierAction, editing_mode); 
 			addSubComponent(readLinkObjectEndQualifierActionBasePropertiesEditionComponent);
-			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(readLinkObjectEndQualifierAction,
-					editing_mode);
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(readLinkObjectEndQualifierAction, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-
+	
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      getPropertiesEditionPart(int, java.lang.String)
+	 * 		getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (ReadLinkObjectEndQualifierActionPropertiesEditionPart) readLinkObjectEndQualifierActionBasePropertiesEditionComponent
-					.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart) basePart;
+			basePart = (ReadLinkObjectEndQualifierActionPropertiesEditionPart)readLinkObjectEndQualifierActionBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.ReadLinkObjectEndQualifierAction.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (ReadLinkObjectEndQualifierActionPropertiesEditionPart) propertiesEditionPart;
+			basePart = (ReadLinkObjectEndQualifierActionPropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.ReadLinkObjectEndQualifierAction.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-		if (key == UMLViewsRepository.Comments.class) {
-			super.initPart(key, kind, element, allResource);
-
-		}
+			if (key == UMLViewsRepository.Comments.class) {
+				super.initPart(key, kind, element, allResource);
+			
+			}
 	}
 }

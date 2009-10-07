@@ -41,69 +41,59 @@ public class ReadStructuralFeatureActionPropertiesEditionComponent extends Compo
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
-
 	/**
 	 * Parameterized constructor
 	 * 
 	 * @param readStructuralFeatureAction
 	 *            the EObject to edit
 	 */
-	public ReadStructuralFeatureActionPropertiesEditionComponent(EObject readStructuralFeatureAction,
-			String editing_mode) {
+	public ReadStructuralFeatureActionPropertiesEditionComponent(EObject readStructuralFeatureAction, String editing_mode) {
 		super(editing_mode);
 		if (readStructuralFeatureAction instanceof ReadStructuralFeatureAction) {
-			readStructuralFeatureActionBasePropertiesEditionComponent = new ReadStructuralFeatureActionBasePropertiesEditionComponent(
-					readStructuralFeatureAction, editing_mode);
+			readStructuralFeatureActionBasePropertiesEditionComponent = new ReadStructuralFeatureActionBasePropertiesEditionComponent(readStructuralFeatureAction, editing_mode); 
 			addSubComponent(readStructuralFeatureActionBasePropertiesEditionComponent);
-			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(readStructuralFeatureAction,
-					editing_mode);
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(readStructuralFeatureAction, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-
+	
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      getPropertiesEditionPart(int, java.lang.String)
+	 * 		getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (ReadStructuralFeatureActionPropertiesEditionPart) readStructuralFeatureActionBasePropertiesEditionComponent
-					.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart) basePart;
+			basePart = (ReadStructuralFeatureActionPropertiesEditionPart)readStructuralFeatureActionBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.ReadStructuralFeatureAction.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (ReadStructuralFeatureActionPropertiesEditionPart) propertiesEditionPart;
+			basePart = (ReadStructuralFeatureActionPropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.ReadStructuralFeatureAction.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-		if (key == UMLViewsRepository.Comments.class) {
-			super.initPart(key, kind, element, allResource);
-
-		}
+			if (key == UMLViewsRepository.Comments.class) {
+				super.initPart(key, kind, element, allResource);
+			
+			}
 	}
 }

@@ -30,8 +30,7 @@ public class ClearAssociationActionPropertiesEditionProvider implements IPropert
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ClearAssociationAction)
-				&& (UMLPackage.eINSTANCE.getClearAssociationAction() == eObject.eClass());
+		return (eObject instanceof ClearAssociationAction) && (UMLPackage.eINSTANCE.getClearAssociationAction() == eObject.eClass());
 	}
 
 	/**

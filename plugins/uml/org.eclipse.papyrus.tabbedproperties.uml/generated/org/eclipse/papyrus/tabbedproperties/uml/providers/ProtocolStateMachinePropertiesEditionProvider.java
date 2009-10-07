@@ -30,8 +30,7 @@ public class ProtocolStateMachinePropertiesEditionProvider implements IPropertie
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ProtocolStateMachine)
-				&& (UMLPackage.eINSTANCE.getProtocolStateMachine() == eObject.eClass());
+		return (eObject instanceof ProtocolStateMachine) && (UMLPackage.eINSTANCE.getProtocolStateMachine() == eObject.eClass());
 	}
 
 	/**

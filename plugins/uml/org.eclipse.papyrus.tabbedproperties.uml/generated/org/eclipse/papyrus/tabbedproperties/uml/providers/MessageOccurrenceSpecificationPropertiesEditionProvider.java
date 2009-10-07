@@ -30,8 +30,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionProvider implements 
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof MessageOccurrenceSpecification)
-				&& (UMLPackage.eINSTANCE.getMessageOccurrenceSpecification() == eObject.eClass());
+		return (eObject instanceof MessageOccurrenceSpecification) && (UMLPackage.eINSTANCE.getMessageOccurrenceSpecification() == eObject.eClass());
 	}
 
 	/**

@@ -15,11 +15,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -50,27 +47,21 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -93,6 +84,15 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the actual to add
 	 */
 	public List getActualToAdd();
@@ -103,27 +103,21 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	public List getActualToRemove();
 
 	/**
-	 * @return the current actual
+	 * @return the current actual table
 	 */
 	public List getActualTable();
 
 	/**
 	 * Init the actual
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initActual(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the actual
-	 * 
-	 * @param newValue
-	 *            the actual to update
+	 * @param newValue the actual to update
 	 */
 	public void updateActual(EObject newValue);
 
@@ -146,6 +140,15 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	public void addBusinessFilterToActual(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the actual table
+	 */
+	public boolean isContainedInActualTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedActual to add
 	 */
 	public List getOwnedActualToAdd();
@@ -166,27 +169,21 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	public Map getOwnedActualToEdit();
 
 	/**
-	 * @return the current ownedActual
+	 * @return the current ownedActual table
 	 */
 	public List getOwnedActualTable();
 
 	/**
 	 * Init the ownedActual
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedActual(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedActual
-	 * 
-	 * @param newValue
-	 *            the ownedActual to update
+	 * @param newValue the ownedActual to update
 	 */
 	public void updateOwnedActual(EObject newValue);
 
@@ -207,6 +204,20 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedActual(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the ownedActual table
+	 */
+	public boolean isContainedInOwnedActualTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

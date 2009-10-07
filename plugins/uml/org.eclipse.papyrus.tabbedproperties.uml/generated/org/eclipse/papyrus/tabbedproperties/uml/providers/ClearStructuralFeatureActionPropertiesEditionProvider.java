@@ -30,8 +30,7 @@ public class ClearStructuralFeatureActionPropertiesEditionProvider implements IP
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ClearStructuralFeatureAction)
-				&& (UMLPackage.eINSTANCE.getClearStructuralFeatureAction() == eObject.eClass());
+		return (eObject instanceof ClearStructuralFeatureAction) && (UMLPackage.eINSTANCE.getClearStructuralFeatureAction() == eObject.eClass());
 	}
 
 	/**

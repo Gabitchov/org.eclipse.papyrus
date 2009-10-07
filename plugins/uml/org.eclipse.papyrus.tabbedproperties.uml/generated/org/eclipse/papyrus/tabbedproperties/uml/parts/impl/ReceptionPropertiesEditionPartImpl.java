@@ -13,16 +13,39 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts.impl;
 // Start of user code for imports
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
+import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
+import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart;
+import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -31,159 +54,92 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.papyrus.tabbedproperties.uml.providers.UMLMessages;
-import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
-import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
-import org.eclipse.emf.eef.runtime.api.policies.IPropertiesEditionPolicy;
-import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPolicyProvider;
-import org.eclipse.emf.eef.runtime.impl.policies.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.services.PropertiesEditionPolicyProviderService;
-
-import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart;
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
-import java.util.Map;
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterSet;
-import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.Constraint;
-
-import org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.jface.viewers.StructuredSelection;
-import java.util.Iterator;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFModelViewerDialog;
-import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
-import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
-import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
-import org.eclipse.emf.eef.runtime.impl.filters.EObjectFilter;
-
-import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
-import org.eclipse.papyrus.tabbedproperties.uml.parts.UMLViewsRepository;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 // End of user code
 
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements
-		ISWTPropertiesEditionPart, ReceptionPropertiesEditionPart {
+public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ReceptionPropertiesEditionPart {
 
 	protected Text name;
-
 	protected EMFComboViewer visibility;
-
 	protected EMFComboViewer concurrency;
-
 	protected Button isAbstract;
-
 	protected Button isLeaf;
-
 	protected Button isStatic;
-
 	protected EMFListEditUtil methodEditUtil;
-
-	protected ReferencesTable<?> method;
-
+	protected ReferencesTable<? extends EObject> method;
 	protected List<ViewerFilter> methodBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> methodFilters = new ArrayList<ViewerFilter>();
-
 	protected EMFListEditUtil raisedExceptionEditUtil;
-
-	protected ReferencesTable<?> raisedException;
-
+	protected ReferencesTable<? extends EObject> raisedException;
 	protected List<ViewerFilter> raisedExceptionBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> raisedExceptionFilters = new ArrayList<ViewerFilter>();
-
 	protected EMFListEditUtil ownedParameterEditUtil;
-
-	protected ReferencesTable<?> ownedParameter;
-
+	protected ReferencesTable<? extends EObject> ownedParameter;
 	protected List<ViewerFilter> ownedParameterBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> ownedParameterFilters = new ArrayList<ViewerFilter>();
-
 	protected EMFListEditUtil ownedParameterSetEditUtil;
-
-	protected ReferencesTable<?> ownedParameterSet;
-
+	protected ReferencesTable<? extends EObject> ownedParameterSet;
 	protected List<ViewerFilter> ownedParameterSetBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> ownedParameterSetFilters = new ArrayList<ViewerFilter>();
-
 	protected EMFListEditUtil packageImportEditUtil;
-
-	protected ReferencesTable<?> packageImport;
-
+	protected ReferencesTable<? extends EObject> packageImport;
 	protected List<ViewerFilter> packageImportBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> packageImportFilters = new ArrayList<ViewerFilter>();
-
 	protected EMFListEditUtil elementImportEditUtil;
-
-	protected ReferencesTable<?> elementImport;
-
+	protected ReferencesTable<? extends EObject> elementImport;
 	protected List<ViewerFilter> elementImportBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> elementImportFilters = new ArrayList<ViewerFilter>();
-
 	protected EMFListEditUtil ownedRuleEditUtil;
-
-	protected ReferencesTable<?> ownedRule;
-
+	protected ReferencesTable<? extends EObject> ownedRule;
 	protected List<ViewerFilter> ownedRuleBusinessFilters = new ArrayList<ViewerFilter>();
-
 	protected List<ViewerFilter> ownedRuleFilters = new ArrayList<ViewerFilter>();
 
+
+
+
+	
+	/**
+	 * Default constructor
+	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 */
 	public ReceptionPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-
+		
 		createControls(view);
 		return view;
 	}
 
-	public void createControls(Composite view) {
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
+	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 */
+	public void createControls(Composite view) { 
 		createGeneralGroup(view);
 		createOthersGroup(view);
 
@@ -208,10 +164,8 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 		createGeneralHBox1HBox(generalGroup);
 		createGeneralHBox2HBox(generalGroup);
 	}
-
 	protected void createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ReceptionPropertiesEditionPart_NameLabel,
-				propertiesEditionComponent.isRequired(UMLViewsRepository.Reception.name, UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ReceptionPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Reception.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
@@ -220,160 +174,117 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see
-			 * org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
+			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-							ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.name,
-							PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-
+			
 		});
 
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.name,
-				UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createVisibilityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ReceptionPropertiesEditionPart_VisibilityLabel,
-				propertiesEditionComponent.isRequired(UMLViewsRepository.Reception.visibility,
-						UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ReceptionPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Reception.visibility, UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
 		visibility.setContentProvider(new ArrayContentProvider());
 		visibility.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData visibilityData = new GridData(GridData.FILL_HORIZONTAL);
 		visibility.getCombo().setLayoutData(visibilityData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createConcurrencyEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, UMLMessages.ReceptionPropertiesEditionPart_ConcurrencyLabel,
-				propertiesEditionComponent.isRequired(UMLViewsRepository.Reception.concurrency,
-						UMLViewsRepository.SWT_KIND));
+		SWTUtils.createPartLabel(parent, UMLMessages.ReceptionPropertiesEditionPart_ConcurrencyLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Reception.concurrency, UMLViewsRepository.SWT_KIND));
 		concurrency = new EMFComboViewer(parent);
 		concurrency.setContentProvider(new ArrayContentProvider());
 		concurrency.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
 		GridData concurrencyData = new GridData(GridData.FILL_HORIZONTAL);
 		concurrency.getCombo().setLayoutData(concurrencyData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.concurrency, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.concurrency, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createGeneralHBox1HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan = 2;
+		gridData.horizontalSpan=2;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox1HBox = new HorizontalBox(container);
-
-		// Apply constraint for checkbox
+		//Apply constraint for checkbox
 		GridData constraint = new GridData(GridData.FILL_HORIZONTAL);
 		constraint.horizontalAlignment = GridData.BEGINNING;
 		generalHBox1HBox.setLayoutData(constraint);
-
-		// create sub figures
-		createIsAbstractCheckbox(generalHBox1HBox);
-		createIsLeafCheckbox(generalHBox1HBox);
-		createIsStaticCheckbox(generalHBox1HBox);
-
+		//create sub figures
+				createIsAbstractCheckbox(generalHBox1HBox);
+				createIsLeafCheckbox(generalHBox1HBox);
+				createIsStaticCheckbox(generalHBox1HBox);
 		parent.pack();
 	}
-
 	protected void createIsAbstractCheckbox(Composite parent) {
 		isAbstract = new Button(parent, SWT.CHECK);
 		isAbstract.setText(UMLMessages.ReceptionPropertiesEditionPart_IsAbstractLabel);
 		GridData isAbstractData = new GridData(GridData.FILL_HORIZONTAL);
 		isAbstractData.horizontalSpan = 2;
 		isAbstract.setLayoutData(isAbstractData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.isAbstract, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.isAbstract, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createIsLeafCheckbox(Composite parent) {
 		isLeaf = new Button(parent, SWT.CHECK);
 		isLeaf.setText(UMLMessages.ReceptionPropertiesEditionPart_IsLeafLabel);
 		GridData isLeafData = new GridData(GridData.FILL_HORIZONTAL);
 		isLeafData.horizontalSpan = 2;
 		isLeaf.setLayoutData(isLeafData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.isLeaf, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.isLeaf, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createIsStaticCheckbox(Composite parent) {
 		isStatic = new Button(parent, SWT.CHECK);
 		isStatic.setText(UMLMessages.ReceptionPropertiesEditionPart_IsStaticLabel);
 		GridData isStaticData = new GridData(GridData.FILL_HORIZONTAL);
 		isStaticData.horizontalSpan = 2;
 		isStatic.setLayoutData(isStaticData);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.isStatic, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.isStatic, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
-
 	protected void createGeneralHBox2HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan = 2;
+		gridData.horizontalSpan=2;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox2HBox = new HorizontalBox(container);
-
-		// create sub figures
-		createMethodAdvancedReferencesTable(generalHBox2HBox);
-		createRaisedExceptionAdvancedReferencesTable(generalHBox2HBox);
-		createOwnedParameterAdvancedTableComposition(generalHBox2HBox);
-
+		//create sub figures
+				createMethodAdvancedReferencesTable(generalHBox2HBox);
+				createRaisedExceptionAdvancedReferencesTable(generalHBox2HBox);
+				createOwnedParameterAdvancedTableComposition(generalHBox2HBox);
 		parent.pack();
 	}
-
 	protected void createMethodAdvancedReferencesTable(Composite parent) {
-		this.method = new ReferencesTable<Behavior>(UMLMessages.ReceptionPropertiesEditionPart_MethodLabel,
-				new ReferencesTableListener<Behavior>() {
+		this.method = new ReferencesTable<Behavior>(UMLMessages.ReceptionPropertiesEditionPart_MethodLabel, new ReferencesTableListener<Behavior>() {
+			public void handleAdd() {
+				TabElementTreeSelectionDialog<Behavior> dialog = new TabElementTreeSelectionDialog<Behavior>(resourceSet, methodFilters, methodBusinessFilters,
+				"Behavior", UMLPackage.eINSTANCE.getBehavior(), current.eResource()) {
 
-					public void handleAdd() {
-						TabElementTreeSelectionDialog<Behavior> dialog = new TabElementTreeSelectionDialog<Behavior>(
-								resourceSet, methodFilters, methodBusinessFilters, "Behavior", UMLPackage.eINSTANCE
-										.getBehavior()) {
-
-							public void process(IStructuredSelection selection) {
-								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-									EObject elem = (EObject) iter.next();
-									if (!methodEditUtil.getVirtualList().contains(elem))
-										methodEditUtil.addElement(elem);
-									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-											ReceptionPropertiesEditionPartImpl.this,
-											UMLViewsRepository.Reception.method, PropertiesEditionEvent.COMMIT,
-											PropertiesEditionEvent.ADD, null, elem));
-								}
-								method.refresh();
-							}
-
-						};
-						dialog.open();
+					public void process(IStructuredSelection selection) {
+						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject) iter.next();
+							if (!methodEditUtil.getVirtualList().contains(elem))
+								methodEditUtil.addElement(elem);
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.method,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+						}
+						method.refresh();
 					}
 
-					public void handleEdit(Behavior element) {
-						editMethod(element);
-					}
-
-					public void handleMove(Behavior element, int oldIndex, int newIndex) {
-						moveMethod(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(Behavior element) {
-						removeFromMethod(element);
-					}
-
-					public void navigateTo(Behavior element) {
-					}
-				});
-		this.method.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.method,
-				UMLViewsRepository.SWT_KIND));
+				};
+				dialog.open();
+			}
+			public void handleEdit(Behavior element) { editMethod(element); }
+			public void handleMove(Behavior element, int oldIndex, int newIndex) { moveMethod(element, oldIndex, newIndex); }
+			public void handleRemove(Behavior element) { removeFromMethod(element); }
+			public void navigateTo(Behavior element) { }
+		});
+		this.method.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.method, UMLViewsRepository.SWT_KIND));
 		this.method.createControls(parent);
 		GridData methodData = new GridData(GridData.FILL_HORIZONTAL);
 		methodData.horizontalSpan = 3;
@@ -384,23 +295,21 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void moveMethod(Behavior element, int oldIndex, int newIndex) {
+	protected void moveMethod(Behavior element, int oldIndex, int newIndex) {
 	}
 
 	/**
 	 * 
 	 */
-	private void removeFromMethod(Behavior element) {
+	protected void removeFromMethod(Behavior element) {
 
 		// Start of user code removeFromMethod() method body
-
 		EObject editedElement = methodEditUtil.foundCorrespondingEObject(element);
 		methodEditUtil.removeElement(element);
 		method.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.method,
 				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -408,10 +317,9 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void editMethod(Behavior element) {
+	protected void editMethod(Behavior element) {
 
 		// Start of user code editMethod() method body
-
 		EObject editedElement = methodEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -428,54 +336,35 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
-
 	protected void createRaisedExceptionAdvancedReferencesTable(Composite parent) {
-		this.raisedException = new ReferencesTable<Type>(
-				UMLMessages.ReceptionPropertiesEditionPart_RaisedExceptionLabel, new ReferencesTableListener<Type>() {
+		this.raisedException = new ReferencesTable<Type>(UMLMessages.ReceptionPropertiesEditionPart_RaisedExceptionLabel, new ReferencesTableListener<Type>() {
+			public void handleAdd() {
+				TabElementTreeSelectionDialog<Type> dialog = new TabElementTreeSelectionDialog<Type>(resourceSet, raisedExceptionFilters, raisedExceptionBusinessFilters,
+				"Type", UMLPackage.eINSTANCE.getType(), current.eResource()) {
 
-					public void handleAdd() {
-						TabElementTreeSelectionDialog<Type> dialog = new TabElementTreeSelectionDialog<Type>(
-								resourceSet, raisedExceptionFilters, raisedExceptionBusinessFilters, "Type",
-								UMLPackage.eINSTANCE.getType()) {
-
-							public void process(IStructuredSelection selection) {
-								for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-									EObject elem = (EObject) iter.next();
-									if (!raisedExceptionEditUtil.getVirtualList().contains(elem))
-										raisedExceptionEditUtil.addElement(elem);
-									propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-											ReceptionPropertiesEditionPartImpl.this,
-											UMLViewsRepository.Reception.raisedException,
-											PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
-								}
-								raisedException.refresh();
-							}
-
-						};
-						dialog.open();
+					public void process(IStructuredSelection selection) {
+						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject) iter.next();
+							if (!raisedExceptionEditUtil.getVirtualList().contains(elem))
+								raisedExceptionEditUtil.addElement(elem);
+							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.raisedException,
+								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+						}
+						raisedException.refresh();
 					}
 
-					public void handleEdit(Type element) {
-						editRaisedException(element);
-					}
-
-					public void handleMove(Type element, int oldIndex, int newIndex) {
-						moveRaisedException(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(Type element) {
-						removeFromRaisedException(element);
-					}
-
-					public void navigateTo(Type element) {
-					}
-				});
-		this.raisedException.setHelpText(propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.raisedException, UMLViewsRepository.SWT_KIND));
+				};
+				dialog.open();
+			}
+			public void handleEdit(Type element) { editRaisedException(element); }
+			public void handleMove(Type element, int oldIndex, int newIndex) { moveRaisedException(element, oldIndex, newIndex); }
+			public void handleRemove(Type element) { removeFromRaisedException(element); }
+			public void navigateTo(Type element) { }
+		});
+		this.raisedException.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.raisedException, UMLViewsRepository.SWT_KIND));
 		this.raisedException.createControls(parent);
 		GridData raisedExceptionData = new GridData(GridData.FILL_HORIZONTAL);
 		raisedExceptionData.horizontalSpan = 3;
@@ -486,23 +375,21 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void moveRaisedException(Type element, int oldIndex, int newIndex) {
+	protected void moveRaisedException(Type element, int oldIndex, int newIndex) {
 	}
 
 	/**
 	 * 
 	 */
-	private void removeFromRaisedException(Type element) {
+	protected void removeFromRaisedException(Type element) {
 
 		// Start of user code removeFromRaisedException() method body
-
 		EObject editedElement = raisedExceptionEditUtil.foundCorrespondingEObject(element);
 		raisedExceptionEditUtil.removeElement(element);
 		raisedException.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.raisedException,
 				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -510,10 +397,9 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void editRaisedException(Type element) {
+	protected void editRaisedException(Type element) {
 
 		// Start of user code editRaisedException() method body
-
 		EObject editedElement = raisedExceptionEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -530,40 +416,21 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
-
 	/**
 	 * @param container
 	 */
 	protected void createOwnedParameterAdvancedTableComposition(Composite parent) {
-		this.ownedParameter = new ReferencesTable<Parameter>(
-				UMLMessages.ReceptionPropertiesEditionPart_OwnedParameterLabel,
-				new ReferencesTableListener<Parameter>() {
-
-					public void handleAdd() {
-						addToOwnedParameter();
-					}
-
-					public void handleEdit(Parameter element) {
-						editOwnedParameter(element);
-					}
-
-					public void handleMove(Parameter element, int oldIndex, int newIndex) {
-						moveOwnedParameter(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(Parameter element) {
-						removeFromOwnedParameter(element);
-					}
-
-					public void navigateTo(Parameter element) {
-					}
-				});
-		this.ownedParameter.setHelpText(propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.ownedParameter, UMLViewsRepository.SWT_KIND));
+		this.ownedParameter = new ReferencesTable<Parameter>(UMLMessages.ReceptionPropertiesEditionPart_OwnedParameterLabel, new ReferencesTableListener<Parameter>() {			
+			public void handleAdd() { addToOwnedParameter();}
+			public void handleEdit(Parameter element) { editOwnedParameter(element); }
+			public void handleMove(Parameter element, int oldIndex, int newIndex) { moveOwnedParameter(element, oldIndex, newIndex); }
+			public void handleRemove(Parameter element) { removeFromOwnedParameter(element); }
+			public void navigateTo(Parameter element) { }
+		});
+		this.ownedParameter.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.ownedParameter, UMLViewsRepository.SWT_KIND));
 		this.ownedParameter.createControls(parent);
 		GridData ownedParameterData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedParameterData.horizontalSpan = 3;
@@ -573,15 +440,11 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void moveOwnedParameter(Parameter element, int oldIndex, int newIndex) {
-
+	protected void moveOwnedParameter(Parameter element, int oldIndex, int newIndex) {
 		EObject editedElement = ownedParameterEditUtil.foundCorrespondingEObject(element);
 		ownedParameterEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedParameter.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedParameter,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedParameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
 	}
 
 	/**
@@ -590,7 +453,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	protected void addToOwnedParameter() {
 
 		// Start of user code addToOwnedParameter() method body
-
 		Parameter eObject = UMLFactory.eINSTANCE.createParameter();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
@@ -607,7 +469,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
@@ -615,17 +476,15 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void removeFromOwnedParameter(Parameter element) {
+	protected void removeFromOwnedParameter(Parameter element) {
 
 		// Start of user code removeFromOwnedParameter() method body
-
 		EObject editedElement = ownedParameterEditUtil.foundCorrespondingEObject(element);
 		ownedParameterEditUtil.removeElement(element);
 		ownedParameter.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedParameter,
 				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -633,10 +492,9 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void editOwnedParameter(Parameter element) {
+	protected void editOwnedParameter(Parameter element) {
 
 		// Start of user code editOwnedParameter() method body
-
 		EObject editedElement = ownedParameterEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -653,11 +511,9 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
-
 	protected void createOthersGroup(Composite parent) {
 		Group othersGroup = new Group(parent, SWT.NONE);
 		othersGroup.setText(UMLMessages.ReceptionPropertiesEditionPart_OthersGroupLabel);
@@ -669,54 +525,33 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 		othersGroup.setLayout(othersGroupLayout);
 		createOthersHBox1HBox(othersGroup);
 	}
-
 	protected void createOthersHBox1HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan = 2;
+		gridData.horizontalSpan=2;
 		container.setLayoutData(gridData);
 		HorizontalBox othersHBox1HBox = new HorizontalBox(container);
-
-		// create sub figures
-		createOwnedParameterSetAdvancedTableComposition(othersHBox1HBox);
-		createPackageImportAdvancedTableComposition(othersHBox1HBox);
-		createElementImportAdvancedTableComposition(othersHBox1HBox);
-		createOwnedRuleAdvancedTableComposition(othersHBox1HBox);
-
+		//create sub figures
+				createOwnedParameterSetAdvancedTableComposition(othersHBox1HBox);
+				createPackageImportAdvancedTableComposition(othersHBox1HBox);
+				createElementImportAdvancedTableComposition(othersHBox1HBox);
+				createOwnedRuleAdvancedTableComposition(othersHBox1HBox);
 		parent.pack();
 	}
-
 	/**
 	 * @param container
 	 */
 	protected void createOwnedParameterSetAdvancedTableComposition(Composite parent) {
-		this.ownedParameterSet = new ReferencesTable<ParameterSet>(
-				UMLMessages.ReceptionPropertiesEditionPart_OwnedParameterSetLabel,
-				new ReferencesTableListener<ParameterSet>() {
-
-					public void handleAdd() {
-						addToOwnedParameterSet();
-					}
-
-					public void handleEdit(ParameterSet element) {
-						editOwnedParameterSet(element);
-					}
-
-					public void handleMove(ParameterSet element, int oldIndex, int newIndex) {
-						moveOwnedParameterSet(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(ParameterSet element) {
-						removeFromOwnedParameterSet(element);
-					}
-
-					public void navigateTo(ParameterSet element) {
-					}
-				});
-		this.ownedParameterSet.setHelpText(propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.ownedParameterSet, UMLViewsRepository.SWT_KIND));
+		this.ownedParameterSet = new ReferencesTable<ParameterSet>(UMLMessages.ReceptionPropertiesEditionPart_OwnedParameterSetLabel, new ReferencesTableListener<ParameterSet>() {			
+			public void handleAdd() { addToOwnedParameterSet();}
+			public void handleEdit(ParameterSet element) { editOwnedParameterSet(element); }
+			public void handleMove(ParameterSet element, int oldIndex, int newIndex) { moveOwnedParameterSet(element, oldIndex, newIndex); }
+			public void handleRemove(ParameterSet element) { removeFromOwnedParameterSet(element); }
+			public void navigateTo(ParameterSet element) { }
+		});
+		this.ownedParameterSet.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.ownedParameterSet, UMLViewsRepository.SWT_KIND));
 		this.ownedParameterSet.createControls(parent);
 		GridData ownedParameterSetData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedParameterSetData.horizontalSpan = 3;
@@ -726,15 +561,11 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void moveOwnedParameterSet(ParameterSet element, int oldIndex, int newIndex) {
-
+	protected void moveOwnedParameterSet(ParameterSet element, int oldIndex, int newIndex) {
 		EObject editedElement = ownedParameterSetEditUtil.foundCorrespondingEObject(element);
 		ownedParameterSetEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedParameterSet.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedParameterSet,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedParameterSet, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
 	}
 
 	/**
@@ -743,7 +574,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	protected void addToOwnedParameterSet() {
 
 		// Start of user code addToOwnedParameterSet() method body
-
 		ParameterSet eObject = UMLFactory.eINSTANCE.createParameterSet();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
@@ -760,7 +590,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
@@ -768,17 +597,15 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void removeFromOwnedParameterSet(ParameterSet element) {
+	protected void removeFromOwnedParameterSet(ParameterSet element) {
 
 		// Start of user code removeFromOwnedParameterSet() method body
-
 		EObject editedElement = ownedParameterSetEditUtil.foundCorrespondingEObject(element);
 		ownedParameterSetEditUtil.removeElement(element);
 		ownedParameterSet.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedParameterSet,
 				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -786,10 +613,9 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void editOwnedParameterSet(ParameterSet element) {
+	protected void editOwnedParameterSet(ParameterSet element) {
 
 		// Start of user code editOwnedParameterSet() method body
-
 		EObject editedElement = ownedParameterSetEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -806,40 +632,21 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
-
 	/**
 	 * @param container
 	 */
 	protected void createPackageImportAdvancedTableComposition(Composite parent) {
-		this.packageImport = new ReferencesTable<PackageImport>(
-				UMLMessages.ReceptionPropertiesEditionPart_PackageImportLabel,
-				new ReferencesTableListener<PackageImport>() {
-
-					public void handleAdd() {
-						addToPackageImport();
-					}
-
-					public void handleEdit(PackageImport element) {
-						editPackageImport(element);
-					}
-
-					public void handleMove(PackageImport element, int oldIndex, int newIndex) {
-						movePackageImport(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(PackageImport element) {
-						removeFromPackageImport(element);
-					}
-
-					public void navigateTo(PackageImport element) {
-					}
-				});
-		this.packageImport.setHelpText(propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.packageImport, UMLViewsRepository.SWT_KIND));
+		this.packageImport = new ReferencesTable<PackageImport>(UMLMessages.ReceptionPropertiesEditionPart_PackageImportLabel, new ReferencesTableListener<PackageImport>() {			
+			public void handleAdd() { addToPackageImport();}
+			public void handleEdit(PackageImport element) { editPackageImport(element); }
+			public void handleMove(PackageImport element, int oldIndex, int newIndex) { movePackageImport(element, oldIndex, newIndex); }
+			public void handleRemove(PackageImport element) { removeFromPackageImport(element); }
+			public void navigateTo(PackageImport element) { }
+		});
+		this.packageImport.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.packageImport, UMLViewsRepository.SWT_KIND));
 		this.packageImport.createControls(parent);
 		GridData packageImportData = new GridData(GridData.FILL_HORIZONTAL);
 		packageImportData.horizontalSpan = 3;
@@ -849,15 +656,11 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void movePackageImport(PackageImport element, int oldIndex, int newIndex) {
-
+	protected void movePackageImport(PackageImport element, int oldIndex, int newIndex) {
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		packageImportEditUtil.moveElement(element, oldIndex, newIndex);
 		packageImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.packageImport,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.packageImport, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
 	}
 
 	/**
@@ -866,7 +669,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	protected void addToPackageImport() {
 
 		// Start of user code addToPackageImport() method body
-
 		PackageImport eObject = UMLFactory.eINSTANCE.createPackageImport();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
@@ -883,7 +685,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
@@ -891,17 +692,15 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void removeFromPackageImport(PackageImport element) {
+	protected void removeFromPackageImport(PackageImport element) {
 
 		// Start of user code removeFromPackageImport() method body
-
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		packageImportEditUtil.removeElement(element);
 		packageImport.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.packageImport,
 				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -909,10 +708,9 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void editPackageImport(PackageImport element) {
+	protected void editPackageImport(PackageImport element) {
 
 		// Start of user code editPackageImport() method body
-
 		EObject editedElement = packageImportEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -929,40 +727,21 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
-
 	/**
 	 * @param container
 	 */
 	protected void createElementImportAdvancedTableComposition(Composite parent) {
-		this.elementImport = new ReferencesTable<ElementImport>(
-				UMLMessages.ReceptionPropertiesEditionPart_ElementImportLabel,
-				new ReferencesTableListener<ElementImport>() {
-
-					public void handleAdd() {
-						addToElementImport();
-					}
-
-					public void handleEdit(ElementImport element) {
-						editElementImport(element);
-					}
-
-					public void handleMove(ElementImport element, int oldIndex, int newIndex) {
-						moveElementImport(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(ElementImport element) {
-						removeFromElementImport(element);
-					}
-
-					public void navigateTo(ElementImport element) {
-					}
-				});
-		this.elementImport.setHelpText(propertiesEditionComponent.getHelpContent(
-				UMLViewsRepository.Reception.elementImport, UMLViewsRepository.SWT_KIND));
+		this.elementImport = new ReferencesTable<ElementImport>(UMLMessages.ReceptionPropertiesEditionPart_ElementImportLabel, new ReferencesTableListener<ElementImport>() {			
+			public void handleAdd() { addToElementImport();}
+			public void handleEdit(ElementImport element) { editElementImport(element); }
+			public void handleMove(ElementImport element, int oldIndex, int newIndex) { moveElementImport(element, oldIndex, newIndex); }
+			public void handleRemove(ElementImport element) { removeFromElementImport(element); }
+			public void navigateTo(ElementImport element) { }
+		});
+		this.elementImport.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.elementImport, UMLViewsRepository.SWT_KIND));
 		this.elementImport.createControls(parent);
 		GridData elementImportData = new GridData(GridData.FILL_HORIZONTAL);
 		elementImportData.horizontalSpan = 3;
@@ -972,15 +751,11 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void moveElementImport(ElementImport element, int oldIndex, int newIndex) {
-
+	protected void moveElementImport(ElementImport element, int oldIndex, int newIndex) {
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		elementImportEditUtil.moveElement(element, oldIndex, newIndex);
 		elementImport.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.elementImport,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.elementImport, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
 	}
 
 	/**
@@ -989,7 +764,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	protected void addToElementImport() {
 
 		// Start of user code addToElementImport() method body
-
 		ElementImport eObject = UMLFactory.eINSTANCE.createElementImport();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
@@ -1006,7 +780,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
@@ -1014,17 +787,15 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void removeFromElementImport(ElementImport element) {
+	protected void removeFromElementImport(ElementImport element) {
 
 		// Start of user code removeFromElementImport() method body
-
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		elementImportEditUtil.removeElement(element);
 		elementImport.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.elementImport,
 				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -1032,10 +803,9 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void editElementImport(ElementImport element) {
+	protected void editElementImport(ElementImport element) {
 
 		// Start of user code editElementImport() method body
-
 		EObject editedElement = elementImportEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -1052,39 +822,21 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
-
 	/**
 	 * @param container
 	 */
 	protected void createOwnedRuleAdvancedTableComposition(Composite parent) {
-		this.ownedRule = new ReferencesTable<Constraint>(UMLMessages.ReceptionPropertiesEditionPart_OwnedRuleLabel,
-				new ReferencesTableListener<Constraint>() {
-
-					public void handleAdd() {
-						addToOwnedRule();
-					}
-
-					public void handleEdit(Constraint element) {
-						editOwnedRule(element);
-					}
-
-					public void handleMove(Constraint element, int oldIndex, int newIndex) {
-						moveOwnedRule(element, oldIndex, newIndex);
-					}
-
-					public void handleRemove(Constraint element) {
-						removeFromOwnedRule(element);
-					}
-
-					public void navigateTo(Constraint element) {
-					}
-				});
-		this.ownedRule.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.ownedRule,
-				UMLViewsRepository.SWT_KIND));
+		this.ownedRule = new ReferencesTable<Constraint>(UMLMessages.ReceptionPropertiesEditionPart_OwnedRuleLabel, new ReferencesTableListener<Constraint>() {			
+			public void handleAdd() { addToOwnedRule();}
+			public void handleEdit(Constraint element) { editOwnedRule(element); }
+			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveOwnedRule(element, oldIndex, newIndex); }
+			public void handleRemove(Constraint element) { removeFromOwnedRule(element); }
+			public void navigateTo(Constraint element) { }
+		});
+		this.ownedRule.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Reception.ownedRule, UMLViewsRepository.SWT_KIND));
 		this.ownedRule.createControls(parent);
 		GridData ownedRuleData = new GridData(GridData.FILL_HORIZONTAL);
 		ownedRuleData.horizontalSpan = 3;
@@ -1094,15 +846,11 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void moveOwnedRule(Constraint element, int oldIndex, int newIndex) {
-
+	protected void moveOwnedRule(Constraint element, int oldIndex, int newIndex) {
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		ownedRuleEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedRule.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
-				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedRule,
-				PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
-
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedRule, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
 	}
 
 	/**
@@ -1111,7 +859,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	protected void addToOwnedRule() {
 
 		// Start of user code addToOwnedRule() method body
-
 		Constraint eObject = UMLFactory.eINSTANCE.createConstraint();
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
@@ -1128,7 +875,6 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.ADD, null, propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
@@ -1136,17 +882,15 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void removeFromOwnedRule(Constraint element) {
+	protected void removeFromOwnedRule(Constraint element) {
 
 		// Start of user code removeFromOwnedRule() method body
-
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		ownedRuleEditUtil.removeElement(element);
 		ownedRule.refresh();
 		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
 				ReceptionPropertiesEditionPartImpl.this, UMLViewsRepository.Reception.ownedRule,
 				PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.REMOVE, null, editedElement));
-
 		// End of user code
 
 	}
@@ -1154,10 +898,9 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * 
 	 */
-	private void editOwnedRule(Constraint element) {
+	protected void editOwnedRule(Constraint element) {
 
 		// Start of user code editOwnedRule() method body
-
 		EObject editedElement = ownedRuleEditUtil.foundCorrespondingEObject(element);
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
@@ -1174,10 +917,10 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 						propertiesEditionObject));
 			}
 		}
-
 		// End of user code
 
 	}
+
 
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
@@ -1198,11 +941,14 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setName(String
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		name.setText(newValue);
+		if (newValue != null) {
+			name.setText(newValue);
+		} else {
+			name.setText("");  //$NON-NLS-1$
+		}
 	}
 
 	public void setMessageForName(String msg, int msgLevel) {
@@ -1226,8 +972,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initVisibility(EEnum
-	 *      eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -1237,8 +982,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setVisibility(Enumerator
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setVisibility(Enumerator newValue)
 	 */
 	public void setVisibility(Enumerator newValue) {
 		visibility.modelUpdating(new StructuredSelection(newValue));
@@ -1265,8 +1009,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initConcurrency(EEnum
-	 *      eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initConcurrency(EEnum eenum, Enumerator current)
 	 */
 	public void initConcurrency(EEnum eenum, Enumerator current) {
 		concurrency.setInput(eenum.getELiterals());
@@ -1276,8 +1019,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setConcurrency(Enumerator
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setConcurrency(Enumerator newValue)
 	 */
 	public void setConcurrency(Enumerator newValue) {
 		concurrency.modelUpdating(new StructuredSelection(newValue));
@@ -1303,8 +1045,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setIsAbstract(Boolean
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setIsAbstract(Boolean newValue)
 	 */
 	public void setIsAbstract(Boolean newValue) {
 		if (newValue != null) {
@@ -1334,8 +1075,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setIsLeaf(Boolean
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setIsLeaf(Boolean newValue)
 	 */
 	public void setIsLeaf(Boolean newValue) {
 		if (newValue != null) {
@@ -1365,8 +1105,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setIsStatic(Boolean
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#setIsStatic(Boolean newValue)
 	 */
 	public void setIsStatic(Boolean newValue) {
 		if (newValue != null) {
@@ -1411,11 +1150,11 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 		return methodEditUtil.getVirtualList();
 	}
 
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initMethod(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initMethod(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initMethod(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1430,11 +1169,10 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateMethod(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateMethod(EObject newValue)
 	 */
 	public void updateMethod(EObject newValue) {
-		if (methodEditUtil != null) {
+		if(methodEditUtil != null){
 			methodEditUtil.reinit(newValue);
 			method.refresh();
 		}
@@ -1443,8 +1181,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterMethod(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterMethod(ViewerFilter filter)
 	 */
 	public void addFilterToMethod(ViewerFilter filter) {
 		methodFilters.add(filter);
@@ -1453,11 +1190,19 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterMethod(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterMethod(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToMethod(ViewerFilter filter) {
 		methodBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#isContainedInMethodTable(EObject element)
+	 */
+	public boolean isContainedInMethodTable(EObject element) {
+		return methodEditUtil.contains(element);
 	}
 
 	public void setMessageForMethod(String msg, int msgLevel) {
@@ -1495,11 +1240,11 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 		return raisedExceptionEditUtil.getVirtualList();
 	}
 
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initRaisedException(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initRaisedException(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initRaisedException(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1514,11 +1259,10 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateRaisedException(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateRaisedException(EObject newValue)
 	 */
 	public void updateRaisedException(EObject newValue) {
-		if (raisedExceptionEditUtil != null) {
+		if(raisedExceptionEditUtil != null){
 			raisedExceptionEditUtil.reinit(newValue);
 			raisedException.refresh();
 		}
@@ -1527,8 +1271,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterRaisedException(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterRaisedException(ViewerFilter filter)
 	 */
 	public void addFilterToRaisedException(ViewerFilter filter) {
 		raisedExceptionFilters.add(filter);
@@ -1537,11 +1280,19 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterRaisedException(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterRaisedException(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToRaisedException(ViewerFilter filter) {
 		raisedExceptionBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#isContainedInRaisedExceptionTable(EObject element)
+	 */
+	public boolean isContainedInRaisedExceptionTable(EObject element) {
+		return raisedExceptionEditUtil.contains(element);
 	}
 
 	public void setMessageForRaisedException(String msg, int msgLevel) {
@@ -1600,8 +1351,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initOwnedParameter(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initOwnedParameter(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1616,11 +1366,10 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateOwnedParameter(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateOwnedParameter(EObject newValue)
 	 */
 	public void updateOwnedParameter(EObject newValue) {
-		if (ownedParameterEditUtil != null) {
+		if(ownedParameterEditUtil != null){
 			ownedParameterEditUtil.reinit(newValue);
 			ownedParameter.refresh();
 		}
@@ -1629,8 +1378,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterOwnedParameter(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterOwnedParameter(ViewerFilter filter)
 	 */
 	public void addFilterToOwnedParameter(ViewerFilter filter) {
 		ownedParameterFilters.add(filter);
@@ -1639,11 +1387,19 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterOwnedParameter(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterOwnedParameter(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToOwnedParameter(ViewerFilter filter) {
 		ownedParameterBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#isContainedInOwnedParameterTable(EObject element)
+	 */
+	public boolean isContainedInOwnedParameterTable(EObject element) {
+		return ownedParameterEditUtil.contains(element);
 	}
 
 	public void setMessageForOwnedParameter(String msg, int msgLevel) {
@@ -1702,8 +1458,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initOwnedParameterSet(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initOwnedParameterSet(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedParameterSet(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1718,11 +1473,10 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateOwnedParameterSet(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateOwnedParameterSet(EObject newValue)
 	 */
 	public void updateOwnedParameterSet(EObject newValue) {
-		if (ownedParameterSetEditUtil != null) {
+		if(ownedParameterSetEditUtil != null){
 			ownedParameterSetEditUtil.reinit(newValue);
 			ownedParameterSet.refresh();
 		}
@@ -1731,8 +1485,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterOwnedParameterSet(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterOwnedParameterSet(ViewerFilter filter)
 	 */
 	public void addFilterToOwnedParameterSet(ViewerFilter filter) {
 		ownedParameterSetFilters.add(filter);
@@ -1741,11 +1494,19 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterOwnedParameterSet(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterOwnedParameterSet(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToOwnedParameterSet(ViewerFilter filter) {
 		ownedParameterSetBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#isContainedInOwnedParameterSetTable(EObject element)
+	 */
+	public boolean isContainedInOwnedParameterSetTable(EObject element) {
+		return ownedParameterSetEditUtil.contains(element);
 	}
 
 	public void setMessageForOwnedParameterSet(String msg, int msgLevel) {
@@ -1804,8 +1565,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initPackageImport(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initPackageImport(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1820,11 +1580,10 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updatePackageImport(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updatePackageImport(EObject newValue)
 	 */
 	public void updatePackageImport(EObject newValue) {
-		if (packageImportEditUtil != null) {
+		if(packageImportEditUtil != null){
 			packageImportEditUtil.reinit(newValue);
 			packageImport.refresh();
 		}
@@ -1833,8 +1592,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterPackageImport(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterPackageImport(ViewerFilter filter)
 	 */
 	public void addFilterToPackageImport(ViewerFilter filter) {
 		packageImportFilters.add(filter);
@@ -1843,11 +1601,19 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterPackageImport(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterPackageImport(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter) {
 		packageImportBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#isContainedInPackageImportTable(EObject element)
+	 */
+	public boolean isContainedInPackageImportTable(EObject element) {
+		return packageImportEditUtil.contains(element);
 	}
 
 	public void setMessageForPackageImport(String msg, int msgLevel) {
@@ -1906,8 +1672,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initElementImport(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initElementImport(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -1922,11 +1687,10 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateElementImport(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateElementImport(EObject newValue)
 	 */
 	public void updateElementImport(EObject newValue) {
-		if (elementImportEditUtil != null) {
+		if(elementImportEditUtil != null){
 			elementImportEditUtil.reinit(newValue);
 			elementImport.refresh();
 		}
@@ -1935,8 +1699,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterElementImport(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterElementImport(ViewerFilter filter)
 	 */
 	public void addFilterToElementImport(ViewerFilter filter) {
 		elementImportFilters.add(filter);
@@ -1945,11 +1708,19 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterElementImport(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterElementImport(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter) {
 		elementImportBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#isContainedInElementImportTable(EObject element)
+	 */
+	public boolean isContainedInElementImportTable(EObject element) {
+		return elementImportEditUtil.contains(element);
 	}
 
 	public void setMessageForElementImport(String msg, int msgLevel) {
@@ -2008,8 +1779,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initOwnedRule(EObject
-	 *      current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#initOwnedRule(EObject current, EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
@@ -2024,11 +1794,10 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateOwnedRule(EObject
-	 *      newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#updateOwnedRule(EObject newValue)
 	 */
 	public void updateOwnedRule(EObject newValue) {
-		if (ownedRuleEditUtil != null) {
+		if(ownedRuleEditUtil != null){
 			ownedRuleEditUtil.reinit(newValue);
 			ownedRule.refresh();
 		}
@@ -2037,8 +1806,7 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterOwnedRule(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addFilterOwnedRule(ViewerFilter filter)
 	 */
 	public void addFilterToOwnedRule(ViewerFilter filter) {
 		ownedRuleFilters.add(filter);
@@ -2047,11 +1815,19 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterOwnedRule(ViewerFilter
-	 *      filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#addBusinessFilterOwnedRule(ViewerFilter filter)
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter) {
 		ownedRuleBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReceptionPropertiesEditionPart#isContainedInOwnedRuleTable(EObject element)
+	 */
+	public boolean isContainedInOwnedRuleTable(EObject element) {
+		return ownedRuleEditUtil.contains(element);
 	}
 
 	public void setMessageForOwnedRule(String msg, int msgLevel) {
@@ -2061,6 +1837,13 @@ public class ReceptionPropertiesEditionPartImpl extends CompositePropertiesEditi
 	public void unsetMessageForOwnedRule() {
 
 	}
+
+
+
+
+
+
+
 
 	// Start of user code additional methods
 

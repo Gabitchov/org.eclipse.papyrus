@@ -15,11 +15,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -50,27 +47,21 @@ public interface TemplateSignaturePropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -93,6 +84,15 @@ public interface TemplateSignaturePropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the parameter to add
 	 */
 	public List getParameterToAdd();
@@ -103,27 +103,21 @@ public interface TemplateSignaturePropertiesEditionPart {
 	public List getParameterToRemove();
 
 	/**
-	 * @return the current parameter
+	 * @return the current parameter table
 	 */
 	public List getParameterTable();
 
 	/**
 	 * Init the parameter
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the parameter
-	 * 
-	 * @param newValue
-	 *            the parameter to update
+	 * @param newValue the parameter to update
 	 */
 	public void updateParameter(EObject newValue);
 
@@ -146,6 +140,15 @@ public interface TemplateSignaturePropertiesEditionPart {
 	public void addBusinessFilterToParameter(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the parameter table
+	 */
+	public boolean isContainedInParameterTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedParameter to add
 	 */
 	public List getOwnedParameterToAdd();
@@ -166,27 +169,21 @@ public interface TemplateSignaturePropertiesEditionPart {
 	public Map getOwnedParameterToEdit();
 
 	/**
-	 * @return the current ownedParameter
+	 * @return the current ownedParameter table
 	 */
 	public List getOwnedParameterTable();
 
 	/**
 	 * Init the ownedParameter
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * 
-	 * @param newValue
-	 *            the ownedParameter to update
+	 * @param newValue the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
 
@@ -207,6 +204,20 @@ public interface TemplateSignaturePropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the ownedParameter table
+	 */
+	public boolean isContainedInOwnedParameterTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

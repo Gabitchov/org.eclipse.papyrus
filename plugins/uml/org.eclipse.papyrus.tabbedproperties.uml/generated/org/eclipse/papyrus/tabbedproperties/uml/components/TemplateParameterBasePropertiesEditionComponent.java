@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.eef.runtime.EMFPropertiesRuntime;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionListener;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -45,7 +46,7 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = { BASE_PART };
+	private String[] parts = {BASE_PART};
 
 	/**
 	 * The EObject to edit
@@ -62,7 +63,7 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 	 */
 	public TemplateParameterBasePropertiesEditionComponent(EObject templateParameter, String editing_mode) {
 		if (templateParameter instanceof TemplateParameter) {
-			this.templateParameter = (TemplateParameter) templateParameter;
+			this.templateParameter = (TemplateParameter)templateParameter;
 			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.templateParameter.eAdapters().add(semanticAdapter);
@@ -88,6 +89,7 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 				if (basePart == null)
 					TemplateParameterBasePropertiesEditionComponent.this.dispose();
 				else {
+
 
 				}
 			}
@@ -119,20 +121,18 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 *      (java.lang.String, java.lang.String)
+	 * (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if (templateParameter != null && BASE_PART.equals(key)) {
 			if (basePart == null) {
-				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance()
-						.getProvider(UMLViewsRepository.class);
+				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
 				if (provider != null) {
-					basePart = (TemplateParameterPropertiesEditionPart) provider.getPropertiesEditionPart(
-							UMLViewsRepository.TemplateParameter.class, kind, this);
-					addListener((IPropertiesEditionListener) basePart);
+					basePart = (TemplateParameterPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.TemplateParameter.class, kind, this);
+					addListener((IPropertiesEditionListener)basePart);
 				}
 			}
-			return (IPropertiesEditionPart) basePart;
+			return (IPropertiesEditionPart)basePart;
 		}
 		return null;
 	}
@@ -141,8 +141,7 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (key == UMLViewsRepository.TemplateParameter.class)
@@ -152,15 +151,15 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class,
-	 *      int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
 		if (basePart != null && key == UMLViewsRepository.TemplateParameter.class) {
-			((IPropertiesEditionPart) basePart).setContext(elt, allResource);
-			TemplateParameter templateParameter = (TemplateParameter) elt;
+			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
+			final TemplateParameter templateParameter = (TemplateParameter)elt;
 			// init values
-
+			
 			// init filters
 		}
 		// init values for referenced views
@@ -169,15 +168,19 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 
 	}
 
+
+
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *      (org.eclipse.emf.edit.domain.EditingDomain)
+	 *     (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
 		if (templateParameter != null) {
+
 
 		}
 		if (!cc.isEmpty())
@@ -193,10 +196,12 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
 		if (source instanceof TemplateParameter) {
-			TemplateParameter templateParameterToUpdate = (TemplateParameter) source;
+			TemplateParameter templateParameterToUpdate = (TemplateParameter)source;
+
 
 			return templateParameterToUpdate;
-		} else
+		}
+		else
 			return null;
 	}
 
@@ -207,16 +212,22 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState()
-				&& IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 
-			liveEditingDomain.getCommandStack().execute(command);
+
+			if (!command.isEmpty() && !command.canExecute()) {
+				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
+			} else {
+				liveEditingDomain.getCommandStack().execute(command);
+			}
 		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
 			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
 
+
 			} else {
+
 
 			}
 		}
@@ -228,12 +239,14 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.common.notify.Notification)
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
-		String newStringValue = event.getNewValue().toString();
 		Diagnostic ret = null;
-		try {
+		if (event.getNewValue() != null) {
+			String newStringValue = event.getNewValue().toString();
+			try {
 
-		} catch (IllegalArgumentException iae) {
-			ret = BasicDiagnostic.toDiagnostic(iae);
+			} catch (IllegalArgumentException iae) {
+				ret = BasicDiagnostic.toDiagnostic(iae);
+			}
 		}
 		return ret;
 	}
@@ -244,15 +257,21 @@ public class TemplateParameterBasePropertiesEditionComponent extends StandardPro
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validate()
 	 */
 	public Diagnostic validate() {
+		Diagnostic validate = null;
 		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			return Diagnostician.INSTANCE.validate(copy);
-		} else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
-			return Diagnostician.INSTANCE.validate(templateParameter);
-		else
-			return null;
+			validate =  Diagnostician.INSTANCE.validate(copy);
+		}
+		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(templateParameter);
+		// Start of user code for custom validation check
+
+		// End of user code
+
+		return validate;
 	}
+
 
 	/**
 	 * {@inheritDoc}

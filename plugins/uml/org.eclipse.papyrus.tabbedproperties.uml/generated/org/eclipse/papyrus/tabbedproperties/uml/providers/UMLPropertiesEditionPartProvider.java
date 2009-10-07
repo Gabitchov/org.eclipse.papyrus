@@ -19,27 +19,24 @@ import org.eclipse.papyrus.tabbedproperties.uml.parts.impl.*;
 
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
- * 
+ *
  */
 public class UMLPropertiesEditionPartProvider implements IPropertiesEditionPartProvider {
-
-	/**
+	
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#provides(java.lang.Class)
 	 */
 	public boolean provides(java.lang.Class key) {
 		return key == UMLViewsRepository.class;
 	}
 
-	/**
+	
+	/** 
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#getPropertiesEditionPart(java.lang.Class,
-	 *      int, org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent)
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPartProvider#getPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent)
 	 */
-	public IPropertiesEditionPart getPropertiesEditionPart(java.lang.Class key, int kind,
-			IPropertiesEditionComponent component) {
+	public IPropertiesEditionPart getPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionComponent component) {
 		if (key == UMLViewsRepository.Class_.class) {
 			if (kind == UMLViewsRepository.SWT_KIND)
 				return new Class_PropertiesEditionPartImpl(component);

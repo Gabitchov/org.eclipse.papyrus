@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -52,27 +49,21 @@ public interface DeploymentPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -95,15 +86,22 @@ public interface DeploymentPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -118,21 +116,20 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -145,27 +142,21 @@ public interface DeploymentPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -188,6 +179,15 @@ public interface DeploymentPropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the supplier to add
 	 */
 	public List getSupplierToAdd();
@@ -198,27 +198,21 @@ public interface DeploymentPropertiesEditionPart {
 	public List getSupplierToRemove();
 
 	/**
-	 * @return the current supplier
+	 * @return the current supplier table
 	 */
 	public List getSupplierTable();
 
 	/**
 	 * Init the supplier
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initSupplier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the supplier
-	 * 
-	 * @param newValue
-	 *            the supplier to update
+	 * @param newValue the supplier to update
 	 */
 	public void updateSupplier(EObject newValue);
 
@@ -241,6 +235,15 @@ public interface DeploymentPropertiesEditionPart {
 	public void addBusinessFilterToSupplier(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the supplier table
+	 */
+	public boolean isContainedInSupplierTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the client to add
 	 */
 	public List getClientToAdd();
@@ -251,27 +254,21 @@ public interface DeploymentPropertiesEditionPart {
 	public List getClientToRemove();
 
 	/**
-	 * @return the current client
+	 * @return the current client table
 	 */
 	public List getClientTable();
 
 	/**
 	 * Init the client
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClient(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the client
-	 * 
-	 * @param newValue
-	 *            the client to update
+	 * @param newValue the client to update
 	 */
 	public void updateClient(EObject newValue);
 
@@ -294,6 +291,15 @@ public interface DeploymentPropertiesEditionPart {
 	public void addBusinessFilterToClient(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the client table
+	 */
+	public boolean isContainedInClientTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the deployedArtifact to add
 	 */
 	public List getDeployedArtifactToAdd();
@@ -304,27 +310,21 @@ public interface DeploymentPropertiesEditionPart {
 	public List getDeployedArtifactToRemove();
 
 	/**
-	 * @return the current deployedArtifact
+	 * @return the current deployedArtifact table
 	 */
 	public List getDeployedArtifactTable();
 
 	/**
 	 * Init the deployedArtifact
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initDeployedArtifact(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the deployedArtifact
-	 * 
-	 * @param newValue
-	 *            the deployedArtifact to update
+	 * @param newValue the deployedArtifact to update
 	 */
 	public void updateDeployedArtifact(EObject newValue);
 
@@ -347,6 +347,15 @@ public interface DeploymentPropertiesEditionPart {
 	public void addBusinessFilterToDeployedArtifact(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the deployedArtifact table
+	 */
+	public boolean isContainedInDeployedArtifactTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the configuration to add
 	 */
 	public List getConfigurationToAdd();
@@ -367,27 +376,21 @@ public interface DeploymentPropertiesEditionPart {
 	public Map getConfigurationToEdit();
 
 	/**
-	 * @return the current configuration
+	 * @return the current configuration table
 	 */
 	public List getConfigurationTable();
 
 	/**
 	 * Init the configuration
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initConfiguration(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the configuration
-	 * 
-	 * @param newValue
-	 *            the configuration to update
+	 * @param newValue the configuration to update
 	 */
 	public void updateConfiguration(EObject newValue);
 
@@ -408,6 +411,20 @@ public interface DeploymentPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToConfiguration(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the configuration table
+	 */
+	public boolean isContainedInConfigurationTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

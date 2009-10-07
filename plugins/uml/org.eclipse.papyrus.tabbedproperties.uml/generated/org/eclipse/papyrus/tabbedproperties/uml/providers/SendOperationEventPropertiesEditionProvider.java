@@ -30,8 +30,7 @@ public class SendOperationEventPropertiesEditionProvider implements IPropertiesE
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof SendOperationEvent)
-				&& (UMLPackage.eINSTANCE.getSendOperationEvent() == eObject.eClass());
+		return (eObject instanceof SendOperationEvent) && (UMLPackage.eINSTANCE.getSendOperationEvent() == eObject.eClass());
 	}
 
 	/**

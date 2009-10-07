@@ -30,8 +30,7 @@ public class RemoveStructuralFeatureValueActionPropertiesEditionProvider impleme
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof RemoveStructuralFeatureValueAction)
-				&& (UMLPackage.eINSTANCE.getRemoveStructuralFeatureValueAction() == eObject.eClass());
+		return (eObject instanceof RemoveStructuralFeatureValueAction) && (UMLPackage.eINSTANCE.getRemoveStructuralFeatureValueAction() == eObject.eClass());
 	}
 
 	/**

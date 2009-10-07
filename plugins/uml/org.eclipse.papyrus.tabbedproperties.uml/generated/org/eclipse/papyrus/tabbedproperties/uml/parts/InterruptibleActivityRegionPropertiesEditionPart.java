@@ -15,11 +15,8 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -50,27 +47,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -93,6 +84,15 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the node to add
 	 */
 	public List getNodeToAdd();
@@ -103,27 +103,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	public List getNodeToRemove();
 
 	/**
-	 * @return the current node
+	 * @return the current node table
 	 */
 	public List getNodeTable();
 
 	/**
 	 * Init the node
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initNode(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the node
-	 * 
-	 * @param newValue
-	 *            the node to update
+	 * @param newValue the node to update
 	 */
 	public void updateNode(EObject newValue);
 
@@ -146,6 +140,15 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	public void addBusinessFilterToNode(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the node table
+	 */
+	public boolean isContainedInNodeTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the interruptingEdge to add
 	 */
 	public List getInterruptingEdgeToAdd();
@@ -156,27 +159,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	public List getInterruptingEdgeToRemove();
 
 	/**
-	 * @return the current interruptingEdge
+	 * @return the current interruptingEdge table
 	 */
 	public List getInterruptingEdgeTable();
 
 	/**
 	 * Init the interruptingEdge
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initInterruptingEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the interruptingEdge
-	 * 
-	 * @param newValue
-	 *            the interruptingEdge to update
+	 * @param newValue the interruptingEdge to update
 	 */
 	public void updateInterruptingEdge(EObject newValue);
 
@@ -197,6 +194,20 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToInterruptingEdge(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the interruptingEdge table
+	 */
+	public boolean isContainedInInterruptingEdgeTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

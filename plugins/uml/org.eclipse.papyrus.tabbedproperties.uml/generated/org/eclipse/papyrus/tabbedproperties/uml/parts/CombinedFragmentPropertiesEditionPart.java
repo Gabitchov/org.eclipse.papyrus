@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -52,27 +49,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public Map getOwnedCommentToEdit();
 
 	/**
-	 * @return the current ownedComment
+	 * @return the current ownedComment table
 	 */
 	public List getOwnedCommentTable();
 
 	/**
 	 * Init the ownedComment
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * 
-	 * @param newValue
-	 *            the ownedComment to update
+	 * @param newValue the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -95,15 +86,22 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the ownedComment table
+	 */
+	public boolean isContainedInOwnedCommentTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -118,21 +116,20 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the clientDependency to add
@@ -145,27 +142,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public List getClientDependencyToRemove();
 
 	/**
-	 * @return the current clientDependency
+	 * @return the current clientDependency table
 	 */
 	public List getClientDependencyTable();
 
 	/**
 	 * Init the clientDependency
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * 
-	 * @param newValue
-	 *            the clientDependency to update
+	 * @param newValue the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -188,6 +179,15 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the clientDependency table
+	 */
+	public boolean isContainedInClientDependencyTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the covered to add
 	 */
 	public List getCoveredToAdd();
@@ -198,27 +198,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public List getCoveredToRemove();
 
 	/**
-	 * @return the current covered
+	 * @return the current covered table
 	 */
 	public List getCoveredTable();
 
 	/**
 	 * Init the covered
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the covered
-	 * 
-	 * @param newValue
-	 *            the covered to update
+	 * @param newValue the covered to update
 	 */
 	public void updateCovered(EObject newValue);
 
@@ -241,6 +235,15 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public void addBusinessFilterToCovered(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the covered table
+	 */
+	public boolean isContainedInCoveredTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the generalOrdering to add
 	 */
 	public List getGeneralOrderingToAdd();
@@ -261,27 +264,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public Map getGeneralOrderingToEdit();
 
 	/**
-	 * @return the current generalOrdering
+	 * @return the current generalOrdering table
 	 */
 	public List getGeneralOrderingTable();
 
 	/**
 	 * Init the generalOrdering
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalOrdering
-	 * 
-	 * @param newValue
-	 *            the generalOrdering to update
+	 * @param newValue the generalOrdering to update
 	 */
 	public void updateGeneralOrdering(EObject newValue);
 
@@ -304,27 +301,35 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public void addBusinessFilterToGeneralOrdering(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the generalOrdering table
+	 */
+	public boolean isContainedInGeneralOrderingTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the interactionOperator
 	 */
 	public Enumerator getInteractionOperator();
 
 	/**
 	 * Init the interactionOperator
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initInteractionOperator(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new interactionOperator
-	 * 
-	 * @param newValue
-	 *            the new interactionOperator to set
+	 * @param newValue the new interactionOperator to set
 	 */
 	public void setInteractionOperator(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the operand to add
@@ -347,27 +352,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public Map getOperandToEdit();
 
 	/**
-	 * @return the current operand
+	 * @return the current operand table
 	 */
 	public List getOperandTable();
 
 	/**
 	 * Init the operand
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOperand(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the operand
-	 * 
-	 * @param newValue
-	 *            the operand to update
+	 * @param newValue the operand to update
 	 */
 	public void updateOperand(EObject newValue);
 
@@ -390,6 +389,15 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public void addBusinessFilterToOperand(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the operand table
+	 */
+	public boolean isContainedInOperandTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the cfragmentGate to add
 	 */
 	public List getCfragmentGateToAdd();
@@ -410,27 +418,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 	public Map getCfragmentGateToEdit();
 
 	/**
-	 * @return the current cfragmentGate
+	 * @return the current cfragmentGate table
 	 */
 	public List getCfragmentGateTable();
 
 	/**
 	 * Init the cfragmentGate
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initCfragmentGate(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the cfragmentGate
-	 * 
-	 * @param newValue
-	 *            the cfragmentGate to update
+	 * @param newValue the cfragmentGate to update
 	 */
 	public void updateCfragmentGate(EObject newValue);
 
@@ -451,6 +453,20 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToCfragmentGate(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the cfragmentGate table
+	 */
+	public boolean isContainedInCfragmentGateTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

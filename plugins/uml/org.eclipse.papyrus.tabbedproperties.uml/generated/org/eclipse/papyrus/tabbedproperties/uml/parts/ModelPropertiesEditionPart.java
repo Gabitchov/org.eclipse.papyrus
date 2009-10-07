@@ -15,13 +15,10 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import java.util.Map;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -38,9 +35,7 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -55,21 +50,20 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the viewpoint
@@ -78,9 +72,7 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Defines a new viewpoint
-	 * 
-	 * @param newValue
-	 *            the new viewpoint to set
+	 * @param newValue the new viewpoint to set
 	 */
 	public void setViewpoint(String newValue);
 
@@ -109,27 +101,21 @@ public interface ModelPropertiesEditionPart {
 	public Map getTemplateBindingToEdit();
 
 	/**
-	 * @return the current templateBinding
+	 * @return the current templateBinding table
 	 */
 	public List getTemplateBindingTable();
 
 	/**
 	 * Init the templateBinding
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * 
-	 * @param newValue
-	 *            the templateBinding to update
+	 * @param newValue the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -152,6 +138,15 @@ public interface ModelPropertiesEditionPart {
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the templateBinding table
+	 */
+	public boolean isContainedInTemplateBindingTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packageMerge to add
 	 */
 	public List getPackageMergeToAdd();
@@ -172,27 +167,21 @@ public interface ModelPropertiesEditionPart {
 	public Map getPackageMergeToEdit();
 
 	/**
-	 * @return the current packageMerge
+	 * @return the current packageMerge table
 	 */
 	public List getPackageMergeTable();
 
 	/**
 	 * Init the packageMerge
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageMerge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageMerge
-	 * 
-	 * @param newValue
-	 *            the packageMerge to update
+	 * @param newValue the packageMerge to update
 	 */
 	public void updatePackageMerge(EObject newValue);
 
@@ -215,6 +204,15 @@ public interface ModelPropertiesEditionPart {
 	public void addBusinessFilterToPackageMerge(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packageMerge table
+	 */
+	public boolean isContainedInPackageMergeTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packagedElement to add
 	 */
 	public List getPackagedElementToAdd();
@@ -235,27 +233,21 @@ public interface ModelPropertiesEditionPart {
 	public Map getPackagedElementToEdit();
 
 	/**
-	 * @return the current packagedElement
+	 * @return the current packagedElement table
 	 */
 	public List getPackagedElementTable();
 
 	/**
 	 * Init the packagedElement
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackagedElement(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packagedElement
-	 * 
-	 * @param newValue
-	 *            the packagedElement to update
+	 * @param newValue the packagedElement to update
 	 */
 	public void updatePackagedElement(EObject newValue);
 
@@ -278,6 +270,15 @@ public interface ModelPropertiesEditionPart {
 	public void addBusinessFilterToPackagedElement(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packagedElement table
+	 */
+	public boolean isContainedInPackagedElementTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the elementImport to add
 	 */
 	public List getElementImportToAdd();
@@ -298,27 +299,21 @@ public interface ModelPropertiesEditionPart {
 	public Map getElementImportToEdit();
 
 	/**
-	 * @return the current elementImport
+	 * @return the current elementImport table
 	 */
 	public List getElementImportTable();
 
 	/**
 	 * Init the elementImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * 
-	 * @param newValue
-	 *            the elementImport to update
+	 * @param newValue the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -341,6 +336,15 @@ public interface ModelPropertiesEditionPart {
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the elementImport table
+	 */
+	public boolean isContainedInElementImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the packageImport to add
 	 */
 	public List getPackageImportToAdd();
@@ -361,27 +365,21 @@ public interface ModelPropertiesEditionPart {
 	public Map getPackageImportToEdit();
 
 	/**
-	 * @return the current packageImport
+	 * @return the current packageImport table
 	 */
 	public List getPackageImportTable();
 
 	/**
 	 * Init the packageImport
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * 
-	 * @param newValue
-	 *            the packageImport to update
+	 * @param newValue the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -404,6 +402,15 @@ public interface ModelPropertiesEditionPart {
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
 
 	/**
+	 * @return true if the given element is contained inside the packageImport table
+	 */
+	public boolean isContainedInPackageImportTable(EObject element);
+
+
+
+
+
+	/**
 	 * @return the ownedRule to add
 	 */
 	public List getOwnedRuleToAdd();
@@ -424,27 +431,21 @@ public interface ModelPropertiesEditionPart {
 	public Map getOwnedRuleToEdit();
 
 	/**
-	 * @return the current ownedRule
+	 * @return the current ownedRule table
 	 */
 	public List getOwnedRuleTable();
 
 	/**
 	 * Init the ownedRule
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * 
-	 * @param newValue
-	 *            the ownedRule to update
+	 * @param newValue the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -465,6 +466,20 @@ public interface ModelPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the ownedRule table
+	 */
+	public boolean isContainedInOwnedRuleTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 

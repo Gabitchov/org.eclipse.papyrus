@@ -30,8 +30,7 @@ public class ReadStructuralFeatureActionPropertiesEditionProvider implements IPr
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ReadStructuralFeatureAction)
-				&& (UMLPackage.eINSTANCE.getReadStructuralFeatureAction() == eObject.eClass());
+		return (eObject instanceof ReadStructuralFeatureAction) && (UMLPackage.eINSTANCE.getReadStructuralFeatureAction() == eObject.eClass());
 	}
 
 	/**

@@ -30,8 +30,7 @@ public class BroadcastSignalActionPropertiesEditionProvider implements IProperti
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof BroadcastSignalAction)
-				&& (UMLPackage.eINSTANCE.getBroadcastSignalAction() == eObject.eClass());
+		return (eObject instanceof BroadcastSignalAction) && (UMLPackage.eINSTANCE.getBroadcastSignalAction() == eObject.eClass());
 	}
 
 	/**

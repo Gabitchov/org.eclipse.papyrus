@@ -30,8 +30,7 @@ public class ClassifierTemplateParameterPropertiesEditionProvider implements IPr
 	 * @see org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionProvider#provides(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean provides(EObject eObject) {
-		return (eObject instanceof ClassifierTemplateParameter)
-				&& (UMLPackage.eINSTANCE.getClassifierTemplateParameter() == eObject.eClass());
+		return (eObject instanceof ClassifierTemplateParameter) && (UMLPackage.eINSTANCE.getClassifierTemplateParameter() == eObject.eClass());
 	}
 
 	/**

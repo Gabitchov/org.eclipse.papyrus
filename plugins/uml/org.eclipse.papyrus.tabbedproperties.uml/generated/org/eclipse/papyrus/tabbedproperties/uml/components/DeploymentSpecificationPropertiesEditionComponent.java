@@ -41,7 +41,6 @@ public class DeploymentSpecificationPropertiesEditionComponent extends ComposedP
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
-
 	/**
 	 * Parameterized constructor
 	 * 
@@ -51,58 +50,50 @@ public class DeploymentSpecificationPropertiesEditionComponent extends ComposedP
 	public DeploymentSpecificationPropertiesEditionComponent(EObject deploymentSpecification, String editing_mode) {
 		super(editing_mode);
 		if (deploymentSpecification instanceof DeploymentSpecification) {
-			deploymentSpecificationBasePropertiesEditionComponent = new DeploymentSpecificationBasePropertiesEditionComponent(
-					deploymentSpecification, editing_mode);
+			deploymentSpecificationBasePropertiesEditionComponent = new DeploymentSpecificationBasePropertiesEditionComponent(deploymentSpecification, editing_mode); 
 			addSubComponent(deploymentSpecificationBasePropertiesEditionComponent);
-			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(deploymentSpecification,
-					editing_mode);
+			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(deploymentSpecification, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-
+	
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      getPropertiesEditionPart(int, java.lang.String)
+	 * 		getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
 		if ("Base".equals(key)) {
-			basePart = (DeploymentSpecificationPropertiesEditionPart) deploymentSpecificationBasePropertiesEditionComponent
-					.getPropertiesEditionPart(kind, key);
-			return (IPropertiesEditionPart) basePart;
+			basePart = (DeploymentSpecificationPropertiesEditionPart)deploymentSpecificationBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)basePart;
 		}
 		return super.getPropertiesEditionPart(kind, key);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int,
-	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
 		if (UMLViewsRepository.DeploymentSpecification.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
-			basePart = (DeploymentSpecificationPropertiesEditionPart) propertiesEditionPart;
+			basePart = (DeploymentSpecificationPropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *      #initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
-	 *      org.eclipse.emf.ecore.resource.ResourceSet)
+	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
 		if (key == UMLViewsRepository.DeploymentSpecification.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-		if (key == UMLViewsRepository.Comments.class) {
-			super.initPart(key, kind, element, allResource);
-
-		}
+			if (key == UMLViewsRepository.Comments.class) {
+				super.initPart(key, kind, element, allResource);
+			
+			}
 	}
 }

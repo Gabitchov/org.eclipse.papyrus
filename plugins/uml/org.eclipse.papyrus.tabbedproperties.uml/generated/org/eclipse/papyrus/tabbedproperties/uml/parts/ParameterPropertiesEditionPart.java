@@ -13,14 +13,13 @@ package org.eclipse.papyrus.tabbedproperties.uml.parts;
 // Start of user code for imports
 
 import java.util.List;
-import java.util.Map;
 
-import java.util.List;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 // End of user code
@@ -37,9 +36,7 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * 
-	 * @param newValue
-	 *            the new name to set
+	 * @param newValue the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -54,21 +51,20 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * 
-	 * @param newValue
-	 *            the new visibility to set
+	 * @param newValue the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the type
@@ -77,21 +73,22 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Init the type
-	 * 
-	 * @param allResources
-	 *            the ResourceSet where the widget have to process
-	 * @param current
-	 *            the current value
+	 * @param allResources the ResourceSet where the widget have to process
+	 * @param current the current value
 	 */
 	public void initType(ResourceSet allResources, EObject current);
 
 	/**
 	 * Defines a new type
-	 * 
-	 * @param newValue
-	 *            the new type to set
+	 * @param newValue the new type to set
 	 */
 	public void setType(EObject newValue);
+
+	/**
+	 * Defines the button mode
+	 * @param newValue the new mode to set
+	 */
+	public void setTypeButtonMode(ButtonsModeEnum newValue);
 
 	/**
 	 * Adds the given filter to the type edition editor.
@@ -111,6 +108,10 @@ public interface ParameterPropertiesEditionPart {
 	 */
 	public void addBusinessFilterToType(ViewerFilter filter);
 
+
+
+
+
 	/**
 	 * @return the direction
 	 */
@@ -118,21 +119,20 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Init the direction
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initDirection(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new direction
-	 * 
-	 * @param newValue
-	 *            the new direction to set
+	 * @param newValue the new direction to set
 	 */
 	public void setDirection(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the effect
@@ -141,21 +141,20 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Init the effect
-	 * 
-	 * @param eenum
-	 *            the enum to manage
-	 * @param current
-	 *            the current value
+	 * @param eenum the enum to manage
+	 * @param current the current value
 	 */
 	public void initEffect(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new effect
-	 * 
-	 * @param newValue
-	 *            the new effect to set
+	 * @param newValue the new effect to set
 	 */
 	public void setEffect(Enumerator newValue);
+
+
+
+
 
 	/**
 	 * @return the isOrdered
@@ -164,11 +163,13 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Defines a new isOrdered
-	 * 
-	 * @param newValue
-	 *            the new isOrdered to set
+	 * @param newValue the new isOrdered to set
 	 */
 	public void setIsOrdered(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isUnique
@@ -177,11 +178,13 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Defines a new isUnique
-	 * 
-	 * @param newValue
-	 *            the new isUnique to set
+	 * @param newValue the new isUnique to set
 	 */
 	public void setIsUnique(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isException
@@ -190,11 +193,13 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Defines a new isException
-	 * 
-	 * @param newValue
-	 *            the new isException to set
+	 * @param newValue the new isException to set
 	 */
 	public void setIsException(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the isStream
@@ -203,11 +208,13 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Defines a new isStream
-	 * 
-	 * @param newValue
-	 *            the new isStream to set
+	 * @param newValue the new isStream to set
 	 */
 	public void setIsStream(Boolean newValue);
+
+
+
+
 
 	/**
 	 * @return the lower
@@ -216,9 +223,7 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Defines a new lower
-	 * 
-	 * @param newValue
-	 *            the new lower to set
+	 * @param newValue the new lower to set
 	 */
 	public void setLower(String newValue);
 
@@ -233,9 +238,7 @@ public interface ParameterPropertiesEditionPart {
 
 	/**
 	 * Defines a new upper
-	 * 
-	 * @param newValue
-	 *            the new upper to set
+	 * @param newValue the new upper to set
 	 */
 	public void setUpper(String newValue);
 
@@ -254,27 +257,21 @@ public interface ParameterPropertiesEditionPart {
 	public List getParameterSetToRemove();
 
 	/**
-	 * @return the current parameterSet
+	 * @return the current parameterSet table
 	 */
 	public List getParameterSetTable();
 
 	/**
 	 * Init the parameterSet
-	 * 
-	 * @param current
-	 *            the current value
-	 * @param containgFeature
-	 *            the feature where to navigate if necessary
-	 * @param feature
-	 *            the feature to manage
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
 	 */
 	public void initParameterSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the parameterSet
-	 * 
-	 * @param newValue
-	 *            the parameterSet to update
+	 * @param newValue the parameterSet to update
 	 */
 	public void updateParameterSet(EObject newValue);
 
@@ -295,6 +292,20 @@ public interface ParameterPropertiesEditionPart {
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToParameterSet(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the parameterSet table
+	 */
+	public boolean isContainedInParameterSetTable(EObject element);
+
+
+
+
+
+
+
+
+
 
 	// Start of user code for additional methods
 
