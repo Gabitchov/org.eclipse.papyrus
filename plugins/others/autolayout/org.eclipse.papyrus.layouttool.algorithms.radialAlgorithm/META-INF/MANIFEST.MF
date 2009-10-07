@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RadialAlgorithm Plug-in
+Bundle-SymbolicName: org.eclipse.papyrus.layouttool.algorithms.radialAlgorithm;singleton:=true
+Bundle-Version: 0.9.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.layouttool.algorithms.radialalgorithm.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.zest.layouts,
+ org.eclipse.papyrus.layouttool
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Atos Origin

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.layouttool" name="layouttool" schema="schema/org.eclipse.papyrus.layouttool.exsd"/>
+   <extension-point id="org.eclipse.papyrus.layouttool.algorithms" name="algorithms" schema="schema/org.eclipse.papyrus.layouttool.algorithms.exsd"/>
+
+      <extension
+            point="org.eclipse.ui.menus">
+         <menuContribution
+               locationURI="toolbar:org.eclipse.ui.main.toolbar">
+            <toolbar
+                  id="org.eclipse.papyrus.layouttool.toolbarlayout">
+               <dynamic
+                     class="org.eclipse.papyrus.layouttool.LayoutToolToolbar"
+                     id="org.eclipse.papyrus.layouttool.dynamic3">
+                  <visibleWhen
+                        checkEnabled="false">
+                     <with
+                           variable="activeEditor">
+                        <test
+                              forcePluginActivation="true"
+                              property="org.eclipse.papyrus.layouttool.isCorrectEditor">
+                        </test>
+                     </with>
+                  </visibleWhen>
+               </dynamic>
+            </toolbar>
+         </menuContribution>
+      </extension>
+      <extension
+            point="org.eclipse.core.expressions.propertyTesters">
+         <propertyTester
+               class="org.eclipse.papyrus.layouttool.EditorPropertyTester"
+               id="org.eclipse.papyrus.layouttool.propertyTester"
+               namespace="org.eclipse.papyrus.layouttool"
+               properties="isCorrectEditor"
+               type="org.eclipse.ui.IWorkbenchPart">
+         </propertyTester>
+      </extension>
+     	 
+
+</plugin>

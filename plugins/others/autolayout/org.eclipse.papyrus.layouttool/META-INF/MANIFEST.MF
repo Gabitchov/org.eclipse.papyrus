@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Layouttools Plug-in
+Bundle-SymbolicName: org.eclipse.papyrus.layouttool;singleton:=true
+Bundle-Version: 0.9.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.layouttool.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.gef,
+ org.eclipse.zest.layouts,
+ org.eclipse.core.expressions
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.layouttool,
+ org.eclipse.papyrus.layouttool.managealgorithms
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Atos Origin

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.layouttool" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.layouttool" id="org.eclipse.papyrus.layouttool.algorithms" name="algorithms"/>
+      </appInfo>
+      <documentation>
+         You can easily add an algorithm to the toolbar button.
+All algorithms added to this extension point are sort alphabetically.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="client"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="client">
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of the algorithm displays in the toolbar
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Class wich implements algorithm
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.layouttool.managealgorithms.AlgorithmFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Icon shows in the toolbar, on the left of the name
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="toolTipText" type="string">
+            <annotation>
+               <documentation>
+                  Text shows when mouse is over the algorithm, this attribute is optional
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="path" type="string">
+            <annotation>
+               <documentation>
+                  Add this algorithm in a sub-menu. This attribute is optional and when it’s empty, algorithm is added on the root. Sub-menu are separated with ‘.’
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         This example shows how to add an algorithm with an icon, a name, a toolTip text and here class wich create the algorithm :
+&lt;plugin&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.layouttool.algorithms&quot;&gt;
+      &lt;client
+            class=&quot;org.eclipse.papyrus.treealgorithm.TreeAlgorithm&quot;
+            icon=&quot;icons/treeTransparent.gif&quot;
+            name=&quot;Tree&quot;
+            toolTipText=&quot;The TreeLayoutAlgorithm arranges graph nodes in a layered vertical tree-like layout&quot;&gt;
+      &lt;/client&gt;
+   &lt;/extension&gt;
+&lt;/plugin&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>
