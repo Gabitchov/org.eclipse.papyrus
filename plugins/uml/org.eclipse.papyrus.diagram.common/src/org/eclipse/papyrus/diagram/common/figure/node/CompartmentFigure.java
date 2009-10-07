@@ -60,7 +60,8 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 
 		for (String id : compartmentFigure) {
 			RectangleFigure newFigure = new RectangleFigure();
-			newFigure.setFill(true);
+			//to debug graphically: newFigure.setFill(true);
+			newFigure.setFill(false);
 			newFigure.setBorder(null);
 			newFigure.setOutline(false);
 			this.add(newFigure);
