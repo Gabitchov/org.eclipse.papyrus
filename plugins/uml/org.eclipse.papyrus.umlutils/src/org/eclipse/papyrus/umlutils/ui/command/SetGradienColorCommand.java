@@ -21,6 +21,7 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 // TODO: Auto-generated Javadoc
 /**
  * The Class SetQualifiedNameDepthCommand.
+ * @deprecated
  */
 public class SetGradienColorCommand extends CreateEAnnotationCommand {
 

@@ -93,10 +93,14 @@ public interface VisualInformationPapyrusConstant {
 	/** The QUALIFIE d_ nam e_ depth. */
 	public static String QUALIFIED_NAME_DEPTH = "QualifiedNameDepth";
 
-	/** The GRADIENT. */
+	/** The GRADIENT. 
+	 * @deprecated*/
 	public static String GRADIENT = "Gradient";
 
 	/** The GRADIEN t_ value. */
+	/**
+	 * @deprecated
+	 */
 	public static String GRADIENT_VALUE = "GradientValue";
 
 	public static String SHADOWFIGURE = "ShadowFigure";
