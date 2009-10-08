@@ -293,14 +293,20 @@ public class MultiDependencyHelper extends ElementHelper {
 		Point targetLocation = null;
 		Point nodeLocation = null;
 		NamedElement newSemanticElement = null;// element that will be added as
-		// client ou supplier of the
-		// dependecy
+		// client or supplier of the dependency
 		EStructuralFeature feature = null; // role client or supplier
 		EditPart sourceEditPart = createConnectionViewAndElementRequest.getSourceEditPart();
 		EditPart targetEditPart = createConnectionViewAndElementRequest.getTargetEditPart();
 		View dependencyView = null;
 		Dependency dependency = null;
 		View parentView = null;
+
+		// ---------------------------------------------------------
+		// help to debug
+		// System.err.println("+ 0. creation of variables");
+		// System.err.println("+-> sourceEditpart:" + sourceEditPart);
+		// System.err.println("+-> targetEditPart:" + targetEditPart);
+		// ---------------------------------------------------------
 
 		// 1. initialization
 		ICommandProxy startcommand = ((ICommandProxy) createConnectionViewAndElementRequest.getStartCommand());
@@ -339,17 +345,42 @@ public class MultiDependencyHelper extends ElementHelper {
 				return null;
 			}
 			parentView = (View) dependencyView.eContainer();
+			// ---------------------------------------------------------
+			// help to debug
+			// System.err.println("+ 1. initialization");
+			// System.err.println("+-> sourceLocation:" + sourceLocation);
+			// System.err.println("+-> targetLocation:" + targetLocation);
+			// System.err.println("+-> dependencyView:" + dependencyView);
+			// System.err.println("+-> dependency:" + dependency);
+			// System.err.println("+-> nodeLocation:" + nodeLocation);
+			// System.err.println("+-> newSemanticElement:" + newSemanticElement);
+			// System.err.println("+-> feature:" + feature);
+			// System.err.println("+-> parentView:" + parentView);
+			// ---------------------------------------------------------
+
 			// 2. Remove the view of the dependency
 			View dependencyViewSource = ((Edge) dependencyView).getSource();
 			View dependencyViewTarget = ((Edge) dependencyView).getTarget();
 
 			((CompoundCommand) command).add(new ICommandProxy(new DeleteCommand(getEditingDomain(), dependencyView)));
 
+			// ---------------------------------------------------------
+			// help to debug
+			// System.err.println("+ 2. Remove the view of the dependency");
+			// System.err.println("+-> command:" + command.canExecute());
+			// ---------------------------------------------------------
+
 			// 3. Node creation at this position
 			DependencyDiamonViewCreateCommand nodeCreation = new DependencyDiamonViewCreateCommand(getEditingDomain(),
 					parentView, (EditPartViewer) sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart)
 							.getDiagramPreferencesHint(), nodeLocation, new SemanticAdapter(dependency, null));
 			((CompoundCommand) command).add(new ICommandProxy(nodeCreation));
+
+			// ---------------------------------------------------------
+			// help to debug
+			// System.err.println("+ 3. Node creation at this position");
+			// System.err.println("+-> nodeCreation:" + nodeCreation.canExecute());
+			// ---------------------------------------------------------
 
 			// 4. reconstruction of the old link by taking in account the old
 			// connection
