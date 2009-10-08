@@ -235,19 +235,19 @@
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.swt.graphics.Image getLabelIcon() {
 		«IF useElementIcon-»
-		«REM»BEGIN: PapyrusGenCode«ENDREM»
-		//can we display icon?
-		if (getParent()!=null && org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper.getNameLabelIconValue((View) getParent().getModel())) {
-		«REM»END: PapyrusGenCode«ENDREM»
-		org.eclipse.emf.ecore.EObject parserElement = getParserElement();
+		EObject parserElement = getParserElement();
 		if (parserElement == null) {
 			return null;
 		}
-		return «diagram.getElementTypesQualifiedClassName()».getImage(parserElement.eClass());
-			«REM»BEGIN: PapyrusGenCode«ENDREM»
+		«REM»START: PapyrusGenCode«ENDREM»
+		List<View> views = org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		for (View view : views) {
+			if (org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper.showLabelIcon(view)) {
+				return UMLElementTypes.getImage(parserElement.eClass());
+			}
 		}
 		return null;
-			«REM»END: PapyrusGenCode«ENDREM»
+		«REM»END: PapyrusGenCode«ENDREM»
 		«ELSE-»
 		return null;
 		«ENDIF-»

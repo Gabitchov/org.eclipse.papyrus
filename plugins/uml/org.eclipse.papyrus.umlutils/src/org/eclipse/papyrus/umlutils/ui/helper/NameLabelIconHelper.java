@@ -23,27 +23,37 @@ import org.eclipse.papyrus.umlutils.ui.command.SetNameLabelIconCommand;
 
 public class NameLabelIconHelper {
 
+
+	/**
+	 * get the display name label icon indication true or false
+	 * 
+	 * @param modelElement
+	 *            the view where is attach the element
+	 * @deprecated use showLabelIcon(EModelElement) instead
+	 */
+	public static boolean getNameLabelIconValue(EModelElement modelElement) {
+		return showLabelIcon(modelElement);
+	}
 	/**
 	 * get the display name label icon indication true or false
 	 * 
 	 * @param modelElement
 	 *            the view where is attach the element
 	 */
-	public static boolean getNameLabelIconValue(EModelElement modelElement) {
+	public static boolean showLabelIcon(EModelElement modelElement) {
+		Boolean isShown = Boolean.FALSE;
 		EAnnotation stereotypeDisplayKind = modelElement
 				.getEAnnotation(VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
-
 			if (entries != null) {
 				String gradientvalueString = entries.get(VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON_VALUE);
 				if (gradientvalueString != null) {
-					Boolean b = new Boolean(gradientvalueString);
-					return b;
+					isShown = new Boolean(gradientvalueString);
 				}
 			}
 		}
-		return false;
+		return isShown;
 	}
 
 	/**

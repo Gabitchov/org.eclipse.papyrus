@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -347,6 +348,26 @@ public class DiagramEditPartsUtil {
 			views.addAll(EMFCoreUtil.getReferencers(element, features));
 		}
 		return views;
+	}
+	
+
+	/**
+	 * Find the views associated with the given eObject in the viewer
+	 * @param parserElement the 
+	 * @param viewer the viewer
+	 * @return views found if any
+	 */
+	public static List<View> findViews(EObject parserElement, EditPartViewer viewer) {
+		List<View> modelElements = new ArrayList<View>();
+		for (Object ep : viewer.getEditPartRegistry().keySet()) {
+			if (ep instanceof View) {
+				View view = (View) ep;
+				if (view.getElement().equals(parserElement)) {
+					modelElements.add(view);
+				}
+			}
+		}
+		return modelElements;
 	}
 
 	/**
