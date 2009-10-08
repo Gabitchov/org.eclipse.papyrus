@@ -60,8 +60,6 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 
 	private IMultiDiagramEditor editor;
 
-	private BackboneContext backbone;
-
 	private TransactionalEditingDomain editingDomain;
 
 	/**
@@ -175,7 +173,6 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 		}
 		if (part instanceof IMultiDiagramEditor) {
 			editor = (IMultiDiagramEditor) part;
-			backbone = editor.getDefaultContext();
 			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
 		} else
 			editingDomain = null;
