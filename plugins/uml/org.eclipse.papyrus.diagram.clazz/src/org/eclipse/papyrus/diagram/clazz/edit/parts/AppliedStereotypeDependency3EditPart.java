@@ -714,6 +714,7 @@ public class AppliedStereotypeDependency3EditPart extends LabelEditPart implemen
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 
