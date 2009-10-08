@@ -39,6 +39,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.navigator.actions.GroupChildrenAction;
+import org.eclipse.papyrus.navigator.actions.RemoveTypePrefixAction;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.navigator.providers.IContentProvider;
 import org.eclipse.papyrus.navigator.providers.ToEditorSaveable;
@@ -72,8 +73,8 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 public class ModelNavigator extends CommonNavigator implements
 		IEditingDomainProvider {
 
-	public final static String ID_MODELNAVIGATOR = "org.eclipse.papyrus.navigator.modelExplorer"; 
-	
+	public final static String ID_MODELNAVIGATOR = "org.eclipse.papyrus.navigator.modelExplorer";
+
 	IWorkbenchPage page = null;
 
 	/** {@link TransactionalEditingDomain} used to perform actions and commands. */
@@ -205,6 +206,52 @@ public class ModelNavigator extends CommonNavigator implements
 		return groupChildsAction;
 	}
 
+	// //
+	// fjcano #291192 :: type prefix in model explorer
+	// //
+	public static final String PROPERTY_REMOVEPREFIX = "es.cv.gvcase.ide.navigator.view.removeTypePrefix";
+
+	private boolean isRemovePrefixTypeEnabled = false;
+
+	public static final int IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY = 16774;
+
+	/**
+	 * Set the isRemovePrefixTypeEnabled to the given value and fire a property
+	 * change event.
+	 * 
+	 * @param isRemovePrefixTypeEnabled
+	 */
+	public void setRemovePrefixTypeEnabled(boolean isRemovePrefixTypeEnabled) {
+		// fjcano #291192
+		this.isRemovePrefixTypeEnabled = isRemovePrefixTypeEnabled;
+		firePropertyChange(IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY);
+		refreshViewer();
+	}
+
+	/**
+	 * Gets whether the removal of prefix types is enabled or not.
+	 * 
+	 * @return
+	 */
+	public boolean isRemovePrefixTypeEnabled() {
+		// fjcano #291192
+		return isRemovePrefixTypeEnabled;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public IAction getRemoveTypesPrefixAction() {
+		// fjcano #291192
+		IAction removeTypesPrefixAction = new RemoveTypePrefixAction(this);
+		ImageDescriptor clearIcon = PlatformUI.getWorkbench().getSharedImages()
+				.getImageDescriptor(ISharedImages.IMG_ELCL_REMOVE);
+		removeTypesPrefixAction.setImageDescriptor(clearIcon);
+		removeTypesPrefixAction.setHoverImageDescriptor(clearIcon);
+		return removeTypesPrefixAction;
+	}
+
 	/**
 	 * Add the "Group children" action.
 	 */
@@ -213,6 +260,9 @@ public class ModelNavigator extends CommonNavigator implements
 		// fjcano #290422 :: add "Group children" action
 		getViewSite().getActionBars().getToolBarManager().add(
 				getGroupChildrenAction());
+		// fjcano #291192
+		getViewSite().getActionBars().getToolBarManager().add(
+				getRemoveTypesPrefixAction());
 	};
 
 	/**
@@ -516,28 +566,27 @@ public class ModelNavigator extends CommonNavigator implements
 		}
 	}
 
-//	/**
-//	 * Handle double click on a Papyrus Diagram.
-//	 * 
-//	 * @param diagram
-//	 */
-//	protected void handleDoubleClickOnDiagram(Diagram diagram) {
-//		// fjcano #287943 :: handle double click on a papyrus diagram
-//		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
-//				+ diagram);
-//		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
-//			// open the diagram if not already open
-//			EditorUtils.getIPageMngr().openPage(diagram);
-//		}
-//	}
+	// /**
+	// * Handle double click on a Papyrus Diagram.
+	// *
+	// * @param diagram
+	// */
+	// protected void handleDoubleClickOnDiagram(Diagram diagram) {
+	// // fjcano #287943 :: handle double click on a papyrus diagram
+	// System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
+	// + diagram);
+	// if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
+	// // open the diagram if not already open
+	// EditorUtils.getIPageMngr().openPage(diagram);
+	// }
+	// }
 
 	/**
 	 * Handle double click on a GMF Diagram.
 	 * 
 	 * @param diagram
 	 */
-	protected void handleDoubleClickOnDiagram(
-			Diagram diagram) {
+	protected void handleDoubleClickOnDiagram(Diagram diagram) {
 		// fjcano #287943 :: handle double click on a gmf diagram
 		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
 				+ diagram);
