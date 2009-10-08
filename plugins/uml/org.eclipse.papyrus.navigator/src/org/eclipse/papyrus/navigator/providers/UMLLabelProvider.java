@@ -13,11 +13,16 @@ package org.eclipse.papyrus.navigator.providers;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.navigator.ModelNavigator;
 import org.eclipse.papyrus.navigator.internal.AdditionalResources;
+import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 
@@ -42,6 +47,15 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 
 	// private Font diagramFont = null;
 
+	protected ILabelDecorator removePrefixLabelDecorator = null;
+
+	protected ILabelDecorator getRemovePrefixLabelDecorator() {
+		if (removePrefixLabelDecorator == null) {
+			removePrefixLabelDecorator = new NoTypePrefixLabelDecorator();
+		}
+		return removePrefixLabelDecorator;
+	}
+
 	public UMLLabelProvider() {
 		super(UMLComposedAdapterFactory.getAdapterFactory());
 	}
@@ -52,12 +66,10 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 
 	public void restoreState(IMemento memento) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void saveState(IMemento memento) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public String getDescription(Object anElement) {
@@ -88,16 +100,17 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 	 */
 	@Override
 	public String getText(Object element) {
+		String text = null;
 		if (element instanceof AdditionalResources) {
-			return "Additional Resources";
+			text = "Additional Resources";
 		}
 
 		// if (object instanceof IFile)
 		// return ((IFile) object).getName();
 
-		if (element instanceof Diagram) {
+		else if (element instanceof Diagram) {
 			Diagram diagram = (Diagram) element;
-			return super.getText(diagram);
+			text = super.getText(diagram);
 
 			// if (diagram.getSemanticModel() instanceof
 			// CoreSemanticModelBridge) {
@@ -109,11 +122,20 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 		}
 
 		// fjcano #290422 :: grouping of children by type
-		if (element instanceof PackagingNode) {
-			return new GroupableLabelProvider().getText(element);
+		else if (element instanceof PackagingNode) {
+			text = new GroupableLabelProvider().getText(element);
 		}
 
-		return super.getText(element);
+		else {
+			text = super.getText(element);
+		}
+
+		if (getModelNavigator() != null
+				&& getModelNavigator().isRemovePrefixTypeEnabled()) {
+			text = getRemovePrefixLabelDecorator().decorateText(text, element);
+		}
+
+		return text;
 	}
 
 	/**
@@ -175,5 +197,28 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 	// }
 	// super.dispose();
 	// }
+
+	/**
+	 * Gets the <CommonNavigator>. This content provider is associated to, via
+	 * the viewer ID.
+	 * 
+	 * @return the common navigator
+	 */
+	protected CommonNavigator getCommonNavigator() {
+		IViewPart part = NavigatorUtils.findViewPart(getViewerID());
+		if (part instanceof CommonNavigator) {
+			return ((CommonNavigator) part);
+		}
+		return null;
+	}
+
+	protected ModelNavigator getModelNavigator() {
+		CommonNavigator nav = getCommonNavigator();
+		return nav instanceof ModelNavigator ? (ModelNavigator) nav : null;
+	}
+
+	protected String getViewerID() {
+		return contentExtensionSite.getExtensionStateModel().getViewerId();
+	}
 
 }
