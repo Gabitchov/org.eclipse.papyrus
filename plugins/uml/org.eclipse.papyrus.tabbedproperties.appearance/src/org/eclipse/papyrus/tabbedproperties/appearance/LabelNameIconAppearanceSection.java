@@ -9,18 +9,20 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Thibault Landré (Atos Origin) - fix Bug 291799
  *
  *****************************************************************************/
 package org.eclipse.papyrus.tabbedproperties.appearance;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractModelerPropertySection;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.BackboneContext;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.umlutils.ui.command.SetNameLabelIconCommand;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
@@ -31,15 +33,12 @@ import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.part.IContributedContentsView;
-import org.eclipse.ui.views.contentoutline.ContentOutline;
-import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 /**
  * The Class QualifiedNameAppearanceSection allow users to customize the display of qualified name.
  */
-public class LabelNameIconAppearanceSection extends AbstractPropertySection {
+public class LabelNameIconAppearanceSection extends AbstractModelerPropertySection {
 
 	/**
 	 * The stereotype appearance.
@@ -49,18 +48,14 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 	/**
 	 * The button Gradient appearance.
 	 */
-	private org.eclipse.swt.widgets.Button checboxElementIconAppearence;
+	private org.eclipse.swt.widgets.Button checkBox;
 
 	/**
 	 * The combo stereotype appearance listener.
 	 */
-	private SelectionListener cheboxElementIconAppearanceListener;
+	private SelectionListener checkBoxListener;
 
 	private GraphicalEditPart editPart;
-
-	private IMultiDiagramEditor editor;
-
-	private TransactionalEditingDomain editingDomain;
 
 	/**
 	 * Creates the controls.
@@ -76,44 +71,35 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 		Composite composite = getWidgetFactory().createFlatFormComposite(parent);
 		FormData data;
 
-		ElementIconLabel = getWidgetFactory().createCLabel(composite, "Element icon :"); //$NON-NLS-1$
+		ElementIconLabel = getWidgetFactory().createCLabel(composite, "Element icon :");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		ElementIconLabel.setLayoutData(data);
 
-		checboxElementIconAppearence = getWidgetFactory().createButton(composite, "", SWT.CHECK);
+		checkBox = getWidgetFactory().createButton(composite, "", SWT.CHECK);
 
 		data = new FormData();
 		data.left = new FormAttachment(ElementIconLabel, 0);
 		data.top = new FormAttachment(ElementIconLabel, 1, SWT.CENTER);
-		checboxElementIconAppearence.setLayoutData(data);
+		checkBox.setLayoutData(data);
 
-		cheboxElementIconAppearanceListener = new SelectionListener() {
+		checkBoxListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				if (editPart != null) {
-					if (((View) editPart.getModel()) != null) {
-
-						Boolean isChecked = checboxElementIconAppearence.getSelection();
-
-						// createProperty value
-						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
-						// command creation
-						if (editingDomain != null) {
-							editingDomain.getCommandStack().execute(
-									new SetNameLabelIconCommand(editingDomain, ((EModelElement) editPart.getModel()),
-											isChecked));
+				List inputs = getInput();
+				for (Object input : inputs) {
+					if (input instanceof IGraphicalEditPart) {
+						IGraphicalEditPart gep = (IGraphicalEditPart)input;
+						if(gep.getModel() instanceof View){
+							getEditingDomain().getCommandStack().execute(new SetNameLabelIconCommand(getEditingDomain(), (View)gep.getModel(), checkBox.getSelection()));
 						}
-
-						refresh();
 					}
 				}
 			}
-
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		};
-		checboxElementIconAppearence.addSelectionListener(cheboxElementIconAppearanceListener);
+		checkBox.addSelectionListener(checkBoxListener);
 
 	}
 
@@ -125,31 +111,17 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 	 */
 	@Override
 	public void refresh() {
-		if ((!checboxElementIconAppearence.isDisposed())) {
-
-			checboxElementIconAppearence.removeSelectionListener(cheboxElementIconAppearanceListener);
-
+		if ((!checkBox.isDisposed())) {
 			if (editPart != null) {
-
 				if ((editPart.getModel()) != null) {
-					checboxElementIconAppearence.setSelection(NameLabelIconHelper
-							.getNameLabelIconValue((EModelElement) editPart.getModel()));
+					checkBox.setSelection(NameLabelIconHelper
+							.showLabelIcon((EModelElement) editPart.getModel()));
 
 				} else {
-					checboxElementIconAppearence.setEnabled(false);
+					checkBox.setEnabled(false);
 				}
 			}
 		}
-		checboxElementIconAppearence.addSelectionListener(cheboxElementIconAppearanceListener);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void dispose() {
-		super.dispose();
-		if (checboxElementIconAppearence != null && !checboxElementIconAppearence.isDisposed())
-			checboxElementIconAppearence.removeSelectionListener(cheboxElementIconAppearanceListener);
 	}
 
 	/**
@@ -161,21 +133,7 @@ public class LabelNameIconAppearanceSection extends AbstractPropertySection {
 		// look for modelManager
 		if (input instanceof GraphicalEditPart) {
 			editPart = ((GraphicalEditPart) input);
-			// selectionChanged(selection);
 		}
-		// When the selection is computed from the outline, get the associated editor
-		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part)
-					.getAdapter(IContributedContentsView.class));
-			if (contributedView != null) {
-				part = (IWorkbenchPart) contributedView.getContributingPart();
-			}
-		}
-		if (part instanceof IMultiDiagramEditor) {
-			editor = (IMultiDiagramEditor) part;
-			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
-		} else
-			editingDomain = null;
 	}
 
 }
