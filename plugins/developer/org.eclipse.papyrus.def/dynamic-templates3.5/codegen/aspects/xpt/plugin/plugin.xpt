@@ -18,6 +18,7 @@
 «EXTENSION xpt::GenEditorGenerator»
 
 «EXTENSION xpt::preferences::PrefsConstant»
+«EXTENSION xpt::editor::palette::Utils»
 
 «DEFINE category FOR gmfgen::GenDiagram»«getDiagramPreferencePageCategory()».«editorGen.modelID»«ENDDEFINE»
 
@@ -34,6 +35,9 @@
 «EXPAND xpt::plugin::plugin::menu-»
 «EXPAND xpt::plugin::plugin::validation FOR editorGen.diagram-»
 «EXPAND xpt::plugin::plugin::metrics FOR editorGen.metrics-»
+«REM»RS: redefine palette generation«ENDREM»
+«EXPAND palettePredefinedEntries FOR editorGen-»
+«EXPAND paletteEntries FOR editorGen-»
 «EXPAND xpt::diagram::preferences::extensions::extensions FOR editorGen.diagram-»
 «EXPAND xpt::propsheet::extensions::extensions FOR editorGen.propertySheet-»
 «EXPAND preferencePages FOR editorGen.diagram-»
@@ -206,4 +210,82 @@
             name="«self»" />	
 «ENDDEFINE»
 
- 
+«REM»RS: redefine palette generation, using predefined entries«ENDREM»
+«DEFINE palettePredefinedEntries FOR gmfgen::GenEditorGenerator»
+	«EXPAND xpt::Common::xmlGeneratedTag»
+	<extension
+		id="«plugin.name».palettedefinition"
+		name="«plugin.name» Predefined Entries"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+			
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Lowest"/>
+      		<contribution
+            	factoryClass="«self.diagram.palette.packageName».«self.diagram.palette.factoryClassName»">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+				«EXPAND predefinedEntryDefinition FOREACH collectTools(diagram.palette)»
+			</contribution>
+			<editor id="«plugin.iD»"/>
+		</paletteProvider>	
+			
+	</extension>
+«ENDDEFINE»
+
+«DEFINE predefinedEntryDefinition  FOR gmfgen::AbstractToolEntry-»
+	<entry
+       defineOnly="true"
+       description="«self.description»"
+       id=«IF id.isQuoted('\"')»«id»«ELSE»"«id»"«ENDIF»
+       kind="tool"
+       label="«self.title»"
+       large_icon="«largeIconPath»"
+       path=""
+       small_icon="«smallIconPath»">
+ 	</entry>
+«ENDDEFINE»
+
+«REM»RS: redefine palette generation, using predefined entries«ENDREM»
+«DEFINE paletteEntries FOR gmfgen::GenEditorGenerator»
+	«EXPAND xpt::Common::xmlGeneratedTag»
+	<extension
+		id="«plugin.name».standard"
+		name="«plugin.name» Standard Palette"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+			
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Low"/>
+      		<contribution
+            	factoryClass="«self.diagram.palette.packageName».«self.diagram.palette.factoryClassName»">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+				«EXPAND groupUsage FOREACH collectGroups(diagram.palette)»
+			</contribution>
+			<editor id="«plugin.iD»"/>
+		</paletteProvider>	
+			
+	</extension>
+«ENDDEFINE»
+
+«DEFINE groupUsage FOR gmfgen::ToolGroup-»
+	<entry
+       description="«self.description»"
+       id=«IF id.isQuoted('\"')»«id»«ELSE»"«id»"«ENDIF»
+       kind="drawer"
+       label="«self.title»"
+       large_icon="«largeIconPath»"
+       path="/"
+       small_icon="«smallIconPath»">
+ 	</entry>
+ 	«REM» TODO: call sub entries...«ENDREM» 
+ 	«EXPAND toolUsage(self) FOREACH self.entries»
+«ENDDEFINE»
+
+«DEFINE toolUsage (gmfgen::ToolGroup group)  FOR gmfgen::ToolEntry-»
+ 	<predefinedEntry
+          id=«IF id.isQuoted('\"')»«id»«ELSE»"«id»"«ENDIF»
+          path="«group.id.getToolPath()»">
+    </predefinedEntry>
+«ENDDEFINE»

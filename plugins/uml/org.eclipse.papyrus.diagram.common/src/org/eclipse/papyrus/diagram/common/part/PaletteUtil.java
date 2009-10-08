@@ -36,7 +36,6 @@ public class PaletteUtil {
 	 *            the id of the parent container
 	 * @return the parent
 	 */
-	@SuppressWarnings("unchecked")
 	public static PaletteContainer getContainerByID(PaletteContainer container, String parentID) {
 		// check this element is the searched parent;
 		if (parentID.equals(container.getId())) {
@@ -63,13 +62,20 @@ public class PaletteUtil {
 	 *            the id of the parent container
 	 * @return the parent
 	 */
-	@SuppressWarnings("unchecked")
 	public static PaletteContainer getContainerByID(PaletteEntry entry, String parentID) {
 		// retrieve the root
 		PaletteContainer root = getRoot(entry);
 		return getContainerByID(root, parentID);
 	}
 
+	/**
+	 * Return the child containers directly contained by the specified container
+	 * 
+	 * @param container
+	 *            the container to look in.
+	 * @return the list of directly contained elements
+	 */
+	@SuppressWarnings("unchecked")
 	public static List<PaletteContainer> getDirectChildContainers(PaletteContainer container) {
 		List<PaletteContainer> containers = new ArrayList<PaletteContainer>();
 		Iterator<PaletteEntry> it = container.getChildren().iterator();

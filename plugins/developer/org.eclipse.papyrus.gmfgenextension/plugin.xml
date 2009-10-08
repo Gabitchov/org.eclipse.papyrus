@@ -65,6 +65,27 @@
                        </objectClass>
                     </enablement>
          </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddSmallAndLargeIconForPaletteAction"
+                                enablesFor="*"
+                                icon="icons/palette_view.gif"
+                                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.addsmallandlargeiconstopalette"
+                                label="Add Icons to Palette Elements"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/iconsManagement">
+                             <enablement>
+                                <or>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.ToolGroup">
+                                   </objectClass>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.Palette">
+                                   </objectClass>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.ToolEntry">
+                                   </objectClass>
+                                </or>
+                             </enablement>
+                          </action>
       </objectContribution>
    </extension>
 

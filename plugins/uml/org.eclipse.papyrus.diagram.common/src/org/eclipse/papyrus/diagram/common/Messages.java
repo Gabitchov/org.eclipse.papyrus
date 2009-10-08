@@ -89,4 +89,13 @@ public class Messages extends NLS {
 
 	/** Tooltip for the remove button */
 	public static String PapyrusPaletteCustomizerDialog_RemoveButtonTooltip;
+
+	/** LAbel for the standard group */
+	public static String StandardGroup_Label;
+
+	/** label for the palette action in the palette viewer menu */
+	public static String Palette_Action_Label;
+
+	/** tooltip for the palette action in the palette viewer menu */
+	public static String Palette_Action_Tooltip;
 }

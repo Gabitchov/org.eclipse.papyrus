@@ -19,6 +19,7 @@
  <extension-point id="editorAssistantProvider" name="editorAssistantProvider" schema="schema/editorAssistantProvider.exsd"/>
  <extension-point id="viewInfo" name="viewInfo" schema="schema/viewInfo.exsd"/>
  <extension-point id="moskittEditorFactory" name="moskittEditorFactory" schema="schema/moskittEditorFactory.exsd"/>
+ <extension-point id="paletteDefinition" name="PaletteDefinition" schema="schema/paletteDefinition.exsd"/>
    <!--
    <extension
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">

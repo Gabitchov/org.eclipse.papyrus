@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.diagram.common" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.diagram.common" id="paletteDefinition" name="PaletteDefinition"/>
+      </appInfo>
+      <documentation>
+         This extension point describes the content of a palette. It completes the information given by the standard GMF extension point.
+      </documentation>
+   </annotation>
+
+   <include schemaLocation="schema://org.eclipse.papyrus.core.adaptor.gmf/schema/nestedEditor.exsd"/>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="paletteDefinition"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="paletteDefinition">
+      <complexType>
+         <sequence>
+            <element ref="Priority"/>
+            <element ref="editor" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of this palette definition
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="ID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  ID of this palette definition. Must be unique.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="provider" type="string">
+            <annotation>
+               <documentation>
+                  provider for this palette definition
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="path" type="string" use="required">
+            <annotation>
+               <documentation>
+                  path of the xml file in charge of this palette definition
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  Icon for this palette definition
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The provider class.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="Priority">
+      <annotation>
+         <documentation>
+            The description for the priority of the palette provider
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" use="required">
+            <annotation>
+               <documentation>
+                  The priority of the provider. It can be one of the following values:
+&lt;Lowest, Low, Medium, High, Highest&gt;. Consideration of dependencies has to be done when choosing the priority. A provider that adds contributions to paths (menus | groups) contributed by other providers has to have a higher priority than them. Similarly, a provider that contributes palette entries that have been predefined by other providers has to have a higher priority than them.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Lowest">
+                  </enumeration>
+                  <enumeration value="Low">
+                  </enumeration>
+                  <enumeration value="Medium">
+                  </enumeration>
+                  <enumeration value="High">
+                  </enumeration>
+                  <enumeration value="Highest">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editor">
+      <annotation>
+         <documentation>
+            A descriptor for the targetted editor.  The editor is not required when predefining palette entries.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The published id of the targetted editor. Although this field is optional, at least one of the two fields (id &amp; class) has to be specified.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a class/interface that is assignable from or adaptable to the target editor.  The name could be followed (between paranthesis &quot;()&quot;) by the id of a plugin whose classloader is able to load that class. The finaly syntax is:
+className&lt;(plugin id)&gt;?
+
+Although this field is optional, at least one of the two fields (id &amp; class) has to be specified.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.7.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         See standard Papyrus diagram editors.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         /*****************************************************************************
+ * Copyright (c) 2009 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+      </documentation>
+   </annotation>
+
+</schema>

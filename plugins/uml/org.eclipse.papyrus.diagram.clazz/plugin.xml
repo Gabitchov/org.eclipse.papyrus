@@ -1199,16 +1199,6 @@
             implementingClass="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor">
       </actionBarContributor>
    </extension>
-      <extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-  <paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-    <Priority name="High"/>
-      <contribution>
-     	<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-	<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-	<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-      </contribution>
-  </paletteProvider>
-</extension>
    <!--extension
          point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
       <editpolicyProvider
@@ -1355,9 +1345,9 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.OperationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.OperationPreferencePage"
-            name="Operation" />	
+			class="org.eclipse.papyrus.diagram.clazz.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.PropertyPreferencePage"
+            name="Property" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -1369,135 +1359,9 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.ModelPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ModelPreferencePage"
-            name="Model" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
-            name="Association" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
-            name="ShortCutDiagram" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
-            name="InstanceSpecification" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ConstraintPreferencePage"
-            name="Constraint" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
-            name="EnumerationLiteral" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PropertyPreferencePage"
-            name="Property" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
-            name="Dependency" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.PrimitiveTypePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PrimitiveTypePreferencePage"
-            name="PrimitiveType" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.SlotPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.SlotPreferencePage"
-            name="Slot" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
-            name="AssociationClass" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.PackagePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PackagePreferencePage"
-            name="Package" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.ComponentPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ComponentPreferencePage"
-            name="Component" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateParameterPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateParameterPreferencePage"
-            name="TemplateParameter" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.SignalPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.SignalPreferencePage"
-            name="Signal" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.CommentPreferencePage"
             name="Comment" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationPreferencePage"
-            name="Enumeration" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
-            name="Interface" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.ReceptionPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ReceptionPreferencePage"
-            name="Reception" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -1516,12 +1380,194 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
+            name="EnumerationLiteral" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ComponentPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ComponentPreferencePage"
+            name="Component" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.PackagePreferencePage"
+            name="Package" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.SignalPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.SignalPreferencePage"
+            name="Signal" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
+            name="Interface" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
+            name="ShortCutDiagram" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ReceptionPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ReceptionPreferencePage"
+            name="Reception" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateParameterPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateParameterPreferencePage"
+            name="TemplateParameter" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
+            name="Dependency" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.PrimitiveTypePreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.PrimitiveTypePreferencePage"
+            name="PrimitiveType" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationPreferencePage"
+            name="Enumeration" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.SlotPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.SlotPreferencePage"
+            name="Slot" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
+            name="InstanceSpecification" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
+            name="AssociationClass" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ConstraintPreferencePage"
+            name="Constraint" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
+            name="Association" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.OperationPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.OperationPreferencePage"
+            name="Operation" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ModelPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ModelPreferencePage"
+            name="Model" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.RedefinableTemplateSignaturePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.RedefinableTemplateSignaturePreferencePage"
             name="RedefinableTemplateSignature" />	
 	
 
 
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
+            name="Dependency" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationPreferencePage"
+            name="Generalization" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
+            name="TemplateBinding" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
+            name="AssociationClass" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
+            name="Usage" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
+            name="Association" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
+            name="Substitution" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.PackageImportPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.PackageImportPreferencePage"
+            name="PackageImport" />	
+	
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
@@ -1539,27 +1585,6 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
-            name="GeneralizationSet" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
-            name="Association" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationPreferencePage"
-            name="Generalization" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ElementImportPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ElementImportPreferencePage"
             name="ElementImport" />	
@@ -1567,9 +1592,17 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
-            name="Dependency" />	
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
+            name="ProfileApplication" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
+            name="GeneralizationSet" />	
+	
 	
 	
 			<?gmfgen generated="true"?>
@@ -1581,52 +1614,9 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
-            name="Usage" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
             name="InterfaceRealization" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
-            name="TemplateBinding" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.PackageImportPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PackageImportPreferencePage"
-            name="PackageImport" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
-            name="Substitution" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
-            name="AssociationClass" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
-            name="ProfileApplication" />	
-	
 	
 
 </extension>
@@ -1709,5 +1699,662 @@
       </context>
    </editpartProvider>
 </extension>
+<extension
+		id="PapyrusUMLClassDiagram.palettedefinition"
+		name="PapyrusUMLClassDiagram Predefined Entries"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+			
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Lowest"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.clazz.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       defineOnly="true"
+       description="Create a model"
+       id="clazz.tool.model"
+       kind="tool"
+       label="Model"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Package"
+       id="clazz.tool.package"
+       kind="tool"
+       label="Package"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a constraint"
+       id="clazz.tool.constraint"
+       kind="tool"
+       label="Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a constraint link"
+       id="clazz.tool.constraintLink"
+       kind="tool"
+       label="Constraint link"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a comment"
+       id="clazz.tool.comment"
+       kind="tool"
+       label="Comment"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a comment link"
+       id="clazz.tool.commentlink"
+       kind="tool"
+       label="Comment link"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a new Class"
+       id="clazz.tool.class"
+       kind="tool"
+       label="Class"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a component"
+       id="clazz.tool.component"
+       kind="tool"
+       label="Component"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a new DataType"
+       id="clazz.tool.datatype"
+       kind="tool"
+       label="DataType"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an enumeration"
+       id="clazz.tool.enumeration"
+       kind="tool"
+       label="Enumeration"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an interface"
+       id="clazz.tool.interface"
+       kind="tool"
+       label="Interface"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Primitivetype"
+       id="clazz.tool.primitivetype"
+       kind="tool"
+       label="PrimitiveType"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a signal"
+       id="clazz.tool.signal"
+       kind="tool"
+       label="Signal"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an InstanceSpecification"
+       id="clazz.tool.instancespecification"
+       kind="tool"
+       label="InstanceSpecification"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Abstraction"
+       id="clazz.tool.abstraction"
+       kind="tool"
+       label="Abstraction"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an association"
+       id="clazz.tool.association"
+       kind="tool"
+       label="Association"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an association branch"
+       id="clazz.tool.associationbranch"
+       kind="tool"
+       label="AssociationBranch"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="AssociationClass"
+       id="clazz.tool.associationclass"
+       kind="tool"
+       label="AssociationClass"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a dependency"
+       id="clazz.tool.dependency"
+       kind="tool"
+       label="Dependency"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a dependency branch"
+       id="clazz.tool.dependencybranch"
+       kind="tool"
+       label="DependencyBranch"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a  elementImport"
+       id="clazz.tool.elementimport"
+       kind="tool"
+       label="ElementImport"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description=" Create a generalization"
+       id="clazz.tool.generalization"
+       kind="tool"
+       label="Generalization"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an InterfaceRealization"
+       id="clazz.tool.interfacerealization"
+       kind="tool"
+       label="InterfaceRealization"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description=" Create a packageImport"
+       id="clazz.tool.packageimport"
+       kind="tool"
+       label="PackageImport"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a packageMerge"
+       id="clazz.tool.packagemerge"
+       kind="tool"
+       label="PackageMerge"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a profileApplication"
+       id="clazz.tool.profileapplication"
+       kind="tool"
+       label="ProfileApplication"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Realization"
+       id="clazz.tool.realization"
+       kind="tool"
+       label="Realization"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a substitution"
+       id="clazz.tool.substitution"
+       kind="tool"
+       label="Substitution"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Usage"
+       id="clazz.tool.usage"
+       kind="tool"
+       label="Usage"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a TemplateBinding"
+       id="clazz.tool.templatebinding"
+       kind="tool"
+       label="TemplateBinding"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="GeneralizationSet"
+       id="clazz.tool.generalizationset"
+       kind="tool"
+       label="GeneralizationSet"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an InstanceSpecification"
+       id="clazz.tool.instancespecificationlink"
+       kind="tool"
+       label="InstanceSpecification"
+       large_icon="icons/obj16/InstanceLink.gif"
+       path=""
+       small_icon="icons/obj16/InstanceLink.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a reception"
+       id="clazz.tool.reception"
+       kind="tool"
+       label="Reception"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a new Property"
+       id="clazz.tool.property"
+       kind="tool"
+       label="Property"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an operation"
+       id="clazz.tool.operation"
+       kind="tool"
+       label="Operation"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Slot"
+       id="clazz.tool.slot"
+       kind="tool"
+       label="Slot"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an enumeration literal"
+       id="clazz.tool.enumerationliteral"
+       kind="tool"
+       label="Enumeration literal"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a RedefinableTemplateSignature"
+       id="clazz.tool.redefinabletemplatesignature"
+       kind="tool"
+       label="RedefinableTemplateSignature"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a templateParameter"
+       id="clazz.tool.templateparameter"
+       kind="tool"
+       label="TemplateParameter"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a ClassifiertemplateParameter"
+       id="clazz.tool.classifiertemplateparameter"
+       kind="tool"
+       label="ClassifierTemplateParameter"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif">
+ 	</entry>
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.clazz"/>
+		</paletteProvider>	
+			
+	</extension>
+
+<extension
+		id="PapyrusUMLClassDiagram.standard"
+		name="PapyrusUMLClassDiagram Standard Palette"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+			
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Low"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.clazz.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       description="Packages and Constraints"
+       id="clazz.group.packages"
+       kind="drawer"
+       label="Packages"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="clazz.tool.model"
+          path="/clazz.group.packages">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.package"
+          path="/clazz.group.packages">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.constraint"
+          path="/clazz.group.packages">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.constraintLink"
+          path="/clazz.group.packages">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.comment"
+          path="/clazz.group.packages">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.commentlink"
+          path="/clazz.group.packages">
+    </predefinedEntry>
+
+	<entry
+       description="All Classifiers"
+       id="clazz.group.classifiers"
+       kind="drawer"
+       label="Classifiers"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="clazz.tool.class"
+          path="/clazz.group.classifiers">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.component"
+          path="/clazz.group.classifiers">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.datatype"
+          path="/clazz.group.classifiers">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.enumeration"
+          path="/clazz.group.classifiers">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.interface"
+          path="/clazz.group.classifiers">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.primitivetype"
+          path="/clazz.group.classifiers">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.signal"
+          path="/clazz.group.classifiers">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.instancespecification"
+          path="/clazz.group.classifiers">
+    </predefinedEntry>
+
+	<entry
+       description="All Relationships"
+       id="clazz.group.relationships"
+       kind="drawer"
+       label="RelationShips"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="clazz.tool.abstraction"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.association"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.associationbranch"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.associationclass"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.dependency"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.dependencybranch"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.elementimport"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.generalization"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.interfacerealization"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.packageimport"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.packagemerge"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.profileapplication"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.realization"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.substitution"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.usage"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.templatebinding"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.generalizationset"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.instancespecificationlink"
+          path="/clazz.group.relationships">
+    </predefinedEntry>
+
+	<entry
+       description="All Features"
+       id="clazz.group.features"
+       kind="drawer"
+       label="Features"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="clazz.tool.reception"
+          path="/clazz.group.features">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.property"
+          path="/clazz.group.features">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.operation"
+          path="/clazz.group.features">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.slot"
+          path="/clazz.group.features">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.enumerationliteral"
+          path="/clazz.group.features">
+    </predefinedEntry>
+
+	<entry
+       description="Elements to add templates"
+       id="clazz.group.templates"
+       kind="drawer"
+       label="Template"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="clazz.tool.redefinabletemplatesignature"
+          path="/clazz.group.templates">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.templateparameter"
+          path="/clazz.group.templates">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.classifiertemplateparameter"
+          path="/clazz.group.templates">
+    </predefinedEntry>
+
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.clazz"/>
+		</paletteProvider>	
+			
+	</extension>
+
+
+
+
+
 
 </plugin>
