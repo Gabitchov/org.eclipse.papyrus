@@ -23,7 +23,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.OperationUtil;
 import org.eclipse.swt.graphics.Image;
@@ -35,8 +34,16 @@ import org.eclipse.uml2.uml.Property;
  */
 public class OperationLabelHelper extends StereotypedElementLabelHelper {
 
+	/**
+	 * singelton instance
+	 */
 	private static OperationLabelHelper labelHelper;
 
+	/**
+	 * Returns the singleton instance of this class
+	 * 
+	 * @return the singleton instance.
+	 */
 	public static OperationLabelHelper getInstance() {
 		if (labelHelper == null) {
 			labelHelper = new OperationLabelHelper();
@@ -47,13 +54,21 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	/** Map for masks */
 	protected final Map<Integer, String> masks = new HashMap<Integer, String>(7);
 
+	/**
+	 * Creates a new Operation label helper.
+	 */
 	protected OperationLabelHelper() {
 		// initialize the map
 		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
 		masks.put(ICustomAppearence.DISP_NAME, "Name");
+		masks.put(ICustomAppearence.DISP_PARAMETER_NAME, "Parameters Name");
 		masks.put(ICustomAppearence.DISP_PARAMETER_DIRECTION, "Parameters Direction");
 		masks.put(ICustomAppearence.DISP_PARAMETER_TYPE, "Parameters Type");
+		masks.put(ICustomAppearence.DISP_PARAMETER_MULTIPLICITY, "Parameters Multiplicity");
+		masks.put(ICustomAppearence.DISP_PARAMETER_DEFAULT, "Parameters Default Value");
+		masks.put(ICustomAppearence.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
 		masks.put(ICustomAppearence.DISP_MOFIFIERS, "Modifiers");
+
 	}
 
 	/**

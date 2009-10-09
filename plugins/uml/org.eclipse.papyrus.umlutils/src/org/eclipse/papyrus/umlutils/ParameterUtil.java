@@ -64,6 +64,9 @@ public class ParameterUtil {
 
 		// type
 		if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_TYPE)) {
+			if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_NAME)) {
+				label.append(": ");
+			}
 			label.append(TypedElementUtil.getTypeAsString(parameter));
 		}
 

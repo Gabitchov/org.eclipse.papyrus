@@ -114,13 +114,14 @@ public class OperationUtil {
 		while (paramIterator.hasNext()) {
 			Parameter parameter = paramIterator.next();
 			// Do not include return parameters
-			if (!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL))
+			if (!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 
 				// get the label for this parameter
 				paramString.append(ParameterUtil.getCustomLabel(parameter, style));
 
-			if (paramIterator.hasNext()) {
-				paramString.append(", ");
+				if (paramIterator.hasNext()) {
+					paramString.append(", ");
+				}
 			}
 		}
 		return paramString.toString();

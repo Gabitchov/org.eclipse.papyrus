@@ -29,6 +29,7 @@ import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -51,6 +52,11 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		// adds a listener to the element itself, and to linked elements, like Type
 		for (Parameter parameter : getUMLElement().getOwnedParameters()) {
 			getDiagramEventBroker().addNotificationListener(parameter, this);
+
+			// should also add this element as a listener of parameter type
+			if (parameter.getType() != null) {
+				getDiagramEventBroker().addNotificationListener(parameter.getType(), this);
+			}
 		}
 	}
 
@@ -146,6 +152,10 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 		if (object.equals(operation)) {
 			notifyOperationChanged(operation, notification);
+		} else if (isParameter(object)) {
+			notifyParameterChanged(notification);
+		} else if (isParameterType(object)) {
+			notifyParameterTypeChanged(notification);
 		}
 
 		if (isMaskManagedAnnotation(object)) {
@@ -155,7 +165,124 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if (isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
+	}
 
+	/**
+	 * Checks if the given object is one of the parameter type of the operation
+	 * 
+	 * @param object
+	 *            the object to test
+	 * @return <code>true</code> if the object corresponds to the type of a parameter of the
+	 *         operation
+	 */
+	protected boolean isParameterType(Object object) {
+		if (!(object instanceof Type)) {
+			return false;
+		}
+
+		for (Parameter parameter : getUMLElement().getOwnedParameters()) {
+			if (object.equals(parameter.getType())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Checks if the given object is one of the parameter of the operation
+	 * 
+	 * @param object
+	 *            the object to test
+	 * @return <code>true</code> if the object is a parameter of the operation
+	 */
+	protected boolean isParameter(Object object) {
+		if (!(object instanceof Parameter)) {
+			return false;
+		}
+
+		return getUMLElement().getOwnedParameters().contains(object);
+	}
+
+	/**
+	 * notifies that a parameter of the operation has changed.
+	 * 
+	 * @param parameter
+	 *            the {@link Parameter} that has changed
+	 * @param notification
+	 *            the notification send when the element has been changed
+	 */
+	protected void notifyParameterChanged(Notification notification) {
+		switch (notification.getFeatureID(Parameter.class)) {
+		case UMLPackage.PARAMETER__NAME:
+		case UMLPackage.PARAMETER__DEFAULT_VALUE:
+		case UMLPackage.PARAMETER__DIRECTION:
+		case UMLPackage.PARAMETER__IS_STREAM:
+		case UMLPackage.PARAMETER__IS_ORDERED:
+		case UMLPackage.PARAMETER__LOWER:
+		case UMLPackage.PARAMETER__UPPER:
+		case UMLPackage.PARAMETER__LOWER_VALUE:
+		case UMLPackage.PARAMETER__UPPER_VALUE:
+			refreshDisplay();
+			break;
+		case UMLPackage.PARAMETER__TYPE:
+
+			switch (notification.getEventType()) {
+			// if it is added => adds listener to the type element
+			case Notification.ADD:
+			case Notification.ADD_MANY: // should never happen
+				getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
+				refreshDisplay();
+				// if it is removed => removes listener from the type element
+				break;
+
+			case Notification.REMOVE:
+			case Notification.REMOVE_MANY: // should never happen
+				getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
+				refreshDisplay();
+				break;
+			// if it is set, remove the old one and adds the new one. this is the method use when
+			// the type is set or removed...
+			case Notification.SET:
+				if (notification.getNewValue() != null) {
+					getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
+				}
+				if (notification.getOldValue() != null) {
+					getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
+				}
+				refreshDisplay();
+
+			default:
+				break;
+
+			}
+
+			break;
+		default:
+			// does nothing in other cases
+			break;
+		}
+	}
+
+	/**
+	 * notifies that a parameter of the operation has changed.
+	 * 
+	 * @param parameter
+	 *            the {@link Parameter} that has changed
+	 * @param notification
+	 *            the notification send when the element has been changed
+	 */
+	protected void notifyParameterTypeChanged(Notification notification) {
+		// should be type.class, but seems to be a bug if this is put instead.
+		switch (notification.getFeatureID(notification.getNotifier().getClass())) {
+		case UMLPackage.TYPE__NAME:
+		case UMLPackage.TYPE__TEMPLATE_PARAMETER:
+		case UMLPackage.TYPE__VISIBILITY:
+			refreshDisplay();
+			break;
+		default:
+			// does nothing in other cases
+			break;
+		}
 	}
 
 	/**
@@ -226,11 +353,17 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * 
+	 * {@inheritDoc}
 	 */
 	protected void removeAdditionalListeners() {
 		for (Parameter parameter : getUMLElement().getOwnedParameters()) {
 			getDiagramEventBroker().removeNotificationListener(parameter, this);
+
+			// remove parameter type listener
+			if (parameter.getType() != null) {
+				getDiagramEventBroker().removeNotificationListener(parameter.getType(), this);
+			}
+
 		}
 	}
 
