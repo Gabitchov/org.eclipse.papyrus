@@ -191,67 +191,6 @@
 
    
 
-   <extension point="org.eclipse.ui.preferencePages">
-
-	<page 
-			category="org.eclipse.papyrus.preferences.diagrams"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.UseCaseDiagramPreferencePage"
-			id="org.eclipse.papyrus.preferences.diagrams.usecase"
-			name="UseCase Diagram"/>
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
-            name="Actor"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
-            name="UseCase"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
-            name="Component"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
-            name="Package"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
-            name="Constraint"/>
-
-	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
-            name="Include"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
-            name="Extend"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
-            name="Generalization"/>	
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
-            name="Association"/>		
-      <page
-            category="org.eclipse.papyrus.preferences.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
-            id="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
-            name="Dependency"/>
-
-</extension>
 
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
       <?gmfgen generated="true"?>
@@ -928,32 +867,6 @@
 		<initializer class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
 	</extension>
 
-<extension point="org.eclipse.ui.preferencePages" id="prefpages">
-      <?gmfgen generated="true"?>
-      <page
-            id="org.eclipse.papyrus.preferences.diagrams.UseCase"
-            name="UseCase Diagram"
-            category="org.eclipse.papyrus.preferences.diagrams"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramGeneralPreferencePage">
-      </page>
-      
-
-
-      <page
-            id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-            category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage">
-      </page>
-
-      <page
-            id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage">
-      </page>
-
-   </extension>
 
 <extension point="org.eclipse.ui.menus" id="context-menus">
       <?gmfgen generated="true"?>
@@ -987,5 +900,166 @@
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.eclipse.papyrus.preferences.diagrams.UseCase"
+            name="UseCase Diagram"
+            category="org.eclipse.papyrus.preferences.diagrams"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramGeneralPreferencePage">
+      </page>
+      
+
+
+      <page
+            id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage"
+            name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
+            category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage">
+      </page>
+
+      <page
+            id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage"
+            name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
+            category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+
+   </extension>
+
+<extension point="org.eclipse.ui.preferencePages">
+
+
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.CommentPreferencePage"
+            name="Comment" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
+            name="Component" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
+            name="Constraint" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
+            name="Package" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
+            name="Actor" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ExtensionPointPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ExtensionPointPreferencePage"
+            name="ExtensionPoint" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
+            name="UseCase" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
+            name="ShortCutDiagram" />	
+	
+
+
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
+            name="Dependency" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
+            name="Generalization" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.UsagePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.UsagePreferencePage"
+            name="Usage" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
+            name="Association" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.PackageImportPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.PackageImportPreferencePage"
+            name="PackageImport" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.PackageMergePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.PackageMergePreferencePage"
+            name="PackageMerge" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.AbstractionPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.AbstractionPreferencePage"
+            name="Abstraction" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
+            name="Extend" />	
+	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.RealizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.RealizationPreferencePage"
+            name="Realization" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
+            name="Include" />	
+	
+
+</extension>
 
 </plugin>

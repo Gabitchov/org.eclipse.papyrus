@@ -182,10 +182,6 @@
 «REM»Generate Diagram Preference Page«ENDREM»
 «EXPAND xpt::Common::xmlGeneratedTag»
 <extension point="org.eclipse.ui.preferencePages">
-	<page 	category="«getDiagramPreferencePageCategory()»"
-			class="«preferencesPackageName».«getDiagramPreferencePageFileName(editorGen.modelID)»"
-			id="«EXPAND category»"
-			name="«editorGen.modelID» Diagram" />
 
 «REM»Generate Nodes Preference Pages«ENDREM»
 «FOREACH getAllNodes().elementType.displayName->asSet() AS string -»

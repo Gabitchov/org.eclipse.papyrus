@@ -18,7 +18,7 @@
 	Object feature = event.getFeature();
 	«EXPAND xpt::diagram::editparts::Common::handleText FOR self-»
 	«IF labelElementIcon-»
-		if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())){	
+		if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((org.eclipse.emf.ecore.EAnnotation)event.getNewValue()).getSource())){	
 			refreshLabel();
 		}
 	«ENDIF-»
