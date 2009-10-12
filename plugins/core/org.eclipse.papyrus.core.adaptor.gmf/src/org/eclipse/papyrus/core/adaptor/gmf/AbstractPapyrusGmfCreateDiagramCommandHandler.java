@@ -126,6 +126,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 						throws ExecutionException {
+					
+					CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
 					EObject model = container;
 					if (model == null) {
 						model = getRootElement(modelResource);
@@ -134,10 +136,11 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 					Diagram diagram = createDiagram(diagramResource, model, diagramName);
 
-					openDiagram(diResource, diagram);
-					// SashDiagramModelUtil.openDiagramInCurrentFolder(diResource, diagram);
-
-					return CommandResult.newOKCommandResult();
+					if(diagram != null){
+						openDiagram(diResource, diagram);
+						commandResult = CommandResult.newOKCommandResult();
+					}
+					return commandResult;
 				}
 			};
 			try {
@@ -163,22 +166,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	}
 
-	/**
-	 * Create a di2 diagram referencing the notation diagram.
-	 * 
-	 * @param notationDiagram
-	 * @return
-	 */
-	protected Diagram createNotationDiagram(Diagram notationDiagram) {
-		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
-
-		diagram.setName(notationDiagram.getName());
-		diagram.setElement(notationDiagram);
-		diagram.setType(GmfEditorFactory.GMF_DIAGRAM);
-		diagram.setVisible(true);
-
-		return diagram;
-	}
 
 	/**
 	 * Get the root element associated with canvas.
