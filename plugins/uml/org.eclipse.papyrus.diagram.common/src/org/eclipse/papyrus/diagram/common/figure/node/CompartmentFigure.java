@@ -45,7 +45,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	public CompartmentFigure(List<String> compartmentFigure, String taggedLabelValue) {
 		super(taggedLabelValue);
 
-		setLayoutManager(new CompartmentLayoutManager());
+		setLayoutManager(new AutomaticCompartmentLayoutManager());
 		setOpaque(true);
 		createContentPane(compartmentFigure);
 
@@ -60,6 +60,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 
 		for (String id : compartmentFigure) {
 			RectangleFigure newFigure = new RectangleFigure();
+			newFigure.setLayoutManager(new SubCompartmentLayoutManager());
 			//to debug graphically: newFigure.setFill(true);
 			newFigure.setFill(false);
 			newFigure.setBorder(null);
