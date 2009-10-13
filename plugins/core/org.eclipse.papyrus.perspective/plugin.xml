@@ -5,7 +5,7 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="org.eclipse.papyrus.perspective.PapyrusPerspective"
-            icon="icons/PapyrusLogo16x16.gif"
+            icon="icons/Papyrus_16x16.gif"
             id="org.eclipse.papyrus.core.perspective"
             name="Papyrus">
       </perspective>
