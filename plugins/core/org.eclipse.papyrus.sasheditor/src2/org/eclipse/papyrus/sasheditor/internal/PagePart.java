@@ -13,11 +13,11 @@
   *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
+import org.eclipse.papyrus.sasheditor.editor.IPage;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.papyrus.sasheditor.editor.IPage;
 
 /**
  * This class represent a leaf part that is a part containing an editor or a component.

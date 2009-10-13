@@ -17,13 +17,12 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
-import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
-
-import junit.framework.TestCase;
 
 
 /**

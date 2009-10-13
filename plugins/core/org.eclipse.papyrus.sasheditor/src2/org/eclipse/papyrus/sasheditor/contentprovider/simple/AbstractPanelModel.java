@@ -13,8 +13,8 @@
   *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.contentprovider.simple;
 
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 
 
 /**

@@ -13,12 +13,9 @@
   *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import org.eclipse.papyrus.sasheditor.eclipsecopy.IMultiPageEditorPart;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPartSite;
-import org.eclipse.ui.part.EditorActionBarContributor;
 
 
 /**

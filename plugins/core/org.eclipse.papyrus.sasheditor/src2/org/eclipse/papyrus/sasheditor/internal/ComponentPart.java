@@ -15,15 +15,8 @@ package org.eclipse.papyrus.sasheditor.internal;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.sasheditor.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
-import org.eclipse.papyrus.sasheditor.gef.EditorNotFoundException;
-import org.eclipse.papyrus.sasheditor.gef.InstantiationException;
-import org.eclipse.papyrus.sasheditor.gef.MultiDiagramException;
-import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
-import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -32,13 +25,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.dnd.IDropTarget;
-import org.eclipse.ui.part.EditorActionBarContributor;
-import org.eclipse.ui.part.IWorkbenchPartOrientation;
 
 
 /**

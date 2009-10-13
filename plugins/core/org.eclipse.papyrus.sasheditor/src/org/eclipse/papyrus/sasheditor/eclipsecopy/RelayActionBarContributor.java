@@ -5,7 +5,6 @@ package org.eclipse.papyrus.sasheditor.eclipsecopy;
 
 import java.util.logging.Level;
 
-import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;

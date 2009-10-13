@@ -18,7 +18,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.util.Util;
 import org.eclipse.ui.part.EditorPart;
-import org.eclipse.ui.part.PageSwitcher;
 
 /**
  * Copy used as base class of the main editor. A multi-page editor is an editor with multiple pages, each of which may contain an editor or an arbitrary SWT control.

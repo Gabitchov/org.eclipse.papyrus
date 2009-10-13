@@ -10,8 +10,19 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.sashwindows.di.*;
+import org.eclipse.papyrus.sashwindows.di.AbstractPage;
+import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.sashwindows.di.PageList;
+import org.eclipse.papyrus.sashwindows.di.PageRef;
+import org.eclipse.papyrus.sashwindows.di.PanelParent;
+import org.eclipse.papyrus.sashwindows.di.Position;
+import org.eclipse.papyrus.sashwindows.di.SashModel;
+import org.eclipse.papyrus.sashwindows.di.SashPanel;
+import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.sashwindows.di.Size;
+import org.eclipse.papyrus.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.sashwindows.di.Window;
 
 /**
  * <!-- begin-user-doc -->

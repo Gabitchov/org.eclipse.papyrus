@@ -13,7 +13,6 @@ package org.eclipse.papyrus.sasheditor.eclipsecopy;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.IPostSelectionProvider;

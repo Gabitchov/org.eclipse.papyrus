@@ -32,7 +32,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.internal.ErrorEditorPart;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;

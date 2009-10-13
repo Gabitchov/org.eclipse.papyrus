@@ -13,9 +13,9 @@
   *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashPanelModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;

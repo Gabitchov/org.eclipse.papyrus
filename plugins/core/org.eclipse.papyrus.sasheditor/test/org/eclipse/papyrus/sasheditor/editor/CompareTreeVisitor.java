@@ -9,11 +9,11 @@ import java.util.List;
 import org.eclipse.papyrus.sasheditor.internal.AbstractPart;
 import org.eclipse.papyrus.sasheditor.internal.ComponentPart;
 import org.eclipse.papyrus.sasheditor.internal.EditorPart;
+import org.eclipse.papyrus.sasheditor.internal.PartVisitor;
 import org.eclipse.papyrus.sasheditor.internal.RootPart;
 import org.eclipse.papyrus.sasheditor.internal.SashPanelPart;
 import org.eclipse.papyrus.sasheditor.internal.TabFolderPart;
 import org.eclipse.papyrus.sasheditor.internal.TabItemPart;
-import org.eclipse.papyrus.sasheditor.internal.PartVisitor;
 
 
 /**

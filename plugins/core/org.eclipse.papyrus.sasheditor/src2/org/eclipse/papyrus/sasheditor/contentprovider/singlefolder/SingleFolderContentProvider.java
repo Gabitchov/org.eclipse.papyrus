@@ -16,12 +16,12 @@ package org.eclipse.papyrus.sasheditor.contentprovider.singlefolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
-import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 
 /**

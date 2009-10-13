@@ -7,9 +7,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
  * Description of the first page

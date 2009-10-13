@@ -29,7 +29,6 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
-import org.eclipse.papyrus.sashwindows.di.PanelParent;
 import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;

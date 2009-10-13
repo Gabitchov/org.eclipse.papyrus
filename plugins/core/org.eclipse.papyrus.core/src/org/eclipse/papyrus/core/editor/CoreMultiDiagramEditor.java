@@ -40,6 +40,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
+import org.eclipse.papyrus.core.extension.diagrameditor.EditorNotFoundException;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.MultiDiagramException;
 import org.eclipse.papyrus.core.extension.editorcontext.EditorContextRegistry;

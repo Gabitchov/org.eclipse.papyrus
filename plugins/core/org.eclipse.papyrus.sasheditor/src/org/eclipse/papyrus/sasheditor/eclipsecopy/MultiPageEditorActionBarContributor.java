@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.papyrus.sasheditor.eclipsecopy;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.ui.IEditorPart;

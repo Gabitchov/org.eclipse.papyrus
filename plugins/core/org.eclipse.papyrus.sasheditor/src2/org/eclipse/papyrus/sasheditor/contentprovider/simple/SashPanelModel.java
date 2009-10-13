@@ -16,8 +16,8 @@ package org.eclipse.papyrus.sasheditor.contentprovider.simple;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashPanelModel;
 
 

@@ -16,9 +16,6 @@ package org.eclipse.papyrus.sasheditor.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.sasheditor.sash.EditorTile;
-import org.eclipse.papyrus.sasheditor.sash.ITilePart;
-
 
 /**
  * This class contains lists of parts, regardless of the part parents.

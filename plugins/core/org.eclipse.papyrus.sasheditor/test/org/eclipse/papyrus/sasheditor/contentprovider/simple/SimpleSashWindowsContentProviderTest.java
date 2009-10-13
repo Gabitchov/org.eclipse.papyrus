@@ -16,11 +16,11 @@ package org.eclipse.papyrus.sasheditor.contentprovider.simple;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.swt.SWT;
-
-import junit.framework.TestCase;
 
 
 /**

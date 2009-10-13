@@ -10,52 +10,12 @@
  *******************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal.eclipsecopy;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.eclipse.core.commands.util.Tracing;
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.ISafeRunnable;
-import org.eclipse.core.runtime.SafeRunner;
-import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.MultiPageEditorActionBarContributor;
-import org.eclipse.papyrus.sasheditor.internal.IPanelParent;
 import org.eclipse.papyrus.sasheditor.internal.AbstractPanelPart;
-import org.eclipse.papyrus.sasheditor.sash.PTabFolder;
-import org.eclipse.swt.SWT;
+import org.eclipse.papyrus.sasheditor.internal.IPanelParent;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabFolder2Adapter;
-import org.eclipse.swt.custom.CTabFolderEvent;
 import org.eclipse.swt.custom.CTabItem;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Item;
-import org.eclipse.ui.IEditorActionBarContributor;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IKeyBindingService;
-import org.eclipse.ui.INestableKeyBindingService;
-import org.eclipse.ui.IPartService;
-import org.eclipse.ui.IPropertyListener;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartSite;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.internal.PartSite;
-import org.eclipse.ui.internal.WorkbenchPlugin;
-import org.eclipse.ui.internal.misc.Policy;
-import org.eclipse.ui.internal.services.INestable;
-import org.eclipse.ui.internal.services.IServiceLocatorCreator;
-import org.eclipse.ui.part.IWorkbenchPartOrientation;
-import org.eclipse.ui.services.IDisposable;
-import org.eclipse.ui.services.IServiceLocator;
 
 /**
  * Copy of org.eclipse.ui.part.MultiPageEditorPart. Change if to be suitable has a sash leaf. A multi-page editor is an editor with multiple pages, each of which may contain an editor or an arbitrary

@@ -16,8 +16,8 @@ package org.eclipse.papyrus.sasheditor.contentprovider.singlefolder;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 
 /**

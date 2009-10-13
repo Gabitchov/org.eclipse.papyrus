@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.sasheditor.internal;
 
-import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.internal.dnd.IDropTarget;

@@ -13,7 +13,6 @@
   *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -21,7 +20,6 @@ import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * A controller associated to a tabitem in a tabfolder. This controller contains a reference to

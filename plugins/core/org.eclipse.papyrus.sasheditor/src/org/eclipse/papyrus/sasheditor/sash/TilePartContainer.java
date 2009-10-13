@@ -13,9 +13,6 @@
   *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Cursor;

@@ -16,17 +16,11 @@ package org.eclipse.papyrus.sasheditor.editor;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IWorkbenchPartSite;
-import org.eclipse.ui.internal.Workbench;
-import org.eclipse.ui.internal.WorkbenchImages;
 
 
 /**

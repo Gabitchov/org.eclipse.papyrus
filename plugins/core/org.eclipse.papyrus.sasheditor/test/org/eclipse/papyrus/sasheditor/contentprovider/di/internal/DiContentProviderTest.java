@@ -3,7 +3,7 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
+import junit.framework.TestCase;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
@@ -16,8 +16,6 @@ import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
 import org.eclipse.swt.SWT;
-
-import junit.framework.TestCase;
 
 
 /**
