@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.profile.ui.dialogs;
 
 import java.util.List;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.Viewer;

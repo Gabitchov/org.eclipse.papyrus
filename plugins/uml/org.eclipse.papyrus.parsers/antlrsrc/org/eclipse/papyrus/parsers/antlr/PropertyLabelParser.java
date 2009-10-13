@@ -8,28 +8,31 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.IntStream;
+import org.antlr.runtime.MismatchedSetException;
+import org.antlr.runtime.MismatchedTokenException;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.Parser;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
 import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
 import org.eclipse.papyrus.parsers.util.IErrorReporter;
-import org.eclipse.papyrus.parsers.util.NameException;
+import org.eclipse.papyrus.parsers.util.Messages;
 import org.eclipse.papyrus.parsers.util.MultiplicityException;
+import org.eclipse.papyrus.parsers.util.NameException;
 import org.eclipse.papyrus.parsers.util.TypeRecognitionException;
 import org.eclipse.papyrus.parsers.util.UnboundTemplateRecognitionException;
-import org.eclipse.papyrus.parsers.util.Messages;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.papyrus.umlutils.TemplateSignatureUtil;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.VisibilityKind;
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
 
 public class PropertyLabelParser extends Parser {
     public static final String[] tokenNames = new String[] {

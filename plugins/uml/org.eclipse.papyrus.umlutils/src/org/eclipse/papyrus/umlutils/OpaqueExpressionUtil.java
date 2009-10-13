@@ -14,6 +14,8 @@
 
 package org.eclipse.papyrus.umlutils;
 
+import org.eclipse.uml2.uml.OpaqueExpression;
+
 /**
  * Util class for {@link OpaqueExpression}
  */

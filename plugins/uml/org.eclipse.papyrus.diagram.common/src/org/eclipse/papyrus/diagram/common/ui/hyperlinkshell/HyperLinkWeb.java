@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
-import org.eclipse.gmf.runtime.notation.Diagram;
 
 
 public class HyperLinkWeb extends HyperlinkObject {

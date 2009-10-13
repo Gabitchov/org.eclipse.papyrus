@@ -16,7 +16,6 @@ package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;

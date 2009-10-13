@@ -1,7 +1,6 @@
 package org.eclipse.papyrus.tabbedproperties.appearance;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.jface.viewers.IFilter;
 import org.eclipse.uml2.uml.NamedElement;
 

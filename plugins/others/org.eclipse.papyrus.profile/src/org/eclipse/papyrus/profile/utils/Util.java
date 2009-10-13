@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.profile.utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,10 +32,8 @@ import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.definition.IPapyrusVersionConstants;
 import org.eclipse.papyrus.profile.definition.PapyrusDefinitionAnnotation;
-import org.eclipse.papyrus.profile.definition.ProfileRedefinition;
 import org.eclipse.papyrus.profile.definition.Version;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;

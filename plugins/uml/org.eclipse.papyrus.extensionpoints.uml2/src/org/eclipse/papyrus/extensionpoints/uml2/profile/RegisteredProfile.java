@@ -16,11 +16,9 @@ import java.util.List;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.extensionpoints.uml2.Activator;
 import org.eclipse.papyrus.extensionpoints.uml2.standard.ExtensionIds;
 import org.eclipse.papyrus.extensionpoints.uml2.standard.RegisteredElementExtensionPoint;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * Class that manages registered profile extension point

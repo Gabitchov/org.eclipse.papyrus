@@ -12,14 +12,10 @@ package org.eclipse.papyrus.navigator.actions;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
 import org.eclipse.papyrus.navigator.internal.Activator;

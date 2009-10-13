@@ -34,7 +34,6 @@ import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.Handle;
 import org.eclipse.gef.LayerConstants;
@@ -47,15 +46,11 @@ import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelper;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
-import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell2;
-import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.EditorHyperlinkWebShell;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkWeb;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkDocument;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
-import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.EditorLookForDiagram.DiagramListContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
-import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorDescriptor;
@@ -69,7 +64,6 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * The Class HyperLinkPopupBarEditPolicy can be applied on edit part to display shortcuts on

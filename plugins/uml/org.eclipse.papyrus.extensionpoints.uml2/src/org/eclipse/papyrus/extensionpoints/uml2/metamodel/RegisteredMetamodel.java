@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.extensionpoints.uml2.Activator;
-import org.eclipse.papyrus.extensionpoints.uml2.profile.RegisteredProfile;
 import org.eclipse.papyrus.extensionpoints.uml2.standard.ExtensionIds;
 import org.eclipse.papyrus.extensionpoints.uml2.standard.RegisteredElementExtensionPoint;
 

@@ -25,7 +25,6 @@ import org.eclipse.papyrus.parsers.messages.NFPMessages;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
-import org.eclipse.uml2.uml.Property;
 
 public class VSL_EnumerationLiteral_CompletionProposal implements ICompletionProposalComputer {
 

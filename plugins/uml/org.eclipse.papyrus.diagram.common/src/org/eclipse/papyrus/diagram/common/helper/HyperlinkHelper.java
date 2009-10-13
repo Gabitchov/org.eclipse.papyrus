@@ -15,8 +15,6 @@ package org.eclipse.papyrus.diagram.common.helper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;

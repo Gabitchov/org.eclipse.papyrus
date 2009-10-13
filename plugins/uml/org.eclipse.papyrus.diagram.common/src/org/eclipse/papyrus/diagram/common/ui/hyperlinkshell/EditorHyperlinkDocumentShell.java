@@ -13,10 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
-import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelper;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Display;

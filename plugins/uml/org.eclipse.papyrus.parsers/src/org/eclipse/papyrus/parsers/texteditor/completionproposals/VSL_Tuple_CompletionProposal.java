@@ -20,7 +20,6 @@ import java.util.Vector;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.osgi.internal.resolver.ComputeNodeOrder;
 import org.eclipse.papyrus.parsers.messages.NFPMessages;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Property;

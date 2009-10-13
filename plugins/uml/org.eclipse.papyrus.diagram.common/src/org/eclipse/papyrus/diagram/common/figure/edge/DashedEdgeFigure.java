@@ -16,9 +16,7 @@ package org.eclipse.papyrus.diagram.common.figure.edge;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
 /**

@@ -28,7 +28,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.diagram.common.parser.assist.FixedSetCompletionProcessor;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
 public class AppliedStereotypeParser implements ISemanticParser {

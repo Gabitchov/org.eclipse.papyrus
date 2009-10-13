@@ -16,7 +16,6 @@ package org.eclipse.papyrus.diagram.common.editparts;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
-import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
 import org.eclipse.swt.graphics.Color;

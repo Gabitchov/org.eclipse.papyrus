@@ -16,7 +16,6 @@ package org.eclipse.papyrus.diagram.common.figure.edge;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
 /**
  * future code of the CGeneralizationFigure
