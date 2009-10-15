@@ -1689,12 +1689,6 @@
       <?gmfgen generated="true"?>
    </extension>
 <extension point="org.eclipse.ui.preferencePages">
-	<page 	category="org.eclipse.papyrus.preferences.diagrams"
-			class="org.eclipse.papyrus.diagram.composite.preferences.CompositeStructureDiagramPreferencePage"
-			id="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
-			name="CompositeStructure Diagram" />
-
-
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"

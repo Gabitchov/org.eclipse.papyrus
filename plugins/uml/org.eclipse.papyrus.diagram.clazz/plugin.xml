@@ -1336,12 +1336,6 @@
       <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
       <persistent value="true"/>
    </extension><extension point="org.eclipse.ui.preferencePages">
-	<page 	category="org.eclipse.papyrus.preferences.diagrams"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.PapyrusUMLClassDiagramDiagramPreferencePage"
-			id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			name="PapyrusUMLClassDiagram Diagram" />
-
-
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
