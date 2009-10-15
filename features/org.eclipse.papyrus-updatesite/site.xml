@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.papyrus.layouttool_feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.layouttool_feature" version="0.7.0.qualifier">
+      <category name="additionalTools"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.backbone_feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.backbone_feature" version="0.7.0.qualifier">
+      <category name="backbone"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.uml_feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.uml_feature" version="0.7.0.qualifier">
+      <category name="umleditor"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.clazz_feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.diagram.clazz_feature" version="0.7.0.qualifier">
+      <category name="umldiagrams"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.composite_feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.diagram.composite_feature" version="0.7.0.qualifier">
+      <category name="umldiagrams"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.sequence_feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.diagram.sequence_feature" version="0.7.0.qualifier">
+      <category name="umldiagrams"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.usecase_feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.diagram.usecase_feature" version="0.7.0.qualifier">
+      <category name="umldiagrams"/>
+   </feature>
+   <category-def name="backbone" label="BackBone"/>
+   <category-def name="umleditor" label="UML Editor"/>
+   <category-def name="umldiagrams" label="UML Diagrams"/>
+   <category-def name="additionalTools" label="Additional Tools"/>
+</site>
