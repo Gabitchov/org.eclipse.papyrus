@@ -185,28 +185,32 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 		for (Edge edge : sourceList) {
 			IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
-			String newIdStr = getNewIdStr(anchor);
-			// If the newIdStr is null is because the anchor cannot preserve
-			// it's position as it does not fit in the new bounds of the figure
-			if (newIdStr != null)
-				hashMap.put(anchor, newIdStr);
-			else {
-				isOk = false;
-				break;
-			}
-		}
-		if (isOk) {
-			for (Edge edge : targetList) {
-				IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
+			if (anchor != null) {
 				String newIdStr = getNewIdStr(anchor);
 				// If the newIdStr is null is because the anchor cannot preserve
-				// it's position as it does not fit in the new bounds of the
-				// figure
+				// it's position as it does not fit in the new bounds of the figure
 				if (newIdStr != null)
 					hashMap.put(anchor, newIdStr);
 				else {
 					isOk = false;
 					break;
+				}
+			}
+		}
+		if (isOk) {
+			for (Edge edge : targetList) {
+				IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
+				if (anchor != null) {
+					String newIdStr = getNewIdStr(anchor);
+					// If the newIdStr is null is because the anchor cannot preserve
+					// it's position as it does not fit in the new bounds of the
+					// figure
+					if (newIdStr != null)
+						hashMap.put(anchor, newIdStr);
+					else {
+						isOk = false;
+						break;
+					}
 				}
 			}
 		}
