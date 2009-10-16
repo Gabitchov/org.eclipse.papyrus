@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -26,19 +13,22 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.CallEvent;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Event;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -95,62 +85,8 @@ public class Message2CreateCommand extends EditElementCommand {
 				getTarget());
 	}
 
-	private static CallEvent doCreateEvent()// create the callevent associated to the
-	// MessageOccurenceSpecification
-
-	{
-		CallEvent result = UMLFactory.eINSTANCE.createCallEvent();
-
-		return result;
-
-	}
-
-	private static MessageOccurrenceSpecification doCreateMessageOccurrence(Interaction interaction) {
-		MessageOccurrenceSpecification result = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
-
-		result.setEnclosingInteraction(interaction);
-		return result;
-	}
-
-	private void setupBehaviorSpec(BehaviorExecutionSpecification spec, MessageOccurrenceSpecification start,
-			MessageOccurrenceSpecification finish, Lifeline lifeline) {
-
-		setSingleCovered(spec, lifeline);
-
-		if (start != null) {
-			setSingleCovered(start, lifeline);
-			spec.setStart(start);
-
-		}
-
-		if (finish != null) {
-			setSingleCovered(finish, lifeline);
-			spec.setFinish(finish);
-
-		}
-
-	}
-
-	private void setupMesssageOccu(MessageOccurrenceSpecification start, MessageOccurrenceSpecification finish,
-			Lifeline lifeline) {
-		if (start != null) {
-			setSingleCovered(start, lifeline);
-
-		}
-
-		if (finish != null) {
-			setSingleCovered(finish, lifeline);
-		}
-	}
-
-	private void setSingleCovered(InteractionFragment fragment, Lifeline lifeline) {
-		if (!fragment.getCovereds().contains(lifeline)) {
-			fragment.getCovereds().add(lifeline);
-		}
-	}
-
 	/**
-	 * added code to create the gate , message occurence and event when a Async message is created .
+	 * added code to create the gate , message occurence and event when a Async message is created.
 	 * 
 	 * @generated-Not
 	 */
@@ -158,177 +94,185 @@ public class Message2CreateCommand extends EditElementCommand {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		// added code
-		Message newElement = null;
 
 		Interaction interaction = getContainer();
+		CallEvent callevent = UMLFactory.eINSTANCE.createCallEvent();
+		CallEvent newCallevent = (CallEvent) ((Model) (interaction.getOwner())).createPackagedElement("", callevent
+				.eClass());
+		ElementInitializers.init_CallEvent_4003(newCallevent);
+
+		Message newElement = interaction.createMessage("");
+		newElement.setMessageSort(MessageSort.ASYNCH_CALL_LITERAL);
+		interaction.getMessages().add(newElement);
+
+		MessageEnd startMsg = null;
+		MessageEnd endMsg = null;
 
 		Element diagramSource = getSource();
 		Element diagramTarget = getTarget();
-		MessageEnd domainSource;
-		MessageEnd domainTarget;
+		if ((diagramSource instanceof ExecutionSpecification || diagramSource instanceof Lifeline)
+				&& (diagramTarget instanceof ExecutionSpecification || diagramTarget instanceof Lifeline)) {
+			startMsg = doCreateMessageOccurrence(interaction, newCallevent);
+			endMsg = doCreateMessageOccurrence(interaction, newCallevent);
+			setupMessage(diagramSource, startMsg, endMsg);
+			setupMessage(diagramTarget, endMsg, startMsg);
+		} else if ((diagramSource instanceof ExecutionSpecification || diagramSource instanceof Lifeline)
+				&& (diagramTarget instanceof Interaction || diagramTarget instanceof CombinedFragment || diagramTarget instanceof InteractionUse)) {
+			startMsg = doCreateMessageOccurrence(interaction, newCallevent);
+			setupMessage(diagramSource, startMsg, null);
 
-		BehaviorExecutionSpecification sourceInvocation = null;
-		BehaviorExecutionSpecification targetExecution = null;
+			endMsg = doCreateGate(diagramTarget);
+		} else if ((diagramSource instanceof Interaction || diagramSource instanceof CombinedFragment || diagramSource instanceof InteractionUse)
+				&& (diagramTarget instanceof ExecutionSpecification || diagramTarget instanceof Lifeline)) {
+			startMsg = doCreateGate(diagramSource);
 
-		CallEvent callevent = doCreateEvent();
+			endMsg = doCreateMessageOccurrence(interaction, newCallevent);
+			setupMessage(diagramTarget, endMsg, null);
+		}
 
-		PackageableElement newCallevent = ((Model) (interaction.getOwner())).createPackagedElement("", callevent
-				.eClass());
+		if (startMsg != null && endMsg != null) {
+			configureMessage(newElement, startMsg, endMsg);
 
-		ElementInitializers.init_CallEvent_4003((CallEvent) newCallevent);
+			ElementInitializers.init_Message_4004(newElement);
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+			return CommandResult.newOKCommandResult(newElement);
+		} else {
+			return CommandResult.newCancelledCommandResult();
+		}
+	}
 
-		MessageOccurrenceSpecification msgOccurenceInvocationStart = null;
+	/**
+	 * Setup message and the element
+	 * 
+	 * @genereated NOT
+	 * @param element
+	 *            The element
+	 * @param startMsg
+	 *            Start of the message
+	 * @param endMsg
+	 *            End of the message
+	 */
+	private void setupMessage(Element element, MessageEnd startMsg, MessageEnd endMsg) {
+		// create the relationship betwen the messageOccurence and the source
+		if (element instanceof ExecutionSpecification) {
+			ExecutionSpecification start = (ExecutionSpecification) element;
 
-		MessageOccurrenceSpecification msgOccurenceInvocationEnd = null;
-
-		Gate endGate = null;
-
-		newElement = interaction.createMessage("");
-		newElement.setMessageSort(MessageSort.ASYNCH_CALL_LITERAL);
-
-		interaction.getMessages().add(newElement);
-
-		if (diagramSource instanceof BehaviorExecutionSpecification
-				&& diagramTarget instanceof BehaviorExecutionSpecification) {
-
-			BehaviorExecutionSpecification start = (BehaviorExecutionSpecification) diagramSource;
-
-			BehaviorExecutionSpecification end = (BehaviorExecutionSpecification) diagramTarget;
-
-			msgOccurenceInvocationStart = doCreateMessageOccurrence(interaction);
-			msgOccurenceInvocationEnd = doCreateMessageOccurrence(interaction);
-
-			msgOccurenceInvocationEnd.setEvent((CallEvent) newCallevent);
-			msgOccurenceInvocationStart.setEvent((CallEvent) newCallevent);
-
-			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationStart);
-			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationEnd);
-
+			// get the lifeline associated to the BehaviorExecutionSpecification
 			Lifeline sourceLL = start.getCovereds().get(0);
-			Lifeline targetLL = end.getCovereds().get(0);
 
-			setupBehaviorSpec(start, msgOccurenceInvocationStart, msgOccurenceInvocationEnd, sourceLL);
-			setupBehaviorSpec(end, msgOccurenceInvocationEnd, msgOccurenceInvocationStart, targetLL);
+			// set the relationship between the messageOccurence specificaition, the
+			// ExecutionSpecification and the lifeline
+			setupExecutionSpec(start, sourceLL, (OccurrenceSpecification) startMsg, (OccurrenceSpecification) endMsg);
+		} else {
+			setupMesssageOccu((Lifeline) element, (OccurrenceSpecification) startMsg, (OccurrenceSpecification) endMsg);
+		}
+	}
 
-			domainSource = (MessageOccurrenceSpecification) start.getStart();
-			domainTarget = (MessageOccurrenceSpecification) end.getStart();
+	/**
+	 * @generated NOT
+	 * @param interaction
+	 * @param newCallevent
+	 * @return
+	 */
+	private static MessageOccurrenceSpecification doCreateMessageOccurrence(Interaction interaction, Event event) {
+		MessageOccurrenceSpecification result = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
+		ElementInitializers.init_MessageSpecificationOccurence_4003(result);
+		result.setEnclosingInteraction(interaction);
+		result.setEvent(event);
+		return result;
+	}
 
-			if (domainSource != null && domainTarget != null) {
+	/**
+	 * @generated NOT
+	 * @param spec
+	 * @param lifeline
+	 * @param start
+	 * @param finish
+	 */
+	private void setupExecutionSpec(ExecutionSpecification spec, Lifeline lifeline, OccurrenceSpecification start,
+			OccurrenceSpecification finish) {
+		setSingleCovered(spec, lifeline);
 
-				newElement.setSendEvent(domainSource);
-				newElement.setReceiveEvent(domainTarget);
-
-				domainSource.setMessage(newElement);
-				domainTarget.setMessage(newElement);
-			}
-
+		if (start != null) {
+			setSingleCovered(start, lifeline);
+			spec.setStart(start);
 		}
 
-		if (diagramSource instanceof Lifeline && diagramTarget instanceof Lifeline) {
+		if (finish != null) {
+			setSingleCovered(finish, lifeline);
+			spec.setFinish(finish);
+		}
+	}
 
-			Lifeline start = (Lifeline) diagramSource;
-			Lifeline end = (Lifeline) diagramTarget;
-
-			msgOccurenceInvocationStart = doCreateMessageOccurrence(interaction);
-			msgOccurenceInvocationEnd = doCreateMessageOccurrence(interaction);
-
-			msgOccurenceInvocationEnd.setEvent((CallEvent) newCallevent);
-			msgOccurenceInvocationStart.setEvent((CallEvent) newCallevent);
-
-			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationStart);
-			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationEnd);
-
-			setupMesssageOccu(msgOccurenceInvocationStart, msgOccurenceInvocationEnd, start);// create
-			// the
-			// relationship
-			// betwen
-			// the
-			// messageOccurence
-			// and
-			// the
-			// source
-
-			setupMesssageOccu(msgOccurenceInvocationEnd, msgOccurenceInvocationStart, start);
-
-			if (msgOccurenceInvocationEnd != null && msgOccurenceInvocationStart != null) {
-
-				newElement.setSendEvent(msgOccurenceInvocationStart);
-				newElement.setReceiveEvent(msgOccurenceInvocationEnd);
-
-				msgOccurenceInvocationStart.setMessage(newElement);
-				msgOccurenceInvocationEnd.setMessage(newElement);
-			}
-
+	/**
+	 * @generated NOT
+	 * @param lifeline
+	 * @param start
+	 * @param finish
+	 */
+	private void setupMesssageOccu(Lifeline lifeline, OccurrenceSpecification start, OccurrenceSpecification finish) {
+		if (start != null) {
+			setSingleCovered(start, lifeline);
 		}
 
-		if (diagramSource instanceof BehaviorExecutionSpecification && diagramTarget instanceof Interaction) {
+		if (finish != null) {
+			setSingleCovered(finish, lifeline);
+		}
+	}
 
-			BehaviorExecutionSpecification start = (BehaviorExecutionSpecification) diagramSource;
-			Interaction end = (Interaction) diagramTarget;
-			Lifeline sourcell = start.getCovereds().get(0);// get the lifeline associated to the
-															// BehaviorExecutionSpecification
+	/**
+	 * @generated NOT
+	 * @param fragment
+	 * @param lifeline
+	 */
+	private void setSingleCovered(InteractionFragment fragment, Lifeline lifeline) {
+		if (!fragment.getCovereds().contains(lifeline)) {
+			fragment.getCovereds().add(lifeline);
+		}
+	}
 
-			msgOccurenceInvocationStart = doCreateMessageOccurrence(interaction);
-			endGate = end.createFormalGate("");
-			ElementInitializers.init_Gate_4003(endGate);
-			msgOccurenceInvocationStart.setEvent((CallEvent) newCallevent);
-			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationStart);
+	/**
+	 * Create gate if element is a Interaction, a Combined Fragment or a Interaction Use
+	 * 
+	 * @generated NOT
+	 * @param element
+	 *            The element
+	 * @return The gate
+	 * @throws IllegalArgumentException
+	 *             if the element is not a right element type
+	 */
+	private Gate doCreateGate(Element element) {
+		Gate gate = null;
 
-			setupBehaviorSpec(start, msgOccurenceInvocationStart, msgOccurenceInvocationEnd, sourcell);// set
-																										// the
-																										// relationship
-																										// between
-																										// the
-																										// messageOccurence
-																										// specificaition
-																										// ,
-																										// the
-																										// BehaviorExecutionSpecification
-																										// and
-																										// the
-																										// lifeline
-
-			if (msgOccurenceInvocationStart != null && endGate != null) {
-
-				newElement.setSendEvent(msgOccurenceInvocationStart);
-				newElement.setReceiveEvent(endGate);
-				endGate.setMessage(newElement);
-				msgOccurenceInvocationStart.setMessage(newElement);
-
-			}
-
+		if (element instanceof Interaction) {
+			gate = ((Interaction) element).createFormalGate("");
+		} else if (element instanceof CombinedFragment) {
+			gate = ((CombinedFragment) element).createCfragmentGate("");
+		} else if (element instanceof InteractionUse) {
+			gate = ((InteractionUse) element).createActualGate("");
+		} else {
+			throw new IllegalArgumentException("Wrong element UML type for create a gate");
 		}
 
-		if (diagramSource instanceof Lifeline && diagramTarget instanceof Interaction) {
+		ElementInitializers.init_Gate_4003(gate);
 
-			Lifeline start = (Lifeline) diagramSource;
-			Interaction end = (Interaction) diagramTarget;
+		return gate;
+	}
 
-			msgOccurenceInvocationStart = doCreateMessageOccurrence(interaction);
-			endGate = end.createFormalGate("");
-			ElementInitializers.init_Gate_4003(endGate);
-			msgOccurenceInvocationStart.setEvent((CallEvent) newCallevent);
-			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationStart);
-
-			setupMesssageOccu(msgOccurenceInvocationStart, msgOccurenceInvocationEnd, start);
-
-			if (msgOccurenceInvocationStart != null && endGate != null) {
-
-				newElement.setSendEvent(msgOccurenceInvocationStart);
-				newElement.setReceiveEvent(endGate);
-				endGate.setMessage(newElement);
-				msgOccurenceInvocationStart.setMessage(newElement);
-
-			}
-
-		}
-
-		ElementInitializers.init_Message_4003(newElement);
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
-		// end added code
+	/**
+	 * Configure message
+	 * 
+	 * @generated NOT
+	 * @param newElement
+	 * @param startMsg
+	 * @param endMsg
+	 */
+	private void configureMessage(Message newElement, MessageEnd startMsg, MessageEnd endMsg) {
+		newElement.setSendEvent(startMsg);
+		newElement.setReceiveEvent(endMsg);
+		endMsg.setMessage(newElement);
+		startMsg.setMessage(newElement);
 	}
 
 	/**

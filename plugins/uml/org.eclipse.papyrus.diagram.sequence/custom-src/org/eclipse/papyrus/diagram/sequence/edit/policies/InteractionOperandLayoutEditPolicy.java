@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -17,8 +17,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 
 /**
  * The customn LayoutEditPolicy for InteractionOperandEditPart.
@@ -42,9 +46,32 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (REQ_CREATE.equals(request.getType())) {
-			return getHost().getParent().getCommand(request);
+		EditPart combinedFragmentCompartment = getHost().getParent();
+		EditPart combinedFragment = combinedFragmentCompartment.getParent();
+		EditPart interactionCompartment = combinedFragment.getParent();
+		if (REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
+			if (UMLElementTypes.InteractionOperand_3005.equals(((CreateUnspecifiedTypeRequest) request)
+					.getElementTypes().get(0))) {
+				return combinedFragmentCompartment.getCommand(request);
+			} else if (UMLElementTypes.CombinedFragment_3004.equals(((CreateUnspecifiedTypeRequest) request)
+					.getElementTypes().get(0))) {
+				return interactionCompartment.getCommand(request);
+			} else if (UMLElementTypes.Lifeline_3001.equals(((CreateUnspecifiedTypeRequest) request).getElementTypes()
+					.get(0))) {
+				return interactionCompartment.getCommand(request);
+			}
+		} else if (request instanceof CreateConnectionViewAndElementRequest) {
+			CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest) request;
+			if (getHost().equals(createConnectionRequest.getSourceEditPart())) {
+				createConnectionRequest.setSourceEditPart(combinedFragment);
+			}
+			if (getHost().equals(createConnectionRequest.getTargetEditPart())) {
+				createConnectionRequest.setTargetEditPart(combinedFragment);
+			}
+			return combinedFragment.getCommand(request);
 		}
+
 		return super.getCommand(request);
 	}
+
 }

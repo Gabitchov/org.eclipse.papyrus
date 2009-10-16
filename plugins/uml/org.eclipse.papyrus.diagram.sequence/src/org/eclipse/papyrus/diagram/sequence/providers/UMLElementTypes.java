@@ -30,6 +30,7 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -106,6 +107,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType InteractionOperand_3005 = getElementType("org.eclipse.papyrus.diagram.sequence.InteractionOperand_3005"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ConsiderIgnoreFragment_3007 = getElementType("org.eclipse.papyrus.diagram.sequence.ConsiderIgnoreFragment_3007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -236,6 +242,8 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
 
+			elements.put(ConsiderIgnoreFragment_3007, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
+
 			elements.put(CombinedFragment_3004, UMLPackage.eINSTANCE.getCombinedFragment());
 
 			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
@@ -266,6 +274,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ActionExecutionSpecification_3006);
 			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_3003);
 			KNOWN_ELEMENT_TYPES.add(InteractionUse_3002);
+			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_3007);
 			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3004);
 			KNOWN_ELEMENT_TYPES.add(InteractionOperand_3005);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
@@ -291,6 +300,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return BehaviorExecutionSpecification_3003;
 		case InteractionUseEditPart.VISUAL_ID:
 			return InteractionUse_3002;
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return ConsiderIgnoreFragment_3007;
 		case CombinedFragmentEditPart.VISUAL_ID:
 			return CombinedFragment_3004;
 		case InteractionOperandEditPart.VISUAL_ID:

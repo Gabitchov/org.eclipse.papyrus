@@ -72,12 +72,17 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated NOT
 	 */
-	private static final String BLOCK_OPERATOR_MODIFICATION_TITLE = "Action interdite";
+	private static final String BLOCK_OPERATOR_MODIFICATION_TITLE = "Forbidden action";
 
 	/**
 	 * @generated NOT
 	 */
-	private static final String BLOCK_OPERATOR_MODIFICATION_MSG = "Il est impossible de changer le type de l'opérateur du fragment combiné\nétant donnée que le fragment combiné a plus d'un opérande";
+	private static final String BLOCK_OPERATOR_MODIFICATION_MSG = "It's impossible to change the operator kind of the combined fragment\nbecause the combined fragment has more than one operand";
+
+	/**
+	 * @generated NOT
+	 */
+	private static final InteractionOperatorKind INTERACTION_OPERATOR_COMBINED_FRAGMENT_DEFAULT_VALUE = InteractionOperatorKind.SEQ_LITERAL;
 
 	/**
 	 * @generated
@@ -90,10 +95,16 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	protected IFigure primaryShape;
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 */
+	protected InteractionOperatorKind interactionOperatorDefaultValue;
+
+	/**
+	 * @generated NOT
 	 */
 	public CombinedFragmentEditPart(View view) {
 		super(view);
+		interactionOperatorDefaultValue = INTERACTION_OPERATOR_COMBINED_FRAGMENT_DEFAULT_VALUE;
 	}
 
 	/**
@@ -136,6 +147,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	}
 
 	/**
+	 * Generated not for handle operator kind
+	 * 
 	 * @generated NOT
 	 */
 	protected IFigure createNodeShape() {
@@ -147,7 +160,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated NOT
 	 */
-	private void updateOperatorKind() {
+	protected void updateOperatorKind() {
 		String operatorKind;
 		Object obj = getModel();
 		if (obj instanceof org.eclipse.gmf.runtime.notation.Shape) {
@@ -155,7 +168,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			if (element instanceof CombinedFragment) {
 				CombinedFragment combinedFragment = (CombinedFragment) element;
 				if (combinedFragment.getInteractionOperator() == null) {
-					combinedFragment.setInteractionOperator(InteractionOperatorKind.SEQ_LITERAL);
+					combinedFragment.setInteractionOperator(interactionOperatorDefaultValue);
 				}
 				operatorKind = combinedFragment.getInteractionOperator().getName();
 				getPrimaryShape().setOperatorKindValue(operatorKind);
@@ -380,15 +393,14 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			CombinedFragment combinedFragment = (CombinedFragment) resolveSemanticElement();
 			String newStringValue = notification.getNewStringValue();
 			if (notification.getOldValue() instanceof InteractionOperatorKind
-					&& (InteractionOperatorKind.CONSIDER_LITERAL.getLiteral().equals(newStringValue) || InteractionOperatorKind.IGNORE_LITERAL
-							.getLiteral().equals(newStringValue))) {
+					&& (!isAllowedInteractionOperator(newStringValue))) {
 				combinedFragment.setInteractionOperator((InteractionOperatorKind) notification.getOldValue());
 				return;
 			}
 			EList<InteractionOperand> operands = combinedFragment.getOperands();
 			if (operands == null || operands.size() <= 1) {
 				// If CombinedFragment have no operand, we can change the OperatorKind
-				getPrimaryShape().setOperatorKindValue(newStringValue);
+				updateOperatorKind();
 			} else if (notification.getOldValue() instanceof InteractionOperatorKind
 					&& !newStringValue.equals(getPrimaryShape().getFigureInteractionLabelFigure().getText())) {
 				// TODO Improve cancelation method
@@ -424,6 +436,19 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	}
 
 	/**
+	 * Return true if the InteractionOperatorKind is allowed
+	 * 
+	 * @param interactionOperatorLiteral
+	 *            The InteractionOperator to test
+	 * @return true if allowed
+	 * @generated NOT
+	 */
+	protected boolean isAllowedInteractionOperator(String interactionOperatorLiteral) {
+		return !(InteractionOperatorKind.CONSIDER_LITERAL.getLiteral().equals(interactionOperatorLiteral) || InteractionOperatorKind.IGNORE_LITERAL
+				.getLiteral().equals(interactionOperatorLiteral));
+	}
+
+	/**
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
@@ -440,6 +465,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 																							 * >
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_4004);
 		return types;
 	}
 
@@ -480,6 +506,33 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		}
 		if (targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4003);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if (targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
 		}
 		return types;
 	}
@@ -522,6 +575,33 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if (relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if (relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
 		return types;
 	}
 
@@ -542,6 +622,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 																							 * >
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_4004);
 		return types;
 	}
 
@@ -582,6 +663,33 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 		}
 		return types;
 	}

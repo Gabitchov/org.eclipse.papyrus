@@ -16,7 +16,9 @@ package org.eclipse.papyrus.diagram.sequence.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.AbstractConnectionAnchor;
 import org.eclipse.draw2d.BorderLayout;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
@@ -24,11 +26,11 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -36,7 +38,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -63,7 +64,6 @@ import org.eclipse.papyrus.diagram.sequence.util.Notifier;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -88,6 +88,19 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure primaryShape;
+
+	/**
+	 * Notfier for listen and unlistend model element.
+	 * 
+	 * @generated NOT
+	 */
+	private Notifier notifier = new Notifier(new UIAdapterImpl() {
+
+		@Override
+		protected void safeNotifyChanged(Notification msg) {
+			handleNotificationEvent(msg);
+		}
+	});
 
 	/**
 	 * @generated
@@ -380,6 +393,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if (targetEditPart instanceof CombinedFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -399,6 +415,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if (targetEditPart instanceof CombinedFragmentEditPart) {
@@ -443,6 +462,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
@@ -462,6 +484,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.CombinedFragment_3004);
@@ -526,6 +551,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
@@ -545,6 +573,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.CombinedFragment_3004);
@@ -634,6 +665,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);
 			fFigureLifelineDotLineFigure.setLayoutManager(new XYLayout());
 
+			// TODO Put the lifeline figure at the center on its container
 		}
 
 		/**
@@ -675,7 +707,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		public RectangleFigure getFigureExecutionsContainerFigure() {
 			return fFigureExecutionsContainerFigure;
 		}
-
 	}
 
 	/**
@@ -721,85 +752,52 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		return result;
 	}
 
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
-
 		Object feature = notification.getFeature();
 
-		if (UMLPackage.eINSTANCE.getLifeline_Represents().equals(feature))// handle the case when
-		// the represent is set
-		// , and update the name
-		// of Lifeline
-		{
-			if (getModelEObject() instanceof Lifeline) {
-				if (notification.getNewValue() instanceof Property) {
+		// handle the case when the represent is set and update the name of Lifeline
+		if (UMLPackage.eINSTANCE.getLifeline_Represents().equals(feature) && getModelEObject() instanceof Lifeline) {
+			if (notification.getNewValue() instanceof Property) {
+				// handle the notification if there is changement in the class which type the
+				// propertie
+				notifier.listenEObject(((Property) notification.getNewValue()).getType());
 
-					notifier.listenEObject(((Property) notification.getNewValue()).getType());// handle
-					// the
-					// notification
-					// if there
-					// is
-					// changement
-					// in the
-					// class
-					// wich type
-					// the
-					// propertie
+				// get a listener in the property to handle the typed class is changed
+				notifier.listenEObject((Property) notification.getNewValue());
 
-					notifier.listenEObject((Property) notification.getNewValue());// get a listener
-					// in the
-					// property to handle
-					// the typed class is
-					// changed
-
-					setLifelineName(((Property) notification.getNewValue()).getType());
-				}
-				if (notification.getOldValue() instanceof Property) {
-					notifier.unlistenEObject((((Property) notification.getOldValue()).getType()));
-					notifier.unlistenEObject(((Property) notification.getOldValue()));
-
-				}
-
+				setLifelineName(((Property) notification.getNewValue()).getType());
 			}
-		}
-
-		if (UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature)) {
-			if (notification.getNewValue() instanceof Type) {// create a listener in the classs wich
-				// type the property
+			if (notification.getOldValue() instanceof Property) {
+				notifier.unlistenEObject((((Property) notification.getOldValue()).getType()));
+				notifier.unlistenEObject(((Property) notification.getOldValue()));
+			}
+		} else if (UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature)) {
+			// create a listener in the classs which type the property
+			if (notification.getNewValue() instanceof Type) {
 				notifier.listenEObject((Type) notification.getNewValue());
-				setLifelineName((Type) notification.getNewValue());
-
 			}
 			if (notification.getOldValue() instanceof Type) {
 				notifier.unlistenEObject(((Type) notification.getOldValue()));
-
 			}
 			setLifelineName((Type) notification.getNewValue());
-		}
-
-		if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
+		} else if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
 				&& notification.getNotifier().equals(getRepresentsTypeElement())) {
-
-			setLifelineName(getRepresentsTypeElement());// set the name in the lifeline if the the
-			// name of the class wich type the property
-			// is changed.
-
+			// set the name in the lifeline if the the name of the class wich type the property is
+			// changed.
+			setLifelineName(getRepresentsTypeElement());
 		}
 
 		super.handleNotificationEvent(notification);
-
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)) {
-			autoResize();
-
-		}
-
 	}
-
-	// TODO need to be refactored in super class
 
 	/**
 	 * get the Object Associated to the edit part
 	 * 
+	 * @generated NOT
 	 * @return the object Associated to the edit part
 	 */
 	private EObject getModelEObject() {
@@ -815,6 +813,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * Gets the represents type element.
 	 * 
+	 * @generated NOT
 	 * @return the type of the represented element in the lifeline
 	 */
 	private Type getRepresentsTypeElement() {
@@ -829,30 +828,10 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 *Deactivate a listener for the Lifeline to Handle notification in the typed element of the
-	 * represent Interaction
+	 * Activate a listener for the interactionUse to Handle notification in the refered Interaction
 	 * 
+	 * @generated NOT
 	 */
-
-	// private void listenEObject(EObject eObject) {
-	// // Only listen the object if it isn't yet listened
-	// if (eObject != null && !eObject.eAdapters().contains(modelListener)) {
-	// eObject.eAdapters().add(modelListener);
-	// }
-	// }
-	//
-	// private void unlistenEObject(EObject object) {
-	// // Only listen the object if it isn't yet listened
-	// if (object != null && object.eAdapters().contains(modelListener)) {
-	// object.eAdapters().remove(modelListener);
-	// }
-	// }
-
-	/**
-	 *Activate a listener for the interactionUse to Handle notification in the refered Interaction
-	 * 
-	 */
-
 	public void activate() {
 		super.activate();
 		notifier.listenEObject(getRepresentsTypeElement());
@@ -862,8 +841,10 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 
 	}
 
+	/**
+	 * @generated NOT
+	 */
 	public void deactivate() {
-
 		notifier.listenEObject(getRepresentsTypeElement());// activate the listener on
 		// the typed object in the repesent
 		if (getModelEObject() != null && getModelEObject() instanceof Lifeline) {
@@ -874,50 +855,103 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 
 	}
 
-	private Notifier notifier = new Notifier(new UIAdapterImpl() {
-
-		@Override
-		protected void safeNotifyChanged(Notification msg) {
-			handleNotificationEvent(msg);
-		}
-	});
-
+	/**
+	 * @generated NOT
+	 */
 	private void setLifelineName(Type type) {
-
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		if (((Lifeline) getModelEObject()).getName() != null) {
 			sb.append(((Lifeline) getModelEObject()).getName());
 		}
-		if (type != null) {
-			if (type.getName() != null && type.getName().length() > 0) {
-				sb.append(" : ");
-				sb.append(type.getName());
-			}
 
-		} else {
-			sb.append("");
-
+		if (type != null && type.getName() != null && type.getName().length() > 0) {
+			sb.append(" : ");
+			sb.append(type.getName());
 		}
 
 		getPrimaryShape().getFigureLifelineLabelFigure().setText(sb.toString());
 		refresh();
-
 	}
 
-	protected void autoResize() {
-
-		Font font = getPrimaryShape().getFigureLifelineLabelFigure().getFont();
-		String text = getPrimaryShape().getFigureLifelineLabelFigure().getText();
-
-		Dimension d = FigureUtilities.getTextExtents(text, font);
-
-		int newSize = d.width + 2;
-
-		Dimension size = new Dimension(newSize, getFigure().getBounds().height);
-
-		Point loc = new Point(getFigure().getBounds().x, getFigure().getBounds().y);
-
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
+		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor) super
+				.getSourceConnectionAnchor(connEditPart);
+		connectionAnchor.setOwner(getCenterFigure(getContentPane()));
+		return connectionAnchor;
 	}
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor) super.getSourceConnectionAnchor(request);
+		connectionAnchor.setOwner(getCenterFigure(getContentPane()));
+		return connectionAnchor;
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor) super
+				.getTargetConnectionAnchor(connEditPart);
+		connectionAnchor.setOwner(getCenterFigure(getContentPane()));
+		return connectionAnchor;
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor) super.getTargetConnectionAnchor(request);
+		connectionAnchor.setOwner(getCenterFigure(getContentPane()));
+		return connectionAnchor;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private RectangleFigure centerFigure;
+
+	/**
+	 * Create a figure center on a reference figure
+	 * 
+	 * @generated NOT
+	 * @param referenceFigure
+	 *            The reference figure
+	 * @return The center figure
+	 */
+	// TODO If referenceFigure is already in the center of its container, this method is useless
+	private RectangleFigure getCenterFigure(IFigure referenceFigure) {
+		if (centerFigure == null) {
+			centerFigure = new RectangleFigure();
+		}
+		
+		Rectangle bounds = referenceFigure.getBounds().getCopy();
+		bounds.x = bounds.x + bounds.width / 2;
+		bounds.width = 1;
+		centerFigure.setBounds(bounds);
+		centerFigure.setParent(referenceFigure.getParent());
+		
+		return centerFigure;
+	}
 }

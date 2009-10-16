@@ -74,6 +74,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InteractionUseName2EditPart.VISUAL_ID:
 				return new InteractionUseName2EditPart(view);
 
+			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+				return new ConsiderIgnoreFragmentEditPart(view);
+
 			case CombinedFragmentEditPart.VISUAL_ID:
 				return new CombinedFragmentEditPart(view);
 

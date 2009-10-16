@@ -142,7 +142,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 			EStructuralFeature ref = (EStructuralFeature) feature;
 			String typeName = ref.getName();
 			if (CHILDREN_TYPE.equals(typeName)) {
-				if (event.getEventType() == Notification.UNSET) {
+				if (event.getEventType() == Notification.UNSET || event.getEventType() == Notification.REMOVE) {
 					List<?> children = getChildren();
 					if (children != null && children.size() > 1) {
 						Object firstChild = children.get(0);

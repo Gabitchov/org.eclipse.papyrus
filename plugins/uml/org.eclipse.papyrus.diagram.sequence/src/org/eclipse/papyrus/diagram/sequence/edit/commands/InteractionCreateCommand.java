@@ -26,10 +26,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UseCase;
 
 /**
  * @generated
@@ -107,10 +107,9 @@ public class InteractionCreateCommand extends EditElementCommand {
 			if (((Package) elementToEdit).getPackagedElements() != null) {
 				((Package) elementToEdit).getPackagedElements().add(newElement);
 			}
-
-		} else if (elementToEdit instanceof UseCase) {// the interaction will be created in a
-			// Usecase
-			((UseCase) elementToEdit).setClassifierBehavior(newElement);
+			// the interaction will be created in a behavioredClassifier
+		} else if (elementToEdit instanceof BehavioredClassifier) {
+			((BehavioredClassifier) elementToEdit).setClassifierBehavior(newElement);
 		}
 
 		UMLElementTypes.init_Interaction_2001(newElement);

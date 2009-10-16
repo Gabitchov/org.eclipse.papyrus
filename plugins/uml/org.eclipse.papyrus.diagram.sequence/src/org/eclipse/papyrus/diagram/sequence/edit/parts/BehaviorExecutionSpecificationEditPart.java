@@ -16,12 +16,14 @@ package org.eclipse.papyrus.diagram.sequence.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -30,6 +32,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
@@ -42,7 +45,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.BehaviorExecutionSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -74,16 +76,6 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	 */
 	public BehaviorExecutionSpecificationEditPart(View view) {
 		super(view);
-	}
-
-	/**
-	 * This is to modify the feedback if anchors are going to be preserved
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void showSourceFeedback(Request request) {
-		super.showSourceFeedback(PreserveAnchorsPositionCommand.getNewSourceFeedbackRequest(request, this));
 	}
 
 	/**
@@ -239,8 +231,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -261,8 +252,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -281,6 +271,9 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if (targetEditPart instanceof CombinedFragmentEditPart) {
@@ -302,6 +295,9 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if (targetEditPart instanceof CombinedFragmentEditPart) {
@@ -323,8 +319,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -346,6 +341,9 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
@@ -367,6 +365,9 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
@@ -384,8 +385,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -406,8 +406,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -429,6 +428,9 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4003) {
@@ -448,6 +450,9 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.CombinedFragment_3004);
@@ -535,5 +540,22 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
+	}
+
+	/**
+	 * Generated not for add connection on top off the figure
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		if (request instanceof CreateConnectionRequest) {
+			CreateConnectionRequest createRequest = (CreateConnectionRequest) request;
+			if (!createRequest.getSourceEditPart().equals(createRequest.getTargetEditPart())) {
+				Point location = createRequest.getLocation();
+				location.y = getFigure().getBounds().y;
+			}
+		}
+		return super.getTargetConnectionAnchor(request);
 	}
 }

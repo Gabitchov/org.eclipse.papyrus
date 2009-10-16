@@ -97,7 +97,6 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		InteractionUse newElement = UMLFactory.eINSTANCE.createInteractionUse();
 
 		Interaction owner = (Interaction) getElementToEdit();

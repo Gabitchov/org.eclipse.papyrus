@@ -26,14 +26,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class CombinedFragmentCreateCommand extends EditElementCommand {
+public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -48,7 +48,7 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public CombinedFragmentCreateCommand(CreateElementRequest req, EObject eObject) {
+	public ConsiderIgnoreFragmentCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,14 +57,14 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static CombinedFragmentCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new CombinedFragmentCreateCommand(req, eObject);
+	public static ConsiderIgnoreFragmentCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new ConsiderIgnoreFragmentCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public CombinedFragmentCreateCommand(CreateElementRequest req) {
+	public ConsiderIgnoreFragmentCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -97,12 +97,12 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
+		ConsiderIgnoreFragment newElement = UMLFactory.eINSTANCE.createConsiderIgnoreFragment();
 
 		Interaction owner = (Interaction) getElementToEdit();
 		owner.getFragments().add(newElement);
 
-		UMLElementTypes.init_CombinedFragment_3004(newElement);
+		UMLElementTypes.init_ConsiderIgnoreFragment_3007(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -113,7 +113,7 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(CombinedFragment newElement, IProgressMonitor monitor, IAdaptable info)
+	protected void doConfigure(ConsiderIgnoreFragment newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);

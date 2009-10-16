@@ -96,7 +96,6 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		InteractionOperand newElement = UMLFactory.eINSTANCE.createInteractionOperand();
 
 		CombinedFragment owner = (CombinedFragment) getElementToEdit();

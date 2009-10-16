@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -19,6 +6,9 @@ import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -147,6 +137,16 @@ implements ITreeBranchEditPart {
 		}
 
 		/**
+		 * Generated NOT for block bend points
+		 * 
+		 * @generated NOT
+		 */
+		@Override
+		public void setRoutingStyles(boolean closestDistance, boolean avoidObstacles) {
+			super.setRoutingStyles(true, avoidObstacles);
+		}
+
+		/**
 		 * @generated
 		 */
 		private RotatableDecoration createTargetDecoration() {
@@ -171,15 +171,22 @@ implements ITreeBranchEditPart {
 
 	}
 
-	@Override
-	public void removeNotify() {
-
-		super.removeNotify();
-	}
-
 	/**
 	 * @generated
 	 */
 	static final Font FFIGUREMESSAGEASYNCLABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
+
+	/**
+	 * Generated not for block bend point
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		if (request.getType().equals(REQ_CREATE_BENDPOINT) || request.getType().equals(REQ_MOVE_BENDPOINT)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.getCommand(request);
+	}
 
 }

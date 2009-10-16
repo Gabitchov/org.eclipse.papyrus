@@ -16,7 +16,10 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -25,8 +28,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
@@ -47,7 +48,22 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		if (request instanceof ReconnectRequest) {
+			EditPart combinedFragment = getHost().getParent().getParent();
+			((ReconnectRequest) request).setTargetEditPart(combinedFragment);
+			return combinedFragment.getCommand(request);
+		}
+		return super.getCommand(request);
+	}
+
+	/**
+	 * Generated not for handle CombinedFragment if no InteractionOperand left
+	 * 
+	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
@@ -83,6 +99,7 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 				continue;
 			}
 		}
+
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -92,6 +109,16 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
+
+		// Delete parent CombinedFragment if no InteractionOperand left after this delete
+		EditPart compartmentEditPart = getHost().getParent();
+		if (compartmentEditPart.getChildren().size() == 1) {
+			View model = (View) compartmentEditPart.getParent().getModel();
+			DestroyElementRequest r = new DestroyElementRequest(model.getElement(), false);
+			cmd.add(new DestroyElementCommand(r));
+			cmd.add(new DeleteCommand(getEditingDomain(), model));
+		}
+
 		return getGEFWrapper(cmd.reduce());
 	}
 
@@ -105,28 +132,28 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (UMLElementTypes.Message_4003 == req.getElementType()) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
-		}
+		// if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		// return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+		// }
 		return null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (UMLElementTypes.Message_4003 == req.getElementType()) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
-		}
+		// if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		// return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+		// }
 		return null;
 	}
 
@@ -134,14 +161,14 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 	 * Returns command to reorient EClass based link. New link target or source should be the domain
 	 * model element associated with this node.
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case MessageEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageReorientCommand(req));
 		case Message2EditPart.VISUAL_ID:
-			return getGEFWrapper(new Message2ReorientCommand(req));
+			// return getGEFWrapper(new Message2ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

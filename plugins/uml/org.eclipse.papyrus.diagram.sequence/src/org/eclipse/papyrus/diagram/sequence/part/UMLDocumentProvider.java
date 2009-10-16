@@ -846,6 +846,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				Resource resource = (Resource) it.next();
 				resource.unload();
 			}
+			getEditingDomain().dispose();
 		}
 
 		/**

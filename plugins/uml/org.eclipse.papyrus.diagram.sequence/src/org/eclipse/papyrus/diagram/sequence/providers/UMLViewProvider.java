@@ -58,6 +58,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificat
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -153,12 +154,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in
-					// element type
+									// element type
 				}
 				if (domainElement != null
 						&& visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element
-					// type
+									// type
 				}
 			} else {
 				if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
@@ -170,12 +171,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				case InteractionUseEditPart.VISUAL_ID:
+				case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 				case CombinedFragmentEditPart.VISUAL_ID:
 				case InteractionOperandEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for
-						// domain element
+										// domain element
 					}
 					break;
 				default:
@@ -186,8 +188,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		return InteractionEditPart.VISUAL_ID == visualID || LifelineEditPart.VISUAL_ID == visualID
 				|| ActionExecutionSpecificationEditPart.VISUAL_ID == visualID
 				|| BehaviorExecutionSpecificationEditPart.VISUAL_ID == visualID
-				|| InteractionUseEditPart.VISUAL_ID == visualID || CombinedFragmentEditPart.VISUAL_ID == visualID
-				|| InteractionOperandEditPart.VISUAL_ID == visualID;
+				|| InteractionUseEditPart.VISUAL_ID == visualID || ConsiderIgnoreFragmentEditPart.VISUAL_ID == visualID
+				|| CombinedFragmentEditPart.VISUAL_ID == visualID || InteractionOperandEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -201,7 +203,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same
-			// as in element type
+							// as in element type
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
@@ -248,6 +250,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					preferencesHint);
 		case InteractionUseEditPart.VISUAL_ID:
 			return createInteractionUse_3002(domainElement, containerView, index, persisted, preferencesHint);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return createConsiderIgnoreFragment_3007(domainElement, containerView, index, persisted, preferencesHint);
 		case CombinedFragmentEditPart.VISUAL_ID:
 			return createCombinedFragment_3004(domainElement, containerView, index, persisted, preferencesHint);
 		case InteractionOperandEditPart.VISUAL_ID:
@@ -436,6 +440,35 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initForegroundFromPrefs(node, prefStore, "InteractionOperand");
 
 		initBackgroundFromPrefs(node, prefStore, "InteractionOperand");
+
+		return node;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Node createConsiderIgnoreFragment_3007(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ConsiderIgnoreFragmentEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
+
+		initBackgroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
+
+		Node compartment = createCompartment(node, UMLVisualIDRegistry
+				.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false, false, true, true);
+
+		// Add by default an InteractionOperand
+		InteractionOperand createInteractionOperand = UMLFactory.eINSTANCE.createInteractionOperand();
+		((CombinedFragment) domainElement).getOperands().add(createInteractionOperand);
+		createInteractionOperand_3005(createInteractionOperand, compartment, -1, true,
+				UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 
 		return node;
 	}

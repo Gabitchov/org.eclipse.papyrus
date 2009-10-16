@@ -19,8 +19,10 @@ import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -108,7 +110,9 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * Generated not for set interactionOperator by default
+	 * 
+	 * @generated NOT
 	 */
 	public static void init_CombinedFragment_3004(CombinedFragment instance) {
 		try {
@@ -117,6 +121,25 @@ public class ElementInitializers {
 							"let base : String = \'CombinedFragment\' in\r\nlet suffixes : Sequence(String) = Sequence {\'\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ",
 							UMLPackage.eINSTANCE.getCombinedFragment()).evaluate(instance);
 			instance.setName((String) value_0);
+			instance.setInteractionOperator(InteractionOperatorKind.SEQ_LITERAL);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * Generated not for set interactionOperator by default
+	 * 
+	 * @generated NOT
+	 */
+	public static void init_ConsiderIgnoreFragment_3007(ConsiderIgnoreFragment instance) {
+		try {
+			Object value_0 = UMLOCLFactory
+					.getExpression(
+							"let base : String = \'ConsiderIgnoreFragment\' in\r\nlet suffixes : Sequence(String) = Sequence {\'\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ",
+							UMLPackage.eINSTANCE.getConsiderIgnoreFragment()).evaluate(instance);
+			instance.setName((String) value_0);
+			instance.setInteractionOperator(InteractionOperatorKind.CONSIDER_LITERAL);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -153,11 +176,9 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * NOT generated
-	 * 
+	 * @generated NOT
 	 * @param instance
 	 */
-
 	public static void init_MessageSpecificationOccurence_4003(MessageOccurrenceSpecification instance) {
 		try {
 			Object value_0 = UMLOCLFactory
@@ -170,6 +191,10 @@ public class ElementInitializers {
 		}
 	}
 
+	/**
+	 * @generated NOT
+	 * @param instance
+	 */
 	public static void init_CallEvent_4003(CallEvent instance) {
 		try {
 			Object value_0 = UMLOCLFactory
@@ -182,6 +207,12 @@ public class ElementInitializers {
 		}
 	}
 
+	/**
+	 * Handle for attach gate on its parent
+	 * 
+	 * @generated NOT
+	 * @param instance
+	 */
 	public static void init_Gate_4003(Gate instance) {
 		try {
 			Object value_0 = UMLOCLFactory

@@ -20,11 +20,16 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.MessageItemSemanticEditPolicy;
 import org.eclipse.swt.SWT;
@@ -119,6 +124,12 @@ implements ITreeBranchEditPart {
 		return (MessageSync) getFigure();
 	}
 
+	@Override
+	protected void refreshRoutingStyles() {
+		RoutingStyle style = (RoutingStyle) ((View) getModel()).getStyle(NotationPackage.Literals.ROUTING_STYLE);
+		super.refreshRoutingStyles();
+	}
+
 	/**
 	 * @generated
 	 */
@@ -157,6 +168,11 @@ implements ITreeBranchEditPart {
 
 		}
 
+		@Override
+		public void setRoutingStyles(boolean closestDistance, boolean avoidObstacles) {
+			super.setRoutingStyles(true, avoidObstacles);
+		}
+
 		/**
 		 * @generated
 		 */
@@ -189,5 +205,18 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	static final Font FFIGUREMESSAGESYNCLABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
+
+	/**
+	 * Generated not for block bend point
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		if (request.getType().equals(REQ_CREATE_BENDPOINT) || request.getType().equals(REQ_MOVE_BENDPOINT)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.getCommand(request);
+	}
 
 }

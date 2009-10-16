@@ -33,6 +33,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -67,9 +68,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if (editPart instanceof InteractionInteractionCompartmentEditPart) {
-			ArrayList types = new ArrayList(3);
+			ArrayList types = new ArrayList(4);
 			types.add(UMLElementTypes.Lifeline_3001);
 			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 			types.add(UMLElementTypes.CombinedFragment_3004);
 			return types;
 		}
@@ -101,6 +103,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			return ((ConsiderIgnoreFragmentEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		if (sourceEditPart instanceof CombinedFragmentEditPart) {
 			return ((CombinedFragmentEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
@@ -129,6 +134,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			return ((ConsiderIgnoreFragmentEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof CombinedFragmentEditPart) {
 			return ((CombinedFragmentEditPart) targetEditPart).getMARelTypesOnTarget();
@@ -162,6 +170,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			return ((ConsiderIgnoreFragmentEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if (sourceEditPart instanceof CombinedFragmentEditPart) {
 			return ((CombinedFragmentEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -191,6 +202,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			return ((ConsiderIgnoreFragmentEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if (targetEditPart instanceof CombinedFragmentEditPart) {
 			return ((CombinedFragmentEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -219,6 +233,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			return ((ConsiderIgnoreFragmentEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof CombinedFragmentEditPart) {
 			return ((CombinedFragmentEditPart) sourceEditPart).getMATypesForTarget(relationshipType);

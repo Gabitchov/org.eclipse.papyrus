@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.figures;
 
+
 public class CombinedFragmentFigure extends InteractionRectangleFigure {
 
 	@Override
@@ -21,6 +22,7 @@ public class CombinedFragmentFigure extends InteractionRectangleFigure {
 		setShadow(false);
 		fFigureInteractionCompartmentFigure.setOutline(false);
 		fFigureInteractionCompartmentFigure.setOpaque(false);
+		fFigureInteractionCompartmentFigure.setBorder(null);
 	}
 
 	public void setOperatorKindValue(String operatorKind) {

@@ -23,6 +23,7 @@ import java.util.Set;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramUpdater;
@@ -61,6 +62,7 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 		switch (visualID) {
 		case LifelineEditPart.VISUAL_ID:
 		case InteractionUseEditPart.VISUAL_ID:
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 		case CombinedFragmentEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
 				return true;

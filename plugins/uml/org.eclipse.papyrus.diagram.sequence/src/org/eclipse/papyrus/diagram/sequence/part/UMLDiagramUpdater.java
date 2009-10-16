@@ -28,6 +28,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificat
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -40,6 +41,7 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -219,6 +221,8 @@ public class UMLDiagramUpdater {
 			return getCombinedFragment_3004ContainedLinks(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_3005ContainedLinks(view);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return getConsiderIgnoreFragment_3007ContainedLinks(view);
 		case MessageEditPart.VISUAL_ID:
 			return getMessage_4003ContainedLinks(view);
 		case Message2EditPart.VISUAL_ID:
@@ -246,6 +250,8 @@ public class UMLDiagramUpdater {
 			return getCombinedFragment_3004IncomingLinks(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_3005IncomingLinks(view);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return getConsiderIgnoreFragment_3007IncomingLinks(view);
 		case MessageEditPart.VISUAL_ID:
 			return getMessage_4003IncomingLinks(view);
 		case Message2EditPart.VISUAL_ID:
@@ -273,6 +279,8 @@ public class UMLDiagramUpdater {
 			return getCombinedFragment_3004OutgoingLinks(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_3005OutgoingLinks(view);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return getConsiderIgnoreFragment_3007OutgoingLinks(view);
 		case MessageEditPart.VISUAL_ID:
 			return getMessage_4003OutgoingLinks(view);
 		case Message2EditPart.VISUAL_ID:
@@ -338,6 +346,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getInteractionOperand_3005ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConsiderIgnoreFragment_3007ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -442,6 +457,18 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getConsiderIgnoreFragment_3007IncomingLinks(View view) {
+		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getMessage_4003IncomingLinks(View view) {
 		Message modelElement = (Message) view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -534,6 +561,17 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getInteractionOperand_3005OutgoingLinks(View view) {
 		InteractionOperand modelElement = (InteractionOperand) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConsiderIgnoreFragment_3007OutgoingLinks(View view) {
+		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment) view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));

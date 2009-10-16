@@ -25,6 +25,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificat
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -130,7 +131,6 @@ public class UMLVisualIDRegistry {
 				&& isDiagram((Package) domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
-
 		return -1;
 	}
 
@@ -159,45 +159,34 @@ public class UMLVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case LifelineEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if (UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return ActionExecutionSpecificationEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
 			}
 			break;
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionUseEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())) {
+				return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionOperandEditPart.VISUAL_ID;
 			}
 			break;
 		case PackageEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionEditPart.VISUAL_ID;
 			}
 			break;
@@ -270,6 +259,9 @@ public class UMLVisualIDRegistry {
 			if (InteractionUseEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (ConsiderIgnoreFragmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if (CombinedFragmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -306,17 +298,11 @@ public class UMLVisualIDRegistry {
 			return -1;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-
-		&& isMessage_4003((Message) domainElement)
-
-		) {
+				&& isMessage_4003((Message) domainElement)) {
 			return MessageEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-
-		&& isMessage_4004((Message) domainElement)
-
-		) {
+				&& isMessage_4004((Message) domainElement)) {
 			return Message2EditPart.VISUAL_ID;
 		}
 		return -1;
@@ -409,6 +395,10 @@ public class UMLVisualIDRegistry {
 		root.addNode(3001, viewInfo);
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "InteractionUse");
+
+		root.addNode(7001, viewInfo);
+
+		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ConsiderIgnoreFragment");
 
 		root.addNode(7001, viewInfo);
 

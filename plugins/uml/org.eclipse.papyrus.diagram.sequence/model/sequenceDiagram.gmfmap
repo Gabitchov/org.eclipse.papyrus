@@ -178,6 +178,31 @@
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
         <ownedChild>
           <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConsiderIgnoreFragment"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="let base : String = 'ConsiderIgnoreFragment' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
+            </initializers>
+          </domainInitializer>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
+          <diagramNode
+              href="sequenceDiagram.gmfgraph#CombinedFragmentNode"/>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+        <ownedChild>
+          <domainMetaElement
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
           <domainInitializer
               xsi:type="gmfmap:FeatureSeqInitializer">
@@ -196,8 +221,8 @@
           <diagramNode
               href="sequenceDiagram.gmfgraph#CombinedFragmentNode"/>
           <children
-              compartment="//@nodes.0/@ownedChild/@children.2/@ownedChild/@compartments.0"
-              referencedChild="//@nodes.0/@ownedChild/@children.2/@ownedChild/@children.0/@ownedChild">
+              compartment="//@nodes.0/@ownedChild/@children.3/@ownedChild/@compartments.0"
+              referencedChild="//@nodes.0/@ownedChild/@children.3/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment/operand"/>
             <ownedChild>
@@ -211,14 +236,14 @@
             </ownedChild>
           </children>
           <compartments
-              children="//@nodes.0/@ownedChild/@children.2/@ownedChild/@children.0">
+              children="//@nodes.0/@ownedChild/@children.3/@ownedChild/@children.0">
             <compartment
                 href="sequenceDiagram.gmfgraph#CombinedFragmentCompartment"/>
           </compartments>
         </ownedChild>
       </children>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.2">
+          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.2 //@nodes.0/@ownedChild/@children.3">
         <compartment
             href="sequenceDiagram.gmfgraph#InteractionCompartment"/>
       </compartments>
@@ -264,8 +289,10 @@
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedElement"/>
     <creationConstraints>
+      <sourceEnd
+          body="self.oclIsKindOf(uml::ExecutionSpecification)"/>
       <targetEnd
-          body="(self.oclIsKindOf(uml::ExecutionSpecification) ) and (oppositeEnd.oclIsKindOf(uml::ExecutionSpecification)) and (self.eContainer() = oppositeEnd.eContainer())"/>
+          body="self.oclIsKindOf(uml::ExecutionSpecification) and oppositeEnd.oclIsKindOf(uml::ExecutionSpecification) and self.eContainer() = oppositeEnd.eContainer()"/>
     </creationConstraints>
   </links>
   <links

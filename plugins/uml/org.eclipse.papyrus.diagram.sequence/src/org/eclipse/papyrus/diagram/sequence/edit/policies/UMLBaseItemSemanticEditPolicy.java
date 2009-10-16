@@ -308,13 +308,24 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	public static class LinkConstraints {
 
-		private static UMLAbstractExpression Message_4003_TargetExpression;
-
 		/**
 		 * @generated
 		 */
 		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
 
+		/**
+		 * @generated
+		 */
+		private static UMLAbstractExpression Message_4003_SourceExpression;
+
+		/**
+		 * @generated
+		 */
+		private static UMLAbstractExpression Message_4003_TargetExpression;
+
+		/**
+		 * @generated
+		 */
 		public static boolean canCreateMessage_4003(Interaction container, Element source, Element target) {
 			return canExistMessage_4003(container, source, target);
 		}
@@ -331,6 +342,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistMessage_4003(Interaction container, Element source, Element target) {
 			try {
+				if (source == null) {
+					return true;
+				}
+				if (Message_4003_SourceExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getElement());
+					Message_4003_SourceExpression = UMLOCLFactory.getExpression(
+							"self.oclIsKindOf(uml::ExecutionSpecification)", UMLPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
+				}
+				Object sourceVal = Message_4003_SourceExpression.evaluate(source, Collections.singletonMap(
+						OPPOSITE_END_VAR, target));
+				if (false == sourceVal instanceof Boolean || !((Boolean) sourceVal).booleanValue()) {
+					return false;
+				} // else fall-through
 				if (target == null) {
 					return true;
 				}
@@ -338,7 +362,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getElement());
 					Message_4003_TargetExpression = UMLOCLFactory
 							.getExpression(
-									"(self.oclIsKindOf(uml::ExecutionSpecification) ) and (oppositeEnd.oclIsKindOf(uml::ExecutionSpecification)) and (self.eContainer() = oppositeEnd.eContainer())", UMLPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
+									"self.oclIsKindOf(uml::ExecutionSpecification) and oppositeEnd.oclIsKindOf(uml::ExecutionSpecification) and self.eContainer() = oppositeEnd.eContainer()", UMLPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
 				}
 				Object targetVal = Message_4003_TargetExpression.evaluate(target, Collections.singletonMap(
 						OPPOSITE_END_VAR, source));
@@ -358,5 +382,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public static boolean canExistMessage_4004(Interaction container, Element source, Element target) {
 			return true;
 		}
+
 	}
 }

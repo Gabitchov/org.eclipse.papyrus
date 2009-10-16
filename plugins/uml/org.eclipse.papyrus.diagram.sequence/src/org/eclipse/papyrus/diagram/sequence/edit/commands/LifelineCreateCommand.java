@@ -97,7 +97,6 @@ public class LifelineCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Lifeline newElement = UMLFactory.eINSTANCE.createLifeline();
 
 		Interaction owner = (Interaction) getElementToEdit();

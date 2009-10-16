@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CombinedFragmentCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.ConsiderIgnoreFragmentCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.InteractionUseCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.LifelineCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -41,6 +42,9 @@ public class InteractionInteractionCompartmentItemSemanticEditPolicy extends UML
 		}
 		if (UMLElementTypes.InteractionUse_3002 == req.getElementType()) {
 			return getGEFWrapper(new InteractionUseCreateCommand(req));
+		}
+		if (UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
+			return getGEFWrapper(new ConsiderIgnoreFragmentCreateCommand(req));
 		}
 		if (UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
 			return getGEFWrapper(new CombinedFragmentCreateCommand(req));

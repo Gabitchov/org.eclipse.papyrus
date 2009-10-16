@@ -94,7 +94,9 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 	// TODO Use transparency instead of send to back method
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (childEditPart instanceof CombinedFragmentEditPart || childEditPart instanceof InteractionUseEditPart) {
+		if (childEditPart instanceof CombinedFragmentEditPart
+				|| childEditPart instanceof ConsiderIgnoreFragmentEditPart
+				|| childEditPart instanceof InteractionUseEditPart) {
 			index = 0;
 		}
 		super.addChildVisual(childEditPart, index);

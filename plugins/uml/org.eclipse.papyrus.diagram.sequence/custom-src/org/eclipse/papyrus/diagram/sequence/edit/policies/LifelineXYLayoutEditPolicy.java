@@ -23,6 +23,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -56,27 +57,32 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (request instanceof ChangeBoundsRequest
-				&& (request.getType().equals(REQ_RESIZE) || request.getType().equals(REQ_MOVE))) {
-			CompoundCommand compoundCmd = new CompoundCommand();
-			compoundCmd.setLabel("Movement or Resize of a Lifeline EditPart");
-			compoundCmd.setDebugLabel("Debug: Movement or Resize of a Lifeline EditPart");
-
+		if (request instanceof ChangeBoundsRequest && request.getType().equals(REQ_RESIZE)) {
 			ChangeBoundsRequest cbr = (ChangeBoundsRequest) request;
 			List<?> editParts = cbr.getEditParts();
 
-			if (editParts != null && editParts.contains(getHost()) && cbr.getSizeDelta().width != 0) {
+			EditPart host = getHost();
+			if (editParts != null && editParts.contains(host) && cbr.getSizeDelta().width != 0) {
+				CompoundCommand compoundCmd = new CompoundCommand();
+				compoundCmd.setLabel("Movement or Resize of a Lifeline EditPart");
+				compoundCmd.setDebugLabel("Debug: Movement or Resize of a Lifeline EditPart");
+
 				// If the width increases or decreases, ExecutionSpecification elements need to be
 				// moved
-				for (Object obj : getHost().getChildren()) {
+				LifelineEditPart lifeline = (LifelineEditPart) host;
+				for (Object obj : host.getChildren()) {
 					if (obj instanceof ShapeNodeEditPart) {
 						ShapeNodeEditPart executionSpecificationEP = (ShapeNodeEditPart) obj;
 
 						// Lifeline's figure where the child is drawn
-						Rectangle rDotLine = executionSpecificationEP.getFigure().getParent().getBounds();
+						Rectangle rDotLine = lifeline.getContentPane().getBounds();
 
 						// The new bounds will be calculated from the current bounds
 						Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+
+						if (rDotLine.getSize().width + cbr.getSizeDelta().width < newBounds.width * 2) {
+							return UnexecutableCommand.INSTANCE;
+						}
 
 						// Apply SizeDelta to the children
 						newBounds.x += Math.round((float) cbr.getSizeDelta().width / (float) 2);
@@ -92,6 +98,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						compoundCmd.add(new ICommandProxy(setBoundsCmd));
 					}
 				}
+
+				compoundCmd.add(super.getCommand(request));
 
 				if (!compoundCmd.isEmpty()) {
 					return compoundCmd;
@@ -169,11 +177,6 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 			// Check if height is within the limits of the figure
 			Dimension newSizeDelta = adaptSizeDeltaToMaxHeight(executionSpecificationEP.getFigure(), cbr.getSizeDelta());
-
-			// New delta to preserve the position of the last link's
-			// anchor
-			newSizeDelta = PreserveAnchorsPositionCommand.getSizeDeltaToFitAnchors(executionSpecificationEP,
-					newSizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y);
 
 			// Current bounds of the ExecutionSpecification
 			Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
@@ -355,11 +358,6 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 			// Check if height is within the limits of the figure
 			Dimension newSizeDelta = adaptSizeDeltaToMaxHeight(executionSpecificationEP.getFigure(), cbr.getSizeDelta());
-
-			// New delta to preserve the position of the last link's
-			// anchor
-			newSizeDelta = PreserveAnchorsPositionCommand.getSizeDeltaToFitAnchors(executionSpecificationEP,
-					newSizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y);
 
 			// Current bounds of the ExecutionSpecification
 			Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();

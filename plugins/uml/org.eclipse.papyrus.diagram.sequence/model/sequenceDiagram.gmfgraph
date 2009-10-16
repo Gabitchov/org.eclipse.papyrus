@@ -374,6 +374,7 @@
   </labels>
   <labels
       name="MessageAsyncLabel"
+      elementIcon="false"
       accessor="//@figures.0/@descriptors.8/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"

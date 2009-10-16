@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.core.adaptor.gmf.Activator;
 import org.eclipse.papyrus.core.editor.BackboneContext;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.InteractionCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -39,7 +38,6 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UseCase;
 
 /**
  * Define a command to create a new Sequence Diagram. This command is used by all UI (toolbar,
@@ -47,10 +45,7 @@ import org.eclipse.uml2.uml.UseCase;
  */
 public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
-	private Interaction ownerIntreaction = null;
-
-	private UseCase ownerUsecase = null;
-
+	private Element interaction = null;
 	@Override
 	protected String getDiagramNotationID() {
 		return PackageEditPart.MODEL_ID;
@@ -64,106 +59,76 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 
 	@Override
 	protected BackboneContext getDefaultContext() {
-
 		return super.getDefaultContext();
 	}
 
-	/**
-	 * create a sequence Diagram
-	 * 
-	 * @retrun the created diagram
-	 */
-	protected Diagram createDiagram(Resource diagramResource, EObject umlOwner, String name) {
-
-		Diagram diagram = null;
-
-		boolean exist = false;
-
-		Element createdInteraction = null;
-
-		diagram = super.createDiagram(diagramResource, umlOwner, name);// create the default diagram
-		// in the default package
-		if (ownerIntreaction != null) { // the object interaction existe
-			diagram.setElement(ownerIntreaction);
-
-			createInteractionGraph(ownerIntreaction, diagram);
-
-		} else if (ownerUsecase != null) {// the diagram is createad from a Usecase
-			try {
-				createdInteraction = createNewInteraction(ownerUsecase);
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-			}
-			diagram.setElement(createdInteraction);
-			createInteractionGraph(createdInteraction, diagram);
-		}
-
-		else {
-			try {
-
-				createdInteraction = createNewInteraction(umlOwner);
-				diagram.setElement(createdInteraction);// associate the diagram to
-				// the
-				// interaction created for .
-
-				createInteractionGraph(createdInteraction, diagram);
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return diagram;
-
-	}
-
 	@Override
-	public void createDiagram(DiResourceSet diResourceSet, EObject container, String name) {
-		if (container instanceof Interaction) {// the sequence diagram is created from an
-			// interaction
-			ownerIntreaction = (Interaction) container;
-		} else if (container instanceof UseCase) {// the sequence diagram is created from a Usecase
-			ownerUsecase = (UseCase) container;
+	protected void initializeDiagram(EObject diagram) {
+		if (diagram != null) {
+			if (diagram instanceof Diagram) {
+				Diagram diag = (Diagram) diagram;
+				if (interaction != null) {
+					diag.setElement(interaction);
+					createInteractionGraph(interaction, diag);
+				}
+			}
+
 		}
-		super.createDiagram(diResourceSet, container, name);
 	}
-
-	/**
-	 * 
-	 * @param umlOwner
-	 *            , the model .
-	 * @return the interaction where the Sequence diagram will be created
-	 * @throws ExecutionException
-	 * 
-	 */
-	protected Interaction createNewInteraction(EObject umlOwner) throws ExecutionException {
-
-		Interaction result = null;
-
+	
+	@Override
+	protected void initializeModel(EObject owner) {
+		// Get the editing domain
 		TransactionalEditingDomain editingdomain = getDefaultContext().getResourceSet().getTransactionalEditingDomain();
 
-		CreateElementRequest request = new CreateElementRequest(editingdomain, umlOwner,
-				UMLElementTypes.Interaction_2001);
-
-		InteractionCreateCommand createCommand = InteractionCreateCommand.create(request, umlOwner);
-
-		if (createCommand != null) {
-			createCommand.execute(null, null);
-
-		}
-
-		if (request != null) {
-			if (request.getNewElement() instanceof Interaction) {// get the object interaction
-				// created by the request.
-				result = (Interaction) (request.getNewElement());
-
+		EObject selectedElement = getSelectedElement();
+		if(selectedElement != null){
+			// Create the request
+			CreateElementRequest request = new CreateElementRequest(editingdomain, selectedElement,
+					UMLElementTypes.Interaction_2001);
+	
+			// Create the command
+			InteractionCreateCommand createCommand = InteractionCreateCommand.create(request, selectedElement);
+	
+			// Execute the command
+			if (createCommand != null) {
+				try {
+					createCommand.execute(null, null);
+				} catch (ExecutionException e) {
+					e.printStackTrace();
+				}
+	
+			}
+	
+			// retrieve the result
+			if (request != null) {
+				if (request.getNewElement() instanceof Interaction) {
+					interaction = (Interaction) (request.getNewElement());
+				}
 			}
 		}
-
-		return result;
-
 	}
 
-	void createInteractionGraph(Element interaction, Diagram diagram) {
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
+		Diagram diagram = null;
+		if(owner instanceof Package){
+			diagram = super.createDiagram(diagramResource, owner, name);
+		}
+		else{
+			if(owner instanceof Element){
+				Element element = (Element)owner;
+				diagram = super.createDiagram(diagramResource, element.getModel(), name);
+			}
+		}
+		return diagram;
+	}
+
+	private void createInteractionGraph(Element interaction, Diagram diagram) {
 
 		TransactionalEditingDomain editingdomain = getDefaultContext().getResourceSet().getTransactionalEditingDomain();
 		IAdaptable elementAdapter = new EObjectAdapter(interaction);

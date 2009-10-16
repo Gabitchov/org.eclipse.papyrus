@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials

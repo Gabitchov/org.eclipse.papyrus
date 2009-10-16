@@ -183,9 +183,9 @@ public class MessageCreateCommand extends EditElementCommand {
 			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationEnd);
 
 			Lifeline sourceLL = start.getCovereds().get(0);// get the lifeline which contain
-															// BehaviorExecutionSpecification
+			// BehaviorExecutionSpecification
 			Lifeline targetLL = end.getCovereds().get(0);// get the lifeline which
-															// BehaviorExecutionSpecification
+			// BehaviorExecutionSpecification
 
 			setupBehaviorSpec(start, msgOccurenceInvocationStart, msgOccurenceInvocationEnd, sourceLL);
 			setupBehaviorSpec(end, msgOccurenceInvocationEnd, msgOccurenceInvocationStart, targetLL);
@@ -200,8 +200,8 @@ public class MessageCreateCommand extends EditElementCommand {
 				newElement.setReceiveEvent(domainTarget);
 
 				domainSource.setMessage(newElement);// built the relationship
-													// messsageoccurencespecification and the
-													// message
+				// messsageoccurencespecification and the
+				// message
 				domainTarget.setMessage(newElement);
 			}
 

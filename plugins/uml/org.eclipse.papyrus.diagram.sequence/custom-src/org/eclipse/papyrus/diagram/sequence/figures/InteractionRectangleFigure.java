@@ -73,6 +73,8 @@ public class InteractionRectangleFigure extends NodeNamedElementFigure {
 		labelContainer.add(fFigureInteractionNameFigure);
 
 		fFigureInteractionCompartmentFigure = new RectangleFigure();
+		// Margin allow to add mesage easily
+		fFigureInteractionCompartmentFigure.setBorder(new MarginBorder(5, 5, 5, 5));
 		fFigureInteractionCompartmentFigure.setFill(false);
 		fFigureInteractionCompartmentFigure.setOutline(true);
 

@@ -187,32 +187,6 @@
    </extension>
 
 
-   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
-      <?gmfgen generated="true"?>
-      <page
-            id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-            name="PapyrusUMLSequenceDiagram Diagram"
-            category="org.eclipse.papyrus.preferences.diagrams"
-            class="org.eclipse.papyrus.diagram.sequence.preferences.DiagramGeneralPreferencePage">
-      </page>
-      
-
-
-      <page
-            id="org.eclipse.papyrus.diagram.sequence.preferences.DiagramPrintingPreferencePage"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-            category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-            class="org.eclipse.papyrus.diagram.sequence.preferences.DiagramPrintingPreferencePage">
-      </page>
-
-      <page
-            id="org.eclipse.papyrus.diagram.sequence.preferences.DiagramRulersAndGridPreferencePage"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-            class="org.eclipse.papyrus.diagram.sequence.preferences.DiagramRulersAndGridPreferencePage">
-      </page>
-
-   </extension>
 
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
       <?gmfgen generated="true"?>
@@ -279,73 +253,6 @@
 
 
 <?gmfgen generated="true"?>
-<extension point="org.eclipse.ui.preferencePages">
-	<page 	category="org.eclipse.papyrus.preferences.diagrams"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.PapyrusUMLSequenceDiagramDiagramPreferencePage"
-			id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			name="PapyrusUMLSequenceDiagram Diagram" />
-
-
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
-            name="Interaction" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
-            name="InteractionUse" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
-            name="CombinedFragment" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
-            name="ActionExecutionSpecification" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
-            name="Lifeline" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
-            name="InteractionOperand" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            name="BehaviorExecutionSpecification" />	
-	
-
-
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
-            name="Message" />	
-	
-
-</extension>
 
 	<extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
@@ -357,7 +264,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.sequence.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLSequenceDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3006,3003,3002,3004,3005"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3006,3003,3002,3007,3004,3005"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004"/>
       </viewProvider>
    </extension>
@@ -370,7 +277,7 @@
             <method name="getType()" value="PapyrusUMLSequenceDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3006,3003,3002,3004,3005"/>
+            <method name="getType()" value="2001,3001,3006,3003,3002,3007,3004,3005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4003,4004"/>
@@ -473,6 +380,16 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.diagram.sequence.ConsiderIgnoreFragment_3007"
+               name="%metatype.name.ConsiderIgnoreFragment_3007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ConsiderIgnoreFragment"
+               edithelper="org.eclipse.papyrus.diagram.sequence.edit.helpers.ConsiderIgnoreFragmentEditHelper">
+            <param name="semanticHint" value="3007"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.sequence.CombinedFragment_3004"
                name="%metatype.name.CombinedFragment_3004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -528,6 +445,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.sequence.ActionExecutionSpecification_3006"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.BehaviorExecutionSpecification_3003"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.InteractionUse_3002"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.ConsiderIgnoreFragment_3007"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.CombinedFragment_3004"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.InteractionOperand_3005"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
@@ -699,6 +617,274 @@
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
+<extension
+		id="UML Plugin.palettedefinition"
+		name="UML Plugin Predefined Entries"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+			
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Lowest"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.sequence.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       defineOnly="true"
+       description="Create a Lifeline"
+       id="createLifeline1CreationTool"
+       kind="tool"
+       label="Lifeline"
+       large_icon=""
+       path=""
+       small_icon="">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Execution Action"
+       id="createExecutionAction2CreationTool"
+       kind="tool"
+       label="Execution Action"
+       large_icon=""
+       path=""
+       small_icon="">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Execution Behaviour"
+       id="createExecutionBehaviour3CreationTool"
+       kind="tool"
+       label="Execution Behaviour"
+       large_icon=""
+       path=""
+       small_icon="">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create InteractionUse"
+       id="createInteractionUse4CreationTool"
+       kind="tool"
+       label="InteractionUse"
+       large_icon=""
+       path=""
+       small_icon="">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Combined Fragment"
+       id="createCombinedFragment5CreationTool"
+       kind="tool"
+       label="Combined Fragment"
+       large_icon=""
+       path=""
+       small_icon="">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Interaction Operand"
+       id="createInteractionOperand6CreationTool"
+       kind="tool"
+       label="Interaction Operand"
+       large_icon=""
+       path=""
+       small_icon="">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create  MessageSync"
+       id="createMessageSync1CreationTool"
+       kind="tool"
+       label="MessageSync"
+       large_icon=""
+       path=""
+       small_icon="">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create MessageAsync"
+       id="createMessageAsync2CreationTool"
+       kind="tool"
+       label="Message Async"
+       large_icon=""
+       path=""
+       small_icon="">
+ 	</entry>
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.sequence"/>
+		</paletteProvider>	
+			
+	</extension>
+
+<extension
+		id="UML Plugin.standard"
+		name="UML Plugin Standard Palette"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+			
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Low"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.sequence.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       description=""
+       id="createObjects1Group"
+       kind="drawer"
+       label="Objects"
+       large_icon=""
+       path="/"
+       small_icon="">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createLifeline1CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createExecutionAction2CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createExecutionBehaviour3CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createInteractionUse4CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCombinedFragment5CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createInteractionOperand6CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+
+	<entry
+       description=""
+       id="createMessage2Group"
+       kind="drawer"
+       label="Message"
+       large_icon=""
+       path="/"
+       small_icon="">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createMessageSync1CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createMessageAsync2CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.sequence"/>
+		</paletteProvider>	
+			
+	</extension>
+
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+            name="PapyrusUMLSequenceDiagram Diagram"
+            category="org.eclipse.papyrus.preferences.diagrams"
+            class="org.eclipse.papyrus.diagram.sequence.preferences.DiagramGeneralPreferencePage">
+      </page>
+      
+
+
+      <page
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DiagramPrintingPreferencePage"
+            name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
+            category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+            class="org.eclipse.papyrus.diagram.sequence.preferences.DiagramPrintingPreferencePage">
+      </page>
+
+      <page
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DiagramRulersAndGridPreferencePage"
+            name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
+            category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+            class="org.eclipse.papyrus.diagram.sequence.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+
+   </extension>
+
+<extension point="org.eclipse.ui.preferencePages">
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
+            name="Interaction" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
+            name="InteractionUse" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
+            name="ConsiderIgnoreFragment" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
+            name="CombinedFragment" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
+            name="ActionExecutionSpecification" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
+            name="Lifeline" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
+            name="InteractionOperand" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            name="BehaviorExecutionSpecification" />	
+	
+
+
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
+            name="Message" />	
+	
+
+</extension>
+
 
    <!-- optionally, specify keybindings -->
 </plugin>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA.
+ * Copyright (c) 2009 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -28,7 +27,6 @@ public class InteractionOperandDragDropEditPolicy extends ResizableEditPolicy {
 	 */
 	public InteractionOperandDragDropEditPolicy() {
 		super();
-		setResizeDirections(PositionConstants.SOUTH);
 		setDragAllowed(false);
 	}
 

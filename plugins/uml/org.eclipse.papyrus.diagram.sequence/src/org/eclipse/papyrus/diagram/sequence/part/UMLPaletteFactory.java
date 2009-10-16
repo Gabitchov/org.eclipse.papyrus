@@ -128,12 +128,13 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createCombinedFragment5CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
+		types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 		types.add(UMLElementTypes.CombinedFragment_3004);
 		NodeToolEntry entry = new NodeToolEntry(Messages.CombinedFragment5CreationTool_title,
 				Messages.CombinedFragment5CreationTool_desc, types);
 		entry.setId("createCombinedFragment5CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.CombinedFragment_3004));
+		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.ConsiderIgnoreFragment_3007));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
