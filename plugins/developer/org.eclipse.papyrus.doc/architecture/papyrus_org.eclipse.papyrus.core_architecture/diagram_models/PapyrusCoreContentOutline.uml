@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_VkRzsLlcEd6fI7WKgVDX2A">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VkRzsblcEd6fI7WKgVDX2A" name="boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VkRzsrlcEd6fI7WKgVDX2A" name="byte"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VkRzs7lcEd6fI7WKgVDX2A" name="char"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VkRztLlcEd6fI7WKgVDX2A" name="double"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VkRztblcEd6fI7WKgVDX2A" name="float"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VkRztrlcEd6fI7WKgVDX2A" name="int"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VkSawLlcEd6fI7WKgVDX2A" name="long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VkSawblcEd6fI7WKgVDX2A" name="short"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_VkSawrlcEd6fI7WKgVDX2A" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_VkSaw7lcEd6fI7WKgVDX2A" name="eclipse">
+      <packagedElement xmi:type="uml:Package" xmi:id="_VkSaxLlcEd6fI7WKgVDX2A" name="papyrus">
+        <packagedElement xmi:type="uml:Package" xmi:id="_VkSaxblcEd6fI7WKgVDX2A" name="core">
+          <packagedElement xmi:type="uml:Package" xmi:id="_VkSaxrlcEd6fI7WKgVDX2A" name="contentoutline">
+            <packagedElement xmi:type="uml:Class" xmi:id="_VkSax7lcEd6fI7WKgVDX2A" name="ContentOutlineRegistry">
+              <ownedAttribute xmi:id="_VkSayLlcEd6fI7WKgVDX2A" name="EDITOR_EXTENSION_ID" visibility="public" type="_VkTB5blcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkSayblcEd6fI7WKgVDX2A" name="classAttributeName" visibility="private" type="_VkTB5blcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkSayrlcEd6fI7WKgVDX2A" name="actionBarContributorIdPropertyName" visibility="private" type="_VkTB5blcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkSay7lcEd6fI7WKgVDX2A" name="extensionPointNamespace" visibility="protected" type="_VkTB5blcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkSazLlcEd6fI7WKgVDX2A" name="contentOutline" visibility="protected" type="_VkTB4rlcEd6fI7WKgVDX2A" association="_VkTo5LlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkSazblcEd6fI7WKgVDX2A" name="multiEditor" visibility="private" type="_VkTo4LlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_VkSazrlcEd6fI7WKgVDX2A" name="getContentOutline" visibility="public">
+                <ownedParameter xmi:id="_VkSaz7lcEd6fI7WKgVDX2A" name="return" type="_VkTB4rlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VkSa0LlcEd6fI7WKgVDX2A" name="getContentOutlineDescriptor" visibility="private">
+                <ownedParameter xmi:id="_VkSa0blcEd6fI7WKgVDX2A" name="return" type="_VkSa07lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VkSa0rlcEd6fI7WKgVDX2A" name="createContentOutline" visibility="private"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_VkSa07lcEd6fI7WKgVDX2A" name="ContentOutlineDescriptor" visibility="protected">
+              <generalization xmi:id="_VkSa1LlcEd6fI7WKgVDX2A" general="_VkTo4blcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkTB0LlcEd6fI7WKgVDX2A" name="priority" visibility="private" type="_VkRztrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkTB0blcEd6fI7WKgVDX2A" name="className" visibility="private" type="_VkTB5blcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkTB0rlcEd6fI7WKgVDX2A" name="actionBarContributorID" visibility="private" type="_VkTB5blcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkTB07lcEd6fI7WKgVDX2A" name="element" visibility="private" type="_VkTo4rlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_VkTB1LlcEd6fI7WKgVDX2A" name="instance" visibility="protected" type="_VkTB4rlcEd6fI7WKgVDX2A" association="_VkTo5rlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_VkTB1blcEd6fI7WKgVDX2A" name="isHigher" visibility="public">
+                <ownedParameter xmi:id="_VkTB1rlcEd6fI7WKgVDX2A" name="found" type="_VkSa07lcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_VkTB17lcEd6fI7WKgVDX2A" name="return" type="_VkRzsblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VkTB2LlcEd6fI7WKgVDX2A" name="getPriority" visibility="private">
+                <ownedParameter xmi:id="_VkTB2blcEd6fI7WKgVDX2A" name="return" type="_VkRztrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VkTB2rlcEd6fI7WKgVDX2A" name="getActionBarContributorID" visibility="public">
+                <ownedParameter xmi:id="_VkTB27lcEd6fI7WKgVDX2A" name="return" type="_VkTB5blcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VkTB3LlcEd6fI7WKgVDX2A" name="getContentOutline" visibility="protected">
+                <ownedParameter xmi:id="_VkTB3blcEd6fI7WKgVDX2A" name="return" type="_VkTB4rlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VkTB3rlcEd6fI7WKgVDX2A" name="loadClass" visibility="private">
+                <ownedParameter xmi:id="_VkTB37lcEd6fI7WKgVDX2A" name="return" type="_VkTo47lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VkTB4LlcEd6fI7WKgVDX2A" name="createContentOutlinePage" visibility="protected">
+                <ownedParameter xmi:id="_VkTB4blcEd6fI7WKgVDX2A" name="return" type="_VkTB4rlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_VkTB4rlcEd6fI7WKgVDX2A" name="IPapyrusContentOutlinePage">
+              <ownedOperation xmi:id="_VkTB47lcEd6fI7WKgVDX2A" name="init">
+                <ownedParameter xmi:id="_VkTB5LlcEd6fI7WKgVDX2A" name="multiEditor" type="_VkTo4LlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VkTB5blcEd6fI7WKgVDX2A" name="String"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VkTo4LlcEd6fI7WKgVDX2A" name="IMultiDiagramEditor"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VkTo4blcEd6fI7WKgVDX2A" name="EditorDescriptorExtensionFactory"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VkTo4rlcEd6fI7WKgVDX2A" name="IConfigurationElement"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VkTo47lcEd6fI7WKgVDX2A" name="Class"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_VkTo5LlcEd6fI7WKgVDX2A" memberEnd="_VkSazLlcEd6fI7WKgVDX2A _VkTo5blcEd6fI7WKgVDX2A">
+              <ownedEnd xmi:id="_VkTo5blcEd6fI7WKgVDX2A" name="target" type="_VkSax7lcEd6fI7WKgVDX2A" association="_VkTo5LlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_VkTo5rlcEd6fI7WKgVDX2A" memberEnd="_VkTB1LlcEd6fI7WKgVDX2A _VkTo57lcEd6fI7WKgVDX2A">
+              <ownedEnd xmi:id="_VkTo57lcEd6fI7WKgVDX2A" name="target" type="_VkSa07lcEd6fI7WKgVDX2A" association="_VkTo5rlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

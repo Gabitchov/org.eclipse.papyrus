@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_3YQrkLlcEd6fI7WKgVDX2A">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3YQrkblcEd6fI7WKgVDX2A" name="boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3YRSoLlcEd6fI7WKgVDX2A" name="byte"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3YRSoblcEd6fI7WKgVDX2A" name="char"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3YRSorlcEd6fI7WKgVDX2A" name="double"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3YRSo7lcEd6fI7WKgVDX2A" name="float"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3YRSpLlcEd6fI7WKgVDX2A" name="int"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3YRSpblcEd6fI7WKgVDX2A" name="long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3YRSprlcEd6fI7WKgVDX2A" name="short"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_3YRSp7lcEd6fI7WKgVDX2A" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_3YRSqLlcEd6fI7WKgVDX2A" name="eclipse">
+      <packagedElement xmi:type="uml:Package" xmi:id="_3YRSqblcEd6fI7WKgVDX2A" name="papyrus">
+        <packagedElement xmi:type="uml:Package" xmi:id="_3YRSqrlcEd6fI7WKgVDX2A" name="core">
+          <packagedElement xmi:type="uml:Package" xmi:id="_3YRSq7lcEd6fI7WKgVDX2A" name="multidiagram">
+            <packagedElement xmi:type="uml:Package" xmi:id="_3YRSrLlcEd6fI7WKgVDX2A" name="actionbarcontributor">
+              <packagedElement xmi:type="uml:Class" xmi:id="_3YRSrblcEd6fI7WKgVDX2A" name="ActionBarContributorExtensionFactory">
+                <generalization xmi:id="_3YRSrrlcEd6fI7WKgVDX2A" general="_3YR5tblcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSr7lcEd6fI7WKgVDX2A" name="eINSTANCE" visibility="public" type="_3YRSrblcEd6fI7WKgVDX2A" association="_3YR5w7lcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSsLlcEd6fI7WKgVDX2A" name="EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT" visibility="public" type="_3YR5trlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSsblcEd6fI7WKgVDX2A" name="CONTEXTCLASS_ATTRIBUTE" visibility="public" type="_3YR5trlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSsrlcEd6fI7WKgVDX2A" name="ID_ATTRIBUTE" visibility="public" type="_3YR5trlcEd6fI7WKgVDX2A"/>
+                <ownedOperation xmi:id="_3YRSs7lcEd6fI7WKgVDX2A" name="getInstance" visibility="public" isStatic="true">
+                  <ownedParameter xmi:id="_3YRStLlcEd6fI7WKgVDX2A" name="return" type="_3YRSrblcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_3YRStblcEd6fI7WKgVDX2A" name="createActionBarContributorDescriptor" visibility="public">
+                  <ownedParameter xmi:id="_3YRStrlcEd6fI7WKgVDX2A" name="element" type="_3YR5t7lcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_3YRSt7lcEd6fI7WKgVDX2A" name="return" type="_3YRS3blcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Interface" xmi:id="_3YRSuLlcEd6fI7WKgVDX2A" name="IActionBarContributorFactory">
+                <ownedOperation xmi:id="_3YRSublcEd6fI7WKgVDX2A" name="getActionBarContributor" visibility="public">
+                  <ownedParameter xmi:id="_3YRSurlcEd6fI7WKgVDX2A" name="key" type="_3YR5uLlcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_3YRSu7lcEd6fI7WKgVDX2A" name="return" type="_3YR5ublcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_3YRSvLlcEd6fI7WKgVDX2A" name="CoreComposedActionBarContributor">
+                <generalization xmi:id="_3YRSvblcEd6fI7WKgVDX2A" general="_3YR5urlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSvrlcEd6fI7WKgVDX2A" name="actionBarContributorRegistry" visibility="protected" type="_3YRSyrlcEd6fI7WKgVDX2A" association="_3YR5xblcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSv7lcEd6fI7WKgVDX2A" name="contributors" visibility="protected" type="_3YR5u7lcEd6fI7WKgVDX2A"/>
+                <ownedOperation xmi:id="_3YRSwLlcEd6fI7WKgVDX2A" name="loadContributors" visibility="private"/>
+                <ownedOperation xmi:id="_3YRSwblcEd6fI7WKgVDX2A" name="getActionBarContributorRegistry" visibility="public">
+                  <ownedParameter xmi:id="_3YRSwrlcEd6fI7WKgVDX2A" name="return" type="_3YRSyrlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_3YRSw7lcEd6fI7WKgVDX2A" name="dispose" visibility="public"/>
+                <ownedOperation xmi:id="_3YRSxLlcEd6fI7WKgVDX2A" name="init" visibility="public">
+                  <ownedParameter xmi:id="_3YRSxblcEd6fI7WKgVDX2A" name="bars" type="_3YR5vLlcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_3YRSxrlcEd6fI7WKgVDX2A" name="page" type="_3YR5vblcEd6fI7WKgVDX2A"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_3YRSx7lcEd6fI7WKgVDX2A" name="buildActions" visibility="protected"/>
+                <ownedOperation xmi:id="_3YRSyLlcEd6fI7WKgVDX2A" name="setActiveEditor" visibility="public">
+                  <ownedParameter xmi:id="_3YRSyblcEd6fI7WKgVDX2A" name="targetEditor" type="_3YR5vrlcEd6fI7WKgVDX2A"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_3YRSyrlcEd6fI7WKgVDX2A" name="ActionBarContributorRegistry" clientDependency="_3YRSz7lcEd6fI7WKgVDX2A">
+                <ownedAttribute xmi:id="_3YRSy7lcEd6fI7WKgVDX2A" name="log" type="_3YR5v7lcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSzLlcEd6fI7WKgVDX2A" name="EDITOR_EXTENSION_ID" visibility="public" type="_3YR5trlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSzblcEd6fI7WKgVDX2A" name="extensionPointNamespace" visibility="protected" type="_3YR5trlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRSzrlcEd6fI7WKgVDX2A" name="editorContextDescriptors" visibility="private" type="_3YR5wLlcEd6fI7WKgVDX2A"/>
+                <interfaceRealization xmi:id="_3YRSz7lcEd6fI7WKgVDX2A" name="IActionBarContributorFactory" supplier="_3YRSuLlcEd6fI7WKgVDX2A" client="_3YRSyrlcEd6fI7WKgVDX2A" contract="_3YRSuLlcEd6fI7WKgVDX2A"/>
+                <ownedOperation xmi:id="_3YRS0LlcEd6fI7WKgVDX2A" name="getActionBarContributor" visibility="public">
+                  <ownedParameter xmi:id="_3YRS0blcEd6fI7WKgVDX2A" name="key" type="_3YR5uLlcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_3YRS0rlcEd6fI7WKgVDX2A" name="return" type="_3YR5ublcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_3YRS07lcEd6fI7WKgVDX2A" name="getActionBarContributors" visibility="public">
+                  <ownedParameter xmi:id="_3YRS1LlcEd6fI7WKgVDX2A" name="return" type="_3YR5u7lcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_3YRS1blcEd6fI7WKgVDX2A" name="registerActionBarContributor" visibility="public">
+                  <ownedParameter xmi:id="_3YRS1rlcEd6fI7WKgVDX2A" name="contextKey" type="_3YR5trlcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_3YRS17lcEd6fI7WKgVDX2A" name="contributor" type="_3YR5ublcEd6fI7WKgVDX2A"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_3YRS2LlcEd6fI7WKgVDX2A" name="initializeEditorContextDescriptors" visibility="private"/>
+                <ownedOperation xmi:id="_3YRS2blcEd6fI7WKgVDX2A" name="initService" visibility="public">
+                  <ownedParameter xmi:id="_3YRS2rlcEd6fI7WKgVDX2A" name="servicesRegistry" type="_3YR5wblcEd6fI7WKgVDX2A"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_3YRS27lcEd6fI7WKgVDX2A" name="startService" visibility="public"/>
+                <ownedOperation xmi:id="_3YRS3LlcEd6fI7WKgVDX2A" name="disposeService" visibility="public"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_3YRS3blcEd6fI7WKgVDX2A" name="ActionBarContributorDescriptor">
+                <ownedAttribute xmi:id="_3YRS3rlcEd6fI7WKgVDX2A" name="contextClass" visibility="protected" type="_3YR5wrlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YRS37lcEd6fI7WKgVDX2A" name="contextId" visibility="protected" type="_3YR5trlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_3YR5sLlcEd6fI7WKgVDX2A" name="instance" visibility="protected" type="_3YR5ublcEd6fI7WKgVDX2A"/>
+                <ownedOperation xmi:id="_3YR5sblcEd6fI7WKgVDX2A" name="getActionBarContributor" visibility="protected">
+                  <ownedParameter xmi:id="_3YR5srlcEd6fI7WKgVDX2A" name="return" type="_3YR5ublcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_3YR5s7lcEd6fI7WKgVDX2A" name="createActionBarContributor" visibility="private">
+                  <ownedParameter xmi:id="_3YR5tLlcEd6fI7WKgVDX2A" name="return" type="_3YR5ublcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5tblcEd6fI7WKgVDX2A" name="DescriptorExtensionFactory"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5trlcEd6fI7WKgVDX2A" name="String"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5t7lcEd6fI7WKgVDX2A" name="IConfigurationElement"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5uLlcEd6fI7WKgVDX2A" name="Object"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5ublcEd6fI7WKgVDX2A" name="EditorActionBarContributor"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5urlcEd6fI7WKgVDX2A" name="ComposedActionBarContributor"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5u7lcEd6fI7WKgVDX2A" name="List"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5vLlcEd6fI7WKgVDX2A" name="IActionBars"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5vblcEd6fI7WKgVDX2A" name="IWorkbenchPage"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5vrlcEd6fI7WKgVDX2A" name="IEditorPart"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5v7lcEd6fI7WKgVDX2A" name="Logger"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5wLlcEd6fI7WKgVDX2A" name="Map"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5wblcEd6fI7WKgVDX2A" name="ServicesRegistry"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_3YR5wrlcEd6fI7WKgVDX2A" name="Class"/>
+              <packagedElement xmi:type="uml:Association" xmi:id="_3YR5w7lcEd6fI7WKgVDX2A" memberEnd="_3YRSr7lcEd6fI7WKgVDX2A _3YR5xLlcEd6fI7WKgVDX2A">
+                <ownedEnd xmi:id="_3YR5xLlcEd6fI7WKgVDX2A" name="target" type="_3YRSrblcEd6fI7WKgVDX2A" association="_3YR5w7lcEd6fI7WKgVDX2A"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Association" xmi:id="_3YR5xblcEd6fI7WKgVDX2A" memberEnd="_3YRSvrlcEd6fI7WKgVDX2A _3YR5xrlcEd6fI7WKgVDX2A">
+                <ownedEnd xmi:id="_3YR5xrlcEd6fI7WKgVDX2A" name="target" type="_3YRSvLlcEd6fI7WKgVDX2A" association="_3YR5xblcEd6fI7WKgVDX2A"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>
