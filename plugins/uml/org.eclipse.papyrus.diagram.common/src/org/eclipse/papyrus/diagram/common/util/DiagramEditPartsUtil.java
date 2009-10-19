@@ -359,11 +359,13 @@ public class DiagramEditPartsUtil {
 	 */
 	public static List<View> findViews(EObject parserElement, EditPartViewer viewer) {
 		List<View> modelElements = new ArrayList<View>();
-		for (Object ep : viewer.getEditPartRegistry().keySet()) {
-			if (ep instanceof View) {
-				View view = (View) ep;
-				if (view.getElement().equals(parserElement)) {
-					modelElements.add(view);
+		if(parserElement != null){
+			for (Object ep : viewer.getEditPartRegistry().keySet()) {
+				if (ep instanceof View) {
+					View view = (View) ep;
+					if (parserElement.equals(view.getElement())) {
+						modelElements.add(view);
+					}
 				}
 			}
 		}
