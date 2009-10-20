@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.developer.feature"
+      label="MDT Papyrus Developer Feature"
+      version="0.7.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      The MDT Papyrus Developer feature. 
+
+This feature contains the specialized generator used by Papyrus
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <url>
+      <discovery label="MDT Papyrus" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
+      <discovery label="Developer Wiki" url="http://wiki.eclipse.org/Papyrus_Developer_Guide"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.codegen.ecore" version="2.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.codegen" version="2.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.codegen.ui" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.m2m.qvt.oml" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="3.5.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.papyrus.def"
+         download-size="0"
+         install-size="0"
+         version="0.7.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.codegen"
+         download-size="0"
+         install-size="0"
+         version="0.7.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.gmfgenextension"
+         download-size="0"
+         install-size="0"
+         version="0.7.0.qualifier"
+         unpack="false"/>
+
+</feature>
