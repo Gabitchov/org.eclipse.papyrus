@@ -45,7 +45,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 	 * 
 	 * @param editingDomain
 	 */
-	public RenameNamedElementAction(TransactionalEditingDomain editingDomain) {
+	public RenameNamedElementAction(EditingDomain editingDomain) {
 		super(editingDomain, "Rename...");
 		setAccelerator(SWT.F2);
 	}

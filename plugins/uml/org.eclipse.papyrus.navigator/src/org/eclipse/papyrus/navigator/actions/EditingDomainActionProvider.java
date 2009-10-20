@@ -7,30 +7,31 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Emilien Perico - use extension point to define dynamically registered actions
  *******************************************************************************/
 package org.eclipse.papyrus.navigator.actions;
 
-import org.eclipse.emf.edit.ui.action.CopyAction;
-import org.eclipse.emf.edit.ui.action.CutAction;
-import org.eclipse.emf.edit.ui.action.DeleteAction;
-import org.eclipse.emf.edit.ui.action.LoadResourceAction;
-import org.eclipse.emf.edit.ui.action.PasteAction;
-import org.eclipse.emf.edit.ui.action.RedoAction;
-import org.eclipse.emf.edit.ui.action.UndoAction;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.navigator.internal.Activator;
+import org.eclipse.papyrus.navigator.factory.IActionHandlerFactory;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.ui.IActionBars;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 
@@ -38,102 +39,57 @@ import org.eclipse.ui.navigator.ICommonActionExtensionSite;
  * Provider used to create actions applicable on semantic elements
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author Emilien Perico - see extension point org.eclipse.papyrus.navigator.actionHandler to add specific action
  */
 public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 
-	// fjcano #290514 :: command to rename elements in the model explorer
-	protected RenameNamedElementAction renameNamedElementAction;
+	public static final String ACTION_HANDLER_EXTENSION_POINT_ID = "org.eclipse.papyrus.navigator.actionHandler";
 
-	protected DeleteAction deleteAction;
+	protected CommonNavigator activeViewPart;
+	
+	protected Map<IActionHandlerFactory, ActionProperties> actionsFactoriesMap;
 
-	protected CutAction cutAction;
-
-	protected CopyAction copyAction;
-
-	protected PasteAction pasteAction;
-
-	protected UndoAction undoAction;
-
-	protected RedoAction redoAction;
-
-	protected LoadResourceAction loadResourceAction;
-
-	// protected ControlAction controlAction;
-
-	// protected ValidateAction validateAction;
-
-	CommonNavigator activeViewPart;
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void init(ICommonActionExtensionSite site) {
 		super.init(site);
+		
 		this.activeViewPart = getCommonNavigator();
-
-		ISharedImages sharedImages = PlatformUI.getWorkbench()
-				.getSharedImages();
-		TransactionalEditingDomain editingDomain = NavigatorUtils
-				.getTransactionalEditingDomain();
-
-		// Rename NamedElement action
-		// fjcano #290514 :: command to rename elements in the model explorer
-		this.renameNamedElementAction = new RenameNamedElementAction(
-				editingDomain);
-		this.renameNamedElementAction.setImageDescriptor(Activator
-				.getImageDescriptor("icons/etool16/rename.gif"));
-
-		// Create Delete action
-		this.deleteAction = new DeleteAction(editingDomain, true);
-		this.deleteAction.setImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		this.deleteAction.setDisabledImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
-
-		// Create Copy action
-		this.copyAction = new CopyAction(editingDomain);
-		this.copyAction.setImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_COPY));
-
-		// Create Cut action
-		this.cutAction = new CutAction(editingDomain);
-		this.cutAction.setImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
-
-		// Create Paste action
-		this.pasteAction = new PasteAction(editingDomain);
-		this.pasteAction.setImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_PASTE));
-
-		// Undo action
-		this.undoAction = new UndoAction();
-		this.undoAction.setImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
-
-		// Redo action
-		this.redoAction = new RedoAction();
-		this.redoAction.setImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
-
-		// Load Resource action
-		this.loadResourceAction = new LoadResourceAction(editingDomain);
+		this.actionsFactoriesMap = new HashMap<IActionHandlerFactory, ActionProperties>();
+		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
+		
+		IConfigurationElement[] registry = Platform.getExtensionRegistry().getConfigurationElementsFor(ACTION_HANDLER_EXTENSION_POINT_ID);
+		for (IConfigurationElement elt : registry)
+		{
+			try {
+				final String actionId = elt.getAttribute("actionId");
+				final String afterAction = elt.getAttribute("afterAction");
+				boolean needSeparator = Boolean.valueOf(elt.getAttribute("needSeparator"));
+				ActionProperties properties = new ActionProperties(actionId, afterAction, needSeparator);
+				
+				IActionHandlerFactory factory = (IActionHandlerFactory) elt.createExecutableExtension("actionHandler");
+				// create registered actions
+				factory.createActions(editingDomain);
+				
+				actionsFactoriesMap.put(factory, properties);
+			} 
+			catch (CoreException exception) {
+				exception.printStackTrace();
+			}
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void fillActionBars(IActionBars actionBars) {
-		super.fillActionBars(actionBars);
-		// fjcano #290514 :: command to rename elements in the model explorer
-		actionBars.setGlobalActionHandler(ActionFactory.RENAME.getId(),
-				renameNamedElementAction);
-		actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(),
-				deleteAction);
-		actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(), cutAction);
-		actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(),
-				copyAction);
-		actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(),
-				pasteAction);
-		actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(),
-				undoAction);
-		actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(),
-				redoAction);
+		super.fillActionBars(actionBars);		
+		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
+			factory.fillActionBars(actionBars);
+		}
 	}
 
 	/**
@@ -142,118 +98,166 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	@Override
 	public void fillContextMenu(IMenuManager menu) {
 		update();
-		// Add the edit menu actions.
-		menu.add(new Separator());
-		// fjcano #290514 :: command to rename elements in the model explorer
-		menu.add(new ActionContributionItem(renameNamedElementAction));
-		menu.add(new ActionContributionItem(cutAction));
-		menu.add(new ActionContributionItem(copyAction));
-		menu.add(new ActionContributionItem(pasteAction));
-		;
-		menu.add(new ActionContributionItem(deleteAction));
-		menu.add(new Separator());
-		menu.add(new ActionContributionItem(undoAction));
-		menu.add(new ActionContributionItem(redoAction));
-		menu.add(new Separator());
-		menu.add(new ActionContributionItem(loadResourceAction));
-		menu.add(new Separator());
-		// Activate
+		// sort factories from "afterAction" property
+		List<IActionHandlerFactory> sortedFactories = sortFactories(actionsFactoriesMap);
+
+		// Add the edit menu actions
+		for (IActionHandlerFactory factory : sortedFactories) {			
+			ActionProperties actionProperties = actionsFactoriesMap.get(factory);
+			if (actionProperties != null && actionProperties.isNeedSeparator()) {
+				menu.add(new Separator());
+			}
+			for (Action action : factory.getActions()) {
+				menu.add(new ActionContributionItem(action));
+			}
+		}
 		activate();
 	}
 
+	/**
+	 * Update actions
+	 */
 	public void update() {
-		ISelection selection = getCommonNavigator().getCommonViewer()
-				.getSelection();
-		IStructuredSelection structuredSelection = selection instanceof IStructuredSelection ? (IStructuredSelection) selection
-				: StructuredSelection.EMPTY;
-		// fjcano #290514 :: command to rename elements in the model explorer
-		renameNamedElementAction.updateSelection(structuredSelection);
-		deleteAction.updateSelection(structuredSelection);
-		cutAction.updateSelection(structuredSelection);
-		copyAction.updateSelection(structuredSelection);
-		pasteAction.updateSelection(structuredSelection);
-		// validateAction.updateSelection(structuredSelection);
-		// controlAction.updateSelection(structuredSelection);
-		TransactionalEditingDomain domain = NavigatorUtils
-				.getTransactionalEditingDomain();
-		loadResourceAction.setEditingDomain(domain);
-		loadResourceAction.update();
+		ISelection selection = getCommonNavigator().getCommonViewer().getSelection();
+		IStructuredSelection structuredSelection = StructuredSelection.EMPTY;
+		if (selection instanceof IStructuredSelection) {
+			structuredSelection = (IStructuredSelection) selection;
+		}
+		
+		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
+			factory.update(structuredSelection);
+		}
 	}
 
+	/**
+	 * Activate actions
+	 */
 	public void activate() {
-		// fjcano #290514 :: command to rename elements in the model explorer
-		renameNamedElementAction.setActiveWorkbenchPart(activeViewPart);
-		deleteAction.setActiveWorkbenchPart(activeViewPart);
-		cutAction.setActiveWorkbenchPart(activeViewPart);
-		copyAction.setActiveWorkbenchPart(activeViewPart);
-		pasteAction.setActiveWorkbenchPart(activeViewPart);
-		undoAction.setActiveWorkbenchPart(activeViewPart);
-		redoAction.setActiveWorkbenchPart(activeViewPart);
-		loadResourceAction.setActiveWorkbenchPart(activeViewPart);
-		// controlAction.setActiveWorkbenchPart(activeViewPart);
-		// validateAction.setActiveWorkbenchPart(activeViewPart);
-
-		ISelectionProvider selectionProvider = activeViewPart.getCommonViewer() instanceof ISelectionProvider ? (ISelectionProvider) activeViewPart
-				.getCommonViewer()
-				: null;
-
-		if (selectionProvider != null) {
-			// fjcano #290514 :: command to rename elements in the model
-			// explorer
-			selectionProvider
-					.addSelectionChangedListener(renameNamedElementAction);
-			selectionProvider.addSelectionChangedListener(deleteAction);
-			selectionProvider.addSelectionChangedListener(cutAction);
-			selectionProvider.addSelectionChangedListener(copyAction);
-			selectionProvider.addSelectionChangedListener(pasteAction);
-			// selectionProvider.addSelectionChangedListener(validateAction);
-			// selectionProvider.addSelectionChangedListener(controlAction);
+		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
+			factory.activate(activeViewPart);
 		}
 		update();
 	}
 
 	/**
-	 * Deactivate.
+	 * Deactivate actions
 	 */
 	public void deactivate() {
-		// fjcano #290514 :: command to rename elements in the model explorer
-		renameNamedElementAction.setActiveWorkbenchPart(null);
-		deleteAction.setActiveWorkbenchPart(null);
-		cutAction.setActiveWorkbenchPart(null);
-		copyAction.setActiveWorkbenchPart(null);
-		pasteAction.setActiveWorkbenchPart(null);
-		undoAction.setActiveWorkbenchPart(null);
-		redoAction.setActiveWorkbenchPart(null);
-		loadResourceAction.setActiveWorkbenchPart(null);
-		// controlAction.setActiveWorkbenchPart(null);
-		// validateAction.setActiveWorkbenchPart(null);
-
-		ISelectionProvider selectionProvider = activeViewPart.getCommonViewer() instanceof ISelectionProvider ? (ISelectionProvider) activeViewPart
-				.getCommonViewer()
-				: null;
-
-		if (selectionProvider != null) {
-			// fjcano #290514 :: command to rename elements in the model
-			// explorer
-			selectionProvider
-					.removeSelectionChangedListener(renameNamedElementAction);
-			selectionProvider.removeSelectionChangedListener(deleteAction);
-			selectionProvider.removeSelectionChangedListener(cutAction);
-			selectionProvider.removeSelectionChangedListener(copyAction);
-			selectionProvider.removeSelectionChangedListener(pasteAction);
-			// selectionProvider.removeSelectionChangedListener(validateAction);
-			// selectionProvider.removeSelectionChangedListener(controlAction);
+		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
+			factory.deactivate(activeViewPart);
 		}
 	}
 
 	/**
-	 * @see org.eclipse.ui.actions.ActionGroup#updateActionBars()
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void updateActionBars() {
 		super.updateActionBars();
 		activate();
 		update();
+	}
+	
+	/**
+	 * Sort factories.
+	 * 
+	 * @param actionsFactoriesMap the actions factories map
+	 * 
+	 * @return the sorted list of factories
+	 */
+	private List<IActionHandlerFactory> sortFactories(final Map<IActionHandlerFactory, ActionProperties> actionsFactoriesMap) {
+		
+		List<IActionHandlerFactory> factories = new ArrayList<IActionHandlerFactory>(actionsFactoriesMap.keySet());
+		
+		Collections.sort(factories, new Comparator<IActionHandlerFactory>() {
+			
+			public int compare(IActionHandlerFactory factory1, IActionHandlerFactory factory2) {
+				
+				ActionProperties properties1 = getDefaultForNull(actionsFactoriesMap.get(factory1));
+				ActionProperties properties2 = getDefaultForNull(actionsFactoriesMap.get(factory2));
+				String after1 = properties1.getAfterAction();
+				String after2 = properties2.getAfterAction();
+				
+				if (properties1.getActionId().equals(properties2.getActionId()))
+				{
+					return 0 ;
+				}
+				else if (properties1.getActionId().equals(after2))
+				{
+					return -1 ;
+				}
+				else if (properties2.getActionId().equals(after1))
+				{
+					return 1 ;
+				}
+				else if (after1 == null)
+				{
+					return -1 ;
+				}
+				else if (after2 == null)
+				{
+					return 1 ;
+				}
+				return 0;
+			}
+
+			private ActionProperties getDefaultForNull(ActionProperties actionProperties) {
+				if (actionProperties == null)
+				{
+					actionProperties = new ActionProperties("", "", false);
+				}
+				return actionProperties;
+			}
+		});
+
+		return factories;
+	}
+	
+	/**
+	 * The Class ActionProperties to store properties for a registered action 
+	 * from extension point org.eclipse.papyrus.navigator.actionHandler
+	 */
+	private class ActionProperties {
+		
+		private String actionId;
+		
+		private String afterAction;
+		
+		private boolean needSeparator;
+
+		/**
+		 * @param actionId
+		 * @param afterAction
+		 * @param needSeparator
+		 */
+		public ActionProperties(String actionId, String afterAction, boolean needSeparator) {
+			super();
+			this.actionId = actionId;
+			this.afterAction = afterAction;
+			this.needSeparator = needSeparator;
+		}
+		
+		/**
+		 * @return the actionId
+		 */
+		public String getActionId() {
+			return actionId;
+		}
+
+		/**
+		 * @return the afterAction
+		 */
+		public String getAfterAction() {
+			return afterAction;
+		}
+		
+		/**
+		 * @return the needSeparator
+		 */
+		public boolean isNeedSeparator() {
+			return needSeparator;
+		}
+		
 	}
 
 }
