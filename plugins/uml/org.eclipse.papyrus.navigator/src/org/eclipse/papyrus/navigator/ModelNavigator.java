@@ -40,6 +40,8 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.navigator.actions.GroupChildrenAction;
 import org.eclipse.papyrus.navigator.actions.RemoveTypePrefixAction;
+import org.eclipse.papyrus.navigator.actions.SearchElementAction;
+import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.navigator.providers.IContentProvider;
 import org.eclipse.papyrus.navigator.providers.ToEditorSaveable;
@@ -253,6 +255,20 @@ public class ModelNavigator extends CommonNavigator implements
 	}
 
 	/**
+	 * 
+	 * @return
+	 */
+	public IAction getSearchAction() {
+		// fjcano #290425 :: add search element action to model navigator
+		IAction searchAction = new SearchElementAction(this);
+		ImageDescriptor magnifyingGlassIcon = Activator
+				.getImageDescriptor("icons/etool16/search.gif");
+		searchAction.setImageDescriptor(magnifyingGlassIcon);
+		searchAction.setHoverImageDescriptor(magnifyingGlassIcon);
+		return searchAction;
+	}
+
+	/**
 	 * Add the "Group children" action.
 	 */
 	public void createPartControl(Composite aParent) {
@@ -263,6 +279,9 @@ public class ModelNavigator extends CommonNavigator implements
 		// fjcano #291192
 		getViewSite().getActionBars().getToolBarManager().add(
 				getRemoveTypesPrefixAction());
+		// fjcano #290425 :: add search action to model navigator
+		getViewSite().getActionBars().getToolBarManager()
+				.add(getSearchAction());
 	};
 
 	/**
