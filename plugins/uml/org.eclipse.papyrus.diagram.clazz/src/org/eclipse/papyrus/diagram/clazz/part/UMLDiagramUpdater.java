@@ -4698,7 +4698,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			// Papyrus GenCode
+			//Papyrus GenCode 
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Type) {
@@ -4735,7 +4735,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			// Papyrus GenCode
+			//Papyrus GenCode 
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Type) {
@@ -4772,7 +4772,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			// Papyrus GenCode
+			//Papyrus GenCode 
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Type) {
@@ -5180,7 +5180,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			// Papyrus GenCode
+			//Papyrus GenCode 
 			List targets = link.getGeneralizations();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Generalization) {
@@ -5713,7 +5713,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			// Papyrus GenCode
+			//Papyrus GenCode 
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Type) {
@@ -5765,7 +5765,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			// Papyrus GenCode
+			//Papyrus GenCode 
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Type) {
@@ -5817,7 +5817,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			// Papyrus GenCode
+			//Papyrus GenCode 
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Type) {
@@ -6271,7 +6271,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-			// Papyrus GenCode
+			//Papyrus GenCode 
 			List targets = link.getGeneralizations();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
 			if (false == theTarget instanceof Generalization) {

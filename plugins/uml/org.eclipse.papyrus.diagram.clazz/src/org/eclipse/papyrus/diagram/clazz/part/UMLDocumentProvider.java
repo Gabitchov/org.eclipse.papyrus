@@ -126,7 +126,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();) {
+		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it.hasNext();) {
 			Resource nextResource = (Resource) it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
@@ -209,9 +209,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				if (!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE,
-						// Boolean.TRUE);
+						// @see 171060 
+						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
 						resource.unload();
@@ -303,13 +302,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
-																						 * <org.eclipse
-																						 * .core.
-																						 * resources
-																						 * .IFile>
-																						 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/*<org.eclipse.core.resources.IFile>*/files2Validate = new ArrayList/*<org.eclipse.core.resources.IFile>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -335,8 +329,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					updateCache(element);
 				} catch (CoreException ex) {
 					UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from
-					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -360,8 +353,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					updateCache(element);
 				} catch (CoreException ex) {
 					UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from
-					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -375,7 +367,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -419,17 +411,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse
-																							 * .
-																							 * core.
-																							 * runtime
-																							 * .
-																							 * jobs.
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -448,17 +431,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse
-																							 * .
-																							 * core.
-																							 * runtime
-																							 * .
-																							 * jobs.
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -477,17 +451,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse
-																							 * .
-																							 * core.
-																							 * runtime
-																							 * .
-																							 * jobs.
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -506,17 +471,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
-																							 * <org.eclipse
-																							 * .
-																							 * core.
-																							 * runtime
-																							 * .
-																							 * jobs.
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/files = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -540,8 +496,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		IResource parent = toCreateOrModify;
 		do {
 			/*
-			 * XXX This is a workaround for https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
-			 * IResourceRuleFactory.createRule should iterate the hierarchy itself.
+			 * XXX This is a workaround for
+			 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
+			 * IResourceRuleFactory.createRule should iterate the hierarchy
+			 * itself.
 			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
@@ -556,7 +514,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				handleElementChanged(info, nextResource, monitor);
@@ -582,8 +540,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			fireElementStateChanging(element);
 			try {
 				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
-						.size() + 1); // "Saving diagram"
-				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+						.size() + 1); //"Saving diagram"
+				for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info.getLoadedResourcesIterator(); it
 						.hasNext();) {
 					Resource nextResource = (Resource) it.next();
 					monitor.setTaskName(NLS.bind(Messages.UMLDocumentProvider_SaveNextResourceTask, nextResource
@@ -671,8 +629,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			} catch (CoreException ex) {
 				UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_handleElementContentChanged,
 						ex);
-				// Error message to log was initially taken from
-				// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -824,8 +781,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		/**
 		 * @generated
 		 */
-		public Iterator/* <org.eclipse.emf.ecore.resource.Resource> */getLoadedResourcesIterator() {
-			return new ArrayList/* <org.eclipse.emf.ecore.resource.Resource> */(getResourceSet().getResources())
+		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
+			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(getResourceSet().getResources())
 					.iterator();
 		}
 
@@ -842,7 +799,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = getLoadedResourcesIterator(); it.hasNext();) {
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it.hasNext();) {
 				Resource resource = (Resource) it.next();
 				resource.unload();
 			}
@@ -1039,7 +996,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
+						for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo
 								.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource) it.next();
 							if (nextResource.isLoaded()) {

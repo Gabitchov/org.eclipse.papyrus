@@ -30,15 +30,11 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.palette.customize.DefaultEntryPage;
 import org.eclipse.gef.ui.palette.customize.DrawerEntryPage;
 import org.eclipse.gef.ui.palette.customize.EntryPage;
-import org.eclipse.gmf.runtime.common.core.util.Log;
-import org.eclipse.gmf.runtime.common.core.util.Trace;
-import org.eclipse.gmf.runtime.gef.ui.internal.GefDebugOptions;
-import org.eclipse.gmf.runtime.gef.ui.internal.GefPlugin;
-import org.eclipse.gmf.runtime.gef.ui.internal.GefStatusCodes;
 import org.eclipse.gmf.runtime.gef.ui.palette.customize.IPaletteState;
 import org.eclipse.gmf.runtime.gef.ui.palette.customize.PaletteCustomizerEx;
 import org.eclipse.gmf.runtime.gef.ui.palette.customize.PaletteDrawerState;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
@@ -82,7 +78,9 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 		// of the iterator system (concurrent modification)
 		// so, clean palette using a specific method
 		// 4. goal: ContainerA, ContainerB -< PaletteA
-		cleanPalette(paletteRoot);
+
+		// FIXME made by a new palette definition now
+		// cleanPalette(paletteRoot);
 	}
 
 	/**
@@ -205,12 +203,7 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 				preferences.setValue(PALETTE_CUSTOMIZATIONS_ID, writer.toString());
 			}
 		} catch (IOException e) {
-			Trace.catching(GefPlugin.getInstance(), GefDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-					"Problem saving the XML memento when saving the palette customizations.", //$NON-NLS-1$
-					e);
-			Log.warning(GefPlugin.getInstance(), GefStatusCodes.IGNORED_EXCEPTION_WARNING,
-					"Problem saving the XML memento when saving the palette customizations.", //$NON-NLS-1$
-					e);
+			Activator.getDefault().logError("Error while saving preferences for palette", e);
 		}
 
 		paletteStates.clear();
@@ -257,12 +250,7 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 				try {
 					memento = containerMemento.createChild(id);
 				} catch (Exception e) {
-					Trace.catching(GefPlugin.getInstance(), GefDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-							"Invalid palette id encountered when saving the palette customizations.", //$NON-NLS-1$
-							e);
-					Log.warning(GefPlugin.getInstance(), GefStatusCodes.IGNORED_EXCEPTION_WARNING,
-							"Invalid palette id encountered when saving the palette customizations.", //$NON-NLS-1$
-							e);
+					Activator.getDefault().logError("Error while reading preferences for palette", e);
 					return null;
 				}
 			}
@@ -324,12 +312,7 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 					XMLMemento rootMemento = XMLMemento.createReadRoot(new StringReader(sValue));
 					return rootMemento;
 				} catch (WorkbenchException e) {
-					Trace.catching(GefPlugin.getInstance(), GefDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-							"Problem creating the XML memento when saving the palette customizations.", //$NON-NLS-1$
-							e);
-					Log.warning(GefPlugin.getInstance(), GefStatusCodes.IGNORED_EXCEPTION_WARNING,
-							"Problem creating the XML memento when saving the palette customizations.", //$NON-NLS-1$
-							e);
+					Activator.getDefault().logError("Error while reading preferences for palette", e);
 				}
 			}
 		}

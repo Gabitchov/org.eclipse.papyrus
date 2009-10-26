@@ -45,4 +45,28 @@ public interface IPapyrusPaletteConstant {
 	/** name of the editor attribute */
 	public final String EDITOR = "editor";
 
+	/** name of the name attribute */
+	public final String NAME = "name";
+
+	/** name of the editor id attribute */
+	public final String EDITOR_ID = "editorID";
+
+	/** name of the priority attribute */
+	public final String PRIORITY = "priority";
+
+	/** id for the preference store for palette customizations */
+	public final String PALETTE_CUSTOMIZATIONS_ID = "paletteCustomization";
+
+	/** id for the preference store for local palette definitions */
+	public final String PALETTE_LOCAL_DEFINITIONS = "localPaletteDefinition";
+
+	/** id for the preference definitions */
+	public final String HIDDEN_PALETTES = "hiddenPalettes";
+
+	/** id for the palette attribute */
+	public final String PALETTE = "palette";
+
+	/** id for the class attribute */
+	public final String CLASS = "class";
+
 }

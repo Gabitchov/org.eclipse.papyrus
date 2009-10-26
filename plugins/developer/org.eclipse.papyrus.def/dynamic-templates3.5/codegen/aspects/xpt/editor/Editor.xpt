@@ -13,9 +13,259 @@
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «EXTENSION xpt::editor::Utils»
 
+«AROUND attributes FOR gmfgen::GenEditorView-»
+	«REM»old code«ENDREM»
+	«targetDef.proceed()»
+	«REM»end of old code«ENDREM»
+	
+	«REM»Documentation. adds listener for papyrus editors«ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	org.eclipse.gef.KeyHandler paletteKeyHandler = null;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	org.eclipse.swt.events.MouseListener paletteMouseListener = null;
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+	org.eclipse.core.runtime.preferences.InstanceScope instanceScope = new org.eclipse.core.runtime.preferences.InstanceScope(); 
+	«REM»«ENDREM»
+«ENDAROUND»
+
+«AROUND _constructor FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «className»() {
+		super(«null <> editorGen.diagram.palette and editorGen.diagram.palette.flyout»);
+
+	«REM»Documentation. adds preference listener for papyrus editors«ENDREM»
+	org.eclipse.core.runtime.preferences.IEclipsePreferences prefs = instanceScope.getNode(org.eclipse.papyrus.diagram.common.Activator.ID);
+		prefs.addPreferenceChangeListener(this);
+	«REM»end of listeners addition«ENDREM»
+	}
+«ENDAROUND»
+
 «AROUND createPaletteRoot FOR gmfgen::Palette-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gef.palette.PaletteRoot createPaletteRoot(org.eclipse.gef.palette.PaletteRoot existingPaletteRoot) {
-		return super.createPaletteRoot(existingPaletteRoot);
+		org.eclipse.gef.palette.PaletteRoot paletteRoot;
+		if (existingPaletteRoot == null) {
+			paletteRoot = org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
+		} else {
+			org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
+			paletteRoot = existingPaletteRoot;
+		}
+		applyCustomizationsToPalette(paletteRoot);
+		return paletteRoot;
 	}
 «ENDAROUND»
+
+«DEFINE createPaletteCustomizer FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.ui.palette.PaletteCustomizer createPaletteCustomizer() {
+		return new org.eclipse.papyrus.diagram.common.part.PapyrusPaletteCustomizer(getPreferenceStore());
+	}
+«ENDDEFINE»
+
+«AROUND additions FOR gmfgen::GenEditorView-»
+	«REM»old code«ENDREM»
+	«targetDef.proceed()»
+	«REM»end of old code«ENDREM»
+	
+	«REM»Documentation. adds method to handle preference changes«ENDREM»
+	«EXPAND handlePreferenceChange-»
+	
+	«EXPAND dispose-»
+	
+	«EXPAND getPaletteViewer-»
+	
+	«EXPAND createPaletteCustomizer-»
+	
+	«EXPAND constructPaletteViewer -»
+	
+	«EXPAND createPaletteviewerProvider-»
+«ENDAROUND»
+
+«DEFINE handlePreferenceChange FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void preferenceChange(org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent event) {
+		if (org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences.PALETTE_CUSTOMIZATIONS_ID.equals(event.getKey())) {
+			org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
+					getDefaultPaletteContent());
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE constructPaletteViewer FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.ui.palette.PaletteViewer constructPaletteViewer() {
+		return new org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer();
+	}
+«ENDDEFINE»
+
+«DEFINE dispose FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void dispose() {
+		// remove preference listener
+		org.eclipse.core.runtime.preferences.IEclipsePreferences prefs = instanceScope.getNode(org.eclipse.papyrus.diagram.common.Activator.ID);
+		prefs.removePreferenceChangeListener(this);
+		
+		super.dispose();
+	}
+«ENDDEFINE»
+
+«DEFINE getPaletteViewer FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.ui.palette.PaletteViewer getPaletteViewer() {
+		return getEditDomain().getPaletteViewer();
+	}
+«ENDDEFINE»	
+	
+«AROUND implementsList FOR Sequence(String)-»
+ implements org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener
+«IF not self->isEmpty()», «EXPAND implementsListEntry FOREACH self SEPARATOR ', '»«ENDIF-»
+«ENDAROUND»
+
+«DEFINE implementsListEntry FOR String»«self»«ENDDEFINE»
+
+«DEFINE createPaletteviewerProvider FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerProvider() {
+		getEditDomain().setPaletteRoot(createPaletteRoot(null));
+		return new org.eclipse.gef.ui.palette.PaletteViewerProvider(getEditDomain()) {
+
+			/**
+			 * Override to provide the additional behavior for the tools. Will intialize with a
+			 * PaletteEditPartFactory that has a TrackDragger that understand how to handle the
+			 * mouseDoubleClick event for shape creation tools. Also will initialize the palette
+			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
+			 * key which will result in the creation of the shape also.
+			 */
+			protected void configurePaletteViewer(org.eclipse.gef.ui.palette.PaletteViewer viewer) {
+				super.configurePaletteViewer(viewer);
+
+				// customize menu...
+				viewer.setContextMenu(new org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider(viewer));
+
+				viewer.getKeyHandler().setParent(getPaletteKeyHandler());
+				viewer.getControl().addMouseListener(getPaletteMouseListener());
+
+				// Add a transfer drag target listener that is supported on
+				// palette template entries whose template is a creation tool.
+				// This will enable drag and drop of the palette shape creation
+				// tools.
+				viewer.addDragSourceListener(new org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener(viewer));
+				viewer.setCustomizer(createPaletteCustomizer());
+			}
+
+			public org.eclipse.gef.ui.palette.PaletteViewer createPaletteViewer(org.eclipse.swt.widgets.Composite parent) {
+				org.eclipse.gef.ui.palette.PaletteViewer pViewer = constructPaletteViewer();
+				pViewer.createControl(parent);
+				configurePaletteViewer(pViewer);
+				hookPaletteViewer(pViewer);
+				return pViewer;
+			}
+
+			/**
+			 * @return Palette Key Handler for the palette
+			 */
+			private org.eclipse.gef.KeyHandler getPaletteKeyHandler() {
+
+				if (paletteKeyHandler == null) {
+
+					paletteKeyHandler = new org.eclipse.gef.KeyHandler() {
+
+						/**
+						 * Processes a <i>key released </i> event. This method is called by the Tool
+						 * whenever a key is released, and the Tool is in the proper state. Override
+						 * to support pressing the enter key to create a shape or connection
+						 * (between two selected shapes)
+						 * 
+						 * @param event
+						 *            the KeyEvent
+						 * @return <code>true</code> if KeyEvent was handled in some way
+						 */
+						public boolean keyReleased(org.eclipse.swt.events.KeyEvent event) {
+
+							if (event.keyCode == org.eclipse.swt.SWT.Selection) {
+
+								org.eclipse.gef.Tool tool = getPaletteViewer().getActiveTool().createTool();
+
+								if (toolSupportsAccessibility(tool)) {
+
+									tool.keyUp(event, getDiagramGraphicalViewer());
+
+									// deactivate current selection
+									getPaletteViewer().setActiveTool(null);
+
+									return true;
+								}
+
+							}
+							return super.keyReleased(event);
+						}
+
+					};
+
+				}
+				return paletteKeyHandler;
+			}
+
+			/**
+			 * @return Palette Mouse listener for the palette
+			 */
+			private org.eclipse.swt.events.MouseListener getPaletteMouseListener() {
+
+				if (paletteMouseListener == null) {
+
+					paletteMouseListener = new org.eclipse.swt.events.MouseListener() {
+
+						/**
+						 * Flag to indicate that the current active tool should be cleared after a
+						 * mouse double-click event.
+						 */
+						private boolean clearActiveTool = false;
+
+						/**
+						 * Override to support double-clicking a palette tool entry to create a
+						 * shape or connection (between two selected shapes).
+						 * 
+						 * @see org.eclipse.swt.events.MouseListener#mouseDoubleClick(org.eclipse.swt.events.MouseEvent)
+						 */
+						public void mouseDoubleClick(org.eclipse.swt.events.MouseEvent e) {
+							org.eclipse.gef.Tool tool = getPaletteViewer().getActiveTool().createTool();
+
+							if (toolSupportsAccessibility(tool)) {
+
+								tool.setViewer(getDiagramGraphicalViewer());
+								tool.setEditDomain(getDiagramGraphicalViewer().getEditDomain());
+								tool.mouseDoubleClick(e, getDiagramGraphicalViewer());
+
+								// Current active tool should be deactivated,
+								// but if it is down here it will get
+								// reactivated deep in GEF palette code after
+								// receiving mouse up events.
+								clearActiveTool = true;
+							}
+						}
+
+						public void mouseDown(org.eclipse.swt.events.MouseEvent e) {
+							// do nothing
+						}
+
+						public void mouseUp(org.eclipse.swt.events.MouseEvent e) {
+							// Deactivate current active tool here if a
+							// double-click was handled.
+							if (clearActiveTool) {
+								getPaletteViewer().setActiveTool(null);
+								clearActiveTool = false;
+							}
+
+						}
+					};
+
+				}
+				return paletteMouseListener;
+			}
+
+		};
+	}
+«ENDDEFINE»
+

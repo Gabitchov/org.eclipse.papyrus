@@ -213,7 +213,8 @@
 		id="«plugin.name».palettedefinition"
 		name="«plugin.name» Predefined Entries"
 		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-			
+		
+		«EXPAND xpt::Common::xmlGeneratedTag»	
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Lowest"/>
       		<contribution
@@ -249,7 +250,8 @@
 		id="«plugin.name».standard"
 		name="«plugin.name» Standard Palette"
 		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-			
+		
+		«EXPAND xpt::Common::xmlGeneratedTag»	
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Low"/>
       		<contribution

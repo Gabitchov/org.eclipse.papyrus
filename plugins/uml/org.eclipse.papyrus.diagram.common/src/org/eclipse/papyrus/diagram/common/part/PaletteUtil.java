@@ -158,4 +158,24 @@ public class PaletteUtil {
 		memento = rootMemento.getChild(id);
 		return memento;
 	}
+
+	/**
+	 * Return all entries from a palette
+	 * 
+	 * @param paletteRoot
+	 *            the root from which tools are retrieved
+	 * @return the list of entries
+	 */
+	public static List<PaletteEntry> getAllEntries(PaletteContainer container) {
+		List<PaletteEntry> elements = new ArrayList<PaletteEntry>();
+		for (Object object : container.getChildren()) {
+			if (object instanceof PaletteContainer) {
+				elements.add((PaletteContainer) object);
+				elements.addAll(getAllEntries((PaletteContainer) object));
+			} else if (object instanceof ToolEntry) {
+				elements.add((ToolEntry) object);
+			}
+		}
+		return elements;
+	}
 }

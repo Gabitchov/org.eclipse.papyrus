@@ -22,25 +22,32 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.ui.palette.PaletteCustomizer;
 import org.eclipse.gmf.runtime.gef.ui.palette.customize.PaletteCustomizerDialogEx;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
+import org.eclipse.papyrus.diagram.common.wizards.NewLocalPaletteWizard;
+import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
@@ -51,8 +58,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 
 /**
@@ -66,19 +79,32 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	/** right arrow image */
 	protected static final String RIGHT_ARROW = "icons/ArrowRight.gif";
 
+	/** new local palette icon */
+	private static final String NEW_LOCAL_DESC_IMAGE = "/icons/local_desc_new.gif";
+
+	/** delete palette icon */
+	private static final String DELETE_LOCAL_DESC_IMAGE = "/icons/local_desc_delete.gif";
+
+	/** path to the local descriptor icon */
+	protected final String LOCAL_DESCRIPTOR = "/icons/local_desc.gif";
+
+	/** path to the plugin descriptor icon */
+	protected final String PLUGIN_DESCRIPTOR = "/icons/plugin_desc.gif";
+
 	/** viewer for the available tools */
 	protected TreeViewer availableToolsTreeViewer;
 
 	/** tree viewed by the availableToolsTreeViewer */
 	protected Tree availableToolsTree;
 
-	/** Add tool button */
-	protected Button addButton;
+	/** table viewed by the availablePalettesTreeViewer */
+	protected Table availablePalettesTable;
 
-	/** Remove tool button */
-	protected Button removeButton;
+	/** viewer for the available palettes */
+	protected CheckboxTableViewer availablePalettesTableViewer;
 
-	private PaletteLabelProvider toolsTreeLabelProvider;
+	/** label provider for palette provider */
+	private PaletteLabelProvider providersLabelProvider;
 
 	/**
 	 * Creates a new PapyrusPaletteCustomizerDialog
@@ -102,7 +128,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		// RS: does not call super, as the composite should not be drawn like they are in parent
 		Composite mainComposite = createMainComposite(parent);
 
-		final Control availableToolsComposite = createAvailableToolsViewer(mainComposite);
+		final Control availableToolsComposite = createAvailablePalettesViewer(mainComposite);
 		FormData data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.top = new FormAttachment(0, 0);
@@ -110,19 +136,26 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		// data.right = new FormAttachment(40, 0);
 		availableToolsComposite.setLayoutData(data);
 
-		final Control displayButtons = createDisplayButtons(mainComposite);
+		// final Control displayButtons = createDisplayButtons(mainComposite);
+		// data = new FormData();
+		// data.left = new FormAttachment(availableToolsComposite, 0);
+		// // data.width = 30;
+		// data.top = new FormAttachment(40, 0);
+		// data.bottom = new FormAttachment(100, 0);
+		// displayButtons.setLayoutData(data);
+
+		final Label nameLabel = new Label(mainComposite, SWT.NONE);
+		nameLabel.setText(Messages.Palette_Viewer);
 		data = new FormData();
-		data.left = new FormAttachment(availableToolsComposite, 0);
-		// data.width = 30;
-		data.top = new FormAttachment(40, 0);
-		data.bottom = new FormAttachment(100, 0);
-		displayButtons.setLayoutData(data);
+		data.left = new FormAttachment(availableToolsComposite, ITabbedPropertyConstants.HSPACE);
+		data.top = new FormAttachment(0, 0);
+		nameLabel.setLayoutData(data);
 
 		// Create the tree
 		Control outline = createOutline(mainComposite);
 		data = new FormData();
-		data.left = new FormAttachment(displayButtons, 0);
-		data.top = new FormAttachment(0, 0);
+		data.left = new FormAttachment(availableToolsComposite, ITabbedPropertyConstants.HSPACE);
+		data.top = new FormAttachment(nameLabel, 0);
 		data.bottom = new FormAttachment(100, 0);
 		// data.right = new FormAttachment(90, 0);
 		outline.setLayoutData(data);
@@ -140,46 +173,33 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		return mainComposite;
 	}
 
-	protected Control createDisplayButtons(Composite container) {
-		// Create the Composite that will contain the available tools
-		Composite composite = new Composite(container, SWT.NONE);
-		composite.setFont(container.getFont());
-		GridLayout layout = new GridLayout(1, false);
-		layout.horizontalSpacing = 0;
-		layout.verticalSpacing = 0;
-		layout.marginHeight = 0;
-		layout.marginWidth = 0;
-		composite.setLayout(layout);
-
-		addButton = new Button(composite, SWT.NONE);
-		addButton.setText("");
-		addButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_AddButtonTooltip);
-		addButton.setImage(Activator.getPluginIconImage(Activator.ID, RIGHT_ARROW));
-		GridData data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		addButton.setLayoutData(data);
-		addButton.addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-				addEntry(e);
-
-			}
-
-			public void mouseDown(MouseEvent e) {
-				// on mouse down, do nothing
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-				// on double click, do nothing
-			}
-		});
-
-		removeButton = new Button(composite, SWT.NONE);
-		removeButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_RemoveButtonTooltip);
-		removeButton.setImage(Activator.getImage(LEFT_ARROW));
-		removeButton.setLayoutData(data);
-
-		return composite;
-	}
+	/*
+	 * protected Control createDisplayButtons(Composite container) { // Create the Composite that
+	 * will contain the available tools Composite composite = new Composite(container, SWT.NONE);
+	 * composite.setFont(container.getFont()); GridLayout layout = new GridLayout(1, false);
+	 * layout.horizontalSpacing = 0; layout.verticalSpacing = 0; layout.marginHeight = 0;
+	 * layout.marginWidth = 0; composite.setLayout(layout);
+	 * 
+	 * addButton = new Button(composite, SWT.NONE); addButton.setText("");
+	 * addButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_AddButtonTooltip);
+	 * addButton.setImage(Activator.getPluginIconImage(Activator.ID, RIGHT_ARROW)); GridData data =
+	 * new GridData(SWT.CENTER, SWT.CENTER, false, false); addButton.setLayoutData(data);
+	 * addButton.addMouseListener(new MouseListener() {
+	 * 
+	 * public void mouseUp(MouseEvent e) { addEntry(e);
+	 * 
+	 * }
+	 * 
+	 * public void mouseDown(MouseEvent e) { // on mouse down, do nothing }
+	 * 
+	 * public void mouseDoubleClick(MouseEvent e) { // on double click, do nothing } });
+	 * 
+	 * removeButton = new Button(composite, SWT.NONE);
+	 * removeButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_RemoveButtonTooltip);
+	 * removeButton.setImage(Activator.getImage(LEFT_ARROW)); removeButton.setLayoutData(data);
+	 * 
+	 * return composite; }
+	 */
 
 	protected void addEntry(MouseEvent e) {
 		ISelection selection = availableToolsTreeViewer.getSelection();
@@ -225,81 +245,170 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 			}
 		}
 
-		// try {
-		// Method[] methods = Papyr.class.getDeclaredMethods();
-		// Method method = null;
-		// for (Method m : methods) {
-		// if ("storePaletteState".equals(m.getName())) {
-		// method = m;
-		// break;
-		// }
-		// }
-		// if (method == null) {
-		// throw new NoSuchMethodException("storePaletteState(PaleeteEntry) not found !!!");
-		// }
-		// method.setAccessible(true);
-		// method.invoke(getCustomizer(), entry);
-		// } catch (SecurityException e1) {
-		// e1.printStackTrace();
-		// } catch (NoSuchMethodException e1) {
-		// e1.printStackTrace();
-		// } catch (IllegalArgumentException e1) {
-		// e1.printStackTrace();
-		// } catch (IllegalAccessException e1) {
-		// e1.printStackTrace();
-		// } catch (InvocationTargetException e1) {
-		// e1.printStackTrace();
-		// }
 	}
 
 	/**
-	 * Creates the available tools viewer part of the dialog.
+	 * Creates the available palettes viewer part of the dialog.
 	 * 
 	 * @param container
 	 *            The Composite within which the viewer has to be created
 	 * @return The newly created Control that has the viewer
 	 */
-	protected Control createAvailableToolsViewer(Composite container) {
-
+	protected Control createAvailablePalettesViewer(Composite container) {
 		// Create the Composite that will contain the available tools
 		Composite composite = new Composite(container, SWT.NONE);
 		composite.setFont(container.getFont());
-		GridLayout layout = new GridLayout();
+		GridLayout layout = new GridLayout(3, false);
 		layout.horizontalSpacing = 0;
 		layout.verticalSpacing = 0;
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
 		composite.setLayout(layout);
 
-		Tree availableToolsTree = new Tree(composite, SWT.BORDER);
-		availableToolsTree.setFont(composite.getFont());
-		GridData data = new GridData(GridData.FILL_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL);
+		final Label nameLabel = new Label(composite, SWT.NONE);
+		nameLabel.setText(Messages.Available_Palettes);
+		GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		nameLabel.setLayoutData(data);
+
+		final Button newPalette = new Button(composite, SWT.NONE);
+		newPalette.setImage(Activator.getImage(NEW_LOCAL_DESC_IMAGE));
+		newPalette.setToolTipText(Messages.Dialog_Create_Palette_Tooltip);
+		newPalette.addMouseListener(new MouseListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseUp(MouseEvent e) {
+				createNewLocalPalette();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
+			}
+		});
+		data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		newPalette.setLayoutData(data);
+
+		final Button deletePalette = new Button(composite, SWT.NONE);
+		deletePalette.setImage(Activator.getImage(DELETE_LOCAL_DESC_IMAGE));
+		deletePalette.setToolTipText(Messages.Dialog_Delete_Palette_Tooltip);
+		deletePalette.addMouseListener(new MouseListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseUp(MouseEvent e) {
+				deleteLocalPalette();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
+			}
+		});
+		data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		deletePalette.setLayoutData(data);
+
+		availablePalettesTable = new Table(composite, SWT.BORDER | SWT.CHECK);
+		availablePalettesTable.setFont(composite.getFont());
+		availablePalettesTable.addSelectionListener(new SelectionListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetSelected(SelectionEvent e) {
+				if (e.detail == SWT.CHECK) {
+					TableItem item = (TableItem) e.item;
+					// one item was checked => display/hide the given provider
+					changeProviderVisibility((PapyrusPaletteService.ProviderDescriptor) item.getData(), item
+							.getChecked());
+				}
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// does nothing
+			}
+		});
+		data = new GridData(GridData.FILL_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL);
+		data.horizontalSpan = 3;
 		data.widthHint = 185;
 		// Make the tree this tall even when there is nothing in it. This will keep the
 		// dialog from shrinking to an unusually small size.
 		data.heightHint = 200;
-		availableToolsTree.setLayoutData(data);
-		availableToolsTreeViewer = new TreeViewer(availableToolsTree) {
-
-			protected void preservingSelection(Runnable updateCode) {
-				if ((getTree().getStyle() & SWT.SINGLE) != 0)
-					updateCode.run();
-				else
-					super.preservingSelection(updateCode);
-			}
-		};
-		availableToolsTreeViewer.setContentProvider(new ToolsTreeContentProvider(availableToolsTreeViewer));
-		toolsTreeLabelProvider = new PaletteLabelProvider(availableToolsTreeViewer);
-		availableToolsTreeViewer.setLabelProvider(toolsTreeLabelProvider);
-		availableToolsTreeViewer.setInput(getPaletteRoot());
-		availableToolsTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-
-			public void selectionChanged(SelectionChangedEvent event) {
-				handleOutlineSelectionChanged();
-			}
-		});
+		availablePalettesTable.setLayoutData(data);
+		availablePalettesTableViewer = new CheckboxTableViewer(availablePalettesTable);
+		AvailablePalettesCheckStateProvider availablePalettesCheckStateProvider = new AvailablePalettesCheckStateProvider();
+		availablePalettesTableViewer.setCheckStateProvider(availablePalettesCheckStateProvider);
+		availablePalettesTableViewer.setContentProvider(new PalettesTableContentProvider(availablePalettesTableViewer));
+		providersLabelProvider = new PaletteLabelProvider(availablePalettesTableViewer);
+		availablePalettesTableViewer.setLabelProvider(providersLabelProvider);
+		availablePalettesTableViewer.setInput(PapyrusPaletteService.getInstance());
 
 		return composite;
+	}
+
+	/**
+	 * Launch the wizard for the palette creation
+	 * 
+	 * @param shell
+	 *            the shell where to display the wizard
+	 */
+	protected void createNewLocalPalette() {
+		NewLocalPaletteWizard wizard = new NewLocalPaletteWizard(getActiveSashPage());
+		WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
+		wizardDialog.open();
+	}
+
+	/**
+	 * Deletes the current selected local palette
+	 */
+	protected void deleteLocalPalette() {
+		IStructuredSelection selection = (IStructuredSelection) availablePalettesTableViewer.getSelection();
+		if (selection == null
+				|| !(selection.getFirstElement() instanceof PapyrusPaletteService.LocalProviderDescriptor)) {
+			MessageDialog.openError(getShell(), Messages.Dialog_Not_Local_Palette_Title,
+					Messages.Dialog_Not_Local_Palette_Message);
+		} else {
+			PapyrusPaletteService.LocalProviderDescriptor descriptor = ((PapyrusPaletteService.LocalProviderDescriptor) selection
+					.getFirstElement());
+			String id = descriptor.getContributionID();
+			PapyrusPalettePreferences.deleteLocalPalette(id);
+		}
+	}
+
+	/**
+	 * Changes the visibility of the given provider
+	 * 
+	 * @param descriptor
+	 *            the provider to hide/show
+	 * @param isChecked
+	 *            <code>true</code> if the descriptor should be visible
+	 */
+	protected void changeProviderVisibility(PapyrusPaletteService.ProviderDescriptor descriptor, boolean isChecked) {
+		PapyrusPalettePreferences.changePaletteVisibility(descriptor.getContributionID(), getActiveSashPage()
+				.getClass().getName(), isChecked);
 	}
 
 	/**
@@ -325,71 +434,29 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	/**
 	 * Content provider for available tools viewer
 	 */
-	public class ToolsTreeContentProvider implements ITreeContentProvider {
+	public class PalettesTableContentProvider implements IStructuredContentProvider {
 
-		private PaletteRoot root;
+		/** the palette root */
+		private PapyrusPaletteService paletteService;
 
-		private TreeViewer viewer;
+		/** tree viewer to fill */
+		private TableViewer viewer;
 
 		/**
 		 * Constructor
 		 * 
-		 * @param treeviewer
-		 *            The TreeViewer whose ContentProvider this PaletteTreeProvider is
+		 * @param tableViewer
+		 *            The TableViewer whose ContentProvider this PaletteTreeProvider is
 		 */
-		public ToolsTreeContentProvider(TreeViewer treeviewer) {
-			this.viewer = treeviewer;
-		}
-
-		/**
-		 * If the given element does not have any children, this method should return
-		 * <code>null</code>. This fixes the problem where a "+" sign is incorrectly placed next to
-		 * an empty container in the tree.
-		 * 
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(Object)
-		 */
-		public Object[] getChildren(Object parentElement) {
-			if (parentElement instanceof PaletteContainer) {
-				List<ToolEntry> children = PaletteUtil.getAllToolEntries((PaletteContainer) parentElement);
-				if (!children.isEmpty()) {
-					return children.toArray();
-				}
-			}
-			return null;
-		}
-
-		/**
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(Object)
-		 */
-		public boolean hasChildren(Object element) {
-			return getChildren(element) != null;
-		}
-
-		/**
-		 * This method should not return <code>null</code>.
-		 * 
-		 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(Object)
-		 */
-		public Object[] getElements(Object inputElement) {
-			Object[] elements = getChildren(inputElement);
-			if (elements == null) {
-				elements = new Object[0];
-			}
-			return elements;
-		}
-
-		/**
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(Object)
-		 */
-		public Object getParent(Object element) {
-			return ((PaletteEntry) element).getParent();
+		public PalettesTableContentProvider(TableViewer tableViewer) {
+			this.viewer = tableViewer;
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
 		public void dispose() {
-			root = null;
+			paletteService = null;
 		}
 
 		/**
@@ -397,8 +464,63 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			if (newInput != null) {
-				root = (PaletteRoot) newInput;
+				paletteService = (PapyrusPaletteService) newInput;
 			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object[] getElements(Object inputElement) {
+			if (inputElement instanceof PapyrusPaletteService) {
+				List<PapyrusPaletteService.ProviderDescriptor> providers = ((PapyrusPaletteService) inputElement)
+						.getContributingProviders(getActiveSashPage(), getPaletteRoot());
+
+				return providers.toArray();
+			}
+			return null;
+		}
+	}
+
+	/**
+	 * Returns the current active sash page
+	 * 
+	 * @return the current active sash page
+	 */
+	protected IEditorPart getActiveSashPage() {
+		// Lookup ServiceRegistry
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IEditorPart editorPart = page.getActiveEditor();
+		assert editorPart != null;
+		ISashWindowsContainer sashWindowsContainer = (ISashWindowsContainer) editorPart
+				.getAdapter(ISashWindowsContainer.class);
+		if (sashWindowsContainer != null) {
+			return sashWindowsContainer.getActiveEditor();
+		}
+		return null;
+	}
+
+	/**
+	 * provider in charge of the check boxes in the available palettes table viewer
+	 */
+	protected class AvailablePalettesCheckStateProvider implements ICheckStateProvider {
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public boolean isChecked(Object element) {
+			if (element instanceof PapyrusPaletteService.ProviderDescriptor) {
+				return !PapyrusPalettePreferences.getHiddenPalettes(getActiveSashPage()).contains(
+						((PapyrusPaletteService.ProviderDescriptor) element).getContributionID());
+			}
+			return false;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public boolean isGrayed(Object element) {
+			return false;
 		}
 
 	}
@@ -406,9 +528,15 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	/**
 	 * Label provider for available tools viewer
 	 */
-	class PaletteLabelProvider implements ILabelProvider {
+	protected class PaletteLabelProvider implements ILabelProvider {
 
-		public PaletteLabelProvider(TreeViewer viewer) {
+		/**
+		 * Creates a new PaletteLabelProvider.
+		 * 
+		 * @param viewer
+		 *            the table viewer where the labels are displayed
+		 */
+		public PaletteLabelProvider(TableViewer viewer) {
 		}
 
 		private Map<ImageDescriptor, Image> imageCache = new HashMap<ImageDescriptor, Image>();
@@ -417,16 +545,22 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(Object)
 		 */
 		public Image getImage(Object element) {
-			PaletteEntry entry = (PaletteEntry) element;
-			ImageDescriptor descriptor = entry.getSmallIcon();
-			return getCachedImage(descriptor);
+			if (element instanceof PapyrusPaletteService.LocalProviderDescriptor) {
+				return Activator.getImage(LOCAL_DESCRIPTOR);
+			} else if (element instanceof PapyrusPaletteService.ProviderDescriptor) {
+				return Activator.getImage(PLUGIN_DESCRIPTOR);
+			}
+			return Activator.getImage(Activator.DEFAULT_IMAGE);
 		}
 
 		/**
 		 * @see org.eclipse.jface.viewers.ILabelProvider#getText(Object)
 		 */
 		public String getText(Object element) {
-			return ((PaletteEntry) element).getLabel();
+			if (element instanceof PapyrusPaletteService.ProviderDescriptor) {
+				return ((PapyrusPaletteService.ProviderDescriptor) element).getContributionName();
+			}
+			return "<undefined>";
 		}
 
 		/**
@@ -467,15 +601,6 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		 */
 		public Color getBackground(Object element) {
 			return null;
-		}
-
-		private Image getCachedImage(ImageDescriptor descriptor) {
-			Image image = (Image) imageCache.get(descriptor);
-			if (image == null) {
-				image = descriptor.createImage();
-				imageCache.put(descriptor, image);
-			}
-			return image;
 		}
 
 		/**

@@ -188,6 +188,33 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
+	 * This method returns an <code>org.eclipse.swt.graphics.Image</code> identified by its pluginId
+	 * and image Descriptor.<BR>
+	 * 
+	 * By default, it returns a default image. This image is the image placed in the directory
+	 * <em>resources/icons/default.gif</em>
+	 * 
+	 * @param pluginId
+	 *            id of plugin
+	 * @param descriptor
+	 *            the image descriptor of the image
+	 * @return the Image
+	 */
+	public static Image getPluginIconImage(String pluginId, ImageDescriptor descriptor) {
+		String key = pluginId + descriptor;
+		ImageRegistry registry = getDefault().getImageRegistry();
+		Image image = registry.get(key);
+
+		if (image == null) {
+
+			registry.put(key, descriptor);
+			image = registry.get(key);
+
+		}
+		return image;
+	}
+
+	/**
 	 * this method returns the shape image that represents the first applied stereotype.
 	 * 
 	 * @param elt

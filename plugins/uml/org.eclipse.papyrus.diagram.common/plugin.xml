@@ -169,6 +169,29 @@
       </selection>
    </wizard>
 </extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
+   <paletteProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+      <Priority
+            name="Highest">
+      </Priority>
+      <contribution>
+         <predefinedEntry
+               id="standardGroup/noteStack/noteTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="standardGroup/noteStack/textTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="standardGroup/noteStack/noteattachmentTool"
+               remove="true">
+         </predefinedEntry>
+      </contribution>
+   </paletteProvider>
+</extension>
 
 <extension
 	point="org.eclipse.ui.views.properties.tabbed.propertySections">

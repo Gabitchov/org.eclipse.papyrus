@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.common.part;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,7 +25,6 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuCreator;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
@@ -95,47 +93,25 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 		ArrayList<Action> list = new ArrayList<Action>();
 		Action action = null;
 
-		IEditorPart part = getActiveSashPage();
+		final IEditorPart part = getActiveSashPage();
+		final List<String> hiddenPalettes = PapyrusPalettePreferences.getHiddenPalettes(part);
 
-		// create a temp contribute palette operation to test if the provider can provide the
-		// palette to the current editor
-		final ContributeToPaletteOperation o = new ContributeToPaletteOperation(part, part.getEditorInput(), viewer
-				.getPaletteRoot(), new HashMap());
+		for (PapyrusPaletteService.ProviderDescriptor descriptor : PapyrusPaletteService.getInstance()
+				.getContributingProviders(part, getPaletteViewer().getPaletteRoot())) {
+			action = new DisplayPaletteChangeAction(descriptor);
 
-		List<String> hiddenPalettes = PapyrusPalettePreferences.getHiddenPalettes(part);
-
-		Iterator<? extends ProviderDescriptor> it = PapyrusPaletteService.getInstance().getProviders().iterator();
-		while (it.hasNext()) {
-			ProviderDescriptor provider = it.next();
-			if (provider instanceof PapyrusPaletteService.ProviderDescriptor) {
-
-				// get provider name
-				String name = ((PapyrusPaletteService.ProviderDescriptor) provider).getContributionName();
-				if (name == null || name.equals("")) {
-					name = ((PapyrusPaletteService.ProviderDescriptor) provider).getContributionID();
-				}
-
-				// get the provider ID
-				String id = ((PapyrusPaletteService.ProviderDescriptor) provider).getContributionID();
-
-				// check if the name of the descriptor does not correspond to the name of a palette
-				// that should not be removed
-				boolean add = isChangeable(provider, name);
-
-				// check if this provider is really contributing this palette
-				add = add && isContributing((PapyrusPaletteService.ProviderDescriptor) provider, o);
-
-				if (add) {
-					action = new DisplayPaletteChangeAction((PapyrusPaletteService.ProviderDescriptor) provider);
-					action.setText(name);
-					action.setChecked(!hiddenPalettes.contains(id));
-					list.add(action);
-				}
-			} else {
-				Activator.getDefault().logInfo("impossible to cast this provider: " + provider);
+			// get provider name
+			String name = descriptor.getContributionName();
+			if (name == null || name.equals("")) {
+				name = descriptor.getContributionID();
 			}
-		}
+			// get the provider ID
+			String id = descriptor.getContributionID();
 
+			action.setText(name);
+			action.setChecked(!hiddenPalettes.contains(id));
+			list.add(action);
+		}
 		return list;
 	}
 
@@ -247,7 +223,8 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 		}
 
 		public void run() {
-			PapyrusPalettePreferences.changePaletteVisibility(providerDescriptor, getActiveSashPage());
+			PapyrusPalettePreferences.changePaletteVisibility(providerDescriptor.getContributionID(),
+					getActiveSashPage().getClass().getName(), isChecked());
 		}
 	}
 
