@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
+import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
@@ -26,6 +27,48 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * Utility class for {@link ValueSpecification}
  */
 public class ValueSpecificationUtil {
+
+	/**
+	 * Get a string representing of a ValueSpecification
+	 * 
+	 * @param specification
+	 */
+	public static String getSpecificationValue(ValueSpecification specification) {
+		String value = ""; //$NON-NLS-1$
+
+		switch (specification.eClass().getClassifierID()) {
+		case UMLPackage.LITERAL_STRING:
+			value = ((LiteralString) specification).getValue();
+			break;
+		case UMLPackage.LITERAL_BOOLEAN:
+			value = Boolean.toString(((LiteralBoolean) specification).booleanValue());
+			break;
+		case UMLPackage.LITERAL_INTEGER:
+			value = Integer.toString(((LiteralInteger) specification).getValue());
+			break;
+		case UMLPackage.LITERAL_UNLIMITED_NATURAL:
+			value = Integer.toString(((LiteralUnlimitedNatural) specification).getValue());
+			if ("-1".equals(value)) { //$NON-NLS-1$
+				value = "*"; //$NON-NLS-1$
+			}
+			break;
+		case UMLPackage.LITERAL_NULL:
+			break;
+		case UMLPackage.OPAQUE_EXPRESSION:
+			value = OpaqueExpressionUtil.getBodyForLanguage((OpaqueExpression) specification, "UML"); //$NON-NLS-1$
+			break;
+		case UMLPackage.EXPRESSION:
+			// TODO
+			break;
+		case UMLPackage.TIME_EXPRESSION:
+			// TODO
+			break;
+		default: {
+			break;
+		}
+		}
+		return value;
+	}
 
 	/**
 	 * Sets the value of a specification, using a string value
