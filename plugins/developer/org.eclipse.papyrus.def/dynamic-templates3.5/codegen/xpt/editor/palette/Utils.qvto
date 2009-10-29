@@ -49,7 +49,11 @@ helper collectSubGroups(group : gmfgen::ToolGroup) : Sequence(gmfgen::ToolGroup)
 }
 
 helper collectTools(palette : gmfgen::Palette) : Sequence(gmfgen::AbstractToolEntry) {
-	return collectGroups(palette).entries[gmfgen::AbstractToolEntry]
+	return collectGroups(palette).entries[gmfgen::AbstractToolEntry]->select(tool | tool.isValidTool())
+}
+
+helper gmfgen::AbstractToolEntry::isValidTool() : Boolean {
+	return if(self.oclIsKindOf(ToolEntry)) then ( self[gmfgen::ToolEntry].genNodes->size()+self[gmfgen::ToolEntry].genLinks->size() ) <> 0 else true endif 
 }
 
 helper needsNodeToolEntryClass(palette : gmfgen::Palette) : Boolean {
