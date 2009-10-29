@@ -20,8 +20,10 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
- * A unmodifiable view on a specified list. The view filters the original list according to the provided filter.
+ * A unmodifiable view on a specified list. The view filters the original list according to the
+ * provided filter.
  */
+// @unused
 public class FilteredListView extends AbstractSequentialList<Object> implements List<Object> {
 
 	/**
@@ -89,8 +91,9 @@ public class FilteredListView extends AbstractSequentialList<Object> implements 
 	}
 
 	/**
-	 * Returns <tt>true</tt> if this collection contains the specified element. More formally, returns <tt>true</tt> if and only if this collection contains at least one element <tt>e</tt> such that
-	 * <tt>(o==null ? e==null : o.equals(e))</tt>.
+	 * Returns <tt>true</tt> if this collection contains the specified element. More formally,
+	 * returns <tt>true</tt> if and only if this collection contains at least one element <tt>e</tt>
+	 * such that <tt>(o==null ? e==null : o.equals(e))</tt>.
 	 * <p>
 	 * 
 	 * @param o
@@ -104,9 +107,12 @@ public class FilteredListView extends AbstractSequentialList<Object> implements 
 	}
 
 	/**
-	 * Removes a single instance of the specified element from this collection, if it is present (optional operation). More formally, removes an element <tt>e</tt> such that <tt>(o==null ? e==null :
-	 * o.equals(e))</tt>, if the collection contains one or more such elements. Returns <tt>true</tt> if the collection contained the specified element (or equivalently, if the collection changed as a
-	 * result of the call).
+	 * Removes a single instance of the specified element from this collection, if it is present
+	 * (optional operation). More formally, removes an element <tt>e</tt> such that
+	 * <tt>(o==null ? e==null :
+	 * o.equals(e))</tt>, if the collection contains one or more such elements. Returns
+	 * <tt>true</tt> if the collection contained the specified element (or equivalently, if the
+	 * collection changed as a result of the call).
 	 * <p>
 	 * 
 	 * This implementation call the remove method on the underlying collection.
@@ -218,7 +224,8 @@ public class FilteredListView extends AbstractSequentialList<Object> implements 
 		protected Object nextFilteredObject() {
 			while (listIterator.hasNext()) {
 
-				int curIndex = listIterator.nextIndex(); // This is the current index in the list
+				int curIndex = listIterator.nextIndex(); // This is the current
+				// index in the list
 				Object ele = listIterator.next();
 				if (filter.isAllowed(ele) && (curIndex > nextIndex)) {
 					nextIndex = curIndex;
@@ -235,7 +242,9 @@ public class FilteredListView extends AbstractSequentialList<Object> implements 
 		 */
 		protected Object previousFilteredObject() {
 			while (listIterator.hasPrevious()) {
-				int curIndex = listIterator.previousIndex(); // This is the current index in the list
+				int curIndex = listIterator.previousIndex(); // This is the
+				// current index
+				// in the list
 				Object ele = listIterator.previous();
 				if (filter.isAllowed(ele) && (curIndex < previousIndex)) {
 					previousIndex = curIndex;

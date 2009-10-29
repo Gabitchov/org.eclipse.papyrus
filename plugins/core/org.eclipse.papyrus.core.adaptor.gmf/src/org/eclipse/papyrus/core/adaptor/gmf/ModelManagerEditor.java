@@ -65,6 +65,7 @@ import org.osgi.framework.Bundle;
  * @author dumoulin
  * 
  */
+// @unused
 public class ModelManagerEditor {
 
 	public static final String DIAGRAM_ADDED = "DIAGRAM_ADDED"; //$NON-NLS-1$
@@ -88,12 +89,12 @@ public class ModelManagerEditor {
 	/**
 	 * Listener on diagram added/removed.
 	 */
-	private PropertyChangeSupport diagramListListener = new PropertyChangeSupport(this);
+	private final PropertyChangeSupport diagramListListener = new PropertyChangeSupport(this);
 
 	/**
 	 * Adapter listening to diagram addition/remove events
 	 */
-	private Adapter adapter = new Adapter() {
+	private final Adapter adapter = new Adapter() {
 
 		Notifier notifier;
 
@@ -114,27 +115,32 @@ public class ModelManagerEditor {
 		 */
 		public void notifyChanged(Notification notification) {
 			// System.out.println("notifyChanged("+ notification +")");
-			// System.out.println("getEventType=" + notification.getEventType() );
+			// System.out.println("getEventType=" + notification.getEventType()
+			// );
 			// System.out.println("getFeature=" + notification.getFeature() );
 			// System.out.println("getNotifier=" + notification.getNotifier() );
 
 			int eventType = notification.getEventType();
 			if (eventType == Notification.ADD) {
 				Object newValue = notification.getNewValue();
-				if (newValue instanceof Diagram)
+				if (newValue instanceof Diagram) {
 					diagramListListener.firePropertyChange(DIAGRAM_ADDED, null, newValue);
+				}
 			} else if (eventType == Notification.MOVE) {
 				Object newValue = notification.getNewValue();
-				if (newValue instanceof Diagram)
+				if (newValue instanceof Diagram) {
 					diagramListListener.firePropertyChange(DIAGRAM_MOVED, null, newValue);
+				}
 
 			} else if (eventType == Notification.REMOVE) {
 				Object newValue = notification.getNewValue();
-				if (newValue == null)
+				if (newValue == null) {
 					System.out.println(getClass().getName() + "- Warning: can't get removed object."); //$NON-NLS-1$
+				}
 
-				if (newValue instanceof Diagram)
+				if (newValue instanceof Diagram) {
 					diagramListListener.firePropertyChange(DIAGRAM_REMOVED, null, newValue);
+				}
 			}
 		}
 
@@ -182,7 +188,8 @@ public class ModelManagerEditor {
 	 * @throws PartInitException
 	 */
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-		// System.out.println(this + ".init(IEditorSite site, IEditorInput input)");
+		// System.out.println(this +
+		// ".init(IEditorSite site, IEditorInput input)");
 		this.editorInput = input;
 		this.site = site;
 		try {
@@ -272,8 +279,9 @@ public class ModelManagerEditor {
 	public void doSave(IProgressMonitor progressMonitor) {
 
 		IDocumentProvider p = getDocumentProvider();
-		if (p == null)
+		if (p == null) {
 			return;
+		}
 
 		if (p.isDeleted(getEditorInput())) {
 
@@ -378,6 +386,7 @@ public class ModelManagerEditor {
 	/**
 	 * @generated
 	 */
+	// @unused
 	public void doSaveAs() {
 		performSaveAs(new NullProgressMonitor());
 	}
@@ -394,8 +403,9 @@ public class ModelManagerEditor {
 	protected void performSave(boolean overwrite, IProgressMonitor progressMonitor) {
 
 		IDocumentProvider provider = getDocumentProvider();
-		if (provider == null)
+		if (provider == null) {
 			return;
+		}
 
 		try {
 
@@ -406,8 +416,9 @@ public class ModelManagerEditor {
 
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
-			if (status == null || status.getSeverity() != IStatus.CANCEL)
+			if (status == null || status.getSeverity() != IStatus.CANCEL) {
 				handleExceptionOnSave(x, progressMonitor);
+			}
 		} finally {
 			provider.changed(getEditorInput());
 		}
@@ -455,8 +466,8 @@ public class ModelManagerEditor {
 		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor().getEditorMatchingStrategy();
 		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getEditorReferences();
-		for (int i = 0; i < editorRefs.length; i++) {
-			if (matchingStrategy.matches(editorRefs[i], newInput)) {
+		for (IEditorReference editorRef : editorRefs) {
+			if (matchingStrategy.matches(editorRef, newInput)) {
 				MessageDialog.openWarning(shell, Messages.ModelManagerEditor_SaveAsErrorTitle,
 						Messages.ModelManagerEditor_SaveAsErrorMessage);
 				return;
@@ -465,7 +476,8 @@ public class ModelManagerEditor {
 		boolean success = false;
 		try {
 			provider.aboutToChange(newInput);
-			// getDocumentProvider(newInput).saveDocument(progressMonitor, newInput,
+			// getDocumentProvider(newInput).saveDocument(progressMonitor,
+			// newInput,
 			// getDocumentProvider().getDocument(getEditorInput()), true);
 			getDocumentProvider().saveDocument(progressMonitor, newInput,
 					getDocumentProvider().getDocument(getEditorInput()), true);
@@ -529,15 +541,16 @@ public class ModelManagerEditor {
 				String title = EditorMessages.Editor_error_save_outofsync_title;
 				String msg = EditorMessages.Editor_error_save_outofsync_message;
 
-				if (MessageDialog.openQuestion(shell, title, msg))
+				if (MessageDialog.openQuestion(shell, title, msg)) {
 					performSave(true, progressMonitor);
-				else {
+				} else {
 					/*
 					 * 1GEUPKR: ITPJUI:ALL - Loosing work with simultaneous edits Set progress
 					 * monitor to canceled in order to report back to enclosing operations.
 					 */
-					if (progressMonitor != null)
+					if (progressMonitor != null) {
 						progressMonitor.setCanceled(true);
+					}
 				}
 			} else {
 				String title = EditorMessages.Editor_error_save_title;
@@ -548,8 +561,9 @@ public class ModelManagerEditor {
 				 * 1GEUPKR: ITPJUI:ALL - Loosing work with simultaneous edits Set progress monitor
 				 * to canceled in order to report back to enclosing operations.
 				 */
-				if (progressMonitor != null)
+				if (progressMonitor != null) {
 					progressMonitor.setCanceled(true);
+				}
 			}
 		} finally {
 			--fErrorCorrectionOnSave;
@@ -570,15 +584,18 @@ public class ModelManagerEditor {
 	 * 
 	 */
 	private boolean isNotSynchronizedException(CoreException ex) {
-		if (ex == null)
+		if (ex == null) {
 			return false;
+		}
 
 		IStatus status = ex.getStatus();
-		if (status == null || status instanceof MultiStatus)
+		if (status == null || status instanceof MultiStatus) {
 			return false;
+		}
 
-		if (status.getException() != null)
+		if (status.getException() != null) {
 			return false;
+		}
 
 		// Can't access IResourceStatus.OUT_OF_SYNC_LOCAL, using value: 274
 		return status.getCode() == 274;

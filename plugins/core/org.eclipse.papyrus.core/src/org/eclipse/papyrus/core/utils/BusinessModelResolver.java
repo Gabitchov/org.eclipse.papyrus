@@ -17,10 +17,11 @@ package org.eclipse.papyrus.core.utils;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
-
 /**
- * This class allows to retrieve the bussiness object from an object representing a graphical artefact in a diagram. Each diagram can register its resolver which will be added to the list of
- * resolvers. Some common resolvers are already registered : gef.EditPart TODO Use extensions to register additional resolvers.
+ * This class allows to retrieve the bussiness object from an object representing a graphical
+ * artefact in a diagram. Each diagram can register its resolver which will be added to the list of
+ * resolvers. Some common resolvers are already registered : gef.EditPart TODO Use extensions to
+ * register additional resolvers.
  */
 public class BusinessModelResolver {
 
@@ -34,7 +35,8 @@ public class BusinessModelResolver {
 	}
 
 	/**
-	 * Get the bussiness object associated to this object, if any. This method navigate throw the object if the object is an graphical artefact or a diagram artefact.
+	 * Get the bussiness object associated to this object, if any. This method navigate throw the
+	 * object if the object is an graphical artefact or a diagram artefact.
 	 * 
 	 * @param object
 	 * @return Object
@@ -45,17 +47,16 @@ public class BusinessModelResolver {
 			Object model = ((EditPart) object).getModel();
 			if (model instanceof View) { // Notation / GMF
 				return getBusinessElement((View) ((EditPart) object).getModel());
-			} else
+			} else {
 				return model;
+			}
 		} else if (object instanceof View) {
-			return ((View)object).getElement();
+			return ((View) object).getElement();
+		} else {
+			return object;
 		}
 
-		else
-			return object;
-
 	}
-
 
 	/**
 	 * Get the business object from a GraphElement.
@@ -78,6 +79,7 @@ public class BusinessModelResolver {
 	 * @param object
 	 * @return Object
 	 */
+	// @unused
 	public Object getGraphicalModel(Object object) {
 		throw new UnsupportedOperationException("Not yet implemented.");
 	}

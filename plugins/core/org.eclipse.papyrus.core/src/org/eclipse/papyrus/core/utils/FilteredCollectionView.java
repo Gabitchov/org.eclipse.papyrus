@@ -19,8 +19,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A unmodifiable view on a specified list. The view filters the original list according to the provided filter.
+ * A unmodifiable view on a specified list. The view filters the original list according to the
+ * provided filter.
  */
+// @unused
 public class FilteredCollectionView<T> extends AbstractCollection<T> implements Collection<T> {
 
 	/** The original collection */
@@ -96,24 +98,25 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 
 	/**
 	 * Return true if the filteredCollection contains the object.
+	 * 
 	 * @see java.util.AbstractCollection#contains(java.lang.Object)
 	 * @param o
 	 * @return
-	 *
+	 * 
 	 */
 	@Override
 	public boolean contains(Object o) {
 		return list.contains(o);
 	}
 
-
 	/**
-	 * remove the object.
-	 * Throw an UnsupportedOperationException, as the FilteredCollection is ReadOnly.
+	 * remove the object. Throw an UnsupportedOperationException, as the FilteredCollection is
+	 * ReadOnly.
+	 * 
 	 * @see java.util.AbstractCollection#remove(java.lang.Object)
 	 * @param o
 	 * @return
-	 *
+	 * 
 	 */
 	@Override
 	public boolean remove(Object o) {
@@ -121,7 +124,9 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	}
 
 	/**
-	 * Return the value to be returned by the iterator.next() method. This method can be overloaded by subclasses in order to return another value than the objects belonging to the underlying list.
+	 * Return the value to be returned by the iterator.next() method. This method can be overloaded
+	 * by subclasses in order to return another value than the objects belonging to the underlying
+	 * list.
 	 * 
 	 * @param ele
 	 *            The iterated object. This is the object iterated inside the underlying list.
@@ -192,7 +197,8 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 		}
 
 		/**
-		 * Compute the next field (null or next value), and return the previous value of the next field.
+		 * Compute the next field (null or next value), and return the previous value of the next
+		 * field.
 		 * 
 		 * @return Object
 		 */

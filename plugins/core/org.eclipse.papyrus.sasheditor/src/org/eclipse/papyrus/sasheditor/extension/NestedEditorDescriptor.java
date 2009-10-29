@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.extension;
 
 import java.lang.reflect.InvocationTargetException;
@@ -18,10 +18,10 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * This descriptor describes a nested diagram. It is used by MultiDiagramEditor to know about the nested diagram. It is fill by an extension.
+ * This descriptor describes a nested diagram. It is used by MultiDiagramEditor to know about the
+ * nested diagram. It is fill by an extension.
  */
 public class NestedEditorDescriptor {
-
 
 	/**
 	 * Editor factory implementation class.
@@ -36,6 +36,7 @@ public class NestedEditorDescriptor {
 	/**
     * 
     */
+	// @unused
 	protected NestedDiagram editor;
 
 	/**
@@ -46,13 +47,15 @@ public class NestedEditorDescriptor {
 	}
 
 	/**
-	 * Get associated editorFactory. The editorFactoryClass should be set, otherwise an error is thrown.
+	 * Get associated editorFactory. The editorFactoryClass should be set, otherwise an error is
+	 * thrown.
 	 * 
 	 * @return the associated editor Factory
 	 */
 	public IEditorFactory getEditorFactory() {
-		if (editorFactory != null)
+		if (editorFactory != null) {
 			return editorFactory;
+		}
 
 		if (editorFactoryClass == null) { // error
 			throw new IllegalStateException("EditorFactory class should be set.");
@@ -63,10 +66,12 @@ public class NestedEditorDescriptor {
 			editorFactory = (IEditorFactory) editorFactoryClass.newInstance();
 			return editorFactory;
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be solved by programmer.
+			// Lets propagate. This is an implementation problem that should be
+			// solved by programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be solved by programmer.
+			// Lets propagate. This is an implementation problem that should be
+			// solved by programmer.
 			throw new RuntimeException(e);
 		}
 	}
@@ -104,6 +109,7 @@ public class NestedEditorDescriptor {
 	 * 
 	 * @return the editor factory associated to this editor descriptor.
 	 */
+	// @unused
 	public Class<?> getEditorFactoryClass() {
 		return editorFactoryClass;
 	}

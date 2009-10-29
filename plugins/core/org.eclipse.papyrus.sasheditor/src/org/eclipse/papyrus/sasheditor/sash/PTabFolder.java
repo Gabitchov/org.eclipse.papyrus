@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 import java.util.ArrayList;
@@ -38,10 +38,9 @@ import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.presentations.PresentationUtil;
 
 /**
- * Papyrus wrapper for CTabFolder.
- * Provides miscelaneous methods for dragging.
- * Provides different fireEvents for: menu detected, pageChange, itemClosed.
- * TODO : add listeners mechanism to listen on events ?
+ * Papyrus wrapper for CTabFolder. Provides miscelaneous methods for dragging. Provides different
+ * fireEvents for: menu detected, pageChange, itemClosed. TODO : add listeners mechanism to listen
+ * on events ?
  */
 @SuppressWarnings("restriction")
 public class PTabFolder {
@@ -54,17 +53,17 @@ public class PTabFolder {
 	/**
 	 * This object allows to register listeners on event from this class.
 	 */
-	private EventsManager listenersManager = new EventsManager();
-	
+	private final EventsManager listenersManager = new EventsManager();
+
 	/**
 	 * Listen on menu event.
 	 */
-	private Listener menuListener = new Listener() {
+	private final Listener menuListener = new Listener() {
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
+		 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets .Event)
 		 */
 		public void handleEvent(Event event) {
 			Point globalPos = new Point(event.x, event.y);
@@ -73,7 +72,7 @@ public class PTabFolder {
 		}
 	};
 
-	private Listener dragListener = new Listener() {
+	private final Listener dragListener = new Listener() {
 
 		public void handleEvent(Event e) {
 			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
@@ -81,7 +80,7 @@ public class PTabFolder {
 		}
 	};
 
-	private Listener mouseUpListener = new Listener() {
+	private final Listener mouseUpListener = new Listener() {
 
 		public void handleEvent(Event e) {
 			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
@@ -89,19 +88,20 @@ public class PTabFolder {
 		}
 	};
 
-//	private DragDetectListener dragDetectListener = new DragDetectListener() {
-//
-//		public void dragDetected(DragDetectEvent e) {
-//			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
-//			handleDragDetectStarted(globalPos, e);
-//		}
-//
-//	};
+	// private DragDetectListener dragDetectListener = new DragDetectListener()
+	// {
+	//
+	// public void dragDetected(DragDetectEvent e) {
+	// Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
+	// handleDragDetectStarted(globalPos, e);
+	// }
+	//
+	// };
 
-	private MenuDetectListener menuDetectListener = new MenuDetectListener() {
+	private final MenuDetectListener menuDetectListener = new MenuDetectListener() {
 
 		public void menuDetected(MenuDetectEvent e) {
-//			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
+			// Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
 			Point globalPos = new Point(e.x, e.y);
 			System.out.println("menuDetected(" + globalPos + ")");
 			handleMenuDetect(globalPos, e);
@@ -127,10 +127,12 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Creates an empty container. Creates a CTabFolder with no style bits set, and hooks a selection listener which calls <code>pageChange()</code> whenever the selected tab changes.
+	 * Creates an empty container. Creates a CTabFolder with no style bits set, and hooks a
+	 * selection listener which calls <code>pageChange()</code> whenever the selected tab changes.
 	 * 
 	 * @param parent
-	 *            The composite in which the container tab folder should be created; must not be <code>null</code>.
+	 *            The composite in which the container tab folder should be created; must not be
+	 *            <code>null</code>.
 	 * @return a new container
 	 */
 	private CTabFolder createContainer(Composite parent) {
@@ -142,6 +144,7 @@ public class PTabFolder {
 		// TODO Move listener init in appropriate method.
 		newContainer.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int newPageIndex = newContainer.indexOf((CTabItem) e.item);
 				firePageChange(newPageIndex);
@@ -165,20 +168,23 @@ public class PTabFolder {
 	/**
 	 * Dispose internal resources.
 	 */
+	// @unused
 	public void dispose() {
-		if (tabFolder.isDisposed())
+		if (tabFolder.isDisposed()) {
 			return;
+		}
 
 		detachListeners(tabFolder, false);
 		tabFolder.dispose();
 	}
 
 	/**
-	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.attachListeners(Control, boolean)
+	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.
+	 * attachListeners(Control, boolean)
 	 */
 	protected void attachListeners(Control theControl, boolean recursive) {
-		
-		// Both following methods listen to the same event. 
+
+		// Both following methods listen to the same event.
 		// So use only one of them
 		theControl.addListener(SWT.MenuDetect, menuListener);
 		theControl.addMenuDetectListener(menuDetectListener);
@@ -186,23 +192,22 @@ public class PTabFolder {
 		PresentationUtil.addDragListener(theControl, dragListener);
 		// theControl.addDragDetectListener(dragDetectListener);
 		// Listen on mouse enter event.
-//		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
+		// theControl.addListener(SWT.MouseEnter, mouseEnterListener);
 		theControl.addListener(SWT.MouseUp, mouseUpListener);
 
 		if (recursive && theControl instanceof Composite) {
 			Composite composite = (Composite) theControl;
 			Control[] children = composite.getChildren();
 
-			for (int i = 0; i < children.length; i++) {
-				Control control = children[i];
-
+			for (Control control : children) {
 				attachListeners(control, recursive);
 			}
 		}
 	}
 
 	/**
-	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.detachListeners(Control, boolean)
+	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.
+	 * detachListeners(Control, boolean)
 	 */
 	protected void detachListeners(Control theControl, boolean recursive) {
 		theControl.removeListener(SWT.MenuDetect, menuListener);
@@ -216,9 +221,7 @@ public class PTabFolder {
 			Composite composite = (Composite) theControl;
 			Control[] children = composite.getChildren();
 
-			for (int i = 0; i < children.length; i++) {
-				Control control = children[i];
-
+			for (Control control : children) {
 				detachListeners(control, recursive);
 			}
 		}
@@ -237,8 +240,8 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Called when drag start. From here, DragUtil.performDrag() is called, which start the 
-	 * dragging process. DragUtil.performDrag() will contains the tabFolder or the dragged tab.
+	 * Called when drag start. From here, DragUtil.performDrag() is called, which start the dragging
+	 * process. DragUtil.performDrag() will contains the tabFolder or the dragged tab.
 	 */
 	protected void handleDragStarted(Point displayPos, Event e) {
 
@@ -263,8 +266,9 @@ public class PTabFolder {
 	 * 
 	 * @param displayPos
 	 * @param e
-	 * TODO REmove, it is not used.
+	 *            TODO REmove, it is not used.
 	 */
+	// @unused
 	private void handleDragDetectStarted(Point displayPos, DragDetectEvent e) {
 
 		// if (isOnBorder(displayPos)) {
@@ -277,8 +281,8 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Handle menu detect.
-	 * TODO Connect menu staff here.
+	 * Handle menu detect. TODO Connect menu staff here.
+	 * 
 	 * @param displayPos
 	 * @param e
 	 */
@@ -295,7 +299,7 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Returns true iff the given point is on the border of the folder. By default, double-clicking, 
+	 * Returns true iff the given point is on the border of the folder. By default, double-clicking,
 	 * context menus, and drag/drop are disabled on the folder's border.
 	 * 
 	 * @param toTest
@@ -326,9 +330,7 @@ public class PTabFolder {
 	public CTabItem getItem(Point toFind) {
 		CTabItem[] items = tabFolder.getItems();
 
-		for (int i = 0; i < items.length; i++) {
-			CTabItem item = items[i];
-
+		for (CTabItem item : items) {
 			if (getItemBounds(item).contains(toFind)) {
 				return item;
 			}
@@ -338,15 +340,17 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Get the rectangle bounding the item, in the parent coordinates. Utility method. Can be moved somewhere else.
+	 * Get the rectangle bounding the item, in the parent coordinates. Utility method. Can be moved
+	 * somewhere else.
 	 */
 	public Rectangle getItemBounds(CTabItem item) {
 		return Geometry.toDisplay(item.getParent(), item.getBounds());
 	}
 
 	/**
-	 * Fire a page closed event. This event is fired when the close item is pressed. The item is not closed yet. By default, the item is closed after the event. The item is not closed if event.doit is
-	 * set to false.
+	 * Fire a page closed event. This event is fired when the close item is pressed. The item is not
+	 * closed yet. By default, the item is closed after the event. The item is not closed if
+	 * event.doit is set to false.
 	 * 
 	 */
 	protected void fireItemClosed(CTabFolderEvent event, int pageIndex) {
@@ -387,7 +391,8 @@ public class PTabFolder {
 		return bounds;
 
 		// Rectangle bounds = DragUtil.getDisplayBounds(tabFolder);
-		// Rectangle res = Geometry.getExtrudedEdge(bounds, tabFolder.getTabPosition(), tabFolder.getTabHeight());
+		// Rectangle res = Geometry.getExtrudedEdge(bounds,
+		// tabFolder.getTabPosition(), tabFolder.getTabHeight());
 		// return res;
 	}
 
@@ -395,7 +400,8 @@ public class PTabFolder {
 	 * Get the index of the draggedObject
 	 * 
 	 * @param draggedObject
-	 *            draggedObject should be of type CTabFolder or CTabItem (as provided by handleDragStarted())
+	 *            draggedObject should be of type CTabFolder or CTabItem (as provided by
+	 *            handleDragStarted())
 	 */
 	static public int getDraggedObjectTabIndex(Object draggedObject) {
 		if (draggedObject instanceof CTabItem) {
@@ -427,72 +433,77 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Get the event manager.
-	 * The event manager can be used to listen to events.
+	 * Get the event manager. The event manager can be used to listen to events.
+	 * 
 	 * @return
 	 */
 	public EventsManager getEventManager() {
 		return listenersManager;
 	}
-	
+
 	/**
 	 * Interface to ne implemented by listeners on PTabFodler events.
 	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
 	public interface IPTabFolderListener {
+
 		/**
 		 * 
 		 * @param tab
 		 * @param event
 		 */
 		public void menuDetectEvent(CTabItem tab, MenuDetectEvent event);
+
 		public void contextMenuDetectEvent(CTabItem tab, Event event);
+
 		public void itemClosedEvent(CTabFolderEvent event, int pageIndex);
+
 		public void pageChangeEvent(int newPageIndex);
 	}
-	
+
 	/**
-	 * Internal implementations.
-	 * Implements a list of listeners.
+	 * Internal implementations. Implements a list of listeners.
+	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
 	public class EventsManager {
+
 		/**
 		 * List of event listeners.
 		 */
 		List<IPTabFolderListener> listeners = new ArrayList<IPTabFolderListener>();
-		
+
 		/**
 		 * Add a listener
+		 * 
 		 * @param listener
 		 */
-		public void addListener( IPTabFolderListener listener)
-		{
-			if(listeners.contains(listener))
+		public void addListener(IPTabFolderListener listener) {
+			if (listeners.contains(listener)) {
 				return;
-			
+			}
+
 			listeners.add(listener);
 		}
 
 		/**
 		 * Remove a listener
+		 * 
 		 * @param listener
 		 */
-		public void removeListener( IPTabFolderListener listener)
-		{			
+		public void removeListener(IPTabFolderListener listener) {
 			listeners.remove(listener);
 		}
-		
+
 		/**
 		 * @param tab
 		 * @param e
 		 */
 		public void fireContextMenuEvent(CTabItem tab, Event event) {
-			for(IPTabFolderListener cur : listeners)
-			{
+			for (IPTabFolderListener cur : listeners) {
 				cur.contextMenuDetectEvent(tab, event);
 			}
 		}
@@ -502,31 +513,28 @@ public class PTabFolder {
 		 * @param pageIndex
 		 */
 		private void fireItemClosed(CTabFolderEvent event, int pageIndex) {
-			for(IPTabFolderListener cur : listeners)
-			{
+			for (IPTabFolderListener cur : listeners) {
 				cur.itemClosedEvent(event, pageIndex);
 			}
 		}
-		
+
 		/**
 		 * @param newPageIndex
 		 */
 		private void firePageChange(int newPageIndex) {
-			for(IPTabFolderListener cur : listeners)
-			{
+			for (IPTabFolderListener cur : listeners) {
 				cur.pageChangeEvent(newPageIndex);
 			}
 		}
 
 		/**
 		 * Fire the event to all listeners
-		 * @param e 
-		 * @param tab 
+		 * 
+		 * @param e
+		 * @param tab
 		 */
-		private void fireMenuDetectEvent(CTabItem tab, MenuDetectEvent e)
-		{
-			for(IPTabFolderListener cur : listeners)
-			{
+		private void fireMenuDetectEvent(CTabItem tab, MenuDetectEvent e) {
+			for (IPTabFolderListener cur : listeners) {
 				cur.menuDetectEvent(tab, e);
 			}
 		}

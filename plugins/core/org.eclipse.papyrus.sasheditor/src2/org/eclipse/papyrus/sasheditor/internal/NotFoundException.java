@@ -10,17 +10,16 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
-
 
 /**
  * Exception thrown when a search or lookup fails.
+ * 
  * @author dumoulin
  */
 public class NotFoundException extends SashWindowsException {
 
-	
 	/**
 	 * 
 	 */
@@ -29,6 +28,7 @@ public class NotFoundException extends SashWindowsException {
 	/**
 	 * 
 	 */
+	// @unused
 	public NotFoundException() {
 		// TODO Auto-generated constructor stub
 	}
@@ -44,6 +44,7 @@ public class NotFoundException extends SashWindowsException {
 	/**
 	 * @param cause
 	 */
+	// @unused
 	public NotFoundException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
@@ -53,6 +54,7 @@ public class NotFoundException extends SashWindowsException {
 	 * @param message
 	 * @param cause
 	 */
+	// @unused
 	public NotFoundException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub

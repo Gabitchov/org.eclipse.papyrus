@@ -56,6 +56,7 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 	/**
 	 * @generated
 	 */
+	// @unused
 	public static ClassifierTemplateParameterCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new ClassifierTemplateParameterCreateCommand(req, eObject);
 	}

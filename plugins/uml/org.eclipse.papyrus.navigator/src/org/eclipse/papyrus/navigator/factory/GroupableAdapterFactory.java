@@ -28,18 +28,16 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.navigator.providers.GroupableTreeArrayContentProvider;
 import org.eclipse.papyrus.navigator.providers.PackagingNode;
 
-
 /**
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
 public class GroupableAdapterFactory extends AdapterFactoryImpl {
-	
 
 	/** The supported types. */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
-	
-	private AdapterFactory wrappedAdapterFactory;
-	
+	private final Collection<Object> supportedTypes = new ArrayList<Object>();
+
+	private final AdapterFactory wrappedAdapterFactory;
+
 	public GroupableAdapterFactory(AdapterFactory factory) {
 		wrappedAdapterFactory = factory;
 		supportedTypes.add(IStructuredItemContentProvider.class);
@@ -52,24 +50,23 @@ public class GroupableAdapterFactory extends AdapterFactoryImpl {
 
 	@Override
 	public Object adapt(Object target, Object type) {
-		if ((target instanceof EObject) || (target instanceof PackagingNode)){
-			return new GroupableTreeArrayContentProvider(this,wrappedAdapterFactory);
+		if ((target instanceof EObject) || (target instanceof PackagingNode)) {
+			return new GroupableTreeArrayContentProvider(this, wrappedAdapterFactory);
 		} else {
 			return this.wrappedAdapterFactory.adapt(target, type);
 		}
 	}
-	
+
 	@Override
 	public Adapter adapt(Notifier target, Object type) {
-		
+
 		return (Adapter) adapt((Object) target, type);
 	}
 
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return 	(	((type instanceof EObject) || (type instanceof PackagingNode) || supportedTypes.contains(type))
-				&& (!(type instanceof View))) ||
-				this.wrappedAdapterFactory.isFactoryForType(type);
+		return (((type instanceof EObject) || (type instanceof PackagingNode) || supportedTypes.contains(type)) && (!(type instanceof View)))
+				|| this.wrappedAdapterFactory.isFactoryForType(type);
 	}
 
 }

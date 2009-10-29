@@ -10,11 +10,12 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.extension;
 
 /**
- * Provide getter/setter for shared object. Editors whishing to have the shared object by this method should implement this interface
+ * Provide getter/setter for shared object. Editors whishing to have the shared object by this
+ * method should implement this interface
  * 
  * TODO Remove this interface as there is other ways to do that ?
  * 
@@ -36,10 +37,13 @@ public interface NestedDiagram {
 	 * 
 	 * @return the shared objects among several diagrams
 	 */
+	// @unused
 	public MultiDiagramSharedObjects getSharedObjects();
 
 	/**
-	 * Set the root of the editor. This method is intended to initialize the editor. It should be called immediately after the editor creation. The editor is not intended to allow further calls.
+	 * Set the root of the editor. This method is intended to initialize the editor. It should be
+	 * called immediately after the editor creation. The editor is not intended to allow further
+	 * calls.
 	 * 
 	 * @param root
 	 *            object edited by the editor

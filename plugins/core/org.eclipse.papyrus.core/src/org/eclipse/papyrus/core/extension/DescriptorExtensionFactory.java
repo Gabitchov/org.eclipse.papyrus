@@ -50,14 +50,15 @@ public abstract class DescriptorExtensionFactory {
 	 *            the name of the attribute to read
 	 * @param extensionPointName
 	 *            Name of the extension point. Used in exception msg. TODO: remove ?
-	 *            
+	 * 
 	 * @return the class, result of the parsing
 	 * @throws InvalidRegistryObjectException
 	 * @throws BadClassNameException
 	 */
-	protected Class<?> parseClass(IConfigurationElement element, String attributeName, String extensionPointName) throws BadClassNameException {
+	protected Class<?> parseClass(IConfigurationElement element, String attributeName, String extensionPointName)
+			throws BadClassNameException {
 		String className = element.getAttribute(attributeName);
-		
+
 		element.getContributor().getName();
 		if (className == null || className.length() == 0) {
 			throw new BadClassNameException(attributeName + "=null ", extensionPointName, attributeName);
@@ -72,7 +73,8 @@ public abstract class DescriptorExtensionFactory {
 				Bundle bundle = Platform.getBundle(declaringID);
 				factoryClass = bundle.loadClass(className);
 			} catch (ClassNotFoundException e1) {
-				throw new BadClassNameException(className + " can not be loaded ", extensionPointName, attributeName, e1);
+				throw new BadClassNameException(className + " can not be loaded ", extensionPointName, attributeName,
+						e1);
 			}
 		}
 		return factoryClass;

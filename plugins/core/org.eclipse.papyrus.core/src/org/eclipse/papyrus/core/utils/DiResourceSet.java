@@ -84,11 +84,11 @@ public class DiResourceSet {
 	 */
 	protected TransactionalEditingDomain transactionalEditingDomain;
 
+	// @unused
 	public static String EditingDomainID = "com.cea.papyrus.core.PapyrusEditingDomainID";
 
 	/** This is the one adapter factory used for providing views of the model */
 	protected AdapterFactory adapterFactory;
-
 
 	/**
 	 * Creates a new DiResourceSet, using default for file extensions.
@@ -100,10 +100,11 @@ public class DiResourceSet {
 	/**
 	 * Creates a new DiResourceSet, using default for file extensions.
 	 */
+	// @unused
 	public DiResourceSet(AdapterFactory adapterFactory) {
 		this("di", "uml", adapterFactory);
 	}
-	
+
 	/**
 	 * Creates a new DiResourceSet, with specified extensions for di2 files and model files
 	 * 
@@ -147,13 +148,15 @@ public class DiResourceSet {
 		// Create the command stack that will notify this editor as commands are
 		// executed.
 		BasicCommandStack commandStack = new BasicCommandStack();
-		editingDomain = new AdapterFactoryEditingDomain(this.adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		editingDomain = new AdapterFactoryEditingDomain(this.adapterFactory, commandStack,
+				new HashMap<Resource, Boolean>());
 
-		transactionalEditingDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain(editingDomain.getResourceSet());
+		transactionalEditingDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain(
+				editingDomain.getResourceSet());
 		transactionalEditingDomain.setID("org.eclipse.uml2.diagram.clazz.EditingDomain"); //$NON-NLS-1$
-		TransactionalEditingDomain.Registry.INSTANCE.add(transactionalEditingDomain.getID(), transactionalEditingDomain);
+		TransactionalEditingDomain.Registry.INSTANCE
+				.add(transactionalEditingDomain.getID(), transactionalEditingDomain);
 	}
-
 
 	/**
 	 * 
@@ -189,7 +192,6 @@ public class DiResourceSet {
 
 	}
 
-
 	/**
 	 * Create both files (DI and UML) from a filename.
 	 * 
@@ -197,14 +199,15 @@ public class DiResourceSet {
 	 *            the file from which path is extracted to create the new files
 	 */
 	public void createModelResources(IFile newFile, String eContentType) {
-		
-		// create the di resource URI
-		URI diUri =  getPlatformURI(newFile.getFullPath());
-		// Create the di Resource for the sashcontainer
-		// The model will be automatically initialized by the SashContainer if needed (if it is empty).
-		// Normally the resource should contains models set by previous use from the SashContainer 
-		diResource = getResourceSet().createResource(diUri);
 
+		// create the di resource URI
+		URI diUri = getPlatformURI(newFile.getFullPath());
+		// Create the di Resource for the sashcontainer
+		// The model will be automatically initialized by the SashContainer if
+		// needed (if it is empty).
+		// Normally the resource should contains models set by previous use from
+		// the SashContainer
+		diResource = getResourceSet().createResource(diUri);
 
 		IPath filenameWithoutExtension = newFile.getFullPath().removeFileExtension();
 		// if the uml model is not loaded, create resource
@@ -212,7 +215,7 @@ public class DiResourceSet {
 			// create the model URI
 			URI modelUri = getPlatformURI(filenameWithoutExtension.addFileExtension("uml"));
 			// create the model resource
-			modelResource = getResourceSet().createResource(modelUri, eContentType); 
+			modelResource = getResourceSet().createResource(modelUri, eContentType);
 		}
 
 		// create the notation URI
@@ -222,14 +225,14 @@ public class DiResourceSet {
 
 	}
 
-
-	
 	/**
 	 * Get a platform resource URI of the given path
-	 * @param path the path
-	 * @return the uri 
+	 * 
+	 * @param path
+	 *            the path
+	 * @return the uri
 	 */
-	private URI getPlatformURI(IPath path){
+	private URI getPlatformURI(IPath path) {
 		return URI.createPlatformResourceURI(path.toString(), true);
 	}
 
@@ -252,10 +255,10 @@ public class DiResourceSet {
 		monitor.worked(1);
 		notationResource.save(null);
 		monitor.worked(1);
-	
+
 		monitor.done();
 	}
-	
+
 	/**
 	 * The resources are already loaded, but we want to save them under another name.
 	 * 
@@ -269,10 +272,10 @@ public class DiResourceSet {
 		IPath diPath = nameWithoutExt.addFileExtension(diFileExtension);
 
 		// Set model URI
-		URI	modelUri =  getPlatformURI(modelPath);
+		URI modelUri = getPlatformURI(modelPath);
 		modelResource.setURI(modelUri);
-		
-		// Set notation URI 
+
+		// Set notation URI
 		URI notationURI = getPlatformURI(notationPath);
 		notationResource.setURI(notationURI);
 
@@ -283,18 +286,15 @@ public class DiResourceSet {
 		saveResources();
 	}
 
-	
-
-
-
 	/**
 	 * Remove the diagram from the model.
 	 * 
 	 * @param diagram
 	 */
+	// @unused
 	public void removeDiagram(Diagram diagram) {
 		// Detach the diagram from its container
-//		diagram.setContainer(null);
+		// diagram.setContainer(null);
 		// Remove from the resource.
 		diResource.getContents().remove(diagram);
 		// Something else to do ??
@@ -303,10 +303,12 @@ public class DiResourceSet {
 	/**
 	 * @return the adapterFactory
 	 */
+	// @unused
 	public AdapterFactory getAdapterFactory() {
 		return adapterFactory;
 	}
 
+	// @unused
 	public AdapterFactoryEditingDomain getEditingDomain() {
 		return editingDomain;
 	}
@@ -317,7 +319,7 @@ public class DiResourceSet {
 	public Resource getNotationResource() {
 		return notationResource;
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -344,7 +346,6 @@ public class DiResourceSet {
 	public Resource getModelResource() {
 		return modelResource;
 	}
-
 
 	/**
 	 * @return the transactionalEditingDomain

@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
 
 /**
- * A provider that takes envelopes children in groups by type. EObjecs are
- * grouped by their {@link EClass}. {@link Object}s are grouped by their first Interface.
+ * A provider that takes envelopes children in groups by type. EObjecs are grouped by their
+ * {@link EClass}. {@link Object}s are grouped by their first Interface.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug #290422</a>
@@ -61,8 +61,7 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 
 	AdapterFactory helperAdapterFactory;
 
-	public GroupableTreeArrayContentProvider(AdapterFactory adapterFactory,
-			AdapterFactory helper) {
+	public GroupableTreeArrayContentProvider(AdapterFactory adapterFactory, AdapterFactory helper) {
 		super(adapterFactory);
 		helperAdapterFactory = helper;
 	}
@@ -86,15 +85,13 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 			return ((PackagingNode) element).getParent();
 		} else if (getParentNodes().containsKey(element)) {
 			return getParentNodes().get(element);
-		} else if (element instanceof EObject
-				&& element instanceof View == false) {
+		} else if (element instanceof EObject && element instanceof View == false) {
 			createVirtualSuperNodesTilParent((EObject) element);
 			if (getParentNodes().containsKey(element)) {
 				return getParentNodes().get(element);
 			}
 		}
-		Object adapter = helperAdapterFactory.adapt(element,
-				ITreeItemContentProvider.class);
+		Object adapter = helperAdapterFactory.adapt(element, ITreeItemContentProvider.class);
 		if (adapter instanceof ITreeItemContentProvider) {
 			return ((ITreeItemContentProvider) adapter).getParent(element);
 		} else
@@ -106,11 +103,9 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 			return true;
 		} else {
 
-			Object adapter = helperAdapterFactory.adapt(element,
-					ITreeItemContentProvider.class);
+			Object adapter = helperAdapterFactory.adapt(element, ITreeItemContentProvider.class);
 			if (adapter instanceof ITreeItemContentProvider) {
-				return ((ITreeItemContentProvider) adapter)
-						.hasChildren(element);
+				return ((ITreeItemContentProvider) adapter).hasChildren(element);
 			} else
 				return false;
 		}
@@ -131,8 +126,7 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 	}
 
 	private Collection<?> getVirtualSupernodes(Collection<?> node) {
-		Object[] nodes = node != null ? node.toArray(new Object[node.size()])
-				: new Object[0];
+		Object[] nodes = node != null ? node.toArray(new Object[node.size()]) : new Object[0];
 		return getVirtualSupernodes(nodes);
 	}
 
@@ -147,12 +141,10 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 				String key = getKey(nodeList[i]);
 				PackagingNode ghostNode = null;
 				if (!superNodes.containsKey(key)) {
-					ghostNode = new PackagingNode(key, super
-							.getParent(nodeList[i]));
+					ghostNode = new PackagingNode(key, super.getParent(nodeList[i]));
 					superNodes.put(key, ghostNode);
 				} else {
-					ghostNode = superNodes.get(key) instanceof PackagingNode ? (PackagingNode) superNodes
-							.get(key)
+					ghostNode = superNodes.get(key) instanceof PackagingNode ? (PackagingNode) superNodes.get(key)
 							: null;
 				}
 				if (ghostNode != null) {
@@ -166,8 +158,7 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 
 	private Collection<?> getVirtualSupernodes(Object parent) {
 		Collection<?> children = null;
-		Object adapter = helperAdapterFactory.adapt(parent,
-				ITreeItemContentProvider.class);
+		Object adapter = helperAdapterFactory.adapt(parent, ITreeItemContentProvider.class);
 		if (adapter instanceof ITreeItemContentProvider) {
 			children = ((ITreeItemContentProvider) adapter).getChildren(parent);
 		}
@@ -178,10 +169,7 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 			// collection of other elements to add as children
 			Collection<Object> othersToAdd = new ArrayList<Object>();
 			for (Object child : children) {
-				if (child instanceof EObject && !(
-						child instanceof Diagram ||
-						child instanceof EAnnotation) 
-						) {
+				if (child instanceof EObject && !(child instanceof Diagram || child instanceof EAnnotation)) {
 					// for each child EObject we'll find its EClass and add it
 					// as a node to create
 					EClass eClass = ((EObject) child).eClass();
@@ -198,8 +186,7 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 			Collection<Object> superNodes = new ArrayList<Object>();
 			// EObjectPackagingNodes for EObjects
 			for (EClass eClass : eClasses) {
-				EObjectPackagingNode node = new EObjectPackagingNode(eClass,
-						(EObject) parent);
+				EObjectPackagingNode node = new EObjectPackagingNode(eClass, (EObject) parent);
 				superNodes.add(node);
 				// add to the parentNodes collection these newly created
 				// elements
@@ -219,8 +206,7 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 
 	protected void updateElementChildren(Object parent) {
 		if (getVirtualSuperNodes().containsKey(parent)) {
-			Collection<Object> oldCollection = (Collection<Object>) getVirtualSuperNodes()
-					.get(parent);
+			Collection<Object> oldCollection = (Collection<Object>) getVirtualSuperNodes().get(parent);
 			Collection<Object> newCollection = (Collection<Object>) getVirtualSupernodes(parent);
 			mergeCollections(oldCollection, newCollection);
 		} else {
@@ -229,16 +215,14 @@ public class GroupableTreeArrayContentProvider extends EObjectItemProvider {
 	}
 
 	/**
-	 * Adds to oldC the new elements in newC. Removes from oldC the elements
-	 * that don't appear in newC.
+	 * Adds to oldC the new elements in newC. Removes from oldC the elements that don't appear in
+	 * newC.
 	 * 
 	 * @param oldC
 	 * @param newC
 	 */
-	protected void mergeCollections(Collection<Object> oldC,
-			Collection<Object> newC) {
-		if (oldC == null || newC == null
-				|| (oldC.size() == 0 && newC.size() == 0)) {
+	protected void mergeCollections(Collection<Object> oldC, Collection<Object> newC) {
+		if (oldC == null || newC == null || (oldC.size() == 0 && newC.size() == 0)) {
 			return;
 		}
 		// elements to remove from oldC

@@ -26,11 +26,12 @@ import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 public class AddAppliedQNStereotypeToDisplayCommand extends CreateEAnnotationCommand {
 
 	/** The qualified namedepht. */
-	private String stereotypeListQN;
+	private final String stereotypeListQN;
 
 	/**
 	 * the presnetation kind of applied stereotypes
 	 */
+	// @unused
 	private String appliedStereotypePresentationKind;
 
 	/**

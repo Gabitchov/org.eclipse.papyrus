@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -33,11 +33,11 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 	private String expectedType;
 
 	/**
-	 * EditorDescriptor associated to the factory.
-	 * TODO : Maybe use individual setters to set the requested data (ContributorId and Icon).
+	 * EditorDescriptor associated to the factory. TODO : Maybe use individual setters to set the
+	 * requested data (ContributorId and Icon).
 	 */
 	protected EditorDescriptor editorDescriptor;
-	
+
 	/**
 	 * Creates a new AbstractEditorFactory.
 	 * 
@@ -76,11 +76,10 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 	public abstract IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException;
 
 	/**
-	 * {@inheritDoc}
-	 * This method should be implemented by subclasses
+	 * {@inheritDoc} This method should be implemented by subclasses
 	 */
 	abstract public boolean isEditorFor(Object root);
-	
+
 	/**
 	 * @return the editorDescriptor
 	 */
@@ -88,10 +87,9 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 		return editorDescriptor;
 	}
 
-	
 	/**
-	 * Initialize the factory with useful Classes.
-	 * TODO Find a better way to provide these data.
+	 * Initialize the factory with useful Classes. TODO Find a better way to provide these data.
+	 * 
 	 * @param editorDescriptor
 	 */
 	public void init(EditorDescriptor editorDescriptor) {

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 import org.eclipse.swt.widgets.Composite;
@@ -39,8 +39,10 @@ public abstract class TilePart<T> implements ITilePart<T> {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#setParentPartContainer(org.eclipse.papyrus.sasheditor.sash.TilePartContainer) TODO Remove this method.
+	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#setParentPartContainer(org.eclipse.papyrus.sasheditor.sash.TilePartContainer)
+	 *      TODO Remove this method.
 	 */
+	// @unused
 	public void setParentPartContainer(TilePartContainer<T> rootContainer) {
 		this.parentPartContainer = rootContainer;
 
@@ -49,6 +51,7 @@ public abstract class TilePart<T> implements ITilePart<T> {
 	/**
 	 * @return the parentPartContainer
 	 */
+	// @unused
 	public TilePartContainer<T> getParentPartContainer() {
 		return parentPartContainer;
 	}
@@ -58,12 +61,14 @@ public abstract class TilePart<T> implements ITilePart<T> {
 	 * 
 	 * @return the parent
 	 */
+	// @unused
 	public ITilePart<T> getParent() {
 		return parent;
 	}
 
 	/**
-	 * Orphan this node. The parent is set to null, but control is left unchanged. The node can be reattached with reparent().
+	 * Orphan this node. The parent is set to null, but control is left unchanged. The node can be
+	 * reattached with reparent().
 	 * 
 	 * @see
 	 * @return the parent
@@ -96,6 +101,7 @@ public abstract class TilePart<T> implements ITilePart<T> {
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#reparent(org.eclipse.papyrus.sasheditor.sash.ITilePart)
 	 */
+	// @unused
 	public void reparent(ITilePart<T> newParent) {
 		parent = newParent;
 		// Create control if needed

@@ -30,9 +30,11 @@ public class Messages extends NLS {
 	public static String GradientSection_Style_Vertical;
 
 	/** label of the set default button in the MaskManagedLabelSection */
+	// @unused
 	public static String MaskManagedLabelSection_Button_SetDefault;
 
 	/** label of the view preferences button in the MaskManagedLabelSection */
+	// @unused
 	public static String MaskManagedLabelSection_Button_ViewPreference;
 
 	static {

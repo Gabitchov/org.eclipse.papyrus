@@ -38,7 +38,7 @@ import org.eclipse.swt.dnd.Transfer;
 // This class is inspired from EcoreTools source code
 public class OutlineDragAdapter implements DragSourceListener {
 
-	private ISelectionProvider selectionProvider;
+	private final ISelectionProvider selectionProvider;
 
 	/**
 	 * Constructs a new drag adapter.
@@ -105,7 +105,8 @@ public class OutlineDragAdapter implements DragSourceListener {
 	}
 
 	/**
-	 * Compute the outline selection : filter on selection, only model elements (displayed as GraphNode) can be dragged.
+	 * Compute the outline selection : filter on selection, only model elements (displayed as
+	 * GraphNode) can be dragged.
 	 * 
 	 * @return the list of selected model elements
 	 */
@@ -116,7 +117,15 @@ public class OutlineDragAdapter implements DragSourceListener {
 		while (it.hasNext()) {
 			Object sel = it.next();
 			// Ignore diagram objects
-			if ((sel instanceof IWrapperItemProvider || sel instanceof FeatureMap.Entry || sel instanceof EObject) /* && !(sel instanceof View) */) {
+			if ((sel instanceof IWrapperItemProvider || sel instanceof FeatureMap.Entry || sel instanceof EObject) /*
+																													 * &&
+																													 * !
+																													 * (
+																													 * sel
+																													 * instanceof
+																													 * View
+																													 * )
+																													 */) {
 				transferData.add(AdapterFactoryEditingDomain.unwrap(sel));
 			}
 		}

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 
@@ -24,7 +24,6 @@ import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
 
-
 /**
  * @author dumoulin
  */
@@ -34,11 +33,11 @@ public class PageMngrImplTest extends TestCase {
 	 * The {@link PageMngrImpl} under test.
 	 */
 	protected PageMngrImpl pageMngr;
+
 	/**
 	 * The associated {@link DiContentProvider}. Not tested, but used to check events.
 	 */
 	protected DiContentProvider contentProvider;
-
 
 	/**
 	 * @param name
@@ -49,15 +48,15 @@ public class PageMngrImplTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
-	 *
+	 * 
 	 * @throws java.lang.Exception
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		
+
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
 		pageMngr = new PageMngrImpl(diSashModel);
-		
+
 		IPageModelFactory pageModelFactory = new FakePageModelFactory();
 		contentProvider = new DiContentProvider(diSashModel.getSashModel(), pageModelFactory);
 
@@ -65,7 +64,7 @@ public class PageMngrImplTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#tearDown()
-	 *
+	 * 
 	 * @throws java.lang.Exception
 	 */
 	protected void tearDown() throws Exception {
@@ -73,102 +72,104 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}
+	 * .
 	 */
 	public void testAddPage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
-		
+
 		// Set change listener
 		contentProvider.addContentChangedListener(changeListener);
-		
+
 		// Add identifiers
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for(int i=0; i<10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
 			Object id = new Object();
 			identifiers.add(id);
 			pageMngr.addPage(id);
-			
+
 			// Check no fired events
 			assertEquals("One event fired", 0, changeListener.getChangeCount());
 		}
 
 		// Check if pages are in PageList
-		assertEquals("all pages added", 10, pageMngr.allPages().size() );
-		
+		assertEquals("all pages added", 10, pageMngr.allPages().size());
+
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#allPages()}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#allPages()}.
 	 */
 	public void testAllPages() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
-		
+
 		// Set change listener
 		contentProvider.addContentChangedListener(changeListener);
-		
+
 		// Add identifiers
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for(int i=0; i<10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
 			Object id = new Object();
 			identifiers.add(id);
 			pageMngr.openPage(id);
-			
+
 			// Check fired events
 			assertEquals("One event fired", 1, changeListener.getChangeCount());
 		}
 		// Check if pages are in PageList
-		assertEquals("all pages found", 10, pageMngr.allPages().size() );
+		assertEquals("all pages found", 10, pageMngr.allPages().size());
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}
+	 * .
 	 */
 	public void testClosePage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
-		
+
 		// Set change listener
 		contentProvider.addContentChangedListener(changeListener);
-		
+
 		// Add identifiers
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for(int i=0; i<10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
 			Object id = new Object();
 			identifiers.add(id);
 			pageMngr.openPage(id);
-			
+
 			// Check fired events
 			assertEquals("One event fired", 1, changeListener.getChangeCount());
 		}
 		// Check if pages are in PageList
-		assertEquals("all pages added", 10, pageMngr.allPages().size() );
+		assertEquals("all pages added", 10, pageMngr.allPages().size());
 
 		// Close page
 		pageMngr.closePage(identifiers.get(3));
-		
+
 		// Check page still in pages
-		assertEquals("all pages still in list", 10, pageMngr.allPages().size() );
-		
+		assertEquals("all pages still in list", 10, pageMngr.allPages().size());
+
 		// Check if pages are in SashStructure
 		PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(3));
 		assertNull("Page removed from sashStructure ", pageRef);
@@ -176,82 +177,82 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}
+	 * .
 	 */
 	public void testOpenPage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
-		
+
 		// Set change listener
 		contentProvider.addContentChangedListener(changeListener);
-		
+
 		// Add identifiers
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for(int i=0; i<10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
 			Object id = new Object();
 			identifiers.add(id);
 			pageMngr.openPage(id);
-			
+
 			// Check fired events
 			assertEquals("One event fired", 1, changeListener.getChangeCount());
 		}
 
 		// Check if pages are in PageList
-		assertEquals("all pages added", 10, pageMngr.allPages().size() );
-		
+		assertEquals("all pages added", 10, pageMngr.allPages().size());
+
 		// Check if pages are in SashStructure
 		PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(3));
 		assertNotNull("Page exist in sashStructure ", pageRef);
 		assertSame("found the right page", identifiers.get(3), pageRef.getPageIdentifier());
-		
+
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}
+	 * .
 	 */
 	public void testRemovePage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
-		
+
 		// Set change listener
 		contentProvider.addContentChangedListener(changeListener);
-		
+
 		// Add identifiers
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for(int i=0; i<10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
 			Object id = new Object();
 			identifiers.add(id);
 			pageMngr.openPage(id);
-			
+
 			// Check fired events
 			assertEquals("One event fired", 1, changeListener.getChangeCount());
 		}
 		// Check if pages are in PageList
-		assertEquals("all pages added", 10, pageMngr.allPages().size() );
+		assertEquals("all pages added", 10, pageMngr.allPages().size());
 
 		// Close page
 		pageMngr.removePage(identifiers.get(3));
-		
+
 		// Check page still in pages
-		assertEquals("page remove from list", 9, pageMngr.allPages().size() );
-		
+		assertEquals("page remove from list", 9, pageMngr.allPages().size());
+
 		// Check if pages are in SashStructure
 		PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(3));
 		assertNull("Page removed from sashStructure ", pageRef);
 	}
-
-	
 
 }

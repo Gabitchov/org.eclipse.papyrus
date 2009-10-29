@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
-
 public interface IEditorDescriptor {
 
 	/**
@@ -14,6 +13,5 @@ public interface IEditorDescriptor {
 	 * @return the actionBarContributorId
 	 */
 	public String getActionBarContributorId();
-
 
 }

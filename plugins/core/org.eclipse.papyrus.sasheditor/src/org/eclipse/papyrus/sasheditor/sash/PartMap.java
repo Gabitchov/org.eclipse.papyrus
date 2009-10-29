@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 import java.util.Collection;
@@ -61,16 +61,17 @@ public class PartMap<T> extends HashMap<Object, ITilePart<T>> {
 	public Collection<ITilePart<T>> getTileParts() {
 		return values();
 	}
-	
+
 	/**
 	 * Add all part of the collection to this map.
+	 * 
 	 * @param collection
 	 */
-//	public void addAll(Collection<ITilePart<T>> collection)
-//	{
-//		for( ITilePart<T> part : collection)
-//		{
-//			put(part.getModel().getModel(), part);
-//		}
-//	}
+	// public void addAll(Collection<ITilePart<T>> collection)
+	// {
+	// for( ITilePart<T> part : collection)
+	// {
+	// put(part.getModel().getModel(), part);
+	// }
+	// }
 }

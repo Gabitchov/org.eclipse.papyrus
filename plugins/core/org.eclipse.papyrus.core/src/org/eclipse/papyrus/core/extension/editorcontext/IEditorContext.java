@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.editorcontext;
 
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
@@ -28,6 +28,7 @@ public interface IEditorContext {
 	 * 
 	 * @param IEditorInput
 	 */
+	// @unused
 	public void setInput(IEditorInput input);
 
 	/**
@@ -40,7 +41,8 @@ public interface IEditorContext {
 	public void init(IMultiDiagramEditor multiEditor) throws BackboneException;
 
 	/**
-	 * Sets the editing domain used by the editors. This edit domain should have a reference to the same command stack shared among each editor in the multi diagram editor.
+	 * Sets the editing domain used by the editors. This edit domain should have a reference to the
+	 * same command stack shared among each editor in the multi diagram editor.
 	 * 
 	 * @param domain
 	 *            the gmf editing doamin shared among all diagram editors
@@ -48,7 +50,8 @@ public interface IEditorContext {
 	public void setDiagramEditDomain(DiagramEditDomain domain);
 
 	/**
-	 * Returns the editing domain used by the editors. This edit domain should have a reference to the same command stack shared among each editor in the multi diagram editor.
+	 * Returns the editing domain used by the editors. This edit domain should have a reference to
+	 * the same command stack shared among each editor in the multi diagram editor.
 	 * 
 	 * @return the gmf editing doamin shared among all diagram editors
 	 */

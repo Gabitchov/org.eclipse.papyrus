@@ -20,7 +20,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A unmodifiable view on a specified list from its iterator. The view filters the original list according to the provided filter.
+ * A unmodifiable view on a specified list from its iterator. The view filters the original list
+ * according to the provided filter.
  * 
  * @param <E>
  *            the type of objects in the filtered collection
@@ -46,7 +47,8 @@ public class FilteredCollectionViewFromIterator<E> extends AbstractCollection<E>
 	 * 
 	 * 
 	 * @param filter
-	 * @param list 	 *
+	 * @param list
+	 *            *
 	 * @param iter
 	 */
 	public FilteredCollectionViewFromIterator(IteratorProvider<E> iter, IFilter filter) {
@@ -111,9 +113,12 @@ public class FilteredCollectionViewFromIterator<E> extends AbstractCollection<E>
 	}
 
 	/**
-	 * Removes a single instance of the specified element from this collection, if it is present (optional operation). More formally, removes an element <tt>e</tt> such that <tt>(o==null ? e==null :
-	 * o.equals(e))</tt>, if the collection contains one or more such elements. Returns <tt>true</tt> if the collection contained the specified element (or equivalently, if the collection changed as a
-	 * result of the call).
+	 * Removes a single instance of the specified element from this collection, if it is present
+	 * (optional operation). More formally, removes an element <tt>e</tt> such that
+	 * <tt>(o==null ? e==null :
+	 * o.equals(e))</tt>, if the collection contains one or more such elements. Returns
+	 * <tt>true</tt> if the collection contained the specified element (or equivalently, if the
+	 * collection changed as a result of the call).
 	 * <p>
 	 * 
 	 * This implementation call the remove method on the underlying collection.
@@ -134,7 +139,9 @@ public class FilteredCollectionViewFromIterator<E> extends AbstractCollection<E>
 	}
 
 	/**
-	 * Return the value to be returned by the iterator.next() method. This method can be overloaded by subclasses in order to return another value than the objects belonging to the underlying list.
+	 * Return the value to be returned by the iterator.next() method. This method can be overloaded
+	 * by subclasses in order to return another value than the objects belonging to the underlying
+	 * list.
 	 * 
 	 * @param ele
 	 *            The iterated object. This is the object iterated inside the underlying list.
@@ -213,7 +220,8 @@ public class FilteredCollectionViewFromIterator<E> extends AbstractCollection<E>
 		}
 
 		/**
-		 * Compute the next field (null or next value), and return the previous value of the next field.
+		 * Compute the next field (null or next value), and return the previous value of the next
+		 * field.
 		 * 
 		 * @return Object
 		 */

@@ -14,7 +14,6 @@ package org.eclipse.papyrus.extensionpoints.editors.preferences;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,402 +40,411 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
- * The file editors page presents the collection of file names and extensions
- * for which the user has registered editors. It also lets the user add new
- * internal or external (program) editors for a given file name and extension.
- *
- * The user can add an editor for either a specific file name and extension
- * (e.g. report.doc), or for all file names of a given extension (e.g. *.doc)
- *
- * The set of registered editors is tracked by the EditorRegistery
- * available from the workbench plugin.
+ * The file editors page presents the collection of file names and extensions for which the user has
+ * registered editors. It also lets the user add new internal or external (program) editors for a
+ * given file name and extension.
+ * 
+ * The user can add an editor for either a specific file name and extension (e.g. report.doc), or
+ * for all file names of a given extension (e.g. *.doc)
+ * 
+ * The set of registered editors is tracked by the EditorRegistery available from the workbench
+ * plugin.
  */
-public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage implements
-        IWorkbenchPreferencePage, Listener {
-	
-    protected static final String DEFAULT_EDITOR_LABEL = " (Default Editor)";
+public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, Listener {
+
+	protected static final String DEFAULT_EDITOR_LABEL = " (Default Editor)";
 
 	private static final String DATA_EDITOR = "editor"; //$NON-NLS-1$
 
 	protected Table elementTypeTable;
 
-    protected Table editorTable;
+	protected Table editorTable;
 
-    protected Button defaultEditorButton;
+	protected Button defaultEditorButton;
 
-    protected Label editorLabel;
+	protected Label editorLabel;
 
-    protected IWorkbench workbench;
+	protected IWorkbench workbench;
 
-    protected List<Image> imagesToDispose;
+	protected List<Image> imagesToDispose;
 
-    protected Map<IEditorDescriptor, Image> editorsToImages;
+	protected Map<IEditorDescriptor, Image> editorsToImages;
 
-    /**
-     * Creates the page's UI content.
-     */
-    protected Control createContents(Composite parent) {
-        imagesToDispose = new ArrayList<Image>();
-        editorsToImages = new HashMap<IEditorDescriptor, Image>(50);
+	/**
+	 * Creates the page's UI content.
+	 */
+	@Override
+	protected Control createContents(Composite parent) {
+		imagesToDispose = new ArrayList<Image>();
+		editorsToImages = new HashMap<IEditorDescriptor, Image>(50);
 
-        // define container & its layout
-        Composite pageComponent = new Composite(parent, SWT.NULL);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
-        layout.marginWidth = 0;
-        layout.marginHeight = 0;
-        pageComponent.setLayout(layout);
-        GridData data = new GridData();
-        data.verticalAlignment = GridData.FILL;
-        data.horizontalAlignment = GridData.FILL;
-        pageComponent.setLayoutData(data);
+		// define container & its layout
+		Composite pageComponent = new Composite(parent, SWT.NULL);
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 2;
+		layout.marginWidth = 0;
+		layout.marginHeight = 0;
+		pageComponent.setLayout(layout);
+		GridData data = new GridData();
+		data.verticalAlignment = GridData.FILL;
+		data.horizontalAlignment = GridData.FILL;
+		pageComponent.setLayoutData(data);
 
-        //layout the contents
+		// layout the contents
 
-       
-        //layout the top table & its buttons
-        Label label = new Label(pageComponent, SWT.LEFT);
-        label.setText("Elements to edit"); 
-        data = new GridData();
-        data.horizontalAlignment = GridData.FILL;
-        data.horizontalSpan = 2;
-        label.setLayoutData(data);
+		// layout the top table & its buttons
+		Label label = new Label(pageComponent, SWT.LEFT);
+		label.setText("Elements to edit");
+		data = new GridData();
+		data.horizontalAlignment = GridData.FILL;
+		data.horizontalSpan = 2;
+		label.setLayoutData(data);
 
-        elementTypeTable = new Table(pageComponent, SWT.SINGLE | SWT.BORDER
-                | SWT.FULL_SELECTION);
-        elementTypeTable.addListener(SWT.Selection, this);
-        elementTypeTable.addListener(SWT.DefaultSelection, this);
-        data = new GridData(GridData.FILL_HORIZONTAL);
-        data.horizontalAlignment = GridData.FILL;
-        data.heightHint = elementTypeTable.getItemHeight() * 10; // ten lines shown
-        elementTypeTable.setLayoutData(data);
+		elementTypeTable = new Table(pageComponent, SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
+		elementTypeTable.addListener(SWT.Selection, this);
+		elementTypeTable.addListener(SWT.DefaultSelection, this);
+		data = new GridData(GridData.FILL_HORIZONTAL);
+		data.horizontalAlignment = GridData.FILL;
+		data.heightHint = elementTypeTable.getItemHeight() * 10; // ten lines
+		// shown
+		elementTypeTable.setLayoutData(data);
 
-        Composite groupComponent = new Composite(pageComponent, SWT.NULL);
-        GridLayout groupLayout = new GridLayout();
-        groupLayout.marginWidth = 0;
-        groupLayout.marginHeight = 0;
-        groupComponent.setLayout(groupLayout);
-        data = new GridData();
-        data.verticalAlignment = GridData.FILL;
-        data.horizontalAlignment = GridData.FILL;
-        groupComponent.setLayoutData(data);
+		Composite groupComponent = new Composite(pageComponent, SWT.NULL);
+		GridLayout groupLayout = new GridLayout();
+		groupLayout.marginWidth = 0;
+		groupLayout.marginHeight = 0;
+		groupComponent.setLayout(groupLayout);
+		data = new GridData();
+		data.verticalAlignment = GridData.FILL;
+		data.horizontalAlignment = GridData.FILL;
+		groupComponent.setLayoutData(data);
 
-        //Spacer
-        label = new Label(pageComponent, SWT.LEFT);
-        data = new GridData();
-        data.horizontalAlignment = GridData.FILL;
-        data.horizontalSpan = 2;
-        label.setLayoutData(data);
+		// Spacer
+		label = new Label(pageComponent, SWT.LEFT);
+		data = new GridData();
+		data.horizontalAlignment = GridData.FILL;
+		data.horizontalSpan = 2;
+		label.setLayoutData(data);
 
-        // layout the bottom table & its buttons
-        editorLabel = new Label(pageComponent, SWT.LEFT);
-        editorLabel.setText("Associated editor");
-        data = new GridData();
-        data.horizontalAlignment = GridData.FILL;
-        data.horizontalSpan = 2;
-        editorLabel.setLayoutData(data);
+		// layout the bottom table & its buttons
+		editorLabel = new Label(pageComponent, SWT.LEFT);
+		editorLabel.setText("Associated editor");
+		data = new GridData();
+		data.horizontalAlignment = GridData.FILL;
+		data.horizontalSpan = 2;
+		editorLabel.setLayoutData(data);
 
-        editorTable = new Table(pageComponent, SWT.SINGLE | SWT.BORDER);
-        editorTable.addListener(SWT.Selection, this);
-        editorTable.addListener(SWT.DefaultSelection, this);
-        data = new GridData(GridData.FILL_BOTH);
-        data.heightHint = editorTable.getItemHeight() * 7;
-        editorTable.setLayoutData(data);
+		editorTable = new Table(pageComponent, SWT.SINGLE | SWT.BORDER);
+		editorTable.addListener(SWT.Selection, this);
+		editorTable.addListener(SWT.DefaultSelection, this);
+		data = new GridData(GridData.FILL_BOTH);
+		data.heightHint = editorTable.getItemHeight() * 7;
+		editorTable.setLayoutData(data);
 
-        groupComponent = new Composite(pageComponent, SWT.NULL);
-        groupLayout = new GridLayout();
-        groupLayout.marginWidth = 0;
-        groupLayout.marginHeight = 0;
-        groupComponent.setLayout(groupLayout);
-        data = new GridData();
-        data.verticalAlignment = GridData.FILL;
-        data.horizontalAlignment = GridData.FILL;
-        groupComponent.setLayoutData(data);
+		groupComponent = new Composite(pageComponent, SWT.NULL);
+		groupLayout = new GridLayout();
+		groupLayout.marginWidth = 0;
+		groupLayout.marginHeight = 0;
+		groupComponent.setLayout(groupLayout);
+		data = new GridData();
+		data.verticalAlignment = GridData.FILL;
+		data.horizontalAlignment = GridData.FILL;
+		groupComponent.setLayoutData(data);
 
-//        upEditorButton = new Button(groupComponent, SWT.PUSH);
-//        upEditorButton.setText("Up");
-//        upEditorButton.addListener(SWT.Selection, this);
-//        upEditorButton.setLayoutData(data);
-//        setButtonLayoutData(upEditorButton);
-//
-//        downEditorButton = new Button(groupComponent, SWT.PUSH);
-//        downEditorButton.setText("Down"); 
-//        downEditorButton.addListener(SWT.Selection, this);
-//        setButtonLayoutData(downEditorButton);
+		// upEditorButton = new Button(groupComponent, SWT.PUSH);
+		// upEditorButton.setText("Up");
+		// upEditorButton.addListener(SWT.Selection, this);
+		// upEditorButton.setLayoutData(data);
+		// setButtonLayoutData(upEditorButton);
+		//
+		// downEditorButton = new Button(groupComponent, SWT.PUSH);
+		// downEditorButton.setText("Down");
+		// downEditorButton.addListener(SWT.Selection, this);
+		// setButtonLayoutData(downEditorButton);
 
-        defaultEditorButton = new Button(groupComponent, SWT.PUSH);
-        defaultEditorButton.setText("Default");
-        defaultEditorButton.addListener(SWT.Selection, this);
-        setButtonLayoutData(defaultEditorButton);
+		defaultEditorButton = new Button(groupComponent, SWT.PUSH);
+		defaultEditorButton.setText("Default");
+		defaultEditorButton.addListener(SWT.Selection, this);
+		setButtonLayoutData(defaultEditorButton);
 
-        fillResourceTypeTable();
-        if (elementTypeTable.getItemCount() > 0) {
-            elementTypeTable.setSelection(0);
-        }
-        fillEditorTable();
-        updateEnabledState();
+		fillResourceTypeTable();
+		if (elementTypeTable.getItemCount() > 0) {
+			elementTypeTable.setSelection(0);
+		}
+		fillEditorTable();
+		updateEnabledState();
 
-        applyDialogFont(pageComponent);
+		applyDialogFont(pageComponent);
 
-        return pageComponent;
-    }
+		return pageComponent;
+	}
 
-    /**
-     * The preference page is going to be disposed. So deallocate all allocated
-     * SWT resources that aren't disposed automatically by disposing the page
-     * (i.e fonts, cursors, etc). Subclasses should reimplement this method to 
-     * release their own allocated SWT resources.
-     */
-    public void dispose() {
-        super.dispose();
-        if (imagesToDispose != null) {
-            for (Iterator<Image> e = imagesToDispose.iterator(); e.hasNext();) {
-                e.next().dispose();
-            }
-            imagesToDispose = null;
-        }
-        if (editorsToImages != null) {
-            for (Iterator<Image> e = editorsToImages.values().iterator(); e.hasNext();) {
-                e.next().dispose();
-            }
-            editorsToImages = null;
-        }
-    }
+	/**
+	 * The preference page is going to be disposed. So deallocate all allocated SWT resources that
+	 * aren't disposed automatically by disposing the page (i.e fonts, cursors, etc). Subclasses
+	 * should reimplement this method to release their own allocated SWT resources.
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (imagesToDispose != null) {
+			for (Image image2 : imagesToDispose) {
+				image2.dispose();
+			}
+			imagesToDispose = null;
+		}
+		if (editorsToImages != null) {
+			for (Image image2 : editorsToImages.values()) {
+				image2.dispose();
+			}
+			editorsToImages = null;
+		}
+	}
 
-    /**
-     * Hook method to get a page specific preference store. Reimplement this
-     * method if a page don't want to use its parent's preference store.
-     */
-    protected IPreferenceStore doGetPreferenceStore() {
-        return Activator.getDefault().getPreferenceStore();
-    }
+	/**
+	 * Hook method to get a page specific preference store. Reimplement this method if a page don't
+	 * want to use its parent's preference store.
+	 */
+	@Override
+	protected IPreferenceStore doGetPreferenceStore() {
+		return Activator.getDefault().getPreferenceStore();
+	}
 
-    protected void fillEditorTable() {
-        editorTable.removeAll();
-        
-        String elementType = getSelectedElementType();
-        String preferedLanguage = getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT+elementType);
-        boolean simpleEditorPrefered = IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(preferedLanguage);
-        
-        List<DirectEditorExtensionPoint> editors = getAssociatedEditors();
-        for(DirectEditorExtensionPoint extensionPoint : editors) {
-        	TableItem item = new TableItem(editorTable, SWT.NULL);
-            item.setData(DATA_EDITOR, extensionPoint);
-            // retrieves if this editor is the default one or not.
-            String label = getEditorItemName(extensionPoint);
-            if(preferedLanguage.equals(extensionPoint.getLanguage())) {
-            	label += DEFAULT_EDITOR_LABEL;
-            }
-            item.setText(label);
-        }
-        
-        // must had basic editor (direct edit)
-        TableItem item = new TableItem(editorTable, SWT.NULL);
-        item.setData(DATA_EDITOR, null);
-        item.setText(simpleEditorPrefered ? getEditorItemName(null)+ DEFAULT_EDITOR_LABEL : getEditorItemName(null));
-    }
-    
-    /**
-     * Retrieves the {@link TableItem} name
-     * @param extensionPoint the extension point associated to this item
-     * @return the name of the item
-     */
-    public String getEditorItemName(DirectEditorExtensionPoint extensionPoint) {
-    	if(extensionPoint == null) {
-    		return IDirectEditorsIds.SIMPLE_DIRECT_EDITOR;
-    	} else {
-    		return extensionPoint.getLanguage();
-    	}
-    }
+	protected void fillEditorTable() {
+		editorTable.removeAll();
 
-    /**
+		String elementType = getSelectedElementType();
+		String preferedLanguage = getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + elementType);
+		boolean simpleEditorPrefered = IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(preferedLanguage);
+
+		List<DirectEditorExtensionPoint> editors = getAssociatedEditors();
+		for (DirectEditorExtensionPoint extensionPoint : editors) {
+			TableItem item = new TableItem(editorTable, SWT.NULL);
+			item.setData(DATA_EDITOR, extensionPoint);
+			// retrieves if this editor is the default one or not.
+			String label = getEditorItemName(extensionPoint);
+			if (preferedLanguage.equals(extensionPoint.getLanguage())) {
+				label += DEFAULT_EDITOR_LABEL;
+			}
+			item.setText(label);
+		}
+
+		// must had basic editor (direct edit)
+		TableItem item = new TableItem(editorTable, SWT.NULL);
+		item.setData(DATA_EDITOR, null);
+		item.setText(simpleEditorPrefered ? getEditorItemName(null) + DEFAULT_EDITOR_LABEL : getEditorItemName(null));
+	}
+
+	/**
+	 * Retrieves the {@link TableItem} name
+	 * 
+	 * @param extensionPoint
+	 *            the extension point associated to this item
+	 * @return the name of the item
+	 */
+	public String getEditorItemName(DirectEditorExtensionPoint extensionPoint) {
+		if (extensionPoint == null) {
+			return IDirectEditorsIds.SIMPLE_DIRECT_EDITOR;
+		} else {
+			return extensionPoint.getLanguage();
+		}
+	}
+
+	/**
 	 * Place the existing resource types in the table
 	 */
-    protected void fillResourceTypeTable() {
-    	Map<String, List<DirectEditorExtensionPoint>> elements = new HashMap<String, List<DirectEditorExtensionPoint>>();
-    	
-        // Populate the table with the items
-    	DirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getDirectEditorConfigurations();
-    	List<DirectEditorExtensionPoint> configurations;
-    	for(DirectEditorExtensionPoint extensionPoint : extensionPoints) {
-    		if(!elements.containsKey(extensionPoint.getObjectToEdit())) {
-    			// no configuration yet for this element.
-    			configurations = new ArrayList<DirectEditorExtensionPoint>();
-    		} else {
-    			configurations = elements.get(extensionPoint.getObjectToEdit());
-    		}
-    		configurations.add(extensionPoint);
-    		// replace configuration list
-    		elements.put(extensionPoint.getObjectToEdit(), configurations);
-    	}
-    	
-    	Set<String> keys = elements.keySet();
-    	int i = 0;
-    	for(String key : keys) {
-    		newElementTypeTableItem(elements.get(key), i, false);
-    		i++;
-    	}
-    	
-//        IFileEditorMapping[] array = WorkbenchPlugin.getDefault()
-//                .getEditorRegistry().getFileEditorMappings();
-//        for (int i = 0; i < array.length; i++) {
-//            FileEditorMapping mapping = (FileEditorMapping) array[i];
-//            mapping = (FileEditorMapping) mapping.clone(); // want a copy
-//            newResourceTableItem(mapping, i, false);
-//        }
-    }
+	protected void fillResourceTypeTable() {
+		Map<String, List<DirectEditorExtensionPoint>> elements = new HashMap<String, List<DirectEditorExtensionPoint>>();
 
-    /**
-     * Returns the image associated with the given editor.
-     */
-    protected Image getImage(IEditorDescriptor editor) {
-        Image image = editorsToImages.get(editor);
-        if (image == null) {
-            image = editor.getImageDescriptor().createImage();
-            editorsToImages.put(editor, image);
-        }
-        return image;
-    }
+		// Populate the table with the items
+		DirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getDirectEditorConfigurations();
+		List<DirectEditorExtensionPoint> configurations;
+		for (DirectEditorExtensionPoint extensionPoint : extensionPoints) {
+			if (!elements.containsKey(extensionPoint.getObjectToEdit())) {
+				// no configuration yet for this element.
+				configurations = new ArrayList<DirectEditorExtensionPoint>();
+			} else {
+				configurations = elements.get(extensionPoint.getObjectToEdit());
+			}
+			configurations.add(extensionPoint);
+			// replace configuration list
+			elements.put(extensionPoint.getObjectToEdit(), configurations);
+		}
 
-    protected String getSelectedElementType() {
-        TableItem[] items = elementTypeTable.getSelection();
-        if (items.length > 0) {
-            return items[0].getText(); //Table is single select
-        }
-        return null;        
-    }
+		Set<String> keys = elements.keySet();
+		int i = 0;
+		for (String key : keys) {
+			newElementTypeTableItem(elements.get(key), i, false);
+			i++;
+		}
 
-    /**
-     * Returns all {@link DirectEditorExtensionPoint} for the current selected element type
-     * @return all {@link DirectEditorExtensionPoint} for the current selected element type or <code>null</code.
-     */
-    @SuppressWarnings("unchecked")
+		// IFileEditorMapping[] array = WorkbenchPlugin.getDefault()
+		// .getEditorRegistry().getFileEditorMappings();
+		// for (int i = 0; i < array.length; i++) {
+		// FileEditorMapping mapping = (FileEditorMapping) array[i];
+		// mapping = (FileEditorMapping) mapping.clone(); // want a copy
+		// newResourceTableItem(mapping, i, false);
+		// }
+	}
+
+	/**
+	 * Returns the image associated with the given editor.
+	 */
+	// @unused
+	protected Image getImage(IEditorDescriptor editor) {
+		Image image = editorsToImages.get(editor);
+		if (image == null) {
+			image = editor.getImageDescriptor().createImage();
+			editorsToImages.put(editor, image);
+		}
+		return image;
+	}
+
+	protected String getSelectedElementType() {
+		TableItem[] items = elementTypeTable.getSelection();
+		if (items.length > 0) {
+			return items[0].getText(); // Table is single select
+		}
+		return null;
+	}
+
+	/**
+	 * Returns all {@link DirectEditorExtensionPoint} for the current selected element type
+	 * 
+	 * @return all {@link DirectEditorExtensionPoint} for the current selected element type or
+	 *         <code>null</code.
+	 */
+	@SuppressWarnings("unchecked")
 	protected List<DirectEditorExtensionPoint> getAssociatedEditors() {
-        if (getSelectedElementType() == null) {
+		if (getSelectedElementType() == null) {
 			return null;
 		}
-        TableItem[] items = elementTypeTable.getSelection();
-        if (items.length > 0) {
-        	return (List<DirectEditorExtensionPoint>) items[0].getData();
-        }
-        return null;
-    }
+		TableItem[] items = elementTypeTable.getSelection();
+		if (items.length > 0) {
+			return (List<DirectEditorExtensionPoint>) items[0].getData();
+		}
+		return null;
+	}
 
-    public void handleEvent(Event event) {
-        /*if (event.widget == upEditorButton) {
-            promptForEditor();
-        } else if (event.widget == downEditorButton) {
-            removeSelectedEditor();
-        } else */if (event.widget == defaultEditorButton) {
-            setSelectedEditorAsDefault();
-        } else if (event.widget == elementTypeTable) {
-            fillEditorTable();
-        }
+	public void handleEvent(Event event) {
+		/*
+		 * if (event.widget == upEditorButton) { promptForEditor(); } else if (event.widget ==
+		 * downEditorButton) { removeSelectedEditor(); } else
+		 */if (event.widget == defaultEditorButton) {
+			setSelectedEditorAsDefault();
+		} else if (event.widget == elementTypeTable) {
+			fillEditorTable();
+		}
 
-        updateEnabledState();
+		updateEnabledState();
 
-    }
+	}
 
-    /**
-     * @see IWorkbenchPreferencePage
-     */
-    public void init(IWorkbench aWorkbench) {
-        this.workbench = aWorkbench;
-        noDefaultAndApplyButton();
-    }
+	/**
+	 * @see IWorkbenchPreferencePage
+	 */
+	public void init(IWorkbench aWorkbench) {
+		this.workbench = aWorkbench;
+		noDefaultAndApplyButton();
+	}
 
-    /**
-     * Create a new <code>TableItem</code> to represent the element
-     * type supplied.
-     */
-    protected TableItem newElementTypeTableItem(List<DirectEditorExtensionPoint> configurations,
-            int index, boolean selected) {
-        TableItem item = new TableItem(elementTypeTable, SWT.NULL, index);
-        item.setText(configurations.get(0).getObjectToEdit());
-        item.setData(configurations);
-        if (selected) {
-            elementTypeTable.setSelection(index);
-        }
-        return item;
-    }
+	/**
+	 * Create a new <code>TableItem</code> to represent the element type supplied.
+	 */
+	protected TableItem newElementTypeTableItem(List<DirectEditorExtensionPoint> configurations, int index,
+			boolean selected) {
+		TableItem item = new TableItem(elementTypeTable, SWT.NULL, index);
+		item.setText(configurations.get(0).getObjectToEdit());
+		item.setData(configurations);
+		if (selected) {
+			elementTypeTable.setSelection(index);
+		}
+		return item;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public boolean performOk() {
-    	return super.performOk();
-    	
-//        TableItem[] items = elementTypeTable.getItems();
-//        FileEditorMapping[] resourceTypes = new FileEditorMapping[items.length];
-//        for (int i = 0; i < items.length; i++) {
-//            resourceTypes[i] = (FileEditorMapping) (items[i].getData());
-//        }
-//        EditorRegistry registry = (EditorRegistry) WorkbenchPlugin.getDefault()
-//                .getEditorRegistry(); // cast to allow save to be called
-//        registry.setFileEditorMappings(resourceTypes);
-//        registry.saveAssociations();
-//        
-//        PrefUtil.savePrefs();
-//        return true;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean performOk() {
+		return super.performOk();
 
+		// TableItem[] items = elementTypeTable.getItems();
+		// FileEditorMapping[] resourceTypes = new
+		// FileEditorMapping[items.length];
+		// for (int i = 0; i < items.length; i++) {
+		// resourceTypes[i] = (FileEditorMapping) (items[i].getData());
+		// }
+		// EditorRegistry registry = (EditorRegistry)
+		// WorkbenchPlugin.getDefault()
+		// .getEditorRegistry(); // cast to allow save to be called
+		// registry.setFileEditorMappings(resourceTypes);
+		// registry.saveAssociations();
+		//        
+		// PrefUtil.savePrefs();
+		// return true;
+	}
 
+	/**
+	 * Add the selected editor to the default list.
+	 */
+	public void setSelectedEditorAsDefault() {
+		TableItem[] items = editorTable.getItems();
+		for (TableItem item : items) {
+			if (item.getText().endsWith(DEFAULT_EDITOR_LABEL)) {
+				DirectEditorExtensionPoint oldExtensionPoint = (DirectEditorExtensionPoint) item.getData(DATA_EDITOR);
+				// no configuration associated => standard editor
+				item.setText((oldExtensionPoint != null) ? oldExtensionPoint.getLanguage()
+						: IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
+			}
+		}
+		TableItem[] selectedItems = editorTable.getSelection();
+		if (selectedItems.length > 0) {
+			// First change the label of the old default
+			// Now set the new default
+			DirectEditorExtensionPoint extensionPoint = (DirectEditorExtensionPoint) selectedItems[0]
+					.getData(DATA_EDITOR);
+			selectedItems[0].setText(selectedItems[0].getText() + DEFAULT_EDITOR_LABEL);
 
-    /**
-     * Add the selected editor to the default list.
-     */
-    public void setSelectedEditorAsDefault() {
-    	TableItem[] items = editorTable.getItems();
-    	for(TableItem item : items) {
-    		if(item.getText().endsWith(DEFAULT_EDITOR_LABEL)) {
-    			DirectEditorExtensionPoint oldExtensionPoint = (DirectEditorExtensionPoint)item.getData(DATA_EDITOR);
-                // no configuration associated => standard editor
-    			item.setText((oldExtensionPoint!=null) ? oldExtensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
-    		}
-    	}
-        TableItem[] selectedItems = editorTable.getSelection();
-        if (selectedItems.length > 0) {
-            // First change the label of the old default
-            // Now set the new default
-            DirectEditorExtensionPoint extensionPoint = (DirectEditorExtensionPoint)selectedItems[0].getData(DATA_EDITOR);
-            selectedItems[0].setText(selectedItems[0].getText()+ DEFAULT_EDITOR_LABEL); //$NON-NLS-1$
+			// retrieve current object to edit name
+			getPreferenceStore().setValue(IDirectEditorsIds.EDITOR_FOR_ELEMENT + getSelectedElementType(),
+					(extensionPoint != null) ? extensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
+		}
+	}
 
-            // retrieve current object to edit name
-            getPreferenceStore().setValue(IDirectEditorsIds.EDITOR_FOR_ELEMENT+getSelectedElementType(), (extensionPoint!=null) ? extensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
-        }
-    }
+	/**
+	 * Retrieves the table item that corresponds to the default editor
+	 * 
+	 * @return the {@link TableItem} that corresponds to the default editor
+	 */
+	// @unused
+	public TableItem getDefaultItem() {
+		return null;
+	}
 
-    /**
-     * Retrieves the table item that corresponds to the default editor
-     * @return the {@link TableItem} that corresponds to the default editor
-     */
-    public TableItem getDefaultItem() {
-    	return null;
-    }
-    
-    /**
-     * Update the enabled state.
-     */
-    public void updateEnabledState() {
-        //Update enabled state
-        boolean resourceTypeSelected = elementTypeTable.getSelectionIndex() != -1;
-        boolean editorSelected = editorTable.getSelectionIndex() != -1;
+	/**
+	 * Update the enabled state.
+	 */
+	public void updateEnabledState() {
+		// Update enabled state
+		boolean resourceTypeSelected = elementTypeTable.getSelectionIndex() != -1;
+		boolean editorSelected = editorTable.getSelectionIndex() != -1;
 
-        editorLabel.setEnabled(resourceTypeSelected);
-        // upEditorButton.setEnabled(resourceTypeSelected);
-        // downEditorButton.setEnabled(editorSelected);
-        defaultEditorButton.setEnabled(editorSelected);
-    }
-    
- 
+		editorLabel.setEnabled(resourceTypeSelected);
+		// upEditorButton.setEnabled(resourceTypeSelected);
+		// downEditorButton.setEnabled(editorSelected);
+		defaultEditorButton.setEnabled(editorSelected);
+	}
 
 	/**
 	 * Update the selected type.
 	 */
-    public void updateSelectedResourceType() {
-        // TableItem item = resourceTypeTable.getSelection()[0]; //Single select
-        //  Image image = ((IFileEditorMapping)item.getData()).getImageDescriptor().getImage();
-        //  imagesToDispose.addElement(image);
-        //  item.setImage(image);
-    }
+	// @unused
+	public void updateSelectedResourceType() {
+		// TableItem item = resourceTypeTable.getSelection()[0]; //Single select
+		// Image image =
+		// ((IFileEditorMapping)item.getData()).getImageDescriptor().getImage();
+		// imagesToDispose.addElement(image);
+		// item.setImage(image);
+	}
 }

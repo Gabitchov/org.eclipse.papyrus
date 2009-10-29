@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * A {@link PackagingNode} for {@link EObject}s. Children are obtained by looking
- * {@link EObject}'s contents and selecting those elements that match the {@link EClass}
+ * A {@link PackagingNode} for {@link EObject}s. Children are obtained by looking {@link EObject}'s
+ * contents and selecting those elements that match the {@link EClass}
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug #290422</a>
@@ -30,7 +30,7 @@ public class EObjectPackagingNode extends PackagingNode {
 	/**
 	 * {@link EClass} to filter children element in contents.
 	 */
-	private EClass eClass;
+	private final EClass eClass;
 
 	public EObjectPackagingNode(EClass eClass, EObject parent) {
 		super(eClass.getName(), parent);
@@ -42,6 +42,7 @@ public class EObjectPackagingNode extends PackagingNode {
 
 	/**
 	 * Parent as {@link EObject}.
+	 * 
 	 * @return
 	 */
 	public EObject getEObjectParent() {
@@ -53,6 +54,7 @@ public class EObjectPackagingNode extends PackagingNode {
 
 	/**
 	 * The {@link EClass} to filter contents.
+	 * 
 	 * @return
 	 */
 	public EClass getEClass() {
@@ -74,15 +76,14 @@ public class EObjectPackagingNode extends PackagingNode {
 		return elements;
 	}
 
-	protected Collection<Object> findContainedEClassElements() {
+	private Collection<Object> findContainedEClassElements() {
 		EObject parent = getEObjectParent();
 		if (parent == null) {
 			return Collections.EMPTY_SET;
 		}
 		Collection<Object> elements = new ArrayList<Object>();
 		for (EObject content : parent.eContents()) {
-			if (content != null && content.eClass() != null
-					&& content.eClass().getName() != null) {
+			if (content != null && content.eClass() != null && content.eClass().getName() != null) {
 				if (content.eClass().getName().equals(getEClass().getName())) {
 					elements.add(content);
 				}
@@ -98,9 +99,7 @@ public class EObjectPackagingNode extends PackagingNode {
 	public boolean equals(Object obj) {
 		if (obj instanceof EObjectPackagingNode) {
 			EObjectPackagingNode other = (EObjectPackagingNode) obj;
-			if (other.getEClass() != null
-					&& other.getEClass().equals(getEClass())
-					&& other.getEObjectParent() != null
+			if (other.getEClass() != null && other.getEClass().equals(getEClass()) && other.getEObjectParent() != null
 					&& other.getEObjectParent().equals(getEObjectParent())) {
 				return true;
 			}

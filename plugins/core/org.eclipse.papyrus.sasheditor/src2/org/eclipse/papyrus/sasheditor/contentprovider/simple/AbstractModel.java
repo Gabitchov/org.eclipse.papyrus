@@ -10,25 +10,24 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.contentprovider.simple;
-
 
 /**
  * @author dumoulin
  */
 public abstract class AbstractModel {
 
-	
 	/**
 	 * Return the parent of the model. Can be null in the case of rootModel.
+	 * 
 	 * @return the parent
 	 */
-	abstract public AbstractModel getParent() ;
+	abstract public AbstractModel getParent();
 
-	
 	/**
-	 * @param parent the parent to set
+	 * @param parent
+	 *            the parent to set
 	 */
 	abstract public void setParent(AbstractModel parent);
 
@@ -38,6 +37,6 @@ public abstract class AbstractModel {
 	 * @param oldChild
 	 * @param newChild
 	 */
-	abstract public void replaceChild(AbstractPanelModel oldChild, AbstractPanelModel newChild) ;
+	abstract public void replaceChild(AbstractPanelModel oldChild, AbstractPanelModel newChild);
 
 }

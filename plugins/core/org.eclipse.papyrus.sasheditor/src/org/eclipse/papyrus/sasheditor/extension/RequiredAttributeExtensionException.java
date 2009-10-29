@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.extension;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
  * 
  * @author dumoulin
  */
+// @unused
 public class RequiredAttributeExtensionException extends ExtensionException {
 
 	/**
@@ -37,6 +38,7 @@ public class RequiredAttributeExtensionException extends ExtensionException {
 	 * @param attributeName
 	 *            the name of the missing attribute
 	 */
+	// @unused
 	public RequiredAttributeExtensionException(IConfigurationElement element, String attributeName) {
 		super(declaringExtensionToString(element) + ". " + attributeName + " - Element is required.");
 	}

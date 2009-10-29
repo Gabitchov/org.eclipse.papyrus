@@ -62,6 +62,7 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -73,7 +74,8 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined yet
+			return true; // link creation is in progress; source is not defined
+			// yet
 		}
 		// target may be null here but it's possible to check constraint
 		if (getContainer() == null) {
@@ -86,6 +88,7 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -98,6 +101,7 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	// @unused
 	protected void doConfigure(Association newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
@@ -115,6 +119,7 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}

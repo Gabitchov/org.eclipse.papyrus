@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.editorcontext;
 
 import org.eclipse.papyrus.core.editor.BackboneException;
@@ -18,7 +18,8 @@ import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.services.IService;
 
 /**
- * Registry containing registered EditorContext. EditorContexts can be registered by using Eclipse extension.
+ * Registry containing registered EditorContext. EditorContexts can be registered by using Eclipse
+ * extension.
  * 
  * @author dumoulin
  * 
@@ -26,7 +27,8 @@ import org.eclipse.papyrus.core.services.IService;
 public interface IEditorContextRegistry extends IService {
 
 	/**
-	 * Get the context registered under the specified Id. Return the requested context, or the default context if not found.
+	 * Get the context registered under the specified Id. Return the requested context, or the
+	 * default context if not found.
 	 * 
 	 * @return the context of the editor
 	 * @throws ExtensionException

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension;
 
 /**
@@ -31,6 +31,7 @@ public class BadNameExtensionException extends ExtensionException {
 	/**
 	 * Creates a simple BadNameExtensionException
 	 */
+	// @unused
 	public BadNameExtensionException() {
 	}
 
@@ -50,6 +51,7 @@ public class BadNameExtensionException extends ExtensionException {
 	 * @param cause
 	 *            the cause of the exception
 	 */
+	// @unused
 	public BadNameExtensionException(Throwable cause) {
 		super(cause);
 	}
@@ -62,6 +64,7 @@ public class BadNameExtensionException extends ExtensionException {
 	 * @param cause
 	 *            the cause of the exception
 	 */
+	// @unused
 	public BadNameExtensionException(String message, Throwable cause) {
 		super(message, cause);
 	}

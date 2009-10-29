@@ -34,6 +34,7 @@ public class PapyrusDiagramsPreferencePage extends AbstractPapyrusPreferencePage
 		return Activator.PLUGIN_ID;
 	}
 
+	// @unused
 	public static void initDefaults(IPreferenceStore store) {
 		// TODO Auto-generated method stub
 	}

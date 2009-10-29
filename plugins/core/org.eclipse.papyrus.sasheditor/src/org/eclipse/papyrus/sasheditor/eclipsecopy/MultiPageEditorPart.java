@@ -20,11 +20,13 @@ import org.eclipse.ui.internal.util.Util;
 import org.eclipse.ui.part.EditorPart;
 
 /**
- * Copy used as base class of the main editor. A multi-page editor is an editor with multiple pages, each of which may contain an editor or an arbitrary SWT control.
+ * Copy used as base class of the main editor. A multi-page editor is an editor with multiple pages,
+ * each of which may contain an editor or an arbitrary SWT control.
  * <p>
  * Subclasses must implement the following methods:
  * <ul>
- * <li><code>createPages</code> - to create the required pages by calling one of the <code>addPage</code> methods</li>
+ * <li><code>createPages</code> - to create the required pages by calling one of the
+ * <code>addPage</code> methods</li>
  * <li><code>IEditorPart.doSave</code> - to save contents of editor</li>
  * <li><code>IEditorPart.doSaveAs</code> - to save contents of editor</li>
  * <li><code>IEditorPart.isSaveAsAllowed</code> - to enable Save As</li>
@@ -32,8 +34,10 @@ import org.eclipse.ui.part.EditorPart;
  * </ul>
  * </p>
  * <p>
- * Multi-page editors have a single action bar contributor, which manages contributions for all the pages. The contributor must be a subclass of
- * <code>AbstractMultiPageEditorActionBarContributor</code>. Note that since any nested editors are created directly in code by callers of <code>addPage(IEditorPart,IEditorInput)</code>, nested
+ * Multi-page editors have a single action bar contributor, which manages contributions for all the
+ * pages. The contributor must be a subclass of
+ * <code>AbstractMultiPageEditorActionBarContributor</code>. Note that since any nested editors are
+ * created directly in code by callers of <code>addPage(IEditorPart,IEditorInput)</code>, nested
  * editors do not have their own contributors.
  * </p>
  * 
@@ -42,7 +46,8 @@ import org.eclipse.ui.part.EditorPart;
 public abstract class MultiPageEditorPart extends EditorPart implements IMultiPageEditorPart {
 
 	/**
-	 * Subclasses that override {@link #createPageContainer(Composite)} can use this constant to get a site for the container that can be active while the current page is deactivated.
+	 * Subclasses that override {@link #createPageContainer(Composite)} can use this constant to get
+	 * a site for the container that can be active while the current page is deactivated.
 	 * 
 	 * @since 3.4
 	 * @see #activateSite()
@@ -55,7 +60,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	 */
 	//	private static final String TRACING_COMPONENT = "MPE"; //$NON-NLS-1$
 	/**
-	 * The active service locator. This value may be <code>null</code> if there is no selected page, or if the selected page is a control with no site.
+	 * The active service locator. This value may be <code>null</code> if there is no selected page,
+	 * or if the selected page is a control with no site.
 	 */
 	// private INestable activeServiceLocator;
 	/**
@@ -63,8 +69,9 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	 */
 	// private CTabFolder container;
 	/**
-	 * List of nested editors. Element type: IEditorPart. Need to hang onto them here, in addition to using get/setData on the items, because dispose() needs to access them, but widgetry has already
-	 * been disposed at that point.
+	 * List of nested editors. Element type: IEditorPart. Need to hang onto them here, in addition
+	 * to using get/setData on the items, because dispose() needs to access them, but widgetry has
+	 * already been disposed at that point.
 	 */
 	// private ArrayList nestedEditors = new ArrayList(3);
 	// private List pageSites = new ArrayList(3);
@@ -78,7 +85,9 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	}
 
 	/**
-	 * Creates and adds a new page containing the given control to this multi-page editor. The control may be <code>null</code>, allowing it to be created and set later using <code>setControl</code>.
+	 * Creates and adds a new page containing the given control to this multi-page editor. The
+	 * control may be <code>null</code>, allowing it to be created and set later using
+	 * <code>setControl</code>.
 	 * 
 	 * @param control
 	 *            the control, or <code>null</code>
@@ -92,8 +101,9 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return index;
 	// }
 	/**
-	 * Creates and adds a new page containing the given control to this multi-page editor. The page is added at the given index. The control may be <code>null</code>, allowing it to be created and set
-	 * later using <code>setControl</code>.
+	 * Creates and adds a new page containing the given control to this multi-page editor. The page
+	 * is added at the given index. The control may be <code>null</code>, allowing it to be created
+	 * and set later using <code>setControl</code>.
 	 * 
 	 * @param index
 	 *            the index at which to add the page (0-based)
@@ -106,7 +116,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// createItem(index, control);
 	// }
 	/**
-	 * Creates and adds a new page containing the given editor to this multi-page editor. This also hooks a property change listener on the nested editor.
+	 * Creates and adds a new page containing the given editor to this multi-page editor. This also
+	 * hooks a property change listener on the nested editor.
 	 * 
 	 * @param editor
 	 *            the nested editor
@@ -116,7 +127,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	 * @exception PartInitException
 	 *                if a new page could not be created
 	 * 
-	 * @see MultiPageEditorPart#handlePropertyChange(int) the handler for property change events from the nested editor
+	 * @see MultiPageEditorPart#handlePropertyChange(int) the handler for property change events
+	 *      from the nested editor
 	 */
 	// public int addPage(IEditorPart editor, IEditorInput input)
 	// throws PartInitException {
@@ -125,7 +137,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return index;
 	// }
 	/**
-	 * Creates and adds a new page containing the given editor to this multi-page editor. The page is added at the given index. This also hooks a property change listener on the nested editor.
+	 * Creates and adds a new page containing the given editor to this multi-page editor. The page
+	 * is added at the given index. This also hooks a property change listener on the nested editor.
 	 * 
 	 * @param index
 	 *            the index at which to add the page (0-based)
@@ -136,7 +149,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	 * @exception PartInitException
 	 *                if a new page could not be created
 	 * 
-	 * @see MultiPageEditorPart#handlePropertyChange(int) the handler for property change events from the nested editor
+	 * @see MultiPageEditorPart#handlePropertyChange(int) the handler for property change events
+	 *      from the nested editor
 	 */
 	// public void addPage(int index, IEditorPart editor, IEditorInput input)
 	// throws PartInitException {
@@ -176,10 +190,12 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return getOrientation();
 	// }
 	/**
-	 * Creates an empty container. Creates a CTabFolder with no style bits set, and hooks a selection listener which calls <code>pageChange()</code> whenever the selected tab changes.
+	 * Creates an empty container. Creates a CTabFolder with no style bits set, and hooks a
+	 * selection listener which calls <code>pageChange()</code> whenever the selected tab changes.
 	 * 
 	 * @param parent
-	 *            The composite in which the container tab folder should be created; must not be <code>null</code>.
+	 *            The composite in which the container tab folder should be created; must not be
+	 *            <code>null</code>.
 	 * @return a new container
 	 */
 	// private CTabFolder createContainer(Composite parent) {
@@ -197,7 +213,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return newContainer;
 	// }
 	/**
-	 * Creates a tab item at the given index and places the given control in the new item. The item is a CTabItem with no style bits set.
+	 * Creates a tab item at the given index and places the given control in the new item. The item
+	 * is a CTabItem with no style bits set.
 	 * 
 	 * @param index
 	 *            the index at which to add the control
@@ -218,17 +235,21 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	 */
 	// protected abstract void createPages();
 	/**
-	 * The <code>MultiPageEditor</code> implementation of this <code>IWorkbenchPart</code> method creates the control for the multi-page editor by calling <code>createContainer</code>, then
-	 * <code>createPages</code>. Subclasses should implement <code>createPages</code> rather than overriding this method.
+	 * The <code>MultiPageEditor</code> implementation of this <code>IWorkbenchPart</code> method
+	 * creates the control for the multi-page editor by calling <code>createContainer</code>, then
+	 * <code>createPages</code>. Subclasses should implement <code>createPages</code> rather than
+	 * overriding this method.
 	 * 
 	 * @param parent
 	 *            The parent in which the editor should be created; must not be <code>null</code>.
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 		// Composite pageContainer = createPageContainer(parent);
 		// this.container = createContainer(pageContainer);
 		// createPages();
-		// // set the active page (page 0 by default), unless it has already been
+		// // set the active page (page 0 by default), unless it has already
+		// been
 		// // done
 		// postCreatePartControl();
 		initializePageSwitching();
@@ -255,13 +276,15 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// }
 	// }
 	/**
-	 * Initialize the MultiPageEditorPart to use the page switching command. Clients can override this method with an empty body if they wish to opt-out.
+	 * Initialize the MultiPageEditorPart to use the page switching command. Clients can override
+	 * this method with an empty body if they wish to opt-out.
 	 * 
 	 * @since 3.4
 	 */
 	protected void initializePageSwitching() {
 		// TODO Enable this new interface ?
-		// Return a list of available tabs desc, and implements the various methods.
+		// Return a list of available tabs desc, and implements the various
+		// methods.
 		// new PageSwitcher(this) {
 		// public Object[] getPages() {
 		// int pageCount = getPageCount();
@@ -311,8 +334,9 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return parent;
 	// }
 	/**
-	 * Creates the site for the given nested editor. The <code>MultiPageEditorPart</code> implementation of this method creates an instance of <code>MultiPageEditorSite</code>. Subclasses may
-	 * reimplement to create more specialized sites.
+	 * Creates the site for the given nested editor. The <code>MultiPageEditorPart</code>
+	 * implementation of this method creates an instance of <code>MultiPageEditorSite</code>.
+	 * Subclasses may reimplement to create more specialized sites.
 	 * 
 	 * @param editor
 	 *            the nested editor
@@ -322,7 +346,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return new MultiPageEditorSite(this, editor);
 	// }
 	/**
-	 * The <code>MultiPageEditorPart</code> implementation of this <code>IWorkbenchPart</code> method disposes all nested editors. Subclasses may extend.
+	 * The <code>MultiPageEditorPart</code> implementation of this <code>IWorkbenchPart</code>
+	 * method disposes all nested editors. Subclasses may extend.
 	 */
 	// public void dispose() {
 	// for (int i = 0; i < nestedEditors.size(); ++i) {
@@ -374,23 +399,28 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return -1;
 	// }
 	/**
-	 * Returns the composite control containing this multi-page editor's pages. This should be used as the parent when creating controls for the individual pages. That is, when calling
+	 * Returns the composite control containing this multi-page editor's pages. This should be used
+	 * as the parent when creating controls for the individual pages. That is, when calling
 	 * <code>addPage(Control)</code>, the passed control should be a child of this container.
 	 * <p>
-	 * Warning: Clients should not assume that the container is any particular subclass of Composite. The actual class used may change in order to improve the look and feel of multi-page editors. Any
-	 * code making assumptions on the particular subclass would thus be broken.
+	 * Warning: Clients should not assume that the container is any particular subclass of
+	 * Composite. The actual class used may change in order to improve the look and feel of
+	 * multi-page editors. Any code making assumptions on the particular subclass would thus be
+	 * broken.
 	 * </p>
 	 * <p>
 	 * Subclasses should not override this method
 	 * </p>
 	 * 
-	 * @return the composite, or <code>null</code> if <code>createPartControl</code> has not been called yet
+	 * @return the composite, or <code>null</code> if <code>createPartControl</code> has not been
+	 *         called yet
 	 */
 	// protected Composite getContainer() {
 	// return container;
 	// }
 	/**
-	 * Returns the control for the given page index, or <code>null</code> if no control has been set for the page. The page index must be valid.
+	 * Returns the control for the given page index, or <code>null</code> if no control has been set
+	 * for the page. The page index must be valid.
 	 * <p>
 	 * Subclasses should not override this method
 	 * </p>
@@ -407,7 +437,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
-	 * @return the editor for the specified page, or <code>null</code> if the specified page was not created with <code>addPage(IEditorPart,IEditorInput)</code>
+	 * @return the editor for the specified page, or <code>null</code> if the specified page was not
+	 *         created with <code>addPage(IEditorPart,IEditorInput)</code>
 	 */
 	// protected IEditorPart getEditor(int pageIndex) {
 	// Item item = getItem(pageIndex);
@@ -420,14 +451,17 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return null;
 	// }
 	/**
-	 * Returns the service locator for the given page index. This method can be used to create service locators for pages that are just controls. The page index must be valid.
+	 * Returns the service locator for the given page index. This method can be used to create
+	 * service locators for pages that are just controls. The page index must be valid.
 	 * <p>
-	 * This will return the editor site service locator for an editor, and create one for a page that is just a control.
+	 * This will return the editor site service locator for an editor, and create one for a page
+	 * that is just a control.
 	 * </p>
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
-	 * @return the editor for the specified page, or <code>null</code> if the specified page was not created with <code>addPage(IEditorPart,IEditorInput)</code>
+	 * @return the editor for the specified page, or <code>null</code> if the specified page was not
+	 *         created with <code>addPage(IEditorPart,IEditorInput)</code>
 	 * @since 3.4
 	 */
 	// protected final IServiceLocator getPageSite(int pageIndex) {
@@ -445,7 +479,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// } else if (data == null) {
 	// IServiceLocatorCreator slc = (IServiceLocatorCreator) getSite()
 	// .getService(IServiceLocatorCreator.class);
-	// IServiceLocator sl = slc.createServiceLocator(getSite(), null, new IDisposable(){
+	// IServiceLocator sl = slc.createServiceLocator(getSite(), null, new
+	// IDisposable(){
 	// public void dispose() {
 	// final Control control = ((PartSite)getSite()).getPane().getControl();
 	// if (control != null && !control.isDisposed()) {
@@ -471,7 +506,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// if (pageContainerSite == null) {
 	// IServiceLocatorCreator slc = (IServiceLocatorCreator) getSite()
 	// .getService(IServiceLocatorCreator.class);
-	// pageContainerSite = slc.createServiceLocator(getSite(), null, new IDisposable(){
+	// pageContainerSite = slc.createServiceLocator(getSite(), null, new
+	// IDisposable(){
 	// public void dispose() {
 	// final Control control = ((PartSite)getSite()).getPane().getControl();
 	// if (control != null && !control.isDisposed()) {
@@ -483,7 +519,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return pageContainerSite;
 	// }
 	/**
-	 * Returns the tab item for the given page index (page index is 0-based). The page index must be valid.
+	 * Returns the tab item for the given page index (page index is 0-based). The page index must be
+	 * valid.
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
@@ -506,7 +543,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return 0;
 	// }
 	/**
-	 * Returns the image for the page with the given index, or <code>null</code> if no image has been set for the page. The page index must be valid.
+	 * Returns the image for the page with the given index, or <code>null</code> if no image has
+	 * been set for the page. The page index must be valid.
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
@@ -516,7 +554,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return getItem(pageIndex).getImage();
 	// }
 	/**
-	 * Returns the text label for the page with the given index. Returns the empty string if no text label has been set for the page. The page index must be valid.
+	 * Returns the text label for the page with the given index. Returns the empty string if no text
+	 * label has been set for the page. The page index must be valid.
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
@@ -528,15 +567,19 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	/**
 	 * Returns the tab folder containing this multi-page editor's pages.
 	 * 
-	 * @return the tab folder, or <code>null</code> if <code>createPartControl</code> has not been called yet
+	 * @return the tab folder, or <code>null</code> if <code>createPartControl</code> has not been
+	 *         called yet
 	 */
 	// private CTabFolder getTabFolder() {
 	// return container;
 	// }
 	/**
-	 * Handles a property change notification from a nested editor. The default implementation simply forwards the change to listeners on this multi-page editor by calling
-	 * <code>firePropertyChange</code> with the same property id. For example, if the dirty state of a nested editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method handles it
-	 * by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to property listeners on this multi-page editor.
+	 * Handles a property change notification from a nested editor. The default implementation
+	 * simply forwards the change to listeners on this multi-page editor by calling
+	 * <code>firePropertyChange</code> with the same property id. For example, if the dirty state of
+	 * a nested editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method
+	 * handles it by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to
+	 * property listeners on this multi-page editor.
 	 * <p>
 	 * Subclasses may extend or reimplement this method.
 	 * </p>
@@ -544,13 +587,15 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	 * @param propertyId
 	 *            the id of the property that changed
 	 */
+	// @unused
 	protected void handlePropertyChange(int propertyId) {
 		firePropertyChange(propertyId);
 	}
 
 	/**
-	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method sets its site to the given site, its input to the given input, and the site's selection provider to a
-	 * <code>MultiPageSelectionProvider</code>. Subclasses may extend this method.
+	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method
+	 * sets its site to the given site, its input to the given input, and the site's selection
+	 * provider to a <code>MultiPageSelectionProvider</code>. Subclasses may extend this method.
 	 * 
 	 * @param site
 	 *            The site for which this part is being created; must not be <code>null</code>.
@@ -559,6 +604,7 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	 * @throws PartInitException
 	 *             If the initialization of the part fails -- currently never.
 	 */
+	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		setSite(site);
 		setInput(input);
@@ -566,13 +612,15 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	}
 
 	/**
-	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method returns whether the contents of any of this multi-page editor's nested editors have changed since the
-	 * last save. Pages created with <code>addPage(Control)</code> are ignored.
+	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method
+	 * returns whether the contents of any of this multi-page editor's nested editors have changed
+	 * since the last save. Pages created with <code>addPage(Control)</code> are ignored.
 	 * <p>
 	 * Subclasses may extend or reimplement this method.
 	 * </p>
 	 * 
-	 * @return <code>true</code> if any of the nested editors are dirty; <code>false</code> otherwise.
+	 * @return <code>true</code> if any of the nested editors are dirty; <code>false</code>
+	 *         otherwise.
 	 */
 	// public boolean isDirty() {
 	// // use nestedEditors to avoid SWT requests; see bug 12996
@@ -585,11 +633,14 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return false;
 	// }
 	/**
-	 * Notifies this multi-page editor that the page with the given id has been activated. This method is called when the user selects a different tab.
+	 * Notifies this multi-page editor that the page with the given id has been activated. This
+	 * method is called when the user selects a different tab.
 	 * <p>
-	 * The <code>MultiPageEditorPart</code> implementation of this method sets focus to the new page, and notifies the action bar contributor (if there is one). This checks whether the action bar
-	 * contributor is an instance of <code>MultiPageEditorActionBarContributor</code>, and, if so, calls <code>setActivePage</code> with the active nested editor. This also fires a selection change
-	 * event if required.
+	 * The <code>MultiPageEditorPart</code> implementation of this method sets focus to the new
+	 * page, and notifies the action bar contributor (if there is one). This checks whether the
+	 * action bar contributor is an instance of <code>MultiPageEditorActionBarContributor</code>,
+	 * and, if so, calls <code>setActivePage</code> with the active nested editor. This also fires a
+	 * selection change event if required.
 	 * </p>
 	 * <p>
 	 * Subclasses may extend this method.
@@ -627,7 +678,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// SelectionChangedEvent event = new SelectionChangedEvent(
 	// selectionProvider, selectionProvider.getSelection());
 	//
-	// MultiPageSelectionProvider provider = (MultiPageSelectionProvider) outerProvider;
+	// MultiPageSelectionProvider provider = (MultiPageSelectionProvider)
+	// outerProvider;
 	// provider.fireSelectionChanged(event);
 	// provider.firePostSelectionChanged(event);
 	// } else {
@@ -644,10 +696,13 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// activateSite();
 	// }
 	/**
-	 * This method can be used by implementors of {@link MultiPageEditorPart#createPageContainer(Composite)} to deactivate the active inner editor services while their header has focus. A
-	 * deactivateSite() must have a matching call to activateSite() when appropriate.
+	 * This method can be used by implementors of
+	 * {@link MultiPageEditorPart#createPageContainer(Composite)} to deactivate the active inner
+	 * editor services while their header has focus. A deactivateSite() must have a matching call to
+	 * activateSite() when appropriate.
 	 * <p>
-	 * An new inner editor will have its site activated on a {@link MultiPageEditorPart#pageChange(int)}.
+	 * An new inner editor will have its site activated on a
+	 * {@link MultiPageEditorPart#pageChange(int)}.
 	 * </p>
 	 * <p>
 	 * <b>Note:</b> This API is evolving in 3.4 and this might not be its final form.
@@ -676,7 +731,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// if (pageIndex < 0 || pageIndex >= getPageCount() || immediate) {
 	// // There is no selected page, so deactivate the active service.
 	// if (service instanceof INestableKeyBindingService) {
-	// final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
+	// final INestableKeyBindingService nestableService =
+	// (INestableKeyBindingService) service;
 	// nestableService.activateKeyBindingService(null);
 	// } else {
 	// WorkbenchPlugin
@@ -693,7 +749,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// }
 	// }
 	/**
-	 * This method can be used by implementors of {@link #createPageContainer(Composite)} to activate the active inner editor services when their header loses focus.
+	 * This method can be used by implementors of {@link #createPageContainer(Composite)} to
+	 * activate the active inner editor services when their header loses focus.
 	 * <p>
 	 * An new inner editor will have its site activated on a {@link #pageChange(int)}.
 	 * </p>
@@ -719,7 +776,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// if (editor != null) {
 	// // active the service for this inner editor
 	// if (service instanceof INestableKeyBindingService) {
-	// final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
+	// final INestableKeyBindingService nestableService =
+	// (INestableKeyBindingService) service;
 	// nestableService.activateKeyBindingService(editor
 	// .getEditorSite());
 	//
@@ -739,7 +797,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	//
 	// // There is no selected editor, so deactivate the active service.
 	// if (service instanceof INestableKeyBindingService) {
-	// final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
+	// final INestableKeyBindingService nestableService =
+	// (INestableKeyBindingService) service;
 	// nestableService.activateKeyBindingService(null);
 	// } else {
 	// WorkbenchPlugin
@@ -774,7 +833,9 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// });
 	// }
 	/**
-	 * Removes the page with the given index from this multi-page editor. The controls for the page are disposed of; if the page has an editor, it is disposed of too. The page index must be valid.
+	 * Removes the page with the given index from this multi-page editor. The controls for the page
+	 * are disposed of; if the page has an editor, it is disposed of too. The page index must be
+	 * valid.
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
@@ -837,7 +898,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// getItem(pageIndex).setControl(control);
 	// }
 	/**
-	 * The <code>MultiPageEditor</code> implementation of this <code>IWorkbenchPart</code> method sets focus on the active nested editor, if there is one.
+	 * The <code>MultiPageEditor</code> implementation of this <code>IWorkbenchPart</code> method
+	 * sets focus on the active nested editor, if there is one.
 	 * <p>
 	 * Subclasses may extend or reimplement.
 	 * </p>
@@ -846,7 +908,9 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// setFocus(getActivePage());
 	// }
 	/**
-	 * Sets focus to the control for the given page. If the page has an editor, this calls its <code>setFocus()</code> method. Otherwise, this calls <code>setFocus</code> on the control for the page.
+	 * Sets focus to the control for the given page. If the page has an editor, this calls its
+	 * <code>setFocus()</code> method. Otherwise, this calls <code>setFocus</code> on the control
+	 * for the page.
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
@@ -869,7 +933,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// }
 	// }
 	/**
-	 * Sets the image for the page with the given index, or <code>null</code> to clear the image for the page. The page index must be valid.
+	 * Sets the image for the page with the given index, or <code>null</code> to clear the image for
+	 * the page. The page index must be valid.
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
@@ -880,7 +945,8 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// getItem(pageIndex).setImage(image);
 	// }
 	/**
-	 * Sets the text label for the page with the given index. The page index must be valid. The text label must not be null.
+	 * Sets the text label for the page with the given index. The page index must be valid. The text
+	 * label must not be null.
 	 * 
 	 * @param pageIndex
 	 *            the index of the page
@@ -891,10 +957,12 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// getItem(pageIndex).setText(text);
 	// }
 	/**
-	 * If there is an adapter registered against the subclass of MultiPageEditorPart return that. Otherwise, delegate to the internal editor.
+	 * If there is an adapter registered against the subclass of MultiPageEditorPart return that.
+	 * Otherwise, delegate to the internal editor.
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#getAdapter(java.lang.Class)
 	 */
+	@Override
 	public Object getAdapter(Class adapter) {
 		Object result = super.getAdapter(adapter);
 		// restrict delegating to the UI thread for bug 144851
@@ -910,11 +978,13 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	}
 
 	/**
-	 * Find the editors contained in this multi-page editor whose editor input match the provided input.
+	 * Find the editors contained in this multi-page editor whose editor input match the provided
+	 * input.
 	 * 
 	 * @param input
 	 *            the editor input
-	 * @return the editors contained in this multi-page editor whose editor input match the provided input
+	 * @return the editors contained in this multi-page editor whose editor input match the provided
+	 *         input
 	 * @since 3.3
 	 */
 	// public final IEditorPart[] findEditors(IEditorInput input) {
@@ -931,7 +1001,9 @@ public abstract class MultiPageEditorPart extends EditorPart implements IMultiPa
 	// return (IEditorPart[]) result.toArray(new IEditorPart[result.size()]);
 	// }
 	/**
-	 * Set the active page of this multi-page editor to the page that contains the given editor part. This method has no effect of the given editor part is not contained in this multi-page editor.
+	 * Set the active page of this multi-page editor to the page that contains the given editor
+	 * part. This method has no effect of the given editor part is not contained in this multi-page
+	 * editor.
 	 * 
 	 * @param editorPart
 	 *            the editor part

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.contentoutline;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -28,6 +28,7 @@ public class ContentOutlineRegistry {
 	public static final String EDITOR_EXTENSION_ID = "papyrusContentOutline";
 
 	private static String classAttributeName = "class";
+
 	private static String actionBarContributorIdPropertyName = "actionBarContributorId";
 
 	/** Namespace where to look for the extension points. */
@@ -41,10 +42,11 @@ public class ContentOutlineRegistry {
 	/**
 	 * Associated editor.
 	 */
-	private IMultiDiagramEditor multiEditor;
+	private final IMultiDiagramEditor multiEditor;
 
 	/**
-	 * Constructor. defaultContext, input and site are explicitly required in order be sure that they are initialized. The multiEditor should be initialized. In particular, getEditorSite(),
+	 * Constructor. defaultContext, input and site are explicitly required in order be sure that
+	 * they are initialized. The multiEditor should be initialized. In particular, getEditorSite(),
 	 * getEditorInput() and getDefaultContext() should return initialized values.
 	 * 
 	 * @param multiEditor
@@ -74,30 +76,34 @@ public class ContentOutlineRegistry {
 
 	/**
 	 * Return the {@link ContentOutlineDescriptor} with the highest priority.
+	 * 
 	 * @return
-	 * @throws BackboneException 
-	 * @throws NotFoundException If no ContentOutline can be found in extensions
+	 * @throws BackboneException
+	 * @throws NotFoundException
+	 *             If no ContentOutline can be found in extensions
 	 */
-	private ContentOutlineDescriptor getContentOutlineDescriptor() throws BackboneException
-	{
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
+	private ContentOutlineDescriptor getContentOutlineDescriptor() throws BackboneException {
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				extensionPointNamespace, EDITOR_EXTENSION_ID);
 		ContentOutlineDescriptor found = null;
 
 		// look for the one with the highest priority
 		for (IConfigurationElement ele : configElements) {
 			ContentOutlineDescriptor desc = new ContentOutlineDescriptor(ele);
-			if (desc.isHigher(found))
+			if (desc.isHigher(found)) {
 				found = desc;
+			}
 		}
-		
+
 		// Instanciate the object
-		if (found == null)
+		if (found == null) {
 			throw new NotFoundException("No ContentOutline registered.");
-			
-			return found;
+		}
+
+		return found;
 
 	}
-	
+
 	/**
 	 * Creates the content outline from the selected extension.
 	 * 
@@ -114,20 +120,18 @@ public class ContentOutlineRegistry {
 	}
 
 	/**
-	 * Inner Descriptor for content outline.
-	 * This class load data from Eclipse extension mechanism
+	 * Inner Descriptor for content outline. This class load data from Eclipse extension mechanism
 	 * TODO Change the parent class. It is here just to have quick code.
 	 */
 	protected class ContentOutlineDescriptor extends EditorDescriptorExtensionFactory {
 
 		private int priority;
 
-		private String className;
-		
-		private String actionBarContributorID;
+		private final String className;
 
-		private IConfigurationElement element;
-		
+		private final String actionBarContributorID;
+
+		private final IConfigurationElement element;
 
 		/**
 		 * Instance is created when requested.
@@ -150,8 +154,9 @@ public class ContentOutlineRegistry {
 
 			this.element = element;
 			// check parameters
-			if (className == null)
+			if (className == null) {
 				throw new BadClassNameException("Class name must be set", "contentoutline", classAttributeName);
+			}
 
 		}
 
@@ -166,16 +171,17 @@ public class ContentOutlineRegistry {
 		}
 
 		/**
-		 * Return the higher value of the descriptor. This value is used to order the contentOutline. The highest priority win.
+		 * Return the higher value of the descriptor. This value is used to order the
+		 * contentOutline. The highest priority win.
 		 */
 		private int getPriority() {
 			return priority;
 		}
 
-		
 		/**
 		 * @return the actionBarContributorID
 		 */
+		// @unused
 		public String getActionBarContributorID() {
 			return actionBarContributorID;
 		}
@@ -187,6 +193,7 @@ public class ContentOutlineRegistry {
 		 * @throws BackboneException
 		 *             exception thrown when a problem occurs.
 		 */
+		// @unused
 		protected IPapyrusContentOutlinePage getContentOutline() throws BackboneException {
 			if (instance == null) {
 				instance = createContentOutlinePage();
@@ -230,15 +237,18 @@ public class ContentOutlineRegistry {
 				return outline;
 
 			} catch (SecurityException e) {
-				// Lets propagate. This is an implementation problem that should be solved by programmer.
+				// Lets propagate. This is an implementation problem that should
+				// be solved by programmer.
 				throw new RuntimeException(e);
 			}
 
 			catch (InstantiationException e) {
-				// Lets propagate. This is an implementation problem that should be solved by programmer.
+				// Lets propagate. This is an implementation problem that should
+				// be solved by programmer.
 				// throw new RuntimeException(e);
 			} catch (IllegalAccessException e) {
-				// Lets propagate. This is an implementation problem that should be solved by programmer.
+				// Lets propagate. This is an implementation problem that should
+				// be solved by programmer.
 				throw new RuntimeException(e);
 			}
 			return null;

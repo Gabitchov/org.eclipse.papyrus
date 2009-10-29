@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 import java.util.List;
@@ -25,30 +25,36 @@ import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 
 /**
- * Controller for a sash node.
- * A sash node contain 2 children. It shows them in two windows separated by a sash.
- * Implementation use one model, a ISashModel. This model encapsulate the real model which
- * is of an unknown type. This type is provided as a generic parameter T.
+ * Controller for a sash node. A sash node contain 2 children. It shows them in two windows
+ * separated by a sash. Implementation use one model, a ISashModel. This model encapsulate the real
+ * model which is of an unknown type. This type is provided as a generic parameter T.
  * {@link TilePart}
  * 
  * @author dumoulin
- *
- * @param T Type of the external model representing the sash.
+ * 
+ * @param T
+ *            Type of the external model representing the sash.
  */
-@SuppressWarnings({ "restriction" })
-public class SashPart <T> extends TilePart<T> {
+@SuppressWarnings( { "restriction" })
+public class SashPart<T> extends TilePart<T> {
 
 	/** Log object */
+	// @unused
 	Logger log = Logger.getLogger(getClass().getName());
 
 	/** Interface to the model */
 	protected ISashModel<T> model;
 
-	/** Ordered set of currently shown diagrams (a left and right child, or upper and lower) TODO rename as children */
-	@SuppressWarnings({ "unchecked" })
+	/**
+	 * Ordered set of currently shown diagrams (a left and right child, or upper and lower) TODO
+	 * rename as children
+	 */
+	@SuppressWarnings( { "unchecked" })
 	protected ITilePart<T>[] currentChildParts = new ITilePart[2];
 
-	/** Index of the currently active model. -1 = no active model or not yet initialized. */
+	/**
+	 * Index of the currently active model. -1 = no active model or not yet initialized.
+	 */
 	protected int activeModelIndex = -1;
 
 	/**
@@ -62,9 +68,11 @@ public class SashPart <T> extends TilePart<T> {
 	private int sashDirection = SWT.HORIZONTAL;
 
 	/**
-	 * Interface used by the SashPart to access model. An implementation of this interface should be provided when the SashPart is created.
-     *
-     * @param U Real type encapsulated by the model. This should be the same as T.
+	 * Interface used by the SashPart to access model. An implementation of this interface should be
+	 * provided when the SashPart is created.
+	 * 
+	 * @param U
+	 *            Real type encapsulated by the model. This should be the same as T.
 	 */
 	public interface ISashModel<U> extends ITilePart.ITilePartNodeModel<U> {
 
@@ -92,6 +100,7 @@ public class SashPart <T> extends TilePart<T> {
 	/**
 	 * Get the associated model.
 	 */
+	// @unused
 	public ISashModel<T> getModel() {
 		return model;
 	}
@@ -110,11 +119,13 @@ public class SashPart <T> extends TilePart<T> {
 	}
 
 	/**
-	 * Create local control, and the tree of children (TileParts AND controls). Create this TilePart control, and then Tile childs of this TilePart.
+	 * Create local control, and the tree of children (TileParts AND controls). Create this TilePart
+	 * control, and then Tile childs of this TilePart.
 	 * 
 	 * @param parent
 	 * @return Control
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 
 		createControl(parent);
@@ -158,7 +169,8 @@ public class SashPart <T> extends TilePart<T> {
 	}
 
 	/**
-	 * Change the parent of this method. Reparent the Tile and the control. Normally, the control already exists.
+	 * Change the parent of this method. Reparent the Tile and the control. Normally, the control
+	 * already exists.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#reparent(org.eclipse.papyrus.sasheditor.sash.ITilePart)
 	 */
@@ -178,11 +190,13 @@ public class SashPart <T> extends TilePart<T> {
 	}
 
 	/**
-	 * Orphan this node, and children. The parent is set to null, but control is left unchanged. The node can be reattached with reparent().
+	 * Orphan this node, and children. The parent is set to null, but control is left unchanged. The
+	 * node can be reattached with reparent().
 	 * 
 	 * @see
 	 * @return the parent
 	 */
+	@Override
 	public void orphan() {
 
 		// orphan only if we are in UNCHANGED state
@@ -197,8 +211,8 @@ public class SashPart <T> extends TilePart<T> {
 	 * Orphan children of this node.
 	 */
 	private void orphanChildren() {
-		for (int i = 0; i < currentChildParts.length; i++) {
-			currentChildParts[i].orphan();
+		for (ITilePart<T> currentChildPart : currentChildParts) {
+			currentChildPart.orphan();
 		}
 	}
 
@@ -215,8 +229,9 @@ public class SashPart <T> extends TilePart<T> {
 		// Dispose children if requested
 		if (isRecursive) {
 			for (ITilePart<T> childModel : currentChildParts) {
-				if (childModel != null)
+				if (childModel != null) {
 					childModel.dispose(true);
+				}
 			}
 		}
 
@@ -230,6 +245,7 @@ public class SashPart <T> extends TilePart<T> {
 	/**
 	 * Dispose the TilePart and its controls.
 	 */
+	// @unused
 	public void dispose() {
 		dispose(true);
 	}
@@ -240,8 +256,9 @@ public class SashPart <T> extends TilePart<T> {
 	 * @return the currently active TilePart, or null if none.
 	 */
 	protected ITilePart<T> getActiveChild() {
-		if (activeModelIndex != -1)
+		if (activeModelIndex != -1) {
 			return currentChildParts[activeModelIndex];
+		}
 
 		// No active
 		return null;
@@ -254,8 +271,9 @@ public class SashPart <T> extends TilePart<T> {
 	public IEditorPart getActiveEditor() {
 
 		ITilePart<T> activePart = getActiveChild();
-		if (activePart != null)
+		if (activePart != null) {
 			return getActiveChild().getActiveEditor();
+		}
 		// none
 		return null;
 	}
@@ -266,9 +284,9 @@ public class SashPart <T> extends TilePart<T> {
 	 */
 	public void setFocus() {
 		ITilePart<T> activePart = getActiveChild();
-		if (activePart != null)
-
+		if (activePart != null) {
 			getActiveChild().setFocus();
+		}
 	}
 
 	/**
@@ -276,8 +294,9 @@ public class SashPart <T> extends TilePart<T> {
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#isDirty()
 	 */
 	public boolean isDirty() {
-		if (currentChildParts[0].isDirty())
+		if (currentChildParts[0].isDirty()) {
 			return true;
+		}
 
 		return currentChildParts[1].isDirty();
 	}
@@ -309,14 +328,16 @@ public class SashPart <T> extends TilePart<T> {
 	/**
 	 * Locates the part that intersects the given point and that have the expected type
 	 * 
-	 * @param toFind Position in Display coordinate.
+	 * @param toFind
+	 *            Position in Display coordinate.
 	 * @return
 	 */
 	public <U extends ITilePart<T>> U findPartAt(Point toFind, Class<U> expectedTileType) {
-		
-		if(expectedTileType == this.getClass())
-			return (U)this;
-		
+
+		if (expectedTileType == this.getClass()) {
+			return (U) this;
+		}
+
 		Rectangle bounds = DragUtil.getDisplayBounds(container); // container.getBounds();
 
 		if (isVertical()) {
@@ -331,7 +352,6 @@ public class SashPart <T> extends TilePart<T> {
 			return currentChildParts[1].findPartAt(toFind, expectedTileType);
 		}
 	}
-
 
 	/**
 	 * Return true if this sash is vertical, false otherwise.
@@ -364,7 +384,8 @@ public class SashPart <T> extends TilePart<T> {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object, org.eclipse.swt.graphics.Point)
+	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object,
+	 *      org.eclipse.swt.graphics.Point)
 	 */
 	public IDropTarget getDropTarget(Object draggedObject, TabFolderPart<T> sourcePart, Point position) {
 		// TODO Auto-generated method stub
@@ -390,13 +411,13 @@ public class SashPart <T> extends TilePart<T> {
 		assert (model.getChildModels().size() == 2);
 
 		// Synchronize each child
-		for (int i = 0; i < 2 /*model.getChildModels().size()*/; i++) {
+		for (int i = 0; i < 2 /* model.getChildModels().size() */; i++) {
 			synchronizeChild(i, partMap);
 		}
 
 		// Now recursively call synchronize on childs.
-		for (int i = 0; i < currentChildParts.length; i++) {
-			currentChildParts[i].synchronize2(partMap);
+		for (ITilePart<T> currentChildPart : currentChildParts) {
+			currentChildPart.synchronize2(partMap);
 			// // Set the child controls at the right place
 			// if(i==0)
 			// container.moveAbove(currentChildParts[i].getControl());
@@ -419,13 +440,15 @@ public class SashPart <T> extends TilePart<T> {
 		T newModel = model.getChildModels().get(childIndex);
 
 		// Check if old child exist
-		// If exist, check if the current part is associated to the checked model
+		// If exist, check if the current part is associated to the checked
+		// model
 		// 
 		ITilePart<T> currentChildPart = currentChildParts[childIndex];
 		if (currentChildPart != null) {
 			// If the tile is already for the model, there is nothing to do.
-			if (currentChildPart.isTilePartFor(newModel))
+			if (currentChildPart.isTilePartFor(newModel)) {
 				return;
+			}
 			// The current tile is not for the model: mark it as orphan
 			currentChildPart.orphan();
 		}
@@ -455,15 +478,17 @@ public class SashPart <T> extends TilePart<T> {
 	 */
 	private Composite getChildParent(int childIndex) {
 		// return container;
-		if (childIndex == 0)
+		if (childIndex == 0) {
 			return container.getLeftParent();
-		else
+		} else {
 			return container.getRightParent();
+		}
 
 	}
 
 	/**
-	 * Set the provided child at the specified index. If a child already exist at the specified index, it is lost. The controls are set accordingly
+	 * Set the provided child at the specified index. If a child already exist at the specified
+	 * index, it is lost. The controls are set accordingly
 	 * 
 	 * @param newTile
 	 * @param childIndex
@@ -474,41 +499,39 @@ public class SashPart <T> extends TilePart<T> {
 	}
 
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the visitor.
+	 * 
 	 * @param visitor
 	 * @return
 	 */
 	public void visit(ITileVisitor visitor) {
 		visitor.accept(this);
 	}
-	
+
 	/**
 	 * Visit the children of this Tile.
+	 * 
 	 * @param visitor
 	 */
 	public void visitChildren(ITileVisitor visitor) {
-		for( ITilePart<T> child : currentChildParts)
-		{
+		for (ITilePart<T> child : currentChildParts) {
 			child.visit(visitor);
-		}	
+		}
 	}
 
 	/**
 	 * Show tile status.
 	 */
-	protected void showStatus()
-	{
-		System.out.println( "sash[" + currentChildParts.length + "]:"
-				+ ", disposed=" + container.isDisposed()
-				+ ", visible=" + container.isVisible()
-				+ ", garbState=" + garbageState
-				+ ", " + this);
+	protected void showStatus() {
+		System.out.println("sash[" + currentChildParts.length + "]:" + ", disposed=" + container.isDisposed()
+				+ ", visible=" + container.isVisible() + ", garbState=" + garbageState + ", " + this);
 	}
 
 	/**
-	 * Update the children TilePart to be synchronized with the realModel. After calling this method, each children TilePart is the one for the corresponding model.realModel. Look first in the
-	 * provided PartMap to find an existing TilePart for the realModel. Create it if not found. At the end of this call, childs control are not already updated.
+	 * Update the children TilePart to be synchronized with the realModel. After calling this
+	 * method, each children TilePart is the one for the corresponding model.realModel. Look first
+	 * in the provided PartMap to find an existing TilePart for the realModel. Create it if not
+	 * found. At the end of this call, childs control are not already updated.
 	 * 
 	 * @param partMap
 	 */
@@ -543,7 +566,8 @@ public class SashPart <T> extends TilePart<T> {
 	// }
 	// }
 	/**
-	 * Initialize the node: create the control, and attach the children. The children are only created if there are not present in the partMap.
+	 * Initialize the node: create the control, and attach the children. The children are only
+	 * created if there are not present in the partMap.
 	 * 
 	 * @param partMap
 	 */
@@ -570,7 +594,8 @@ public class SashPart <T> extends TilePart<T> {
 	//
 	// }
 	/**
-	 * Set the specified ITilePart as the new child. Orphan the old child and replace it. Also set the child in the controls.
+	 * Set the specified ITilePart as the new child. Orphan the old child and replace it. Also set
+	 * the child in the controls.
 	 * 
 	 * @param i
 	 * @param part

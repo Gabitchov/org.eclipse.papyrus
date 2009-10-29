@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 /**
@@ -25,6 +25,7 @@ public class EditorNotFoundException extends MultiDiagramException {
 	/**
 	 * 
 	 */
+	// @unused
 	public EditorNotFoundException() {
 	}
 
@@ -38,6 +39,7 @@ public class EditorNotFoundException extends MultiDiagramException {
 	/**
 	 * @param arg0
 	 */
+	// @unused
 	public EditorNotFoundException(Throwable arg0) {
 		super(arg0);
 	}

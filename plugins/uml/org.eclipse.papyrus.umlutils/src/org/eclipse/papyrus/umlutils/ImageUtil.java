@@ -51,7 +51,9 @@ public class ImageUtil {
 	 */
 	public static String IMAGE_EXPR_KEY = "image_expr_key";
 
-	/** KEY of the EAnnotation where "kind" (kind = icon/shape) is stored on image. */
+	/**
+	 * KEY of the EAnnotation where "kind" (kind = icon/shape) is stored on image.
+	 */
 	public static String IMAGE_KIND_KEY = "image_kind_key";
 
 	/**
@@ -62,6 +64,7 @@ public class ImageUtil {
 	 * @param imageFile
 	 *            the icon
 	 */
+	// @unused
 	public static void setContent(Image image, File imageFile) {
 
 		try {
@@ -72,8 +75,8 @@ public class ImageUtil {
 				rawImageData = "";
 
 				// file reading
-				for (int i = 0; i < byteFlow.length; i++) {
-					rawImageData = rawImageData + byteFlow[i] + "%";
+				for (byte element : byteFlow) {
+					rawImageData = rawImageData + element + "%";
 				}
 			} else {
 				rawImageData = null;
@@ -155,7 +158,7 @@ public class ImageUtil {
 
 			} catch (Exception e) {
 				Activator.getDefault().getLog().log(
-						new Status(Status.WARNING, Activator.PLUGIN_ID, "Could not create image from location : "
+						new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Could not create image from location : "
 								+ location, e));
 			}
 		}
@@ -218,6 +221,7 @@ public class ImageUtil {
 	 * @param expression
 	 *            the expression
 	 */
+	// @unused
 	public static void setExpression(org.eclipse.uml2.uml.Image image, String expression) {
 
 		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
@@ -265,6 +269,7 @@ public class ImageUtil {
 	 * @param kind
 	 *            of image (icon / shape)
 	 */
+	// @unused
 	public static void setKind(org.eclipse.uml2.uml.Image image, String kind) {
 
 		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);

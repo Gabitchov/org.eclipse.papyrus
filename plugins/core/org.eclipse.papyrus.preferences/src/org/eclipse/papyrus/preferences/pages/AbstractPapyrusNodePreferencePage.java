@@ -72,7 +72,6 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 		GridLayout gl = new GridLayout(2, false);
 		gl.marginHeight = 0;
 		useGradientCompo.setLayout(gl);
-		
 
 		Label useGradientLabel = new Label(useGradientCompo, SWT.NULL);
 		useGradientLabel.setText(Messages.AbstractPapyrusNodePreferencePage_Activate);

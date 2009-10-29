@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.gef;
 
 import java.util.ArrayList;
@@ -27,9 +27,11 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 /**
- * /** A utility for synchronizing the selection of multiple Viewers and EditPartViewers. This class performs selection synchronization by taking the selection from one viewer, and mapping it to the
- * selection in another viewer. The mapping is performed by matching the models of the selected EditParts from one viewer to the EditParts with the same models in another. The can be customized by
- * overriding the {@link #convertToEditPart(EditPartViewer, EditPart)} method.
+ * /** A utility for synchronizing the selection of multiple Viewers and EditPartViewers. This class
+ * performs selection synchronization by taking the selection from one viewer, and mapping it to the
+ * selection in another viewer. The mapping is performed by matching the models of the selected
+ * EditParts from one viewer to the EditParts with the same models in another. The can be customized
+ * by overriding the {@link #convertToEditPart(EditPartViewer, EditPart)} method.
  * 
  * @author dumoulin
  * 
@@ -37,10 +39,10 @@ import org.eclipse.jface.viewers.StructuredSelection;
 public class SelectionSynchronizer implements ISelectionChangedListener {
 
 	/** List of gef viewers */
-	private List<EditPartViewer> editPartViewers = new ArrayList<EditPartViewer>();
+	private final List<EditPartViewer> editPartViewers = new ArrayList<EditPartViewer>();
 
 	/** List of other type of viewers implementing {@link ISelectionProvider} */
-	private List<ISelectionProvider> viewers = new ArrayList<ISelectionProvider>();
+	private final List<ISelectionProvider> viewers = new ArrayList<ISelectionProvider>();
 
 	private boolean isDispatching = false;
 
@@ -71,8 +73,9 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 	}
 
 	/**
-	 * Maps the given editpart from one viewer to an editpart in another viewer. It returns <code>null</code> if there is no corresponding part. This method can be overridden to provide custom
-	 * mapping.
+	 * Maps the given editpart from one viewer to an editpart in another viewer. It returns
+	 * <code>null</code> if there is no corresponding part. This method can be overridden to provide
+	 * custom mapping.
 	 * 
 	 * @param viewer
 	 *            the viewer being mapped to
@@ -90,7 +93,9 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 	}
 
 	/**
-	 * Maps the given object from one viewer to an editpart in another viewer. It returns <code>null</code> if there is no corresponding part. This method can be overridden to provide custom mapping.
+	 * Maps the given object from one viewer to an editpart in another viewer. It returns
+	 * <code>null</code> if there is no corresponding part. This method can be overridden to provide
+	 * custom mapping.
 	 * 
 	 * @param viewer
 	 *            the viewer being mapped to
@@ -127,8 +132,9 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 	public void removeViewer(EditPartViewer viewer) {
 		viewer.removeSelectionChangedListener(this);
 		editPartViewers.remove(viewer);
-		if (pendingSelection == viewer)
+		if (pendingSelection == viewer) {
 			pendingSelection = null;
+		}
 	}
 
 	/**
@@ -137,11 +143,13 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 	 * @param viewer
 	 *            the viewer to remove
 	 */
+	// @unused
 	public void removeViewer(ISelectionProvider viewer) {
 		viewer.removeSelectionChangedListener(this);
 		viewers.remove(viewer);
-		if (pendingSelection == viewer)
+		if (pendingSelection == viewer) {
 			pendingSelection = null;
+		}
 	}
 
 	/**
@@ -151,8 +159,9 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 	 *            the selection event
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
-		if (isDispatching)
+		if (isDispatching) {
 			return;
+		}
 		ISelectionProvider source = event.getSelectionProvider();
 		if (disabled > 0) {
 			pendingSelection = source;
@@ -178,14 +187,14 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 		// sync EditPartViewers
 		for (int i = 0; i < editPartViewers.size(); i++) {
 			if (editPartViewers.get(i) != source) {
-				EditPartViewer viewer = (EditPartViewer) editPartViewers.get(i);
+				EditPartViewer viewer = editPartViewers.get(i);
 				setViewerSelectionFromEditPartViewer(viewer, selection);
 			}
 		}
 		// sync ISelectionProviders
 		for (int i = 0; i < viewers.size(); i++) {
 			if (viewers.get(i) != source) {
-				ISelectionProvider viewer = (ISelectionProvider) viewers.get(i);
+				ISelectionProvider viewer = viewers.get(i);
 				setViewerSelectionFromEditPartViewer(viewer, selection);
 			}
 		}
@@ -203,14 +212,14 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 		// sync EditPartViewers
 		for (int i = 0; i < editPartViewers.size(); i++) {
 			if (editPartViewers.get(i) != source) {
-				EditPartViewer viewer = (EditPartViewer) editPartViewers.get(i);
+				EditPartViewer viewer = editPartViewers.get(i);
 				setViewerSelectionFromISelectionProvider(viewer, selection);
 			}
 		}
 		// sync ISelectionProviders
 		for (int i = 0; i < viewers.size(); i++) {
 			if (viewers.get(i) != source) {
-				ISelectionProvider viewer = (ISelectionProvider) viewers.get(i);
+				ISelectionProvider viewer = viewers.get(i);
 				setViewerSelectionFromISelectionProvider(viewer, selection);
 			}
 		}
@@ -224,10 +233,11 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 	 * @param value
 	 *            <code>true</code> if synchronization should occur
 	 */
+	// @unused
 	public void setEnabled(boolean value) {
-		if (!value)
+		if (!value) {
 			disabled++;
-		else if (--disabled == 0 && pendingSelection != null) {
+		} else if (--disabled == 0 && pendingSelection != null) {
 
 			if (pendingSelection instanceof EditPartViewer) {
 				// synchronize from EditPartViewer
@@ -251,15 +261,17 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 		List<EditPart> result = new ArrayList<EditPart>();
 		Iterator<EditPart> iter = ((IStructuredSelection) selection).iterator();
 		while (iter.hasNext()) {
-			EditPart part = convertToEditPart(viewer, (EditPart) iter.next());
-			if (part != null)
+			EditPart part = convertToEditPart(viewer, iter.next());
+			if (part != null) {
 				result.add(part);
+			}
 		}
 		// Set the list of model elements
 		viewer.setSelection(new StructuredSelection(result));
 		// Expose the last selected element.
-		if (result.size() > 0)
-			viewer.reveal((EditPart) result.get(result.size() - 1));
+		if (result.size() > 0) {
+			viewer.reveal(result.get(result.size() - 1));
+		}
 	}
 
 	/**
@@ -275,8 +287,9 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 		Iterator<EditPart> iter = ((IStructuredSelection) selection).iterator();
 		while (iter.hasNext()) {
 			Object model = convertToModel(iter.next());
-			if (model != null)
+			if (model != null) {
 				result.add(model);
+			}
 		}
 		// Set the list of model elements
 		viewer.setSelection(new StructuredSelection(result));
@@ -292,13 +305,15 @@ public class SelectionSynchronizer implements ISelectionChangedListener {
 		List<EditPart> result = new ArrayList<EditPart>();
 		Iterator<Object> iter = ((IStructuredSelection) selection).iterator();
 		while (iter.hasNext()) {
-			EditPart part = convertToEditPart(viewer, (Object) iter.next());
-			if (part != null)
+			EditPart part = convertToEditPart(viewer, iter.next());
+			if (part != null) {
 				result.add(part);
+			}
 		}
 		viewer.setSelection(new StructuredSelection(result));
-		if (result.size() > 0)
-			viewer.reveal((EditPart) result.get(result.size() - 1));
+		if (result.size() > 0) {
+			viewer.reveal(result.get(result.size() - 1));
+		}
 	}
 
 	/**

@@ -23,7 +23,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 
 /**
- * Interface implemented by the main multipage editor. This interface list the methods available to diagram editors. Diagram editors can relies on this interface to retrieve services from the main
+ * Interface implemented by the main multipage editor. This interface list the methods available to
+ * diagram editors. Diagram editors can relies on this interface to retrieve services from the main
  * multi diagram editor.
  * 
  * @author dumoulin

@@ -28,11 +28,11 @@ import org.eclipse.uml2.uml.PackageableElement;
  */
 public class CreateDiagramAction extends Action {
 
-	private PackageableElement container;
+	private final PackageableElement container;
 
-	CreationCommandDescriptor commandDescriptor;
+	private final CreationCommandDescriptor commandDescriptor;
 
-	ICreationCommandRegistry creationCommandRegistry;
+	private ICreationCommandRegistry creationCommandRegistry;
 
 	/**
 	 * Constructor

@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.ExtensionPoint;
 /**
  * Utility class for {@link ExtensionPoint}
  */
+// @unused
 public class ExtensionPointUtil {
 
 	/**
@@ -26,6 +27,7 @@ public class ExtensionPointUtil {
 	 * 
 	 * @return the string defining explanation for the extension point element
 	 */
+	// @unused
 	public static String getExplanation(ExtensionPoint extensionPoint) {
 		String explanation = "";
 		final String name = ((extensionPoint.getName() != null) ? extensionPoint.getName() : "");

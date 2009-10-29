@@ -10,12 +10,12 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
-
 
 /**
  * Main Exception from the SashWindowsSystem.
+ * 
  * @author dumoulin
  */
 public class SashWindowsException extends Exception {

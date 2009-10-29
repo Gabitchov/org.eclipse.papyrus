@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.editor;
 
 import java.util.logging.Logger;
@@ -33,9 +33,11 @@ import org.eclipse.ui.part.EditorPart;
  * 
  * @author dumoulin
  */
-public abstract class AbstractMultiPageSashEditor extends EditorPart implements IMultiPageEditorPart, IMultiEditorManager {
+public abstract class AbstractMultiPageSashEditor extends EditorPart implements IMultiPageEditorPart,
+		IMultiEditorManager {
 
 	/** Log object */
+	// @unused
 	protected Logger log = Logger.getLogger(getClass().getName());
 
 	/** The pageProvider */
@@ -50,52 +52,56 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * @return
 	 */
 	protected ISashWindowsContentProvider getContentProvider() {
-		if (pageProvider == null)
+		if (pageProvider == null) {
 			pageProvider = createPageProvider();
+		}
 
 		return pageProvider;
 	}
 
 	/**
 	 * Set the contentProvider if not set. If it is already set, this method do not change it.
+	 * 
 	 * @param contentProvider
 	 */
-	protected void setContentProvider(ISashWindowsContentProvider contentProvider)
-	{
-		if (pageProvider == null)
+	protected void setContentProvider(ISashWindowsContentProvider contentProvider) {
+		if (pageProvider == null) {
 			pageProvider = contentProvider;
+		}
 	}
-	
+
 	/**
-	 * Create the provider.
-	 * Subclass must implements this method. It should return the provider used by the editor.
+	 * Create the provider. Subclass must implements this method. It should return the provider used
+	 * by the editor.
 	 * 
 	 */
 	abstract protected ISashWindowsContentProvider createPageProvider();
 
 	/**
-	 * Handles a property change notification from a nested editor. The default implementation simply forwards the change to
-	 * listeners on this multi-page editor by calling <code>firePropertyChange</code> with the same property id. For example, if
-	 * the dirty state of a nested editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method handles it
-	 * by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to property listeners on this multi-page
-	 * editor.
+	 * Handles a property change notification from a nested editor. The default implementation
+	 * simply forwards the change to listeners on this multi-page editor by calling
+	 * <code>firePropertyChange</code> with the same property id. For example, if the dirty state of
+	 * a nested editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method
+	 * handles it by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to
+	 * property listeners on this multi-page editor.
 	 * <p>
 	 * Subclasses may extend or reimplement this method.
 	 * </p>
 	 * 
-	 * @copiedfrom org.eclipse.ui.part.MultiPageEditorPart.handlePropertyChange(int)
+	 * @copiedfrom org.eclipse.ui.part.MultiPageEditorPart.handlePropertyChange(int )
 	 * 
 	 * @param propertyId
 	 *            the id of the property that changed
 	 */
+	// @unused
 	protected void handlePropertyChange(int propertyId) {
 		firePropertyChange(propertyId);
 	}
 
 	/**
-	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method sets its site to the given
-	 * site, its input to the given input, and the site's selection provider to a <code>MultiPageSelectionProvider</code>.
-	 * Subclasses may extend this method.
+	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method
+	 * sets its site to the given site, its input to the given input, and the site's selection
+	 * provider to a <code>MultiPageSelectionProvider</code>. Subclasses may extend this method.
 	 * 
 	 * @copiedfrom org.eclipse.ui.part.MultiPageEditorPart
 	 * @param site
@@ -105,6 +111,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * @throws PartInitException
 	 *             If the initialization of the part fails -- currently never.
 	 */
+	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		setSite(site);
 		setInput(input);
@@ -125,67 +132,71 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	}
 
 	/**
-	 * Method to activate the editor. 
-	 * Called immediately after createPartControl() is complete.
-	 * To be implemented by subclasses. Default implementation do nothing.
+	 * Method to activate the editor. Called immediately after createPartControl() is complete. To
+	 * be implemented by subclasses. Default implementation do nothing.
 	 */
 	protected void activate() {
-		
+
 	}
 
 	/**
-	 * Method to deactivate the editor. 
-	 * Called when dispose() is called.
-	 * To be implemented by subclasses. Default implementation do nothing.
+	 * Method to deactivate the editor. Called when dispose() is called. To be implemented by
+	 * subclasses. Default implementation do nothing.
 	 */
 	protected void deactivate() {
-		
+
 	}
 
 	/**
 	 * Dispose the Editor. Also dispose the sashsystem.
+	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
-	 *
+	 * 
 	 */
 	@Override
 	public void dispose() {
 		deactivate();
 		super.dispose();
-//		sashContainer.dispose();
+		// sashContainer.dispose();
 	}
+
 	/**
 	 * Refresh the sash windows system
 	 */
 	protected void refreshTabs() {
-		if (sashContainer != null)
+		if (sashContainer != null) {
 			sashContainer.refreshTabs();
+		}
 
 	}
 
 	/**
-	 * If there is an adapter registered against the subclass of MultiPageEditorPart return that. Otherwise, delegate to the
-	 * internal editor.
+	 * If there is an adapter registered against the subclass of MultiPageEditorPart return that.
+	 * Otherwise, delegate to the internal editor.
 	 * 
 	 * @copiedfrom org.eclipse.ui.part.MultiPageEditorPart
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#getAdapter(java.lang.Class)
 	 */
+	@Override
 	public Object getAdapter(Class adapter) {
 
 		// Get the content provider if requested.
-		if (ISashWindowsContentProvider.class == adapter)
+		if (ISashWindowsContentProvider.class == adapter) {
 			return getContentProvider();
+		}
 
 		// Get the content provider if requested.
-		if (ISashWindowsContainer.class == adapter)
+		if (ISashWindowsContainer.class == adapter) {
 			return sashContainer;
-		
+		}
+
 		// Get the content provider if requested.
-		if (DeveloperDebug.class == adapter)
-		{
-			if( developerDebug == null)
+		if (DeveloperDebug.class == adapter) {
+			if (developerDebug == null) {
 				developerDebug = new DeveloperDebug();
-			
+			}
+
 			return developerDebug;
 		}
 
@@ -219,18 +230,21 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		sashContainer.setFocus();
 
 	}
-	
+
 	private DeveloperDebug developerDebug;
+
 	/**
 	 * A hack to be able to print the internal structure of SashContainer.
+	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
+	// @unused
 	public class DeveloperDebug {
+
 		public void showSashWindowInfo() {
-			if(sashContainer instanceof SashWindowsContainer)
-			{
-			  ((SashWindowsContainer)sashContainer).showTilesStatus();
+			if (sashContainer instanceof SashWindowsContainer) {
+				(sashContainer).showTilesStatus();
 			}
 		}
 	}

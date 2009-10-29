@@ -3,11 +3,11 @@
  */
 package org.eclipse.papyrus.core.services;
 
-
 /**
  * Root Exception of Services Exception.
+ * 
  * @author dumoulin
- *
+ * 
  */
 public class ServiceException extends Exception {
 
@@ -25,6 +25,7 @@ public class ServiceException extends Exception {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param message
 	 */
 	public ServiceException(String message) {
@@ -34,6 +35,7 @@ public class ServiceException extends Exception {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param cause
 	 */
 	public ServiceException(Throwable cause) {
@@ -43,6 +45,7 @@ public class ServiceException extends Exception {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param message
 	 * @param cause
 	 */

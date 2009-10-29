@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jface.text.ITextOperationTarget;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.text.source.SourceViewer;
@@ -38,7 +39,6 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.editors.text.TextEditor;
-
 
 /**
  * Main class for embedded editors.
@@ -63,7 +63,8 @@ public class EmbeddedTextEditor extends TextEditor {
 	/**
 	 * Creates a new EmbeddedTextEditor.
 	 */
-	public EmbeddedTextEditor(IDirectEditorConfiguration directEditorConfiguration, DiagramCommandStack diagramCommandStack, TransactionalEditingDomain transactionalEditingDomain) {
+	public EmbeddedTextEditor(IDirectEditorConfiguration directEditorConfiguration,
+			DiagramCommandStack diagramCommandStack, TransactionalEditingDomain transactionalEditingDomain) {
 		super();
 		this.directEditorConfiguration = directEditorConfiguration;
 		this.diagramCommandStack = diagramCommandStack;
@@ -74,6 +75,7 @@ public class EmbeddedTextEditor extends TextEditor {
 
 	/**
 	 * Returns the configuration for this editor
+	 * 
 	 * @return the configuration for this editor
 	 */
 	public IDirectEditorConfiguration getDirectEditorConfiguration() {
@@ -102,6 +104,7 @@ public class EmbeddedTextEditor extends TextEditor {
 	/**
 	 * Adds a close listener to the editor, i.e. when the editor should be closed
 	 */
+	// @unused
 	public void setCloseListener(CloseListener closeListener) {
 		this.closeListener = closeListener;
 	}
@@ -116,12 +119,16 @@ public class EmbeddedTextEditor extends TextEditor {
 
 		closeListener.close();
 
-		if(save) {
+		if (save) {
 			// get command stack of the 'parent' editor
-			Command command = new ICommandProxy(new AbstractTransactionalCommand(transactionalEditingDomain, "Edit property", null) {
+			Command command = new ICommandProxy(new AbstractTransactionalCommand(transactionalEditingDomain,
+					"Edit property", null) {
+
 				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					return CommandResult.newOKCommandResult(((EmbeddedEditorDocumentProvider)getDocumentProvider()).applyChanges(getEditorInput()));
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+						throws ExecutionException {
+					return CommandResult.newOKCommandResult(((EmbeddedEditorDocumentProvider) getDocumentProvider())
+							.applyChanges(getEditorInput()));
 				}
 			});
 			diagramCommandStack.execute(command, new NullProgressMonitor());
@@ -133,12 +140,14 @@ public class EmbeddedTextEditor extends TextEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected ISourceViewer createSourceViewer(Composite parent, IVerticalRuler ruler, int styles) {
-		//overrides styles
-		fAnnotationAccess= getAnnotationAccess();
-		fOverviewRuler= createOverviewRuler(getSharedColors());
+		// overrides styles
+		fAnnotationAccess = getAnnotationAccess();
+		fOverviewRuler = createOverviewRuler(getSharedColors());
 
-		SourceViewer viewer= new SourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(), SWT.FULL_SELECTION | SWT.BORDER);
+		SourceViewer viewer = new SourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
+				SWT.FULL_SELECTION | SWT.BORDER);
 		// ensure decoration support has been created and configured.
 		getSourceViewerDecorationSupport(viewer);
 
@@ -168,7 +177,9 @@ public class EmbeddedTextEditor extends TextEditor {
 
 		/**
 		 * Default constructor.
-		 * @param viewer the viewer to listen
+		 * 
+		 * @param viewer
+		 *            the viewer to listen
 		 */
 		public LabelKeyListener(SourceViewer viewer) {
 			this.viewer = viewer;
@@ -184,47 +195,51 @@ public class EmbeddedTextEditor extends TextEditor {
 					callOperation(event, ISourceViewer.CONTENTASSIST_PROPOSALS);
 					break;
 				case '1':
-					callOperation(event, SourceViewer.QUICK_ASSIST);
+					callOperation(event, ISourceViewer.QUICK_ASSIST);
 					break;
-					//				case 'c':
-					//					callOperation(event, SourceViewer.COPY);
-					//					break;
-					//				case 'x':
-					//					callOperation(event, SourceViewer.CUT);
-					//					break;
-					//				case 'v':
-					//					callOperation(event, SourceViewer.PASTE);
-					//					break;
-//				case 'y':
-//					callOperation(event, SourceViewer.REDO);
-//					break;
+				// case 'c':
+				// callOperation(event, SourceViewer.COPY);
+				// break;
+				// case 'x':
+				// callOperation(event, SourceViewer.CUT);
+				// break;
+				// case 'v':
+				// callOperation(event, SourceViewer.PASTE);
+				// break;
+				// case 'y':
+				// callOperation(event, SourceViewer.REDO);
+				// break;
 				default:
-					// no success using key event 'z' or 'y' : using keycode instead...
-					switch(event.keyCode) {
-					case 122: //z
-						callOperation(event, SourceViewer.UNDO);
+					// no success using key event 'z' or 'y' : using keycode
+					// instead...
+					switch (event.keyCode) {
+					case 122: // z
+						callOperation(event, ITextOperationTarget.UNDO);
 						break;
-					case 121: //y
-						callOperation(event, SourceViewer.REDO);
+					case 121: // y
+						callOperation(event, ITextOperationTarget.REDO);
 						break;
 					default:
 						break;
 					}
-				} 
-			} else if(event.character == SWT.CR) {
+				}
+			} else if (event.character == SWT.CR) {
 				EmbeddedTextEditor.this.close(true);
 				event.doit = false;
-			} else if(event.character == SWT.DEL) {
-				if (viewer.canDoOperation(SourceViewer.DELETE)) {
-					viewer.doOperation(SourceViewer.DELETE);
+			} else if (event.character == SWT.DEL) {
+				if (viewer.canDoOperation(ITextOperationTarget.DELETE)) {
+					viewer.doOperation(ITextOperationTarget.DELETE);
 				}
-			} 
+			}
 		}
 
 		/**
 		 * Try to call the specified operation on the viewer
-		 * @param event the event to check
-		 * @param code the code of the operation to call
+		 * 
+		 * @param event
+		 *            the event to check
+		 * @param code
+		 *            the code of the operation to call
 		 */
 		private void callOperation(VerifyEvent event, int code) {
 			if (viewer.canDoOperation(code)) {
@@ -246,7 +261,9 @@ public class EmbeddedTextEditor extends TextEditor {
 
 		/**
 		 * Default constructor.
-		 * @param viewer the viewer to listen
+		 * 
+		 * @param viewer
+		 *            the viewer to listen
 		 */
 		public ControlListener(SourceViewer viewer) {
 			this.viewer = viewer;
@@ -261,4 +278,3 @@ public class EmbeddedTextEditor extends TextEditor {
 	}
 
 }
-

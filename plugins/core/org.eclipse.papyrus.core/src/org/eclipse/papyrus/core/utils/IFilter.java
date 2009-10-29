@@ -19,7 +19,8 @@ package org.eclipse.papyrus.core.utils;
 public interface IFilter {
 
 	/**
-	 * Is the specified object allowed ? Return true if the filter allow this object. Return false if the filter doesn't allows the object.
+	 * Is the specified object allowed ? Return true if the filter allow this object. Return false
+	 * if the filter doesn't allows the object.
 	 * 
 	 * @param object
 	 * 

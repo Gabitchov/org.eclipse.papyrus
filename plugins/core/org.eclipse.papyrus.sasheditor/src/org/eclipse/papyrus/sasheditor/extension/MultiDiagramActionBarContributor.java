@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.extension;
 
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
@@ -20,8 +20,8 @@ import org.eclipse.papyrus.sasheditor.gef.GefMultiPagesActionBarContributor;
 import org.eclipse.ui.actions.ActionFactory;
 
 /**
- * Action bar contributor for multi diagram editor. This action bar contributor takes in 
- * charge toolbar buttons declared in extensions by diagram plugins.
+ * Action bar contributor for multi diagram editor. This action bar contributor takes in charge
+ * toolbar buttons declared in extensions by diagram plugins.
  */
 public abstract class MultiDiagramActionBarContributor extends GefMultiPagesActionBarContributor {
 
@@ -38,13 +38,13 @@ public abstract class MultiDiagramActionBarContributor extends GefMultiPagesActi
 	/**
 	 * Return the EditorRegistry for nested editor descriptors.
 	 * <p>
-	 * Subclass should implements this method in order to return the registry associated to the extension point namespace.
+	 * Subclass should implements this method in order to return the registry associated to the
+	 * extension point namespace.
 	 * </p>
 	 * 
-	 * @return the EditorRegistry for nested editor descriptors.
-	 * TODO Seem to be unused. Remove ?
+	 * @return the EditorRegistry for nested editor descriptors. TODO Seem to be unused. Remove ?
 	 */
-//	abstract protected EditorFactoryRegistry getEditorRegistry();
+	// abstract protected EditorFactoryRegistry getEditorRegistry();
 
 	/**
 	 * Add retarget actions to the given toolbar.

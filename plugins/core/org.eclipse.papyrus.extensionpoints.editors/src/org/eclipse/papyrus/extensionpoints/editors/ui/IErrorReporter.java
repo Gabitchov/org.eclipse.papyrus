@@ -16,19 +16,25 @@ package org.eclipse.papyrus.extensionpoints.editors.ui;
 import org.antlr.runtime.RecognitionException;
 
 /**
- * Interface that should be implemented by parsers and lexers that exports error messages to somewhere else the System out stream.
+ * Interface that should be implemented by parsers and lexers that exports error messages to
+ * somewhere else the System out stream.
  */
+// @unused
 public interface IErrorReporter {
 
 	/**
 	 * Inits the error reporter
 	 */
+	// @unused
 	void initErrorReporter();
-	
+
 	/**
 	 * Reports an error
-	 * @param error the error to report
+	 * 
+	 * @param error
+	 *            the error to report
 	 */
+	// @unused
 	void reportError(RecognitionException error);
-	
+
 }

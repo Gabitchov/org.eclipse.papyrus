@@ -112,7 +112,7 @@ public class LabelEditorDialog extends Dialog {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
+	 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets .Shell)
 	 */
 	/**
 	 * 
@@ -132,6 +132,7 @@ public class LabelEditorDialog extends Dialog {
 	 * 
 	 * @return the ok button
 	 */
+	// @unused
 	protected Button getOkButton() {
 		return okButton;
 	}
@@ -141,6 +142,7 @@ public class LabelEditorDialog extends Dialog {
 	 * 
 	 * @return the text area
 	 */
+	// @unused
 	protected SourceViewer getSourceViewer() {
 		return viewer;
 	}
@@ -150,6 +152,7 @@ public class LabelEditorDialog extends Dialog {
 	 * 
 	 * @return the validator
 	 */
+	// @unused
 	protected IInputValidator getValidator() {
 		return validator;
 	}
@@ -195,7 +198,8 @@ public class LabelEditorDialog extends Dialog {
 		if ((errorMessageText != null) && !errorMessageText.isDisposed()) {
 			errorMessageText.setText(errorMessage == null ? "" : errorMessage); //$NON-NLS-1$
 			errorMessageText.getParent().update();
-			// Access the ok button by id, in case clients have overridden button creation.
+			// Access the ok button by id, in case clients have overridden
+			// button creation.
 			// See https://bugs.eclipse.org/bugs/show_bug.cgi?id=113643
 			Control button = getButton(IDialogConstants.OK_ID);
 			if (button != null) {

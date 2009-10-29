@@ -10,13 +10,12 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
-
 
 /**
  * @author dumoulin
@@ -25,7 +24,7 @@ public class FakePageModelFactory implements IPageModelFactory {
 
 	/**
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory#createIPageModel(java.lang.Object)
-	 *
+	 * 
 	 * @param pageIdentifier
 	 * @return
 	 */

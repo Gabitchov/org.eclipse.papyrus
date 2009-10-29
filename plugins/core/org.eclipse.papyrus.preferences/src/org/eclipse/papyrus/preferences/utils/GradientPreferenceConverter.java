@@ -90,6 +90,7 @@ public class GradientPreferenceConverter {
 	 * @param pTransparency
 	 *            the transparency. It must be contained in [0,100]
 	 */
+	// @unused
 	public GradientPreferenceConverter(int pColor1, int pColor2, int pStyle, int pTransparency) {
 		fColor1 = FigureUtilities.integerToRGB(pColor1);
 		fColor2 = FigureUtilities.integerToRGB(pColor2);
@@ -149,6 +150,7 @@ public class GradientPreferenceConverter {
 	 * 
 	 * @return
 	 */
+	// @unused
 	public RGB getColor2() {
 		RGB color;
 		if (fColor1 != null) {

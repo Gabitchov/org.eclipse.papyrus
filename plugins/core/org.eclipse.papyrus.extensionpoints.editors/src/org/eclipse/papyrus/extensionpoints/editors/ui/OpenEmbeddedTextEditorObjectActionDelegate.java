@@ -54,6 +54,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * 
 	 * @return the position of the shell containing the editor
 	 */
+	// @unused
 	protected abstract Point getPosition();
 
 	/**
@@ -68,6 +69,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * 
 	 * @return the editor's main control
 	 */
+	// @unused
 	protected abstract Control getControl();
 
 	/**
@@ -81,7 +83,8 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * {@inheritDoc}
 	 */
 	public void run(IAction action) {
-		// retrieves graphical context (in which shell it should open for exemple)
+		// retrieves graphical context (in which shell it should open for
+		// exemple)
 
 		final IDirectEditorConfiguration configuration = directEditorExtensionPoint.getDirectEditorConfiguration();
 		configuration.preEditAction(getEditedObject());
@@ -118,6 +121,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * 
 	 * @return the parent composite for the new embedded editor
 	 */
+	// @unused
 	protected abstract Composite getParentComposite();
 
 	/**
@@ -127,6 +131,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 *            the shell parent of the editor composite
 	 * @return the created EmbeddedTextEditor
 	 */
+	// @unused
 	protected EmbeddedTextEditor createEditor(Composite composite) {
 		// retrieves the source viewer configuration
 		final CoreMultiDiagramEditor multiDiagramEditor = (CoreMultiDiagramEditor) part.getSite().getPage()
@@ -144,6 +149,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 *            the widget to check
 	 * @return <code>true</code> if the widget can be used
 	 */
+	// @unused
 	public static boolean isValid(Widget widget) {
 		return (widget != null && !widget.isDisposed());
 	}

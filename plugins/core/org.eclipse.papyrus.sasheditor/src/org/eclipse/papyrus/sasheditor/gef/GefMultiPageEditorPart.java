@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.gef;
 
 import java.util.ArrayList;
@@ -40,7 +40,8 @@ import org.eclipse.ui.part.MultiPageEditorPart;
  * <li>implements getModels(),</li>
  * <li>provides a suitable EditorFactory or overload createPageEditor()</li>
  * <li><EditorFactory can be set in the constructor./li>
- * <li>listen to model changes, and call refreshTabs when a change arise. Listener can be register/deregister in activate()/deactivate()</li>
+ * <li>listen to model changes, and call refreshTabs when a change arise. Listener can be
+ * register/deregister in activate()/deactivate()</li>
  * <li>register actions to create new diagrams in the model.</li>
  * <ul>
  * 
@@ -59,7 +60,7 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	private MultiPageSelectionSynchronizer synchronizer;
 
 	/** List of listeners on SelectionChanged event */
-	private List<ISelectionChangedListener> selectionListeners = new ArrayList<ISelectionChangedListener>(1);
+	private final List<ISelectionChangedListener> selectionListeners = new ArrayList<ISelectionChangedListener>(1);
 
 	/** Ordered set of currently shown diagrams */
 	protected List<Object> currentModels = new ArrayList<Object>();
@@ -68,7 +69,8 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	private boolean isActive;
 
 	/**
-	 * Get the models used as root of pageEditors. This method should be implemented by subclasses. Each element will be used to create an editor, if not already created.
+	 * Get the models used as root of pageEditors. This method should be implemented by subclasses.
+	 * Each element will be used to create an editor, if not already created.
 	 * 
 	 * @return the collection of diagrams to be displayed in different sub-editors
 	 */
@@ -85,7 +87,8 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	 * @throws EditorNotFoundException
 	 *             No editor handling the model can be found.
 	 */
-	abstract protected IEditorPart createPageEditor(Object model) throws MultiDiagramException, EditorNotFoundException, InstantiationException;
+	abstract protected IEditorPart createPageEditor(Object model) throws MultiDiagramException,
+			EditorNotFoundException, InstantiationException;
 
 	/**
 	 * Refresh the tabs order. This method should be called after the model list is modified.
@@ -94,7 +97,8 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 		// get list of diagrams to be displayed
 		List<?> newModels = getModels();
 
-		// Check if each model has an open pageEditor. If not, create the editor.
+		// Check if each model has an open pageEditor. If not, create the
+		// editor.
 		Iterator<?> newIter = newModels.iterator();
 		while (newIter.hasNext()) {
 			Object model = newIter.next();
@@ -105,8 +109,9 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 
 		// If open editor count is the same has models count,
 		// all models have an editor. So, end the refresh process.
-		if (newModels.size() == getPageCount())
+		if (newModels.size() == getPageCount()) {
 			return;
+		}
 
 		// There is some extra editors ! remove them.
 		// remove extra editors : for each open editor, check if its model is in
@@ -152,7 +157,8 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	}
 
 	/**
-	 * Add a new editor at the end of existing editors. First, create the editor, then add it to the tabs.
+	 * Add a new editor at the end of existing editors. First, create the editor, then add it to the
+	 * tabs.
 	 * 
 	 * @param model
 	 *            the diagram (model) to be displayed in the editor
@@ -161,8 +167,9 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 		// Check if an editor already exists
 		int index = currentModels.indexOf(model);
 		if (index >= 0) {
-			if (log.isLoggable(Level.FINE))
+			if (log.isLoggable(Level.FINE)) {
 				log.fine("Editor already exists for '" + model + "'");
+			}
 			return;
 		}
 
@@ -183,17 +190,21 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 			// currentModels.add(model);
 
 		} catch (PartInitException e) {
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
+			Activator.getDefault().getLog()
+					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
 		} catch (InstantiationException e) {
 			e.printStackTrace();
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage() + " skip."));
+			Activator.getDefault().getLog().log(
+					new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage() + " skip."));
 		} catch (MultiDiagramException e) {
-			Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getLocalizedMessage() + " skip."));
+			Activator.getDefault().getLog().log(
+					new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getLocalizedMessage() + " skip."));
 		}
 	}
 
 	/**
-	 * @see org.eclipse.ui.part.MultiPageEditorPart#addPage(int, org.eclipse.ui.IEditorPart, org.eclipse.ui.IEditorInput)
+	 * @see org.eclipse.ui.part.MultiPageEditorPart#addPage(int, org.eclipse.ui.IEditorPart,
+	 *      org.eclipse.ui.IEditorInput)
 	 */
 	private int addPage(IEditorPart viewer, IEditorInput editorInput, Object model) throws PartInitException {
 		int index = getPageCount();
@@ -229,8 +240,10 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	 * 
 	 * @param model
 	 *            the model to be shown
-	 * @return the first editor that displays this model or <code>null</code> if no editor was already opened for this model
+	 * @return the first editor that displays this model or <code>null</code> if no editor was
+	 *         already opened for this model
 	 */
+	// @unused
 	public IEditorPart findEditor(Object model) {
 		int index = currentModels.indexOf(model);
 		if (index > 0) {
@@ -245,6 +258,7 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	 * 
 	 * @return <code>true</code> if the editor is active.
 	 */
+	// @unused
 	protected boolean isActive() {
 		return isActive;
 	}
@@ -252,13 +266,15 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	/**
 	 * Creates the pages of the multi-page editor.
 	 */
+	@Override
 	protected void createPages() {
 		activate();
 		refreshTabs();
 	}
 
 	/**
-	 * Called when the editor should be activated. Subclass should implements this method to register listeners to the model.
+	 * Called when the editor should be activated. Subclass should implements this method to
+	 * register listeners to the model.
 	 * 
 	 */
 	protected void activate() {
@@ -268,6 +284,7 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	/**
 	 * Called when the editor is deactivated.
 	 */
+	// @unused
 	protected void deactivate() {
 		isActive = false;
 	}
@@ -288,7 +305,8 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	/**
 	 * Returns the adapter for the specified key.
 	 * <P>
-	 * <EM>IMPORTANT</EM> certain requests, such as the property sheet, may be made before or after {@link #createPartControl(Composite)} is called. The order is unspecified by the Workbench.
+	 * <EM>IMPORTANT</EM> certain requests, such as the property sheet, may be made before or after
+	 * {@link #createPartControl(Composite)} is called. The order is unspecified by the Workbench.
 	 * </P>
 	 * 
 	 * @param type
@@ -297,7 +315,7 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 */
 	@Override
-	public Object getAdapter(@SuppressWarnings("unchecked")Class type) {
+	public Object getAdapter(@SuppressWarnings("unchecked") Class type) {
 		if (type == ActionRegistry.class) {
 			return getActionRegistry();
 		}
@@ -313,17 +331,21 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	 * @return the action registry
 	 */
 	protected ActionRegistry getActionRegistry() {
-		if (actionRegistry == null)
+		if (actionRegistry == null) {
 			actionRegistry = new ActionRegistry();
+		}
 		return actionRegistry;
 	}
 
 	/**
-	 * Notifies this multi-page editor that the page with the given id has been activated. This method is called when the user selects a different tab.
+	 * Notifies this multi-page editor that the page with the given id has been activated. This
+	 * method is called when the user selects a different tab.
 	 * <p>
-	 * The <code>MultiPageEditorPart</code> implementation of this method sets focus to the new page, and notifies the action bar contributor (if there is one). This checks whether the action bar
-	 * contributor is an eINSTANCE of <code>MultiPageEditorActionBarContributor</code>, and, if so, calls <code>setActivePage</code> with the active nested editor. This also fires a selection change
-	 * event if required.
+	 * The <code>MultiPageEditorPart</code> implementation of this method sets focus to the new
+	 * page, and notifies the action bar contributor (if there is one). This checks whether the
+	 * action bar contributor is an eINSTANCE of <code>MultiPageEditorActionBarContributor</code>,
+	 * and, if so, calls <code>setActivePage</code> with the active nested editor. This also fires a
+	 * selection change event if required.
 	 * </p>
 	 * <p>
 	 * Subclasses may extend this method.
@@ -351,7 +373,8 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	}
 
 	/**
-	 * Returns the selection synchronizer object. The synchronizer can be used to sync the selection of 2 or more EditPartViewers.
+	 * Returns the selection synchronizer object. The synchronizer can be used to sync the selection
+	 * of 2 or more EditPartViewers.
 	 * 
 	 * @return the syncrhonizer
 	 */
@@ -365,7 +388,8 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	}
 
 	/**
-	 * Adds a listener for selection changes in this selection provider. Has no effect if an identical listener is already registered.
+	 * Adds a listener for selection changes in this selection provider. Has no effect if an
+	 * identical listener is already registered.
 	 * 
 	 * @param listener
 	 *            a selection changed listener
@@ -384,7 +408,8 @@ public abstract class GefMultiPageEditorPart extends MultiPageEditorPart impleme
 	}
 
 	/**
-	 * Removes the given selection change listener from this selection provider. Has no affect if an identical listener is not registered.
+	 * Removes the given selection change listener from this selection provider. Has no affect if an
+	 * identical listener is not registered.
 	 * 
 	 * @param listener
 	 *            the selection changed listener to be removed

@@ -96,6 +96,7 @@ public class DirectEditorsUtil {
 	 * 
 	 * @return the list of languages that have an extended editor
 	 */
+	// @unused
 	public static List<String> getLanguages(String objectToEdit) {
 		List<String> languages = new ArrayList<String>();
 		DirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getDirectEditorConfigurations();

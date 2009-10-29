@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.editorcontext;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -43,6 +43,7 @@ public class ContextDescriptorExtensionFactory extends DescriptorExtensionFactor
 	/**
 	 * @return the eINSTANCE
 	 */
+	// @unused
 	public static ContextDescriptorExtensionFactory getInstance() {
 		return eINSTANCE;
 	}
@@ -61,7 +62,8 @@ public class ContextDescriptorExtensionFactory extends DescriptorExtensionFactor
 		checkTagName(element, EDITOR_CONTEXT_EXTENSIONPOINT);
 
 		res = new ContextDescriptor();
-		res.contextClass = (Class<IEditorContext>) parseClass(element, CONTEXTCLASS_ATTRIBUTE, EDITOR_CONTEXT_EXTENSIONPOINT);
+		res.contextClass = (Class<IEditorContext>) parseClass(element, CONTEXTCLASS_ATTRIBUTE,
+				EDITOR_CONTEXT_EXTENSIONPOINT);
 		res.contextId = element.getAttribute(ID_ATTRIBUTE);
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "a context editor ready " + res);
 

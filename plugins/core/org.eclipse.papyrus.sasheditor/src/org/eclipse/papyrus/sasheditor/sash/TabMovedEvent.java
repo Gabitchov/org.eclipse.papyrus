@@ -10,12 +10,13 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 /**
  * Event specifying that a tab has been moved.
  */
+// @unused
 public class TabMovedEvent extends ChangeEvent {
 
 	private Object srcFolder;
@@ -39,6 +40,7 @@ public class TabMovedEvent extends ChangeEvent {
 	/**
 	 * @return the srcFolder
 	 */
+	// @unused
 	public Object getSrcFolder() {
 		return srcFolder;
 	}
@@ -47,6 +49,7 @@ public class TabMovedEvent extends ChangeEvent {
 	 * @param srcFolder
 	 *            the srcFolder to set
 	 */
+	// @unused
 	public void setSrcFolder(Object srcFolder) {
 		this.srcFolder = srcFolder;
 	}
@@ -54,6 +57,7 @@ public class TabMovedEvent extends ChangeEvent {
 	/**
 	 * @return the srcTabIndex
 	 */
+	// @unused
 	public int getSrcTabIndex() {
 		return srcTabIndex;
 	}
@@ -62,6 +66,7 @@ public class TabMovedEvent extends ChangeEvent {
 	 * @param srcTabIndex
 	 *            the srcTabIndex to set
 	 */
+	// @unused
 	public void setSrcTabIndex(int srcTabIndex) {
 		this.srcTabIndex = srcTabIndex;
 	}
@@ -69,6 +74,7 @@ public class TabMovedEvent extends ChangeEvent {
 	/**
 	 * @return the targetFolder
 	 */
+	// @unused
 	public Object getTargetFolder() {
 		return targetFolder;
 	}
@@ -77,6 +83,7 @@ public class TabMovedEvent extends ChangeEvent {
 	 * @param targetFolder
 	 *            the targetFolder to set
 	 */
+	// @unused
 	public void setTargetFolder(Object targetFolder) {
 		this.targetFolder = targetFolder;
 	}
@@ -84,6 +91,7 @@ public class TabMovedEvent extends ChangeEvent {
 	/**
 	 * @return the targetTabIndex
 	 */
+	// @unused
 	public Object getTargetTabIndex() {
 		return targetTabIndex;
 	}
@@ -92,6 +100,7 @@ public class TabMovedEvent extends ChangeEvent {
 	 * @param targetTabIndex
 	 *            the targetTabIndex to set
 	 */
+	// @unused
 	public void setTargetTabIndex(Object targetTabIndex) {
 		this.targetTabIndex = targetTabIndex;
 	}

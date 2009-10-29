@@ -42,9 +42,8 @@ public class RemoveTypePrefixAction extends Action implements IPropertyListener 
 	}
 
 	/**
-	 * Initializing means setting the initial state of the {@link Action} and
-	 * adding the action as an {@link IPropertyListener} to the
-	 * {@link MOSKittModelNavigator}.
+	 * Initializing means setting the initial state of the {@link Action} and adding the action as
+	 * an {@link IPropertyListener} to the {@link MOSKittModelNavigator}.
 	 */
 	private void init() {
 		updateRemovePrefixTypesProperty(navigator.isRemovePrefixTypeEnabled());
@@ -56,19 +55,17 @@ public class RemoveTypePrefixAction extends Action implements IPropertyListener 
 	 */
 	@Override
 	public void run() {
-		navigator.setRemovePrefixTypeEnabled(!navigator
-				.isRemovePrefixTypeEnabled());
+		navigator.setRemovePrefixTypeEnabled(!navigator.isRemovePrefixTypeEnabled());
 	}
 
 	/**
-	 * Upon a MOSKittModelNavigator.IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY
-	 * property change, update the model explorer.
+	 * Upon a MOSKittModelNavigator.IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY property change, update the
+	 * model explorer.
 	 */
 	public void propertyChanged(Object source, int propId) {
 		switch (propId) {
 		case ModelNavigator.IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY:
-			updateRemovePrefixTypesProperty(((ModelNavigator) source)
-					.isRemovePrefixTypeEnabled());
+			updateRemovePrefixTypesProperty(((ModelNavigator) source).isRemovePrefixTypeEnabled());
 		}
 	}
 
@@ -77,8 +74,7 @@ public class RemoveTypePrefixAction extends Action implements IPropertyListener 
 	 * 
 	 * @param removePrefixTypesEnabled
 	 */
-	private void updateRemovePrefixTypesProperty(
-			boolean removePrefixTypesEnabled) {
+	private void updateRemovePrefixTypesProperty(boolean removePrefixTypesEnabled) {
 		setChecked(removePrefixTypesEnabled);
 	}
 }

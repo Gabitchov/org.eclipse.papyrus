@@ -32,24 +32,27 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-
 /**
  * 
  */
-public class CloseListener implements ControlListener, MouseListener, DisposeListener, FocusListener, KeyListener, TraverseListener, Listener {
+// @unused
+public class CloseListener implements ControlListener, MouseListener, DisposeListener, FocusListener, KeyListener,
+		TraverseListener, Listener {
 
-	/** main control of the parent editor to be listen*/ 
-	private Control control;
+	/** main control of the parent editor to be listen */
+	private final Control control;
 
 	/** embedded editor to close */
-	private EmbeddedTextEditor editor;
+	private final EmbeddedTextEditor editor;
 
 	/** host shell for the embedded editor */
-	private Composite composite ;
+	private final Composite composite;
 
 	/**
 	 * Creates a new CloseListener.
-	 * @param editor the editor to close
+	 * 
+	 * @param editor
+	 *            the editor to close
 	 */
 	public CloseListener(Control control, EmbeddedTextEditor editor, Composite composite) {
 		this.control = control;
@@ -77,10 +80,11 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 
 	/**
 	 * Checks if the parent control is valid or not.
+	 * 
 	 * @return <code>true</code> if the control is not <code>null</code> and not disposed.
 	 */
 	protected boolean isControlValid() {
-		return (control !=null && !control.isDisposed());
+		return (control != null && !control.isDisposed());
 	}
 
 	private void uninstall() {
@@ -119,7 +123,7 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 	}
 
 	public void focusGained(FocusEvent e) {
-	}		
+	}
 
 	public void focusLost(FocusEvent e) {
 		editor.close(true);
@@ -127,11 +131,11 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 
 	public void widgetDisposed(DisposeEvent e) {
 		editor.close(false);
-	}	
+	}
 
 	public void close() {
 		uninstall();
-		if(composite!=null && !composite.isDisposed()) {
+		if (composite != null && !composite.isDisposed()) {
 			composite.setVisible(false);
 			composite.dispose();
 		}
@@ -144,10 +148,10 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 	}
 
 	public void keyTraversed(TraverseEvent e) {
-		if(SWT.ESC == e.keyCode) {
+		if (SWT.ESC == e.keyCode) {
 			editor.close(false);
 			e.doit = false;
-		} 
+		}
 	}
 
 	public void handleEvent(Event event) {

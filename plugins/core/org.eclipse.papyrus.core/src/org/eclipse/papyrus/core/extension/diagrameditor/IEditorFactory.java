@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.papyrus.core.editor.BackboneException;
@@ -29,7 +29,8 @@ import org.eclipse.ui.IEditorPart;
 public interface IEditorFactory {
 
 	/**
-	 * This method is used in order to know if the editor can edit the root object. example a diagram di2 or notation
+	 * This method is used in order to know if the editor can edit the root object. example a
+	 * diagram di2 or notation
 	 * 
 	 * @param root
 	 *            the element that can be edited
@@ -52,22 +53,25 @@ public interface IEditorFactory {
 	/**
 	 * Create the {@link IPageModel} for the specified identifier.
 	 * 
-	 * @param pageIdentifier Object identifying an Editor.
+	 * @param pageIdentifier
+	 *            Object identifying an Editor.
 	 * @return PageModel allowing to create the editor.
 	 */
 	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry);
 
 	/**
-	 * Return true if the factory can create an IPageModel for the specified pageIdentifier.
-	 * Return false otherwise
-	 * @param pageIdentifier The object representing the page to test 
+	 * Return true if the factory can create an IPageModel for the specified pageIdentifier. Return
+	 * false otherwise
+	 * 
+	 * @param pageIdentifier
+	 *            The object representing the page to test
 	 * @return
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier);
 
 	/**
-	 * Initialize the factory with useful Classes.
-	 * TODO Find a better way to provide these data.
+	 * Initialize the factory with useful Classes. TODO Find a better way to provide these data.
+	 * 
 	 * @param editorDescriptor
 	 */
 	public void init(EditorDescriptor editorDescriptor);

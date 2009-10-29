@@ -22,6 +22,7 @@ public interface ICustomAppearence {
 	/**
 	 * key for the appearance property of graph nodes.
 	 */
+	// @unused
 	public final static String CUSTOM_APPEARENCE_KEY = "custom_disp";
 
 	// /////////////////////////////////////////////////////////////////////////
@@ -69,6 +70,7 @@ public interface ICustomAppearence {
 	 * @see #DISP_PARAMETER_TYPE
 	 */
 	@Deprecated
+	// @unused
 	public final static int DISP_PARAMETERS = 1 << 8;
 
 	/**
@@ -78,6 +80,7 @@ public interface ICustomAppearence {
 	 * @see #DISP_RT_TYPE
 	 */
 	@Deprecated
+	// @unused
 	public final static int DISP_RETURN_PARAMETERS = 1 << 9;
 
 	/** Style constant for carriage return in labels */
@@ -86,6 +89,7 @@ public interface ICustomAppearence {
 	/**
 	 * Style constant for opaque action body display in labels.
 	 */
+	// @unused
 	public final static int DISP_BODY = 1 << 11;
 
 	/** Style constant for parameter direction display in labels */
@@ -130,21 +134,25 @@ public interface ICustomAppearence {
 	/**
 	 * default uml Property in composite diagrams.
 	 */
+	// @unused
 	public final static int DEFAULT_UML_COMPO_PROPERTY = DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY;
 
 	/**
 	 * default uml Property in class diagrams as association ends.
 	 */
+	// @unused
 	public final static int DEFAULT_UML_RELATIONEND_PROPERTY = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME
 			| DISP_MOFIFIERS | DISP_MULTI_LINE;
 
 	/**
 	 * default uml Port ins composite diagrams.
 	 */
+	// @unused
 	public final static int DEFAULT_UML_PORT = DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY;
 
 	/**
 	 * default uml OpaqueAction in activity diagrams.
 	 */
+	// @unused
 	public final static int DEFAULT_UML_OPAQUE_ACTION = DISP_NAME;
 }

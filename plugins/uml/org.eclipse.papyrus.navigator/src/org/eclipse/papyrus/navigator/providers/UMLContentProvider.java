@@ -42,11 +42,9 @@ import org.eclipse.uml2.uml.Element;
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug
- *      #290422</a>
+ * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug #290422</a>
  */
-public class UMLContentProvider extends AdapterFactoryContentProvider implements
-		IContentProvider {
+public class UMLContentProvider extends AdapterFactoryContentProvider implements IContentProvider {
 
 	private static final Object[] EMPTY_ARRAY = new Object[0];
 
@@ -61,14 +59,12 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	/**
 	 * {@link ComposedAdapterFactory} used to get the adapters to content providers.
 	 */
-	protected static ComposedAdapterFactory umlComposedAdapterFactory = UMLComposedAdapterFactory
-			.getAdapterFactory();
+	protected static ComposedAdapterFactory umlComposedAdapterFactory = UMLComposedAdapterFactory.getAdapterFactory();
 
 	/**
 	 * Factory to adapt children grouping elements
 	 */
-	protected static GroupableAdapterFactory groupableFactory = new GroupableAdapterFactory(
-			umlComposedAdapterFactory);
+	protected static GroupableAdapterFactory groupableFactory = new GroupableAdapterFactory(umlComposedAdapterFactory);
 
 	public UMLContentProvider() {
 		super(umlComposedAdapterFactory);
@@ -107,20 +103,16 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 			return EMPTY_ARRAY;
 		}
 		if (parentElement instanceof AdditionalResources) {
-			return ((AdditionalResources) parentElement).getResources()
-					.toArray();
+			return ((AdditionalResources) parentElement).getResources().toArray();
 		}
 
 		// fjcano #290422 :: add "Group children" action.
 		// if grouping is enabled, return the children in a folder organization
-		if (getModelNavigator() != null
-				&& getModelNavigator().isGroupingChildsEnabled()
-				&& groupableFactory
-						.isFactoryForType(ITreeItemContentProvider.class)) {
-			ITreeItemContentProvider provider = (ITreeItemContentProvider) groupableFactory
-					.adapt(parentElement, ITreeItemContentProvider.class);
-			return provider == null ? null : provider
-					.getChildren(parentElement).toArray();
+		if (getModelNavigator() != null && getModelNavigator().isGroupingChildsEnabled()
+				&& groupableFactory.isFactoryForType(ITreeItemContentProvider.class)) {
+			ITreeItemContentProvider provider = (ITreeItemContentProvider) groupableFactory.adapt(parentElement,
+					ITreeItemContentProvider.class);
+			return provider == null ? null : provider.getChildren(parentElement).toArray();
 		}
 
 		// In the case of a domain element :
@@ -134,8 +126,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		}
 
 		// 2. and associated diagrams
-		if (parentElement instanceof EObject
-				|| parentElement instanceof IWrapperItemProvider
+		if (parentElement instanceof EObject || parentElement instanceof IWrapperItemProvider
 				|| parentElement instanceof FeatureMap.Entry) {
 			Object object = AdapterFactoryEditingDomain.unwrap(parentElement);
 			if (object instanceof Element) {
@@ -154,21 +145,18 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	@Override
 	public Object getParent(Object element) {
 		/*
-		 * if (object instanceof IFile) return ((IResource) object).getParent();
-		 * return super.getParent(object);
+		 * if (object instanceof IFile) return ((IResource) object).getParent(); return
+		 * super.getParent(object);
 		 */
-		if (getModelNavigator() != null
-				&& getModelNavigator().isGroupingChildsEnabled()
-				&& groupableFactory
-						.isFactoryForType(ITreeItemContentProvider.class)) {
-			ITreeItemContentProvider provider = (ITreeItemContentProvider) groupableFactory
-					.adapt(element, ITreeItemContentProvider.class);
+		if (getModelNavigator() != null && getModelNavigator().isGroupingChildsEnabled()
+				&& groupableFactory.isFactoryForType(ITreeItemContentProvider.class)) {
+			ITreeItemContentProvider provider = (ITreeItemContentProvider) groupableFactory.adapt(element,
+					ITreeItemContentProvider.class);
 			return provider == null ? null : provider.getParent(element);
 		}
 
 		// Delegates
-		if (element instanceof IWrapperItemProvider
-				|| element instanceof FeatureMap.Entry
+		if (element instanceof IWrapperItemProvider || element instanceof FeatureMap.Entry
 				|| element instanceof EObject) {
 			return super.getParent(element);
 		}
@@ -184,10 +172,8 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 			pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
 
 			Resource modelResource = diResourceSet.getModelResource();
-			List<Object> children = new ArrayList<Object>(modelResource
-					.getContents());
-			AdditionalResources resources = new AdditionalResources(
-					diResourceSet);
+			List<Object> children = new ArrayList<Object>(modelResource.getContents());
+			AdditionalResources resources = new AdditionalResources(diResourceSet);
 			children.add(resources);
 			// hookListeners();
 			return children.toArray();
@@ -236,8 +222,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	}
 
 	/**
-	 * Override this method if you want to execute additional actions when the
-	 * resource is modified
+	 * Override this method if you want to execute additional actions when the resource is modified
 	 * 
 	 * @param event
 	 */
@@ -247,8 +232,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 				Notification n = (Notification) o;
 				if (n.getEventType() == Notification.ADD) {
 					if (getCommonNavigator() != null) {
-						getCommonNavigator().getCommonViewer().setSelection(
-								new StructuredSelection(n.getNewValue()));
+						getCommonNavigator().getCommonViewer().setSelection(new StructuredSelection(n.getNewValue()));
 					}
 				}
 			}
@@ -257,8 +241,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	}
 
 	/**
-	 * Gets the <CommonNavigator>. This content provider is associated to, via
-	 * the viewer ID.
+	 * Gets the <CommonNavigator>. This content provider is associated to, via the viewer ID.
 	 * 
 	 * @return the common navigator
 	 */

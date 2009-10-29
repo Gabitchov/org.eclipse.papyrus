@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.navigator.factory;
 
 import java.util.LinkedList;
@@ -33,15 +33,14 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.navigator.CommonNavigator;
 
-
 /**
- * The Class DefaultEMFActionsFactory for creating a default action from EMF. 
- * Undefined actions are not still in use or might be overridden
+ * The Class DefaultEMFActionsFactory for creating a default action from EMF. Undefined actions are
+ * not still in use or might be overridden
  * 
  * @author Emilien Perico
  */
 public class DefaultEMFActionsFactory implements IActionHandlerFactory {
-	
+
 	protected List<Action> actions = new LinkedList<Action>();
 
 	protected DeleteAction deleteAction;
@@ -55,27 +54,27 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 	protected UndoAction undoAction;
 
 	protected RedoAction redoAction;
-	
+
 	protected LoadResourceAction loadResourceAction;
-	
-	//protected ValidateAction validateAction;
-	
+
+	// protected ValidateAction validateAction;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public List<Action> createActions(EditingDomain editingDomain) {
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-		
+
 		// Create Cut action
 		this.cutAction = new CutAction(editingDomain);
 		this.cutAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
 		actions.add(cutAction);
-		
+
 		// Create Copy action
 		this.copyAction = new CopyAction(editingDomain);
 		this.copyAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_COPY));
 		actions.add(copyAction);
-		
+
 		// Create Paste action
 		this.pasteAction = new PasteAction(editingDomain);
 		this.pasteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_PASTE));
@@ -84,7 +83,8 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		// Create Delete action
 		this.deleteAction = new DeleteAction(editingDomain, true);
 		this.deleteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		this.deleteAction.setDisabledImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
+		this.deleteAction.setDisabledImageDescriptor(sharedImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
 		actions.add(deleteAction);
 
 		// Undo action
@@ -96,18 +96,18 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		this.redoAction = new RedoAction();
 		this.redoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
 		actions.add(redoAction);
-		
+
 		// Load Resource action
 		this.loadResourceAction = new LoadResourceAction(editingDomain);
 		actions.add(loadResourceAction);
-		
+
 		return actions;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
-	public void activate(CommonNavigator activeViewPart) {		
+	public void activate(CommonNavigator activeViewPart) {
 		deleteAction.setActiveWorkbenchPart(activeViewPart);
 		cutAction.setActiveWorkbenchPart(activeViewPart);
 		copyAction.setActiveWorkbenchPart(activeViewPart);
@@ -115,7 +115,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		undoAction.setActiveWorkbenchPart(activeViewPart);
 		redoAction.setActiveWorkbenchPart(activeViewPart);
 		loadResourceAction.setActiveWorkbenchPart(activeViewPart);
-		
+
 		ISelectionProvider selectionProvider = null;
 		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
@@ -137,7 +137,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		undoAction.setActiveWorkbenchPart(null);
 		redoAction.setActiveWorkbenchPart(null);
 		loadResourceAction.setActiveWorkbenchPart(null);
-		
+
 		ISelectionProvider selectionProvider = null;
 		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
@@ -152,7 +152,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 	 * {@inheritDoc}
 	 */
 	public void fillActionBars(IActionBars actionBars) {
-		actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(),	deleteAction);
+		actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(), deleteAction);
 		actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(), cutAction);
 		actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(), copyAction);
 		actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(), pasteAction);

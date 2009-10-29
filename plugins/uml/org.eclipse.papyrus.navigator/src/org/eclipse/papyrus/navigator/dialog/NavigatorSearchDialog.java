@@ -47,36 +47,41 @@ import org.eclipse.ui.navigator.CommonNavigator;
 public class NavigatorSearchDialog extends TrayDialog {
 
 	private ITreeContentProvider contentProvider = null;
+
 	private ILabelProvider labelProvider = null;
+
 	private Object root = null;
+
 	private Viewer viewer = null;
+
 	private List<Object> matchedObjects = Collections.emptyList();
+
 	private Label matchesLabel;
+
 	private Text searchText;
+
 	private Button backButton;
+
 	private Button nextButton;
+
 	private Button caseButton;
 
 	public NavigatorSearchDialog(Shell shell, CommonNavigator modelNavigator) {
 		super(shell);
-		IContentProvider cprovider = modelNavigator.getCommonViewer()
-				.getContentProvider();
+		IContentProvider cprovider = modelNavigator.getCommonViewer().getContentProvider();
 		if (cprovider instanceof ITreeContentProvider) {
 			contentProvider = (ITreeContentProvider) cprovider;
 		}
 		root = modelNavigator.getCommonViewer().getInput();
 		viewer = modelNavigator.getCommonViewer();
-		labelProvider = (ILabelProvider) modelNavigator.getCommonViewer()
-				.getLabelProvider();
+		labelProvider = (ILabelProvider) modelNavigator.getCommonViewer().getLabelProvider();
 
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets
-	 * .Composite)
+	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets .Composite)
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
@@ -95,19 +100,15 @@ public class NavigatorSearchDialog extends TrayDialog {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse
+	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse
 	 * .swt.widgets.Composite)
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 
-		backButton = createButton(parent, IDialogConstants.BACK_ID,
-				IDialogConstants.BACK_LABEL, false);
-		nextButton = createButton(parent, IDialogConstants.NEXT_ID,
-				IDialogConstants.NEXT_LABEL, false);
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
+		backButton = createButton(parent, IDialogConstants.BACK_ID, IDialogConstants.BACK_LABEL, false);
+		nextButton = createButton(parent, IDialogConstants.NEXT_ID, IDialogConstants.NEXT_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 
 		backButton.setEnabled(false);
 		nextButton.setEnabled(false);
@@ -129,8 +130,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 					index = -1;
 				}
 				index++;
-				viewer.setSelection(new StructuredSelection(matchedObjects
-						.get(index)), true);
+				viewer.setSelection(new StructuredSelection(matchedObjects.get(index)), true);
 			}
 
 		});
@@ -152,8 +152,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 					index = matchedObjects.size() - 1;
 				}
 				index--;
-				viewer.setSelection(new StructuredSelection(matchedObjects
-						.get(index)), true);
+				viewer.setSelection(new StructuredSelection(matchedObjects.get(index)), true);
 			}
 
 		});
@@ -171,8 +170,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 		caseButton = new Button(background, SWT.CHECK);
 		caseButton.setText("Case sensitive?");
-		GridData caseButtonData = new GridData(
-				GridData.HORIZONTAL_ALIGN_BEGINNING);
+		GridData caseButtonData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 		caseButtonData.horizontalSpan = 2;
 		caseButton.setSelection(false);
 		caseButton.setLayoutData(caseButtonData);
@@ -193,9 +191,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 		matchesLabel = new Label(background, SWT.None);
 		matchesLabel.setText("No matchings.");
-		matchesLabel
-				.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING
-						| GridData.FILL_HORIZONTAL));
+		matchesLabel.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL));
 
 	}
 
@@ -217,16 +213,14 @@ public class NavigatorSearchDialog extends TrayDialog {
 			pattern = pattern.toUpperCase();
 		}
 
-		matchedObjects = searchPattern(pattern, Arrays.asList(contentProvider
-				.getElements(root)));
+		matchedObjects = searchPattern(pattern, Arrays.asList(contentProvider.getElements(root)));
 
 		// Update matches label
 		matchesLabel.setText(matchedObjects.size() + " matches found");
 
 		// Select first match and update buttons
 		if (!matchedObjects.isEmpty()) {
-			viewer.setSelection(new StructuredSelection(matchedObjects.get(0)),
-					true);
+			viewer.setSelection(new StructuredSelection(matchedObjects.get(0)), true);
 			nextButton.setEnabled(true);
 			backButton.setEnabled(true);
 		} else {
@@ -244,8 +238,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 		boolean caseSensitive = caseButton.getSelection();
 		for (Object o : objects) {
 			// Search matches in this level
-			objectLabel = caseSensitive ? labelProvider.getText(o)
-					: labelProvider.getText(o).toUpperCase();
+			objectLabel = caseSensitive ? labelProvider.getText(o) : labelProvider.getText(o).toUpperCase();
 
 			if (objectLabel.contains(pattern)) {
 				matches.add(o);

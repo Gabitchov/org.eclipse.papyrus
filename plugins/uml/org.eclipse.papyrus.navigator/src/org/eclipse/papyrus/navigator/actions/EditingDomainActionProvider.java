@@ -39,14 +39,15 @@ import org.eclipse.ui.navigator.ICommonActionExtensionSite;
  * Provider used to create actions applicable on semantic elements
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
- * @author Emilien Perico - see extension point org.eclipse.papyrus.navigator.actionHandler to add specific action
+ * @author Emilien Perico - see extension point org.eclipse.papyrus.navigator.actionHandler to add
+ *         specific action
  */
 public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 
 	public static final String ACTION_HANDLER_EXTENSION_POINT_ID = "org.eclipse.papyrus.navigator.actionHandler";
 
 	protected CommonNavigator activeViewPart;
-	
+
 	protected Map<IActionHandlerFactory, ActionProperties> actionsFactoriesMap;
 
 	/**
@@ -55,27 +56,26 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	@Override
 	public void init(ICommonActionExtensionSite site) {
 		super.init(site);
-		
+
 		this.activeViewPart = getCommonNavigator();
 		this.actionsFactoriesMap = new HashMap<IActionHandlerFactory, ActionProperties>();
 		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
-		
-		IConfigurationElement[] registry = Platform.getExtensionRegistry().getConfigurationElementsFor(ACTION_HANDLER_EXTENSION_POINT_ID);
-		for (IConfigurationElement elt : registry)
-		{
+
+		IConfigurationElement[] registry = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				ACTION_HANDLER_EXTENSION_POINT_ID);
+		for (IConfigurationElement elt : registry) {
 			try {
 				final String actionId = elt.getAttribute("actionId");
 				final String afterAction = elt.getAttribute("afterAction");
 				boolean needSeparator = Boolean.valueOf(elt.getAttribute("needSeparator"));
 				ActionProperties properties = new ActionProperties(actionId, afterAction, needSeparator);
-				
+
 				IActionHandlerFactory factory = (IActionHandlerFactory) elt.createExecutableExtension("actionHandler");
 				// create registered actions
 				factory.createActions(editingDomain);
-				
+
 				actionsFactoriesMap.put(factory, properties);
-			} 
-			catch (CoreException exception) {
+			} catch (CoreException exception) {
 				exception.printStackTrace();
 			}
 		}
@@ -86,7 +86,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	 */
 	@Override
 	public void fillActionBars(IActionBars actionBars) {
-		super.fillActionBars(actionBars);		
+		super.fillActionBars(actionBars);
 		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
 			factory.fillActionBars(actionBars);
 		}
@@ -102,7 +102,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		List<IActionHandlerFactory> sortedFactories = sortFactories(actionsFactoriesMap);
 
 		// Add the edit menu actions
-		for (IActionHandlerFactory factory : sortedFactories) {			
+		for (IActionHandlerFactory factory : sortedFactories) {
 			ActionProperties actionProperties = actionsFactoriesMap.get(factory);
 			if (actionProperties != null && actionProperties.isNeedSeparator()) {
 				menu.add(new Separator());
@@ -123,7 +123,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		if (selection instanceof IStructuredSelection) {
 			structuredSelection = (IStructuredSelection) selection;
 		}
-		
+
 		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
 			factory.update(structuredSelection);
 		}
@@ -142,6 +142,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	/**
 	 * Deactivate actions
 	 */
+	// @unused
 	public void deactivate() {
 		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
 			factory.deactivate(activeViewPart);
@@ -157,53 +158,45 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		activate();
 		update();
 	}
-	
+
 	/**
 	 * Sort factories.
 	 * 
-	 * @param actionsFactoriesMap the actions factories map
+	 * @param actionsFactoriesMap
+	 *            the actions factories map
 	 * 
 	 * @return the sorted list of factories
 	 */
-	private List<IActionHandlerFactory> sortFactories(final Map<IActionHandlerFactory, ActionProperties> actionsFactoriesMap) {
-		
+	private List<IActionHandlerFactory> sortFactories(
+			final Map<IActionHandlerFactory, ActionProperties> actionsFactoriesMap) {
+
 		List<IActionHandlerFactory> factories = new ArrayList<IActionHandlerFactory>(actionsFactoriesMap.keySet());
-		
+
 		Collections.sort(factories, new Comparator<IActionHandlerFactory>() {
-			
+
 			public int compare(IActionHandlerFactory factory1, IActionHandlerFactory factory2) {
-				
+
 				ActionProperties properties1 = getDefaultForNull(actionsFactoriesMap.get(factory1));
 				ActionProperties properties2 = getDefaultForNull(actionsFactoriesMap.get(factory2));
 				String after1 = properties1.getAfterAction();
 				String after2 = properties2.getAfterAction();
-				
-				if (properties1.getActionId().equals(properties2.getActionId()))
-				{
-					return 0 ;
-				}
-				else if (properties1.getActionId().equals(after2))
-				{
-					return -1 ;
-				}
-				else if (properties2.getActionId().equals(after1))
-				{
-					return 1 ;
-				}
-				else if (after1 == null)
-				{
-					return -1 ;
-				}
-				else if (after2 == null)
-				{
-					return 1 ;
+
+				if (properties1.getActionId().equals(properties2.getActionId())) {
+					return 0;
+				} else if (properties1.getActionId().equals(after2)) {
+					return -1;
+				} else if (properties2.getActionId().equals(after1)) {
+					return 1;
+				} else if (after1 == null) {
+					return -1;
+				} else if (after2 == null) {
+					return 1;
 				}
 				return 0;
 			}
 
 			private ActionProperties getDefaultForNull(ActionProperties actionProperties) {
-				if (actionProperties == null)
-				{
+				if (actionProperties == null) {
 					actionProperties = new ActionProperties("", "", false);
 				}
 				return actionProperties;
@@ -212,31 +205,32 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 
 		return factories;
 	}
-	
+
 	/**
-	 * The Class ActionProperties to store properties for a registered action 
-	 * from extension point org.eclipse.papyrus.navigator.actionHandler
+	 * The Class ActionProperties to store properties for a registered action from extension point
+	 * org.eclipse.papyrus.navigator.actionHandler
 	 */
 	private class ActionProperties {
-		
-		private String actionId;
-		
-		private String afterAction;
-		
-		private boolean needSeparator;
+
+		private final String actionId;
+
+		private final String afterAction;
+
+		private final boolean needSeparator;
 
 		/**
 		 * @param actionId
 		 * @param afterAction
 		 * @param needSeparator
 		 */
+		// @unused
 		public ActionProperties(String actionId, String afterAction, boolean needSeparator) {
 			super();
 			this.actionId = actionId;
 			this.afterAction = afterAction;
 			this.needSeparator = needSeparator;
 		}
-		
+
 		/**
 		 * @return the actionId
 		 */
@@ -250,14 +244,14 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		public String getAfterAction() {
 			return afterAction;
 		}
-		
+
 		/**
 		 * @return the needSeparator
 		 */
 		public boolean isNeedSeparator() {
 			return needSeparator;
 		}
-		
+
 	}
 
 }

@@ -31,13 +31,12 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug
- *      #290422</a>
+ * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug #290422</a>
  */
-public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
-		ICommonLabelProvider/*
-							 * , IFontProvider
-							 */{
+public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICommonLabelProvider/*
+																								 * ,
+																								 * IFontProvider
+																								 */{
 
 	/** Registry to store editor factories */
 	private IEditorFactoryRegistry editorRegistry;
@@ -78,8 +77,8 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 	}
 
 	/**
-	 * Returns the platform icon for a file. You can replace with your own icon
-	 * If not a IFile, then passes to the regular EMF.Edit providers
+	 * Returns the platform icon for a file. You can replace with your own icon If not a IFile, then
+	 * passes to the regular EMF.Edit providers
 	 * 
 	 * {@inheritDoc}
 	 */
@@ -130,8 +129,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 			text = super.getText(element);
 		}
 
-		if (getModelNavigator() != null
-				&& getModelNavigator().isRemovePrefixTypeEnabled()) {
+		if (getModelNavigator() != null && getModelNavigator().isRemovePrefixTypeEnabled()) {
 			text = getRemovePrefixLabelDecorator().decorateText(text, element);
 		}
 
@@ -139,9 +137,8 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default
-	 * implementation return the singleton eINSTANCE. This method can be
-	 * subclassed to return another registry.
+	 * Get the EditorRegistry used to create editor instances. This default implementation return
+	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 */
@@ -153,15 +150,13 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should
-	 * implements this method in order to return the registry associated to the
-	 * extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
+	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 */
 	protected IEditorFactoryRegistry createEditorRegistry() {
-		return new EditorFactoryRegistry(
-				org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		return new EditorFactoryRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 
 	// @Override
@@ -199,8 +194,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements
 	// }
 
 	/**
-	 * Gets the <CommonNavigator>. This content provider is associated to, via
-	 * the viewer ID.
+	 * Gets the <CommonNavigator>. This content provider is associated to, via the viewer ID.
 	 * 
 	 * @return the common navigator
 	 */

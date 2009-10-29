@@ -21,20 +21,18 @@ import org.eclipse.swt.graphics.Image;
  * A {@link LabelDecorator} that removes the type prefix that appears with some label providers.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
-//fjcano #291192
+// fjcano #291192
 public class NoTypePrefixLabelDecorator extends LabelDecorator {
 
 	@Override
-	public Image decorateImage(Image image, Object element,
-			IDecorationContext context) {
+	public Image decorateImage(Image image, Object element, IDecorationContext context) {
 		return image;
 	}
 
 	@Override
-	public String decorateText(String text, Object element,
-			IDecorationContext context) {
+	public String decorateText(String text, Object element, IDecorationContext context) {
 		return removeTypeName(element, text);
 	}
 
@@ -87,8 +85,7 @@ public class NoTypePrefixLabelDecorator extends LabelDecorator {
 	}
 
 	@Override
-	public boolean prepareDecoration(Object element, String originalText,
-			IDecorationContext context) {
+	public boolean prepareDecoration(Object element, String originalText, IDecorationContext context) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -53,6 +53,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 public class LookForElement {
 
 	/** debug channel */
+	// @unused
 	private static final int channel = 26;
 
 	/**
@@ -77,9 +78,11 @@ public class LookForElement {
 	 *            the package
 	 * @return list of type in the package
 	 */
+	// @unused
 	public static ArrayList lookForAllTypes(Package model) {
 		ArrayList<Element> typeCollection = new ArrayList<Element>();
-		Collection elements = model.allOwnedElements(); // select all elements of the model
+		Collection elements = model.allOwnedElements(); // select all elements
+		// of the model
 		Iterator it = elements.iterator();
 		// filter classifier DataType and Element Import
 		while (it.hasNext()) {
@@ -105,6 +108,7 @@ public class LookForElement {
 	 * 
 	 * @return the list of associations
 	 */
+	// @unused
 	public static ArrayList lookForAllAssociation(Package model) {
 		ArrayList<Association> typeCollection = new ArrayList<Association>();
 		Collection elements = model.allOwnedElements();// select all elements
@@ -167,6 +171,7 @@ public class LookForElement {
 	 * 
 	 * @return list of metaclasses of the UML2 metamodel that comply with the filter Eclass
 	 */
+	// @unused
 	public static List getMetaclasses(EClass filter, Element element) {
 		boolean includeAbstractClassifiers = true;
 		return getMetaclasses(filter, includeAbstractClassifiers, element);
@@ -196,6 +201,7 @@ public class LookForElement {
 				return 0;
 			}
 
+			@Override
 			public boolean equals(Object o) {
 				return o.equals(this);
 			}
@@ -205,7 +211,8 @@ public class LookForElement {
 		List filteredList = new ArrayList();
 		SortedSet<Classifier> filteredSortedClassifiers = new TreeSet<Classifier>(new ClassifierComparator());
 
-		// Retrieves the UML Classifier (i.e. the classifier used to describe the corresponding
+		// Retrieves the UML Classifier (i.e. the classifier used to describe
+		// the corresponding
 		// concept)
 		// of the metamodel corresponding to the EClass filter
 		Classifier filterClassifier = null;
@@ -215,8 +222,9 @@ public class LookForElement {
 				filterClassifier = c;
 			}
 		}
-		if (filterClassifier == null) // the corresponding UML classifier has not been found
+		if (filterClassifier == null) {
 			return filteredList;
+		}
 
 		// The corresponding UML Classifier has been found
 		// Now retrieves all Classifiers derived from this Classifier
@@ -235,15 +243,17 @@ public class LookForElement {
 			}
 		}
 		if (includeAbstractClassifiers == false) {
-			if (!filterClassifier.isAbstract())
+			if (!filterClassifier.isAbstract()) {
 				// filteredList.add(filterClassifier) ;
 				filteredSortedClassifiers.add(filterClassifier);
-		} else
+			}
+		} else {
 			// filteredList.add(filterClassifier) ;
 			filteredSortedClassifiers.add(filterClassifier);
+		}
 
-		for (Iterator<Classifier> i = filteredSortedClassifiers.iterator(); i.hasNext();) {
-			filteredList.add(i.next());
+		for (Classifier classifier : filteredSortedClassifiers) {
+			filteredList.add(classifier);
 		}
 		return filteredList;
 	}
@@ -255,9 +265,11 @@ public class LookForElement {
 	 *            the profile which needs the metaclasses list
 	 * @return the possible metaclasses
 	 */
+	// @unused
 	public static ArrayList getPossibleMetaclasses(Element element) {
 		ArrayList metaList = new ArrayList();
-		List metaclasses = getMetaclasses(element); // get all type of the metaclass
+		List metaclasses = getMetaclasses(element); // get all type of the
+		// metaclass
 
 		for (int i = 0; i < metaclasses.size(); i++) {
 			if (metaclasses.get(i) instanceof org.eclipse.uml2.uml.Class) {
@@ -278,9 +290,11 @@ public class LookForElement {
 	 * 
 	 * @return the element import
 	 */
+	// @unused
 	public static ElementImport getElementImport(Package model, Element elt) {
-		if (model == null)
+		if (model == null) {
 			return null;
+		}
 		Iterator it = model.getElementImports().iterator();
 		while (it.hasNext()) {
 			ElementImport current = (ElementImport) it.next();
@@ -309,8 +323,9 @@ public class LookForElement {
 				multiEditorPart = ((IMultiDiagramEditor) editorPart).getActiveEditor();
 				CommandStack stack = (CommandStack) multiEditorPart.getAdapter(CommandStack.class);
 				return stack;
-			} else
+			} else {
 				return (CommandStack) editorPart.getAdapter(CommandStack.class);
+			}
 		}
 		return null;
 	}
@@ -320,14 +335,15 @@ public class LookForElement {
 	 * 
 	 * @return the list of edit parts contained in the outline
 	 */
+	// @unused
 	public static List<EditPart> getAllOutlineEditParts() {
 		List<EditPart> editPartList = new ArrayList<EditPart>();
 		/*
-		 * IEditorPart editor =
-		 * PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor() ;
-		 * //editor if (editor instanceof MultiDiagramEditor) { TreeOutlinePage outline =
-		 * (TreeOutlinePage)((MultiDiagramEditor)editor).getAdapter(IContentOutlinePage.class) ;
-		 * editPartList.addAll(getAllEditParts(outline.getModel().getModelTreeEditPart())); }
+		 * IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow
+		 * ().getActivePage().getActiveEditor() ; //editor if (editor instanceof MultiDiagramEditor)
+		 * { TreeOutlinePage outline = (TreeOutlinePage)((MultiDiagramEditor
+		 * )editor).getAdapter(IContentOutlinePage.class) ; editPartList.addAll(getAllEditParts
+		 * (outline.getModel().getModelTreeEditPart())); }
 		 */
 		return editPartList;
 	}
@@ -365,14 +381,15 @@ public class LookForElement {
 	 * 
 	 * @return the list of (direct or indirect) children template bindings.
 	 */
+	// @unused
 	public static List<TemplateableElement> getAllTemplates(Model root) {
 		List<TemplateableElement> templateList = new ArrayList<TemplateableElement>();
 		List<Element> allOwnedElements = root.allOwnedElements();
-		for (Iterator<Element> i = allOwnedElements.iterator(); i.hasNext();) {
-			Element current = i.next();
+		for (Element current : allOwnedElements) {
 			if (current instanceof TemplateableElement) {
-				if (((TemplateableElement) current).isTemplate())
+				if (((TemplateableElement) current).isTemplate()) {
 					templateList.add((TemplateableElement) current);
+				}
 			}
 		}
 		return templateList;
@@ -388,11 +405,11 @@ public class LookForElement {
 	 * 
 	 * @return the list of (direct or indirect) children template bindings.
 	 */
+	// @unused
 	public static List<TemplateBinding> getAllTemplateBinding(Model root) {
 		List<TemplateBinding> templateBindingList = new ArrayList<TemplateBinding>();
 		List<Element> allOwnedElements = root.allOwnedElements();
-		for (Iterator<Element> i = allOwnedElements.iterator(); i.hasNext();) {
-			Element current = i.next();
+		for (Element current : allOwnedElements) {
 			if (current instanceof TemplateBinding) {
 				templateBindingList.add((TemplateBinding) current);
 			}
@@ -407,12 +424,14 @@ public class LookForElement {
 	 * @return the set of imported packages, models, or profiles that are imported
 	 */
 	public static HashSet<Package> buildImportedTopPackagesList(Package rootModel, HashSet<Package> importedPackages) {
-		// for each imported element, adds the parent package of the imported package
+		// for each imported element, adds the parent package of the imported
+		// package
 		Iterator<PackageableElement> it = rootModel.getImportedMembers().iterator();
 		while (it.hasNext()) {
 
 			Package topPackage = LookForElement.topPackage(it.next());
-			// following test is not very pertinent, the hashset implementation removes doublons
+			// following test is not very pertinent, the hashset implementation
+			// removes doublons
 			if (!importedPackages.contains(topPackage) && topPackage != rootModel) {
 				importedPackages.add(topPackage);
 			}
@@ -421,7 +440,7 @@ public class LookForElement {
 		// update the list for sub packages
 		it = rootModel.getPackagedElements().iterator();
 		while (it.hasNext()) {
-			Element currentElement = (Element) it.next();
+			Element currentElement = it.next();
 			if (currentElement instanceof Package) {
 				buildImportedTopPackagesList((Package) currentElement, importedPackages);
 			}
@@ -441,7 +460,8 @@ public class LookForElement {
 		HashSet<Package> unmodifiedList = (HashSet<Package>) importedPackages.clone();
 
 		// iterate over each element in the import list.
-		// if this element has imports that are unknown yet, add them to the list of elements to
+		// if this element has imports that are unknown yet, add them to the
+		// list of elements to
 		// check.
 		Iterator it = unmodifiedList.iterator();
 		while (it.hasNext()) {
@@ -449,7 +469,8 @@ public class LookForElement {
 			Iterator<Package> it2 = buildImportedTopPackagesList(curPackage, new HashSet<Package>()).iterator();
 			while (it2.hasNext()) {
 				Package impPack = it2.next();
-				// test neither to add an element that already exists in the list nor to add base
+				// test neither to add an element that already exists in the
+				// list nor to add base
 				// model
 				if (!importedPackages.contains(impPack) && impPack != refPackage) {
 					importedPackages.add(impPack);
@@ -457,7 +478,8 @@ public class LookForElement {
 			}
 		}
 
-		// Some elements have been added, so it has to be recompute again, using the new extended
+		// Some elements have been added, so it has to be recompute again, using
+		// the new extended
 		// list
 		if (unmodifiedList.size() != importedPackages.size()) {
 			buildExtendedImportedPackagesList(importedPackages, refPackage);

@@ -18,7 +18,8 @@ import org.eclipse.papyrus.core.Activator;
 /**
  * Utility class to log errors or debug information either in the plugin'log or in the console.
  * <p>
- * A set of channels is used to separate different traces for different aspects. A short list is displayed at the end of the file to give an example of channels
+ * A set of channels is used to separate different traces for different aspects. A short list is
+ * displayed at the end of the file to give an example of channels
  **/
 public class PapyrusTrace implements IDebugChannel {
 
@@ -93,7 +94,8 @@ public class PapyrusTrace implements IDebugChannel {
 	 * @param message
 	 *            the message to log
 	 * @param severity
-	 *            the severity : one of <code>OK</code>, <code>ERROR</code>, <code>INFO</code>, <code>WARNING</code>, or <code>CANCEL</code>
+	 *            the severity : one of <code>OK</code>, <code>ERROR</code>, <code>INFO</code>,
+	 *            <code>WARNING</code>, or <code>CANCEL</code>
 	 */
 	public static void log(int severity, String message) {
 		final IStatus status = new Status(severity, Activator.PLUGIN_ID, IStatus.OK, message, null);

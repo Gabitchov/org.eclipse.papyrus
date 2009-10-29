@@ -30,6 +30,7 @@ public interface IDirectEditorConfiguration {
 	 * @return the style for the source viewer widget
 	 * @see SWT
 	 */
+	// @unused
 	public int getStyle();
 
 	/**
@@ -37,6 +38,7 @@ public interface IDirectEditorConfiguration {
 	 * 
 	 * @return the preferred size for the dialog window
 	 */
+	// @unused
 	public Point getPreferedSize();
 
 	/**
@@ -102,5 +104,6 @@ public interface IDirectEditorConfiguration {
 	/**
 	 * Sets the input validator, ie the element that indicates if the text is correct
 	 */
+	// @unused
 	public void setInputValidator(IInputValidator validator);
 }

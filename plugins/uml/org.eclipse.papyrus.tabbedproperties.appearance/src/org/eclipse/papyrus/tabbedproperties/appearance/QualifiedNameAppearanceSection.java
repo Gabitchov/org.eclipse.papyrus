@@ -112,13 +112,14 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 						String currentQualifiedNameDepth = comboQualifiedNameAppearance.getText();
 						String currentQualifiedNameSpec;
 
-						if ("Full".equals(currentQualifiedNameDepth))
+						if ("Full".equals(currentQualifiedNameDepth)) {
 							currentQualifiedNameSpec = "0";
-						else if ("None".equals(currentQualifiedNameDepth)) {
+						} else if ("None".equals(currentQualifiedNameDepth)) {
 							NamedElement ne = (NamedElement) ((View) namedElementEditPart.getModel()).getElement();
 							currentQualifiedNameSpec = "" + NamedElementUtil.getQualifiedNameMaxDepth(ne);
-						} else
+						} else {
 							currentQualifiedNameSpec = currentQualifiedNameDepth.substring(1);
+						}
 
 						// createProperty value
 						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
@@ -142,9 +143,9 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 
 	}
 
+	// @unused
 	public int getQualifiedNamedepth(View view) {
-		EAnnotation stereotypeDisplayKind = ((View) view)
-				.getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
+		EAnnotation stereotypeDisplayKind = (view).getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
 		if (stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
@@ -191,8 +192,9 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 						// build new items
 						if (depth != 0) {
 							comboQualifiedNameAppearance.add("Full");
-							for (int i = 1; i < depth; i++)
+							for (int i = 1; i < depth; i++) {
 								comboQualifiedNameAppearance.add("-" + i);
+							}
 							comboQualifiedNameAppearance.add("None");
 						} else {// case of root modelElement
 							comboQualifiedNameAppearance.add("None");
@@ -202,15 +204,13 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 								.getQualifiedNameDepth((EModelElement) (namedElementEditPart.getModel()));
 
 						if (depth != 0) {
-							if (qualifiedNameDepth == 0)
+							if (qualifiedNameDepth == 0) {
 								comboQualifiedNameAppearance.setText("Full");
-							// The qualifiedNameDepth stored in graphNode is
-							// greater the depth of the element; in those cases
-							// we have to se the text of combo as none
-							else if (qualifiedNameDepth >= depth)
+							} else if (qualifiedNameDepth >= depth) {
 								comboQualifiedNameAppearance.setText("None");
-							else
+							} else {
 								comboQualifiedNameAppearance.setText("-" + qualifiedNameDepth);
+							}
 						} else {
 							comboQualifiedNameAppearance.setText("None");
 						}
@@ -228,15 +228,18 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void dispose() {
 		super.dispose();
-		if (comboQualifiedNameAppearance != null && !comboQualifiedNameAppearance.isDisposed())
+		if (comboQualifiedNameAppearance != null && !comboQualifiedNameAppearance.isDisposed()) {
 			comboQualifiedNameAppearance.removeSelectionListener(comboQualifiedNameAppearanceListener);
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
 		Object input = ((IStructuredSelection) selection).getFirstElement();
@@ -251,15 +254,16 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part)
 					.getAdapter(IContributedContentsView.class));
 			if (contributedView != null) {
-				part = (IWorkbenchPart) contributedView.getContributingPart();
+				part = contributedView.getContributingPart();
 			}
 		}
 		if (part instanceof IMultiDiagramEditor) {
 			editor = (IMultiDiagramEditor) part;
 			backbone = editor.getDefaultContext();
 			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
-		} else
+		} else {
 			editingDomain = null;
+		}
 	}
 
 }

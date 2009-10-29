@@ -13,7 +13,8 @@ package org.eclipse.papyrus.core.listenerservice;
 import org.eclipse.emf.common.notify.Notification;
 
 /**
- * This interface is a listener that will listen directly all events in papyrus: uml. It will be very useful for external plug-in.
+ * This interface is a listener that will listen directly all events in papyrus: uml. It will be
+ * very useful for external plug-in.
  * 
  *An implementation may be an adapter.
  */

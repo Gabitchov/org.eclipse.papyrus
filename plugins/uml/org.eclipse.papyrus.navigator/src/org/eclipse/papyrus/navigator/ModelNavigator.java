@@ -72,30 +72,34 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
-public class ModelNavigator extends CommonNavigator implements
-		IEditingDomainProvider {
+public class ModelNavigator extends CommonNavigator implements IEditingDomainProvider {
 
+	// @unused
 	public final static String ID_MODELNAVIGATOR = "org.eclipse.papyrus.navigator.modelExplorer";
 
+	// @unused
 	IWorkbenchPage page = null;
 
 	/** {@link TransactionalEditingDomain} used to perform actions and commands. */
+	// @unused
 	TransactionalEditingDomain editingDomain = null;
 
 	/** Active {@link IEditorPart}. */
+	// @unused
 	IEditorPart editorPart = null;
 
 	/**
 	 * The {@link IPropertySheetPage} this model exploer will use.
 	 */
+	// @unused
 	IPropertySheetPage propertySheetPage = null;
 
 	// //
 	// fjcano #290424 :: allow saving from the Model Explorer
 	// //
-	private ToEditorSaveable toEditorSaveable = new ToEditorSaveable(null, this);
+	private final ToEditorSaveable toEditorSaveable = new ToEditorSaveable(null, this);
 
-	private Saveable[] toEditorSaveableArray = new Saveable[] { toEditorSaveable };
+	private final Saveable[] toEditorSaveableArray = new Saveable[] { toEditorSaveable };
 
 	public ToEditorSaveable getToEditorSaveable() {
 		// fjcano #290424 :: allow saving from the Model Explorer
@@ -103,12 +107,10 @@ public class ModelNavigator extends CommonNavigator implements
 	}
 
 	/**
-	 * Due to the NavigatorSaveablesService not updating correctly the Saveables
-	 * available via the ContentProviders, a new and direct way of getting the
-	 * Saveables is implemented here.
+	 * Due to the NavigatorSaveablesService not updating correctly the Saveables available via the
+	 * ContentProviders, a new and direct way of getting the Saveables is implemented here.
 	 * 
-	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano
-	 *         Muñoz</a>
+	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
 	 */
 	@Override
 	public Saveable[] getSaveables() {
@@ -119,12 +121,10 @@ public class ModelNavigator extends CommonNavigator implements
 	}
 
 	/**
-	 * Due to the NavigatorSaveablesService not updating correctly the Saveables
-	 * available via the ContentProviders, a new and direct way of getting the
-	 * Saveables is implemented here.
+	 * Due to the NavigatorSaveablesService not updating correctly the Saveables available via the
+	 * ContentProviders, a new and direct way of getting the Saveables is implemented here.
 	 * 
-	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano
-	 *         Muñoz</a>
+	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
 	 */
 	@Override
 	public Saveable[] getActiveSaveables() {
@@ -163,8 +163,8 @@ public class ModelNavigator extends CommonNavigator implements
 	public static final int IS_GROUPINGCHILDS_ENABLED_PROPERTY = 987;
 
 	/**
-	 * Sets the grouping of children by type. Fires a property change that makes
-	 * the model explorer to refresh.
+	 * Sets the grouping of children by type. Fires a property change that makes the model explorer
+	 * to refresh.
 	 * 
 	 * @param toGroupChilds
 	 */
@@ -173,10 +173,8 @@ public class ModelNavigator extends CommonNavigator implements
 		isGroupingChildsEnabled = toGroupChilds;
 		firePropertyChange(IS_GROUPINGCHILDS_ENABLED_PROPERTY);
 		ISelection sel = this.getCommonViewer().getSelection();
-		if (sel instanceof ITreeSelection
-				&& ((ITreeSelection) sel).getFirstElement() != null) {
-			IStructuredSelection s = new StructuredSelection(
-					((ITreeSelection) sel).getFirstElement());
+		if (sel instanceof ITreeSelection && ((ITreeSelection) sel).getFirstElement() != null) {
+			IStructuredSelection s = new StructuredSelection(((ITreeSelection) sel).getFirstElement());
 			this.getCommonViewer().setSelection(s, true);
 		}
 		this.refreshViewer();
@@ -200,9 +198,8 @@ public class ModelNavigator extends CommonNavigator implements
 	public IAction getGroupChildrenAction() {
 		// fjcano :: #290422
 		IAction groupChildsAction = new GroupChildrenAction(this);
-		ImageDescriptor folderIcon = PlatformUI.getWorkbench()
-				.getSharedImages().getImageDescriptor(
-						ISharedImages.IMG_OBJ_FOLDER);
+		ImageDescriptor folderIcon = PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
+				ISharedImages.IMG_OBJ_FOLDER);
 		groupChildsAction.setImageDescriptor(folderIcon);
 		groupChildsAction.setHoverImageDescriptor(folderIcon);
 		return groupChildsAction;
@@ -218,8 +215,7 @@ public class ModelNavigator extends CommonNavigator implements
 	public static final int IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY = 16774;
 
 	/**
-	 * Set the isRemovePrefixTypeEnabled to the given value and fire a property
-	 * change event.
+	 * Set the isRemovePrefixTypeEnabled to the given value and fire a property change event.
 	 * 
 	 * @param isRemovePrefixTypeEnabled
 	 */
@@ -247,8 +243,8 @@ public class ModelNavigator extends CommonNavigator implements
 	public IAction getRemoveTypesPrefixAction() {
 		// fjcano #291192
 		IAction removeTypesPrefixAction = new RemoveTypePrefixAction(this);
-		ImageDescriptor clearIcon = PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_ELCL_REMOVE);
+		ImageDescriptor clearIcon = PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
+				ISharedImages.IMG_ELCL_REMOVE);
 		removeTypesPrefixAction.setImageDescriptor(clearIcon);
 		removeTypesPrefixAction.setHoverImageDescriptor(clearIcon);
 		return removeTypesPrefixAction;
@@ -261,8 +257,7 @@ public class ModelNavigator extends CommonNavigator implements
 	public IAction getSearchAction() {
 		// fjcano #290425 :: add search element action to model navigator
 		IAction searchAction = new SearchElementAction(this);
-		ImageDescriptor magnifyingGlassIcon = Activator
-				.getImageDescriptor("icons/etool16/search.gif");
+		ImageDescriptor magnifyingGlassIcon = Activator.getImageDescriptor("icons/etool16/search.gif");
 		searchAction.setImageDescriptor(magnifyingGlassIcon);
 		searchAction.setHoverImageDescriptor(magnifyingGlassIcon);
 		return searchAction;
@@ -271,22 +266,19 @@ public class ModelNavigator extends CommonNavigator implements
 	/**
 	 * Add the "Group children" action.
 	 */
+	@Override
 	public void createPartControl(Composite aParent) {
 		super.createPartControl(aParent);
 		// fjcano #290422 :: add "Group children" action
-		getViewSite().getActionBars().getToolBarManager().add(
-				getGroupChildrenAction());
+		getViewSite().getActionBars().getToolBarManager().add(getGroupChildrenAction());
 		// fjcano #291192
-		getViewSite().getActionBars().getToolBarManager().add(
-				getRemoveTypesPrefixAction());
+		getViewSite().getActionBars().getToolBarManager().add(getRemoveTypesPrefixAction());
 		// fjcano #290425 :: add search action to model navigator
-		getViewSite().getActionBars().getToolBarManager()
-				.add(getSearchAction());
+		getViewSite().getActionBars().getToolBarManager().add(getSearchAction());
 	};
 
 	/**
-	 * {@link ResourceSetListener} to listen and react to changes in the
-	 * resource set.
+	 * {@link ResourceSetListener} to listen and react to changes in the resource set.
 	 */
 	ResourceSetListener resourceSetListener = new ResourceSetListenerImpl() {
 
@@ -308,8 +300,7 @@ public class ModelNavigator extends CommonNavigator implements
 			Object n = notifications.get(i);
 			if (n instanceof Notification) {
 				Notification notification = (Notification) n;
-				Iterator<?> it = getNavigatorContentService()
-						.findRootContentExtensions(notification.getNotifier())
+				Iterator<?> it = getNavigatorContentService().findRootContentExtensions(notification.getNotifier())
 						.iterator();
 				while (it.hasNext()) {
 					Object obj = it.next();
@@ -317,8 +308,7 @@ public class ModelNavigator extends CommonNavigator implements
 					if (obj instanceof INavigatorContentExtension) {
 						INavigatorContentExtension nce = (INavigatorContentExtension) obj;
 						if (nce.getContentProvider() instanceof IContentProvider) {
-							IContentProvider provider = (IContentProvider) nce
-									.getContentProvider();
+							IContentProvider provider = (IContentProvider) nce.getContentProvider();
 							provider.resourceSetChanged(event);
 						}
 					}
@@ -383,8 +373,7 @@ public class ModelNavigator extends CommonNavigator implements
 	}
 
 	/**
-	 * Adapts to {@link IPropertySheetPage}. Other adaptations are handled by
-	 * superclasses.
+	 * Adapts to {@link IPropertySheetPage}. Other adaptations are handled by superclasses.
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -447,8 +436,8 @@ public class ModelNavigator extends CommonNavigator implements
 		});
 		// an ISelectionListener to react to workbench selection changes.
 		page.addSelectionListener(new ISelectionListener() {
-			public void selectionChanged(IWorkbenchPart part,
-					ISelection selection) {
+
+			public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 				handleSelectionChangedFromDiagramEditor(part, selection);
 			}
 		});
@@ -461,15 +450,13 @@ public class ModelNavigator extends CommonNavigator implements
 	 * @return
 	 */
 	private IPropertySheetPage getPropertySheetPage() {
-		final IMultiDiagramEditor multiDiagramEditor = NavigatorUtils
-				.getMultiDiagramEditor();
+		final IMultiDiagramEditor multiDiagramEditor = NavigatorUtils.getMultiDiagramEditor();
 		if (multiDiagramEditor != null) {
 			if (propertySheetPage == null) {
 				// An 'EEF' properties view
 				if (multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
 					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor) multiDiagramEditor;
-					this.propertySheetPage = new TabbedPropertySheetPage(
-							contributor);
+					this.propertySheetPage = new TabbedPropertySheetPage(contributor);
 				}
 			}
 			return propertySheetPage;
@@ -478,19 +465,18 @@ public class ModelNavigator extends CommonNavigator implements
 	}
 
 	/**
-	 * Adds an {@link ISelectionChangedListener} to this Model Explorer's viewer
-	 * to react to selection changes in the Model Explorer.
+	 * Adds an {@link ISelectionChangedListener} to this Model Explorer's viewer to react to
+	 * selection changes in the Model Explorer.
 	 */
 	@Override
 	protected CommonViewer createCommonViewer(Composite parent) {
 		CommonViewer commonViewer = super.createCommonViewer(parent);
-		commonViewer
-				.addPostSelectionChangedListener(new ISelectionChangedListener() {
+		commonViewer.addPostSelectionChangedListener(new ISelectionChangedListener() {
 
-					public void selectionChanged(SelectionChangedEvent event) {
-						handleSelectionChangedFromCommonViewer(event);
-					}
-				});
+			public void selectionChanged(SelectionChangedEvent event) {
+				handleSelectionChangedFromCommonViewer(event);
+			}
+		});
 		return commonViewer;
 	}
 
@@ -503,14 +489,12 @@ public class ModelNavigator extends CommonNavigator implements
 	 * @param part
 	 * @param selection
 	 */
-	protected void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part,
-			ISelection selection) {
+	protected void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part, ISelection selection) {
 		// Handle selection from diagram editor
 		if (isLinkingEnabled() && !handlingSelectionChanged) {
 			this.handlingSelectionChanged = true;
 			if (part instanceof IEditorPart) {
-				ISelection unwrappedSelection = NavigatorUtils
-						.unwrapSelection(selection);
+				ISelection unwrappedSelection = NavigatorUtils.unwrapSelection(selection);
 				if (!unwrappedSelection.isEmpty()) {
 					getCommonViewer().setSelection(unwrappedSelection, true);
 				}
@@ -524,8 +508,7 @@ public class ModelNavigator extends CommonNavigator implements
 	 * 
 	 * @param event
 	 */
-	protected void handleSelectionChangedFromCommonViewer(
-			SelectionChangedEvent event) {
+	protected void handleSelectionChangedFromCommonViewer(SelectionChangedEvent event) {
 		// Handle selection from common viewer
 		if (isLinkingEnabled() && !handlingSelectionChanged) {
 			this.handlingSelectionChanged = true;
@@ -540,15 +523,12 @@ public class ModelNavigator extends CommonNavigator implements
 					// set editor selection and select the EditParts
 					IDiagramGraphicalViewer diagramGraphicalViewer = ((DiagramEditor) activeEditor)
 							.getDiagramGraphicalViewer();
-					List<?> editPartsToSelect = NavigatorUtils
-							.getEditPartsFromSelection(event.getSelection(),
-									diagramGraphicalViewer);
-					StructuredSelection selectedEditParts = new StructuredSelection(
-							editPartsToSelect);
+					List<?> editPartsToSelect = NavigatorUtils.getEditPartsFromSelection(event.getSelection(),
+							diagramGraphicalViewer);
+					StructuredSelection selectedEditParts = new StructuredSelection(editPartsToSelect);
 					diagramGraphicalViewer.setSelection(selectedEditParts);
 					if (!selectedEditParts.isEmpty()) {
-						EditPart editPart = (EditPart) selectedEditParts
-								.getFirstElement();
+						EditPart editPart = (EditPart) selectedEditParts.getFirstElement();
 						diagramGraphicalViewer.reveal(editPart);
 					}
 				}
@@ -562,13 +542,11 @@ public class ModelNavigator extends CommonNavigator implements
 	 */
 	@Override
 	protected void handleDoubleClick(DoubleClickEvent anEvent) {
-		IAction openHandler = getViewSite().getActionBars()
-				.getGlobalActionHandler(ICommonActionConstants.OPEN);
+		IAction openHandler = getViewSite().getActionBars().getGlobalActionHandler(ICommonActionConstants.OPEN);
 		if (openHandler != null) {
 			openHandler.run();
 		} else {
-			IStructuredSelection selection = (IStructuredSelection) anEvent
-					.getSelection();
+			IStructuredSelection selection = (IStructuredSelection) anEvent.getSelection();
 			Object element = selection.getFirstElement();
 			if (element instanceof Diagram) {
 				// fjcano #287943 :: handle a double click on a papyrus Diagram
@@ -607,8 +585,7 @@ public class ModelNavigator extends CommonNavigator implements
 	 */
 	protected void handleDoubleClickOnDiagram(Diagram diagram) {
 		// fjcano #287943 :: handle double click on a gmf diagram
-		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
-				+ diagram);
+		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : " + diagram);
 		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
 			// open the diagram if not already open
 			EditorUtils.getIPageMngr().openPage(diagram);
@@ -627,22 +604,18 @@ public class ModelNavigator extends CommonNavigator implements
 	// //
 	// fjcano #288599# :: enable linking by default in the model explorer
 	// //
-	private String LINKING_ENABLED = "CommonNavigator.LINKING_ENABLED"; //$NON-NLS-1$ 
+	private final String LINKING_ENABLED = "CommonNavigator.LINKING_ENABLED"; //$NON-NLS-1$ 
 
 	/**
-	 * Make the synchronization between the editor and the model explorer active
-	 * by default.
+	 * Make the synchronization between the editor and the model explorer active by default.
 	 */
 	@Override
-	public void init(IViewSite aSite, IMemento aMemento)
-			throws PartInitException {
+	public void init(IViewSite aSite, IMemento aMemento) throws PartInitException {
 		super.init(aSite, aMemento);
 		// fjcano #288599# :: linking enabled by default
 		if (memento != null) {
 			Integer linkingEnabledInteger = memento.getInteger(LINKING_ENABLED);
-			setLinkingEnabled(((linkingEnabledInteger != null) ? linkingEnabledInteger
-					.intValue() == 1
-					: true));
+			setLinkingEnabled(((linkingEnabledInteger != null) ? linkingEnabledInteger.intValue() == 1 : true));
 		} else {
 			// fjcano :: linking is enabled by default.
 			setLinkingEnabled(true);

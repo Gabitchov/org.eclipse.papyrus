@@ -23,10 +23,12 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * Manages the current selection in a multi-page editor by tracking the active nested editor within the multi-page editor. When the selection changes, notifications are sent to all registered
+ * Manages the current selection in a multi-page editor by tracking the active nested editor within
+ * the multi-page editor. When the selection changes, notifications are sent to all registered
  * listeners.
  * <p>
- * This class may be instantiated; it is not intended to be subclassed. The base implementation of <code>MultiPageEditor.init</code> creates an instance of this class.
+ * This class may be instantiated; it is not intended to be subclassed. The base implementation of
+ * <code>MultiPageEditor.init</code> creates an instance of this class.
  * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.
@@ -34,19 +36,20 @@ import org.eclipse.ui.IEditorPart;
 public class MultiPageSelectionProvider implements IPostSelectionProvider {
 
 	/**
-	 * Registered selection changed listeners (element type: <code>ISelectionChangedListener</code>).
+	 * Registered selection changed listeners (element type: <code>ISelectionChangedListener</code>
+	 * ).
 	 */
-	private ListenerList listeners = new ListenerList();
+	private final ListenerList listeners = new ListenerList();
 
 	/**
 	 * Registered post selection changed listeners.
 	 */
-	private ListenerList postListeners = new ListenerList();
+	private final ListenerList postListeners = new ListenerList();
 
 	/**
 	 * The multi-page editor.
 	 */
-	private IMultiPageEditorPart multiPageEditor;
+	private final IMultiPageEditorPart multiPageEditor;
 
 	/**
 	 * Creates a selection provider for the given multi-page editor.
@@ -78,7 +81,8 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 	}
 
 	/**
-	 * Notifies all registered selection changed listeners that the editor's selection has changed. Only listeners registered at the time this method is called are notified.
+	 * Notifies all registered selection changed listeners that the editor's selection has changed.
+	 * Only listeners registered at the time this method is called are notified.
 	 * 
 	 * @param event
 	 *            the selection changed event
@@ -117,6 +121,7 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 	 * 
 	 * @return the multi-page editor.
 	 */
+	// @unused
 	public IMultiPageEditorPart getMultiPageEditor() {
 		return multiPageEditor;
 	}

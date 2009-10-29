@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 import org.eclipse.swt.custom.SashForm;
@@ -47,6 +47,7 @@ public class ReplaceableSashForm extends SashForm {
 	/**
 	 * Reparent the provided control to have the leftPart parent.
 	 */
+	// @unused
 	public void setLeftControl(Control control) {
 		if (leftComposite == null) {
 			leftComposite = new Composite(this, 0);
@@ -59,6 +60,7 @@ public class ReplaceableSashForm extends SashForm {
 	/**
 	 * Reparent the provided control to have the leftPart parent.
 	 */
+	// @unused
 	public void setRightControl(Control control) {
 		if (rightComposite == null) {
 			rightComposite = new Composite(this, 0);

@@ -65,11 +65,13 @@ public interface VisualInformationPapyrusConstant {
 	/**
 	 * 
 	 */
+	// @unused
 	public static String PROPERTY_STEREOTYPE_PROPERTY_VALUES_DISPLAY = "PropStereoPropValuesDisplay";
 
 	/**
 	 * 
 	 */
+	// @unused
 	public static String OPAQUE_EXPRESSION_BODY_DISPLAY = "OpaqueExpressionBodyDisplay";
 
 	/**
@@ -93,14 +95,19 @@ public interface VisualInformationPapyrusConstant {
 	/** The QUALIFIE d_ nam e_ depth. */
 	public static String QUALIFIED_NAME_DEPTH = "QualifiedNameDepth";
 
-	/** The GRADIENT. 
-	 * @deprecated*/
+	/**
+	 * The GRADIENT.
+	 * 
+	 * @deprecated
+	 */
+	@Deprecated
 	public static String GRADIENT = "Gradient";
 
 	/** The GRADIEN t_ value. */
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
 	public static String GRADIENT_VALUE = "GradientValue";
 
 	public static String SHADOWFIGURE = "ShadowFigure";
@@ -137,17 +144,25 @@ public interface VisualInformationPapyrusConstant {
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
 
-	/** this is a key of eannnotation that contains hyperlink or referenced document **/
+	/**
+	 * this is a key of eannnotation that contains hyperlink or referenced document
+	 **/
 	public static final String HYPERLINK_DIAGRAM = "PapyrusHyperLink_Diagram";
 
-	/** this is a value of a eannnotation detail that explain the kind of the link **/
+	/**
+	 * this is a value of a eannnotation detail that explain the kind of the link
+	 **/
 
 	public static final String HYPERLINK_DOCUMENT = "PapyrusHyperLink_Document";
 
 	public static final String HYPERLINK_WEB = "PapyrusHyperLink_web";
+
 	public static final String HYPERLINK_TOOLTYPE_TEXT = "tooltip_text";
+
 	public static final String HYPERLINK_DIAGRAM_NAME = "diagram_name";
+
 	public static final String HYPERLINK_DOCUMENT_LOCALIZATION = "localization";
+
 	public static final String HYPERLINK_WEB_LINK = "link";
 
 	/** key for the appearance of properties or other specific display */

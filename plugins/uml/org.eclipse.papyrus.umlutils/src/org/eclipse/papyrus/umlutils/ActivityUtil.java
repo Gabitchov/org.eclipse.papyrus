@@ -35,6 +35,7 @@ public class ActivityUtil {
 	 *            investigated
 	 * @return the initial node of uml2Activity, null otherwise.
 	 */
+	// @unused
 	public static InitialNode getInitialNode(Activity uml2Activity) {
 		Iterator<ActivityNode> nodesIter = uml2Activity.getNodes().iterator();
 		while (nodesIter.hasNext()) {
@@ -54,6 +55,7 @@ public class ActivityUtil {
 	 *            origin node
 	 * @return next node of uml2ActivityNode, null otherwise.
 	 */
+	// @unused
 	public static ActivityNode getNextNode(ActivityNode uml2ActivityNode) {
 		Iterator<ActivityEdge> edgeIter = uml2ActivityNode.getOutgoings().iterator();
 		while (edgeIter.hasNext()) {

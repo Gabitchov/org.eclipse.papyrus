@@ -33,6 +33,7 @@ public abstract class AbstractCommonActionProvider extends CommonActionProvider 
 	 * 
 	 * @return the viewer id
 	 */
+	// @unused
 	protected String getViewerID() {
 		return getActionSite().getViewSite().getId();
 	}
@@ -56,6 +57,7 @@ public abstract class AbstractCommonActionProvider extends CommonActionProvider 
 	 * 
 	 * @return the selection
 	 */
+	// @unused
 	protected ISelection getSelection() {
 		ActionContext context = getContext();
 		return (context != null) ? context.getSelection() : null;

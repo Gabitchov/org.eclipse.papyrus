@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 
@@ -18,13 +18,14 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 
 /**
  * Listener on ContentChange for Tests.
+ * 
  * @author dumoulin
  */
 public class ContentChangeListener implements IContentChangedListener {
 
 	/** Count number of change event */
 	private int changeCount = 0;
-	
+
 	/**
 	 * @return the changeCount
 	 */
@@ -35,8 +36,8 @@ public class ContentChangeListener implements IContentChangedListener {
 	public void contentChanged(ContentEvent event) {
 		changeCount++;
 	}
-	
+
 	public void reset() {
-		changeCount=0;
+		changeCount = 0;
 	}
 }

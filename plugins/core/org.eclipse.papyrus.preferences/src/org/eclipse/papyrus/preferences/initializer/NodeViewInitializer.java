@@ -25,12 +25,13 @@ import org.eclipse.swt.graphics.RGB;
  * <p>
  * The following properties can be initialized :
  * <ul>
- * <li>{@link org.eclipse.gmf.runtime.notation.FillStyle#getFillColor() <em>FillColor</em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.FillStyle#getFillColor() <em> FillColor</em>}</li>
  * </ul>
  * </p>
  * 
  * @author tlandre
  */
+// @unused
 public class NodeViewInitializer extends AbstractViewInitializer {
 
 	/**
@@ -41,6 +42,7 @@ public class NodeViewInitializer extends AbstractViewInitializer {
 	 * @param store
 	 *            the preference store to use
 	 */
+	// @unused
 	public NodeViewInitializer(View view, IPreferenceStore store) {
 		super(view, store);
 	}
@@ -51,6 +53,7 @@ public class NodeViewInitializer extends AbstractViewInitializer {
 	 * @param preferenceFillColorName
 	 *            the name of the preference where is stored the value of the color.
 	 */
+	// @unused
 	public void initFillColor(String preferenceFillColorName) {
 		FillStyle fillStyle = (FillStyle) getView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if (fillStyle != null) {

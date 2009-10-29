@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.extension;
 
 import java.util.ArrayList;
@@ -43,7 +43,8 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	private boolean isExtensionLoaded = false;
 
 	/**
-	 * Create a new Registry reading extension from the specified namespace. The namespace is usually the name of the plugin owning the registry.
+	 * Create a new Registry reading extension from the specified namespace. The namespace is
+	 * usually the name of the plugin owning the registry.
 	 * 
 	 * @param extensionPointNamespace
 	 */
@@ -59,7 +60,8 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	 * @throws EditorNotFoundException
 	 *             No editor handling the model can be found.
 	 */
-	public IEditorPart createEditorFor(MultiDiagramSharedObjects sharedObjects, Object model) throws EditorNotFoundException {
+	public IEditorPart createEditorFor(MultiDiagramSharedObjects sharedObjects, Object model)
+			throws EditorNotFoundException {
 		for (NestedEditorDescriptor desc : getEditorDescriptors()) {
 			if (desc.isEditorFor(model)) {
 				return desc.createEditor(sharedObjects, model);
@@ -87,14 +89,16 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	 */
 	private void initializeEditorDescriptors() {
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				extensionPointNamespace, EDITOR_EXTENSION_ID);
 
 		for (IConfigurationElement ele : configElements) {
 			NestedEditorDescriptor desc;
 			try {
 				desc = ExtensionPointFactory.eINSTANCE.createNestedEditorDescriptor(ele);
 			} catch (ExtensionException e) {
-				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
+				Activator.getDefault().getLog()
+						.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
 				continue;
 			}
 			editorDescriptors.add(desc);

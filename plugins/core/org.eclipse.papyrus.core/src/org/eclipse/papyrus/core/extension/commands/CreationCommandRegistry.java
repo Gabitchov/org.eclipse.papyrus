@@ -78,6 +78,7 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 	 * 
 	 * @return the editor icon path
 	 */
+	// @unused
 	public String getIcon() {
 		return icon;
 	}
@@ -88,6 +89,7 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 	 * @param icon
 	 *            the icon path
 	 */
+	// @unused
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
@@ -99,7 +101,8 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 
 		creationCommandDescriptors = new HashMap<Object, CreationCommandDescriptor>();
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				extensionPointNamespace, EDITOR_EXTENSION_ID);
 
 		CreationCommandExtensionFactory extensionReader = new CreationCommandExtensionFactory();
 
@@ -111,11 +114,14 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 					creationCommandDescriptors.put(desc.commandId, desc);
 				}
 			} catch (ExtensionException e) {
-				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
-				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization creation command problem " + e);
+				Activator.getDefault().getLog()
+						.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
+				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this,
+						"Initialization creation command problem " + e);
 			}
 		}
-		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + creationCommandDescriptors.size() + " creationCommands loaded");
+		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + creationCommandDescriptors.size()
+				+ " creationCommands loaded");
 
 	}
 

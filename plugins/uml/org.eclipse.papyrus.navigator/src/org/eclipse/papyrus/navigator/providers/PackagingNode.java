@@ -17,12 +17,14 @@ import java.util.Collection;
  * An intermediate node for children grouping by type.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug
- *      #290422</a>
+ * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug #290422</a>
  */
 public class PackagingNode {
+
 	private String name;
+
 	private Object parent;
+
 	private Collection<Object> containedNodes = null;
 
 	public PackagingNode(String key, Object parent) {

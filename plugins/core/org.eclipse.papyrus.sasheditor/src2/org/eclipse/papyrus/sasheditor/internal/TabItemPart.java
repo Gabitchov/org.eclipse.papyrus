@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
 import org.eclipse.papyrus.sasheditor.internal.AbstractPart.GarbageState;
@@ -22,9 +22,9 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * A controller associated to a tabitem in a tabfolder. This controller contains a reference to
- * a PagePart.
- * This class is used exclusively by the TabFolderPart. It shoulb be not used from elsewhere.
+ * A controller associated to a tabitem in a tabfolder. This controller contains a reference to a
+ * PagePart. This class is used exclusively by the TabFolderPart. It shoulb be not used from
+ * elsewhere.
  * 
  * @author dumoulin
  * 
@@ -34,7 +34,7 @@ public class TabItemPart {
 	/**
 	 * The associated model TODO : change the type
 	 */
-//	protected Object model;
+	// protected Object model;
 
 	/**
 	 * The child assocciated to this tabitem. The child is rendered by the tabitem.
@@ -42,14 +42,14 @@ public class TabItemPart {
 	protected PagePart childPart;
 
 	/**
-	 * Parent owning this TabItem. Can be null if the Part is orphaned. Even if
-	 * it is orphaned, the SWT Item still set.
+	 * Parent owning this TabItem. Can be null if the Part is orphaned. Even if it is orphaned, the
+	 * SWT Item still set.
 	 */
 	protected TabFolderPart parent;
 
 	/**
-	 * The SWT item associated to this part. This item contains the control of the
-	 * associated editor.
+	 * The SWT item associated to this part. This item contains the control of the associated
+	 * editor.
 	 */
 	protected CTabItem control;
 
@@ -57,8 +57,8 @@ public class TabItemPart {
 	protected GarbageState garbageState;
 
 	/**
-	 * Constructor. 
-	 * Create a TabItem for the provided modelPart.
+	 * Constructor. Create a TabItem for the provided modelPart.
+	 * 
 	 * @param tabFolderPart
 	 * @param modelPart
 	 * @param index
@@ -66,7 +66,7 @@ public class TabItemPart {
 	public TabItemPart(TabFolderPart parent, PagePart modelPart, int index) {
 		this.parent = parent;
 		this.childPart = modelPart;
-		
+
 		createItemControl(index);
 	}
 
@@ -76,14 +76,13 @@ public class TabItemPart {
 	 * @param tabFolder
 	 * @param index
 	 */
-	public void createItemControl( int index) {
+	public void createItemControl(int index) {
 		// Create the item
 		CTabItem item = new CTabItem(getTabFolder(), SWT.NONE, index);
 		control = item;
-		if(childPart!=null)
-		{
+		if (childPart != null) {
 			item.setControl(childPart.getControl());
-		    refreshTabDecorations();
+			refreshTabDecorations();
 		}
 	}
 
@@ -104,14 +103,14 @@ public class TabItemPart {
 		childPart.orphan();
 		newChild.reparent(parent);
 		childPart = newChild;
-		setItemControl(childPart.getControl() );
-		
+		setItemControl(childPart.getControl());
+
 		refreshTabDecorations();
 	}
 
 	/**
-	 * Get the container of the Parent. This container is used as root of the
-	 * Controls associated to this editor.
+	 * Get the container of the Parent. This container is used as root of the Controls associated to
+	 * this editor.
 	 * 
 	 * @return
 	 */
@@ -131,9 +130,7 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Remove the TabPart. 
-	 * Dispose the associated SWT CTabItem.
-	 * (TODO Remove from the parent list.)
+	 * Remove the TabPart. Dispose the associated SWT CTabItem. (TODO Remove from the parent list.)
 	 * Orphan the associated ITilePart
 	 * 
 	 * @see
@@ -154,12 +151,11 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Set the item control. Setting the item control with the
-	 * control.setControl() method has a side effect: the previous control is
-	 * modified with previousControl.setVisible(false). This is annoying when
-	 * the previous control has already been attached to another parent. This
-	 * method take care to not change the visibility of the previous control if
-	 * it is detached from the item's parent.
+	 * Set the item control. Setting the item control with the control.setControl() method has a
+	 * side effect: the previous control is modified with previousControl.setVisible(false). This is
+	 * annoying when the previous control has already been attached to another parent. This method
+	 * take care to not change the visibility of the previous control if it is detached from the
+	 * item's parent.
 	 * 
 	 * @param newControl
 	 */
@@ -178,8 +174,9 @@ public class TabItemPart {
 			editorIsVisible = editorControl.getVisible();
 			// Detach the item's control
 			control.setControl(newControl);
-			if (editorIsVisible)
+			if (editorIsVisible) {
 				editorControl.setVisible(editorIsVisible);
+			}
 		} else {
 			// Not reattached, do nothing else
 			control.setControl(newControl);
@@ -187,16 +184,17 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Dispose the associated control.
-	 * Only dispose this tabitem, not the childpart.
+	 * Dispose the associated control. Only dispose this tabitem, not the childpart.
 	 */
+	// @unused
 	public void dispose() {
 		Control itemControl = control.getControl();
 		control.dispose();
 
 		// Dispose the inner control if any.
-		if (!itemControl.isDisposed())
+		if (!itemControl.isDisposed()) {
 			itemControl.dispose();
+		}
 
 		//
 		parent = null;
@@ -217,21 +215,22 @@ public class TabItemPart {
 	 * @param title
 	 */
 	private void setTabText(String title) {
-		if(title == null)
+		if (title == null) {
 			title = "";
+		}
 		control.setText(title);
 		control.setToolTipText(title);
 	}
 
 	/**
 	 * Return the associated EditorTile.
+	 * 
 	 * @return
 	 */
-	public PagePart getChildPart()
-	{
+	public PagePart getChildPart() {
 		return childPart;
 	}
-	
+
 	/**
 	 * Locates the part that intersects the given point and that have the expected type
 	 * 
@@ -239,26 +238,26 @@ public class TabItemPart {
 	 * @return
 	 */
 	public AbstractPart findPartAt(Point position, Class<?> expectedTileType) {
-		
-//		if(expectedTileType == this.getClass())
-//			return this;
-		
-		return childPart.findPartAt(position, expectedTileType);	
+
+		// if(expectedTileType == this.getClass())
+		// return this;
+
+		return childPart.findPartAt(position, expectedTileType);
 	}
 
-
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the visitor.
+	 * 
 	 * @param visitor
 	 * @return
 	 */
 	public void visit(IPartVisitor visitor) {
 		visitor.accept(this);
 	}
-	
+
 	/**
 	 * Visit the children of this Tile.
+	 * 
 	 * @param visitor
 	 */
 	public void visitChildren(IPartVisitor visitor) {
@@ -267,12 +266,12 @@ public class TabItemPart {
 
 	/**
 	 * Return true if this TabItem is for the specified rawModel.
+	 * 
 	 * @param curModel
 	 * @return
 	 */
 	public boolean isTabItemFor(Object rawModel) {
-		return rawModel.equals( getChildPart().getRawModel());
+		return rawModel.equals(getChildPart().getRawModel());
 	}
-
 
 }

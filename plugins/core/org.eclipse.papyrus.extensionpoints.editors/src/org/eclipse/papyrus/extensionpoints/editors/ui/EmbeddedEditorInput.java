@@ -17,16 +17,19 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
-
+// @unused
 public class EmbeddedEditorInput extends URIEditorInput {
 
 	/** current edited EObject */
 	private final EObject editedObject;
-	
+
 	/**
 	 * Creates a new EmbeddedEditorInput.
-	 * @param uri the uri of the file edited by the parent editor of the embedded editor
-	 * @param editedObject the current edited object
+	 * 
+	 * @param uri
+	 *            the uri of the file edited by the parent editor of the embedded editor
+	 * @param editedObject
+	 *            the current edited object
 	 */
 	public EmbeddedEditorInput(URI uri, EObject editedObject) {
 		super(uri);
@@ -35,6 +38,7 @@ public class EmbeddedEditorInput extends URIEditorInput {
 
 	/**
 	 * Returns the current edited object
+	 * 
 	 * @return the current edited object
 	 */
 	public EObject getEditedObject() {

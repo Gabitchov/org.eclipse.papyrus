@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.navigator.factory;
 
 import java.util.List;
@@ -21,58 +21,62 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.navigator.CommonNavigator;
 
-
 /**
  * A factory for creating Action objects from org.eclipse.jface.action
  */
 public interface IActionHandlerFactory {
-	
+
 	/**
 	 * Creates a new IActionHandler object.
 	 * 
-	 * @param editingDomain the editing domain
+	 * @param editingDomain
+	 *            the editing domain
 	 * 
 	 * @return the list of created actions
 	 */
 	List<Action> createActions(EditingDomain editingDomain);
-	
+
 	/**
 	 * Gets the actions.
 	 * 
 	 * @return the actions list
 	 */
 	List<Action> getActions();
-	
+
 	/**
 	 * Activate the action.
 	 * 
-	 * @param activeViewPart the active view part
+	 * @param activeViewPart
+	 *            the active view part
 	 */
 	void activate(CommonNavigator activeViewPart);
-	
+
 	/**
 	 * Deactivate the action.
 	 * 
-	 * @param activeViewPart the active view part
+	 * @param activeViewPart
+	 *            the active view part
 	 */
 	void deactivate(CommonNavigator activeViewPart);
-	
+
 	/**
 	 * Update action from the selection
 	 * 
-	 * @param structuredSelection the structured selection
+	 * @param structuredSelection
+	 *            the structured selection
 	 */
 	void update(IStructuredSelection structuredSelection);
-	
-	/** 
-     * Adds the applicable actions to a part's action bars,
-     * including setting any global action handlers.
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     * 
-     * @param actionBars the part's action bars
-     */
+
+	/**
+	 * Adds the applicable actions to a part's action bars, including setting any global action
+	 * handlers.
+	 * <p>
+	 * The default implementation does nothing.
+	 * </p>
+	 * 
+	 * @param actionBars
+	 *            the part's action bars
+	 */
 	void fillActionBars(IActionBars actionBars);
 
 }

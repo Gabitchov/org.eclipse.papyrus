@@ -94,8 +94,8 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the GradientPolicy Group. It contained a SWT.CHECK button to specify if the
-	 * gradient is used or not and a label.
+	 * Create the GradientPolicy Group. It contained a SWT.CHECK button to specify if the gradient
+	 * is used or not and a label.
 	 * 
 	 * @param parent
 	 *            the parent
@@ -104,12 +104,10 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 		// Create a label
 		getWidgetFactory().createCLabel(parent, Messages.GradientSection_Button_ActivateGradient);
-		
-		// Create the check button
-		policyButton = getWidgetFactory().createButton(parent,
-				"", SWT.CHECK); //$NON-NLS-1$
 
-		
+		// Create the check button
+		policyButton = getWidgetFactory().createButton(parent, "", SWT.CHECK); //$NON-NLS-1$
+
 		policyButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
@@ -146,7 +144,7 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 
 		// Create the label
 		getWidgetFactory().createCLabel(parent, Messages.GradientSection_Label_Transparency);
-		
+
 		// Create the Spinner
 		transparencyValueSpinner = new Spinner(parent, SWT.BORDER);
 		transparencyValueSpinner.setMinimum(0);
@@ -164,8 +162,8 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the color.  It is in charge of selecting the color used by the
-	 * gradient. It contained a label and the color button
+	 * Create the color. It is in charge of selecting the color used by the gradient. It contained a
+	 * label and the color button
 	 * 
 	 * @param parent
 	 *            the parent composite
@@ -190,8 +188,8 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 	}
 
 	/**
-	 * Create the style. It contained the component in charge of the style of the
-	 * gradient. Values available are GradientStyle.VERTICAL and GradientStyle.HORIZONTAL.
+	 * Create the style. It contained the component in charge of the style of the gradient. Values
+	 * available are GradientStyle.VERTICAL and GradientStyle.HORIZONTAL.
 	 * 
 	 * @param parent
 	 *            the parent composite
@@ -324,7 +322,7 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 			if (transparency != transparencyValueSpinner.getSelection()) {
 				transparencyValueSpinner.setSelection(transparency);
 			}
-		
+
 			setButtonImage(colorButton, gradientData.getGradientColor1());
 
 			if (horizontalStyle.getSelection() != (gradientData.getGradientStyle() == GradientStyle.HORIZONTAL)) {
@@ -416,7 +414,6 @@ public class GradientSection extends AbstractNotationPropertiesSection {
 		if (gradientData != null) {
 			value = new GradientData(gradientData);
 		}
-		updateFeature(NotationPackage.eINSTANCE.getFillStyle_Gradient(), value,
-				"Change Gradient command"); //$NON-NLS-1$
+		updateFeature(NotationPackage.eINSTANCE.getFillStyle_Gradient(), value, "Change Gradient command"); //$NON-NLS-1$
 	}
 }

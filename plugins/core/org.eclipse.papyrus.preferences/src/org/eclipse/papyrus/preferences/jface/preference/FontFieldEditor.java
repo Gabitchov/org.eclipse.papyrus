@@ -52,12 +52,15 @@ public class FontFieldEditor extends FieldEditor {
 	private Combo fontSizeCombo;
 
 	/** value changed string */
+	// @unused
 	static protected String VALUE_CHANGED_STRING = DiagramUIPropertiesMessages.AbstractPropertySection_UndoIntervalPropertyString;
 
 	/** properties */
+	// @unused
 	protected static final String FONT_COMMAND_NAME = DiagramUIPropertiesMessages.Font_commandText
 			+ StringStatics.SPACE + VALUE_CHANGED_STRING;
 
+	// @unused
 	protected static final String FONTS_AND_COLORS_LABEL = DiagramUIPropertiesMessages.FontAndColor_nameLabel;
 
 	private FontData fontData;

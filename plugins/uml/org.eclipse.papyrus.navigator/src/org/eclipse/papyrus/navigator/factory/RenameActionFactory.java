@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.navigator.factory;
 
 import java.util.LinkedList;
@@ -32,9 +32,9 @@ import org.eclipse.ui.navigator.CommonNavigator;
  * @author Emilien Perico
  */
 public class RenameActionFactory implements IActionHandlerFactory {
-	
+
 	protected List<Action> actions = new LinkedList<Action>();
-	
+
 	protected RenameNamedElementAction renameNamedElementAction;
 
 	/**
@@ -46,7 +46,7 @@ public class RenameActionFactory implements IActionHandlerFactory {
 		this.renameNamedElementAction = new RenameNamedElementAction(editingDomain);
 		this.renameNamedElementAction.setImageDescriptor(Activator.getImageDescriptor("icons/etool16/rename.gif"));
 		actions.add(renameNamedElementAction);
-		
+
 		return actions;
 	}
 
@@ -55,7 +55,7 @@ public class RenameActionFactory implements IActionHandlerFactory {
 	 */
 	public void activate(CommonNavigator activeViewPart) {
 		this.renameNamedElementAction.setActiveWorkbenchPart(activeViewPart);
-		
+
 		ISelectionProvider selectionProvider = null;
 		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
@@ -68,7 +68,7 @@ public class RenameActionFactory implements IActionHandlerFactory {
 	 */
 	public void deactivate(CommonNavigator activeViewPart) {
 		this.renameNamedElementAction.setActiveWorkbenchPart(null);
-		
+
 		ISelectionProvider selectionProvider = null;
 		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
@@ -96,5 +96,5 @@ public class RenameActionFactory implements IActionHandlerFactory {
 	public List<Action> getActions() {
 		return actions;
 	}
-	
+
 }

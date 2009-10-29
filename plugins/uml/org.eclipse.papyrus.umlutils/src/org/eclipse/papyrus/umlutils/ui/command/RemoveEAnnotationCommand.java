@@ -23,18 +23,22 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  */
 public class RemoveEAnnotationCommand extends org.eclipse.emf.transaction.RecordingCommand {
 
+	// @unused
 	public EModelElement getObject() {
 		return object;
 	}
 
+	// @unused
 	public void setObject(EModelElement object) {
 		this.object = object;
 	}
 
+	// @unused
 	public String getEAnnotationName() {
 		return eAnnotationName;
 	}
 
+	// @unused
 	public void setEAnnotationName(String annotationName) {
 		eAnnotationName = annotationName;
 	}

@@ -39,6 +39,7 @@ public class CreateChildActionProvider extends AbstractSubmenuActionProvider {
 
 	protected Map<String, Collection<IAction>> createChildSubmenuActions;
 
+	// @unused
 	protected IMenuManager createChildMenuManager;
 
 	/**

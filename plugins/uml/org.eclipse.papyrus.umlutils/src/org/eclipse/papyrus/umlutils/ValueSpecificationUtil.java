@@ -33,6 +33,7 @@ public class ValueSpecificationUtil {
 	 * 
 	 * @param specification
 	 */
+	// @unused
 	public static String getSpecificationValue(ValueSpecification specification) {
 		String value = ""; //$NON-NLS-1$
 
@@ -78,6 +79,7 @@ public class ValueSpecificationUtil {
 	 * @param value
 	 *            the value to set
 	 */
+	// @unused
 	public static void restoreSpecificationValue(ValueSpecification specification, String value) {
 		if (value == null) {
 			return;

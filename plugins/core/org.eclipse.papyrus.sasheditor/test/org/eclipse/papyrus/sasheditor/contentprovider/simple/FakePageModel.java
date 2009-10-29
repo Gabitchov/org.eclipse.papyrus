@@ -10,26 +10,27 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.contentprovider.simple;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * A fake page for testing purpose
+ * 
  * @author dumoulin
  */
 public class FakePageModel implements IPageModel {
 
 	String title;
-	static int count=0;
-	
+
+	static int count = 0;
+
 	public FakePageModel() {
-		title="noname"+count++;
+		title = "noname" + count++;
 	}
-	
+
 	/**
 	 * @param title
 	 */

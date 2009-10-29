@@ -34,10 +34,8 @@ public class CloseAllDiagramsAction extends Action {
 			throw new IllegalArgumentException("An IPageMngr must be specified");
 		}
 		this.pageMngr = pageMngr;
-		ISharedImages sharedImages = PlatformUI.getWorkbench()
-				.getSharedImages();
-		setImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
+		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
+		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
 		setText("Close all diagrams");
 		// this action is enabled when there is at least one diagram open.
 		boolean aDiagramIsOpen = false;

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.gef;
 
 import java.util.ArrayList;
@@ -45,7 +45,8 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 	protected IEditorPart rootEditor;
 
 	/**
-	 * Contains the {@link RetargetAction}s that are registered as global action handlers. We need to hold on to these so that we can remove them as PartListeners in dispose().
+	 * Contains the {@link RetargetAction}s that are registered as global action handlers. We need
+	 * to hold on to these so that we can remove them as PartListeners in dispose().
 	 */
 	private List<RetargetAction> retargetActions = new ArrayList<RetargetAction>();
 
@@ -63,10 +64,13 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 	}
 
 	/**
-	 * Indicates the existence of a global action identified by the specified key. This global action is defined outside the scope of this contributor, such as the Workbench's undo action, or an
-	 * action provided by a workbench ActionSet. The list of global action keys is used whenever the active editor is changed ({@link #setActiveEditor(IEditorPart)}). Keys provided here will result in
-	 * corresponding actions being obtained from the active editor's <code>ActionRegistry</code>, and those actions will be registered with the ActionBars for this contributor. The editor's action
-	 * handler and the global action must have the same key.
+	 * Indicates the existence of a global action identified by the specified key. This global
+	 * action is defined outside the scope of this contributor, such as the Workbench's undo action,
+	 * or an action provided by a workbench ActionSet. The list of global action keys is used
+	 * whenever the active editor is changed ({@link #setActiveEditor(IEditorPart)}). Keys provided
+	 * here will result in corresponding actions being obtained from the active editor's
+	 * <code>ActionRegistry</code>, and those actions will be registered with the ActionBars for
+	 * this contributor. The editor's action handler and the global action must have the same key.
 	 * 
 	 * @param key
 	 *            the key identifying the global action
@@ -76,8 +80,10 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 	}
 
 	/**
-	 * Adds the specified RetargetAction to this contributors <code>ActionRegistry</code>. The RetargetAction is also added as a <code>IPartListener</code> of the contributor's page. Also, the
-	 * retarget action's ID is flagged as a global action key, by calling {@link #addGlobalActionKey(String)}.
+	 * Adds the specified RetargetAction to this contributors <code>ActionRegistry</code>. The
+	 * RetargetAction is also added as a <code>IPartListener</code> of the contributor's page. Also,
+	 * the retarget action's ID is flagged as a global action key, by calling
+	 * {@link #addGlobalActionKey(String)}.
 	 * 
 	 * @param action
 	 *            the retarget action being added
@@ -95,15 +101,18 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 	protected abstract void buildActions();
 
 	/**
-	 * Subclasses must implement to declare additional global actions IDs. Only IDs which were not already added directly or indirectly using {@link #addGlobalActionKey(String)} need to be added.
+	 * Subclasses must implement to declare additional global actions IDs. Only IDs which were not
+	 * already added directly or indirectly using {@link #addGlobalActionKey(String)} need to be
+	 * added.
 	 * 
 	 * @see #addGlobalActionKey(String)
 	 */
 	protected abstract void declareGlobalActionKeys();
 
 	/**
-	 * Disposes the contributor. Removes all {@link RetargetAction}s that were {@link org.eclipse.ui.IPartListener}s on the {@link org.eclipse.ui.IWorkbenchPage} and disposes them. Also disposes the
-	 * action registry.
+	 * Disposes the contributor. Removes all {@link RetargetAction}s that were
+	 * {@link org.eclipse.ui.IPartListener}s on the {@link org.eclipse.ui.IWorkbenchPage} and
+	 * disposes them. Also disposes the action registry.
 	 * <P>
 	 * Subclasses may extend this method to perform additional cleanup.
 	 * 
@@ -124,7 +133,8 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 	}
 
 	/**
-	 * Retrieves an action from the action registry using the given ID. Lookup in both registries (root editor and current page)
+	 * Retrieves an action from the action registry using the given ID. Lookup in both registries
+	 * (root editor and current page)
 	 * 
 	 * @param id
 	 *            the ID of the sought action
@@ -154,14 +164,17 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 	}
 
 	/**
-	 * Sets the active page of the the multi-page editor to be the given editor. Redirect actions to the given editor if actions are not already being sent to it.
+	 * Sets the active page of the the multi-page editor to be the given editor. Redirect actions to
+	 * the given editor if actions are not already being sent to it.
 	 * <p>
-	 * This method is called whenever the page changes (from MultiPageEditorPart.pageChange(int)). Subclasses must implement this method to redirect actions to the given editor (if not already
+	 * This method is called whenever the page changes (from MultiPageEditorPart.pageChange(int)).
+	 * Subclasses must implement this method to redirect actions to the given editor (if not already
 	 * directed to it).
 	 * </p>
 	 * 
 	 * @param activeEditor
-	 *            the new active editor, or <code>null</code> if there is no active page, or if the active page does not have a corresponding editor
+	 *            the new active editor, or <code>null</code> if there is no active page, or if the
+	 *            active page does not have a corresponding editor
 	 */
 	public void setActivePage(IEditorPart editor) {
 		// switch the global action handlers:
@@ -185,7 +198,8 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 	}
 
 	/**
-	 * Connect the actions registered in the globalActionKeys. Lookup actions implementation in the rootEditor registry and in the current page registry.
+	 * Connect the actions registered in the globalActionKeys. Lookup actions implementation in the
+	 * rootEditor registry and in the current page registry.
 	 */
 	protected void connectActions() {
 		System.out.println("scribe.connectActions()");
@@ -193,7 +207,7 @@ public abstract class GefMultiPagesActionBarContributor extends MultiPageEditorA
 		Iterator<String> iter = globalActionKeys.iterator();
 		while (iter.hasNext()) {
 			String id = iter.next();
-			System.out.println("connect(" + id + ", " + getEditorAction(id) + ")" );
+			System.out.println("connect(" + id + ", " + getEditorAction(id) + ")");
 			bars.setGlobalActionHandler(id, getEditorAction(id));
 			bars.updateActionBars();
 		}

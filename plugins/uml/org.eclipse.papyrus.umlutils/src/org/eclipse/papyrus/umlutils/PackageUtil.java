@@ -89,7 +89,7 @@ public class PackageUtil {
 
 			Iterator<Profile> iter = subProfiles.iterator();
 			while (iter.hasNext()) {
-				Profile subProfile = (Profile) iter.next();
+				Profile subProfile = iter.next();
 				package_.applyProfile(subProfile);
 				importTypes(package_, subProfile);
 			}
@@ -182,6 +182,7 @@ public class PackageUtil {
 	 * @param thepackage
 	 *            profile to clean
 	 */
+	// @unused
 	public static void removeLastDefinition(Package thepackage) {
 		removeLastDefinition(thepackage, true);
 	}
@@ -240,7 +241,8 @@ public class PackageUtil {
 		assert name != null : "Type Name should not be null";
 
 		// update method to find a type by its name
-		// 1. find the direct accessible types (in the package and the imported elements)
+		// 1. find the direct accessible types (in the package and the imported
+		// elements)
 		// 2. find in the subpackages and their import
 		// 3. find in all resources
 
@@ -332,7 +334,9 @@ public class PackageUtil {
 		// get direct members
 		while (it.hasNext()) {
 			NamedElement element = it.next();
-			if ((element instanceof Type) /* && (!(element instanceof Relationship)) */) {
+			if ((element instanceof Type) /*
+										 * && (!(element instanceof Relationship))
+										 */) {
 				// Check for redundant type
 				// if (!umlTypeQNames.contains(element.getQualifiedName())) {
 				// /umlTypeQNames.add(element.getQualifiedName());
@@ -351,7 +355,8 @@ public class PackageUtil {
 				set.add(itParent.next());
 				// Type currentType = itParent.next();
 
-				// if (!umlTypeQNames.contains(currentType.getQualifiedName())) {
+				// if (!umlTypeQNames.contains(currentType.getQualifiedName()))
+				// {
 				// umlTypeQNames.add(currentType.getQualifiedName());
 				// set.add(currentType);
 				// }

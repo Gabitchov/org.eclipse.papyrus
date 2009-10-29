@@ -37,7 +37,7 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 
 	private static Map<String, AdapterFactory> factories = new HashMap<String, AdapterFactory>();
 
-	private static final String EXT_FACTORIES = "org.eclipse.emf.edit.itemProviderAdapterFactories";  //$NON-NLS-1$
+	private static final String EXT_FACTORIES = "org.eclipse.emf.edit.itemProviderAdapterFactories"; //$NON-NLS-1$
 
 	public EMFObjectLabelProvider() {
 		super(new ReflectiveItemProviderAdapterFactory());
@@ -55,11 +55,9 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 		if ("".equals(title)) { //$NON-NLS-1$
 			title = super.getText(eObject);
 		}
-		
+
 		return title;
 	}
-	
-	
 
 	@Override
 	public Image getImage(Object element) {
@@ -88,16 +86,14 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 		return eObject;
 	}
 
-	private IItemLabelProvider getItemLabelProvider(EObject eObject)
-	{
+	private IItemLabelProvider getItemLabelProvider(EObject eObject) {
 		IItemLabelProvider itemLabelProvider = null;
 		if (eObject != null) {
-			itemLabelProvider = (IItemLabelProvider) getEditFactory(eObject).adapt(eObject,
-					IItemLabelProviderClass);
+			itemLabelProvider = (IItemLabelProvider) getEditFactory(eObject).adapt(eObject, IItemLabelProviderClass);
 		}
-		return itemLabelProvider;	
+		return itemLabelProvider;
 	}
-	
+
 	/**
 	 * Gets the edit factory.
 	 * 

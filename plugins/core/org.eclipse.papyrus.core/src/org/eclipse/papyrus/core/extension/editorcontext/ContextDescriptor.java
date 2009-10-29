@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.editorcontext;
 
 import org.eclipse.papyrus.core.editor.BackboneException;
@@ -54,13 +54,16 @@ public class ContextDescriptor {
 			return context;
 
 		} catch (SecurityException e) {
-			// Lets propagate. This is an implementation problem that should be solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by
+			// programmer.
 			throw new RuntimeException(e);
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by
+			// programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by
+			// programmer.
 			throw new RuntimeException(e);
 		}
 	}

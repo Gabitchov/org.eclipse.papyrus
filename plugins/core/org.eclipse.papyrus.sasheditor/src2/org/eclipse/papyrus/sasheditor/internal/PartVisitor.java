@@ -10,19 +10,20 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
-
 
 /**
  * Visitor implementation allowing to visit the hierarchy of Parts.
+ * 
  * @author dumoulin
- *
+ * 
  */
 public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type, and then visit the childs..
+	 * 
 	 * @param folder
 	 */
 	public void accept(TabFolderPart part) {
@@ -33,6 +34,7 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type, and then visit the childs..
+	 * 
 	 * @param folder
 	 */
 	public void accept(RootPart part) {
@@ -43,6 +45,7 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type, and then visit the children..
+	 * 
 	 * @param folder
 	 */
 	public void accept(SashPanelPart part) {
@@ -53,6 +56,7 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type, and then visit the children..
+	 * 
 	 * @param folder
 	 */
 	public void accept(TabItemPart part) {
@@ -63,6 +67,7 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type, and then visit the children..
+	 * 
 	 * @param part
 	 */
 	public void accept(EditorPart part) {
@@ -70,9 +75,10 @@ public class PartVisitor implements IPartVisitor {
 		// Visit the children
 		part.visitChildren(this);
 	}
-	
+
 	/**
 	 * Visit the specified type, and then visit the children ..
+	 * 
 	 * @param part
 	 */
 	public void accept(ComponentPart part) {
@@ -81,11 +87,11 @@ public class PartVisitor implements IPartVisitor {
 		part.visitChildren(this);
 	}
 
-
 	// ----------------------------------------------
-	
+
 	/**
 	 * Visit the specified type.
+	 * 
 	 * @param part
 	 */
 	protected void acceptRootPart(RootPart part) {
@@ -93,6 +99,7 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type.
+	 * 
 	 * @param part
 	 */
 	protected void acceptSashPanelPart(SashPanelPart part) {
@@ -100,6 +107,7 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type.
+	 * 
 	 * @param part
 	 */
 	protected void acceptTabFolderPart(TabFolderPart part) {
@@ -107,6 +115,7 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type.
+	 * 
 	 * @param part
 	 */
 	protected void acceptTabItemPart(TabItemPart part) {
@@ -114,6 +123,7 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type.
+	 * 
 	 * @param part
 	 */
 	protected void acceptEditorTile(EditorPart part) {
@@ -121,10 +131,10 @@ public class PartVisitor implements IPartVisitor {
 
 	/**
 	 * Visit the specified type.
+	 * 
 	 * @param part
 	 */
 	protected void acceptEditorTile(ComponentPart part) {
 	}
-	
 
 }

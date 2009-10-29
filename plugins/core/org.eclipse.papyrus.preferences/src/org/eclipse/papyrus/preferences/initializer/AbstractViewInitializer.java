@@ -29,7 +29,7 @@ import org.eclipse.swt.graphics.RGB;
  * <p>
  * The following properties can be initialized :
  * <ul>
- * <li>{@link org.eclipse.gmf.runtime.notation.FontStyle#getFontName() <em>Font</em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.FontStyle#getFontName() <em>Font </em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.notation.FontStyle#getFontColor() <em>Font Color</em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.notation.LineStyle#getLineColor() <em>Line Color</em>}</li>
  * </ul>
@@ -40,10 +40,10 @@ import org.eclipse.swt.graphics.RGB;
 public abstract class AbstractViewInitializer {
 
 	/** The view to initialize */
-	private View view;
+	private final View view;
 
 	/** The preference store to use */
-	private IPreferenceStore store;
+	private final IPreferenceStore store;
 
 	/**
 	 * Constructor
@@ -64,6 +64,7 @@ public abstract class AbstractViewInitializer {
 	 * @param preferenceFontName
 	 *            the name of the preference where is stored the value of the font.
 	 */
+	// @unused
 	public void initFont(String preferenceFontName) {
 		FontStyle fontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
 
@@ -86,6 +87,7 @@ public abstract class AbstractViewInitializer {
 	 * @param preferenceFontColorName
 	 *            the name of the preference where is stored the value of the color.
 	 */
+	// @unused
 	public void initFontColor(String preferenceFontColorName) {
 		FontStyle fontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
 
@@ -102,6 +104,7 @@ public abstract class AbstractViewInitializer {
 	 * @param preferenceLineColorName
 	 *            the name of the preference where is stored the value of the color.
 	 */
+	// @unused
 	public void initLineColor(String preferenceLineColorName) {
 		LineStyle lineStyle = (LineStyle) view.getStyle(NotationPackage.Literals.LINE_STYLE);
 		if (lineStyle != null) {

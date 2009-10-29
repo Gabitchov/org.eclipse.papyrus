@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 /**
@@ -19,10 +19,11 @@ package org.eclipse.papyrus.sasheditor.sash;
  * @author dumoulin
  * 
  */
-public interface ITilePartFactory <T> {
+public interface ITilePartFactory<T> {
 
 	/**
-	 * Create the ITilePart node suitable for the specified model. The node is attached to the specified parent.
+	 * Create the ITilePart node suitable for the specified model. The node is attached to the
+	 * specified parent.
 	 * 
 	 * @param parent
 	 * @param model

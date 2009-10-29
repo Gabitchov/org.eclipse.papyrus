@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -77,6 +77,7 @@ public class ExtensionException extends BackboneException {
 	 *            the configuration element corresponding to the extension
 	 * @return a string containing the name of the plugin and the name of the extension
 	 */
+	// @unused
 	protected static String declaringExtensionToString(IConfigurationElement element) {
 		return "plugin:" + element.getContributor().getName() + " extension:" + element.getName();
 	}

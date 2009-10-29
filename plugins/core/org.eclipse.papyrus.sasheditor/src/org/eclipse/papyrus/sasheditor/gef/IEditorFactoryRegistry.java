@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.gef;
 
 import org.eclipse.papyrus.sasheditor.extension.MultiDiagramSharedObjects;
@@ -21,6 +21,7 @@ import org.eclipse.ui.IEditorPart;
  * 
  * @author dumoulin TODO move this to extension.
  */
+// @unused
 public interface IEditorFactoryRegistry {
 
 	/**
@@ -29,6 +30,8 @@ public interface IEditorFactoryRegistry {
 	 * @throws EditorNotFoundException
 	 *             No editor handling the model can be found.
 	 */
-	public IEditorPart createEditorFor(MultiDiagramSharedObjects sharedObjects, Object model) throws EditorNotFoundException;
+	// @unused
+	public IEditorPart createEditorFor(MultiDiagramSharedObjects sharedObjects, Object model)
+			throws EditorNotFoundException;
 
 }

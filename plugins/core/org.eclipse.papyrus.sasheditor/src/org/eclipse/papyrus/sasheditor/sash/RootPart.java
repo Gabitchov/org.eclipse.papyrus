@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 import org.eclipse.swt.graphics.Point;
@@ -19,18 +19,19 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 
 /**
- * Part used as root. This is the one with no parent and no model. This class is intended for local use only.
+ * Part used as root. This is the one with no parent and no model. This class is intended for local
+ * use only.
  * 
  * @author dumoulin
  * 
- * @param T Common ancestor for the model provided for the sash windows by the application. 
- * This is the type used externally by the application. Sash implementation don't use this type,
- * it just carry it to ask for the appropriate wrapper. Concrete implementation can specify 
- * a type.
-
+ * @param T
+ *            Common ancestor for the model provided for the sash windows by the application. This
+ *            is the type used externally by the application. Sash implementation don't use this
+ *            type, it just carry it to ask for the appropriate wrapper. Concrete implementation can
+ *            specify a type.
  */
 @SuppressWarnings("restriction")
-public class RootPart <T> implements ITilePart <T> {
+public class RootPart<T> implements ITilePart<T> {
 
 	/** The SWT container used as parent of all */
 	protected Composite rootContainer;
@@ -107,12 +108,14 @@ public class RootPart <T> implements ITilePart <T> {
 		T newModel = model.getSashWindowsModelRoot();
 
 		// Check if old child exist
-		// If exist, check if the current part is associated to the checked model
+		// If exist, check if the current part is associated to the checked
+		// model
 		// 
 		if (child != null) {
 			// If the tile is already for the model, there is nothing to do.
-			if (child.isTilePartFor(newModel))
+			if (child.isTilePartFor(newModel)) {
 				return;
+			}
 			// The current tile is not for the model: mark it as orphan
 			child.orphan();
 		}
@@ -154,6 +157,7 @@ public class RootPart <T> implements ITilePart <T> {
 
 	/**
 	 * Get the factory used to create part from an object model.
+	 * 
 	 * @return
 	 */
 	private ITilePartFactory<T> getTilePartFactory() {
@@ -165,8 +169,9 @@ public class RootPart <T> implements ITilePart <T> {
 	 */
 	public void dispose(boolean isRecursive) {
 
-		if (isRecursive)
+		if (isRecursive) {
 			child.dispose(true);
+		}
 	}
 
 	/**
@@ -216,7 +221,8 @@ public class RootPart <T> implements ITilePart <T> {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object, org.eclipse.papyrus.sasheditor.sash.TabFolderPart, org.eclipse.swt.graphics.Point)
+	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object,
+	 *      org.eclipse.papyrus.sasheditor.sash.TabFolderPart, org.eclipse.swt.graphics.Point)
 	 */
 	public IDropTarget getDropTarget(Object draggedObject, TabFolderPart<T> sourcePart, Point position) {
 		return child.getDropTarget(draggedObject, sourcePart, position);
@@ -263,6 +269,7 @@ public class RootPart <T> implements ITilePart <T> {
 	/**
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#setParentPartContainer(org.eclipse.papyrus.sasheditor.sash.TilePartContainer)
 	 */
+	// @unused
 	public void setParentPartContainer(TilePartContainer<T> rootContainer) {
 
 	}
@@ -275,33 +282,30 @@ public class RootPart <T> implements ITilePart <T> {
 	}
 
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the visitor.
+	 * 
 	 * @param visitor
 	 * @return
 	 */
 	public void visit(ITileVisitor visitor) {
 		visitor.accept(this);
 	}
-	
+
 	/**
 	 * Visit the children of this Tile.
+	 * 
 	 * @param visitor
 	 */
 	public void visitChildren(ITileVisitor visitor) {
 		child.visit(visitor);
 	}
-	
+
 	/**
 	 * Show tile status.
 	 */
-	protected void showStatus()
-	{
-		System.out.println( "rootPart (1)" 
-				+ ", disposed=" + rootContainer.isDisposed()
-				+ ", visible=" + rootContainer.isVisible()
-				+ ", " + this);
+	protected void showStatus() {
+		System.out.println("rootPart (1)" + ", disposed=" + rootContainer.isDisposed() + ", visible="
+				+ rootContainer.isVisible() + ", " + this);
 	}
-
 
 }

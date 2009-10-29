@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.sasheditor.contentprovider.di;
 
@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
 
-
 /**
  * @author cedric dumoulin
  */
@@ -36,7 +35,7 @@ public class DiSashModelMngrTest extends TestCase {
 	 * A fake factory for testing.
 	 */
 	protected IPageModelFactory fakeModelFactory;
-	
+
 	/**
 	 * @param name
 	 */
@@ -46,7 +45,7 @@ public class DiSashModelMngrTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
-	 *
+	 * 
 	 * @throws java.lang.Exception
 	 */
 	protected void setUp() throws Exception {
@@ -56,7 +55,7 @@ public class DiSashModelMngrTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#tearDown()
-	 *
+	 * 
 	 * @throws java.lang.Exception
 	 */
 	protected void tearDown() throws Exception {
@@ -66,7 +65,7 @@ public class DiSashModelMngrTest extends TestCase {
 	protected Resource createDiSashModelResource() {
 		// Create di resource
 		ResourceSet resourceSet = new ResourceSetImpl();
-		
+
 		// Register the default resource factory -- only needed for stand-alone!
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
 				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
@@ -77,79 +76,88 @@ public class DiSashModelMngrTest extends TestCase {
 		Resource diResource = resourceSet.createResource(fileURI);
 		return diResource;
 	}
-	
+
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory)}
+	 * .
 	 */
 	public void testDiSashModelMngrIPageModelFactory() {
 
-       DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
-       
-       assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
-       assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
-       assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
-       assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
-       // 
+		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
+
+		assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
+		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
+		assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
+		assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
+		// 
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory, org.eclipse.emf.ecore.resource.Resource)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory, org.eclipse.emf.ecore.resource.Resource)}
+	 * .
 	 */
 	public void testDiSashModelMngrIPageModelFactoryResource() {
 		Resource resource = createDiSashModelResource();
-		
-	       DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory, resource);
-	       
-	       assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
-	       assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
-	       assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
-	       assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
-	       // Check resource
-	       
-	       assertNotNull("model attached to resource", lookupSashModel(resource));
-	       
+
+		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory, resource);
+
+		assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
+		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
+		assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
+		assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
+		// Check resource
+
+		assertNotNull("model attached to resource", lookupSashModel(resource));
+
 	}
 
-	
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory, org.eclipse.papyrus.sashwindows.di.DiSashModel)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory, org.eclipse.papyrus.sashwindows.di.DiSashModel)}
+	 * .
 	 */
 	public void testDiSashModelMngrIPageModelFactoryDiSashModel() {
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
-		
-	       DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory, diSashModel);
-	       
-	       assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
-	       assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
-	       assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
-	       assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
+
+		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory, diSashModel);
+
+		assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
+		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
+		assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
+		assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getIPageMngr()}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getIPageMngr()}.
 	 */
 	public void testGetIPageMngr() {
-	       DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
-	       
-	       assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
+		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
+
+		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getISashWindowsContentProvider()}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getISashWindowsContentProvider()}
+	 * .
 	 */
 	public void testGetISashWindowsContentProvider() {
-	       DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
-	       
-	       assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
+		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
+
+		assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
 	}
 
 	/**
 	 * Lookup for the SashModel object in the resource
+	 * 
 	 * @param diResource
 	 * @return
 	 */
 	private SashWindowsMngr lookupSashModel(Resource diResource) {
-		
+
 		return DiUtils.lookupSashWindowsMngr(diResource);
 	}
 

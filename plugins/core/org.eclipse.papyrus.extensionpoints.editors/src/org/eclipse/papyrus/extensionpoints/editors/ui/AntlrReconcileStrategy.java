@@ -66,93 +66,98 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 
 		/**
 		 * Initializes this collector with the given annotation model.
-		 * @param annotationModel the annotation model
+		 * 
+		 * @param annotationModel
+		 *            the annotation model
 		 */
 		public ProblemCollector(IAnnotationModel annotationModel) {
 			Assert.isLegal(annotationModel != null);
-			fAnnotationModel= annotationModel;
+			fAnnotationModel = annotationModel;
 			if (fAnnotationModel instanceof ISynchronizable)
-				fLockObject= ((ISynchronizable)fAnnotationModel).getLockObject();
+				fLockObject = ((ISynchronizable) fAnnotationModel).getLockObject();
 			else
-				fLockObject= fAnnotationModel;
+				fLockObject = fAnnotationModel;
 		}
 
 		public void accept(Throwable exception) {
-			if(exception instanceof RecognitionException) {
-				fAddAnnotations.put(new ErrorAnnotation(false, exception.getLocalizedMessage()), new Position(((RecognitionException)exception).token.getCharPositionInLine(), ((RecognitionException)exception).token.getText().length()));
+			if (exception instanceof RecognitionException) {
+				fAddAnnotations.put(new ErrorAnnotation(false, exception.getLocalizedMessage()), new Position(
+						((RecognitionException) exception).token.getCharPositionInLine(),
+						((RecognitionException) exception).token.getText().length()));
 			}
 		}
-		
-		public void accept(IStatus status ) {
+
+		public void accept(IStatus status) {
 			// parse the message of the status to get the line number and position
 			Throwable exception = status.getException();
-			
-			if(exception instanceof MismatchedTokenException) {
-				addErrorAnnotation((MismatchedTokenException)exception);
-			}else if(exception instanceof NoViableAltException) {
-				addErrorAnnotation((NoViableAltException)exception);
-			} else if(exception instanceof RecognitionException) {
-				addErrorAnnotation((RecognitionException)exception);
-			}  
-			
+
+			if (exception instanceof MismatchedTokenException) {
+				addErrorAnnotation((MismatchedTokenException) exception);
+			} else if (exception instanceof NoViableAltException) {
+				addErrorAnnotation((NoViableAltException) exception);
+			} else if (exception instanceof RecognitionException) {
+				addErrorAnnotation((RecognitionException) exception);
+			}
+
 		}
-		
+
 		protected Object addErrorAnnotation(RecognitionException exception) {
 			int offset = exception.token.getCharPositionInLine();
 			String value = exception.token.getText();
-			int length = (value!=null) ? value.length() : 0;
+			int length = (value != null) ? value.length() : 0;
 			StringBuffer buffer = new StringBuffer();
 			buffer.append('[');
 			buffer.append(offset);
 			buffer.append(',');
-			buffer.append(offset+length);
+			buffer.append(offset + length);
 			buffer.append("] ");
-			return fAddAnnotations.put(new ErrorAnnotation(true, buffer.toString()+ exception), new Position(offset, length ));
+			return fAddAnnotations.put(new ErrorAnnotation(true, buffer.toString() + exception), new Position(offset,
+					length));
 		}
 
 		protected Object addErrorAnnotation(MismatchedTokenException exception) {
 			int offset = exception.token.getCharPositionInLine();
 			String value = exception.token.getText();
-			int length = (value!=null) ? value.length() : 0;
+			int length = (value != null) ? value.length() : 0;
 			StringBuffer buffer = new StringBuffer();
 			buffer.append('[');
 			buffer.append(offset);
 			buffer.append(',');
-			buffer.append(offset+length);
+			buffer.append(offset + length);
 			buffer.append("] ");
 			buffer.append("Found \'");
 			buffer.append(value);
 			buffer.append("\' ");
 			buffer.append("excepting ");
 			buffer.append(exception.expecting);
-			
-			return fAddAnnotations.put(new ErrorAnnotation(true, buffer.toString()), new Position(offset, length ));
+
+			return fAddAnnotations.put(new ErrorAnnotation(true, buffer.toString()), new Position(offset, length));
 		}
-		
+
 		protected Object addErrorAnnotation(NoViableAltException exception) {
 			int offset = exception.token.getCharPositionInLine();
 			String value = exception.token.getText();
-			int length = (value!=null) ? value.length() : 0;
+			int length = (value != null) ? value.length() : 0;
 			StringBuffer buffer = new StringBuffer();
 			buffer.append('[');
 			buffer.append(offset);
 			buffer.append(',');
-			buffer.append(offset+length);
+			buffer.append(offset + length);
 			buffer.append("] ");
 			buffer.append("Found \'");
 			buffer.append(value);
 			buffer.append("\' ");
 			buffer.append("Excepting ");
 			buffer.append(exception.grammarDecisionDescription);
-			
-			return fAddAnnotations.put(new ErrorAnnotation(true, buffer.toString()), new Position(offset, length ));
+
+			return fAddAnnotations.put(new ErrorAnnotation(true, buffer.toString()), new Position(offset, length));
 		}
 
 		/*
 		 * @see org.eclipse.ui.texteditor.spelling.ISpellingProblemCollector#beginCollecting()
 		 */
 		public void beginCollecting() {
-			fAddAnnotations= new HashMap();
+			fAddAnnotations = new HashMap();
 		}
 
 		/*
@@ -160,36 +165,37 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 		 */
 		public void endCollecting() {
 
-			List toRemove= new ArrayList();
+			List toRemove = new ArrayList();
 
 			synchronized (fLockObject) {
-				Iterator iter= fAnnotationModel.getAnnotationIterator();
+				Iterator iter = fAnnotationModel.getAnnotationIterator();
 				while (iter.hasNext()) {
-					Annotation annotation= (Annotation)iter.next();
+					Annotation annotation = (Annotation) iter.next();
 					if (ErrorAnnotation.TYPE.equals(annotation.getType()))
 						toRemove.add(annotation);
 				}
-				Annotation[] annotationsToRemove= (Annotation[])toRemove.toArray(new Annotation[toRemove.size()]);
+				Annotation[] annotationsToRemove = (Annotation[]) toRemove.toArray(new Annotation[toRemove.size()]);
 
 				if (fAnnotationModel instanceof IAnnotationModelExtension)
-					((IAnnotationModelExtension)fAnnotationModel).replaceAnnotations(annotationsToRemove, fAddAnnotations);
+					((IAnnotationModelExtension) fAnnotationModel).replaceAnnotations(annotationsToRemove,
+							fAddAnnotations);
 				else {
-					for (int i= 0; i < annotationsToRemove.length; i++)
+					for (int i = 0; i < annotationsToRemove.length; i++)
 						fAnnotationModel.removeAnnotation(annotationsToRemove[i]);
-					for (iter= fAddAnnotations.keySet().iterator(); iter.hasNext();) {
-						Annotation annotation= (Annotation)iter.next();
-						fAnnotationModel.addAnnotation(annotation, (Position)fAddAnnotations.get(annotation));
+					for (iter = fAddAnnotations.keySet().iterator(); iter.hasNext();) {
+						Annotation annotation = (Annotation) iter.next();
+						fAnnotationModel.addAnnotation(annotation, (Position) fAddAnnotations.get(annotation));
 					}
 				}
 			}
 
-			fAddAnnotations= null;
+			fAddAnnotations = null;
 		}
 	}
 
-
 	/** Text content type */
-	private static final IContentType TEXT_CONTENT_TYPE= Platform.getContentTypeManager().getContentType(IContentTypeManager.CT_TEXT);
+	private static final IContentType TEXT_CONTENT_TYPE = Platform.getContentTypeManager().getContentType(
+			IContentTypeManager.CT_TEXT);
 
 	/** The text editor to operate on. */
 	private ISourceViewer viewer;
@@ -210,14 +216,16 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 	/**
 	 * Creates a new comment reconcile strategy.
 	 * 
-	 * @param viewer the source viewer
-	 * @param spellingService the spelling service to use
+	 * @param viewer
+	 *            the source viewer
+	 * @param spellingService
+	 *            the spelling service to use
 	 */
 	public AntlrReconcileStrategy(ISourceViewer viewer, IModelGenerator modelGenerator) {
 		Assert.isNotNull(viewer);
-		this.viewer= viewer;
+		this.viewer = viewer;
 		this.modelGenerator = modelGenerator;
-		fSpellingContext= new SpellingContext();
+		fSpellingContext = new SpellingContext();
 		fSpellingContext.setContentType(getContentType());
 
 	}
@@ -230,14 +238,17 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.eclipse.jface.text.reconciler.DirtyRegion,org.eclipse.jface.text.IRegion)
+	 * @seeorg.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.eclipse.jface.text.
+	 * reconciler.DirtyRegion,org.eclipse.jface.text.IRegion)
 	 */
 	public void reconcile(DirtyRegion dirtyRegion, IRegion subRegion) {
 		reconcile(new Region(0, document.getLength()));
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.eclipse.jface.text.IRegion)
+	 * @see
+	 * org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.eclipse.jface.text.IRegion
+	 * )
 	 */
 	public void reconcile(final IRegion region) {
 		if (getAnnotationModel() == null)
@@ -246,18 +257,19 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 		// launch the validation using ANTLR
 		try {
 			problemCollector.beginCollecting();
-			ISafeRunnable runnable= new ISafeRunnable() {
+			ISafeRunnable runnable = new ISafeRunnable() {
+
 				public void run() throws Exception {
 
 					// here, launch check on document
 					String text = document.get(region.getOffset(), region.getLength());
 					IStatus status = modelGenerator.validate(text);
-					if(!status.isOK()) {
-						if(!status.isMultiStatus()) {
+					if (!status.isOK()) {
+						if (!status.isMultiStatus()) {
 							problemCollector.accept(status);
 						} else {
-							IStatus[] children = ((MultiStatus)status).getChildren();
-							for(IStatus child : children ) {
+							IStatus[] children = ((MultiStatus) status).getChildren();
+							for (IStatus child : children) {
 								problemCollector.accept(child);
 							}
 						}
@@ -265,6 +277,7 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 					}
 
 				}
+
 				public void handleException(Throwable x) {
 				}
 			};
@@ -276,9 +289,9 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 
 	/**
 	 * Returns the content type of the underlying editor input.
-	 *
-	 * @return the content type of the underlying editor input or
-	 *         <code>null</code> if none could be determined
+	 * 
+	 * @return the content type of the underlying editor input or <code>null</code> if none could be
+	 *         determined
 	 */
 	protected IContentType getContentType() {
 		return TEXT_CONTENT_TYPE;
@@ -286,6 +299,7 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 
 	/**
 	 * Returns the document which is checked.
+	 * 
 	 * @return the document on which the check is run
 	 */
 	protected final IDocument getDocument() {
@@ -293,25 +307,25 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 	}
 
 	/**
-	 * Tells this reconciling strategy on which document it will
-	 * work. This method will be called before any other method
-	 * and can be called multiple times. The regions passed to the
-	 * other methods always refer to the most recent document
-	 * passed into this method.
-	 *
-	 * @param document the document on which this strategy will work
+	 * Tells this reconciling strategy on which document it will work. This method will be called
+	 * before any other method and can be called multiple times. The regions passed to the other
+	 * methods always refer to the most recent document passed into this method.
+	 * 
+	 * @param document
+	 *            the document on which this strategy will work
 	 */
 	public void setDocument(IDocument document) {
-		this.document= document;
+		this.document = document;
 		problemCollector = createProblemCollector();
 	}
 
 	/**
 	 * Creates a new problem collector.
+	 * 
 	 * @return the collector or <code>null</code> if none is available
 	 */
 	protected ProblemCollector createProblemCollector() {
-		IAnnotationModel model= getAnnotationModel();
+		IAnnotationModel model = getAnnotationModel();
 		if (model == null) {
 			return null;
 		}
@@ -319,19 +333,21 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 	}
 
 	/**
-	 * Tells this reconciling strategy with which progress monitor
-	 * it will work. This method will be called before any other
-	 * method and can be called multiple times.
-	 * @param monitor the progress monitor with which this strategy will work
+	 * Tells this reconciling strategy with which progress monitor it will work. This method will be
+	 * called before any other method and can be called multiple times.
+	 * 
+	 * @param monitor
+	 *            the progress monitor with which this strategy will work
 	 */
 	public final void setProgressMonitor(IProgressMonitor monitor) {
-		progressMonitor= monitor;
+		progressMonitor = monitor;
 	}
 
 	/**
 	 * Returns the annotation model to be used by this reconcile strategy.
-	 * @return the annotation model of the underlying editor input or
-	 *         <code>null</code> if none could be determined
+	 * 
+	 * @return the annotation model of the underlying editor input or <code>null</code> if none
+	 *         could be determined
 	 */
 	protected IAnnotationModel getAnnotationModel() {
 		return viewer.getAnnotationModel();

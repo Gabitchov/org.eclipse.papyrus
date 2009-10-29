@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 import java.util.logging.Logger;
@@ -20,14 +20,17 @@ import org.eclipse.papyrus.sasheditor.sash.TabFolderPart.ITabFolderModel;
 
 /**
  * Used to create part associated to diagram node.
- * @param T Common ancestor for the model provided for the sash windows by the application. 
- * This is the type used externally by the application. Sash implementation don't use this type,
- * it just carry it to ask for the appropriate wrapper. Concrete implementation can specify 
- * a type.
+ * 
+ * @param T
+ *            Common ancestor for the model provided for the sash windows by the application. This
+ *            is the type used externally by the application. Sash implementation don't use this
+ *            type, it just carry it to ask for the appropriate wrapper. Concrete implementation can
+ *            specify a type.
  */
 public class TilePartFactory<T> implements ITilePartFactory<T> {
 
 	/** Log object */
+	// @unused
 	Logger log = Logger.getLogger(getClass().getName());
 
 	/**

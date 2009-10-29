@@ -33,6 +33,7 @@ public class ElementUtil {
 	 *            The name of the stereotype to find.
 	 * @return the Stereotype application EObject.
 	 */
+	// @unused
 	public static EObject hasStereotype(Element elt, EClass stereotypeClass) {
 		EObject stereotypeApplication = null;
 
@@ -204,6 +205,7 @@ public class ElementUtil {
 	 *            the element for which shape are searched
 	 * @return <code>true</code> if shape were found
 	 */
+	// @unused
 	public static boolean hasShapes(Element element) {
 		if (!element.getAppliedStereotypes().isEmpty()) {
 			return hasShapes(element, element.getAppliedStereotypes().get(0));

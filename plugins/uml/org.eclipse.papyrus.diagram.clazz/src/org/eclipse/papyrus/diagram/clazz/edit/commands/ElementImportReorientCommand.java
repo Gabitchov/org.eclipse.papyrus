@@ -153,6 +153,7 @@ public class ElementImportReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	// @unused
 	protected PackageableElement getOldTarget() {
 		return (PackageableElement) oldEnd;
 	}

@@ -18,8 +18,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
- * An {@link Action} that allows searching elements in the
- * {@link ModelNavigator} by their name.
+ * An {@link Action} that allows searching elements in the {@link ModelNavigator} by their name.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es>Francisco Javier Cano Muñoz</a>
  * 
@@ -40,10 +39,8 @@ public class SearchElementAction extends Action {
 
 	@Override
 	public void run() {
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-				.getShell();
-		NavigatorSearchDialog dialog = new NavigatorSearchDialog(shell,
-				navigator);
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		NavigatorSearchDialog dialog = new NavigatorSearchDialog(shell, navigator);
 		dialog.open();
 
 	}

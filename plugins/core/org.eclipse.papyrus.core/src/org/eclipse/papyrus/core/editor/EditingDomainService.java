@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.editor;
 
 import java.util.EventObject;
@@ -27,25 +27,26 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 
-
 /**
  * Initialize editing domain.
  * 
- *
+ * 
  */
-public class EditingDomainService implements CommandStackListener, org.eclipse.emf.common.command.CommandStackListener{
+public class EditingDomainService implements CommandStackListener, org.eclipse.emf.common.command.CommandStackListener {
 
 	/**
 	 * undo context.
 	 */
 	private IUndoContext undoContext;
-	private BackboneContext defaultContext;
-	private CommandStackListener commandStackListener;
-	/** gmf editing domain shared among all gmf editors */
-//	private DiagramEditDomain diagramEditDomain;
 
-	
-    /**
+	private final BackboneContext defaultContext;
+
+	private CommandStackListener commandStackListener;
+
+	/** gmf editing domain shared among all gmf editors */
+	// private DiagramEditDomain diagramEditDomain;
+
+	/**
 	 * @param defaultContext
 	 * @param commandStackListener
 	 */
@@ -54,15 +55,15 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 		configureDiagramEditDomain();
 	}
 
-//	/**
-//	 * Sets the default edit domain, shared among all editors
-//	 * 
-//	 * @param diagramEditDomain
-//	 *            the diagramEditDomain to set
-//	 */
-//	public void setDiagramEditDomain(DiagramEditDomain diagramEditDomain) {
-//		this.diagramEditDomain = diagramEditDomain;
-//	}
+	// /**
+	// * Sets the default edit domain, shared among all editors
+	// *
+	// * @param diagramEditDomain
+	// * the diagramEditDomain to set
+	// */
+	// public void setDiagramEditDomain(DiagramEditDomain diagramEditDomain) {
+	// this.diagramEditDomain = diagramEditDomain;
+	// }
 
 	/**
 	 * {@inheritDoc}
@@ -71,17 +72,16 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 		return defaultContext.getDiagramEditDomain();
 	}
 
-
 	/**
-	 * @overridable
-	 * TODO move it to GmfContext ?
+	 * @overridable TODO move it to GmfContext ?
 	 */
 	protected ActionManager createActionManager() {
 		return new ActionManager(createOperationHistory());
 	}
 
 	/**
-	 * Gets the action manager for this diagram editor. The action manager's command manager is used by my edit domain's command stack when executing commands. This is the action manager that is
+	 * Gets the action manager for this diagram editor. The action manager's command manager is used
+	 * by my edit domain's command stack when executing commands. This is the action manager that is
 	 * returned when I am asked to adapt to an <code>ActionManager</code>.
 	 * 
 	 * @return the action manager
@@ -93,8 +93,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	/**
 	 * Create my operation history.
 	 * 
-	 * @return my operation history
-	 * TODO move it to GmfContext ?
+	 * @return my operation history TODO move it to GmfContext ?
 	 */
 	protected IOperationHistory createOperationHistory() {
 		return OperationHistoryFactory.getOperationHistory();
@@ -103,8 +102,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	/**
 	 * Gets my undo context. Lazily initializes my undo context if it has not been set.
 	 * 
-	 * @return my undo context
-	 * TODO move it to GmfContext ?
+	 * @return my undo context TODO move it to GmfContext ?
 	 */
 	protected IUndoContext getUndoContext() {
 
@@ -167,25 +165,27 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	}
 
 	/**
-	 * Add  a command stack listener. 
-	 * Actual implementation only allows one listener. If we need more listener, change the implementation to allow it.
+	 * Add a command stack listener. Actual implementation only allows one listener. If we need more
+	 * listener, change the implementation to allow it.
+	 * 
 	 * @param listener
 	 */
-	public void addCommandStackListener(CommandStackListener listener)
-	{
-		assert( this.commandStackListener == null);
+	public void addCommandStackListener(CommandStackListener listener) {
+		assert (this.commandStackListener == null);
 		this.commandStackListener = listener;
 	}
-	
+
 	/**
 	 * Remove the specified command stack listener.
+	 * 
 	 * @param listener
 	 */
-	public void removeCommandStackListener(CommandStackListener listener)
-	{
-		if(this.commandStackListener == listener)
+	public void removeCommandStackListener(CommandStackListener listener) {
+		if (this.commandStackListener == listener) {
 			this.commandStackListener = null;
+		}
 	}
+
 	/**
 	 * Relay the event from the stack to the listeners.
 	 * 
@@ -194,6 +194,5 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	public void commandStackChanged(EventObject event) {
 		commandStackListener.commandStackChanged(event);
 	}
-
 
 }

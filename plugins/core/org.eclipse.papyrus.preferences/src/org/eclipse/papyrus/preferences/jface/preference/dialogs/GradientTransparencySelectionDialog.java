@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.Spinner;
  * 
  * @author tlandre
  */
+// @unused
 public class GradientTransparencySelectionDialog extends GradientSelectionDialog {
 
 	/**
@@ -54,6 +55,7 @@ public class GradientTransparencySelectionDialog extends GradientSelectionDialog
 	 * @param transparency
 	 *            the transparency of the gradient. It is ignored if not within [0, 100] range
 	 */
+	// @unused
 	public GradientTransparencySelectionDialog(Shell parent, int style, RGB initColor1, RGB initColor2,
 			int defaultGradientStyle, int transparency) {
 		super(parent, style, initColor1, initColor2, defaultGradientStyle, transparency);
@@ -70,6 +72,7 @@ public class GradientTransparencySelectionDialog extends GradientSelectionDialog
 	 * @param parent
 	 *            Parent shell
 	 */
+	@Override
 	protected void createDialogControls(Shell parent) {
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 4;

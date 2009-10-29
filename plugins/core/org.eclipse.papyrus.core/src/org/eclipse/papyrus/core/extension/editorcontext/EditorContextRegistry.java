@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension.editorcontext;
 
 import java.util.HashMap;
@@ -31,7 +31,8 @@ import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 
 /**
- * Registry containing registered EditorContext. EditorContexts can be registered by using Eclipse extension.
+ * Registry containing registered EditorContext. EditorContexts can be registered by using Eclipse
+ * extension.
  * 
  *@author Cedric Dumoulin
  *@author Patrick Tessier
@@ -53,7 +54,8 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	private IMultiDiagramEditor multiEditor;
 
 	/**
-	 * Constructor. defaultContext, input and site are explicitly required in order be sure that they are initialized. The multiEditor should be initialized. In particular, getEditorSite(),
+	 * Constructor. defaultContext, input and site are explicitly required in order be sure that
+	 * they are initialized. The multiEditor should be initialized. In particular, getEditorSite(),
 	 * getEditorInput() and getDefaultContext() should return initialized values.
 	 * 
 	 *@param multiEditor
@@ -67,8 +69,10 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 		assert (multiEditor.getEditorSite() != null);
 		assert (multiEditor.getDefaultContext() != null);
 		// Check parameters. To be removed later
-		if (multiEditor.getEditorInput() == null || multiEditor.getEditorSite() == null || multiEditor.getDefaultContext() == null) {
-			throw new IllegalArgumentException("IMultiDiagramEditor should be initialized before calling constructor " + getClass().getSimpleName() + "(IMultiDiagramEditor multiEditor)");
+		if (multiEditor.getEditorInput() == null || multiEditor.getEditorSite() == null
+				|| multiEditor.getDefaultContext() == null) {
+			throw new IllegalArgumentException("IMultiDiagramEditor should be initialized before calling constructor "
+					+ getClass().getSimpleName() + "(IMultiDiagramEditor multiEditor)");
 		}
 
 		this.extensionPointNamespace = extensionPointNamespace;
@@ -110,7 +114,8 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 
 		editorContextDescriptors = new HashMap<Object, ContextDescriptor>();
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				extensionPointNamespace, EDITOR_EXTENSION_ID);
 
 		ContextDescriptorExtensionFactory extensionReader = new ContextDescriptorExtensionFactory();
 
@@ -122,25 +127,28 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 					editorContextDescriptors.put(desc.contextId, desc);
 				}
 			} catch (ExtensionException e) {
-				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
-				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem " + e);
+				Activator.getDefault().getLog()
+						.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
+				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem "
+						+ e);
 			}
 		}
-		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorContextDescriptors.size() + " editorContexts loaded");
+		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorContextDescriptors.size()
+				+ " editorContexts loaded");
 
 	}
 
 	/**
-	 * Do nothing in this implementation.
-	 * {@inheritDoc}
+	 * Do nothing in this implementation. {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#initService(org.eclipse.papyrus.core.services.ServicesRegistry)
 	 */
 	public void initService(ServicesRegistry servicesRegistry) {
 	}
 
 	/**
-	 * Do nothing in this implementation.
-	 * {@inheritDoc}
+	 * Do nothing in this implementation. {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#startService()
 	 */
 	public void startService() {
@@ -151,6 +159,5 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	 */
 	public void disposeService() {
 	}
-
 
 }

@@ -18,19 +18,19 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-
 /**
  * Run as normal test.
+ * 
  * @author dumoulin
- *
+ * 
  */
 public class SashWindowsContainerTest extends TestCase {
 
-	
 	protected Display display;
-	
+
 	/**
 	 * Constructor.
+	 * 
 	 * @param name
 	 */
 	public SashWindowsContainerTest(String name) {
@@ -44,7 +44,7 @@ public class SashWindowsContainerTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-	    display = new Display();
+		display = new Display();
 
 	}
 
@@ -59,80 +59,82 @@ public class SashWindowsContainerTest extends TestCase {
 	}
 
 	/**
-	 * Create a {@link SashWindowsContainer} to test. Initialize it with provided {@link ISashWindowsContentProvider}.
+	 * Create a {@link SashWindowsContainer} to test. Initialize it with provided
+	 * {@link ISashWindowsContentProvider}.
+	 * 
 	 * @param contentProvider
 	 * @return
 	 */
-	protected SashWindowsContainer createSashWindowsContainer(ISashWindowsContentProvider contentProvider)
-	{
+	protected SashWindowsContainer createSashWindowsContainer(ISashWindowsContentProvider contentProvider) {
 		Shell shell = new Shell(display);
 		shell.setLayout(new FillLayout());
-		
+
 		//
-		//new ShellEditor(shell);
-		SashWindowsContainer sashWindowContainer= new SashWindowsContainer();
-		
+		// new ShellEditor(shell);
+		SashWindowsContainer sashWindowContainer = new SashWindowsContainer();
+
 		sashWindowContainer.setContentProvider(contentProvider);
 
 		sashWindowContainer.createPartControl(shell);
-//		shell.open();
+		// shell.open();
 		return sashWindowContainer;
 	}
-	
+
 	/**
 	 * Create a contentProvider.
+	 * 
 	 * @return
 	 */
-	protected ISashWindowsContentProvider createContentProvider()
-	{
+	protected ISashWindowsContentProvider createContentProvider() {
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
 		List<IPageModel> models = new ArrayList<IPageModel>();
-		for(int i=0; i<8; i++)
-		{
-			IPageModel newModel = new MessagePartModel("model"+i);
+		for (int i = 0; i < 8; i++) {
+			IPageModel newModel = new MessagePartModel("model" + i);
 			contentProvider.addPage(newModel);
 			models.add(newModel);
 		}
-		
+
 		return contentProvider;
 	}
-	
+
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
 	 */
 	public void testGetActiveEditor() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
 	 */
 	public void testRefreshTabs() {
-		
+
 		ISashWindowsContentProvider contentProvider = createContentProvider();
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
-		
+
 		container.refreshTabs();
 		assertNotNull("container is set", container);
-		
+
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
 	 */
 	public void testRefreshTabs2() {
-		
+
 		// Test 2 folders, one tab each. Then supress one tabs.
-		// 1 folder with one tab should remain. 
+		// 1 folder with one tab should remain.
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
 		List<IPageModel> models = new ArrayList<IPageModel>();
-		for(int i=0; i<2; i++)
-		{
-			IPageModel newModel = new MessagePartModel("model"+i);
+		for (int i = 0; i < 2; i++) {
+			IPageModel newModel = new MessagePartModel("model" + i);
 			contentProvider.addPage(newModel);
 			models.add(newModel);
 		}
@@ -140,12 +142,11 @@ public class SashWindowsContainerTest extends TestCase {
 		// Create new folder
 		ITabFolderModel folder = contentProvider.getCurrentTabFolder();
 		contentProvider.createFolder(folder, 1, folder, SWT.TOP);
-		
+
 		// Create the container
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 		container.refreshTabs();
 		assertNotNull("container is set", container);
-		
 
 	}
 

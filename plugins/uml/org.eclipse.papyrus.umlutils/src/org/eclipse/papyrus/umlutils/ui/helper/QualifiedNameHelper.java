@@ -59,6 +59,7 @@ public class QualifiedNameHelper {
 	 * 
 	 * @return the sets the qualifed name depth command
 	 */
+	// @unused
 	public static RecordingCommand getSetQualifedNameDepthCommand(TransactionalEditingDomain domain,
 			EModelElement view, int depth) {
 		return new SetQualifiedNameDepthCommand(domain, view, depth);

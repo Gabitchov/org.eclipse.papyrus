@@ -23,7 +23,6 @@ import org.eclipse.papyrus.umlutils.ui.command.SetNameLabelIconCommand;
 
 public class NameLabelIconHelper {
 
-
 	/**
 	 * get the display name label icon indication true or false
 	 * 
@@ -31,9 +30,11 @@ public class NameLabelIconHelper {
 	 *            the view where is attach the element
 	 * @deprecated use showLabelIcon(EModelElement) instead
 	 */
+	@Deprecated
 	public static boolean getNameLabelIconValue(EModelElement modelElement) {
 		return showLabelIcon(modelElement);
 	}
+
 	/**
 	 * get the display name label icon indication true or false
 	 * 
@@ -68,6 +69,7 @@ public class NameLabelIconHelper {
 	 * 
 	 * @return the command to set the gradient to true are false.
 	 */
+	// @unused
 	public static RecordingCommand getNameLabelIconCommand(TransactionalEditingDomain domain, EModelElement view,
 			boolean nameLabelIconValue) {
 		return new SetNameLabelIconCommand(domain, view, nameLabelIconValue);

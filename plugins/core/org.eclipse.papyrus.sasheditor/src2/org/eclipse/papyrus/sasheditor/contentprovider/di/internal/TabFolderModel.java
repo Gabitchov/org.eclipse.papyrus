@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 
@@ -22,7 +22,6 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 
-
 /**
  * @author dumoulin
  */
@@ -31,8 +30,8 @@ public class TabFolderModel implements ITabFolderModel {
 	/**
 	 * The di Model.
 	 */
-	private TabFolder tabFolder; 
-	
+	private TabFolder tabFolder;
+
 	private IPageModelFactory pageModelFactory;
 
 	/**
@@ -46,7 +45,7 @@ public class TabFolderModel implements ITabFolderModel {
 
 	/**
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel#getChildren()
-	 *
+	 * 
 	 * @return
 	 */
 	public List<?> getChildren() {
@@ -55,18 +54,18 @@ public class TabFolderModel implements ITabFolderModel {
 
 	/**
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel#createChildSashModel(java.lang.Object)
-	 *
-	 * @param child The child object returned by {@link TabFolderModel#getChildren}
+	 * 
+	 * @param child
+	 *            The child object returned by {@link TabFolderModel#getChildren}
 	 * @return
 	 */
 	public IPageModel createChildSashModel(Object child) {
-		
-		PageRef pageRef = (PageRef)child;
-		
+
+		PageRef pageRef = (PageRef) child;
+
 		return pageModelFactory.createIPageModel(pageRef.getPageIdentifier());
 	}
 
-	
 	/**
 	 * @return the tabFolder
 	 */

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.sash;
 
 public class FolderInsertedEvent extends ChangeEvent {
@@ -22,7 +22,8 @@ public class FolderInsertedEvent extends ChangeEvent {
 	private Object relativeFolder;
 
 	/**
-	 * Create an event specifying that a folder has been inserted on the side of the relative folder. Side can be left of right.
+	 * Create an event specifying that a folder has been inserted on the side of the relative
+	 * folder. Side can be left of right.
 	 */
 	public FolderInsertedEvent(Object insertedFolder, int side, Object relativeFolder) {
 		this.insertedFolder = insertedFolder;
@@ -33,6 +34,7 @@ public class FolderInsertedEvent extends ChangeEvent {
 	/**
 	 * @return the insertedFolder
 	 */
+	// @unused
 	public Object getInsertedFolder() {
 		return insertedFolder;
 	}
@@ -41,6 +43,7 @@ public class FolderInsertedEvent extends ChangeEvent {
 	 * @param insertedFolder
 	 *            the insertedFolder to set
 	 */
+	// @unused
 	public void setInsertedFolder(Object insertedFolder) {
 		this.insertedFolder = insertedFolder;
 	}
@@ -48,6 +51,7 @@ public class FolderInsertedEvent extends ChangeEvent {
 	/**
 	 * @return the side
 	 */
+	// @unused
 	public int getSide() {
 		return side;
 	}
@@ -56,6 +60,7 @@ public class FolderInsertedEvent extends ChangeEvent {
 	 * @param side
 	 *            the side to set
 	 */
+	// @unused
 	public void setSide(int side) {
 		this.side = side;
 	}
@@ -63,6 +68,7 @@ public class FolderInsertedEvent extends ChangeEvent {
 	/**
 	 * @return the relativeFolder
 	 */
+	// @unused
 	public Object getRelativeFolder() {
 		return relativeFolder;
 	}
@@ -71,6 +77,7 @@ public class FolderInsertedEvent extends ChangeEvent {
 	 * @param relativeFolder
 	 *            the relativeFolder to set
 	 */
+	// @unused
 	public void setRelativeFolder(Object relativeFolder) {
 		this.relativeFolder = relativeFolder;
 	}

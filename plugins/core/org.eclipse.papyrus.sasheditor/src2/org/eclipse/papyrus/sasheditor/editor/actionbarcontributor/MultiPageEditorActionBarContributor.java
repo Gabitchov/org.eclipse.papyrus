@@ -17,9 +17,11 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
- * Abstract base class for managing the installation/deinstallation of global actions for multi-page editors.
+ * Abstract base class for managing the installation/deinstallation of global actions for multi-page
+ * editors.
  * <p>
- * Subclasses must implement <code>setActivePage</code>, and may reimplement any of the following methods:
+ * Subclasses must implement <code>setActivePage</code>, and may reimplement any of the following
+ * methods:
  * <ul>
  * <li><code>contributeToMenu</code> - reimplement to contribute to menu</li>
  * <li><code>contributeToToolBar</code> - reimplement to contribute to tool bar</li>
@@ -28,7 +30,8 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * </p>
  * This class is copied from {@link org.eclipse.ui.part.MultiPageEditorActionBarContributor}
  */
-public abstract class MultiPageEditorActionBarContributor extends EditorActionBarContributor implements IMultiPageEditorActionBarContributor  {
+public abstract class MultiPageEditorActionBarContributor extends EditorActionBarContributor implements
+		IMultiPageEditorActionBarContributor {
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
@@ -41,23 +44,23 @@ public abstract class MultiPageEditorActionBarContributor extends EditorActionBa
 	}
 
 	/**
-	 * Method declared on EditorActionBarContributor.
-	 *  Registers the contributor with the multi-page 
-	 * editor for future editor action redirection when the active page is changed, and sets
-	 * the active page.
+	 * Method declared on EditorActionBarContributor. Registers the contributor with the multi-page
+	 * editor for future editor action redirection when the active page is changed, and sets the
+	 * active page.
 	 */
 	public void setActiveEditor(IEditorPart part) {
-		
+
 		IEditorPart activeNestedEditor = null;
 		if (part instanceof IMultiPageEditorPart) {
 			activeNestedEditor = ((IMultiPageEditorPart) part).getActiveEditor();
 			setActivePage(activeNestedEditor);
 		}
-		
+
 	}
 
 	/**
 	 * Called by the MultiEditor whenever the active page change.
+	 * 
 	 * @param activeEditor
 	 */
 	public abstract void setActivePage(IEditorPart activeEditor);

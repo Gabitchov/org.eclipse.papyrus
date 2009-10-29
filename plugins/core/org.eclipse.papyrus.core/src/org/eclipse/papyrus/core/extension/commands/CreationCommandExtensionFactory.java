@@ -11,12 +11,12 @@
 package org.eclipse.papyrus.core.extension.commands;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.extension.BadNameExtensionException;
 import org.eclipse.papyrus.core.extension.DescriptorExtensionFactory;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * A factory used to create CreationCommand object from Eclipse extensions points elements.
@@ -46,6 +46,7 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 	/**
 	 * @return the eINSTANCE
 	 */
+	// @unused
 	public static CreationCommandExtensionFactory getInstance() {
 		return eINSTANCE;
 	}
@@ -55,7 +56,8 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 	 * 
 	 * @param element
 	 *            an {@link IConfigurationElement} see eclipse extension point
-	 * @return a CreationCommandDescriptor structure that contains information to the creation diagram command
+	 * @return a CreationCommandDescriptor structure that contains information to the creation
+	 *         diagram command
 	 * @throws BadNameExtensionException
 	 **/
 	public CreationCommandDescriptor createCreationCommand(IConfigurationElement element) throws ExtensionException {
@@ -64,12 +66,13 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 		checkTagName(element, CREATION_COMMAND_EXTENSIONPOINT);
 
 		res = new CreationCommandDescriptor();
-		res.creationCommandClass = (Class<ICreationCommand>) parseClass(element, CREATION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
+		res.creationCommandClass = (Class<ICreationCommand>) parseClass(element, CREATION_COMMAND_CLASS_ATTR,
+				CREATION_COMMAND_EXTENSIONPOINT);
 		res.commandId = element.getAttribute(ID_ATTRIBUTE);
 		res.label = element.getAttribute(LABEL_ATTR);
 		String iconPath = element.getAttribute(ICON_ATTR);
 		if (iconPath != null) {
-			res.icon = Activator.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath);
+			res.icon = AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath);
 		}
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "a creation command ready " + res);
 

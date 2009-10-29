@@ -15,23 +15,28 @@ package org.eclipse.papyrus.extensionpoints.editors.configuration;
 
 import org.eclipse.core.runtime.IStatus;
 
-
 /**
- * Standard interface for classes in charge of model validation and modification from a text representation of a UML element
+ * Standard interface for classes in charge of model validation and modification from a text
+ * representation of a UML element
  */
 public interface IModelGenerator {
 
 	/**
 	 * validates the element, given its textual representation
-	 * @param label the label to validate
+	 * 
+	 * @param label
+	 *            the label to validate
 	 * @return the {@link IStatus} corresponding to the validation
 	 */
 	public IStatus validate(String label);
-	
+
 	/**
 	 * modifies the element, given its textual representation
-	 * @param label the label to validate
+	 * 
+	 * @param label
+	 *            the label to validate
 	 * @return the {@link IStatus} corresponding to the validation
 	 */
+	// @unused
 	public IStatus modify(String label);
 }

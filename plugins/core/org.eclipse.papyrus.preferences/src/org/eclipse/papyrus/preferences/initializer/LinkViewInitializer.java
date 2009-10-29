@@ -28,16 +28,16 @@ import org.eclipse.jface.preference.IPreferenceStore;
  * <p>
  * The following properties can be initialized :
  * <ul>
- * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getRouting <em>Routing</em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getSmoothness <em>Smoothness</em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getRouting <em> Routing</em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getSmoothness <em> Smoothness</em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isAvoidObstructions <em>Avoid
  * Obstructions</em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isClosestDistance <em>Closest Distance
  * </em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkStatus <em>Jump Link Status
  * </em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkType <em>Jump Link Type</em>}
- * </li>
+ * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#getJumpLinkType <em> Jump Link Type
+ * </em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.notation.RoutingStyle#isJumpLinksReverse <em>Jump Links
  * Reverse</em>}</li>
  * </ul>
@@ -60,6 +60,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * @param store
 	 *            the preference store where the properties are.
 	 */
+	// @unused
 	public LinkViewInitializer(View view, IPreferenceStore store) {
 		super(view, store);
 		routingStyle = (RoutingStyle) view.getStyle(NotationPackage.Literals.ROUTING_STYLE);
@@ -72,6 +73,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * @param preferenceRoutingName
 	 *            the name of the preference where is stored the value of the Routing
 	 */
+	// @unused
 	public void initRouting(String preferenceRoutingName) {
 		if (routingStyle != null) {
 			Routing routing = Routing.get(getStore().getInt(preferenceRoutingName));
@@ -88,6 +90,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * @param preferenceFontName
 	 *            the name of the preference where is stored the value.
 	 */
+	// @unused
 	public void initAvoidObstructions(String preferenceRoutingJumpName) {
 		routingStyle.setAvoidObstructions(getStore().getBoolean(preferenceRoutingJumpName));
 	}
@@ -99,6 +102,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * @param preferenceClosestDistanceName
 	 *            the name of the preference where is stored the value of the closest distance
 	 */
+	// @unused
 	public void initClosestDistance(String preferenceClosestDistanceName) {
 		routingStyle.setClosestDistance(getStore().getBoolean(preferenceClosestDistanceName));
 	}
@@ -110,6 +114,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * @param preferenceJumpLinkReverseName
 	 *            the name of the preference where is stored the value of the jumplink reverse
 	 */
+	// @unused
 	public void initJumpLinkReverse(String preferenceJumpLinkReverseName) {
 		routingStyle.setJumpLinksReverse(getStore().getBoolean(preferenceJumpLinkReverseName));
 	}
@@ -121,6 +126,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * @param preferenceJumpLinkStatusName
 	 *            the name of the preference where is stored the value of the jumplink status
 	 */
+	// @unused
 	public void initJumpLinkStatus(String preferenceJumpLinkStatusName) {
 		JumpLinkStatus jumpLinkStatus = JumpLinkStatus.get(getStore().getInt(preferenceJumpLinkStatusName));
 		if (jumpLinkStatus != null) {
@@ -135,6 +141,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * @param preferenceJumpLinkTypeName
 	 *            the name of the preference where is stored the value of the jumplink type
 	 */
+	// @unused
 	public void initJumpLinkType(String preferenceJumpLinkTypeName) {
 		JumpLinkType jumpLinkType = JumpLinkType.get(getStore().getInt(preferenceJumpLinkTypeName));
 		if (jumpLinkType != null) {
@@ -149,6 +156,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * @param preferenceSmoothnessName
 	 *            the name of the preference where is stored the value of the Smoothness
 	 */
+	// @unused
 	public void initSmoothness(String preferenceSmoothnessName) {
 		Smoothness smoothness = Smoothness.get(getStore().getInt(preferenceSmoothnessName));
 		if (smoothness != null) {

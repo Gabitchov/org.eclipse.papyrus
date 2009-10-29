@@ -10,14 +10,15 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
- * Exception thrown as an extension point is parsed at runtime. More accurately, it is thrown when one attribute of an extension point that should describe a class name does not correspond to a class
- * in the classpath.
+ * Exception thrown as an extension point is parsed at runtime. More accurately, it is thrown when
+ * one attribute of an extension point that should describe a class name does not correspond to a
+ * class in the classpath.
  * 
  * @author Cedric Dumoulin
  * @author Patrick Tessier
@@ -80,6 +81,7 @@ public class BadClassNameException extends ExtensionException {
 	 * {@inheritDoc}
 	 */
 	public String toString() {
-		return super.toString() + " for the extension point " + iconfigurationElementName + "." + attributeName + " " + e;
+		return super.toString() + " for the extension point " + iconfigurationElementName + "." + attributeName + " "
+				+ e;
 	}
 }

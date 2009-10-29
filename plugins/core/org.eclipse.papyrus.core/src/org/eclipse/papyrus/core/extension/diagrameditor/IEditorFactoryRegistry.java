@@ -22,19 +22,21 @@ import org.eclipse.ui.IEditorPart;
 /**
  * Registry used to create a new nested editor for a specified model.
  * 
- * @author dumoulin 
+ * @author dumoulin
  */
-public interface IEditorFactoryRegistry  {
+public interface IEditorFactoryRegistry {
 
 	/**
 	 * Create a new editor for the specified diagram root.
 	 * 
-	 * @param contextFactoryRegistry*
+	 * @param contextFactoryRegistry
+	 *            *
 	 * @param model
 	 * @throws EditorNotFoundException
 	 *             No editor handling the model can be found.
 	 */
-	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model) throws MultiDiagramException;
+	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model)
+			throws MultiDiagramException;
 
 	/**
 	 * Get the editor descriptor for the specified model.

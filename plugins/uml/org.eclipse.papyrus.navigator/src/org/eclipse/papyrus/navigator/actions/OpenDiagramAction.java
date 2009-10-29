@@ -11,16 +11,16 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Action used to open the given diagram.
- * The diagram is open in a new tab, even if it is already open.
+ * Action used to open the given diagram. The diagram is open in a new tab, even if it is already
+ * open.
  * 
  * @author cedric dumoulin
  */
 public class OpenDiagramAction extends Action {
 
-	Diagram diagram;
+	private final Diagram diagram;
 
-	IPageMngr pageMngr;
+	private final IPageMngr pageMngr;
 
 	public OpenDiagramAction(IPageMngr pageMngr, Diagram diagram) {
 		this.diagram = diagram;
@@ -54,7 +54,8 @@ public class OpenDiagramAction extends Action {
 		//			
 		// EList<EObject> diagrams = diagram.eResource().getContents();
 		// //TODO : synchronize with Cedric
-		// Command command = new RemoveCommand(editingDomain, diagrams, diagram);
+		// Command command = new RemoveCommand(editingDomain, diagrams,
+		// diagram);
 		// editingDomain.getCommandStack().execute(command);
 		// }
 	}

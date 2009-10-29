@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * A controler associated to a part in a folder. This controller is usually
- * associated to an eclipse editor.
+ * A controler associated to a part in a folder. This controller is usually associated to an eclipse
+ * editor.
  * 
  * @author dumoulin
  * 
@@ -43,23 +43,23 @@ public class TabPart<T> {
 	protected EditorTile<T> editorTile;
 
 	/**
-	 * Parent owning this TabPart. Can be null if the Part is orphaned. Even if
-	 * it is orphaned, the Item still set.
+	 * Parent owning this TabPart. Can be null if the Part is orphaned. Even if it is orphaned, the
+	 * Item still set.
 	 */
 	protected TabFolderPart<T> parent;
 
 	/**
-	 * The item associated to this part. This item contains the control of the
-	 * associated editor.
+	 * The item associated to this part. This item contains the control of the associated editor.
 	 */
 	protected CTabItem control;
 
 	/** Garbage state used during refresh */
+	// @unused
 	protected GarbageState garbageState;
 
 	/**
-	 * Constructor. Create a new leaf editor for the provided model. Insert it
-	 * at the specified position in the parent folder.
+	 * Constructor. Create a new leaf editor for the provided model. Insert it at the specified
+	 * position in the parent folder.
 	 * 
 	 * @param model
 	 */
@@ -97,8 +97,8 @@ public class TabPart<T> {
 	}
 
 	/**
-	 * Create the part control for the tab. Lookup in existing Tile for the
-	 * child. Create one if none exist.
+	 * Create the part control for the tab. Lookup in existing Tile for the child. Create one if
+	 * none exist.
 	 * 
 	 * @param tabFolder
 	 * @param index
@@ -134,9 +134,8 @@ public class TabPart<T> {
 	 */
 	private void refreshTabDecorations() {
 		IEditorPart editorPart = getIEditorPart();
-		if( editorPart == null)
-		{
-			System.err.println("Error: found null editorPart " + this.getClass().getName() );
+		if (editorPart == null) {
+			System.err.println("Error: found null editorPart " + this.getClass().getName());
 			setTabText("noname");
 			setTabImage(null);
 			return;
@@ -145,10 +144,9 @@ public class TabPart<T> {
 		setTabImage(editorPart.getTitleImage());
 	}
 
-	
 	/**
-	 * Creates a tab item at the given index and places the given control in the
-	 * new item. The item is a CTabItem with no style bits set.
+	 * Creates a tab item at the given index and places the given control in the new item. The item
+	 * is a CTabItem with no style bits set.
 	 * 
 	 * @param index
 	 *            the index at which to add the control
@@ -164,9 +162,8 @@ public class TabPart<T> {
 	}
 
 	/**
-	 * Synchronize this tab with the specified model. Check if an editor exist
-	 * for the model. If true, use it. If not, create it. The SWT item is
-	 * unchanged.
+	 * Synchronize this tab with the specified model. Check if an editor exist for the model. If
+	 * true, use it. If not, create it. The SWT item is unchanged.
 	 * 
 	 * @param newModel
 	 * @param partMap
@@ -174,8 +171,9 @@ public class TabPart<T> {
 	protected void synchronizeWith(Object newModel, GarbageMaps<T> partMap) {
 
 		// Do nothing if there is no change
-		if (newModel == model)
+		if (newModel == model) {
 			return;
+		}
 
 		model = newModel;
 		// Check if an editor already exist for the model.
@@ -199,8 +197,8 @@ public class TabPart<T> {
 	}
 
 	/**
-	 * Get the container of the Parent. This container is used as root of the
-	 * Controls associated to this editor.
+	 * Get the container of the Parent. This container is used as root of the Controls associated to
+	 * this editor.
 	 * 
 	 * @return
 	 */
@@ -226,9 +224,7 @@ public class TabPart<T> {
 	}
 
 	/**
-	 * Remove the TabPart. 
-	 * Dispose the associated SWT CTabItem.
-	 * (TODO Remove from the parent list.)
+	 * Remove the TabPart. Dispose the associated SWT CTabItem. (TODO Remove from the parent list.)
 	 * Orphan the associated ITilePart
 	 * 
 	 * @see
@@ -249,12 +245,11 @@ public class TabPart<T> {
 	}
 
 	/**
-	 * Set the item control. Setting the item control with the
-	 * control.setControl() method has a side effect: the previous control is
-	 * modified with previousControl.setVisible(false). This is annoying when
-	 * the previous control has already been attached to another parent. This
-	 * method take care to not change the visibility of the previous control if
-	 * it is detached from the item's parent.
+	 * Set the item control. Setting the item control with the control.setControl() method has a
+	 * side effect: the previous control is modified with previousControl.setVisible(false). This is
+	 * annoying when the previous control has already been attached to another parent. This method
+	 * take care to not change the visibility of the previous control if it is detached from the
+	 * item's parent.
 	 * 
 	 * @param newControl
 	 */
@@ -273,8 +268,9 @@ public class TabPart<T> {
 			editorIsVisible = editorControl.getVisible();
 			// Detach the item's control
 			control.setControl(newControl);
-			if (editorIsVisible)
+			if (editorIsVisible) {
 				editorControl.setVisible(editorIsVisible);
+			}
 		} else {
 			// Not reattached, do nothing else
 			control.setControl(newControl);
@@ -284,13 +280,15 @@ public class TabPart<T> {
 	/**
 	 * Dispose the associated control.
 	 */
+	// @unused
 	public void dispose() {
 		Control itemControl = control.getControl();
 		control.dispose();
 
 		// Dispose the inner control if any.
-		if (!itemControl.isDisposed())
+		if (!itemControl.isDisposed()) {
 			itemControl.dispose();
+		}
 
 		//
 		parent = null;
@@ -326,13 +324,14 @@ public class TabPart<T> {
 
 	/**
 	 * Return the associated EditorTile.
+	 * 
 	 * @return
 	 */
-	public EditorTile<T> getEditorTile()
-	{
+	// @unused
+	public EditorTile<T> getEditorTile() {
 		return editorTile;
 	}
-	
+
 	/**
 	 * Locates the part that intersects the given point and that have the expected type
 	 * 
@@ -340,31 +339,31 @@ public class TabPart<T> {
 	 * @return
 	 */
 	public <U extends ITilePart<T>> U findPartAt(Point toFind, Class<U> expectedTileType) {
-		
-		if(expectedTileType == this.getClass())
-			return (U)this;
-		
-		return editorTile.findPartAt(toFind, expectedTileType);	
+
+		if (expectedTileType == this.getClass()) {
+			return (U) this;
+		}
+
+		return editorTile.findPartAt(toFind, expectedTileType);
 	}
 
-
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the visitor.
+	 * 
 	 * @param visitor
 	 * @return
 	 */
 	public void visit(ITileVisitor visitor) {
 		visitor.accept(this);
 	}
-	
+
 	/**
 	 * Visit the children of this Tile.
+	 * 
 	 * @param visitor
 	 */
 	public void visitChildren(ITileVisitor visitor) {
 		editorTile.visit(visitor);
 	}
-
 
 }

@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.editor;
 
 import java.io.IOException;
@@ -29,8 +29,9 @@ import org.eclipse.ui.IEditorInput;
  */
 public class BackboneContext extends AbstractEditorContext {
 
-	/** ID used to identify the Context. This ID is used to retrieve the context from
-	 * the factory, and to register it in the factory (from extension point in plugin.xml).
+	/**
+	 * ID used to identify the Context. This ID is used to retrieve the context from the factory,
+	 * and to register it in the factory (from extension point in plugin.xml).
 	 */
 	public static final Object BACKBONE_CONTEXT_ID = "defaultContext";
 
@@ -55,6 +56,7 @@ public class BackboneContext extends AbstractEditorContext {
 	/**
      * 
      */
+	@Override
 	public void setInput(IEditorInput input) {
 		// TODO change resourceSet URIs ?
 	}
@@ -70,6 +72,7 @@ public class BackboneContext extends AbstractEditorContext {
 	 * 
 	 * @param file
 	 */
+	// @unused
 	public void load(IFile file) {
 		resourceSet.loadResources(file);
 	}

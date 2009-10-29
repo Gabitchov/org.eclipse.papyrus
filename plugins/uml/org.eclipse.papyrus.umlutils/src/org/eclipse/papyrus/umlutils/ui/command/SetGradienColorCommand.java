@@ -21,12 +21,14 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 // TODO: Auto-generated Javadoc
 /**
  * The Class SetQualifiedNameDepthCommand.
+ * 
  * @deprecated
  */
+@Deprecated
 public class SetGradienColorCommand extends CreateEAnnotationCommand {
 
 	/** The qualified namedepht. */
-	private String gradientColor;
+	private final String gradientColor;
 
 	/**
 	 * Instantiates a new sets the qualified name depth command.
@@ -38,6 +40,7 @@ public class SetGradienColorCommand extends CreateEAnnotationCommand {
 	 * @param depht
 	 *            the depht
 	 */
+	// @unused
 	public SetGradienColorCommand(TransactionalEditingDomain domain, EModelElement object, boolean gradient) {
 		super(domain, object, VisualInformationPapyrusConstant.GRADIENT);
 		this.gradientColor = "" + gradient;

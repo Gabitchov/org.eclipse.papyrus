@@ -30,8 +30,9 @@ public class OpaqueBehaviorUtil {
 	 * 
 	 * @return the value of 'Body'at the index i
 	 */
+	// @unused
 	public static String getBody(OpaqueBehavior behavior, int index) {
-		return (String) behavior.getBodies().get(index);
+		return behavior.getBodies().get(index);
 	}
 
 	/**
@@ -42,13 +43,14 @@ public class OpaqueBehaviorUtil {
 	 *            the language in which the body is written
 	 * @return the value of 'Body' at the index i
 	 */
+	// @unused
 	public static String getBody(OpaqueBehavior behavior, String language) {
 		int index = 0;
 		String tmp = "";
 
 		index = getBodyIndex(behavior, language);
 		if ((index > -1) && (index < behavior.getBodies().size())) {
-			tmp = (String) behavior.getBodies().get(index);
+			tmp = behavior.getBodies().get(index);
 		}
 
 		return tmp;
@@ -90,6 +92,7 @@ public class OpaqueBehaviorUtil {
 	 * @param language
 	 *            the langauge of the body to set
 	 */
+	// @unused
 	public static void setBody(OpaqueBehavior behavior, String value, String language) {
 		// get the index of the given language
 		int index = getBodyIndex(behavior, language);

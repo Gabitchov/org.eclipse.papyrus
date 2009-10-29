@@ -31,12 +31,11 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * Action to rename a {@link NamedElement} in the Model Explorer. This action is
- * binded to the "F2" key.
+ * Action to rename a {@link NamedElement} in the Model Explorer. This action is binded to the "F2"
+ * key.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=290514">Bug
- *      #290514</a>
+ * @see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=290514">Bug #290514</a>
  */
 public class RenameNamedElementAction extends CommandActionHandler {
 
@@ -69,6 +68,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 	 * 
 	 * @param selectedNamedElement
 	 */
+	// @notused
 	protected void setSelectedNamedElement(NamedElement selectedNamedElement) {
 		this.selectedNamedElement = selectedNamedElement;
 	}
@@ -76,13 +76,11 @@ public class RenameNamedElementAction extends CommandActionHandler {
 	/**
 	 * Update the selection.
 	 * 
-	 * @return true if this {@link Action} is still enabled after the new
-	 *         selection.
+	 * @return true if this {@link Action} is still enabled after the new selection.
 	 */
 	@Override
 	public boolean updateSelection(IStructuredSelection selection) {
-		ISelection unwrappedselection = NavigatorUtils
-				.unwrapSelection(selection);
+		ISelection unwrappedselection = NavigatorUtils.unwrapSelection(selection);
 		if (unwrappedselection instanceof StructuredSelection) {
 			StructuredSelection structuredSelection = (StructuredSelection) unwrappedselection;
 			if (structuredSelection.size() == 1) {
@@ -107,12 +105,12 @@ public class RenameNamedElementAction extends CommandActionHandler {
 			return null;
 		}
 		return new RecordingCommand(domain) {
+
 			@Override
 			protected void doExecute() {
-				InputDialog dialog = new InputDialog(Activator.getDefault()
-						.getWorkbench().getDisplay().getActiveShell(),
-						"Rename an existing diagram", "New name:",
-						getSelectedNamedElement().getName(), null);
+				InputDialog dialog = new InputDialog(Activator.getDefault().getWorkbench().getDisplay()
+						.getActiveShell(), "Rename an existing diagram", "New name:", getSelectedNamedElement()
+						.getName(), null);
 				if (dialog.open() == Window.OK) {
 					final String name = dialog.getValue();
 					getSelectedNamedElement().setName(name);
@@ -123,6 +121,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 
 	/**
 	 * Get the {@link EditingDomain} as a {@link TransactionalEditingDomain}.
+	 * 
 	 * @return
 	 */
 	protected TransactionalEditingDomain getTransactionalEditingDomain() {
@@ -134,12 +133,12 @@ public class RenameNamedElementAction extends CommandActionHandler {
 
 	/**
 	 * Update the active {@link IWorkbenchPart} and the active {@link EditingDomain}.
+	 * 
 	 * @param workbenchPart
 	 */
 	public void setActiveWorkbenchPart(IWorkbenchPart workbenchPart) {
 		if (workbenchPart instanceof IEditingDomainProvider) {
-			domain = ((IEditingDomainProvider) workbenchPart)
-					.getEditingDomain();
+			domain = ((IEditingDomainProvider) workbenchPart).getEditingDomain();
 		}
 	}
 }

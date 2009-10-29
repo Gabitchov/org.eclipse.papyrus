@@ -89,13 +89,16 @@ public class LabelNameIconAppearanceSection extends AbstractModelerPropertySecti
 				List inputs = getInput();
 				for (Object input : inputs) {
 					if (input instanceof IGraphicalEditPart) {
-						IGraphicalEditPart gep = (IGraphicalEditPart)input;
-						if(gep.getModel() instanceof View){
-							getEditingDomain().getCommandStack().execute(new SetNameLabelIconCommand(getEditingDomain(), (View)gep.getModel(), checkBox.getSelection()));
+						IGraphicalEditPart gep = (IGraphicalEditPart) input;
+						if (gep.getModel() instanceof View) {
+							getEditingDomain().getCommandStack().execute(
+									new SetNameLabelIconCommand(getEditingDomain(), (View) gep.getModel(), checkBox
+											.getSelection()));
 						}
 					}
 				}
 			}
+
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		};
@@ -114,8 +117,7 @@ public class LabelNameIconAppearanceSection extends AbstractModelerPropertySecti
 		if ((!checkBox.isDisposed())) {
 			if (editPart != null) {
 				if ((editPart.getModel()) != null) {
-					checkBox.setSelection(NameLabelIconHelper
-							.showLabelIcon((EModelElement) editPart.getModel()));
+					checkBox.setSelection(NameLabelIconHelper.showLabelIcon((EModelElement) editPart.getModel()));
 
 				} else {
 					checkBox.setEnabled(false);

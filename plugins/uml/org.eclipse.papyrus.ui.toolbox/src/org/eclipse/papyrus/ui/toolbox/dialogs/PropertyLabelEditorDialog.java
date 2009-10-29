@@ -51,6 +51,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
  */
+// @unused
 public class PropertyLabelEditorDialog extends LabelEditorDialog {
 
 	/**
@@ -60,7 +61,8 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 
 	final public static int CREATE_BUTTON_ID = 3;
 
-	// state variables to define the behavior associated to the "press create button" event
+	// state variables to define the behavior associated to the
+	// "press create button" event
 	final private int TYPE_CREATION = 0;
 
 	final private int BINDING_DEFINITION = 1;
@@ -72,14 +74,14 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 	/**
 	 * 
 	 */
-	private Property property;
+	private final Property property;
 
 	/**
 	 * The list contains the types that are dynamically created (through the create button) For a
 	 * given "dialog session", if the user the cancel button, all the types contained in the list
 	 * are deleted.
 	 */
-	private List<Type> dynamicallyCreatedTypes;
+	private final List<Type> dynamicallyCreatedTypes;
 
 	/**
 	 * 
@@ -89,7 +91,7 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 	/**
 	 * 
 	 */
-	private String initialValue;
+	private final String initialValue;
 
 	/**
 	 * // * //
@@ -123,6 +125,7 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 	 * @param property
 	 * @param initialValue
 	 */
+	// @unused
 	public PropertyLabelEditorDialog(Shell parentShell, Property property, String initialValue) {
 		super(parentShell, TITLE, initialValue, new PropertyLabelValidator(property));
 		this.property = property;
@@ -150,14 +153,15 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 			// command
 			RecordingCommand rc = new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
 
+				@Override
 				protected void doExecute() {
 					generator.parseAndModifyProperty(initialValue);
 				}
 			};
 			LookForElement.getTransactionalEditingDomain().getCommandStack().execute(rc);
-			// all the types that have been created during the dialog session are deleted
-			for (Iterator<Type> i = dynamicallyCreatedTypes.iterator(); i.hasNext();) {
-				Type t = i.next();
+			// all the types that have been created during the dialog session
+			// are deleted
+			for (Type t : dynamicallyCreatedTypes) {
 				((org.eclipse.uml2.uml.Package) t.getOwner()).getPackagedElements().remove(t);
 				t.setPackage(null);
 			}
@@ -209,9 +213,8 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.cea.papyrus.core.utils.dialog.LabelEditorDialog#createDialogArea(org.eclipse.swt.widgets
-	 * .Composite)
+	 * @see com.cea.papyrus.core.utils.dialog.LabelEditorDialog#createDialogArea(
+	 * org.eclipse.swt.widgets .Composite)
 	 */
 	/**
 	 * 
@@ -274,12 +277,14 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 	 * 
 	 * @since 3.0
 	 */
+	@Override
 	public void setErrorMessage(String errorMessage) {
 		// this.errorMessage = errorMessage;
 		// if ((errorMessageText != null) && !errorMessageText.isDisposed()) {
 		//    		errorMessageText.setText(errorMessage == null ? "" : errorMessage); //$NON-NLS-1$
 		// errorMessageText.getParent().update();
-		// // Access the ok button by id, in case clients have overridden button creation.
+		// // Access the ok button by id, in case clients have overridden button
+		// creation.
 		// // See https://bugs.eclipse.org/bugs/show_bug.cgi?id=113643
 		// Control button = getButton(IDialogConstants.OK_ID);
 		// if (button != null) {
@@ -325,8 +330,8 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * org.eclipse.swt.custom.VerifyKeyListener#verifyKey(org.eclipse.swt.events.VerifyEvent)
+		 * @see org.eclipse.swt.custom.VerifyKeyListener#verifyKey(org.eclipse.swt
+		 * .events.VerifyEvent)
 		 */
 		/**
 		 * 
@@ -386,9 +391,8 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events
-		 * .SelectionEvent)
+		 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org
+		 * .eclipse.swt.events .SelectionEvent)
 		 */
 		/**
 		 * 
@@ -401,9 +405,8 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent
-		 * )
+		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse
+		 * .swt.events.SelectionEvent )
 		 */
 		/**
 		 * 
@@ -415,9 +418,12 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 			final int[] result = { IDialogConstants.CANCEL_ID };
 			// Retrieves the name of the type to be created
 			PropertyGenerator generator = new PropertyGenerator(property);
-			String typeName = generator.parseUndefinedPropertyType(getValue()); // the name of the
-																				// type to be
-																				// created
+			String typeName = generator.parseUndefinedPropertyType(getValue()); // the
+			// name
+			// of
+			// the
+			// type to be
+			// created
 
 			// Creation of the dialog box
 			/*

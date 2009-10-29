@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.Signal;
 
 public class MessageUtil {
 
+	// @unused
 	public static Operation getMessageOperation(Message message) {
 
 		NamedElement signature = message.getSignature();
@@ -37,6 +38,7 @@ public class MessageUtil {
 		}
 	}
 
+	// @unused
 	public static void setMessageOperation(Message message, Operation newOperation) {
 
 		if (message == null) {
@@ -65,6 +67,7 @@ public class MessageUtil {
 		}
 	}
 
+	// @unused
 	public static Signal getMessageSignal(Message message) {
 
 		NamedElement signature = message.getSignature();
@@ -75,6 +78,7 @@ public class MessageUtil {
 		}
 	}
 
+	// @unused
 	public static void setMessageSignal(Message message, Signal newSignal) {
 
 		if (message == null) {

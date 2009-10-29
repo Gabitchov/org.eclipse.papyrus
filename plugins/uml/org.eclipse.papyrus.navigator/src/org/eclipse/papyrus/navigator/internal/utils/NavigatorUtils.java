@@ -60,8 +60,7 @@ public class NavigatorUtils {
 	public static BackboneContext getBackboneContext() {
 		IMultiDiagramEditor multiDiagramEditor = getMultiDiagramEditor();
 		if (multiDiagramEditor != null) {
-			BackboneContext backboneContext = multiDiagramEditor
-					.getDefaultContext();
+			BackboneContext backboneContext = multiDiagramEditor.getDefaultContext();
 			return backboneContext;
 		}
 		return null;
@@ -118,8 +117,7 @@ public class NavigatorUtils {
 	 */
 	public static IViewPart findViewPart(String viewID) {
 		try {
-			IViewReference reference = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage()
+			IViewReference reference = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 					.findViewReference(viewID);
 			IWorkbenchPart part = reference.getPart(false);
 			if (part instanceof IViewPart) {
@@ -133,8 +131,7 @@ public class NavigatorUtils {
 	}
 
 	/**
-	 * Unwraps selection. Gets <EObject>s from <EditPart>s, from <View>s or from
-	 * <EObject>s
+	 * Unwraps selection. Gets <EObject>s from <EditPart>s, from <View>s or from <EObject>s
 	 * 
 	 * @param selection
 	 *            the selection
@@ -145,8 +142,7 @@ public class NavigatorUtils {
 		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
 			List<EObject> selectionList = new ArrayList<EObject>();
 			StructuredSelection structuredSelection = (StructuredSelection) selection;
-			for (Iterator<?> iterator = structuredSelection.iterator(); iterator
-					.hasNext();) {
+			for (Iterator<?> iterator = structuredSelection.iterator(); iterator.hasNext();) {
 				Object next = iterator.next();
 				if (next instanceof EditPart) {
 					Object model = ((EditPart) next).getModel();
@@ -169,8 +165,9 @@ public class NavigatorUtils {
 				}
 			}
 			return new StructuredSelection(selectionList);
-		} else
+		} else {
 			return selection;
+		}
 	}
 
 	/**
@@ -183,8 +180,7 @@ public class NavigatorUtils {
 	 * 
 	 * @return the edits the parts from selection
 	 */
-	public static List<EditPart> getEditPartsFromSelection(
-			ISelection selection, IDiagramGraphicalViewer viewer) {
+	public static List<EditPart> getEditPartsFromSelection(ISelection selection, IDiagramGraphicalViewer viewer) {
 		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
 			StructuredSelection structuredSelection = (StructuredSelection) selection;
 			// look for Views of the EObjects in the selection
@@ -223,13 +219,12 @@ public class NavigatorUtils {
 	 * 
 	 * @return the e object views
 	 */
+	// @unused
 	public static List<Object> getEObjectViews(EObject element) {
 		List<Object> views = new ArrayList<Object>();
 		if (element != null) {
-			EReference[] features = { NotationPackage.eINSTANCE
-					.getView_Element() };
-			Collection<?> referencers = EMFCoreUtil.getReferencers(element,
-					features);
+			EReference[] features = { NotationPackage.eINSTANCE.getView_Element() };
+			Collection<?> referencers = EMFCoreUtil.getReferencers(element, features);
 			views.addAll(referencers);
 		}
 		return views;
@@ -247,6 +242,7 @@ public class NavigatorUtils {
 	 * 
 	 * @return the object name or empty string
 	 */
+	// @unused
 	public static String getObjectNameOrEmptyString(Object object) {
 		String name = getObjectName(object);
 		return name == null ? "" : name;
@@ -263,6 +259,7 @@ public class NavigatorUtils {
 	 * 
 	 * @return the object name
 	 */
+	// @unused
 	public static String getObjectName(Object object) {
 		if (object == null) {
 			return null;
@@ -271,8 +268,7 @@ public class NavigatorUtils {
 		Object o = null;
 		for (String methodName : getNameNames) {
 			try {
-				method = object.getClass()
-						.getMethod(methodName, (Class[]) null);
+				method = object.getClass().getMethod(methodName, (Class[]) null);
 			} catch (NoSuchMethodException e) {
 				method = null;
 			}
@@ -300,6 +296,7 @@ public class NavigatorUtils {
 	 * 
 	 * @param diagram
 	 */
+	// @unused
 	public static void openDiagram(Diagram diagram) {
 		IPageMngr pageManager = EditorUtils.getIPageMngr();
 		if (pageManager != null) {
@@ -312,13 +309,13 @@ public class NavigatorUtils {
 	 * 
 	 * @param viewPartID
 	 */
+	// @unused
 	public static void openViewPart(String viewPartID) {
 		if (viewPartID == null) {
 			return;
 		}
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage().showView(viewPartID);
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(viewPartID);
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}

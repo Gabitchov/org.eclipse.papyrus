@@ -48,9 +48,9 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	/** indicates if extension is loaded or not */
 	private boolean isExtensionLoaded = false;
 
-	
 	/**
-	 * Create a new Registry reading extension from the specified namespace. The namespace is usually the name of the plugin owning the registry.
+	 * Create a new Registry reading extension from the specified namespace. The namespace is
+	 * usually the name of the plugin owning the registry.
 	 * 
 	 * @param extensionPointNamespace
 	 */
@@ -66,7 +66,8 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	 * @throws EditorNotFoundException
 	 *             No editor handling the model can be found.
 	 */
-	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model) throws MultiDiagramException {
+	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model)
+			throws MultiDiagramException {
 		for (EditorDescriptor desc : getEditorDescriptors()) {
 			if (desc.isEditorFor(model)) {
 				{
@@ -91,21 +92,21 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	}
 
 	/**
-	 * Create the IPageModel for the specified identifier.
-	 * {@inheritDoc}
+	 * Create the IPageModel for the specified identifier. {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory#createIPageModel(java.lang.Object)
 	 */
 	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
 		for (EditorDescriptor desc : getEditorDescriptors()) {
 			if (desc.isDescriptorForPage(pageIdentifier)) {
 				{
-						return desc.createIPageModel(pageIdentifier, servicesRegistry);
+					return desc.createIPageModel(pageIdentifier, servicesRegistry);
 				}
 			}
 		}
 		// no editor found !
 		// TODO Throw an exception.
-//		throw new EditorNotFoundException("No editor registered for '" + pageIdentifier + "'.");
+		// throw new EditorNotFoundException("No editor registered for '" + pageIdentifier + "'.");
 		return null;
 	}
 
@@ -145,7 +146,8 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	 */
 	private void initializeEditorDescriptors() {
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				extensionPointNamespace, EDITOR_EXTENSION_ID);
 
 		for (IConfigurationElement ele : configElements) {
 			EditorDescriptor desc;
@@ -155,10 +157,12 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 					editorDescriptors.add(desc);
 				}
 			} catch (ExtensionException e) {
-				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem " + e);
+				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem "
+						+ e);
 			}
 		}
-		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorDescriptors.size() + " editorDescriptions loaded");
+		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorDescriptors.size()
+				+ " editorDescriptions loaded");
 
 	}
 
@@ -169,13 +173,15 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 		for (EditorDescriptor desc : getEditorDescriptors()) {
 			if (desc.isEditorFor(model)) {
 				// if (model instanceof org.eclipse.papyrus.di.Diagram) {
-				// org.eclipse.papyrus.di.Diagram di2Diagram = (org.eclipse.papyrus.di.Diagram) model;
+				// org.eclipse.papyrus.di.Diagram di2Diagram = (org.eclipse.papyrus.di.Diagram)
+				// model;
 				// if (!GMF_DIAGRAM.equals(di2Diagram.getType()))
 				// return false;
 				// Ok, this is a gmf diagram
-				// EObject root = ((CoreSemanticModelBridge) di2Diagram.getSemanticModel()).getElement();
+				// EObject root = ((CoreSemanticModelBridge)
+				// di2Diagram.getSemanticModel()).getElement();
 				ImageDescriptor imageDescriptor = desc.getIcon();
-				if(imageDescriptor==null)
+				if (imageDescriptor == null)
 					return null;
 				Image image = imageDescriptor.createImage();
 				return image;

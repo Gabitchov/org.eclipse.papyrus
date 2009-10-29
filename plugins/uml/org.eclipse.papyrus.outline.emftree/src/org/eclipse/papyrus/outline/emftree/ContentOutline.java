@@ -49,7 +49,8 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
 /**
- * A Content outline based on the one generated from the DI2 metamodel. This ContentOutlinePage can be used by the multi editor page.
+ * A Content outline based on the one generated from the DI2 metamodel. This ContentOutlinePage can
+ * be used by the multi editor page.
  * 
  * @author dumoulin
  * 
@@ -57,14 +58,16 @@ import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 public class ContentOutline extends ContentOutlinePage implements IMenuListener, IPapyrusContentOutlinePage {
 
 	/**
-	 * This keeps track of the editing domain that is used to track all changes to the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the editing domain that is used to track all changes to the model. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected EditingDomain editingDomain;
 
 	/**
-	 * This is the one adapter factory used for providing views of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This is the one adapter factory used for providing views of the model. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -113,23 +116,25 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 
 	/**
 	 * Init the outline. This method is used by the MultiPageEditor to initialize the Outline.
+	 * 
 	 * @param multiEditor
 	 * @param site
 	 * @throws BackboneException
 	 */
 	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
-		
+
 		// Get the EditorActionBarContributor requested by this particular EMF editor.
-		// The EditorActionBarContributor should be registered in extensions under the specified name
+		// The EditorActionBarContributor should be registered in extensions under the specified
+		// name
 		String EditorActionBarContributorId = "DiActionBarContributor";
-		EditorActionBarContributor actionBarContributor = multiEditor.getActionBarContributorRegistry().getActionBarContributor(EditorActionBarContributorId);
+		EditorActionBarContributor actionBarContributor = multiEditor.getActionBarContributorRegistry()
+				.getActionBarContributor(EditorActionBarContributorId);
 		IEditorSite site = new MultiPageAdapterSite(multiEditor.getEditorSite(), actionBarContributor);
 		this.editorSite = site;
 		this.editingDomain = multiEditor.getDefaultContext().getTransactionalEditingDomain();
 		initAdapterFactory();
 
 	}
-
 
 	@Override
 	public void createControl(Composite parent) {
@@ -150,23 +155,25 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		if (!editingDomain.getResourceSet().getResources().isEmpty()) {
 			// Select the root object in the view.
 			//
-			contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+			contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources()
+					.get(0)), true);
 		}
-//		initDragAndDrop();
+		// initDragAndDrop();
 	}
 
 	/**
 	 * Add drag and drop ability between the outline to the editor.
 	 */
 	protected void initDragAndDrop() {
-		int ops = DND.DROP_COPY | DND.DROP_MOVE| DND.DROP_LINK;
+		int ops = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		// Enable Drag
 		OutlineDragAdapter dragAdapter = new OutlineDragAdapter(contentOutlineViewer);
 		contentOutlineViewer.addDragSupport(ops, dragAdapter.getSupportedDragTransfers(), dragAdapter);
 	}
-	
+
 	@Override
-	public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
+	public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager,
+			IStatusLineManager statusLineManager) {
 		super.makeContributions(menuManager, toolBarManager, statusLineManager);
 		// contentOutlineStatusLineManager = statusLineManager;
 	}
@@ -178,12 +185,13 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 	}
 
 	private EditingDomainActionBarContributor getActionBarContributor() {
-		
-		return (EditingDomainActionBarContributor)editorSite.getActionBarContributor();
+
+		return (EditingDomainActionBarContributor) editorSite.getActionBarContributor();
 	}
 
 	/**
-	 * This creates a context menu for the viewer and adds a listener as well registering the menu for extension. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates a context menu for the viewer and adds a listener as well registering the menu
+	 * for extension. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -204,7 +212,8 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus with contributions from the Edit menu. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus
+	 * with contributions from the Edit menu. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	public void menuAboutToShow(IMenuManager menuManager) {
 		((IMenuListener) getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);

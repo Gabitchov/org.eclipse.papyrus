@@ -94,8 +94,8 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 				Object source = e.getSource();
 				Widget item = e.item;
 				if (source instanceof Table && item instanceof TableItem) { // instanceof check also
-																			// that table and item
-																			// are not null
+					// that table and item
+					// are not null
 					int maskValue = (Integer) ((TableItem) item).getData();
 					applyMask(maskValue, ((TableItem) item).getChecked());
 				}

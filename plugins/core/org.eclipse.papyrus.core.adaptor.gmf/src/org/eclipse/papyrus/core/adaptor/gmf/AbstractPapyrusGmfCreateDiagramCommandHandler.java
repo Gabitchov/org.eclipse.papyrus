@@ -125,7 +125,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 						throws ExecutionException {
-					
+
 					CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
 					EObject model = container;
 					if (model == null) {
@@ -135,7 +135,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 					Diagram diagram = createDiagram(diagramResource, model, diagramName);
 
-					if(diagram != null){
+					if (diagram != null) {
 						openDiagram(diResource, diagram);
 						commandResult = CommandResult.newOKCommandResult();
 					}
@@ -164,7 +164,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		EditorUtils.getIPageMngr(diResource).openPage(diagram);
 
 	}
-
 
 	/**
 	 * Get the root element associated with canvas.

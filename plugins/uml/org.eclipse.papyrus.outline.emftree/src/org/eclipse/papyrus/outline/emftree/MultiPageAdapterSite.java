@@ -16,12 +16,11 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.internal.services.INestable;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
-
 /**
  * A site made of a main site and another ActionarContributor.
  * 
  * @author dumoulin
- *
+ * 
  */
 public class MultiPageAdapterSite implements IEditorSite, INestable {
 
@@ -29,14 +28,15 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	 * The actionBarContributor to use instead of the one in the site.
 	 */
 	private EditorActionBarContributor actionBarContributor;
-	
+
 	/**
 	 * The site to which methods delegate.
 	 */
 	private IEditorSite site;
-	
+
 	/**
 	 * Constructor.
+	 * 
 	 * @param workbenchPartSite
 	 * @param actionBarContributor
 	 */
@@ -45,13 +45,14 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 		this.site = site;
 		this.actionBarContributor = actionBarContributor;
 	}
+
 	/**
 	 * @see org.eclipse.ui.IEditorSite#getActionBarContributor()
 	 * @return
 	 * 
 	 */
 	public IEditorActionBarContributor getActionBarContributor() {
-		
+
 		return actionBarContributor;
 	}
 
@@ -65,25 +66,30 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider, boolean)
+	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(org.eclipse.jface.action.MenuManager,
+	 *      org.eclipse.jface.viewers.ISelectionProvider, boolean)
 	 * @param menuManager
 	 * @param selectionProvider
 	 * @param includeEditorInput
 	 * 
 	 */
-	public void registerContextMenu(MenuManager menuManager, ISelectionProvider selectionProvider, boolean includeEditorInput) {
+	public void registerContextMenu(MenuManager menuManager, ISelectionProvider selectionProvider,
+			boolean includeEditorInput) {
 		site.registerContextMenu(menuManager, selectionProvider, includeEditorInput);
 	}
 
 	/**
-	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(java.lang.String, org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider, boolean)
+	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(java.lang.String,
+	 *      org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider,
+	 *      boolean)
 	 * @param menuId
 	 * @param menuManager
 	 * @param selectionProvider
 	 * @param includeEditorInput
 	 * 
 	 */
-	public void registerContextMenu(String menuId, MenuManager menuManager, ISelectionProvider selectionProvider, boolean includeEditorInput) {
+	public void registerContextMenu(String menuId, MenuManager menuManager, ISelectionProvider selectionProvider,
+			boolean includeEditorInput) {
 		site.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput);
 
 	}
@@ -135,7 +141,8 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider)
+	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(org.eclipse.jface.action.MenuManager,
+	 *      org.eclipse.jface.viewers.ISelectionProvider)
 	 * @param menuManager
 	 * @param selectionProvider
 	 * 
@@ -146,7 +153,8 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(java.lang.String, org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider)
+	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(java.lang.String,
+	 *      org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider)
 	 * @param menuId
 	 * @param menuManager
 	 * @param selectionProvider
@@ -232,24 +240,25 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	public boolean hasService(Class api) {
 		return site.hasService(api);
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.ui.internal.services.INestable#activate()
-	 *
+	 * 
 	 */
 	public void activate() {
-		if(site instanceof INestable )
-		  ((INestable)site).activate();
+		if (site instanceof INestable)
+			((INestable) site).activate();
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.ui.internal.services.INestable#deactivate()
-	 *
+	 * 
 	 */
 	public void deactivate() {
-		if(site instanceof INestable )
-			  ((INestable)site).deactivate();
+		if (site instanceof INestable)
+			((INestable) site).deactivate();
 	}
 
 }

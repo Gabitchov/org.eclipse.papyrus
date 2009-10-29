@@ -18,16 +18,14 @@ import org.eclipse.ui.PlatformUI;
 /**
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug
- *      #290422</a>
+ * @see <a href=https://bugs.eclipse.org/bugs/show_bug.cgi?id=290422>Bug #290422</a>
  */
 public class GroupableLabelProvider extends LabelProvider {
 
 	@Override
 	public Image getImage(Object element) {
 		if (element instanceof PackagingNode) {
-			return PlatformUI.getWorkbench().getSharedImages().getImage(
-					ISharedImages.IMG_OBJ_FOLDER);
+			return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FOLDER);
 		}
 		return super.getImage(element);
 	}

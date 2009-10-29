@@ -28,14 +28,17 @@ public class CreateEAnnotationCommand extends org.eclipse.emf.transaction.Record
 		return object;
 	}
 
+	// @unused
 	public void setObject(EModelElement object) {
 		this.object = object;
 	}
 
+	// @unused
 	public String getEAnnotationName() {
 		return eAnnotationName;
 	}
 
+	// @unused
 	public void setEAnnotationName(String annotationName) {
 		eAnnotationName = annotationName;
 	}
@@ -121,6 +124,7 @@ public class CreateEAnnotationCommand extends org.eclipse.emf.transaction.Record
 	 * @param value
 	 *            the value
 	 */
+	// @unused
 	protected void addEntry(EAnnotation annotation, String key, String value) {
 		annotation.getDetails().put(key, value);
 	}

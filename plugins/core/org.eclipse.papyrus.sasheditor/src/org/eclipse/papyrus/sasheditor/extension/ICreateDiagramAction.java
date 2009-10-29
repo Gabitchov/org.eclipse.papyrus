@@ -10,15 +10,17 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.extension;
 
 /**
- * Action used to create a Diagram. This kind of action is used by the multiEditor to create a new diagram. The diagram creation indirectly involves an editor creation.
+ * Action used to create a Diagram. This kind of action is used by the multiEditor to create a new
+ * diagram. The diagram creation indirectly involves an editor creation.
  * 
  * @author dumoulin
  * 
  */
+// @unused
 public interface ICreateDiagramAction {
 
 	/**
@@ -27,5 +29,6 @@ public interface ICreateDiagramAction {
 	 * @param sharedObjects
 	 *            the shared objects among several diagrams
 	 */
+	// @unused
 	public void run(MultiDiagramSharedObjects sharedObjects);
 }

@@ -1,10 +1,10 @@
 package org.eclipse.papyrus.core.services;
 
-
 /**
- * Service is not found. 
+ * Service is not found.
+ * 
  * @author dumoulin
- *
+ * 
  */
 public class ServiceNotFoundException extends ServiceException {
 
@@ -16,21 +16,25 @@ public class ServiceNotFoundException extends ServiceException {
 	/**
 	 * Constructor.
 	 */
+	// @unused
 	public ServiceNotFoundException() {
 		super();
 	}
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param message
 	 * @param cause
 	 */
+	// @unused
 	public ServiceNotFoundException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param message
 	 */
 	public ServiceNotFoundException(String message) {
@@ -39,8 +43,10 @@ public class ServiceNotFoundException extends ServiceException {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param cause
 	 */
+	// @unused
 	public ServiceNotFoundException(Throwable cause) {
 		super(cause);
 	}

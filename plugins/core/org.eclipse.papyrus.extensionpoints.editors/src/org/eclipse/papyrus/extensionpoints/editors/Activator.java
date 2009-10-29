@@ -28,7 +28,7 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor
 	 */
@@ -37,6 +37,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
@@ -46,6 +47,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
@@ -55,19 +57,20 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
 		return plugin;
 	}
-	
+
 	/**
-	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its
-	 * key.<BR>
-	 * By default, it returns a default image. This image is the image placed
-	 * in the directory <em>resources/icons/default.gif</em>
-	 * @param key the key of the image
+	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its key.<BR>
+	 * By default, it returns a default image. This image is the image placed in the directory
+	 * <em>resources/icons/default.gif</em>
+	 * 
+	 * @param key
+	 *            the key of the image
 	 * @return the Image
 	 */
 	public static Image getImage(String key) {
@@ -80,12 +83,15 @@ public class Activator extends AbstractUIPlugin {
 		}
 		return image;
 	}
-	
+
 	/**
-	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its
-	 * key and its owning plugin.<BR>
-	 * @param pluginID the plugin id where to retrieve the image
-	 * @param key the key of the image
+	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its key and its owning
+	 * plugin.<BR>
+	 * 
+	 * @param pluginID
+	 *            the plugin id where to retrieve the image
+	 * @param key
+	 *            the key of the image
 	 * @return the Image
 	 */
 	public static Image getImage(String pluginID, String key) {
@@ -98,62 +104,48 @@ public class Activator extends AbstractUIPlugin {
 		}
 		return image;
 	}
-	
+
 	/**
 	 * Log a message and an exception in the plugin's log.
-	 * @param message the message to log
-	 * @param e the exception to log
+	 * 
+	 * @param message
+	 *            the message to log
+	 * @param e
+	 *            the exception to log
 	 */
 	public static void log(String message, Exception e) {
-		getDefault().getLog().log(new Status(
-				IStatus.ERROR,
-				Activator.PLUGIN_ID,
-				IStatus.OK,
-				message,
-				e)
-		);
+		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, message, e));
 	}
-	
+
 	/**
 	 * Log a message in the plugin's log.
-	 * @param message the message to log
+	 * 
+	 * @param message
+	 *            the message to log
 	 */
 	public static void log(String message) {
-		getDefault().getLog().log(new Status(
-				IStatus.ERROR,
-				Activator.PLUGIN_ID,
-				IStatus.OK,
-				message,
-				null)
-		);
+		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, message, null));
 	}
-	
+
 	/**
 	 * Log a message in the plugin's log.
-	 * @param message the message to log
+	 * 
+	 * @param message
+	 *            the message to log
 	 */
 	public static void log(Exception e) {
-		getDefault().getLog().log(new Status(
-				IStatus.ERROR,
-				Activator.PLUGIN_ID,
-				IStatus.OK,
-				e.getLocalizedMessage(),
-				e)
-		);
+		getDefault().getLog().log(
+				new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, e.getLocalizedMessage(), e));
 	}
-	
+
 	/**
 	 * Log a message in the plugin's log.
-	 * @param message the message to log
+	 * 
+	 * @param message
+	 *            the message to log
 	 */
 	public static void debug(String message) {
-		getDefault().getLog().log(new Status(
-				IStatus.INFO,
-				Activator.PLUGIN_ID,
-				IStatus.OK,
-				message,
-				null)
-		);
+		getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, IStatus.OK, message, null));
 	}
 
 }

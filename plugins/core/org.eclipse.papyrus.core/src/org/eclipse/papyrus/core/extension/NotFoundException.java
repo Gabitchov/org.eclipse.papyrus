@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.extension;
 
 /**
@@ -31,6 +31,7 @@ public class NotFoundException extends ExtensionException {
 	/**
 	 * Creates a simple NotFoundException.
 	 */
+	// @unused
 	public NotFoundException() {
 	}
 
@@ -50,6 +51,7 @@ public class NotFoundException extends ExtensionException {
 	 * @param cause
 	 *            the cause of the exception
 	 */
+	// @unused
 	public NotFoundException(Throwable cause) {
 		super(cause);
 	}
@@ -62,6 +64,7 @@ public class NotFoundException extends ExtensionException {
 	 * @param cause
 	 *            the cause of the exception
 	 */
+	// @unused
 	public NotFoundException(String message, Throwable cause) {
 		super(message, cause);
 	}

@@ -75,8 +75,10 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 /**
- * Multi diagram editor allowing to plug various kind of editors. Editors are registered with the help of the Eclipse extension mechanism. This implementation allows to register editors and context
- * separately. An editor should specify which context it need to run. This multi diagram editor allows to show editor side by side in one or more sash windows.
+ * Multi diagram editor allowing to plug various kind of editors. Editors are registered with the
+ * help of the Eclipse extension mechanism. This implementation allows to register editors and
+ * context separately. An editor should specify which context it need to run. This multi diagram
+ * editor allows to show editor side by side in one or more sash windows.
  * 
  * The real implementation for the generic type T of SashMultiPageEditorPart is actually di2.Diagram
  * 
@@ -85,8 +87,13 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  *         TODO : remove GMF dependency !
  */
-public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
-//public class CoreMultiDiagramEditor extends MultiPageEditor  /*AbstractMultiPageSashEditor */ implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
+public class CoreMultiDiagramEditor extends
+/* MultiPageEditor */AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor,
+		IDiagramWorkbenchPart {
+
+	// public class CoreMultiDiagramEditor extends MultiPageEditor
+	// /*AbstractMultiPageSashEditor */ implements IMultiDiagramEditor,
+	// ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
@@ -105,8 +112,10 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 
 	/** Services registry. Used to get registered services */
 	private ServicesRegistry servicesRegistry;
+
 	/**
-	 * ActionBarContributor Registry. Allows to get an ActionBar by its Id. The registry is initialized from the Eclipse extension mechanism.
+	 * ActionBarContributor Registry. Allows to get an ActionBar by its Id. The registry is
+	 * initialized from the Eclipse extension mechanism.
 	 */
 	private ActionBarContributorRegistry actionBarContributorRegistry;
 
@@ -118,13 +127,14 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	 */
 	private BackboneContext defaultContext;
 
-
 	/**
 	 * 
 	 */
 	private TabbedPropertySheetPage tabbedPropertySheetPage = null;
 
-	/** Flag reflecting the editor state. The flag is set by listeners on model changes */
+	/**
+	 * Flag reflecting the editor state. The flag is set by listeners on model changes
+	 */
 	private boolean toSave = false;
 
 	/** gef editing domain shared among all editors in this multi diagram editor */
@@ -133,7 +143,7 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	/**
 	 * My editing domain provider.
 	 */
-	private IEditingDomainProvider domainProvider = new IEditingDomainProvider() {
+	private final IEditingDomainProvider domainProvider = new IEditingDomainProvider() {
 
 		public EditingDomain getEditingDomain() {
 			return CoreMultiDiagramEditor.this.defaultContext.getTransactionalEditingDomain();
@@ -143,7 +153,8 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	/**
 	 * Listening on diagram changes. Only listen on diagram add/delete
 	 */
-	private PropertyChangeListener diagramChangeListener = new PropertyChangeListener() {
+	// @unused
+	private final PropertyChangeListener diagramChangeListener = new PropertyChangeListener() {
 
 		public void propertyChange(PropertyChangeEvent evt) {
 			// refresh tabs.
@@ -155,7 +166,7 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	/**
 	 * A listener on model change events.
 	 */
-	private IContentChangedListener contentChangedListener = new IContentChangedListener() {
+	private final IContentChangedListener contentChangedListener = new IContentChangedListener() {
 
 		/**
 		 * Called when the content is changed. RefreshTabs.
@@ -165,12 +176,11 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 			refreshTabs();
 		}
 	};
-	
 
 	/**
 	 * Listen on change on commandStack. Mark editor as dirty if needed.
 	 */
-	private CommandStackListener commandStackListener = new CommandStackListener() {
+	private final CommandStackListener commandStackListener = new CommandStackListener() {
 
 		public void commandStackChanged(EventObject event) {
 			firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -188,7 +198,8 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	}
 
 	/**
-	 * Create a PageEditor for the specified model. Default implementation delegates to pageEditorFactory.createPageEditorFor(model); Not intended for external use.
+	 * Create a PageEditor for the specified model. Default implementation delegates to
+	 * pageEditorFactory.createPageEditorFor(model); Not intended for external use.
 	 * 
 	 * @param model
 	 *            the diagram to be displayed
@@ -196,19 +207,22 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	 * @throws EditorNotFoundException
 	 *             No editor handling the model can be found.
 	 */
+	// @unused
 	public IEditorPart createPageEditor(Object model) throws MultiDiagramException {
 		IEditorPart part = getEditorRegistry().createEditorFor(getContextRegistry(), model);
 		return part;
 	}
 
 	/**
-	 * Get the EditorActionBarContributor that should be associated with the editor of the specified model.
+	 * Get the EditorActionBarContributor that should be associated with the editor of the specified
+	 * model.
 	 * 
 	 * @param editorModel
 	 * @return
 	 * @throws MultiDiagramException
 	 * 
 	 */
+	// @unused
 	public EditorActionBarContributor getActionBarContributor(Object editorModel) {
 
 		try {
@@ -234,7 +248,8 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	}
 
 	/**
-	 * Create the IEditorContextRegistry containing registered contexts. Subclass should implements this method in order to return the registry associated to the extension point namespace.
+	 * Create the IEditorContextRegistry containing registered contexts. Subclass should implements
+	 * this method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @param defaultContext
 	 * @param input
@@ -254,8 +269,9 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	 * @return the contentOutlineRegistry
 	 */
 	protected ContentOutlineRegistry getContentOutlineRegistry() {
-		if (contentOutlineRegistry == null)
+		if (contentOutlineRegistry == null) {
 			createContentOutlineRegistry();
+		}
 
 		return contentOutlineRegistry;
 	}
@@ -268,7 +284,8 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return the singleton eINSTANCE. This method can be subclassed to return another registry.
+	 * Get the EditorRegistry used to create editor instances. This default implementation return
+	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 */
@@ -279,9 +296,9 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		return editorRegistry;
 	}
 
-	
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
+	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 */
@@ -301,6 +318,7 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 
 	/**
 	 * Create the ServicesRegistry.
+	 * 
 	 * @return
 	 */
 	private ServicesRegistry createServicesRegistry() {
@@ -318,64 +336,70 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	}
 
 	/**
-	 * Do nothing as we create the provider before any calls to this method.
-	 * Should not be called by subclasses
-	 * {@inheritDoc}
+	 * Do nothing as we create the provider before any calls to this method. Should not be called by
+	 * subclasses {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor#createPageProvider()
 	 */
 	@Override
 	protected ISashWindowsContentProvider createPageProvider() {
-		throw new UnsupportedOperationException("Not implemented. Should not be called as the ContentProvider is already initialized." );
+		throw new UnsupportedOperationException(
+				"Not implemented. Should not be called as the ContentProvider is already initialized.");
 	}
 
 	/**
 	 * Create the pageContentProvider.
+	 * 
 	 * @param pageFactory
-	 * @param diResource Resource used to load/save the SashModel.
+	 * @param diResource
+	 *            Resource used to load/save the SashModel.
 	 */
-	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory, Resource diResource, TransactionalEditingDomain editingDomain) {
-		
+	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory, Resource diResource,
+			TransactionalEditingDomain editingDomain) {
+
 		sashModelMngr = new TransactionalDiSashModelMngr(pageFactory, diResource, editingDomain);
-		
+
 		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
-		
+
 		// Listen on contentProvider changes
 		sashModelMngr.getSashModelContentChangedProvider().addContentChangedListener(contentChangedListener);
-		
+
 		return pageProvider;
 	}
 
 	/**
-	 * Get The {@link IPageMngr} used to add, open, remove or close a diagram in the 
-	 * SashWindow.
-	 * This method is available as soon as the {@link CoreMultiDiagramEditor#init(IEditorSite, IEditorInput)} 
-	 * method is called.
+	 * Get The {@link IPageMngr} used to add, open, remove or close a diagram in the SashWindow.
+	 * This method is available as soon as the
+	 * {@link CoreMultiDiagramEditor#init(IEditorSite, IEditorInput)} method is called.
+	 * 
 	 * @return
 	 */
-	protected IPageMngr getIPageMngr() throws IllegalStateException
-	{
+	protected IPageMngr getIPageMngr() throws IllegalStateException {
 		try {
 			return sashModelMngr.getIPageMngr();
 		} catch (Exception e) {
-			throw new IllegalStateException("Method should be called after CoreMultiDiagramEditor#init(IEditorSite, IEditorInput) is called");
+			throw new IllegalStateException(
+					"Method should be called after CoreMultiDiagramEditor#init(IEditorSite, IEditorInput) is called");
 		}
 	}
-	
+
 	/**
 	 * Get the ActionBarContributorRegistry. Creates it if necessary.
 	 * 
 	 * @return
 	 */
 	public ActionBarContributorRegistry getActionBarContributorRegistry() {
-		if (actionBarContributorRegistry != null)
+		if (actionBarContributorRegistry != null) {
 			return actionBarContributorRegistry;
+		}
 
 		// Try to got it from CoreComposedActionBarContributor
 		// The ActionBarContributorRegistry is initialized by the Contributor.
 		// Get it from the contributor.
 		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
 		if (contributor instanceof CoreComposedActionBarContributor) {
-			log.info(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
+			log.info(getClass().getSimpleName()
+					+ " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
 			return ((CoreComposedActionBarContributor) contributor).getActionBarContributorRegistry();
 		} else {
 			// Create a registry.
@@ -403,20 +427,19 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	 */
 	@Override
 	public Object getAdapter(@SuppressWarnings("unchecked") Class adapter) {
-		
-		if(ServicesRegistry.class == adapter)
-		{
+
+		if (ServicesRegistry.class == adapter) {
 			return getServicesRegistry();
 		}
-		
-		if(IPageMngr.class == adapter)
-		{
+
+		if (IPageMngr.class == adapter) {
 			return getIPageMngr();
 		}
-		
+
 		if (IPropertySheetPage.class == adapter) {
 			// Do not test if tabbedPropertySheetPage is null before calling new
-			// this is managed by Eclipse which only call current method when necessary
+			// this is managed by Eclipse which only call current method when
+			// necessary
 			return getPropertySheetPage();
 		}
 
@@ -424,8 +447,9 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		if (IContentOutlinePage.class == adapter) {
 			try {
 				IContentOutlinePage contentOutline = getContentOutlineRegistry().getContentOutline();
-				if (contentOutline != null)
+				if (contentOutline != null) {
 					return contentOutline;
+				}
 			} catch (BackboneException e) {
 				// TODO change next exception to more appropriate one
 				throw new RuntimeException(e);
@@ -443,7 +467,8 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		// EMF requirements
 		if (IEditingDomainProvider.class == adapter) {
 
-			// return (IEditingDomainProvider) defaultContext.getTransactionalEditingDomain().getResourceSet();
+			// return (IEditingDomainProvider)
+			// defaultContext.getTransactionalEditingDomain().getResourceSet();
 			return domainProvider;
 		}
 
@@ -452,10 +477,10 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 			return gefAdaptorDelegate.getActionRegistry();
 		}
 
-//		// GEF diagram requirements
-//		if (adapter == SelectionSynchronizer.class) {
-//			return gefAdaptorDelegate.getSelectionSynchronizer();
-//		}
+		// // GEF diagram requirements
+		// if (adapter == SelectionSynchronizer.class) {
+		// return gefAdaptorDelegate.getSelectionSynchronizer();
+		// }
 
 		// TODO : following code is GMF dependant. It should be moved to adapter
 		// Do we really need it? Who use it ?
@@ -498,7 +523,8 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
 
 		// Create registries
-		// editorContextRegistry should be created after site, input and defaultContext are created.
+		// editorContextRegistry should be created after site, input and
+		// defaultContext are created.
 		editorContextRegistry = createEditorContextRegistry();
 		editorContextRegistry.registerContext("defaultContext", defaultContext);
 		editorRegistry = createEditorRegistry();
@@ -507,22 +533,22 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 		servicesRegistry = createServicesRegistry();
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
 		servicesRegistry.add(IEditorContextRegistry.class, 1, editorContextRegistry);
-		
+
 		// Add EditingDomain as service
 		servicesRegistry.add(TransactionalEditingDomain.class, 1, defaultContext.getTransactionalEditingDomain());
-		
+
 		// Create ContentProvider
 		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
-		// TODO : create appropriate Resource for the contentProvider, and pass it here.
+		// TODO : create appropriate Resource for the contentProvider, and pass
+		// it here.
 		// This will allow to remove the old sash stuff.
-		setContentProvider( createPageProvider(pageModelRegistry, defaultContext.getResourceSet().getDiResource(), defaultContext.getTransactionalEditingDomain()));
+		setContentProvider(createPageProvider(pageModelRegistry, defaultContext.getResourceSet().getDiResource(),
+				defaultContext.getTransactionalEditingDomain()));
 		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
 		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
-		
+
 		// Set editor name
 		setPartName(file.getName());
-		
-		
 
 	}
 
@@ -535,18 +561,25 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 
 		// Show the model Explorer View
 		// TODO Use the extension mechanism ?
-//		try {
-//			if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
-//				if (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null) {
-//					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
-//				}
-//			}
-//		} catch (PartInitException e) {
-//			String message = "Error while  showing the Model Explorer view." + e.getMessage();
-//			IStatus status = new Status(IStatus.ERROR, Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR, message, e);
-//			Activator.getDefault().getLog().log(status);
-////			throw new RuntimeException("Error while  showing the Model Explorer view.", e);
-//		}
+		// try {
+		// if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
+		// if
+		// (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+		// != null) {
+		// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID,
+		// null, IWorkbenchPage.VIEW_ACTIVATE);
+		// }
+		// }
+		// } catch (PartInitException e) {
+		// String message = "Error while  showing the Model Explorer view." +
+		// e.getMessage();
+		// IStatus status = new Status(IStatus.ERROR,
+		// Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+		// message, e);
+		// Activator.getDefault().getLog().log(status);
+		// // throw new
+		// RuntimeException("Error while  showing the Model Explorer view.", e);
+		// }
 
 	}
 
@@ -675,6 +708,7 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	}
 
 	// FIXME: Pour C�dric modif
+	@Override
 	public IEditorPart getActiveEditor() {
 		return super.getActiveEditor();
 	}
@@ -711,23 +745,27 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	}
 
 	/**
-	 * This method is called from a GMF diagram. It should only be called from GMF diagram code. Normally, the Diagram under the Mouse is a GMF Diagram. The active Diagram can be another Diagram, not
-	 * under the mouse. This is a GMF issue.
+	 * This method is called from a GMF diagram. It should only be called from GMF diagram code.
+	 * Normally, the Diagram under the Mouse is a GMF Diagram. The active Diagram can be another
+	 * Diagram, not under the mouse. This is a GMF issue.
 	 */
 	public DiagramEditPart getDiagramEditPart() {
 
 		// Get the editor under the mouse
-//		IEditorPart activeEditor = rootContainer.getEditorUnderMouse();
+		// IEditorPart activeEditor = rootContainer.getEditorUnderMouse();
 		IEditorPart activeEditor = getActiveEditor();
-		if(activeEditor == null)
+		if (activeEditor == null) {
 			return null;
+		}
 		// IEditorPart activeEditor = getActiveEditor();
 		if (activeEditor instanceof DiagramEditor) {
 			return ((DiagramEditor) activeEditor).getDiagramEditPart();
 		} else {
 			// This case should never happen.
-//			throw new UnsupportedOperationException("Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from " + activeEditor.getTitle() + ", "
-//					+ activeEditor);
+			// throw new
+			// UnsupportedOperationException("Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from "
+			// + activeEditor.getTitle() + ", "
+			// + activeEditor);
 			// Return null, as the GMF runtime now support it (since 093009)
 			return null;
 		}
@@ -748,6 +786,5 @@ public class CoreMultiDiagramEditor extends /* MultiPageEditor */ AbstractMultiP
 	public EditingDomain getEditingDomain() {
 		return defaultContext.getTransactionalEditingDomain();
 	}
-
 
 }

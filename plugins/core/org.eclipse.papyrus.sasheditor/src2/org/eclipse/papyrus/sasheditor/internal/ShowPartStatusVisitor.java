@@ -10,18 +10,19 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
-
 
 /**
  * Visitor used to show the status of the different Tiles composing the sash system.
+ * 
  * @author dumoulin
- *
+ * 
  */
 @SuppressWarnings("unchecked")
-public class ShowPartStatusVisitor  extends PartVisitor {
-	int level=1;
+public class ShowPartStatusVisitor extends PartVisitor {
+
+	int level = 1;
 
 	/**
 	 * @param tile
@@ -31,7 +32,7 @@ public class ShowPartStatusVisitor  extends PartVisitor {
 	public void accept(RootPart tile) {
 		indent();
 		tile.showStatus();
-		//			System.out.println( "root:" + tile );
+		// System.out.println( "root:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -41,14 +42,12 @@ public class ShowPartStatusVisitor  extends PartVisitor {
 	 * 
 	 */
 	private void indent() {
-		if(level<1)
-		{
-			//error
+		if (level < 1) {
+			// error
 			return;
 		}
 
-		for(int i=0; i<level-1; i++)
-		{
+		for (int i = 0; i < level - 1; i++) {
 			System.out.print("|   ");
 		}
 		// last segment
@@ -63,7 +62,7 @@ public class ShowPartStatusVisitor  extends PartVisitor {
 	public void accept(SashPanelPart tile) {
 		indent();
 		tile.showStatus();
-		//			System.out.println( "sash:" + tile );
+		// System.out.println( "sash:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -76,7 +75,7 @@ public class ShowPartStatusVisitor  extends PartVisitor {
 	public void accept(TabFolderPart tile) {
 		indent();
 		tile.showStatus();
-		//			System.out.println( "folder:" + tile );
+		// System.out.println( "folder:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -89,7 +88,7 @@ public class ShowPartStatusVisitor  extends PartVisitor {
 	public void accept(EditorPart tile) {
 		indent();
 		tile.showStatus();
-		//			System.out.println( "editor:" + tile );
+		// System.out.println( "editor:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -102,11 +101,10 @@ public class ShowPartStatusVisitor  extends PartVisitor {
 	public void accept(ComponentPart tile) {
 		indent();
 		tile.showStatus();
-		//			System.out.println( "editor:" + tile );
+		// System.out.println( "editor:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
 	}
-
 
 }

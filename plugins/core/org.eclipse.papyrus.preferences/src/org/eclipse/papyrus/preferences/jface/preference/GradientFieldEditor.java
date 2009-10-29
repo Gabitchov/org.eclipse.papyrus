@@ -117,7 +117,6 @@ public class GradientFieldEditor extends FieldEditor {
 		verticalStyleButton.setText(Messages.GradientFieldEditor_Vertical);
 		horizontalStyleButton = new Button(styleComposite, SWT.RADIO);
 		horizontalStyleButton.setText(Messages.GradientFieldEditor_Horizontal);
-		
 
 		SelectionListener selectionListener = new SelectionAdapter() {
 

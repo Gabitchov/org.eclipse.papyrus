@@ -20,8 +20,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.Saveable;
 
 /**
- * A {@link Saveable} that targets the {@link Saveable#doSave(IProgressMonitor)}
- * action to the active {@link IEditorPart}.
+ * A {@link Saveable} that targets the {@link Saveable#doSave(IProgressMonitor)} action to the
+ * active {@link IEditorPart}.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=290424">Bug 290424</a>

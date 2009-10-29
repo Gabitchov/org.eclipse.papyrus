@@ -30,16 +30,18 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 
 	/** text editor that uses this document provider */
 	protected EmbeddedTextEditor textEditor;
-	
+
 	/**
 	 * Creates a new EmbeddedEditorDocumentProvider.
-	 * @param textEditor the editor linked to this document provider
+	 * 
+	 * @param textEditor
+	 *            the editor linked to this document provider
 	 */
 	public EmbeddedEditorDocumentProvider(EmbeddedTextEditor textEditor) {
 		super();
 		this.textEditor = textEditor;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -66,29 +68,33 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 		return true;
 	}
 
-	
-	/** 
+	/**
 	 * Returns the string label to edit.
-	 * @param element the edited element
+	 * 
+	 * @param element
+	 *            the edited element
 	 * @return the text corresponding to the edited element
 	 */
 	protected String getLabelToEdit(Object element) {
-		if(element instanceof EmbeddedEditorInput) {
-			EObject object = ((EmbeddedEditorInput)element).getEditedObject();
+		if (element instanceof EmbeddedEditorInput) {
+			EObject object = ((EmbeddedEditorInput) element).getEditedObject();
 			return textEditor.getDirectEditorConfiguration().getTextToEdit(object);
 		}
 		return element.toString();
 	}
-	
+
 	/**
 	 * Applies changes to the model, given the new text
-	 * @param element the element modified 
+	 * 
+	 * @param element
+	 *            the element modified
 	 * @return the result of the modification
 	 */
 	protected Object applyChanges(Object element) {
-		if(element instanceof EmbeddedEditorInput) {
-			EObject object = ((EmbeddedEditorInput)element).getEditedObject();
-			return textEditor.getDirectEditorConfiguration().postEditAction(object, getDocument(((EmbeddedEditorInput)element)).get());
+		if (element instanceof EmbeddedEditorInput) {
+			EObject object = ((EmbeddedEditorInput) element).getEditedObject();
+			return textEditor.getDirectEditorConfiguration().postEditAction(object,
+					getDocument(((EmbeddedEditorInput) element)).get());
 		}
 		return element.toString();
 	}
@@ -97,10 +103,11 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
+	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
+			throws CoreException {
 		throw new RuntimeException("Impossible to save the content of an embedded editor.");
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -109,5 +116,4 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 		return null;
 	}
 
-	
 }
