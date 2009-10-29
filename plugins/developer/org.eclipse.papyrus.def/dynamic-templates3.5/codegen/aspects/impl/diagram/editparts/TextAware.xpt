@@ -235,13 +235,13 @@
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.swt.graphics.Image getLabelIcon() {
 		«IF useElementIcon-»
-		EObject parserElement = getParserElement();
+		org.eclipse.emf.ecore.EObject parserElement = getParserElement();
 		if (parserElement == null) {
 			return null;
 		}
 		«REM»START: PapyrusGenCode«ENDREM»
-		List<View> views = org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for (View view : views) {
+		java.util.List<org.eclipse.gmf.runtime.notation.View> views = org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		for (org.eclipse.gmf.runtime.notation.View view : views) {
 			if (org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper.showLabelIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());
 			}
